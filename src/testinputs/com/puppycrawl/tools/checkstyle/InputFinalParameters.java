@@ -101,3 +101,8 @@ class InputFinalParameters
         }
     }
 }
+
+abstract class AbstractClass
+{
+    public abstract void abstractMethod(int aParam);
+}
