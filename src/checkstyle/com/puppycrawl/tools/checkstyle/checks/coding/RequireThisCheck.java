@@ -350,7 +350,7 @@ class FrameStack
      */
     void enter(LexicalFrame aNewFrame)
     {
-        mFrameList.addFirst (aNewFrame);
+        mFrameList.addFirst(aNewFrame);
     }
 
     /** Leave a scope, i.e. pop a frame from the stack.  */
@@ -373,7 +373,7 @@ class FrameStack
      * @param aNameToFind the name we're looking for
      * @return the frame in which it was found, or null if not found
      */
-    LexicalFrame findFrame (String aNameToFind)
+    LexicalFrame findFrame(String aNameToFind)
     {
         final Iterator it = mFrameList.iterator();
         while (it.hasNext()) {
