@@ -507,10 +507,8 @@
                   LocalizedMessage[] errors = new LocalizedMessage[1];
 
                   // get the resource bundle to use for the message
-                  final String className = getClass().getName();
-                  final int pkgEndIndex = className.lastIndexOf('.');
-                  final String pkgName = className.substring(0, pkgEndIndex);
-                  final String bundle = pkgName + ".messages";
+                  // will return "com.mycompany.checks.messages"
+                  final String bundle = getMessageBundle();
 
                   // create the message arguments
                   Object[] msgArgs = new Object[]{new Integer(max)};
