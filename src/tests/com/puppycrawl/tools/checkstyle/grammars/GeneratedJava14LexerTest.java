@@ -20,6 +20,6 @@ public class GeneratedJava14LexerTest
         final String[] expected = {
             "8:10: Got an exception - unexpected char: 0xA9",
         };
-//         verify(checkConfig, getPath("grammars/InputGrammar.java"), expected);
+        verify(checkConfig, getPath("grammars/InputGrammar.java"), expected);
     }
 }
