@@ -101,8 +101,9 @@ public final class Utils
                                          int aTabWidth)
     {
         int len = 0;
+        final char[] chars = aString.toCharArray();
         for (int idx = 0; idx < aToIdx; idx++) {
-            if (aString.charAt(idx) == '\t') {
+            if (chars[idx] == '\t') {
                 len = (len / aTabWidth + 1) * aTabWidth;
             }
             else {
