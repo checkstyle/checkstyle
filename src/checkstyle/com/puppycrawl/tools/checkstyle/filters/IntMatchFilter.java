@@ -21,8 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
 /**
- * This filter accepts a matching Integer and is neutral
- * on other Objects.
+ * This filter accepts a matching Integer.
  * @author Rick Giles
  */
 public class IntMatchFilter

@@ -27,8 +27,12 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * <p>
- * This filter denies AuditEvents according to file, check, line, and
- * column. It is neutral on Objects that are not AuditEvents.
+ * This filter accepts AuditEvents according to file, check, line, and
+ * column conditions. It rejects an AuditEvent if the event's file
+ * name and check name match the filter's file name and check name
+ * patterns, and the event's line is in the filter's line CSV or the
+ * check's columns is in the filter's column CSV.
+ * It rejects Objects that are not AuditEvents.
  * </p>
  * @author Rick Giles
  */
@@ -114,7 +118,7 @@ public class SuppressElement
     public boolean accept(Object aObject)
     {
         if (!(aObject instanceof AuditEvent)) {
-            return true;
+            return false;
         }
 
         final AuditEvent event = (AuditEvent) aObject;
@@ -133,7 +137,7 @@ public class SuppressElement
             return false;
         }
 
-        // reject line if it is accepted by the line CSV filter
+        // reject if line matches a line CSV value.
         if (mLineFilter != null) {
             final Integer line = new Integer(event.getLine());
             if (mLineFilter.accept(line)) {
@@ -141,7 +145,7 @@ public class SuppressElement
             }
         }
 
-        // reject if column accepted by the column CSV filter
+        // reject if column matches a column CSV value.
         if (mColumnFilter != null) {
             final Integer column = new Integer(event.getColumn());
             if (mColumnFilter.accept(column)) {

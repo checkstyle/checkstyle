@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import com.puppycrawl.tools.checkstyle.SuppressionsLoader;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -26,9 +27,9 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 
 /**
  * <p>
- * This filter suppresses AuditEvents according to file, check, line, and
+ * This filter accepts AuditEvents according to file, check, line, and
  * column, as specified in a suppression file.
- * It is neutral on Objects that are not AuditEvents.
+ * It rejects Objects that are not AuditEvents.
  * </p>
  * @author Rick Giles
  */
@@ -36,8 +37,8 @@ public class SuppressionFilter
     extends AutomaticBean
     implements Filter
 {
-    /** chain of individual suppresses */
-    private FilterSet mFilterChain = new FilterSet();
+    /** set of individual suppresses */
+    private FilterSet mFilters = new FilterSet();
 
     /**
      * Loads the suppressions for a file.
@@ -47,25 +48,30 @@ public class SuppressionFilter
     public void setFile(String aFileName)
         throws CheckstyleException
     {
-        mFilterChain = SuppressionsLoader.loadSuppressions(aFileName);
+        mFilters = SuppressionsLoader.loadSuppressions(aFileName);
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Filter */
     public boolean accept(Object aObject)
     {
-        return mFilterChain.accept(aObject);
+        if (!(aObject instanceof AuditEvent)) {
+            return false;
+        }
+        else {
+            return mFilters.accept(aObject);
+        }
     }
 
     /** @see java.lang.Object#toString() */
     public String toString()
     {
-        return mFilterChain.toString();
+        return mFilters.toString();
     }
 
     /** @see java.lang.Object#hashCode() */
     public int hashCode()
     {
-        return mFilterChain.hashCode();
+        return mFilters.hashCode();
     }
 
     /** @see java.lang.Object#equals(java.lang.Object) */
@@ -73,7 +79,7 @@ public class SuppressionFilter
     {
         if (aObject instanceof SuppressionFilter) {
             final SuppressionFilter other = (SuppressionFilter) aObject;
-            return this.mFilterChain.equals(other.mFilterChain);
+            return this.mFilters.equals(other.mFilters);
         }
         else {
             return false;
