@@ -28,24 +28,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 
 /**
- * <p>
  * Checks that a variable has Javadoc comment.
- * The scope to verify is specified using the {@link Scope} class and
- * defaults to {@link Scope#PRIVATE}. To verify another scope,
- * set property scope to one of the {@link Scope} constants.
- * An example of how to configure the check is:
- * </p>
- * <pre>
- * &lt;module name="JavadocVariable"/&gt;
- * </pre>
- * <p> An example of how to configure the check for the
- * {@link Scope#PUBLIC} scope is:
- *</p>
- * <pre>
- * &lt;module name="JavadocVariable"&gt;
- *    &lt;property name="scope" value="public"/&gt;
- * &lt;/module&gt;
- * </pre>
+ *
  * @author Oliver Burn
  * @version 1.0
  */

@@ -31,25 +31,7 @@ import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
 /**
- * <p>Custom Checkstyle Check to validate Javadoc.
- * The following checks are performed:
- * </p>
- * <ul>
- * <li>Ensures the first sentence ends with proper punctuation (That is
- * a period, question mark, or exclaimation mark).  Javadoc  automatically
- * places the first sentence in the method summary table and index.  With out
- * proper punctuation the Javadoc may be malformed.</li>
- * <li> Check text for Javadoc statements that do not have any description.
- * This includes both completely empty Javadoc, and Javadoc with only
- * tags such as @param and @return.</li>
- * <li>Check text for incomplete html tags.  Verifies that HTML tags have
- * corresponding end tags and issues an UNCLOSED_HTML error if not.
- * An EXTRA_HTML error is issued if an end tag is found without a previous
- * open tag.</li>
- * </ul>
- * <p>These checks were patterned after the checks made by the doclet
- * <code>com.sun.tools.doclets.doccheck.DocCheck</code>
- * </p>
+ * Custom Checkstyle Check to validate Javadoc.
  *
  * @author Chris Stillwell
  * @author Daniel Grenner
