@@ -82,7 +82,7 @@ public class IllegalInstantiationCheck
             TokenTypes.PACKAGE_DEF
         };
     }
-    
+
     /**
      * Prevent user from changing tokens in the configuration.
      * @see com.puppycrawl.tools.checkstyle.api.Check
@@ -91,7 +91,7 @@ public class IllegalInstantiationCheck
     {
         return new int[] {};
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getRequiredTokens()
     {
@@ -101,7 +101,7 @@ public class IllegalInstantiationCheck
             TokenTypes.PACKAGE_DEF
         };
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree(DetailAST aRootAST)
     {
