@@ -1148,7 +1148,8 @@ VOCAB
 // if it's a literal or really an identifer
 IDENT
 	options {testLiterals=true;}
-	:	('a'..'z'|'A'..'Z'|'_'|'$') ('a'..'z'|'A'..'Z'|'_'|'0'..'9'|'$')*
+	:	('a'..'z'|'A'..'Z'|'_'|'$'| {Character.isJavaIdentifierStart(LA(1))}? '\u0080'..'\uFFFE')
+                ('a'..'z'|'A'..'Z'|'_'|'0'..'9'|'$'| {Character.isJavaIdentifierPart(LA(1))}? '\u0080'..'\uFFFE')*
 	;
 
 
