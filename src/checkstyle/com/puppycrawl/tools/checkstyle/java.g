@@ -304,27 +304,25 @@ implementsClause
 //   need to be some semantic checks to make sure we're doing the right thing...
 field!
 {
-    MyModifierSet modSet = new MyModifierSet();
     java.util.List exs = new java.util.ArrayList();
     MethodSignature msig = new MethodSignature();
 }
 	:	// method, constructor, or variable declaration
-		mods:modifiers[modSet]
+		mods:modifiers[msig.getModSet()]
 		(	h:ctorHead[exs, msig]
             {
                 msig.setThrows(exs);
-                msig.setLineNo(#h.getLineNo());
-                ver.verifyMethod(modSet, null, msig);
+                ver.verifyMethod(msig);
                 ver.reportStartMethodBlock();
             } 
             s:constructorBody // constructor
 			{#field = #(#[CTOR_DEF,"CTOR_DEF"], mods, h, s);}
             {ver.reportEndMethodBlock();} 
 
-		|	cd:classDefinition[#mods, modSet]       // inner class
+		|	cd:classDefinition[#mods, msig.getModSet()]       // inner class
 			{#field = #cd;}
 
-		|	id:interfaceDefinition[#mods, modSet]   // inner interface
+		|	id:interfaceDefinition[#mods, msig.getModSet()]   // inner interface
 			{#field = #id;}
 
 		|	t:typeSpec[false]  // method or variable declaration(s)
@@ -340,10 +338,10 @@ field!
 				(tc:throwsClause[exs])?
 
                 {
-                    msig.setName(#IDENT.getText());
+                    msig.setName(#IDENT);
                     msig.setThrows(exs);
-                    msig.setLineNo(#t.getLineNo());
-                    ver.verifyMethod(modSet, #t, msig);
+                    msig.setReturnType(#t);
+                    ver.verifyMethod(msig);
                     ver.reportStartMethodBlock();
                 } 
 				( s2:compoundStatement {ver.verifyMethodLength(#s2.getLineNo(), sCompoundLength);} | SEMI )
@@ -355,7 +353,7 @@ field!
 							 tc,
 							 s2); }
                 {ver.reportEndMethodBlock();} 
-			|	v:variableDefinitions[#mods,#t, modSet] SEMI
+			|	v:variableDefinitions[#mods,#t, msig.getModSet()] SEMI
 				{#field = #v;}
 			)
 		)
@@ -465,7 +463,7 @@ initializer
 //   for the method.
 //   This also watches for a list of exception classes in a "throws" clause.
 ctorHead[java.util.List exs, MethodSignature msig]
-	:	IDENT  // the name of the method
+	:	IDENT  { msig.setName(#IDENT); } // the name of the method
 
 		// parse the formal parameter declarations.
 		LPAREN! parameterDeclarationList[msig] RPAREN!

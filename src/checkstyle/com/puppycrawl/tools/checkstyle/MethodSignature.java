@@ -34,10 +34,12 @@ class MethodSignature
     private final List mParams = new ArrayList();
     /** the throws **/
     private List mThrows = new ArrayList();
-    /** the line number **/
-    private int mLineNo = 0;
     /** the name **/
-    private String mName = null;
+    private MyCommonAST mName;
+    /** the modifiers **/
+    private final MyModifierSet mModSet = new MyModifierSet();
+    /** the return type **/
+    private MyCommonAST mReturnType;
 
     /**
      * Adds a parameter.
@@ -70,24 +72,9 @@ class MethodSignature
     }
 
     /**
-     * Sets the line number.
-     * @param aLineNo the line number
-     **/
-    void setLineNo(int aLineNo)
-    {
-        mLineNo = aLineNo;
-    }
-
-    /** @return the line number **/
-    int getLineNo()
-    {
-        return mLineNo;
-    }
-
-    /**
      * @param aName method name
      */
-    void setName(String aName)
+    void setName(MyCommonAST aName)
     {
         mName = aName;
     }
@@ -95,6 +82,49 @@ class MethodSignature
     /** @return method name **/
     String getName()
     {
-        return mName;
+        return mName.getText();
+    }
+
+    /** @return the <code>MyModifierSet</code> for the method **/
+    MyModifierSet getModSet()
+    {
+        return mModSet;
+    }
+
+    /** @return the first line of the method signature **/
+    int getLineNo()
+    {
+        return (mModSet.size() > 0)
+            ? mModSet.getFirstLineNo()
+            : mName.getLineNo();
+    }
+
+    /** @return the return type **/
+    MyCommonAST getReturnType()
+    {
+        return mReturnType;
+    }
+
+    /**
+     * Set the return type
+     * @param aReturnType the return type
+     */
+    void setReturnType(MyCommonAST aReturnType)
+    {
+        mReturnType = aReturnType;
+    }
+
+    /** @return whether the method is a function **/
+    boolean isFunction()
+    {
+        return isConstructor()
+            ? false
+            : !"void".equals(mReturnType.getText().trim());
+    }
+
+    /** @return whether the method is really a constructor **/
+    boolean isConstructor()
+    {
+        return (mReturnType == null);
     }
 }
