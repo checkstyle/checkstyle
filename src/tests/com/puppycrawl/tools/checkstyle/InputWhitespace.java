@@ -149,12 +149,10 @@ class InputWhitespace
         // evil colons, should be OK
         assert "OK".equals(null) ? false : true : "Whups";
 
-        // WS tests for assert not implemented yet
-
         // missing WS around assert
-        // assert(true);
+        assert(true);
 
         // missing WS around colon
-        // assert true:"Whups";
+        assert true:"Whups";
     }
 }
