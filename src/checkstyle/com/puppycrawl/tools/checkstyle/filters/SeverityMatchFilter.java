@@ -61,7 +61,7 @@ public class SeverityMatchFilter
         mAcceptOnMatch = aAcceptOnMatch;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.filter.Filter */
+    /** @see com.puppycrawl.tools.checkstyle.api.Filter */
     public boolean accept(Object aObject)
     {
         if (!(aObject instanceof AuditEvent)) {
