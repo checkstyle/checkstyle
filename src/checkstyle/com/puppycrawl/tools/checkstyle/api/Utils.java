@@ -19,19 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-import java.util.ArrayList;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
-import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
+import org.apache.commons.beanutils.ConversionException;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
-import org.apache.commons.beanutils.ConversionException;
 
 /**
  * Contains utility methods.
@@ -143,26 +141,6 @@ public final class Utils
         if (aValue != null) {
             aProps.put(aKey, aValue.toString());
         }
-    }
-
-    /**
-     * Add a Set add a String to a set of properties. The Set will be encoded
-     * by seperating the Set with ",".
-     * @param aProps the Properties to add to
-     * @param aKey the key to add the property under
-     * @param aSet the Set to encode
-     */
-    public static void addSetString(Properties aProps, String aKey, Set aSet)
-    {
-        final StringBuffer buf = new StringBuffer();
-        final Iterator it = aSet.iterator();
-        while (it.hasNext()) {
-            buf.append(it.next().toString());
-            if (it.hasNext()) {
-                buf.append(",");
-            }
-        }
-        aProps.put(aKey, buf.toString());
     }
 
     /**
