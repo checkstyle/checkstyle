@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
  * @author lkuehne
  */
 public class Checker extends AutomaticBean
-    implements Defn, MessageDispatcher
+    implements MessageDispatcher
 {
     /**
      * An AuditListener that maintains the number of errors.
