@@ -9,6 +9,9 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 public class LocalizedMessageTest
     extends TestCase
 {
+    private final String CHECKSTYLE_CHECKS_BUNDLE =
+            "com.puppycrawl.tools.checkstyle.checks.messages";
+
     protected void setUp() throws Exception
     {
         LocalizedMessage.setLocale(Locale.ENGLISH);
@@ -27,7 +30,7 @@ public class LocalizedMessageTest
         assertNotNull(lm);
         assertEquals("Error auditing Claira", lm.getMessage());
 
-        lm = new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
+        lm = new LocalizedMessage(0, CHECKSTYLE_CHECKS_BUNDLE,
                                   "ws.notFollowed", new String[] {"{"});
         assertNotNull(lm);
         assertEquals("'{' is not followed by whitespace.", lm.getMessage());
