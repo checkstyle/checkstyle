@@ -109,9 +109,11 @@ public class XMLLogger
     /** @see AuditListener **/
     public void addError(AuditEvent aEvt)
     {
-        mWriter.println("<error " +
-                        "line=\"" + aEvt.getLine() + "\" " +
-                        "message=\"" + encode(aEvt.getMessage()) + "\"/>");
+        mWriter.print("<error" + " line=\"" + aEvt.getLine() + "\"");
+        if (aEvt.getColumn() > 0) {
+            mWriter.print(" column=\"" + aEvt.getColumn() + "\"");
+        }
+        mWriter.println(" message=\"" + encode(aEvt.getMessage()) + "\"/>");
     }
 
     /** @see AuditListener **/
