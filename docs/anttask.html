@@ -46,7 +46,12 @@ This task is included in the checkstyle distribution.</p>
   </tr>
   <tr>
     <td valign="top">properties</td>
-    <td valign="top">Specifies a properties file that contains the configuration options. <a href="config.html">See here</a> for all available configuration options.</td>
+    <td valign="top">
+      Specifies a properties file that contains the configuration options.
+      <a href="config.html">See here</a> for all available configuration
+      options. Can override properties in the file using the nested
+      <span class="default">&lt;property&gt;</span> elements.
+    </td>
     <td align="center" valign="top">No</td>
   </tr>
 
@@ -73,7 +78,13 @@ This task is included in the checkstyle distribution.</p>
 
 <h3>Nested Elements</h3>
 
-<p>This task supports the nested elements <a href="http://jakarta.apache.org/ant/manual/CoreTypes/fileset.html">&lt;fileset&gt;</a>, <span class="default">&lt;classpath&gt;</span> and <span class="default">&lt;formatter&gt;</span>. The parameters for the <span class="default">&lt;formatter&gt;</span> element are:</p>
+<p>This task supports the nested elements
+<a href="http://jakarta.apache.org/ant/manual/CoreTypes/fileset.html">&lt;fileset&gt;</a>,
+<a href="http://jakarta.apache.org/ant/manual/using.html#path">&lt;classpath&gt;</a>,
+<span class="default">&lt;formatter&gt;</span> and
+<span class="default">&lt;property&gt;</span>.</p>
+
+<p>The parameters for the <span class="default">&lt;formatter&gt;</span> element are:</p>
 
 <table border="1" cellpadding="2" cellspacing="0" summary="nested elements">
   <tr class="header">
@@ -102,16 +113,50 @@ This task is included in the checkstyle distribution.</p>
 </table>
 
 
+<p>The parameters for the <span class="default">&lt;property&gt;</span> element are:</p>
+
+<table border="1" cellpadding="2" cellspacing="0" summary="nested elements">
+  <tr class="header">
+    <td valign="top"><b>Attribute</b></td>
+    <td valign="top"><b>Description</b></td>
+    <td valign="top"><b>Required</b></td>
+  </tr>
+  <tr>
+    <td valign="top">key</td>
+    <td valign="top"><p>The key for the property.</p></td>
+    <td align="center" valign="top">Yes</td>
+  </tr>
+
+  <tr>
+    <td valign="top">value</td>
+    <td valign="top">The value of the property specified as a string.</td>
+    <td align="center" valign="top">Either <i>value</i> or <i>file</i></td>
+  </tr>
+
+  <tr>
+    <td valign="top">file</td>
+    <td valign="top">The value of the property specified as a file. This is
+    great for specifying file names relative to the ANT build file.</td>
+    <td align="center" valign="top">Either <i>value</i> or <i>file</i></td>
+  </tr>
+</table>
+
 <h3>Examples</h3>
 <p><b>Run checkstyle on a single file</b></p>
 <pre>
   &lt;checkstyle file=&quot;Check.java&quot;/&gt;
 </pre>
 
-<p><b>Run checkstyle on a set of Java files in directory</b></p>
+<p><b>Run checkstyle on a set of Java files using Site-wide Checkstyle rules and overriding properties</b></p>
 <pre>
-  &lt;checkstyle&gt;
+  &lt;checkstyle properties=&quot;/path/to/site/checkstyle.rules&quot;&gt;
     &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
+
+    &lt;!-- Location of cache-file. Something that is project specific --&gt;
+    &lt;property key=&quot;checkstyle.cache.file&quot; file=&quot;target/cachefile&quot;/&gt;
+
+    &lt;!-- This project allows tabs (big mistake:-) --&gt;
+    &lt;property key=&quot;checkstyle.allow.tabs&quot; value=&quot;true&quot;/&gt;
   &lt;/checkstyle&gt;
 </pre>
 

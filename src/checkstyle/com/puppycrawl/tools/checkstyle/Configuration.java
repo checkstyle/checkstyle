@@ -26,7 +26,6 @@ import java.io.LineNumberReader;
 import java.io.ObjectInputStream;
 import java.io.PrintStream;
 import java.io.Serializable;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -95,9 +94,6 @@ public class Configuration
      **/
     private transient ClassLoader mLoader =
         Thread.currentThread().getContextClassLoader();
-
-    /** the root directory for relative paths **/
-    private File mRootDir;
 
     /** the lines in the header to ignore */
     private TreeSet mHeaderIgnoreLineNo = new TreeSet();
@@ -295,18 +291,6 @@ public class Configuration
     ////////////////////////////////////////////////////////////////////////////
     // Setters
     ////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Set the root directory for files.
-     * @param aRoot the root directory
-     */
-    public void setRootDir(File aRoot)
-    {
-        if ((aRoot == null) || !aRoot.isDirectory() || !aRoot.isAbsolute()) {
-            throw new IllegalArgumentException("Invalid root directory");
-        }
-        mRootDir = aRoot;
-    }
 
     /**
      * Set the class loader for locating classes.
@@ -690,8 +674,7 @@ public class Configuration
     /** @return the File of the cache file **/
     String getCacheFile()
     {
-        final String fname = getStringProperty(Defn.CACHE_FILE_PROP);
-        return (fname == null) ? null : getAbsoluteFilename(fname);
+        return getStringProperty(Defn.CACHE_FILE_PROP);
     }
 
     /**
@@ -760,7 +743,7 @@ public class Configuration
 
         // load the file
         final LineNumberReader lnr =
-            new LineNumberReader(new FileReader(getAbsoluteFilename(fname)));
+            new LineNumberReader(new FileReader(fname));
         final ArrayList lines = new ArrayList();
         while (true) {
             final String l = lnr.readLine();
@@ -770,24 +753,6 @@ public class Configuration
             lines.add(l);
         }
         mHeaderLines = (String[]) lines.toArray(new String[0]);
-    }
-
-    /**
-     * @return the absolute file name for a given filename. If the passed
-     * filename is absolute, then that is returned. If the setRootDir() was
-     * called, that is used to caluclate the absolute path. Otherise, the
-     * absolute path of the given filename is returned (this behaviour cannot
-     * be determined).
-     *
-     * @param aFilename the filename to make absolute
-     */
-    private String getAbsoluteFilename(String aFilename)
-    {
-        File f = new File(aFilename);
-        if (!f.isAbsolute() && (mRootDir != null)) {
-            f = new File(mRootDir, aFilename);
-        }
-        return f.getAbsolutePath();
     }
 
     /**
