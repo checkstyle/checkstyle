@@ -17,11 +17,9 @@
         <config name="EmptyBlockCheck"/>
         <config name="EqualsHashCodeCheck"/>
         <config name="FileLengthCheck"/>
-        <!-- TODO: find a way to have relative file names. Atleast not hard code here
         <config name="HeaderCheck">
-          <property name="headerFile" value="docs/java.header"/>
+          <property name="headerFile" value="${checkstyle.header.file}"/>
         </config>
-        -->
 
         <config name="IllegalImportCheck"/>
         <config name="IllegalInstantiationCheck"/>
