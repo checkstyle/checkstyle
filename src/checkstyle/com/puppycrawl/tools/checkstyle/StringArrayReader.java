@@ -124,17 +124,16 @@ final class StringArrayReader extends Reader
             ensureOpen();
             return mUnderlyingArray[mArrayIdx].charAt(mStringIdx++);
         }
-		// don't bother duplicating the new line handling above
-		// for the uncommon case
-		return super.read();
-	}
+        // don't bother duplicating the new line handling above
+        // for the uncommon case
+        return super.read();
+    }
 
     /**
-	 * Throws an IOException if the reader has already been closed.
-	 * 
-	 * @throws IOException
-	 *             if the stream has been closed
-	 */
+     * Throws an IOException if the reader has already been closed.
+     *
+     * @throws IOException if the stream has been closed
+     */
     private void ensureOpen() throws IOException
     {
         if (mClosed) {

@@ -75,7 +75,7 @@ public class SlistHandler extends BlockParentHandler
 
     /**
      * Get the child element that is not a list of statements.
-     * 
+     *
      * @return the non-list child element
      */
     protected DetailAST getNonlistChild()
