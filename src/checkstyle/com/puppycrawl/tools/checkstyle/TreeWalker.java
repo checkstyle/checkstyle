@@ -215,6 +215,8 @@ public final class TreeWalker
             walk(rootAST, contents);
         }
         catch (FileNotFoundException fnfe) {
+            Utils.getExceptionLogger()
+                .debug("FileNotFoundException occured.", fnfe);
             getMessageCollector().add(
                 new LocalizedMessage(
                     0,
@@ -224,6 +226,7 @@ public final class TreeWalker
                     this.getClass()));
         }
         catch (IOException ioe) {
+            Utils.getExceptionLogger().debug("IOException occured.", ioe);
             getMessageCollector().add(
                 new LocalizedMessage(
                     0,
@@ -233,6 +236,8 @@ public final class TreeWalker
                     this.getClass()));
         }
         catch (RecognitionException re) {
+            Utils.getExceptionLogger()
+                .debug("RecognitionException occured.", re);
             getMessageCollector().add(
                 new LocalizedMessage(
                     0,
@@ -242,6 +247,8 @@ public final class TreeWalker
                     this.getClass()));
         }
         catch (TokenStreamException te) {
+            Utils.getExceptionLogger()
+                .debug("TokenStreamException occured.", te);
             getMessageCollector().add(
                 new LocalizedMessage(
                     0,
@@ -251,6 +258,7 @@ public final class TreeWalker
                     this.getClass()));
         }
         catch (Throwable err) {
+            Utils.getExceptionLogger().debug("Throwable occured.", err);
             getMessageCollector().add(
                 new LocalizedMessage(
                     0,

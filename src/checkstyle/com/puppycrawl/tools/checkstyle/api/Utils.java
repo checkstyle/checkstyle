@@ -30,6 +30,9 @@ import org.apache.commons.beanutils.ConversionException;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * Contains utility methods.
  *
@@ -40,6 +43,9 @@ public final class Utils
 {
     /** Map of all created regular expressions **/
     private static final Map CREATED_RES = new HashMap();
+    /** Shared instance of logger for exception logging. */
+    private static final Log EXCEPTION_LOG =
+        LogFactory.getLog("com.puppycrawl.tools.checkstyle.ExceptionLog");
 
     ///CLOVER:OFF
     /** stop instances being created **/
@@ -47,6 +53,17 @@ public final class Utils
     {
     }
     ///CLOVER:ON
+
+    /**
+     * Accessor for shared instance of logger which should be
+     * used to log all exceptions occured during <code>FileSetCheck</code>
+     * work (<code>debug()</code> should be used).
+     * @return shared exception logger.
+     */
+    public static Log getExceptionLogger()
+    {
+        return EXCEPTION_LOG;
+    }
 
     /**
      * Returns whether the specified string contains only whitespace up to the
