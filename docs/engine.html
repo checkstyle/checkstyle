@@ -81,7 +81,7 @@
                               int aLineNo)
 </pre>
 
-<div class="tip">  
+<div class="tip">
 <h4 class="tip">Tip</h4>
 <p>It can be extremely painful writing or duplicating Javadoc for a method required for an interface. Hence checkstyle supports using the convention of using a single <span class="code">@see</span> tag instead of all the other tags. For example, if the previous method was implementing a method required by the <span class="code">com.puppycrawl.tools.checkstyle.Verifier</span> interface, then the Javadoc could be done as:</p>
 
@@ -112,7 +112,7 @@
     if (condition)
     {
         ...
-</pre>      
+</pre>
     </td>
   </tr>
   <tr>
@@ -138,11 +138,11 @@
     {
         ...
 </pre>
-      
+
   </tr>
 </table>
 
-<p>The check can be tailored for types, methods and others. What is included in others are the keywords <span class="code">switch, while, for, do, if, else, synchronized, try, catch, finally, static</span>.</p>
+<p><a name="lcurlyother"></a>The check can be tailored for types, methods and others. What is included in others are the keywords <span class="code">switch</span>, <span class="code">while</span>, <span class="code">for</span>, <span class="code">do</span>, <span class="code">if</span>, <span class="code">else</span>, <span class="code">synchronized</span>, <span class="code">try</span>, <span class="code">catch</span>, <span class="code">finally</span>, <span class="code">static</span>.</p>
 
 <h3><a name="length">Long Lines</a></h3>
 <p>Checks for lines that are longer than a specified length. The default is <span class="default">&quot;80&quot;</span>. This can be turned off for <code>import</code> statements.</p>
@@ -233,7 +233,7 @@
 
 <p>Note: you can turn on allowing <code>protected</code> or <code>package</code> visible data members.</p>
 
-<div class="tip">  
+<div class="tip">
 <h4 class="tip">Tip</h4>
 <p>Container Managed Persistence EJBs require (in the EJB 1.1 specification) that managed fields are declared <span class="code">public</span>. This will cause checkstyle to complain that the fields should be declared <span class="code">private</span>. Hence checkstyle supports ignoring <span class="code">public</span> that match a specified regular expression. The default is <span class="code">^f[A-Z][a-zA-Z0-9]*$</span>.</p>
 </div>
@@ -266,7 +266,7 @@
 <h3><a name="File Header">File Header</a></h3>
 <p>Ensure that the file starts with a specified header. The header contents are specified in a file. If no file is specified, checkstyle does not check for a header.</p>
 
-<div class="tip">  
+<div class="tip">
 <h4 class="tip">Tip</h4>
 <p>Most copyright headers will contain date information (for example the year) which will change over time. To support this, checkstyle supports specifying the lines in the header to ignore when comparing the start of the file with the header. For example, consider the following header:</p>
 
@@ -281,7 +281,7 @@ line 4: ///////////////////////////////////////////////////////////////////////
 </div>
 
 <br>
-<div class="tip">  
+<div class="tip">
 <h4 class="tip">Tip</h4>
 <p>Checkstyle also supports interpreting each header line as a regular expression. For example, consider the following header when regular expression checking is turned on:</p>
 
