@@ -89,6 +89,9 @@
           <a href="#MissingSwitchDefault">MissingSwitchDefault</a>
         </li>
         <li>
+          <a href="#MultipleStringLiterals">MultipleStringLiterals</a>
+        </li>
+        <li>
           <a href="#MultipleVariableDeclarations">MultipleVariableDeclarations</a>
         </li>
         <li>
@@ -1503,6 +1506,56 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;FallThrough&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="MultipleStringLiterals"></a>
+      <h2>MultipleStringLiterals</h2> <h4>Description</h4>
+      <p class="body">
+       Checks for multiple occurrences of the same string literal within a
+       single file.
+      </p>
+      <p class="body">
+       Rationale: Code duplication makes maintenance more difficult, so it
+       can be better to replace the multiple occurrences with a constant.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>allowedDuplicates</td>
+          <td>The maximum number of occurences to allow without generating a warning</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td>1</td>
+        </tr>
+
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check so that it allows two occurrences of each string:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+    &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
+&lt;/module&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
