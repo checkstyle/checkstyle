@@ -27,7 +27,7 @@ import org.apache.tools.ant.taskdefs.LogOutputStream;
 import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
-import org.apache.regexp.RESyntaxException;
+//import org.apache.regexp.RESyntaxException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -176,6 +176,122 @@ public class CheckStyleTask
     // The doers
     ////////////////////////////////////////////////////////////////////////////
 
+//    /**
+//     * Actually checks the files specified. All errors are reported to
+//     * System.out. Will fail if any errors occurred.
+//     * @throws BuildException an error occurred
+//     */
+//    public void execute()
+//        throws BuildException
+//    {
+//        // Check for no arguments
+//        if ((mFileName == null) && (mFileSets.size() == 0)) {
+//            throw new BuildException(
+//                "Must specify atleast one of 'file' or nested 'fileset'.",
+//                getLocation());
+//        }
+//
+//        if (mConfigFile == null) {
+//            throw new BuildException("Must specify 'config'.", getLocation());
+//        }
+//
+//        // Create the checker
+//        Checker c = null;
+//        try {
+//            try {
+//                final GlobalProperties config = createGlobalProperties();
+//                final CheckConfiguration[] checkConfigs =
+//                    ConfigurationLoader.loadConfigs(
+//                        mConfigFile.getAbsolutePath());
+//                c = new Checker(config, checkConfigs);
+//                // setup the listeners
+//                AuditListener[] listeners = getListeners();
+//                for (int i = 0; i < listeners.length; i++) {
+//                    c.addListener(listeners[i]);
+//                }
+//            }
+//            catch (Exception e) {
+//                throw new BuildException(
+//                    "Unable to create a Checker: " + e.getMessage(), e);
+//            }
+//
+//            // Process the files
+//            final String[] files = scanFileSets();
+//            final int numErrs = c.process(files);
+//
+//            // Handle the return status
+//            if ((numErrs > 0) && mFailureProperty != null) {
+//                getProject().setProperty(mFailureProperty, "true");
+//            }
+//
+//            if ((numErrs > 0) && mFailOnViolation) {
+//                throw new BuildException("Got " + numErrs + " errors.",
+//                                         getLocation());
+//            }
+//        }
+//        finally {
+//            if (c != null) {
+//                c.destroy();
+//            }
+//        }
+//    }
+//
+//    /**
+//     * Create the GlobalProperties object based on the arguments specified
+//     * to the ANT task.
+//     * @return a brand spanking new GlobalProperties object
+//     * @throws BuildException if an error occurs
+//     */
+//    private GlobalProperties createGlobalProperties()
+//    {
+//        final Properties props = new Properties();
+//
+//        // Load the properties file is specified
+//        if (mPropertiesFile != null) {
+//            try {
+//                props.load(new FileInputStream(mPropertiesFile));
+//            }
+//            catch (FileNotFoundException e) {
+//                throw new BuildException(
+//                    "Could not find Properties file '" + mPropertiesFile + "'",
+//                    e, getLocation());
+//            }
+//            catch (IOException e) {
+//                throw new BuildException(
+//                    "Error loading Properties file '" + mPropertiesFile + "'",
+//                    e, getLocation());
+//            }
+//        }
+//
+//        // Now override the properties specified
+//        for (Iterator it = mOverrideProps.iterator(); it.hasNext();) {
+//            final Property p = (Property) it.next();
+//            props.setProperty(p.getKey(), p.getValue());
+//        }
+//
+//        // Create the configuration
+//        final GlobalProperties retVal;
+//        try {
+//            retVal = new GlobalProperties(props, System.out);
+//        }
+//        catch (RESyntaxException e) {
+//            throw new BuildException("An regular expression error exists.",
+//                                     e, getLocation());
+//        }
+//        catch (IOException e) {
+//            throw new BuildException(
+//                "An error loading the file '" + e.getMessage() + "'",
+//                e, getLocation());
+//        }
+//
+//        // setup the classloader
+//        if (mClasspath != null) {
+//            retVal.setClassLoader(new AntClassLoader(getProject(), mClasspath));
+//        }
+//
+//        return retVal;
+//    }
+
     /**
      * Actually checks the files specified. All errors are reported to
      * System.out. Will fail if any errors occurred.
@@ -199,11 +315,13 @@ public class CheckStyleTask
         Checker c = null;
         try {
             try {
-                final GlobalProperties config = createGlobalProperties();
-                final CheckConfiguration[] checkConfigs =
-                    ConfigurationLoader.loadConfigs(
-                        mConfigFile.getAbsolutePath());
-                c = new Checker(config, checkConfigs);
+                final Properties props = createOverridingProperties();
+                final Configuration config =
+                    ConfigurationLoader.loadConfiguration(
+                        mConfigFile.getAbsolutePath(), props);
+                config.setClassLoader(new AntClassLoader(getProject(),
+                                      mClasspath));
+                c = new Checker(config);
                 // setup the listeners
                 AuditListener[] listeners = getListeners();
                 for (int i = 0; i < listeners.length; i++) {
@@ -237,19 +355,19 @@ public class CheckStyleTask
     }
 
     /**
-     * Create the GlobalProperties object based on the arguments specified
+     * Create the Properties object based on the arguments specified
      * to the ANT task.
-     * @return a brand spanking new GlobalProperties object
+     * @return Properties object
      * @throws BuildException if an error occurs
      */
-    private GlobalProperties createGlobalProperties()
+    private Properties createOverridingProperties()
     {
-        final Properties props = new Properties();
+        final Properties retVal = new Properties();
 
-        // Load the properties file is specified
+        // Load the properties file if specified
         if (mPropertiesFile != null) {
             try {
-                props.load(new FileInputStream(mPropertiesFile));
+                retVal.load(new FileInputStream(mPropertiesFile));
             }
             catch (FileNotFoundException e) {
                 throw new BuildException(
@@ -266,29 +384,9 @@ public class CheckStyleTask
         // Now override the properties specified
         for (Iterator it = mOverrideProps.iterator(); it.hasNext();) {
             final Property p = (Property) it.next();
-            props.setProperty(p.getKey(), p.getValue());
+            retVal.put(p.getKey(), p.getValue());
         }
-
-        // Create the configuration
-        final GlobalProperties retVal;
-        try {
-            retVal = new GlobalProperties(props, System.out);
-        }
-        catch (RESyntaxException e) {
-            throw new BuildException("An regular expression error exists.",
-                                     e, getLocation());
-        }
-        catch (IOException e) {
-            throw new BuildException(
-                "An error loading the file '" + e.getMessage() + "'",
-                e, getLocation());
-        }
-
-        // setup the classloader
-        if (mClasspath != null) {
-            retVal.setClassLoader(new AntClassLoader(getProject(), mClasspath));
-        }
-
+        
         return retVal;
     }
 

@@ -100,7 +100,8 @@ public final class Main
         Configuration config = null;
         try {
             config =
-                ConfigurationLoader.loadConfiguration(line.getOptionValue("c"));
+                ConfigurationLoader.loadConfiguration(line.getOptionValue("c"),
+                                                      props);
         }
         catch (CheckstyleException e) {
             System.out.println("Error loading configuration file");
