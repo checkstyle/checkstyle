@@ -35,9 +35,9 @@ public class DetailAST
     private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
 
     /** the line number **/
-    private int mLineNo = 0;
+    private int mLineNo = NOT_INITIALIZED;
     /** the column number **/
-    private int mColumnNo = 0;
+    private int mColumnNo = NOT_INITIALIZED;
 
     /** number of children */
     private int mChildCount = NOT_INITIALIZED;
@@ -67,6 +67,8 @@ public class DetailAST
         mChildCount = NOT_INITIALIZED;
         super.setFirstChild(aAST);
     }
+
+
 
     /**
      * Returns the number of child nodes one level below this node. That is is
@@ -110,12 +112,34 @@ public class DetailAST
     /** @return the line number **/
     public int getLineNo()
     {
+        if (mLineNo == NOT_INITIALIZED) {
+            // an inner AST that has been initiaized
+            // with initialize(String text)
+            DetailAST child = (DetailAST) getFirstChild();
+            DetailAST sibling = (DetailAST) getNextSibling();
+            if (child != null) {
+                return child.getLineNo();
+            } else if (sibling != null) {
+                return sibling.getLineNo();
+            }
+        }
         return mLineNo;
     }
 
     /** @return the column number **/
     public int getColumnNo()
     {
+        if (mColumnNo == NOT_INITIALIZED) {
+            // an inner AST that has been initiaized
+            // with initialize(String text)
+            DetailAST child = (DetailAST) getFirstChild();
+            DetailAST sibling = (DetailAST) getNextSibling();
+            if (child != null) {
+                return child.getColumnNo();
+            } else if (sibling != null) {
+                return sibling.getColumnNo();
+            }
+        }
         return mColumnNo;
     }
 
@@ -124,5 +148,14 @@ public class DetailAST
     {
         return super.toString() + " {line = " + getLineNo() + ", col = "
             + getColumnNo() + "}";
+    }
+
+    public DetailAST getLastChild()
+    {
+        AST ast = getFirstChild();
+        while (ast.getNextSibling() != null) {
+            ast = ast.getNextSibling();
+        }
+        return (DetailAST) ast;
     }
 }
