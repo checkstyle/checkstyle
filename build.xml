@@ -551,6 +551,7 @@
              classpathref="javadoc.classpath"
              Use="true"
              Footer="&lt;a target=&quot;_top&quot; href=&quot;./{@docRoot}/../index.html&quot;&gt;Back to the Checkstyle Home Page&lt;/a&gt;"
+             useExternalFile="yes"
              failonerror="yes" >
         <fileset dir="src/checkstyle">
           <exclude name="**/Generated*.java" />
