@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * Idea shamelessly stolen from the equivalent PMD rule (pmd.sourceforge.net).
  *
- * @author Lars Kühne
+ * @author Lars K?hne
  */
 public class SimplifyBooleanReturnCheck
     extends Check
@@ -121,11 +121,16 @@ public class SimplifyBooleanReturnCheck
      */
     private boolean isBooleanLiteralReturnStatement(AST aAST)
     {
-        if (aAST.getType() != TokenTypes.LITERAL_RETURN) {
+        if (aAST == null || aAST.getType() != TokenTypes.LITERAL_RETURN) {
             return false;
         }
 
         final AST expr = aAST.getFirstChild();
+
+        if (expr == null) {
+            return false;
+        }
+
         final AST value = expr.getFirstChild();
 
         final int valueType = value.getType();
