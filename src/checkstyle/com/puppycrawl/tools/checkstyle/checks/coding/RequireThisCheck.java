@@ -27,22 +27,23 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- * <p>Checks that code doesn't rely on the "this." default, i.e. references to
- * instance variables and methods of the present object are explicitly of
- * the form "this.varName" or "this.methodName(args)".</P>
+ * <p>Checks that code doesn't rely on the &quot;this.&quot; default,
+ * i.e. references to instance variables and methods of the present
+ * object are explicitly of the form &quot;this.varName&quot; or
+ * &quot;this.methodName(args)&quot;.
+ *</p>
  * <p>Examples of use:
  * <pre>
- * &lt;module name="RequireThis"/&gt;
+ * &lt;module name=&quot;RequireThis&quot;/&gt;
  * </pre>
- * The following isn't implemented yet:
+ * An example of how to configure to check <code>this</code> qualifier for
+ * methods only:
  * <pre>
- * &lt;module name="RequireThis"&gt;
- *   &lt;property name="kinds" value="variables,methods"&gt;\
+ * &lt;module name=&quot;RequireThis&quot;&gt;
+ *   &lt;property name=&quot;checkFields&quot; value=&quot;false&quot;/&gt;
+ *   &lt;property name=&quot;checkMethods&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * ("variables,methods" is the default; either one can be specified by
- * itself, or you could even specify the empty string, in which case
- * the module would have no effect.)
  * </p>
  * <p>Limitations: I'm not currently doing anything about static variables
  * or catch-blocks.  Static methods invoked on a class name seem to be OK;
@@ -53,9 +54,47 @@ import java.util.LinkedList;
  * <code>HiddenFieldCheck</code>.</p>
  *
  * @author Stephen Bloch
+ * @author o_sukhodolsky
  */
 public class RequireThisCheck extends Check
 {
+    /** whether we should check fields usage. */
+    private boolean mCheckFields = true;
+    /** whether we should check methods usage. */
+    private boolean mCheckMethods = true;
+
+    /**
+     * Setter for checkFields property.
+     * @param aCheckFields should we check fields usage or not.
+     */
+    public void setCheckFields(boolean aCheckFields)
+    {
+        mCheckFields = aCheckFields;
+    }
+    /**
+     * @return true if we should check fields usage false overwise.
+     */
+    public boolean getCheckFields()
+    {
+        return mCheckFields;
+    }
+
+    /**
+     * Setter for checkMethods property.
+     * @param aCheckMethods should we check methods usage or not.
+     */
+    public void setCheckMethods(boolean aCheckMethods)
+    {
+        mCheckMethods = aCheckMethods;
+    }
+    /**
+     * @return true if we should check methods usage false overwise.
+     */
+    public boolean getCheckMethods()
+    {
+        return mCheckMethods;
+    }
+
     /** Stack of varibale declaration frames. */
     private FrameStack mFrames;
 
@@ -75,7 +114,6 @@ public class RequireThisCheck extends Check
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.SLIST,
-            // TokenTypes.LITERAL_CATCH also introduces a parameter name
         };
     }
 
@@ -154,8 +192,17 @@ public class RequireThisCheck extends Check
     {
         int parentType = aAST.getParent().getType();
 
+        // let's check method calls
         if (parentType == TokenTypes.METHOD_CALL) {
-            log(aAST, "require.this.method", aAST.getText());
+            if (mCheckMethods) {
+                log(aAST, "require.this.method", aAST.getText());
+            }
+            return;
+        }
+
+        // let's check fields
+        if (!mCheckFields) {
+            // we shouldn't check fields
             return;
         }
         if (parentType == TokenTypes.DOT
@@ -180,12 +227,13 @@ public class RequireThisCheck extends Check
             return;
         }
 
-        final LexicalFrame declared = this.mFrames.findFrame(aAST.getText());
+        final String name = aAST.getText();
+        final LexicalFrame declared = this.mFrames.findFrame(name);
         if (declared == null) {
-            log(aAST, "require.this.unfound.variable", aAST.getText());
+            log(aAST, "require.this.unfound.variable", name);
         }
         else if (declared instanceof ClassFrame) {
-            log(aAST, "require.this.variable", aAST.getText());
+            log(aAST, "require.this.variable", name);
         }
     }
 } // end class RequireThis

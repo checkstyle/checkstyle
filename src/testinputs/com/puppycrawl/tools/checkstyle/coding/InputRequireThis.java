@@ -9,5 +9,12 @@ public class InputRequireThis {
         this.i = i;
         method1();
         j--;
+        try {
+            this.method1();
+        }
+        catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+        this.i--;
     }
 }
