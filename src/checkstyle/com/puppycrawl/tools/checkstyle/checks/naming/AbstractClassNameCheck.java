@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -35,13 +35,13 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
-public final class IllegalAbstractClassNameCheck extends AbstractFormatCheck
+public final class AbstractClassNameCheck extends AbstractFormatCheck
 {
     /** Defualt format for abstract class names */
     private static final String DEFAULT_FORMAT = "^Abstract.*$|^.*Factory$";
 
     /** Creates new instance of the check. */
-    public IllegalAbstractClassNameCheck()
+    public AbstractClassNameCheck()
     {
         super(DEFAULT_FORMAT);
     }

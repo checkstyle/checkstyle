@@ -32,9 +32,6 @@
           <a href="#HideUtilityClassConstructor">HideUtilityClassConstructor</a>
         </li>
         <li>
-          <a href="#IllegalAbstractClassName">IllegalAbstractClassName</a>
-        </li>
-        <li>
           <a href="#InterfaceIsType">InterfaceIsType</a>
         </li>
         <li>
@@ -339,52 +336,6 @@ public class StringUtils // not final to allow subclassing
       </p>
       <pre class="body">
 &lt;module name=&quot;MutableException&quot;/&gt;
-      </pre>
-      <h4>Package</h4>
-      <p class="body">
-      com.puppycrawl.tools.checkstyle.checks.design
-      </p>
-      <h4>Parent Module</h4>
-      <p class="body">
-      <a href="config.html#treewalker">TreeWalker</a>
-      </p>
-
-      <!-- --> <a name="IllegalAbstractClassName"></a> <h2>IllegalAbstractClassName</h2>
-       <h4>Description</h4>
-      <p class="body">
-      Ensures that the names of abstract classes conforming to some
-      regular expression.
-      </p>
-
-      <p class="body">
-      Rationale:
-      Abtsract classes are conevnience base class
-      implementations of interfaces not types as such. As
-      such they should be named to indicate this.
-      </p>
-
-      <h4>Properties</h4>
-      <table width="100%" border="1" cellpadding="5" class="body">
-        <tr class="header">
-          <th>name</th>
-          <th>description</th>
-          <th>type</th>
-          <th>default value</th>
-        </tr>
-        <tr>
-          <td>format</td>
-          <td>pattern for abstract class name.</td>
-          <td><a href="property_types.html#regexp">regular expression</a></td>
-          <td><span class="default">^Abstract.*$|^.*Factory$</span></td>
-        </tr>
-      </table>
-
-      <h4>Examples</h4>
-      <p class="body">
-      To configure the check:
-      </p>
-      <pre class="body">
-&lt;module name=&quot;IllegalAbstractClassName&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
