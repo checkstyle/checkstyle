@@ -63,8 +63,6 @@ public class HiddenFieldCheck
 
     /** the regexp to match against */
     private RE mRegexp = null;
-    /** the format string of the regexp */
-    private String mIgnoreFormat;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -174,7 +172,6 @@ public class HiddenFieldCheck
     {
         try {
             mRegexp = Utils.getRE(aFormat);
-            mIgnoreFormat = aFormat;
         }
         catch (RESyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
