@@ -55,10 +55,6 @@ assertStatement[int[] aType, MyCommonAST[] aCurlies]
 }
 	:	asrt:ASSERT^ expression ( c:COLON! expression )? SEMI!
         {
-            ver.verifyWSAroundBegin(asrt.getLine(), asrt.getColumn(), asrt.getText());
-            if (c != null) {
-                ver.verifyWSAroundBegin(c.getLine(), c.getColumn(), c.getText());
-            }
         }
 	;
 

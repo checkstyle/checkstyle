@@ -387,28 +387,6 @@ class Verifier
 
 
     /**
-     * Verify that whitespace IS around the specified text.
-     * @param aLineNo number of line to check
-     * @param aColNo column where the text ends
-     * @param aText the text to check
-     */
-    void verifyWSAroundEnd(int aLineNo, int aColNo, String aText)
-    {
-    }
-
-
-    /**
-     * Verify that whitespace IS around the specified text.
-     * @param aLineNo number of line to check
-     * @param aColNo column where the text starts
-     * @param aText the text to check
-     */
-    void verifyWSAroundBegin(int aLineNo, int aColNo, String aText)
-    {
-    }
-
-
-    /**
      * Verify that no whitespace after an AST.
      * @param aAST the AST to check
      **/
@@ -517,16 +495,6 @@ class Verifier
 
 
     /**
-     * Verify that a method length is ok.
-     * @param aLineNo line the method block starts at
-     * @param aLength the length of the method block
-     */
-    void verifyMethodLength(int aLineNo, int aLength)
-    {
-    }
-
-
-    /**
      * Verify that a constructor length is ok.
      * @param aLineNo line the constructor block starts at
      * @param aLength the length of the constructor block
@@ -579,15 +547,6 @@ class Verifier
                               mConfig.getTodoPat());
             }
         }
-    }
-
-
-    /**
-     * Report a reference to a type.
-     * @param aType the type referenced
-     */
-    void reportReference(String aType)
-    {
     }
 
 
@@ -710,16 +669,6 @@ class Verifier
     }
 
     /**
-     * Report an object instantiation.
-     *
-     * @param aNewAST the AST of 'new', used for line/column number reporting
-     * @param aTypeName the typename, may or may not be qualified
-     */
-    void reportInstantiation(MyCommonAST aNewAST, LineText aTypeName)
-    {
-    }
-
-    /**
      * Verify an operator. Checks include that the operator is surrounded by
      * whitespace, and that the operator follows the rules about whether to
      * be at the end of a line.
@@ -742,8 +691,6 @@ class Verifier
      */
     void verifyOpBegin(int aLineNo, int aColNo, String aText)
     {
-        verifyWSAroundBegin(aLineNo, aColNo, aText);
-
         final WrapOpOption wOp = mConfig.getWrapOpOption();
 
         if (wOp != WrapOpOption.IGNORE) {
@@ -764,15 +711,6 @@ class Verifier
                 mMessages.add(aLineNo, aColNo - 1, "line.previous", aText);
             }
         }
-    }
-
-    /**
-     * Verify that the 'L' on a long is uppercase. E.g. 40L, not 40l.
-     * @param aLineNo number of line to check
-     * @param aColNo column where the 'ell' is
-     */
-    void verifyLongEll(int aLineNo, int aColNo)
-    {
     }
 
     // }}}

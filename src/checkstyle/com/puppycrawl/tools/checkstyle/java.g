@@ -185,7 +185,6 @@ identifier
         }
         ( DOT^ i2:IDENT {ver.verifyDot(#DOT); sLastIdentifier.appendText("." + i2.getText());} )*
         {
-            ver.reportReference(sLastIdentifier.getText());
         }
 	;
 
@@ -351,10 +350,6 @@ field!
 				(
                     s2:compoundStatement[stmtBraces, sIgnoreIsEmpty]
                     {
-                        ver.verifyMethodLength(
-                            #s2.getLineNo(),
-                            stmtBraces[1].getLineNo()
-                            - stmtBraces[0].getLineNo() + 1);
                     }
                 |
                     SEMI
@@ -578,7 +573,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 	|	ii:"if"^ LPAREN! expression RPAREN! statement[stmtType, stmtBraces]
         {
             aType[0] = STMT_IF;
-            ver.verifyWSAroundBegin(ii.getLine(), ii.getColumn(), ii.getText());
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(ii);
             }
@@ -597,7 +591,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
             }
             statement[stmtType, stmtBraces]
             {
-                ver.verifyWSAroundBegin(ee.getLine(), ee.getColumn(), ee.getText());
                 if (stmtType[0] == STMT_OTHER) {
                     ver.reportNeedBraces(ee);
                 }
@@ -613,7 +606,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
         RPAREN!
         statement[stmtType, stmtBraces] // statement to loop over
         {
-            ver.verifyWSAroundBegin(ff.getLine(), ff.getColumn(), ff.getText());
             ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);
             ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON, ")");
             if (stmtType[0] != STMT_COMPOUND) {
@@ -624,7 +616,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 	// While statement
 	|	ww:"while"^ LPAREN! expression RPAREN! statement[stmtType, stmtBraces]
         {
-            ver.verifyWSAroundBegin(ww.getLine(), ww.getColumn(), ww.getText());
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(ww);
             }
@@ -633,8 +624,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 	// do-while statement
 	|	dd:"do"^ statement[stmtType, stmtBraces] dw:"while"! LPAREN! expression RPAREN! SEMI!
         {
-            ver.verifyWSAroundBegin(dd.getLine(), dd.getColumn(), dd.getText());
-            ver.verifyWSAroundBegin(dw.getLine(), dw.getColumn(), dw.getText());
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(dd);
             }
@@ -647,7 +636,7 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 	|	"continue"^ (IDENT)? SEMI!
 
 	// Return an expression
-	|	rr:"return"^ (expression {ver.verifyWSAroundBegin(rr.getLine(), rr.getColumn(), rr.getText());} )? SEMI!
+	|	rr:"return"^ (expression  )? SEMI!
 
 	// switch/case statement
 	|	ss2:"switch"^ LPAREN! expression RPAREN! lc:LCURLY!
@@ -663,7 +652,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 	// synchronize a statement
 	|	ss:"synchronized"^ LPAREN! expression RPAREN! compoundStatement[stmtBraces, sIgnoreIsEmpty]
         {
-            ver.verifyWSAroundBegin(ss.getLine(), ss.getColumn(), ss.getText());
         }
 
 	// empty statement
@@ -724,7 +712,6 @@ tryBlock
 }
 	:	t:"try"^ compoundStatement[stmtBraces, isEmpty]
         {
-            ver.verifyWSAroundBegin(t.getLine(), t.getColumn(), t.getText());
             ver.reportTryBlock(stmtBraces, isEmpty[0]);
         }
 
@@ -732,8 +719,6 @@ tryBlock
             c:"catch"^
             LPAREN! parameterDeclaration[ignoreMS] RPAREN! compoundStatement[stmtBraces, isEmpty]
             {
-                ver.verifyWSAroundBegin(
-                    c.getLine(), c.getColumn(), c.getText());
                 ver.reportCatchBlock(stmtBraces, isEmpty[0]);
             }
         )*
@@ -933,9 +918,9 @@ postfixExpression
 	:	primaryExpression // start with a primary
 
 		(	// qualified id (id.id.id.id...) -- build the name
-			DOT^ {ver.verifyDot(#DOT);} ( i1:IDENT {sLastIdentifier.appendText("." + i1.getText()); ver.reportReference(sLastIdentifier.getText());}
+			DOT^ {ver.verifyDot(#DOT);} ( i1:IDENT {sLastIdentifier.appendText("." + i1.getText()); }
 				| "this"
-				| "class" {ver.reportReference(sLastIdentifier.getText());}
+				| "class"
 				| newExpression
 				| "super" // ClassName.super.field
 				)
@@ -943,7 +928,7 @@ postfixExpression
 			// is the _last_ qualifier.
 
 			// allow ClassName[].class
-		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR); ver.reportReference(sLastIdentifier.getText());} RBRACK! )+
+		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR); } RBRACK! )+
 			DOT^ "class" {ver.verifyDot(#DOT);}
 
 			// an array indexing operation
@@ -1041,7 +1026,7 @@ primaryExpression
  *
  */
 newExpression
-	:	n:"new"^ t:type {ver.reportInstantiation(#n, sLastIdentifier);}
+	:	n:"new"^ t:type
 		(	LPAREN! argList RPAREN! ({ver.reportStartTypeBlock(Scope.ANONINNER, false, null);}  classBlock[-1]  {ver.reportEndTypeBlock(false);})?
 
 			//java 1.1
@@ -1127,40 +1112,40 @@ LCURLY   : '{'  ;
 RCURLY   : '}'  ;
 COLON        : ':' ;
 COMMA        : ',' {ver.verifyWSAfter(getLine(), getColumn() - 1, MyToken.COMMA);} ;
-ASSIGN       : '=' {ver.verifyWSAroundEnd(getLine(), getColumn(), "=");} ;
+ASSIGN       : '=';
 EQUAL        : "==" {ver.verifyOpEnd(getLine(), getColumn(), "==");} ;
 LNOT         : '!' ; // check above
 BNOT         : '~' ; // check above
 NOT_EQUAL    : "!=" {ver.verifyOpEnd(getLine(), getColumn(), "!=");};
 DIV          : '/' {ver.verifyOpEnd(getLine(), getColumn(), "/");} ;
-DIV_ASSIGN   : "/=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "/=");};
+DIV_ASSIGN   : "/=";
 PLUS         : '+'; // must handle the UNARY_PLUS
-PLUS_ASSIGN  : "+=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "+=");};
+PLUS_ASSIGN  : "+=";
 INC          : "++" ; // must handle POST_INC
 MINUS        : '-' ; // must handle the UNARY_MINUS
-MINUS_ASSIGN : "-=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "-=");};
+MINUS_ASSIGN : "-=";
 DEC          : "--" ; // must handle POST_DEC
 STAR         : '*' ; // star is special cause it can be used in imports.
-STAR_ASSIGN  : "*=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "*=");};
+STAR_ASSIGN  : "*=";
 MOD          : '%' {ver.verifyOpEnd(getLine(), getColumn(), "%");} ;
-MOD_ASSIGN   : "%=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "%=");};
+MOD_ASSIGN   : "%=";
 SR           : ">>" {ver.verifyOpEnd(getLine(), getColumn(), ">>");};
-SR_ASSIGN    : ">>=" {ver.verifyWSAroundEnd(getLine(), getColumn(), ">>=");};
+SR_ASSIGN    : ">>=";
 BSR          : ">>>" {ver.verifyOpEnd(getLine(), getColumn(), ">>>");};
-BSR_ASSIGN   : ">>>=" {ver.verifyWSAroundEnd(getLine(), getColumn(), ">>>=");};
+BSR_ASSIGN   : ">>>=";
 GE           : ">=" {ver.verifyOpEnd(getLine(), getColumn(), ">=");};
 GT           : ">" {ver.verifyOpEnd(getLine(), getColumn(), ">");};
 SL           : "<<" {ver.verifyOpEnd(getLine(), getColumn(), "<<");};
-SL_ASSIGN    : "<<=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "<<=");};
+SL_ASSIGN    : "<<=";
 LE           : "<=" {ver.verifyOpEnd(getLine(), getColumn(), "<=");};
 LT           : '<' {ver.verifyOpEnd(getLine(), getColumn(), "<");};
 BXOR         : '^' {ver.verifyOpEnd(getLine(), getColumn(), "^");};
-BXOR_ASSIGN  : "^=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "^=");};
+BXOR_ASSIGN  : "^=";
 BOR          : '|' {ver.verifyOpEnd(getLine(), getColumn(), "|" );};
-BOR_ASSIGN   : "|=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "|=");};
+BOR_ASSIGN   : "|=";
 LOR          : "||" {ver.verifyOpEnd(getLine(), getColumn(), "||");};
 BAND         : '&' {ver.verifyOpEnd(getLine(), getColumn(), "&");};
-BAND_ASSIGN  : "&=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "&=");};
+BAND_ASSIGN  : "&=";
 LAND         : "&&" {ver.verifyOpEnd(getLine(), getColumn(), "&&");};
 SEMI   : ';'  ;
 
@@ -1334,7 +1319,7 @@ NUM_INT
 			)?
 		|	('1'..'9') ('0'..'9')*  {isDecimal=true;}		// non-zero decimal
 		)
-		(	('l'|'L') { _ttype = NUM_LONG; ver.verifyLongEll(getLine(), getColumn()-2); }
+		(	('l'|'L') { _ttype = NUM_LONG; }
 
 		// only check to see if it's a float if looks like decimal so far
 		|	{isDecimal}?
