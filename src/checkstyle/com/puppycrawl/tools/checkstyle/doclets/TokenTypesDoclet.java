@@ -77,9 +77,9 @@ public class TokenTypesDoclet
     }
 
     /**
-     * Returns option length (how many part aer in option).
+     * Returns option length (how many parts are in option).
      * @param aOption option name to process
-     * @return option length (how many part aer in option).
+     * @return option length (how many parts are in option).
      */
     public static int optionLength(String aOption)
     {
