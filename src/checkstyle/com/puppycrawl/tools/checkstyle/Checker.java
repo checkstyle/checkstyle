@@ -36,6 +36,8 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
+import org.apache.tools.ant.util.FileUtils;
+
 /**
  * This class provides the functionality to check a set of files.
  * @author Oliver Burn
@@ -291,7 +293,17 @@ public class Checker extends AutomaticBean
     /** @param aBasedir the base directory to strip off in filenames */
     public void setBasedir(String aBasedir)
     {
-        mBasedir = aBasedir;
+        // we use getAbsolutePath() instead of getCanonicalPath()
+        // because normalize() removes all . and .. so path
+        // will be canonical by default.
+        mBasedir =
+            FileUtils.newFileUtils().normalize(aBasedir).getAbsolutePath();
+    }
+
+    /** @return the base directory property used in unit-test. */
+    String getBasedir()
+    {
+        return mBasedir;
     }
 
     /** notify all listeners about the audit start */
