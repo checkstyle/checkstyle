@@ -107,21 +107,23 @@ public class HiddenFieldCheck
      */
     private void processVariable(DetailAST aAST)
     {
-        if (ScopeUtils.inCodeBlock(aAST)) {
-            //local variable or parameter. Does it shadow a field?
-            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-            final String name = nameAST.getText();
-            final HashSet currentFieldsSet = (HashSet)mFieldsStack.getLast();
-            if (currentFieldsSet.contains(name)) {
-                log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                    "hidden.field", name);
+        if (!ScopeUtils.inInterfaceBlock(aAST)) {
+            if (ScopeUtils.inCodeBlock(aAST)) {
+                //local variable or parameter. Does it shadow a field?
+                final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+                final String name = nameAST.getText();
+                final HashSet currentFieldsSet = (HashSet)mFieldsStack.getLast();
+                if (currentFieldsSet.contains(name)) {
+                    log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                        "hidden.field", name);
+                }
             }
-        }
-        else if (!ScopeUtils.inInterfaceBlock(aAST)){
-            //field. Add its name to the top stack element
-            final String name
-                = aAST.findFirstToken(TokenTypes.IDENT).getText();
-            ((HashSet)mFieldsStack.getLast()).add(name);
+            else {
+                //field. Add its name to the top stack element
+                final String name
+                    = aAST.findFirstToken(TokenTypes.IDENT).getText();
+                ((HashSet)mFieldsStack.getLast()).add(name);
+            }
         }
     }
  }
