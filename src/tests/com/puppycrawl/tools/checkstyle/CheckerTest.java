@@ -32,8 +32,7 @@ public class CheckerTest
     protected String getPath(String aFilename)
         throws IOException
     {
-        final URL u = getClass().getResource(".");
-        final File f = new File(u.getPath(), aFilename);
+        final File f = new File(System.getProperty("tests.dir"), aFilename);
         return f.getCanonicalPath();
     }
 
