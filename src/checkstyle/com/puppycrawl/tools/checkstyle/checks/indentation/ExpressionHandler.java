@@ -80,7 +80,7 @@ public abstract class ExpressionHandler
      *
      * @return the expected indentation amount
      */
-    public int getLevel()
+    public final int getLevel()
     {
         if (mLevel == UNINITIALIZED) {
             mLevel = getLevelImpl();
@@ -119,8 +119,8 @@ public abstract class ExpressionHandler
      * @param aSubtypeName   the type of the expression
      * @param aActualLevel    the actual indent level of the expression
      */
-    protected void logError(DetailAST aAst, String aSubtypeName,
-                            int aActualLevel)
+    protected final void logError(DetailAST aAst, String aSubtypeName,
+                                  int aActualLevel)
     {
         logError(aAst, aSubtypeName, aActualLevel, getLevel());
     }
@@ -133,8 +133,8 @@ public abstract class ExpressionHandler
      * @param aActualLevel   the actual indent level of the expression
      * @param aExpectedLevel the expected indent level of the expression
      */
-    protected void logError(DetailAST aAst, String aSubtypeName,
-                            int aActualLevel, int aExpectedLevel)
+    protected final void logError(DetailAST aAst, String aSubtypeName,
+                                  int aActualLevel, int aExpectedLevel)
     {
         String typeStr = (aSubtypeName == "" ? "" : (" " + aSubtypeName));
         Object[] args = new Object[] {
@@ -154,9 +154,9 @@ public abstract class ExpressionHandler
      * @param aActualLevel   the actual indent level of the expression
      * @param aExpectedLevel the expected indent level of the expression
      */
-    protected void logChildError(int aLine,
-                                 int aActualLevel,
-                                 int aExpectedLevel)
+    protected final void logChildError(int aLine,
+                                       int aActualLevel,
+                                       int aExpectedLevel)
     {
         Object[] args = new Object[] {
             mTypeName,
@@ -175,7 +175,7 @@ public abstract class ExpressionHandler
      *
      * @return true if it is, false otherwise
      */
-    protected boolean startsLine(DetailAST aAst)
+    protected final boolean startsLine(DetailAST aAst)
     {
         return getLineStart(aAst) == expandedTabsColumnNo(aAst);
     }
@@ -188,7 +188,7 @@ public abstract class ExpressionHandler
      *
      * @return true if they are, false otherwise
      */
-    protected boolean areOnSameLine(DetailAST aAst1, DetailAST aAst2)
+    static boolean areOnSameLine(DetailAST aAst1, DetailAST aAst2)
     {
         return aAst1 != null && aAst2 != null
             && aAst1.getLineNo() == aAst2.getLineNo();
@@ -202,7 +202,7 @@ public abstract class ExpressionHandler
      *
      * @return true if it is, false otherwise
      */
-    protected boolean atLevelOrGreater(DetailAST aParent)
+    protected final boolean atLevelOrGreater(DetailAST aParent)
     {
         if (expandedTabsColumnNo(aParent) < getLevel()) {
             return false;
@@ -225,11 +225,11 @@ public abstract class ExpressionHandler
      *
      * @return the start of the line for the given expression
      */
-    protected int getLineStart(DetailAST aAst)
+    protected final int getLineStart(DetailAST aAst)
     {
         // TODO: this breaks indentation -- add to tests
         String line = mIndentCheck.getLines()[
-            aAst.getLineNo() - 1];
+          aAst.getLineNo() - 1];
         return getLineStart(line);
     }
 
@@ -246,7 +246,7 @@ public abstract class ExpressionHandler
      * @param aEndLine       the last line to check
      * @param aIndentLevel   the required indent level
      */
-    protected void checkLinesIndent(int aStartLine, int aEndLine,
+    protected final void checkLinesIndent(int aStartLine, int aEndLine,
         int aIndentLevel)
     {
         // check first line
@@ -260,118 +260,17 @@ public abstract class ExpressionHandler
     }
 
     /**
-     * Check the indent level for a single line.
-     *
-     * @param aLineNum       the line number to check
-     * @param aIndentLevel   the required indent level
-     */
-    private void checkSingleLine(int aLineNum, int aIndentLevel)
-    {
-        String line = mIndentCheck.getLines()[aLineNum - 1];
-        int start = getLineStart(line);
-        if (start < aIndentLevel) {
-            logChildError(aLineNum, start, aIndentLevel);
-        }
-    }
-
-    /**
-     * Get the start of the specified line.
-     *
-     * @param aLine   the specified line number
-     *
-     * @return the start of the specified line
-     */
-    protected int getLineStart(String aLine)
-    {
-        for (int start = 0; start < aLine.length(); start++) {
-            char c = aLine.charAt(start);
-
-            if (!Character.isWhitespace(c)) {
-                return Utils.lengthExpandedTabs(
-                    aLine, start, mIndentCheck.getIndentationTabWidth());
-            }
-        }
-        return 0;
-    }
-
-    // TODO: allowNesting either shouldn't be allowed with
-    //  firstLineMatches, or I should change the firstLineMatches logic
-    //  so it doesn't match if the first line is nested
-
-    /**
-     * Check the indent level of the children of the specified parent
-     * expression.
-     *
-     * @param aParent             the parent whose children we are checking
-     * @param aTokenTypes         the token types to check
-     * @param aStartLevel         the starting indent level
-     * @param aFirstLineMatches   whether or not the first line needs to match
-     * @param aAllowNesting       whether or not nested children are allowed
-     */
-    protected void checkChildren(DetailAST aParent, int[] aTokenTypes,
-        int aStartLevel,
-        boolean aFirstLineMatches, boolean aAllowNesting)
-    {
-        Arrays.sort(aTokenTypes);
-        for (DetailAST child = (DetailAST) aParent.getFirstChild();
-                child != null;
-                child = (DetailAST) child.getNextSibling())
-        {
-            if (Arrays.binarySearch(aTokenTypes, child.getType()) >= 0) {
-                checkExpressionSubtree(child, aStartLevel,
-                    aFirstLineMatches, aAllowNesting);
-            }
-        }
-    }
-
-    /**
-     * Check the indentation level for an expression subtree.
-     *
-     * @param aTree    the expression subtree to check
-     * @param aLevel   the indentation level
-     */
-    protected void checkExpressionSubtree(DetailAST aTree, int aLevel)
-    {
-        checkExpressionSubtree(aTree, aLevel, false, false);
-    }
-
-    /**
-     * Check the indentation level for an expression subtree.
-     *
-     * @param aTree               the expression subtree to check
-     * @param aLevel              the indentation level
-     * @param aFirstLineMatches   whether or not the first line has to match
-     * @param aAllowNesting       whether or not subtree nesting is allowed
-     */
-    protected void checkExpressionSubtree(
-        DetailAST aTree,
-        int aLevel,
-        boolean aFirstLineMatches,
-        boolean aAllowNesting
-    )
-    {
-        LineSet subtreeLines = new LineSet();
-        if (aFirstLineMatches && !aAllowNesting) {
-            int firstLine = getFirstLine(Integer.MAX_VALUE, aTree);
-            subtreeLines.addLineAndCol(new Integer(firstLine),
-                getLineStart(
-                    mIndentCheck.getLines()[firstLine - 1]));
-        }
-        findSubtreeLines(subtreeLines, aTree, aAllowNesting);
-
-        checkLinesIndent(subtreeLines, aLevel, aFirstLineMatches);
-    }
-
-    /**
      * Check the indentation for a set of lines.
      *
      * @param aLines              the set of lines to check
      * @param aIndentLevel        the indentation level
      * @param aFirstLineMatches   whether or not the first line has to match
+     * @param aFirstLine          firstline of whole expression
      */
-    protected void checkLinesIndent(LineSet aLines,
-                                    int aIndentLevel,
-                                    boolean aFirstLineMatches)
+    protected final void checkLinesIndent(LineSet aLines,
+                                          int aIndentLevel,
+                                          boolean aFirstLineMatches,
+                                          int aFirstLine)
     {
         if (aLines.isEmpty()) {
             return;
@@ -382,22 +281,20 @@ public abstract class ExpressionHandler
         int endLine = aLines.lastLine();
         int startCol = aLines.firstLineCol();
 
-        int realStartCol = getLineStart(
-            mIndentCheck.getLines()[startLine - 1]);
+        int realStartCol = getLineStart(mIndentCheck.getLines()[startLine - 1]);
 
         if (realStartCol == startCol) {
             checkSingleLine(startLine, startCol, aIndentLevel,
                 aFirstLineMatches);
-
-            // if first line starts the line, following lines are indented
-            // one level; but if the first line of this expression is
-            // nested with the previous expression (which is assumed if it
-            // doesn't start the line) then don't indent more, the first
-            // indentation is absorbed by the nesting
-
         }
 
-        if (aFirstLineMatches || startLine > mMainAst.getLineNo()) {
+        // if first line starts the line, following lines are indented
+        // one level; but if the first line of this expression is
+        // nested with the previous expression (which is assumed if it
+        // doesn't start the line) then don't indent more, the first
+        // indentation is absorbed by the nesting
+
+        if (aFirstLineMatches || aFirstLine > mMainAst.getLineNo()) {
             aIndentLevel += mIndentCheck.getBasicOffset();
         }
 
@@ -430,6 +327,21 @@ public abstract class ExpressionHandler
     }
 
     /**
+     * Check the indent level for a single line.
+     *
+     * @param aLineNum       the line number to check
+     * @param aIndentLevel   the required indent level
+     */
+    private void checkSingleLine(int aLineNum, int aIndentLevel)
+    {
+        String line = mIndentCheck.getLines()[aLineNum - 1];
+        int start = getLineStart(line);
+        if (start < aIndentLevel) {
+            logChildError(aLineNum, start, aIndentLevel);
+        }
+    }
+
+    /**
      * Check the indentation for a single line.
      *
      * @param aLineNum       the number of the line to check
@@ -437,6 +349,7 @@ public abstract class ExpressionHandler
      * @param aIndentLevel   the indentation level
      * @param aMustMatch     whether or not the indentation level must match
      */
+
     private void checkSingleLine(int aLineNum, int aColNum,
         int aIndentLevel, boolean aMustMatch)
     {
@@ -451,6 +364,95 @@ public abstract class ExpressionHandler
         {
             logChildError(aLineNum, start, aIndentLevel);
         }
+    }
+
+    /**
+     * Get the start of the specified line.
+     *
+     * @param aLine   the specified line number
+     *
+     * @return the start of the specified line
+     */
+    protected final int getLineStart(String aLine)
+    {
+        for (int start = 0; start < aLine.length(); start++) {
+            char c = aLine.charAt(start);
+
+            if (!Character.isWhitespace(c)) {
+                return Utils.lengthExpandedTabs(
+                    aLine, start, mIndentCheck.getIndentationTabWidth());
+            }
+        }
+        return 0;
+    }
+
+    // TODO: allowNesting either shouldn't be allowed with
+    //  firstLineMatches, or I should change the firstLineMatches logic
+    //  so it doesn't match if the first line is nested
+
+    /**
+     * Check the indent level of the children of the specified parent
+     * expression.
+     *
+     * @param aParent             the parent whose children we are checking
+     * @param aTokenTypes         the token types to check
+     * @param aStartLevel         the starting indent level
+     * @param aFirstLineMatches   whether or not the first line needs to match
+     * @param aAllowNesting       whether or not nested children are allowed
+     */
+    protected final void checkChildren(DetailAST aParent, int[] aTokenTypes,
+        int aStartLevel,
+        boolean aFirstLineMatches, boolean aAllowNesting)
+    {
+        Arrays.sort(aTokenTypes);
+        for (DetailAST child = (DetailAST) aParent.getFirstChild();
+                child != null;
+                child = (DetailAST) child.getNextSibling())
+        {
+            if (Arrays.binarySearch(aTokenTypes, child.getType()) >= 0) {
+                checkExpressionSubtree(child, aStartLevel,
+                    aFirstLineMatches, aAllowNesting);
+            }
+        }
+    }
+
+    /**
+     * Check the indentation level for an expression subtree.
+     *
+     * @param aTree    the expression subtree to check
+     * @param aLevel   the indentation level
+     */
+    protected final void checkExpressionSubtree(DetailAST aTree, int aLevel)
+    {
+        checkExpressionSubtree(aTree, aLevel, false, false);
+    }
+
+    /**
+     * Check the indentation level for an expression subtree.
+     *
+     * @param aTree               the expression subtree to check
+     * @param aLevel              the indentation level
+     * @param aFirstLineMatches   whether or not the first line has to match
+     * @param aAllowNesting       whether or not subtree nesting is allowed
+     */
+    protected final void checkExpressionSubtree(
+        DetailAST aTree,
+        int aLevel,
+        boolean aFirstLineMatches,
+        boolean aAllowNesting
+    )
+    {
+        LineSet subtreeLines = new LineSet();
+        int firstLine = getFirstLine(Integer.MAX_VALUE, aTree);
+        if (aFirstLineMatches && !aAllowNesting) {
+            subtreeLines.addLineAndCol(new Integer(firstLine),
+                getLineStart(
+                    mIndentCheck.getLines()[firstLine - 1]));
+        }
+        findSubtreeLines(subtreeLines, aTree, aAllowNesting);
+
+        checkLinesIndent(subtreeLines, aLevel, aFirstLineMatches,
+                         firstLine);
     }
 
     /**
@@ -491,7 +493,7 @@ public abstract class ExpressionHandler
      *
      * @return the column number for the start of the expression
      */
-    protected int expandedTabsColumnNo(DetailAST aAst)
+    protected final int expandedTabsColumnNo(DetailAST aAst)
     {
         String line =
             mIndentCheck.getLines()[aAst.getLineNo() - 1];
@@ -507,7 +509,7 @@ public abstract class ExpressionHandler
      * @param aTree           the subtree to examine
      * @param aAllowNesting   whether or not to allow nested subtrees
      */
-    protected void findSubtreeLines(LineSet aLines, DetailAST aTree,
+    protected final void findSubtreeLines(LineSet aLines, DetailAST aTree,
         boolean aAllowNesting)
     {
         // find line for this node
@@ -552,7 +554,7 @@ public abstract class ExpressionHandler
     /**
      * Check the indentation level of modifiers.
      */
-    protected void checkModifiers()
+    protected final void checkModifiers()
     {
         DetailAST modifiers = mMainAst.findFirstToken(TokenTypes.MODIFIERS);
         for (DetailAST modifier = (DetailAST) modifiers.getFirstChild();
@@ -583,7 +585,7 @@ public abstract class ExpressionHandler
      *
      * @return the IndentCheck attribute
      */
-    protected IndentationCheck getIndentCheck()
+    protected final IndentationCheck getIndentCheck()
     {
         return mIndentCheck;
     }
@@ -593,7 +595,7 @@ public abstract class ExpressionHandler
      *
      * @return the MainAst attribute
      */
-    protected DetailAST getMainAst()
+    protected final DetailAST getMainAst()
     {
         return mMainAst;
     }
@@ -603,7 +605,7 @@ public abstract class ExpressionHandler
      *
      * @return the Parent attribute
      */
-    protected ExpressionHandler getParent()
+    protected final ExpressionHandler getParent()
     {
         return mParent;
     }

@@ -47,19 +47,6 @@ public class LineSet
     }
 
     /**
-     * Get the starting column for a given line number.
-     *
-     * @param aLineNum   the specified line number
-     *
-     * @return the starting column for the given line number
-     */
-    public int getStartColumn(int aLineNum)
-    {
-        Integer colNum = (Integer) mLines.get(new Integer(aLineNum));
-        return colNum.intValue();
-    }
-
-    /**
      * Get the starting column for the first line.
      *
      * @return the starting column for the first line.
