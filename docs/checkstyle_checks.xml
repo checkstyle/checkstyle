@@ -5,7 +5,7 @@
 <config name="configuration">
     <property name="tabWidth" value="4" />
     <config name="TreeWalker">
-        <check classname="AvoidStarImport"/>
+        <config name="AvoidStarImport"/>
         <config name="ConstantNameCheck"/>
         <config name="EmptyBlockCheck"/>
         <config name="EqualsHashCodeCheck"/>
