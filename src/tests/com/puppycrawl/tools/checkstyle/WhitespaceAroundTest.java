@@ -25,7 +25,7 @@ public class WhitespaceAroundTest
         final String fname = CheckerTest.getPath("InputWhitespace.java");
         final String[] lines = getLines(fname);
         walker.walk(getAST(fname, lines), lines, fname);
-        assertEquals(28, msgs.getMessages().length);
+        assertEquals(29, msgs.getMessages().length);
         int idx = 0;
         verifyMessage(msgs, idx++, 16, 22, "'=' is not preceeded with whitespace.");
         verifyMessage(msgs, idx++, 16, 23, "'=' is not followed by whitespace.");
@@ -46,7 +46,7 @@ public class WhitespaceAroundTest
         verifyMessage(msgs, idx++, 39, 12, "'try' is not followed by whitespace.");
         verifyMessage(msgs, idx++, 41, 14, "'catch' is not followed by whitespace.");
         verifyMessage(msgs, idx++, 58, 11, "'if' is not followed by whitespace.");
-        // verifyMessage(msgs, idx++, 76, 19, "'return' is not followed by whitespace.");
+        verifyMessage(msgs, idx++, 76, 19, "'return' is not followed by whitespace.");
         verifyMessage(msgs, idx++, 97, 29, "'?' is not preceeded with whitespace.");
         verifyMessage(msgs, idx++, 97, 30, "'?' is not followed by whitespace.");
         verifyMessage(msgs, idx++, 98, 15, "'==' is not preceeded with whitespace.");
