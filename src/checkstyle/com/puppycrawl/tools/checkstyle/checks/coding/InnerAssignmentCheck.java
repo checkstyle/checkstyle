@@ -50,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN}.
  * </p>
  * <p> An example of how to configure the check is:
+ * </p>
  * <pre>
  * &lt;module name="InnerAssignment"/&gt;
  * </pre>

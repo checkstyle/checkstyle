@@ -41,8 +41,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="IllegalToken"/&gt;
  * </pre>
- * * <p> An example of how to configure the check to forbid
+ * <p> An example of how to configure the check to forbid
  * a {@link TokenTypes#LITERAL_NATIVE LITERAL_NATIVE} token is:
+ * </p>
  * <pre>
  * &lt;module name="IllegalToken"&gt;
  *     &lt;property name="tokens" value="LITERAL_NATIVE"/&gt;
