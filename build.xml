@@ -269,7 +269,7 @@
                 properties="docs/checkstyle.rules">
       <fileset dir="src/checkstyle"
                includes="**/*.java"
-               excludes="**/Generated*.java,**/Java*Recognizer.java,**/Java*Lexer.java,**/Java*TokenTypes.java,**/gui/*"/>
+               excludes="**/Generated*.java,**/gui/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
