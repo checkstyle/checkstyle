@@ -238,7 +238,7 @@ variableDeclarator returns [LineText r]
    ;
 
 varInitializer
-   :  #(ASSIGN initializer) { ver.verifySurroundingWS(#ASSIGN); }
+   :  #(ASSIGN initializer)
    |
    ;
 
@@ -389,41 +389,37 @@ expression
 
 expr
    :  #(QUESTION expr expr COLON expr)
-      {
-         ver.verifySurroundingWS(#QUESTION);
-         ver.verifySurroundingWS(#COLON);
-      }
-   |  #(ASSIGN expr expr) { ver.verifySurroundingWS(#ASSIGN); }
-   |  #(PLUS_ASSIGN expr expr) { ver.verifySurroundingWS(#PLUS_ASSIGN); }
-   |  #(MINUS_ASSIGN expr expr) { ver.verifySurroundingWS(#MINUS_ASSIGN); }
-   |  #(STAR_ASSIGN expr expr) { ver.verifySurroundingWS(#STAR_ASSIGN); }
-   |  #(DIV_ASSIGN expr expr) { ver.verifySurroundingWS(#DIV_ASSIGN); }
-   |  #(MOD_ASSIGN expr expr) { ver.verifySurroundingWS(#MOD_ASSIGN); }
-   |  #(SR_ASSIGN expr expr) { ver.verifySurroundingWS(#SR_ASSIGN); }
-   |  #(BSR_ASSIGN expr expr) { ver.verifySurroundingWS(#BSR_ASSIGN); }
-   |  #(SL_ASSIGN expr expr) { ver.verifySurroundingWS(#SL_ASSIGN); }
-   |  #(BAND_ASSIGN expr expr) { ver.verifySurroundingWS(#BAND_ASSIGN); }
-   |  #(BXOR_ASSIGN expr expr) { ver.verifySurroundingWS(#BXOR_ASSIGN); }
-   |  #(BOR_ASSIGN expr expr) { ver.verifySurroundingWS(#BOR_ASSIGN); }
-   |  #(LOR expr expr) { ver.verifySurroundingWS(#LOR); }
-   |  #(LAND expr expr) { ver.verifySurroundingWS(#LAND); }
-   |  #(BOR expr expr) { ver.verifySurroundingWS(#BOR); }
-   |  #(BXOR expr expr) { ver.verifySurroundingWS(#BXOR); }
-   |  #(BAND expr expr) { ver.verifySurroundingWS(#BAND); }
-   |  #(NOT_EQUAL expr expr) { ver.verifySurroundingWS(#NOT_EQUAL); }
-   |  #(EQUAL expr expr) { ver.verifySurroundingWS(#EQUAL); }
-   |  #(LT expr expr) { ver.verifySurroundingWS(#LT); }
-   |  #(GT expr expr) { ver.verifySurroundingWS(#GT); }
-   |  #(LE expr expr) { ver.verifySurroundingWS(#LE); }
-   |  #(GE expr expr) { ver.verifySurroundingWS(#GE); }
-   |  #(SL expr expr) { ver.verifySurroundingWS(#SL); }
-   |  #(SR expr expr) { ver.verifySurroundingWS(#SR); }
-   |  #(BSR expr expr) { ver.verifySurroundingWS(#BSR); }
-   |  #(PLUS expr expr) { ver.verifySurroundingWS(#PLUS); }
-   |  #(MINUS expr expr) { ver.verifySurroundingWS(#MINUS); }
-   |  #(DIV expr expr) { ver.verifySurroundingWS(#DIV); }
-   |  #(MOD expr expr) { ver.verifySurroundingWS(#MOD); }
-   |  #(STAR expr expr) { ver.verifySurroundingWS(#STAR); }
+   |  #(ASSIGN expr expr)
+   |  #(PLUS_ASSIGN expr expr)
+   |  #(MINUS_ASSIGN expr expr)
+   |  #(STAR_ASSIGN expr expr)
+   |  #(DIV_ASSIGN expr expr)
+   |  #(MOD_ASSIGN expr expr)
+   |  #(SR_ASSIGN expr expr)
+   |  #(BSR_ASSIGN expr expr)
+   |  #(SL_ASSIGN expr expr)
+   |  #(BAND_ASSIGN expr expr)
+   |  #(BXOR_ASSIGN expr expr)
+   |  #(BOR_ASSIGN expr expr)
+   |  #(LOR expr expr)
+   |  #(LAND expr expr)
+   |  #(BOR expr expr)
+   |  #(BXOR expr expr)
+   |  #(BAND expr expr)
+   |  #(NOT_EQUAL expr expr)
+   |  #(EQUAL expr expr)
+   |  #(LT expr expr)
+   |  #(GT expr expr)
+   |  #(LE expr expr)
+   |  #(GE expr expr)
+   |  #(SL expr expr)
+   |  #(SR expr expr)
+   |  #(BSR expr expr)
+   |  #(PLUS expr expr)
+   |  #(MINUS expr expr)
+   |  #(DIV expr expr)
+   |  #(MOD expr expr)
+   |  #(STAR expr expr)
    |  #(INC expr) { ver.verifyNoWSAfter(#INC); }
    |  #(DEC expr) { ver.verifyNoWSAfter(#DEC); }
    |  #(POST_INC expr) { ver.verifyNoWSBefore(#POST_INC); }

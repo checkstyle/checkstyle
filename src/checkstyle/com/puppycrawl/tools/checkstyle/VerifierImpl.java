@@ -393,6 +393,27 @@ class VerifierImpl
     }
 
     /** @see Verifier **/
+    public void verifyWSAround(int aLineNo, int aColNo, String aText)
+    {
+        if (mConfig.isIgnoreWhitespace()) {
+            return;
+        }
+
+        final String line = mLines[aLineNo - 1];
+        final int before = aColNo - aText.length() - 2;
+        final int after = aColNo - 1;
+        if ((before >= 0) && !Character.isWhitespace(line.charAt(before))) {
+            log(aLineNo, "'" + aText + "' is not preceeded with whitespace.");
+        }
+
+        if ((after < line.length()) &&
+            !Character.isWhitespace(line.charAt(after)))
+        {
+            log(aLineNo, "'" + aText + "' is not proceeded with whitespace.");
+        }
+    }
+
+    /** @see Verifier **/
     public void verifyNoWSAfter(MyCommonAST aAST)
     {
         if (mConfig.isIgnoreWhitespace()) {

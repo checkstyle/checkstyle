@@ -111,7 +111,7 @@
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
-    <checkstyle file="src/tests/com/puppycrawl/tools/checkstyle/InputSimple.java" publicMemberPattern="."/>
+    <checkstyle file="src/tests/com/puppycrawl/tools/checkstyle/InputWhitespace.java"/>
   </target>
 
   <target name="checkstyle.import" depends="compile.tests">
@@ -130,6 +130,7 @@
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
+      <delete file="classes/cachefile" />
     <checkstyle headerfile="docs/java.header"
                 ignorebraces="false"
 		cachefile="classes/cachefile"
