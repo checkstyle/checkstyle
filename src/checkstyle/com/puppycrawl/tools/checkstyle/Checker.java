@@ -198,12 +198,14 @@ class Checker
 
     /**
      * Parses and returns the AST for a file.
-     * @return the AST
+     * @param aFileName name of file read
      * @param aReader the Reader to generate the AST
-     * @throws FileNotFoundException error occurred
-     * @throws RecognitionException error occurred
-     * @throws TokenStreamException error occurred
-     **/
+     * @return the AST
+     * @exception FileNotFoundException error occurred
+     * @exception RecognitionException error occurred
+     * @exception TokenStreamException error occurred
+     *
+     */
     private AST getAST(String aFileName, Reader aReader)
         throws FileNotFoundException, RecognitionException, TokenStreamException
     {
