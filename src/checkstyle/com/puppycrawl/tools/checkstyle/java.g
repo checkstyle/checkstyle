@@ -63,7 +63,6 @@ tokens {
 {
     final Verifier ver = VerifierSingleton.getInstance();
     private static String sFirstIdent = "";
-    private static int sCompoundLength = -1;
     private static final MyCommonAST[] sIgnoreAST = new MyCommonAST[2];
     private static LineText sLastIdentifier;
     private static final int[] sIgnoreType = new int[1];
@@ -350,8 +349,10 @@ field!
                     s2:compoundStatement[stmtBraces]
                     {
                         ver.verifyLCurlyMethod(msig.getLineNo(), stmtBraces[0]);
-                        ver.verifyMethodLength(#s2.getLineNo(),
-                                               sCompoundLength);
+                        ver.verifyMethodLength(
+                            #s2.getLineNo(),
+                            stmtBraces[1].getLineNo()
+                            - stmtBraces[0].getLineNo() + 1);
                     }
                 |
                     SEMI
@@ -527,14 +528,10 @@ parameterModifier
 //      it starts a new scope for variable definitions
 
 compoundStatement[MyCommonAST[] aCurlies]
-	:	lc:LCURLY^ {#lc.setType(SLIST); aCurlies[0] = #lc;}
+	:	lc:LCURLY^  {#lc.setType(SLIST); aCurlies[0] = #lc;}
 			// include the (possibly-empty) list of statements
 			(statement[sIgnoreType, sIgnoreAST])*
-		rc:RCURLY!
-        {
-            sCompoundLength = rc.getLine() - lc.getLine() + 1;
-            aCurlies[1] = #rc;
-        }
+		rc:RCURLY!  { aCurlies[1] = #rc; }
 	;
 
 
