@@ -18,14 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
+
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -33,7 +36,7 @@ import java.util.Locale;
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @author lkuehne
  */
-public class Checker
+public class Checker extends AutomaticBean
     implements Defn, MessageDispatcher
 {
     /**
@@ -89,71 +92,79 @@ public class Checker
     /** maintains error count */
     private final ErrorCounter mCounter = new ErrorCounter();
 
-    /** configuration */
-    private final GlobalProperties mConfig;
-
     /** vector of listeners */
     private final ArrayList mListeners = new ArrayList();
 
     /** vector of fileset checks */
     private final ArrayList mFileSetChecks = new ArrayList();
 
-    /**
-     * Creates a new <code>Checker</code> instance.
-     *
-     * @param aConfig the configuration to use
-     * @throws CheckstyleException if an error occurs
-     */
-    public Checker(Configuration aConfig)
-        throws CheckstyleException
+    /** class loader to resolve classes with. **/
+    private ClassLoader mLoader =
+            Thread.currentThread().getContextClassLoader();
+
+    /** the basedir to strip off in filenames */
+    private String mBasedir;
+
+    public void setLocaleCountry(String aLocaleCountry)
     {
-        this(aConfig.getGlobalProperties(), aConfig.getCheckConfigurations());
+        mLocaleCountry = aLocaleCountry;
     }
 
+    public void setLocaleLanguage(String aLocaleLanguage)
+    {
+        mLocaleLanguage = aLocaleLanguage;
+    }
+
+    /** locale country to report messages  **/
+    private String mLocaleCountry = Locale.getDefault().getCountry();
+    /** locale language to report messages  **/
+    private String mLocaleLanguage = Locale.getDefault().getLanguage();
+
     /**
      * Creates a new <code>Checker</code> instance.
+     * The instance needs to be contextualized and configured.
      *
-     * @param aConfig the configuration to use
-     * @param aConfigs the configuation of the checks to use
      * @throws CheckstyleException if an error occurs
      */
-    public Checker(GlobalProperties aConfig, CheckConfiguration[] aConfigs)
+    public Checker()
         throws CheckstyleException
     {
-        mConfig = aConfig;
-        LocalizedMessage.setLocale(new Locale(mConfig.getLocaleLanguage(),
-                                              mConfig.getLocaleCountry()));
-
-        // TODO: create, configure and register the FileSetChecks from config
-        // file instead of hardcoding it here in the Checker constructor.
-        // Probably the addFileSetCheck mthod must be called from outside
-        // the checker, just like the TreeWalker is not concerned with
-        // finding all the checks it has to execute (IOC principle).
-
-        // TODO: uncommenting the addFileSetCheck calls breaks the tests
-        // because the packageHtml check is always executed and yields
-        // additional errors that are not expected in the current test code
-        // (which should stay like it currently is!)
-
-        //FileSetCheck translationCheck = new TranslationCheck();
-        // addFileSetCheck(translationCheck);
-
-        //FileSetCheck packageHtmlCheck = new PackageHtmlCheck();
-        // addFileSetCheck(packageHtmlCheck);
-
-        final TreeWalker walker = new TreeWalker(mConfig);
-        // TODO: improve the error handing
-        for (int i = 0; i < aConfigs.length; i++) {
-            final CheckConfiguration config = aConfigs[i];
-            // IMPORTANT! Need to use the same class loader that created this
-            // class. Otherwise can get ClassCastException problems.
-            walker.registerCheck(
-                config.createInstance(this.getClass().getClassLoader()),
-                config);
-        }
-        addFileSetCheck(walker);
-
         this.addListener(mCounter);
+    }
+
+    /** @see AutomaticBean */
+    public void configure(Configuration aConfiguration)
+            throws CheckstyleException
+    {
+        super.configure(aConfiguration);
+
+        final Locale locale = new Locale(mLocaleLanguage, mLocaleCountry);
+        LocalizedMessage.setLocale(locale);
+
+        DefaultContext context = new DefaultContext();
+        context.add("classLoader", this.getClassLoader());
+        Configuration[] fileSetChecks = aConfiguration.getChildren();
+        for (int i = 0; i < fileSetChecks.length; i++) {
+            Configuration fscConf = fileSetChecks[i];
+            String className = fscConf.getAttribute("classname");
+            try {
+                Class clazz = Class.forName(className);
+                FileSetCheck fsc = (FileSetCheck) clazz.newInstance();
+                fsc.contextualize(context);
+                fsc.configure(fscConf);
+                addFileSetCheck(fsc);
+            }
+            catch (Exception ex) {
+                // TODO i18n
+                throw new CheckstyleException(
+                        "cannot initialize filesetcheck of class " + className);
+            }
+        }
+    }
+
+    private ClassLoader getClassLoader()
+    {
+        return mLoader;
     }
 
     /**
@@ -211,18 +222,21 @@ public class Checker
     private String getStrippedFileName(final String aFileName)
     {
         final String stripped;
-        final String basedir = mConfig.getBasedir();
-        if ((basedir == null) || !aFileName.startsWith(basedir)) {
+        if ((mBasedir == null) || !aFileName.startsWith(mBasedir)) {
             stripped = aFileName;
         }
         else {
             // making the assumption that there is text after basedir
-            final int skipSep = basedir.endsWith(File.separator) ? 0 : 1;
-            stripped = aFileName.substring(basedir.length() + skipSep);
+            final int skipSep = mBasedir.endsWith(File.separator) ? 0 : 1;
+            stripped = aFileName.substring(mBasedir.length() + skipSep);
         }
         return stripped;
     }
 
+    public void setBasedir(String aBasedir)
+    {
+        mBasedir = aBasedir;
+    }
 
     /** notify all listeners about the audit start */
     protected void fireAuditStarted()

@@ -40,6 +40,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Iterator;
 
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+
 /**
  * An implementation of a ANT task for calling checkstyle. See the documentation
  * of the task for usage.
@@ -319,9 +321,15 @@ public class CheckStyleTask
                 final Configuration config =
                     ConfigurationLoader.loadConfiguration(
                         mConfigFile.getAbsolutePath(), props);
-                config.setClassLoader(new AntClassLoader(getProject(),
-                                      mClasspath));
-                c = new Checker(config);
+
+                DefaultContext context = new DefaultContext();
+                ClassLoader loader = new AntClassLoader(getProject(), mClasspath);
+                context.add("classloader", loader);
+
+                c = new Checker();
+                c.contextualize(context);
+                c.configure(config);
+
                 // setup the listeners
                 AuditListener[] listeners = getListeners();
                 for (int i = 0; i < listeners.length; i++) {

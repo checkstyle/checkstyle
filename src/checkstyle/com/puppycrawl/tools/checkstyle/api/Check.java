@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * The base class for checks.
@@ -26,18 +28,18 @@ import java.util.Map;
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-public abstract class Check
+public abstract class Check extends AutomaticBean
 {
     /** resuable constant for message formating */
     private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
 
     /** name to store file contents under */
     private static final String FILE_CONTENTS_ATTRIBUTE = "fILEcONTENTS";
-    /** name to store class loader under */
-    private static final String CLASS_LOADER_ATTRIBUTE = "cLaSsLoAdEr";
 
     /** the global context for the check */
     private Map mGlobalContext;
+    /** the tokens the check is interested in */
+    private final Set mTokens = new HashSet();
     /**
      * the object for collecting messages. decided to not put in the global
      * context for performance and ease of use.
@@ -49,6 +51,8 @@ public abstract class Check
     private Map mTokenContext;
     /** the tab with for column reporting */
     private int mTabWidth = 8; // meaningful default
+
+    private ClassLoader mLoader = Thread.currentThread().getContextClassLoader();
 
     /**
      * Returns the default token a check is interested in. Only used if the
@@ -83,6 +87,27 @@ public abstract class Check
     // definitions.
     //
     // Lets worry about it when it becomes a problem.
+
+    /**
+     * Adds a set of tokens the check is interested in.
+     * @param aStrRep the string representation of the tokens interested in
+     */
+    final public void setTokens(String[] aStrRep)
+    {
+        for (int i = 0; i < aStrRep.length; i++) {
+            String s = aStrRep[i];
+            mTokens.add(s);
+        }
+    }
+
+    /**
+     * Returns the tokens registered for the check.
+     * @return the set of token names
+     */
+    final public Set getTokens()
+    {
+        return mTokens;
+    }
 
 
     /**
@@ -231,7 +256,7 @@ public abstract class Check
      */
     public final void setClassLoader(ClassLoader aLoader)
     {
-        getTreeContext().put(CLASS_LOADER_ATTRIBUTE, aLoader);
+        mLoader = aLoader;
     }
 
     /**
@@ -240,7 +265,7 @@ public abstract class Check
      */
     public final ClassLoader getClassLoader()
     {
-        return (ClassLoader) getTreeContext().get(CLASS_LOADER_ATTRIBUTE);
+        return mLoader;
     }
 
     /** @return the tab width to report errors with */

@@ -21,14 +21,12 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Properties;
-
+import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.apache.regexp.RESyntaxException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -51,20 +49,10 @@ class ConfigurationLoader
     private Properties mOverrideProps = new Properties();
     /** parser to read XML files **/
     private final XMLReader mParser;
-    /** the loaded global properties **/
-    private final Properties mProps = new Properties();
-    /** the loaded configurations **/
-    private final ArrayList mCheckConfigs = new ArrayList();
     /** the loaded configuration **/
-    private Configuration mConfig = null;
-    /** the current check configuration being created **/
-    private CheckConfiguration mCurrent;
-    /** buffer for collecting text **/
-    private final StringBuffer mBuf = new StringBuffer();
-    /** in global element **/
-    private boolean mIsInGlobalElement = false;
-    /** started processing check configurations **/
-    private boolean mIsInCheckMode = false;
+    private Stack mConfigStack = new Stack();
+    /** the Configuration that is beeing built */
+    private Configuration mConfiguration = null;
 
     /**
      * Creates a new <code>ConfigurationLoader</code> instance.
@@ -91,71 +79,50 @@ class ConfigurationLoader
         mParser.parse(new InputSource(new FileReader(aFilename)));
     }
 
-    /**
-     * Returns the configuration information in the last file parsed.
-     * @return list of CheckConfiguration objects
-     */
-    CheckConfiguration[] getConfigs()
-    {
-        return (CheckConfiguration[]) mCheckConfigs.toArray(
-            new CheckConfiguration[mCheckConfigs.size()]);
-    }
-
-
     ///////////////////////////////////////////////////////////////////////////
     // Document handler methods
     ///////////////////////////////////////////////////////////////////////////
-
-    /** @see org.xml.sax.helpers.DefaultHandler **/
-    public void characters(char[] aChars, int aStart, int aLength)
-    {
-        mBuf.append(String.valueOf(aChars, aStart, aLength));
-    }
 
     /** @see org.xml.sax.helpers.DefaultHandler **/
     public void startElement(String aNamespaceURI,
                              String aLocalName,
                              String aQName,
                              Attributes aAtts)
+            throws SAXException
     {
-        mBuf.setLength(0);
-        if ("global".equals(aQName)) {
-            mIsInGlobalElement = true;
-        }
-        else if ("check".equals(aQName)) {
-            //first apply overriding properties
-            if (!mIsInCheckMode) {
-                mIsInCheckMode = true;
-                for (Enumeration enum = mOverrideProps.keys();
-                      enum.hasMoreElements();)
-                {
-                    final String key = (String) enum.nextElement();
-                    final String value = (String) mOverrideProps.get(key);
-                    mProps.setProperty(key, value);
+        // TODO: debug logging for support puposes
+        DefaultConfiguration conf = new DefaultConfiguration(aQName);
+        System.out.println("aQName = " + aQName);
+        final int attCount = aAtts.getLength();
+        for (int i = 0; i < attCount; i++) {
+            String name = aAtts.getQName(i);
+            String value = aAtts.getValue(i);
+            System.out.println("  value of " + name + " is " + value);
+
+            // expand properties
+            if (value.startsWith("${") && value.endsWith("}")) {
+                String propName = value.substring(2, value.length() - 1);
+                value = mOverrideProps.getProperty(propName);
+                if (value == null) {
+                    throw new SAXException("missing external property " + propName);
                 }
+                System.out.println("  propName = " + propName);
+                System.out.println("  new value = " + value);
             }
 
-            mCurrent = new CheckConfiguration();
-            mCurrent.setClassname(aAtts.getValue("classname"));
-        }
-        else if ("property".equals(aQName)) {
-            final String name = aAtts.getValue("name");
-            String value = aAtts.getValue("value");
-
-            if (value == null) {
-                //try global
-                String globalKey = aAtts.getValue("from-global");
-                value = (String) mProps.get(globalKey);
-            }
-
-            if (mIsInGlobalElement) {
-                mProps.setProperty(name, value);
-            }
-            else {
-                mCurrent.addProperty(name, value);
-            }
+            conf.addAttribute(name, value);
         }
 
+        if (mConfiguration == null) {
+            mConfiguration = conf;
+        }
+
+        if (!mConfigStack.isEmpty()) {
+            DefaultConfiguration top = (DefaultConfiguration) mConfigStack.peek();
+            top.addChild(conf);
+        }
+
+        mConfigStack.push(conf);
     }
 
     /** @see org.xml.sax.helpers.DefaultHandler **/
@@ -163,44 +130,7 @@ class ConfigurationLoader
                            String aLocalName,
                            String aQName)
     {
-        if ("global".equals(aQName)) {
-            mIsInGlobalElement = false;
-        }
-        else if ("check".equals(aQName)) {
-            mCheckConfigs.add(mCurrent);
-            mCurrent = null;
-        }
-        else if ("tokens".equals(aQName)) {
-            mCurrent.addTokens(mBuf.toString());
-        }
-    }
-
-    /**
-     * Returns the check configurations in a specified file.
-     * @param aConfigFname name of config file
-     * @return the check configurations
-     * @throws CheckstyleException if an error occurs
-     */
-    public static CheckConfiguration[] loadConfigs(String aConfigFname)
-        throws CheckstyleException
-    {
-        try {
-            final ConfigurationLoader loader = new ConfigurationLoader();
-            loader.parseFile(aConfigFname);
-            return loader.getConfigs();
-        }
-        catch (FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + aConfigFname);
-        }
-        catch (ParserConfigurationException e) {
-            throw new CheckstyleException("unable to parse " + aConfigFname);
-        }
-        catch (SAXException e) {
-            throw new CheckstyleException("unable to parse " + aConfigFname);
-        }
-        catch (IOException e) {
-            throw new CheckstyleException("unable to read " + aConfigFname);
-        }
+        mConfigStack.pop();
     }
 
     /**
@@ -227,32 +157,20 @@ class ConfigurationLoader
             throw new CheckstyleException("unable to parse " + aConfigFname);
         }
         catch (SAXException e) {
-            throw new CheckstyleException("unable to parse " + aConfigFname);
+            throw new CheckstyleException("unable to parse "
+                    + aConfigFname + " - " + e.getMessage());
         }
         catch (IOException e) {
             throw new CheckstyleException("unable to read " + aConfigFname);
-        }
-        catch (RESyntaxException e) {
-            throw new CheckstyleException(
-                "A regular expression error exists in " + aConfigFname);
         }
     }
 
     /**
      * Returns the configuration in the last file parsed.
      * @return Configuration object
-     * @throws RESyntaxException if an error occurs
-     * @throws FileNotFoundException if an error occurs
-     * @throws IOException if an error occurs
      */
     private Configuration getConfiguration()
-        throws IOException, FileNotFoundException, RESyntaxException
     {
-        final GlobalProperties globalProps =
-            new GlobalProperties(mProps, System.out);
-        final CheckConfiguration[] checkConfigs =
-            (CheckConfiguration[]) mCheckConfigs.toArray(
-                new CheckConfiguration[mCheckConfigs.size()]);
-        return new Configuration(globalProps, checkConfigs);
+        return mConfiguration;
     }
 }
