@@ -1,0 +1,131 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2002  Oliver Burn
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.gui;
+
+import antlr.collections.AST;
+import antlr.ASTFactory;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+/**
+ * The model that backs the parse tree in the GUI.
+ *
+ * @author Lars Kühne
+ * @version $Id: ParseTreeModel.java,v 1.1 2002-10-17 00:13:03 lkuehne Exp $
+ */
+public class ParseTreeModel extends AbstractTreeTableModel
+{
+    private static final String[] COLUMN_NAMES = new String[]{
+        "Tree", "Type", "Line", "Column", "Text"
+    };
+
+    public ParseTreeModel(DetailAST parseTree)
+    {
+        super(createArtificialTreeRoot());
+        setParseTree(parseTree);
+    }
+
+    private static DetailAST createArtificialTreeRoot()
+    {
+        ASTFactory factory = new ASTFactory();
+        factory.setASTNodeType(DetailAST.class.getName());
+        DetailAST retVal = (DetailAST) factory.create(0, "ROOT");
+        return retVal;
+    }
+
+    void setParseTree(DetailAST parseTree)
+    {
+        DetailAST root = (DetailAST) getRoot();
+        root.setFirstChild(parseTree);
+        Object[] path = {root};
+
+        // no need to setup remaining info, as the call results in a
+        // table structure changed event anyway - we just pass nulls
+        fireTreeStructureChanged(this, path, null, null);
+    }
+
+    public int getColumnCount()
+    {
+        return COLUMN_NAMES.length;
+    }
+
+    public String getColumnName(int column)
+    {
+        return COLUMN_NAMES[column];
+    }
+
+    public Class getColumnClass(int column)
+    {
+        switch (column) {
+            case 0:
+                return TreeTableModel.class;
+            case 1:
+                return String.class;
+            case 2:
+                return Integer.class;
+            case 3:
+                return Integer.class;
+            case 4:
+                return String.class;
+        }
+        return Object.class;
+    }
+
+    public Object getValueAt(Object node, int column)
+    {
+        DetailAST ast = (DetailAST) node;
+        switch (column) {
+            case 0:
+                return null;
+            case 1:
+                // TODO: use token type name as in TreeWalker.TOKEN_VALUE_TO_NAME
+                return String.valueOf(ast.getType());
+            case 2:
+                return new Integer(ast.getLineNo());
+            case 3:
+                return new Integer(ast.getColumnNo());
+            case 4:
+                return ast.getText();
+        }
+        return null;
+    }
+
+    public void setValueAt(Object aValue, Object node, int column)
+    {
+    }
+
+    public Object getChild(Object parent, int index)
+    {
+        DetailAST ast = (DetailAST) parent;
+        int i = 0;
+        AST child = ast.getFirstChild();
+        while (i < index) {
+            child = child.getNextSibling();
+            i++;
+        }
+        return child;
+    }
+
+    public int getChildCount(Object parent)
+    {
+        DetailAST ast = (DetailAST) parent;
+        return ast.getChildCount();
+    }
+
+}
