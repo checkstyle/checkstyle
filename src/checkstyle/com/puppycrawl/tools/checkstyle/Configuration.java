@@ -53,6 +53,10 @@ class Configuration
     private static final String TYPE_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
     /** The maximum line length **/
     private static final int MAX_LINE_LENGTH = 80;
+    /** the maximum method length **/
+    private static final int MAX_METHOD_LENGTH = 150;
+    /** the maximum constructor length **/
+    private static final int MAX_CONSTRUCTOR_LENGTH = 150;
 
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
@@ -90,6 +94,10 @@ class Configuration
 
     /** the maximum line length **/
     private int mMaxLineLength = MAX_LINE_LENGTH;
+    /** the maximum method length **/
+    private int mMaxMethodLength = MAX_METHOD_LENGTH;
+    /** the maximum constructor length **/
+    private int mMaxConstructorLength = MAX_CONSTRUCTOR_LENGTH;
     /** whether to allow tabs **/
     private boolean mAllowTabs = false;
     /** whether to allow protected data **/
@@ -146,6 +154,10 @@ class Configuration
                                       TYPE_PATTERN));
         setMaxLineLength(getIntProperty(
             aProps, aLog, MAX_LINE_LENGTH_PROP, MAX_LINE_LENGTH));
+        setMaxMethodLength(getIntProperty(
+            aProps, aLog, MAX_METHOD_LENGTH_PROP, MAX_METHOD_LENGTH));
+        setMaxConstructorLength(getIntProperty(
+            aProps, aLog, MAX_CONSTRUCTOR_LENGTH_PROP, MAX_CONSTRUCTOR_LENGTH));
 
         setAllowTabs(getBooleanProperty(aProps, ALLOW_TABS_PROP, mAllowTabs));
         setAllowProtected(
@@ -282,6 +294,18 @@ class Configuration
     int getMaxLineLength()
     {
         return mMaxLineLength;
+    }
+
+    /** @return the maximum method length **/
+    int getMaxMethodLength()
+    {
+        return mMaxMethodLength;
+    }
+
+    /** @return the maximum constructor length **/
+    int getMaxConstructorLength()
+    {
+        return mMaxConstructorLength;
     }
 
     /** @return whether to allow tabs **/
@@ -432,6 +456,22 @@ class Configuration
     void setMaxLineLength(int aMaxLineLength)
     {
         mMaxLineLength = aMaxLineLength;
+    }
+
+    /**
+     * @param aMaxMethodLength the maximum method length
+     */
+    void setMaxMethodLength(int aMaxMethodLength)
+    {
+        mMaxMethodLength = aMaxMethodLength;
+    }
+
+    /**
+     * @param aMaxConstructorLength the maximum constructor length
+     */
+    void setMaxConstructorLength(int aMaxConstructorLength)
+    {
+        mMaxConstructorLength = aMaxConstructorLength;
     }
 
     /**

@@ -40,6 +40,7 @@ package com.puppycrawl.tools.checkstyle;
 class GeneratedJavaRecognizer extends Parser;
 
 options {
+	ASTLabelType=MyCommonAST;
 	k = 2;                           // two token lookahead
 	exportVocab=GeneratedJava;       // Call its vocabulary "GeneratedJava"
 	codeGenMakeSwitchThreshold = 2;  // Some optimizations
@@ -60,8 +61,10 @@ tokens {
 }
 	
 {
-   final Verifier ver = VerifierSingleton.getInstance();
-   private static String sFirstIdent = "";
+    final Verifier ver = VerifierSingleton.getInstance();
+    private static String sFirstIdent = "";
+    private static int sCompoundLength = -1;
+    private static LineText sLastIdentifier;
 }
 
 // Compilation Unit: In Java, this is a single file.  This is the start
@@ -87,6 +90,7 @@ compilationUnit
 packageDefinition
 	options {defaultErrorHandler = true;} // let ANTLR handle errors
 	:	p:"package"^ {#p.setType(PACKAGE_DEF);} identifier SEMI!
+        { ver.reportPackageName(sLastIdentifier.getText()); }
 	;
 
 
@@ -166,8 +170,11 @@ builtInType
 // A (possibly-qualified) java identifier.  We start with the first IDENT
 //   and expand its name by adding dots and following IDENTS
 identifier
-	:	i1:IDENT {ver.reportReference(i1.getText());}
-                ( DOT^ IDENT )*
+	:	i1:IDENT
+        {ver.reportReference(i1.getText());
+            sLastIdentifier = new LineText(i1.getLine(), i1.getText());
+        }
+            ( DOT^ i2:IDENT {sLastIdentifier.appendText("." + i2.getText());} )*
 	;
 
 identifierStar
@@ -211,7 +218,7 @@ modifier
 	;
 
 // Definition of a Java class
-classDefinition![AST modifiers]
+classDefinition![MyCommonAST modifiers]
 	:	"class" IDENT
 		// it _might_ have a superclass...
 		sc:superClassClause
@@ -229,7 +236,7 @@ superClassClause!
 	;
 
 // Definition of a Java Interface
-interfaceDefinition![AST modifiers]
+interfaceDefinition![MyCommonAST modifiers]
 	:	"interface" IDENT
 		// it might extend some other interfaces
 		ie:interfaceExtends
@@ -296,14 +303,14 @@ field!
 				// declared to throw
 				(tc:throwsClause)?
 
-				( s2:compoundStatement | SEMI )
+				( s2:compoundStatement {ver.verifyMethodLength(#s2.getLineNo(), sCompoundLength);} | SEMI )
 				{#field = #(#[METHOD_DEF,"METHOD_DEF"],
 						     mods,
 							 #(#[TYPE,"TYPE"],rt),
 							 IDENT,
 							 param,
 							 tc,
-							 s2);}
+							 s2); }
 			|	v:variableDefinitions[#mods,#t] SEMI
 //				{#field = #(#[VARIABLE_DEF,"VARIABLE_DEF"], v);}
 				{#field = #v;}
@@ -327,7 +334,7 @@ constructorBody
 		|
 		)
         (statement)*
-        RCURLY!
+        rc:RCURLY! {ver.verifyConstructorLength(#lc.getLineNo(), #rc.getLineNo() - #lc.getLineNo() + 1);}
     ;
 
 explicitConstructorInvocation
@@ -351,12 +358,12 @@ explicitConstructorInvocation
 		)
     ;
 
-variableDefinitions[AST mods, AST t]
-	:	variableDeclarator[getASTFactory().dupTree(mods),
-						   getASTFactory().dupTree(t)]
+variableDefinitions[MyCommonAST mods, MyCommonAST t]
+	:	variableDeclarator[(MyCommonAST) getASTFactory().dupTree(mods),
+						   (MyCommonAST) getASTFactory().dupTree(t)]
 		(	COMMA!
-			variableDeclarator[getASTFactory().dupTree(mods),
-							   getASTFactory().dupTree(t)]
+			variableDeclarator[(MyCommonAST) getASTFactory().dupTree(mods),
+							   (MyCommonAST) getASTFactory().dupTree(t)]
 		)*
 	;
 
@@ -364,12 +371,12 @@ variableDefinitions[AST mods, AST t]
  *   or a local variable in a method
  * It can also include possible initialization.
  */
-variableDeclarator![AST mods, AST t]
+variableDeclarator![MyCommonAST mods, MyCommonAST t]
 	:	id:IDENT d:declaratorBrackets[t] v:varInitializer
 		{#variableDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], mods, #(#[TYPE,"TYPE"],d), id, v);}
 	;
 
-declaratorBrackets[AST typ]
+declaratorBrackets[MyCommonAST typ]
 	:	{#declaratorBrackets=typ;}
 		(lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK!)*
 	;
@@ -458,7 +465,7 @@ compoundStatement
 	:	lc:LCURLY^ {#lc.setType(SLIST);}
 			// include the (possibly-empty) list of statements
 			(statement)*
-		RCURLY!
+		rc:RCURLY! { sCompoundLength = rc.getLine() - lc.getLine() + 1; }
 	;
 
 

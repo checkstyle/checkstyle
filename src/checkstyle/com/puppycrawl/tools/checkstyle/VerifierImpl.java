@@ -431,7 +431,27 @@ class VerifierImpl
         if ((aColNo < line.length()) &&
             !Character.isWhitespace(line.charAt(aColNo)))
         {
-            log(aLineNo,"cast needs to be followed by whitespace.");
+            log(aLineNo, "cast needs to be followed by whitespace.");
+        }
+    }
+
+    /** @see Verifier **/
+    public void verifyMethodLength(int aLineNo, int aLength)
+    {
+        if (aLength > mConfig.getMaxMethodLength()) {
+            log(aLineNo,
+                "method length is " + aLength + " lines (max allowed is " +
+                mConfig.getMaxMethodLength() + ").");
+        }
+    }
+
+    /** @see Verifier **/
+    public void verifyConstructorLength(int aLineNo, int aLength)
+    {
+        if (aLength > mConfig.getMaxConstructorLength()) {
+            log(aLineNo,
+                "constructor length is " + aLength + " lines (max allowed is " +
+                mConfig.getMaxConstructorLength() + ").");
         }
     }
 
