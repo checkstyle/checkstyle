@@ -104,7 +104,7 @@
           description="Checks whether the grammar file is newer that the generated code">
     <uptodate property="uptodate.antlr"
               targetfile="${checkstyle.grammar.dir}/GeneratedJava14Lexer.java" >
-      <srcfiles dir= "${checkstyle.grammar.dir}" includes="java_new.g,java14_new.g,java.g,java14.g,java15.g"/>
+      <srcfiles dir= "${checkstyle.grammar.dir}" includes="java.g"/>
     </uptodate>
   </target>
 
@@ -119,15 +119,6 @@
           failonerror="true"
           dir="${checkstyle.grammar.dir}">
       <arg value="java.g" />
-    </java>
-    <java classname="antlr.Tool"
-          classpath="${antlr.jar}"
-          fork="yes"
-          failonerror="true"
-          dir="${checkstyle.grammar.dir}">
-      <arg value="-glib" />
-      <arg value="java.g" />
-      <arg value="java15.g" />
     </java>
   </target>
 

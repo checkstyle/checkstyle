@@ -15,6 +15,7 @@ public class AllTests {
             new TestSuite("Test for com.puppycrawl.tools.checkstyle.grammars");
         //$JUnit-BEGIN$
         suite.addTest(new TestSuite(GeneratedJava14LexerTest.class));
+        suite.addTest(new TestSuite(Post13KeywordsAsIdentifiersOKTest.class));
         //$JUnit-END$
         return suite;
     }

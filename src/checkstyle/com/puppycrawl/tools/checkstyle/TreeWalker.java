@@ -29,13 +29,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.lang.reflect.InvocationTargetException;
 
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 import antlr.TokenStreamRecognitionException;
 import antlr.TokenStream;
-import antlr.LLkParser;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -48,10 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
-import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava15Recognizer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
-import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava15Lexer;
-import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -71,15 +66,15 @@ public final class TreeWalker
      * parsing fails because with the next grammar it might succeed
      * and the user will be confused.
      */
-    private static final class SilentJava15Recognizer
-        extends GeneratedJava15Recognizer
+    private static final class SilentJavaRecognizer
+        extends GeneratedJavaRecognizer
     {
         /**
-         * Creates a new <code>SilentJava14Recognizer</code> instance.
+         * Creates a new <code>SilentJavaRecognizer</code> instance.
          *
          * @param aLexer the tokenstream the recognizer operates on.
          */
-        public SilentJava15Recognizer(TokenStream aLexer)
+        public SilentJavaRecognizer(TokenStream aLexer)
         {
             super(aLexer);
         }
@@ -500,17 +495,18 @@ public final class TreeWalker
         FileContents aContents)
         throws RecognitionException, TokenStreamException
     {
-        DetailAST rootAST;
+        DetailAST rootAST = null;
 
         try {
-            rootAST = parse(
-                GeneratedJava15Lexer.class, SilentJava15Recognizer.class,
-                aContents);
+            rootAST = parse(aContents, true, true, true);
         }
         catch (RecognitionException exception) {
-            rootAST = parse(
-                GeneratedJavaLexer.class, GeneratedJavaRecognizer.class,
-                aContents);
+            try {
+                rootAST = parse(aContents, true, true, false);
+            }
+            catch (RecognitionException exception2) {
+                rootAST = parse(aContents, false, false, false);
+            }
         }
         return rootAST;
     }
@@ -518,73 +514,37 @@ public final class TreeWalker
     /**
      * Static helper method to parses a Java source file with a given
      * lexer class and parser class.
-     * @param aLexerClass class to use for lexing
-     * @param aParserClass class to use for parsing
      * @param aContents contains the contents of the file
+     * @param aSilentlyConsumeErrors flag to output errors to stdout or not
+     * @param aTreatAssertAsKeyword flag to treat 'assert' as a keyowrd
+     * @param aTreatEnumAsKeyword flag to treat 'enum' as a keyowrd
      * @throws TokenStreamException if lexing failed
      * @throws RecognitionException if parsing failed
      * @return the root of the AST
      */
     private static DetailAST parse(
-        Class aLexerClass,
-        Class aParserClass,
-        FileContents aContents)
+        FileContents aContents,
+        boolean aSilentlyConsumeErrors,
+        boolean aTreatAssertAsKeyword,
+        boolean aTreatEnumAsKeyword)
         throws RecognitionException, TokenStreamException
     {
-        try {
-            final Reader sar = new StringArrayReader(aContents.getLines());
-            final TokenStream lexer = (TokenStream)
-                aLexerClass.getConstructor(new Class[] {Reader.class})
-                    .newInstance(new Object[] {sar});
-            aLexerClass.getMethod(
-                "setFilename",
-                new Class[] {String.class}).invoke(
-                    lexer, new Object[] {aContents.getFilename()});
-            aLexerClass.getMethod(
-                "setCommentListener", new Class[] {CommentListener.class})
-                    .invoke(lexer, new Object[] {aContents});
+        final Reader sar = new StringArrayReader(aContents.getLines());
+        final GeneratedJavaLexer lexer = new GeneratedJavaLexer(sar);
+        lexer.setFilename(aContents.getFilename());
+        lexer.setCommentListener(aContents);
+        lexer.setTreatAssertAsKeyword(aTreatAssertAsKeyword);
+        lexer.setTreatEnumAsKeyword(aTreatEnumAsKeyword);
 
-            final LLkParser parser = (LLkParser)
-                aParserClass.getConstructor(new Class[] {TokenStream.class})
-                    .newInstance(new Object[] {lexer});
+        final GeneratedJavaRecognizer parser =
+            aSilentlyConsumeErrors
+                ? new SilentJavaRecognizer(lexer)
+                : new GeneratedJavaRecognizer(lexer);
+        parser.setFilename(aContents.getFilename());
+        parser.setASTNodeClass(DetailAST.class.getName());
+        parser.compilationUnit();
 
-            parser.setFilename(aContents.getFilename());
-            parser.setASTNodeClass(DetailAST.class.getName());
-            aParserClass.getMethod(
-                "compilationUnit", new Class[] {}).invoke(
-                    parser, new Object[] {});
-            return (DetailAST) parser.getAST();
-        }
-        catch (InvocationTargetException exception) {
-            //Re-throw antlr exceptions, pass on runtime exceptions
-            //and convert any other exception to a runtime exception
-            if (RecognitionException.class.isAssignableFrom(
-                exception.getCause().getClass()))
-            {
-                throw (RecognitionException) exception.getCause();
-            }
-            else if (TokenStreamException.class.isAssignableFrom(
-                exception.getCause().getClass()))
-            {
-                throw (TokenStreamException) exception.getCause();
-            }
-            else if (RuntimeException.class.isAssignableFrom(
-                exception.getCause().getClass()))
-            {
-                throw (RuntimeException) exception.getCause();
-            }
-            else {
-                throw new RuntimeException(exception.getCause());
-            }
-        }
-        catch (RuntimeException exception) {
-            //Pass on runtime exceptions
-            throw exception;
-        }
-        catch (Exception exception) {
-            //Convert any reflection exceptions to runtime exceptions
-            throw new RuntimeException(exception);
-        }
+        return (DetailAST) parser.getAST();
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
