@@ -29,7 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * by the format property.
  * A <em>constant</em> is a <strong>static</strong> and <strong>final</strong>
  * field or an interface/annotation field, except
- * <strong>serialVersionUID</strong>. The format is a regular expression
+ * <strong>serialVersionUID</strong> and <strong>serialPersistentFields
+ * </strong>.  The format is a regular expression
  * and defaults to <strong>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</strong>.
  * </p>
  * <p>
@@ -82,11 +83,12 @@ public class ConstantNameCheck
         if ((isStatic  && isFinal)
             || ScopeUtils.inInterfaceOrAnnotationBlock(aAST))
         {
-            // Handle the serialVersionUID constant which is used for
-            // Serialization. Cannot enforce rules on it. :-)
+            // Handle the serialVersionUID and serialPersistentFields  constants
+            // which are used for Serialization. Cannot enforce rules on it. :-)
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
             if ((nameAST != null)
-                && !("serialVersionUID".equals(nameAST.getText())))
+                && !("serialVersionUID".equals(nameAST.getText()))
+                && !("serialPersistentFields".equals(nameAST.getText())))
             {
                 retVal = true;
             }

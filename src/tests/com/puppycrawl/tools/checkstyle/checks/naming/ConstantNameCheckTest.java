@@ -1,5 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import java.io.File;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -44,5 +46,15 @@ public class ConstantNameCheckTest
             "64:16: Name 'data' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'."
         };
         verify(checkConfig, getPath("InputInner.java"), expected);
+    }
+
+    public void testDefault1()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ConstantNameCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("naming" + File.separator + "InputConstantNames.java"), expected);
     }
 }
