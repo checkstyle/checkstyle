@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.ASTManager;
 import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.Definition;
 import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.Reference;
 import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.SymTabAST;
