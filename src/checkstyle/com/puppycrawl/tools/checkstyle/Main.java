@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import org.apache.regexp.RESyntaxException;
 
 /**
@@ -38,11 +41,54 @@ public final class Main
             usage();
         }
 
+        // be brain dead about arguments parsing
+        String format = "plain";
+        String output = null;
+        String[] files = null;
+        for (int i = 0; i < aArgs.length; i++) {
+            if ("-f".equals(aArgs[i])) {
+                format = aArgs[++i];
+            }
+            else if ("-o".equals(aArgs[i])) {
+                output = aArgs[++i];
+            }
+            else {
+                files = new String[aArgs.length - i];
+                System.arraycopy(aArgs, i, files, 0, files.length);
+                break;
+            }
+        }
+
+        // create the appropriate listener
+        OutputStream out = System.out;
+        if (output != null) {
+            try {
+                out = new FileOutputStream(output);
+            }
+            catch (FileNotFoundException e) {
+                System.out.println("Could not find file: '" + output + "'");
+                System.exit(1);
+            }
+        }
+        AuditListener listener = null;
+        if ("xml".equals(format)) {
+            listener = new XMLLogger(out);
+        }
+        else if ("plain".equals(format)) {
+            listener = new DefaultLogger(out);
+        }
+        else {
+            System.out.println("Invalid format: (" + format +
+                               "). Must be 'plain' or 'xml'.");
+            usage();
+        }
+
         Checker c = null;
         try {
             c = new Checker(new Configuration(System.getProperties(),
                                               System.out),
                             System.out);
+            c.addListener(listener);
         }
         catch (RESyntaxException rese) {
             System.out.println("Unable to create an regexp object: " +
@@ -56,13 +102,10 @@ public final class Main
             System.exit(1);
         }
 
-        int numErrors = 0;
-        for (int i = 0; i < aArgs.length; i++) {
-            numErrors += c.process(aArgs[i]);
-        }
+        final int numErrs = c.process(files);
 
         c.destroy();
-        System.exit(numErrors);
+        System.exit(numErrs);
     }
 
     /** Prints the usage information. **/
@@ -70,7 +113,13 @@ public final class Main
     {
         System.out.println(
             "Usage: java " +
-            com.puppycrawl.tools.checkstyle.Main.class.getName() + " file...");
+            Main.class.getName() + " <options> <file1> <file2>......");
+        System.out.println("Options");
+        System.out.println(
+            "\t-f <format>\tsets output format. (plain|xml). " +
+            "Default to plain.");
+        System.out.println("\t-o <file>\tsets output file name. " +
+                           "Defaults to stdout");
         System.exit(1);
     }
 }

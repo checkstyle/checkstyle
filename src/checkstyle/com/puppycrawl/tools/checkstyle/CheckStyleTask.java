@@ -19,14 +19,18 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.apache.regexp.RESyntaxException;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
+import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
+import org.apache.tools.ant.taskdefs.LogOutputStream;
+import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
 
 /**
@@ -37,10 +41,20 @@ import org.apache.tools.ant.types.FileSet;
 public class CheckStyleTask
     extends Task
 {
+    /** poor man's enum for an xml formatter **/
+    private static final String E_XML = "xml";
+    /** poor man's enum for an plain formatter **/
+    private static final String E_PLAIN = "plain";
+
     /** name of file to check **/
     private String mFileName;
+
     /** contains the filesets to process **/
     private final List mFileSets = new ArrayList();
+
+    /** contains the formatters to log to **/
+    private final List mFormatters = new ArrayList();
+
     /** the configuration to pass to the checker **/
     private final Configuration mConfig = new Configuration();
 
@@ -56,6 +70,16 @@ public class CheckStyleTask
     {
         mFileSets.add(aFS);
     }
+
+    /**
+     * Add a formatter
+     * @param aFormatter the formatter to add for logging.
+     */
+    public void addFormatter(Formatter aFormatter)
+    {
+        mFormatters.add(aFormatter);
+    }
+
 
     /** @param aFile the file to be checked **/
     public void setFile(File aFile)
@@ -94,8 +118,7 @@ public class CheckStyleTask
             mConfig.setMemberPat(aPat);
         }
         catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse memberpattern - " +
-                                     ex.getMessage());
+            throw new BuildException("Unable to parse memberPattern - ", ex);
         }
     }
 
@@ -106,8 +129,8 @@ public class CheckStyleTask
             mConfig.setPublicMemberPat(aPat);
         }
         catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse publicmemberpattern - " +
-                                     ex.getMessage());
+            throw new BuildException(
+                "Unable to parse publicMemberPattern - ", ex);
         }
     }
 
@@ -118,8 +141,7 @@ public class CheckStyleTask
             mConfig.setParamPat(aPat);
         }
         catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse parampattern - " +
-                                     ex.getMessage());
+            throw new BuildException("Unable to parse paramPattern - ", ex);
         }
     }
 
@@ -130,8 +152,7 @@ public class CheckStyleTask
             mConfig.setStaticFinalPat(aPat);
         }
         catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse constpattern - " +
-                                     ex.getMessage());
+            throw new BuildException("Unable to parse constPattern - " , ex);
         }
     }
 
@@ -142,8 +163,7 @@ public class CheckStyleTask
             mConfig.setStaticPat(aPat);
         }
         catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse staticpattern - " +
-                                     ex.getMessage());
+            throw new BuildException("Unable to parse staticPattern - ", ex);
         }
     }
 
@@ -154,8 +174,7 @@ public class CheckStyleTask
             mConfig.setTypePat(aPat);
         }
         catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse typepattern - " +
-                                     ex.getMessage());
+            throw new BuildException("Unable to parse typePattern - ", ex);
         }
     }
 
@@ -166,8 +185,7 @@ public class CheckStyleTask
             mConfig.setHeaderFile(aName.getAbsolutePath());
         }
         catch (IOException ex) {
-            throw new BuildException("Unable to read headerfile - " +
-                                     ex.getMessage());
+            throw new BuildException("Unable to read headerfile - ", ex);
         }
     }
 
@@ -226,31 +244,25 @@ public class CheckStyleTask
         }
 
         // Create the checker
-        Checker c;
+        final int numErrs;
+        Checker c = null;
         try {
             c = new Checker(mConfig, System.out);
+            AuditListener[] listeners = getListeners();
+            for (int i = 0; i < listeners.length; i++) {
+                c.addListener( listeners[i] );
+            }
+            final String[] files = scanFileSets();
+            numErrs = c.process(files);
         }
-        catch (RESyntaxException e){
-            e.printStackTrace();
-            throw new BuildException("Unable to create a Checker", location);
+        catch (Exception e) {
+            throw new BuildException("Unable to create a Checker", e);
         }
-
-        // Process the files
-        int numErrs = 0;
-        if (mFileName != null) {
-            numErrs += c.process(mFileName);
+        finally {
+            if (c != null) {
+                c.destroy();
+            }
         }
-
-        final Iterator it = mFileSets.iterator();
-        while (it.hasNext()) {
-            final FileSet fs = (FileSet) it.next();
-            final DirectoryScanner ds = fs.getDirectoryScanner(project);
-            numErrs += process(fs.getDir(project).getAbsolutePath(),
-                               ds.getIncludedFiles(),
-                               c);
-        }
-
-        c.destroy();
 
         if (numErrs > 0) {
             throw new BuildException("Got " + numErrs + " errors.", location);
@@ -258,18 +270,167 @@ public class CheckStyleTask
     }
 
     /**
-     * Processes the list of files.
-     * @return the number of errors found
-     * @param aDir absolute path to directory containing files
-     * @param aFiles the files to process
-     * @param aChecker the checker to process the files with
-     **/
-    private int process(String aDir, String[] aFiles, Checker aChecker)
+     * Return the list of listeners set in this task.
+     * @return the list of listeners.
+     * @throws ClassNotFoundException if an error occurs
+     * @throws InstantiationException if an error occurs
+     * @throws IllegalAccessException if an error occurs
+     * @throws IOException if an error occurs
+     */
+    protected AuditListener[] getListeners()
+        throws ClassNotFoundException, InstantiationException,
+        IllegalAccessException, IOException
     {
-        int retVal = 0;
-        for (int i = 0; i < aFiles.length; i++) {
-            retVal += aChecker.process(aDir + File.separator + aFiles[i]);
+        // @todo should we add a default plain stdout
+        // formatter ?
+        if (mFormatters.size() == 0) {
+            final Formatter f = new Formatter();
+            final FormatterType type = new FormatterType();
+            type.setValue(E_PLAIN);
+            f.setType(type);
+            mFormatters.add(f);
         }
-        return retVal;
+
+        final AuditListener[] listeners = new AuditListener[mFormatters.size()];
+        for (int i = 0; i < listeners.length; i++) {
+            final Formatter f = (Formatter) mFormatters.get(i);
+            listeners[i] = f.createListener(this);
+        }
+        return listeners;
+    }
+
+    /**
+     * returns the list of files (full path name) to process.
+     * @return the list of files included via the filesets.
+     */
+    protected String[] scanFileSets()
+    {
+        final ArrayList list = new ArrayList();
+        if (mFileName != null) {
+            // oops we've got an additional one to process, don't
+            // forget it. No sweat, it's fully resolved via the setter.
+            log("Adding standalone file for audit", Project.MSG_VERBOSE);
+            list.add(mFileName);
+        }
+        for (int i = 0; i < mFileSets.size(); i++) {
+            final FileSet fs = (FileSet) mFileSets.get(i);
+            final DirectoryScanner ds = fs.getDirectoryScanner(project);
+            ds.scan();
+
+            final String[] names = ds.getIncludedFiles();
+            log(i + ") Adding " + names.length + " files from directory " +
+                ds.getBasedir(), Project.MSG_VERBOSE);
+
+            for (int j = 0; j < names.length; j++) {
+                final String pathname =
+                    ds.getBasedir() + File.separator + names[j];
+                list.add(pathname);
+            }
+        }
+
+        return (String[]) list.toArray(new String[0]);
+    }
+
+    /**
+     * Poor mans enumeration for the formatter types.
+     * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+     */
+    public static class FormatterType
+        extends EnumeratedAttribute
+    {
+        /** my possible values **/
+        private static final String[] VALUES = {E_XML, E_PLAIN};
+
+        /** @see EnumeratedAttribute **/
+        public String[] getValues()
+        {
+            return VALUES;
+        }
+    }
+
+    /**
+     * Details about a formatter to be used.
+     * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+     */
+    public static class Formatter
+    {
+        /** class name of formatter **/
+        private String mClassName = null;
+        /** whether formatter users a file **/
+        private boolean mUseFile = true;
+        /** the file to output to **/
+        private File mToFile = null;
+
+        /**
+         * Set the type of the formatter.
+         * @param aType the type
+         */
+        public void setType(FormatterType aType)
+        {
+            final String val = aType.getValue();
+            if (E_XML.equals(val)) {
+                setClassname(XMLLogger.class.getName());
+            }
+            else if (E_PLAIN.equals(val)) {
+                setClassname(DefaultLogger.class.getName());
+            }
+            else {
+                throw new BuildException("Invalid formatter type: " + val);
+            }
+        }
+
+        /**
+         * Set the class name of the formatter.
+         * @param aTo the formatter class name
+         */
+        public void setClassname(String aTo)
+        {
+            mClassName = aTo;
+        }
+
+        /**
+         * Set the file to output to.
+         * @param aTo the file to output to
+         */
+        public void setTofile(File aTo)
+        {
+            mToFile = aTo;
+        }
+
+        /**
+         * Creates a listener for the formatter.
+         * @param aTask the task running
+         * @return a listener
+         * @throws ClassNotFoundException if an error occurs
+         * @throws InstantiationException if an error occurs
+         * @throws IllegalAccessException if an error occurs
+         * @throws IOException if an error occurs
+         */
+        public AuditListener createListener(Task aTask)
+            throws ClassNotFoundException, InstantiationException,
+            IllegalAccessException, IOException
+        {
+            final Class clazz = Class.forName(mClassName);
+            final AuditListener listener = (AuditListener) clazz.newInstance();
+            if (listener instanceof Streamable) {
+                final Streamable o = (Streamable) listener;
+                o.setOutputStream(createOutputStream(aTask));
+            }
+            return listener;
+        }
+
+        /**
+         * @return an output stream to log with
+         * @param aTask the task to possibly log to
+         * @throws IOException if an error occurs
+         */
+        protected OutputStream createOutputStream(Task aTask)
+            throws IOException
+        {
+            if (mToFile == null) {
+                return new LogOutputStream(aTask, Project.MSG_INFO);
+            }
+            return new FileOutputStream(mToFile);
+        }
     }
 }
