@@ -48,4 +48,8 @@ public class InputDesignForExtension
         System.out.println("nonempty and overriding possible");
     }
 
+    // has a potentially complex implementation in native code.
+    // We can't check that, so to be safe DesignForExtension requirves
+    // native methods to also be final
+    public native void aNativeMethod();
 }

@@ -12,6 +12,7 @@ public class DesignForExtensionCheckTest
             createCheckConfig(DesignForExtensionCheck.class);
         final String[] expected = {
             "46:5: Method 'doh' is not designed for extension - needs to be abstract, final or empty.",
+            "54:5: Method 'aNativeMethod' is not designed for extension - needs to be abstract, final or empty.",
         };
         verify(checkConfig, getPath("InputDesignForExtension.java"), expected);
 
