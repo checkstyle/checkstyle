@@ -24,31 +24,76 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 
 /**
  * <p>
- * Checks the placement of right curly braces.
- * The policy to verify is specified using the {@link RightCurlyOption} class
- * and defaults to {@link RightCurlyOption#SAME}.
+ * Checks the placement of right curly braces (<span class="code">'}'</span>)
+ * for <span class="code"> else</span>,<span class="code">try</span>, and
+ * <span class="code">catch</span> tokens.
  * </p>
- * <p> By default the check will check the following tokens:
- *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
- *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
- *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY}.
- * </p>
+ *
+ * <subsection name="Properties">
+ * <table>
+ *   <tr>
+ *    <th>name</th>
+ *    <th>description</th>
+ *    <th>type</th>
+ *    <th>default value</th>
+ *   </tr>
+ *   <tr>
+ *     <td>option</td>
+ *     <td>
+ *       policy on placement of a right curly brace
+ *       (<span class="code">'}'</span>)
+ *     </td>
+ *     <td>
+ *       <a href="property_types.html#rcurly">right curly brace policy</a>
+ *     </td>
+ *     <td><span class="default">same</span></td>
+ *   </tr>
+ *   <tr>
+ *     <td>tokens</td>
+ *     <td>blocks to check</td>
+ *
+ *     <td>
+ *       subset of tokens
+ *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a>,
+ *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">LITERAL_ELSE</a>,
+ *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">LITERAL_TRY</a>
+ *     </td>
+ *
+ *     <td>
+ *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a>,
+ *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">LITERAL_ELSE</a>,
+ *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">LITERAL_TRY</a>
+ *     </td>
+ *   </tr>
+ * </table>
+ * </subsection>
+ *
+ * <subsection name="Examples">
+ * <p> To configure the check: </p>
+ *
+ * <source>
+ * &lt;module name=&quot;RightCurly&quot;/&gt;
+ * </source>
+ *
  * <p>
- * An example of how to configure the check is:
+ * To configure the check with policy <span class="code">alone</span> for
+ * <span class="code"> else</span> tokens:
  * </p>
- * <pre>
- * &lt;module name="RightCurly"/&gt;
- * </pre>
- * <p>
- * An example of how to configure the check with policy
- * {@link RightCurlyOption#ALONE} for <code>else</code> tokens is:
- * </p>
- * <pre>
- * &lt;module name="RightCurly"&gt;
- *     &lt;property name="tokens" value="LITERAL_ELSE"/&gt;
- *     &lt;property name="option" value="alone"/&gt;
+ *
+ * <source>
+ * &lt;module name=&quot;RightCurly&quot;&gt;
+ *     &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
+ *     &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE&quot;/&gt;
  * &lt;/module&gt;
- * </pre>
+ * </source>
+ * </subsection>
+ * <subsection name="Package">
+ *   <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+ * </subsection>
+ * <subsection name="Parent Module">
+ *   <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+ * </subsection>
+ *
  * @author Oliver Burn
  * @author lkuehne
  * @version 1.0

@@ -28,27 +28,61 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Checks for braces around code blocks.
  * </p>
- * <p> By default the check will check the following blocks:
- *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
- *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
- *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
- *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
- *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE}.
- * </p>
+ *
+ * <subsection name="Properties">
+ * <table>
+ *   <tr>
+ *     <th>name</th>
+ *     <th>description</th>
+ *     <th>type</th>
+ *     <th>default value</th>
+ *   </tr>
+ *   <tr>
+ *     <td>tokens</td>
+ *     <td>blocks to check</td>
+ *
+ *     <td>
+ *       subset of tokens
+ *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">LITERAL_DO</a>,
+ *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">LITERAL_ELSE</a>,
+ *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">LITERAL_IF</a>,
+ *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">LITERAL_FOR</a>,
+ *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">LITERAL_WHILE</a>
+ *     </td>
+ *
+ *     <td>all tokens</td>
+ *   </tr>
+ * </table>
+ * </subsection>
+ *
+ * <subsection name="Examples">
+ * <p> To configure the check: </p>
+ *
+ * <source>
+ * &lt;module name=&quot;NeedBraces&quot;/&gt;
+ * </source>
+ *
  * <p>
- * An example of how to configure the check is:
+ * To configure the check for <span class="code">if</span> and
+ * <span class="code"> else</span> blocks:
  * </p>
- * <pre>
- * &lt;module name="NeedBraces"/&gt;
- * </pre>
- * <p> An example of how to configure the check for <code>if</code> and
- * <code>else</code> blocks is:
- * </p>
- * <pre>
- * &lt;module name="NeedBraces"&gt;
- *     &lt;property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/&gt;
+ *
+ * <source>
+ * &lt;module name=&quot;NeedBraces&quot;&gt;
+ *     &lt;property name=&quot;tokens&quot;
+ *               value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
  * &lt;/module&gt;
- * </pre>
+ * </source>
+ * </subsection>
+ *
+ * <subsection name="Package">
+ * <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+ * </subsection>
+ *
+ * <subsection name="Parent Module">
+ * <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+ * </subsection>
+ *
  * @author Rick Giles
  * @version 1.0
  */
