@@ -6,9 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.EventObject;
 
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
@@ -188,10 +186,13 @@ public class XMLLoggerTest extends TestCase
         throws IOException
     {
         final String[] lines = getOutStreamLines();
-        assertEquals("length.", aExpectedLines.length + 2, lines.length);
-        assertEquals("first line.", "<checkstyle>", lines[0]);
+        assertEquals("length.", aExpectedLines.length + 3, lines.length);
+        assertEquals("first line.",
+                     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                     lines[0]);
+        assertEquals("second line.", "<checkstyle>", lines[1]);
         for (int i = 0; i < aExpectedLines.length; i++) {
-            assertEquals("line " + i + ".", aExpectedLines[i], lines[i + 1]);
+            assertEquals("line " + i + ".", aExpectedLines[i], lines[i + 2]);
         }
         assertEquals("last line.", "</checkstyle>", lines[lines.length - 1]);
     }
