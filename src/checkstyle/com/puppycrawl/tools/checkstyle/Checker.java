@@ -368,4 +368,16 @@ public class Checker extends AutomaticBean
         mSeverityLevel = SeverityLevel.getInstance(aSeverity);
     }
 
+    /**
+     * Sets the classloader that is used to contextualize filesetchecks.
+     * Some Check implementations will use that classloader to improve the
+     * quality of their reports, e.g. to load a class and then analyze it via
+     * reflection.
+     * @param aLoader the new classloader
+     */
+    public final void setClassLoader(ClassLoader aLoader)
+    {
+        mLoader = aLoader;
+    }
+
 }
