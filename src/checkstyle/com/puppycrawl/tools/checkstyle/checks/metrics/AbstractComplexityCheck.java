@@ -85,6 +85,7 @@ public abstract class AbstractComplexityCheck
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
         };
     }
@@ -111,6 +112,7 @@ public abstract class AbstractComplexityCheck
         switch (aAST.getType()) {
         case TokenTypes.CTOR_DEF:
         case TokenTypes.METHOD_DEF:
+        case TokenTypes.INSTANCE_INIT:
         case TokenTypes.STATIC_INIT:
             visitMethodDef();
             break;
@@ -125,6 +127,7 @@ public abstract class AbstractComplexityCheck
         switch (aAST.getType()) {
         case TokenTypes.CTOR_DEF:
         case TokenTypes.METHOD_DEF:
+        case TokenTypes.INSTANCE_INIT:
         case TokenTypes.STATIC_INIT:
             leaveMethodDef(aAST);
             break;
