@@ -331,6 +331,7 @@
     <junit printsummary="yes"
            fork="yes"
            haltonfailure="no"
+           showoutput="yes"
            failureProperty="tests.have.failed">
       <jvmarg value="-Dtestinputs.dir=${testinputs.dir}"/>
       <formatter type="xml" />

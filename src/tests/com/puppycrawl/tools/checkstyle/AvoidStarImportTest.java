@@ -47,7 +47,15 @@ extends TestCase
         assertEquals(msgs.getMessages()[0].getLineNo(), 7);
         assertEquals(msgs.getMessages()[1].getLineNo(), 9);
         assertEquals(msgs.getMessages()[2].getLineNo(), 10);
-        assertEquals(msgs.getMessages()[0].getMessage(), "help me Ronda");
+        assertEquals(
+          "Avoid using the '.*' form of import.",
+          msgs.getMessages()[0].getMessage());
+        assertEquals(
+          "Avoid using the '.*' form of import.",
+          msgs.getMessages()[1].getMessage());
+        assertEquals(
+          "Avoid using the '.*' form of import.",
+          msgs.getMessages()[2].getMessage());
     }
 
     /**
