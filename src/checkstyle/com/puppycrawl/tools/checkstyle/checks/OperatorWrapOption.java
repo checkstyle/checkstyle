@@ -37,10 +37,7 @@ public final class OperatorWrapOption
         super(aStrRep);
     }
 
-    /** ignore wrapping on an operator  **/
-    public static final OperatorWrapOption IGNORE
-        = new OperatorWrapOption("ignore");
-        /** require that the operator is on a new line **/
+    /** require that the operator is on a new line **/
     public static final OperatorWrapOption NL
         = new OperatorWrapOption("nl");
     /** require that the operator is at the end of the line **/

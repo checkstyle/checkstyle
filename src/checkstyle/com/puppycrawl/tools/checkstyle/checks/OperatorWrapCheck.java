@@ -77,6 +77,7 @@ public class OperatorWrapCheck
             TokenTypes.BAND,              // '&'
             TokenTypes.BAND_ASSIGN,       // "&="
             TokenTypes.LAND,              // "&&"
+            TokenTypes.LITERAL_INSTANCEOF,
         };
     }
 
@@ -85,28 +86,25 @@ public class OperatorWrapCheck
     {
         final AbstractOption wOp = getAbstractOption();
 
-        if (wOp != OperatorWrapOption.NL.IGNORE) {
-            final String text = aAST.getText();
-            final int colNo = aAST.getColumnNo();
-            final int lineNo = aAST.getLineNo();
-            // TODO: Handle comments before and after operator
-            // Check if rest of line is whitespace, and not just the operator
-            // by itself. This last bit is to handle the operator on a line by
-            // itself.
-            if (wOp == OperatorWrapOption.NL
-                && !text.equals(getLines()[lineNo - 1].trim())
-                && (getLines()[lineNo - 1].substring(colNo + text.length())
-                    .trim().length() == 0))
-            {
-                log(lineNo, colNo, "line.new", text);
-            }
-            else if (wOp == OperatorWrapOption.EOL
-                      && Utils.whitespaceBefore(colNo - 1,
-                                               getLines()[lineNo - 1]))
-            {
-                log(lineNo, colNo, "line.previous", text);
-            }
+        final String text = aAST.getText();
+        final int colNo = aAST.getColumnNo();
+        final int lineNo = aAST.getLineNo();
+        final String currentLine = getLines()[lineNo - 1];
+        // TODO: Handle comments before and after operator
+        // Check if rest of line is whitespace, and not just the operator
+        // by itself. This last bit is to handle the operator on a line by
+        // itself.
+        if (wOp == OperatorWrapOption.NL
+            && !text.equals(currentLine.trim())
+            && (currentLine.substring(colNo + text.length())
+                .trim().length() == 0))
+        {
+            log(lineNo, colNo, "line.new", text);
         }
-
+        else if (wOp == OperatorWrapOption.EOL
+                  && Utils.whitespaceBefore(colNo - 1, currentLine))
+        {
+            log(lineNo, colNo, "line.previous", text);
+        }
     }
 }
