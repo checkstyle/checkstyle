@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class InnerAssignmentCheckTest
     extends BaseCheckTestCase
@@ -9,15 +10,12 @@ public class InnerAssignmentCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(InnerAssignmentCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSemantic.java");
         final String[] expected = {
             "102:15: Avoid inner assignments.",
             "102:19: Avoid inner assignments.",
             "104:39: Avoid inner assignments.",
             "106:35: Avoid inner assignments.",
         };
-        verify(c, fname, expected);
-
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 }

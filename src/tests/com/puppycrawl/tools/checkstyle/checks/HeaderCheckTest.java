@@ -1,8 +1,8 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.checks.HeaderCheck;
-import com.puppycrawl.tools.checkstyle.checks.RegexpHeaderCheck;
 
 public class HeaderCheckTest extends BaseCheckTestCase
 {
@@ -13,12 +13,10 @@ public class HeaderCheckTest extends BaseCheckTestCase
             createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("java.header"));
         checkConfig.addAttribute("ignoreLines", "");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("inputHeader.java");
         final String[] expected = {
             "1: Missing a header - not enough lines in file."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("inputHeader.java"), expected);
     }
 
     public void testRegexpHeader()
@@ -28,12 +26,10 @@ public class HeaderCheckTest extends BaseCheckTestCase
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header"));
         checkConfig.addAttribute("ignoreLines", "4,5");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {
             "3: Line does not match expected header line of '// Created: 2002'."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
     public void testRegexpHeaderIgnore()
@@ -43,11 +39,9 @@ public class HeaderCheckTest extends BaseCheckTestCase
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header"));
         checkConfig.addAttribute("ignoreLines", "3,4,5");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
     public void testNoHeader()
@@ -56,14 +50,11 @@ public class HeaderCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(HeaderCheck.class);
         // No header file specified
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputScopeAnonInner.java");
-
         final String[] expected = {
             "1: Unable to check as missing lines to check."
         };
 
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
     public void testIllegalArgs()
