@@ -914,7 +914,7 @@ parameterDeclarationList
 	;
 
 variableLengthParameterDeclaration!
-	:	pm:parameterModifier t:typeSpec[false] td:TRIPLE_DOT IDENT
+	:	pm:parameterModifier t:typeSpec[false] td:ELLIPSIS IDENT
 		pd:declaratorBrackets[#t]
 		{#variableLengthParameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
                                                 pm, #([TYPE,"TYPE"],pd), td, IDENT);}
