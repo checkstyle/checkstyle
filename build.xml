@@ -212,14 +212,14 @@
   </target>
 
   <target name="checkstyle.checkstyle" depends="compile.checkstyle"
-          description="Runs checkstyle on a file to test various rules">
+          description="Runs checkstyle against it's own sources">
     <taskdef name="checkstyle"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
     <delete file="target/cachefile" />
 
-    <property name="todo.pattern" value="NOTHingWillMatCH_-"/>
+    <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="docs/checkstyle_checks.xml"/>
     <checkstyle config="${check.config}">
       <fileset dir="src/checkstyle"
@@ -228,38 +228,25 @@
       <formatter type="plain"/>
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
-      <property key="checkstyle.pattern.todo" value="${todo.pattern}"/>
       <property key="checkstyle.cache.file" file="target/cachefile"/>
       <property key="checkstyle.header.file" file="docs/java.header"/>
     </checkstyle>
   </target>
 
-  <target name="checkstyle.style" depends="compile.checkstyle"
-          description="Runs checkstyle to test generation of error reports">
-    <taskdef name="checkstyle"
-             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
-      <classpath refid="run.classpath"/>
-    </taskdef>
+  <target name="checkstyle.style" depends="checkstyle.checkstyle"
+          description="Runs checkstyle against it's own sources to test generation of error reports">
     <mkdir dir="target/style/frames"/>
     <mkdir dir="target/style/noframes"/>
     <mkdir dir="target/style/simple"/>
-    <checkstyle failOnViolation="false"
-                basedir=".">
-      <fileset dir="src/checkstyle"
-               includes="**/*.java"
-               excludes="**/Generated*.java"/>
-      <formatter type="xml" toFile="target/style/cs_errors.xml"/>
-      <classpath refid="build.classpath"/>
-    </checkstyle>
-    <style basedir="target/style"
+    <style basedir="target"
            destdir="target/style/noframes"
            includes="cs_errors.xml"
            style="contrib/checkstyle-noframes.xsl"/>
-    <style basedir="target/style"
+    <style basedir="target"
            destdir="target/style/frames"
            includes="cs_errors.xml"
            style="contrib/checkstyle-frames.xsl"/>
-    <style basedir="target/style"
+    <style basedir="target"
            destdir="target/style/simple"
            includes="cs_errors.xml"
            style="contrib/checkstyle-simple.xsl"/>
