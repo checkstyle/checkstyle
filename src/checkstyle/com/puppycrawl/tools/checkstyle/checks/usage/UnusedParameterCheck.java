@@ -38,6 +38,8 @@ public class UnusedParameterCheck extends AbstractUsageCheck
 {
     /** controls checking of catch clause parameter */
     private boolean mIgnoreCatch = true;
+    /** controls checking of public/protected/package methods */
+    private boolean mIgnoreNonLocal;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -62,7 +64,8 @@ public class UnusedParameterCheck extends AbstractUsageCheck
             if (parent.getType() == TokenTypes.PARAMETERS) {
                 final DetailAST grandparent = parent.getParent();
                 if (grandparent != null) {
-                    result = hasBody(grandparent);
+                    result = hasBody(grandparent)
+                        && (!mIgnoreNonLocal || isLocal(grandparent));
                 }
             }
             else if (parent.getType() == TokenTypes.LITERAL_CATCH) {
@@ -90,6 +93,23 @@ public class UnusedParameterCheck extends AbstractUsageCheck
     }
 
     /**
+     * Checks if a given method is local, i.e. either static or private.
+     * @param aAST method def for check
+     * @return true if a given method is iether static or private.
+     */
+    private boolean isLocal(DetailAST aAST)
+    {
+        if (aAST.getType() == TokenTypes.METHOD_DEF) {
+            final DetailAST modifiers =
+                aAST.findFirstToken(TokenTypes.MODIFIERS);
+            return (modifiers == null)
+                || modifiers.branchContains(TokenTypes.LITERAL_STATIC)
+                || modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
+        }
+        return true;
+    }
+
+    /**
      * Control whether unused catch clause parameters are flagged.
      * @param aIgnoreCatch whether unused catch clause parameters
      * should be flagged.
@@ -97,6 +117,16 @@ public class UnusedParameterCheck extends AbstractUsageCheck
     public void setIgnoreCatch(boolean aIgnoreCatch)
     {
         mIgnoreCatch = aIgnoreCatch;
+    }
+
+    /**
+     * Controls whether public/protected/paskage methods shouldn't be checked.
+     * @param aIgnoreNonLocal whether we should check any other methods
+     * except static and private should be checked.
+     */
+    public void setIgnoreNonLocal(boolean aIgnoreNonLocal)
+    {
+        mIgnoreNonLocal = aIgnoreNonLocal;
     }
 
 }

@@ -33,14 +33,26 @@ public class UnusedParameterCheckTest
     }
     
     public void testIgnoreFormat() throws Exception
-        {
-            final DefaultConfiguration checkConfig =
-                createCheckConfig(UnusedParameterCheck.class);
-            checkConfig.addAttribute("ignoreFormat", "Array$");
-            final String[] expected = {
-                "8:57: Unused parameter 'aUnreadPrimitive'.",
-                "16:16: Unused parameter 'aUnreadObject'.",
-            };
-            verify(checkConfig, getPath("usage/InputUnusedParameter.java"), expected);
-        }
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(UnusedParameterCheck.class);
+        checkConfig.addAttribute("ignoreFormat", "Array$");
+        final String[] expected = {
+            "8:57: Unused parameter 'aUnreadPrimitive'.",
+            "16:16: Unused parameter 'aUnreadObject'.",
+        };
+        verify(checkConfig, getPath("usage/InputUnusedParameter.java"), expected);
+    }
+
+    public void testIgnoreNonLocal() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(UnusedParameterCheck.class);
+        checkConfig.addAttribute("ignoreNonLocal", "true");
+        final String[] expected = {
+            "8:57: Unused parameter 'aUnreadPrimitive'.",
+            "29:66: Unused parameter 'aUnreadArray'.",            
+        };
+        verify(checkConfig, getPath("usage/InputUnusedParameter.java"), expected);
+    }
 }

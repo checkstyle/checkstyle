@@ -10,7 +10,7 @@ public class InputUnusedParameter
         int i = aReadPrimitive;
     }
 
-    private void method(
+    public void method(
         String aReadObject,
         Rectangle aRectangle,
         Object aUnreadObject)
