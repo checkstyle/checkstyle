@@ -23,10 +23,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.Iterator;
-
 /**
  * <p>
  * Checks for imports from a set of illegal packages.
@@ -59,8 +55,8 @@ import java.util.Iterator;
 public class IllegalImportCheck
     extends AbstractImportCheck
 {
-    /** set of illegal packages */
-    private final Set mIllegalPkgs = new TreeSet();
+    /** list of illegal packages */
+    private String[] mIllegalPkgs;
 
     /**
      * Creates a new <code>IllegalImportCheck</code> instance.
@@ -76,11 +72,7 @@ public class IllegalImportCheck
      */
     public void setIllegalPkgs(String[] aFrom)
     {
-        mIllegalPkgs.clear();
-        for (int i = 0; i < aFrom.length; i++) {
-            final String s = aFrom[i];
-            mIllegalPkgs.add(s);
-        }
+        mIllegalPkgs = aFrom;
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -108,9 +100,8 @@ public class IllegalImportCheck
      */
     private boolean isIllegalImport(String aImportText)
     {
-        for (Iterator it = mIllegalPkgs.iterator(); it.hasNext();) {
-            final String illegalPkg = (String) it.next();
-            if (aImportText.startsWith(illegalPkg + ".")) {
+        for (int i = 0; i < mIllegalPkgs.length; i++) {
+            if (aImportText.startsWith(mIllegalPkgs[i] + ".")) {
                 return true;
             }
         }
