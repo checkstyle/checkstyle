@@ -85,7 +85,7 @@ abstract class AbstractLoader
 
     /** {@inheritDoc} */
     public InputSource resolveEntity(String aPublicId, String aSystemId)
-        throws SAXException, IOException
+        throws SAXException
     {
         if (mPublicId.equals(aPublicId)) {
             final InputStream dtdIS = getClass().getClassLoader()
