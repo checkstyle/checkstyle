@@ -115,7 +115,7 @@ public abstract class BaseCheckTestCase
         for (int i = 0; i < aExpected.length; i++) {
             final String expected = aMessageFileName + ":" + aExpected[i];
             final String actual = lnr.readLine();
-            assertEquals(expected, actual);
+            assertEquals("error message " + i, expected, actual);
         }
         assertEquals(aExpected.length, errs);
         aC.destroy();
