@@ -27,7 +27,6 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetAdapter;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
@@ -71,7 +70,7 @@ import javax.swing.border.Border;
  * <p>Original author: Robert Harder, rharder@usa.net</p>
  *
  * @author  Robert Harder
- * @author  Lars Kühne
+ * @author  Lars K?hne
  */
 class FileDrop
 {
@@ -251,7 +250,7 @@ class FileDrop
         void filesDropped(File[] files);
     }
 
-    private class FileDropTargetListener extends DropTargetAdapter
+    private class FileDropTargetListener implements DropTargetListener
     {
         private final Component mC;
         private final Border mDragBorder;
@@ -325,6 +324,10 @@ class FileDrop
             else {
                 evt.rejectDrag();
             }
+        }
+
+        public void dragOver(DropTargetDragEvent dtde)
+        {
         }
 
         public FileDropTargetListener(Component aC, Border aDragBorder, Listener aListener)
