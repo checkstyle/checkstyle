@@ -62,28 +62,25 @@ public class OtherLeftCurlyCheck
             case TokenTypes.LITERAL_CATCH:
             case TokenTypes.LITERAL_SYNCHRONIZED:
             case TokenTypes.LITERAL_FOR:
-                brace = aAST.getLastChild();
-                break;
             case TokenTypes.LITERAL_TRY:
             case TokenTypes.LITERAL_FINALLY:
             case TokenTypes.LITERAL_DO:
-                brace = (DetailAST) aAST.getFirstChild();
+            case TokenTypes.LITERAL_IF:
+                brace = aAST.findFirstToken(TokenTypes.SLIST);
                 break;
+                
             case TokenTypes.LITERAL_ELSE:
                 final DetailAST candidate = (DetailAST) aAST.getFirstChild();
-                if (candidate.getType() == TokenTypes.SLIST) {
-                    brace = candidate;
-                }
-                else {
-                    // silently ignore
-                    brace = null;
-                }
+                brace =
+                    (candidate.getType() == TokenTypes.SLIST)
+                        ? candidate
+                        : null; // silently ignore
                 break;
-            case TokenTypes.LITERAL_SWITCH:
-            case TokenTypes.LITERAL_IF:
-                brace = (DetailAST) aAST.getFirstChild().getNextSibling()
-                    .getNextSibling().getNextSibling();
+                
+            case TokenTypes.LITERAL_SWITCH :
+                brace = aAST.findFirstToken(TokenTypes.LCURLY);
                 break;
+
             default:
                 brace = null;
         }
