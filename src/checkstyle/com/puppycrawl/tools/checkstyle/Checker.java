@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
@@ -135,9 +136,11 @@ class Checker
         LineText[] errors;
         try {
             fireFileStarted(aFileName);
+            final String[] lines = getLines(aFileName);
             VerifierSingleton.getInstance().clearMessages();
-            VerifierSingleton.getInstance().setLines(getLines(aFileName));
-            final AST ast = getAST(aFileName);
+            VerifierSingleton.getInstance().setLines(lines);
+            final Reader sar = new StringArrayReader(lines);
+            final AST ast = getAST(aFileName, sar);
             processAST(ast);
             errors = VerifierSingleton.getInstance().getMessages();
         }
@@ -196,17 +199,16 @@ class Checker
     /**
      * Parses and returns the AST for a file.
      * @return the AST
-     * @param aFileName the name of the file to generate the AST
+     * @param aReader the Reader to generate the AST
      * @throws FileNotFoundException error occurred
      * @throws RecognitionException error occurred
      * @throws TokenStreamException error occurred
      **/
-    private AST getAST(String aFileName)
+    private AST getAST(String aFileName, Reader aReader)
         throws FileNotFoundException, RecognitionException, TokenStreamException
     {
         // Create the lexer/parser stuff
-        final GeneratedJavaLexer jl =
-            new GeneratedJavaLexer(new FileReader(aFileName));
+        final GeneratedJavaLexer jl = new GeneratedJavaLexer(aReader);
         jl.setFilename(aFileName);
         final GeneratedJavaRecognizer jr = new GeneratedJavaRecognizer(jl);
         jr.setFilename(aFileName);
