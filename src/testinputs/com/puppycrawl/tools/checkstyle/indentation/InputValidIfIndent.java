@@ -66,6 +66,13 @@ public class InputValidIfIndent {
         }
         else {
         }
+
+        if (foo()
+            || test
+            || test)
+        {
+        }
+
     }
 
     /////  same as above, with statements
@@ -229,5 +236,9 @@ public class InputValidIfIndent {
             )
         {
         }
+    }
+
+    boolean foo() {
+        return true;
     }
 }
