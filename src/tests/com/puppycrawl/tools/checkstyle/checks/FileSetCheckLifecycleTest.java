@@ -7,7 +7,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class FileSetCheckLifecycleTest     extends BaseCheckTestCase
+public class FileSetCheckLifecycleTest
+    extends BaseCheckTestCase
 {
     protected DefaultConfiguration createCheckerConfig(Configuration aCheckConfig)
     {
