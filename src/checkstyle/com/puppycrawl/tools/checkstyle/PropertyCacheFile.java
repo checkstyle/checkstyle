@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  *
  * @author <a href="mailto:oliver-work@puppycrawl.com">Oliver Burn</a>
  */
-class PropertyCacheFile
+final class PropertyCacheFile
 {
     /**
      * The property key to use for storing the hashcode of the

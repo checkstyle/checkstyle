@@ -37,7 +37,7 @@ import java.util.EventObject;
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @see AuditListener
  */
-public class AuditEvent
+public final class AuditEvent
     extends EventObject
 {
     /** filename event associated with **/

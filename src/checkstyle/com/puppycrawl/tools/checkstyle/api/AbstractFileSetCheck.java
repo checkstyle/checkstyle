@@ -47,7 +47,7 @@ public abstract class AbstractFileSetCheck
      * @param aFiles s set of files
      * @return the set of parent directories of the given files
      */
-    protected Set getParentDirs(File[] aFiles)
+    protected final Set getParentDirs(File[] aFiles)
     {
         Set directories = new HashSet();
         for (int i = 0; i < aFiles.length; i++) {
@@ -61,13 +61,13 @@ public abstract class AbstractFileSetCheck
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
-    public void setMessageDispatcher(MessageDispatcher aDispatcher)
+    public final void setMessageDispatcher(MessageDispatcher aDispatcher)
     {
         mDispatcher = aDispatcher;
     }
 
     /** @return the current MessageDispatcher. */
-    protected MessageDispatcher getMessageDispatcher()
+    protected final MessageDispatcher getMessageDispatcher()
     {
         return mDispatcher;
     }

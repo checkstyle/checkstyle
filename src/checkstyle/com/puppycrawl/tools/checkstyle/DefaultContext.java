@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
  * A default implementation of the Context interface.
  * @author lkuehne
  */
-public class DefaultContext implements Context
+public final class DefaultContext implements Context
 {
     /** stores the context entries */
     private final Map mEntries = new HashMap();
