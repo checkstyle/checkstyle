@@ -54,7 +54,7 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
 
 <h2>Getting checkstyle</h2>
 
-<p>Binary and source distributions are from <a href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a>.</p>
+<p>Binary and source distributions are available from <a href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a>.</p>
 
 <p>Source code is stored under CVS at <a href="http://sourceforge.net">SourceForge</a>. The project page is <a href="http://sourceforge.net/projects/checkstyle">http://sourceforge.net/projects/checkstyle</a>.</p>
 
@@ -84,8 +84,13 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
   <li>Command line tool - see <a href="cmdline.html">cmdline.html</a> for more information.</li>
 </ul>
 
-<p>I have tested checkstyle using JRE1.2.2 and JRE1.3 on Windows 2000.</p>
-
+<p>Checkstyle has been tested using
+<ul>
+<li>JRE1.2.2 and JRE1.3 on Windows 2000</li>
+<li>JRE1.3.1 on Windows NT 4</li>
+<li>JRE1.4beta3 on Red Hat Linux 7.2</li>
+</ul>
+</p>
 
 
 <h2>What checkstyle checks</h2>
@@ -107,7 +112,7 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
 
 <p>Javadoc comments for class and interface declarations are checked to ensure that the <span class="code">@author</span> tag exists. This can be turned off.</p>
 
-<p>You can make checkstyle relax the checking for Javadoc comments. When relaxed, checkstyle requires a Javadoc comment for <span class="code">public</span> and <span class="code">protected</span> variables and methods, and for interface and class definitions.  You can also completely turn off all checking for Javadoc comments.</p>
+<p>You can control the visibility scope where Javadoc comments are checked. For example, you can check Javadoc code only for <span class="code">public</span> and <span class="code">protected</span> variables, methods, interfaces and class definitions. Scoping rules apply, in the above example a public method in a package visible class is not checked. You can also completely turn off all checking for Javadoc comments.</p>
 
 <p>Javadoc comments for methods are checked to ensure that the following tags exist (if required):</p>
 <ul>
@@ -216,7 +221,7 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
 <ul>
   <li>Binary operators are separated from operands by spaces. For example <span class="code">x = y + 1;</span></li>
   <li>Unary operators are not separated by spaces. For example <span class="code">x = --y + z++;</span></li>
-  <li>The keywords <span class="code">if/for/while/do</span> are surrounded by spaces.</li>
+  <li>The keywords <span class="code">if/for/while/do/catch/synchronized/return</span> are surrounded by spaces.</li>
   <li>Casts and commas (',') are followed by white space.
 </ul>
 
@@ -275,9 +280,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 </pre>
 
 <h2>Feedback</h2>
-<p>If you have any feedback on this tool, please email me at <a href="mailto:checkstyle@puppycrawl.com">checkstyle@puppycrawl.com</a>. I am interested in any improvements you would like to see (or hopefully made!).</p>
-
-<p>Also, send me email if you would like to be notified when a newer version of checkstyle is released.</p>
+<p>If you have general feedback (i.e. success stories ;-) on this tool, please send email to <a href="mailto:checkstyle@puppycrawl.com">checkstyle@puppycrawl.com</a>. Please use the SourceForge pages to report <a href="http://sourceforge.net/tracker/?atid=397078&group_id=29721&func=browse">bugs</a> or to submit <a href="http://sourceforge.net/tracker/?atid=397081&group_id=29721&func=browse">feature requests</a>. The developers of checkstyle are interested in any improvements you would like to see (or hopefully made!).</p>
+ 
+<p>Also, you can subscribe to the <a href="http://lists.sourceforge.net/lists/listinfo/checkstyle-announce">checkstyle-announce</a> mailing list if you would like to be notified when a newer version of checkstyle is released.</p>
 
 <hr>
 <p align="center">Copyright &copy; 2001 Oliver Burn. All rights Reserved.</p>

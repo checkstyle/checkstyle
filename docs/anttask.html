@@ -12,13 +12,13 @@
 <h2><a name="checkstyle">checkstyle ANT Task</a></h2>
 <h3>Description</h3>
 
-<p>This task runs checkstyle over specified Java files. The task has been tested using ANT 1.3. The latest version of checkstyle can be found at <a href="http://www.puppycrawl.com/checkstyle">http://www.puppycrawl.com/checkstyle</a>.
+<p>This task runs checkstyle over specified Java files. The task has been tested using ANT 1.4.1. The latest version of checkstyle can be found at <a href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a>.
 This task is included in the checkstyle distribution.</p>
 
 <h3>Installation</h3>
-<p>The easiest way is to include <span class="default">checkstyle-all-1.3.jar</span> in the classpath. This contains all the classes required to run checkstyle. Alternatively, you must include the following in the classpath:</p>
+<p>The easiest way is to include <span class="default">checkstyle-all-1.4.jar</span> in the classpath. This contains all the classes required to run checkstyle. Alternatively, you must include the following in the classpath:</p>
 <ol>
-  <li><span class="default">checkstyle-1.3.jar</span></li>
+  <li><span class="default">checkstyle-1.4.jar</span></li>
   <li>ANTLR 2.7.1 classes. <span class="default">antlr.jar</span> is included in the distribution.</li>
   <li>Jakarta Regexp 1.2 classes. <span class="default">jakarta-regexp-1.2.jar</span> is included in the distribution.</li>
 </ol>
@@ -125,13 +125,8 @@ This task is included in the checkstyle distribution.</p>
     <td align="center" valign="top">No</td>
   </tr>
   <tr>
-    <td valign="top">relaxJavadoc</td> 
-    <td valign="top">Specifies whether to relax checking Javadoc comments. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">ignoreJavadoc</td> 
-    <td valign="top">Specifies whether to completely ignore checking Javadoc comments. Defaults to <span class="default">&quot;false&quot;</span>.</td>
+    <td valign="top">javadocScope</td> 
+    <td valign="top">Specifies the visibility scope where javadoc comments are checked. Valid values are <span class="default">&quot;nothing&quot;</span>, <span class="default">&quot;public&quot;</span>, <span class="default">&quot;protected&quot;</span>, <span class="default">&quot;package&quot;</span>, <span class="default">&quot;private&quot;</span> and <span class="default">&quot;anoninner&quot;</span>. Defaults to <span class="default">&quot;private&quot;</span>.</td>
     <td align="center" valign="top">No</td>
   </tr>
   <tr>
@@ -160,6 +155,8 @@ This task is included in the checkstyle distribution.</p>
     <td align="center" valign="top">No</td>
   </tr>
 </table>
+
+<p>Older versions of the checkstyle task supported the boolean parameters relaxJavadoc and ignoreJavadoc. These parameters have been removed because they were conflicting and the semantics of relaxJavadoc was not clearly specified. The two parameters have been replaced by the javadocScope parameter. Instead of ignoreJavadoc="true" you can now use javadocScope="nothing". The behaviour of relaxJavadoc="true" is roughly the same as javadocScope="protected".</p>
 
 <h3>Examples</h3>
 <p><b>Run checkstyle on a single file</b></p>
