@@ -118,7 +118,9 @@ public abstract class BaseCheckTestCase
             final String actual = lnr.readLine();
             assertEquals("error message " + i, expected, actual);
         }
-        assertEquals(aExpected.length, errs);
+
+        assertEquals("unexpected output: " + lnr.readLine(),
+                aExpected.length, errs);
         aC.destroy();
     }
 }
