@@ -74,8 +74,20 @@ public class ClassResolver
         Iterator it = mImports.iterator();
         while (it.hasNext()) {
             final String imp = (String) it.next();
-            if (imp.endsWith(aName) && isLoadable(imp)) {
-                return safeLoad(imp);
+            if (imp.endsWith(aName)) {
+                if (isLoadable(imp)) {
+                    return safeLoad(imp);
+                }
+                // perhaps this is a import for inner class
+                // let's try load it.
+                int dot = imp.lastIndexOf(".");
+                if (dot != -1) {
+                    final String innerName = imp.substring(0, dot) + "$"
+                        + imp.substring(dot + 1);
+                    if (isLoadable(innerName)) {
+                        return safeLoad(innerName);
+                    }
+                }
             }
         }
 
