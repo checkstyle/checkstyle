@@ -120,13 +120,9 @@ public abstract class ExpressionHandler
      * @param aActualLevel    the actual indent level of the expression
      */
     protected void logError(DetailAST aAst, String aSubtypeName,
-        int aActualLevel)
+                            int aActualLevel)
     {
-        // TODO: i18n
-        String typeStr = (aSubtypeName == "" ? "" : (" " + aSubtypeName));
-        mIndentCheck.indentationLog(aAst.getLineNo(), mTypeName + typeStr
-            + " at indentation level "
-            + aActualLevel + " not at correct indentation, " + getLevel());
+        logError(aAst, aSubtypeName, aActualLevel, getLevel());
     }
 
     /**
@@ -138,27 +134,38 @@ public abstract class ExpressionHandler
      * @param aExpectedLevel the expected indent level of the expression
      */
     protected void logError(DetailAST aAst, String aSubtypeName,
-        int aActualLevel, int aExpectedLevel)
+                            int aActualLevel, int aExpectedLevel)
     {
-        // TODO: i18n
         String typeStr = (aSubtypeName == "" ? "" : (" " + aSubtypeName));
-        mIndentCheck.indentationLog(aAst.getLineNo(), mTypeName + typeStr
-            + " at indentation level " + aActualLevel
-            + " not at correct indentation, " + aExpectedLevel);
+        Object[] args = new Object[] {
+            mTypeName + typeStr,
+            new Integer(aActualLevel),
+            new Integer(aExpectedLevel),
+        };
+        mIndentCheck.indentationLog(aAst.getLineNo(),
+                                    "indentation.error",
+                                    args);
     }
 
     /**
-     * Log an indentation error.
+     * Log child indentation error.
      *
-     * @param aAst           the expression that caused the error
-     * @param aSubtypeName   the type of the expression
+     * @param aLine           the expression that caused the error
+     * @param aActualLevel   the actual indent level of the expression
+     * @param aExpectedLevel the expected indent level of the expression
      */
-    protected void logError(DetailAST aAst, String aSubtypeName)
+    protected void logChildError(int aLine,
+                                 int aActualLevel,
+                                 int aExpectedLevel)
     {
-        String typeStr = (aSubtypeName == "" ? "" : (" " + aSubtypeName));
-        mIndentCheck.indentationLog(aAst.getLineNo(), mTypeName + typeStr
-            + " at indentation level not at correct indentation, "
-            + getLevel());
+        Object[] args = new Object[] {
+            mTypeName,
+            new Integer(aActualLevel),
+            new Integer(aExpectedLevel),
+        };
+        mIndentCheck.indentationLog(aLine,
+                                    "indentation.child.error",
+                                    args);
     }
 
     /**
@@ -263,9 +270,7 @@ public abstract class ExpressionHandler
         String line = mIndentCheck.getLines()[aLineNum - 1];
         int start = getLineStart(line);
         if (start < aIndentLevel) {
-            mIndentCheck.indentationLog(aLineNum,
-                mTypeName + " child at indentation level "
-                + start + " not at correct indentation, " + aIndentLevel);
+            logChildError(aLineNum, start, aIndentLevel);
         }
     }
 
@@ -444,10 +449,7 @@ public abstract class ExpressionHandler
         if (aMustMatch ? start != aIndentLevel
             : aColNum == start && start < aIndentLevel)
         {
-            // TODO: i18n or use logError
-            mIndentCheck.indentationLog(aLineNum, mTypeName
-                + " child at indentation level " + start
-                + " not at correct indentation, " + aIndentLevel);
+            logChildError(aLineNum, start, aIndentLevel);
         }
     }
 
