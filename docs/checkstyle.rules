@@ -1,6 +1,6 @@
 checkstyle.block.catch=text
-checkstyle.cache.file=target/cachefile
-checkstyle.header.file=docs/java.header
+#checkstyle.cache.file=target/cachefile
+#checkstyle.header.file=docs/java.header
 checkstyle.javadoc.checkUnusedThrows=true
 checkstyle.lcurly.method=nl
 checkstyle.lcurly.other=nlow
