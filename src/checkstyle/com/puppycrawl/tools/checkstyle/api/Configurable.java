@@ -28,7 +28,8 @@ public interface Configurable
 {
     /**
      * Configures this component.
-     * @param aConfiguration the configuration to use
+     * @param aConfiguration the configuration to use.
+     * @throws CheckstyleException if there is a configuration error.
      */
     void configure(Configuration aConfiguration) throws CheckstyleException;
 }
