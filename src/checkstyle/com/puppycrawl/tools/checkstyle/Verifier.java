@@ -50,7 +50,7 @@ class Verifier
     private static final String MATCH_JAVADOC_ARG_PAT
         = "@(throws|exception|param)\\s+(\\S+)\\s+\\S";
     /** compiled regexp to match Javadoc tags that take an argument **/
-    private static final RE MATCH_JAVADOC_ARG = createRE(MATCH_JAVADOC_ARG_PAT);
+    private static final RE MATCH_JAVADOC_ARG = Utils.createRE(MATCH_JAVADOC_ARG_PAT);
 
    /**
     * the pattern to match a single line comment containing only the comment
@@ -60,7 +60,7 @@ class Verifier
       = "^\\s*//.*$";
    /** compiled regexp to match a single-line comment line **/
     private static final RE MATCH_SINGLELINE_COMMENT =
-      createRE(MATCH_SINGLELINE_COMMENT_PAT);
+      Utils.createRE(MATCH_SINGLELINE_COMMENT_PAT);
 
    /**
     * the pattern to match the first line of a multi-line Javadoc
@@ -71,14 +71,14 @@ class Verifier
         = "@(throws|exception|param)\\s+(\\S+)\\s*$";
     /** compiled regexp to match first part of multilineJavadoc tags **/
     private static final RE MATCH_JAVADOC_MULTILINE_START =
-       createRE(MATCH_JAVADOC_MULTILINE_START_PAT);
+       Utils.createRE(MATCH_JAVADOC_MULTILINE_START_PAT);
 
     /** the pattern that looks for a continuation of the comment **/
     private static final String MATCH_JAVADOC_MULTILINE_CONT_PAT
         = "(\\*/|@|[^\\s\\*])";
     /** compiled regexp to look for a continuation of the comment **/
     private static final RE MATCH_JAVADOC_MULTILINE_CONT =
-       createRE(MATCH_JAVADOC_MULTILINE_CONT_PAT);
+       Utils.createRE(MATCH_JAVADOC_MULTILINE_CONT_PAT);
     /** Multiline finished at end of comment **/
     private static final String END_JAVADOC = "*/";
     /** Multiline finished at next Javadoc **/
@@ -89,19 +89,19 @@ class Verifier
         = "@(return|see|author)\\s+\\S";
     /** compiled regexp to match Javadoc tags with no argument **/
     private static final RE MATCH_JAVADOC_NOARG
-        = createRE(MATCH_JAVADOC_NOARG_PAT);
+        = Utils.createRE(MATCH_JAVADOC_NOARG_PAT);
 
     /** the pattern to match author tag **/
     private static final String MATCH_JAVADOC_AUTHOR_PAT = "@author\\s+\\S";
     /** compiled regexp to match author tag **/
     private static final RE MATCH_JAVADOC_AUTHOR
-        = createRE(MATCH_JAVADOC_AUTHOR_PAT);
+        = Utils.createRE(MATCH_JAVADOC_AUTHOR_PAT);
 
     /** the pattern to match version tag **/
     private static final String MATCH_JAVADOC_VERSION_PAT = "@version\\s+\\S";
     /** compiled regexp to match version tag **/
     private static final RE MATCH_JAVADOC_VERSION
-        = createRE(MATCH_JAVADOC_VERSION_PAT);
+        = Utils.createRE(MATCH_JAVADOC_VERSION_PAT);
 
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
@@ -314,13 +314,6 @@ class Verifier
         final Scope declaredScope = mods.getVisibilityScope();
         final Scope variableScope =
             inInterfaceBlock() ? Scope.PUBLIC : declaredScope;
-
-        if (inCheckScope(variableScope)
-            && (getJavadocBefore(aVar.getStartLineNo() - 1) == null))
-        {
-            mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                          "javadoc.missing");
-        }
 
         // Check correct format
         if (inInterfaceBlock()) {
@@ -882,28 +875,6 @@ class Verifier
         return retVal;
     }
 
-
-
-    /**
-     * Helper method to create a regular expression. Will exit if unable to
-     * create the object.
-     * @param aPattern the pattern to match
-     * @return a created regexp object
-     **/
-    private static RE createRE(String aPattern)
-    {
-        RE retVal = null;
-        try {
-            retVal = Utils.getRE(aPattern);
-        }
-        catch (RESyntaxException e) {
-            System.out.println("Failed to initialise regexp expression "
-                               + aPattern);
-            e.printStackTrace(System.out);
-            System.exit(1);
-        }
-        return retVal;
-    }
 
     /**
      * Checks that a variable confirms to a specified regular expression. Logs

@@ -225,7 +225,6 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":8: Missing a Javadoc comment.",
-            filepath + ":11:17: Missing a Javadoc comment.",
             filepath + ":14:5: Missing a Javadoc comment.",
             filepath + ":18: Unused @param tag for 'unused'.",
             filepath + ":24: Expected an @return tag.",
@@ -262,7 +261,6 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":8: Missing a Javadoc comment.",
-            filepath + ":11:17: Missing a Javadoc comment.",
             filepath + ":14:5: Missing a Javadoc comment.",
             filepath + ":18: Unused @param tag for 'unused'.",
             filepath + ":24: Expected an @return tag.",
@@ -297,12 +295,9 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":14: Missing a Javadoc comment.",
-            filepath + ":17:20: Missing a Javadoc comment.",
             filepath + ":21: Missing a Javadoc comment.",
-            filepath + ":24:16: Missing a Javadoc comment.",
             filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":27: Missing a Javadoc comment.",
-            filepath + ":30:24: Missing a Javadoc comment.",
         };
         verify(c, filepath, expected);
     }
@@ -317,12 +312,9 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":14: Missing a Javadoc comment.",
-            filepath + ":17:20: Missing a Javadoc comment.",
             filepath + ":21: Missing a Javadoc comment.",
-            filepath + ":24:16: Missing a Javadoc comment.",
             filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":27: Missing a Javadoc comment.",
-            filepath + ":30:24: Missing a Javadoc comment.",
         };
         verify(c, filepath, expected);
     }
@@ -369,19 +361,12 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":7: Missing a Javadoc comment.",
             filepath + ":9: Missing a Javadoc comment.",
-            filepath + ":11:16: Missing a Javadoc comment.",
             filepath + ":12:9: Missing a Javadoc comment.",
             filepath + ":14: Missing a Javadoc comment.",
-            filepath + ":16:25: Missing a Javadoc comment.",
             filepath + ":18:13: Missing a Javadoc comment.",
             filepath + ":25:13: Missing a Javadoc comment.",
             filepath + ":34: Missing a Javadoc comment.",
-            filepath + ":36:21: Missing a Javadoc comment.",
             filepath + ":38:9: Missing a Javadoc comment.",
-            filepath + ":43:17: Missing a Javadoc comment.",
-            filepath + ":44:9: Missing a Javadoc comment.",
-            filepath + ":45:19: Missing a Javadoc comment.",
-            filepath + ":46:16: Missing a Javadoc comment.",
             filepath + ":49:5: Missing a Javadoc comment.",
             filepath + ":54:5: Missing a Javadoc comment.",
             filepath + ":59:5: Missing a Javadoc comment.",
@@ -421,8 +406,6 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":7: Missing a Javadoc comment.",
-            filepath + ":45:19: Missing a Javadoc comment.",
-            filepath + ":46:16: Missing a Javadoc comment.",
             filepath + ":59:5: Missing a Javadoc comment.",
             filepath + ":64:5: Missing a Javadoc comment.",
             filepath + ":79:5: Missing a Javadoc comment.",
@@ -442,8 +425,6 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":7: Missing a Javadoc comment.",
             filepath + ":38: Missing a Javadoc comment.",
-            filepath + ":40:23: Missing a Javadoc comment.",
-            filepath + ":41:16: Missing a Javadoc comment.",
             filepath + ":43:9: Missing a Javadoc comment.",
             filepath + ":44:9: Missing a Javadoc comment."
         };

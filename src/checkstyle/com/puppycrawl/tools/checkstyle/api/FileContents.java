@@ -1,10 +1,22 @@
 package com.puppycrawl.tools.checkstyle.api;
 
+import org.apache.regexp.RE;
+
 import java.util.Map;
 import java.util.HashMap;
 
 public class FileContents
 {
+    /**
+     * the pattern to match a single line comment containing only the comment
+     * itself -- no code.
+     */
+    private static final String MATCH_SINGLELINE_COMMENT_PAT
+        = "^\\s*//.*$";
+    /** compiled regexp to match a single-line comment line */
+    private static final RE MATCH_SINGLELINE_COMMENT =
+        Utils.createRE(MATCH_SINGLELINE_COMMENT_PAT);
+
     /** the file name */
     private final String mFilename;
 
@@ -84,6 +96,24 @@ public class FileContents
         return retVal;
     }
 
+    /**
+     * Returns the Javadoc comment before the specified line. null is none.
+     * @return the Javadoc comment, or <code>null</code> if none
+     * @param aLineNo the line number to check before
+     **/
+    public String[] getJavadocBefore(int aLineNo)
+    {
+        // Lines start at 1 to the callers perspective, so nee to take off 2
+        int lineNo = aLineNo - 2;
+
+        // skip blank lines
+        while ((lineNo > 0) && (lineIsBlank(lineNo) || lineIsComment(lineNo))) {
+            lineNo--;
+        }
+
+        return (String[]) mJavadocComments.get(new Integer(lineNo));
+    }
+
     public String[] getLines()
     {
         return mLines;
@@ -93,4 +123,27 @@ public class FileContents
     {
         return mFilename;
     }
+
+    /**
+     * Checks if the specified line is blank.
+     * @param aLineNo the line number to check
+     * @return if the specified line consists only of tabs and spaces.
+     **/
+    private boolean lineIsBlank(int aLineNo)
+    {
+        // possible improvement: avoid garbage creation in trim()
+        return "".equals(mLines[aLineNo].trim());
+    }
+
+    /**
+     * Checks if the specified line is a single-line comment without code.
+     * @param aLineNo  the line number to check
+     * @return if the specified line consists of only a single line comment
+     *         without code.
+     **/
+    private boolean lineIsComment(int aLineNo)
+    {
+      return MATCH_SINGLELINE_COMMENT.match(mLines[aLineNo]);
+    }
+
 }
