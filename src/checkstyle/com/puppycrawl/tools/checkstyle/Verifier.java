@@ -199,18 +199,6 @@ interface Verifier
     void reportEndTypeBlock();
 
     /**
-     * Report that the parser is entering a block associated with method or
-     * constructor.
-     **/
-    void reportStartMethodBlock();
-
-    /**
-     * Report that the parser is leaving a block associated with method or
-     * constructor.
-     **/
-    void reportEndMethodBlock();
-
-    /**
      * Report the location of a reference to an identifier
      * @param aAST details of the identifier
      */
