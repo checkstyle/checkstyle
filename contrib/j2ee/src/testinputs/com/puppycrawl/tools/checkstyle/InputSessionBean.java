@@ -71,6 +71,13 @@ final class FinalSessionBean
         return 1;   
     }
 
+    public Object method()
+    {
+        this.equals("");
+        "".equals(this);
+        return this;
+    }
+
     /**
      * @see javax.ejb.SessionBean#setSessionContext(javax.ejb.SessionContext)
      */

@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>The access control modifier must be <code>public</code>.</li>
  * <li>The method modifier cannot be <code>final</code>
  * or <code>static</code>.</li>
+ * <li>The method must notthrow <code>java.rmi.RemoteException</code>.</li>
  * </ul>
  * @author Rick Giles
  */

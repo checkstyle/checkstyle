@@ -50,6 +50,13 @@ final class FinalMessageBean
     {
     }
 
+    public Object method()
+    {
+        this.equals("");
+        "".equals(this);
+        return this;
+    }
+
     /**
      * @see javax.ejb.MessageDrivenBean#setMessageDrivenContext(javax.ejb.MessageDrivenContext)
      */

@@ -176,6 +176,27 @@ public class Utils
     }
 
     /**
+     * Determines whether an AST node is in the definition of an
+     * EJB class.
+     * @param aAST the AST to check.
+     * @return true if aAST is in the definition of a
+     * an EJB class.
+     */
+    public static boolean isInEJB(DetailAST aAST)
+    {
+        DetailAST definer = getDefiner(aAST);
+        return (
+            (definer != null)
+                && (Utils.hasImplements(definer, "javax.ejb.SessionBean")
+                    || Utils.hasImplements(definer, "javax.ejb.EntityBean")
+                    || (Utils
+                        .hasImplements(definer, "javax.ejb.MessageDrivenBean")
+                        && Utils.hasImplements(
+                            definer,
+                            "javax.jms.MessageListener"))));
+    }
+
+    /**
      * Finds the DetailAST for the class definition of an AST.
      * @param aAST the AST for the search.
      * @return the class definition AST for aAST.
@@ -453,5 +474,59 @@ public class Utils
         }
 
         return result;
+    }
+
+    /**
+     * Tests whether two method definition ASTs have the same parameter lists
+     * according to type.
+     * @param aMethodAST1 the first method AST to test.
+     * @param aMethodAST2 the second method AST to test.
+     * @return true if aMethodAST1 and aMethodAST2 have the same
+     * parameter lists.
+     */
+    public static boolean sameParameters(
+        DetailAST aMethodAST1,
+        DetailAST aMethodAST2)
+    {
+        final DetailAST params1 =
+            aMethodAST1.findFirstToken(TokenTypes.PARAMETERS);
+        final DetailAST params2 =
+            aMethodAST2.findFirstToken(TokenTypes.PARAMETERS);
+        if (params1.getChildCount() != params2.getChildCount()) {
+            return false;
+        }
+        DetailAST param1 = (DetailAST) params1.getFirstChild();
+        DetailAST param2 = (DetailAST) params2.getFirstChild();
+        while (param1 != null) {
+            if ((param1.getType() == TokenTypes.PARAMETER_DEF)
+                && (param2.getType() == TokenTypes.PARAMETER_DEF))
+            {
+                final DetailAST type1 = param1.findFirstToken(TokenTypes.TYPE);
+                final DetailAST type2 = param2.findFirstToken(TokenTypes.TYPE);
+                if (!equalTypes(type1, type2)) {
+                    return false;
+                }
+            }
+            param1 = (DetailAST) param1.getNextSibling();
+            param2 = (DetailAST) param2.getNextSibling();
+        }
+        return true;
+    }
+
+    /**
+     * Tests whether two type AST nodes have the same type.
+     * @param aTypeAST1 the first type AST to test.
+     * @param aTypeAST2 the second type AST to test.
+     * @return true if aTypeAST1 and aTypeAST2 have the same type.
+     */
+    public static boolean equalTypes(
+        DetailAST aTypeAST1,
+        DetailAST aTypeAST2)
+    {
+        final DetailAST child1 = (DetailAST) aTypeAST1.getFirstChild();
+        final DetailAST child2 = (DetailAST) aTypeAST2.getFirstChild();
+        final String name1 = Utils.constructDottedName(child1);
+        final String name2 = Utils.constructDottedName(child2);
+        return name1.equals(name2);
     }
 }
