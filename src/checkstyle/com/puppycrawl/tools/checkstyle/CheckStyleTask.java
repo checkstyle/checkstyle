@@ -87,6 +87,9 @@ public class CheckStyleTask
     /** the name of the properties file */
     private File mPropertiesFile;
 
+    /** custom listeners to add to Checker */
+    private final List mCustomListeners = new ArrayList();
+
     ////////////////////////////////////////////////////////////////////////////
     // Setters for ANT specific attributes
     ////////////////////////////////////////////////////////////////////////////
@@ -133,6 +136,15 @@ public class CheckStyleTask
     public void addProperty(Property aProperty)
     {
         mOverrideProps.add(aProperty);
+    }
+
+    /**
+     * Add a custom listener
+     * @param aListener the listener to add
+     */
+    public void addListener(Listener aListener)
+    {
+        mCustomListeners.add(aListener);
     }
 
     /**
@@ -367,24 +379,57 @@ public class CheckStyleTask
         throws ClassNotFoundException, InstantiationException,
         IllegalAccessException, IOException
     {
-        final int listenerCount = Math.max(1, mFormatters.size());
+        final int formatterCount = Math.max(1, mFormatters.size());
+        final int listenerCount = mCustomListeners.size();
 
-        final AuditListener[] listeners = new AuditListener[listenerCount];
+        final AuditListener[] listeners =
+            new AuditListener[formatterCount + listenerCount];
 
+        // formatters
         if (mFormatters.size() == 0) {
             OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
             OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
             listeners[0] = new DefaultLogger(debug, true, err, true);
-            return listeners;
         }
-
-        for (int i = 0; i < listeners.length; i++) {
-            final Formatter f = (Formatter) mFormatters.get(i);
-            listeners[i] = f.createListener(this);
+        else {
+            for (int i = 0; i < formatterCount; i++) {
+                final Formatter f = (Formatter) mFormatters.get(i);
+                listeners[i] = f.createListener(this);
+            }
+        }
+        //custom listeners
+        for (int i = 0; i < listenerCount; i++) {
+            final Listener listener = (Listener) mCustomListeners.get(i);
+            listeners[formatterCount + i] = createCustomListener(listener);
         }
         return listeners;
     }
-
+    /**
+     * Creates an audit listener for a custom listener.
+     * @param aListener custom listener
+     * @return an audit listener
+     */
+    private AuditListener createCustomListener(Listener aListener)
+    {
+        final String classname = aListener.getClassname();
+        final ClassLoader loader =
+            new AntClassLoader(getProject(), mClasspath);
+        AuditListener listener = null;
+        try {
+            //TODO: this works:
+            final Class listenerClass = Class.forName(classname);
+            // this causes the next statement to throw a ClassCastException
+            //final Class listenerClass =
+            //    Class.forName(classname, true, loader);
+            listener =
+                (AuditListener) listenerClass.newInstance();
+        }
+        catch (Exception e) {
+            throw new BuildException("Unable to create listener '"
+                + classname + "': " + e);
+        }
+        return listener;
+    }
     /**
      * returns the list of files (full path name) to process.
      * @return the list of files included via the filesets.
@@ -563,4 +608,22 @@ public class CheckStyleTask
         }
     }
 
+    /** Represents a custom listener */
+    public static class Listener
+    {
+        /** classname of the listener class */
+        private String mClassname;
+
+        /** @return the classname */
+        public String getClassname()
+        {
+            return mClassname;
+        }
+
+        /** @param aClassname set the classname */
+        public void setClassname(String aClassname)
+        {
+            mClassname = aClassname;
+        }
+    }
 }

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Writing your own listeners</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css"/>
+</head>
+
+<body>
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td><h1>Writing your own Listeners</h1></td>
+    <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
+  </tr>
+</table>
+<!-- content -->
+<table border="0" width="100%" cellpadding="5" summary="body layout">
+  <tr>
+    <!--Left menu-->
+    <td class="menu" valign="top">
+      <p>
+      <a href="#overview">Overview</a>
+      </p>
+      <p>
+      <a href="#writing">Writing Listeners</a>
+      </p>
+      <p>
+      <a href="#using">Using Listeners</a>
+      </p>
+      <p>
+      <a href="#examples">Examples</a>
+      </p>
+      <ul>
+        <li>
+          <a href="#CommonsLoggingListener">CommonsLoggingListener</a>
+        </li>
+        <li>
+          <a href="#MailLogger">MailLogger</a>
+        </li>
+      </ul>
+      <p>
+      <a href="#huh">Huh?</a>
+      </p>
+      <p>
+      <a href="#contributeback">Contributing</a>
+      </p>
+    </td>
+    <!--Content-->
+    <td class="content" valign="top" align="left"><a name="overview"></a> <h2>Overview</h2>
+      <p class="body">
+      A Checkstyle listener monitors the progress of a <span class="code">Checker</span> 
+      during the audit of files. The <span class="code">Checker</span> notifies its 
+      attached listeners of significant events such as the start of the audit of a 
+      file and the logging of a Check error, and the listeners respond appropriately. 
+      Any number of listeners can be attached to a <span class="code">
+      Checker</span>. An audit always adds one of the distribution listeners, <a href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a> 
+      or <a href="api/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>, 
+      to report events. A <span class="code">DefaultLogger</span> produces simple text 
+      output for the events it receives, and a <span class="code">XMLLogger</span> 
+      produces an XML document for its events.
+      </p>
+      <p class="body">
+      Listeners <span class="code">DefaultLogger</span> and <span class="code">
+      XMLLogger</span> are sufficient for most Checkstyle users, but you may find a 
+      need for a custom listener. For example, a user has requested verbose output of 
+      progress information during a Checkstyle run. Another user would like to filter 
+      error events. This document explains how to write listeners for such tasks and 
+      how to integrate them in a Checker module. It also describes two custom 
+      listeners that are inspired by ANT listeners: a listener that is a wrapper for 
+      the Jakarta Commons Logging API, and a listener that sends its results via email.
+      </p>
+      <p class="body">
+      A listener is an implementation of the <a href="api/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a> 
+      interface. During an audit, a <span class="code">Checker</span> informs its 
+      attached <span class="code">AuditListeners</span> of six kinds of events: audit 
+      started/ended, file started/ended, and logging of an error/exception.
+      </p>
+      <p class="body">
+      An audit passes an event to a listener as an <a href="api/com/puppycrawl/tools/checkstyle/api/AuditEvent.html">AuditEvent</a>. 
+      A file-related <span class="code">AuditEvent</span> contains the name of that 
+      file. An <span class="code">AuditEvent</span> for error logging has a message, a 
+      severity level, a message source such as the name of a <span class="code">Check</span>, 
+      and file line and column numbers that may be relevant to the error. The 
+      notification of an exception to a <span class="code">AuditListener</span> 
+      includes an error <span class="code">AuditEvent</span> and the details of the 
+      exception. Here is a UML diagram for classes <span class="code">AuditListener</span> 
+      and <span class="code">AuditEvent</span>.
+      </p>
+      <img src="AuditListener.gif" width="381" height="488" alt="AuditListener UML diagram"/>
+
+      <a name="writing"></a> <h2>Writing Listeners</h2>
+
+      <p class="body">
+      The custom listener that we demonstrate here is a verbose listener that simply 
+      prints each event notification to standard output, and reports the number of 
+      errors per audited file and the total number of errors.
+      </p>
+
+      <pre>
+      package com.mycompany.listeners;
+      
+      import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+      import com.puppycrawl.tools.checkstyle.api.AuditListener;
+      import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+      
+      public class VerboseListener implements AuditListener
+      {
+          private int mTotalErrors;
+      
+          private int mErrors;
+      
+          public void auditStarted(AuditEvent aEvt)
+          {
+              mTotalErrors = 0;
+              System.out.println("Audit started.");
+          }
+      
+          public void auditFinished(AuditEvent aEvt)
+          {
+              System.out.println("Audit finished. Total errors: " + mTotalErrors);
+          }
+      
+          public void fileStarted(AuditEvent aEvt)
+          {
+              mErrors = 0;
+              System.out.println(
+                  "Started checking file '" + aEvt.getFileName() + "'.");
+          }
+      
+          public void fileFinished(AuditEvent aEvt)
+          {
+              System.out.println("Finished checking file '" + aEvt.getFileName()
+                  + "'. Errors: " + mErrors);
+          }
+      
+          public void addError(AuditEvent aEvt)
+          {
+              printEvent(aEvt);
+              if (SeverityLevel.ERROR.equals(aEvt.getSeverityLevel())) {
+                  mErrors++;
+                  mTotalErrors++;
+              }
+          }
+      
+          public void addException(AuditEvent aEvt, Throwable aThrowable)
+          {
+              printEvent(aEvt);
+              aThrowable.printStackTrace(System.out);
+              mErrors++;
+              mTotalErrors++;
+          }
+      
+          private void printEvent(AuditEvent aEvt)
+          {
+              System.out.println("Logging error -"
+                  + " file: '" + aEvt.getFileName() + "'"
+                  + " line: " + aEvt.getLine()
+                  + " column: " + aEvt.getColumn()
+                  + " severity: " + aEvt.getSeverityLevel()
+                  + " message: " + aEvt.getMessage()
+                  + " source: " + aEvt.getSourceName());
+          }
+      }
+    </pre>
+      <p class="body">
+      A listener that filters error events could perform the filtering in methods <span class="code"> 
+      addError</span> and <span class="code">addException</span>. As further examples 
+      of listeners, <a href="#CommonsLoggingListener">CommonsLoggingListener</a> 
+      reports its events through the Commons Logging API, and <a href="#MailLogger">MailLogger</a> 
+      e-mails the audit report of a <span class="code">DefaultLogger</span>.
+      </p>
+
+      <a name="using"></a> <h2>Using Listeners</h2>
+
+      <p class="body">
+      You can use custom listeners with the <a href="cmdline.html">command line tool</a> 
+      and with a <a href="anttask.html">checkstyle ANT task<a>. When Checkstyle 
+      performs an audit, it attaches listener instances to its audit <span class="code"> 
+      Checker</span>. Hence the <span class="code">.class</span> file for each custom 
+      listener must be available through the classpath.
+      </p>
+      <p class="body">
+      To use custom listeners with the command line tool, provide a comma-delimited 
+      list of listener classnames in the -l option. For example, suppose that the <span class="code">. 
+      class</span> file for <span class="code">com.mycompany.listeners.VerboseListener</span> 
+      is in jar file <span class="code">mycompanylisteners.jar</span>. To use <span class="code"> 
+      VerboseListener</span> and configuration file <span class="code">checks.xml</span>, 
+      give a command like the following:
+      </p>
+      <pre>
+      java -classpath mycompanylisteners.jar \
+           -jar checkstyle-all-@CHECKSTYLE_VERSION@.jar \
+           -l com.mycompany.listeners.VerboseListener \
+           -c checks.xml -r src
+      </pre>
+
+      <p class="body">
+      Here is a truncated example of audit output from a <span class="code"> 
+      VerboseListener</span>:
+      </p>
+
+      <pre>
+      Audit started.
+      Started checking file 'CommonsLoggingListener.java'.
+      Finished checking file 'CommonsLoggingListener.java'. Errors: 0
+      Started checking file 'MailLogger.java'.
+      Finished checking file 'MailLogger.java'. Errors: 0
+      Started checking file 'VerboseListener.java'.
+      Logging error - file: 'VerboseListener.java' line: 23 ...
+      Finished checking file 'VerboseListener.java'. Errors: 1
+      Audit finished. Total errors: 1
+  </pre>
+      <p class="body">
+      To use a custom listener in a checkstyle ant task, define a nested <span class="code">&lt; 
+      listener&gt;</span> element with a <span class="code">classname</span> property 
+      whose value is the listener&#39;s classname. For example, to run checkstyle with 
+      configuration file <span class="code">checks.xml</span> and listener <span class="code"> 
+      com.mycompany.listeners.VerboseListener</span> on a fileset:
+      </p>
+      <pre>
+      &lt;checkstyle config=&quot;checks.xml&quot;&gt;
+        &lt;fileset dir=&quot;src&quot; includes=&quot;**/*.java&quot;/&gt;
+        &lt;listener classname=&quot;com.mycompany.listeners.VerboseListener&quot;/&gt;
+      &lt;/checkstyle&gt;
+  </pre>
+
+      <a name="examples"></a> <h2>Examples</h2> <a name="CommonsLoggingListener"></a><h4>CommonsLoggingListener</h4>
+      <p class="body">
+      TODO
+      </p>
+      <a name="MailLogger"></a><h4>MailLogger</h4>
+      <p class="body">
+      TODO
+      </p>
+
+      <a name="huh"></a> <h2>Huh? I can&#39;t figure it out!</h2>
+      <p class="body">
+      That&#39;s probably our fault, and it means that we have to provide better 
+      documentation. Please do not hesitate to ask questions on the user mailing list, 
+      this will help us to improve this document.  Please ask your questions as 
+      precisely as possible. We will not be able to answer questions like &quot;I want 
+      to write a listener but I don&#39;t know how, can you help me?&quot;. Tell us 
+      what you are trying to do (the purpose of the listener), what you have 
+      understood so far, and what exactly you are getting stuck on.
+      </p>
+
+      <a name="contributeback"></a> <h2>Contributing</h2>
+      <p class="body">
+      We need <em>your</em> help to keep improving Checkstyle.
+
+      Whenever you write a listener that you think is generally useful, please 
+      consider <a href="contributing.html">contributing</a> it to the Checkstyle 
+      community and submit it for inclusion in the next release of Checkstyle.
+
+      </p>
+
+    </td>
+  </tr>
+</table>
+<hr/>
+<div>
+  <a href="index.html">Back to the Checkstyle Home Page</a>
+</div>
+<p class="copyright">
+Copyright &copy; 2002-2003 Oliver Burn. All rights Reserved.
+</p>
+</body>
+</html>

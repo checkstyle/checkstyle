@@ -381,35 +381,4 @@ public class Checker extends AutomaticBean
     {
         mLoader = aLoader;
     }
-
-    /**
-     * Adds a listener to this Checker.
-     * @param aListener the name of the listener class.
-     * @throws CheckstyleException if the listener class is not available
-     * or cannot be instantiated.
-     */
-    public final void setListener(String aListener)
-        throws CheckstyleException
-    {
-        AuditListener listener;
-        try {
-            listener = (AuditListener) Class.forName(aListener).newInstance();
-        }
-        catch (InstantiationException ex) {
-            throw new CheckstyleException(
-                    "cannot instantiate listener "
-                    + aListener + " - " + ex.getMessage(), ex);
-        }
-        catch (IllegalAccessException ex) {
-            throw new CheckstyleException(
-                "cannot instantiate listener "
-                + aListener + " - " + ex.getMessage(), ex);
-        }
-        catch (ClassNotFoundException ex) {
-            throw new CheckstyleException(
-                "cannot instantiate listener "
-                + aListener + " - " + ex.getMessage(), ex);
-        }
-        addListener(listener);
-    }
 }
