@@ -633,6 +633,7 @@ public class CheckerTest
             filepath + ":13: Unused import - java.util.List",
             filepath + ":14: Duplicate import to line 13.",
             filepath + ":14: Unused import - java.util.List",
+            filepath + ":15: Import from illegal package - sun.net.ftpclient.FtpClient",
         };
         verify(c, filepath, expected);
     }

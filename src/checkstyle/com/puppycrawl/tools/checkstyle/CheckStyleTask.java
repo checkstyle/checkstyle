@@ -308,6 +308,12 @@ public class CheckStyleTask
         mConfig.setIgnoreImports(aIgnore);
     }
 
+    /** @param aPkgPrefixList comma separated list of package prefixes */
+    public void setIllegalImports(String aPkgPrefixList)
+    {
+        mConfig.setIllegalImports(aPkgPrefixList);
+    }
+
     /** @param aIgnore whether to ignore whitespace **/
     public void setIgnoreWhitespace(boolean aIgnore)
     {

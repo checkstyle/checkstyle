@@ -29,6 +29,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.StringTokenizer;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.TreeSet;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
@@ -70,6 +72,8 @@ public class Configuration
     private static final int MAX_CONSTRUCTOR_LENGTH = 150;
     /** the maximum file length **/
     private static final int MAX_FILE_LENGTH = 2000;
+    /** the set of illegal imports (comma separated package prefixes) **/
+    private static final String ILLEGAL_IMPORTS = "sun";
 
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
@@ -137,6 +141,8 @@ public class Configuration
     private boolean mRequirePackageHtml = false;
     /** whether to ignore imports **/
     private boolean mIgnoreImports = false;
+    /** whether to ignore imports **/
+    private final HashSet mIllegalImports = new HashSet();
     /** whether to ignore whitespace **/
     private boolean mIgnoreWhitespace = false;
     /** whether to ignore cast whitespace **/
@@ -226,6 +232,8 @@ public class Configuration
                                                  mRequirePackageHtml));
         setIgnoreImports(
             getBooleanProperty(aProps, IGNORE_IMPORTS_PROP, mIgnoreImports));
+        setIllegalImports(
+            aProps.getProperty(ILLEGAL_IMPORTS_PROP, ILLEGAL_IMPORTS));
         setIgnoreWhitespace(getBooleanProperty(aProps,
                                                IGNORE_WHITESPACE_PROP,
                                                mIgnoreWhitespace));
@@ -268,6 +276,7 @@ public class Configuration
     public Configuration()
         throws IllegalStateException
     {
+        setIllegalImports(ILLEGAL_IMPORTS);
         try {
             setParamPat(PARAMETER_PATTERN);
             setStaticPat(STATIC_PATTERN);
@@ -484,6 +493,12 @@ public class Configuration
     public boolean isIgnoreImports()
     {
         return mIgnoreImports;
+    }
+
+    /** @return Set of pkg prefixes that are illegal in import statements */
+    public Set getIllegalImports()
+    {
+        return mIllegalImports;
     }
 
     /** @return pattern to exclude from line lengh checking **/
@@ -708,6 +723,18 @@ public class Configuration
     public void setIgnoreImportLength(boolean aIgnoreImportLength)
     {
         mIgnoreImportLength = aIgnoreImportLength;
+    }
+
+    /**
+     * @param aPkgPrefixList comma separated list of package prefixes
+     */
+    public void setIllegalImports(String aPkgPrefixList)
+    {
+        mIllegalImports.clear();
+        final StringTokenizer st = new StringTokenizer(aPkgPrefixList, ",");
+        while (st.hasMoreTokens()) {
+            mIllegalImports.add(st.nextToken());
+        }
     }
 
     /**
