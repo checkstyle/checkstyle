@@ -278,8 +278,9 @@ public class CheckStyleTask
                     mConfigLocation, new PropertiesExpander(props));
 
             final DefaultContext context = new DefaultContext();
+            final ClassLoader taskLoader = this.getClass().getClassLoader();
             final ClassLoader loader =
-                new AntClassLoader(getProject(), mClasspath);
+                new AntClassLoader(taskLoader, getProject(), mClasspath, true);
             context.add("classloader", loader);
 
             c = new Checker();
