@@ -1,7 +1,8 @@
-checkstyle.ipr
-checkstyle.iws
-target
-checkstyle.buildproperties
-.project
 .checkstyle
 .classpath
+.project
+checkstyle.buildproperties
+checkstyle.ipr
+checkstyle.iws
+devnull
+target

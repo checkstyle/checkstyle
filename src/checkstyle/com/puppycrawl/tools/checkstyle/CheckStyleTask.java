@@ -38,40 +38,44 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Iterator;
 
 /**
  * An implementation of a ANT task for calling checkstyle. See the documentation
  * of the task for usage.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- **/
+ */
 public class CheckStyleTask
     extends Task
 {
-    /** poor man's enum for an xml formatter **/
+    /** poor man's enum for an xml formatter */
     private static final String E_XML = "xml";
-    /** poor man's enum for an plain formatter **/
+    /** poor man's enum for an plain formatter */
     private static final String E_PLAIN = "plain";
 
-    /** class path to locate class files **/
+    /** class path to locate class files */
     private Path mClasspath;
 
-    /** name of file to check **/
+    /** name of file to check */
     private String mFileName;
 
-    /** whether to fail build on violations **/
+    /** whether to fail build on violations */
     private boolean mFailOnViolation = true;
 
-    /** property to set on violations **/
+    /** property to set on violations */
     private String mFailureProperty = null;
 
-    /** contains the filesets to process **/
+    /** contains the filesets to process */
     private final List mFileSets = new ArrayList();
 
-    /** contains the formatters to log to **/
+    /** contains the formatters to log to */
     private final List mFormatters = new ArrayList();
 
-    /** the configuration to pass to the checker **/
-    private Configuration mConfig = new Configuration();
+    /** contains the Properties to override */
+    private final List mOverrideProps = new ArrayList();
+
+    /** the name of the properties file */
+    private File mPropertiesFile;
 
     ////////////////////////////////////////////////////////////////////////////
     // Setters for ANT specific attributes
@@ -88,7 +92,7 @@ public class CheckStyleTask
         mFailureProperty = aPropertyName;
     }
 
-    /** @param aFail whether to fail if a violation is found **/
+    /** @param aFail whether to fail if a violation is found */
     public void setFailOnViolation(boolean aFail)
     {
         mFailOnViolation = aFail;
@@ -113,6 +117,15 @@ public class CheckStyleTask
     }
 
     /**
+     * Add an override property
+     * @param aProperty the property to add
+     */
+    public void addProperty(Property aProperty)
+    {
+        mOverrideProps.add(aProperty);
+    }
+
+    /**
      * Set the class path.
      * @param aClasspath the path to locate classes
      */
@@ -121,7 +134,7 @@ public class CheckStyleTask
         mClasspath = aClasspath;
     }
 
-    /** @return a created path for locating classes **/
+    /** @return a created path for locating classes */
     public Path createClasspath()
     {
         if (mClasspath == null) {
@@ -130,7 +143,7 @@ public class CheckStyleTask
         return mClasspath.createPath();
     }
 
-    /** @param aFile the file to be checked **/
+    /** @param aFile the file to be checked */
     public void setFile(File aFile)
     {
         mFileName = aFile.getAbsolutePath();
@@ -147,34 +160,7 @@ public class CheckStyleTask
      */
     public void setProperties(File aProps)
     {
-        final Properties mProperties = new Properties();
-        try {
-            mProperties.load(new FileInputStream(aProps));
-        }
-        catch (FileNotFoundException e) {
-            throw new BuildException(
-                    "Could not find Properties file '" + aProps + "'",
-                    e, getLocation());
-        }
-        catch (IOException e) {
-            throw new BuildException(
-                    "Error loading Properties file '" + aProps + "'",
-                    e, getLocation());
-        }
-
-        try {
-            mConfig = new Configuration(mProperties, System.out);
-        }
-        catch (RESyntaxException e) {
-            throw new BuildException(
-                    "An regular expression error exists in '" + aProps + "'",
-                    e, getLocation());
-        }
-        catch (IOException e) {
-            throw new BuildException(
-                    "An error loading the file '" + e.getMessage() + "'",
-                    e, getLocation());
-        }
+        mPropertiesFile = aProps;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -185,7 +171,7 @@ public class CheckStyleTask
      * Actually checks the files specified. All errors are reported to
      * System.out. Will fail if any errors occurred.
      * @throws BuildException an error occurred
-     **/
+     */
     public void execute()
         throws BuildException
     {
@@ -196,20 +182,13 @@ public class CheckStyleTask
                 getLocation());
         }
 
-        // setup the classloader
-        if (mClasspath != null) {
-            mConfig.setClassLoader(
-                new AntClassLoader(getProject(), mClasspath));
-        }
-
-        // set the root directory location
-        mConfig.setRootDir(getProject().getBaseDir());
+        final Configuration config = createConfiguration();
 
         // Create the checker
         Checker c = null;
         try {
             try {
-                c = new Checker(mConfig);
+                c = new Checker(config);
                 // setup the listeners
                 AuditListener[] listeners = getListeners();
                 for (int i = 0; i < listeners.length; i++) {
@@ -239,6 +218,62 @@ public class CheckStyleTask
                 c.destroy();
             }
         }
+    }
+
+    /**
+     * Create the Configuration object based on the arguments specified to the
+     * ANT task.
+     * @return a brand spanking new Configuration object
+     * @throws BuildException if an error occurs
+     */
+    private Configuration createConfiguration()
+    {
+        final Properties props = new Properties();
+
+        // Load the properties file is specified
+        if (mPropertiesFile != null) {
+            try {
+                props.load(new FileInputStream(mPropertiesFile));
+            }
+            catch (FileNotFoundException e) {
+                throw new BuildException(
+                    "Could not find Properties file '" + mPropertiesFile + "'",
+                    e, getLocation());
+            }
+            catch (IOException e) {
+                throw new BuildException(
+                    "Error loading Properties file '" + mPropertiesFile + "'",
+                    e, getLocation());
+            }
+        }
+
+        // Now override the properties specified
+        for (Iterator it = mOverrideProps.iterator(); it.hasNext();) {
+            final Property p = (Property) it.next();
+            props.setProperty(p.getKey(), p.getValue());
+        }
+
+        // Create the configuration
+        final Configuration retVal;
+        try {
+            retVal = new Configuration(props, System.out);
+        }
+        catch (RESyntaxException e) {
+            throw new BuildException("An regular expression error exists.",
+                                     e, getLocation());
+        }
+        catch (IOException e) {
+            throw new BuildException(
+                "An error loading the file '" + e.getMessage() + "'",
+                e, getLocation());
+        }
+
+        // setup the classloader
+        if (mClasspath != null) {
+            retVal.setClassLoader(new AntClassLoader(getProject(), mClasspath));
+        }
+
+        return retVal;
     }
 
     /**
@@ -311,10 +346,10 @@ public class CheckStyleTask
     public static class FormatterType
         extends EnumeratedAttribute
     {
-        /** my possible values **/
+        /** my possible values */
         private static final String[] VALUES = {E_XML, E_PLAIN};
 
-        /** @see EnumeratedAttribute **/
+        /** @see EnumeratedAttribute */
         public String[] getValues()
         {
             return VALUES;
@@ -327,9 +362,9 @@ public class CheckStyleTask
      */
     public static class Formatter
     {
-        /** the formatter type **/
+        /** the formatter type */
         private FormatterType mFormatterType = null;
-        /** the file to output to **/
+        /** the file to output to */
         private File mToFile = null;
 
         /**
@@ -403,6 +438,47 @@ public class CheckStyleTask
             else {
                 return new XMLLogger(new FileOutputStream(mToFile), true);
             }
+        }
+    }
+
+    /**
+     * Represents a property that consists of a key and value.
+     */
+    public static class Property
+    {
+        /** the property key */
+        private String mKey;
+        /** the property value */
+        private String mValue;
+
+        /** @return the property key */
+        public String getKey()
+        {
+            return mKey;
+        }
+
+        /** @param aKey sets the property key */
+        public void setKey(String aKey)
+        {
+            mKey = aKey;
+        }
+
+        /** @return the property value */
+        public String getValue()
+        {
+            return mValue;
+        }
+
+        /** @param aValue set the property value */
+        public void setValue(String aValue)
+        {
+            mValue = aValue;
+        }
+
+        /** @param aValue set the property value from a File */
+        public void setFile(File aValue)
+        {
+            setValue(aValue.getAbsolutePath());
         }
     }
 }
