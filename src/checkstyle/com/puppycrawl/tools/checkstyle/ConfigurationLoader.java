@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -54,7 +55,8 @@ class ConfigurationLoader
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */
-    ConfigurationLoader() throws ParserConfigurationException, SAXException
+    private ConfigurationLoader()
+        throws ParserConfigurationException, SAXException
     {
         mParser = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
         mParser.setContentHandler(this);
@@ -70,7 +72,6 @@ class ConfigurationLoader
     void parseFile(String aFilename)
         throws FileNotFoundException, IOException, SAXException
     {
-        System.out.println("aFilename = " + aFilename);
         mParser.parse(new InputSource(new FileReader(aFilename)));
     }
 
@@ -123,6 +124,34 @@ class ConfigurationLoader
         }
         else if ("tokens".equals(aQName)) {
             mCurrent.addTokens(mBuf.toString());
+        }
+    }
+
+    /**
+     * Returns the check configurations in a specified file.
+     * @param aConfigFname name of config file
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static CheckConfiguration[] loadConfigs(String aConfigFname)
+        throws CheckstyleException
+    {
+        try {
+            final ConfigurationLoader loader = new ConfigurationLoader();
+            loader.parseFile(aConfigFname);
+            return loader.getConfigs();
+        }
+        catch (FileNotFoundException e) {
+            throw new CheckstyleException("unable to find " + aConfigFname);
+        }
+        catch (ParserConfigurationException e) {
+            throw new CheckstyleException("unable to parse " + aConfigFname);
+        }
+        catch (SAXException e) {
+            throw new CheckstyleException("unable to parse " + aConfigFname);
+        }
+        catch (IOException e) {
+            throw new CheckstyleException("unable to read " + aConfigFname);
         }
     }
 

@@ -57,8 +57,7 @@ public class NoWhiteSpaceAroundCheck
         final int before = aAST.getColumnNo() - 1;
         final int after = aAST.getColumnNo() + aAST.getText().length();
 
-        if (before < 0 || Character.isWhitespace(line.charAt(before)))
-        {
+        if ((before < 0) || Character.isWhitespace(line.charAt(before))) {
             boolean flag = !mAllowLineBreaks;
             // verify all characters before '.' are whitespace
             for (int i = 0; !flag && i < before; i++) {

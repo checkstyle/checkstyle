@@ -135,7 +135,8 @@ public class DetailAST
             DetailAST sibling = (DetailAST) getNextSibling();
             if (child != null) {
                 return child.getLineNo();
-            } else if (sibling != null) {
+            }
+            else if (sibling != null) {
                 return sibling.getLineNo();
             }
         }
@@ -152,7 +153,8 @@ public class DetailAST
             DetailAST sibling = (DetailAST) getNextSibling();
             if (child != null) {
                 return child.getColumnNo();
-            } else if (sibling != null) {
+            }
+            else if (sibling != null) {
                 return sibling.getColumnNo();
             }
         }

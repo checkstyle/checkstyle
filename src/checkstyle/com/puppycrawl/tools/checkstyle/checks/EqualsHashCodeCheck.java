@@ -112,8 +112,7 @@ public class EqualsHashCodeCheck
 
         final AST modifiers = aFirstChild.getFirstChild();
         AST type = modifiers.getNextSibling();
-        switch (type.getFirstChild().getType())
-        {
+        switch (type.getFirstChild().getType()) {
             case TokenTypes.LITERAL_BOOLEAN:
             case TokenTypes.LITERAL_BYTE:
             case TokenTypes.LITERAL_CHAR:

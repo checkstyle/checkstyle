@@ -92,7 +92,7 @@ public class LineLengthCheck extends Check
     /**
      * Set the ignore pattern.
      * @param aFormat a <code>String</code> value
-     * @throws org.apache.commons.beanutils.ConversionException unable to parse aFormat
+     * @throws ConversionException unable to parse aFormat
      */
     public void setIgnorePattern(String aFormat)
     {

@@ -5,6 +5,12 @@ import org.apache.regexp.RE;
 import java.util.Map;
 import java.util.HashMap;
 
+/**
+ * Represents the contents of a file.
+ *
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @version 1.0
+ */
 public class FileContents
 {
     /**
