@@ -131,8 +131,8 @@ public class DetailAST
         if (mLineNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
             // with initialize(String text)
-            DetailAST child = (DetailAST) getFirstChild();
-            DetailAST sibling = (DetailAST) getNextSibling();
+            final DetailAST child = (DetailAST) getFirstChild();
+            final DetailAST sibling = (DetailAST) getNextSibling();
             if (child != null) {
                 return child.getLineNo();
             }
@@ -149,8 +149,8 @@ public class DetailAST
         if (mColumnNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
             // with initialize(String text)
-            DetailAST child = (DetailAST) getFirstChild();
-            DetailAST sibling = (DetailAST) getNextSibling();
+            final DetailAST child = (DetailAST) getFirstChild();
+            final DetailAST sibling = (DetailAST) getNextSibling();
             if (child != null) {
                 return child.getColumnNo();
             }
@@ -172,7 +172,7 @@ public class DetailAST
     public DetailAST getLastChild()
     {
         AST ast = getFirstChild();
-        while (ast != null && ast.getNextSibling() != null) {
+        while ((ast != null) && (ast.getNextSibling() != null)) {
             ast = ast.getNextSibling();
         }
         return (DetailAST) ast;
@@ -186,14 +186,14 @@ public class DetailAST
         // lazy init
         if (mBranchTokenTypes == null) {
 
-            // TODO improve algorithm to avoid most array creation
+            // TODO: improve algorithm to avoid most array creation
             int[] bag = new int[] { getType() };
 
             // add union of all childs
             DetailAST child = (DetailAST) getFirstChild();
             while (child != null) {
-                int[] childTypes = child.getBranchTokenTypes();
-                int[] savedBag = bag;
+                final int[] childTypes = child.getBranchTokenTypes();
+                final int[] savedBag = bag;
                 bag = new int[savedBag.length + childTypes.length];
                 System.arraycopy(savedBag, 0, bag, 0, savedBag.length);
                 System.arraycopy(childTypes, 0, bag, savedBag.length,
@@ -241,7 +241,7 @@ public class DetailAST
      */
     public DetailAST getPreviousSibling()
     {
-        DetailAST parent = getParent();
+        final DetailAST parent = getParent();
         if (parent == null) {
             return null;
         }
