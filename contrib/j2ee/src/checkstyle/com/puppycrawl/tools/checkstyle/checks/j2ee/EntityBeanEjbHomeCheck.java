@@ -43,7 +43,7 @@ public class EntityBeanEjbHomeCheck
         {
             checkMethod(aAST);
             if (Utils.hasThrows(aAST, "java.rmi.RemoteException")) {
-                 log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                log(nameAST.getLineNo(), nameAST.getColumnNo(),
                     "illegalthrows.bean",
                      new Object[] {name, "java.rmi.RemoteException"});
             }
