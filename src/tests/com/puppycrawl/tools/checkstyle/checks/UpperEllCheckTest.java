@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.UpperEllCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class UpperEllCheckTest
     extends BaseCheckTestCase
@@ -10,11 +11,9 @@ public class UpperEllCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(UpperEllCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSemantic.java");
         final String[] expected = {
             "94:43: Should use uppercase 'L'.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 }

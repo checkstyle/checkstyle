@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.RedundantModifierCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class RedundantModifierTest
     extends BaseCheckTestCase
@@ -10,12 +11,10 @@ public class RedundantModifierTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RedundantModifierCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputModifier.java");
         final String[] expected = {
             "32:9: Redundant 'public' modifier.",
             "38:9: Redundant 'abstract' modifier.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputModifier.java"), expected);
     }
 }

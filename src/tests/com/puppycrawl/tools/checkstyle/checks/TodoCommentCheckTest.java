@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class TodoCommentCheckTest
     extends BaseCheckTestCase
@@ -11,14 +12,12 @@ public class TodoCommentCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(TodoCommentCheck.class);
         checkConfig.addAttribute("format", "FIXME:");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
         final String[] expected = {
             "161: Comment matches to-do format 'FIXME:'.",
             "162: Comment matches to-do format 'FIXME:'.",
             "163: Comment matches to-do format 'FIXME:'.",
             "167: Comment matches to-do format 'FIXME:'.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 }

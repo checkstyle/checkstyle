@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanExpressionCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class SimplifyBooleanExpressionCheckTest
     extends BaseCheckTestCase
@@ -10,8 +11,6 @@ public class SimplifyBooleanExpressionCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(SimplifyBooleanExpressionCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimplifyBoolean.java");
         final String[] expected = {
             "20:18: Expression can be simplified.",
             "41:36: Expression can be simplified.",
@@ -21,6 +20,6 @@ public class SimplifyBooleanExpressionCheckTest
             // TODO: Change Check.log to avoid duplicate messages
             "43:32: Expression can be simplified.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimplifyBoolean.java"), expected);
     }
 }
