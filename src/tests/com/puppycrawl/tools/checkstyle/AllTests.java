@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.checks.LocalVariableNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.MemberNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.MethodLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.MethodNameCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.MissingSwitchDefaultCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.ModifierOrderCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.NeedBracesCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest;
@@ -135,6 +136,7 @@ public class AllTests {
         suite.addTest(new TestSuite(WhitespaceAroundTest.class));
         suite.addTest(new TestSuite(XMLLoggerTest.class));
         suite.addTest(new TestSuite(FinalClassCheckTest.class));
+        suite.addTest(new TestSuite(MissingSwitchDefaultCheckTest.class));
         //$JUnit-END$
         return suite;
     }

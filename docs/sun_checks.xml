@@ -115,6 +115,9 @@
 
     <!-- declare classes as final if they only have private constructors -->
     <module name="FinalClass"/>
+
+    <!-- check for default case in switch statement -->
+    <module name="MissingSwitchDefault"/>
   </module>
 
   <!-- enforce package documentation -->
