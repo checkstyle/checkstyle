@@ -56,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundTest;
 import com.puppycrawl.tools.checkstyle.checks.DoubleCheckedLockingCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.DesignForInheritanceCheckTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -79,6 +80,7 @@ public class AllTests {
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
+        suite.addTest(new TestSuite(DesignForInheritanceCheckTest.class));
         suite.addTest(new TestSuite(DoubleCheckedLockingCheckTest.class));
         suite.addTest(new TestSuite(EmptyBlockCheckTest.class));
         suite.addTest(new TestSuite(EmptyForIteratorPadCheckTest.class));
