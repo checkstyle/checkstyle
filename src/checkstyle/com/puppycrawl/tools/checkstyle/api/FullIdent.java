@@ -19,11 +19,21 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 /**
- * Represents a string with an associated line number.
+ * Represents a full identifier, including dots, with associated
+ * position information.
+ *
+ * <p>
+ * Identifiers such as <code>java.util.HashMap</code> are spread across
+ * multiple AST nodes in the syntax tree (three IDENT nodes, two DOT nodes).
+ * This class
+ * </p>
+ *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
 public class FullIdent
 {
+    // TODO: We should hide public default constructor.
+
     /** the string **/
     private final StringBuffer mBuffer = new StringBuffer();
     /** the line number **/
@@ -53,9 +63,9 @@ public class FullIdent
      * Append the specified text.
      * @param aText the text to append
      */
-    public void append(String aText)
+    private void append(String aText)
     {
-        mBuffer.append(".");
+        mBuffer.append(aText);
     }
 
     /**
@@ -63,7 +73,7 @@ public class FullIdent
      * column.
      * @param aAST the token to append
      */
-    public void append(DetailAST aAST)
+    private void append(DetailAST aAST)
     {
         mBuffer.append(aAST.getText());
         if (mLineNo == 0) {
@@ -99,7 +109,7 @@ public class FullIdent
      * @param aFull the FullIdent to add to
      * @param aAST the node to recurse from
      */
-    public static void extractFullIdent(FullIdent aFull, DetailAST aAST)
+    private static void extractFullIdent(FullIdent aFull, DetailAST aAST)
     {
         // A guard to be paranoid
         if (aAST == null) {
