@@ -50,6 +50,8 @@ interface Defn
     String HEADER_IGNORE_LINE_PROP = "checkstyle.header.ignoreline";
     /** property name for relaxing checking on Javadoc **/
     String RELAX_JAVADOC_PROP = "checkstyle.javadoc.relax";
+    /** property name for ignoring checking on Javadoc **/
+    String IGNORE_JAVADOC_PROP = "checkstyle.javadoc.ignore";
     /** property name for ignoring import statements **/
     String IGNORE_IMPORTS_PROP = "checkstyle.ignore.imports";
     /** property name for ignoring whitespace **/
@@ -58,4 +60,6 @@ interface Defn
     String IGNORE_BRACES_PROP = "checkstyle.ignore.braces";
     /** property name for cache file **/
     String CACHE_FILE_PROP = "checkstyle.cache.file";
+    /** property name for ignoring line length of import statements **/
+    String IGNORE_IMPORT_LENGTH_PROP = "checkstyle.ignore.importlength";
 }
