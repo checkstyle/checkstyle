@@ -38,14 +38,14 @@ public class EmptyBlockCheck extends AbstractOptionCheck
             TokenTypes.LITERAL_TRY,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.LITERAL_FINALLY,
-            TokenTypes.LITERAL_SYNCHRONIZED,
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_ELSE,
             TokenTypes.LITERAL_FOR,
             TokenTypes.STATIC_INIT,
             // TODO: need to handle....
-            //TokenTypes.LITERAL_SWITCH,      
+            //TokenTypes.LITERAL_SWITCH,
+            //TODO: does this handle TokenTypes.LITERAL_SYNCHRONIZED?      
         };
     }
         
@@ -64,7 +64,7 @@ public class EmptyBlockCheck extends AbstractOptionCheck
             }
             else if (mOption == BlockOption.TEXT) {
                 if (!hasText(slistAST)) {
-                        log(slistAST.getLineNo(),
+                    log(slistAST.getLineNo(),
                         slistAST.getColumnNo(),
                         "block.empty",
                         aAST.getText());
