@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  */
 public class TypeNameCheck
-    extends AbstractFormatCheck
+    extends AbstractNameCheck
 {
 
     /**
@@ -48,19 +48,5 @@ public class TypeNameCheck
     {
         return new int[] {TokenTypes.CLASS_DEF,
                           TokenTypes.INTERFACE_DEF};
-    }
-
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void visitToken(DetailAST aAST)
-    {
-        final DetailAST nameAST =
-            (DetailAST) aAST.getFirstChild().getNextSibling();
-        if (!getRegexp().match(nameAST.getText())) {
-            log(nameAST.getLineNo(),
-                nameAST.getColumnNo(),
-                "name.invalidPattern",
-                nameAST.getText(),
-                getFormat());
-        }
     }
 }
