@@ -20,51 +20,47 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that constant names conform to a specified format.
+ * Abstract class for checking that names conform to a specified format.
  *
  * @author Rick Giles
  * @version 1.0
  */
-public class ConstantNameCheck
-    extends AbstractNameCheck
+public abstract class AbstractNameCheck
+    extends AbstractFormatCheck
 {
-    /** Creates a new <code>ConstantNameCheck</code> instance. */
-    public ConstantNameCheck()
+    /** Creates a new <code>AbstractNameCheck</code> instance. */
+    public AbstractNameCheck(String format)
     {
-        super("^[A-Z](_?[A-Z0-9]+)*$");
+        super(format);
     }
 
+    /**
+     * Decides whether the name of an AST should be checked against
+     * the format regexp.
+     * @param aAST the AST to check.
+     * @return true if the IDENT subnode of aAST should be checked against
+     * the format regexp.
+     */ 
+    protected boolean mustCheckName(DetailAST aAST)
+    {
+        return true;
+    }
+     
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public int[] getDefaultTokens()
+    public void visitToken(DetailAST aAST)
     {
-        return new int[] {TokenTypes.VARIABLE_DEF};
-    }
-
-    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractNameCheck */
-    protected final boolean mustCheckName(DetailAST aAST)
-    {
-        boolean retVal = false;
-
-        DetailAST modifiersAST = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStatic = modifiersAST != null
-            && modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
-        final boolean isFinal = modifiersAST != null
-            && modifiersAST.branchContains(TokenTypes.FINAL);
-
-        if ((isStatic  && isFinal) || ScopeUtils.inInterfaceBlock(aAST)) {
-            // Handle the serialVersionUID constant which is used for
-            // Serialization. Cannot enforce rules on it. :-)
+        if (mustCheckName(aAST)) {
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-            if ((nameAST != null)
-                    && !("serialVersionUID".equals(nameAST.getText()))) {
-                retVal = true;
+            if (!getRegexp().match(nameAST.getText())) {
+                log(nameAST.getLineNo(),
+                    nameAST.getColumnNo(),
+                    "name.invalidPattern",
+                    nameAST.getText(),
+                    getFormat());
             }
         }
-
-        return retVal;
     }
 }
