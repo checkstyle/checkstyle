@@ -22,12 +22,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that the header of the source file is correct.
- *
- * <p>
- * Rationale: In most projects each file must have a fixed header,
- * usually the header contains copyright information.
- * </p>
+ * Checks that the name of a parameter matches a specified format. Defaults to
+ * <code>^[a-z][a-zA-Z0-9]*$</code>.
  *
  * @author Oliver Burn
  */
