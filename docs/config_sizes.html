@@ -23,6 +23,9 @@
     <td class="menu" valign="top">
       <ul>
         <li>
+          <a href="#ExecutableStatementCount">ExecutableStatementCount</a>
+        </li>
+        <li>
           <a href="#FileLength">FileLength</a>
         </li>
         <li>
@@ -41,6 +44,79 @@
     </td>
     <!--Content-->
     <td class="content" valign="top" align="left">
+
+
+
+      <!-- --><a name="ExecutableStatementCount"></a> <h2>ExecutableStatementCount</h2>
+      <h4>Description</h4>
+
+      <p class="body">
+      Restricts the number of executable statements to a specified limit.
+      </p>
+
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>the maximum threshold allowed</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td><span class="default">30</span></td>
+        </tr>
+
+        <tr>
+          <td>tokens</td>
+          <td>members to check</td>
+
+          <td>subset of tokens <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">INSTANCE_INIT</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">STATIC_INIT</a>
+          </td>
+
+          <td>all tokens</td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ExecutableStatementCount&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check with a threshold of 20 for constructor and
+      method definitions:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ExecutableStatementCount&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;20&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF,METHOD_DEF&quot;/&gt;
+&lt;/module&gt;
+      
+      </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.sizes
+      </p>
+
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
 
       <a name="FileLength"></a> <h2>FileLength</h2> <h4>Description</h4>
       <p class="body">
