@@ -76,9 +76,9 @@ import java.util.Vector;
  * &lt;/module&gt;
  * </pre>
  *
-
  * @author Oliver Burn
- * @version 1.0
+ * @author Michael Tamm
+ * @version 1.1
  */
 public class JavadocTypeCheck
     extends Check
@@ -219,9 +219,7 @@ public class JavadocTypeCheck
                                         tagName,
                                         content.trim()));
             }
-            if (i != 0) {
-                tagRE = Utils.getRE("^\\s*\\**\\s*@([:alpha:]+)\\s");
-            }
+            tagRE = Utils.getRE("^\\s*\\**\\s*@([:alpha:]+)\\s");
         }
         return tags;
     }

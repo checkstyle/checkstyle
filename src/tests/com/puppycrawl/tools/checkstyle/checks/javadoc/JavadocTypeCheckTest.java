@@ -195,6 +195,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
             "13: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
             "22: Type Javadoc comment is missing an @version tag.",
             "31: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
+            "40: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
