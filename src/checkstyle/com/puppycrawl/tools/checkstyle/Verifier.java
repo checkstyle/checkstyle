@@ -531,11 +531,6 @@ class Verifier
      */
     void verifyMethodLength(int aLineNo, int aLength)
     {
-        if (aLength > mConfig.getMaxMethodLength()) {
-            mMessages.add(aLineNo, "maxLen.method",
-                          new Integer(aLength),
-                          new Integer(mConfig.getMaxMethodLength()));
-        }
     }
 
 
