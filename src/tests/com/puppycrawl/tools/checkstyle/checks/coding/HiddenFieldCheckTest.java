@@ -24,6 +24,10 @@ public class HiddenFieldCheckTest
             "76:17: 'innerHidden' hides a field.",
             "77:17: 'hidden' hides a field.",
             "82:13: 'hidden' hides a field.",
+            "138:13: 'hidden' hides a field.",
+            "143:13: 'hidden' hides a field.",
+            "148:13: 'hidden' hides a field.",
+            "152:13: 'hidden' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -54,6 +58,10 @@ public class HiddenFieldCheckTest
             "106:29: 'prop' hides a field.",
             "112:29: 'prop' hides a field.",
             "124:28: 'prop' hides a field.",
+            "138:13: 'hidden' hides a field.",
+            "143:13: 'hidden' hides a field.",
+            "148:13: 'hidden' hides a field.",
+            "152:13: 'hidden' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -80,6 +88,10 @@ public class HiddenFieldCheckTest
             "106:29: 'prop' hides a field.",
             "112:29: 'prop' hides a field.",
             "124:28: 'prop' hides a field.",
+            "138:13: 'hidden' hides a field.",
+            "143:13: 'hidden' hides a field.",
+            "148:13: 'hidden' hides a field.",
+            "152:13: 'hidden' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -111,6 +123,10 @@ public class HiddenFieldCheckTest
             "106:29: 'prop' hides a field.",
             "112:29: 'prop' hides a field.",
             "124:28: 'prop' hides a field.",
+            "138:13: 'hidden' hides a field.",
+            "143:13: 'hidden' hides a field.",
+            "148:13: 'hidden' hides a field.",
+            "152:13: 'hidden' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -141,6 +157,10 @@ public class HiddenFieldCheckTest
             "106:29: 'prop' hides a field.",
             "112:29: 'prop' hides a field.",
             "124:28: 'prop' hides a field.",
+            "138:13: 'hidden' hides a field.",
+            "143:13: 'hidden' hides a field.",
+            "148:13: 'hidden' hides a field.",
+            "152:13: 'hidden' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
