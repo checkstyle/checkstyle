@@ -14,7 +14,7 @@ public class InputSimplifyBoolean
 
     public static boolean isOddMillis()
     {
-        boolean even = System.currentMillis() % 2 == 0;
+        boolean even = System.currentTimeMillis() % 2 == 0;
 
         // can be simplified to "if (even)"
         if (even == true) {
@@ -28,7 +28,7 @@ public class InputSimplifyBoolean
 
     public static boolean isOddMillis2()
     {
-        boolean even = System.currentMillis() % 2 == 0;
+        boolean even = System.currentTimeMillis() % 2 == 0;
         // can be simplified to "return !even"
         if (!even)
             return true;

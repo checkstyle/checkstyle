@@ -103,10 +103,11 @@ class InputBraces
     
     void whitespaceAfterSemi()
     {
+        //reject
+        int i = 1;int j = 2;
+
         //accept
         for (;;) {
         }
-        //reject
-        int i = 1;int j = 2;
     }
 }

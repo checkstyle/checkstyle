@@ -14,17 +14,17 @@ public class HiddenFieldCheckTest
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputHiddenField.java");
         final String[] expected = {
-            "16:13: 'hidden' hides a field.",
-            "25:13: 'hidden' hides a field.",
-            "30:18: 'hidden' hides a field.",
-            "44:17: 'innerHidden' hides a field.",
-            "53:17: 'innerHidden' hides a field.",
-            "54:17: 'hidden' hides a field.",
-            "59:22: 'innerHidden' hides a field.",
-            "62:22: 'hidden' hides a field.",
-            "74:17: 'innerHidden' hides a field.",
-            "75:17: 'hidden' hides a field.",
-            "80:13: 'hidden' hides a field.",
+            "18:13: 'hidden' hides a field.",
+            "27:13: 'hidden' hides a field.",
+            "32:18: 'hidden' hides a field.",
+            "46:17: 'innerHidden' hides a field.",
+            "55:17: 'innerHidden' hides a field.",
+            "56:17: 'hidden' hides a field.",
+            "61:22: 'innerHidden' hides a field.",
+            "64:22: 'hidden' hides a field.",
+            "76:17: 'innerHidden' hides a field.",
+            "77:17: 'hidden' hides a field.",
+            "82:13: 'hidden' hides a field.",
         };
         verify(c, fname, expected);
     }
@@ -37,22 +37,22 @@ public class HiddenFieldCheckTest
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputHiddenField.java");
         final String[] expected = {
-            "16:13: 'hidden' hides a field.",
-            "19:33: 'hidden' hides a field.",
-            "25:13: 'hidden' hides a field.",
-            "30:18: 'hidden' hides a field.",
-            "34:33: 'hidden' hides a field.",
-            "44:17: 'innerHidden' hides a field.",
-            "47:26: 'innerHidden' hides a field.",
-            "53:17: 'innerHidden' hides a field.",
-            "54:17: 'hidden' hides a field.",
-            "59:22: 'innerHidden' hides a field.",
-            "62:22: 'hidden' hides a field.",
-            "67:17: 'innerHidden' hides a field.",
-            "68:17: 'hidden' hides a field.",
-            "74:17: 'innerHidden' hides a field.",
-            "75:17: 'hidden' hides a field.",
-            "80:13: 'hidden' hides a field.",
+            "18:13: 'hidden' hides a field.",
+            "21:33: 'hidden' hides a field.",
+            "27:13: 'hidden' hides a field.",
+            "32:18: 'hidden' hides a field.",
+            "36:33: 'hidden' hides a field.",
+            "46:17: 'innerHidden' hides a field.",
+            "49:26: 'innerHidden' hides a field.",
+            "55:17: 'innerHidden' hides a field.",
+            "56:17: 'hidden' hides a field.",
+            "61:22: 'innerHidden' hides a field.",
+            "64:22: 'hidden' hides a field.",
+            "69:17: 'innerHidden' hides a field.",
+            "70:17: 'hidden' hides a field.",
+            "76:17: 'innerHidden' hides a field.",
+            "77:17: 'hidden' hides a field.",
+            "82:13: 'hidden' hides a field.",
         };
         verify(c, fname, expected);
     }
