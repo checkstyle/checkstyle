@@ -109,10 +109,10 @@ public class DetailAST
      * Set the parent token.
      * @param aParent the parent token
      */
-    // TODO: Check visibility, could be private
-    // if set in setFirstChild() and friends
     public void setParent(DetailAST aParent)
     {
+        // TODO: Check visibility, could be private
+        // if set in setFirstChild() and friends
         mParent = aParent;
     }
 

@@ -55,8 +55,7 @@ import org.apache.commons.beanutils.converters.StringArrayConverter;
  */
 class CheckConfiguration
 {
-    static
-    {
+    static {
         initConverters();
     }
 
@@ -109,9 +108,9 @@ class CheckConfiguration
         ConvertUtils.register(new ShortArrayConverter(),
                 shortArray.getClass());
         ConvertUtils.register(new StringArrayConverter(),
-                        String[].class );
+                        String[].class);
         ConvertUtils.register(new IntegerArrayConverter(),
-                        Integer[].class );
+                        Integer[].class);
 
         // BigDecimal, BigInteger, Class, Date, String, Time, TimeStamp
         // do not use defaults in the default configuration of ConvertUtils

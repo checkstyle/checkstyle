@@ -54,20 +54,26 @@ public class JavadocVariableCheck
             final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
             final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
             final Scope variableScope =
-                ScopeUtils.inInterfaceBlock(aAST) ? Scope.PUBLIC : declaredScope;
+                ScopeUtils.inInterfaceBlock(aAST)
+                    ? Scope.PUBLIC
+                    : declaredScope;
+                    
             if (variableScope.isIn(mScope)) {
-                final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
+                final Scope surroundingScope =
+                    ScopeUtils.getSurroundingScope(aAST);
+                    
                 if (surroundingScope.isIn(mScope)) {
                     final FileContents contents = getFileContents();
                     final String[] cmt =
                         contents.getJavadocBefore(aAST.getLineNo());
+                        
                     if (cmt == null) {
-                        log(aAST.getLineNo(), aAST.getColumnNo(),
+                        log(aAST.getLineNo(),
+                            aAST.getColumnNo(),
                             "javadoc.missing");
                     }
                 }
             }
         }
     }
-
 }

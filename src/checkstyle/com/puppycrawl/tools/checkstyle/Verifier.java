@@ -49,7 +49,8 @@ class Verifier
     private static final String MATCH_JAVADOC_ARG_PAT
         = "@(throws|exception|param)\\s+(\\S+)\\s+\\S";
     /** compiled regexp to match Javadoc tags that take an argument **/
-    private static final RE MATCH_JAVADOC_ARG = Utils.createRE(MATCH_JAVADOC_ARG_PAT);
+    private static final RE MATCH_JAVADOC_ARG =
+        Utils.createRE(MATCH_JAVADOC_ARG_PAT);
 
    /**
     * the pattern to match a single line comment containing only the comment
