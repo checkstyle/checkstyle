@@ -7,8 +7,8 @@ public class TabCharacterCheckTest
 {
     public void testIt() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(TabCharacterCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TabCharacterCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
