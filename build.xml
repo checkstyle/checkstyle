@@ -22,6 +22,7 @@
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
     <pathelement location="${regexp.jar}" />
+    <pathelement location="${ant.home}/lib/ant.jar" />
   </path>
 
   <path id="run.classpath">
@@ -31,7 +32,6 @@
 
   <!-- add classes to generate Javadoc -->
   <path id="javadoc.classpath">
-    <pathelement location="${ant.home}/lib/ant.jar" />
     <pathelement location="${ant.home}/lib/crimson.jar" />
     <path refid="run.classpath" />
   </path>
