@@ -11,7 +11,7 @@ public class UnusedPrivateMethodCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(UnusedPrivateMethodCheck.class);
         final String[] expected = {
-            "7:18: Unused method 'methodUnused0'.",
+            "7:18: Unused private method 'methodUnused0'.",
         };
         verify(checkConfig, getPath("usage/InputUnusedMethod.java"), expected);
     }
