@@ -1,71 +1,422 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>Checks for whitespace</title>
-  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <link rel="stylesheet" type="text/css" href="mystyle.css"/>
 </head>
 
 <body>
-<h1>Checks for whitespace</h1>
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td><h1>Checks for whitespace</h1></td>
+    <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
+  </tr>
+</table>
+<!-- content -->
+<table border="0" width="100%" cellpadding="5" summary="body layout">
+  <tr>
+    <!--Left menu-->
+    <td class="menu" valign="top">
+      <ul>
+        <li>
+          <a href="#NoWhitespaceAfter">NoWhitespaceAfter</a>
+        </li>
+        <li>
+          <a href="#NoWhitespaceBefore">NoWhitespaceBefore</a>
+        </li>
+        <li>
+          <a href="#OperatorWrap">OperatorWrap</a>
+        </li>
+        <li>
+          <a href="#ParenPad">ParenPad</a>
+        </li>
+        <li>
+          <a href="#TabCharacter">TabCharacter</a>
+        </li>
+        <li>
+          <a href="#WhitespaceAfter">WhitespaceAfter</a>
+        </li>
+        <li>
+          <a href="#WhitespaceAround">WhitespaceAround</a>
+        </li>
+      </ul>
+    </td>
+    <!--Content-->
+    <td class="content" valign="top" align="left"><a name="NoWhitespaceAfter"></a> <h2>NoWhitespaceAfter</h2>
+      <h4>Description</h4>
 
-<h2>Tab characters</h2>
+      <p class="body">
+      Checks that there is no whitespace after a token. More specifically, it checks 
+      that it is not followed by whitespace, or (if linebreaks are allowed) all 
+      characters on the line after are whitespace. To forbid linebreaks after a token, 
+      set property <span class="code">allowLineBreaks</span> to <span class="code">
+      false</span>.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>allowLineBreaks</td>
+          <td>whether whitespace is allowed if the token is at a linebreak</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of tokens ARRAY_INIT, BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, 
+          UNARY_PLUS</td>
+          <td>ARRAY_INIT, BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS</td>
+        </tr>
+      </table>
 
-<p>The property <span class="code">checkstyle.allow.tabs</span> controls
-whether to silently allow lines that contain tab (<code>'\t'</code>)
-characters. The property type is
-<a href="property_types.html#boolean">boolean</a> and defaults to
-<span class="default">false</span>.</p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to forbid linebreaks after a DOT token:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
+    &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
 
-<h2>Surrounding Whitespace</h2>
+      <a name="NoWhitespaceBefore"></a> <h2>NoWhitespaceBefore</h2> <h4>Description</h4>
 
-<p>The property <span class="code">checkstyle.ignore.whitespace</span>
-controls whether to check whitespace. It overrides all the other properties in
-this section. The property type is
-<a href="property_types.html#boolean">boolean</a> and defaults to
-<span class="default">false</span>.</p>
+      <p class="body">
+      Checks that there is no whitespace before a token. More specifically, it checks 
+      that it is not preceeded with whitespace, or (if linebreaks are allowed) all 
+      characters on the line before are whitespace. To allow linebreaks before a token, 
+      set property <span class="code">allowLineBreaks</span> to <span class="code">
+      true</span>.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>allowLineBreaks</td>
+          <td>whether whitespace is allowed if the token is at a linebreak</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">false</span></td>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of tokens DOT, POST_DEC, POST_INC</td>
+          <td>DOT, POST_DEC, POST_INC</td>
+        </tr>
+      </table>
 
-<p>The following checks are performed:</p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NoWhitespaceBefore&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to allow linebreaks before a DOT token:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NoWhitespaceBefore&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
+    &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
 
-<ul>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <a name="OperatorWrap"></a> <h2>OperatorWrap</h2> <h4>Description</h4>
 
-  <li>Binary operators are separated from operands by spaces. For example
-  <span class="code">x = y + 1;</span></li>
+      <p class="body">
+      Checks the policy on how to wrap lines on operators.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>option</td>
+          <td>policy on how to wrap lines</td>
+          <td><a href="property_types.html#wrapOp">wrap operator policy</a></td>
+          <td><span class="default">nl</span></td>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of tokens ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, 
+          BXOR, BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, EQUAL, GE, GT, LAND, LE, 
+          LITERAL_INSTANCEOF, LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, 
+          PLUS, PLUS_ASSIGN, QUESTION, SL, SL_ASSIGN, SR, SR_ASSIGN, STAR, STAR_ASSIGN</td>
+          <td>BAND, BOR, BSR, BXOR, COLON, DIV, EQUAL, GE, GT, LAND, LE, 
+          LITERAL_INSTANCEOF, LOR, LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR 
+          (all tokens except assignment operators)</td>
+        </tr>
+      </table>
 
-  <li>Unary operators are not separated by spaces. For example
-  <span class="code">x = --y + z++;</span></li>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;OperatorWrap&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check for the assignment operator, <span class="code">=</span>, 
+      at the end of a line:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;OperatorWrap&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;eol&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
 
-  <li>The keywords
-  <span class="code">if/for/while/do/catch/synchronized/return</span> are
-  surrounded by spaces.</li>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <a name="ParenPad"></a> <h2>ParenPad</h2> <h4>Description</h4>
 
-  <li>Casts and commas (',') are followed by whitespace.</li>
+      <p class="body">
+      Checks the policy on the padding of parentheses; i.e. whether a space is 
+      required after a left parenthesis and before a right parenthesis, or such spaces 
+      are forbidden.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>option</td>
+          <td>policy on how to pad parentheses</td>
+          <td><a href="property_types.html#parenPad">pad parentheses policy</a></td>
+          <td><span class="default">nospace</span></td>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of tokens CTOR_CALL, LPAREN, METHOD_CALL, RPAREN, SUPER_CTOR_CALL, 
+          TYPECAST</td>
+          <td>CTOR_CALL, LPAREN, METHOD_CALL, RPAREN, SUPER_CTOR_CALL, TYPECAST</td>
+        </tr>
+      </table>
 
-  <li>Periods ('.') are not surrounded by whitespace.</li>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ParenPad&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to require spaces for the parentheses of constructor, 
+      method, and super constructor calls:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ParenPad&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_CALL, METHOD_CALL,
+    SUPER_CTOR_CALL&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
 
-  <li>Correct padding of parenthesises <span class="code">()</span>'s.</li>
-</ul>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
 
+      <a name="TabCharacter"></a> <h2>TabCharacter</h2> <h4>Description</h4>
 
-<p>The property <span class="code">checkstyle.ignore.whitespace.cast</span>
-controls whether to ignore checking for whitespace after a cast. The property
-type is <a href="property_types.html#boolean">boolean</a> and defaults to
-<span class="default">false</span>.</p>
+      <p class="body">
+      Checks that there are no tab characters (<span class="code">'\t'</span>) in the 
+      source code.
+      </p>
+      <p class="body">
+      Rationale:
+      </p>
+      <ul class="body">
+        <li>
+          Developers should not need to configure the tab width of their text editors in 
+          order to be able to read source code.
+        </li>
+        <li>
+          From the Apache jakarta coding standards: In a distributed development 
+          environment, when the cvs commit messages get sent to a mailing list, they are 
+          almost impossible to read if you use tabs.
+        </li>
+      </ul>
 
-<p>The property <span class="code">checkstyle.paren.pad</span> specifies the
-policy on how parenthesises are to be padded. The property type is
-<a href="property_types.html#parenPad">pad parenthesis policy</a> and defaults
-to <span class="default">nospace</span>.</p>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;TabCharacter&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
 
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <a name="WhitespaceAfter"></a> <h2>WhitespaceAfter</h2> <h4>Description</h4>
 
-<h2>Line wrapping on operators</h2>
+      <p class="body">
+      Checks that a token is followed by whitespace.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of tokens COMMA, SEMI, TYPECAST</td>
+          <td>COMMA, SEMI, TYPECAST</td>
+        </tr>
+      </table>
 
-<p>The property <span class="code">checkstyle.wrap.operator</span> specifies
-the policy on how to wrap lines on operators. The property type is <a
-href="property_types.html#wrapOp">wrap operator policy</a> and defaults to
-<span class="default">nl</span>.</p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;WhitespaceAfter&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check for whitespace only after COMMA and SEMI tokens:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;WhitespaceAfter&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;COMMA, SEMI&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
 
-<hr>
-<p align="center">Copyright &copy; 2002 Oliver Burn. All rights Reserved.</p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <a name="WhitespaceAround"></a> <h2>WhitespaceAround</h2> <h4>Description</h4>
+
+      <p class="body">
+      Checks that a token is surrounded by whitespace.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of tokens ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, 
+          BXOR, BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, EQUAL, GE, GT, LAND, LCURLY, LE, 
+          LITERAL_ASSERT, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, 
+          LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SYNCHRONIZED, LITERAL_TRY, 
+          LITERAL_WHILE, LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, PLUS, 
+          PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR, 
+          STAR_ASSIGN STAR_ASSIGN</td>
+          <td>all tokens</td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;WhitespaceAround&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check for whitespace around the assignment operator, <span class="code">=</span>:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;WhitespaceAround&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+    </td>
+  </tr>
+</table>
+
+<hr />
+<p>
+Copyright &copy; 2002 Oliver Burn. All rights Reserved.
+</p>
 
 </body>
 </html>
