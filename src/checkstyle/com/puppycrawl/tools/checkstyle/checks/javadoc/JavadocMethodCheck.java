@@ -307,23 +307,34 @@ public class JavadocMethodCheck
     private void checkComment(DetailAST aAST, TextBlock aComment)
     {
         final List tags = getMethodTags(aComment);
-        // Check for only one @see tag
-        if ((tags.size() != 1)
-            || !((JavadocTag) tags.get(0)).isSeeOrInheritDocTag())
-        {
-            checkParamTags(tags, getParameters(aAST));
-            checkThrowsTags(tags, getThrows(aAST));
-            if (isFunction(aAST)) {
-                checkReturnTag(tags, aAST.getLineNo());
-            }
 
-            // Dump out all unused tags
-            final Iterator it = tags.iterator();
-            while (it.hasNext()) {
-                final JavadocTag jt = (JavadocTag) it.next();
-                if (!jt.isSeeOrInheritDocTag()) {
-                    log(jt.getLineNo(), "javadoc.unusedTagGeneral");
-                }
+        // Check for only one @see or inheritDoc tag
+        if ((tags.size() == 1)
+            && ((JavadocTag) tags.get(0)).isSeeOrInheritDocTag())
+        {
+            return;
+        }
+
+        // Check for inheritDoc
+        boolean hasInheritDocTag = false;
+        Iterator it = tags.iterator();
+        while (it.hasNext() && !hasInheritDocTag) {
+            hasInheritDocTag |=
+                ((JavadocTag) it.next()).isInheritDocTag();
+        }
+
+        checkParamTags(tags, getParameters(aAST), !hasInheritDocTag);
+        checkThrowsTags(tags, getThrows(aAST), !hasInheritDocTag);
+        if (isFunction(aAST)) {
+            checkReturnTag(tags, aAST.getLineNo(), !hasInheritDocTag);
+        }
+
+        // Dump out all unused tags
+        it = tags.iterator();
+        while (it.hasNext()) {
+            final JavadocTag jt = (JavadocTag) it.next();
+            if (!jt.isSeeOrInheritDocTag()) {
+                log(jt.getLineNo(), "javadoc.unusedTagGeneral");
             }
         }
     }
@@ -455,8 +466,11 @@ public class JavadocMethodCheck
      * Checks a set of tags for matching parameters.
      * @param aTags the tags to check
      * @param aParams the list of parameters to check
+     * @param aReportExpectedTags whether we should report if do
+     *        not find expected tag
      **/
-    private void checkParamTags(List aTags, List aParams)
+    private void checkParamTags(List aTags, List aParams,
+                                boolean aReportExpectedTags)
     {
         // Loop over the tags, checking to see they exist in the params.
         final ListIterator tagIt = aTags.listIterator();
@@ -490,7 +504,7 @@ public class JavadocMethodCheck
 
         // Now dump out all parameters without tags :- unless
         // the user has chosen to suppress these problems
-        if (!mAllowMissingParamTags) {
+        if (!mAllowMissingParamTags && aReportExpectedTags) {
             final Iterator paramIt = aParams.iterator();
             while (paramIt.hasNext()) {
                 final DetailAST param = (DetailAST) paramIt.next();
@@ -524,8 +538,11 @@ public class JavadocMethodCheck
      * supplied list.
      * @param aTags the tags to check
      * @param aLineNo the line number of the expected tag
+     * @param aReportExpectedTags whether we should report if do
+     *        not find expected tag
      **/
-    private void checkReturnTag(List aTags, int aLineNo)
+    private void checkReturnTag(List aTags, int aLineNo,
+                                boolean aReportExpectedTags)
     {
         // Loop over tags finding return tags. After the first one, report an
         // error.
@@ -544,7 +561,7 @@ public class JavadocMethodCheck
 
         // Handle there being no @return tags :- unless
         // the user has chosen to suppress these problems
-        if (!found && !mAllowMissingReturnTag) {
+        if (!found && !mAllowMissingReturnTag && aReportExpectedTags) {
             log(aLineNo, "javadoc.return.expected");
         }
     }
@@ -554,8 +571,11 @@ public class JavadocMethodCheck
      * Checks a set of tags for matching throws.
      * @param aTags the tags to check
      * @param aThrows the throws to check
+     * @param aReportExpectedTags whether we should report if do
+     *        not find expected tag
      **/
-    private void checkThrowsTags(List aTags, List aThrows)
+    private void checkThrowsTags(List aTags, List aThrows,
+                                 boolean aReportExpectedTags)
     {
         // Loop over the tags, checking to see they exist in the throws.
         final Set foundThrows = new HashSet(); //used for performance only
@@ -614,7 +634,7 @@ public class JavadocMethodCheck
 
         // Now dump out all throws without tags :- unless
         // the user has chosen to suppress these problems
-        if (!mAllowMissingThrowsTags) {
+        if (!mAllowMissingThrowsTags && aReportExpectedTags) {
             final ListIterator throwIt = aThrows.listIterator();
             while (throwIt.hasNext()) {
                 final ExceptionInfo ei = (ExceptionInfo) throwIt.next();

@@ -266,4 +266,35 @@ class InputTags
     void method25()
     {
     }
+
+    /** {@inheritDoc} */
+    int method26()
+    {
+    }
+
+    /** 
+     * {@inheritDoc}
+     * @return something very important.
+     */
+    int method27(int aParam)
+    {
+    }
+
+    /** 
+     * @return something very important.
+     * {@inheritDoc}
+     */
+    int method28(int aParam)
+    {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return 1
+     */
+    public int foo(Bar _arg) {
+
+        return 1;
+    }
 }
