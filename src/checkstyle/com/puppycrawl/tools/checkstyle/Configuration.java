@@ -162,6 +162,8 @@ public class Configuration
     private boolean mIgnoreWhitespace = false;
     /** whether to ignore cast whitespace **/
     private boolean mIgnoreCastWhitespace = false;
+    /** whether to ignore op wrapping **/
+    private boolean mIgnoreOpWrap = false;
     /** whether to ignore braces **/
     private boolean mIgnoreBraces = false;
     /** whether to ignore 'public' keyword in interface definitions **/
@@ -262,6 +264,9 @@ public class Configuration
         setIgnoreCastWhitespace(getBooleanProperty(aProps,
                                                    IGNORE_CAST_WHITESPACE_PROP,
                                                    mIgnoreCastWhitespace));
+        setIgnoreOpWrap(getBooleanProperty(aProps,
+                                           IGNORE_OP_WRAP_PROP,
+                                           mIgnoreOpWrap));
         setIgnoreBraces(getBooleanProperty(aProps,
                                            IGNORE_BRACES_PROP,
                                            mIgnoreBraces));
@@ -583,6 +588,12 @@ public class Configuration
         return mIgnoreCastWhitespace;
     }
 
+    /** @return whether to ignore checks for operator wrapping **/
+    public boolean isIgnoreOpWrap()
+    {
+        return mIgnoreOpWrap;
+    }
+
     /** @return whether to ignore checks for braces **/
     public boolean isIgnoreBraces()
     {
@@ -898,6 +909,14 @@ public class Configuration
     public void setIgnoreCastWhitespace(boolean aTo)
     {
         mIgnoreCastWhitespace = aTo;
+    }
+
+    /**
+     * @param aTo whether to ignore operator wrapping
+     */
+    public void setIgnoreOpWrap(boolean aTo)
+    {
+        mIgnoreOpWrap = aTo;
     }
 
     /**

@@ -903,14 +903,14 @@ shiftExpression
 // binary addition/subtraction (level 3)
 additiveExpression
 	:	multiplicativeExpression
-        ((p:PLUS^ {ver.verifyOpBegin(p.getLine(), p.getColumn(), p.getText());}| m:MINUS^ {ver.verifyWSAroundBegin(m.getLine(), m.getColumn(), m.getText());} )
+        ((p:PLUS^ {ver.verifyOpBegin(p.getLine(), p.getColumn(), p.getText());}| m:MINUS^ {ver.verifyOpBegin(m.getLine(), m.getColumn(), m.getText());} )
             multiplicativeExpression)*
 	;
 
 
 // multiplication/division/modulo (level 2)
 multiplicativeExpression
-	:	unaryExpression ((s:STAR^ {ver.verifyWSAroundBegin(s.getLine(), s.getColumn(), s.getText());} | DIV^ | MOD^ )  unaryExpression)*
+	:	unaryExpression ((s:STAR^ {ver.verifyOpBegin(s.getLine(), s.getColumn(), s.getText());} | DIV^ | MOD^ )  unaryExpression)*
 	;
 
 unaryExpression

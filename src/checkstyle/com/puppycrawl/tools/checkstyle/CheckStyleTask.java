@@ -573,6 +573,18 @@ public class CheckStyleTask
             });
     }
 
+    /** @param aIgnore whether to ignore operator wrapping **/
+    public void setIgnoreOpWrap(final boolean aIgnore)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setIgnoreOpWrap(aIgnore);
+                }
+            });
+    }
+
     /** @param aIgnore whether to ignore braces **/
     public void setIgnoreBraces(final boolean aIgnore)
     {
