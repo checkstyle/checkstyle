@@ -30,7 +30,7 @@ import java.text.MessageFormat;
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-class LocalizedMessage
+public class LocalizedMessage
     implements Comparable
 {
     /** name of the resource bundle to get messages from **/
@@ -84,7 +84,7 @@ class LocalizedMessage
     }
 
     /** @return the translated message **/
-    String getMessage()
+    public String getMessage()
     {
         // Very simple approach - wait for performance problems
         final ResourceBundle bundle =
@@ -94,13 +94,13 @@ class LocalizedMessage
     }
 
     /** @return the line number **/
-    int getLineNo()
+    public int getLineNo()
     {
         return mLineNo;
     }
 
     /** @return the column number **/
-    int getColumnNo()
+    public int getColumnNo()
     {
         return mColNo;
     }
