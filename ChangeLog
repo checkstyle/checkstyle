@@ -1,3 +1,9 @@
+2001-12-11  Oliver Burn  <oliver@cortexebusiness.com.au>
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.tree.g:
+	Included patch to check for whitespace around return statements.
+	From Lars kuehne [ lars _DOT_ kuehne _AT_ ppi _DOT_ de ].
+
 2001-12-03  Oliver Burn  <oliver@cortexebusiness.com.au>
 
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/VerifierImpl.java:
