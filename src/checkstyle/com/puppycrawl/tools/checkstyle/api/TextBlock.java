@@ -27,20 +27,25 @@ package com.puppycrawl.tools.checkstyle.api;
 public interface TextBlock
 {
     /**
-     * The actual text.
+     * The text content of the text block.
+     * Each line is represented by one array entry.
+     * The linebreak characters are not part of the text content.
+     *
      * @return the text content of the text block.
      */
     String[] getText();
 
     /**
-     * The line in the inputfile where the text block. Counting starts at 1.
+     * The line in the inputfile where the text block starts.
+     * Counting starts from 1.
      * @return first line of the text block
      */
     int getStartLineNo();
 
     /**
-     * The first line of the text block. Counting starts from 1.
-     * @return first line of the text block
+     * The last line of the text block in the inputfile.
+     * Counting starts from 1.
+     * @return last line of the text block
      */
     int getEndLineNo();
 
