@@ -547,7 +547,7 @@
     <property name="translation.severity" value="ignore"/>
   </target>
 
-  <target name="gump" depends="gump.setup,build.bindist,build.srcdist,run.tests"
+  <target name="gump" depends="gump.setup,build.bindist,build.srcdist,run.test.suite"
           description="Runs the test for GUMP testing"/>
 
   <!-- Added for Clover testing -->
