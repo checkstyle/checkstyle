@@ -53,7 +53,7 @@ public final class BlockOption
      * }
      * </pre>
      */
-    public static final BlockOption STMT = new BlockOption("statement");
+    public static final BlockOption STMT = new BlockOption("stmt");
 
     /**
      * Creates a new <code>BlockOption</code> instance.
