@@ -36,7 +36,7 @@
       <p>Documentation</p>
       <ul>
 	<li><a href="releasenotes.html">Release Notes</a></li>
-	<li><a href="engine.html">Core Engine</a></li>
+	<li><a href="config.html">Configuration</a></li>
 	<li><a href="anttask.html">ANT Task</a></li>
 	<li><a href="cmdline.html">Command Line</a></li>
       </ul>
@@ -89,33 +89,17 @@
       <a name="features"></a>
       <h2>Features</h2>
       <p class="body">The things that Checkstyle can check for are:</p>
+
       <ul>
-	<li class="body">Unused or duplicate <span class="code">import</span> statements.</li>
-	<li class="body">Javadoc comments are defined for class, interface, variable and method declarations. Note: This can be made to check only <span class="code">public</span> and <span class="code">protected</span> declarations.</li>
-	<li class="body">Javadoc tags for a method match the actual code.</li>
-	<li class="body">Detect instantiations of classes that should not be instantiated (e.g. java.lang.Boolean).</li>
-	<li class="body">Content of <span class="code">try</span>, <span class="code">catch</span> and <span class="code">finally</span> blocks.</li>
-	<li class="body">Enforce line wrapping on operators.</li>
-	<li class="body">Presence of to-do comments.</li>
-	<li class="body">The <span class="code">package.html</span> package documentation file is available.</li>
-	<li class="body">The file starts with a specified header. This is useful to ensure that a file has a copyright notice.</li>
-	<li class="body">An <span class="code">@author</span> tag exists for class and interface Javadoc comments.</li>
-	<li class="body">Format of variable names match specified regular expressions. For example, can enforce that all <span class="code">static</span> variables must start with <span class="code">"s"</span>.</li>
-	<li class="body">Format of class and interface names match a specified regular expression.</li>
-	<li class="body">Format of parameter names match a specified regular expression.</li>
-	<li class="body">Variables that are not declared as <span class="code">private</span> or <span class="code">protected</span>.</li>
-	<li class="body">Order of modifiers matches the recommendation in the Java Language specification.</li>
-	<li class="body">Correct use of white space around binary and unary operators. For example, <span class="code">x -=- 1;</span> is illegal, whereas <span class="code">x -= -1;</span> is not.</li>
-	<li class="body">Periods ('.') are not surrounded by whitespace.</li>
-	<li class="body">Ensure white space follows casts and commas. For example both <span class="code">x = (File)obj</span> and <span class="code">run(arg1,arg2)</span> are illegal, whereas <span class="code">x = (File) obj</span> and <span class="code">run(arg1, arg2)</span> are not.</li>
-	<li class="body">Correct use of white space around parenthesis. For example <span class="code">methodCall( arg1 )</span> is illegal, whereas <span class="code">methodCall(arg1)</span> is not.</li>
-	<li class="body">Ensure <span class="code">{}</span>'s are used for <span class="code">if/while/for/do</span> constructs.</li>
-	<li class="body">Correct placement of <span class="code">{</span>'s and <span class="code">}</span>'s (same line vs. next line).</li>
-	<li class="body">Lines do not contain tabs.</li>
-	<li class="body">Lines are not longer than a specified length.</li>
-	<li class="body">Methods/Constructors are not longer than a specified number of lines.</li>
-	<li class="body">Files are not longer than a specified number of lines.</li>
-	<li class="body">Long integer literals use an uppercase <span class="code">L</span>. For example <span class="code">40L</span> instead of <span class="code">40l</span>.</li>
+        <li class="body"><a href="config_javadoc.html">Javadoc Comments</a></li>
+        <li class="body"><a href="config_naming.html">Naming Conventions</a></li>
+        <li class="body"><a href="config_header.html">Headers</a></li>
+        <li class="body"><a href="config_import.html">Imports</a></li>
+        <li class="body"><a href="config_sizes.html">Size Violations</a></li>
+        <li class="body"><a href="config_whitespace.html">Whitespace</a></li>
+        <li class="body"><a href="config_modifiers.html">Modifiers</a></li>
+        <li class="body"><a href="config_blocks.html">Blocks</a></li>
+        <li class="body"><a href="config_misc.html">Miscellaneous Checks</a></li>
       </ul>
 
       <a name="download"></a>
