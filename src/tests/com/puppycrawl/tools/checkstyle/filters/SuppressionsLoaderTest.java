@@ -1,12 +1,10 @@
-package com.puppycrawl.tools.checkstyle;
-
-import org.apache.regexp.RESyntaxException;
-
-import junit.framework.TestCase;
+package com.puppycrawl.tools.checkstyle.filters;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.filters.SuppressElement;
+import junit.framework.TestCase;
+import org.apache.regexp.RESyntaxException;
 
 /**
  * Tests SuppressionsLoader.
@@ -23,7 +21,7 @@ public class SuppressionsLoaderTest extends TestCase
         final FilterSet fc2 = new FilterSet();
         assertEquals(fc, fc2);
     }
-    
+
     public void testMultipleSuppression()
         throws CheckstyleException, RESyntaxException
     {
@@ -35,14 +33,14 @@ public class SuppressionsLoaderTest extends TestCase
         fc2.addFilter(se0);
         SuppressElement se1 = new SuppressElement("file1", "check1");
         se1.setLines("1,2-3");
-        fc2.addFilter(se1);  
+        fc2.addFilter(se1);
         SuppressElement se2 = new SuppressElement("file2", "check2");
         se2.setColumns("1,2-3");
         fc2.addFilter(se2);
         SuppressElement se3 = new SuppressElement("file3", "check3");
         se3.setLines("1,2-3");
         se3.setColumns("1,2-3");
-        fc2.addFilter(se3);    
+        fc2.addFilter(se3);
         assertEquals(fc, fc2);
     }
 
@@ -73,7 +71,7 @@ public class SuppressionsLoaderTest extends TestCase
                 ex.getMessage());
         }
     }
-    
+
     public void testBadInt()
         throws CheckstyleException
     {
