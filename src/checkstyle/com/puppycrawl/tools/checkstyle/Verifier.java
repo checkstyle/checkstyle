@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.Stack;
-
-import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 
@@ -39,12 +36,6 @@ class Verifier
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
     ////////////////////////////////////////////////////////////////////////////
-
-    /** stack tracking the type of block currently in **/
-    private final Stack mInInterface = new Stack();
-
-    /** tracks the level of block definitions for methods **/
-    private int mMethodBlockLevel = 0;
 
     /** the messages being logged **/
     private final LocalizedMessages mMessages;
@@ -92,9 +83,7 @@ class Verifier
     void reset()
     {
         mLines = null;
-        mInInterface.clear();
         mMessages.reset();
-        mMethodBlockLevel = 0;
     }
 
     /**
@@ -207,51 +196,6 @@ class Verifier
     }
 
 
-    /**
-     * Report that the parser is entering a block that is associated with a
-     * class or interface. Must match up the call to this method with a call
-     * to the reportEndBlock().
-     * @param aScope the Scope of the type block
-     * @param aIsInterface indicates if the block is for an interface
-     * @param aType the name of the type
-     */
-    void reportStartTypeBlock(Scope aScope,
-                              boolean aIsInterface,
-                              MyCommonAST aType)
-    {
-        mInInterface.push(aIsInterface ? Boolean.TRUE : Boolean.FALSE);
-    }
-
-
-    /**
-     * Report that the parser is leaving a type block.
-     * @param aNamed is this a named type block
-     */
-    void reportEndTypeBlock(boolean aNamed)
-    {
-        mInInterface.pop();
-    }
-
-
-    /**
-     * Report that the parser is entering a block associated with method or
-     * constructor.
-     **/
-    void reportStartMethodBlock()
-    {
-        mMethodBlockLevel++;
-    }
-
-
-    /**
-     * Report that the parser is leaving a block associated with method or
-     * constructor.
-     **/
-    void reportEndMethodBlock()
-    {
-        mMethodBlockLevel--;
-    }
-
     // }}}
 
     // {{{ Private methods
@@ -286,19 +230,6 @@ class Verifier
                 mLines[aEndLineNo - 1].substring(0, aEndColNo + 1);
         }
         return retVal;
-    }
-
-    /** @return whether currently in an interface block **/
-    private boolean inInterfaceBlock()
-    {
-        return (!mInInterface.empty()
-                && Boolean.TRUE.equals(mInInterface.peek()));
-    }
-
-    /** @return whether currently in a method block **/
-    private boolean inMethodBlock()
-    {
-        return (mMethodBlockLevel > 0);
     }
 
     /**
