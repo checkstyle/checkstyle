@@ -31,4 +31,12 @@ public class InputRedundantThrows
         throws IOException, ClassNotFoundException
     {
     }
+
+    void method5() throws WrongException, IOException
+    {
+    }
+
+    void method6() throws NullPointerException, RuntimeException
+    {
+    }
 }

@@ -115,60 +115,30 @@ public abstract class AbstractTypeAwareCheck
      * Is exception is unchecked (subclass of <code>RuntimeException</code>
      * or <code>Error</code>
      *
-     * @param aException <code>FullIdent</code> of exception to check
+     * @param aException <code>Class</code> of exception to check
      * @return true  if exception is unchecked
      *         false if exception is checked
      */
-    protected boolean isUnchecked(FullIdent aException)
+    protected boolean isUnchecked(Class aException)
     {
-        final ClassResolver cr = getClassResolver();
-        try {
-            final Class clazz = cr.resolve(aException.getText());
-            return (RuntimeException.class.isAssignableFrom(clazz)
-                    || Error.class.isAssignableFrom(clazz));
-        }
-        catch (ClassNotFoundException e) {
-            log(aException.getLineNo(), aException.getColumnNo(),
-                "redundant.throws.classInfo",
-                aException.getText());
-        }
-
-        // return false to prefent from additional errors
-        return false;
+        return isSubclass(aException, RuntimeException.class)
+            || isSubclass(aException, Error.class);
     }
 
     /**
      * Checks if one class is subclass of another
      *
-     * @param aChild <code>FullIdent</code> of class
+     * @param aChild <code>Class</code> of class
      *               which should be child
-     * @param aParent <code>FullIdent</code> of class
+     * @param aParent <code>Class</code> of class
      *                which should be parent
      * @return true  if aChild is subclass of aParent
      *         false otherwise
      */
-    protected boolean isSubclass(FullIdent aChild, FullIdent aParent)
+    protected boolean isSubclass(Class aChild, Class aParent)
     {
-        final ClassResolver cr = getClassResolver();
-        try {
-            final Class childClass = cr.resolve(aChild.getText());
-            try {
-                final Class parentClass = cr.resolve(aParent.getText());
-                return parentClass.isAssignableFrom(childClass);
-            }
-            catch (ClassNotFoundException e) {
-                log(aChild.getLineNo(), aChild.getColumnNo(),
-                    "redundant.throws.classInfo",
-                    aParent.getText());
-            }
-        }
-        catch (ClassNotFoundException e) {
-            log(aChild.getLineNo(), aChild.getColumnNo(),
-                "redundant.throws.classInfo",
-                aChild.getText());
-        }
-
-        return true;
+        return (aParent != null) && (aChild != null)
+            &&  aParent.isAssignableFrom(aChild);
     }
 
     /**
@@ -187,7 +157,7 @@ public abstract class AbstractTypeAwareCheck
     }
 
     /** @return <code>ClassResolver</code> for current tree. */
-    protected final ClassResolver getClassResolver()
+    private ClassResolver getClassResolver()
     {
         if (mClassResolver == null) {
             mClassResolver =
@@ -196,6 +166,22 @@ public abstract class AbstractTypeAwareCheck
                                   mImports);
         }
         return mClassResolver;
+    }
+
+    /**
+     * Attempts to resolve the Class for a specified name.
+     * @param aClassName name of the class to resolve
+     * @return the resolved class or <code>null</code>
+     *          if unable to resolve the class.
+     */
+    protected final Class resolveClass(String aClassName)
+    {
+        try {
+            return getClassResolver().resolve(aClassName);
+        }
+        catch (ClassNotFoundException e) {
+            return null;
+        }
     }
 
     /**
@@ -217,6 +203,78 @@ public abstract class AbstractTypeAwareCheck
         final FullIdent name = FullIdent.createFullIdentBelow(aAST);
         if (name != null) {
             mImports.add(name.getText());
+        }
+    }
+
+    /**
+     * Contains class's <code>FullIdent</code>
+     * and <code>Class</code> object if we can load it.
+     */
+    protected static class ClassInfo
+    {
+        /** <code>FullIdent</code> associated with this class. */
+        private FullIdent mName;
+        /** <code>Class</code> object of this class if it's loadable. */
+        private Class mClass;
+        /** is class loadable. */
+        private boolean mIsLoadable;
+
+        /**
+         * Creates new instance of of class information object.
+         * @param aName <code>FullIdent</code> associated with new object.
+         * @param aClass <code>Class</code> associated with new object
+         *               or null id class is not loadable.
+         */
+        public ClassInfo(FullIdent aName, Class aClass)
+        {
+            if (aName == null && aClass == null) {
+                throw new NullPointerException(
+                    "ClassInfo's name or class should be non-null");
+            }
+            mName = aName;
+            setClazz(aClass);
+        }
+
+        /**
+         * Creates new instance of of class information object.
+         * @param aName <code>FullIdent</code> associated with new object.
+         */
+        public ClassInfo(FullIdent aName)
+        {
+            if (aName == null) {
+                throw new NullPointerException(
+                    "ClassInfo's name should be non-null");
+            }
+            mName = aName;
+            mIsLoadable = true;
+        }
+
+        /** @return class name */
+        public final FullIdent getName()
+        {
+            return mName;
+        }
+
+        /** @return if class is loadable ot not. */
+        public final boolean isLoadable()
+        {
+            return mIsLoadable;
+        }
+
+        /** @return <code>Class</code> associated with an object. */
+        public final Class getClazz()
+        {
+            return mClass;
+        }
+
+        /**
+         * Associates <code> Class</code> with an object.
+         * @param aClass <code>Class</code> to associate with.
+         */
+        public final void setClazz(Class aClass)
+        {
+            mClass = aClass;
+            mIsLoadable = (mClass != null);
         }
     }
 }
