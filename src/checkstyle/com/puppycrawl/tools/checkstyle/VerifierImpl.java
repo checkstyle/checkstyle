@@ -326,15 +326,22 @@ class VerifierImpl
             return;
         }
 
+        if (mConfig.isIgnoreWhitespace()) {
+            return;
+        }
+
         final String line = mLines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
         final int after = aAST.getColumnNo() + aAST.getText().length();
-        if ((before >= 0) && !Character.isWhitespace(line.charAt(before))) {
+        if ((before >= 0) &&
+            !Character.isWhitespace(line.charAt(before)))
+        {
             log(aAST.getLineNo(), "'" + aAST.getText() +
                 "' is not preceeded with whitespace.");
         }
         else if ((after < line.length()) &&
-                 !Character.isWhitespace(line.charAt(after))) {
+                 !Character.isWhitespace(line.charAt(after)))
+        {
             log(aAST.getLineNo(), "'" + aAST.getText() +
                 "' is not proceeded with whitespace.");
         }
@@ -343,10 +350,15 @@ class VerifierImpl
     /** @see Verifier **/
     public void verifyNoWSAfter(MyCommonAST aAST)
     {
+        if (mConfig.isIgnoreWhitespace()) {
+            return;
+        }
+
         final String line = mLines[aAST.getLineNo() - 1];
         final int after = aAST.getColumnNo() + aAST.getText().length();
         if ((after >= line.length()) ||
-            Character.isWhitespace(line.charAt(after))) {
+            Character.isWhitespace(line.charAt(after)))
+        {
             log(aAST.getLineNo(),
                 "'" + aAST.getText() + "' is proceeded with whitespace.");
         }
@@ -355,6 +367,10 @@ class VerifierImpl
     /** @see Verifier **/
     public void verifyNoWSBefore(MyCommonAST aAST)
     {
+        if (mConfig.isIgnoreWhitespace()) {
+            return;
+        }
+
         final String line = mLines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
         if ((before < 0) || Character.isWhitespace(line.charAt(before))) {

@@ -91,8 +91,11 @@ class Configuration
     private boolean mAllowNoAuthor = false;
     /** whether to relax javadoc checking **/
     private boolean mRelaxJavadoc = false;
-    /** whether to process imports **/
+    /** whether to ignore imports **/
     private boolean mIgnoreImports = false;
+    /** whether to ignore whitespace **/
+    private boolean mIgnoreWhitespace = false;
+
     /** the header lines to check for **/
     private String[] mHeaderLines = {};
     /** line number to ignore in header **/
@@ -136,6 +139,10 @@ class Configuration
             getBooleanProperty(aProps, RELAX_JAVADOC_PROP, mRelaxJavadoc));
         setIgnoreImports(
             getBooleanProperty(aProps, IGNORE_IMPORTS_PROP, mIgnoreImports));
+        setIgnoreWhitespace(
+            getBooleanProperty(aProps,
+                               IGNORE_WHITESPACE_PROP,
+                               mIgnoreWhitespace));
         setHeaderIgnoreLineNo(
             getIntProperty(aProps, aLog, HEADER_IGNORE_LINE_PROP,
                            mHeaderIgnoreLineNo));
@@ -269,6 +276,12 @@ class Configuration
         return mIgnoreImports;
     }
 
+    /** @return whether to ignore checks for whitespace **/
+    boolean isIgnoreWhitespace()
+    {
+        return mIgnoreWhitespace;
+    }
+
     /** @return the header lines to check for **/
     String[] getHeaderLines()
     {
@@ -386,6 +399,14 @@ class Configuration
     void setIgnoreImports(boolean aIgnoreImports)
     {
         mIgnoreImports = aIgnoreImports;
+    }
+
+    /**
+     * @param aTo whether to ignore checks for whitespace
+     */
+    void setIgnoreWhitespace(boolean aTo)
+    {
+        mIgnoreWhitespace = aTo;
     }
 
     /**

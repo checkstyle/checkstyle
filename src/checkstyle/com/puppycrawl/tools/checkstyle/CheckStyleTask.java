@@ -177,6 +177,12 @@ public class CheckStyleTask
         mConfig.setIgnoreImports(aIgnore);
     }
 
+    /** @param aIgnore whether to ignore whitespace **/
+    public void setIgnoreWhitespace(boolean aIgnore)
+    {
+        mConfig.setIgnoreWhitespace(aIgnore);
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // The doers
     ////////////////////////////////////////////////////////////////////////////
