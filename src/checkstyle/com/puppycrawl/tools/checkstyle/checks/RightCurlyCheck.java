@@ -22,8 +22,32 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
+ * <p>
  * Checks the placement of right curly braces.
- *
+ * The policy to verify is specified using the {@link RightCurlyOption} class and
+ * defaults to {@link RightCurlyOption#SAME}.
+ * </p>
+ * <p> By default the check will check the following tokens:
+ *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
+ *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
+ *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY}.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="RightCurlyCheck"/&gt;
+ * </pre> 
+ * <p>
+ * An example of how to configure the check with policy
+ * {@link RightCurlyOption#ALONE} for <code>else</code> tokens is:
+ * </p>
+ * <pre>
+ * &lt;config name="RightCurlyCheck"&gt;
+ *     &lt;property name="tokens" value="LITERAL_ELSE"/&gt;
+ *     &lt;property name="option" value="alone"/&gt;
+ * &lt;/config&gt;
+ * </pre> 
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author lkuehne
  * @version 1.0
