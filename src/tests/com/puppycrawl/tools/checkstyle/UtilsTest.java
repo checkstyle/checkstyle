@@ -3,6 +3,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.util.Properties;
 
 import junit.framework.TestCase;
+import org.apache.commons.beanutils.ConversionException;
 import org.apache.regexp.RE;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -97,6 +98,17 @@ public class UtilsTest
                 Utils.replaceProperties(testValues[i][0], props);
             assertEquals("\"" + testValues[i][0] + "\"",
                 testValues[i][1], value);
+        }
+    }
+
+    public void testBadRegex()
+    {
+        try {
+            Utils.createRE("[");
+            fail("expected to get conversion exception");
+        }
+        catch (ConversionException e) {
+            ; // what is expected
         }
     }
 

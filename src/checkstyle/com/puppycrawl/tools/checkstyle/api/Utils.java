@@ -43,10 +43,12 @@ public final class Utils
     /** Map of all created regular expressions **/
     private static final Map CREATED_RES = new HashMap();
 
+    ///CLOVER:ON
     /** stop instances being created **/
     private Utils()
     {
     }
+    ///CLOVER:OFF
 
     /**
      * Returns whether the specified string contains only whitespace up to the
@@ -127,21 +129,6 @@ public final class Utils
             CREATED_RES.put(aPattern, retVal);
         }
         return retVal;
-    }
-
-    /**
-     * Conditionally add a String to a set of properties.
-     * @param aProps the Properties to add to
-     * @param aKey the key to add the property under
-     * @param aValue if not null, then the value to add the property with
-     */
-    public static void addObjectString(Properties aProps,
-                                       String aKey,
-                                       Object aValue)
-    {
-        if (aValue != null) {
-            aProps.put(aKey, aValue.toString());
-        }
     }
 
     /**
