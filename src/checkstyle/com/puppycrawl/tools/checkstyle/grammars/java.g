@@ -188,15 +188,17 @@ modifier
 
 // Definition of a Java class
 classDefinition![AST modifiers]
-	:	"class" IDENT
+	:	c:"class" IDENT
 		// it _might_ have a superclass...
 		sc:superClassClause
 		// it might implement some interfaces...
 		ic:implementsClause
 		// now parse the body of the class
 		cb:classBlock
-		{#classDefinition = #(#[CLASS_DEF,"CLASS_DEF"],
-							   modifiers,IDENT,sc,ic,cb);}
+		{
+                    #classDefinition = #(#[CLASS_DEF,"CLASS_DEF"],
+                                         modifiers, c, IDENT, sc, ic, cb);
+                }
 	;
 
 superClassClause!
@@ -206,13 +208,15 @@ superClassClause!
 
 // Definition of a Java Interface
 interfaceDefinition![AST modifiers]
-	:	"interface" IDENT
+	:	i:"interface" IDENT
 		// it might extend some other interfaces
 		ie:interfaceExtends
 		// now parse the body of the interface (looks like a class...)
 		cb:classBlock
-		{#interfaceDefinition = #(#[INTERFACE_DEF,"INTERFACE_DEF"],
-									modifiers,IDENT,ie,cb);}
+		{
+                    #interfaceDefinition = #(#[INTERFACE_DEF,"INTERFACE_DEF"],
+                                             modifiers, i, IDENT, ie, cb);
+                }
 	;
 
 

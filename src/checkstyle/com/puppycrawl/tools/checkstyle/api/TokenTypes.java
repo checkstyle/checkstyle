@@ -338,6 +338,7 @@ public final class TokenTypes
      *     +--MODIFIERS
      *         |
      *         +--LITERAL_PUBLIC (public)
+     *     +--LITERAL_CLASS (class)
      *     +--IDENT (MyClass)
      *     +--EXTENDS_CLAUSE
      *     +--IMPLEMENTS_CLAUSE
@@ -380,6 +381,7 @@ public final class TokenTypes
      *     +--MODIFIERS
      *         |
      *         +--LITERAL_PUBLIC (public)
+     *     +--LITERAL_INTERFACE (interface)
      *     +--IDENT (MyInterface)
      *     +--EXTENDS_CLAUSE
      *     +--OBJBLOCK
@@ -1310,8 +1312,8 @@ public final class TokenTypes
         GeneratedJava14TokenTypes.LITERAL_volatile;
 
     /**
-     * The <code>class</code> keyword.  This element does not appear
-     * as part of a class declaration, but only inline to reference a
+     * The <code>class</code> keyword.  This element appears both
+     * as part of a class declaration, and inline to reference a
      * class object.
      *
      * <p>For example:</p>
@@ -1345,13 +1347,14 @@ public final class TokenTypes
     //public static final int LITERAL_EXTENDS =
     //    GeneratedJava14TokenTypes.LITERAL_extends;
 
-    /* *
-     * This token does not appear in the tree.
+    /**
+     * The <code>interface</code> keyword. This token appears in
+     * interface definition.
      *
      * @see #INTERFACE_DEF
      **/
-    //public static final int LITERAL_INTERFACE =
-    //    GeneratedJava14TokenTypes.LITERAL_interface;
+    public static final int LITERAL_INTERFACE =
+        GeneratedJava14TokenTypes.LITERAL_interface;
 
     /**
      * A left (curly) brace (<code>{</code>).

@@ -44,4 +44,21 @@ public class InputScopeInnerInterfaces
         void mb();
     }
 
+    private
+    class 
+    MyClass1 {
+    }
+
+    class 
+    MyClass2 {
+    }
+
+    private
+    interface
+    MyInterface1 {
+    }
+
+    interface
+    MyInterface2 {
+    }
 }
