@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.io.OutputStream;
 import java.util.EventListener;
 
 /**
@@ -38,15 +37,6 @@ import java.util.EventListener;
 public interface AuditListener
     extends EventListener
 {
-    /**
-     * Set a stream to write information to.
-     * @param aOS the outputstream to be set.
-     */
-    void setOutputStream(OutputStream aOS);
-
-    /** @return the stream used to write information to. **/
-    OutputStream getOutputStream();
-
     /**
      * notify that the audit is about to start
      * @param aEvt the event details

@@ -34,87 +34,125 @@ import java.io.PrintWriter;
 public class DefaultLogger
     implements AuditListener
 {
-    /** where to log **/
-    private OutputStream mStream;
-    /** where to write **/
-    private PrintWriter mWriter;
+    /** where to write info messages **/
+    private PrintWriter mInfoWriter;
+    /** close info stream after use */
+    private boolean mCloseInfo;
+
+    /** where to write error messages **/
+    private PrintWriter mErrorWriter;
+    /** close error stream after use */
+    private boolean mCloseError;
 
     /**
      * Creates a new <code>DefaultLogger</code> instance.
+     * @param aOS where to log infos and errors
+     * @param aCloseStreamsAfterUse if aOS should be closed in auditFinished()
      */
-    public DefaultLogger()
+    public DefaultLogger(OutputStream aOS, boolean aCloseStreamsAfterUse)
     {
+        // no need to close aOS twice
+        this(aOS, aCloseStreamsAfterUse, aOS, false);
     }
 
     /**
      * Creates a new <code>DefaultLogger</code> instance.
-     * @param aOS where to log
+     *
+     * @param aInfoStream the <code>OutputStream</code> for info messages
+     * @param aCloseInfoAfterUse auditFinished should close aInfoStream
+     * @param aErrorStream the <code>OutputStream</code> for error messages
+     * @param aCloseErrorAfterUse auditFinished should close aErrorStream
      */
-    public DefaultLogger(OutputStream aOS)
+    public DefaultLogger(
+        OutputStream aInfoStream,
+        boolean aCloseInfoAfterUse,
+        OutputStream aErrorStream,
+        boolean aCloseErrorAfterUse)
     {
-        setOutputStream(aOS);
-    }
-
-    /** @see AuditListener **/
-    public void setOutputStream(OutputStream aOS)
-    {
-        mWriter = new PrintWriter(aOS);
-        mStream = aOS;
-    }
-
-    /** @see AuditListener **/
-    public OutputStream getOutputStream()
-    {
-        return mStream;
-    }
-
-    /** @see AuditListener **/
-    public void addError(AuditEvent aEvt)
-    {
-        // Print an Emacs compliant line. If the column number is non zero,
-        // then also display it.
-        if (aEvt.getColumn() > 0) {
-            mWriter.println(aEvt.getFileName()
-                            + ":" + aEvt.getLine()
-                            + ":" + aEvt.getColumn()
-                            + ": " + aEvt.getMessage());
+        mCloseInfo = aCloseInfoAfterUse;
+        mCloseError = aCloseErrorAfterUse;
+        mInfoWriter = new PrintWriter(aInfoStream);
+        if (aInfoStream == aErrorStream) {
+            mErrorWriter = mInfoWriter;
         }
         else {
-            mWriter.println(aEvt.getFileName()
-                            + ":" + aEvt.getLine()
-                            + ": " + aEvt.getMessage());
+            mErrorWriter = new PrintWriter(aErrorStream);
+        }
+    }
+
+    /**
+     * Print an Emacs compliant line on the error stream.
+     * If the column number is non zero, then also display it.
+     * @see AuditListener
+     **/
+    public void addError(AuditEvent aEvt)
+    {
+        if (aEvt.getColumn() > 0) {
+            mErrorWriter.println(aEvt.getFileName()
+                                 + ":" + aEvt.getLine()
+                                 + ":" + aEvt.getColumn()
+                                 + ": " + aEvt.getMessage());
+        }
+        else {
+            mErrorWriter.println(aEvt.getFileName()
+                                 + ":" + aEvt.getLine()
+                                 + ": " + aEvt.getMessage());
         }
     }
 
     /** @see AuditListener **/
     public void addException(AuditEvent aEvt, Throwable aThrowable)
     {
-        synchronized (mWriter) {
-            mWriter.println("Error auditing " + aEvt.getFileName());
-            aThrowable.printStackTrace(mWriter);
+        synchronized (mErrorWriter) {
+            mErrorWriter.println("Error auditing " + aEvt.getFileName());
+            aThrowable.printStackTrace(mErrorWriter);
         }
     }
 
     /** @see AuditListener **/
     public void auditStarted(AuditEvent aEvt)
     {
-        mWriter.println("Starting audit...");
+        mInfoWriter.println("Starting audit...");
     }
 
     /** @see AuditListener **/
     public void fileFinished(AuditEvent aEvt)
     {
+        mInfoWriter.println("finished checking " + aEvt.getFileName());
     }
 
     /** @see AuditListener **/
     public void fileStarted(AuditEvent aEvt)
     {
+        mInfoWriter.println("Started checking " + aEvt.getFileName());
     }
 
     /** @see AuditListener **/
     public void auditFinished(AuditEvent aEvt)
     {
-        mWriter.println("Audit done.");
-        mWriter.flush();
+        mInfoWriter.println("Audit done.");
+        closeStreams();
+    }
+
+    /**
+     * Flushes the output streams and closes them if needed.
+     */
+    protected void closeStreams()
+    {
+        if (mCloseInfo) {
+            mInfoWriter.flush();
+        }
+        else {
+            mInfoWriter.flush();
+            mInfoWriter.close();
+        }
+
+        if (mCloseError) {
+            mErrorWriter.flush();
+        }
+        else {
+            mErrorWriter.flush();
+            mErrorWriter.close();
+        }
     }
 }

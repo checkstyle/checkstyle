@@ -25,7 +25,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
-import java.io.OutputStream;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -113,24 +112,7 @@ public class Checker
     public void destroy()
     {
         mCache.destroy();
-
-        // close all listeners
-        final Iterator it = mListeners.iterator();
-        while (it.hasNext()) {
-            final AuditListener listener = (AuditListener) it.next();
-            final OutputStream os = listener.getOutputStream();
-            // close only those that can be closed...
-            if ((os != System.out) && (os != System.err) && (os != null)) {
-                try  {
-                    os.flush();
-                    os.close();
-                }
-                catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            }
-            it.remove();
-        }
+        mListeners.clear();
     }
 
     /**
