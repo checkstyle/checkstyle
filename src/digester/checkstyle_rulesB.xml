@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Rules for a digester to load a configuration -->
+<!-- Digester ignores property-metadata elements -->
+<digester-rules>
+    <!-- Define each configuration in a config element -->
+    <pattern value="*/config" >
+    	<!-- Configuration create rule -->
+        <config
+            name="configuration"
+            classname="com.puppycrawl.tools.checkstyle.DefaultConfiguration" />
+                     
+        <config
+            name="TreeWalker"
+            classname="com.puppycrawl.tools.checkstyle.TreeWalker" />
+ 		   
+        <config
+            name="AvoidStarImport"
+            classname="com.puppycrawl.tools.checkstyle.AvoidStarImport" />
+   
+   		<!--  Example of a configuration that has a single property of type String. -->
+        <config
+            name="MemberNameCheck"
+            classname="com.puppycrawl.tools.checkstyle.MemberNameCheck" >
+            <property-metadata name="format" type="String" />
+        </config>
+    	
+        <!--  Example of a rule with one property of type enumeration.  -->
+        <!--  In this case the property can only take on values from    -->
+        <!--  the enumeration set.                                      -->
+        <config
+            name="RightCurlyCheck"
+            classname="com.puppycrawl.tools.checkstyle.RightCurlyCheck">
+            <property-metadata name="location" type="Enumeration" >
+                <enumeration-set>
+                    <value-option value="nl"/>
+                    <value-option value="nlow"/>
+                    <value-option value="alone"/>
+                </enumeration-set>
+            </property-metadata>
+        </config>
+    </pattern>
+		                    
+    <pattern value="*/property">
+        <call-method-rule methodname="addAttribute" paramcount="2"/>
+        <call-param-rule paramnumber="0" attrname="name" />
+        <call-param-rule paramnumber="1" attrname="value" />
+    </pattern>
+</digester-rules>

@@ -10,7 +10,7 @@
 
   	<config-create-rule
   		  pattern="configuration"
-          classname="com.puppycrawl.tools.checkstyle.Configuration" />
+          classname="com.puppycrawl.tools.checkstyle.DefaultConfiguration" />
          
 	<config-create-rule
   		  pattern="*/TreeWalker"

@@ -1,0 +1,6 @@
+<!ELEMENT config (config | property)*>
+<!ATTLIST config name CDATA #REQUIRED>
+
+<!ELEMENT property EMPTY>
+<!ATTLIST property name CDATA #REQUIRED
+                   value CDATA #REQUIRED>

@@ -20,12 +20,8 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.Stack;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParserFactory;
 
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
