@@ -22,8 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents the options for blocks.
- *
+ * Represents the policy for checking block statements.
  * @author Rick Giles
  */
 public final class BlockOption
@@ -31,12 +30,30 @@ public final class BlockOption
 {
     /** maps from a string representation to an option */
     private static final Map STR_TO_OPT = new HashMap();
-    
-    /** require that there is some text in the block **/
+
+    /**
+     * Represents the policy that there is some text in the block. For example:
+     *
+     * <pre>
+     * catch (Exception ex) {
+     *     // This is a bad coding practice
+     * }
+     * </pre>
+     */
     public static final BlockOption TEXT = new BlockOption("text");
-    /** require that there is a statement in the block **/
+
+    /**
+     * Represents the policy that there is a statement in the block. For
+     * example:
+     *
+     * <pre>
+     * finally {
+     *     lock.release();
+     * }
+     * </pre>
+     */
     public static final BlockOption STMT = new BlockOption("statement");
-    
+
     /**
      * Creates a new <code>BlockOption</code> instance.
      *
@@ -46,7 +63,7 @@ public final class BlockOption
     {
         super(aStrRep);
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
     protected Map getStrToOpt()
     {
