@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheckTest;
@@ -169,6 +170,7 @@ public class AllTests {
         suite.addTest(new TestSuite(NoWhitespaceBeforeCheckTest.class));
         suite.addTest(new TestSuite(OperatorWrapCheckTest.class));
         suite.addTest(new TestSuite(OptionTest.class));
+        suite.addTest(new TestSuite(PackageDeclarationCheckTest.class));
         suite.addTest(new TestSuite(PackageHtmlCheckTest.class));
         suite.addTest(new TestSuite(PackageNameCheckTest.class));
         suite.addTest(new TestSuite(PackageNamesLoaderTest.class));
