@@ -43,19 +43,19 @@
       A <span class="code">Checker</span> has a set of <span class="code">Filter</span>s
       that decide which audit events the <span class="code">Checker</span> reports through its listeners.
       Interface <span class="code">Filter</span> and class <span class="code">FilterSet</span>
-      are intended to support general <span class="code">Object</span> filtering using a set of <span class="code">Filter</span>s.
+      are intended to support general <span class="code">AuditEvent</span> filtering using a set of <span class="code">Filter</span>s.
       <p>
       <p class="body">
-      A <span class="code">Filter</span> has <span class="code">boolean</span> method <span class="code">accept(Object)</span>
+      A <span class="code">Filter</span> has <span class="code">boolean</span> method <span class="code">accept(AuditEvent)</span>
       that returns <span class="code">true</span> if the <span class="code">Filter</span> accepts the
-      <span class="code">Object</span> parameter and returns <span class="code">false</span> if the <span class="code">Filter</span>
+      <span class="code">AuditEvent</span> parameter and returns <span class="code">false</span> if the <span class="code">Filter</span>
       rejects it.
       </p>
       <p class="body">
       A <span class="code">FilterSet</span> is a particular <span class="code">Filter</span>
       that contains a set of <span class="code">Filter</span>s. A <span class="code">FilterSet</span> accepts an
-      <span class="code">Object</span> if and only if
-      all <span class="code">Filter</span>s in the set accept the <span class="code">Object</span>. 
+      <span class="code">AuditEvent</span> if and only if
+      all <span class="code">Filter</span>s in the set accept the <span class="code">AuditEvent</span>. 
       </p>
       <p class="body">
       Here is a UML diagram for interface <span class="code">Filter</span> 
@@ -73,9 +73,7 @@
       <a href="api/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
       with mutator method <span class="code">setFiles(String)</span> that receives the file name pattern.
       An <span class="code">AutomaticBean</span> uses JavaBean introspection to set JavaBean properties such as
-      <span class="code">files</span>. Method <span class="code">accept(Object)</span> has the precondition
-      that the <span class="code">Object</span> parameter is an <span class="code">AuditEvent</span>, which
-      is the case when the <span class="code">Filter</span> is created for a <span class="code">Checker</span>.
+      <span class="code">files</span>.
       </p>
 
       <pre class="body">
@@ -101,10 +99,9 @@ public class FilesFilter
         setFiles("^$");
     }
     
-    public boolean accept(Object aObject)
+    public boolean accept(AuditEvent aEvent)
     {
-        final AuditEvent event = (AuditEvent) aObject;
-        final String fileName = event.getFileName();
+        final String fileName = aEvent.getFileName();
         return ((fileName == null) || !mFileRegexp.match(fileName));
     }
 
@@ -138,7 +135,7 @@ public class FilesFilter
       documentation. Please do not hesitate to ask questions on the user mailing list, 
       this will help us to improve this document.  Please ask your questions as 
       precisely as possible. We will not be able to answer questions like &quot;I want 
-      to write a listener but I don&#39;t know how, can you help me?&quot;. Tell us 
+      to write a filter but I don&#39;t know how, can you help me?&quot;. Tell us 
       what you are trying to do (the purpose of the filter), what you have 
       understood so far, and what exactly you are getting stuck on.
       </p>

@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
  * <p>
  * This filter accepts AuditEvents according to file, check, line, and
  * column, as specified in a suppression file.
- * It rejects Objects that are not AuditEvents.
  * </p>
  * @author Rick Giles
  */
@@ -52,14 +51,9 @@ public class SuppressionFilter
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Filter */
-    public boolean accept(Object aObject)
+    public boolean accept(AuditEvent aEvent)
     {
-        if (!(aObject instanceof AuditEvent)) {
-            return false;
-        }
-        else {
-            return mFilters.accept(aObject);
-        }
+        return mFilters.accept(aEvent);
     }
 
     /** @see java.lang.Object#toString() */

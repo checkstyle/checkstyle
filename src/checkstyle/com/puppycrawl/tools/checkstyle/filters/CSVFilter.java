@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.filters;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.StringTokenizer;
-
-import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.FilterSet;
 
 /**
  * <p>
@@ -30,14 +29,36 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
  * each value is an integer or a range of integers.
  * </p>
  * @author Rick Giles
+ * @author o_sukhodolsky
  */
-public class CSVFilter
-    extends FilterSet
+class CSVFilter implements IntFilter
 {
+    /** filter set */
+    private Set mFilters = new HashSet();
+
+    /**
+     * Adds a IntFilter to the set.
+     * @param aFilter the IntFilter to add.
+     */
+    public void addFilter(IntFilter aFilter)
+    {
+        mFilters.add(aFilter);
+    }
+
+    /**
+     * Returns the IntFilters of the filter set.
+     * @return the IntFilters of the filter set.
+     */
+    protected Set getFilters()
+    {
+        return mFilters;
+    }
+
     /**
      * Constructs a <code>CSVFilter</code> from a CSV, Comma-Separated Values,
      * string. Each value is an integer, or a range of integers. A range of
      * integers is of the form integer-integer, such as 1-10.
+     * Note: integers must be non-negative.
      * @param aPattern the CSV string.
      * @throws NumberFormatException if a component substring does not
      * contain a parsable integer.
@@ -64,22 +85,43 @@ public class CSVFilter
     }
 
     /**
-     * Determines whether an Object matches a CSV integer value.
-     * @param aObject the Object to check.
-     * @return true if aObject is an Integer that matches a CSV value.
+     * Determines whether an Integer matches a CSV integer value.
+     * @param aInt the Integer to check.
+     * @return true if aInt is an Integer that matches a CSV value.
      */
-    public boolean accept(Object aObject)
+    public boolean accept(Integer aInt)
     {
-        if (!(aObject instanceof Integer)) {
-            return false;
-        }
         final Iterator it = getFilters().iterator();
         while (it.hasNext()) {
-            final Filter filter = (Filter) it.next();
-            if (filter.accept(aObject)) {
+            final IntFilter filter = (IntFilter) it.next();
+            if (filter.accept(aInt)) {
                 return true;
             }
         }
         return false;
+    }
+
+    /** @see java.lang.Object#toString() */
+    public String toString()
+    {
+        return mFilters.toString();
+    }
+
+    /** @see java.lang.Object#hashCode() */
+    public int hashCode()
+    {
+        return mFilters.hashCode();
+    }
+
+    /** @see java.lang.Object#equals(java.lang.Object) */
+    public boolean equals (Object aObject)
+    {
+        if (aObject instanceof CSVFilter) {
+            final CSVFilter other = (CSVFilter) aObject;
+            return this.mFilters.equals(other.mFilters);
+        }
+        else {
+            return false;
+        }
     }
 }

@@ -23,9 +23,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * A filter set applies filters to Objects.
- * If a filter in the set rejects an Object, then the
- * Object is rejected. Otherwise, the Object is accepted.
+ * A filter set applies filters to AuditEvents.
+ * If a filter in the set rejects an AuditEvent, then the
+ * AuditEvent is rejected. Otherwise, the AuditEvent is accepted.
  * @author Rick Giles
  */
 public class FilterSet
@@ -86,12 +86,12 @@ public class FilterSet
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Filter */
-    public boolean accept(Object aObject)
+    public boolean accept(AuditEvent aEvent)
     {
         final Iterator it = mFilters.iterator();
         while (it.hasNext()) {
             final Filter filter = (Filter) it.next();
-            if (!filter.accept(aObject)) {
+            if (!filter.accept(aEvent)) {
                 return false;
             }
         }

@@ -32,7 +32,6 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * name and check name match the filter's file name and check name
  * patterns, and the event's line is in the filter's line CSV or the
  * check's columns is in the filter's column CSV.
- * It rejects Objects that are not AuditEvents.
  * </p>
  * @author Rick Giles
  */
@@ -115,19 +114,13 @@ public class SuppressElement
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Filter */
-    public boolean accept(Object aObject)
+    public boolean accept(AuditEvent aEvent)
     {
-        if (!(aObject instanceof AuditEvent)) {
-            return false;
-        }
-
-        final AuditEvent event = (AuditEvent) aObject;
-
         // file and check match?
-        if ((event.getFileName() == null)
-            || !mFileRegexp.match(event.getFileName())
-            || (event.getLocalizedMessage() == null)
-            || !mCheckRegexp.match(event.getSourceName()))
+        if ((aEvent.getFileName() == null)
+            || !mFileRegexp.match(aEvent.getFileName())
+            || (aEvent.getLocalizedMessage() == null)
+            || !mCheckRegexp.match(aEvent.getSourceName()))
         {
             return true;
         }
@@ -139,7 +132,7 @@ public class SuppressElement
 
         // reject if line matches a line CSV value.
         if (mLineFilter != null) {
-            final Integer line = new Integer(event.getLine());
+            final Integer line = new Integer(aEvent.getLine());
             if (mLineFilter.accept(line)) {
                 return false;
             }
@@ -147,7 +140,7 @@ public class SuppressElement
 
         // reject if column matches a column CSV value.
         if (mColumnFilter != null) {
-            final Integer column = new Integer(event.getColumn());
+            final Integer column = new Integer(aEvent.getColumn());
             if (mColumnFilter.accept(column)) {
                 return false;
             }

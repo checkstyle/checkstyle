@@ -62,14 +62,9 @@ public class SeverityMatchFilter
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Filter */
-    public boolean accept(Object aObject)
+    public boolean accept(AuditEvent aEvent)
     {
-        if (!(aObject instanceof AuditEvent)) {
-            return false;
-        }
-
-        final AuditEvent event = (AuditEvent) aObject;
-        boolean result = mSeverityLevel.equals(event.getSeverityLevel());
+        boolean result = mSeverityLevel.equals(aEvent.getSeverityLevel());
         if (mAcceptOnMatch) {
             return result;
         }
