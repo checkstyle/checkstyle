@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class InterfaceIsTypeCheck
         extends Check
@@ -72,9 +72,7 @@ public final class InterfaceIsTypeCheck
                 !mAllowMarkerInterfaces || variableDef != null;
 
         if (methodDef == null && methodRequired) {
-            // TODO: i18n
-            log(aAST.getLineNo(), "interfaces should describe a type "
-                    + "and hence have methods.");
+            log(aAST.getLineNo(), "interface.type");
         }
 
     }
