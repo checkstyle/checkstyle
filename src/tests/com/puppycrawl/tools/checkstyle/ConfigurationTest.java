@@ -42,7 +42,7 @@ public class ConfigurationTest
         Configuration config =
             new Configuration(globalProps, new CheckConfiguration[0]);
         Properties defaultProps = config.getProperties();
-        assertEquals(4, defaultProps.size());
+        assertEquals(3, defaultProps.size());
     }
         
     
