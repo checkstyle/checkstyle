@@ -1,3 +1,26 @@
+2001-06-30  Oliver Burn  <checkstyle@puppycrawl.com>
+
+	* src/tests/com/puppycrawl/tools/checkstyle/CheckerTest.java:
+	Added new test for IgnoreWhitespace property.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/VerifierImpl.java: 
+	Added support for IgnoreWhitespace property.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/Defn.java: 
+	Added support for IgnoreWhitespace property.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/Configuration.java:
+	Added support for IgnoreWhitespace property.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java:
+	Added support for IgnoreWhitespace property.
+
+	* docs/index.html: Added docs for ignore whitespace.
+
+	* docs/cmdline.html: Added docs for ignore whitespace.
+
+	* docs/anttask.html: Added docs for ignore whitespace.
+
 2001-06-29  Oliver Burn  <checkstyle@puppycrawl.com>
 
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.tree.g: Put call

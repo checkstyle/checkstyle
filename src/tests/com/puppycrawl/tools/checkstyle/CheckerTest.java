@@ -64,6 +64,18 @@ public class CheckerTest
         verify(c, "InputWhitespace.java", expected);
     }
 
+    public void testWhitespaceOff()
+        throws Exception
+    {
+        mConfig.setIgnoreWhitespace(true);
+        final Checker c = new Checker(mConfig, mStream);
+        assertNotNull(c);
+        final String[] expected = {
+            "InputWhitespace.java:11: type Javadoc comment is missing an @author tag.",
+        };
+        verify(c, "InputWhitespace.java", expected);
+    }
+
     public void testBraces()
         throws Exception
     {

@@ -50,4 +50,6 @@ interface Defn
     String RELAX_JAVADOC_PROP = "checkstyle.javadoc.relax";
     /** property name for ignoring import statements **/
     String IGNORE_IMPORTS_PROP = "checkstyle.ignore.imports";
+    /** property name for ignoring whitespace **/
+    String IGNORE_WHITESPACE_PROP = "checkstyle.ignore.whitespace";
 }
