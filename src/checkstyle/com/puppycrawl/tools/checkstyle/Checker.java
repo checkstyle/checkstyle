@@ -376,9 +376,7 @@ public class Checker extends AutomaticBean
                     throw new IllegalArgumentException("Cannot resolve path "
                                                        + orig);
                 }
-                else {
-                    s.pop();
-                }
+                s.pop();
             }
             else { // plain component
                 s.push(thisToken);

@@ -56,9 +56,7 @@ public class IfHandler extends BlockParentHandler
         if (aChild instanceof ElseHandler) {
             return getLevel();
         }
-        else {
-            return super.suggestedChildLevel(aChild);
-        }
+        return super.suggestedChildLevel(aChild);
     }
 
     /**
@@ -71,9 +69,7 @@ public class IfHandler extends BlockParentHandler
         if (isIfAfterElse()) {
             return getParent().getLevel();
         }
-        else {
-            return super.getLevelImpl();
-        }
+        return super.getLevelImpl();
     }
 
     /**

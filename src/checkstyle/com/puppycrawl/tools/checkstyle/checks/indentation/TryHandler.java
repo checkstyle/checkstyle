@@ -57,8 +57,6 @@ public class TryHandler extends BlockParentHandler
         {
             return getLevel();
         }
-        else {
-            return super.suggestedChildLevel(aChild);
-        }
+        return super.suggestedChildLevel(aChild);
     }
 }

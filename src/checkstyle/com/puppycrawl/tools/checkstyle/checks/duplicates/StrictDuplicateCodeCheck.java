@@ -137,11 +137,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             if (aLine.startsWith("import ")) {
                 return IGNORE;
             }
-            else {
-                return super.calcChecksum(aLine);
-            }
+            return super.calcChecksum(aLine);
         }
-
     }
 
     /** a jakarta commons log */
@@ -261,10 +258,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         if (aFile.getName().endsWith(".java")) {
             return new JavaChecksumGenerator();
         }
-        else {
-            // TODO: Not sure what to do with binary files such as gifs
-            return new TextfileChecksumGenerator();
-        }
+        // TODO: Not sure what to do with binary files such as gifs
+        return new TextfileChecksumGenerator();
     }
 
     /**

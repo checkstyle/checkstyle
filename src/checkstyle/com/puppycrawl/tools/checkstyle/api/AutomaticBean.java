@@ -345,9 +345,7 @@ final class StrArrayConverter extends AbstractArrayConverter
             if (useDefault) {
                 return (defaultValue);
             }
-            else {
-                throw new ConversionException("No value specified");
-            }
+            throw new ConversionException("No value specified");
         }
 
         // Deal with the no-conversion-needed case
@@ -370,29 +368,30 @@ final class StrArrayConverter extends AbstractArrayConverter
             if (useDefault) {
                 return (defaultValue);
             }
-            else {
-                throw new ConversionException(aValue.toString(), e);
-            }
+            throw new ConversionException(aValue.toString(), e);
         }
     }
 
     /**
-    * <p>Parse an incoming String of the form similar to an array initializer
-    * in the Java language into a <code>List</code> individual Strings
-    * for each element, according to the following rules.</p>
-    * <ul>
-    * <li>The string must have matching '{' and '}' delimiters around
-    *     a comma-delimited list of values.</li>
-    * <li>Whitespace before and after each element is stripped.
-    * <li>If an element is itself delimited by matching single or double
-    *     quotes, the usual rules for interpreting a quoted String apply.</li>
-    * </ul>
-    *
-    * @param aValue String value to be parsed
-    * @return the list of Strings parsed from the array
-    * @throws NullPointerException if <code>svalue</code>
-    *  is <code>null</code>
-    */
+     * <p>
+     * Parse an incoming String of the form similar to an array initializer in
+     * the Java language into a <code>List</code> individual Strings for each
+     * element, according to the following rules.
+     * </p>
+     * <ul>
+     * <li>The string must have matching '{' and '}' delimiters around a
+     * comma-delimited list of values.</li>
+     * <li>Whitespace before and after each element is stripped.
+     * <li>If an element is itself delimited by matching single or double
+     * quotes, the usual rules for interpreting a quoted String apply.</li>
+     * </ul>
+     * 
+     * @param aValue
+     *            String value to be parsed
+     * @return the list of Strings parsed from the array
+     * @throws NullPointerException
+     *             if <code>svalue</code> is <code>null</code>
+     */
     protected List parseElements(String aValue)
         throws NullPointerException
     {

@@ -70,14 +70,12 @@ public class SlistHandler extends BlockParentHandler
         {
             return getParent().suggestedChildLevel(aChild);
         }
-        else {
-            return super.suggestedChildLevel(aChild);
-        }
+        return super.suggestedChildLevel(aChild);
     }
 
     /**
      * Get the child element that is not a list of statements.
-     *
+     * 
      * @return the non-list child element
      */
     protected DetailAST getNonlistChild()

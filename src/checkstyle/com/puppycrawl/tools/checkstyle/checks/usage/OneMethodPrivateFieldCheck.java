@@ -134,9 +134,7 @@ public class OneMethodPrivateFieldCheck
         if (definition != null) {
             return definition.getReferences();
         }
-        else {
-            final Set dummy = new HashSet();
-            return dummy.iterator();
-        }
+        final Set dummy = new HashSet();
+        return dummy.iterator();
     }
 }
