@@ -183,6 +183,7 @@ class Verifier
         for (int i = 0; i < mLines.length; i++) {
             // check for long line, but possibly allow imports
             if ((mLines[i].length() > mConfig.getMaxLineLength()) &&
+                !(mConfig.getIgnoreLineLengthRegexp().match(mLines[i])) &&
                 !(mConfig.isIgnoreImportLength() &&
                   mLines[i].trim().startsWith("import")))
             {

@@ -141,6 +141,18 @@ public class CheckStyleTask
         mConfig.setMaxFileLength(aLen);
     }
 
+    /** @param aPat line length check exclusion pattern */
+    public void setIgnoreLineLengthPattern(String aPat)
+    {
+        try {
+            mConfig.setIgnoreLineLengthPat(aPat);
+        }
+        catch (RESyntaxException ex) {
+            throw new BuildException(
+                "Unable to parse ignoreLineLengthPattern - ", ex);
+        }
+    }
+
     /** @param aIgnore whether max line length should be ignored for
      *                 import statements
      */
