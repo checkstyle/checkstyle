@@ -16,8 +16,6 @@
 
     #set ($subbannerbg = "#828DA6")
     #set ($subbannerfg = "#ffffff")
-    #set ($tablethbg = "#039acc")
-    #set ($tabletdbg = "#a0ddf0")
 
 <!-- start the processing -->
 #document()
@@ -27,19 +25,26 @@
 
 #macro ( table $table)
 <table>
+    #set ($rowcount = 0)
     #foreach ( $items in $table.getChildren() )
-        #if ($items.getName().equals("tr"))
-            #tr ($items)
+        #if ($!rowcount == 0)
+            #set ($trclass = "even")
+        #else
+            #set ($trclass = "odd")
         #end
+        #if ($items.getName().equals("tr"))
+            #tr ($items $trclass)
+        #end
+        #set ($rowcount = ($rowcount + 1) % 2)
     #end
 </table>
 #end
 
-#macro ( tr $tr)
-<tr>
+#macro ( tr $tr $trclass)
+<tr class="$trclass">
     #foreach ( $items in $tr.getChildren() )
         #if ($items.getName().equals("td"))
-            #td ($items)
+            #td ($items $trclass)
         #elseif ($items.getName().equals("th"))
             #th ($items)
         #end
@@ -47,21 +52,19 @@
 </tr>
 #end
 
-#macro ( td $value)
+#macro ( td $value $trclass)
 #if ($value.getAttributeValue("colspan"))
 #set ($colspan = $value.getAttributeValue("colspan"))
 #end
 #if ($value.getAttributeValue("rowspan"))
 #set ($rowspan = $value.getAttributeValue("rowspan"))
 #end
-<td bgcolor="$tabletdbg" colspan="$!colspan" rowspan="$!rowspan" valign="top" align="left">
-    <font color="#000000" size="-1" face="arial,helvetica,sanserif">
+<td class="$!trclass" colspan="$!colspan" rowspan="$!rowspan">
         #if ($value.getText().length() != 0 || $value.hasChildren())
         $value.getContent()
         #else
         &nbsp;
         #end
-    </font>
 </td>
 #end
 
@@ -72,14 +75,12 @@
 #if ($value.getAttributeValue("rowspan"))
 #set ($rowspan = $value.getAttributeValue("rowspan"))
 #end
-<th bgcolor="$tablethbg" colspan="$!colspan" rowspan="$!rowspan" valign="top" align="left">
-    <font color="#000000" size="-1" face="arial,helvetica,sanserif">
+<th colspan="$!colspan" rowspan="$!rowspan" valign="top" align="left">
         #if ($value.getText().length() != 0 || $value.hasChildren())
         $value.getContent()
         #else
         &nbsp;
         #end
-    </font>
 </th>
 #end
 
