@@ -44,9 +44,9 @@ class MyVariable
         return mModifierSet;
     }
 
-    /** @return the line number that the declaration starts on **/
-    int getLineNo()
+    /** @return the start line of the entire declaration **/
+    int getStartLineNo()
     {
-        return Math.min(super.getLineNo(), mModifierSet.getFirstLineNo());
+        return Math.min(getLineNo(), mModifierSet.getFirstLineNo());
     }
 }

@@ -341,7 +341,7 @@ class Verifier
         checkModOrder(mods);
 
         if (inCheckScope(variableScope) &&
-            getJavadocBefore(aVar.getLineNo() - 1) == null)
+            getJavadocBefore(aVar.getStartLineNo() - 1) == null)
         {
             log(aVar.getLineNo(),
                 "variable '" + aVar.getText() + "' missing Javadoc.");
@@ -925,7 +925,7 @@ class Verifier
     private void checkVariable(MyVariable aVar, RE aRegexp, String aPattern)
     {
         if (!aRegexp.match(aVar.getText())) {
-            log(aVar.getLineNo(),
+            log(aVar.getLineNo(), aVar.getColumnNo() - 1,
                 "variable '" + aVar.getText() +
                 "' must match pattern '" + aPattern + "'.");
         }
