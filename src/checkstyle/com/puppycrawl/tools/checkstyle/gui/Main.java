@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
+import java.io.File;
+
 import javax.swing.JFrame;
 
 /**
@@ -28,8 +30,13 @@ public class Main
 {
     public static void main(String[] args)
     {
-        JFrame frame = new JFrame("CheckStyle");
-        frame.getContentPane().add(new ParseTreeInfoPanel());
+        final JFrame frame = new JFrame("CheckStyle");
+        final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
+        frame.getContentPane().add(panel);
+        if (args.length >= 1) {
+            final File f = new File(args[0]);
+            panel.openFile(f, frame);
+        }
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
