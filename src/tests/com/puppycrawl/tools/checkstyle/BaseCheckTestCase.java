@@ -1,5 +1,6 @@
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -32,14 +33,16 @@ public abstract class BaseCheckTestCase
     protected final PrintStream mStream = new PrintStream(mBAOS);
     protected final Properties mProps = new Properties();
 
-    protected Checker createChecker(CheckConfiguration aCheckConfig)
+    protected Checker createChecker(Configuration aConfig)
         throws Exception
     {
-        final Checker c = new Checker(new GlobalProperties(mProps, mStream),
-                                      new CheckConfiguration[] {aCheckConfig});
-        final AuditListener listener = new BriefLogger(mStream);
-        c.addListener(listener);
-        return c;
+        throw new IllegalStateException("not implemented yet");
+//        final DefaultConfiguration dc = new DefaultConfiguration("root");
+//        dc.addChild(aConfig);
+//        final Checker c = new Checker();
+//        c.configure(aConfig);
+//        c.addListener(new BriefLogger(mStream));
+//        return c;
     }
 
     protected static String getPath(String aFilename)

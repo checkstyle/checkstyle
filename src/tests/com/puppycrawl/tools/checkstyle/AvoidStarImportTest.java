@@ -8,8 +8,9 @@ public class AvoidStarImportTest
     public void testWithChecker()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(AvoidStarImport.class.getName());
+        final DefaultConfiguration checkConfig =
+            new DefaultConfiguration("test");
+        checkConfig.addAttribute("classname", AvoidStarImport.class.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputImport.java");
         final String[] expected = {
