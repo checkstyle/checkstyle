@@ -50,6 +50,9 @@
           <a href="#MissingSwitchDefault">MissingSwitchDefault</a>
         </li>
         <li>
+          <a href="#RedundantThrows">RedundantThrows</a>
+        </li>
+        <li>
           <a href="#SimplifyBooleanExpression">SimplifyBooleanExpression</a>
         </li>
         <li>
@@ -443,6 +446,58 @@ public class MySingleton
       </p>
       <pre class="body">
 &lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="RedundantThrows"></a> <h2>RedundantThrows</h2> <h4>Description</h4>
+      <p class="body">
+       Checks for redundant exceptions declared in throws clause
+        such as duplicates, unchecked exceptions or subclasses of 
+        another declared exception.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>allowUnchecked</td>
+          <td>whether unchecked exceptions in throws are allowed or not</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">false</span></td>
+        </tr>
+        <tr>
+          <td>allowSubclasses</td>
+          <td> whether subclass of another declared exception 
+          is allowed in throws clause </td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">false</span></td>
+        </tr>
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the default check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;RedundantThrows&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to allow unchecked exception in throws clause
+      </p>
+      <pre class="body">
+&lt;module name="RedundantThrows"&gt;
+    &lt;property name=&quot;allowUnchecked&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">

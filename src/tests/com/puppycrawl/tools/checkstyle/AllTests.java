@@ -45,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.checks.ParameterNumberCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.ParenPadCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.RedundantImportCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.RedundantModifierTest;
+import com.puppycrawl.tools.checkstyle.checks.RedundantThrowsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.RightCurlyCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanExpressionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanReturnCheckTest;
@@ -122,6 +123,7 @@ public class AllTests {
         suite.addTest(new TestSuite(ParenPadCheckTest.class));
         suite.addTest(new TestSuite(RedundantImportCheckTest.class));
         suite.addTest(new TestSuite(RedundantModifierTest.class));
+        suite.addTest(new TestSuite(RedundantThrowsCheckTest.class));
         suite.addTest(new TestSuite(RightCurlyCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanExpressionCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanReturnCheckTest.class));
