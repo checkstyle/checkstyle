@@ -77,7 +77,7 @@ public abstract class AbstractCheckVisitor
                 aKey,
                 aArgs,
                 getSeverityLevel(),
-                this.getClass().getName()));
+                this.getClass()));
     }
 
     /**
