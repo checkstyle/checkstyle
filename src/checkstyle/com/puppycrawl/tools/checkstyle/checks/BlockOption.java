@@ -26,11 +26,16 @@ package com.puppycrawl.tools.checkstyle.checks;
 public final class BlockOption
     extends AbstractOption
 {
+    /**
+     * Creates a new <code>BlockOption</code> instance.
+     *
+     * @param aStrRep the string representation
+     */
     private BlockOption(String aStrRep)
     {
         super(aStrRep);
     }
-    
+
     /** require that there is some text in the block **/
     public static final BlockOption TEXT = new BlockOption("text");
     /** require that there is a statement in the block **/

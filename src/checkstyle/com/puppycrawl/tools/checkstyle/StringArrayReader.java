@@ -131,7 +131,10 @@ class StringArrayReader extends Reader
         }
     }
 
-    /** Throws an IOException if the reader has already been closed. */
+    /**
+     * Throws an IOException if the reader has already been closed.
+     * @throws IOException if the stream has been closed
+     */
     private void ensureOpen() throws IOException
     {
         if (mClosed) {

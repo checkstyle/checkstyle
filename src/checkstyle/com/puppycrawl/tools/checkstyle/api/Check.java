@@ -286,7 +286,8 @@ public abstract class Check
      * @param aArg0 first argument
      * @param aArg1 second argument
      */
-    protected final void log(int aLineNo, String aKey, Object aArg0, Object aArg1)
+    protected final void log(int aLineNo, String aKey,
+                             Object aArg0, Object aArg1)
     {
         log(aLineNo, aKey, new Object[] {aArg0, aArg1});
     }
@@ -356,7 +357,8 @@ public abstract class Check
      * @param aKey key to locale message format
      * @param aArgs arguments for message
      */
-    protected final void log(int aLineNo, int aColNo, String aKey, Object[] aArgs)
+    protected final void log(int aLineNo, int aColNo,
+                             String aKey, Object[] aArgs)
     {
         final int col = 1 + Utils.lengthExpandedTabs(
             getLines()[aLineNo - 1], aColNo, getTabWidth());

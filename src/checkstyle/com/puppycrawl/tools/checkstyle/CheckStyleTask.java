@@ -152,6 +152,7 @@ public class CheckStyleTask
         mFileName = aFile.getAbsolutePath();
     }
 
+    /** @param aFile the configuration file to use */
     public void setConfig(File aFile)
     {
         mConfigFile = aFile;
