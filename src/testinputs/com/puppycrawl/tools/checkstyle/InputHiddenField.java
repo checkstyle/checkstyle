@@ -13,25 +13,25 @@ class InputHiddenField
     
     public InputHiddenField()
     {
-        int hidden = 0;
+        int hidden = 0; //shadows field
     }
     
-    public InputHiddenField(int hidden)
+    public InputHiddenField(int hidden) //parameter shadows field
     {
     }
     
     public void shadow()
     {
-        int hidden = 0;
+        int hidden = 0; //shadows field
     }
     
     public void shadowFor()
     {
-        for (int hidden = 0; hidden < 1; hidden++) {
+        for (int hidden = 0; hidden < 1; hidden++) { //shadows field
         }
     }
     
-    public void shadowParam(int hidden)
+    public void shadowParam(int hidden) //parameter shadows field
     {
     }
     
@@ -41,16 +41,16 @@ class InputHiddenField
         
         public Inner()
         {
-            int innerHidden = 0;
+            int innerHidden = 0; //shadows field
         }
     
-        public Inner(int innerHidden)
+        public Inner(int innerHidden) //shadows field
         {
         }
         
         private void innerShadow()
         {
-            int innerHidden = 0;
+            int innerHidden = 0; //shadows field
             int hidden = 0; //not an error
         }
         
@@ -64,19 +64,19 @@ class InputHiddenField
         }
         
         private void shadowParam(
-            int innerHidden,
+            int innerHidden, //parameter shadows field
             int hidden //not an error
         )
         {
         }
         
         {
-            int innerHidden = 0;
+            int innerHidden = 0;//shadows field
         }
     }
 
     {
-        int hidden = 0;
+        int hidden = 0;//shadows field
     }       
 }
     
