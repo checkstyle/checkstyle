@@ -230,6 +230,7 @@
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="docs/checkstyle_checks.xml"/>
+    <property name="translation.severity" value="error"/>
     <checkstyle config="${check.config}">
       <fileset dir="src/checkstyle"
                includes="**/*.java,**/*.properties"
@@ -516,7 +517,11 @@
   </target>
 
   <!-- Added for GUMP testing -->
-  <target name="gump" depends="build.bindist,build.srcdist,run.tests"
+  <target name="gump.setup" description="Sets up any properties">
+    <property name="translation.severity" value="ignore"/>
+  </target>
+
+  <target name="gump" depends="gump.setup,build.bindist,build.srcdist,run.tests"
           description="Runs the test for GUMP testing"/>
 
   <!-- Added for Clover testing -->
