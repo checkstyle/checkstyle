@@ -1,0 +1,13 @@
+checkstyle.block.catch=text
+checkstyle.cache.file=target/cachefile
+checkstyle.header.file=docs/java.header
+checkstyle.javadoc.checkUnusedThrows=true
+checkstyle.lcurly.method=nl
+checkstyle.lcurly.other=nlow
+checkstyle.lcurly.type=nl
+checkstyle.paren.pad=nospace
+checkstyle.pattern.member=^m[A-Z][a-zA-Z0-9]*$
+checkstyle.pattern.parameter=^a[A-Z][a-zA-Z0-9]*$
+checkstyle.pattern.static=^s[A-Z][a-zA-Z0-9]*$
+checkstyle.pattern.todo=TODO:
+checkstyle.rcurly=alone

@@ -211,20 +211,7 @@
       <classpath refid="run.classpath"/>
     </taskdef>
     <delete file="target/cachefile" />
-    <checkstyle headerfile="docs/java.header"
-                ignorebraces="false"
-                cachefile="target/cachefile"
-                memberPattern="^m[A-Z][a-zA-Z0-9]*$"
-                staticPattern="^s[A-Z][a-zA-Z0-9]*$"
-                paramPattern="^a[A-Z][a-zA-Z0-9]*$"
-                lcurlyMethod="nl"
-                lcurlyOther="nlow"
-                lcurlyType="nl"
-                rcurly="alone"
-                parenPad="nospace"
-                catchBlock="text"
-                checkUnusedThrows="true"
-                todoPattern="TODO:">
+    <checkstyle properties="docs/checkstyle.rules">
       <fileset dir="src/checkstyle"
                includes="**/*.java"
                excludes="**/Generated*.java"/>
