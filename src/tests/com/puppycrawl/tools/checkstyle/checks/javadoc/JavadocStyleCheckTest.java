@@ -89,6 +89,7 @@ public class JavadocStyleCheckTest
             "89:31: Extra HTML tag found: </code>",
             "90: Incomplete HTML tag found:     * should fail <",
             "205: Javadoc has empty description section.",
+            "230: Javadoc has empty description section.",
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -112,6 +113,7 @@ public class JavadocStyleCheckTest
             "90: Incomplete HTML tag found:     * should fail <",
             "205: Javadoc has empty description section.",
             "211: Javadoc has empty description section.",
+            "230: Javadoc has empty description section.",
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -138,6 +140,7 @@ public class JavadocStyleCheckTest
             "205: Javadoc has empty description section.",
             "211: Javadoc has empty description section.",
             "218: Javadoc has empty description section.",
+            "230: Javadoc has empty description section.",
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -155,6 +158,7 @@ public class JavadocStyleCheckTest
             "211: Javadoc has empty description section.",
             "218: Javadoc has empty description section.",
             "225: Javadoc has empty description section.",
+            "230: Javadoc has empty description section.",
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
