@@ -62,7 +62,7 @@ public final class TreeWalker
      * parsing fails because with the next grammar it might succeed
      * and the user will be confused.
      */
-    private static class SilentJava14Recognizer
+    private static final class SilentJava14Recognizer
         extends GeneratedJava14Recognizer
     {
         /**

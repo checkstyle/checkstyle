@@ -33,7 +33,7 @@ import java.lang.reflect.Field;
  * @author <a href="mailto:dobratzp@ele.uri.edu">Peter Dobratz</a>
  * @version 1.0
  */
-public class TokenTypes
+public final class TokenTypes
 {
     /** prevent instantiation */
     private TokenTypes()
@@ -198,7 +198,7 @@ public class TokenTypes
      * declarations.
      *
      * <p>For example:</p>
-     * 
+     *
      * <pre>
      *  public static int square(int x)
      *  {
@@ -352,7 +352,7 @@ public class TokenTypes
     public static final int CLASS_DEF = 14;
     /**
      * An interface declaration.
-     * 
+     *
      * <p>For example:</p>
      *
      * <pre>
@@ -1095,7 +1095,7 @@ public class TokenTypes
     public static final int LITERAL_BOOLEAN = 50;
     /**
      * The <code>byte</code> keyword.
-     * 
+     *
      * @see #TYPE
      **/
     public static final int LITERAL_BYTE = 51;
@@ -2078,7 +2078,7 @@ public class TokenTypes
      * The <code>instanceof</code> operator.  The first child is an
      * object reference or something that evaluates to an object
      * reference.  The second child is a reference type.
-     * 
+     *
      * @see <a target="_top"
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#80289">Java
      * Language Specification, &sect;15.20.2</a>
@@ -2230,7 +2230,7 @@ public class TokenTypes
      * <pre>
      * new ArrayList(50)
      * </pre>
-     * 
+     *
      * <p>parses as:</p>
      * <pre>
      * +--LITERAL_NEW (new)
@@ -2421,7 +2421,7 @@ public class TokenTypes
     public static final int NUM_DOUBLE = 142;
     /**
      * This token does not appear in the tree.
-     * 
+     *
      * @see <a target="_top"
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#95710">Java
      * Language Specification, &sect;3.6</a>
