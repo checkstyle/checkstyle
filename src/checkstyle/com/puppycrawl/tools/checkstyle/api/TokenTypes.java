@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.lang.reflect.Field;
 
+import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava14TokenTypes;
+
 /**
  * Contains the constants for all the tokens contained in the Abstract
  * Syntax Tree.

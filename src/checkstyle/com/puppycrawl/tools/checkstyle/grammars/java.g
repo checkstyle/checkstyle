@@ -17,10 +17,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ////////////////////////////////////////////////////////////////////////////////
 header {
-package com.puppycrawl.tools.checkstyle;
-
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
+package com.puppycrawl.tools.checkstyle.grammars;
 }
 
 /** Java 1.3 Recognizer
@@ -33,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 class GeneratedJavaRecognizer extends Parser;
 
 options {
-	ASTLabelType=DetailAST;
 	k = 2;                           // two token lookahead
 	exportVocab=GeneratedJava;       // Call its vocabulary "GeneratedJava"
 	codeGenMakeSwitchThreshold = 2;  // Some optimizations
@@ -191,7 +187,7 @@ modifier
 	;
 
 // Definition of a Java class
-classDefinition![DetailAST modifiers]
+classDefinition![AST modifiers]
 	:	"class" IDENT
 		// it _might_ have a superclass...
 		sc:superClassClause
@@ -209,7 +205,7 @@ superClassClause!
 	;
 
 // Definition of a Java Interface
-interfaceDefinition![DetailAST modifiers]
+interfaceDefinition![AST modifiers]
 	:	"interface" IDENT
 		// it might extend some other interfaces
 		ie:interfaceExtends
@@ -339,12 +335,12 @@ explicitConstructorInvocation
 		)
     ;
 
-variableDefinitions[DetailAST mods, DetailAST t]
-	:	variableDeclarator[(DetailAST) getASTFactory().dupTree(mods),
-						   (DetailAST) getASTFactory().dupTree(t)]
+variableDefinitions[AST mods, AST t]
+	:	variableDeclarator[(AST) getASTFactory().dupTree(mods),
+						   (AST) getASTFactory().dupTree(t)]
 		(	COMMA
-			variableDeclarator[(DetailAST) getASTFactory().dupTree(mods),
-							   (DetailAST) getASTFactory().dupTree(t)]
+			variableDeclarator[(AST) getASTFactory().dupTree(mods),
+							   (AST) getASTFactory().dupTree(t)]
 		)*
 	;
 
@@ -352,12 +348,12 @@ variableDefinitions[DetailAST mods, DetailAST t]
  *   or a local variable in a method
  * It can also include possible initialization.
  */
-variableDeclarator![DetailAST mods, DetailAST t]
+variableDeclarator![AST mods, AST t]
 	:	id:IDENT d:declaratorBrackets[t] v:varInitializer
 		{#variableDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], mods, #(#[TYPE,"TYPE"],d), id, v);}
 	;
 
-declaratorBrackets[DetailAST typ]
+declaratorBrackets[AST typ]
 	:	{#declaratorBrackets=typ;}
 		(lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK!)*
 	;
@@ -961,13 +957,13 @@ options {
         setColumn( getColumn() + 1 );
     }
 
-    private FileContents mFileContents = null;
+    private CommentListener mCommentListener = null;
 
     // TODO: Check visibility of this method one parsing is done in central
     // utility method
-    public void setFileContents(FileContents aContents)
+    public void setCommentListener(CommentListener aCommentListener)
     { 
-        mFileContents = aContents;
+        mCommentListener = aCommentListener;
     }
 
 }
@@ -1039,9 +1035,11 @@ WS	:	(	' '
 
 // Single-line comments
 SL_COMMENT
-	:	"//" { mFileContents.reportCppComment(getLine(), getColumn() - 3); }
-		(~('\n'|'\r'))* ('\n'|'\r'('\n')?)
-		{$setType(Token.SKIP); newline();}
+    :	"//"
+        { mCommentListener.reportSingleLineComment("//", getLine(),
+                                                   getColumn() - 3); }
+        (~('\n'|'\r'))* ('\n'|'\r'('\n')?)
+        {$setType(Token.SKIP); newline();}
 	;
 
 // multiple-line comments
@@ -1070,7 +1068,7 @@ ML_COMMENT
 		)*
 		"*/"
       {
-         mFileContents.reportCComment(startLine, startCol,
+         mCommentListener.reportBlockComment("/*", startLine, startCol,
                             getLine(), getColumn() - 2);
          $setType(Token.SKIP);
       }

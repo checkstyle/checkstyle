@@ -19,6 +19,8 @@
 
   <property name="checkstyle.dir"
             value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
+  <property name="checkstyle.grammar.dir"
+            value="${checkstyle.dir}/grammars" />
   <property name="testreport.dir" value="target/testreports"/>
   <property name="dist.dir" value="target/dist"/>
 
@@ -87,8 +89,8 @@
   <target name="check.antlr"
           description="Checks whether the grammar file is newer that the generated code">
     <uptodate property="uptodate.antlr"
-              targetfile="${checkstyle.dir}/GeneratedJava14Lexer.java" >
-      <srcfiles dir= "${checkstyle.dir}" includes="java_new.g,java14_new.g,java.g,java14.g"/>
+              targetfile="${checkstyle.grammar.dir}/GeneratedJava14Lexer.java" >
+      <srcfiles dir= "${checkstyle.grammar.dir}" includes="java_new.g,java14_new.g,java.g,java14.g"/>
     </uptodate>
   </target>
 
@@ -101,32 +103,18 @@
           classpath="${antlr.jar}"
           fork="yes"
           failonerror="true"
-          dir="${checkstyle.dir}">
+          dir="${checkstyle.grammar.dir}">
       <arg value="java.g" />
     </java>
     <java classname="antlr.Tool"
           classpath="${antlr.jar}"
           fork="yes"
           failonerror="true"
-          dir="${checkstyle.dir}">
+          dir="${checkstyle.grammar.dir}">
       <arg value="-glib" />
       <arg value="java.g" />
       <arg value="java14.g" />
     </java>
-    <!-- now copy 'GeneratedJava14TokenTypes.java' into the api package. -->
-    <!-- It is used by TokenTypes.java, and a circular package dependency -->
-    <!-- would ensue if it wasn't copied -->
-    <copy file="src/checkstyle/com/puppycrawl/tools/checkstyle/GeneratedJava14TokenTypes.java"
-          todir="src/checkstyle/com/puppycrawl/tools/checkstyle/api"/>
-    <replace file="src/checkstyle/com/puppycrawl/tools/checkstyle/api/GeneratedJava14TokenTypes.java">
-        <replacefilter
-            token="package com.puppycrawl.tools.checkstyle;"
-            value="package com.puppycrawl.tools.checkstyle.api;"/>
-        <replacefilter
-            token="public interface "
-            value="interface "/>
-    </replace>
-
   </target>
 
   <!-- -->
