@@ -552,7 +552,7 @@ statement[int[] aType]
             aType[0] = STMT_IF;
             ver.verifyWSAroundBegin(ii.getLine(), ii.getColumn(), ii.getText());
             if (stmtType[0] != STMT_COMPOUND) {
-                ver.reportNeedBraces(ii.getLine(), ii.getText());
+                ver.reportNeedBraces(ii);
             }
         }
 		(
@@ -567,7 +567,7 @@ statement[int[] aType]
             {
                 ver.verifyWSAroundBegin(ee.getLine(), ee.getColumn(), ee.getText());
                 if (stmtType[0] == STMT_OTHER) {
-                    ver.reportNeedBraces(ee.getLine(), ee.getText());
+                    ver.reportNeedBraces(ee);
                 }
             }
 		)?
@@ -585,7 +585,7 @@ statement[int[] aType]
             ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);
             ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON);
             if (stmtType[0] != STMT_COMPOUND) {
-                ver.reportNeedBraces(ff.getLine(), ff.getText());
+                ver.reportNeedBraces(ff);
             }
         }
 
@@ -594,7 +594,7 @@ statement[int[] aType]
         {
             ver.verifyWSAroundBegin(ww.getLine(), ww.getColumn(), ww.getText());
             if (stmtType[0] != STMT_COMPOUND) {
-                ver.reportNeedBraces(ww.getLine(), ww.getText());
+                ver.reportNeedBraces(ww);
             }
         }
 
@@ -604,7 +604,7 @@ statement[int[] aType]
             ver.verifyWSAroundBegin(dd.getLine(), dd.getColumn(), dd.getText());
             ver.verifyWSAroundBegin(dw.getLine(), dw.getColumn(), dw.getText());
             if (stmtType[0] != STMT_COMPOUND) {
-                ver.reportNeedBraces(dd.getLine(), dd.getText());
+                ver.reportNeedBraces(dd);
             }
         }
 
@@ -855,8 +855,8 @@ unaryExpression
 	;
 
 unaryExpressionNotPlusMinus
-	:	BNOT^ unaryExpression
-	|	LNOT^ unaryExpression
+	:	BNOT^ unaryExpression {ver.verifyNoWSAfter(#BNOT);}
+	|	LNOT^ unaryExpression {ver.verifyNoWSAfter(#LNOT);}
 
 	|	(	// subrule allows option to shut off warnings
 			options {
@@ -1071,8 +1071,8 @@ COMMA        : ',' {ver.verifyWSAfter(getLine(), getColumn() - 1, MyToken.COMMA)
 //DOT   : '.'  ;
 ASSIGN       : '=' {ver.verifyWSAroundEnd(getLine(), getColumn(), "=");} ;
 EQUAL        : "==" {ver.verifyWSAroundEnd(getLine(), getColumn(), "==");} ;
-LNOT   : '!'  ;
-BNOT   : '~'  ;
+LNOT         : '!' ; // check above
+BNOT         : '~' ; // check above
 NOT_EQUAL    : "!=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "!=");};
 DIV          : '/' {ver.verifyWSAroundEnd(getLine(), getColumn(), "/");} ;
 DIV_ASSIGN   : "/=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "/=");};

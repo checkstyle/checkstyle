@@ -107,5 +107,6 @@ class InputWhitespace
     {
         boolean a = true;
         boolean x = ! a;
+        int z = ~1 + ~ 2;
     }
 }

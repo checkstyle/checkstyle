@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import antlr.Token;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -355,13 +356,13 @@ class VerifierImpl
     }
 
     /** @see Verifier **/
-    public void reportNeedBraces(int aLineNo, String aConstruct)
+    public void reportNeedBraces(Token aToken)
     {
         if (mConfig.isIgnoreBraces()) {
             return;
         }
 
-        log(aLineNo, "'" + aConstruct + "' construct must use '{}'s.");
+        log(aToken.getLine(), "'" + aToken.getText() + "' construct must use '{}'s.");
     }
 
     /** @see Verifier **/
