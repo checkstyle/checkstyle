@@ -216,8 +216,7 @@ class Verifier
 
         // Check excessive number of lines
         if (mLines.length > mConfig.getMaxFileLength()) {
-            mMessages.add(1, "maxLen",
-                          "file",
+            mMessages.add(1, "maxLen.file",
                           new Integer(mLines.length),
                           new Integer(mConfig.getMaxFileLength()));
         }
@@ -617,7 +616,7 @@ class Verifier
     void verifyMethodLength(int aLineNo, int aLength)
     {
         if (aLength > mConfig.getMaxMethodLength()) {
-            mMessages.add(aLineNo, "maxLen", "method",
+            mMessages.add(aLineNo, "maxLen.method",
                           new Integer(aLength),
                           new Integer(mConfig.getMaxMethodLength()));
         }
@@ -739,7 +738,7 @@ class Verifier
     void verifyConstructorLength(int aLineNo, int aLength)
     {
         if (aLength > mConfig.getMaxConstructorLength()) {
-            mMessages.add(aLineNo, "maxLen", "constructor",
+            mMessages.add(aLineNo, "maxLen.constructor",
                           new Integer(aLength),
                           new Integer(mConfig.getMaxConstructorLength()));
         }
