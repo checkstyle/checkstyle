@@ -4,7 +4,7 @@
 
   <properties>
     <meta name="keywords" content="inspection, lint, java"/>
-    <title>Checkstyle</title>
+    <title>Checkstyle @CHECKSTYLE_VERSION@</title>
     <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
   </properties>
 
@@ -209,7 +209,7 @@
     </section>
 
   </body>
- </document>
+</document>
 
 
 
