@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -90,10 +91,12 @@ public final class LocalizedMessage
             return false;
         }
 
-        // ignoring mArgs and mBundle for perf reasons.
+        if (!Arrays.equals(mArgs, localizedMessage.mArgs)) {
+           return false;
+        }
+        // ignoring mBundle for perf reasons.
 
-        // we currently never load the same error from different bundles or
-        // fire the same error for the same location with different arguments.
+        // we currently never load the same error from different bundles.
 
         return true;
     }
@@ -107,6 +110,9 @@ public final class LocalizedMessage
         result = mLineNo;
         result = 29 * result + mColNo;
         result = 29 * result + mKey.hashCode();
+        for (int i = 0; i < mArgs.length; i++) {
+            result = 29 * result + mArgs[i].hashCode();
+        }
         return result;
     }
 
