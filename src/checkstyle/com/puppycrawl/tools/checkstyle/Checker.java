@@ -157,8 +157,11 @@ public class Checker extends AutomaticBean
     {
         final String name = aChildConf.getName();
         try {
-            final FileSetCheck fsc =
-            (FileSetCheck) mModuleFactory.createModule(name);
+            final Object module = mModuleFactory.createModule(name);
+            if (!(module instanceof FileSetCheck)) {
+                throw new CheckstyleException(name + " is not a FileSetCheck");
+            }
+            final FileSetCheck fsc = (FileSetCheck) module;
             fsc.contextualize(mChildContext);
             fsc.configure(aChildConf);
             addFileSetCheck(fsc);
