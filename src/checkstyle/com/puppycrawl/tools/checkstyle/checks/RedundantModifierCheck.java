@@ -6,6 +6,8 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 
+// TODO: need to create a class to represent the constants in JavaTokenTypes.
+// Needed to break circular dependencies
 public class RedundantModifierCheck extends Check implements JavaTokenTypes
 {
     private final Stack mInInterface = new Stack();
