@@ -346,7 +346,7 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":1: file length is 151 lines (max allowed is 20).",
             filepath + ":3: Line does not match expected header line of '// Created: 2001'.",
-            filepath + ":16: order of modifiers violates suggestions in the Java Language Specification.",
+            filepath + ":16: 'final' modifier out of order with the JLS suggestions.",
             filepath + ":18: line longer than 80 characters",
             filepath + ":19: line contains a tab character",
             filepath + ":25: variable 'badConstant' must match pattern '^[A-Z]([A-Z0-9_]*[A-Z0-9])?$'.",
@@ -370,8 +370,8 @@ public class CheckerTest
             filepath + ":130: variable 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":132: variable 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":137: method name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            filepath + ":142: order of modifiers violates suggestions in the Java Language Specification.",
-            filepath + ":148: order of modifiers violates suggestions in the Java Language Specification.",
+            filepath + ":142: 'private' modifier out of order with the JLS suggestions.",
+            filepath + ":148: 'private' modifier out of order with the JLS suggestions.",
         };
         verify(c, filepath, expected);
     }

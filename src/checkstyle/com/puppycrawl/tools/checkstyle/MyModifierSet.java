@@ -120,27 +120,27 @@ class MyModifierSet
      * Checks if the modifiers were added in the order suggested
      * in the Java language specification.
      *
-     * @return if the modifiers are a subsequence of "public protected
-     * private abstract static final transient volatile synchronized
-     * native strictfp".
+     * @return null if the order is correct, otherwise returns an appropriate
+     *         error message.
      */
-    boolean hasOrderSuggestedByJLS()
+    String checkOrderSuggestedByJLS()
     {
         int i = 0;
-        Iterator it = mModifiers.iterator();
-        do
-        {
-            if (!it.hasNext())
-            {
-                return true;
+        String modifier;
+        final Iterator it = mModifiers.iterator();
+        do {
+            if (!it.hasNext()) {
+                return null;
             }
-            final String modifier = (String) it.next();
-            while (i < JLS_ORDER.length && !JLS_ORDER[i].equals(modifier))
-            {
+
+            modifier = (String) it.next();
+            while ((i < JLS_ORDER.length) && !JLS_ORDER[i].equals(modifier)) {
                 i++;
             }
         } while (i < JLS_ORDER.length);
-        return false;
+
+        return "'" + modifier
+            + "' modifier out of order with the JLS suggestions.";
     }
 
     /** @see Object **/

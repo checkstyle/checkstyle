@@ -1084,11 +1084,9 @@ class Verifier
      */
     private void checkModOrder(MyModifierSet aModSet)
     {
-        if (!aModSet.hasOrderSuggestedByJLS())
-        {
-            log(aModSet.getFirstLineNo(),
-                "order of modifiers violates suggestions " +
-                "in the Java Language Specification.");
+        final String error = aModSet.checkOrderSuggestedByJLS();
+        if (error != null) {
+            log(aModSet.getFirstLineNo(), error);
         }
     }
 
