@@ -114,3 +114,8 @@ class NegativeOctalHex
     private long octalIntMinValue = 020000000000;
     private long octalLongMinValue = 01000000000000000000000L;
 }
+
+class Cast
+{
+    public static final int TESTINTVAL = (byte) 0x80;
+}
