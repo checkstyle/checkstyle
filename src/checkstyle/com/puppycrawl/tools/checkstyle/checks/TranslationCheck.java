@@ -136,7 +136,9 @@ public class TranslationCheck
         }
         finally {
             try {
-                inStream.close();
+                if (inStream != null) {
+                    inStream.close();
+                }
             }
             catch (IOException e) {
                 logIOException(e, aFile);
@@ -179,14 +181,15 @@ public class TranslationCheck
      */
     private void compareKeySets(Set aKeys, Map aFileMap)
     {
-        final Set fls = aFileMap.keySet();
+        final Set fls = aFileMap.entrySet();
 
         for (Iterator iter = fls.iterator(); iter.hasNext();) {
-            final File currentFile = (File) iter.next();
+            final Map.Entry entry = (Map.Entry) iter.next();
+            final File currentFile = (File) entry.getKey();
             final MessageDispatcher dispatcher = getMessageDispatcher();
             final String path = currentFile.getPath();
             dispatcher.fireFileStarted(path);
-            final Set currentKeys = (Set) aFileMap.get(currentFile);
+            final Set currentKeys = (Set) entry.getValue();
 
             // Clone the keys so that they are not lost
             final Set keysClone = new HashSet(aKeys);
@@ -217,11 +220,11 @@ public class TranslationCheck
      */
     private void checkPropertyFileSets(Map aPropFiles)
     {
-        final Set keySet = aPropFiles.keySet();
+        final Set entrySet = aPropFiles.entrySet();
 
-        for (Iterator iterator = keySet.iterator(); iterator.hasNext();) {
-            final String baseName = (String) iterator.next();
-            final Set files = (Set) aPropFiles.get(baseName);
+        for (Iterator iterator = entrySet.iterator(); iterator.hasNext();) {
+            final Map.Entry entry = (Map.Entry) iterator.next();
+            final Set files = (Set) entry.getValue();
 
             if (files.size() >= 2) {
                 // build a map from files to the keys they contain
