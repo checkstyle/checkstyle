@@ -1108,6 +1108,7 @@ class Verifier
     private void checkThrowsTags(List aTags, List aThrows)
     {
         // Loop over the tags, checking to see they exist in the throws.
+        final Set foundThrows = new HashSet();
         final ListIterator tagIt = aTags.listIterator();
         while (tagIt.hasNext()) {
             final JavadocTag tag = (JavadocTag) tagIt.next();
@@ -1119,14 +1120,15 @@ class Verifier
             tagIt.remove();
 
             // Loop looking for matching throw
-            boolean found = false;
+            final String documentedEx = tag.getArg1();
+            boolean found = foundThrows.contains(documentedEx);
             final ListIterator throwIt = aThrows.listIterator();
-            while (throwIt.hasNext()) {
+            while (!found && throwIt.hasNext()) {
                 final LineText t = (LineText) throwIt.next();
-                if (t.getText().equals(tag.getArg1())) {
+                if (t.getText().equals(documentedEx)) {
                     found = true;
                     throwIt.remove();
-                    break;
+                    foundThrows.add(documentedEx);
                 }
             }
 

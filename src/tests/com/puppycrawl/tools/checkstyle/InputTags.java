@@ -138,5 +138,17 @@ class InputTags
     /** handle where variable declaration over several lines **/
     private static final int
         ON_SECOND_LINE = 2;
-}
 
+
+    /**
+     * Documenting different causes for the same exception
+     * in separate tags is OK (bug 540384).
+     *
+     * @throws java.io.IOException if A happens
+     * @throws java.io.IOException if B happens
+     **/
+    void method15()
+       throws java.io.IOException
+    {
+    }
+}
