@@ -535,7 +535,7 @@ public class Configuration
         return mIgnoreBraces;
     }
 
-    /** @return whether to ignore checks for braces **/
+    /** @return whether to ignore 'public' keyword in interface definitions **/
     public boolean isIgnorePublicInInterface()
     {
         return mIgnorePublicInInterface;
