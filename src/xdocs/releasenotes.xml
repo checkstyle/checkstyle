@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<document>
+
+  <properties>
+    <meta name="keywords" content="release, notes"/>
+    <title>Release Notes</title>
+    <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
+  </properties>
+
+  <body>
+
+    <section name="Release 3.5">
+
+      <p>New features:</p>
+      <ul>
+
+        <li>Added attributes maxErrors and maxWarnings to Ant task to allow
+        finetuning of failure behaviour (request 783538).</li>
+
+        <li>Added check that checks for a required regexp, contributed by
+        Daniel Grenner (module RequiredRegexp, request 606115, patch
+        902189).</li>
+
+        <li>Added check for the ncss metric. (module JavaNCSS, patch
+        920820)</li>
+
+        <li>Added check that checks for multiple string literals, contributed
+        by Daniel Grenner (module MultipleStringLiterals, patch 929882).</li>
+
+        <li>Added check that checks for a modified control variable in a for loop,
+        contributed by Daniel Grenner
+        (module ModifiedControlVariable, patch 927680).</li>
+
+        <li>Added example of how to configure the XML parser factory for
+        Checkstyle, and how to support XInclude processing
+        (contrib/examples/XInclude, request 905169).</li>
+
+        <li>Added example of an ant build file and stylesheet for generation
+        of an HTML error report with links to source code.
+        (contrib/examples/linkErrors2Source, discussed on <a
+        href="http://sourceforge.net/mailarchive/forum.php?thread_id=4891991&#x26;forum_id=8139">sourceforge.net:
+        checkstyle-user</a>).</li>
+
+        <li>Added filter that suppresses audit events according to source file
+        comments, contributed by Mike McMahon (module
+        SuppressionCommentFilter, requests 732196 and 931327).</li>
+
+        <li>Better information for unexpected char (request 666188).</li>
+
+        <li>Added charset property to TreeWalker and StrictDuplicateCode check
+        (addresses bug 975346).  </li>
+
+        <li>French message translations, contributed by Pierre Dittgen
+        (request 978916).</li>
+
+        <li>DataAbstractionCoupling reports coupling classes, contributed by
+        Benoit Xhenseval (request 990055).</li>
+
+        <li>FinalLocalVariable ignores parameters of interface methods and
+        abstract methods.  (request 993922 and bug 1002849).</li>
+
+        <li>Header and RegexpHeader checks allow header specification directly
+        in the checkstyle configuration file, not only in an external file
+        (request 1041590).</li>
+
+        <li>com.puppycrawl.tools.checkstyle.gui.Main accepts an optional file
+        name in the command line.  (request 1000102).</li>
+
+      </ul>
+
+      <p>Resolved bugs: </p>
+
+      <ul>
+
+        <li>False alarms from UnusedPrivateMethodCheck for anonymous inner
+        class parameter.  (bug 950548).</li>
+
+        <li>Fixed bug in handling imports in RequireThis(bug 952508)</li>
+
+        <li>JUnitTestCaseCheck erroneously mentions tearDown instead of
+        setUp. (bug 955925, patch by Paul Guyot)</li>
+
+        <li>JavadocTypeCheck does not find a tag on the first comment
+        line. (patch 959995, patch by Michael Tamm)</li>
+
+        <li>StrictDuplicateCodeCheck did not find duplicates within the same
+        file.</li>
+
+        <li>Unexpected char (bug 975346).</li>
+
+        <li>MagicNumber check overly aggressive (reported on user mailing
+        list).</li>
+
+        <li>Documentation error for naming convention checks (bug
+        987503).</li>
+
+        <li>FinalParametersCheck checks parameters of abstract methods. (bug
+        1002849).</li>
+
+        <li>Bug in ClassResolver where it was mismatching imports - example
+        would match SecurityDataException when looking for DataException. Bug
+        was visible in RedundantThrows check (no known bug).</li>
+
+        <li>Fixed HiddenFieldCheck to correctly handle static inner classes
+        (bug 1032426).</li>
+
+        <li>Fixed misspelling of variable (patch 1032618 contibuted by Paul
+        Wagland).</li>
+
+        <li>Fixed ClassResolver to handle exceptions which are inner for
+        current class (bug 945149).</li>
+
+        <li>Fixed ClassResolver to handle fully-qualified inner classes (bug
+        1037667).</li>
+
+        <li>Fixed 1033166 (Indent module specifies two indent levels for one
+        line)</li>
+
+        <li>Fixed false alarms in RequireThis check (bug 952508)</li>
+
+      </ul>
+
+      <p>API changes:</p>
+      <ul>
+
+          <li>Added new class SeverityLevelCounter.</li>
+
+      </ul>
+    </section>
+
+    <section name="Release 3.4">
+
+      <p>
+        New features:
+      </p>
+
+      <ul>
+
+        <li>Added a 'version' attribute to the 'checkstyle' element in the XML
+        output document (request 853128).</li>
+
+        <li>FinalParameter can be applied to catch blocks (request
+        848820).</li>
+
+        <li>Improved german translation, contributed by Oliver Fischer (patch
+        862911).</li>
+
+        <li>Added stylesheet to translate xml output into comma separated
+        valuaes format (contrib/checkstyle-csv.xsl, request 764153).</li>
+
+        <li>Added BooleanExpressionComplexity check from Simon Harris (request
+        750760)</li>
+
+        <li>Added ClassDataAbstractionCoupling check
+        from Simon Harris (request 750758)</li>
+
+        <li>Added ClassFanOutComplexity check from
+        Simon Harris (request 750759)</li>
+
+        <li>Added NPathComplexity check from Simon
+        Harris (request 750757)</li>
+
+        <li>Added several more log() methods to
+        AbstractViolationReporter. (request 843551)</li>
+
+        <li>Added check to ensure that default is a last
+        label in the switch statement.(module DefaultComesLast,
+        request 754486 )</li>
+
+        <li>Added check to ensure that all classes
+        define constructor. (module MissingCtor, request
+        696129)</li>
+
+        <li>Added check to warn on fall-through in case
+        with code not followed by break. (module FallThrough,
+        request 754438)</li>
+
+        <li>Added check to ensure that every variable
+        is declared in its own statement and on its own line (module
+        MultipleVariableDeclarations, requests 639233, 753858,
+        844705)</li>
+
+        <li>Added check to ensure that references to
+        non-static fields and methods should be quailified.
+        (module RequireThis, contributed by Stephen Bloch, requests
+        755550, 696295).</li>
+
+        <li>Added multiLines property to regexpCheck
+        (request 597676)</li>
+
+        <li>Added check for the padding between the
+        identifier of a method definition, constructor definition,
+        method call, or constructor invocation;
+        and the left parenthesis of the parameter list.  (module
+        MethodParamPad, request 843254)</li>
+
+        <li>Added check to forbid endline
+        comments. (module TrailingComment, request 744970)</li>
+
+        <li>Added applyTo(Public|Protected|Package|Private)
+        properties to check MemberName. (request 695935)</li>
+
+        <li>Added check to verify padding in empty for loop
+        initializers. (module EmptyForInitializerPad, part of fix for
+        bug 895072)</li>
+
+        <li>Added checkEmptyJavadoc property to JavadocStyle
+        check, contributed by Daniel Grenner (request 849056, patch 903597)
+        </li>
+
+        <li>Added format property to ReturnCount check
+        to configure ignored method names (request 904437)</li>
+
+        <li>Added attribute 'default' to configuration
+        &lt;property&gt; tags, improves usability for centralized
+        configuration files. This change triggered a new version of the
+        configuration DTD. Your old configuration files will still work,
+        but if you want to use the new 'default' attribute you need to
+        upgrade your configuration file to DTD version 1.2.</li>
+
+        <li>Ignore comments in GenericIllegalRegexp check,
+        contributed by Daniel Grenner (request 680988, patch 902109).</li>
+
+        <li>UnnecessaryParentheses check contributed by
+        Eric Roe (patch 911086, request 634834)</li>
+
+        <li>Added ignoreNonLocal property to UnusedParameter
+        check to check only private and static methods (request 787683)</li>
+
+        <li>Added excludeScope property to
+        Javadoc(Method|Variable|Type|Style) checks (request
+        846108)</li>
+
+      </ul>
+
+      <p> Resolved bugs: </p>
+
+      <ul>
+
+        <li>Incorrect documentation of cmdline options
+        (bug 865610).</li>
+
+        <li>FinalParameter now reports column of start of
+        parameter declaration. (bug 864900)</li>
+
+        <li>Fixed inconsistent handling of NLOW (new
+        line on wrap) option by LeftCurly check. (bug 866501)</li>
+
+        <li>JDK 1.4 classes used by usage checks.
+        (bug 876570)</li>
+
+        <li>Error in reporting UnusedLocalVariable for
+        multi-dimensional array index.
+        (bug 878608)</li>
+
+        <li>MagicNumberCheck throws NumberFormatException
+        with negative octal and hex ints and longs.</li>
+
+        <li>JavadocStyleCheck throws StringIndexOutOfBoundsException
+        when open tag character, &lt;, is the last character on a line.</li>
+
+        <li>UnusedPrivateMethod false positive (ternary call).
+        (bug 880954)</li>
+
+        <li>Cast causes MagicNumberCheck error.
+        (bug 890706)</li>
+
+        <li>Conflict between ParenPad and
+        NoWhiteSpaceBefore when code uses empty for loop
+        initializers. (bug 895072)</li>
+
+        <li>Fixed JavadocStyleCheck to handle inline
+        javadoc tags correctly (bug 897749)</li>
+
+        <li>Updated documentation for ReturnCount check to
+        reflect that it doesn't check equals() method (bug 904443)</li>
+
+        <li>Erroneous UnusedPrivateField error
+        when the left operand is enclosed in parentheses
+        and the field is in the right operand (bug 908339)</li>
+
+        <li>ExplicitInitialization shouldn't report about
+        explicitly initialized member of interface (bug 909619)</li>
+
+        <li>DesignForExtension fires for private inner
+        classes (bug 884035).</li>
+
+        <li>Entity resolver for configuration files now handles
+        all previous versions of the configuration DTD locally, without
+        accessing the internet (bug 909987).</li>
+
+        <li>Fixed handling of imports for inner classes
+        in RedundantThrows (bug 925263)</li>
+
+      </ul>
+
+      <p>
+        Removed features:
+      </p>
+
+      <ul>
+
+        <li>Removed ignoreLines property of RegexpHeader check.  To make some
+        line optional use &quot;^.*$&quot; regexp for this line.</li>
+
+        <li>Fixing bug 895072 required changing the logic of
+        the NoWhiteSpaceBefore and ParenPad checks.
+        When a for loop has an empty initializer
+        (like <span class="code">for (; i &#x3C; j; i++)</span>)
+        both checks will not check whitespace between the opening parenthesis
+        and the first semicolon any more.
+        To enforce your coding rules for such code, you need to use
+        the EmptyForInitializerPad check.</li>
+
+      </ul>
+
+      <p>
+        API changes:
+      </p>
+      <ul>
+
+        <li>Added programmatic access to token type
+        documentation (request 724871)</li>
+
+        <li>All comments are wrapped in TextBlocks
+        (request 885993).</li>
+
+      </ul>
+    </section>
+
+    <section name="Release 3.3">
+      <p>
+        Distribution:
+      </p>
+      <ul>
+
+        <li>Renamed checkstyle-version-optional.jar to
+        checktyle-optional-version.jar to make the distribution
+        <a href="http://maven.apache.org">Maven</a> friendly.</li>
+
+      </ul>
+
+      <p>
+        New features:
+      </p>
+      <ul>
+        <li>Fixed grammar build process (request 827781).</li>
+
+        <li>Added caseSensitive property to ImportOrder check
+        (bug 842604).</li>
+
+        <li>Added classpathref property to ant task
+        (patch 835896, from Ville Skytta (scop)).</li>
+
+      </ul>
+
+      <p>
+        Resolved bugs:
+      </p>
+
+      <ul>
+        <li>Removed MutableException dependency from
+        1.4 API.(bug 842756)</li>
+
+        <li>j2ee.EntityBean check for constructor is incorrect
+        (bug 846110).</li>
+
+        <li>Fixed ArrayIndexOutOfBounds in JavaStyle
+        (bug 841942).</li>
+
+        <li>Fixed 8433887 - XHTML not handled correctly
+        in JavadocStyle.</li>
+
+        <li>Fixed ArrayTypeStyle error when type declaration
+        and variable/method name are placed on different lines
+        (bug 848750).</li>
+
+        <li>Fixed several typos in documentation (patch 848483
+        from Ville Skytta (scop)).</li>
+
+        <li>xmllogger.dtd is out-of-date
+        (bug 847974).</li>
+
+        <li>ArrayTypeStyle shouldn't check method definition
+        (bug 849450).</li>
+
+        <li>Added link to summary page in
+        checkstyle-frames.xsl (bug 852397).</li>
+
+        <li>Fixed bug #791245: checkstyle-frames.xsl
+        cannot handle multiple leafs.</li>
+
+        <li>Fixed handling of inheritDoc in JavadocMathod
+        check (bug 855839).</li>
+
+        <li>Fixed bug #853225 - Indentation gives false
+        errors.</li>
+
+        <li>Wrong documentation for FinalLocalVariable
+        (bug 860990).</li>
+
+      </ul>
+    </section>
+
+    <section name="Release 3.2">
+      <p>
+        Distribution:
+      </p>
+      <ul>
+
+        <li>Checks that are designed to be used for a
+        special class of applications (like J2EE) or that require
+        external libraries are now distributed in a separate jar
+        file. This is similar to the way the <a
+        href="http://ant.apache.org">Ant</a> distribution is
+        organized. See the <a href="optional.html">documentation of
+        optional checks</a> for details.</li>
+
+        <li>Updated Jakarta Regexp library to version 1.3.</li>
+
+      </ul>
+
+      <p>
+        New features:
+      </p>
+
+      <ul>
+
+        <li>Added ability for user to incorporate custom listeners (requests
+        738205, 738388). Example listeners perform verbose and Commons Logging
+        audits (request 737584).</li>
+
+        <li>Added JavadocStyle check to ensure they are
+        stylistically well formed. Nice patch from Chris Stillwell.</li>
+
+        <li>Added check for trailing comma in array
+        initialization (module ArrayTrailingComma, request
+        696301).</li>
+
+        <li>MagicNumberCheck now checks array initializers (request
+        745949).</li>
+
+        <li>Added check for uncommented main
+        methods (debugging leftovers). (module UncommentedMain,
+        request 732257)</li>
+
+        <li>Added check to enforce that anonymous inner classes do
+        not exceed a certain length (module AnonInnerLength,
+        request 715709, contributed by Rob Worth).</li>
+
+        <li>Added TypecastParenPadCheck to check the padding of
+        typecasts (bug 750348).</li>
+
+        <li>Added ignoreFormat property to HiddenFieldCheck (request 748830).</li>
+
+        <li>Nice patch from Matt Quail to DetailAST to replace all the
+        repeated int[] array construction with a BitSet.</li>
+
+        <li>Patch from Matt Quail to stop the ugly hack of having hard coded
+        constants in TokenTypes. The big risk was that when the grammar changed, the generated
+        constants could change (patch 757846).</li>
+
+        <li>Added excludes property to AvoidStarImport, contributed
+        by Bill Schneider (request 744955).</li>
+
+        <li>Added CyclomaticComplexityCheck from Simon Harris.</li>
+
+        <li>Added check to catch equality comparison with string literals
+        using the == operator (module StringLiteralEquality, request 754835).</li>
+
+        <li>Added check for definition of covariant equals() method
+        without overriding method equals(comp.lang.Object)
+        (module coding.CovariantEquals).</li>
+
+        <li>Added NestedTryDepthCheck and
+        NestedIfDepthCheck from Simon Harris (requests 750736 and
+        750744).</li>
+
+        <li>Added IllegalTokenCheck from Simon Harris
+        (request 750755).</li>
+
+        <li>Added allowInSwitchCase property to AvoidNestedBlocksCheck
+        to allow limiting the scope of variables to one case of a switch statement.</li>
+
+        <li>Added checks for J2EE requirements.</li>
+
+        <li>Added a check that an overriding clone() method invokes
+        super.clone().</li>
+
+        <li>Added a check that an overriding finalize() method invokes
+        super.finalize().</li>
+
+        <li>Added usage checks OneMethodPrivateFieldCheck, UnusedLocalVariableCheck,
+        UnusedParameterCheck, UnusedPrivateFieldCheck, UnusedPrivateMethodCheck.</li>
+
+        <li>Added filters for audit events (partially fulfills request 559103).
+        A SuppressionFilter denies events according to a suppressions file (request 756416).</li>
+
+        <li>Made basedir property of Checker OS agnostic
+        (request 663149).</li>
+
+        <li>Enhanced RedundantModifier to check that all private methods and all methods in a
+        final class do not contain modifier final (discussed in request 775011).</li>
+
+        <li>Added MethodLengthCheck option for counting empty and comment lines
+        (requests 589358 and 654039).</li>
+
+        <li>Added a check for illegal token text
+        (requests 740694 and 750633).</li>
+
+        <li>Added property to HiddenFieldCheck to ignore the parameter of
+        property setter methods (request 790456).</li>
+
+        <li>Added DescendantToken check (request 755021).</li>
+
+        <li>Added IllegalCatch check from Simon Harris (request 750746).</li>
+
+        <li>Added PackageDeclaration check from Simon Harris (request 750753).</li>
+
+        <li>Added JUnitTestCase check from Simon Harris (request 750761).</li>
+
+        <li>Added MutableException check from Simon Harris (request 750750).</li>
+
+        <li>Added AbstractClassName check from Simon Harris (request 750749).</li>
+
+        <li>Added ThrowsCount check from Simon Harris (request 750742).</li>
+
+        <li>Added ReturnCount check from Simon Harris (request 750745).</li>
+
+        <li>Added CyclomaticComplexity check from Simon Harris (request 750756).</li>
+
+        <li>Added ExecutableStatementCount check from Simon Harris (request 750751).</li>
+
+        <li>Added property to HiddenFieldCheck to ignore constructor parameters
+        (request 798240).</li>
+
+        <li>Added check for illegal type of variable,
+        parameters and return value of methods contributed by Simon
+        Harris (request 750739, module IllegalType)</li>
+
+        <li>Added check for correct declarations order
+        contributed by Roland Auckenthaler (module
+        DeclarationOrder)</li>
+
+        <li>Added ParameterAssignment check contributed
+        by Simon Harris (request 750748).</li>
+
+        <li>Added FinalLocalVariable check from Roland
+        Auckenthaler and Kevin Gibbs.</li>
+
+        <li>Added check for correct grouping/order of
+        imports from Bill Schneider (module ImportOrder, request
+        745548)</li>
+
+        <li>Added Indentation check from John Richardson
+        (request 493366)</li>
+
+        <li>Added check for explicit initialization class
+        and object variable to value which is default for variable's
+        type (module ExplicitInitialization, request 614387).</li>
+
+        <li>Added check to find duplicate code
+        (module StrictDuplicateCode, request 650710).</li>
+
+      </ul>
+
+      <p>
+        Resolved bugs:
+      </p>
+
+      <ul>
+
+        <li>Fixed NPE when running ArrayTypeStyle check (bug
+        744573)</li>
+
+        <li>Typo in HideUtilityClassConstructor description (bug
+        743973)</li>
+
+        <li>False MagicNumberCheck errors for interfaces (bug
+        745941)</li>
+
+        <li>Docs for severity (bug 745937)</li>
+
+        <li>EmptyBlock does not accept stmt option (bug 747400)</li>
+
+        <li>Inner class fields interpreted as local variables (bug 747530)</li>
+
+        <li>Fixed typo in documentation for PackageName
+        (bug 7480028)</li>
+
+        <li>NumberFormatException in MagicNumberCheck (bug 748913)</li>
+
+        <li>Removed broken support for checking typecasts from
+        ParenPadCheck (bug 750348)</li>
+
+        <li>Fixed grammar problems with unclosed string
+        literals and multiple-lines comments (bug 694111)</li>
+
+        <li>Fixed grammar definition for identifiers to
+        handle all Unicode symbols (bug 755744)</li>
+
+        <li>Corrected misspelling of &quot;precede&quot; (bug 744342)</li>
+
+        <li>EmptyForIteratorPadCheck errors when for statement
+        wraps at the iterator (bug 777471)</li>
+
+        <li>False alarms from IllegalInstantiation for
+        user defined classes with the same names as those in
+        java.lang (bug 772832)</li>
+
+        <li>NoSuchElementException in JavadocStyleCheck (bug 785514)</li>
+
+        <li>RedundantModifierCheck error for public modifier of a
+        method defined in an inner implementation (bug 784814)</li>
+
+        <li>MagicNumberCheck does not permits negative constants (bug 788106)</li>
+
+        <li>NullPointerException in Unused... checks (bug 787672)</li>
+
+        <li>NoSuchMethodError when line wrapped at dot
+        operator (bug 790209)</li>
+
+        <li>Removed finder restrictions of LocalHomeInterfaceCheck
+        and RemoteHomeInterfaceCheck (bug 791591)</li>
+
+        <li>Fixed NoSuchMethodError when line wrapped at dot operator (bugid 790209)</li>
+
+        <li>Incorrect usage checks documentation (bug 790457)</li>
+
+        <li>CyclomaticComplexityCheck not documented in docs (bug 783800)</li>
+
+        <li>Changed configuration documentation example from checkstyle_checks.xml
+        to sun_checks.xml  (see bug 750169)</li>
+
+        <li>JavadocStyleCheck doesn't accept {@inheritDoc} javadoc (bug 798405)</li>
+
+        <li>Unused local variables are not always detected (bug 798111)</li>
+
+        <li>Fixed allowThrowsTagsForSubclasses/allowMissingThrowsTag interfere (bug 803577) </li>
+
+        <li>Unused... checks don't work together (bug 805954)</li>
+
+        <li>NoWhitespaceBeforeCheck error with an interface (bug 806242)</li>
+
+        <li>NoWhitespaceBeforeCheck error for anonymous inner class (bug 806243)</li>
+
+        <li>Usage of optional checks should be documented (bug 806961)</li>
+
+        <li>Changed default format for ConstantName to
+        ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$ to please regexp library (see bug
+        807571)</li>
+
+        <li>HiddenFieldCheck error for a local variable of a static
+        method with same name as an instance field (bug 827713)</li>
+
+        <li>Changed HideUtilityClassConstructorCheck behaviour for classes
+        that do not extend java.lang.Object directly (partial fix for bug 824754)</li>
+
+        <li>False alarms for abstract classes from FinalClass (bug 837012)</li>
+
+        <li>Added Checker.removeListener() (fix for 834367)</li>
+
+      </ul>
+
+      <p>
+        API changes (only relevant for IDE plugin authors):
+      </p>
+      <ul>
+
+        <li>AuditListener and AuditEvent have been moved
+        from package com.puppycrawl.tools.checkstyle to package
+        com.puppycrawl.tools.checkstyle.api.</li>
+
+      </ul>
+
+    </section>
+
+    <section name="Release 3.1">
+
+      <p>
+        New features:
+      </p>
+      <ul>
+        <li>Patch from David Schneider to have severity levels
+        for each check (request 597683).</li>
+
+        <li>Added check to avoid inline conditionals like
+        &quot;b ? x : y&quot; (module AvoidInlineConditionals, request
+        597790).</li>
+
+        <li>Added check that blocks are not introduced at
+        arbitrary places but only for if, while, etc. (module
+        AvoidNestedBlocks, request 632442).</li>
+
+        <li>Added check to enforce that utility classes
+        (classes that have only static methods) cannot be instantiated
+        (module HideUtilityClassConstructor, request 634838).</li>
+
+        <li>Added check to enforce an API design that shields
+        classes against bugs in derived classes (module
+        DesignForExtension, request 659715).</li>
+
+        <li>Added check to enforce that Interfaces do not
+        contain only constants (module InterfaceIsType, request 659717, see
+        [Bloch, Effective Java], Item 17 &quot;Use interfaces only to define
+        types&quot;).</li>
+
+        <li>Added check to detect the double-checked locking
+        idiom (module DoubleCheckedLocking, request 709333).</li>
+
+        <li>Added check to enforce C style (char c[]) or Java
+        style (char[] c) for array type declaration (module ArrayTypeStyle,
+        request 493380).</li>
+
+        <li>Added check to enforce that method parameters are
+        final (module FinalParameters, request 528196).</li>
+
+        <li>Added module to enforce that files end
+        with a newline character, contributed by Christopher Lenz
+        (module NewLineAtEndOfFile, request 662544).</li>
+
+        <li>Many documentation improvements, contributed by
+        Peter Dobratz.</li>
+
+        <li>Patch from Simon Kitching to allow more
+        configuration control over the JavadocMethodCheck.</li>
+
+        <li>Checkstyle ant task outputs version info
+        in verbose and debug mode (request 550483).</li>
+
+        <li>Patch from Oleg Sukhodolsky to add FinalCheck to
+        check that classes are declared final if they only contain private
+        constructors (request 696290).</li>
+
+        <li>Patch from Oleg Sukhodolsky to add
+        MissingSwitchDefaultCheck to check that a switch statement has a
+        default clause (request 564199).</li>
+
+        <li>Patch from Oleg Sukhodolsky to fix TranslationCheck
+        Test bug. (bug 720925).</li>
+
+        <li>Patch from Oleg Sukhodolsky to fix documentation.
+        (bug 727896).</li>
+
+        <li>Added check to find empty statements (module
+        EmptyStatement, request 724573).</li>
+
+        <li>Added check to find magic numbers (module
+        MagicNumber, request 564206).</li>
+
+        <li>One more option for JavadocMethodCheck
+        (allowThrowsTagsForSubclasses, request 540383)</li>
+
+        <li>Added sourceName property to AuditEvent and
+        LocalizedMessage; and &quot;source&quot; attribute to
+        &quot;error&quot; element of XMLLogger output (request 686336).</li>
+
+        <li>Added line and column numbers to configuration
+        parse exceptions (request 714962).</li>
+
+        <li>Added check for redundant exceptions in
+        throws clause (module RedundantThrows, request 579056)</li>
+
+        <li>Added property for GenericIllegalRegexp to
+        customize reported message (module GenericIllegalRegexp,
+        property message, request 738567)</li>
+
+        <li>Moved the location of the file
+        checkstyle_packages.xml to be in the directory
+        com/puppycrawl/tools/checkstyle. This is to work around a bug in
+        NetBeans (request 739881).</li>
+
+        <li>Patch from Dale King to enhance the GUI with
+        a Reload Java File button and storage of the current directory
+        of the last opened file (request 740545).</li>
+
+        <li>Patch from Bill Schneider to add
+        GenericIllegalRegexpCheck property to perform
+        case-insensitive matches (request 740112).</li>
+
+      </ul>
+
+      <p>
+        Resolved bugs:
+      </p>
+
+      <ul>
+
+        <li>False alarms from RightCurly module for code that
+        does not have braces in if-then-else (bug 689836).</li>
+
+        <li>Grammar incorrectly defaulting unqualified floating
+        point literals to be float, when they should be double (bug
+        713716).</li>
+
+        <li>&quot;threadsafe&quot; was treated as a Java
+        keyword, resulting in parser errors for sources that use it as an
+        identifier (bug 710319).</li>
+
+        <li>ConfigurationLoader was not public (only relevant
+        for IDE plugin authors).</li>
+
+        <li>HTML syntax errors in documentation (bug
+        721458).</li>
+
+        <li>Error when writing a DOS file name from
+        checkstyle-frames.xsl (bug 713845).</li>
+
+        <li>Files were not being closed by
+        Utils.getLines().</li>
+
+        <li>Missing documentation for the EmptyForIterator
+        check (bug 740038).</li>
+
+      </ul>
+
+      <p>
+        Development Team:
+      </p>
+      <ul>
+        <li>Oleg Sukhodolsky has joined the team.</li>
+      </ul>
+
+    </section>
+
+    <section name="Release 3.0">
+
+      <p>
+        New features:
+      </p>
+
+      <ul>
+        <li>Completely new architecture based around pluggable modules. This means that users can now write their own checks without changing the sourcecode of checkstyle itself (request 578712).</li>
+        <li>Users can specify the Java token types for which a check must be performed. For example users can now control that there should be whitespace after 'synchronized' but not after 'if' (request 536385).</li>
+        <li>Detect classes that override 'equals()' but not 'hashCode()' (request 554373).</li>
+        <li>Detect inner assignments, e.g. 'this.add(label = new JLabel("yes, I'm a C hacker"));' (request 521325).</li>
+        <li>Detect matches of generic regular expressions (requests 595254, 621247, 630536).</li>
+        <li>Find empty blocks (not only empty catch blocks, request 609523).</li>
+        <li>Check spaces at empty for iterators (requests 565666, 583725).</li>
+        <li>Detect missing property file keys in internationalized applications (request 634966).</li>
+        <li>Check content of @author and @version tag against a regular expression.</li>
+        <li>Detect hiding of fields by parameters or local variables with the same name (request 471897).</li>
+        <li>Detect obsolete final modifier in interfaces (request 651121).</li>
+        <li>Detect whitespace before ';' (request 521323).</li>
+        <li>Added DTD for XML output (request 622157).</li>
+        <li>Added an XSL stylesheet to convert XML output to plain text, contributed by Jon Scott Stevens.</li>
+        <li>Added portuguese localization, contributed by Pedro Morais.</li>
+        <li>Added finnish localization, contributed by Ville Skyttä.</li>
+        <li>Added french localization, contributed by Pierre Dittgen.</li>
+      </ul>
+
+      <p>
+        Resolved bugs:
+      </p>
+      <ul>
+        <li>Fully-qualified @throws claimed unused (bug 658805).</li>
+        <li>Expected @return tag when one is there (bug 579190).</li>
+        <li>Package name reported incorrectly (bug 622290).</li>
+        <li>Empty header filename silently ignored (bug 629139).</li>
+        <li>Array instantiation incorrectly flagged (bug 626875).</li>
+        <li>Tests fail with non-english locale (bug 594469).</li>
+        <li>Cachefile streams were not closed (bug 665016).</li>
+        <li>Ant Task: NullPointerException when type was not specified in formatter (bug 670321).</li>
+      </ul>
+
+      <p>
+        Removed features:
+      </p>
+      <ul>
+        <li>Removed support for japanese localization until we find a new maintainer.</li>
+      </ul>
+
+      <p>
+        API changes (only relevant for IDE plugin authors):
+      </p>
+      <ul>
+        <li>Configuration is not based on Properties any more. Instead a Configuration interface is used, IDE plugins can define their own way of creating Configurations or they can reuse the provided ConfigurationLoader to read checkstyle's standard XML config files.</li>
+      </ul>
+
+      <p>
+        Development Team:
+      </p>
+      <ul>
+        <li>Rick Giles has joined the team.</li>
+      </ul>
+    </section>
+
+    <section name="Release 2.4">
+      <p>
+        New features:
+      </p>
+      <ul>
+        <li>Major refactoring on the way Checkstyle is configured. It is now completely based around properties. Big thanks to Vincent Massol for the suggestion on how to refactor the ANT task (bug 605141).</li>
+        <li>Check the package name against a pattern (request 597787). Patch provided by Simon Langford.</li>
+        <li>Detect the number of parameters in a declaration exceeding a specified amount (request 582144).</li>
+        <li>Inspired by patch 580410 from Shinya Ohnuma, now the error messages are localised.</li>
+        <li>Support checking to determine if an unused <span class="code">@throws</span> exception is a subclass of <span class="code">java.lang.Error</span> (request 583719).</li>
+        <li>Incorporate patch 555878 from Rick Giles to allow pattern for local final variables to be specified.</li>
+        <li>Incorporate patch 566855 from Rob Worth to optionally check that parenthesis are padded with spaces.</li>
+        <li>Incorporate patch 590931 from Vijay Aravamudhan to improve documentation of the build.xml file.</li>
+        <li>Incorporate patch from Vijay Aravamudhan to enforce requiring @version tag (request 543964).</li>
+        <li>Incorporate patch 607481 from Ville Skyttä to enforce wrap on operator at EOL.</li>
+      </ul>
+
+      <p>
+        Resolved bugs:
+      </p>
+      <ul>
+        <li>Incorporate a patch from Ronald Hastings (Boeing) to correctly handle C++ style comments being between Javadoc comments and declarations.</li>
+      </ul>
+
+      <p>
+        API changes (only relevant for IDE plugin authors):
+      </p>
+      <ul>
+        <li>Many changes to the Configuration object.</li>
+      </ul>
+    </section>
+
+    <section name="Release 2.3">
+      <p>
+        New features:
+      </p>
+      <ul>
+        <li>Support checking to determine if an unused <span class="code">@throws</span> exception is a subclass of <span class="code">java.lang.RuntimeException</span> (request 540382).</li>
+        <li>Detect instantiations of classes that should not be instantiated (e.g. java.lang.Boolean) (request 550205).</li>
+        <li>Added ability to specify the base directory for reporting file names (request 571161).</li>
+        <li>Check for line wrapping on operators (request 553160).</li>
+        <li>Detect empty <span class="code">try</span> blocks.</li>
+        <li>Detect empty <span class="code">catch</span> blocks (request 516255).</li>
+        <li>Detect empty <span class="code">finally</span> blocks.</li>
+        <li>Detect to-do comments (request 504275).</li>
+        <li>Detect use of lowercase l ("ell") in long integer literals.</li>
+        <li>Include column number in the XML output (request 555262).</li>
+        <li>Added ability to specify a properties file on the command line (request 557544).</li>
+        <li>Check for whitespace around "{" and "}" (request 557544).</li>
+        <li>Fix Javadoc errors under JDK 1.4 (request 568553).</li>
+        <li>Detect redundant <span class="code">abstract</span> modifier in interfaces (request 573485).</li>
+        <li>Support running Checkstyle using the <span class="code">-jar</span> option.</li>
+      </ul>
+
+      <p>
+        Resolved bugs:
+      </p>
+      <ul>
+        <li>Better error reporting for missing properties files (bug 576165).</li>
+        <li>Ant task now logs style violations as errors (bug 561616).</li>
+      </ul>
+
+      <p>
+        API changes (only relevant for IDE plugin authors):
+      </p>
+      <ul>
+        <li>The get/setOutputStream methods have been removed from the AuditListener interface. The XMLLogger and DefaultLogger implementations now expect OutputStreams to be provided as a constructor argument.</li>
+        <li>The DefaultLogger now differentiates between info messages ("started checking file ...", etc.)  and error messages (style errors found by checkstyle).</li>
+      </ul>
+    </section>
+
+    <section name="Release 2.2">
+      <p>
+        Resolved bugs:
+      </p>
+      <ul>
+        <li>The cache was not invalidated upon parameter change (Bug 522282).</li>
+        <li>Tabs were not counted correctly in line length checks (Bug 524671).</li>
+        <li>Problem when a Checker could not be created (Bug 528358).</li>
+        <li>The documentation of the command line property names did not list the property checkstyle.allow.tabs (Bug 529975).</li>
+        <li>The default regular expression for constant names allowed consecutive '_' characters to occur (Bug 540358).</li>
+        <li>Checkstyle reported unused @throws tag for multiple declarations of the same Exception. According to the <a href="http://developer.java.sun.com/developer/bugParade/bugs/4525364.html">Java BugParade</a> this is incorrect, multiple @throws tags for the same exception are OK (Bug 540384).</li>
+      </ul>
+
+      <p>
+        New features:
+      </p>
+      <ul>
+        <!--(Feature request 498879)-->
+        <li>added check for whitespace around '()'</li>
+        <!--(Feature request 500122)-->
+        <li>added support for JDK 1.4 assert statements</li>
+        <!--(Feature request 515787)-->
+        <li>added column number to error messages for better Emacs integration</li>
+        <!--(Feature request 524650)-->
+        <li>added possibility to disable line-length checking by means of regular expressions</li>
+        <!--(Feature request 531229)-->
+        <li>added possibility to disallow import of package hierarchies, e.g. sun.*</li>
+        <!--(Feature request 534038)-->
+        <li>added failureProperty to ANT task</li>
+        <!--(Feature request 537107)-->
+        <li>added check for 'public' modifier in interface method declarations, following the recommendation in chapter 9.4 of the Java Language Specification</li>
+        <!--(Feature request 545128)-->
+        <li>added -r "dir" option to the commandline frontend, checkstyle will find all Java files contained in the specified directory</li>
+        <!--(Patch 531230 + enhancements)-->
+        <li>incorporated patch from Warner Onstine to configure the ANT task by means of a property file</li>
+        <li>added 'contrib' directory, contains XSL stylesheets for formating checkstyle's XML output (contributions by Ingmar Stein, Stephane Bailliez, Scott McCrory and Gray Herter)</li>
+      </ul>
+    </section>
+
+    <section name="Release 2.1">
+      <p>
+        New features:
+      </p>
+      <ul>
+        <li>added check for package.html</li>
+        <li>added flag allowPackage which acts similar as allowProtected</li>
+        <li>added support for ignoring multiple lines in the file header</li>
+        <li>added support for specifying the file header by means of regular expressions</li>
+        <li>added whitespace checks around '.', e.g. System . out . println()</li>
+        <li>added check for names of methods and local variables</li>
+        <li>check the order of modifiers (public, static, etc.) against the recommendation in the Java Language specification</li>
+        <li>added checks for curly braces placement</li>
+        <li>incorporated patch from Andrew Lang for more robust Javadoc parsing</li>
+      </ul>
+    </section>
+
+    <section name="Release 2.0">
+      <p>
+        Changes:
+      </p>
+      <ul>
+        <li>Now released under the GNU Lesser General Public License (LGPL).</li>
+        <li>Fix bug #508010, documentation and code are inconsistent.</li>
+        <li>Changes to make it build "out of the box".</li>
+      </ul>
+    </section>
+  </body>
+</document>

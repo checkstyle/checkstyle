@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<document>
+
+  <properties>
+    <title>Command Line</title>
+    <author>Oliver Burn</author>
+  </properties>
+
+  <body>
+
+    <section name="Description">
+      <p>
+        This document describes how to run checkstyle using the command line
+        tool. The latest version of checkstyle can be found at <a
+        href="http://checkstyle.sourceforge.net">http://checkstyle.sourceforge.net</a>.
+        This command line tool is included in the checkstyle distribution.
+      </p>
+    </section>
+
+    <section name="Installation">
+      <p>
+        The easiest way is to include <span
+        class="default">checkstyle-all-@CHECKSTYLE_VERSION@.jar</span> in the
+        classpath. If you are running JDK 1.4 this contains all the classes
+        required to run checkstyle (JDK 1.3 users must add a JAXP compliant
+        XML parser implementation). Alternatively, you must include the
+        following in the classpath:
+      </p>
+
+      <ol>
+        <li>
+          <span class="default">checkstyle-@CHECKSTYLE_VERSION@.jar</span>
+        </li>
+        <li>
+          ANTLR 2.7.2 classes. <span class="default">antlr.jar</span> is
+          included in the distribution.
+        </li>
+        <li>
+          Jakarta Regexp 1.3 classes. <span
+          class="default">jakarta-regexp-1.3.jar</span> is included in the
+          distribution.
+        </li>
+        <li>
+          Jakarta Commons Beanutils classes. <span
+          class="default">commons-beanutils.jar</span> is included in the
+          distribution.
+        </li>
+        <li>
+          Jakarta Commons Collections classes. <span
+          class="default">commons-collections.jar</span> is included in the
+          distribution.
+        </li>
+        <li>
+          Jakarta Commons Logging classes. <span
+          class="default">commons-logging.jar</span> is included in the
+          distribution.
+        </li>
+        <li>
+          Jakarta Commons CLI (command line interface) classes. <span
+          class="default">commons-cli.jar</span> is included in the
+          distribution.
+        </li>
+        <li>JDK 1.3 only: A JAXP compliant XML parser implementation.</li>
+      </ol>
+    </section>
+
+    <section name="Usage">
+      <p>
+        The command line usage is:
+      </p>
+
+      <source>
+java -D&lt;property&gt;=&lt;value&gt;  \
+     com.puppycrawl.tools.checkstyle.Main \
+     -c &lt;configurationFile&gt; [-n &lt;packageNameFile&gt;] \
+     [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
+     [-r &lt;dir&gt;] file...
+      </source>
+
+      <p>
+        Checkstyle will process the specified files and by default report
+        errors to standard out in plain format. Checkstyle requires a <a
+        href="config.html">configuration XML file</a> that configures the
+        checks to apply. Command line options are:
+      </p>
+
+      <ul>
+        <li>
+          <span class="default">-n packageNamesFile</span> - specify a <a
+          href="config.html#Packages">package names file</a> to use.
+        </li>
+        <li>
+          <span class="default">-f format</span> - specify the output
+          format. Options are <span class="default"> "plain"</span> for the <a
+          href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
+          and <span class="default">"xml"</span> for the <a
+          href="api/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>.
+          Defaults to <span class="default">"plain"</span>.
+        </li>
+        <li>
+          <span class="default">-p propertiesFile</span> - specify a
+          properties file to use.
+        </li>
+        <li>
+          <span class="default">-o file</span> - specify the file to output
+          to.
+        </li>
+        <li>
+          <span class="default">-r dir</span> - specify the directory to
+          traverse for Java source files.
+        </li>
+      </ul>
+
+      <p>
+        Set the properties for <a href="config.html#Properties">expanded
+        property values</a> by either by assigning system properties using the
+        <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to java or
+        specifying a property file using the <code>-p</code> option.  If a
+        property file is specified, the system properties are ignored.
+      </p>
+    </section>
+
+    <section name="Examples">
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a file
+        </b>
+      </p>
+      <source>
+java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     Check.java
+      </source>
+
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on all java files in a directory
+        </b>
+      </p>
+      <source>
+java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     -r src/
+      </source>
+
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a file and provide a system
+          property
+        </b>
+      </p>
+      <source>
+java -Dcheckstyle.cache.file=target/cachefile \
+     com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     Check.java
+      </source>
+
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a file and use properties in a
+          file
+        </b>
+      </p>
+      <source>
+java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     -p myCheckstyle.properties Check.java
+      </source>
+
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a file and output to a file in
+          XML format
+        </b>
+      </p>
+      <source>
+java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     -f xml -o build/checkstyle_errors.xml Check.java
+      </source>
+
+      <p>
+        <b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a file and provide a package
+          names file
+        </b>
+      </p>
+      <source>
+java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     -n myPackageNames.xml Check.java
+      </source>
+
+      <div class="tip">
+        <h4 class="tip">Tip</h4>
+        <p>
+          It is possible to run Checkstyle directly from the JAR file using
+          the <span class="code">-jar</span> option. An example would be:
+        </p>
+
+        <source>
+java -jar checkstyle-all-@CHECKSTYLE_VERSION@.jar \
+     -c docs/sun_checks.xml Check.java
+        </source>
+      </div>
+    </section>
+  </body>
+</document>
