@@ -42,4 +42,19 @@ public class InputSimplifyBoolean
         boolean ff = isOddMillis() && false;
         return !false || (true != false);
     }
+
+    public void tryToProvokeNPE()
+    {
+        if (true) {
+        }
+        else {
+        }
+
+        if (true) {
+            return;
+        }
+        else {
+            return;
+        }
+    }
 }
