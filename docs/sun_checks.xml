@@ -42,11 +42,9 @@
 
     <!-- code layout -->
     <module name="RightCurly"/>
-    <module name="MethodLeftCurly"/>
+    <module name="LeftCurly"/>
     <module name="NeedBraces"/>
     <module name="OperatorWrap"/>
-    <module name="OtherLeftCurly"/>
-    <module name="TypeLeftCurly"/>
 
     <!-- standard whitespace settings -->
     <module name="ParenPad"/>
