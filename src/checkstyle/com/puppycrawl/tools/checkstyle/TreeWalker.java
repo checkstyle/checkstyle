@@ -275,7 +275,7 @@ public final class TreeWalker
     private void registerCheck(Check aCheck)
         throws CheckstyleException
     {
-        int[] tokens = aCheck.getDefaultTokens();
+        int[] tokens = new int[] {}; //safety initialization
         final Set checkTokens = aCheck.getTokenNames();
         if (!checkTokens.isEmpty()) {
             tokens = aCheck.getRequiredTokens();
@@ -298,6 +298,9 @@ public final class TreeWalker
                         + token + "\" in check " + aCheck);
                 }
             }
+        }
+        else {
+            tokens = aCheck.getDefaultTokens();
         }
         for (int i = 0; i < tokens.length; i++) {
             registerCheck(tokens[i], aCheck);
