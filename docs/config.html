@@ -339,6 +339,22 @@
     &lt;/module&gt;
 &lt;/module&gt;
     </pre>
+
+      <p class="body">
+      <!-- 
+      thanks to Paul King for this example, see
+      https://sourceforge.net/tracker/?func=detail&aid=865610&group_id=29721&atid=397078
+      -->
+      To integrate Checkstyle with BEA Weblogic Workshop 8.1:
+      </p>
+
+      <pre class="body">
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;property name=&quot;fileExtensions&quot; value=&quot;java,ejb,jpf&quot;/&gt;
+        ...
+    </pre>
+
       <a name="treewalkerchecks"></a> <h2>TreeWalker Checks</h2>
       <p class="body">
      The <span class="code">TreeWalker</span> module creates a syntax tree for a Java source file
