@@ -204,6 +204,10 @@
     <echo message="THIS IS THE EXPECTED MESSAGE"/>
   </target>
 
+  <target name="disable.todo">
+    <property name="todo.pattern" value="NOTHingWillMatCH_-"/>
+  </target>
+
   <target name="checkstyle.checkstyle" depends="compile.checkstyle"
           description="Runs checkstyle on a file to test various rules">
     <taskdef name="checkstyle"
@@ -211,6 +215,8 @@
       <classpath refid="run.classpath"/>
     </taskdef>
     <delete file="target/cachefile" />
+
+    <property name="todo.pattern" value="TODO:"/>
     <checkstyle properties="docs/checkstyle.rules">
       <fileset dir="src/checkstyle"
                includes="**/*.java"
@@ -218,6 +224,7 @@
       <formatter type="plain"/>
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
+      <property key="checkstyle.pattern.todo" value="${todo.pattern}"/>
       <property key="checkstyle.cache.file" file="target/cachefile"/>
       <property key="checkstyle.header.file" file="docs/java.header"/>
     </checkstyle>
@@ -473,6 +480,6 @@
   </target>
 
   <!-- Added for GUMP testing -->
-  <target name="gump" depends="build.bindist,build.srcdist,run.tests"
+  <target name="gump" depends="disable.todo,build.bindist,build.srcdist,run.tests"
           description="Runs the test for GUMP testing"/>
 </project>

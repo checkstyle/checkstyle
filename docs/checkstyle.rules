@@ -7,5 +7,4 @@ checkstyle.paren.pad=nospace
 checkstyle.pattern.member=^m[A-Z][a-zA-Z0-9]*$
 checkstyle.pattern.parameter=^a[A-Z][a-zA-Z0-9]*$
 checkstyle.pattern.static=^s[A-Z][a-zA-Z0-9]*$
-checkstyle.pattern.todo=TODO:
 checkstyle.rcurly=alone
