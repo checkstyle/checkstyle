@@ -35,14 +35,14 @@ public class DefaultLogger
     implements AuditListener
 {
     /** where to write info messages **/
-    private PrintWriter mInfoWriter;
+    private final PrintWriter mInfoWriter;
     /** close info stream after use */
-    private boolean mCloseInfo;
+    private final boolean mCloseInfo;
 
     /** where to write error messages **/
-    private PrintWriter mErrorWriter;
+    private final PrintWriter mErrorWriter;
     /** close error stream after use */
-    private boolean mCloseError;
+    private final boolean mCloseError;
 
     /**
      * Creates a new <code>DefaultLogger</code> instance.
@@ -63,21 +63,17 @@ public class DefaultLogger
      * @param aErrorStream the <code>OutputStream</code> for error messages
      * @param aCloseErrorAfterUse auditFinished should close aErrorStream
      */
-    public DefaultLogger(
-        OutputStream aInfoStream,
-        boolean aCloseInfoAfterUse,
-        OutputStream aErrorStream,
-        boolean aCloseErrorAfterUse)
+    public DefaultLogger(OutputStream aInfoStream,
+                         boolean aCloseInfoAfterUse,
+                         OutputStream aErrorStream,
+                         boolean aCloseErrorAfterUse)
     {
         mCloseInfo = aCloseInfoAfterUse;
         mCloseError = aCloseErrorAfterUse;
         mInfoWriter = new PrintWriter(aInfoStream);
-        if (aInfoStream == aErrorStream) {
-            mErrorWriter = mInfoWriter;
-        }
-        else {
-            mErrorWriter = new PrintWriter(aErrorStream);
-        }
+        mErrorWriter = (aInfoStream == aErrorStream)
+            ? mInfoWriter
+            : new PrintWriter(aErrorStream);
     }
 
     /**
@@ -139,19 +135,13 @@ public class DefaultLogger
      */
     protected void closeStreams()
     {
+        mInfoWriter.flush();
         if (mCloseInfo) {
-            mInfoWriter.flush();
-        }
-        else {
-            mInfoWriter.flush();
             mInfoWriter.close();
         }
 
+        mErrorWriter.flush();
         if (mCloseError) {
-            mErrorWriter.flush();
-        }
-        else {
-            mErrorWriter.flush();
             mErrorWriter.close();
         }
     }
