@@ -44,6 +44,12 @@
           <a href="#severity">Severity</a>
         </li>
         <li>
+          <a href="#filters">Filters</a>
+        </li>
+        <li>
+          <a href="#auditlisteners">AuditListeners</a>
+        </li>
+        <li>
           <a href="#packagenames">Packages</a>
         </li>
         <li>
@@ -58,8 +64,15 @@
       <p class="body">
       A Checkstyle configuration specifies which <em>modules</em> to plug in and apply to Java 
       source files. Modules are structured in a tree whose root is the <em>Checker</em> 
-      module. The next level of modules contains <em>FileSetChecks</em>- modules that 
-      take a set of input files and fire error messages. Many checks are submodules of 
+      module. The next level of modules contains
+      </p>
+      <ul class="body">
+         <li><em>FileSetChecks</em>- modules that take a set of input files and fire error messages.</li>
+         <li><em>Filters</em>- modules that filter audit events, including error messages, for acceptance.</li>
+         <li><em>AuditListeners</em>- modules that report accepted events.</li>
+      </ul>
+      <p class="body">
+      Many checks are submodules of 
       the <em>TreeWalker</em> FileSetCheck module. The TreeWalker operates by 
       separately transforming each of the Java source files into an abstract syntax 
       tree and then handing the result over to each of its submodules which in turn 
@@ -157,7 +170,7 @@
       </ol>
       <a name="properties"></a> <h2>Properties</h2>
       <p class="body">
-      Properties of a module control how the module performs its checks.
+      Properties of a module control how the module performs its task.
        Each module property has a default value, and you are not required to define a property in the
        configuration document if the default value is satisfactory.
        To assign a non-default value to a module&#39;s property,
@@ -219,8 +232,13 @@
       <a name="checker"></a> <h2>Checker</h2>
       <p class="body">
       All configurations have root module <span class="code">Checker</span>.
-      <span class="code">Checker</span> contains <em>FileSetCheck</em> children: modules that
-      check sets of files. 
+      <span class="code">Checker</span> contains
+      </p>
+      <ul class="body">
+         <li><em>FileSetCheck</em> children: modules that check sets of files.</li>
+         <li><em>Filter</em> children: modules that filter audit events.</li>
+         <li><em>AuditListener</em> children: modules that report filtered events.</li>
+      </ul> 
       <span class="code">Checker</span> also defines properties that are
       inherited by all other modules of a configuration.
       </p>
@@ -441,6 +459,144 @@
       of every violation as an attribute of the violation&#39;s <span class="default">error</span> 
       element.
       </p>
+
+      <a name="filters"></a>
+      <h2>Filters</h2>
+      <p class="body">
+       A Checker module applies Filter submodules to audit events, including the error messages fired by Checks. 
+       The Filters form a chain in the same order as they appear in the configuration file. A Checker applies the
+       Filters in chain order. A Filter can accept, deny, or be neutral about an audit event. If a Filter accepts
+       an audit event, then the Checker reports the event without consulting later Filters in the chain.
+       If a Filter denies an event, then the Checker does not report the event. If a Filter is neutral for an event, then the
+       Checker consults the next Filter. If all Filters are neutral for an event, the Checker reports the event.
+       </p>
+       <p class="body">
+       Filter <span class="code">SeverityMatchFilter</span> decides audit events for Check errors according to the 
+       <a href="#severity">severity level</a> of the Check. The filter is neutral on audit events that do not
+       have a severity level, such as &quot;Starting audit&quot;.
+      </p>
+      <h4 class="body">SeverityMatchFilter Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>severity</td>
+          <td>the severity level of this filter</td>
+          <td><a href="property_types.html#severity">severity</a></td>
+          <td><span class="default">error</span></td>
+        </tr>
+        <tr>
+          <td>acceptOnMatch</td>
+          <td>If there is a match between the severity level of the Check for the audit event and property severity, and
+          acceptOnMatch is <span class="code">true</span>, then the filter accepts the audit event.
+          If there is a match between the severity level of the Check for the audit event and property severity, and
+          acceptOnMatch is <span class="code">false</span>, then the filter denies the audit event.</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+      </table>
+      <p class="body">
+      For example, the following configuration fragment directs the Checker to not report audit events with severity level  
+      <span class="code">info</span>:
+      </p>
+
+      <pre class="body">
+        &lt;module name=&quot;SeverityMatchFilter&quot;&gt;
+            &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
+            &lt;property name=&quot;acceptOnMatch&quot; value=&quot;false&quot;/&gt;
+        &lt;/module&gt;
+      </pre>
+
+       <p class="body">
+       Filter <span class="code">SuppressionFilter</span> decides audit events for Check errors according to a
+       <a href="#suppressionsxml"><em>suppressions XML document</em></a> in a file. If there is no configured suppressions file, the
+       Filter is neutral on all audit events.
+      </p>
+
+      <h4 class="body">SuppressionFilter Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>file</td>
+          <td>the name of the <em>suppressions XML document</em> file</td>
+          <td><a href="property_types.html#string">string</a></td>
+          <td><span class="default">none</span></td>
+        </tr>
+      </table>
+
+
+      <p class="body">
+      For example, the following configuration fragment directs the Checker to use a <span class="code">SuppressionFilter</span>  
+      with suppressions file <span class="code">docs/suppressions.xml</span>:
+      </p>
+
+      <pre class="body">
+        &lt;module name=&quot;SuppressionFilter&quot;&gt;
+            &lt;property name=&quot;file&quot; value=&quot;docs/suppressions.xml&quot;/&gt;
+        &lt;/module&gt;
+      </pre>
+
+      <p class="body">
+      A <a href="#suppressionsxml"><em>suppressions XML document</em></a> contains a set of <span class="code">suppress</span> elements,
+      where each <span class="code">suppress</span> element
+      has a <span class="code">files</span> attribute, a <span class="code">checks</span> attribute,
+      an optional <span class="code">lines</span> attribute, and an optional
+      <span class="code">columns</span> attribute.
+      Attributes <span class="code">files</span> and <span class="code">checks</span> are
+      <a href="property_types.html#regexp">regular expressions</a>. 
+      Attributes <span class="code">lines</span> and <span class="code">columns</span> are 
+      comma-separated values, where each value is an <a href="property_types.html#integer">integer</a> or
+      a range of integers denoted by integer-integer.
+      </p>
+      <p class="body">
+      An audit event for a Check error matches a <span class="code">suppress</span> element if
+      the file name for the event matches the <span class="code">files</span> attribute of the element,
+      the name of the Check matches the <span class="code">checks</span> attribute, and
+      the line of the event matches the <span class="code">lines</span> attribute (provided the attribute exists) or
+      the column of the event matches the <span class="code">columns</span> attribute (provided the attribute exists).
+      When a <span class="code">SuppressionFilter</span> decides an audit event for a Check error, it denies
+      the event if the event matches any one of the configured <span class="code">suppress</span> elements. In all other  
+      cases, the Filter is neutral to the event.
+      </p>
+
+      <p class="body">
+      For example, the following suppressions XML document directs a <span class="code">SuppressionFilter</span>
+      to deny <span class="code">JavadocStyleCheck</span> errors for lines 82 and 108 to 122 of file  
+      <span class="code">AbstractComplexityCheck.java</span>, and
+      <span class="code">MagicNumberCheck</span> errors for line 221 of file  
+      <span class="code">JavadocStyleCheck.java</span>:
+      </p>
+      <pre class="body">
+&lt;?xml version=&quot;1.0&quot;?&gt;
+
+&lt;!DOCTYPE suppressions PUBLIC
+    &quot;-//Puppy Crawl//DTD Suppressions 1.0//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/suppressions_1_0.dtd&quot;&gt;
+
+&lt;suppressions&gt;
+    &lt;suppress checks=&quot;JavadocStyleCheck&quot;
+              files=&quot;AbstractComplexityCheck.java&quot;
+              lines=&quot;82,108-122&quot;/&gt;
+    &lt;suppress checks=&quot;MagicNumberCheck&quot;
+              files=&quot;JavadocStyleCheck.java&quot;
+              lines=&quot;221&quot;/&gt;
+&lt;/suppressions&gt;
+    </pre>
+
+      <a name="auditlisteners"></a>
+      <h2>AuditListeners</h2>
+      <p class="body">
+      <em>TODO</em>
+      </p>
       <a name="packagenames"></a>
       <h2>Packages</h2>
       <p class="body">
@@ -570,6 +726,23 @@
     &quot;-//Puppy Crawl//DTD Package Names 1.0//EN&quot;
     &quot;http://www.puppycrawl.com/dtds/packages_1_0.dtd&quot;&gt;
     </pre>
+
+<a name="suppressionsxml"></a>
+      <h4>Suppressions XML Document</h4>
+      <p class="body">
+      This is a DTD for a suppressions XML document:
+      </p>
+      <pre class="body">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;!ELEMENT suppressions (suppress*)&gt;
+
+&lt;!ELEMENT suppress EMPTY&gt;
+&lt;!ATTLIST suppress files CDATA #REQUIRED
+                   checks CDATA #REQUIRED
+                   lines CDATA #IMPLIED
+                   columns CDATA #IMPLIED&gt;
+      </pre>
     </td>
   </tr>
 </table>
