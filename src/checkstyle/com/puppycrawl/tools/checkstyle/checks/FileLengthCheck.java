@@ -54,8 +54,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class FileLengthCheck extends Check
 {
+    /** default maximum number of lines */
+    private static final int DEFAULT_MAX_LINES = 2000;
+    
     /** the maximum number of lines */
-    private int mMaxFileLength = 2000;
+    private int mMaxFileLength = DEFAULT_MAX_LINES;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()

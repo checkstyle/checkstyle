@@ -54,8 +54,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class MethodLengthCheck extends Check
 {
+    /** default maximum number of lines */
+    private static final int DEFAULT_MAX_LINES = 150;
+        
     /** the maximum number of lines */
-    private int mMax = 150;
+    private int mMax = DEFAULT_MAX_LINES;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()

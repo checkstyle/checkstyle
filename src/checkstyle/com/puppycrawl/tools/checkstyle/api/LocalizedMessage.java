@@ -39,6 +39,9 @@ import java.util.ResourceBundle;
 public final class LocalizedMessage
     implements Comparable
 {
+    /** hash function multiplicand */
+    private static final int HASH_MULT = 29;
+    
     /** the locale to localise messages to **/
     private static Locale sLocale = Locale.getDefault();
 
@@ -111,10 +114,10 @@ public final class LocalizedMessage
     {
         int result;
         result = mLineNo;
-        result = 29 * result + mColNo;
-        result = 29 * result + mKey.hashCode();
+        result = HASH_MULT * result + mColNo;
+        result = HASH_MULT * result + mKey.hashCode();
         for (int i = 0; i < mArgs.length; i++) {
-            result = 29 * result + mArgs[i].hashCode();
+            result = HASH_MULT * result + mArgs[i].hashCode();
         }
         return result;
     }

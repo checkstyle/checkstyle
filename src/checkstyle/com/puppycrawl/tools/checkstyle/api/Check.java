@@ -32,7 +32,9 @@ import java.util.Set;
  */
 public abstract class Check extends AbstractViolationReporter
 {
-
+    /** default tab width for column reporting */ 
+    private static final int DEFAULT_TAB_WIDTH = 8;
+    
     /** the current file contents */
     private FileContents mFileContents = null;
 
@@ -42,8 +44,8 @@ public abstract class Check extends AbstractViolationReporter
     /** the object for collecting messages. */
     private LocalizedMessages mMessages;
 
-    /** the tab with for column reporting */
-    private int mTabWidth = 8; // meaningful default
+    /** the tab width for column reporting */
+    private int mTabWidth = DEFAULT_TAB_WIDTH; // meaningful default
 
     /** current class loader */
     private ClassLoader mLoader =

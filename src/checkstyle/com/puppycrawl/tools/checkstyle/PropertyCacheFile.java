@@ -192,6 +192,12 @@ final class PropertyCacheFile
         '0', '1', '2', '3', '4', '5', '6', '7',
         '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
+    /** mask for last byte */
+    private static final int MASK_0X0F = 0x0F;
+    
+    /** bit shift */
+    private static final int SHIFT_4 = 4;
+    
     /**
      * Hex-encodes a byte array.
      * @param aByteArray the byte array
@@ -202,8 +208,8 @@ final class PropertyCacheFile
         final StringBuffer buf = new StringBuffer(2 * aByteArray.length);
         for (int i = 0; i < aByteArray.length; i++) {
             final int b = aByteArray[i];
-            final int low = b & 0x0F;
-            final int high = (b >> 4) & 0x0F;
+            final int low = b & MASK_0X0F;
+            final int high = (b >> SHIFT_4) & MASK_0X0F;
             buf.append(sHexChars[high]);
             buf.append(sHexChars[low]);
         }

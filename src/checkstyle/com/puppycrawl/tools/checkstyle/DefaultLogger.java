@@ -36,6 +36,9 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 public class DefaultLogger
     implements AuditListener
 {
+    /** cushion for avoiding StringBuffer.expandCapacity */
+    private static final int BUFFER_CUSHION = 12;
+    
     /** where to write info messages **/
     private final PrintWriter mInfoWriter;
     /** close info stream after use */
@@ -92,7 +95,8 @@ public class DefaultLogger
             final String message = aEvt.getMessage();
 
             // avoid StringBuffer.expandCapacity
-            final int bufLen = fileName.length() + message.length() + 12;
+            final int bufLen = fileName.length() + message.length()
+                + BUFFER_CUSHION;
             final StringBuffer sb = new StringBuffer(bufLen);
 
             sb.append(fileName);
