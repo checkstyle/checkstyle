@@ -37,6 +37,12 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 public class XMLLogger
     implements AuditListener
 {
+    /** decimal radix */
+    private static final int BASE_10 = 10;
+        
+    /** hex radix */
+    private static final int BASE_16 = 16;
+        
     /** close output stream in auditFinished */
     private boolean mCloseStream;
 
@@ -193,23 +199,19 @@ public class XMLLogger
         }
 
         if (aEnt.charAt(1) == '#') {
+            int prefixLength = 2; // "&#"
+            int radix = BASE_10;
             if (aEnt.charAt(2) == 'x') {
-                try {
-                    Integer.parseInt(aEnt.substring(3, aEnt.length() - 1), 16);
-                    return true;
-                }
-                catch (NumberFormatException nfe) {
-                    return false;
-                }
+                prefixLength++;
+                radix = BASE_16;
             }
-            else {
-                try {
-                    Integer.parseInt(aEnt.substring(2, aEnt.length() - 1));
-                    return true;
-                }
-                catch (NumberFormatException nfe) {
-                    return false;
-                }
+            try {
+                Integer.parseInt(
+                    aEnt.substring(prefixLength, aEnt.length() - 1), radix);
+                return true;
+            }
+            catch (NumberFormatException nfe) {
+                return false;
             }
         }
 

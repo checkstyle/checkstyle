@@ -40,6 +40,15 @@ import java.util.Arrays;
  */
 public class MagicNumberCheck extends Check
 {
+    /** octal radix */
+    private static final int BASE_8 = 8;
+    
+    /** decimal radix */
+    private static final int BASE_10 = 10;
+    
+    /** hex radix */
+    private static final int BASE_16 = 16;
+    
     /** the numbers to ignore in the check, sorted */
     private float[] mIgnoreNumbers = {-1, 0, 1, 2};
 
@@ -96,13 +105,13 @@ public class MagicNumberCheck extends Check
             result = (float) Double.parseDouble(aText);
         }
         else {
-            int radix = 10;
+            int radix = BASE_10;
             if (aText.startsWith("0x") || aText.startsWith("0X")) {
-                radix = 16;
+                radix = BASE_16;
                 aText = aText.substring(2);
             }
             else if (aText.charAt(0) == '0') {
-                radix = 8;
+                radix = BASE_8;
                 aText = aText.substring(1);
             }
             if (aType == TokenTypes.NUM_INT) {

@@ -65,8 +65,11 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 public class LeftCurlyCheck
     extends AbstractOptionCheck
 {
+    /** default maximum line length */
+    private static final int DEFAULT_MAX_LINE_LENGTH = 80;
+    
     /** TODO: replace this ugly hack **/
-    private int mMaxLineLength = 80;
+    private int mMaxLineLength = DEFAULT_MAX_LINE_LENGTH;
     
     /**
      * Creates a default instance and sets the policy to EOL.

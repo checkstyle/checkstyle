@@ -99,13 +99,16 @@ public final class TreeWalker
         {
         }
     }
-
+    
+    /** default distance between tab stops */
+    private static final int DEFAULT_TAB_WIDTH = 8;
+    
     /** maps from token name to checks */
     private final Map mTokenToChecks = new HashMap();
     /** all the registered checks */
     private final Set mAllChecks = new HashSet();
     /** the distance between tab stops */
-    private int mTabWidth = 8;
+    private int mTabWidth = DEFAULT_TAB_WIDTH;
     /** cache file **/
     private PropertyCacheFile mCache = new PropertyCacheFile(null, null);
 

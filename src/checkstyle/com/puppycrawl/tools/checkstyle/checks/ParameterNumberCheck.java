@@ -50,8 +50,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class ParameterNumberCheck
     extends Check
 {
+    /** default maximum number of allowed parameters */
+    private static final int DEFAULT_MAX_PARAMETERS = 7;
+    
     /** the maximum number of allowed parameters */
-    private int mMax = 7;
+    private int mMax = DEFAULT_MAX_PARAMETERS;
 
     /**
      * Sets the maximum number of allowed parameters

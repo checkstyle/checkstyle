@@ -76,8 +76,11 @@ import org.apache.commons.beanutils.ConversionException;
  */
 public class LineLengthCheck extends Check
 {
+    /** default maximum number of columns in a line */
+    private static final int DEFAULT_MAX_COLUMNS = 80;
+    
     /** the maximum number of columns in a line */
-    private int mMax = 80;
+    private int mMax = DEFAULT_MAX_COLUMNS;
 
     /** the regexp when long lines are ignored */
     private RE mIgnorePattern;
