@@ -10,7 +10,6 @@
   <property name="antlr.jar" value="lib/antlr.jar" />
   <property name="antlr-tools.jar" value="lib/antlr-tools.jar" />
   <property name="regexp.jar" value="lib/jakarta-regexp-1.2.jar" />
-  <property name="bcel.jar" value="lib/bcel.jar" />
   <property name="junit.jar" value="lib/junit.jar" />
 
   <property name="checkstyle.dir"
@@ -23,7 +22,6 @@
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
     <pathelement location="${regexp.jar}" />
-    <pathelement location="${bcel.jar}" />
     <pathelement location="${ant.home}/lib/ant.jar" />
   </path>
 

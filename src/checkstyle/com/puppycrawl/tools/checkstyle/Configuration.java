@@ -607,12 +607,6 @@ public class Configuration
         return getBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP);
     }
 
-    /** @return whether to check unused fields **/
-    boolean isCheckUnusedFields()
-    {
-        return getBooleanProperty(Defn.CHECK_UNUSED_FIELDS_PROP);
-    }
-
     /** @return Set of pkg prefixes that are illegal in import statements */
     Set getIllegalImports()
     {
