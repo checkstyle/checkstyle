@@ -28,7 +28,8 @@ import java.util.ArrayList;
  * @author lkuehne
  */
 public abstract class AbstractFileSetCheck
-        extends AbstractViolationReporter implements FileSetCheck
+    extends AbstractViolationReporter
+    implements FileSetCheck
 {
     /** The dispatcher errors are fired to. */
     private MessageDispatcher mDispatcher = null;
@@ -37,20 +38,9 @@ public abstract class AbstractFileSetCheck
     private String[] mFileExtensions = {};
 
     /** collects the error messages */
-    private final LocalizedMessages mMessages;
+    private final LocalizedMessages mMessages = new LocalizedMessages();
 
-    /**
-     * initializes the AbstractFileSetCheck properties.
-     */
-    protected AbstractFileSetCheck()
-    {
-        mMessages = new LocalizedMessages();
-    }
-
-    /**
-     * Does nothing.
-     * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
-     */
+    /** @{inheritDoc} */
     public void destroy()
     {
     }

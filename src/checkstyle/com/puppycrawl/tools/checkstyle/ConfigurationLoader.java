@@ -93,7 +93,9 @@ public final class ConfigurationLoader
             if (aQName.equals(MODULE)) {
                 //create configuration
                 final String name = aAtts.getValue(NAME);
-                final DefaultConfiguration conf = new DefaultConfiguration(name);
+                final DefaultConfiguration conf =
+                    new DefaultConfiguration(name);
+
                 if (mConfiguration == null) {
                     mConfiguration = conf;
                 }
