@@ -24,6 +24,9 @@
         <li>JavadocMethod check now can be configured to skip missed javadoc
         (ref 1060634)</li>
 
+        <li>Some clarifications on  scope property of javadoc checks added
+        (rfe 1009201)</li>
+
       </ul>
 
 
@@ -53,6 +56,14 @@
 
         <li>ConstantName check now exclude serialPersistentFields from the
         check (bug 1097285)</li>
+
+        <li>One more problem with SuppressionCommentFilter fixed (bug
+        1061459)</li>
+
+        <li>format property of IllegalType check documented (bug 1047449)</li>
+
+        <li>ModifiedControlVariable check changed to work with for-each
+        correctly (1101851)</li>
 
       </ul>
 
