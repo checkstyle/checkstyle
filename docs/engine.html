@@ -227,10 +227,14 @@ line 4: ///////////////////////////////////////////////////////////////////////
 
 <!-- formatters -->
 <h2>Output Format</h2>
-<p>The Checkstyle engine
+<p>The Checkstyle engine has a flexible output mechanism inspired by ANT. Events are generated (for found errors) and are consumed by listeners that implement the <span class="code">AuditListener</span> interface. The standard distribution comes with the following listeners:</p>
 
-This document describes the core engine of Checkstyle, including what checks it performs and what can be configured. The engine can be executed via different <a href="site.html#related">interfaces</a>. The standard distribution included support for:
+<ul>
+  <li>plain - outputs the messages in Emacs format.</li>
+  <li>xml - outputs the messages in an XML format. This is ideal for generating pretty reports, or if you want to parse the output of Checkstyle.</li>
+</ul>
 
+<p>By default Checkstyle will use the plain listener.</p>
 
 
 <hr>
