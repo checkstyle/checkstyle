@@ -571,8 +571,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
         RPAREN!
         statement[stmtType, stmtBraces] // statement to loop over
         {
-            ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);
-            ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON, ")");
         }
 
 	// While statement

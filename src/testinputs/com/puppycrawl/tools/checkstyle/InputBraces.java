@@ -100,4 +100,13 @@ class InputBraces
             if (condition())
                 testIf();
     }
+    
+    void whitespaceAfterSemi()
+    {
+        //accept
+        for (;;) {
+        }
+        //reject
+        int i = 1;int j = 2;
+    }
 }

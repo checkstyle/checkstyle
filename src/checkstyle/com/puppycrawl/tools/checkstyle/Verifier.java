@@ -97,31 +97,6 @@ class Verifier
     }
 
     /**
-     * Verify that whitespace IS after a specified column.
-     * @param aLineNo number of line to check
-     * @param aColNo column where the cast ends
-     * @param aConstruct the construct being checked
-     */
-    void verifyWSAfter(int aLineNo, int aColNo, MyToken aConstruct)
-    {
-        verifyWSAfter(aLineNo, aColNo, aConstruct, "");
-    }
-
-    /**
-     * Verify that whitespace IS after a specified column.
-     * @param aLineNo number of line to check
-     * @param aColNo column where the cast ends
-     * @param aConstruct the construct being checked
-     * @param aAllow other character to allow apart from whitespace
-     */
-    void verifyWSAfter(int aLineNo, int aColNo,
-                       MyToken aConstruct, String aAllow)
-    {
-        checkWSAfter(aLineNo, aColNo, aConstruct, aAllow);
-    }
-
-
-    /**
      * Report the location of a C-style comment.
      * @param aStartLineNo the starting line number
      * @param aStartColNo the starting column number
@@ -191,32 +166,5 @@ class Verifier
                 mLines[aEndLineNo - 1].substring(0, aEndColNo + 1);
         }
         return retVal;
-    }
-
-    /**
-     * Checks that whitespace IS after a specified column.
-     * @param aLineNo number of line to check
-     * @param aColNo column where the cast ends
-     * @param aConstruct the construct being checked
-     * @param aAllow characters to allow as well as whitespace
-     */
-    void checkWSAfter(int aLineNo, int aColNo,
-                      MyToken aConstruct, String aAllow)
-    {
-        if (mConfig.isIgnoreWhitespace()
-            || ((MyToken.CAST == aConstruct)
-                && mConfig.isIgnoreCastWhitespace()))
-        {
-            return;
-        }
-
-        final String line = mLines[aLineNo - 1];
-        if ((aColNo < line.length())
-            && !Character.isWhitespace(line.charAt(aColNo))
-            && (aAllow.indexOf(line.charAt(aColNo)) == -1))
-        {
-            mMessages.add(aLineNo, aColNo,
-                          "ws.notFollowed", aConstruct.getText());
-        }
     }
 }
