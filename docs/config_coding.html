@@ -47,6 +47,9 @@
           <a href="#IllegalInstantiation">IllegalInstantiation</a>
         </li>
         <li>
+          <a href="#IllegalToken">IllegalToken</a>
+        </li>
+        <li>
           <a href="#InnerAssignment">InnerAssignment</a>
         </li>
         <li>
@@ -399,6 +402,57 @@ public class MySingleton
       <p class="body">
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
+
+      <!-- --> <a name="IllegalToken"></a> <h2>IllegalToken</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for illegal tokens.
+      </p>
+      <p class="body">
+      Rational: Certain language features are often lead to hard to
+      maintain code or are non-obvious to novice developers. Others
+      may be discouraged in certain frameworks, such as not having
+      native methods in EJB components.
+      </p>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>,
+          <a</td>
+          <td><a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">LITERAL_SWITCH</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">POST_INC</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">POST_DEC</a></td>
+        </tr>
+      </table>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check to find token LITERAL_NATIVE:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;IllegalToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NATIVE&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
       <!-- --> <a name="InnerAssignment"></a> <h2>InnerAssignment</h2> <h4>Description</h4>
       <p class="body">
       Checks for assignments in subexpressions, such as in <span class="code">String s
