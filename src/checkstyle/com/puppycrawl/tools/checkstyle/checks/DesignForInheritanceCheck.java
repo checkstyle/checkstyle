@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class DesignForInheritanceCheck extends Check
 {
@@ -75,7 +75,8 @@ public class DesignForInheritanceCheck extends Check
         DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
             || modifiers.branchContains(TokenTypes.ABSTRACT)
-            || modifiers.branchContains(TokenTypes.FINAL))
+            || modifiers.branchContains(TokenTypes.FINAL)
+            || modifiers.branchContains(TokenTypes.LITERAL_STATIC))
         {
             return;
         }
