@@ -25,8 +25,9 @@ import java.io.IOException;
  * A Reader that reads from an underlying String array, assuming each
  * array element corresponds to one line of text.
  *
- * @author Lars Kühne */
-public class StringArrayReader extends Reader
+ * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne</a>
+ */
+class StringArrayReader extends Reader
 {
     /** the underlying String array */
     private final String[] mUnderlyingArray;
