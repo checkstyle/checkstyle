@@ -248,17 +248,6 @@ class Verifier
      **/
     void verifyMethod(MethodSignature aSig)
     {
-        // no need to check constructor names
-        if (!aSig.isConstructor()
-            && !mConfig.getMethodRegexp().match(aSig.getName().getText()))
-        {
-            mMessages.add(aSig.getName().getLineNo(),
-                          aSig.getName().getColumnNo(),
-                          "name.invalidPattern",
-                          aSig.getName().getText(),
-                          mConfig.getMethodPat());
-        }
-
         // Always check that the order of modifiers follows the JLS suggestion
         checkModOrder(aSig.getModSet());
 
@@ -331,12 +320,6 @@ class Verifier
      **/
     void verifyType(MyModifierSet aMods, MyCommonAST aType)
     {
-        if (!mConfig.getTypeRegexp().match(aType.getText())) {
-            mMessages.add(aType.getLineNo(), aType.getColumnNo(),
-                          "name.invalidPattern",
-                          aType.getText(), mConfig.getTypePat());
-        }
-
         // Always check that the order of modifiers follows the JLS suggestion
         checkModOrder(aMods);
 

@@ -148,11 +148,23 @@ public class Checker
     /** vector of listeners */
     private final ArrayList mListeners = new ArrayList();
 
-    // TODO: delete me
+    /** used to collect messages TODO: delete */
     private final LocalizedMessages mMessages;
 
+    /** used to walk an AST and notify the checks */
     private final TreeWalker mWalker;
 
+    /**
+     * Creates a new <code>Checker</code> instance.
+     *
+     * @param aConfig the configuration to use
+     * @param aConfigs the configuation of the checks to use
+     * @throws ClassNotFoundException if an error occurs
+     * @throws InstantiationException if an error occurs
+     * @throws IllegalAccessException if an error occurs
+     * @throws InvocationTargetException if an error occurs
+     * @throws NoSuchMethodException if an error occurs
+     */
     public Checker(Configuration aConfig, CheckConfiguration[] aConfigs)
         throws ClassNotFoundException, InstantiationException,
                IllegalAccessException, InvocationTargetException,
@@ -177,6 +189,13 @@ public class Checker
      * @param aConfig contains the configuration to check with
      * @throws RESyntaxException unable to create a regexp object
      * @throws IOException if an error occurs
+     * @throws ParserConfigurationException if an error occurs
+     * @throws SAXException if an error occurs
+     * @throws ClassNotFoundException if an error occurs
+     * @throws InstantiationException if an error occurs
+     * @throws IllegalAccessException if an error occurs
+     * @throws InvocationTargetException if an error occurs
+     * @throws NoSuchMethodException if an error occurs
      */
     public Checker(Configuration aConfig)
         throws RESyntaxException, IOException,
@@ -441,9 +460,10 @@ public class Checker
                                                "general.fileNotFound", null));
         }
         catch (IOException ioe) {
-            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                               "general.exception",
-                                               new String[] {ioe.getMessage()}));
+            mMessages.add(new LocalizedMessage(
+                              0, Defn.CHECKSTYLE_BUNDLE,
+                              "general.exception",
+                              new String[] {ioe.getMessage()}));
         }
         catch (RecognitionException re) {
             mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,

@@ -33,10 +33,14 @@ import java.util.Iterator;
  */
 public class UnusedImportsCheck extends ImportCheck
 {
+    /** flag to indicate when time to start collecting references */
     private boolean mCollect;
+    /** set of the imports */
     private final Set mImports = new HashSet();
+    /** set of references - possibly to imports or other things */
     private final Set mReferenced = new HashSet();
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree()
     {
         mCollect = false;
@@ -44,6 +48,7 @@ public class UnusedImportsCheck extends ImportCheck
         mReferenced.clear();
     }
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void finishTree()
     {
         // loop over all the imports to see if referenced.
@@ -56,6 +61,7 @@ public class UnusedImportsCheck extends ImportCheck
         }
     }
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {JavaTokenTypes.IMPORT,
@@ -64,6 +70,7 @@ public class UnusedImportsCheck extends ImportCheck
                           JavaTokenTypes.IDENT};
     }
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == JavaTokenTypes.IDENT) {
@@ -81,6 +88,10 @@ public class UnusedImportsCheck extends ImportCheck
         }
     }
 
+    /**
+     * Collects references made by IDENT.
+     * @param aAST the IDENT node to process
+     */
     private void processIdent(DetailAST aAST)
     {
         // TODO: should be a lot smarter in selection. Currently use
@@ -96,6 +107,10 @@ public class UnusedImportsCheck extends ImportCheck
         }
     }
 
+    /**
+     * Collects the details of imports.
+     * @param aAST node containing the import details
+     */
     private void processImport(DetailAST aAST)
     {
         final String name = getImportText(aAST);

@@ -16,61 +16,51 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.Set;
-import java.util.HashSet;
-
-import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 
 /**
- * Check that reports empty if/try/catch/finally blocks.
+ * Checks that the header of the source file is correct.
  *
- * @author Lars Kühne
+ * <p>
+ * Rationale: In most projects each file must have a fixed header,
+ * usually the header contains copyright information.
+ * </p>
+ *
+ * @author Oliver Burn
  */
-public class EmptyBlockCheck extends Check
+public class TypeNameCheck
+    extends AbstractFormatCheck
 {
-    private final Set mCheckFor = new HashSet();
 
-    public EmptyBlockCheck()
+    /**
+     * Creates a new <code>TypeNameCheck</code> instance.
+     */
+    public TypeNameCheck()
     {
-        mCheckFor.add("if");
-        mCheckFor.add("try");
-        mCheckFor.add("catch");
-        mCheckFor.add("finally");
-        // TODO: currently there is no way to differenciate between if and
-        // else is not available as a parent token, instead if has two
-        // statement children needs grammar change or workaround here to make
-        // config simple
+        super("^[A-Z][a-zA-Z0-9]*$");
     }
-
-    // TODO: overwrite mCheckFor based on user settings in config file
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.SLIST};
+        return new int[] {JavaTokenTypes.CLASS_DEF,
+                          JavaTokenTypes.INTERFACE_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        // defend against users that change the token set in the config file.
-        if (aAST.getType() != JavaTokenTypes.SLIST) {
-            return;
+        final DetailAST nameAST =
+            (DetailAST) aAST.getFirstChild().getNextSibling();
+        if (!getRegexp().match(nameAST.getText())) {
+            log(nameAST.getLineNo(),
+                nameAST.getColumnNo(),
+                "name.invalidPattern",
+                nameAST.getText(),
+                getFormat());
         }
-
-        if (aAST.getChildCount() == 0) {
-            DetailAST parent = aAST.getParent();
-            String parentText = parent.getText();
-            if (mCheckFor.contains(parentText)) {
-                // TODO: i18n
-                log(aAST.getLineNo(), "empty " + parentText + " block");
-            }
-        }
-
     }
 }

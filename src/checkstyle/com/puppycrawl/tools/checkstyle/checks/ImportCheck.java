@@ -32,8 +32,15 @@ import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 public abstract class ImportCheck
     extends Check
 {
+    /** key to store name of import as */
     private static final String TEXT_KEY = "name";
 
+    /**
+     * Return the name of the import associated with a specifed DetailAST.
+     *
+     * @param aAST the node containing the import
+     * @return a <code>String</code> value
+     */
     protected String getImportText(DetailAST aAST)
     {
         String text = (String) getTokenContext().get(TEXT_KEY);
@@ -48,6 +55,12 @@ public abstract class ImportCheck
         return text;
     }
 
+    /**
+     * Fills in the name of an import.
+     *
+     * @param aBuf the StringBuffer to add the name to
+     * @param aAST the node to operate on
+     */
     private static void extractIdent(StringBuffer aBuf, DetailAST aAST)
     {
         if (aAST == null) {
@@ -62,7 +75,8 @@ public abstract class ImportCheck
                          (DetailAST) aAST.getFirstChild().getNextSibling());
         }
         else if ((aAST.getType() == JavaTokenTypes.IDENT)
-            || (aAST.getType() == JavaTokenTypes.STAR)) {
+                 || (aAST.getType() == JavaTokenTypes.STAR))
+        {
             aBuf.append(aAST.getText());
         }
         else {

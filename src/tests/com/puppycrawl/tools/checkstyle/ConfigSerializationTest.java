@@ -6,7 +6,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.Properties;
 
 import junit.framework.TestCase;
 import org.apache.regexp.RE;
@@ -38,26 +37,6 @@ public class ConfigSerializationTest
         Configuration configCopy = (Configuration) ois.readObject();
         ois.close();
         return configCopy;
-    }
-
-    /**
-     * Test that the RE deserialization mechanism works for one example.
-     */
-    public void testRegexpDeserialization()
-        throws Exception
-    {
-        final Properties props = new Properties();
-        props.setProperty(Defn.TYPE_PATTERN_PROP, "xyz");
-        Configuration configOrig = new Configuration(props, System.out);
-
-        Configuration configCopy = copyBySerialization(configOrig);
-        assertNotNull(configCopy);
-        assertNotNull(configCopy.getClassLoader());
-
-        // test that the general deserialization mechanism for RE fields works
-        RE typeRegexp = configCopy.getTypeRegexp();
-        assertTrue(typeRegexp.match("xyz"));
-        assertTrue(!typeRegexp.match("DefaultCompatibleTypeFormat"));
     }
 
     /**

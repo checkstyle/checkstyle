@@ -68,12 +68,10 @@ public class Configuration
         PATTERN_DEFAULTS.put(Defn.MEMBER_PATTERN_PROP, "^[a-z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.PUBLIC_MEMBER_PATTERN_PROP,
                              "^f[A-Z][a-zA-Z0-9]*$");
-        PATTERN_DEFAULTS.put(Defn.TYPE_PATTERN_PROP, "^[A-Z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.LOCAL_VAR_PATTERN_PROP,
                              "^[a-z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.LOCAL_FINAL_VAR_PATTERN_PROP,
                              "^[a-z][a-zA-Z0-9]*$");
-        PATTERN_DEFAULTS.put(Defn.METHOD_PATTERN_PROP, "^[a-z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP, "^$");
 
         // Uppercase letters seem rather uncommon, but they're allowed in
@@ -456,18 +454,6 @@ public class Configuration
         return getRegexpProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP);
     }
 
-    /** @return pattern to match type names **/
-    String getTypePat()
-    {
-        return getPatternProperty(Defn.TYPE_PATTERN_PROP);
-    }
-
-    /** @return regexp to match type names **/
-    RE getTypeRegexp()
-    {
-        return getRegexpProperty(Defn.TYPE_PATTERN_PROP);
-    }
-
     /** @return pattern to match local variables **/
     String getLocalVarPat()
     {
@@ -490,18 +476,6 @@ public class Configuration
     RE getLocalFinalVarRegexp()
     {
         return getRegexpProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP);
-    }
-
-    /** @return pattern to match method names **/
-    String getMethodPat()
-    {
-        return getPatternProperty(Defn.METHOD_PATTERN_PROP);
-    }
-
-    /** @return regexp to match method names **/
-    RE getMethodRegexp()
-    {
-        return getRegexpProperty(Defn.METHOD_PATTERN_PROP);
     }
 
     /** @return the maximum line length **/

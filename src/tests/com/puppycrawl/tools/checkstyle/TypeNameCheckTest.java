@@ -2,11 +2,12 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.checks.AvoidStarImport;
 import com.puppycrawl.tools.checkstyle.checks.ParameterFormatCheck;
+import com.puppycrawl.tools.checkstyle.checks.TypeNameCheck;
 
-public class ParameterFormatCheckTest
+public class TypeNameCheckTest
     extends BaseCheckTestCase
 {
-    public ParameterFormatCheckTest(String aName)
+    public TypeNameCheckTest(String aName)
     {
         super(aName);
     }
@@ -15,14 +16,11 @@ public class ParameterFormatCheckTest
         throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParameterFormatCheck.class.getName());
-        checkConfig.addProperty("format", "^a[A-Z][a-zA-Z0-9]*$");
+        checkConfig.setClassname(TypeNameCheck.class.getName());
+        checkConfig.addProperty("format", "^inputHe");
         final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
+        final String fname = getPath("inputHeader.java");
         final String[] expected = {
-            "71:19: Name 'badFormat1' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
-            "71:34: Name 'badFormat2' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
-            "72:25: Name 'badFormat3' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
         };
         verify(c, fname, expected);
     }
@@ -31,10 +29,11 @@ public class ParameterFormatCheckTest
         throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParameterFormatCheck.class.getName());
+        checkConfig.setClassname(TypeNameCheck.class.getName());
         final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
+        final String fname = getPath("inputHeader.java");
         final String[] expected = {
+            "1:48: Name 'inputHeader' must match pattern '^[A-Z][a-zA-Z0-9]*$'."
         };
         verify(c, fname, expected);
     }

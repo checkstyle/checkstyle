@@ -290,7 +290,8 @@ public abstract class Check
      * @param aLineNo line number to associate with the message
      * @param aColNo column number to associate with the message
      * @param aKey key to locale message format
-     * @param aArgs arguments for message
+     * @param aArg0 an <code>Object</code> value
+     * @param aArg1 an <code>Object</code> value
      */
     public void log(int aLineNo, int aColNo, String aKey,
                     Object aArg0, Object aArg1)
