@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 import junit.framework.TestCase;
 
@@ -121,18 +122,23 @@ public class XMLLoggerTest extends TestCase
         verifyLines(expectedLines);
     }
 
-    public void testAddError()
-        throws IOException
-    {
+    public void testAddError() throws IOException {
         final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         final LocalizedMessage message =
-            new LocalizedMessage( 1, 1, "messages.properties", "key", null);
+            new LocalizedMessage(
+                1,
+                1,
+                "messages.properties",
+                "key",
+                null,
+                SeverityLevel.ERROR,
+                "aSource");
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
         logger.addError(ev);
         logger.auditFinished(null);
         final String[] expectedLines =
-            {"<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\"/>"};
+            {"<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\" source=\"aSource\"/>"};
         verifyLines(expectedLines);
     }
 
