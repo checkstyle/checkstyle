@@ -77,7 +77,8 @@ import org.apache.regexp.RE;
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author Rick Giles
- * @version 1.0
+ * @author o_sukhodoslky
+ * @version 1.1
  */
 public class JavadocMethodCheck
     extends AbstractImportCheck
@@ -152,6 +153,13 @@ public class JavadocMethodCheck
     private boolean mAllowUndeclaredRTE = false;
 
     /**
+     * controls whether to allow documented exceptions that
+     * are subclass of one of declared exception.
+     * Defaults to false (backward compatibility).
+     **/
+    private boolean mAllowThrowsTagsForSubclasses = false;
+
+    /**
      * controls whether to ignore errors when a method has parameters
      * but does not have matching param tags in the javadoc.
      * Defaults to false.
@@ -190,6 +198,16 @@ public class JavadocMethodCheck
     public void setAllowUndeclaredRTE(boolean aFlag)
     {
         mAllowUndeclaredRTE = aFlag;
+    }
+
+    /**
+     * controls whether to allow documented exception that
+     * are subclass of one of declared exceptions.
+     * @param aFlag a <code>Boolean</code> value
+     */
+    public void setAllowThrowsTagsForSubclasses(boolean aFlag)
+    {
+        mAllowThrowsTagsForSubclasses = aFlag;
     }
 
     /**
@@ -234,7 +252,7 @@ public class JavadocMethodCheck
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF};
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getAcceptableTokens()
     {
@@ -242,7 +260,7 @@ public class JavadocMethodCheck
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF};
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getRequiredTokens()
     {
@@ -256,6 +274,7 @@ public class JavadocMethodCheck
     {
         mPackageFullIdent = FullIdent.createFullIdent(null);
         mImports.clear();
+        mClassResolver = null;
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -473,8 +492,9 @@ public class JavadocMethodCheck
                 if ((child.getType() == TokenTypes.IDENT)
                     || (child.getType() == TokenTypes.DOT))
                 {
-                    final FullIdent fi = FullIdent.createFullIdent(child);
-                    retVal.add(fi);
+                    final ExceptionInfo ei = 
+                        new ExceptionInfo(FullIdent.createFullIdent(child));
+                    retVal.add(ei);
                 }
                 child = (DetailAST) child.getNextSibling();
             }
@@ -641,7 +661,7 @@ public class JavadocMethodCheck
     private void checkThrowsTags(List aTags, List aThrows)
     {
         // Loop over the tags, checking to see they exist in the throws.
-        final Set foundThrows = new HashSet();
+        final Set foundThrows = new HashSet(); //used for performance only
         final ListIterator tagIt = aTags.listIterator();
         while (tagIt.hasNext()) {
             final JavadocTag tag = (JavadocTag) tagIt.next();
@@ -657,12 +677,35 @@ public class JavadocMethodCheck
             boolean found = foundThrows.contains(documentedEx);
             final ListIterator throwIt = aThrows.listIterator();
             while (!found && throwIt.hasNext()) {
-                final FullIdent fi = (FullIdent) throwIt.next();
+                final ExceptionInfo ei = (ExceptionInfo) throwIt.next();
+                final FullIdent fi = ei.getFullIdent();
                 final String declaredEx = fi.getText();
                 if (isSameType(declaredEx, documentedEx)) {
                     found = true;
-                    throwIt.remove();
+                    ei.setFound();
                     foundThrows.add(documentedEx);
+                }
+                else if (mAllowThrowsTagsForSubclasses) {
+                    final ClassResolver cr = getClassResolver();
+                    try {
+                        final Class documentedClass = cr.resolve(documentedEx);
+                        try {
+                            final Class declaredClass = cr.resolve(declaredEx);
+                            found = 
+                                declaredClass.isAssignableFrom(documentedClass);
+                            if (found) {
+                                ei.setFound();
+                            }
+                        }
+                        catch (ClassNotFoundException e) {
+                            log(tag.getLineNo(), "javadoc.classInfo",
+                                "@throws", declaredEx);
+                        }
+                    }
+                    catch (ClassNotFoundException e) {
+                        log(tag.getLineNo(), "javadoc.classInfo",
+                                      "@throws", documentedEx);
+                    }
                 }
             }
 
@@ -670,11 +713,7 @@ public class JavadocMethodCheck
             if (!found) {
                 boolean reqd = true;
                 if (mAllowUndeclaredRTE) {
-                    final ClassResolver cr =
-                        new ClassResolver(
-                            getClassLoader(),
-                            mPackageFullIdent.getText(),
-                            mImports);
+                    final ClassResolver cr = getClassResolver();
                     try {
                         final Class clazz = cr.resolve(tag.getArg1());
                         reqd =
@@ -699,10 +738,68 @@ public class JavadocMethodCheck
         if (!mAllowMissingThrowsTags) {
             final ListIterator throwIt = aThrows.listIterator();
             while (throwIt.hasNext()) {
-                final FullIdent fi = (FullIdent) throwIt.next();
-                log(fi.getLineNo(), fi.getColumnNo(),
-                    "javadoc.expectedTag", "@throws", fi.getText());
+                final ExceptionInfo ei = (ExceptionInfo) throwIt.next();
+                if (!ei.isFound()) {
+                    final FullIdent fi = ei.getFullIdent();
+                    log(fi.getLineNo(), fi.getColumnNo(),
+                        "javadoc.expectedTag", "@throws", fi.getText());
+                }
             }
         }
+    }
+
+    /** @return <code>ClassResolver</code> for current tree. */
+    final ClassResolver getClassResolver()
+    {
+        if (mClassResolver == null) {
+            mClassResolver = new ClassResolver(getClassLoader(),
+                                               mPackageFullIdent.getText(),
+                                               mImports);
+
+        }
+        return mClassResolver;
+    }
+
+    /** <code>ClassResolver</code> instance for current tree. */
+    private ClassResolver mClassResolver;
+}
+
+/**
+ * Stores useful information about declared exception.
+ * @author o_sukhodoslky
+ */
+final class ExceptionInfo
+{
+    /** <code>FullIdent</code> of the exception. */
+    private final FullIdent mIdent;
+
+    /** does the exception have throws tag associated with. */
+    private boolean mFound;
+
+    /** 
+     * Creates new instance for <code>FullIdent</code>.
+     * @param aIdent <code>FullIdent</code> of the exception
+     */
+    ExceptionInfo(FullIdent aIdent)
+    {
+        mIdent = aIdent;
+    }
+
+    /** @return <code>FullIdent</code> of the exception. */
+    final FullIdent getFullIdent()
+    {
+        return mIdent;
+    }
+
+    /** Mark that the exception has associated throws tag */
+    final void setFound()
+    {
+        mFound = true;
+    }
+
+    /** @return whether the exception has throws tag associated with */
+    final boolean isFound()
+    {
+        return mFound;
     }
 }

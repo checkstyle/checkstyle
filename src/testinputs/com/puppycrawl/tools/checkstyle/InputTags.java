@@ -217,4 +217,26 @@ class InputTags
     {
         return 579190;
     }
+
+    /**
+     * Bug XXX, "two tags for the same exception"
+     *
+     * @exception java.io.IOException for some reasons
+     * @exception IOException for another reason
+     */
+    void method21()
+       throws IOException
+    {
+    }
+
+    /**
+     * RFE 540383, "Unused throws tag for exception subclass"
+     *
+     * @exception IOException for some reasons
+     * @exception java.io.FileNotFoundException for another reasons
+     */
+    void method22()
+       throws IOException
+    {
+    }
 }
