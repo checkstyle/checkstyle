@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+  <title>checkstyle ANT Task</title>
+  <style>
+    span.default {white-space: nowrap;font-family: monospace;font-size: x-small;}
+  </style>
+</head>
+
+<body>
+<h2><a name="checkstyle">checkstyle ANT Task</a></h2>
+<h3>Description</h3>
+
+<p>This task runs checkstyle over specified Java files. The task has been tested using ANT 1.3. The latest version of checkstyle can be found at <a href="http://www.puppycrawl.com/checkstyle">http://www.puppycrawl.com/checkstyle</a>.
+This task is included in the checkstyle distribution.</p>
+
+<h3>Installation</h3>
+<p>The easiest way is to include <span class="default">checkstyle-all-1.1.jar</span> in the classpath. This contains all the classes required to run checkstyle. Alternatively, you must include the following in the classpath:</p>
+<ol>
+  <li><span class="default">checkstyle-1.1.jar</span></li>
+  <li>ANTLR 2.7.1 classes. <span class="default">antlr.jar</span> is included in the distribution.</li>
+  <li>Jakarta Regexp 1.2 classes. <span class="default">jakarta-regexp-1.2.jar</span> is included in the distribution.</li>
+</ol>
+
+<p>To use the task in a build file, you will need the following <code>taskdef</code> declaration:</p>
+<pre>
+  &lt;taskdef name=&quot;checkstyle&quot;
+           classname=&quot;com.puppycrawl.tools.checkstyle.CheckStyleTask&quot;/&gt;
+</pre>
+
+
+<h3>Parameters</h3>
+<table border="1" cellpadding="2" cellspacing="0">
+  <tr>
+    <td valign="top"><b>Attribute</b></td>
+    <td valign="top"><b>Description</b></td>
+    <td valign="top"><b>Required</b></td>
+  </tr>
+  <tr>
+    <td valign="top">file</td> 
+    <td valign="top">File to run checkstyle on.</td>
+    <td align="center" valign="top">One of either <i>file</i> or at least one nested <i>fileset</i> element</td>
+  </tr>
+  <tr>
+    <td valign="top">allowtabs</td> 
+    <td valign="top">Indicates whether to allow tabs. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">allowprotected</td> 
+    <td valign="top">Indicates whether to allow protected data. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+     <td valign="top">allownoauthor</td> 
+    <td valign="top">Indicates whether to allow no <span class="default">@author</span> tag to be defined for class and interface Javadoc comments. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">maxlinelen</td> 
+    <td valign="top">Specifies the maximum line length. Default value is defined <a href="index.html#length">here</a>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">memberpattern</td> 
+    <td valign="top">Specifies the regular expression to match against member variables. Default value is defined <a href="index.html#varformat">here</a>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">parampattern</td> 
+    <td valign="top">Specifies the regular expression to match against parameters. Default value is defined <a href="index.html#paramformat">here</a>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">constpattern</td> 
+    <td valign="top">Specifies the regular expression to match against static/final variables. Default value is defined <a href="index.html#varformat">here</a>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">staticpattern</td> 
+    <td valign="top">Specifies the regular expression to match against static variables. Default value is defined <a href="index.html#varformat">here</a>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">typepattern</td> 
+    <td valign="top">Specifies the regular expression to match against type names. Default value is defined <a href="index.html#typeformat">here</a>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">headerfile</td> 
+    <td valign="top">Specifies the file containing the header lines. Default is to not check.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">headerignoreline</td> 
+    <td valign="top">Specifies the line in the header to ignore when comparing. Default it to not ignore any line.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">relaxjavadoc</td> 
+    <td valign="top">Specifies whether to relax checking Javadoc comments. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">ignoreimports</td> 
+    <td valign="top">Specifies whether to ignore checking import statements. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+</table>
+
+<h3>Examples</h3>
+<p><b>Run checkstyle on a single file</b></p>
+<pre>
+  &lt;checkstyle file=&quot;Check.java&quot;/&gt;
+</pre>
+
+<p><b>Run checkstyle on a set of Java files in directory</b></p>
+<pre>
+  &lt;checkstyle&gt;
+    &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
+  &lt;/checkstyle&gt;
+</pre>
+
+<p><b>Run checkstyle on a set of Java files and allow tabs</b></p>
+<pre>
+  &lt;checkstyle allowtabs=&quot;yes&quot;&gt;
+    &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
+  &lt;/checkstyle&gt;
+</pre>
+
+<p><b>Run checkstyle on a set of Java files and disable pattern matching</b></p>
+<pre>
+  &lt;checkstyle allowtabs=&quot;yes&quot;&gt;
+              parampattern=&quot;.&quot;
+              constpattern=&quot;.&quot;
+              staticpattern=&quot;.&quot;
+              memberpattern=&quot;.&quot;
+    &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
+  &lt;/checkstyle&gt;
+</pre>
+
+<hr>
+<p align="center">Copyright &copy; 2001 Oliver Burn. All rights Reserved.</p>
+</body>
+</html>

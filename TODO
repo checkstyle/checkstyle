@@ -1,0 +1,47 @@
+TODO LIST:
+
+Add Features:
+=============
+
+o Detect unused Javadoc comments
+
+o Do more rigorous QA on the Javadoc tags. Things to check are:
+    - Tags all start at the correct location
+    - Tags that are missing information. For example "@param size".
+    - Incorrect tags
+    - Tags in the wrong location. For example tags for serialised form make
+      no sense in a method comment.
+
+o Code after {}'s. Two examples are:
+    } x = y + 1;
+    { y = x + 1;
+
+o Allow the error message format to be defined.
+
+o Do not require Javadoc comments for annoymous classes.
+
+o Make the handling of dates in the header smarter that just ignoring a single
+  line.
+
+
+Fix known bugs:
+===============
+
+o Cannot correctly determine the starting line number for a method with no
+  modifiers ("static", "private", etc). For example the method
+    int getLine().
+
+o Requires Javadoc comments to directly precede the statement. For example:
+
+    /** a comment **/
+    private int mData;
+
+  is ok, but the following is not:
+
+    /** an empty line follows **/
+
+    private int mData2;
+
+o Incorporate known Java Grammer bugs outlined in the article
+  http://groups.yahoo.com/group/antlr-interest/message/2687.
+
