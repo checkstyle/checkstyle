@@ -4,10 +4,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.lang.Class; // ignore
-import java.lang.Class; // ignore
-import java.io.*; // ignore
-
 /**
  * Test case for correct use of braces.
  * @author Oliver Burn

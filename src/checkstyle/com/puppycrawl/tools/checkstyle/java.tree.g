@@ -37,6 +37,8 @@ options {
 
 {
    Verifier ver = VerifierSingleton.getInstance();
+   // Used in primaryExpression
+   MyCommonAST firstExprIdent = null;
 }
 
 compilationUnit
@@ -414,35 +416,35 @@ expr
    |  #("instanceof" expr expr) // Java ensures surrounded by WS!
    |  #(UNARY_MINUS expr) { ver.verifyNoWSAfter(#UNARY_MINUS); }
    |  #(UNARY_PLUS expr) { ver.verifyNoWSAfter(#UNARY_PLUS); }
-   |	primaryExpression
+   |  primaryExpression
    ;
 
 primaryExpression
-    :   IDENT
-    |   #(	DOT
-			(	expr
-				(	IDENT
-				|	arrayIndex
-				|	"this"
-				|	"class"
-				|	#( "new" IDENT elist )
-				)
-			|	#(ARRAY_DECLARATOR type)
-			|	builtInType ("class")?
-			)
-		)
-	|	arrayIndex
-	|	#(METHOD_CALL primaryExpression elist)
-	|	#(TYPECAST typeSpec expr)
-	|   newExpression
-	|   constant
-    |   "super"
-    |   "true"
-    |   "false"
-    |   "this"
-    |   "null"
-	|	typeSpec // type name used with instanceof
-	;
+    :   i1:IDENT { firstExprIdent = i1;}
+    |   #( DOT
+            (expr
+                (i2:IDENT { firstExprIdent = null;}
+                | arrayIndex
+                | "this"
+                | "class" { if (firstExprIdent != null) { ver.reportReference(firstExprIdent.getText()); } }
+                |  #( "new" IDENT elist )
+                )
+            | #(ARRAY_DECLARATOR type)
+            | builtInType ("class")?
+            )
+        )
+    | arrayIndex
+    | #(METHOD_CALL primaryExpression elist)
+    | #(TYPECAST typeSpec expr)
+    | newExpression
+    | constant
+    | "super"
+    | "true"
+    | "false"
+    | "this"
+    | "null"
+    | typeSpec // type name used with instanceof
+    ;
 
 arrayIndex
 	:	#(INDEX_OP primaryExpression expression)

@@ -39,12 +39,12 @@ public final class Main
 
         Checker c = null;
         try {
-            c = new Checker(System.getProperties(), System.err);
+            c = new Checker(System.getProperties(), System.out);
         }
         catch (RESyntaxException rese) {
-            System.err.println("Unable to create an regexp object: " +
+            System.out.println("Unable to create an regexp object: " +
                                rese.getMessage());
-            rese.printStackTrace(System.err);
+            rese.printStackTrace(System.out);
             System.exit(1);
         }
 
@@ -59,7 +59,7 @@ public final class Main
     /** Prints the usage information. **/
     private static void usage()
     {
-        System.err.println(
+        System.out.println(
             "Usage: java " +
             com.puppycrawl.tools.checkstyle.Main.class.getName() + " file...");
         System.exit(1);

@@ -135,20 +135,20 @@ public class CheckStyleTask
     {
         mProps.setProperty(RELAX_JAVADOC_PROP, "" + aRelax);
     }
-    
+
     /** @param aIgnore whether to ignore import statements **/
     public void setIgnoreImports(boolean aIgnore)
     {
         mProps.setProperty(IGNORE_IMPORTS_PROP, "" + aIgnore);
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // The doers
     ////////////////////////////////////////////////////////////////////////////
 
     /**
      * Actually checks the files specified. All errors are reported to
-     * System.err. Will fail if any errors occurred.
+     * System.out. Will fail if any errors occurred.
      * @throws BuildException an error occurred
      **/
     public void execute()
@@ -163,7 +163,7 @@ public class CheckStyleTask
         // Create the checker
         Checker c;
         try {
-            c = new Checker(mProps, System.err);
+            c = new Checker(mProps, System.out);
         }
         catch (RESyntaxException e){
             e.printStackTrace();

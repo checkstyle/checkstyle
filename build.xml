@@ -4,7 +4,7 @@
   <property name="antlr.home" value="c:/apps/antlr-2.7.1" />
   <property name="regexp.jar" value="c:/apps/jakarta-regexp-1.2/jakarta-regexp-1.2.jar" />
   <property name="checkstyle.dir" value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
-  <property name="version" value="1.1" />
+  <property name="version" value="1.2" />
 
   <path id="build.classpath">
     <pathelement location="${antlr.home}" />
