@@ -144,21 +144,9 @@ public class Checker
             return 0;
         }
 
-        // Create a stripped down version
-        final String stripped;
-        final String basedir = mConfig.getBasedir();
-        if ((basedir == null) || !fileName.startsWith(basedir)) {
-            stripped = fileName;
-        }
-        else {
-            // making the assumption that there is text after basedir
-            final int skipSep = basedir.endsWith(File.separator) ? 0 : 1;
-            stripped = fileName.substring(basedir.length() + skipSep);
-        }
-
         mMessages.reset();
         try {
-            fireFileStarted(stripped);
+            fireFileStarted(fileName);
             final String[] lines = Utils.getLines(fileName);
             final FileContents contents = new FileContents(fileName, lines);
             final DetailAST rootAST = TreeWalker.parse(contents);
@@ -189,11 +177,31 @@ public class Checker
             mCache.checkedOk(fileName, timestamp);
         }
         else {
-            fireErrors(stripped, mMessages.getMessages());
+            fireErrors(fileName, mMessages.getMessages());
         }
 
-        fireFileFinished(stripped);
+        fireFileFinished(fileName);
         return mMessages.size();
+    }
+
+    /**
+     * Create a stripped down version of a filename.
+     * @param aFileName the original filename
+     * @return the filename where an initial prefix of basedir is stripped
+     */
+    private String getStrippedFileName(final String aFileName)
+    {
+        final String stripped;
+        final String basedir = mConfig.getBasedir();
+        if ((basedir == null) || !aFileName.startsWith(basedir)) {
+            stripped = aFileName;
+        }
+        else {
+            // making the assumption that there is text after basedir
+            final int skipSep = basedir.endsWith(File.separator) ? 0 : 1;
+            stripped = aFileName.substring(basedir.length() + skipSep);
+        }
+        return stripped;
     }
 
 
@@ -225,7 +233,8 @@ public class Checker
      */
     protected void fireFileStarted(String aFileName)
     {
-        final AuditEvent evt = new AuditEvent(this, aFileName);
+        final String stripped = getStrippedFileName(aFileName);
+        final AuditEvent evt = new AuditEvent(this, stripped);
         final Iterator it = mListeners.iterator();
         while (it.hasNext()) {
             final AuditListener listener = (AuditListener) it.next();
@@ -239,7 +248,8 @@ public class Checker
      */
     protected void fireFileFinished(String aFileName)
     {
-        final AuditEvent evt = new AuditEvent(this, aFileName);
+        final String stripped = getStrippedFileName(aFileName);
+        final AuditEvent evt = new AuditEvent(this, stripped);
         final Iterator it = mListeners.iterator();
         while (it.hasNext()) {
             final AuditListener listener = (AuditListener) it.next();
@@ -254,9 +264,9 @@ public class Checker
      */
     protected void fireErrors(String aFileName, LocalizedMessage[] aErrors)
     {
+        final String stripped = getStrippedFileName(aFileName);
         for (int i = 0; i < aErrors.length; i++) {
-            final AuditEvent evt =
-                new AuditEvent(this, aFileName, aErrors[i]);
+            final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);
             final Iterator it = mListeners.iterator();
             while (it.hasNext()) {
                 final AuditListener listener = (AuditListener) it.next();
