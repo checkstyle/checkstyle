@@ -35,6 +35,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class InnerAssignmentCheck
         extends Check
 {
+    /**
+     * The default tokens.
+     * TODO: this has to be tweaked with |= and friends
+     */
     private final int[] DEFAULT_TOKENS = new int[] {
         TokenTypes.ASSIGN,
         TokenTypes.PLUS_ASSIGN,
@@ -54,7 +58,7 @@ public class InnerAssignmentCheck
         DetailAST parent2 = parent1.getParent();
         DetailAST parent3 = parent2.getParent();
 
-        final boolean assigment = isAssigment(parent1);
+        final boolean assigment = isAssignment(parent1);
         final boolean expr = parent1.getType() == TokenTypes.EXPR;
         final boolean exprList =
                 expr && parent2.getType() == TokenTypes.ELIST;
@@ -68,7 +72,12 @@ public class InnerAssignmentCheck
         }
     }
 
-    private boolean isAssigment(DetailAST aAST)
+    /**
+     * Checks if an AST is an assignment operator.
+     * @param aAST the AST to check
+     * @return true iff aAST is an assignment operator.
+     */
+    private boolean isAssignment(DetailAST aAST)
     {
         // TODO: make actual tokens available to Check and loop over actual tokens here?
         int[] tokens = getDefaultTokens();
