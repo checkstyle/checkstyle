@@ -93,7 +93,8 @@ public class RedundantThrowsCheck
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF};
+            TokenTypes.CTOR_DEF,
+        };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */

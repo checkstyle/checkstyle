@@ -53,7 +53,7 @@ public class XMLLogger
 
     /** some known entities to detect */
     private static final String[] ENTITIES = {"gt", "amp", "lt", "apos",
-                                              "quot"};
+                                              "quot", };
 
     /**
      * Creates a new <code>XMLLogger</code> instance.

@@ -34,7 +34,7 @@ public class CaseHandler extends ExpressionHandler
      */
     private final int[] mCaseChildren = new int[] {
         TokenTypes.LITERAL_CASE,
-        TokenTypes.LITERAL_DEFAULT
+        TokenTypes.LITERAL_DEFAULT,
     };
 
     /**

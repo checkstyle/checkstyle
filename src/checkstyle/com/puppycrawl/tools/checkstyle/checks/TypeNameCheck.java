@@ -62,6 +62,6 @@ public class TypeNameCheck
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF,
-                          TokenTypes.INTERFACE_DEF};
+                          TokenTypes.INTERFACE_DEF, };
     }
 }

@@ -66,9 +66,11 @@ public class RightCurlyCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.LITERAL_TRY,
-                          TokenTypes.LITERAL_CATCH,
-                          TokenTypes.LITERAL_ELSE};
+        return new int[] {
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_ELSE,
+        };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
