@@ -107,6 +107,18 @@ public class Checker
      * Creates a new <code>Checker</code> instance.
      *
      * @param aConfig the configuration to use
+     * @throws CheckstyleException if an error occurs
+     */
+    public Checker(Configuration aConfig)
+        throws CheckstyleException
+    {
+        this(aConfig.getGlobalProperties(), aConfig.getCheckConfigurations());
+    }
+
+    /**
+     * Creates a new <code>Checker</code> instance.
+     *
+     * @param aConfig the configuration to use
      * @param aConfigs the configuation of the checks to use
      * @throws CheckstyleException if an error occurs
      */

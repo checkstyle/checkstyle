@@ -1,16 +1,14 @@
 <!--
  DTD for a checkstyle configuration.
  -->
-<!ELEMENT configuration (global-property*, check*)>
-<!ELEMENT global-property EMPTY>
+<!ELEMENT configuration (global*, check*)>
+<!ELEMENT global (set-property*)>
 <!ELEMENT check (tokens?, set-property?)>
 <!ELEMENT tokens (#PCDATA)>
 <!ELEMENT set-property EMPTY>
 
-<!ATTLIST global-property name CDATA #REQUIRED
-                          value CDATA #REQUIRED
->
 <!ATTLIST check classname CDATA #REQUIRED>
 <!ATTLIST set-property name CDATA #REQUIRED
-                       value CDATA #REQUIRED
+                       value CDATA #IMPLIED
+                       from-global CDATA #IMPLIED
 >

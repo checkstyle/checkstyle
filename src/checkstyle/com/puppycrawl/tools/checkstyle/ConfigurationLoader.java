@@ -22,16 +22,19 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.apache.regexp.RESyntaxException;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
+// TODO: Fix the loader so it doesn't validate the document
 /**
  * Describe class <code>ConfigurationLoader</code> here.
  *
@@ -41,14 +44,20 @@ import org.xml.sax.helpers.DefaultHandler;
 class ConfigurationLoader
     extends DefaultHandler
 {
-    /** parser to read XML files */
+    /** parser to read XML files **/
     private final XMLReader mParser;
-    /** the loaded configurations */
+    /** the loaded global properties **/
+    private final Properties mProps = new Properties(); 
+    /** the loaded configurations **/
     private final ArrayList mCheckConfigs = new ArrayList();
-    /** the current configuration being created */
+    /** the loaded configuration **/
+    private Configuration mConfig = null;
+    /** the current check configuration being created **/
     private CheckConfiguration mCurrent;
     /** buffer for collecting text **/
     private final StringBuffer mBuf = new StringBuffer();
+    /** in global element **/
+    private boolean isInGlobalElement = false;
 
     /**
      * Creates a new <code>ConfigurationLoader</code> instance.
@@ -103,14 +112,31 @@ class ConfigurationLoader
                              Attributes aAtts)
     {
         mBuf.setLength(0);
-        if ("check".equals(aQName)) {
+        if ("global".equals(aQName)) {
+            isInGlobalElement = true;
+        }
+        else if ("check".equals(aQName)) {
             mCurrent = new CheckConfiguration();
             mCurrent.setClassname(aAtts.getValue("classname"));
         }
         else if ("set-property".equals(aQName)) {
-            mCurrent.addProperty(aAtts.getValue("name"),
-                                 aAtts.getValue("value"));
+            final String name = aAtts.getValue("name");
+            String value = aAtts.getValue("value");
+            
+            if (value == null) {
+                //global?
+                String globalKey = aAtts.getValue("from-global");
+                value = (String) mProps.get(globalKey); 
+            }
+                
+            if (isInGlobalElement) {
+                mProps.setProperty(name, value);
+            }
+            else {
+                mCurrent.addProperty(name, value);
+            }
         }
+
     }
 
     /** @see org.xml.sax.helpers.DefaultHandler **/
@@ -118,7 +144,10 @@ class ConfigurationLoader
                            String aLocalName,
                            String aQName)
     {
-        if ("check".equals(aQName)) {
+        if ("global".equals(aQName)) {
+            isInGlobalElement = false;
+        }
+        else if ("check".equals(aQName)) {
             mCheckConfigs.add(mCurrent);
             mCurrent = null;
         }
@@ -154,6 +183,54 @@ class ConfigurationLoader
             throw new CheckstyleException("unable to read " + aConfigFname);
         }
     }
+    
+    /**
+     * Returns the check configurations in a specified file.
+     * @param aConfigFname name of config file
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static Configuration loadConfiguration(String aConfigFname)
+        throws CheckstyleException
+    {
+        try {
+            final ConfigurationLoader loader = new ConfigurationLoader();
+            loader.parseFile(aConfigFname);
+            return loader.getConfiguration();
+        }
+        catch (FileNotFoundException e) {
+            throw new CheckstyleException("unable to find " + aConfigFname);
+        }
+        catch (ParserConfigurationException e) {
+            throw new CheckstyleException("unable to parse " + aConfigFname);
+        }
+        catch (SAXException e) {
+            throw new CheckstyleException("unable to parse " + aConfigFname);
+        }
+        catch (IOException e) {
+            throw new CheckstyleException("unable to read " + aConfigFname);
+        }
+        catch (RESyntaxException e) {
+            throw new CheckstyleException(
+                "A regular expression error exists in " + aConfigFname);
+        }
+    }
 
-
+    /**
+     * Returns the configuration in the last file parsed.
+     * @return Configuration object
+     * @throws RESyntaxException if an error occurs
+     * @throws FileNotFoundException if an error occurs
+     * @throws IOException if an error occurs
+     */
+    private Configuration getConfiguration()
+        throws IOException, FileNotFoundException, RESyntaxException
+    {
+        final GlobalProperties globalProps = 
+            new GlobalProperties(mProps, System.out);
+        final CheckConfiguration[] checkConfigs =
+            (CheckConfiguration[]) mCheckConfigs.toArray(
+                new CheckConfiguration[mCheckConfigs.size()]);
+        return new Configuration(globalProps, checkConfigs);
+    }
 }
