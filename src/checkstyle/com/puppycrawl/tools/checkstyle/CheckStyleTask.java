@@ -434,7 +434,6 @@ public class CheckStyleTask
     /** @param aLang the language to localise messages to **/
     public void setLocaleLanguage(String aLang)
     {
-        // TODO:  in Config and also document this
         setStringProperty(Defn.LOCALE_LANGUAGE_PROP, aLang);
     }
 

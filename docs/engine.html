@@ -442,7 +442,11 @@ line 5: /{71}
 
 <!-- formatters -->
 <h2>Output Format</h2>
-<p>The Checkstyle engine has a flexible output mechanism inspired by ANT. <a href="api/com/puppycrawl/tools/checkstyle/AuditEvent.html">AuditEvent</a> objects are generated (for found errors) and are consumed by listeners that implement the <a href="api/com/puppycrawl/tools/checkstyle/AuditListener.html">AuditListener</a> interface. The standard distribution comes with the following listeners:</p>
+<p>The Checkstyle engine has a flexible output mechanism inspired by ANT. <a href="api/com/puppycrawl/tools/checkstyle/AuditEvent.html">AuditEvent</a> objects are generated (for found errors) and are consumed by listeners that implement the <a href="api/com/puppycrawl/tools/checkstyle/AuditListener.html">AuditListener</a> interface.</p>
+
+<p>The output messages are localised using resource bundles with the base name of <span class="code">com.puppycrawl.tools.checkstyle.messages</span>. By default Checkstyle uses the system default locale, but it is possible to define the locale language to use. Help is requested is translating the messages used by Checkstyle. Please email us if you translate the messages to another language.</p>
+
+<p>The standard distribution comes with the following listeners:</p>
 
 <ul>
   <li><a href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a> - outputs the events in Emacs format. This is the one used by default (no surprise there:-).</li>
