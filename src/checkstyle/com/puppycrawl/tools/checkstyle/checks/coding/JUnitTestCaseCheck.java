@@ -95,13 +95,11 @@ public final class JUnitTestCaseCheck extends Check
     private void checkSuiteMethod(DetailAST aAST, String aActualName)
     {
         if (!aActualName.equals(SUITE_METHOD_NAME)) {
-            log(aAST.getLineNo(), aAST.getColumnNo(),
-                "junit.method.name", SUITE_METHOD_NAME);
+            log(aAST, "junit.method.name", SUITE_METHOD_NAME);
         }
 
         if (!isPublicAndStatic(aAST)) {
-            log(aAST.getLineNo(), aAST.getColumnNo(),
-                "junit.method.public.and.static", SUITE_METHOD_NAME);
+            log(aAST, "junit.method.public.and.static", SUITE_METHOD_NAME);
         }
 
         // let's check return type
@@ -113,9 +111,8 @@ public final class JUnitTestCaseCheck extends Check
             || !"Test".equals(type)
             && !"junit.framework.Test".equals(type))
         {
-            log(aAST.getLineNo(),  aAST.getColumnNo(),
-                "junit.method.return.type", SUITE_METHOD_NAME,
-                "junit.framework.Test");
+            log(aAST, "junit.method.return.type",
+                SUITE_METHOD_NAME, "junit.framework.Test");
         }
         checkParameters(aAST, SUITE_METHOD_NAME);
     }
@@ -130,18 +127,15 @@ public final class JUnitTestCaseCheck extends Check
                                           String aExpectedName)
     {
         if (!aActualName.equals(aExpectedName)) {
-            log(aAST.getLineNo(), aAST.getColumnNo(),
-                "junit.method.name", aActualName, aExpectedName);
+            log(aAST, "junit.method.name", aActualName, aExpectedName);
         }
 
         if (!isPublicOrProtected(aAST)) {
-            log(aAST.getLineNo(), aAST.getColumnNo(),
-                "junit.method.protected.or.public", aExpectedName);
+            log(aAST, "junit.method.protected.or.public", aExpectedName);
         }
 
         if (isStatic(aAST)) {
-            log(aAST.getLineNo(), aAST.getColumnNo(),
-                "junit.method.static", aExpectedName);
+            log(aAST, "junit.method.static", aExpectedName);
         }
 
         checkReturnValue(aAST, TEAR_DOWN_METHOD_NAME);
@@ -158,8 +152,7 @@ public final class JUnitTestCaseCheck extends Check
         DetailAST returnValueAST = aAST.findFirstToken(TokenTypes.TYPE);
 
         if (returnValueAST.findFirstToken(TokenTypes.LITERAL_VOID) == null) {
-            log(aAST.getLineNo(),  aAST.getColumnNo(),
-                "junit.method.return.type", aName, "void");
+            log(aAST, "junit.method.return.type", aName, "void");
         }
     }
 
@@ -173,8 +166,7 @@ public final class JUnitTestCaseCheck extends Check
         DetailAST parametersAST = aAST.findFirstToken(TokenTypes.PARAMETERS);
 
         if (parametersAST.getChildCount() != 0) {
-            log (aAST.getLineNo(),  aAST.getColumnNo(),
-                 "junit.method.parameters", aName);
+            log(aAST, "junit.method.parameters", aName);
         }
     }
 

@@ -288,9 +288,7 @@ public class JavadocMethodCheck
                     contents.getJavadocBefore(aAST.getLineNo());
 
                 if (cmt == null) {
-                    log(aAST.getLineNo(),
-                        aAST.getColumnNo(),
-                        "javadoc.missing");
+                    log(aAST, "javadoc.missing");
                 }
                 else {
                     checkComment(aAST, cmt);
@@ -508,8 +506,7 @@ public class JavadocMethodCheck
             final Iterator paramIt = aParams.iterator();
             while (paramIt.hasNext()) {
                 final DetailAST param = (DetailAST) paramIt.next();
-                log(param.getLineNo(), param.getColumnNo(),
-                    "javadoc.expectedTag", "@param", param.getText());
+                log(param, "javadoc.expectedTag", "@param", param.getText());
             }
         }
     }
