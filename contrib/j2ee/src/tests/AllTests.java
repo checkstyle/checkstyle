@@ -30,6 +30,7 @@ public class AllTests {
         suite.addTest(new TestSuite(RemoteInterfaceCheckTest.class));
         suite.addTest(new TestSuite(SessionBeanCheckTest.class));
         suite.addTest(new TestSuite(SessionBeanEjbCreateCheckTest.class));
+        suite.addTest(new TestSuite(FinalStaticCheckTest.class));
         suite.addTest(new TestSuite(ThisParameterCheckTest.class));
         suite.addTest(new TestSuite(ThisReturnCheckTest.class));
         //$JUnit-END$

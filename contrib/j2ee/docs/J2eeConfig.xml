@@ -15,6 +15,7 @@
          <module name="j2ee.EntityBeanFindByPrimaryKey"/>
          <module name="j2ee.EntityBeanFinder"/>
          <module name="j2ee.EntityBeanMatchEjbCreate"/>
+         <module name="j2ee.FinalStatic"/>
          <module name="j2ee.HomeInterface"/>
          <module name="j2ee.LocalHomeInterface"/>
          <module name="j2ee.MessageBean"/>

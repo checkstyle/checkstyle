@@ -18,40 +18,50 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.j2ee;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that a SessionBean implementation satisfies SessionBean
- * requirements:
- * <ul>
- * <li>The class is defined as <code>public</code>.</li>
- * <li>The class cannot be defined as <code>final</code>.</li>
- * <li>It implements one or more <code>ejbCreate</code> methods.</li>
- * <li>It contains a <code>public</code> constructor with no parameters.</li>
- * <li>It must not define the <code>finalize</code> method.</li>
- * </ul>
- * Reference: Enterprise JavaBeansTM Specification,Version 2.1, section 7.11.2.
+ * Checks that all static fields are declared final.
+ * That ensures consistent runtime semantics so that EJB containers have
+ * the flexibility to distribute instances across multiple JVMs.
+ * http://www.javaworld.com/javaworld/jw-08-2000/jw-0825-ejbrestrict.html
  * @author Rick Giles
  */
-public class SessionBeanCheck
-    extends AbstractBeanCheck
+public class FinalStaticCheck
+    extends Check
 {
+    /**
+     * @see com.puppycrawl.tools.checkstyle.api.Check
+     */
+    public int[] getDefaultTokens()
+    {
+        return new int[] {TokenTypes.VARIABLE_DEF};
+    }
+
+    /**
+     * @see com.puppycrawl.tools.checkstyle.api.Check
+     */
+    public int[] getRequiredTokens()
+    {
+        return getDefaultTokens();
+    }
+
     /**
      * @see com.puppycrawl.tools.checkstyle.api.Check
      */
     public void visitToken(DetailAST aAST)
     {
-        if (Utils.hasImplements(aAST, "javax.ejb.SessionBean")) {
-            checkBean(aAST, "Session bean", false);
-            if (!Utils.hasPublicMethod(aAST, "ejbCreate")) {
-                final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-                log(
-                    nameAST.getLineNo(),
-                    nameAST.getColumnNo(),
-                    "missingmethod.bean",
-                    new Object[] {"Session bean", "ejbCreate"});
-            }
+        if (Utils.isInEJB(aAST)
+            && Utils.isStatic(aAST)
+            && !Utils.isFinal(aAST))
+        {
+            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+            log(
+                nameAST.getLineNo(),
+                nameAST.getColumnNo(),
+                "nonfinalstatic.bean", nameAST.getText());
         }
     }
 }
