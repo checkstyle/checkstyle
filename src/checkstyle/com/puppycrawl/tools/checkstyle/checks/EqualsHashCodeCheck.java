@@ -48,23 +48,26 @@ public class EqualsHashCodeCheck
     // keep track of definitions in different inner classes
 
     /** maps OBJ_BLOCK to the method definition of equals() */
-    private final Map objBlockEquals = new HashMap();
+    private final Map mObjBlockEquals = new HashMap();
 
-    /** maps OBJ_BLOCK to the method definition of equals() */
-    private final Set objBlockWithHashCode = new HashSet();
+    /** the set of OBJ_BLOCKs that contain a definition of hashCode() */
+    private final Set mObjBlockWithHashCode = new HashSet();
 
 
+    /** @see Check */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
+    /** @see Check */
     public void beginTree()
     {
-        objBlockEquals.clear();
-        objBlockWithHashCode.clear();
+        mObjBlockEquals.clear();
+        mObjBlockWithHashCode.clear();
     }
 
+    /** @see Check */
     public void visitToken(DetailAST aAST)
     {
         // paranoia
@@ -85,17 +88,22 @@ public class EqualsHashCodeCheck
                 && isObjectParam(parameters.getFirstChild())
                 )
         {
-            objBlockEquals.put(aAST.getParent(), aAST);
+            mObjBlockEquals.put(aAST.getParent(), aAST);
         }
         else if (type.getFirstChild().getType() == TokenTypes.LITERAL_INT
                 && "hashCode".equals(methodName.getText())
                 && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
                 && parameters.getFirstChild() == null) // no params
         {
-            objBlockWithHashCode.add(aAST.getParent());
+            mObjBlockWithHashCode.add(aAST.getParent());
         }
     }
 
+    /**
+     * Determines if an AST is a formal param of type Object (or subclass).
+     * @param aFirstChild the AST to check
+     * @return true iff aFirstChild is a parameter of an Object type.
+     */
     private boolean isObjectParam(AST aFirstChild)
     {
         if (aFirstChild.getType() != TokenTypes.PARAMETER_DEF) {
@@ -120,19 +128,22 @@ public class EqualsHashCodeCheck
         }
     }
 
+    /**
+     * @see Check
+     */
     public void finishTree()
     {
-        Set equalsDefs = objBlockEquals.keySet();
+        final Set equalsDefs = mObjBlockEquals.keySet();
         for (Iterator it = equalsDefs.iterator(); it.hasNext();) {
             Object objBlock = it.next();
-            if (!objBlockWithHashCode.contains(objBlock)) {
-                DetailAST equalsAST = (DetailAST) objBlockEquals.get(objBlock);
+            if (!mObjBlockWithHashCode.contains(objBlock)) {
+                DetailAST equalsAST = (DetailAST) mObjBlockEquals.get(objBlock);
                 log(equalsAST.getLineNo(), equalsAST.getColumnNo(),
                         "equals.noHashCode");
             }
         }
 
-        objBlockEquals.clear();
-        objBlockWithHashCode.clear();
+        mObjBlockEquals.clear();
+        mObjBlockWithHashCode.clear();
     }
 }

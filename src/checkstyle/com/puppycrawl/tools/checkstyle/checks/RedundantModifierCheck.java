@@ -24,6 +24,16 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+/**
+ * Checks for redundant modifiers.
+ *
+ * <p>
+ * Rationale: The Java Language Specification strongly discourages the usage
+ * of "public" and "abstract" in interface definitions as a matter of style.
+ * </p>
+ *
+ * @author lkuehne
+ */
 public class RedundantModifierCheck
     extends Check
 {
@@ -89,7 +99,9 @@ public class RedundantModifierCheck
         }
     }
 
-    /** @return whether currently in an interface block,
+    /**
+     * @param aAST the AST to analyze
+     * @return whether aAST is in an interface block,
      *          i.e. in an OBJ_BLOCK of an INTERFACE_DEF
      */
     private boolean inInterfaceBlock(DetailAST aAST)
