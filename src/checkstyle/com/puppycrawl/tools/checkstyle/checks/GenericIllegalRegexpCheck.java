@@ -16,7 +16,6 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks;
 
 /**
@@ -52,7 +51,7 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
         for (int i = 0; i < lines.length; i++) {
 
             final String line = lines[i];
-            if (super.getRegexp().match(line)) {
+            if (getRegexp().match(line)) {
                 log(i + 1, "illegal.regexp", getFormat());
             }
         }

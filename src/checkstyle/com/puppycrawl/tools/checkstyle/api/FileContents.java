@@ -2,6 +2,9 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import org.apache.regexp.RE;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -34,8 +37,13 @@ public class FileContents
      */
     private final Map mJavadocComments = new HashMap();
 
-    /** map of the C++ comments indexed on the last line of the comment. */
+    /** map of the C++ comments indexed on the first line of the comment. */
     private final Map mCPlusPlusComments = new HashMap();
+    /**
+     * map of the C comments indexed on the first line of the comment to a
+     * list of comments on that line
+     */
+    private final Map mCComments = new HashMap();
 
     /**
      * Creates a new <code>FileContents</code> instance.
@@ -54,10 +62,20 @@ public class FileContents
      * @param aStartLineNo the starting line number
      * @param aStartColNo the starting column number
      **/
-    public void reportCPPComment(int aStartLineNo, int aStartColNo)
+    public void reportCppComment(int aStartLineNo, int aStartColNo)
     {
         final String cmt = mLines[aStartLineNo - 1].substring(aStartColNo);
-        mCPlusPlusComments.put(new Integer(aStartLineNo - 1), cmt);
+        mCPlusPlusComments.put(new Integer(aStartLineNo), cmt);
+    }
+
+    /**
+     * Returns a map of all the C++ style comments. The key is a line number,
+     * the value is the comment at the line.
+     * @return the Map of comments
+     */
+    public Map getCppComments()
+    {
+        return Collections.unmodifiableMap(mCPlusPlusComments);
     }
 
     /**
@@ -73,10 +91,32 @@ public class FileContents
         final String[] cc = extractCComment(aStartLineNo, aStartColNo,
                                             aEndLineNo, aEndColNo);
 
+        // save the comment
+        final Integer key = new Integer(aStartLineNo);
+        if (mCComments.containsKey(key)) {
+            final List entries = (List) mCComments.get(key);
+            entries.add(cc);
+        }
+        else {
+            final List entries = new ArrayList();
+            entries.add(cc);
+            mCComments.put(key, entries);
+        }
+
         // Remember if possible Javadoc comment
         if (mLines[aStartLineNo - 1].indexOf("/**", aStartColNo) != -1) {
             mJavadocComments.put(new Integer(aEndLineNo - 1), cc);
         }
+    }
+
+    /**
+     * Returns a map of all C style comments. The key is the line number, the
+     * value is a list of C style comments at the line.
+     * @return the map of comments
+     */
+    public Map getCComments()
+    {
+        return Collections.unmodifiableMap(mCComments);
     }
 
     /**
