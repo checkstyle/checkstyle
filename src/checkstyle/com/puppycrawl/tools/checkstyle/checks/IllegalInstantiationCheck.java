@@ -54,7 +54,7 @@ import antlr.collections.AST;
  * @author lkuehne
  */
 public class IllegalInstantiationCheck
-        extends ImportCheck
+        extends AbstractImportCheck
 {
     /** Set of fully qualified classnames. E.g. "java.lang.Boolean" */
     private final Set mIllegalClasses = new HashSet();

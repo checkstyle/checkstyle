@@ -32,7 +32,7 @@ import java.util.Iterator;
  * @version 1.0
  */
 public class UnusedImportsCheck
-    extends ImportCheck
+    extends AbstractImportCheck
 {
     /** flag to indicate when time to start collecting references */
     private boolean mCollect;

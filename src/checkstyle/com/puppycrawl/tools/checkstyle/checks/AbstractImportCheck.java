@@ -19,35 +19,37 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 
 /**
- * Check that finds import statement that use the * notation.
- *
- * <p> Rationale: Importing all classes from a package leads to tight coupling
- * between packages and might lead to problems when a new version of a library
- * introduces name clashes.
- *
- * @author Oliver Burn
+ * Abstract base class that provides functionality that is used in import
+ * checks.
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-public class AvoidStarImport
-    extends AbstractImportCheck
+public abstract class AbstractImportCheck
+    extends Check
 {
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public int[] getDefaultTokens()
-    {
-        return new int[] {TokenTypes.IMPORT};
-    }
+    /** key to store name of import as */
+    private static final String TEXT_KEY = "name";
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void visitToken(DetailAST aAST)
+    /**
+     * Return the name of the import associated with a specifed DetailAST.
+     *
+     * @param aAST the node containing the import
+     * @return a <code>String</code> value
+     */
+    protected FullIdent getImportText(DetailAST aAST)
     {
-        final FullIdent name = getImportText(aAST);
-        if ((name != null) && name.getText().endsWith(".*")) {
-            log(aAST.getLineNo(), "import.avoidStar", name.getText());
+        FullIdent text = (FullIdent) getTokenContext().get(TEXT_KEY);
+        if (text != null) {
+            return text;
         }
+
+        text = FullIdent.createFullIdent((DetailAST) aAST.getFirstChild());
+        getTokenContext().put(TEXT_KEY, text);
+        return text;
     }
 }
