@@ -24,6 +24,13 @@ package com.puppycrawl.tools.checkstyle;
  **/
 public final class Defn
 {
+    /**
+     * Do no allow <code>Defn</code> instances to be created.
+     **/
+    private Defn() 
+    {
+    }
+
     /** name of resource bundle for Checkstyle */
     public static final String CHECKSTYLE_BUNDLE =
             "com.puppycrawl.tools.checkstyle.messages";
