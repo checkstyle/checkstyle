@@ -169,10 +169,10 @@ public class Configuration
     /** how to pad parenthesis **/
     private PadOption mParenPadOption = PadOption.NOSPACE;
 
-    /** set of boolean flags **/
-    private final Set mBooleanFlags = new HashSet();
+    /** set of boolean properties **/
+    private final Set mBooleanProps = new HashSet();
 
-    /** map of int flags **/
+    /** map of int properties **/
     private final Map mIntProps = new HashMap();
     {
         // Set up all the default values
@@ -222,30 +222,30 @@ public class Configuration
                        MAX_CONSTRUCTOR_LENGTH_PROP, MAX_CONSTRUCTOR_LENGTH);
         setIntProperty(aProps, aLog, MAX_FILE_LENGTH_PROP, MAX_FILE_LENGTH);
 
-        setBooleanFlag(aProps, ALLOW_TABS_PROP);
+        setBooleanProperty(aProps, ALLOW_TABS_PROP);
         setIntProperty(aProps, aLog, TAB_WIDTH_PROP, TAB_WIDTH);
-        setBooleanFlag(aProps, ALLOW_PROTECTED_PROP);
-        setBooleanFlag(aProps, ALLOW_PACKAGE_PROP);
-        setBooleanFlag(aProps, ALLOW_NO_AUTHOR_PROP);
+        setBooleanProperty(aProps, ALLOW_PROTECTED_PROP);
+        setBooleanProperty(aProps, ALLOW_PACKAGE_PROP);
+        setBooleanProperty(aProps, ALLOW_NO_AUTHOR_PROP);
         setJavadocScope(
             Scope.getInstance(aProps.getProperty(JAVADOC_CHECKSCOPE_PROP,
                                                  Scope.PRIVATE.getName())));
-        setBooleanFlag(aProps, REQUIRE_PACKAGE_HTML_PROP);
-        setBooleanFlag(aProps, IGNORE_IMPORTS_PROP);
+        setBooleanProperty(aProps, REQUIRE_PACKAGE_HTML_PROP);
+        setBooleanProperty(aProps, IGNORE_IMPORTS_PROP);
         setIllegalImports(
             aProps.getProperty(ILLEGAL_IMPORTS_PROP, ILLEGAL_IMPORTS));
         setIllegalInstantiations(aProps.getProperty(ILLEGAL_INSTANTIATIONS_PROP,
                                                    ILLEGAL_INSTANTIATIONS));
-        setBooleanFlag(aProps, IGNORE_WHITESPACE_PROP);
-        setBooleanFlag(aProps, IGNORE_CAST_WHITESPACE_PROP);
-        setBooleanFlag(aProps, IGNORE_OP_WRAP_PROP);
-        setBooleanFlag(aProps, IGNORE_BRACES_PROP);
-        setBooleanFlag(aProps, IGNORE_LONG_ELL_PROP);
-        setBooleanFlag(aProps, IGNORE_PUBLIC_IN_INTERFACE_PROP);
+        setBooleanProperty(aProps, IGNORE_WHITESPACE_PROP);
+        setBooleanProperty(aProps, IGNORE_CAST_WHITESPACE_PROP);
+        setBooleanProperty(aProps, IGNORE_OP_WRAP_PROP);
+        setBooleanProperty(aProps, IGNORE_BRACES_PROP);
+        setBooleanProperty(aProps, IGNORE_LONG_ELL_PROP);
+        setBooleanProperty(aProps, IGNORE_PUBLIC_IN_INTERFACE_PROP);
         setCacheFile(aProps.getProperty(CACHE_FILE_PROP));
-        setBooleanFlag(aProps, IGNORE_IMPORT_LENGTH_PROP);
+        setBooleanProperty(aProps, IGNORE_IMPORT_LENGTH_PROP);
         setHeaderIgnoreLines(aProps.getProperty(HEADER_IGNORE_LINE_PROP));
-        setBooleanFlag(aProps, HEADER_LINES_REGEXP_PROP);
+        setBooleanProperty(aProps, HEADER_LINES_REGEXP_PROP);
 
         final String fname = aProps.getProperty(HEADER_FILE_PROP);
         if (fname != null) {
@@ -481,7 +481,7 @@ public class Configuration
     /** @return whether to allow tabs **/
     public boolean isAllowTabs()
     {
-        return isFlagSet(ALLOW_TABS_PROP);
+        return getBooleanProperty(ALLOW_TABS_PROP);
     }
 
     /** @return distance between tab stops */
@@ -493,19 +493,19 @@ public class Configuration
     /** @return whether to allow protected data **/
     public boolean isAllowProtected()
     {
-        return isFlagSet(ALLOW_PROTECTED_PROP);
+        return getBooleanProperty(ALLOW_PROTECTED_PROP);
     }
 
     /** @return whether to allow package data **/
     public boolean isAllowPackage()
     {
-        return isFlagSet(ALLOW_PACKAGE_PROP);
+        return getBooleanProperty(ALLOW_PACKAGE_PROP);
     }
 
     /** @return whether to allow having no author tag **/
     public boolean isAllowNoAuthor()
     {
-        return isFlagSet(ALLOW_NO_AUTHOR_PROP);
+        return getBooleanProperty(ALLOW_NO_AUTHOR_PROP);
     }
 
     /** @return visibility scope where Javadoc is checked **/
@@ -517,13 +517,13 @@ public class Configuration
     /** @return whether javadoc package documentation is required */
     public boolean isRequirePackageHtml()
     {
-        return isFlagSet(REQUIRE_PACKAGE_HTML_PROP);
+        return getBooleanProperty(REQUIRE_PACKAGE_HTML_PROP);
     }
 
     /** @return whether to process imports **/
     public boolean isIgnoreImports()
     {
-        return isFlagSet(IGNORE_IMPORTS_PROP);
+        return getBooleanProperty(IGNORE_IMPORTS_PROP);
     }
 
     /** @return Set of pkg prefixes that are illegal in import statements */
@@ -553,43 +553,43 @@ public class Configuration
     /** @return whether to ignore checks for whitespace **/
     public boolean isIgnoreWhitespace()
     {
-        return isFlagSet(IGNORE_WHITESPACE_PROP);
+        return getBooleanProperty(IGNORE_WHITESPACE_PROP);
     }
 
     /** @return whether to ignore checks for whitespace after casts **/
     public boolean isIgnoreCastWhitespace()
     {
-        return isFlagSet(IGNORE_CAST_WHITESPACE_PROP);
+        return getBooleanProperty(IGNORE_CAST_WHITESPACE_PROP);
     }
 
     /** @return whether to ignore checks for operator wrapping **/
     public boolean isIgnoreOpWrap()
     {
-        return isFlagSet(IGNORE_OP_WRAP_PROP);
+        return getBooleanProperty(IGNORE_OP_WRAP_PROP);
     }
 
     /** @return whether to ignore checks for braces **/
     public boolean isIgnoreBraces()
     {
-        return isFlagSet(IGNORE_BRACES_PROP);
+        return getBooleanProperty(IGNORE_BRACES_PROP);
     }
 
     /** @return whether to ignore long 'L' **/
     public boolean isIgnoreLongEll()
     {
-        return isFlagSet(IGNORE_LONG_ELL_PROP);
+        return getBooleanProperty(IGNORE_LONG_ELL_PROP);
     }
 
     /** @return whether to ignore 'public' keyword in interface definitions **/
     public boolean isIgnorePublicInInterface()
     {
-        return isFlagSet(IGNORE_PUBLIC_IN_INTERFACE_PROP);
+        return getBooleanProperty(IGNORE_PUBLIC_IN_INTERFACE_PROP);
     }
 
     /** @return whether to ignore max line length for import statements **/
     public boolean isIgnoreImportLength()
     {
-        return isFlagSet(IGNORE_IMPORT_LENGTH_PROP);
+        return getBooleanProperty(IGNORE_IMPORT_LENGTH_PROP);
     }
 
     /** @return the header lines to check for **/
@@ -602,7 +602,7 @@ public class Configuration
     /** @return if lines in header file are regular expressions */
     public boolean getHeaderLinesRegexp()
     {
-        return isFlagSet(HEADER_LINES_REGEXP_PROP);
+        return getBooleanProperty(HEADER_LINES_REGEXP_PROP);
     }
 
     /**
@@ -767,17 +767,17 @@ public class Configuration
     }
 
     /**
-     * Set the boolean flag.
-     * @param aName name of the flag. Should be defined in Defn.
+     * Set the boolean property.
+     * @param aName name of the property. Should be defined in Defn.
      * @param aTo the value to set
      */
-    public void setBooleanFlag(String aName, boolean aTo)
+    public void setBooleanProperty(String aName, boolean aTo)
     {
         if (aTo) {
-            mBooleanFlags.add(aName);
+            mBooleanProps.add(aName);
         }
         else {
-            mBooleanFlags.remove(aName);
+            mBooleanProps.remove(aName);
         }
     }
 
@@ -1085,20 +1085,20 @@ public class Configuration
     }
 
     /**
-     * @param aName name of flag to return
-     * @return return whether a specified flag is set
+     * @param aName name of the boolean property
+     * @return return whether a specified property is set
      */
-    private boolean isFlagSet(String aName)
+    private boolean getBooleanProperty(String aName)
     {
-        return mBooleanFlags.contains(aName);
+        return mBooleanProps.contains(aName);
     }
 
     /**
-     * Set a boolean flag from a property set.
-     * @param aProps the properties set to extract flag from
-     * @param aName name of the flag to extract
+     * Set a boolean property from a property set.
+     * @param aProps the properties set to extract property from
+     * @param aName name of the property to extract
      */
-    private void setBooleanFlag(Properties aProps, String aName)
+    private void setBooleanProperty(Properties aProps, String aName)
     {
         String strRep = aProps.getProperty(aName);
         if (strRep != null) {
@@ -1106,7 +1106,7 @@ public class Configuration
             if (strRep.equals("true") || strRep.equals("yes")
                 || strRep.equals("on"))
             {
-                setBooleanFlag(aName, true);
+                setBooleanProperty(aName, true);
             }
         }
     }

@@ -144,7 +144,7 @@ public class CheckStyleTask
     /** @param aAllowed whether tabs are allowed **/
     public void setAllowTabs(final boolean aAllowed)
     {
-        setBooleanFlag(Defn.ALLOW_TABS_PROP, aAllowed);
+        setBooleanProperty(Defn.ALLOW_TABS_PROP, aAllowed);
     }
 
     /** @param aTabWidth number of spaces that are represented by one tab **/
@@ -156,19 +156,19 @@ public class CheckStyleTask
     /** @param aAllowed whether protected data is allowed **/
     public void setAllowProtected(final boolean aAllowed)
     {
-        setBooleanFlag(Defn.ALLOW_PROTECTED_PROP, aAllowed);
+        setBooleanProperty(Defn.ALLOW_PROTECTED_PROP, aAllowed);
     }
 
     /** @param aAllowed whether package visible data is allowed **/
     public void setAllowPackage(final boolean aAllowed)
     {
-        setBooleanFlag(Defn.ALLOW_PACKAGE_PROP, aAllowed);
+        setBooleanProperty(Defn.ALLOW_PACKAGE_PROP, aAllowed);
     }
 
     /** @param aAllowed whether allow having no author **/
     public void setAllowNoAuthor(final boolean aAllowed)
     {
-        setBooleanFlag(Defn.ALLOW_NO_AUTHOR_PROP, aAllowed);
+        setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, aAllowed);
     }
 
     /** @param aLen max allowed line length **/
@@ -218,7 +218,7 @@ public class CheckStyleTask
      */
     public void setIgnoreImportLen(final boolean aIgnore)
     {
-        setBooleanFlag(Defn.IGNORE_IMPORT_LENGTH_PROP, aIgnore);
+        setBooleanProperty(Defn.IGNORE_IMPORT_LENGTH_PROP, aIgnore);
     }
 
     /** @param aPat pattern for member variables **/
@@ -405,7 +405,7 @@ public class CheckStyleTask
     /** @param aIsRegexp whether to interpret header lines as regexp */
     public void setHeaderLinesRegexp(final boolean aIsRegexp)
     {
-        setBooleanFlag(Defn.HEADER_LINES_REGEXP_PROP, aIsRegexp);
+        setBooleanProperty(Defn.HEADER_LINES_REGEXP_PROP, aIsRegexp);
     }
 
     /** @param aList Comma separated list of line numbers **/
@@ -435,13 +435,13 @@ public class CheckStyleTask
     /** @param aRequirePackageHtml whether package.html is required **/
     public void setRequirePackageHtml(final boolean aRequirePackageHtml)
     {
-        setBooleanFlag(Defn.REQUIRE_PACKAGE_HTML_PROP, aRequirePackageHtml);
+        setBooleanProperty(Defn.REQUIRE_PACKAGE_HTML_PROP, aRequirePackageHtml);
     }
 
     /** @param aIgnore whether to ignore import statements **/
     public void setIgnoreImports(final boolean aIgnore)
     {
-        setBooleanFlag(Defn.IGNORE_IMPORTS_PROP, aIgnore);
+        setBooleanProperty(Defn.IGNORE_IMPORTS_PROP, aIgnore);
     }
 
     /** @param aPkgPrefixList comma separated list of package prefixes */
@@ -471,37 +471,37 @@ public class CheckStyleTask
     /** @param aIgnore whether to ignore whitespace **/
     public void setIgnoreWhitespace(final boolean aIgnore)
     {
-        setBooleanFlag(Defn.IGNORE_WHITESPACE_PROP, aIgnore);
+        setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, aIgnore);
     }
 
     /** @param aIgnore whether to ignore whitespace after casts **/
     public void setIgnoreCastWhitespace(final boolean aIgnore)
     {
-        setBooleanFlag(Defn.IGNORE_CAST_WHITESPACE_PROP, aIgnore);
+        setBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, aIgnore);
     }
 
     /** @param aIgnore whether to ignore operator wrapping **/
     public void setIgnoreOpWrap(final boolean aIgnore)
     {
-        setBooleanFlag(Defn.IGNORE_OP_WRAP_PROP, aIgnore);
+        setBooleanProperty(Defn.IGNORE_OP_WRAP_PROP, aIgnore);
     }
 
     /** @param aIgnore whether to ignore braces **/
     public void setIgnoreBraces(final boolean aIgnore)
     {
-        setBooleanFlag(Defn.IGNORE_BRACES_PROP, aIgnore);
+        setBooleanProperty(Defn.IGNORE_BRACES_PROP, aIgnore);
     }
 
     /** @param aIgnore whether to ignore long 'L' **/
     public void setIgnoreLongEll(final boolean aIgnore)
     {
-        setBooleanFlag(Defn.IGNORE_LONG_ELL_PROP, aIgnore);
+        setBooleanProperty(Defn.IGNORE_LONG_ELL_PROP, aIgnore);
     }
 
     /** @param aIgnore whether to ignore 'public' in interfaces **/
     public void setIgnorePublicInInterface(final boolean aIgnore)
     {
-        setBooleanFlag(Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP, aIgnore);
+        setBooleanProperty(Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP, aIgnore);
     }
 
     /** @param aCacheFile the file to cache which files have been checked **/
@@ -909,13 +909,13 @@ public class CheckStyleTask
      * @param aName name of flag to set
      * @param aTo the value of the flag
      */
-    private void setBooleanFlag(final String aName, final boolean aTo)
+    private void setBooleanProperty(final String aName, final boolean aTo)
     {
         mOptionMemory.add(new Runnable()
             {
                 public void run()
                 {
-                    mConfig.setBooleanFlag(aName, aTo);
+                    mConfig.setBooleanProperty(aName, aTo);
                 }
             });
     }
