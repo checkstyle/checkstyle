@@ -527,64 +527,6 @@ class Verifier
 
 
     /**
-     * Verify that a method has correct placement of the left curly brace.
-     * @param aMethodLine line the method starts on
-     * @param aBrace location of the brace
-     */
-    void verifyLCurlyMethod(int aMethodLine, MyCommonAST aBrace)
-    {
-    }
-
-
-    /**
-     * Verify that a type has correct placement of the left curly brace.
-     * @param aTypeLine line the type starts on
-     * @param aBrace location of the brace
-     */
-    void verifyLCurlyType(int aTypeLine, MyCommonAST aBrace)
-    {
-    }
-
-
-    /**
-     * Verify that a other has correct placement of the left curly brace.
-     * @param aOtherLine line the other starts on
-     * @param aBrace location of the brace
-     */
-    void verifyLCurlyOther(int aOtherLine, MyCommonAST aBrace)
-    {
-    }
-
-
-    /**
-     * Verify the correct placement of the right curly brace.
-     * @param aBrace location of the brace
-     * @param aStartLine line the next statement starts on
-     */
-    void verifyRCurly(MyCommonAST aBrace, int aStartLine)
-    {
-    }
-
-    /**
-     * Verifies that a left paren conforms to formatting rules.
-     * @param aLineNo number of line to check
-     * @param aColNo column where the cast ends
-     */
-    void verifyLParen(int aLineNo, int aColNo)
-    {
-    }
-
-    /**
-     * Verifies that a right paren conforms to formatting rules.
-     * @param aLineNo number of line to check
-     * @param aColNo column where the cast ends
-     */
-    void verifyRParen(int aLineNo, int aColNo)
-    {
-    }
-
-
-    /**
      * Verify that a constructor length is ok.
      * @param aLineNo line the constructor block starts at
      * @param aLength the length of the constructor block
