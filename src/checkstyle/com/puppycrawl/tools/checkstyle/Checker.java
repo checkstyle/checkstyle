@@ -157,7 +157,8 @@ public class Checker extends AutomaticBean
             catch (Exception ex) {
                 // TODO i18n
                 throw new CheckstyleException(
-                        "cannot initialize filesetcheck of class " + className);
+                        "cannot initialize filesetcheck of class "
+                        + className + " - " + ex.getMessage());
             }
         }
     }
