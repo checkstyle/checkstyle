@@ -856,17 +856,6 @@ class Verifier
      **/
     void reportImport(int aLineNo, String aType)
     {
-        if (!mConfig.isIgnoreImports()) {
-            // Check for a duplicate import
-            final Iterator it = mImports.iterator();
-            while (it.hasNext()) {
-                final LineText lt = (LineText) it.next();
-                if (aType.equals(lt.getText())) {
-                    mMessages.add(aLineNo, "import.duplicate",
-                                  new Integer(lt.getLineNo()));
-                }
-            }
-        }
         // Add to list to check for duplicates, usage and instantiation checks
         mImports.add(new LineText(aLineNo, aType));
     }
@@ -879,9 +868,6 @@ class Verifier
      **/
     void reportStarImport(int aLineNo, String aPkg)
     {
-        if (!mConfig.isIgnoreImports()) {
-            mMessages.add(aLineNo, "import.avoidStar");
-        }
         mImports.add(new LineText(aLineNo, aPkg));
     }
 
@@ -1420,16 +1406,7 @@ class Verifier
         while (it.hasNext()) {
             final LineText imp = (LineText) it.next();
 
-            if (fromPackage(imp.getText(), "java.lang")) {
-                mMessages.add(imp.getLineNo(), "import.lang");
-            }
-            else if (fromPackage(imp.getText(), mPkgName)) {
-                mMessages.add(imp.getLineNo(), "import.same");
-            }
-            else if (!isReferencedImport(imp)) {
-                mMessages.add(imp.getLineNo(), "import.unused", imp.getText());
-            }
-            else if (isIllegalImport(imp.getText())) {
+            if (isIllegalImport(imp.getText())) {
                 mMessages.add(imp.getLineNo(), "import.illegal", imp.getText());
             }
         }
