@@ -928,11 +928,19 @@ public class Resolver extends DefinitionTraverser {
         SymTabAST arrayNode = (SymTabAST) (node.getFirstChild());
         SymTabAST exprNode = (SymTabAST) (arrayNode.getNextSibling());
 
+        //resolve index expressions
+        while (arrayNode.getType() == TokenTypes.INDEX_OP) {
+            resolveExpression(exprNode, location, context, referencePhase);
+            arrayNode = (SymTabAST) (arrayNode.getFirstChild());
+            exprNode = (SymTabAST) (arrayNode.getNextSibling()); 
+        }
+        
         ArrayDef array =
             (ArrayDef) resolveExpression(arrayNode,
                 location,
                 context,
                 referencePhase);
+
         resolveExpression(exprNode, location, context, referencePhase);
 
         return array.getType();
