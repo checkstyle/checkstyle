@@ -26,8 +26,6 @@ public class PackageHtmlCheckTest
         c.addFileSetCheck(fsc);
 
         final String packageHtmlPath = getPath("package.html");
-        // final String filepath = packageHtmlPath;
-        // TODO: should really be a java file like
         final String filepath = getPath("InputScopeAnonInner.java");
 
         final String[] expected = {
