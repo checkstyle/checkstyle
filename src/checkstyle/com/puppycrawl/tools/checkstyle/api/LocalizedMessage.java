@@ -270,7 +270,7 @@ public final class LocalizedMessage
         final LocalizedMessage lt = (LocalizedMessage) aOther;
         if (getLineNo() == lt.getLineNo()) {
             if (getColumnNo() == lt.getColumnNo()) {
-                return mKey.compareTo(lt.mKey);
+                return getMessage().compareTo(lt.getMessage());
             }
             return (getColumnNo() < lt.getColumnNo()) ? -1 : 1;
         }
