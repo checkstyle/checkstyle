@@ -420,7 +420,11 @@
     <mkdir dir="${dist.dir}/checkstyle-${version}" />
     <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-${version}.jar"
          basedir="target/checkstyle"
+         excludes="**/usage/**, **/j2ee/**"
          manifest="config/manifest.mf" />
+    <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-${version}-optional.jar"
+         basedir="target/checkstyle"
+         includes="**/usage/**, **/j2ee/**"/>
     <!-- copy the JARS and make a mega JAR out of them -->
     <copy file="${regexp.jar}" todir="${dist.dir}/checkstyle-${version}" />
     <copy file="${antlr.jar}" todir="${dist.dir}/checkstyle-${version}" />
