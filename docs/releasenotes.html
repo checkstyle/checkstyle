@@ -24,6 +24,11 @@
   <tr>
     <!--Left menu-->
     <td valign="top" align="left" nowrap="true" bgcolor="#EEEEEE">
+      <p>Checkstyle 3</p>
+      <ul>
+        <li><a href="#release3_0">Release 3.0</a></li>
+      </ul>
+
       <p>Checkstyle 2</p>
       <ul>
         <li><a href="#release2_4">Release 2.4</a></li>
@@ -36,6 +41,48 @@
 
     <!--Content-->
     <td width="100%" valign="top" align="left">
+
+
+      <a name="release3_0"></a>
+      <h2>Release 3.0</h2>
+      <p class="body">
+        New features:
+        <ul>
+          <li class="body">Completely new architecture based around pluggable modules. This means that users can now write their own checks without changing the sourcecode of checkstyle itself (request 578712).</li>
+          <li class="body">Users can specify the Java token types for which a check must be performed. For example users can now control that there should be whitespace after 'synchronized' but not after 'if' (request 536385).</li>
+          <li class="body">Detect classes that override 'equals()' but not 'hashCode()' (request 554373).</li>
+          <li class="body">Detect inner assignments, e.g. 'this.add(label = new JLabel("yes, I'm a C hacker"));' (request 521325).</li>
+          <li class="body">Detect matches of generic regular expressions (requests 595254, 621247).</li>
+          <li class="body">Detect missing property file keys in internationalized applications (request 634966).</li>
+          <li class="body">Check content of @author and @version tag agaist a regular expression.</li>
+          <li class="body">Added DTD for XML output (request 622157).</li>
+        </ul>
+      </p>
+
+      <p class="body">
+        Resolved bugs:
+        <ul>
+	  <li class="body">Package name reported incorrectly (bug 622290).</li>
+	  <li class="body">array instantiation incorrectly flagged (bug 626875).</li>
+	  <li class="body">tests fail with non-english locale (bug 594469).</li>
+        </ul>
+      </p>
+
+      <p class="body">
+        API changes (only relevant for IDE plugin authors):
+        <ul>
+	  <li class="body">Configuration is not based on Properties any more. Instead a Configuration interface is used, IDE plugins can define their own way of creating Configurations or they can reuse the provided ConfigurationLoader to read checkstyle's standard XML config files.</li>
+        </ul>
+      </p>
+
+      <p class="body">
+        Development Team:
+        <ul>
+	  <li class="body">Rick Giles has joined the team.</li>
+        </ul>
+      </p>
+
+
 
       <a name="release2_4"></a>
       <h2>Release 2.4</h2>
