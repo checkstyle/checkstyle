@@ -41,7 +41,7 @@
 
         <a name="PackageHtml"></a> <h2>PackageHtml</h2> <h4>Description</h4>
         <p class="body">
-        Checks that a <span class="code">package.html</span> file exists for each 
+        Checks that a <span class="code">package.html</span> file exists for each
         package.
         </p>
 
@@ -158,7 +158,7 @@
             <span class="code">@throws</span> or <span class="code">@exception</span>
           </li>
           <li>
-            <span class="code">@see</span>
+            <span class="code">@see</span> or <span class="code">{@inheritDoc}</span>
           </li>
         </ul>
 
@@ -180,7 +180,7 @@
         </pre>
 
         <p class="body">
-        This supports the convention in the <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html#throwstag">Sun 
+        This supports the convention in the <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html#throwstag">Sun
         Javadoc Guidelines</a> and the "Effective Java" book.
         </p>
 
@@ -235,23 +235,34 @@
         <h4>Notes</h4>
 
         <ul class="body">
-        <li>The classpath may need to be configured to locate the class information. The 
+        <li>The classpath may need to be configured to locate the class information. The
         classpath configuration is dependent on the mechanism used to invoke Checkstyle.
         </li>
+
         <li>
-          It can be extremely painful writing or duplicating Javadoc for a method required 
-          for an interface. Hence checkstyle supports using the convention of using a 
-          single <span class="code">@see</span> tag instead of all the other tags. For 
+          It can be extremely painful writing or duplicating Javadoc for a
+method required for an interface. Hence checkstyle supports using the
+convention of using a
+          single <span class="code">@see</span> or <span class="code">{@inheritDoc}</span> tag instead of all the other tags. For
           example, if the <a href="#checkReturnTag">above method</a> was implementing a method required by the <span class="code">
-          com.puppycrawl.tools.checkstyle.Verifier</span> interface, then the Javadoc 
+          com.puppycrawl.tools.checkstyle.Verifier</span> interface, then the Javadoc
           could be done as:
-          
+
           <pre class="body">
     /** @see com.puppycrawl.tools.checkstyle.Verifier **/
     public int checkReturnTag(final int aTagIndex,
                               JavadocTag[] aTags,
                               int aLineNo)
           </pre>
+
+	  or:
+          <pre class="body">
+    /** {@inheritDoc} **/
+    public int checkReturnTag(final int aTagIndex,
+                              JavadocTag[] aTags,
+                              int aLineNo)
+          </pre>
+
           </li>
           </ul>
         <h4>Package</h4>
