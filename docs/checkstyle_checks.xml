@@ -92,6 +92,7 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.UnusedImportsCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.UpperEllCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheck"/>
+    <check classname="com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundCheck"/>
 
     <!--
