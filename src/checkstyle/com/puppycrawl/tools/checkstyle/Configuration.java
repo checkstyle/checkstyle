@@ -57,6 +57,8 @@ class Configuration
     private static final int MAX_METHOD_LENGTH = 150;
     /** the maximum constructor length **/
     private static final int MAX_CONSTRUCTOR_LENGTH = 150;
+    /** the maximum file length **/
+    private static final int MAX_FILE_LENGTH = 2000;
 
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
@@ -98,6 +100,8 @@ class Configuration
     private int mMaxMethodLength = MAX_METHOD_LENGTH;
     /** the maximum constructor length **/
     private int mMaxConstructorLength = MAX_CONSTRUCTOR_LENGTH;
+    /** the maximum file length **/
+    private int mMaxFileLength = MAX_FILE_LENGTH;
     /** whether to allow tabs **/
     private boolean mAllowTabs = false;
     /** whether to allow protected data **/
@@ -158,6 +162,8 @@ class Configuration
             aProps, aLog, MAX_METHOD_LENGTH_PROP, MAX_METHOD_LENGTH));
         setMaxConstructorLength(getIntProperty(
             aProps, aLog, MAX_CONSTRUCTOR_LENGTH_PROP, MAX_CONSTRUCTOR_LENGTH));
+        setMaxFileLength(getIntProperty(
+            aProps, aLog, MAX_FILE_LENGTH_PROP, MAX_FILE_LENGTH));
 
         setAllowTabs(getBooleanProperty(aProps, ALLOW_TABS_PROP, mAllowTabs));
         setAllowProtected(
@@ -306,6 +312,12 @@ class Configuration
     int getMaxConstructorLength()
     {
         return mMaxConstructorLength;
+    }
+
+    /** @return the maximum file length **/
+    int getMaxFileLength()
+    {
+        return mMaxFileLength;
     }
 
     /** @return whether to allow tabs **/
@@ -472,6 +484,14 @@ class Configuration
     void setMaxConstructorLength(int aMaxConstructorLength)
     {
         mMaxConstructorLength = aMaxConstructorLength;
+    }
+
+    /**
+     * @param aMaxFileLength the maximum file length
+     */
+    void setMaxFileLength(int aMaxFileLength)
+    {
+        mMaxFileLength = aMaxFileLength;
     }
 
     /**

@@ -142,6 +142,8 @@ class VerifierImpl
     {
         mLines = aLines;
 
+        checkHeader();
+
         // Iterate over the lines looking for long lines and tabs.
         for (int i = 0; i < mLines.length; i++) {
             // check for long line, but possibly allow imports
@@ -159,7 +161,12 @@ class VerifierImpl
             }
         }
 
-        checkHeader();
+        // Check excessive number of lines
+        if (mLines.length > mConfig.getMaxFileLength()) {
+            log(1,
+                "file length is " + mLines.length + " lines (max allowed is " +
+                mConfig.getMaxFileLength() + ").");
+        }
     }
 
 

@@ -126,6 +126,12 @@ public class CheckStyleTask
         mConfig.setMaxConstructorLength(aLen);
     }
 
+    /** @param aLen max allowed file length **/
+    public void setMaxFileLen(int aLen)
+    {
+        mConfig.setMaxFileLength(aLen);
+    }
+
     /** @param aIgnore whether max line length should be ignored for
      *                 import statements
      */
