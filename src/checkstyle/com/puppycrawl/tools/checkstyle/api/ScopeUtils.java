@@ -178,4 +178,32 @@ public final class ScopeUtils
 
         return retVal;
     }
+
+    /**
+     * Determines whether a node is a local variable definition,
+     * i.e. is declared in a code block, a for initializer, or a
+     * catch parameter.
+     * @param aAST the node to check.
+     * @return whether aAST is a local variable definition.
+     */
+    public static boolean isLocalVariableDef(DetailAST aAST)
+    {
+        // variable declaration?
+        if (aAST.getType() == TokenTypes.VARIABLE_DEF) {
+            final DetailAST parent = aAST.getParent();
+            if (parent != null) {
+                final int type = parent.getType();
+                return (type == TokenTypes.SLIST)
+                    || (type == TokenTypes.FOR_INIT);
+            }
+        }
+        // catch parameter?
+        else if (aAST.getType() == TokenTypes.PARAMETER_DEF) {
+            final DetailAST parent = aAST.getParent();
+            if (parent != null) {
+                return (parent.getType() == TokenTypes.LITERAL_CATCH);
+            }
+        }
+        return false;
+    }
 }

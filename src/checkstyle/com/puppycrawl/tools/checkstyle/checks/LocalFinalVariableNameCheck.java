@@ -71,7 +71,6 @@ public class LocalFinalVariableNameCheck
             aAST.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isFinal = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.FINAL);
-
-        return (isFinal && ScopeUtils.inCodeBlock(aAST));
+        return (isFinal && ScopeUtils.isLocalVariableDef(aAST));
     }
 }

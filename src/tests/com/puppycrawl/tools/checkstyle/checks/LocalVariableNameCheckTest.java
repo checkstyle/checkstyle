@@ -18,5 +18,27 @@ public class LocalVariableNameCheckTest
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
+    
+    public void testInnerClass()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(LocalVariableNameCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("InputInner.java"), expected);
+    }
+    
+    public void testCatchParameter()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(LocalVariableNameCheck.class);
+        checkConfig.addAttribute("tokens", "PARAMETER_DEF");
+        checkConfig.addAttribute("format", "^e$");
+        final String[] expected = {
+            "74:24: Name 'ex' must match pattern '^e$'.",
+        };
+        verify(checkConfig, getPath("InputEmptyStatement.java"), expected);
+    }
 }
 

@@ -17,5 +17,16 @@ public class MemberNameCheckTest
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
+    
+    public void testInnerClass()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MemberNameCheck.class);
+        final String[] expected = {
+            "56:25: Name 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+        verify(checkConfig, getPath("InputInner.java"), expected);
+    }
 }
 
