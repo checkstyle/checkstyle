@@ -186,6 +186,14 @@
   <!-- TEST TARGETS -->
   <!-- -->
 
+  <!-- Run the GUI -->
+  <target name="run.gui" depends="compile.checkstyle"
+          description="Run the GUI for displaying a tree">
+    <java classname="com.puppycrawl.tools.checkstyle.gui.Main"
+          fork="yes" classpathref="run.classpath">
+    </java>
+  </target>
+
   <!-- display a specified file in a UI frame -->
   <target name="run.treeviewer" depends="compile.checkstyle"
           description="Display a specified file in GUI tree">
@@ -252,7 +260,7 @@
     <checkstyle properties="docs/checkstyle.rules">
       <fileset dir="src/checkstyle"
                includes="**/*.java"
-               excludes="**/Generated*.java,**/Java*.java"/>
+               excludes="**/Generated*.java,**/Java*.java,**/gui/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
