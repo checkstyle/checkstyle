@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -25,60 +25,57 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that there is no whitespace before a token.
- * More specifically, it checks that it is not preceeded with whitespace,
- * or (if linebreaks are allowed) all characters on the line before are
- * whitespace. To allow linebreaks before a token, set property
- * allowLineBreaks to true.
+ * Checks that there is no whitespace after a token.
+ * More specifically, it checks that it is not followed by whitespace,
+ * or (if linebreaks are allowed) all characters on the line after are
+ * whitespace. To forbid linebreaks afer a token, set property
+ * allowLineBreaks to false.
  * </p>
- * <p> By default the check will check the following operators:
- *  {@link TokenTypes#SEMI SEMI},
- *  {@link TokenTypes#POST_DEC POST_DEC},
- *  {@link TokenTypes#POST_INC POST_INC}.
- * {@link TokenTypes#DOT DOT} is also an acceptable token in a configuration
- * of this check.
+  * <p> By default the check will check the following operators:
+ *  {@link TokenTypes#ARRAY_INIT ARRAY_INIT},
+ *  {@link TokenTypes#BNOT BNOT},
+ *  {@link TokenTypes#DEC DEC},
+ *  {@link TokenTypes#DOT DOT},
+ *  {@link TokenTypes#INC INC},
+ *  {@link TokenTypes#LNOT LNOT},
+ *  {@link TokenTypes#UNARY_MINUS UNARY_MINUS},
+ *  {@link TokenTypes#UNARY_PLUS UNARY_PLUS}.
  * </p>
- *
+ * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="NoWhitespaceBefore"/&gt;
+ * &lt;module name="NoWhitespaceAfter"/&gt;
  * </pre>
- * <p> An example of how to configure the check to allow linebreaks before
+ * <p> An example of how to configure the check to forbid linebreaks after
  * a {@link TokenTypes#DOT DOT} token is:
  * <pre>
- * &lt;module name="NoWhitespaceBefore"&gt;
+ * &lt;module name="NoWhitespaceAfter"&gt;
  *     &lt;property name="tokens" value="DOT"/&gt;
- *     &lt;property name="allowLineBreaks" value="true"/&gt;
+ *     &lt;property name="allowLineBreaks" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
  * @author Rick Giles
  * @author lkuehne
  * @version 1.0
  */
-public class NoWhitespaceBeforeCheck
+public class NoWhitespaceAfterCheck
     extends Check
 {
     /** Whether whitespace is allowed if the AST is at a linebreak */
-    private boolean mAllowLineBreaks = false;
+    private boolean mAllowLineBreaks = true;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {
-            TokenTypes.SEMI,
-            TokenTypes.POST_INC,
-            TokenTypes.POST_DEC,
-        };
-    }
-
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public int[] getAcceptableTokens()
-    {
-        return new int[] {
-            TokenTypes.SEMI,
-            TokenTypes.POST_INC,
-            TokenTypes.POST_DEC,
+            TokenTypes.ARRAY_INIT,
+            TokenTypes.INC,
+            TokenTypes.DEC,
+            TokenTypes.UNARY_MINUS,
+            TokenTypes.UNARY_PLUS,
+            TokenTypes.BNOT,
+            TokenTypes.LNOT,
             TokenTypes.DOT,
         };
     }
@@ -88,18 +85,19 @@ public class NoWhitespaceBeforeCheck
     {
         final String[] lines = getLines();
         final String line = lines[aAST.getLineNo() - 1];
-        final int before = aAST.getColumnNo() - 1;
+        final int after = aAST.getColumnNo() + aAST.getText().length();
 
-        if ((before < 0) || Character.isWhitespace(line.charAt(before))) {
+        if (after >= line.length()
+            || Character.isWhitespace(line.charAt(after)))
+        {
             boolean flag = !mAllowLineBreaks;
-            // verify all characters before '.' are whitespace
-            for (int i = 0; !flag && i < before; i++) {
+            for (int i = after + 1; !flag && i < line.length(); i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
                     flag = true;
                 }
             }
             if (flag) {
-                log(aAST.getLineNo(), before, "ws.preceeded", aAST.getText());
+                log(aAST.getLineNo(), after, "ws.followed", aAST.getText());
             }
         }
     }

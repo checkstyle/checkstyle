@@ -55,7 +55,8 @@ public class PackageNamesLoaderTest extends TestCase
             "com.puppycrawl.tools.checkstyle.checks.blocks.",
             "com.puppycrawl.tools.checkstyle.checks.imports.",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.",
-            "com.puppycrawl.tools.checkstyle.checks.naming."
+            "com.puppycrawl.tools.checkstyle.checks.naming.",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace."
         };
 
         PackageObjectFactory factory = (PackageObjectFactory) aModuleFactory;

@@ -1,11 +1,11 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
-import com.puppycrawl.tools.checkstyle.checks.OperatorWrapOption;
-import com.puppycrawl.tools.checkstyle.checks.PadOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapOption;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 import junit.framework.TestCase;
 
 /**
