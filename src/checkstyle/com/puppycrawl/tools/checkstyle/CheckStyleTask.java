@@ -170,40 +170,10 @@ public class CheckStyleTask
         }
     }
 
-    /** @param aAllowed whether tabs are allowed **/
-    public void setAllowTabs(final boolean aAllowed)
-    {
-        setBooleanProperty(Defn.ALLOW_TABS_PROP, aAllowed);
-    }
-
     /** @param aTabWidth number of spaces that are represented by one tab **/
     public void setTabWidth(final int aTabWidth)
     {
         setIntProperty(Defn.TAB_WIDTH_PROP, aTabWidth);
-    }
-
-    /** @param aAllowed whether protected data is allowed **/
-    public void setAllowProtected(final boolean aAllowed)
-    {
-        setBooleanProperty(Defn.ALLOW_PROTECTED_PROP, aAllowed);
-    }
-
-    /** @param aAllowed whether package visible data is allowed **/
-    public void setAllowPackage(final boolean aAllowed)
-    {
-        setBooleanProperty(Defn.ALLOW_PACKAGE_PROP, aAllowed);
-    }
-
-    /** @param aAllowed whether allow having no author **/
-    public void setAllowNoAuthor(final boolean aAllowed)
-    {
-        setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, aAllowed);
-    }
-
-    /** @param aRequired whether version tag **/
-    public void setRequireVersion(final boolean aRequired)
-    {
-        setBooleanProperty(Defn.REQUIRE_VERSION_PROP, aRequired);
     }
 
     /** @param aLen max allowed line length **/
@@ -241,14 +211,6 @@ public class CheckStyleTask
     {
         setPatternProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP, aPat,
                            "ignoreLineLengthPattern");
-    }
-
-    /** @param aIgnore whether max line length should be ignored for
-     *                 import statements
-     */
-    public void setIgnoreImportLen(final boolean aIgnore)
-    {
-        setBooleanProperty(Defn.IGNORE_IMPORT_LENGTH_PROP, aIgnore);
     }
 
     /** @param aPat pattern for member variables **/
@@ -314,132 +276,6 @@ public class CheckStyleTask
         setPatternProperty(Defn.METHOD_PATTERN_PROP, aPat, "methodPattern");
     }
 
-    /** @param aName header file name **/
-    public void setHeaderFile(final File aName)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setHeaderFile(aName.getAbsolutePath());
-                    }
-                    catch (IOException ex) {
-                        throw new BuildException(
-                            "Unable to read headerfile - ", ex);
-                    }
-                }
-            });
-    }
-
-    /** @param aIsRegexp whether to interpret header lines as regexp */
-    public void setHeaderLinesRegexp(final boolean aIsRegexp)
-    {
-        setBooleanProperty(Defn.HEADER_LINES_REGEXP_PROP, aIsRegexp);
-    }
-
-    /** @param aList Comma separated list of line numbers **/
-    public void setHeaderIgnoreLine(final String aList)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setHeaderIgnoreLines(aList);
-                }
-            });
-    }
-
-    /** @param aRequirePackageHtml whether package.html is required **/
-    public void setRequirePackageHtml(final boolean aRequirePackageHtml)
-    {
-        setBooleanProperty(Defn.REQUIRE_PACKAGE_HTML_PROP, aRequirePackageHtml);
-    }
-
-    /** @param aIgnore whether to ignore import statements **/
-    public void setIgnoreImports(final boolean aIgnore)
-    {
-        setBooleanProperty(Defn.IGNORE_IMPORTS_PROP, aIgnore);
-    }
-
-    /** @param aPkgPrefixList comma separated list of package prefixes */
-    public void setIllegalImports(final String aPkgPrefixList)
-    {
-        setStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP, aPkgPrefixList);
-    }
-
-    /** @param aClassList comma separated list of fully qualified class names */
-    public void setIllegalInstantiations(final String aClassList)
-    {
-        setStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP, aClassList);
-    }
-
-    /** @param aIgnore whether to ignore whitespace **/
-    public void setIgnoreWhitespace(final boolean aIgnore)
-    {
-        setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, aIgnore);
-    }
-
-    /** @param aIgnore whether to ignore whitespace after casts **/
-    public void setIgnoreCastWhitespace(final boolean aIgnore)
-    {
-        setBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, aIgnore);
-    }
-
-    /** @param aIgnore whether to ignore braces **/
-    public void setIgnoreBraces(final boolean aIgnore)
-    {
-        setBooleanProperty(Defn.IGNORE_BRACES_PROP, aIgnore);
-    }
-
-    /** @param aIgnore whether to ignore long 'L' **/
-    public void setIgnoreLongEll(final boolean aIgnore)
-    {
-        setBooleanProperty(Defn.IGNORE_LONG_ELL_PROP, aIgnore);
-    }
-
-    /** @param aIgnore whether to ignore 'public' in interfaces **/
-    public void setIgnorePublicInInterface(final boolean aIgnore)
-    {
-        setBooleanProperty(Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP, aIgnore);
-    }
-
-    /** @param aEnable whether to check if unused @throws are a
-     *                 RuntimeException
-     **/
-    public void setCheckUnusedThrows(final boolean aEnable)
-    {
-        setBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP, aEnable);
-    }
-
-    /** @param aBasedir set the base directory **/
-    public void setBasedir(final File aBasedir)
-    {
-        if (!aBasedir.isDirectory()) {
-            throw new BuildException("basedir must specify a directory.",
-                                     getLocation());
-        }
-        setStringProperty(Defn.BASEDIR_PROP, aBasedir.getAbsolutePath());
-    }
-
-    /** @param aLang the language to localise messages to **/
-    public void setLocaleLanguage(String aLang)
-    {
-        setStringProperty(Defn.LOCALE_LANGUAGE_PROP, aLang);
-    }
-
-    /** @param aLang the country to localise messages to **/
-    public void setLocaleCountry(String aLang)
-    {
-        setStringProperty(Defn.LOCALE_COUNTRY_PROP, aLang);
-    }
-
-    /** @param aCacheFile the file to cache which files have been checked **/
-    public void setCacheFile(final File aCacheFile)
-    {
-        setStringProperty(Defn.CACHE_FILE_PROP, aCacheFile.getAbsolutePath());
-    }
-
     /** @param aTo the left curly placement option for methods **/
     public void setLCurlyMethod(final String aTo)
     {
@@ -458,18 +294,6 @@ public class CheckStyleTask
         setLeftCurlyOptionProperty(Defn.LCURLY_OTHER_PROP, aTo);
     }
 
-    /** @param aTo the right curly placement option **/
-    public void setRCurly(final String aTo)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setRCurly(extractRightCurlyOption(aTo));
-                }
-            });
-    }
-
     /** @param aTo the try block option **/
     public void setTryBlock(final String aTo)
     {
@@ -486,30 +310,6 @@ public class CheckStyleTask
     public void setFinallyBlock(final String aTo)
     {
         setBlockOptionProperty(Defn.FINALLY_BLOCK_PROP, aTo);
-    }
-
-    /** @param aTo the parenthesis padding option **/
-    public void setParenPad(final String aTo)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setParenPadOption(extractPadOption(aTo));
-                }
-            });
-    }
-
-    /** @param aTo the operator wrapping option **/
-    public void setWrapOp(final String aTo)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setWrapOpOption(extractWrapOpOption(aTo));
-                }
-            });
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -739,54 +539,6 @@ public class CheckStyleTask
     }
 
     /**
-     * @param aFrom String to decode the option from
-     * @return the RightCurlyOption represented by aFrom
-     * @throws BuildException if unable to decode aFrom
-     */
-    private RightCurlyOption extractRightCurlyOption(String aFrom)
-        throws BuildException
-    {
-        final RightCurlyOption opt = RightCurlyOption.decode(aFrom);
-        if (opt == null) {
-            throw new BuildException("Unable to parse '" + aFrom + "'.",
-                                     getLocation());
-        }
-        return opt;
-    }
-
-    /**
-     * @param aFrom String to decode the option from
-     * @return the PadOption represented by aFrom
-     * @throws BuildException if unable to decode aFrom
-     */
-    private PadOption extractPadOption(String aFrom)
-        throws BuildException
-    {
-        final PadOption opt = PadOption.decode(aFrom);
-        if (opt == null) {
-            throw new BuildException("Unable to parse '" + aFrom + "'.",
-                                     getLocation());
-        }
-        return opt;
-    }
-
-    /**
-     * @param aFrom String to decode the option from
-     * @return the WrapOpOption represented by aFrom
-     * @throws BuildException if unable to decode aFrom
-     */
-    private WrapOpOption extractWrapOpOption(String aFrom)
-        throws BuildException
-    {
-        final WrapOpOption opt = WrapOpOption.decode(aFrom);
-        if (opt == null) {
-            throw new BuildException("Unable to parse '" + aFrom + "'.",
-                                     getLocation());
-        }
-        return opt;
-    }
-
-    /**
      * Applies the options that have been saved in the mOptionMemory.
      */
     private void applyExplicitOptions()
@@ -797,22 +549,6 @@ public class CheckStyleTask
             runnable.run();
         }
         mOptionMemory.clear();
-    }
-
-    /**
-     * Set the specified boolean property.
-     * @param aName name of property to set
-     * @param aTo the value of the property
-     */
-    private void setBooleanProperty(final String aName, final boolean aTo)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setBooleanProperty(aName, aTo);
-                }
-            });
     }
 
     /**
@@ -827,38 +563,6 @@ public class CheckStyleTask
                 public void run()
                 {
                     mConfig.setIntProperty(aName, aTo);
-                }
-            });
-    }
-
-    /**
-     * Set the specified String property.
-     * @param aName name of property to set
-     * @param aTo the value of the property
-     */
-    private void setStringProperty(final String aName, final String aTo)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setStringProperty(aName, aTo);
-                }
-            });
-    }
-
-    /**
-     * Set the specified String Set property.
-     * @param aName name of property to set
-     * @param aTo the value of the property
-     */
-    private void setStringSetProperty(final String aName, final String aTo)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setStringSetProperty(aName, aTo);
                 }
             });
     }
