@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -45,5 +46,13 @@ public class ParameterNameCheck
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.PARAMETER_DEF};
+    }
+    
+    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractNameCheck */
+    protected boolean mustCheckName(DetailAST aAST)
+    {
+        return !(
+            (aAST.getParent() != null)
+                && (aAST.getParent().getType() == TokenTypes.LITERAL_CATCH));
     }
 }

@@ -5,6 +5,19 @@ import com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck;
 public class ParameterNameCheckTest
     extends BaseCheckTestCase
 {
+    public void testCatch()
+        throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(ParameterNameCheck.class.getName());
+        checkConfig.addProperty("format", "^NO_WAY_MATEY$");
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputLeftCurlyOther.java");
+        final String[] expected = {
+        };
+        verify(c, fname, expected);
+    }
+
     public void testSpecified()
         throws Exception
     {
