@@ -1052,9 +1052,9 @@ public class Configuration
                 retVal = Integer.parseInt(strRep);
             }
             catch (NumberFormatException nfe) {
-                aLog.println("Unable to parse " + aName +
-                             " property with value " + strRep +
-                             ", defaulting to " + aDefault + ".");
+                aLog.println("Unable to parse " + aName
+                             + " property with value " + strRep
+                             + ", defaulting to " + aDefault + ".");
             }
         }
         return retVal;
@@ -1075,8 +1075,8 @@ public class Configuration
         String strRep = aProps.getProperty(aName);
         if (strRep != null) {
             strRep = strRep.toLowerCase().trim();
-            retVal = strRep.equals("true") || strRep.equals("yes") ||
-                strRep.equals("on");
+            retVal = strRep.equals("true") || strRep.equals("yes")
+                || strRep.equals("on");
         }
         return retVal;
     }
@@ -1101,9 +1101,9 @@ public class Configuration
         if (strRep != null) {
             retVal = LeftCurlyOption.decode(strRep);
             if (retVal == null) {
-                aLog.println("Unable to parse " + aName +
-                             " property with value " + strRep +
-                             ", defaulting to " + aDefault + ".");
+                aLog.println("Unable to parse " + aName
+                             + " property with value " + strRep
+                             + ", defaulting to " + aDefault + ".");
             }
         }
         return retVal;
@@ -1129,9 +1129,9 @@ public class Configuration
         if (strRep != null) {
             retVal = RightCurlyOption.decode(strRep);
             if (retVal == null) {
-                aLog.println("Unable to parse " + aName +
-                             " property with value " + strRep +
-                             ", defaulting to " + aDefault + ".");
+                aLog.println("Unable to parse " + aName
+                             + " property with value " + strRep
+                             + ", defaulting to " + aDefault + ".");
             }
         }
         return retVal;
@@ -1157,9 +1157,9 @@ public class Configuration
         if (strRep != null) {
             retVal = CatchBlockOption.decode(strRep);
             if (retVal == null) {
-                aLog.println("Unable to parse " + aName +
-                             " property with value " + strRep +
-                             ", defaulting to " + aDefault + ".");
+                aLog.println("Unable to parse " + aName
+                             + " property with value " + strRep
+                             + ", defaulting to " + aDefault + ".");
             }
         }
         return retVal;
@@ -1185,9 +1185,9 @@ public class Configuration
         if (strRep != null) {
             retVal = PadOption.decode(strRep);
             if (retVal == null) {
-                aLog.println("Unable to parse " + aName +
-                             " property with value " + strRep +
-                             ", defaulting to " + aDefault + ".");
+                aLog.println("Unable to parse " + aName
+                             + " property with value " + strRep
+                             + ", defaulting to " + aDefault + ".");
             }
         }
         return retVal;

@@ -683,8 +683,9 @@ public class CheckStyleTask
     {
         // Check for no arguments
         if ((mFileName == null) && (mFileSets.size() == 0)) {
-            throw new BuildException("Must specify atleast one of 'file' " +
-                                     "or nested 'fileset'.", location);
+            throw new BuildException(
+                "Must specify atleast one of 'file' or nested 'fileset'.",
+                location);
         }
 
         // Create the checker
@@ -771,8 +772,9 @@ public class CheckStyleTask
             ds.scan();
 
             final String[] names = ds.getIncludedFiles();
-            log(i + ") Adding " + names.length + " files from directory " +
-                ds.getBasedir(), Project.MSG_VERBOSE);
+            log(i + ") Adding " + names.length + " files from directory "
+                + ds.getBasedir(),
+                Project.MSG_VERBOSE);
 
             for (int j = 0; j < names.length; j++) {
                 final String pathname =

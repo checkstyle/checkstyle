@@ -88,8 +88,8 @@ public final class Main
             listener = new DefaultLogger(out);
         }
         else {
-            System.out.println("Invalid format: (" + format +
-                               "). Must be 'plain' or 'xml'.");
+            System.out.println("Invalid format: (" + format
+                               + "). Must be 'plain' or 'xml'.");
             usage();
         }
 
@@ -99,8 +99,8 @@ public final class Main
             c.addListener(listener);
         }
         catch (RESyntaxException rese) {
-            System.out.println("Unable to create an regexp object: " +
-                               rese.getMessage());
+            System.out.println("Unable to create an regexp object: "
+                               + rese.getMessage());
             rese.printStackTrace(System.out);
             System.exit(1);
         }
@@ -172,8 +172,8 @@ public final class Main
             fis.close();
         }
         catch (IOException ex) {
-            System.out.println("Unable to load properties from file: " +
-                aFile.getAbsolutePath());
+            System.out.println("Unable to load properties from file: "
+                               + aFile.getAbsolutePath());
             ex.printStackTrace(System.out);
             System.exit(1);
         }
