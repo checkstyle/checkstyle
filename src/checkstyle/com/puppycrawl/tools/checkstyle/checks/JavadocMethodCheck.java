@@ -42,7 +42,7 @@ import org.apache.regexp.RE;
  * To check for unused throws, set property checkUnusedThrows to true.
  * The scope to verify is specified using the {@link Scope} class and
  * defaults to {@link Scope#PRIVATE}. To verify another scope,
- * set property scope to one of the {@link Scope#} constants.
+ * set property scope to one of the {@link Scope} constants.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -52,7 +52,7 @@ import org.apache.regexp.RE;
  * &lt;check
  *    classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck"/&gt;
  * </pre>
- * <p> An example of how to configure the check to check for unused imports 
+ * <p> An example of how to configure the check to check for unused imports
  * and for the {@link Scope#PUBLIC} scope is:
  *</p>
  * <pre>
@@ -78,15 +78,6 @@ public class JavadocMethodCheck
     /** compiled regexp to match Javadoc tags that take an argument **/
     private static final RE MATCH_JAVADOC_ARG =
         Utils.createRE(MATCH_JAVADOC_ARG_PAT);
-
-   /**
-    * the pattern to match a single line comment containing only the comment
-    * itself -- no code.
-    **/
-    private static final String MATCH_SINGLELINE_COMMENT_PAT = "^\\s*//.*$";
-   /** compiled regexp to match a single-line comment line **/
-    private static final RE MATCH_SINGLELINE_COMMENT =
-      Utils.createRE(MATCH_SINGLELINE_COMMENT_PAT);
 
    /**
     * the pattern to match the first line of a multi-line Javadoc
