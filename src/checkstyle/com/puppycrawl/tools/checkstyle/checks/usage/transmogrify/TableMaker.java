@@ -253,6 +253,9 @@ public class TableMaker {
 
       case TokenTypes.LITERAL_NEW:
         SymTabAST symtabTree = (SymTabAST)tree;
+        //walk parameters, in case of anonymous inner class
+        walkTree(symtabTree.findFirstToken(TokenTypes.ELIST),
+          makeAnonymousScopes);
         SymTabAST objblock
           = symtabTree.findFirstToken(TokenTypes.OBJBLOCK);
         if (objblock != null) {
@@ -702,14 +705,7 @@ public void processAssert(SymTabAST tree) {
    * @see #walkTree(SymTabAST, boolean)
    */
   public void processConstructorDef(SymTabAST tree) {
-    String name = tree.findFirstToken(TokenTypes.IDENT).getText();
-    MethodDef constructor = new MethodDef(name, symbolTable.getCurrentScope(),
-                                          tree);
-    symbolTable.defineMethod( constructor );
-
-    symbolTable.pushScope( constructor );
-    walkTree(tree.findFirstToken(TokenTypes.SLIST), false);
-    symbolTable.popScope();
+    processMethodDef(tree);
   }
 
   /**
