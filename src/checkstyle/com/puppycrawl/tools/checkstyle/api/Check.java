@@ -48,7 +48,7 @@ public abstract class Check extends AutomaticBean
     private int mTabWidth = 8; // meaningful default
 
     /** the severity level of any violations found */
-    private SeverityLevel mSeverityLevel = SeverityLevel.ERROR;
+    private SeverityLevel mSeverityLevel = SeverityLevel.DEFAULT_LEVEL;
 
     /** current class loader */
     private ClassLoader mLoader =
