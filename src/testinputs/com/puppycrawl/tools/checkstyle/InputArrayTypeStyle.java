@@ -24,4 +24,13 @@ public class InputArrayTypeStyle
         final boolean isOK2 = aCStyle instanceof java.lang.String[];
         final boolean isOK3 = blah instanceof int[];
     }
+
+    public class Test
+    {
+        public Test[]
+            getTests()
+        {
+            return null;
+        }
+    }
 }
