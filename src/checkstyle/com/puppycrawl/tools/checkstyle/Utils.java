@@ -132,6 +132,12 @@ final class Utils
         // instead use the logic Lars introduced for finding instantiations.
         // This will also require putting @throws, @see, @link into the logic
         // for finding unused imports.
+        //
+        // Logic should be:
+        //   o Try class as is
+        //   o See if matches any explicit imports
+        //   o See if matched by any .* imports
+        //   o See if matched with "java.lang."
         Class c;
         try {
             // The next line will load the class using the specified class
