@@ -54,10 +54,8 @@
     <module name="PackageName">            <property name="format" value="^[a-z]+(\.[a-zA-Z_][a-zA-Z_0-9]*)*$"/></module>
 
     <!-- code layout -->
+    <module name="LeftCurly">              <property name="option" value="nl"/></module>
     <module name="RightCurly">             <property name="option" value="alone"/></module>
-    <module name="MethodLeftCurly">        <property name="option" value="nl"/></module>
-    <module name="OtherLeftCurly">         <property name="option" value="nl"/></module>
-    <module name="TypeLeftCurly">          <property name="option" value="nl"/></module>
     <module name="NeedBraces"/>
     <module name="OperatorWrap"/>
 
