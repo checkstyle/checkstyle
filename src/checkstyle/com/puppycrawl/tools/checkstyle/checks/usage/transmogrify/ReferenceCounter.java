@@ -28,9 +28,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.usage.transmogrify;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
