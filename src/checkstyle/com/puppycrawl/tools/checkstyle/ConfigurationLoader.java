@@ -58,18 +58,19 @@ class ConfigurationLoader
     private final XMLReader mParser;
     /** the loaded configurations **/
     private Stack mConfigStack = new Stack();
-    /** the Configuration that is beeing built */
+    /** the Configuration that is being built */
     private Configuration mConfiguration = null;
 
     /**
      * Creates a new <code>ConfigurationLoader</code> instance.
+     * @param aOverrideProps overriding properties
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */
     private ConfigurationLoader(Properties aOverrideProps)
         throws ParserConfigurationException, SAXException
     {
-        mOverrideProps = aOverrideProps; 
+        mOverrideProps = aOverrideProps;
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(true);
         mParser = factory.newSAXParser().getXMLReader();
