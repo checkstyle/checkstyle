@@ -32,6 +32,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Enumeration;
 
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.Defn;
+
 /**
  * The TranslationCheck class helps to ensure the correct translation of code by
  * checking property files for consistency regarding their keys.
@@ -129,7 +133,7 @@ public class TranslationCheck extends AbstractFileSetCheck
      * @param file the property file
      * @return a Set object which holds the loaded keys
      */
-    private static Set loadKeys(File file)
+    private Set loadKeys(File file)
     {
         InputStream inputStream = null;
         Set keys = new HashSet();
@@ -146,22 +150,37 @@ public class TranslationCheck extends AbstractFileSetCheck
                 keys.add(e.nextElement());
             }
         }
-        catch (FileNotFoundException e) {
-            System.out.println(
-                    "The file " + file.getName() + " could not be found!");
-        }
         catch (IOException e) {
-            System.out.println("IOException occured");
+            logIOException(e, file);
         }
         finally {
             try {
                 inputStream.close();
             }
             catch (IOException e) {
-                System.out.println("IOException occured");
+                logIOException(e, file);
             }
         }
         return keys;
+    }
+
+    /**
+     * helper method to log an io exception.
+     * @param e the exception that occured
+     * @param file the file that could not be processed
+     */
+    private void logIOException(IOException e, File file)
+    {
+        String[] args = null;
+        String key = "general.fileNotFound";
+        if (!(e instanceof FileNotFoundException)) {
+            args = new String[] {e.getMessage()};
+            key = "general.exception";
+        }
+        LocalizedMessage message =
+                new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE, key, args);
+        LocalizedMessage[] messages = new LocalizedMessage[]{message};
+        getMessageDispatcher().fireErrors(file.getPath(), messages);
     }
 
 
@@ -170,16 +189,16 @@ public class TranslationCheck extends AbstractFileSetCheck
      * with the specified key set. All missing keys are reported.
      * @param keys the set of keys to compare with
      * @param fileMap a Map from property files to their key sets
-     * @return the number of inconsistencies detected
      */
-    private static int compareKeySets(Set keys, Map fileMap)
+    private void compareKeySets(Set keys, Map fileMap)
     {
         Set fls = fileMap.keySet();
-        int res = 0;
 
         for (Iterator iter = fls.iterator(); iter.hasNext();) {
             File currentFile = (File) iter.next();
-            // TODO: fire file started
+            final MessageDispatcher dispatcher = getMessageDispatcher();
+            final String path = currentFile.getPath();
+            dispatcher.fireFileStarted(path);
             Set currentKeys = (Set) fileMap.get(currentFile);
 
             // Clone the keys so that they are not lost
@@ -189,15 +208,16 @@ public class TranslationCheck extends AbstractFileSetCheck
             // Remaining elements in the key set are missing in the current file
             if (!keysClone.isEmpty()) {
                 for (Iterator it = keysClone.iterator(); it.hasNext();) {
-                    // TODO: fire errors to reporting system
-                    System.out.println(currentFile.getPath()
-                            + ": key \"" + (String) it.next() + "\" missing");
-                    res++;
+                    Object[] key = new Object[]{it.next()};
+                    LocalizedMessage[] errors = new LocalizedMessage[1];
+                    final String bundle = getClass().getName() + ".messages";
+                    errors[0] = new LocalizedMessage(
+                            0, bundle, "translation.missingKey", key);
+                    getMessageDispatcher().fireErrors(path, errors);
                 }
             }
-            // TODO: fire file finished
+            dispatcher.fireFileFinished(path);
         }
-        return res;
     }
 
 
@@ -210,11 +230,9 @@ public class TranslationCheck extends AbstractFileSetCheck
      * which file.
      *
      * @param propFiles the property files organized as Map
-     * @return the number of inconsistencies detected
      */
-    private static int checkPropertyFileSets(Map propFiles)
+    private void checkPropertyFileSets(Map propFiles)
     {
-        int res = 0;
         Set keySet = propFiles.keySet();
 
         for (Iterator iterator = keySet.iterator(); iterator.hasNext();) {
@@ -234,10 +252,9 @@ public class TranslationCheck extends AbstractFileSetCheck
                 }
 
                 // check the map for consistency
-                res = res + compareKeySets(keys, fileMap);
+                compareKeySets(keys, fileMap);
             }
         }
-        return res;
     }
 
 
@@ -250,12 +267,12 @@ public class TranslationCheck extends AbstractFileSetCheck
      *
      * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
      */
-    public int process(File[] files)
+    public void process(File[] files)
     {
         Set dirs = getParentDirs(files);
         Set propertyFiles = getPropertyFiles(dirs);
         final Map propFilesMap = arrangePropertyFiles(propertyFiles);
-        return checkPropertyFileSets(propFilesMap);
+        checkPropertyFileSets(propFilesMap);
     }
 
 
