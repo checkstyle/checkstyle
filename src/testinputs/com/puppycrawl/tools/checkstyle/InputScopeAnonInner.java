@@ -18,7 +18,7 @@ public class InputScopeAnonInner
        button.
     */
     private JButton mButton = new JButton();
-    
+
     /**
        anon inner in member variable initialization.
     */
@@ -28,7 +28,7 @@ public class InputScopeAnonInner
             System.out.println("running");
         }
     };
-    
+
     /**
        anon inner in constructor.
     */
@@ -42,7 +42,7 @@ public class InputScopeAnonInner
                 }
             } );
     }
-    
+
     /**
        anon inner in method
     */
