@@ -241,6 +241,9 @@ public class Checker extends AutomaticBean
             if (filter.decide(aEvent) == Filter.DENY) {
                 return false;
             }
+            else if (filter.decide(aEvent) == Filter.ACCEPT) {
+                return true;
+            }
         }
         return true;
     }
