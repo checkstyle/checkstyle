@@ -135,6 +135,19 @@
 
   </target>
 
+  <target name="compile.testinputs" description="Compile test inputs">
+    <mkdir dir="target/testinputs" />
+    <depend srcdir="src/testinputs" destdir="target/testinputs" closure="yes"/>
+    <!-- start of a change to turn on compilation of all input files -->
+    <!-- under JDK1.4. -->
+    <property name="testExcludes"
+              value="**/InputWhitespace.java,**/InputImport.java"/>
+    <javac srcdir="src/testinputs"
+           destdir="target/testinputs"
+           deprecation="on" debug="on"
+           excludes="${testExcludes}"/>
+  </target>
+  
   <!-- Compiles only the test code. Input files are excluded from
        compilation, they contain code like assert statements
        that does not compile on all JDKs -->
@@ -142,14 +155,9 @@
           description="Compiles the test code">
     <mkdir dir="target/tests" />
     <depend srcdir="src/tests" destdir="target/tests" closure="yes"/>
-    <!-- start of a change to turn on compilation of all input files -->
-    <!-- under JDK1.4. -->
-    <property name="testExcludes"
-              value="**/InputWhitespace.java,**/InputImport.java"/>
     <javac srcdir="src/tests"
            destdir="target/tests"
            deprecation="on" debug="on"
-           excludes="${testExcludes}"
            classpathref="tests.buildpath" />
   </target>
 
@@ -315,14 +323,14 @@
           description="Runs the tests for checkstyle">
 
     <mkdir dir="${testreport.dir}"/>
-    <property name="tests.dir"
-              location="src/tests/com/puppycrawl/tools/checkstyle"/>
+    <property name="testinputs.dir"
+              location="src/testinputs/com/puppycrawl/tools/checkstyle"/>
 
     <junit printsummary="yes"
            fork="yes"
            haltonfailure="no"
            failureProperty="tests.have.failed">
-      <jvmarg value="-Dtests.dir=${tests.dir}"/>
+      <jvmarg value="-Dtestinputs.dir=${testinputs.dir}"/>
       <formatter type="xml" />
       <classpath refid="tests.runpath"/>
       <batchtest todir="${testreport.dir}">
