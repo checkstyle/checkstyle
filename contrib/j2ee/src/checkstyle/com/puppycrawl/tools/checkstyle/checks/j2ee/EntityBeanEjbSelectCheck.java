@@ -52,6 +52,11 @@ public class EntityBeanEjbSelectCheck
                 log(nameAST.getLineNo(), nameAST.getColumnNo(),
                     "nonabstract.bean", "Method " + name);
             }
+            if (!Utils.hasThrows(aAST, "javax.ejb.FinderException")) {
+                log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                    "missingthrows.bean",
+                    new Object[] {name, "javax.ejb.FinderException"});
+            }
         }
     }
 }
