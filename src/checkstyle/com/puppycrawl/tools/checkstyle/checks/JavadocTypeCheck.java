@@ -10,6 +10,12 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
+/**
+ * Checks that a type has Javadoc comment
+ *
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @version 1.0
+ */
 public class JavadocTypeCheck
     extends Check
 {
@@ -25,26 +31,40 @@ public class JavadocTypeCheck
     private static final RE MATCH_JAVADOC_VERSION
         = Utils.createRE(MATCH_JAVADOC_VERSION_PAT);
 
+    /** the scope to check for */
     private Scope mScope = Scope.PRIVATE;
+    /** whether to allow no author tag */
     private boolean mAllowNoAuthor = false;
+    /** whether to require version tag */
     private boolean mRequireVersion = false;
-    
 
+    /**
+     * Sets the scope to check.
+     * @param aFrom string to set scope from
+     */
     public void setScope(String aFrom)
     {
         mScope = Scope.getInstance(aFrom);
     }
 
+    /**
+     * Sets whether to allow no author tag
+     * @param aAllowNoAuthor a <code>boolean</code> value
+     */
     public void setAllowNoAuthor(boolean aAllowNoAuthor)
     {
         mAllowNoAuthor = aAllowNoAuthor;
     }
-    
+
+    /**
+     * Sets whether to require a version tag.
+     * @param aRequireVersion a <code>boolean</code> value
+     */
     public void setRequireVersion(boolean aRequireVersion)
     {
         mRequireVersion = aRequireVersion;
     }
-    
+
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -75,7 +95,7 @@ public class JavadocTypeCheck
                     {
                         log(aAST.getLineNo(), "type.missingTag", "@author");
                     }
-                    
+
                     if (mRequireVersion
                         && (MATCH_JAVADOC_VERSION.grep(cmt).length == 0))
                     {
