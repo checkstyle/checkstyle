@@ -229,8 +229,10 @@ public class BlockParentHandler extends ExpressionHandler
             return;
         }
 
-        checkExpressionSubtree(nonlist, getLevel()
-                + getIndentCheck().getBasicOffset());
+        checkExpressionSubtree(nonlist,
+                               getLevel() + getIndentCheck().getBasicOffset(),
+                               false,
+                               false);
     }
 
     /**

@@ -107,7 +107,7 @@ public class MethodDefHandler extends BlockParentHandler
     private void checkParameters()
     {
         DetailAST params = getMainAst().findFirstToken(TokenTypes.PARAMETERS);
-        checkExpressionSubtree(params, getLevel());
+        checkExpressionSubtree(params, getLevel(), false, false);
     }
 
     /**

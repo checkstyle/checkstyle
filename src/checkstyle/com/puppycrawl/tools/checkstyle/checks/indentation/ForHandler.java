@@ -50,13 +50,19 @@ public class ForHandler extends BlockParentHandler
     {
         checkExpressionSubtree(
             getMainAst().findFirstToken(TokenTypes.FOR_INIT),
-            getLevel() + getIndentCheck().getBasicOffset());
+            getLevel() + getIndentCheck().getBasicOffset(),
+            false,
+            false);
         checkExpressionSubtree(
             getMainAst().findFirstToken(TokenTypes.FOR_CONDITION),
-            getLevel() + getIndentCheck().getBasicOffset());
+            getLevel() + getIndentCheck().getBasicOffset(),
+            false,
+            false);
         checkExpressionSubtree(
             getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR),
-            getLevel() + getIndentCheck().getBasicOffset());
+            getLevel() + getIndentCheck().getBasicOffset(),
+            false,
+            false);
     }
 
     /**

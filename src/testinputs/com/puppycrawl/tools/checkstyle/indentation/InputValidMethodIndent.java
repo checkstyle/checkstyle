@@ -113,7 +113,11 @@ public class InputValidMethodIndent extends java.awt.event.MouseAdapter implemen
                 getInteger("mytest").intValue(),
             11);
         
-        
+        myfunc3(
+            1,
+            2, 
+                3, 
+                4);
     }
 
     // strange IMHO, but I suppose this should be allowed

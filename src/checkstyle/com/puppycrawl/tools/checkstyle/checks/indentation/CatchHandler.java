@@ -60,7 +60,7 @@ public class CatchHandler extends BlockParentHandler
     {
         DetailAST condAst = (DetailAST)
             getMainAst().findFirstToken(TokenTypes.LPAREN).getNextSibling();
-        checkExpressionSubtree(condAst, getLevel());
+        checkExpressionSubtree(condAst, getLevel(), false, false);
     }
 
     /**

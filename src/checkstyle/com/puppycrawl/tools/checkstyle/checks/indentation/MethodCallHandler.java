@@ -257,4 +257,14 @@ public class MethodCallHandler extends ExpressionHandler
             checkRParen();
         }
     }
+
+    /**
+     * @return true if indentation should be increased after
+     *              fisrt line in checkLinesIndent()
+     *         false otherwise
+     */
+    protected boolean shouldIncraeseIndent()
+    {
+        return false;
+    }
 }

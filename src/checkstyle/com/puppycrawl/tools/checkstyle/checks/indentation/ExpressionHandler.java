@@ -260,6 +260,16 @@ public abstract class ExpressionHandler
     }
 
     /**
+     * @return true if indentation should be increased after
+     *              fisrt line in checkLinesIndent()
+     *         false otherwise
+     */
+    protected boolean shouldIncraeseIndent()
+    {
+        return true;
+    }
+
+    /**
      * Check the indentation for a set of lines.
      *
      * @param aLines              the set of lines to check
@@ -267,10 +277,10 @@ public abstract class ExpressionHandler
      * @param aFirstLineMatches   whether or not the first line has to match
      * @param aFirstLine          firstline of whole expression
      */
-    protected final void checkLinesIndent(LineSet aLines,
-                                          int aIndentLevel,
-                                          boolean aFirstLineMatches,
-                                          int aFirstLine)
+    private void checkLinesIndent(LineSet aLines,
+                                  int aIndentLevel,
+                                  boolean aFirstLineMatches,
+                                  int aFirstLine)
     {
         if (aLines.isEmpty()) {
             return;
@@ -294,7 +304,12 @@ public abstract class ExpressionHandler
         // doesn't start the line) then don't indent more, the first
         // indentation is absorbed by the nesting
 
-        if (aFirstLineMatches || aFirstLine > mMainAst.getLineNo()) {
+        // TODO: shouldIncreseIndent() is a hack, should be removed
+        //       after complete rewriting of checkExpressionSubtree()
+
+        if (aFirstLineMatches
+            || (aFirstLine > mMainAst.getLineNo() && shouldIncraeseIndent()))
+        {
             aIndentLevel += mIndentCheck.getBasicOffset();
         }
 
@@ -414,17 +429,6 @@ public abstract class ExpressionHandler
                     aFirstLineMatches, aAllowNesting);
             }
         }
-    }
-
-    /**
-     * Check the indentation level for an expression subtree.
-     *
-     * @param aTree    the expression subtree to check
-     * @param aLevel   the indentation level
-     */
-    protected final void checkExpressionSubtree(DetailAST aTree, int aLevel)
-    {
-        checkExpressionSubtree(aTree, aLevel, false, false);
     }
 
     /**
