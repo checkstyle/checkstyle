@@ -3,6 +3,8 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
+import java.io.File;
+
 public class DescendantTokenCheckTest
     extends BaseCheckTestCase
 {
@@ -83,4 +85,107 @@ public class DescendantTokenCheckTest
         final String[] expected = {};
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
+
+    public void testEmptyStatements()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(DescendantTokenCheck.class);
+        checkConfig.addAttribute("tokens", "EMPTY_STAT");
+        checkConfig.addAttribute("limitedTokens", "EMPTY_STAT");
+        checkConfig.addAttribute("maximumNumber", "0");
+        checkConfig.addAttribute("maximumDepth", "0");
+        checkConfig.addAttribute("maximumMessage", "Empty statement.");
+
+        final String[] expected = {
+           "12:7: Empty statement.",
+           "17:7: Empty statement.",
+           "22:15: Empty statement.",
+           "26:10: Empty statement.",
+           "29:16: Empty statement.",
+           "33:10: Empty statement.",
+           "43:10: Empty statement.",
+           "49:13: Empty statement.",
+           "51:13: Empty statement.",
+           "54:19: Empty statement.",
+           "58:10: Empty statement.",
+           "61:9: Empty statement.",
+           "66:10: Empty statement.",
+           "72:10: Empty statement.",
+           "76:10: Empty statement.",
+           "80:10: Empty statement.",
+        };
+
+        verify(checkConfig, getPath("InputEmptyStatement.java"), expected);
+    }
+
+    public void testMissingSwitchDefault() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(DescendantTokenCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_SWITCH");
+        checkConfig.addAttribute("limitedTokens", "LITERAL_DEFAULT");
+        checkConfig.addAttribute("minimumNumber", "1");
+        checkConfig.addAttribute("maximumDepth", "2");
+        checkConfig.addAttribute("minimumMessage", "switch without \"default\" clause.");
+
+        final String[] expected = {
+            "15:9: switch without \"default\" clause.",
+        };
+
+        verify(checkConfig, getPath("InputMissingSwitchDefault.java"), expected);
+    }
+
+    public void testStringLiteralEquality() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(DescendantTokenCheck.class);
+        checkConfig.addAttribute("tokens", "EQUAL,NOT_EQUAL");
+        checkConfig.addAttribute("limitedTokens", "STRING_LITERAL");
+        checkConfig.addAttribute("maximumNumber", "0");
+        checkConfig.addAttribute("maximumDepth", "1");
+        checkConfig.addAttribute("maximumMessage", "Literal Strings should be compared using equals(), not ''==''.");
+
+        final String[] expected = {
+            "11:18: Literal Strings should be compared using equals(), not '=='.",
+            "16:20: Literal Strings should be compared using equals(), not '=='.",
+            "21:22: Literal Strings should be compared using equals(), not '=='.",
+        };
+        verify(checkConfig, getPath("coding" + File.separator + "InputStringLiteralEquality.java"), expected);
+    }
+
+    public void testIllegalTokenDefault() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(DescendantTokenCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_SWITCH, POST_INC, POST_DEC");
+        checkConfig.addAttribute("limitedTokens", "LITERAL_SWITCH, POST_INC, POST_DEC");
+        checkConfig.addAttribute("maximumNumber", "0");
+        checkConfig.addAttribute("maximumDepth", "0");
+        checkConfig.addAttribute("maximumMessage", "Using ''{2}'' is not allowed.");
+
+        final String[] expected = {
+            "11:9: Using 'LITERAL_SWITCH' is not allowed.",
+            "14:18: Using 'POST_DEC' is not allowed.",
+            "15:18: Using 'POST_INC' is not allowed.",
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+    
+    public void testIllegalTokenNative() throws Exception
+     {
+         final DefaultConfiguration checkConfig =
+             createCheckConfig(DescendantTokenCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_NATIVE");
+        checkConfig.addAttribute("limitedTokens", "LITERAL_NATIVE");
+        checkConfig.addAttribute("maximumNumber", "0");
+        checkConfig.addAttribute("maximumDepth", "0");
+        checkConfig.addAttribute("maximumMessage", "Using ''{2}'' is not allowed.");
+
+         final String[] expected = {
+             "20:12: Using 'LITERAL_NATIVE' is not allowed.",
+         };
+         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+     }
+
 }
