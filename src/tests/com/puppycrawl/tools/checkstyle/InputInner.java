@@ -28,6 +28,12 @@ class InputInner
         {
             // Ignore - need Javadoc and made private
             public int rData;
+
+            /** needs to be made private unless allowProtected. */
+            protected int protectedVariable;
+
+            /** needs to be made private unless allowPackage. */
+            int packageVariable;
         }
     }
 }

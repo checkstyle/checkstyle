@@ -286,15 +286,20 @@ public class CheckerTest
             filepath + ":24: variable 'data' must match pattern '^[A-Z]([A-Z0-9_]*[A-Z0-9])?$'.",
             filepath + ":27: type is missing a Javadoc comment.",
             filepath + ":30: variable 'rData' missing Javadoc.",
-            filepath + ":30: variable 'rData' must be private and have accessor methods."
+            filepath + ":30: variable 'rData' must be private and have accessor methods.",
+            filepath + ":33: variable 'protectedVariable' must be private and have accessor methods.",
+            filepath + ":36: variable 'packageVariable' must be private and have accessor methods."
+
         };
         verify(c, filepath, expected);
     }
 
-    public void testIgnorePublic()
+    public void testIgnoreAccess()
         throws Exception
     {
         mConfig.setPublicMemberPat("^r[A-Z]");
+        mConfig.setAllowProtected(true);
+        mConfig.setAllowPackage(true);
         final Checker c = createChecker();
         final String filepath = getPath("InputInner.java");
         assertNotNull(c);
@@ -324,7 +329,7 @@ public class CheckerTest
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":1: file length is 113 lines (max allowed is 20).",
+            filepath + ":1: file length is 140 lines (max allowed is 20).",
             filepath + ":3: Line does not match expected header line of '// Created: 2001'.",
             filepath + ":18: line longer than 80 characters",
             filepath + ":19: line contains a tab character",
@@ -344,6 +349,11 @@ public class CheckerTest
             filepath + ":72: parameter 'badFormat3' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":80: method length is 20 lines (max allowed is 19).",
             filepath + ":103: constructor length is 10 lines (max allowed is 9).",
+            filepath + ":119: variable 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            filepath + ":123: variable 'CDE' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            filepath + ":130: variable 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            filepath + ":132: variable 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            filepath + ":137: method name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
         verify(c, filepath, expected);
     }
@@ -532,5 +542,24 @@ public class CheckerTest
             filepath + ":14: Unused import - java.util.List",
         };
         verify(c, filepath, expected);
+    }
+
+    public void testPackageHtml()
+        throws Exception
+    {
+        final boolean savedRequirePackageHtml = mConfig.isRequirePackageHtml();
+        final Scope savedDocScope = mConfig.getJavadocScope();
+        mConfig.setRequirePackageHtml(true);
+        mConfig.setJavadocScope(Scope.PRIVATE);
+        final Checker c = createChecker();
+        final String packageHtmlPath = getPath("package.html");
+        final String filepath = getPath("InputScopeAnonInner.java");
+        assertNotNull(c);
+        final String[] expected = {
+            packageHtmlPath + ":0: missing package documentation file.",
+        };
+        verify(c, filepath, expected);
+        mConfig.setRequirePackageHtml(savedRequirePackageHtml);
+        mConfig.setJavadocScope(savedDocScope);
     }
 }
