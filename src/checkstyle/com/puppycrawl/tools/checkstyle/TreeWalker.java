@@ -55,8 +55,7 @@ class TreeWalker
 
     // initialise the constants
     static {
-        // Wow, pretty cool idea to use reflection here...
-        final Field[] fields = JavaTokenTypes.class.getDeclaredFields();
+        final Field[] fields = Java14TokenTypes.class.getDeclaredFields();
         for (int i = 0; i < fields.length; i++) {
             final Field f = fields[i];
             final String name = f.getName();

@@ -20,15 +20,59 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.Java14TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
-public class WhitespaceAroundCheck extends Check
+public class WhitespaceAroundCheck extends Check implements Java14TokenTypes
 {
     public int[] getDefaultTokens()
     {
-        // TODO: add all operators
-        return new int[] {JavaTokenTypes.ASSIGN};
+        return new int[] {
+            QUESTION,          // '?'
+            // COLON,             // ':' TODO: dont flag after "case"
+            ASSIGN,            // '='
+            EQUAL,             // "=="
+            NOT_EQUAL,         // "!="
+            DIV,               // '/'
+            DIV_ASSIGN,        // "/="
+            // PLUS,              //' +' TODO: unaray plus
+            PLUS_ASSIGN,       // "+="
+            // MINUS,             // '-' TODO: unary minus
+            MINUS_ASSIGN,      //"-="
+            STAR,              // '*'
+            STAR_ASSIGN,       // "*="
+            MOD,               // '%'
+            MOD_ASSIGN,        // "%="
+            SR,                // ">>"
+            SR_ASSIGN,         // ">>="
+            BSR,               // ">>>"
+            BSR_ASSIGN,        // ">>>="
+            GE,                // ">="
+            GT,                // ">"
+            SL,                // "<<"
+            SL_ASSIGN,         // "<<="
+            LE,                // "<="
+            LT,                // '<'
+            BXOR,              // '^'
+            BXOR_ASSIGN,       // "^="
+            BOR,               // '|'
+            BOR_ASSIGN,        // "|="
+            LOR,               // "||"
+            BAND,              // '&'
+            BAND_ASSIGN,       // "&="
+            LAND,              // "&&"
+            LITERAL_if,
+            LITERAL_else,
+            LITERAL_for,
+            LITERAL_do,
+            // LITERAL_return,    // TODO: "return;" is OK, return(2) is not
+            LITERAL_try,
+            LITERAL_catch,
+            LITERAL_finally,
+            LITERAL_synchronized,
+            ASSERT                // TODO: why is it not LITERAL_assert?
+                                  // maybe it's a bug in the grammar?
+        };
     }
 
     public void visitToken(DetailAST aAST)
@@ -38,15 +82,16 @@ public class WhitespaceAroundCheck extends Check
         final int before = aAST.getColumnNo() - 1;
         final int after = aAST.getColumnNo() + aAST.getText().length();
 
-        // TODO: i18n
         if ((before >= 0) && !Character.isWhitespace(line.charAt(before))) {
-            log(aAST.getLineNo(), "NO LEADING SPACE for " + aAST.getText());
+            log(aAST.getLineNo(), aAST.getColumnNo(),
+                    "ws.notPreceeded", new Object[]{aAST.getText()});
         }
 
         if ((after < line.length())
             && !Character.isWhitespace(line.charAt(after)))
         {
-            log(aAST.getLineNo(), "NO TRAILING SPACE for " + aAST.getText());
+            log(aAST.getLineNo(), aAST.getColumnNo() + aAST.getText().length(),
+                    "ws.notFollowed", new Object[]{aAST.getText()});
         }
     }
 }
