@@ -21,12 +21,14 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.TooManyListenersException;
 
 import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -52,6 +54,9 @@ public class ParseTreeInfoPanel extends JPanel
 {
     private JTreeTable mTreeTable;
     private ParseTreeModel mParseTreeModel;
+    private File mLastDirectory = null;
+    private File mCurrentFile = null;
+    private final Action reloadAction;
 
     private static class JavaFileFilter extends FileFilter
     {
@@ -78,7 +83,7 @@ public class ParseTreeInfoPanel extends JPanel
 
         public void actionPerformed(ActionEvent e)
         {
-            JFileChooser fc = new JFileChooser();
+            JFileChooser fc = new JFileChooser( mLastDirectory );
             FileFilter filter = new JavaFileFilter();
             fc.setFileFilter(filter);
             final Component parent =
@@ -86,6 +91,21 @@ public class ParseTreeInfoPanel extends JPanel
             fc.showDialog(parent, "Open");
             File file = fc.getSelectedFile();
             openFile(file, parent);
+        }
+    }
+
+    private class ReloadAction extends AbstractAction
+    {
+        public ReloadAction()
+        {
+            super("Reload Java File");
+        }
+        
+        public void actionPerformed(ActionEvent e)
+        {
+            final Component parent =
+                SwingUtilities.getRoot(ParseTreeInfoPanel.this);
+            openFile(mCurrentFile, parent);
         }
     }
 
@@ -115,6 +135,9 @@ public class ParseTreeInfoPanel extends JPanel
             try {
                 DetailAST parseTree = parseFile(aFile.getAbsolutePath());
                 mParseTreeModel.setParseTree(parseTree);
+                mCurrentFile = aFile;
+                mLastDirectory = aFile.getParentFile();
+                reloadAction.setEnabled(true);
             }
             catch (IOException ex) {
                 showErrorDialog(
@@ -156,10 +179,19 @@ public class ParseTreeInfoPanel extends JPanel
         mTreeTable = new JTreeTable(mParseTreeModel);
         final JScrollPane sp = new JScrollPane(mTreeTable);
         this.add(sp, BorderLayout.CENTER);
+        
+        final JPanel p = new JPanel(new GridLayout(1,2));
+        this.add(p, BorderLayout.SOUTH);
+
         final JButton fileSelectionButton =
             new JButton(new FileSelectionAction());
 
-        this.add(fileSelectionButton, BorderLayout.SOUTH);
+        reloadAction = new ReloadAction();
+        reloadAction.setEnabled(false);
+        final JButton reloadButton = new JButton(reloadAction);
+
+        p.add(fileSelectionButton);
+        p.add(reloadButton);
 
         try {
             // TODO: creating an object for the side effect of the constructor
