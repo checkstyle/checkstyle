@@ -29,19 +29,19 @@ public class MethodLengthCheck extends Check
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() != TokenTypes.METHOD_DEF) {
-            return;
-        }
-
-        DetailAST openingBrace = aAST.getLastChild();
-        DetailAST closingBrace = openingBrace.getLastChild();
-        int methodBodyStart = openingBrace.getLineNo();
-        int methodBodyEnd = closingBrace.getLineNo();
-        int length = methodBodyEnd - methodBodyStart + 1;
-        if (length > mMax) {
-            // TODO: This is old style but shouldn'r we use aAST.getLineNo() ?
-            log(openingBrace.getLineNo(), "maxLen.method",
-                    new Integer(length), new Integer(mMax));
+        final DetailAST openingBrace = aAST.findFirstToken(TokenTypes.SLIST);
+        if (openingBrace != null) {
+            final DetailAST closingBrace =
+                openingBrace.findFirstToken(TokenTypes.RCURLY);
+            final int length =
+                closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
+            if (length > mMax) {
+                log(aAST.getLineNo(),
+                    aAST.getColumnNo(),
+                    "maxLen.method",
+                    new Integer(length),
+                    new Integer(mMax));
+            }
         }
     }
 

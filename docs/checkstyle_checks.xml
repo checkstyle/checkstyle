@@ -28,10 +28,12 @@
 
     <!--
     <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLeftCurlyCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLengthCheck"/>
          -->
+    <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLengthCheck"/>
+
     <check classname="com.puppycrawl.tools.checkstyle.checks.MethodNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.ModifierCheck"/>
+    <check classname="com.puppycrawl.tools.checkstyle.checks.NeedBracesCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhiteSpaceAroundCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck">
         <set-property name="option" value="nlow"/>
