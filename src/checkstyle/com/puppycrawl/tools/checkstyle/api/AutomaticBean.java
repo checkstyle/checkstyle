@@ -64,6 +64,12 @@ public class AutomaticBean implements Configurable, Contextualizable
     private static void initConverters()
     {
         // TODO: is there a smarter way to tell beanutils not to use defaults?
+
+        // If any runtime environment like ANT or an IDE would use beanutils
+        // with different converters we would really be stuck here.
+        // Having to configure a static utility class in this way is really
+        // strange, it seems like a design problem in BeanUtils
+
         boolean[] booleanArray = new boolean[0];
         byte[] byteArray = new byte[0];
         char[] charArray = new char[0];
@@ -114,13 +120,27 @@ public class AutomaticBean implements Configurable, Contextualizable
         // do not use defaults in the default configuration of ConvertUtils
     }
 
+    /** the configuration of this bean */
+    private Configuration mConfiguration;
+
     /**
      * Implements the Configurable interface using bean introspection.
+     *
+     * Subclasses are allowed to add behaviour. After the bean
+     * based setup has completed first the method
+     * {@link #finishLocalSetup finishLocalSetup}
+     * is called to allow completion of the bean's local setup,
+     * after that the method {@link #setupChild setupChild}
+     * is called for each {@link Configuration#getChildren child Configuration}
+     * of <code>aConfiguration</code>.
+     *
      * @see Configurable
      */
-    public void configure(Configuration aConfiguration)
+    public final void configure(Configuration aConfiguration)
         throws CheckstyleException
     {
+        mConfiguration = aConfiguration;
+
         // TODO: debug log messages
         final String[] attributes = aConfiguration.getAttributeNames();
 
@@ -142,13 +162,22 @@ public class AutomaticBean implements Configurable, Contextualizable
                     + this.getClass().getName());
             }
         }
+
+        finishLocalSetup();
+
+        Configuration[] childConfigs = aConfiguration.getChildren();
+        for (int i = 0; i < childConfigs.length; i++) {
+            Configuration childConfig = childConfigs[i];
+            setupChild(childConfig);
+        }
     }
 
     /**
      * Implements the Contextualizable interface using bean introspection.
      * @see Contextualizable
      */
-    public void contextualize(Context aContext) throws CheckstyleException
+    public final void contextualize(Context aContext)
+            throws CheckstyleException
     {
         // TODO: debug log messages
         final String[] attributes = aContext.getAttributeNames();
@@ -173,6 +202,41 @@ public class AutomaticBean implements Configurable, Contextualizable
                     + this.getClass().getName());
             }
         }
+    }
+
+    /**
+     * Returns the configuration that was used to configure this component.
+     * @return the configuration that was used to configure this component.
+     */
+    protected final Configuration getConfiguration()
+    {
+        return mConfiguration;
+    }
+
+    /**
+     * Provides a hook to finish the part of this compoent's setup that
+     * was not handled by the bean introspection.
+     * <p>
+     * The default implementation does nothing.
+     * </p>
+     * @throws CheckstyleException if there is a configuration error.
+     */
+    protected void finishLocalSetup() throws CheckstyleException
+    {
+    }
+
+    /**
+     * Called by configure() for every child of this component's Configuration.
+     * <p>
+     * The default implementation does nothing.
+     * </p>
+     * @param aChildConf a child of this component's Configuration
+     * @throws CheckstyleException if there is a configuration error.
+     * @see Configuration#getChildren
+     */
+    protected void setupChild(Configuration aChildConf)
+            throws CheckstyleException
+    {
     }
 }
 
