@@ -65,7 +65,7 @@ public class ParameterNameCheck
         return new int[] {TokenTypes.PARAMETER_DEF};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractNameCheck */
+    /** @see com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck */
     protected boolean mustCheckName(DetailAST aAST)
     {
         return !(

@@ -68,7 +68,7 @@ public class LocalVariableNameCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractNameCheck */
+    /** @see com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck */
     protected final boolean mustCheckName(DetailAST aAST)
     {
         final DetailAST modifiersAST =
