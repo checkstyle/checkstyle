@@ -80,7 +80,7 @@ public class BlockParentHandler extends ExpressionHandler
      */
     protected void checkToplevelToken()
     {
-        DetailAST toplevel = getToplevelAST();
+        final DetailAST toplevel = getToplevelAST();
 
         if (toplevel == null
             || getLevel().accept(expandedTabsColumnNo(toplevel)))
@@ -130,7 +130,7 @@ public class BlockParentHandler extends ExpressionHandler
      */
     protected DetailAST getRCurly()
     {
-        DetailAST slist = getMainAst().findFirstToken(TokenTypes.SLIST);
+        final DetailAST slist = getMainAst().findFirstToken(TokenTypes.SLIST);
         if (slist == null) {
             return null;
         }
@@ -145,8 +145,8 @@ public class BlockParentHandler extends ExpressionHandler
     {
         // the lcurly can either be at the correct indentation, or nested
         // with a previous expression
-        DetailAST lcurly = getLCurly();
-        int lcurlyPos = expandedTabsColumnNo(lcurly);
+        final DetailAST lcurly = getLCurly();
+        final int lcurlyPos = expandedTabsColumnNo(lcurly);
 
         if (lcurly == null
             || curlyLevel().accept(lcurlyPos)
