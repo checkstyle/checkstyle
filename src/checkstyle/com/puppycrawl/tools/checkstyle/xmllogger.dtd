@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD for XMLLogger output -->
+
+<!ELEMENT checkstyle (file)*>
+<!ATTLIST checkstyle version CDATA #REQUIRED>
+
+<!ELEMENT file (error)*>
+<!ATTLIST file name CDATA #REQUIRED>
+
+<!ELEMENT error EMPTY>
+<!ATTLIST error
+    line NMTOKEN #REQUIRED
+    column NMTOKEN #IMPLIED
+    severity CDATA #REQUIRED
+    message CDATA #REQUIRED
+    source CDATA #REQUIRED
+>
