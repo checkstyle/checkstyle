@@ -27,13 +27,14 @@ import java.util.Stack;
 
 /**
  * <p>
- * According to
+ * Checks that the parts of a class or interface declaration
+ * appear in the order suggested by the
  * <a
- * href="http://java.sun.com/docs/codeconv/html/CodeConventions.doc2.html#1852">
- * Code Conventions for the Java Programming Language</a>
- * , the parts of a class or interface declaration should appear in the
- * following order
- *
+ * href="http://java.sun.com/docs/codeconv/html/CodeConventions.doc2.html#1852"
+ * >Code Conventions for the Java Programming Language</a>.
+ * </p>
+ * <p>
+ * <ol>
  * <li> Class (static) variables. First the public class variables, then
  *      the protected, then package level (no access modifier), and then
  *      the private. </li>
@@ -42,6 +43,7 @@ import java.util.Stack;
  *      the private. </li>
  * <li> Constructors </li>
  * <li> Methods </li>
+ * </ol>
  * </p>
  * <p>
  * An example of how to configure the check is:
