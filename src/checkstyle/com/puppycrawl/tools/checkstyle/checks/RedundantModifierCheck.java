@@ -18,20 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.Stack;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 
 /**
- * Checks for redundant modifiers.
+ * Checks for redundant modifiers in interface definitions.
  *
  * <p>
  * Rationale: The Java Language Specification strongly discourages the usage
- * of "public" and "abstract" in interface definitions as a matter of style.
+ * of "public" and "abstract" for method declarations in interface definitions
+ * as a matter of style.
  * </p>
-  * An example of how to configure the check is:
+ * <p>
+ * Variables in interfaces are automatically public, static and final, so these
+ * modifiers are redundant as well.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
  * </p>
  * <pre>
  * &lt;module name="RedundantModifier"/&gt;
@@ -41,109 +46,48 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class RedundantModifierCheck
     extends Check
 {
-    /** tracks if in an interface */
-    private final Stack mInInterface = new Stack();
-
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void beginTree()
-    {
-        super.beginTree();
-        mInInterface.clear();
-    }
-
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.MODIFIERS,
-                          TokenTypes.INTERFACE_DEF,
-                          TokenTypes.CLASS_DEF};
-    }
-    
-    /**
-     * Prevents user from specifying tokens in a configuration file.
-     * @see com.puppycrawl.tools.checkstyle.api.Check
-     */
-    public int[] getAcceptableTokens()
-    {
-        return new int[] {};
+        return new int[] {TokenTypes.METHOD_DEF,
+                          TokenTypes.VARIABLE_DEF};
     }
     
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getRequiredTokens()
     {
-        return new int[] {TokenTypes.MODIFIERS,
-                          TokenTypes.INTERFACE_DEF,
-                          TokenTypes.CLASS_DEF};
+        return new int[] {};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.INTERFACE_DEF:
-            mInInterface.push(Boolean.TRUE);
-            break;
-        case TokenTypes.CLASS_DEF:
-            mInInterface.push(Boolean.FALSE);
-            break;
-        case TokenTypes.MODIFIERS:
-
-            // modifiers of the interface itself (public interface X)
-            // will be below the INTERFACE_DEF node. Example:
-
-            // public interface X {void y();}
-
-            // INTERFACE_DEF
-            // + MODIFIERS
-            //   + public
-            // + OBJ_BLOCK
-            //   + ...
-
-            if (inInterfaceBlock(aAST)) {
-                DetailAST ast = (DetailAST) aAST.getFirstChild();
-                while (ast != null) {
-
-                    // javac does not allow final in interface methods
-                    // hence no need to check that this is not a method
-
-                    final int type = ast.getType();
-                    if (type == TokenTypes.LITERAL_PUBLIC
-                            || type == TokenTypes.ABSTRACT
-                            || type == TokenTypes.FINAL)
-                    {
-                            String modifier = ast.getText();
-                            log(ast.getLineNo(),
-                                    ast.getColumnNo(),
-                                    "redundantModifier",
-                                    new String[] {modifier});
-                            break;
-                    }
-
-                    ast = (DetailAST) ast.getNextSibling();
-                }
-            }
-            break;
-        default:
+        if (!ScopeUtils.inInterfaceBlock(aAST)) {
             return;
         }
-    }
 
-    /**
-     * @param aAST the AST to analyze
-     * @return whether aAST is in an interface block,
-     *          i.e. in an OBJ_BLOCK of an INTERFACE_DEF
-     */
-    private boolean inInterfaceBlock(DetailAST aAST)
-    {
-        if (mInInterface.empty()) {
-            return false;
-        }
-        if (aAST.getParent().getType() == TokenTypes.INTERFACE_DEF) {
-            int size = mInInterface.size();
-            return size > 1 && Boolean.TRUE.equals(mInInterface.get(size - 2));
-        }
-        else {
-            return Boolean.TRUE.equals(mInInterface.peek());
+        DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+
+        DetailAST modifier = (DetailAST) modifiers.getFirstChild();
+        while (modifier != null) {
+
+            // javac does not allow final or static in interface methods
+            // hence no need to check that this is not a method
+
+            final int type = modifier.getType();
+            if (type == TokenTypes.LITERAL_PUBLIC
+                || type == TokenTypes.ABSTRACT
+                || type == TokenTypes.LITERAL_STATIC
+                || type == TokenTypes.FINAL)
+            {
+                log(modifier.getLineNo(),
+                    modifier.getColumnNo(),
+                    "redundantModifier",
+                    new String[] {modifier.getText()});
+                break;
+            }
+
+            modifier = (DetailAST) modifier.getNextSibling();
         }
     }
 
