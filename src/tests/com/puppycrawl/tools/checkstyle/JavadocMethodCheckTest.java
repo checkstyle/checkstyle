@@ -10,8 +10,8 @@ public class JavadocMethodCheckTest
     public void testTags()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocMethodCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputTags.java");
         final String[] expected = {
@@ -45,9 +45,9 @@ public class JavadocMethodCheckTest
     public void testTagsWithResolver()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocMethodCheck.class.getName());
-        checkConfig.addProperty("checkUnusedThrows", "true");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("checkUnusedThrows", "true");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputTags.java");
         final String[] expected = {
@@ -79,8 +79,8 @@ public class JavadocMethodCheckTest
     public void testStrictJavadoc()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocMethodCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputPublicOnly.java");
         final String[] expected = {
@@ -104,9 +104,9 @@ public class JavadocMethodCheckTest
     public void testNoJavadoc()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocMethodCheck.class.getName());
-        checkConfig.addProperty("scope", Scope.NOTHING.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("scope", Scope.NOTHING.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputPublicOnly.java");
         final String[] expected = {
@@ -119,9 +119,9 @@ public class JavadocMethodCheckTest
         throws Exception
     {
 
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocMethodCheck.class.getName());
-        checkConfig.addProperty("scope", Scope.PROTECTED.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputPublicOnly.java");
         final String[] expected = {
@@ -137,9 +137,9 @@ public class JavadocMethodCheckTest
     public void testScopeInnerInterfacesPublic()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocMethodCheck.class.getName());
-        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeInnerInterfaces.java");
         final String[] expected = {
@@ -152,9 +152,9 @@ public class JavadocMethodCheckTest
     public void testScopeAnonInnerPrivate()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocMethodCheck.class.getName());
-        checkConfig.addProperty("scope", Scope.PRIVATE.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {
@@ -165,9 +165,9 @@ public class JavadocMethodCheckTest
     public void testScopeAnonInnerAnonInner()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocMethodCheck.class.getName());
-        checkConfig.addProperty("scope", Scope.ANONINNER.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("scope", Scope.ANONINNER.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {
@@ -181,9 +181,9 @@ public class JavadocMethodCheckTest
         public void testScopeAnonInnerWithResolver()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocMethodCheck.class.getName());
-        checkConfig.addProperty("checkUnusedThrows", "true");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("checkUnusedThrows", "true");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {

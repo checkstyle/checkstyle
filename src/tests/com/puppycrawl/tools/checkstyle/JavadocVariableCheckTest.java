@@ -10,8 +10,8 @@ public class JavadocVariableCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocVariableCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocVariableCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputTags.java");
         final String[] expected = {
@@ -23,8 +23,8 @@ public class JavadocVariableCheckTest
     public void testAnother()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocVariableCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocVariableCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputInner.java");
         final String[] expected = {
@@ -38,9 +38,9 @@ public class JavadocVariableCheckTest
     public void testAnother2()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocVariableCheck.class.getName());
-        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocVariableCheck.class);
+        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputInner.java");
         final String[] expected = {
@@ -51,8 +51,8 @@ public class JavadocVariableCheckTest
     public void testAnother3()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocVariableCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocVariableCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputPublicOnly.java");
         final String[] expected = {
@@ -69,9 +69,9 @@ public class JavadocVariableCheckTest
     public void testAnother4()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocVariableCheck.class.getName());
-        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocVariableCheck.class);
+        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputPublicOnly.java");
         final String[] expected = {

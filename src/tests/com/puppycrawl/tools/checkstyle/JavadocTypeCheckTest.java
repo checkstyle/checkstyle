@@ -15,8 +15,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
 {
     public void testTags() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocTypeCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputTags.java");
         final String[] expected =
@@ -28,8 +28,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
 
     public void testInner() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocTypeCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputInner.java");
         final String[] expected =
@@ -43,8 +43,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
 
     public void testStrict() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocTypeCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputPublicOnly.java");
         final String[] expected =
@@ -59,9 +59,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
 
     public void testProtected() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocTypeCheck.class.getName());
-        checkConfig.addProperty("scope", Scope.PROTECTED.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputPublicOnly.java");
         final String[] expected =
@@ -73,9 +73,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
 
     public void testPublic() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocTypeCheck.class.getName());
-        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeInnerInterfaces.java");
         final String[] expected =
@@ -88,9 +88,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
 
     public void testProtest() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocTypeCheck.class.getName());
-        checkConfig.addProperty("scope", Scope.PROTECTED.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeInnerInterfaces.java");
         final String[] expected =
@@ -104,9 +104,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
 
     public void testPkg() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocTypeCheck.class.getName());
-        checkConfig.addProperty(
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute(
             "scope",
             Scope.getInstance("package").getName());
         final Checker c = createChecker(checkConfig);
@@ -122,9 +122,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
 
     public void testEclipse() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocTypeCheck.class.getName());
-        checkConfig.addProperty(
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute(
             "scope",
             Scope.getInstance("public").getName());
         final Checker c = createChecker(checkConfig);
@@ -138,8 +138,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
 
     public void testAts() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocTypeCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputWhitespace.java");
         final String[] expected =
@@ -152,10 +152,10 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
     public void testNoAuthor()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocTypeCheck.class.getName());
-        checkConfig.addProperty("allowNoAuthor", "false");
-        checkConfig.addProperty("requireVersion", "false");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("allowNoAuthor", "false");
+        checkConfig.addAttribute("requireVersion", "false");
 
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputJavadoc.java");
@@ -168,10 +168,10 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
     public void testNoVersion()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(JavadocTypeCheck.class.getName());
-        checkConfig.addProperty("allowNoAuthor", "true");
-        checkConfig.addProperty("requireVersion", "true");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("allowNoAuthor", "true");
+        checkConfig.addAttribute("requireVersion", "true");
 
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputJavadoc.java");
