@@ -238,10 +238,7 @@ public class RequireThisCheck extends Check
 
         final String name = aAST.getText();
         final LexicalFrame declared = this.mFrames.findFrame(name);
-        if (declared == null) {
-            log(aAST, "require.this.unfound.variable", name);
-        }
-        else if (declared instanceof ClassFrame) {
+        if (declared instanceof ClassFrame) {
             log(aAST, "require.this.variable", name);
         }
     }

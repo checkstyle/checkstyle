@@ -10,7 +10,7 @@ public class InputRequireThis {
         i++;
         this.i = i;
         method1();
-        j--;
+        j--; // unhandled for now
         try {
             this.method1();
         }
@@ -18,5 +18,7 @@ public class InputRequireThis {
             e.printStackTrace();
         }
         this.i--;
+
+        Integer.toString(10);
     }
 }
