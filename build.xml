@@ -113,6 +113,10 @@
            destdir="target/checkstyle"
            deprecation="on" debug="on"
            classpathref="build.classpath" />
+    <native2ascii src="src/checkstyle"
+                  dest="target/checkstyle"
+                  encoding="EUC-JP"
+                  includes="**/*_ja.properties" />
     <copy todir="target/checkstyle">
       <fileset dir="src/checkstyle" includes="**/*.properties"/>
     </copy>
