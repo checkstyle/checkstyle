@@ -1,7 +1,8 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheck;
 
 /**
  * @author Oliver.Burn
@@ -17,36 +18,30 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputTags.java");
         final String[] expected =
         {
             "8: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputTags.java"), expected);
     }
 
     public void testInner() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputInner.java");
         final String[] expected =
         {
             "14: Missing a Javadoc comment.",
             "21: Missing a Javadoc comment.",
             "27: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputInner.java"), expected);
     }
 
     public void testStrict() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputPublicOnly.java");
         final String[] expected =
         {
             "7: Missing a Javadoc comment.",
@@ -54,7 +49,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
             "14: Missing a Javadoc comment.",
             "34: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
 
     public void testProtected() throws Exception
@@ -62,13 +57,11 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputPublicOnly.java");
         final String[] expected =
         {
             "7: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
 
     public void testPublic() throws Exception
@@ -76,14 +69,12 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputScopeInnerInterfaces.java");
         final String[] expected =
         {
             "7: Missing a Javadoc comment.",
             "38: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
     public void testProtest() throws Exception
@@ -91,15 +82,13 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputScopeInnerInterfaces.java");
         final String[] expected =
         {
             "7: Missing a Javadoc comment.",
             "29: Missing a Javadoc comment.",
             "38: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
     public void testPkg() throws Exception
@@ -109,15 +98,13 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         checkConfig.addAttribute(
             "scope",
             Scope.getInstance("package").getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputScopeInnerClasses.java");
         final String[] expected =
         {
             "18: Missing a Javadoc comment.",
             "20: Missing a Javadoc comment.",
             "22: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputScopeInnerClasses.java"), expected);
     }
 
     public void testEclipse() throws Exception
@@ -127,13 +114,11 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         checkConfig.addAttribute(
             "scope",
             Scope.getInstance("public").getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputScopeInnerClasses.java");
         final String[] expected =
         {
             "18: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputScopeInnerClasses.java"), expected);
     }
 
     public void testAuthorRequired() throws Exception
@@ -141,13 +126,11 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "\\S");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputWhitespace.java");
         final String[] expected =
         {
             "13: Type Javadoc comment is missing an @author tag.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
     
     public void testAuthorRegularEx()
@@ -156,12 +139,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "0*");
-
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputJavadoc.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
 
     public void testAuthorRegularExError()
@@ -170,13 +150,10 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "ABC");
-
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputJavadoc.java");
         final String[] expected = {
             "13: Type Javadoc comment is missing an @author tag.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
 
     public void testVersionRequired()
@@ -185,13 +162,10 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\S");
-
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
             "13: Type Javadoc comment is missing an @version tag."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
     
     public void testVersionRegularEx()
@@ -200,12 +174,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "[:digit:].*");
-
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputJavadoc.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
     
     public void testVersionRegularExError()
@@ -214,12 +185,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\$Revision.*\\$");
-
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputJavadoc.java");
         final String[] expected = {
             "13: Type Javadoc comment is missing an @version tag."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
 }

@@ -1,7 +1,8 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck;
 
 
 public class JavadocMethodCheckTest
@@ -12,8 +13,6 @@ public class JavadocMethodCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputTags.java");
         final String[] expected = {
             "14:5: Missing a Javadoc comment.",
             "18: Unused @param tag for 'unused'.",
@@ -39,7 +38,7 @@ public class JavadocMethodCheckTest
             "179: Unused @throws tag for 'ArrayStoreException'.",
         };
 
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputTags.java"), expected);
     }
 
     public void testTagsWithResolver()
@@ -48,8 +47,6 @@ public class JavadocMethodCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
         checkConfig.addAttribute("checkUnusedThrows", "true");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputTags.java");
         final String[] expected = {
             "14:5: Missing a Javadoc comment.",
             "18: Unused @param tag for 'unused'.",
@@ -73,7 +70,7 @@ public class JavadocMethodCheckTest
             "109:55: Expected @param tag for 'aFour'.",
             "109:66: Expected @param tag for 'aFive'.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputTags.java"), expected);
     }
 
     public void testStrictJavadoc()
@@ -81,8 +78,6 @@ public class JavadocMethodCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputPublicOnly.java");
         final String[] expected = {
             "12:9: Missing a Javadoc comment.",
             "18:13: Missing a Javadoc comment.",
@@ -98,7 +93,7 @@ public class JavadocMethodCheckTest
             "84:5: Missing a Javadoc comment.",
             "94:32: Expected @param tag for 'aA'."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
 
     public void testNoJavadoc()
@@ -107,11 +102,9 @@ public class JavadocMethodCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
         checkConfig.addAttribute("scope", Scope.NOTHING.getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputPublicOnly.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
 
     // pre 1.4 relaxed mode is roughly equivalent with check=protected
@@ -122,15 +115,13 @@ public class JavadocMethodCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputPublicOnly.java");
         final String[] expected = {
             "59:5: Missing a Javadoc comment.",
             "64:5: Missing a Javadoc comment.",
             "79:5: Missing a Javadoc comment.",
             "84:5: Missing a Javadoc comment."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
 
 
@@ -140,13 +131,11 @@ public class JavadocMethodCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputScopeInnerInterfaces.java");
         final String[] expected = {
             "43:9: Missing a Javadoc comment.",
             "44:9: Missing a Javadoc comment."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
     public void testScopeAnonInnerPrivate()
@@ -155,11 +144,9 @@ public class JavadocMethodCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
         checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
     public void testScopeAnonInnerAnonInner()
@@ -168,14 +155,12 @@ public class JavadocMethodCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
         checkConfig.addAttribute("scope", Scope.ANONINNER.getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {
             "26:9: Missing a Javadoc comment.",
             "39:17: Missing a Javadoc comment.",
             "53:17: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
         public void testScopeAnonInnerWithResolver()
@@ -184,10 +169,8 @@ public class JavadocMethodCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
         checkConfig.addAttribute("checkUnusedThrows", "true");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 }

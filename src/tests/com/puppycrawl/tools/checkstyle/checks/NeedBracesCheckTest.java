@@ -16,9 +16,10 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.NeedBracesCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NeedBracesCheckTest extends BaseCheckTestCase
 {
@@ -26,8 +27,6 @@ public class NeedBracesCheckTest extends BaseCheckTestCase
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputBraces.java");
         final String[] expected = {
             "29: 'do' construct must use '{}'s." ,
             "41: 'while' construct must use '{}'s." ,
@@ -47,6 +46,6 @@ public class NeedBracesCheckTest extends BaseCheckTestCase
             "99: 'if' construct must use '{}'s." ,
             "100: 'if' construct must use '{}'s." ,
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputBraces.java"), expected);
     }
 }

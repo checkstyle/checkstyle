@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class MemberNameCheckTest
     extends BaseCheckTestCase
@@ -11,12 +12,10 @@ public class MemberNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^m[A-Z][a-zA-Z0-9]*$");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
         final String[] expected = {
             "35:17: Name 'badMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 }
 
