@@ -44,6 +44,9 @@
           <a href="#EqualsHashCode">EqualsHashCode</a>
         </li>
         <li>
+          <a href="#ExplicitInitialization">ExplicitInitialization</a>
+        </li>
+        <li>
           <a href="#FinalLocalVariable">FinalLocalVariable</a>
         </li>
         <li>
@@ -1370,6 +1373,41 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;ParameterAssignment&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="ExplicitInitialization"></a> <h2>ExplicitInitialization</h2> <h4>Description</h4>
+      <p class="body">Checks if any class or object member explicitly
+      initialized to default for its type value (<span
+      class="code">null</span> for object references, zero for numeric
+      types and <span class="code">char</span> and <span
+      class="code">false</span> for <span
+      class="code">booolean</span>.</p>
+      <p class="body">Rationale: each instance variable gets
+      initialized twice, to the same value.  Java
+      initializes each instance variable to its default
+      value (0 or null) before performing any
+      initialization specified in the code.  So in this case,
+      x gets initialized to 0 twice, and bar gets initialized
+      to null twice.  So there is a minor inefficiency.  This style of
+      coding is a hold-over from C/C++ style coding,
+      and it shows that the developer isn't really confident that
+      Java really initializes instance variables to default
+      values.</p>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ExplicitInitialization&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
