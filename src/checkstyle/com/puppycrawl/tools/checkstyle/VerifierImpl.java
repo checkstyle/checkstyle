@@ -253,6 +253,7 @@ class VerifierImpl
             log(lineNo, "type is missing a Javadoc comment.");
         }
         else if (!mConfig.isAllowNoAuthor() &&
+                 mInScope.size() == 0 && // don't check author for inner classes
                  (MATCH_JAVADOC_AUTHOR.grep(jd).length == 0))
         {
             log(lineNo, "type Javadoc comment is missing an @author tag.");
