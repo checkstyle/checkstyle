@@ -139,7 +139,7 @@ class ConfigurationLoader
      * @throws CheckstyleException if an error occurs
      */
     public static Configuration loadConfiguration(String aConfigFname,
-                                                   Properties aOverrideProps)
+                                                  Properties aOverrideProps)
         throws CheckstyleException
     {
         try {
