@@ -141,7 +141,9 @@
 
           <li class="body">Added attribute 'default' to configuration
           &lt;property&gt; tags, improves usability for centralized
-          configuration files.</li>
+          configuration files. This change triggered a new version of the
+          configuration DTD but your old configuration files will
+          still work.</li>
 
           <li class="body">Ignore comments in GenericIllegalRegexp check,
           contributed by Daniel Grenner (request 680988, patch 902109).
@@ -195,8 +197,12 @@
               when the left operand is enclosed in parentheses
               and the field is in the right operand (bug 908339)</li>
 
-        <li class="body">ExplicitInitialization shouldn't report about 
-        explicitly initialized member of interface(bug 909619)</li>
+        <li class="body">ExplicitInitialization shouldn't report about
+        explicitly initialized member of interface (bug 909619)</li>
+
+        <li class="body">Entity resolver for configuration files now handles
+        all previous versions of the configuration DTD locally, without
+        accessing the internet (bug 909987).</li>
 
       </ul>
 

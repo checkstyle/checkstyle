@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Add the following to any file that is to be validated against this DTD:
+
+<!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.0//EN"
+    "http://www.puppycrawl.com/dtds/configuration_1_0.dtd">
+
+-->
+
+<!ELEMENT module (module|property)*>
+<!ATTLIST module name NMTOKEN #REQUIRED>
+
+<!ELEMENT property EMPTY>
+<!ATTLIST property
+	name NMTOKEN #REQUIRED
+	value CDATA #REQUIRED
+>

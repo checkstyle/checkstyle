@@ -20,6 +20,8 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
+import java.util.HashMap;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
@@ -44,10 +46,8 @@ import org.xml.sax.helpers.DefaultHandler;
 public abstract class AbstractLoader
     extends DefaultHandler
 {
-    /** the public id to resolve */
-    private final String mPublicId;
-    /** the resource name for the DTD */
-    private final String mDtdResourceName;
+    /** maps public id to resolve to esource name for the DTD */
+    private final Map mPublicIdToResourceNameMap;
     /** parser to read XML files **/
     private final XMLReader mParser;
 
@@ -61,8 +61,20 @@ public abstract class AbstractLoader
     protected AbstractLoader(String aPublicId, String aDtdResourceName)
         throws SAXException, ParserConfigurationException
     {
-        mPublicId = aPublicId;
-        mDtdResourceName = aDtdResourceName;
+        this(new HashMap(1));
+        mPublicIdToResourceNameMap.put(aPublicId, aDtdResourceName);
+    }
+
+    /**
+     * Creates a new instance.
+     * @param aPublicIdToResourceNameMap maps public IDs to DTD resource names
+     * @throws SAXException if an error occurs
+     * @throws ParserConfigurationException if an error occurs
+     */
+    protected AbstractLoader(Map aPublicIdToResourceNameMap)
+        throws SAXException, ParserConfigurationException
+    {
+        mPublicIdToResourceNameMap = new HashMap(aPublicIdToResourceNameMap);
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(true);
         mParser = factory.newSAXParser().getXMLReader();
@@ -87,12 +99,14 @@ public abstract class AbstractLoader
     public InputSource resolveEntity(String aPublicId, String aSystemId)
         throws SAXException
     {
-        if (mPublicId.equals(aPublicId)) {
+        if (mPublicIdToResourceNameMap.keySet().contains(aPublicId)) {
+            final String dtdResourceName =
+                    (String) mPublicIdToResourceNameMap.get(aPublicId);
             final InputStream dtdIS = getClass().getClassLoader()
-                .getResourceAsStream(mDtdResourceName);
+                .getResourceAsStream(dtdResourceName);
             if (dtdIS == null) {
                 throw new SAXException(
-                    "Unable to load internal dtd " + mDtdResourceName);
+                    "Unable to load internal dtd " + dtdResourceName);
             }
             return new InputSource(dtdIS);
         }
