@@ -24,6 +24,14 @@ public class MagicNumberCheckTest
             "50:37: '3' is a magic number.",
             "54:26: '3' is a magic number.",
             "55:39: '3' is a magic number.",
+            "60:25: '010' is a magic number.",
+            "61:25: '011' is a magic number.",
+            "63:30: '010L' is a magic number.",
+            "64:30: '011l' is a magic number.",
+            "68:24: '0x10' is a magic number.",
+            "69:24: '0X011' is a magic number.",
+            "71:29: '0x10L' is a magic number.",
+            "72:29: '0X11l' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -33,7 +41,7 @@ public class MagicNumberCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
-        checkConfig.addAttribute("ignoreNumbers", "0, 1, 3.0");
+        checkConfig.addAttribute("ignoreNumbers", "0, 1, 3.0, 8, 16");
         final String[] expected = {
             "22:25: '2' is a magic number.",
             "28:35: '2' is a magic number.",
@@ -46,6 +54,10 @@ public class MagicNumberCheckTest
             "43:31: '4' is a magic number.",
             "48:26: '1.5' is a magic number.",
             "50:29: '5' is a magic number.",
+            "61:25: '011' is a magic number.",
+            "64:30: '011l' is a magic number.",
+            "69:24: '0X011' is a magic number.",
+            "72:29: '0X11l' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -87,6 +99,17 @@ public class MagicNumberCheckTest
             "50:37: '3' is a magic number.",
             "54:26: '3' is a magic number.",
             "55:39: '3' is a magic number.",
+            "59:25: '00' is a magic number.",
+            "60:25: '010' is a magic number.",
+            "61:25: '011' is a magic number.",
+            "63:30: '010L' is a magic number.",
+            "64:30: '011l' is a magic number.",
+            "67:23: '0x0' is a magic number.",
+            "68:24: '0x10' is a magic number.",
+            "69:24: '0X011' is a magic number.",
+            "70:28: '0x0L' is a magic number.",
+            "71:29: '0x10L' is a magic number.",
+            "72:29: '0X11l' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -108,6 +131,14 @@ public class MagicNumberCheckTest
             "50:37: '3' is a magic number.",
             "54:26: '3' is a magic number.",
             "55:39: '3' is a magic number.",
+            "60:25: '010' is a magic number.",
+            "61:25: '011' is a magic number.",
+            "63:30: '010L' is a magic number.",
+            "64:30: '011l' is a magic number.",
+            "68:24: '0x10' is a magic number.",
+            "69:24: '0X011' is a magic number.",
+            "71:29: '0x10L' is a magic number.",
+            "72:29: '0X11l' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
