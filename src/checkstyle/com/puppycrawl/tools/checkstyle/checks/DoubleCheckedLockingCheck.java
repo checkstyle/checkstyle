@@ -30,8 +30,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * See <a href=
  * "http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html"
- * >The &quot;Double-Checked Locking is Broken&quot; Declaration</a>
- * for a more in depth explanation.
+ * >The &quot;Double-Checked Locking is Broken&quot; Declaration</a> for a
+ * more in depth explanation.
  *
  * @author Lars K&uuml;hne
  */
@@ -46,13 +46,13 @@ public class DoubleCheckedLockingCheck extends Check
     /** @see Check */
     public void visitToken(DetailAST aAST)
     {
-        DetailAST synchronizedAST =
+        final DetailAST synchronizedAST =
             getLowestParent(aAST, TokenTypes.LITERAL_SYNCHRONIZED);
         if (synchronizedAST == null) {
             return;
         }
 
-        DetailAST ifAST =
+        final DetailAST ifAST =
             getLowestParent(synchronizedAST, TokenTypes.LITERAL_IF);
         if (ifAST == null) {
             return;
@@ -83,8 +83,8 @@ public class DoubleCheckedLockingCheck extends Check
     private DetailAST getLowestParent(DetailAST aAST, int aTokenType)
     {
         DetailAST synchronizedParent = aAST;
-        while (synchronizedParent != null
-            && synchronizedParent.getType() != aTokenType)
+        while ((synchronizedParent != null)
+               && (synchronizedParent.getType() != aTokenType))
         {
             synchronizedParent = synchronizedParent.getParent();
         }
