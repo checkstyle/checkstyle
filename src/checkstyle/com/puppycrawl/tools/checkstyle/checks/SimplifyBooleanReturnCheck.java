@@ -26,7 +26,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 
 /**
- * Checks for overly complicated return
+ * Checks for overly complicated boolean return statements.
+ *
+ * Idea shamelessly stolen from the equivalent PMD rule (pmd.sourceforge.net).
  */
 public class SimplifyBooleanReturnCheck extends Check
 {

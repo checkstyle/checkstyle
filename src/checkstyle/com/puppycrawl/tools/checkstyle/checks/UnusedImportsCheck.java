@@ -27,6 +27,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Iterator;
 
+/**
+ * Checks for unused import statements.
+ */
 public class UnusedImportsCheck extends ImportCheck
 {
     private boolean mCollect;
