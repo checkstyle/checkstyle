@@ -53,7 +53,8 @@ import java.beans.PropertyDescriptor;
  * calling the bean's setters for all configration attributes.
  * @author lkuehne
  */
-public class AutomaticBean implements Configurable, Contextualizable
+public class AutomaticBean
+    implements Configurable, Contextualizable
 {
     static {
         initConverters();
@@ -71,15 +72,14 @@ public class AutomaticBean implements Configurable, Contextualizable
         // with different converters we would really be stuck here.
         // Having to configure a static utility class in this way is really
         // strange, it seems like a design problem in BeanUtils
-
-        boolean[] booleanArray = new boolean[0];
-        byte[] byteArray = new byte[0];
-        char[] charArray = new char[0];
-        double[] doubleArray = new double[0];
-        float[] floatArray = new float[0];
-        int[] intArray = new int[0];
-        long[] longArray = new long[0];
-        short[] shortArray = new short[0];
+        final boolean[] booleanArray = new boolean[0];
+        final byte[] byteArray = new byte[0];
+        final char[] charArray = new char[0];
+        final double[] doubleArray = new double[0];
+        final float[] floatArray = new float[0];
+        final int[] intArray = new int[0];
+        final long[] longArray = new long[0];
+        final short[] shortArray = new short[0];
 
         ConvertUtils.register(new BooleanConverter(), Boolean.TYPE);
         ConvertUtils.register(new BooleanConverter(), Boolean.class);
