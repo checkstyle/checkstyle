@@ -1,151 +1,139 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>Checks for Naming Conventions</title>
-  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <link rel="stylesheet" type="text/css" href="mystyle.css"/>
 </head>
 
 <body>
-<h1>Checks for Naming Conventions</h1>
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td><h1>Checks for Naming Conventions</h1></td>
+    <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
+  </tr>
+</table>
+<!-- content -->
+   <h2>Overview</h2>
+      <p class="body">
+      Each of these naming modules validates identifiers for particular code elements. Valid 
+      identifiers for a naming module are specified by its <span class="code"> 
+      format</span> property. The value of <span class="code">format</span> is a <a href="http://jakarta.apache.org/regexp">regular 
+      expression</a> for valid identifiers.
+      This is an example of a configuration of the <span class="code">MemberName</span> module to
+      ensure that member identifiers begin with <span class="code">&apos;m&apos;</span>,
+      followed by an upper case letter, and then letters and digits:
+      </p>
+       <pre class="body">
+        &lt;module name=&quot;MemberName&quot;&gt;
+            &lt;property name=&quot;format&quot; value=&quot;^m[A-Z][a-zA-Z0-9]*$&quot;/&gt;
+        &lt;/module&gt;
+      </pre>
+      <p class="body">
+      All naming modules belong to package
+      <span class="code">com.puppycrawl.tools.checkstyle.checks</span> and are submodules of
+      <span class="code">TreeWalker</span>.
+      </p>
+      <h2>Modules</h2>
 
-<p>Checkstyle supports checking that names in a Java code confirms to
-specified naming conventions which are specifed as regular expressions. The
-excellent <a href="http://jakarta.apache.org/regexp">Jakarta Regexp</a>
-library is used by Checkstyle.</p>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>module</th>
+          <th>validates identifiers for</th>
+          <th>default value of <span class="code">format</span></th>
+        </tr>
+        <tr>
+          <td><span class="code">ConstantName</span></td>
+          <td>constants (<span class="code">static</span>, <span class="code"> 
+          final</span> fields)</td>
+          <td><span class="default">^[A-Z](_?[A-Z0-9]+)*$</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">LocalFinalVariableName</span></td>
+          <td>local, <span class="code">final</span> variables</td>
+          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">LocalVariableName</span></td>
+          <td>local, non-<span class="code">final</span> variables</td>
+          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">MemberName</span></td>
+          <td>non-<span class="code">public</span>, non-<span class="code">static</span> fields</td>
+          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">MethodName</span></td>
+          <td>methods</td>
+          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">PackageName</span></td>
+          <td>packages</td>
+          <td><span class="default">^[a-z]+(\\.[a-zA-Z_][a-zA-Z_0-9]*)*$</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">ParameterName</span></td>
+          <td>parameters</td>
+          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">PublicMemberName</span></td>
+          <td><span class="code">public</span>, non-<span class="code">static</span> fields</td>
+          <td><span class="default">^f[A-Z][a-zA-Z0-9]*$</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">StaticVariableName</span></td>
+          <td><span class="code">static</span>, non-<span class="code">final</span> fields</td>
+          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">TypeName</span></td>
+          <td>classes and interfaces</td>
+          <td><span class="default">^[A-Z][a-zA-Z0-9]*$</span></td>
+        </tr>
+      </table>
 
-<h2>Format of members</h2>
-
-<p>The property <span class="code">checkstyle.pattern.member</span> specifies
-the format for members (non <span class="code">static</span>).
-The property type is
-<a href="property_types.html#regexp">regular expression</a> and defaults to
-<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
-
-<p>An example is:</p>
-
-<pre>
-    private int mySize = 0;
-</pre>
-
-<p>The property <span class="code">checkstyle.pattern.publicmember</span>
-specifies the format for public members (non
-<span class="code">static public</span>). The property type is
-<a href="property_types.html#regexp">regular expression</a> and defaults to
-<span class="code">^f[A-Z][a-zA-Z0-9]*$</span>.</p>
-
-<div class="tip">
-<h4 class="tip">Tip</h4>
-
-<p>This is useful for the fields required for Container Managed Persistence
-(CMP) Enterprise JavaBeans 1.1. An example is:</p>
-
-<pre>
-    public int fCMPField;
-</pre>
-</div>
-
-
-<h2>Format of constants</h2>
-
-<p>The property <span class="code">checkstyle.pattern.const</span> specifies
-the format for constants (<span class="code">static</span> and
-<span class="code">final</span>). The property type is
-<a href="property_types.html#regexp">regular expression</a> and defaults to
-<span class="code">^[A-Z](_?[A-Z0-9]+)*$</span>.</p>
-
-<p>The exception to the rule is <span class="code">serialVersionUID</span>. An
-example is:</p>
-
-<pre>
-    public static final int MAX_ROWS = 2;
-</pre>
-
-
-<h2>Format of statics</h2>
-
-<p>The property <span class="code">checkstyle.pattern.static</span> specifies
-the format for static variables (<span class="code">static</span> only).
-The property type is
-<a href="property_types.html#regexp">regular expression</a> and defaults to
-<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
-
-<p>An example is:</p>
-
-<pre>
-    private static int numCreated = 0;
-</pre>
-
-
-
-<h2>Format of parameter names</h2>
-
-<p>The property <span class="code">checkstyle.pattern.parameter</span>
-specifies the format for parameter names. The property type is
-<a href="property_types.html#regexp">regular expression</a> and defaults to
-<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
-
-
-<h2>Format of package names</h2>
-
-<p>The property <span class="code">checkstyle.pattern.package</span> specifies
-the format for class and interface names. The property type is
-<a href="property_types.html#regexp">regular expression</a> and defaults to
-<span class="code">^[a-z]+(\.[a-zA-Z_][a-zA-Z_0-9]*)*$</span>.</p>
-
-<div class="tip">
-<h4 class="tip">Tip</h4>
-
+      <h2>Notes</h2>
+      <ul class="body">
+        <li>
+        The default value of <span class="code">format</span> for
+        module <span class="code">PackageName</span> has 
+        been chosen to match the requirements in the <a href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169">Java 
+        Language specification</a> and the Sun coding conventions. However both 
+        underscores and uppercase letters are rather uncommon, so most configurations should 
+        probably assign value <span class="code">^[a-z]+(\.[a-z][a-z0-9]*)*$</span> to
+        <span class="code">format</span> for
+        module <span class="code">PackageName</span>, as in
+       <pre class="body">
+        &lt;module name=&quot;PackageName&quot;&gt;
+            &lt;property name=&quot;format&quot; value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
+        &lt;/module&gt;
+          </pre>
+          </li>
+          <li>
+            Module <span class="code">TypeName</span> also has property <span class="code">tokens</span>
+            which can be used to control whether the check applies to classes or interfaces.
+            <span class="code">CLASS_DEF</span> and <span class="code">INTERFACE_DEF</span>
+            are acceptable tokens for <span class="code">TypeName</span>. 
+            For example, the following configuration element ensures that
+            interface names begin with <span class="code">"I_"</span>, followed by letters and digits: 
+            <pre class="body">
+        &lt;module name=&quot;TypeName&quot;&gt;
+            &lt;property name=&quot;format&quot; value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
+            &lt;property name=&quot;tokens&quot; value=&quot;INTERFACE_DEF&quot;/&gt;
+        &lt;/module&gt;
+            </pre>
+            </li>
+      </ul>
+<hr />
 <p>
-The default value of <span class="code">checkstyle.pattern.package</span>
-has been chosen to match the requirements in the
-<a href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169">
-Java Language specification</a> and the Sun coding conventions.
-However both underscores and uppercase letters are rather uncommon, so most projects
-should probably use
-<span class="code">checkstyle.pattern.package=^[a-z]+(\.[a-z][a-z0-9]*)*$</span>
+Copyright &copy; 2002 Oliver Burn. All rights Reserved.
 </p>
-</div>
-
-
-<h2>Format of type names</h2>
-
-<p>The property <span class="code">checkstyle.pattern.type</span> specifies
-the format for class and interface names. The property type is
-<a href="property_types.html#regexp">regular expression</a> and defaults to
-<span class="code">^[A-Z][a-zA-Z0-9]*$</span>.</p>
-
-
-<h2>Format of method names</h2>
-
-<p>The property <span class="code">checkstyle.pattern.method</span> specifies
-the format for method names. The property type is
-<a href="property_types.html#regexp">regular expression</a> and defaults to
-<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
-
-
-<h2>Format of local variable names</h2>
-
-<p>The property <span class="code">checkstyle.pattern.localvar</span>
-specifies the format for local variables. The property type is
-<a href="property_types.html#regexp">regular expression</a> and defaults to
-<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
-
-<pre>
-    int localInt = 3;
-</pre>
-
-
-<p>The property <span class="code">checkstyle.pattern.localfinalvar</span>
-specifies the format for final local variables. The property type is
-<a href="property_types.html#regexp">regular expression</a> and defaults to
-<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
-
-<pre>
-    final int finalLocalInt = 3;
-</pre>
-
-<hr>
-<p align="center">Copyright &copy; 2002 Oliver Burn. All rights Reserved.</p>
 
 </body>
 </html>
