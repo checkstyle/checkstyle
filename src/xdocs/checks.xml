@@ -3,14 +3,16 @@
 <document>
 
   <properties>
-    <title>Available Checks</title>
+    <title>Standard Checks</title>
     <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
   </properties>
 
   <body>
     <p>
       Checkstyle provides many checks that you can apply to your source
-      code...
+      code. The standard checks are included in the base
+      distribution. There are also <a href="optional.html">optional</a>
+      checks.
     </p>
   </body>
 </document>
