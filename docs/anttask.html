@@ -1,16 +1,19 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>Checkstyle ANT Task - Version @CHECKSTYLE_VERSION@</title>
-  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <link rel="stylesheet" type="text/css" href="mystyle.css"/>
 </head>
 
 <body>
 <h1><a name="checkstyle">Checkstyle ANT Task - Version @CHECKSTYLE_VERSION@</a></h1>
 <h3>Description</h3>
 
-<p>This task runs Checkstyle over specified Java files. The task has been tested using ANT 1.4.1. The latest version of checkstyle can be found at <a href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a>.
+<p>This task runs Checkstyle over specified Java files. The task has been tested using ANT 1.5.
+The latest version of checkstyle can be found at <a href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a>.
 This task is included in the checkstyle distribution.</p>
 
 <h3>Installation</h3>
@@ -35,44 +38,54 @@ This task is included in the checkstyle distribution.</p>
 <h3>Parameters</h3>
 <table border="1" cellpadding="2" cellspacing="0" summary="parameters">
   <tr class="header">
-    <td valign="top"><b>Attribute</b></td>
-    <td valign="top"><b>Description</b></td>
-    <td valign="top"><b>Required</b></td>
+    <td><b>Attribute</b></td>
+    <td><b>Description</b></td>
+    <td><b>Required</b></td>
   </tr>
   <tr>
-    <td valign="top">file</td>
-    <td valign="top">File to run checkstyle on.</td>
-    <td align="center" valign="top">One of either <i>file</i> or at least one nested <i>fileset</i> element</td>
+    <td>file</td>
+    <td>File to run checkstyle on.</td>
+    <td class="required">One of either <i>file</i> or at least one nested <i>fileset</i> element</td>
   </tr>
   <tr>
-    <td valign="top">properties</td>
-    <td valign="top">
-      Specifies a properties file that contains the configuration options.
-      <a href="config.html">See here</a> for all available configuration
-      options. Use the nested <span class="default">&lt;property&gt;</span>
-      element to override properties in the file. This is very useful with
-      project specific properties like
-      <a href="config_reporting.html">reporting configuration</a>.
+    <td>config</td>
+    <td>Specifies a file that defines the configuration modules.
+    <a href="config.html">See here</a> for a descrition of how to define a configuration.</td>
+    <td class="required">Yes</td>
+  </tr>
+  <tr>
+    <td>properties</td>
+    <td>
+      Specifies a file that contains properties for <a href="config.html#properties">
+      expanded property values</a> of the configuration.
     </td>
-    <td align="center" valign="top">No</td>
+    <td class="required">No</td>
+  </tr>
+  <tr>
+    <td>packageNamesFile</td>
+    <td>
+      Specifies a file that contains <a href="config.html#packagenames">
+      package names</a> for the configuration.
+    </td>
+    <td class="required">No</td>
+  </tr>
+  <tr>
+    <td>failOnViolation</td>
+    <td>Specifies whether the build will continue even if there are violations.
+    Defaults to <span class="default">&quot;true&quot;</span>.</td>
+    <td class="required">No</td>
   </tr>
 
   <tr>
-    <td valign="top">failOnViolation</td>
-    <td valign="top">Specifies whether the build will continue even if there are violations. Defaults to <span class="default">&quot;true&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
+    <td>failureProperty</td>
+    <td>The name of a property to set in the event of a violation.</td>
+    <td class="required">No</td>
   </tr>
 
   <tr>
-    <td valign="top">failureProperty</td>
-    <td valign="top">The name of a property to set in the event of a violation.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-
-  <tr>
-    <td valign="top">classpath</td>
-    <td valign="top">The classpath to use when looking up classes. Defaults to the current classpath.</td>
-    <td align="center" valign="top">No</td>
+    <td>classpath</td>
+    <td>The classpath to use when looking up classes. Defaults to the current classpath.</td>
+    <td class="required">No</td>
   </tr>
 
 </table>
@@ -90,13 +103,13 @@ This task is included in the checkstyle distribution.</p>
 
 <table border="1" cellpadding="2" cellspacing="0" summary="nested elements">
   <tr class="header">
-    <td valign="top"><b>Attribute</b></td>
-    <td valign="top"><b>Description</b></td>
-    <td valign="top"><b>Required</b></td>
+    <td><b>Attribute</b></td>
+    <td><b>Description</b></td>
+    <td><b>Required</b></td>
   </tr>
   <tr>
-    <td valign="top">type</td>
-    <td valign="top">
+    <td>type</td>
+    <td>
       <p>The type of output to generate. The valid values are:</p>
       <ul>
 	<li><span class="default">plain</span> - specifies the <a href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a></li>
@@ -104,79 +117,88 @@ This task is included in the checkstyle distribution.</p>
       </ul>
       <p>Defaults to <span class="default">"plain"</span>.</p>
     </td>
-    <td align="center" valign="top">No</td>
+    <td class="required">No</td>
   </tr>
   <tr>
-    <td valign="top">toFile</td>
-    <td valign="top">The file to write output to. Defaults to standard output. Note, there is no way to explicitly specify standard output.
+    <td>toFile</td>
+    <td>The file to write output to. Defaults to standard output. Note, there is no way to explicitly specify standard output.
     </td>
-    <td align="center" valign="top">No</td>
+    <td class="required">No</td>
   </tr>
 </table>
 
 
-<p>The parameters for the <span class="default">&lt;property&gt;</span> element are:</p>
+<p>A <span class="default">&lt;property&gt;</span> element provides a property for
+<a href="config.html#properties">expanded property values</a> of the configuration.
+The parameters for the <span class="default">&lt;property&gt;</span> element are:</p>
 
 <table border="1" cellpadding="2" cellspacing="0" summary="nested elements">
   <tr class="header">
-    <td valign="top"><b>Attribute</b></td>
-    <td valign="top"><b>Description</b></td>
-    <td valign="top"><b>Required</b></td>
+    <td><b>Attribute</b></td>
+    <td><b>Description</b></td>
+    <td><b>Required</b></td>
   </tr>
   <tr>
-    <td valign="top">key</td>
-    <td valign="top"><p>The key for the property.</p></td>
-    <td align="center" valign="top">Yes</td>
-  </tr>
-
-  <tr>
-    <td valign="top">value</td>
-    <td valign="top">The value of the property specified as a string.</td>
-    <td align="center" valign="top">Either <i>value</i> or <i>file</i></td>
+    <td>key</td>
+    <td><p>The key for the property.</p></td>
+    <td class="required">Yes</td>
   </tr>
 
   <tr>
-    <td valign="top">file</td>
-    <td valign="top">The value of the property specified as a file. This is
+    <td>value</td>
+    <td>The value of the property specified as a string.</td>
+    <td class="required">Either <i>value</i> or <i>file</i></td>
+  </tr>
+
+  <tr>
+    <td>file</td>
+    <td>The value of the property specified as a file. This is
     great for specifying file names relative to the ANT build file.</td>
-    <td align="center" valign="top">Either <i>value</i> or <i>file</i></td>
+    <td class="required">Either <i>value</i> or <i>file</i></td>
   </tr>
 </table>
 
 <h3>Examples</h3>
-<p><b>Run checkstyle on a single file</b></p>
+<p><b>Run checkstyle with configuration file <code>docs/checkstyle_checks.xml</code> on a single file</b></p>
 <pre>
-  &lt;checkstyle file=&quot;Check.java&quot;/&gt;
+  &lt;checkstyle config=&quot;docs/checkstyle_checks.xml&quot; file=&quot;Check.java&quot;/&gt;
 </pre>
 
-<p><b>Run checkstyle on a set of Java files using Site-wide Checkstyle rules and overriding properties</b></p>
+<p><b>Run checkstyle on a set of Java files using site-wide configuration and
+an expanded property value</b></p>
 <pre>
-  &lt;checkstyle properties=&quot;/path/to/site/checkstyle.rules&quot;&gt;
+  &lt;checkstyle config=&quot;/path/to/site/checkstyle_checks.xml&quot;&gt;
     &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
 
     &lt;!-- Location of cache-file. Something that is project specific --&gt;
     &lt;property key=&quot;checkstyle.cache.file&quot; file=&quot;target/cachefile&quot;/&gt;
-
-    &lt;!-- This project allows tabs (big mistake:-) --&gt;
-    &lt;property key=&quot;checkstyle.allow.tabs&quot; value=&quot;true&quot;/&gt;
   &lt;/checkstyle&gt;
 </pre>
 
 <p><b>Run checkstyle on a set of files and output messages to standard output in plain format, and a file in XML format</b></p>
 <pre>
-  &lt;checkstyle&gt;
+  &lt;checkstyle config=&quot;docs/checkstyle_checks.xml&quot;&gt;
     &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
     &lt;formatter type=&quot;plain&quot;/&gt;
     &lt;formatter type=&quot;xml&quot; toFile=&quot;build/checkstyle_errors.xml&quot;/&gt;
   &lt;/checkstyle&gt;
 </pre>
-
+<p>
+<b>Run checkstyle  with configuration file <code>docs/checkstyle_checks.xml</code> on a file and
+provide a package names file</b>
+<pre>
+  &lt;checkstyle config=&quot;docs/checkstyle_checks.xml&quot;
+              packageNamesFile=&quot;myPackageNames.xml&quot;
+              file=&quot;Check.java&quot;/&gt;
+</pre>
+</p>
 <p><b>Run checkstyle in an automated build and send an email report if style violations are detected</b></p>
 <pre>
   &lt;target name=&quot;checkstyle&quot;
           description=&quot;Generates a report of code convention violations.&quot;>
 
-    &lt;checkstyle failureProperty=&quot;checkstyle.failure&quot;
+    &lt;checkstyle config=&quot;docs/checkstyle_checks.xml&quot;
+                failureProperty=&quot;checkstyle.failure&quot;
                 failOnViolation=&quot;false&quot;&gt;
       &lt;formatter type=&quot;xml&quot; tofile=&quot;checkstyle_report.xml&quot;/&gt;
       &lt;fileset dir=&quot;src&quot; includes=&quot;**/*.java&quot;/&gt;
@@ -203,7 +225,7 @@ This task is included in the checkstyle distribution.</p>
   &lt;/target&gt;
 </pre>
 
-<hr>
-<p align="center">Copyright &copy; 2001 Oliver Burn. All rights Reserved.</p>
+<hr />
+<p>Copyright &copy; 2002 Oliver Burn. All rights Reserved.</p>
 </body>
 </html>

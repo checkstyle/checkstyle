@@ -16,6 +16,14 @@ h4.tip {
   text-align: center;
 }
 
+td {
+  vertical-align:top;
+}
+
+td.required {
+  text-align: center;
+}
+ 
 tr.header {
   background-color: Silver;
   color:Black; 
