@@ -532,24 +532,24 @@
   <target name="javadoc" depends="compile.checkstyle"
           description="Creates the javadoc html files">
     <mkdir dir="docs/api" />
-    <move toDir="src/checkstyle">
-      <fileset dir="src/checkstyle" includes="**/Generated*.java" />
-      <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
-      <fileset dir="src/checkstyle" includes="**/gui/*.java" />
-      <fileset dir="src/checkstyle" includes="**/usage/transmogrify/*.java" />
-      <mapper type="glob" from="*" to="*.HIDING"/>
-    </move>
     <javadoc sourcepath="src/checkstyle" destdir="docs/api"
-             packagenames="com.puppycrawl.tools.checkstyle.*"
              Windowtitle="Checkstyle API"
              classpathref="javadoc.classpath"
              Use="true"
-             Footer="&lt;a target=&quot;_top&quot; href=&quot;./{@docRoot}/../index.html&quot;&gt;Back to the Checkstyle Home Page&lt;/a&gt;" >
+             Footer="&lt;a target=&quot;_top&quot; href=&quot;./{@docRoot}/../index.html&quot;&gt;Back to the Checkstyle Home Page&lt;/a&gt;"
+             failonerror="yes" >
+        <fileset dir="src/checkstyle">
+          <exclude name="**/Generated*.java" />
+          <exclude name="**/Generated*.txt" />
+          <exclude name="**/gui/*.java" />
+          <exclude name="**/usage/transmogrify/*.java" />
+          <exclude name="**/*.properties" />
+          <exclude name="**/*.g" />
+          <exclude name="**/*.dtd" />
+          <exclude name="**/*.xml" />
+          <exclude name="**/*.html" />
+        </fileset>
     </javadoc>
-    <move toDir="src/checkstyle">
-      <fileset dir="src/checkstyle" includes="**/*.HIDING" />
-      <mapper type="glob" from="*.HIDING" to="*"/>
-    </move>
   </target>
 
   <!-- Added for GUMP testing -->
