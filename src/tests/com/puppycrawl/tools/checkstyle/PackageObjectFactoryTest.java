@@ -13,20 +13,21 @@ import junit.framework.TestCase;
 public class PackageObjectFactoryTest extends TestCase
 {
 
-    private PackageObjectFactory mFactory = new PackageObjectFactory();
+    private PackageObjectFactory mFactory =
+        new PackageObjectFactory(this.getClass().getClassLoader());
 
     public void setUp()
     {
-        mFactory = new PackageObjectFactory();
+        mFactory = new PackageObjectFactory(this.getClass().getClassLoader());
     }
 
     public void testMakeObjectFromName()
         throws CheckstyleException
     {
-        final PackageObjectFactory factory =
-                (PackageObjectFactory) mFactory.createModule(
-                        "com.puppycrawl.tools.checkstyle.PackageObjectFactory");
-        assertNotNull(factory);
+        final Checker checker =
+            (Checker) mFactory.createModule(//Checker.class.getName());
+                        "com.puppycrawl.tools.checkstyle.Checker");
+        assertNotNull(checker);
     }
 
     public void testMakeCheckFromName()
@@ -42,10 +43,10 @@ public class PackageObjectFactoryTest extends TestCase
         throws CheckstyleException
     {
         mFactory.addPackage("com.");
-        final PackageObjectFactory factory =
-                (PackageObjectFactory) mFactory.createModule(
-                        "puppycrawl.tools.checkstyle.PackageObjectFactory");
-        assertNotNull(factory);
+        final Checker checker =
+                (Checker) mFactory.createModule(
+                        "puppycrawl.tools.checkstyle.Checker");
+        assertNotNull(checker);
     }
     
     public void testMakeObectNoClass()

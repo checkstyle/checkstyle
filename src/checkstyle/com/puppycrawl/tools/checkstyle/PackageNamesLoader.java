@@ -57,21 +57,22 @@ public final class PackageNamesLoader
      * the factory to return in getModuleFactory(),
      * configured during parsing
      */
-    private final PackageObjectFactory mModuleFactory =
-            new PackageObjectFactory();
+    private final PackageObjectFactory mModuleFactory;
 
     /** The loaded package names */
     private Stack mPackageStack = new Stack();
 
     /**
-     * Creates a new <code>PackageNameLoader</code> instance.
+     * Creates a new <code>PackageNamesLoader</code> instance.
+     * @param aClassLoader the class loader to load user's classes.
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */
-    private PackageNamesLoader()
+    private PackageNamesLoader(ClassLoader aClassLoader)
         throws ParserConfigurationException, SAXException
     {
         super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
+        mModuleFactory = new PackageObjectFactory(aClassLoader);
     }
 
     /** @see org.xml.sax.helpers.DefaultHandler **/
@@ -143,7 +144,7 @@ public final class PackageNamesLoader
         final InputStream stream =
             aClassLoader.getResourceAsStream(DEFAULT_PACKAGES);
         final InputSource source = new InputSource(stream);
-        return loadModuleFactory(source, "default package names");
+        return loadModuleFactory(source, "default package names", aClassLoader);
     }
 
     /**
@@ -165,22 +166,25 @@ public final class PackageNamesLoader
                 "unable to find " + aFilename, e);
         }
         final InputSource source = new InputSource(reader);
-        return loadModuleFactory(source, aFilename);
+        return loadModuleFactory(source, aFilename,
+                                 PackageNamesLoader.class.getClassLoader());
     }
 
     /**
      * Returns the list of package names in a specified source.
      * @param aSource the source for the list.
      * @param aSourceName the name of the source.
+     * @param aClassLoader the class loader to load user's classes.
      * @return the list ofpackage names stored in aSource.
      * @throws CheckstyleException if an error occurs.
      */
     private static ModuleFactory loadModuleFactory(
-            InputSource aSource, String aSourceName)
+            InputSource aSource, String aSourceName, ClassLoader aClassLoader)
         throws CheckstyleException
     {
         try {
-            final PackageNamesLoader nameLoader = new PackageNamesLoader();
+            final PackageNamesLoader nameLoader =
+                new PackageNamesLoader(aClassLoader);
             nameLoader.parseInputSource(aSource);
             return nameLoader.getModuleFactory();
         }

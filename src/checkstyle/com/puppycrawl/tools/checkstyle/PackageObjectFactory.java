@@ -33,19 +33,19 @@ class PackageObjectFactory implements ModuleFactory
 {
     /**
      * The class loader to use for creating Objects.
-     * Note: This is currently not configurable, we always use the
-     * classloader that created Checkstyle.
      */
-    private ClassLoader mLoader = this.getClass().getClassLoader();
+    private ClassLoader mLoader;
 
     /** a list of package names to prepend to class names */
     private List mPackages = new ArrayList();
 
     /**
      * Creates a new <code>PackageObjectFactory</code> instance.
+     * @param aClassLoader the class loader to load user's classes.
      */
-    PackageObjectFactory()
+    PackageObjectFactory(ClassLoader aClassLoader)
     {
+        mLoader = aClassLoader;
     }
 
     /**
