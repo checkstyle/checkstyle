@@ -52,6 +52,7 @@
         <module name="JavadocMethod"/>
         <module name="JavadocType"/>
         <module name="JavadocVariable"/>
+        <module name="JavadocStyle">
 
 
         <!-- Checks for Naming Conventions.                  -->

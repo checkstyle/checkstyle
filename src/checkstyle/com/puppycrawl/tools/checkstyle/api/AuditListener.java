@@ -39,37 +39,37 @@ public interface AuditListener
     extends EventListener
 {
     /**
-     * notify that the audit is about to start
+     * Notify that the audit is about to start.
      * @param aEvt the event details
      */
     void auditStarted(AuditEvent aEvt);
 
     /**
-     * notify that the audit is finished
+     * Notify that the audit is finished.
      * @param aEvt the event details
      */
     void auditFinished(AuditEvent aEvt);
 
     /**
-     * notify that audit is about to start on a specific file
+     * Notify that audit is about to start on a specific file.
      * @param aEvt the event details
      */
     void fileStarted(AuditEvent aEvt);
 
     /**
-     * notify that audit is finished on a specific file
+     * Notify that audit is finished on a specific file.
      * @param aEvt the event details
      */
     void fileFinished(AuditEvent aEvt);
 
     /**
-     * notify that an audit error was discovered on a specific file
+     * Notify that an audit error was discovered on a specific file.
      * @param aEvt the event details
      */
     void addError(AuditEvent aEvt);
 
     /**
-     * notify that an exception happened while performing audit
+     * Notify that an exception happened while performing audit.
      * @param aEvt the event details
      * @param aThrowable details of the exception
      */

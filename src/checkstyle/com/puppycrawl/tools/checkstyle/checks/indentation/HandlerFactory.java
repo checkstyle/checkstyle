@@ -69,7 +69,7 @@ public class HandlerFactory
         ///CLOVER:ON
     }
 
-    /** creates a HandlerFactory */
+    /** Creates a HandlerFactory. */
     public HandlerFactory()
     {
         register(TokenTypes.CASE_GROUP, CaseHandler.class);
@@ -110,7 +110,7 @@ public class HandlerFactory
     }
 
     /**
-     * returns true if this type (form TokenTypes) is handled
+     * Returns true if this type (form TokenTypes) is handled.
      *
      * @param aType type from TokenTypes
      * @return true if handler is registered, false otherwise
@@ -122,7 +122,7 @@ public class HandlerFactory
     }
 
     /**
-     * gets list of registered handler types
+     * Gets list of registered handler types.
      *
      * @return int[] of TokenType types
      */

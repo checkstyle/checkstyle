@@ -32,7 +32,7 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
     /** default allowed nesting depth. */
     private static final int DEFAULT_MAX = 1;
 
-    /** Creates new check instance with default allowed nesting depth */
+    /** Creates new check instance with default allowed nesting depth. */
     public NestedIfDepthCheck()
     {
         super(DEFAULT_MAX);

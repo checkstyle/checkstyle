@@ -25,13 +25,13 @@ package com.puppycrawl.tools.checkstyle.api;
 public interface MessageDispatcher
 {
     /**
-     * Notify all listeners about the beginning of a file audit
+     * Notify all listeners about the beginning of a file audit.
      * @param aFileName the file to be audited
      */
     void fireFileStarted(String aFileName);
 
     /**
-     * Notify all listeners about the end of a file audit
+     * Notify all listeners about the end of a file audit.
      * @param aFileName the audited file
      */
     void fireFileFinished(String aFileName);

@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * characters. Line 4 enforces that the copyright notice includes a four digit
  * year. Line 5 is an example how to enforce revision control keywords in a file
  * header.</p>
- * An example of how to configure the check to use header file
+ * <p>An example of how to configure the check to use header file
  * &quot;java.header&quot; and ignore lines 4 and 5 is:
  * </p>
  * <pre>

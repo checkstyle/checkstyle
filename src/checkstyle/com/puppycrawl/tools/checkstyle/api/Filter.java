@@ -26,7 +26,7 @@ package com.puppycrawl.tools.checkstyle.api;
 public interface Filter
 
 {
-    /** The object is acceptable to this Filter */
+    /** The object is acceptable to this filter. */
     int ACCEPT = -1;
 
     /** The object is rejected by this filter. */

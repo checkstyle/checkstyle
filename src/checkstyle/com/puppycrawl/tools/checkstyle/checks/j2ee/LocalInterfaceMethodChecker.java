@@ -30,8 +30,8 @@ public class LocalInterfaceMethodChecker
 {
 
     /**
-     * Constructs a <code>LocalInterfaceMethodChecker for a
-     * local interface check.
+     * Constructs a <code>LocalInterfaceMethodChecker</code> for a local
+     * interface check.
      * @param aCheck the local interface check.
      */
     public LocalInterfaceMethodChecker(LocalInterfaceCheck aCheck)

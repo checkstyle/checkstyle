@@ -121,7 +121,7 @@ public class CheckStyleTask
     }
 
     /**
-     * Add a formatter
+     * Add a formatter.
      * @param aFormatter the formatter to add for logging.
      */
     public void addFormatter(Formatter aFormatter)
@@ -130,7 +130,7 @@ public class CheckStyleTask
     }
 
     /**
-     * Add an override property
+     * Add an override property.
      * @param aProperty the property to add
      */
     public void addProperty(Property aProperty)
@@ -139,7 +139,7 @@ public class CheckStyleTask
     }
 
     /**
-     * Add a custom listener
+     * Add a custom listener.
      * @param aListener the listener to add
      */
     public void addListener(Listener aListener)
@@ -610,7 +610,7 @@ public class CheckStyleTask
         }
     }
 
-    /** Represents a custom listener */
+    /** Represents a custom listener. */
     public static class Listener
     {
         /** classname of the listener class */

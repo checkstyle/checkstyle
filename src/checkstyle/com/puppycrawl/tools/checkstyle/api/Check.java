@@ -216,7 +216,7 @@ public abstract class Check extends AbstractViolationReporter
     }
 
     /**
-     * Set the tab width to report errors with
+     * Set the tab width to report errors with.
      * @param aTabWidth an <code>int</code> value
      */
     public final void setTabWidth(int aTabWidth)

@@ -126,7 +126,7 @@ public class IndentationCheck
     /** factory from which handlers are distributed */
     private HandlerFactory mHandlerFactory = new HandlerFactory();
 
-    /** Creates a new instance of IndentationCheck */
+    /** Creates a new instance of IndentationCheck. */
     public IndentationCheck()
     {
     }
@@ -192,7 +192,7 @@ public class IndentationCheck
     }
 
     /**
-     * Log an error message
+     * Log an error message.
      *
      * @param aLine the line number where the error was found
      * @param aKey the message that describes the error

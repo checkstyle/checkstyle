@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * of this check.
  * </p>
  *
+ * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>

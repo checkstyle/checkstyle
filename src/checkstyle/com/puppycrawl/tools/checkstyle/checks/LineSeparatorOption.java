@@ -32,19 +32,19 @@ public final class LineSeparatorOption extends AbstractOption
     /** maps from a string representation to an option */
     private static final Map STR_TO_OPT = new HashMap();
 
-    /** Windows-style line separators **/
+    /** Windows-style line separators. **/
     public static final LineSeparatorOption CRLF =
         new LineSeparatorOption("crlf", "\r\n");
 
-    /** Mac-style line separators **/
+    /** Mac-style line separators. **/
     public static final LineSeparatorOption CR =
         new LineSeparatorOption("cr", "\r");
 
-    /** Unix-style line separators **/
+    /** Unix-style line separators. **/
     public static final LineSeparatorOption LF =
         new LineSeparatorOption("lf", "\n");
 
-    /** System default line separators **/
+    /** System default line separators. **/
     public static final LineSeparatorOption SYSTEM = new LineSeparatorOption(
         "system", System.getProperty("line.separator"));
 

@@ -63,7 +63,7 @@ public class VisibilityModifierCheck
     /** regexp for public members that should be ignored */
     private RE mPublicMemberRE = null;
 
-    /** Constructor */
+    /** Create an instance. */
     public VisibilityModifierCheck()
     {
         setPublicMemberPattern(mPublicMemberPattern);
@@ -91,7 +91,7 @@ public class VisibilityModifierCheck
     }
 
     /**
-     * Set whether package visible members are allowed
+     * Set whether package visible members are allowed.
      * @param aPackageAllowed whether package visible members are allowed
      */
     public void setPackageAllowed(boolean aPackageAllowed)

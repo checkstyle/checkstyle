@@ -76,7 +76,7 @@ public class EntityBeanCheck
     }
 
     /**
-     * Returns the set <code>PersistenceOption</code>
+     * Returns the set <code>PersistenceOption</code>.
      * @return the set <code>PersistenceOption</code>
      */
     public PersistenceOption getPersistenceOption()

@@ -49,14 +49,13 @@ public class SuppressionsLoaderTest extends TestCase
     public void testNoFile()
         throws CheckstyleException
     {
-        try
-        {
-            final FilterChain fc =
-                SuppressionsLoader.loadSuppressions(
-                    "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_file.xml");
+        try {
+            SuppressionsLoader.loadSuppressions(
+                "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_file.xml");
         }
         catch (CheckstyleException ex) {
-            assertEquals("unable to parse src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_file.xml - Attribute \"files\" is required and must be specified for element type \"suppress\".",
+            assertEquals(
+                "unable to parse src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_file.xml - Attribute \"files\" is required and must be specified for element type \"suppress\".",
                 ex.getMessage());
         }
     }
@@ -64,14 +63,13 @@ public class SuppressionsLoaderTest extends TestCase
     public void testNoCheck()
         throws CheckstyleException
     {
-        try
-        {
-            final FilterChain fc =
-                SuppressionsLoader.loadSuppressions(
-                    "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_check.xml");
+        try {
+            SuppressionsLoader.loadSuppressions(
+                "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_check.xml");
         }
         catch (CheckstyleException ex) {
-            assertEquals("unable to parse src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_check.xml - Attribute \"checks\" is required and must be specified for element type \"suppress\".",
+            assertEquals(
+                "unable to parse src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_check.xml - Attribute \"checks\" is required and must be specified for element type \"suppress\".",
                 ex.getMessage());
         }
     }
@@ -79,14 +77,13 @@ public class SuppressionsLoaderTest extends TestCase
     public void testBadInt()
         throws CheckstyleException
     {
-        try
-        {
-            final FilterChain fc =
-                SuppressionsLoader.loadSuppressions(
-                    "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_bad_int.xml");
+        try {
+            SuppressionsLoader.loadSuppressions(
+                "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_bad_int.xml");
         }
         catch (CheckstyleException ex) {
-            assertEquals("number format exception src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_bad_int.xml - For input string: \"a\"",
+            assertEquals(
+                "number format exception src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_bad_int.xml - For input string: \"a\"",
                 ex.getMessage());
         }
     }

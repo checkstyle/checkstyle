@@ -59,27 +59,27 @@ public final class Scope implements Comparable, Serializable
     /** anon inner scopename */
     private static final String SCOPENAME_ANONINNER = "anoninner";
 
-    /** nothing scope */
+    /** nothing scope. */
     public static final Scope NOTHING =
         new Scope(SCOPECODE_NOTHING, SCOPENAME_NOTHING);
 
-    /** public scope */
+    /** public scope. */
     public static final Scope PUBLIC =
         new Scope(SCOPECODE_PUBLIC, SCOPENAME_PUBLIC);
 
-    /** protected scope */
+    /** protected scope. */
     public static final Scope PROTECTED =
         new Scope(SCOPECODE_PROTECTED, SCOPENAME_PROTECTED);
 
-    /** package scope */
+    /** package scope. */
     public static final Scope PACKAGE =
         new Scope(SCOPECODE_PACKAGE, SCOPENAME_PACKAGE);
 
-    /** private scope */
+    /** private scope. */
     public static final Scope PRIVATE =
         new Scope(SCOPECODE_PRIVATE, SCOPENAME_PRIVATE);
 
-    /** anon inner scope */
+    /** anon inner scope. */
     public static final Scope ANONINNER =
         new Scope(SCOPECODE_ANONINNER, SCOPENAME_ANONINNER);
 
@@ -121,8 +121,8 @@ public final class Scope implements Comparable, Serializable
      */
     public int compareTo(Object aObject)
     {
-        Scope scope = (Scope) aObject;
-        return this.mCode - scope.mCode;
+        final Scope s = (Scope) aObject;
+        return this.mCode - s.mCode;
     }
 
     /**

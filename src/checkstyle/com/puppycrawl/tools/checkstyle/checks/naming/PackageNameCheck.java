@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * and defaults to
  * <strong>^[a-z]+(\.[a-zA-Z_][a-zA-Z_0-9]*)*$</strong>.
  * </p>
+ * <p>
  * The default format has been chosen to match the requirements in the
  * <a
  * href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169">

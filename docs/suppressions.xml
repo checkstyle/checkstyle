@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions 1.0//EN"
+    "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+    <suppress checks="JavadocStyleCheck"
+              files="AbstractLoader.java"
+              lines="86"/>
+    <suppress checks="JavadocStyleCheck"
+              files="AbstractComplexityCheck.java"
+              lines="82,108,122"/>
+    <suppress checks="JavadocStyleCheck"
+              files="CyclomaticComplexityCheck.java"
+              lines="48"/>
+    <suppress checks="MagicNumberCheck"
+              files="JavadocStyleCheck.java"
+              lines="221"/>
+</suppressions>

@@ -39,7 +39,7 @@ public class CyclomaticComplexityCheck
     /** default allowed complexity */
     private static final int DEFAULT_VALUE = 10;
 
-    /** Create an instance */
+    /** Create an instance. */
     public CyclomaticComplexityCheck()
     {
         super(DEFAULT_VALUE);
