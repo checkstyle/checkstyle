@@ -45,7 +45,7 @@ public class ConfigSerializationTest
         throws Exception
     {
         Configuration configOrig = new Configuration();
-        configOrig.setTypePat("xyz");
+        configOrig.setPatternProperty(Defn.TYPE_PATTERN_PROP, "xyz");
 
         Configuration configCopy = copyBySerialization(configOrig);
         assertNotNull(configCopy);

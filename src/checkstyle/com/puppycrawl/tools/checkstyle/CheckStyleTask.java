@@ -198,19 +198,8 @@ public class CheckStyleTask
     /** @param aPat line length check exclusion pattern */
     public void setIgnoreLineLengthPattern(final String aPat)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setIgnoreLineLengthPat(aPat);
-                    }
-                    catch (RESyntaxException ex) {
-                        throw new BuildException(
-                            "Unable to parse ignoreLineLengthPattern - ", ex);
-                    }
-                }
-            });
+        setPatternProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP, aPat,
+                           "ignoreLineLengthPattern");
     }
 
     /** @param aIgnore whether max line length should be ignored for
@@ -224,164 +213,57 @@ public class CheckStyleTask
     /** @param aPat pattern for member variables **/
     public void setMemberPattern(final String aPat)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setMemberPat(aPat);
-                    }
-                    catch (RESyntaxException ex) {
-                        throw new BuildException(
-                            "Unable to parse memberPattern - ", ex);
-                    }
-                }
-            });
-
+        setPatternProperty(Defn.MEMBER_PATTERN_PROP, aPat, "memberPattern");
     }
 
     /** @param aPat pattern for public member variables **/
     public void setPublicMemberPattern(final String aPat)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setPublicMemberPat(aPat);
-                    }
-                    catch (RESyntaxException ex) {
-                        throw new BuildException(
-                            "Unable to parse publicMemberPattern - ", ex);
-                    }
-                }
-            });
+        setPatternProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP, aPat,
+                           "publicMemberPattern");
     }
 
     /** @param aPat pattern for todo lines **/
     public void setTodoPattern(final String aPat)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setTodoPat(aPat);
-                    }
-                    catch (RESyntaxException ex) {
-                        throw new BuildException(
-                            "Unable to parse todoPattern - ", ex);
-                    }
-                }
-            });
+        setPatternProperty(Defn.TODO_PATTERN_PROP, aPat, "todoPattern");
     }
 
     /** @param aPat pattern for parameters **/
     public void setParamPattern(final String aPat)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setParamPat(aPat);
-                    }
-                    catch (RESyntaxException ex) {
-                        throw new BuildException(
-                            "Unable to parse paramPattern - ", ex);
-                    }
-                }
-            });
+        setPatternProperty(Defn.PARAMETER_PATTERN_PROP, aPat, "paramPattern");
     }
 
     /** @param aPat pattern for constant variables **/
     public void setConstPattern(final String aPat)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setStaticFinalPat(aPat);
-                    }
-                    catch (RESyntaxException ex) {
-                        throw new BuildException(
-                            "Unable to parse constPattern - " , ex);
-                    }
-                }
-            });
+        setPatternProperty(Defn.CONST_PATTERN_PROP, aPat, "constPattern");
     }
 
     /** @param aPat pattern for static variables **/
     public void setStaticPattern(final String aPat)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setStaticPat(aPat);
-                    }
-                    catch (RESyntaxException ex) {
-                        throw new BuildException(
-                            "Unable to parse staticPattern - ", ex);
-                    }
-                }
-            });
+        setPatternProperty(Defn.STATIC_PATTERN_PROP, aPat, "staticPattern");
     }
 
     /** @param aPat pattern for type names **/
     public void setTypePattern(final String aPat)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setTypePat(aPat);
-                    }
-                    catch (RESyntaxException ex) {
-                        throw new BuildException(
-                            "Unable to parse typePattern - ", ex);
-                    }
-                }
-            });
+        setPatternProperty(Defn.TYPE_PATTERN_PROP, aPat, "typePattern");
     }
 
     /** @param aPat pattern for local variables **/
     public void setLocalVarPattern(final String aPat)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setLocalVarPat(aPat);
-                    }
-                    catch (RESyntaxException ex) {
-                        throw new BuildException(
-                            "Unable to parse localVarPattern - ", ex);
-                    }
-                }
-            });
+        setPatternProperty(Defn.LOCAL_VAR_PATTERN_PROP, aPat,
+                           "localVarPattern");
     }
 
     /** @param aPat pattern for method names **/
     public void setMethodPattern(final String aPat)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setMethodPat(aPat);
-                    }
-                    catch (RESyntaxException ex) {
-                        throw new BuildException(
-                            "Unable to parse methodPattern - ", ex);
-                    }
-                }
-            });
+        setPatternProperty(Defn.METHOD_PATTERN_PROP, aPat, "methodPattern");
     }
 
     /** @param aName header file name **/
@@ -519,37 +401,19 @@ public class CheckStyleTask
     /** @param aTo the left curly placement option for methods **/
     public void setLCurlyMethod(final String aTo)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setLCurlyMethod(extractLeftCurlyOption(aTo));
-                }
-            });
+        setLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP, aTo);
     }
 
     /** @param aTo the left curly placement option for types **/
     public void setLCurlyType(final String aTo)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setLCurlyType(extractLeftCurlyOption(aTo));
-                }
-            });
+        setLeftCurlyOptionProperty(Defn.LCURLY_TYPE_PROP, aTo);
     }
 
     /** @param aTo the left curly placement option for others **/
     public void setLCurlyOther(final String aTo)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setLCurlyOther(extractLeftCurlyOption(aTo));
-                }
-            });
+        setLeftCurlyOptionProperty(Defn.LCURLY_OTHER_PROP, aTo);
     }
 
     /** @param aTo the right curly placement option **/
@@ -567,37 +431,19 @@ public class CheckStyleTask
     /** @param aTo the try block option **/
     public void setTryBlock(final String aTo)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setTryBlock(extractBlockOption(aTo));
-                }
-            });
+        setBlockOptionProperty(Defn.TRY_BLOCK_PROP, aTo);
     }
 
     /** @param aTo the catch block option **/
     public void setCatchBlock(final String aTo)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setCatchBlock(extractBlockOption(aTo));
-                }
-            });
+        setBlockOptionProperty(Defn.CATCH_BLOCK_PROP, aTo);
     }
 
     /** @param aTo the finally block option **/
     public void setFinallyBlock(final String aTo)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setFinallyBlock(extractBlockOption(aTo));
-                }
-            });
+        setBlockOptionProperty(Defn.FINALLY_BLOCK_PROP, aTo);
     }
 
     /** @param aTo the parenthesis padding option **/
@@ -829,22 +675,6 @@ public class CheckStyleTask
 
     /**
      * @param aFrom String to decode the option from
-     * @return the LeftCurlyOption represented by aFrom
-     * @throws BuildException if unable to decode aFrom
-     */
-    private LeftCurlyOption extractLeftCurlyOption(String aFrom)
-        throws BuildException
-    {
-        final LeftCurlyOption opt = LeftCurlyOption.decode(aFrom);
-        if (opt == null) {
-            throw new BuildException("Unable to parse '" + aFrom + "'.",
-                                     location);
-        }
-        return opt;
-    }
-
-    /**
-     * @param aFrom String to decode the option from
      * @return the RightCurlyOption represented by aFrom
      * @throws BuildException if unable to decode aFrom
      */
@@ -852,22 +682,6 @@ public class CheckStyleTask
         throws BuildException
     {
         final RightCurlyOption opt = RightCurlyOption.decode(aFrom);
-        if (opt == null) {
-            throw new BuildException("Unable to parse '" + aFrom + "'.",
-                                     location);
-        }
-        return opt;
-    }
-
-    /**
-     * @param aFrom String to decode the option from
-     * @return the CatchBlockOption represented by aFrom
-     * @throws BuildException if unable to decode aFrom
-     */
-    private BlockOption extractBlockOption(String aFrom)
-        throws BuildException
-    {
-        final BlockOption opt = BlockOption.decode(aFrom);
         if (opt == null) {
             throw new BuildException("Unable to parse '" + aFrom + "'.",
                                      location);
@@ -905,9 +719,9 @@ public class CheckStyleTask
     }
 
     /**
-     * Set the specified flag.
-     * @param aName name of flag to set
-     * @param aTo the value of the flag
+     * Set the specified boolean property.
+     * @param aName name of property to set
+     * @param aTo the value of the property
      */
     private void setBooleanProperty(final String aName, final boolean aTo)
     {
@@ -921,9 +735,9 @@ public class CheckStyleTask
     }
 
     /**
-     * Set the specified flag.
-     * @param aName name of flag to set
-     * @param aTo the value of the flag
+     * Set the specified integer property.
+     * @param aName name of property to set
+     * @param aTo the value of the property
      */
     private void setIntProperty(final String aName, final int aTo)
     {
@@ -932,6 +746,78 @@ public class CheckStyleTask
                 public void run()
                 {
                     mConfig.setIntProperty(aName, aTo);
+                }
+            });
+    }
+
+    /**
+     * Set the specified pattern property.
+     * @param aName name of property to set
+     * @param aTo the value of the property
+     * @param aLabel the label to display in errors
+     */
+    private void setPatternProperty(final String aName,
+                                    final String aTo,
+                                    final String aLabel)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setPatternProperty(aName, aTo);
+                    }
+                    catch (RESyntaxException ex) {
+                        throw new BuildException(
+                            "Unable to parse " + aLabel + " - ", ex);
+                    }
+                }
+            });
+    }
+
+    /**
+     * Set the specified BlockOption property.
+     * @param aName name of property to set
+     * @param aTo the value of the property
+     * @throws BuildException if unable to decode aTo
+     */
+    private void setBlockOptionProperty(final String aName, String aTo)
+        throws BuildException
+    {
+        final BlockOption opt = BlockOption.decode(aTo);
+        if (opt == null) {
+            throw new BuildException("Unable to parse '" + aTo + "'.",
+                                     location);
+        }
+
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setBlockOptionProperty(aName, opt);
+                }
+            });
+    }
+
+    /**
+     * Set the specified LeftCurlyOption property.
+     * @param aName name of property to set
+     * @param aTo the value of the property
+     * @throws BuildException if unable to decode aTo
+     */
+    private void setLeftCurlyOptionProperty(final String aName, String aTo)
+        throws BuildException
+    {
+        final LeftCurlyOption opt = LeftCurlyOption.decode(aTo);
+        if (opt == null) {
+            throw new BuildException("Unable to parse '" + aTo + "'.",
+                                     location);
+        }
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setLeftCurlyOptionProperty(aName, opt);
                 }
             });
     }

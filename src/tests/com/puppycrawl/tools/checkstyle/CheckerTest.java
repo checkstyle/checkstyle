@@ -40,9 +40,12 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setHeaderFile(getPath("java.header"));
-        mConfig.setLCurlyMethod(LeftCurlyOption.NL);
-        mConfig.setLCurlyOther(LeftCurlyOption.NLOW);
-        mConfig.setLCurlyType(LeftCurlyOption.NL);
+        mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP,
+                                           LeftCurlyOption.NL);
+        mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_OTHER_PROP,
+                                           LeftCurlyOption.NLOW);
+        mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_TYPE_PROP,
+                                           LeftCurlyOption.NL);
         mConfig.setRCurly(RightCurlyOption.ALONE);
     }
 
@@ -87,8 +90,9 @@ public class CheckerTest
     {
         mConfig.setBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, false);
         mConfig.setParenPadOption(PadOption.NOSPACE);
-        mConfig.setTryBlock(BlockOption.IGNORE);
-        mConfig.setCatchBlock(BlockOption.IGNORE);
+        mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE);
+        mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP,
+                                       BlockOption.IGNORE);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -160,8 +164,9 @@ public class CheckerTest
     {
         mConfig.setBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, true);
         mConfig.setParenPadOption(PadOption.IGNORE);
-        mConfig.setTryBlock(BlockOption.IGNORE);
-        mConfig.setCatchBlock(BlockOption.IGNORE);
+        mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE);
+        mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP,
+                                       BlockOption.IGNORE);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -226,8 +231,9 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
-        mConfig.setTryBlock(BlockOption.IGNORE);
-        mConfig.setCatchBlock(BlockOption.IGNORE);
+        mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE);
+        mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP,
+                                       BlockOption.IGNORE);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -348,7 +354,7 @@ public class CheckerTest
     public void testIgnoreAccess()
         throws Exception
     {
-        mConfig.setPublicMemberPat("^r[A-Z]");
+        mConfig.setPatternProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP, "^r[A-Z]");
         mConfig.setBooleanProperty(Defn.ALLOW_PROTECTED_PROP, true);
         mConfig.setBooleanProperty(Defn.ALLOW_PACKAGE_PROP, true);
         final Checker c = createChecker();
@@ -373,11 +379,11 @@ public class CheckerTest
         mConfig.setIntProperty(Defn.MAX_FILE_LENGTH_PROP, 20) ;
         mConfig.setIntProperty(Defn.MAX_METHOD_LENGTH_PROP, 19) ;
         mConfig.setIntProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, 9) ;
-        mConfig.setParamPat("^a[A-Z][a-zA-Z0-9]*$");
-        mConfig.setStaticPat("^s[A-Z][a-zA-Z0-9]*$");
-        mConfig.setMemberPat("^m[A-Z][a-zA-Z0-9]*$");
-        mConfig.setIgnoreLineLengthPat("^.*is OK.*regexp.*$");
-        mConfig.setTodoPat("FIXME:");
+        mConfig.setPatternProperty(Defn.PARAMETER_PATTERN_PROP, "^a[A-Z][a-zA-Z0-9]*$");
+        mConfig.setPatternProperty(Defn.STATIC_PATTERN_PROP, "^s[A-Z][a-zA-Z0-9]*$");
+        mConfig.setPatternProperty(Defn.MEMBER_PATTERN_PROP, "^m[A-Z][a-zA-Z0-9]*$");
+        mConfig.setPatternProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP,"^.*is OK.*regexp.*$");
+        mConfig.setPatternProperty(Defn.TODO_PATTERN_PROP, "FIXME:");
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
@@ -700,7 +706,8 @@ public class CheckerTest
     public void testLCurlyMethodIgnore()
         throws Exception
     {
-        mConfig.setLCurlyMethod(LeftCurlyOption.IGNORE);
+        mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP,
+                                           LeftCurlyOption.IGNORE);
         mConfig.setJavadocScope(Scope.NOTHING);
         final Checker c = createChecker();
         final String filepath = getPath("InputLeftCurlyMethod.java");
@@ -713,7 +720,8 @@ public class CheckerTest
     public void testLCurlyMethodNL()
         throws Exception
     {
-        mConfig.setLCurlyMethod(LeftCurlyOption.NL);
+        mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP,
+                                           LeftCurlyOption.NL);
         mConfig.setJavadocScope(Scope.NOTHING);
         final Checker c = createChecker();
         final String filepath = getPath("InputLeftCurlyMethod.java");
@@ -768,9 +776,9 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setTryBlock(BlockOption.STMT);
-        mConfig.setCatchBlock(BlockOption.STMT);
-        mConfig.setFinallyBlock(BlockOption.STMT);
+        mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.STMT);
+        mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP, BlockOption.STMT);
+        mConfig.setBlockOptionProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.STMT);
         mConfig.setBooleanProperty(Defn.IGNORE_IMPORTS_PROP, true);
         mConfig.setBooleanProperty(Defn.IGNORE_LONG_ELL_PROP, false);
         mConfig.setIllegalInstantiations(
@@ -807,9 +815,9 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setTryBlock(BlockOption.TEXT);
-        mConfig.setCatchBlock(BlockOption.TEXT);
-        mConfig.setFinallyBlock(BlockOption.TEXT);
+        mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.TEXT);
+        mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP, BlockOption.TEXT);
+        mConfig.setBlockOptionProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.TEXT);
         mConfig.setBooleanProperty(Defn.IGNORE_IMPORTS_PROP, true);
         mConfig.setBooleanProperty(Defn.IGNORE_LONG_ELL_PROP, true);
         mConfig.setIllegalInstantiations("");
