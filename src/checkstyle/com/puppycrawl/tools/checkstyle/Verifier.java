@@ -225,6 +225,9 @@ class Verifier
             checkParameter((LineText) it.next());
         }
 
+        // Always check that the order of modifiers follows the JLS suggestion
+        checkModOrder(aSig.getModSet());
+
         // now check the javadoc
         final Scope methodScope = inInterfaceBlock()
             ? Scope.PUBLIC
@@ -276,6 +279,9 @@ class Verifier
                 "' must match pattern '" + mConfig.getTypePat() + "'.");
         }
 
+        // Always check that the order of modifiers follows the JLS suggestion
+        checkModOrder(aMods);
+
         //
         // Only Javadoc testing below
         //
@@ -321,6 +327,9 @@ class Verifier
         final Scope declaredScope = mods.getVisibilityScope();
         final Scope variableScope =
             inInterfaceBlock() ? Scope.PUBLIC : declaredScope;
+
+        // Always check that the order of modifiers follows the JLS suggestion
+        checkModOrder(mods);
 
         if (inCheckScope(variableScope) &&
             getJavadocBefore(aVar.getLineNo() - 1) == null)
@@ -1064,6 +1073,22 @@ class Verifier
                     break; // stop checking
                 }
             }
+        }
+    }
+
+    /**
+     * checks if the order of modifiers follows the suggestions
+     * in the JLS and logs an error message accordingly.
+     *
+     * @param aModSet the set of modifiers
+     */
+    private void checkModOrder(MyModifierSet aModSet)
+    {
+        if (!aModSet.hasOrderSuggestedByJLS())
+        {
+            log(aModSet.getFirstLineNo(),
+                "order of modifiers violates suggestions " +
+                "in the Java Language Specification.");
         }
     }
 

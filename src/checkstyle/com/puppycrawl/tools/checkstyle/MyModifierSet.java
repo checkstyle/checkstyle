@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Iterator;
 
 /**
@@ -28,8 +28,18 @@ import java.util.Iterator;
  **/
 class MyModifierSet
 {
+    /**
+     * The order of modifiers as suggested in sections 8.1.1,
+     * 8.3.1 and 8.4.3 of the JLS.
+     */
+    private static final String[] JLS_ORDER =
+    {
+        "public", "protected", "private", "abstract", "static", "final",
+        "transient", "volatile", "synchronized", "native", "strictfp"
+    };
+
     /** contains the modifiers **/
-    private final Set mModifiers = new HashSet();
+    private final List mModifiers = new ArrayList();
     /** the first line of the modifiers **/
     private int mFirstLineNo = Integer.MAX_VALUE;
 
@@ -104,6 +114,33 @@ class MyModifierSet
             return Scope.PRIVATE;
         }
         return Scope.PACKAGE;
+    }
+
+    /**
+       Checks if the modifiers were added in the order suggested
+       in the Java language specification.
+
+       @return if the modifiers are a subsequence of "public protected
+       private abstract static final transient volatile synchronized
+       native strictfp".
+    */
+    boolean hasOrderSuggestedByJLS()
+    {
+        int i = 0;
+        Iterator it = mModifiers.iterator();
+        do
+        {
+            if (!it.hasNext())
+            {
+                return true;
+            }
+            final String modifier = (String) it.next();
+            while (i < JLS_ORDER.length && !JLS_ORDER[i].equals(modifier))
+            {
+                i++;
+            }
+        } while (i < JLS_ORDER.length);
+        return false;
     }
 
     /** @see Object **/
