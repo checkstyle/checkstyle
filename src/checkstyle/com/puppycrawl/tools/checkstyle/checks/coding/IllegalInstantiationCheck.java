@@ -19,17 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.StringTokenizer;
-
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.AbstractImportCheck;
-import antlr.collections.AST;
 
 // TODO: Clean up potential duplicate code here and in UnusedImportsCheck
 /**
@@ -63,7 +62,7 @@ import antlr.collections.AST;
  * @author lkuehne
  */
 public class IllegalInstantiationCheck
-    extends AbstractImportCheck
+    extends Check
 {
     /** Set of fully qualified classnames. E.g. "java.lang.Boolean" */
     private final Set mIllegalClasses = new HashSet();
@@ -135,7 +134,7 @@ public class IllegalInstantiationCheck
      */
     private void processImport(DetailAST aAST)
     {
-        final FullIdent name = getImportText(aAST);
+        final FullIdent name = FullIdent.createFullIdentBelow(aAST);
         if (name != null) {
             // Note: different from UnusedImportsCheck.processImport(),
             // '.*' imports are also added here

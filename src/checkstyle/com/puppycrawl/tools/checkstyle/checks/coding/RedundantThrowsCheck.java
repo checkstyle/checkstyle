@@ -18,18 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.AbstractImportCheck;
 import com.puppycrawl.tools.checkstyle.checks.ClassResolver;
-
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Iterator;
 import java.util.Set;
-import java.util.HashSet;
 
 /**
  * Checks for redundant exceptions declared in throws clause
@@ -48,7 +47,7 @@ import java.util.HashSet;
  * @author o_sukhodolsky
  */
 public class RedundantThrowsCheck
-    extends AbstractImportCheck
+    extends Check
 {
     /**
      * whether unchecked exceptions in throws
@@ -138,7 +137,7 @@ public class RedundantThrowsCheck
      */
     private void processImport(DetailAST aAST)
     {
-        final FullIdent name = getImportText(aAST);
+        final FullIdent name = FullIdent.createFullIdentBelow(aAST);
         if (name != null) {
             mImports.add(name.getText());
         }

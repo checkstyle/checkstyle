@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.checks.AbstractImportCheck;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractImportCheck;
  * @version 1.0
  */
 public class AvoidStarImportCheck
-    extends AbstractImportCheck
+    extends Check
 {
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -53,7 +53,7 @@ public class AvoidStarImportCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final FullIdent name = getImportText(aAST);
+        final FullIdent name = FullIdent.createFullIdentBelow(aAST);
         if ((name != null) && name.getText().endsWith(".*")) {
             log(aAST.getLineNo(), "import.avoidStar", name.getText());
         }
