@@ -43,7 +43,7 @@ public class Utils
                 if ((child.getType() == TokenTypes.METHOD_DEF)
                     && Utils.isPublicMethod(child, aName))
                 {
-                         return true;
+                    return true;
                 }
                 child = (DetailAST) child.getNextSibling();
             }
@@ -74,7 +74,7 @@ public class Utils
                         aName,
                         aIsVoid))
                 {
-                         return true;
+                    return true;
                 }
                 child = (DetailAST) child.getNextSibling();
             }

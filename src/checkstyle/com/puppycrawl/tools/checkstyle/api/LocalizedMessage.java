@@ -98,7 +98,7 @@ public final class LocalizedMessage
         }
 
         if (!Arrays.equals(mArgs, localizedMessage.mArgs)) {
-           return false;
+            return false;
         }
         // ignoring mBundle for perf reasons.
 

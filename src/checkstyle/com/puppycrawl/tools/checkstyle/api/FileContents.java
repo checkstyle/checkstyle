@@ -240,7 +240,7 @@ public final class FileContents implements CommentListener
      **/
     public boolean lineIsComment(int aLineNo)
     {
-      return MATCH_SINGLELINE_COMMENT.match(mLines[aLineNo]);
+        return MATCH_SINGLELINE_COMMENT.match(mLines[aLineNo]);
     }
 
     /**
