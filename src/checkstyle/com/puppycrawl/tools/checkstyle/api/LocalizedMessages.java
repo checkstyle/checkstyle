@@ -35,13 +35,6 @@ public class LocalizedMessages
     /** contains the messages logged **/
     private final ArrayList mMessages = new ArrayList();
 
-    /**
-     * Creates a new <code>LocalizedMessages</code> instance.
-     */
-    public LocalizedMessages()
-    {
-    }
-
     /** @return the logged messages **/
     public LocalizedMessage[] getMessages()
     {
