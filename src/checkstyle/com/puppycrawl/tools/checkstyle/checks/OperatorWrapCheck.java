@@ -46,36 +46,24 @@ public class OperatorWrapCheck
         return new int[] {
             TokenTypes.QUESTION,          // '?'
             TokenTypes.COLON,             // ':' (not reported for a case)
-            TokenTypes.ASSIGN,            // '='
             TokenTypes.EQUAL,             // "=="
             TokenTypes.NOT_EQUAL,         // "!="
             TokenTypes.DIV,               // '/'
-            TokenTypes.DIV_ASSIGN,        // "/="
             TokenTypes.PLUS,              //' +' (unary plus is UNARY_PLUS)
-            TokenTypes.PLUS_ASSIGN,       // "+="
             TokenTypes.MINUS,             // '-' (unary minus is UNARY_MINUS)
-            TokenTypes.MINUS_ASSIGN,      //"-="
             TokenTypes.STAR,              // '*'
-            TokenTypes.STAR_ASSIGN,       // "*="
             TokenTypes.MOD,               // '%'
-            TokenTypes.MOD_ASSIGN,        // "%="
             TokenTypes.SR,                // ">>"
-            TokenTypes.SR_ASSIGN,         // ">>="
             TokenTypes.BSR,               // ">>>"
-            TokenTypes.BSR_ASSIGN,        // ">>>="
             TokenTypes.GE,                // ">="
             TokenTypes.GT,                // ">"
             TokenTypes.SL,                // "<<"
-            TokenTypes.SL_ASSIGN,         // "<<="
             TokenTypes.LE,                // "<="
             TokenTypes.LT,                // '<'
             TokenTypes.BXOR,              // '^'
-            TokenTypes.BXOR_ASSIGN,       // "^="
             TokenTypes.BOR,               // '|'
-            TokenTypes.BOR_ASSIGN,        // "|="
             TokenTypes.LOR,               // "||"
             TokenTypes.BAND,              // '&'
-            TokenTypes.BAND_ASSIGN,       // "&="
             TokenTypes.LAND,              // "&&"
             TokenTypes.LITERAL_INSTANCEOF,
         };
