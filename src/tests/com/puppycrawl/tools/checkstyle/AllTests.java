@@ -60,6 +60,7 @@ import com.puppycrawl.tools.checkstyle.checks.UpperEllCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundTest;
+import com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -80,6 +81,7 @@ public class AllTests {
         //$JUnit-BEGIN$
         suite.addTest(new TestSuite(DetailASTTest.class));
         suite.addTest(new TestSuite(AbstractViolationReporterTest.class));
+        suite.addTest(new TestSuite(ArrayTypeStyleCheckTest.class));
         suite.addTest(new TestSuite(AvoidInlineConditionalsCheckTest.class));
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
