@@ -19,30 +19,22 @@
 package com.puppycrawl.tools.checkstyle.checks.j2ee;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that an EntityBean defines method ejbFindByPrimaryKey.
+ * Describe class RemoteInterfaceCheck
  * @author Rick Giles
+ * @version 30-Jun-2003
  */
-public class EntityBeanFindByPrimaryKeyCheck
-    extends AbstractBeanCheck
+public class RemoteInterfaceCheck
+    extends HomeInterfaceCheck
 {
     /**
      * @see com.puppycrawl.tools.checkstyle.api.Check
      */
     public void visitToken(DetailAST aAST)
     {
-        if (Utils.hasImplements(aAST, "javax.ejb.EntityBean")
-            && !Utils.isAbstract(aAST)
-            && !Utils.hasPublicMethod(aAST, "ejbFindByPrimaryKey", false, 1))
-        {
-            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-            log(
-                aAST.getLineNo(),
-                nameAST.getColumnNo(),
-                "missingmethod.bean",
-                new Object[] {"Entity bean", "ejbFindByPrimaryKey"});
+        if (Utils.hasExtends(aAST, "javax.ejb.EJBObject")) {
+            checkMethods(aAST);
         }
     }
 }
