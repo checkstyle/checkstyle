@@ -23,6 +23,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.checks.AbstractFileSetCheck;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +36,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Arrays;
 import java.io.Reader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
@@ -44,6 +51,7 @@ import antlr.TokenStreamException;
  * @version 1.0
  */
 public final class TreeWalker
+        extends AbstractFileSetCheck
 {
     /**
      * Overrides ANTLR error reporting so we completely control
@@ -100,17 +108,73 @@ public final class TreeWalker
     private final LocalizedMessages mMessages;
     /** the tab width for error reporting */
     private final int mTabWidth;
+    /** cache file **/
+    private final PropertyCacheFile mCache;
+    private final GlobalProperties mConfig;
 
     /**
      * Creates a new <code>TreeWalker</code> instance.
      *
-     * @param aMessages used to collect messages
-     * @param aTabWidth the tabwidth to use
+     * @param aConfig the configuration to use
      */
-    public TreeWalker(LocalizedMessages aMessages, int aTabWidth)
+    public TreeWalker(GlobalProperties aConfig)
     {
-        mMessages = aMessages;
-        mTabWidth = aTabWidth;
+        mMessages = new LocalizedMessages();
+        mConfig = aConfig;
+        mTabWidth = aConfig.getTabWidth();
+        mCache = new PropertyCacheFile(aConfig);
+    }
+
+    /**
+     * Processes a specified file and reports all errors found.
+     * @param aFile the file to process
+     **/
+    private void process(File aFile)
+    {
+        // check if already checked and passed the file
+        final String fileName = aFile.getPath();
+        final long timestamp = aFile.lastModified();
+        if (mCache.alreadyChecked(fileName, timestamp)) {
+            return;
+        }
+
+        mMessages.reset();
+        try {
+            getMessageDispatcher().fireFileStarted(fileName);
+            final String[] lines = Utils.getLines(fileName);
+            final FileContents contents = new FileContents(fileName, lines);
+            final DetailAST rootAST = TreeWalker.parse(contents);
+            walk(rootAST, contents, mConfig.getClassLoader());
+        }
+        catch (FileNotFoundException fnfe) {
+            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
+                                               "general.fileNotFound", null));
+        }
+        catch (IOException ioe) {
+            mMessages.add(new LocalizedMessage(
+                              0, Defn.CHECKSTYLE_BUNDLE,
+                              "general.exception",
+                              new String[] {ioe.getMessage()}));
+        }
+        catch (RecognitionException re) {
+            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
+                                               "general.exception",
+                                               new String[] {re.getMessage()}));
+        }
+        catch (TokenStreamException te) {
+            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
+                                               "general.exception",
+                                               new String[] {te.getMessage()}));
+        }
+
+        if (mMessages.size() == 0) {
+            mCache.checkedOk(fileName, timestamp);
+        }
+        else {
+            getMessageDispatcher().fireErrors(fileName, mMessages.getMessages());
+        }
+
+        getMessageDispatcher().fireFileFinished(fileName);
     }
 
     /**
@@ -332,5 +396,19 @@ public final class TreeWalker
             rootAST = (DetailAST) jr.getAST();
         }
         return rootAST;
+    }
+
+    /** @see FileSetCheck */
+    public void process(File[] aFiles)
+    {
+        for (int i = 0; i < aFiles.length; i++) {
+            process(aFiles[i]);
+        }
+    }
+
+    public void destroy()
+    {
+        super.destroy();
+        mCache.destroy();
     }
 }
