@@ -64,17 +64,18 @@ public class TranslationCheck extends AbstractFileSetCheck
      * "messages" is the basename of "messages.properties",
      * "messages_de_AT.properties", "messages_en.properties", etc.
      *
-     * @param aFileName the file name
+     * @param aFile the file
      * @return the extracted basename
      */
-    private static String extractBaseName(String aFileName)
+    private static String extractBaseName(File aFile)
     {
-        int k = aFileName.indexOf("_");
+        String fileName = aFile.getPath();
+        int k = fileName.indexOf("_");
         if (k != -1) {
-            return aFileName.substring(0, k);
+            return fileName.substring(0, k);
         }
         else {
-            return aFileName.substring(0, aFileName.indexOf("."));
+            return fileName.substring(0, fileName.indexOf("."));
         }
     }
 
@@ -92,8 +93,7 @@ public class TranslationCheck extends AbstractFileSetCheck
 
         for (Iterator iterator = aPropFiles.iterator(); iterator.hasNext();) {
             File file = (File) iterator.next();
-            String fileName = file.getName();
-            String baseName = extractBaseName(fileName);
+            String baseName = extractBaseName(file);
 
             Set fileSet = (Set) propFileMap.get(baseName);
             if (fileSet == null) {
