@@ -59,9 +59,8 @@ public class HeaderCheckTest extends BaseCheckTestCase
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeAnonInner.java");
 
-        // TODO: Is this really what we want or should we throw an Exception?
-        // Somehow checking nothing doesn't make too much sense...
         final String[] expected = {
+            "1: Unable to check as missing lines to check."
         };
 
         verify(c, fname, expected);
