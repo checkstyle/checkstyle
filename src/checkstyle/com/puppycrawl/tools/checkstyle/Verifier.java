@@ -34,7 +34,6 @@ import org.apache.regexp.RESyntaxException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.checks.RightCurlyOption;
 
 /**
  * Verifier of Java rules. Each rule verifier takes the form of
