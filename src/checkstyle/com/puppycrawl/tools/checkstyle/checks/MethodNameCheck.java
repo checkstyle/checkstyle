@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -28,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @version 1.0
  */
 public class MethodNameCheck
-    extends AbstractFormatCheck
+    extends AbstractNameCheck
 {
     /** Creates a new <code>MethodNameCheck</code> instance. */
     public MethodNameCheck()
@@ -40,20 +39,5 @@ public class MethodNameCheck
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF};
-    }
-
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void visitToken(DetailAST aAST)
-    {
-        final DetailAST nameAST = (DetailAST)
-            aAST.getFirstChild().getNextSibling().getNextSibling();
-
-        if (!getRegexp().match(nameAST.getText())) {
-            log(nameAST.getLineNo(),
-                nameAST.getColumnNo(),
-                "name.invalidPattern",
-                nameAST.getText(),
-                getFormat());
-        }
     }
 }
