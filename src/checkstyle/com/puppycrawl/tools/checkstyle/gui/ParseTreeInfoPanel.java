@@ -38,6 +38,7 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.TooManyListenersException;
 
 /**
  * Displays information about a parse tree.
@@ -67,9 +68,9 @@ public class ParseTreeInfoPanel extends JPanel
         }
     }
 
-    private class FileSectionAction extends AbstractAction
+    private class FileSelectionAction extends AbstractAction
     {
-        public FileSectionAction()
+        public FileSelectionAction()
         {
             super("Select Java File");
         }
@@ -79,22 +80,50 @@ public class ParseTreeInfoPanel extends JPanel
             JFileChooser fc = new JFileChooser();
             FileFilter filter = new JavaFileFilter();
             fc.setFileFilter(filter);
-            final Component parent = SwingUtilities.getRoot(ParseTreeInfoPanel.this);
+            final Component parent =
+                SwingUtilities.getRoot(ParseTreeInfoPanel.this);
             fc.showDialog(parent, "Open");
             File file = fc.getSelectedFile();
-            if (file != null) {
-                try {
-                    DetailAST parseTree = parseFile(file.getAbsolutePath());
-                    mParseTreeModel.setParseTree(parseTree);
-                }
-                catch (IOException ex) {
-                    JOptionPane.showMessageDialog(parent,
-                            "Could not open " + file + ": " + ex.getMessage());
-                }
-                catch (ANTLRException ex) {
-                    JOptionPane.showMessageDialog(parent,
-                            "Could not parse " + file + ": " + ex.getMessage());
-                }
+            openFile(file, parent);
+        }
+    }
+
+
+    private class FileDropListener implements FileDrop.Listener
+    {
+        private final JScrollPane mSp;
+
+        public void filesDropped(File[] files)
+        {
+            if (files != null && files.length > 0)
+            {
+                File file = files[0];
+                openFile(file, mSp);
+            }
+        }
+
+        public FileDropListener(JScrollPane aSp)
+        {
+            mSp = aSp;
+        }
+    }
+
+    private void openFile(File aFile, final Component aParent)
+    {
+        if (aFile != null) {
+            try {
+                DetailAST parseTree = parseFile(aFile.getAbsolutePath());
+                mParseTreeModel.setParseTree(parseTree);
+            }
+            catch (IOException ex) {
+                JOptionPane.showMessageDialog(
+                        aParent,
+                        "Could not open " + aFile + ": " + ex.getMessage());
+            }
+            catch (ANTLRException ex) {
+                JOptionPane.showMessageDialog(
+                        aParent,
+                        "Could not parse " + aFile + ": " + ex.getMessage());
             }
         }
     }
@@ -124,11 +153,35 @@ public class ParseTreeInfoPanel extends JPanel
         DetailAST treeRoot = null;
         mParseTreeModel = new ParseTreeModel(treeRoot);
         mTreeTable = new JTreeTable(mParseTreeModel);
-        JScrollPane sp = new JScrollPane(mTreeTable);
+        final JScrollPane sp = new JScrollPane(mTreeTable);
         this.add(sp, BorderLayout.CENTER);
-        final JButton fileSelectionButton = new JButton(new FileSectionAction());
+        final JButton fileSelectionButton =
+            new JButton(new FileSelectionAction());
 
         this.add(fileSelectionButton, BorderLayout.SOUTH);
+
+        try {
+            // TODO: creating an object for the side effect of the constructor
+            // and then ignoring the object looks strange.
+            new FileDrop(sp, new FileDropListener(sp));
+        }
+        catch (TooManyListenersException ex)
+        {
+           showErrorDialog(null, "Cannot initialize Drag and Drop support");
+        }
+
+    }
+
+    private void showErrorDialog(final Component parent, final String msg)
+    {
+        Runnable showError = new Runnable()
+        {
+            public void run()
+            {
+                JOptionPane.showMessageDialog(parent, msg);
+            }
+        };
+        SwingUtilities.invokeLater(showError);
     }
 
 }
