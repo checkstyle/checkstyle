@@ -506,8 +506,8 @@ statement
 	// For statement
 	|	"for"^
 			LPAREN!
-				forInit SEMI!   // initializer
-				forCond	SEMI!   // condition test
+				forInit s1:SEMI! {ver.verifyWSAfter(s1.getLine(), s1.getColumn(), "';'");} // initializer
+				forCond	s2:SEMI! {ver.verifyWSAfter(s2.getLine(), s2.getColumn(), "';'");} // condition test
 				forIter         // updater
 			RPAREN!
 			statement                     // statement to loop over
