@@ -195,14 +195,17 @@ public class IndentationCheck
     }
 
     /**
-     * Log an error message.
+     * Log an error message
      *
-     * @param aLine   the line number where the error occured
-     * @param aKey    the error message
+     * @param aLine the line number where the error was found
+     * @param aKey the message that describes the error
+     * @param aArgs the details of the message
+     *
+     * @see java.text.MessageFormat
      */
-    public void indentationLog(int aLine, String aKey)
+    public void indentationLog(int aLine, String aKey, Object[] aArgs)
     {
-        log(aLine, aKey);
+        super.log(aLine, aKey, aArgs);
     }
 
     /**
