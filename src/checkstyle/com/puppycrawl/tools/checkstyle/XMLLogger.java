@@ -117,8 +117,11 @@ public class XMLLogger
             mWriter.print(" severity=\""
                 + aEvt.getSeverityLevel().getName()
                 + "\"");
-            mWriter.println(" message=\""
+            mWriter.print(" message=\""
                 + encode(aEvt.getMessage())
+                + "\"");
+            mWriter.println(" source=\""
+                + encode(aEvt.getSourceName())
                 + "\"/>");
         }
     }
