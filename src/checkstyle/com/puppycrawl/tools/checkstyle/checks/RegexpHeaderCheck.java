@@ -54,9 +54,9 @@ public class RegexpHeaderCheck extends HeaderCheck
 
 
     /** @see HeaderCheck */
-    protected boolean isMatch(int lineNumber)
+    protected boolean isMatch(int aLineNumber)
     {
         final String[] lines = getLines();
-        return mHeaderRegexps[lineNumber].match(lines[lineNumber]);
+        return mHeaderRegexps[aLineNumber].match(lines[aLineNumber]);
     }
 }

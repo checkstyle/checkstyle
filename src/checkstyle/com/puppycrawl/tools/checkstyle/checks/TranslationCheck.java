@@ -53,9 +53,9 @@ public class TranslationCheck extends AbstractFileSetCheck
     private static class PropertyFileFilter implements FileFilter
     {
         /** @see FileFilter */
-        public boolean accept(File pathname)
+        public boolean accept(File aPathname)
         {
-            return pathname.getPath().endsWith(".properties");
+            return aPathname.getPath().endsWith(".properties");
         }
     }
 
@@ -64,17 +64,17 @@ public class TranslationCheck extends AbstractFileSetCheck
      * "messages" is the basename of "messages.properties",
      * "messages_de_AT.properties", "messages_en.properties", etc.
      *
-     * @param fileName the file name
+     * @param aFileName the file name
      * @return the extracted basename
      */
-    private static String extractBaseName(String fileName)
+    private static String extractBaseName(String aFileName)
     {
-        int k = fileName.indexOf("_");
+        int k = aFileName.indexOf("_");
         if (k != -1) {
-            return fileName.substring(0, k);
+            return aFileName.substring(0, k);
         }
         else {
-            return fileName.substring(0, fileName.indexOf("."));
+            return aFileName.substring(0, aFileName.indexOf("."));
         }
     }
 
@@ -83,14 +83,14 @@ public class TranslationCheck extends AbstractFileSetCheck
      * Arranges a set of property files by their prefix.
      * The method returns a Map object. The filename prefixes
      * work as keys each mapped to a set of files.
-     * @param propFiles the set of property files
+     * @param aPropFiles the set of property files
      * @return a Map object which holds the arranged property file sets
      */
-    private static Map arrangePropertyFiles(Set propFiles)
+    private static Map arrangePropertyFiles(Set aPropFiles)
     {
         Map propFileMap = new HashMap();
 
-        for (Iterator iterator = propFiles.iterator(); iterator.hasNext();) {
+        for (Iterator iterator = aPropFiles.iterator(); iterator.hasNext();) {
             File file = (File) iterator.next();
             String fileName = file.getName();
             String baseName = extractBaseName(fileName);
@@ -109,15 +109,15 @@ public class TranslationCheck extends AbstractFileSetCheck
     /**
      * Searches for all files with suffix ".properties" in the
      * given set of directories.
-     * @param dirs the file set to search in
+     * @param aDirs the file set to search in
      * @return the property files
      */
-    private static Set getPropertyFiles(Set dirs)
+    private static Set getPropertyFiles(Set aDirs)
     {
         Set propFiles = new HashSet();
         final PropertyFileFilter filter = new PropertyFileFilter();
 
-        for (Iterator iterator = dirs.iterator(); iterator.hasNext();) {
+        for (Iterator iterator = aDirs.iterator(); iterator.hasNext();) {
             File dir = (File) iterator.next();
             File[] propertyFiles = dir.listFiles(filter);
             for (int j = 0; j < propertyFiles.length; j++) {
@@ -130,17 +130,17 @@ public class TranslationCheck extends AbstractFileSetCheck
 
     /**
      * Loads the keys of the specified property file into a set.
-     * @param file the property file
+     * @param aFile the property file
      * @return a Set object which holds the loaded keys
      */
-    private Set loadKeys(File file)
+    private Set loadKeys(File aFile)
     {
         InputStream inputStream = null;
         Set keys = new HashSet();
 
         try {
             // Load file and properties.
-            inputStream = new FileInputStream(file);
+            inputStream = new FileInputStream(aFile);
             Properties properties = new Properties();
             properties.load(inputStream);
 
@@ -151,14 +151,14 @@ public class TranslationCheck extends AbstractFileSetCheck
             }
         }
         catch (IOException e) {
-            logIOException(e, file);
+            logIOException(e, aFile);
         }
         finally {
             try {
                 inputStream.close();
             }
             catch (IOException e) {
-                logIOException(e, file);
+                logIOException(e, aFile);
             }
         }
         return keys;
@@ -166,43 +166,43 @@ public class TranslationCheck extends AbstractFileSetCheck
 
     /**
      * helper method to log an io exception.
-     * @param e the exception that occured
-     * @param file the file that could not be processed
+     * @param aEx the exception that occured
+     * @param aFile the file that could not be processed
      */
-    private void logIOException(IOException e, File file)
+    private void logIOException(IOException aEx, File aFile)
     {
         String[] args = null;
         String key = "general.fileNotFound";
-        if (!(e instanceof FileNotFoundException)) {
-            args = new String[] {e.getMessage()};
+        if (!(aEx instanceof FileNotFoundException)) {
+            args = new String[] {aEx.getMessage()};
             key = "general.exception";
         }
         LocalizedMessage message =
                 new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE, key, args);
         LocalizedMessage[] messages = new LocalizedMessage[]{message};
-        getMessageDispatcher().fireErrors(file.getPath(), messages);
+        getMessageDispatcher().fireErrors(aFile.getPath(), messages);
     }
 
 
     /**
      * Compares the key sets of the given property files (arranged in a map)
      * with the specified key set. All missing keys are reported.
-     * @param keys the set of keys to compare with
-     * @param fileMap a Map from property files to their key sets
+     * @param aKeys the set of keys to compare with
+     * @param aFileMap a Map from property files to their key sets
      */
-    private void compareKeySets(Set keys, Map fileMap)
+    private void compareKeySets(Set aKeys, Map aFileMap)
     {
-        Set fls = fileMap.keySet();
+        Set fls = aFileMap.keySet();
 
         for (Iterator iter = fls.iterator(); iter.hasNext();) {
             File currentFile = (File) iter.next();
             final MessageDispatcher dispatcher = getMessageDispatcher();
             final String path = currentFile.getPath();
             dispatcher.fireFileStarted(path);
-            Set currentKeys = (Set) fileMap.get(currentFile);
+            Set currentKeys = (Set) aFileMap.get(currentFile);
 
             // Clone the keys so that they are not lost
-            Set keysClone = new HashSet(keys);
+            Set keysClone = new HashSet(aKeys);
             keysClone.removeAll(currentKeys);
 
             // Remaining elements in the key set are missing in the current file
@@ -229,15 +229,15 @@ public class TranslationCheck extends AbstractFileSetCheck
      * an error message is posted giving information which key misses in
      * which file.
      *
-     * @param propFiles the property files organized as Map
+     * @param aPropFiles the property files organized as Map
      */
-    private void checkPropertyFileSets(Map propFiles)
+    private void checkPropertyFileSets(Map aPropFiles)
     {
-        Set keySet = propFiles.keySet();
+        Set keySet = aPropFiles.keySet();
 
         for (Iterator iterator = keySet.iterator(); iterator.hasNext();) {
             String baseName = (String) iterator.next();
-            Set files = (Set) propFiles.get(baseName);
+            Set files = (Set) aPropFiles.get(baseName);
 
             if (files.size() >= 2) {
                 // build a map from files to the keys they contain
@@ -267,9 +267,9 @@ public class TranslationCheck extends AbstractFileSetCheck
      *
      * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
      */
-    public void process(File[] files)
+    public void process(File[] aFiles)
     {
-        Set dirs = getParentDirs(files);
+        Set dirs = getParentDirs(aFiles);
         Set propertyFiles = getPropertyFiles(dirs);
         final Map propFilesMap = arrangePropertyFiles(propertyFiles);
         checkPropertyFileSets(propFilesMap);
