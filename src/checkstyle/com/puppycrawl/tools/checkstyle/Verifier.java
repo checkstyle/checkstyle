@@ -256,11 +256,6 @@ class Verifier
             return;
         }
 
-        final MyModifierSet mods = aVar.getModifierSet();
-        final Scope declaredScope = mods.getVisibilityScope();
-        final Scope variableScope =
-            inInterfaceBlock() ? Scope.PUBLIC : declaredScope;
-
         // Check correct format
         if (inInterfaceBlock()) {
             // The only declarations allowed in interfaces are all static final,
@@ -268,34 +263,6 @@ class Verifier
             checkVariable(aVar,
                           mConfig.getStaticFinalRegexp(),
                           mConfig.getStaticFinalPat());
-        }
-        else {
-            // Record the name of the variable for detection of unused
-            Map typeVars = (Map) mTypeFieldsMap.get(mCurrentTypeName);
-            if (typeVars == null) {
-                typeVars = new HashMap();
-                mTypeFieldsMap.put(mCurrentTypeName, typeVars);
-            }
-            typeVars.put(aVar.getText(), aVar);
-
-            ///////////////////////////////////////////////////////////////////
-            // THIS BLOCK NEEDS REFACTORING!!
-            ///////////////////////////////////////////////////////////////////
-            final boolean isPckg = Scope.PACKAGE.equals(variableScope);
-            final boolean isProt = Scope.PROTECTED.equals(variableScope);
-
-            if (mods.containsStatic()) {
-                if (!mods.containsFinal()) {
-                    if (Scope.PRIVATE.equals(variableScope)
-                        || (mConfig.isAllowPackage() && isPckg)
-                        || (mConfig.isAllowProtected() && isProt))
-                    {
-                        checkVariable(aVar,
-                                      mConfig.getStaticRegexp(),
-                                      mConfig.getStaticPat());
-                    }
-                }
-            }
         }
     }
 

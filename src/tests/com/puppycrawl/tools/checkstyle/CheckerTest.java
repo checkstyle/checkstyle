@@ -294,13 +294,11 @@ public class CheckerTest
         throws Exception
     {
         mProps.setProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, "9");
-        mProps.setProperty(Defn.STATIC_PATTERN_PROP, "^s[A-Z][a-zA-Z0-9]*$");
         mProps.setProperty(Defn.TODO_PATTERN_PROP, "FIXME:");
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":30:24: Name 'badStatic' must match pattern '^s[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":42:40: ',' is not followed by whitespace.",
             filepath + ":71:30: ',' is not followed by whitespace.",
             filepath + ":103: Constructor length is 10 lines (max allowed is 9).",
