@@ -16,10 +16,11 @@
   <check classname="com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.FileLengthCheck"/>
 
-
+  <!-- TODO: find a way to have relative file names. Atleast not hard code here
   <check classname="com.puppycrawl.tools.checkstyle.checks.HeaderCheck">
     <property name="headerFile" value="docs/java.header"/>
   </check>
+  -->
 
   <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalInstantiationCheck"/>
