@@ -17,7 +17,7 @@
   <property name="testreport.dir" value="target/testreports"/>
   <property name="dist.dir" value="target/dist"/>
 
-  <property name="version" value="2.3beta" />
+  <property name="version" value="2.3" />
 
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
