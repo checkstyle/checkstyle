@@ -40,7 +40,7 @@ public interface FileSetCheck
      *
      * The file set to process might contain files that are not
      * interesting to the FileSetCheck. Such files should be ignored,
-     * no error message should be fired. For example a FileSetCheck
+     * no error message should be fired for them. For example a FileSetCheck
      * that checks java files should ignore html or properties files.
      *
      * Once processiong is done, it is highly recommended to call for
