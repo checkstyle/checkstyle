@@ -19,12 +19,14 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import org.apache.regexp.RESyntaxException;
 
 /**
@@ -47,6 +49,7 @@ public final class Main
         // be brain dead about arguments parsing
         String format = "plain";
         String output = null;
+        Properties properties = System.getProperties();
         final ArrayList files = new ArrayList();
         for (int i = 0; i < aArgs.length; i++) {
             if ("-f".equals(aArgs[i])) {
@@ -57,6 +60,9 @@ public final class Main
             }
             else if ("-r".equals(aArgs[i])) {
                 traverse(new File(aArgs[++i]), files);
+            }
+            else if ("-p".equals(aArgs[i])) {
+                properties = loadProperties(new File(aArgs[++i]));
             }
             else {
                 files.add(aArgs[i]);
@@ -89,8 +95,7 @@ public final class Main
 
         Checker c = null;
         try {
-            c = new Checker(new Configuration(System.getProperties(),
-                                              System.out));
+            c = new Checker(new Configuration(properties, System.out));
             c.addListener(listener);
         }
         catch (RESyntaxException rese) {
@@ -124,6 +129,8 @@ public final class Main
                            + "Defaults to stdout");
         System.out.println("\t-r <dir>\ttraverses the directory for Java"
                            + " source files.");
+        System.out.println("\t-p <file>\tuses a properties file"
+                           + " instead of the system properties.");
         System.exit(1);
     }
 
@@ -148,5 +155,27 @@ public final class Main
                 aFiles.add(aNode.getPath());
             }
         }
+    }
+
+    /**
+     * Loads properties from a File.
+     * @param aFile the properties file
+     */
+    private static Properties loadProperties(File aFile)
+    {
+        Properties properties = new Properties();
+        try {
+            FileInputStream fis = null;
+            fis = new FileInputStream(aFile);
+            properties.load(fis);
+            fis.close();
+        }
+        catch (IOException ex) {
+            System.out.println("Unable to load properties from file: " +
+                aFile.getAbsolutePath());
+            ex.printStackTrace(System.out);
+            System.exit(1);
+        }
+        return properties;
     }
 }
