@@ -68,8 +68,6 @@ public interface Defn
     String REQUIRE_PACKAGE_HTML_PROP = "checkstyle.require.packagehtml";
     /** property name for requiring a version tag **/
     String REQUIRE_VERSION_PROP = "checkstyle.require.version";
-    /** property name for illegal instantiations **/
-    String ILLEGAL_INSTANTIATIONS_PROP = "checkstyle.illegal.instantiations";
     /** property name for the line length check exclusion pattern **/
     String IGNORE_LINE_LENGTH_PATTERN_PROP = "checkstyle.ignore.maxlinelen";
     /** property name for ignoring whitespace **/
@@ -173,12 +171,4 @@ public interface Defn
             LCURLY_OTHER_PROP,
         };
 
-    /**
-     * All the String Set properties. That is, set of String values that are
-     * seperated by a ",".
-     **/
-    String[] ALL_STRING_SET_PROPS = new String[]
-        {
-            ILLEGAL_INSTANTIATIONS_PROP,
-        };
 }

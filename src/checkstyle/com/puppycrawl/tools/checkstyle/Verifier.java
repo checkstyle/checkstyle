@@ -907,13 +907,6 @@ class Verifier
      */
     void reportInstantiation(MyCommonAST aNewAST, LineText aTypeName)
     {
-        final String typeName = aTypeName.getText();
-        final int lineNo = aNewAST.getLineNo();
-        final int colNo = aNewAST.getColumnNo();
-        final String fqClassName = getIllegalInstantiation(typeName);
-        if (fqClassName != null) {
-            mMessages.add(lineNo, colNo, "instantiation.avoid", fqClassName);
-        }
     }
 
     /**
@@ -1310,91 +1303,6 @@ class Verifier
         }
     }
 
-
-    /**
-     * @return the class name from a fully qualified name
-     * @param aType the fully qualified name
-     */
-    private String basename(String aType)
-    {
-        final int i = aType.lastIndexOf(".");
-        return (i == -1) ? aType : aType.substring(i + 1);
-    }
-
-    /**
-     * Checks illegal instantiations.
-     * @param aClassName instantiated class, may or may not be qualified
-     * @return the fully qualified class name of aClassName
-     * or null if instantiation of aClassName is OK
-     */
-    private String getIllegalInstantiation(String aClassName)
-    {
-        final Set illegalInsts = mConfig.getIllegalInstantiations();
-        final String javaLang = "java.lang.";
-
-        if (illegalInsts.contains(aClassName)) {
-            return aClassName;
-        }
-
-        final int clsNameLen = aClassName.length();
-        final int pkgNameLen = (mPkgName == null) ? 0 : mPkgName.length();
-
-        final Iterator illIter = illegalInsts.iterator();
-        while (illIter.hasNext()) {
-            final String illegal = (String) illIter.next();
-            final int illegalLen = illegal.length();
-
-            // class from java.lang
-            if (((illegalLen - javaLang.length()) == clsNameLen)
-                && illegal.endsWith(aClassName)
-                && illegal.startsWith(javaLang))
-            {
-                return illegal;
-            }
-
-            // class from same package
-
-            // the toplevel package (mPkgName == null) is covered by the
-            // "illegalInsts.contains(aClassName)" check above
-
-            // the test is the "no garbage" version of
-            // illegal.equals(mPkgName + "." + aClassName)
-            if (mPkgName != null
-                && clsNameLen == illegalLen - pkgNameLen - 1
-                && illegal.charAt(pkgNameLen) == '.'
-                && illegal.endsWith(aClassName)
-                && illegal.startsWith(mPkgName))
-            {
-                return illegal;
-            }
-
-            // import statements
-            final Iterator importIter = mImports.iterator();
-            while (importIter.hasNext()) {
-                final LineText importLineText = (LineText) importIter.next();
-                final String importArg = importLineText.getText();
-                if (importArg.endsWith(".*")) {
-                    final String fqClass =
-                        importArg.substring(0, importArg.length() - 1)
-                        + aClassName;
-
-                    // assume that illegalInsts only contain existing classes
-                    // or else we might create a false alarm here
-                    if (illegalInsts.contains(fqClass)) {
-                        return fqClass;
-                    }
-                }
-                else {
-                    if (basename(importArg).equals(aClassName)
-                        && illegalInsts.contains(importArg))
-                    {
-                        return importArg;
-                    }
-                }
-            }
-        }
-        return null;
-    }
 
     /** @return whether currently in an interface block **/
     private boolean inInterfaceBlock()

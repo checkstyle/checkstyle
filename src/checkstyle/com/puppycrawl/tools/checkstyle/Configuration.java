@@ -31,8 +31,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.StringTokenizer;
-import java.util.TreeSet;
 
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import org.apache.regexp.RE;
@@ -50,9 +48,6 @@ public class Configuration
     ////////////////////////////////////////////////////////////////////////////
     // Constants
     ////////////////////////////////////////////////////////////////////////////
-
-    /** the set of illegal instantiations (comma separated class names) **/
-    private static final String ILLEGAL_INSTANTIATIONS = "";
 
     /** pattern defaults **/
     private static final Map PATTERN_DEFAULTS = new HashMap();
@@ -93,13 +88,6 @@ public class Configuration
 
     /** set of boolean properties **/
     private final Set mBooleanProps = new HashSet();
-
-    /** map of Set properties **/
-    private final Map mStringSetProps = new HashMap();
-    {
-        setStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP,
-                             ILLEGAL_INSTANTIATIONS);
-    }
 
     /** map of int properties **/
     private final Map mIntProps = new HashMap();
@@ -199,9 +187,6 @@ public class Configuration
             setLeftCurlyOptionProperty(aProps, Defn.ALL_LCURLY_PROPS[i], aLog);
         }
 
-        for (int i = 0; i < Defn.ALL_STRING_SET_PROPS.length; i++) {
-            setStringSetProperty(aProps, Defn.ALL_STRING_SET_PROPS[i]);
-        }
     }
 
     /**
@@ -319,11 +304,6 @@ public class Configuration
         for (int i = 0; i < Defn.ALL_LCURLY_PROPS.length; i++) {
             final String key = Defn.ALL_LCURLY_PROPS[i];
             Utils.addObjectString(retVal, key, getLeftCurlyOptionProperty(key));
-        }
-
-        for (int i = 0; i < Defn.ALL_STRING_SET_PROPS.length; i++) {
-            final String key = Defn.ALL_STRING_SET_PROPS[i];
-            Utils.addSetString(retVal, key, getStringSetProperty(key));
         }
 
         return retVal;
@@ -503,12 +483,6 @@ public class Configuration
         return getBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP);
     }
 
-    /** @return Set of classes where calling a constructor is illegal */
-    Set getIllegalInstantiations()
-    {
-        return getStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP);
-    }
-
     /** @return pattern to exclude from line lengh checking **/
     String getIgnoreLineLengthPat()
     {
@@ -549,23 +523,6 @@ public class Configuration
     String getCacheFile()
     {
         return getStringProperty(Defn.CACHE_FILE_PROP);
-    }
-
-    /**
-     * Sets a String Set property. It the aFrom String is parsed for Strings
-     * separated by ",".
-     *
-     * @param aName name of the property to set
-     * @param aFrom the String to parse
-     */
-    private void setStringSetProperty(String aName, String aFrom)
-    {
-        final Set s = new TreeSet();
-        final StringTokenizer tok = new StringTokenizer(aFrom, ",");
-        while (tok.hasMoreTokens()) {
-            s.add(tok.nextToken());
-        }
-        mStringSetProps.put(aName, s);
     }
 
     /**
@@ -983,28 +940,6 @@ public class Configuration
             {
                 setBooleanProperty(aName, true);
             }
-        }
-    }
-
-    /**
-     * @param aName name of the Set property
-     * @return return whether a specified property is set
-     */
-    private Set getStringSetProperty(String aName)
-    {
-        return (Set) mStringSetProps.get(aName);
-    }
-
-    /**
-     * Set a Set property from a property set.
-     * @param aProps the properties set to extract property from
-     * @param aName name of the property to extract
-     */
-    private void setStringSetProperty(Properties aProps, String aName)
-    {
-        final String strRep = aProps.getProperty(aName);
-        if (strRep != null) {
-            setStringSetProperty(aName, strRep);
         }
     }
 
