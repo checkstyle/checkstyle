@@ -141,17 +141,6 @@ public class ParenPadCheck
             }
             if (followsEmptyForIterator) {
                 return;
-//                if (mPadEmptyForIterator
-//                    && !Character.isWhitespace(line.charAt(before)))
-//                {
-//                    log(aAST.getLineNo(), aAST.getColumnNo(),
-//                        "ws.notPreceeded", ")");
-//                }
-//                else if (!mPadEmptyForIterator
-//                    && Character.isWhitespace(line.charAt(before)))
-//                {
-//                    log(aAST.getLineNo(), before, "ws.preceeded", ")");
-//                }  
             }
             else if ((PadOption.NOSPACE == getAbstractOption())
                 && Character.isWhitespace(line.charAt(before))
