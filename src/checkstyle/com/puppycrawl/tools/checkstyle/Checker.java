@@ -155,12 +155,13 @@ public class Checker extends AutomaticBean
     {
         final String name = aChildConf.getName();
         try {
+            final String[] packageNames = getPackageNames();
             final FileSetCheck fsc =
                     (FileSetCheck) PackageObjectFactory.makeObject(
-                            getPackageNames(),
+                            packageNames,
                             getClass().getClassLoader(),
                             name);
-            fsc.setPackageNames(getPackageNames());
+            fsc.setPackageNames(packageNames);
             fsc.contextualize(mChildContext);
             fsc.configure(aChildConf);
             addFileSetCheck(fsc);
