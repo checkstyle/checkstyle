@@ -62,6 +62,15 @@
         Resolved bugs:
         <ul>
 	  <li class="body">Better error reporting for missing properties files (bug 576165).</li>
+	  <li class="body">Ant task now logs style violations as errors (bug 561616).</li>
+        </ul>
+      </p>
+
+      <p class="body">
+        API changes (only relevant for IDE plugin authors):
+        <ul>
+	  <li class="body">The get/setOutputStream methods have been removed from the AuditListener interface. The XMLLogger and DefaultLogger implementations now expect OutputStreams to be provided as a constructor argument.</li>
+	  <li class="body">The DefaultLogger now differentiates between info messages ("started checking file ...", etc.)  and error messages (style errors found by checkstyle).</li>
         </ul>
       </p>
 
