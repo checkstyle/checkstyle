@@ -272,12 +272,18 @@ public final class TreeWalker
             Arrays.sort(acceptableTokens);
             final Iterator it = checkTokens.iterator();
             while (it.hasNext()) {
-                String token = (String) it.next();
-                int tokenId = TokenTypes.getTokenId(token);
-                if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
-                    registerCheck(token, aCheck);
+                final String token = (String) it.next();
+                try {
+                    int tokenId = TokenTypes.getTokenId(token);                    
+                    if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
+                        registerCheck(token, aCheck);
+                    }
+                    // TODO: else error message?
                 }
-                // TODO: else error message?
+                catch (IllegalArgumentException ex) {
+                    throw new CheckstyleException("illegal token \""
+                        + token + "\" in check " + aCheck);
+                }
             }
         }
         else {
