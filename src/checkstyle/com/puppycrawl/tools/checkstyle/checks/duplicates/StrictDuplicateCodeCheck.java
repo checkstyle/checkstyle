@@ -29,23 +29,73 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Checks for duplicate code that only differs by indentation.
+ * <p>
+ * Performs a line-by-line comparison of all code lines and reports
+ * duplicate code if a sequence of lines differs only in
+ * indentation.  All import statements in Java code are ignored, any
+ * other line - including javadoc, whitespace lines between methods,
+ * etc. - is considered (which is why the check is called
+ * <em>strict</em>).
+ * </p>
+ *
+ * <subsection name="Properties">
+ * <table>
+ *   <tr>
+ *     <th>name</th>
+ *     <th>description</th>
+ *     <th>type</th>
+ *     <th>default value</th>
+ *   </tr>
+ *   <tr>
+ *     <td>min</td>
+ *     <td>how many lines must be equal to be considered a duplicate</td>
+ *     <td><a href="property_types.html#int">int</a></td>
+ *     <td><span class="default">12</span></td>
+ *   </tr>
+ *   <tr>
+ *     <td>charset</td>
+ *     <td>name of the file charset</td>
+ *     <td><a href="property_types.html#string">String</a></td>
+ *     <td>System property &quot;file.encoding&quot;</td>
+ *   </tr>
+ * </table>
+ * </subsection>
+ *
+ * <subsection name="Examples">
+ * <p> To configure the check: </p>
+ * <source>
+ * &lt;module name=&quot;StrictDuplicateCode&quot;/&gt;
+ * </source>
  *
  * <p>
- * There are many approaches for detecting duplicate code. Some involve
- * parsing a file of a programming language and analyzing the source trees
- * of all files. This is a very powerful approach for a specific programming
- * language (such as Java), as it can potentially even detect duplicate code
- * where linebreaks have been changed, variables have been renamed, etc.
+ * To configure the check so that it allows larger equivalent blocks:
  * </p>
+ * <source>
+ * &lt;module name=&quot;StrictDuplicateCode&quot;&gt;
+ *   &lt;property name=&quot;min&quot; value=&quot;15&quot;/&gt;
+ * &lt;/module&gt;
+ * </source>
+ *
  * <p>
- * This copy and paste detection implementation works differently.
- * It cannot detect copy and paste code where the author deliberately
- * tries to hide his copy+paste action. Instead it focusses on the standard
- * corporate problem of reuse by copy and paste. Usually this leaves linebreaks
- * and variable names intact. Since we do not need to analyse a parse tree
- * our tool is not tied to a particular programming language.
+ * To configure the check so that it handles files with the <span
+ * class="code">UTF-8</span> charset:
  * </p>
+ * <source>
+ * &lt;module name=&quot;StrictDuplicateCode&quot;&gt;
+ *    &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/&gt;
+ * &lt;/module&gt;
+ * </source>
+ * </subsection>
+ *
+ * <subsection name="Package">
+ * <p>com.puppycrawl.tools.checkstyle.checks.duplicates</p>
+ * </subsection>
+ *
+ * <subsection name="Parent Module">
+ * <p>
+ * <a href="config.html#Checker">Checker</a>
+ * </p>
+ * </subsection>
  *
  * @author Lars K&uuml;hne
  */
