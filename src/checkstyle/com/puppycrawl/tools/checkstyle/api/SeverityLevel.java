@@ -51,19 +51,19 @@ public final class SeverityLevel implements Comparable, Serializable
     /**  Name for severity level ERROR */
     private static final String SEVERITYNAME_ERROR = "error";
 
-    /** nothing scope */
+    /** Severity level: ignore.  This is the lowest severity level.  */
     public static final SeverityLevel IGNORE =
         new SeverityLevel(SEVERITYCODE_IGNORE, SEVERITYNAME_IGNORE);
 
-    /** public scope */
+    /** Severity level: informational.  */
     public static final SeverityLevel INFO =
         new SeverityLevel(SEVERITYCODE_INFO, SEVERITYNAME_INFO);
 
-    /** protected scope */
+    /** Severity level: warning */
     public static final SeverityLevel WARNING =
         new SeverityLevel(SEVERITYCODE_WARNING, SEVERITYNAME_WARNING);
 
-    /** package scope */
+    /** Severity level: error.  This is the highest severity level.  */
     public static final SeverityLevel ERROR =
         new SeverityLevel(SEVERITYCODE_ERROR, SEVERITYNAME_ERROR);
 
