@@ -406,6 +406,43 @@
     <fail message="Unit tests failed - Report is available in ${report}"/>
   </target>
 
+  <!-- To run the tests need Xalan in the classpath -->
+  <target name="run.test.suite"
+          depends="compile.tests,require.junit,require.xalan"
+          description="Runs the tests for checkstyle as a test suite">
+
+    <mkdir dir="${testreport.dir}"/>
+    <property name="testinputs.dir"
+              location="src/testinputs/com/puppycrawl/tools/checkstyle"/>
+    <property name="testcases" value="**/AllTests.java"/>
+
+    <junit printsummary="yes"
+           fork="yes"
+           haltonfailure="no"
+           showoutput="yes"
+           failureProperty="tests.have.failed">
+      <jvmarg value="-Dtestinputs.dir=${testinputs.dir}"/>
+      <formatter type="xml" />
+      <classpath refid="tests.runpath"/>
+      <batchtest todir="${testreport.dir}">
+        <fileset dir="src/tests">
+          <include name="${testcases}" />
+        </fileset>
+      </batchtest>
+    </junit>
+
+    <junitreport todir="${testreport.dir}">
+      <fileset dir="${testreport.dir}">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <report todir="${testreport.dir}"/>
+    </junitreport>
+
+    <!-- if only fail had an if attribute ... ugly workaround follows -->
+    <antcall target="check.tests.failed"/>
+
+  </target>
+
   <target name="jdepend">
     <mkdir dir="target/jdep"/>
     <jdepend format="xml" outputfile="target/jdep/jdepend-report.xml">
