@@ -85,8 +85,6 @@ public class ConfigurationLoaderTest extends TestCase
         Configuration config =
             loadConfiguration("override_default_configuration.xml");
         assertEquals("checkstyle.tab.width", 4, config.getTabWidth());
-        assertTrue("checkstyle.require.packagehtml",
-            config.isRequirePackageHtml());
         assertEquals("checkstyle.cache.file", config.getCacheFile(), "cache");
         assertEquals("checkstyle.basedir", config.getBasedir(), "basedir");
         assertEquals("checkstyle.locale.language",
