@@ -1,122 +1,124 @@
 <?xml version="1.0"?>
+
 <!-- TODO: fix the loader to not validate the file
 <!DOCTYPE configuration SYSTEM "configuration.dtd">
 -->
+
 <configuration>
-    <global>
- <property name="tabWidth" value="4"/>
-    </global>
- <check classname="com.puppycrawl.tools.checkstyle.checks.AvoidStarImport"/>
+  <global>
+    <property name="tabWidth" value="4"/>
+  </global>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.AvoidStarImport"/>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck"/>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.FileLengthCheck"/>
-
-
-    <check classname="com.puppycrawl.tools.checkstyle.checks.HeaderCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalInstantiationCheck"/>
-
-    <check classname="com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheck"/>
-
-    <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck">
-        <property name="checkUnusedThrows" value="true"/>
-    </check>
-
-    <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocVariableCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.LineLengthCheck"/>
-
-    <check classname="com.puppycrawl.tools.checkstyle.checks.LocalFinalVariableNameCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.LocalVariableNameCheck"/>
-
-    <check classname="com.puppycrawl.tools.checkstyle.checks.MemberNameCheck">
-        <property name="format" value="^m[A-Z][a-zA-Z0-9]*$"/>
-    </check>
-
-    <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLeftCurlyCheck">
-        <property name="option" value="nl"/>
-    </check>
-
-    <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLengthCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.MethodNameCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.ModifierCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.NeedBracesCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck"/>
-
-    <!-- Dot operator -->
-    <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheck">
-        <tokens>
-           DOT
-        </tokens>
-        <property name="allowLineBreaks" value="true"/>
-    </check>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck">
-        <tokens>
-           DOT
-        </tokens>
-        <property name="allowLineBreaks" value="true"/>
-    </check>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.FileLengthCheck"/>
 
 
+  <check classname="com.puppycrawl.tools.checkstyle.checks.HeaderCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalInstantiationCheck"/>
+
+  <check classname="com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheck"/>
+
+  <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck">
+    <property name="checkUnusedThrows" value="true"/>
+  </check>
+
+  <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocVariableCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.LineLengthCheck"/>
+
+  <check classname="com.puppycrawl.tools.checkstyle.checks.LocalFinalVariableNameCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.LocalVariableNameCheck"/>
+
+  <check classname="com.puppycrawl.tools.checkstyle.checks.MemberNameCheck">
+    <property name="format" value="^m[A-Z][a-zA-Z0-9]*$"/>
+  </check>
+
+  <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLeftCurlyCheck">
+    <property name="option" value="nl"/>
+  </check>
+
+  <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLengthCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.MethodNameCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.ModifierCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.NeedBracesCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck"/>
+
+  <!-- Dot operator -->
+  <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheck">
+    <tokens>
+      DOT
+    </tokens>
+    <property name="allowLineBreaks" value="true"/>
+  </check>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck">
+    <tokens>
+      DOT
+    </tokens>
+    <property name="allowLineBreaks" value="true"/>
+  </check>
 
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck">
-        <tokens>
-            ASSIGN, DIV_ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN, STAR_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN, SL_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, BAND_ASSIGN
-        </tokens>
-        <property name="option" value="eol"/>
-    </check>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck">
-        <property name="option" value="nlow"/>
-    </check>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.PackageNameCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck">
+    <tokens>
+      ASSIGN, DIV_ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN, STAR_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN, SL_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, BAND_ASSIGN
+    </tokens>
+    <property name="option" value="eol"/>
+  </check>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck">
-        <property name="format" value="^a[A-Z][a-zA-Z0-9]*$"/>
-    </check>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck">
+    <property name="option" value="nlow"/>
+  </check>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNumberCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.ParenPadCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.PublicMemberNameCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.RedundantImportCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.RedundantModifierCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.RegexpHeaderCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.PackageNameCheck"/>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck">
-        <property name="option" value="alone"/>
-    </check>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck">
+    <property name="format" value="^a[A-Z][a-zA-Z0-9]*$"/>
+  </check>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanExpressionCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanReturnCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNumberCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.ParenPadCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.PublicMemberNameCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.RedundantImportCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.RedundantModifierCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.RegexpHeaderCheck"/>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.StaticVariableNameCheck">
-        <property name="format" value="^s[A-Z][a-zA-Z0-9]*$"/>
-    </check>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck">
+    <property name="option" value="alone"/>
+  </check>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.TabCharacterCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanExpressionCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanReturnCheck"/>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.TypeLeftCurlyCheck">
-        <property name="option" value="nl"/>
-    </check>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.StaticVariableNameCheck">
+    <property name="format" value="^s[A-Z][a-zA-Z0-9]*$"/>
+  </check>
 
-    <check classname="com.puppycrawl.tools.checkstyle.checks.TypeNameCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.UnusedImportsCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.UpperEllCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.TabCharacterCheck"/>
 
-    <!--
-    <check classname="com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck">
-        <property name="format" value="System.out.println"/>
-    </check>
-    -->
+  <check classname="com.puppycrawl.tools.checkstyle.checks.TypeLeftCurlyCheck">
+    <property name="option" value="nl"/>
+  </check>
+
+  <check classname="com.puppycrawl.tools.checkstyle.checks.TypeNameCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.UnusedImportsCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.UpperEllCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundCheck"/>
+
+  <!--
+  <check classname="com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck">
+    <property name="format" value="System.out.println"/>
+  </check>
+  -->
 
 </configuration>
