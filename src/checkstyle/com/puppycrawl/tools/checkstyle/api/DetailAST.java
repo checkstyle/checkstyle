@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.Arrays;
+import java.util.BitSet;
 
 import antlr.CommonAST;
 import antlr.Token;
@@ -52,12 +52,11 @@ public final class DetailAST
     private DetailAST mParent;
 
     /**
-     * All token types in this branch, sorted.
-     *
-     * Note: This is not a Set to avoid creating zillions of
-     * Integer objects in branchContains().
+     * All token types in this branch.
+     * Token 'x' (where x is an int) is in this branch
+     * if mBranchTokenTypes.get(x) is true.
      */
-    private int[] mBranchTokenTypes = null;
+    private BitSet mBranchTokenTypes = null;
 
     /** @see antlr.CommonAST **/
     public void initialize(Token aTok)
@@ -209,28 +208,22 @@ public final class DetailAST
     /**
      * @return the token types that occur in the branch as a sorted set.
      */
-    private int[] getBranchTokenTypes()
+    private BitSet getBranchTokenTypes()
     {
         // lazy init
         if (mBranchTokenTypes == null) {
 
-            // TODO: improve algorithm to avoid most array creation
-            int[] bag = new int[] {getType()};
+            mBranchTokenTypes = new BitSet();
+            mBranchTokenTypes.set(getType());
 
             // add union of all childs
             DetailAST child = (DetailAST) getFirstChild();
             while (child != null) {
-                final int[] childTypes = child.getBranchTokenTypes();
-                final int[] savedBag = bag;
-                bag = new int[savedBag.length + childTypes.length];
-                System.arraycopy(savedBag, 0, bag, 0, savedBag.length);
-                System.arraycopy(childTypes, 0, bag, savedBag.length,
-                        childTypes.length);
+                final BitSet childTypes = child.getBranchTokenTypes();
+                mBranchTokenTypes.or(childTypes);
+
                 child = (DetailAST) child.getNextSibling();
             }
-            // TODO: remove duplicates to speed up searching
-            mBranchTokenTypes = bag;
-            Arrays.sort(mBranchTokenTypes);
         }
         return mBranchTokenTypes;
     }
@@ -244,7 +237,7 @@ public final class DetailAST
      */
     public boolean branchContains(int aType)
     {
-        return Arrays.binarySearch(getBranchTokenTypes(), aType) >= 0;
+        return getBranchTokenTypes().get(aType);
     }
 
     /**
