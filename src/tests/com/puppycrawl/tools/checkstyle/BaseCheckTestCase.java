@@ -68,6 +68,12 @@ public abstract class BaseCheckTestCase
         return f.getCanonicalPath();
     }
 
+    protected void verify(Configuration aConfig, String aFileName, String[] aExpected)
+            throws Exception
+    {
+        verify(createChecker(aConfig), aFileName, aFileName, aExpected);
+    }
+
     protected void verify(Checker aC, String aFileName, String[] aExpected)
             throws Exception
     {

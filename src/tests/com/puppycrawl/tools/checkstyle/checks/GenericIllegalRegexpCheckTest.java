@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class GenericIllegalRegexpCheckTest
     extends BaseCheckTestCase
@@ -12,11 +13,10 @@ public class GenericIllegalRegexpCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(GenericIllegalRegexpCheck.class);
         checkConfig.addAttribute("format", illegal);
-        final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {
             "69: Line matches the illegal pattern '" + illegal + "'."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, fname, expected);
     }
 }
