@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.UnusedImportsCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class UnusedImportsCheckTest
     extends BaseCheckTestCase
@@ -10,8 +11,6 @@ public class UnusedImportsCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(UnusedImportsCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputImport.java");
         final String[] expected = {
             "8:45: Unused import - com.puppycrawl.tools.checkstyle.GlobalProperties.",
             "11:8: Unused import - java.lang.String.",
@@ -21,6 +20,6 @@ public class UnusedImportsCheckTest
             "20:8: Unused import - javax.swing.JToggleButton.",
             "22:8: Unused import - javax.swing.BorderFactory.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputImport.java"), expected);
     }
 }

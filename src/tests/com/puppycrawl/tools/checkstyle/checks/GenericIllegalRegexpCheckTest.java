@@ -13,10 +13,9 @@ public class GenericIllegalRegexpCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(GenericIllegalRegexpCheck.class);
         checkConfig.addAttribute("format", illegal);
-        final String fname = getPath("InputSemantic.java");
         final String[] expected = {
             "69: Line matches the illegal pattern '" + illegal + "'."
         };
-        verify(checkConfig, fname, expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 }

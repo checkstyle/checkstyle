@@ -1,6 +1,10 @@
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.checks.AvoidStarImportTest;
 import com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.IllegalImportCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.RedundantImportCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.UnusedImportsCheckTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 

@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class IllegalImportCheckTest
 extends BaseCheckTestCase
@@ -11,12 +12,10 @@ extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalImportCheck.class);
         checkConfig.addAttribute("illegalPkgs", "java.io");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputImport.java");
         final String[] expected = {
             "9:1: Import from illegal package - java.io.*.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputImport.java"), expected);
     }
 
     public void testWithDefault()
@@ -24,11 +23,9 @@ extends BaseCheckTestCase
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalImportCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputImport.java");
         final String[] expected = {
             "15:1: Import from illegal package - sun.net.ftpclient.FtpClient.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputImport.java"), expected);
     }
 }
