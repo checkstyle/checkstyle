@@ -28,14 +28,9 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
-import java.io.InputStream;
-import java.io.IOException;
 
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
-import org.apache.bcel.classfile.JavaClass;
-import org.apache.bcel.classfile.DescendingVisitor;
-import org.apache.bcel.classfile.ClassParser;
 
 /**
  * Verifier of Java rules. Each rule verifier takes the form of
@@ -179,7 +174,6 @@ class Verifier
      **/
     LocalizedMessage[] getMessages()
     {
-        checkUnused();
         checkImports();
         return mMessages.getMessages();
     }
@@ -1490,59 +1484,6 @@ class Verifier
     {
         final int i = aType.lastIndexOf(".");
         return (i == -1) ? aType : aType.substring(i + 1);
-    }
-
-    /**
-     * Checks for unused variables using BCEL.
-     */
-    private void checkUnused()
-    {
-        if (!mConfig.isCheckUnusedFields()) {
-            return;
-        }
-
-        final Iterator typeNames = mTypeFieldsMap.keySet().iterator();
-        while (typeNames.hasNext()) {
-            final String type = (String) typeNames.next();
-            String cname = type.replace('.', '$');
-            if (mPkgName != null) {
-                cname = mPkgName + "." + cname;
-            }
-            final String fname = cname.replace('.', '/') + ".class";
-            final InputStream is =
-                mConfig.getClassLoader().getResourceAsStream(fname);
-
-            final ClassParser parser = new ClassParser(is, cname);
-            JavaClass jc = null;
-            try {
-                jc = parser.parse();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-                return;
-            }
-            catch (ClassFormatError e) {
-                e.printStackTrace();
-                return;
-            }
-
-            // Visit the code using BCEL
-            final UnusedDetector ud = new UnusedDetector(jc);
-            final DescendingVisitor dv = new DescendingVisitor(jc, ud);
-            dv.visit();
-
-            // Report all unused fields
-            final Map typeVars = (Map) mTypeFieldsMap.get(type);
-            final String[] unusedFields = ud.getUnusedFields();
-            for (int i = 0; i < unusedFields.length; i++) {
-                final MyVariable var =
-                    (MyVariable) typeVars.get(unusedFields[i]);
-                mMessages.add(var.getLineNo(),
-                              var.getColumnNo() - 1,
-                              "field.unused",
-                              var.getText());
-            }
-        }
     }
 
     /** Check the imports that are unused or unrequired. **/
