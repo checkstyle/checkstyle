@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  * Represents the policy for checking block statements.
- * @see com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck
+ * @see com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck
  * @author Rick Giles
  */
 public final class BlockOption

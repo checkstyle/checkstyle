@@ -64,7 +64,7 @@ public class StaticVariableNameCheck
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractNameCheck */
+    /** @see com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck */
     protected final boolean mustCheckName(DetailAST aAST)
     {
         DetailAST modifiersAST = aAST.findFirstToken(TokenTypes.MODIFIERS);
