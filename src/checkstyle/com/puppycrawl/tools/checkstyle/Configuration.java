@@ -484,33 +484,6 @@ public class Configuration
         }
     }
 
-    /**
-     * @param aProps the properties set to use
-     * @param aLog where to log errors to
-     * @param aName the name of the property to parse
-     * @param aDefault the default value to use.
-     *
-     * @return the value of a WrapOpOption property. If the property is not
-     *    defined or cannot be decoded, then a default value is returned.
-     */
-    private static WrapOpOption getWrapOpOptionProperty(
-        Properties aProps,
-        String aName,
-        WrapOpOption aDefault,
-        PrintStream aLog)
-    {
-        WrapOpOption retVal = aDefault;
-        final String strRep = aProps.getProperty(aName);
-        if (strRep != null) {
-            retVal = WrapOpOption.decode(strRep);
-            if (retVal == null) {
-                aLog.println("Unable to parse " + aName
-                             + " property with value " + strRep
-                             + ", defaulting to " + aDefault + ".");
-            }
-        }
-        return retVal;
-    }
 
     /**
      * @param aName name of the boolean property
