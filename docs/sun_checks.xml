@@ -113,6 +113,8 @@
     <!-- don't allow tabs -->
     <module name="TabCharacter"/>
 
+    <!-- declare classes as final if they only have private constructors -->
+    <module name="FinalClass"/>
   </module>
 
   <!-- enforce package documentation -->

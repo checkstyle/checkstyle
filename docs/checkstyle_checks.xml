@@ -98,5 +98,6 @@
         <module name="VisibilityModifier"/>
         <module name="WhitespaceAfter"/>
         <module name="WhitespaceAround"/>
+        <module name="FinalClass"/>
     </module>
 </module>

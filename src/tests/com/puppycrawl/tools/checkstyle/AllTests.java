@@ -12,6 +12,7 @@ import com.puppycrawl.tools.checkstyle.checks.EmptyForIteratorPadCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.FileLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.FileSetCheckLifecycleTest;
+import com.puppycrawl.tools.checkstyle.checks.FinalClassCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.HeaderCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.HiddenFieldCheckTest;
@@ -133,6 +134,7 @@ public class AllTests {
         suite.addTest(new TestSuite(WhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAroundTest.class));
         suite.addTest(new TestSuite(XMLLoggerTest.class));
+        suite.addTest(new TestSuite(FinalClassCheckTest.class));
         //$JUnit-END$
         return suite;
     }
