@@ -31,6 +31,7 @@ public class WhitespaceAroundCheck
     public int[] getDefaultTokens()
     {
         return new int[] {
+            RCURLY,            // '}'
             QUESTION,          // '?'
             COLON,             // ':' TODO: dont flag after "case"
             ASSIGN,            // '='
@@ -82,6 +83,13 @@ public class WhitespaceAroundCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
+        // Check for RCURLY in array initializer
+        if ((aAST.getType() == RCURLY)
+            && (aAST.getParent().getType() == ARRAY_INIT))
+        {
+            return;
+        }
+
         final String[] lines = getLines();
         final String line = lines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;

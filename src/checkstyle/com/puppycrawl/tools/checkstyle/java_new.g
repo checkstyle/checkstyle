@@ -224,7 +224,7 @@ interfaceDefinition![DetailAST modifiers]
 classBlock
 	:	LCURLY!
 			( field | SEMI! )*
-		RCURLY!
+		RCURLY
 		{#classBlock = #([OBJBLOCK, "OBJBLOCK"], #classBlock);}
 	;
 
@@ -232,7 +232,7 @@ classBlock
 interfaceExtends
 	:	(
 		e:"extends"!
-		identifier ( COMMA! identifier )*
+		identifier ( COMMA identifier )*
 		)?
 		{#interfaceExtends = #(#[EXTENDS_CLAUSE,"EXTENDS_CLAUSE"],
 							#interfaceExtends);}
@@ -241,7 +241,7 @@ interfaceExtends
 // A class can implement several interfaces...
 implementsClause
 	:	(
-			i:"implements"! identifier ( COMMA! identifier )*
+			i:"implements"! identifier ( COMMA identifier )*
 		)?
 		{#implementsClause = #(#[IMPLEMENTS_CLAUSE,"IMPLEMENTS_CLAUSE"],
 								 #implementsClause);}
@@ -306,7 +306,7 @@ constructorBody
 		|
 		)
         (statement)*
-        RCURLY!
+        RCURLY
     ;
 
 explicitConstructorInvocation
@@ -333,7 +333,7 @@ explicitConstructorInvocation
 variableDefinitions[DetailAST mods, DetailAST t]
 	:	variableDeclarator[(DetailAST) getASTFactory().dupTree(mods),
 						   (DetailAST) getASTFactory().dupTree(t)]
-		(	COMMA!
+		(	COMMA
 			variableDeclarator[(DetailAST) getASTFactory().dupTree(mods),
 							   (DetailAST) getASTFactory().dupTree(t)]
 		)*
@@ -370,11 +370,11 @@ arrayInitializer
 						warnWhenFollowAmbig = false;
 					}
 				:
-					COMMA! initializer
+					COMMA initializer
 				)*
-				(COMMA!)?
+				(COMMA)?
 			)?
-		RCURLY!
+		RCURLY
 	;
 
 
@@ -400,13 +400,13 @@ ctorHead
 
 // This is a list of exception classes that the method is declared to throw
 throwsClause
-	:	"throws"^ identifier ( COMMA! identifier )*
+	:	"throws"^ identifier ( COMMA identifier )*
 	;
 
 
 // A list of formal parameters
 parameterDeclarationList
-	:	( parameterDeclaration ( COMMA! parameterDeclaration )* )?
+	:	( parameterDeclaration ( COMMA parameterDeclaration )* )?
 		{#parameterDeclarationList = #(#[PARAMETERS,"PARAMETERS"],
 									#parameterDeclarationList);}
 	;
@@ -437,7 +437,7 @@ compoundStatement
 	:	lc:LCURLY^ {#lc.setType(SLIST);}
 			// include the (possibly-empty) list of statements
 			(statement)*
-		RCURLY!
+		RCURLY
 	;
 
 // This production provides a slot for adding additional statement productions.
@@ -479,7 +479,7 @@ traditionalStatement
 				warnWhenFollowAmbig = false;
 			}
 		:
-			"else"! statement
+			elseStatement
 		)?
 
 	// For statement
@@ -509,7 +509,7 @@ traditionalStatement
 	// switch/case statement
 	|	"switch"^ LPAREN! expression RPAREN! LCURLY!
 			( casesGroup )*
-		RCURLY!
+		RCURLY
 
 	// exception try-catch block
 	|	tryBlock
@@ -524,6 +524,9 @@ traditionalStatement
 	|	s:SEMI {#s.setType(EMPTY_STAT);}
 	;
 
+elseStatement
+    : "else"^ statement
+    ;
 
 casesGroup
 	:	(	// CONFLICT: to which case group do the statements bind?
@@ -573,7 +576,7 @@ forIter
 tryBlock
 	:	"try"^ compoundStatement
 		(handler)*
-		( "finally"^ compoundStatement )?
+		( finallyHandler )?
 	;
 
 
@@ -581,6 +584,10 @@ tryBlock
 handler
 	:	"catch"^ LPAREN! parameterDeclaration RPAREN! compoundStatement
 	;
+
+finallyHandler
+    : "finally"^ compoundStatement
+    ;
 
 
 // expressions
@@ -626,7 +633,7 @@ expression
 
 // This is a list of expressions.
 expressionList
-	:	expression (COMMA! expression)*
+	:	expression (COMMA expression)*
 		{#expressionList = #(#[ELIST,"ELIST"], expressionList);}
 	;
 

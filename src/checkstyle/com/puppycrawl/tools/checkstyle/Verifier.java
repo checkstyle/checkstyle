@@ -34,6 +34,7 @@ import org.apache.regexp.RESyntaxException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.checks.RightCurlyOption;
 
 /**
  * Verifier of Java rules. Each rule verifier takes the form of
@@ -621,24 +622,6 @@ class Verifier
      */
     void verifyRCurly(MyCommonAST aBrace, int aStartLine)
     {
-        // check surrounded by whitespace
-        verifyWSAroundBegin(aBrace.getLineNo(),
-                            aBrace.getColumnNo() + 1,
-                            aBrace.getText());
-
-        // Check the actual brace
-        if ((mConfig.getRCurly() == RightCurlyOption.SAME)
-            && (aBrace.getLineNo() != aStartLine))
-        {
-            mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
-                          "line.same", "}");
-        }
-        else if ((mConfig.getRCurly() == RightCurlyOption.ALONE)
-                   && (aBrace.getLineNo() == aStartLine))
-        {
-            mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
-                          "line.alone", "}");
-        }
     }
 
     /**
