@@ -306,22 +306,28 @@ public class CheckStyleTask
         mConfig.setCacheFile(aCacheFile.getAbsolutePath());
     }
 
-    /** @param aTo the lefy curly placement option for methods **/
+    /** @param aTo the left curly placement option for methods **/
     public void setLCurlyMethod(String aTo)
     {
         mConfig.setLCurlyMethod(extractLeftCurlyOption(aTo));
     }
 
-    /** @param aTo the lefy curly placement option for types **/
+    /** @param aTo the left curly placement option for types **/
     public void setLCurlyType(String aTo)
     {
         mConfig.setLCurlyType(extractLeftCurlyOption(aTo));
     }
 
-    /** @param aTo the lefy curly placement option for others **/
+    /** @param aTo the left curly placement option for others **/
     public void setLCurlyOther(String aTo)
     {
         mConfig.setLCurlyOther(extractLeftCurlyOption(aTo));
+    }
+
+    /** @param aTo the right curly placement option **/
+    public void setRCurly(String aTo)
+    {
+        mConfig.setRCurly(extractRightCurlyOption(aTo));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -539,6 +545,22 @@ public class CheckStyleTask
         throws BuildException
     {
         final LeftCurlyOption opt = LeftCurlyOption.decode(aFrom);
+        if (opt == null) {
+            throw new BuildException("Unable to parse '" + aFrom + "'.",
+                                     location);
+        }
+        return opt;
+    }
+
+    /**
+     * @param aFrom String to decode the option from
+     * @return the RightCurlyOption represented by aFrom
+     * @throws BuildException if unable to decode aFrom
+     */
+    private RightCurlyOption extractRightCurlyOption(String aFrom)
+        throws BuildException
+    {
+        final RightCurlyOption opt = RightCurlyOption.decode(aFrom);
         if (opt == null) {
             throw new BuildException("Unable to parse '" + aFrom + "'.",
                                      location);
