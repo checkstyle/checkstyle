@@ -598,8 +598,25 @@ class VerifierImpl
      **/
     private String[] getJavadocBefore(int aLineNo)
     {
-        // #HACK#: should be improved to skip blank lines.
-        return (String[]) mComments.get(new Integer(aLineNo - 1));
+        int lineNo = aLineNo - 1;
+
+        // skip blank lines
+        while ((lineNo > 0) && lineIsBlank(lineNo)) {
+            lineNo--;
+        }
+
+        return (String[]) mComments.get(new Integer(lineNo));
+    }
+
+    /**
+     * Checks if the specified line is blank.
+     * @param aLineNo the line number to check
+     * @return if the specified line consists only of tabs and spaces.
+     **/
+    private boolean lineIsBlank(int aLineNo)
+    {
+        // possible improvement: avoid garbage creation in trim()
+        return "".equals(mLines[aLineNo].trim());
     }
 
     /**
