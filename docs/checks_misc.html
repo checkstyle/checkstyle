@@ -15,6 +15,15 @@ the pattern to match for to-do comments. The property type is
 <a href="property_types.html#regexp">regular expression</a> and defaults to
 <span class="default">TODO:</span>.</p>
 
+<div class="tip">
+<h4 class="tip">Tip</h4>
+
+<p>Using to-do comments is a great way to keep track of tasks that need to be
+done. By having them reported by Checkstyle makes it very hard to forget about
+them.</p>
+
+</div>
+
 
 <h2>Integer Literals</h2>
 
@@ -27,8 +36,27 @@ Specification,
 The property type is <a href="property_types.html#boolean">boolean</a> and
 defaults to <span class="default">false</span>.</p>
 
-  <li>checkstyle.illegal.instantiations"</li>
 
+<h2>illegal Instantiations</h2>
+
+<p>The property <span class="code">checkstyle.illegal.instantiations</span>
+contains the set of classes that should not be instantiated directly. The
+property type is <a href="property_types.html#stringSet">string set</a> and
+defaults to an empty set.</p>
+
+<div class="tip">
+<h4 class="tip">Tip</h4>
+
+<p>A common mistake is to create new instances of <span
+class="code">java.lang.Boolean</span> instead of using the constants <span
+class="code">TRUE</span> and <span class="code">FALSE</span> or the <span
+class="code">Boolean.valueOf()</span> factory methods. This increases the
+program's memory requirements and wastes CPU cycles during memory allocation
+and garbage collection.</p> <p>To find this error automatically, include <span
+class="code">java.lang.Boolean</span> in the list of illegal
+instantiations.</p>
+
+</div>
 
 </body>
 </html>

@@ -1,22 +1,86 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
 <head>
-  <title></title>
+  <title>Checks for Blocks</title>
   <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
 <body>
-<h1></h1>
+<h1>Checks for Blocks</h1>
 
-  <li>checkstyle.block.catch"</li>
-  <li>checkstyle.block.finally"</li>
-  <li>checkstyle.block.try"</li>
-  <li>checkstyle.ignore.braces"</li>
-  <li>checkstyle.lcurly.method"</li><p></p>
-  <li>checkstyle.lcurly.other"</li>
-  <li>checkstyle.lcurly.type"</li>
-  <li>checkstyle.rcurly"</li>
+<h2>Missing Braces</h2>
 
-  
+<p>The property <span class="code">checkstyle.ignore.braces</span> controls
+whether to ignore checking for missing braces <span class="code">{}</span>'s
+for the following constructs:</p>
+
+<ul>
+  <li><span class="code">if/else</span></li>
+  <li><span class="code">while</span></li>
+  <li><span class="code">for</span></li>
+  <li><span class="code">do/while</span></li>
+</ul>
+
+<p> The property type is <a href="property_types.html#boolean">boolean</a> and
+defaults to <span class="default">false</span>.</p>
+
+<h2>Empty Blocks</h2>
+
+<p>The property <span class="code">checkstyle.block.try</span> specifies the
+policy on how to check <span class="code">try</span> blocks. The property type
+is <a href="property_types.html#block">block policy</a> and defaults to
+<span class="default">stmt</span>.</p>
+
+<p>The property <span class="code">checkstyle.block.catch</span> specifies the
+policy on how to check <span class="code">catch</span> blocks. The property type
+is <a href="property_types.html#block">block policy</a> and defaults to
+<span class="default">text</span>.</p>
+
+<p>The property <span class="code">checkstyle.block.finally</span> specifies the
+policy on how to check <span class="code">finally</span> blocks. The property
+type is <a href="property_types.html#block">block policy</a> and defaults to
+<span class="default">stmt</span>.</p>
+
+
+<h2>left curly brace placement</h2>
+
+<p>Checkstyle enforces the correct placement of left curly braces
+<span class="code">'{'</span>.</p>
+
+<p>The property <span class="code">checkstyle.lcurly.type</span> specifies the
+policy to check the placement of the left curly brace for
+<span class="code">class</span> and <span class="code">interface</span> blocks.
+The property type is
+<a href="property_types.html#lcurly">left curly brace policy</a> and defaults
+to <span class="default">eol</span>.</p>
+
+<p>The property <span class="code">checkstyle.lcurly.method</span> specifies the
+policy to check the placement of the left curly brace for method blocks.
+The property type is
+<a href="property_types.html#lcurly">left curly brace policy</a> and defaults
+to <span class="default">eol</span>.</p>
+
+<p>The property <span class="code">checkstyle.lcurly.other</span> specifies
+the policy to check the placement of the left curly brace for all other
+blocks.  This includes <span class="code">switch</span>,
+<span class="code">while</span>, <span class="code">for</span>,
+<span class="code">do</span>, <span class="code">if</span>,
+<span class="code">else</span>, <span class="code">synchronized</span>,
+<span class="code">try</span>, <span class="code">catch</span>,
+<span class="code">finally</span> and <span class="code">static</span> blocks.
+The property type is
+<a href="property_types.html#lcurly">left curly brace policy</a> and defaults
+to <span class="default">eol</span>.</p>
+
+
+<h2>right curly brace placement</h2>
+
+<p>The property <span class="code">checkstyle.rcurly</span> specifies the
+policy to check the placement of the right curly braces
+<span class="code">'}'</span> for blocks.
+The property type is
+<a href="property_types.html#rcurly">right curly brace policy</a> and defaults
+to <span class="default">same</span>.</p>
+
 </body>
 </html>

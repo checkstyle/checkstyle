@@ -110,6 +110,138 @@ following table describes the valid options:</p>
 </table>
 
 
+<h2><a name="block">Block Policy</a></h2>
+
+<p>This property represents the policy for checking block statements. The
+following table describes the valid options:</p>
+
+<table border="1" summary="block options">
+  <tr class="header">
+    <td>Option</td>
+    <td>Definition</td>
+  </tr>
+  <tr>
+    <td><span class="code">ignore</span></td>
+    <td>Ignore empty blocks.</td>
+  </tr>
+  <tr>
+    <td><span class="code">text</span></td>
+    <td>Require that there is some text in the block. For example:
+<pre>
+    catch (Exception ex) {
+        // This is a bad coding practice
+    }
+</pre>
+  </tr>
+  <tr>
+    <td><span class="code">stmt</span></td>
+    <td>Require that there is a statement in the block. For example:
+<pre>
+    finally {
+        lock.release();
+    }
+</pre>
+  </tr>
+</table>
+
+
+<h2><a name="lcurly">left curly brace policy</a></h2>
+
+<p>This property represents the policy for checking the placement of a left
+curly brace (<span class="code">'{'</span>). The following table describes the
+valid options:</p>
+
+<table border="1" summary="left curly options">
+
+  <tr class="header">
+    <td>Option</td>
+    <td>Definition</td>
+  </tr>
+
+  <tr>
+    <td><span class="code">ignore</span></td>
+    <td>Ignore the placement of the brace.</td>
+  </tr>
+
+  <tr>
+    <td><span class="code">eol</span></td>
+    <td>The brace must always be on the end of the line. For example:
+<pre>
+    if (condition) {
+        ...
+</pre>
+  </tr>
+
+  <tr>
+    <td><span class="code">nl</span></td>
+    <td>The brace must always be on a new line. For example:
+<pre>
+    if (condition)
+    {
+        ...
+</pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><span class="code">nlow</span></td>
+    <td>If the brace will fit on the first line of the statement, taking into account maximum line length, then apply <span class="code">eol</span> rule. Otherwise apply the <span class="code">nl</span> rule. <span class="code">nlow</span> is a mnemonic for "new line on wrap". For the example above Checkstyle will enforce:
+<pre>
+    if (condition) {
+        ...
+</pre>
+      But for a statement spanning multiple lines, Checkstyle will enforce:
+<pre>
+    if (condition1 &amp;&amp; condition2 &amp;&amp;
+        condition3 &amp;&amp; condition4)
+    {
+        ...
+</pre>
+  </tr>
+</table>
+
+
+<h2><a name="rcurly">right curly brace policy</a></h2>
+
+<p>This property represents the policy for checking the placement of a right
+curly brace (<span class="code">'}'</span>). The following table describes the
+valid options:</p>
+
+<table border="1" summary="right curly options">
+  <tr class="header">
+    <td>Option</td>
+    <td>Definition</td>
+  </tr>
+
+  <tr>
+    <td><span class="code">ignore</span></td>
+    <td>Ignore the placement of the brace.</td>
+  </tr>
+
+  <tr>
+    <td><span class="code">same</span></td>
+    <td>The brace must be on the same line as the next statement. For example:
+<pre>
+    try {
+        ...
+    } finally {
+</pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><span class="code">alone</span></td>
+    <td>The brace must be alone on the line. For example:
+<pre>
+    try {
+        ...
+    }
+    finally {
+</pre>
+  </tr>
+</table>
+
+
 <h2><a name="scope">Scope</a></h2>
 
 <p>This property represents a Java scope. The valid options are:</p>
