@@ -4,6 +4,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.Properties;
+
 /**
  * Test case for assert handling fallback.
  * This file uses "assert" is as an identifier, so the default grammar
@@ -17,5 +19,6 @@ class InputAssertIdentifier
     {
         int assert = 1;
         int a = assert;
+        final Properties p = null;
     }
 }
