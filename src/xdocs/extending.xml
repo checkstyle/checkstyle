@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<document>
+
+  <properties>
+    <title>Extending Checkstyle</title>
+    <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
+  </properties>
+
+  <body>
+    <p>
+      This section covers the ways that Checkstyle's behaviour can be
+      extended, including writing your own checks.
+    </p>
+  </body>
+</document>
+
+
+
+
+
