@@ -299,9 +299,12 @@
       <p class="body">
       Checks for uncommented main() methods (debugging leftovers).
       </p>
-      <p class="body"> Rationale: main() method can be often used for
-      debug puposes.  Thus most of main() method should be
-      removed/commented out of the sources.
+      <p class="body"> Rationale: A main() method is often used for
+      debug puposes. When debugging is finished, developers often forget
+      to remove the method, which changes the API and increases the size
+      of the resulting class/jar file. With the exception of the real
+      program entry points, all main() methods should be removed/commented
+      out of the sources.
       </p>
       <h4>Properties</h4>
       <table width="100%" border="1" cellpadding="5" class="body">
@@ -313,8 +316,8 @@
         </tr>
         <tr>
           <td>excludedClasses</td>
-          <td>pattern for qualified names of classes which ar allowed
-          to have main method.</td>
+          <td>pattern for qualified names of classes which are allowed
+          to have a main method.</td>
           <td><a href="property_types.html#regexp">regular expression</a></td>
           <td><span class="default">^$</span></td>
         </tr>
