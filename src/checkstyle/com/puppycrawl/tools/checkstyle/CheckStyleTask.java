@@ -64,6 +64,9 @@ public class CheckStyleTask
     /** config file containing configuration */
     private File mConfigFile;
 
+    /** contains package names */
+    private File mPackageNamesFile = null;
+    
     /** whether to fail build on violations */
     private boolean mFailOnViolation = true;
 
@@ -160,6 +163,12 @@ public class CheckStyleTask
         mConfigFile = aFile;
     }
 
+    /** @param aFile the package names file to use */
+    public void setPackageNamesFile(File aFile)
+    {
+        mPackageNamesFile = aFile;
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Setters for Checker configuration attributes
     ////////////////////////////////////////////////////////////////////////////
@@ -212,6 +221,14 @@ public class CheckStyleTask
                 context.add("classloader", loader);
 
                 c = new Checker();
+                
+                //load the set of package names
+                if (mPackageNamesFile != null) {
+                    ModuleFactory moduleFactory =
+                        PackageNamesLoader.loadModuleFactory(
+                        mPackageNamesFile.getAbsolutePath());
+                    c.setModuleFactory(moduleFactory);
+                }
                 c.contextualize(context);
                 c.configure(config);
 
