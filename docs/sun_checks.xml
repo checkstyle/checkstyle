@@ -104,10 +104,13 @@
     <!-- flag reminder comments -->
     <module name="TodoComment"/>
 
-    <!-- length limits -->
+    <!-- enforce default length limits -->
     <module name="LineLength"/>
     <module name="MethodLength"/>
     <module name="FileLength"/>
+
+    <!-- don't allow tabs -->
+    <module name="TabCharacter"/>
 
   </module>
 
