@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html 
+<!DOCTYPE html
      PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -8,234 +8,277 @@
   <link rel="stylesheet" type="text/css" href="mystyle.css"/>
 </head>
 
-  <body>
-  <!-- The header -->
-  <table border="0" width="100%" summary="header layout">
-    <tr>
-      <td><h1>Checks for Size Violations</h1></td>
-      <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
-    </tr>
-  </table>
-  <!-- content -->
-  <table border="0" width="100%" cellpadding="5" summary="body layout">
-    <tr>
-      <!--Left menu-->
-      <td class="menu" valign="top">
-        <ul>
-          <li>
-            <a href="#LineLengthCheck">LineLengthCheck</a>
-          </li>
-          <li>
-            <a href="#MethodLengthCheck">MethodLengthCheck</a>
-          </li>
-          <li>
-            <a href="#ParameterNumberCheck">ParameterNumberCheck</a>
-          </li>
-        </ul>
-      </td>
-      <!--Content-->
-      <td class="content" valign="top" align="left"><a name="LineLengthCheck"></a> <h2>LineLengthCheck</h2>
-        <h4>Description</h4>
-        <p class="body">
-        Checks for long lines.
-        </p>
-        <p class="body">
-        Rationale: Long lines are hard to read in printouts or if developers have 
-        limited screen space for the source code, e.g. if the IDE displays additional 
-        information like project tree, class hierarchy, etc.
-        </p>
+<body>
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td><h1>Checks for Size Violations</h1></td>
+    <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
+  </tr>
+</table>
+<!-- content -->
+<table border="0" width="100%" cellpadding="5" summary="body layout">
+  <tr>
+    <!--Left menu-->
+    <td class="menu" valign="top">
+      <ul>
+        <li>
+          <a href="#FileLengthCheck">FileLengthCheck</a>
+        </li>
+        <li>
+          <a href="#LineLengthCheck">LineLengthCheck</a>
+        </li>
+        <li>
+          <a href="#MethodLengthCheck">MethodLengthCheck</a>
+        </li>
+        <li>
+          <a href="#ParameterNumberCheck">ParameterNumberCheck</a>
+        </li>
+      </ul>
+    </td>
+    <!--Content-->
+    <td class="content" valign="top" align="left">
 
-        <h4>Properties</h4>
+      <a name="FileLengthCheck"></a> <h2>FileLengthCheck</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for long source files.
+      </p>
+      <p class="body">
+      Rationale: If a source file becomes very long it is hard to understand. 
+      Therefore long classes should usually be refactored into several individual 
+      classes that focus on a specific task.
+      </p>
 
-        <table width="100%" border="1" cellpadding="5" class="body">
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>ignorePattern</td>
-            <td>pattern for lines to ignore</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td>^$</td>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>maximum allowable line length</td>
-            <td><a href="property_types.html#integer">integer</a></td>
-            <td>80</td>
-          </tr>
-          <tr>
-            <td>tabWidth</td>
-            <td>number of characters to expand a tab character</td>
-            <td><a href="property_types.html#integer">integer</a></td>
-            <td>8</td>
-          </tr>
-        </table>
+      <h4>Properties</h4>
 
-        <h4>Examples</h4>
-        <p class="body">
-        To configure the check to accept lines up to 120 characters long:
-        </p>
-        <pre class="body">
-&lt;config name="LineLengthCheck"&gt;
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr>
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>maximum allowable number of lines</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td>2000</td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check to accept files with up to 1500 lines:
+      </p>
+      <pre class="body">
+&lt;config name="FileLength"&gt;
+      &lt;property name="max" value="1500"/&gt;
+&lt;/config&gt;
+        </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="TreeWalker">TreeWalker</a>
+      </p>
+
+      <a name="LineLengthCheck"></a> <h2>LineLengthCheck</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for long lines.
+      </p>
+      <p class="body">
+      Rationale: Long lines are hard to read in printouts or if developers have 
+      limited screen space for the source code, e.g. if the IDE displays additional 
+      information like project tree, class hierarchy, etc.
+      </p>
+
+      <h4>Properties</h4>
+
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr>
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>ignorePattern</td>
+          <td>pattern for lines to ignore</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td>^$</td>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>maximum allowable line length</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td>80</td>
+        </tr>
+        <tr>
+          <td>tabWidth</td>
+          <td>number of characters to expand a tab character</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td>8</td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check to accept lines up to 120 characters long:
+      </p>
+      <pre class="body">
+&lt;config name="LineLength"&gt;
       &lt;property name="max" value="120"/&gt;
 &lt;/config&gt;
         </pre>
-        <p class="body">
-        To configure the check to ignore lines that begin with &quot; * &quot;, followed 
-        by just one word, such as within a Javadoc comment:
-        </p>
-        <pre class="body">
-&lt;config name="LineLengthCheck"&gt;
+      <p class="body">
+      To configure the check to ignore lines that begin with &quot; * &quot;, followed 
+      by just one word, such as within a Javadoc comment:
+      </p>
+      <pre class="body">
+&lt;config name="LineLength"&gt;
    &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
 &lt;/config&gt;
         </pre>
 
-        <h4>Notes</h4>
-        <p class="body">
-        Support for the special handling of imports in CheckStyle Version 2 has been 
-        dropped as it is a special case of regexp: The user can set the ignorePattern to 
-        "^import" and achieve the same effect.
-        </p>
+      <h4>Notes</h4>
+      <p class="body">
+      Support for the special handling of imports in CheckStyle Version 2 has been 
+      dropped as it is a special case of regexp: The user can set the ignorePattern to 
+      "^import" and achieve the same effect.
+      </p>
 
-        <h4>Package</h4>
-        <p class="body">
-        com.puppycrawl.tools.checkstyle.checks
-        </p>
-        <h4>Parent Module</h4>
-        <p class="body">
-        <a href="TreeWalker">TreeWalker</a>
-        </p>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="TreeWalker">TreeWalker</a>
+      </p>
 
-        <a name="MethodLengthCheck"></a> <h2>MethodLengthCheck</h2> <h4>Description</h4>
-        <p class="body">
-        Checks for long methods and constructors.
-        </p>
-        <p class="body">
-        Rationale: If a method becomes very long it is hard to understand. Therefore 
-        long methods should usually be refactored into several individual methods that 
-        focus on a specific task.
-        </p>
+      <a name="MethodLengthCheck"></a> <h2>MethodLengthCheck</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for long methods and constructors.
+      </p>
+      <p class="body">
+      Rationale: If a method becomes very long it is hard to understand. Therefore 
+      long methods should usually be refactored into several individual methods that 
+      focus on a specific task.
+      </p>
 
-        <h4>Properties</h4>
+      <h4>Properties</h4>
 
-        <table width="100%" border="1" cellpadding="5" class="body">
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>ignorePattern</td>
-            <td>pattern for lines to ignore</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td>^$</td>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>maximum allowable number of lines</td>
-            <td><a href="property_types.html#integer">integer</a></td>
-            <td>150</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>blocks to check</td>
-            <td>METHOD_DEF, CTOR_DEF</td>
-            <td>METHOD_DEF, CTOR_DEF</td>
-          </tr>
-        </table>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr>
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>maximum allowable number of lines</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td>150</td>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>blocks to check</td>
+          <td>subset of acceptable tokens METHOD_DEF, CTOR_DEF</td>
+          <td>METHOD_DEF, CTOR_DEF</td>
+        </tr>
+      </table>
 
-        <h4>Examples</h4>
-        <p class="body">
-        To configure the check:
-        </p>
-        <pre class="body">
-&lt;config name="MethodLengthCheck"/&gt;
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;config name="MethodLength"/&gt;
         </pre>
-        <p class="body">
-        To configure the check so that it accepts methods with at most 60 lines:
-        </p>
-        <pre class="body">
-&lt;config name="MethodLengthCheck"&gt;
+      <p class="body">
+      To configure the check so that it accepts methods with at most 60 lines:
+      </p>
+      <pre class="body">
+&lt;config name="MethodLength"&gt;
    &lt;property name="tokens" value="METHOD_DEF"/&gt;
    &lt;property name="max" value="60"/&gt;
 &lt;/config&gt;
         </pre>
 
-        <h4>Package</h4>
-        <p class="body">
-        com.puppycrawl.tools.checkstyle.checks
-        </p>
-        <h4>Parent Module</h4>
-        <p class="body">
-        <a href="TreeWalker">TreeWalker</a>
-        </p>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="TreeWalker">TreeWalker</a>
+      </p>
 
 
-      <a name="ParameterNumberCheck"></a> 
-      <h2>ParameterNumberCheck</h2> <h4>Description</h4>
-        <p class="body">
-        Checks the number of parameters of a method or constructor.
-        </p>
+      <a name="ParameterNumberCheck"></a> <h2>ParameterNumberCheck</h2> <h4>Description</h4>
+      <p class="body">
+      Checks the number of parameters of a method or constructor.
+      </p>
 
-        <h4>Properties</h4>
+      <h4>Properties</h4>
 
-        <table width="100%" border="1" cellpadding="5" class="body">
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>maximum allowable number of parameters</td>
-            <td><a href="property_types.html#integer">integer</a></td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>blocks to check</td>
-            <td>METHOD_DEF, CTOR_DEF</td>
-            <td>METHOD_DEF, CTOR_DEF</td>
-          </tr>
-        </table>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr>
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>maximum allowable number of parameters</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td>7</td>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>declarations to check</td>
+          <td>subset of acceptable tokens METHOD_DEF, CTOR_DEF</td>
+          <td>METHOD_DEF, CTOR_DEF</td>
+        </tr>
+      </table>
 
-        <h4>Examples</h4>
-        <p class="body">
- To configure the check:
-</p>
-<pre class="body">
-&lt;config name="ParameterNumberCheck"/&gt;
-</pre> 
-<p class="body">
-To configure the check to allow 10 parameters for a method:
-</p>
-<pre class="body">
-&lt;config name="ParameterNumberCheck"&gt;
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;config name="ParameterNumber"/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to allow 10 parameters for a method:
+      </p>
+      <pre class="body">
+&lt;config name="ParameterNumber"&gt;
    &lt;property name="max" value="10"/&gt;
    &lt;property name="tokens" value="METHOD_DEF"/&gt;
 &lt;/config&gt;
-</pre>
-        <h4>Package</h4>
-        <p class="body">
-        com.puppycrawl.tools.checkstyle.checks
-        </p>
-        <h4>Parent Module</h4>
-        <p class="body">
-        <a href="TreeWalker">TreeWalker</a>
-        </p>
-      </td>
-    </tr>
-  </table>
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="TreeWalker">TreeWalker</a>
+      </p>
+    </td>
+  </tr>
+</table>
 
-  <hr />
-  <p>
-  Copyright &copy; 2002 Oliver Burn. All rights Reserved.
-  </p>
+<hr />
+<p>
+Copyright &copy; 2002 Oliver Burn. All rights Reserved.
+</p>
 
-  </body>
+</body>
 </html>
