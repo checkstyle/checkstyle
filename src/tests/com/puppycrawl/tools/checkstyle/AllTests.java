@@ -9,6 +9,7 @@ import com.puppycrawl.tools.checkstyle.checks.DesignForInheritanceCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.DoubleCheckedLockingCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EmptyForIteratorPadCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.EmptyStatementCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.FileLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.FileSetCheckLifecycleTest;
@@ -84,6 +85,7 @@ public class AllTests {
         suite.addTest(new TestSuite(DoubleCheckedLockingCheckTest.class));
         suite.addTest(new TestSuite(EmptyBlockCheckTest.class));
         suite.addTest(new TestSuite(EmptyForIteratorPadCheckTest.class));
+        suite.addTest(new TestSuite(EmptyStatementCheckTest.class));
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
         suite.addTest(new TestSuite(FileLengthCheckTest.class));
         suite.addTest(new TestSuite(FileSetCheckLifecycleTest.class));
