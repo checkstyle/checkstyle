@@ -129,22 +129,26 @@ public class Utils
         int aParameterCount)
     {
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
-        if (objBlock != null) {
-            DetailAST child = (DetailAST) objBlock.getFirstChild();
-            while (child != null) {
-                if (child.getType() == TokenTypes.CTOR_DEF) {
-                    final DetailAST parameters =
-                        child.findFirstToken(TokenTypes.PARAMETERS);
-                    if (Utils.isPublic(child)
-                        && (parameters.getChildCount() == aParameterCount))
-                    {
-                        return true;
-                    }
-                }
-                child = (DetailAST) child.getNextSibling();
-            }
+        if (objBlock == null) {
+            return false;
         }
-        return false;
+        int constructorCount = 0;
+        DetailAST child = (DetailAST) objBlock.getFirstChild();
+        while (child != null) {
+            if (child.getType() == TokenTypes.CTOR_DEF) {
+                constructorCount++;
+                final DetailAST parameters =
+                    child.findFirstToken(TokenTypes.PARAMETERS);
+                if (Utils.isPublic(child)
+                    && (parameters.getChildCount() == aParameterCount))
+                {
+                    return true;
+                }
+            }
+            child = (DetailAST) child.getNextSibling();
+        }
+        // implicit, no parameter constructor?
+        return ((constructorCount == 0) && (aParameterCount == 0));
     }
 
     /**

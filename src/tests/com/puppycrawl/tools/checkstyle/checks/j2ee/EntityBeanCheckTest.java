@@ -15,7 +15,20 @@ public class EntityBeanCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("j2ee/InputEntityBean.java"), expected);
     }
-    
+        
+    public void testMissingConstructor()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(EntityBeanCheck.class);
+        final String[] expected = {
+            "13:14: Entity bean 'InputEntityBeanMissingConstructor' must have a public constructor with no parameters.",
+        };
+        verify(
+            checkConfig,
+            getPath("j2ee/InputEntityBeanMissingConstructor.java"),
+            expected);
+    }
     public void testMixedBean()
             throws Exception
     {
