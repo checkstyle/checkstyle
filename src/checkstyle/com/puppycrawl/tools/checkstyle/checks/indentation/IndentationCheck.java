@@ -102,6 +102,8 @@ import org.apache.commons.collections.ArrayStack;
  *
  * @author jrichard
  * @author o_sukhodolsky
+ *
+ * @checkstyle-docpage misc
  */
 
 public class IndentationCheck extends Check
