@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 
 /**
  * Checks the placement of left curly braces on methods.
@@ -33,23 +34,16 @@ public class MethodLeftCurlyCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.CTOR_DEF,
-                          TokenTypes.METHOD_DEF};
+        return new int[] {TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST brace = aAST.getLastChild();
-        // TODO: should check for modifiers
-        final DetailAST startToken;
-        if (aAST.getType() == TokenTypes.CTOR_DEF) {
-            startToken = (DetailAST) aAST.getFirstChild().getNextSibling();
+        final DetailAST openingBrace = aAST.findFirstToken(TokenTypes.SLIST);
+
+        if (openingBrace != null) {
+            verifyBrace(openingBrace, aAST);
         }
-        else {
-            startToken = (DetailAST)
-                aAST.getFirstChild().getNextSibling().getNextSibling();
-        }
-        verifyBrace(brace, startToken);
     }
 }
