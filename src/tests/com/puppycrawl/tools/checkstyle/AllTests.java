@@ -24,6 +24,7 @@ public class AllTests {
         suite.addTest(new TestSuite(EmptyBlockCheckTest.class));
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
         suite.addTest(new TestSuite(FileLengthCheckTest.class));
+        suite.addTest(new TestSuite(FileSetCheckLifecycleTest.class));
         suite.addTest(new TestSuite(GenericIllegalRegexpCheckTest.class));
         suite.addTest(new TestSuite(HeaderCheckTest.class));
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
@@ -36,7 +37,6 @@ public class AllTests {
         suite.addTest(new TestSuite(LineLengthCheckTest.class));
         suite.addTest(new TestSuite(LocalFinalVariableNameCheckTest.class));
         suite.addTest(new TestSuite(LocalVariableNameCheckTest.class));
-        suite.addTest(new TestSuite(LocalizedMessageTest.class));
         suite.addTest(new TestSuite(MemberNameCheckTest.class));
         suite.addTest(new TestSuite(MethodLeftCurlyCheckTest.class));
         suite.addTest(new TestSuite(MethodLengthCheckTest.class));
@@ -63,6 +63,7 @@ public class AllTests {
         suite.addTest(new TestSuite(StringArrayReaderTest.class));
         suite.addTest(new TestSuite(TabCharacterCheckTest.class));
         suite.addTest(new TestSuite(TodoCommentCheckTest.class));
+        suite.addTest(new TestSuite(TranslationCheckTest.class));
         suite.addTest(new TestSuite(TypeLeftCurlyCheckTest.class));
         suite.addTest(new TestSuite(TypeNameCheckTest.class));
         suite.addTest(new TestSuite(UnusedImportsCheckTest.class));
