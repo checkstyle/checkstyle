@@ -28,7 +28,8 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * after a left parenthesis and before a right parenthesis, or such spaces are
  * forbidden, with the exception that it does
  * not check for padding of the right parenthesis  at an empty for iterator.
- * Use Check {@link EmptyForIteratorPad} to validate empty for iterators.
+ * Use Check {@link EmptyForIteratorPadCheck EmptyForIteratorPad} to validate
+ * empty for iterators.
  * <p>
  * </p>
  * The policy to verify is specified using the {@link PadOption} class and
