@@ -27,8 +27,7 @@ public abstract class LeftCurlyCheck
      */  
     public LeftCurlyCheck()
     {
-        super();
-        mOption = LeftCurlyOption.EOL;
+        super(LeftCurlyOption.EOL);
     }
     
     /** @see the hack above */
@@ -62,13 +61,13 @@ public abstract class LeftCurlyCheck
         {
             // ignore
         }
-        else if (mOption == LeftCurlyOption.NL) {
+        else if (getAbstractOption() == LeftCurlyOption.NL) {
             if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
                 log(aBrace.getLineNo(), aBrace.getColumnNo(),
                     "line.new", "{");
             }
         }
-        else if (mOption == LeftCurlyOption.EOL) {
+        else if (getAbstractOption() == LeftCurlyOption.EOL) {
             if (Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)
                 && ((prevLineLen + 2) <= mMaxLineLength))
             {
@@ -76,7 +75,7 @@ public abstract class LeftCurlyCheck
                     "line.previous", "{");
             }
         }
-        else if (mOption == LeftCurlyOption.NLOW) {
+        else if (getAbstractOption() == LeftCurlyOption.NLOW) {
             if (aStartToken.getLineNo() == aBrace.getLineNo()) {
                 // all ok as on the same line
             }

@@ -37,8 +37,7 @@ public class RightCurlyCheck
      */  
     public RightCurlyCheck()
     {
-        super();
-        mOption = RightCurlyOption.SAME;
+        super(RightCurlyOption.SAME);
     }
     
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -72,13 +71,13 @@ public class RightCurlyCheck
 
         // If have both tokens, perform the check
         if ((rcurly != null) && (nextToken != null)) {
-            if ((mOption == RightCurlyOption.SAME)
+            if ((getAbstractOption() == RightCurlyOption.SAME)
                 && (rcurly.getLineNo() != nextToken.getLineNo()))
             {
                 log(rcurly.getLineNo(), rcurly.getColumnNo(),
                     "line.same", "}");
             }
-            else if ((mOption == RightCurlyOption.ALONE)
+            else if ((getAbstractOption() == RightCurlyOption.ALONE)
                        && (rcurly.getLineNo() == nextToken.getLineNo()))
             {
                 log(rcurly.getLineNo(), rcurly.getColumnNo(),

@@ -37,8 +37,7 @@ public class ParenPadCheck
      */  
     public ParenPadCheck()
     {
-        super();
-        mOption = PadOption.NOSPACE;
+        super(PadOption.NOSPACE);
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -73,12 +72,12 @@ public class ParenPadCheck
         final String line = getLines()[aAST.getLineNo() - 1];
         final int after = aAST.getColumnNo() + 1;
         if (after < line.length()) {
-            if ((PadOption.NOSPACE == mOption)
+            if ((PadOption.NOSPACE == getAbstractOption())
                 && (Character.isWhitespace(line.charAt(after))))
             {
                 log(aAST.getLineNo(), after, "ws.followed", "(");
             }
-            else if ((PadOption.SPACE == mOption)
+            else if ((PadOption.SPACE == getAbstractOption())
                      && !Character.isWhitespace(line.charAt(after))
                      && (line.charAt(after) != ')'))
             {
@@ -96,13 +95,13 @@ public class ParenPadCheck
         final String line = getLines()[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
         if (before >= 0) {
-            if ((PadOption.NOSPACE == mOption)
+            if ((PadOption.NOSPACE == getAbstractOption())
                 && Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line))
             {
                 log(aAST.getLineNo(), before, "ws.preceeded", ")");
             }
-            else if ((PadOption.SPACE == mOption)
+            else if ((PadOption.SPACE == getAbstractOption())
                 && !Character.isWhitespace(line.charAt(before))
                 && (line.charAt(before) != '('))
             {
