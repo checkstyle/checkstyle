@@ -183,7 +183,7 @@ identifier
         {
             sLastIdentifier = new LineText(i1.getLine(), i1.getColumn(), i1.getText());
         }
-        ( DOT^ i2:IDENT {ver.verifyDot(#DOT); sLastIdentifier.appendText("." + i2.getText());} )*
+        ( DOT^ i2:IDENT {sLastIdentifier.appendText("." + i2.getText());} )*
         {
         }
 	;
@@ -191,8 +191,8 @@ identifier
 identifierStar
 { int ln = 0; String str = ""; boolean star = false; }
 	:	i1:IDENT {ln = i1.getLine(); str = i1.getText();}
-		( DOT^ i2:IDENT {str += "." + i2.getText(); ver.verifyDot(#DOT); } )*
-		( DOT^ i3:STAR {str += ".*"; star = true; ver.verifyDot(#DOT); } )?
+		( DOT^ i2:IDENT {str += "." + i2.getText(); } )*
+		( DOT^ i3:STAR {str += ".*"; star = true; } )?
 {
  if (star) {
   ver.reportStarImport(ln, str);
@@ -237,7 +237,6 @@ classDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 		ic:implementsClause
 		// now parse the body of the class
         {
-            ver.verifyType(modSet, #IDENT);
             ver.reportStartTypeBlock(modSet.getVisibilityScope(), false, #IDENT);
         }
 		cb:classBlock[(modSet.size() == 0) ? #cc.getLineNo() : modSet.getFirstLineNo()]
@@ -260,7 +259,6 @@ interfaceDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 		ie:interfaceExtends
 		// now parse the body of the interface (looks like a class...)
         {
-            ver.verifyType(modSet, #IDENT);
             ver.reportStartTypeBlock(modSet.getVisibilityScope(), true, #IDENT);
         }
 		cb:classBlock[(modSet.size() == 0) ? #ii.getLineNo() : modSet.getFirstLineNo()]
@@ -387,7 +385,7 @@ constructorBody[int aLineNo]
 		|
 		)
         (statement[sIgnoreType, sIgnoreAST])*
-        rc:RCURLY! {ver.verifyConstructorLength(#lc.getLineNo(), #rc.getLineNo() - #lc.getLineNo() + 1);}
+        rc:RCURLY!
     ;
 
 explicitConstructorInvocation
@@ -406,7 +404,7 @@ explicitConstructorInvocation
 			{#lp2.setType(SUPER_CTOR_CALL);}
 
 			// (new Outer()).super()  (create enclosing instance)
-		|	primaryExpression DOT! {ver.verifyDot(#DOT);} "super"! lp3:LPAREN^ argList RPAREN! SEMI!
+		|	primaryExpression DOT! "super"! lp3:LPAREN^ argList RPAREN! SEMI!
 			{#lp3.setType(SUPER_CTOR_CALL);}
 		)
     ;
@@ -573,9 +571,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 	|	ii:"if"^ LPAREN! expression RPAREN! statement[stmtType, stmtBraces]
         {
             aType[0] = STMT_IF;
-//            if (stmtType[0] != STMT_COMPOUND) {
-//                ver.reportNeedBraces(ii);
-//            }
         }
 		(
 			// CONFLICT: the old "dangling-else" problem...
@@ -591,9 +586,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
             }
             statement[stmtType, stmtBraces]
             {
-//                if (stmtType[0] == STMT_OTHER) {
-//                    ver.reportNeedBraces(ee);
-//                }
             }
 		)?
 
@@ -608,25 +600,16 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
         {
             ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);
             ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON, ")");
-//            if (stmtType[0] != STMT_COMPOUND) {
-//                ver.reportNeedBraces(ff);
-//            }
         }
 
 	// While statement
 	|	ww:"while"^ LPAREN! expression RPAREN! statement[stmtType, stmtBraces]
         {
-//            if (stmtType[0] != STMT_COMPOUND) {
-//                ver.reportNeedBraces(ww);
-//            }
         }
 
 	// do-while statement
 	|	dd:"do"^ statement[stmtType, stmtBraces] dw:"while"! LPAREN! expression RPAREN! SEMI!
         {
-//            if (stmtType[0] != STMT_COMPOUND) {
-//                ver.reportNeedBraces(dd);
-//            }
         }
 
 	// get out of a loop (or switch)
@@ -918,7 +901,7 @@ postfixExpression
 	:	primaryExpression // start with a primary
 
 		(	// qualified id (id.id.id.id...) -- build the name
-			DOT^ {ver.verifyDot(#DOT);} ( i1:IDENT {sLastIdentifier.appendText("." + i1.getText()); }
+			DOT^ ( i1:IDENT {sLastIdentifier.appendText("." + i1.getText()); }
 				| "this"
 				| "class"
 				| newExpression
@@ -929,7 +912,7 @@ postfixExpression
 
 			// allow ClassName[].class
 		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR); } RBRACK! )+
-			DOT^ "class" {ver.verifyDot(#DOT);}
+			DOT^ "class"
 
 			// an array indexing operation
 		|	lb:LBRACK^ {#lb.setType(INDEX_OP);} expression RBRACK!
@@ -973,7 +956,7 @@ primaryExpression
 		// look for int.class and int[].class
 	|	builtInType
 		( lbt:LBRACK^ {#lbt.setType(ARRAY_DECLARATOR);} RBRACK! )*
-		DOT^ "class" { ver.verifyDot(#DOT); }
+		DOT^ "class"
 	;
 
 /** object instantiation.
