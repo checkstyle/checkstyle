@@ -381,10 +381,6 @@ class Verifier
                                       mConfig.getStaticRegexp(),
                                       mConfig.getStaticPat());
                     }
-                    else {
-                        mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                                      "variable.notPrivate", aVar.getText());
-                    }
                 }
             }
             else {
@@ -396,16 +392,6 @@ class Verifier
                     checkVariable(aVar,
                                   mConfig.getMemberRegexp(),
                                   mConfig.getMemberPat());
-                }
-                else if (mods.containsPublic()
-                         && mConfig.getPublicMemberRegexp()
-                               .match(aVar.getText()))
-                {
-                    // silently allow
-                }
-                else {
-                    mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                                  "variable.notPrivate", aVar.getText());
                 }
             }
         }

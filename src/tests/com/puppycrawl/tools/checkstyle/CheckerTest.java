@@ -303,11 +303,6 @@ public class CheckerTest
             filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":27: Missing a Javadoc comment.",
             filepath + ":30:24: Missing a Javadoc comment.",
-            filepath + ":30:24: Variable 'rData' must be private and have accessor methods.",
-            filepath + ":33:27: Variable 'protectedVariable' must be private and have accessor methods.",
-            filepath + ":36:17: Variable 'packageVariable' must be private and have accessor methods.",
-            filepath + ":41:29: Variable 'sWeird' must be private and have accessor methods.",
-            filepath + ":43:19: Variable 'sWeird2' must be private and have accessor methods.",
         };
         verify(c, filepath, expected);
     }
@@ -324,7 +319,6 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":14: Missing a Javadoc comment.",
             filepath + ":17:20: Missing a Javadoc comment.",
-            filepath + ":17:20: Variable 'fData' must be private and have accessor methods.",
             filepath + ":21: Missing a Javadoc comment.",
             filepath + ":24:16: Missing a Javadoc comment.",
             filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
@@ -354,13 +348,7 @@ public class CheckerTest
             filepath + ":25:29: Name 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":30:24: Name 'badStatic' must match pattern '^s[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":35:17: Name 'badMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
-            filepath + ":39:19: Variable 'mNumCreated2' must be private and have accessor methods.",
             filepath + ":42:40: ',' is not followed by whitespace.",
-            filepath + ":49:23: Variable 'sTest1' must be private and have accessor methods.",
-            filepath + ":51:26: Variable 'sTest3' must be private and have accessor methods.",
-            filepath + ":53:16: Variable 'sTest2' must be private and have accessor methods.",
-            filepath + ":56:9: Variable 'mTest1' must be private and have accessor methods.",
-            filepath + ":58:16: Variable 'mTest2' must be private and have accessor methods.",
             filepath + ":71:30: ',' is not followed by whitespace.",
             filepath + ":80: Method length is 20 lines (max allowed is 19).",
             filepath + ":103: Constructor length is 10 lines (max allowed is 9).",
@@ -399,11 +387,8 @@ public class CheckerTest
             filepath + ":38:9: Missing a Javadoc comment.",
             filepath + ":43:17: Missing a Javadoc comment.",
             filepath + ":44:9: Missing a Javadoc comment.",
-            filepath + ":44:9: Variable 'mLen' must be private and have accessor methods.",
             filepath + ":45:19: Missing a Javadoc comment.",
-            filepath + ":45:19: Variable 'mDeer' must be private and have accessor methods.",
             filepath + ":46:16: Missing a Javadoc comment.",
-            filepath + ":46:16: Variable 'aFreddo' must be private and have accessor methods.",
             filepath + ":49:5: Missing a Javadoc comment.",
             filepath + ":54:5: Missing a Javadoc comment.",
             filepath + ":59:5: Missing a Javadoc comment.",
@@ -426,9 +411,6 @@ public class CheckerTest
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":44:9: Variable 'mLen' must be private and have accessor methods.",
-            filepath + ":45:19: Variable 'mDeer' must be private and have accessor methods.",
-            filepath + ":46:16: Variable 'aFreddo' must be private and have accessor methods.",
         };
         verify(c, filepath, expected);
     }
@@ -446,11 +428,8 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":7: Missing a Javadoc comment.",
-            filepath + ":44:9: Variable 'mLen' must be private and have accessor methods.",
             filepath + ":45:19: Missing a Javadoc comment.",
-            filepath + ":45:19: Variable 'mDeer' must be private and have accessor methods.",
             filepath + ":46:16: Missing a Javadoc comment.",
-            filepath + ":46:16: Variable 'aFreddo' must be private and have accessor methods.",
             filepath + ":59:5: Missing a Javadoc comment.",
             filepath + ":64:5: Missing a Javadoc comment.",
             filepath + ":79:5: Missing a Javadoc comment.",
