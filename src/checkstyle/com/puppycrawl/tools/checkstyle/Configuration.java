@@ -209,6 +209,7 @@ public class Configuration
         setBooleanProperty(aProps, Defn.ALLOW_PROTECTED_PROP);
         setBooleanProperty(aProps, Defn.ALLOW_PACKAGE_PROP);
         setBooleanProperty(aProps, Defn.ALLOW_NO_AUTHOR_PROP);
+        setBooleanProperty(aProps, Defn.REQUIRE_VERSION_PROP);
         setJavadocScope(
             Scope.getInstance(aProps.getProperty(Defn.JAVADOC_CHECKSCOPE_PROP,
                                                  Scope.PRIVATE.getName())));
@@ -506,6 +507,12 @@ public class Configuration
     public boolean isAllowNoAuthor()
     {
         return getBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP);
+    }
+
+    /** @return whether to require having version tag */
+    public boolean isRequireVersion()
+    {
+        return getBooleanProperty(Defn.REQUIRE_VERSION_PROP);
     }
 
     /** @return visibility scope where Javadoc is checked **/

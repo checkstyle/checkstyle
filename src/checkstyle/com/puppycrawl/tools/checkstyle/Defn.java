@@ -75,6 +75,8 @@ public interface Defn
         "checkstyle.javadoc.checkUnusedThrows";
     /** property name for requiring package documentation */
     String REQUIRE_PACKAGE_HTML_PROP = "checkstyle.require.packagehtml";
+    /** property name for requiring a version tag **/
+    String REQUIRE_VERSION_PROP = "checkstyle.require.version";
     /** property name for ignoring import statements **/
     String IGNORE_IMPORTS_PROP = "checkstyle.ignore.imports";
     /** property name for illegal import statements **/

@@ -49,6 +49,7 @@ public class CheckerTest
         mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_TYPE_PROP,
                                            LeftCurlyOption.NL);
         mConfig.setRCurly(RightCurlyOption.ALONE);
+        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, true);
         mConfig.setStringProperty(Defn.LOCALE_COUNTRY_PROP,
                                   Locale.ENGLISH.getCountry());
         mConfig.setStringProperty(Defn.LOCALE_LANGUAGE_PROP,
@@ -95,6 +96,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, false);
+        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, false);
         mConfig.setParenPadOption(PadOption.NOSPACE);
         mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE);
         mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP,
@@ -171,6 +173,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, true);
+        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, false);
         mConfig.setParenPadOption(PadOption.IGNORE);
         mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE);
         mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP,
@@ -241,6 +244,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
+        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, false);
         mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE);
         mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP,
                                        BlockOption.IGNORE);
@@ -923,4 +927,32 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
+    public void testNoAuthor()
+        throws Exception
+    {
+        mConfig.setWrapOpOption(WrapOpOption.NL);
+        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, false);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputJavadoc.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":11: type Javadoc comment is missing an @author tag."
+        };
+        verify(c, filepath, expected);
+    }
+
+    public void testNoVersion()
+        throws Exception
+    {
+        mConfig.setWrapOpOption(WrapOpOption.NL);
+        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, true);
+        mConfig.setBooleanProperty(Defn.REQUIRE_VERSION_PROP, true);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputJavadoc.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":11: type Javadoc comment is missing an @version tag."
+        };
+        verify(c, filepath, expected);
+    }
 }

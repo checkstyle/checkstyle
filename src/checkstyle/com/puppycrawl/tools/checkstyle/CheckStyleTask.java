@@ -200,6 +200,12 @@ public class CheckStyleTask
         setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, aAllowed);
     }
 
+    /** @param aRequired whether version tag **/
+    public void setRequireVersion(final boolean aRequired)
+    {
+        setBooleanProperty(Defn.REQUIRE_VERSION_PROP, aRequired);
+    }
+
     /** @param aLen max allowed line length **/
     public void setMaxLineLen(final int aLen)
     {

@@ -93,6 +93,12 @@ class Verifier
     private static final RE MATCH_JAVADOC_AUTHOR
         = createRE(MATCH_JAVADOC_AUTHOR_PAT);
 
+    /** the pattern to match version tag **/
+    private static final String MATCH_JAVADOC_VERSION_PAT = "@version\\s+\\S";
+    /** compiled regexp to match version tag **/
+    private static final RE MATCH_JAVADOC_VERSION
+        = createRE(MATCH_JAVADOC_VERSION_PAT);
+
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
     ////////////////////////////////////////////////////////////////////////////
@@ -344,12 +350,18 @@ class Verifier
         if (jd == null) {
             mMessages.add(lineNo, "javadoc.missing", "type");
         }
-        else if (!mConfig.isAllowNoAuthor()
-                 && (mInScope.size() == 0)
-                 // don't check author for inner classes
-                 && (MATCH_JAVADOC_AUTHOR.grep(jd).length == 0))
-        {
-            mMessages.add(lineNo, "type.missingAuthorTag");
+        else if (mInScope.size() == 0) {
+            // don't check author/version for inner classes
+            if (!mConfig.isAllowNoAuthor()
+                && (MATCH_JAVADOC_AUTHOR.grep(jd).length == 0))
+            {
+                mMessages.add(lineNo, "type.missingTag", "@author");
+            }
+            if (mConfig.isRequireVersion() 
+                && (MATCH_JAVADOC_VERSION.grep(jd).length == 0))
+            {
+                mMessages.add(lineNo, "type.missingTag", "@version");
+            }
         }
     }
 
