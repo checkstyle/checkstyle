@@ -60,7 +60,7 @@ public class FilterChain
                 return decision;
             }
         }
-        return AuditEventFilter.NEUTRAL;
+        return Filter.NEUTRAL;
     }
 
     /** @see java.lang.Object#toString() */
