@@ -41,10 +41,29 @@ import java.util.Arrays;
  * &lt;/module&gt;
  * </pre>
  * @author Rick Giles
+ * @author Lars Kühne
  */
 public class MagicNumberCheck extends Check
 {
-    /** the numbers to ignore in the check, sorted */
+	private static final int[] ALLOWED_PATH_TOKENTYPES =
+	{
+			TokenTypes.ASSIGN,
+			TokenTypes.ARRAY_INIT,
+			TokenTypes.EXPR,
+			TokenTypes.UNARY_PLUS,
+			TokenTypes.UNARY_MINUS,
+			TokenTypes.TYPECAST,
+			TokenTypes.ELIST,
+			TokenTypes.LITERAL_NEW,
+			TokenTypes.METHOD_CALL,
+			TokenTypes.STAR,
+	};
+	
+	static {
+		Arrays.sort(ALLOWED_PATH_TOKENTYPES);
+	}
+	
+	/** the numbers to ignore in the check, sorted */
     private double[] mIgnoreNumbers = {-1, 0, 1, 2};
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -61,26 +80,87 @@ public class MagicNumberCheck extends Check
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        if (!inIgnoreList(aAST) && !isConstantDefinition(aAST)) {
-            String text = aAST.getText();
-            final DetailAST parent = aAST.getParent();
-            DetailAST reportAST = aAST;
-            if (parent.getType() == TokenTypes.UNARY_MINUS) {
-                reportAST = parent;
-                text = "-" + text;
-            }
-            else if (parent.getType() == TokenTypes.UNARY_PLUS) {
-                reportAST = parent;
-                text = "+" + text;
-            }
-            log(reportAST.getLineNo(),
-                reportAST.getColumnNo(),
-                "magic.number",
-                text);
+        if (inIgnoreList(aAST)) {
+        	return;
         }
+        
+        DetailAST constantDefAST = findContainingConstantDef(aAST);
+        
+    	if (constantDefAST == null) {
+            reportMagicNumber(aAST);
+        }
+    	else {
+    		DetailAST ast = aAST.getParent();
+    		while (ast != constantDefAST) {
+    			int type = ast.getType();
+    			if (Arrays.binarySearch(ALLOWED_PATH_TOKENTYPES, type) < 0) {
+    				reportMagicNumber(aAST);
+    				break;
+    			}
+    				
+    			ast = ast.getParent();
+    		}
+    	}
     }
 
     /**
+	 * Finds the constant definition that contains aAST.
+	 * @param aAST the AST
+	 * @return the constant def or null if aAST is not 
+	 * contained in a constant definition  
+	 */
+	private DetailAST findContainingConstantDef(DetailAST aAST) {
+		DetailAST varDefAST = aAST;
+        while (varDefAST != null 
+        		&& varDefAST.getType() != TokenTypes.VARIABLE_DEF)
+        {
+        	varDefAST = varDefAST.getParent();
+        }
+        
+        // no containing variable definition?
+        if (varDefAST == null) {
+        	return null;
+        }
+        
+        // implicit constant?
+        if (ScopeUtils.inInterfaceBlock(varDefAST)) {
+        	return varDefAST;
+        }
+        
+        // explicit constant
+        final DetailAST modifiersAST =
+            varDefAST.findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiersAST.branchContains(TokenTypes.FINAL)) {
+        	return varDefAST;
+        }
+
+		return null;
+	}
+
+	/**
+	 * Reports aAST as a magic number, includes unary operators as needed.  
+	 * @param aAST the AST node that contains the number to report
+	 */
+	private void reportMagicNumber(DetailAST aAST) 
+	{
+		String text = aAST.getText();
+		final DetailAST parent = aAST.getParent();
+		DetailAST reportAST = aAST;
+		if (parent.getType() == TokenTypes.UNARY_MINUS) {
+		    reportAST = parent;
+		    text = "-" + text;
+		}
+		else if (parent.getType() == TokenTypes.UNARY_PLUS) {
+		    reportAST = parent;
+		    text = "+" + text;
+		}
+		log(reportAST.getLineNo(),
+		    reportAST.getColumnNo(),
+		    "magic.number",
+		    text);
+	}
+
+	/**
      * Decides whether the number of an AST is in the ignore list of this
      * check.
      * @param aAST the AST to check
@@ -95,59 +175,6 @@ public class MagicNumberCheck extends Check
             value = -1 * value;
         }
         return (Arrays.binarySearch(mIgnoreNumbers, value) >= 0);
-    }
-
-    /**
-     * Decides whether the number of an AST is the RHS of a constant
-     * definition.
-     * @param aAST the AST to check.
-     * @return true if the number of aAST is the RHS of a constant definition.
-     */
-    private boolean isConstantDefinition(DetailAST aAST)
-    {
-        if (ScopeUtils.inInterfaceBlock(aAST)) {
-            return true;
-        }
-        DetailAST parent = aAST.getParent();
-
-        if (parent == null) {
-            return false;
-        }
-
-        //skip TYPECAST, UNARY_MINUS, UNARY_PLUS
-        while ((parent.getType() == TokenTypes.UNARY_MINUS)
-            || (parent.getType() == TokenTypes.UNARY_PLUS)
-            || (parent.getType() == TokenTypes.TYPECAST))
-        {
-            parent = parent.getParent();
-        }
-
-        //expression?
-        if ((parent == null) || (parent.getType() != TokenTypes.EXPR)) {
-            return false;
-        }
-
-        //array init?
-        parent = parent.getParent();
-        if ((parent != null) && (parent.getType() == TokenTypes.ARRAY_INIT)) {
-            parent = parent.getParent();
-        }
-
-        //assignment?
-        if ((parent == null) || (parent.getType() != TokenTypes.ASSIGN)) {
-            return false;
-        }
-
-        //variable definition?
-        parent = parent.getParent();
-        if ((parent == null) || (parent.getType() != TokenTypes.VARIABLE_DEF)) {
-            return false;
-        }
-
-        //final?
-        final DetailAST modifiersAST =
-            parent.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiersAST.branchContains(TokenTypes.FINAL);
     }
 
     /**

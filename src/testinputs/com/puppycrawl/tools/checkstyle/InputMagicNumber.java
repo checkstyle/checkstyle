@@ -83,6 +83,7 @@ class ArrayMagicTest
 {
     private static final int[] NONMAGIC = {3};
     private int[] magic = {3};
+    private static final int[][] NONMAGIC2 = {{1}, {2}, {3}};
 }
 
 /** test long hex */
@@ -118,4 +119,26 @@ class NegativeOctalHex
 class Cast
 {
     public static final int TESTINTVAL = (byte) 0x80;
+}
+
+class ComplexAndFlagged
+{
+	public static final java.util.List MYLIST = new java.util.ArrayList()
+	{
+		public int size()
+		{
+			 // should be flagged although technically inside const definition
+			return 378; 
+		}
+	};
+}
+
+class ComplexButNotFlagged
+{
+	// according to user feedback this is typical code that should not be flagged
+	// (at least in the default configuration of MagicNumberCheck)
+	public static final Integer DEFAULT_INT = new Integer(27);
+	public static final int SECS_PER_DAY = 24 * 60 * 60;
+	public static final javax.swing.Border STD_BORDER = 
+		javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3);
 }
