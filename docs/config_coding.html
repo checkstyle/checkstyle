@@ -1027,6 +1027,23 @@ return !valid();
       leads to code that inadvertantly catchs NPE, OutOfMemoryErrors,
       etc.
       </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>illegalClassNames</td>
+          <td>exception class names to reject</td>
+          <td><a href="property_types.html#stringSet">list of strings</a></td>
+          <td><span class="default">&quot;java.lang.Exception,
+          java.lang.Throwable, java.lang.RuntimeException&quot;</span></td>
+        </tr>
+      </table>
+
       <h4>Examples</h4>
       <p class="body">
       To configure the check:
