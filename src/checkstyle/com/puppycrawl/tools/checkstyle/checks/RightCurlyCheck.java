@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class RightCurlyCheck
     extends AbstractOptionCheck
 {
-
     /**
      * Sets the right curly otion to same.
      */  
@@ -56,7 +55,7 @@ public class RightCurlyCheck
         DetailAST nextToken = null;
         if (aAST.getType() == TokenTypes.LITERAL_ELSE) {
             nextToken = aAST;
-            DetailAST thenAST = aAST.getPreviousSibling();
+            final DetailAST thenAST = aAST.getPreviousSibling();
             rcurly = thenAST.getLastChild();
         }
         else if (aAST.getType() == TokenTypes.LITERAL_CATCH) {
