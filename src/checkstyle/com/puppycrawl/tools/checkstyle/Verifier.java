@@ -106,11 +106,12 @@ interface Verifier
     void verifyNoWSBefore(MyCommonAST aAST);
 
     /**
-     * Verify that whitespace IS after an typecast.
+     * Verify that whitespace IS after a specified column.
      * @param aLineNo number of line to check
      * @param aColNo column where the cast ends
+     * @param aConstruct the construct being checked (e.g. "cast" or "','")
      */
-    void verifyWSAfterCast(int aLineNo, int aColNo);
+    void verifyWSAfter(int aLineNo, int aColNo, String aConstruct);
 
     /**
      * Verify that a method length is ok.

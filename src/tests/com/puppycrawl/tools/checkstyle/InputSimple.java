@@ -38,6 +38,10 @@ class InputSimple
     /** Valid format **/
     protected int mNumCreated2 = 0;
 
+    /** commas are wrong **/
+    private int[] mInts = new int[] {1,2, 3,
+                                     4};
+
     //
     // Accessor tests
     //
@@ -64,8 +68,7 @@ class InputSimple
      * @param badFormat3 bad format
      * @throws java.lang.Exception abc
      **/
-    int test1(int badFormat1,
-              int badFormat2,
+    int test1(int badFormat1,int badFormat2,
               final int badFormat3)
         throws java.lang.Exception
     {
