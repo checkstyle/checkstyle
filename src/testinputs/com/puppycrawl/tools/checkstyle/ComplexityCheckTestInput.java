@@ -1,4 +1,4 @@
-package au.com.redhillconsulting.jamaica.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle;
 
 public class ComplexityCheckTestInput {
     public void foo() {
@@ -42,6 +42,33 @@ public class ComplexityCheckTestInput {
 
             if (System.currentTimeMillis() == 0) {
             }
+        }
+    }
+
+    public ComplexityCheckTestInput()
+    {
+        int i = 1;
+        if (System.currentTimeMillis() == 0) {
+        } else if (System.currentTimeMillis() == 0) {
+        } else {
+        }
+    }
+    
+    // STATIC_INIT   
+    static {
+        int i = 1;
+        if (System.currentTimeMillis() == 0) {
+        } else if (System.currentTimeMillis() == 0) {
+        } else {
+        }
+    }
+    
+    // INSTANCE_INIT   
+    {
+        int i = 1;
+        if (System.currentTimeMillis() == 0) {
+        } else if (System.currentTimeMillis() == 0) {
+        } else {
         }
     }
 }
