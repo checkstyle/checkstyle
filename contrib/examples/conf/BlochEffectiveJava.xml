@@ -9,7 +9,7 @@
   in Joshua Bloch, Effective Java (highliy recommended read!)
 
   This file does NOT duplicate the checks for whitespace settings,
-  Javadoc correctness, etc.  Only the rules that are explicitly
+  placement of curly braces, etc.  Only the rules that are explicitly
   mentioned in the book are enforced.
 
   Currently the amount of rules that can be automatically checked by
@@ -97,7 +97,7 @@
     <!-- Item 50 - Never invoke wait outside a loop -->
     <!-- no rfe yet -->
 
-    <!-- Item 57 - Provide a readResolve when necessary -->
+    <!-- Item 57 - Provide a readResolve method when necessary -->
     <!-- no rfe yet -->
 
   </module>
