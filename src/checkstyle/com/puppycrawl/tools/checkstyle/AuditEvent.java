@@ -117,7 +117,7 @@ public final class AuditEvent
     public SeverityLevel getSeverityLevel()
     {
         return (mMessage == null)
-            ? SeverityLevel.WARNING
+            ? SeverityLevel.INFO
             : mMessage.getSeverityLevel();
     }
 
