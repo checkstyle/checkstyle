@@ -48,12 +48,33 @@
       between packages and might lead to problems when a new version of a library
       introduces name clashes.
       </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>excludes</td>
+          <td>packages where star imports are allowed. Note that this
+          property is not recursive, subpackages of excluded packages are not
+          automatically excluded.</td>
+          <td><a href="property_types.html#stringSet">list of strings</a></td>
+          <td><span class="default">empty list</span></td>
+        </tr>
+      </table>
+
       <h4>Example</h4>
       <p class="body">
-      To configure the check:
+      An example how to configure the check so that star imports
+      from java.io and java.net are allowed:
       </p>
       <pre class="body">
-&lt;module name=&quot;AvoidStarImport&quot;/&gt;
+&lt;module name="AvoidStarImport"&gt;
+   &lt;property name="excludes" value="java.io,java.net"/&gt;
+&lt;/module&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">

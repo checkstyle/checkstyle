@@ -6,7 +6,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 public class AvoidStarImportTest
     extends BaseCheckTestCase
 {
-    public void testWithChecker()
+    public void testDefaultOperation()
         throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -16,6 +16,20 @@ public class AvoidStarImportTest
             "9: Using the '.*' form of import should be avoided - java.io.*.",
             "10: Using the '.*' form of import should be avoided - java.lang.*.",
         };
+
         verify(checkConfig, getPath("InputImport.java"), expected);
+    }
+
+    public void testExcludes()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AvoidStarImportCheck.class);
+        checkConfig.addAttribute("excludes", "java.io,java.lang");
+        // allow the java.io/java.lang star imports
+        final String[] expected2 = new String[] {
+            "7: Using the '.*' form of import should be avoided - com.puppycrawl.tools.checkstyle.*."
+        };
+        verify(checkConfig, getPath("InputImport.java"), expected2);
     }
 }

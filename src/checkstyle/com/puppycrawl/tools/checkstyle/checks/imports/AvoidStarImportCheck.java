@@ -36,26 +36,62 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="AvoidStarImport"/&gt;
+ * &lt;module name="AvoidStarImport"&gt;
+ *   &lt;property name="excludes" value="java.io,java.net"/&gt;
+ * &lt;/module&gt;
  * </pre>
+ *
+ * The optional "excludes" property allows for certain packages like
+ * java.io or java.net to be exempted from the rule. Note that the excludes
+ * property is not recursive, subpackages of excluded packages are not
+ * automatically excluded.
+ *
  * @author Oliver Burn
+ * @author <a href="bschneider@vecna.com">Bill Schneider</a>
  * @version 1.0
  */
 public class AvoidStarImportCheck
     extends Check
 {
+    private String[] m_excludes = new String[0];
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.IMPORT};
     }
 
+    /**
+     * Sets the list of packages to exempt from the check.
+     * @param aExcludes a list of package names where star imports are ok
+     */
+    public void setExcludes(String[] aExcludes) 
+    {
+        m_excludes = new String[aExcludes.length];
+        for (int i = 0; i < aExcludes.length; i++) {
+            m_excludes[i] = aExcludes[i];
+            if (!m_excludes[i].endsWith(".*")) {
+                // force all package names to end with ".*" to disambiguate
+                // "java.io" 
+                m_excludes[i] = m_excludes[i] + ".*";
+            }
+        }
+    }
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST aAST) 
     {
         final FullIdent name = FullIdent.createFullIdentBelow(aAST);
         if ((name != null) && name.getText().endsWith(".*")) {
-            log(aAST.getLineNo(), "import.avoidStar", name.getText());
+            boolean exempt = false;
+            for (int i = 0; i < m_excludes.length && !exempt; i++) {
+                if (name.getText().equals(m_excludes[i])) {
+                    exempt = true;
+                }
+            }
+            if (!exempt) {
+                log(aAST.getLineNo(), "import.avoidStar", name.getText());
+            }
         }
     }
 }
