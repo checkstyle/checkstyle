@@ -1,14 +1,9 @@
-<!--
- DTD for a checkstyle configuration.
- -->
-<!ELEMENT configuration (global*, check*)>
-<!ELEMENT global (property*)>
-<!ELEMENT check (tokens?, property?)>
-<!ELEMENT tokens (#PCDATA)>
-<!ELEMENT set-property EMPTY>
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT config (config|property)*>
+<!ATTLIST config name NMTOKEN #REQUIRED>
 
-<!ATTLIST check classname CDATA #REQUIRED>
-<!ATTLIST property name CDATA #REQUIRED
-                   value CDATA #IMPLIED
-                   from-global CDATA #IMPLIED
+<!ELEMENT property EMPTY>
+<!ATTLIST property
+	name NMTOKEN #REQUIRED
+	value CDATA #REQUIRED
 >
