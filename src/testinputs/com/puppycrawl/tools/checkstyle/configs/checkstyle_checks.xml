@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE config PUBLIC
+<!DOCTYPE module PUBLIC
     "-//Puppy Crawl//DTD Check Configuration 1.0//EN"
     "http://www.puppycrawl.com/dtds/configuration_1_0.dtd">
 
-<config name="configuration">
+<module name="Checker">
     <property name="tabWidth" value="4" />
     <property name="basedir" value="${checkstyle.basedir}" />
-    <config name="TreeWalker">
-        <config name="AvoidStarImport"/>
-        <config name="MemberNameCheck">
+    <module name="TreeWalker">
+        <module name="AvoidStarImport"/>
+        <module name="MemberName">
             <property name="format" value="^m_[a-zA-Z0-9]*$"/>
-        </config>
+        </module>
         <property name="testName" value="testValue" />
-        <config name="ConstantNameCheck"/>
-        <config name="EmptyBlockCheck"/>
-        <config name="EqualsHashCodeCheck"/>
-        <config name="FileLengthCheck"/>
-        <config name="NoWhitespaceAfterCheck">
+        <module name="ConstantName"/>
+        <module name="EmptyBlock"/>
+        <module name="EqualsHashCode"/>
+        <module name="FileLength"/>
+        <module name="NoWhitespaceAfter">
             <property name="tokens" value="DOT"/>
             <property name="allowLineBreaks" value="true"/>
-        </config>
-        <config name="GenericIllegalRegexpCheck">
+        </module>
+        <module name="GenericIllegalRegexp">
             <property name="format" value="System.out.println"/>
-        </config>
-    </config>
-    <config name="PackageHtmlCheck"/>
-    <config name="TranslationCheck"/>
-</config>
+        </module>
+    </module>
+    <module name="PackageHtml"/>
+    <module name="Translation"/>
+</module>
