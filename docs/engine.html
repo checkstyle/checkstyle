@@ -220,14 +220,12 @@ line 4: ///////////////////////////////////////////////////////////////////////
 
 <!-- formatters -->
 <h2>Output Format</h2>
-<p>The Checkstyle engine has a flexible output mechanism inspired by ANT. Events are generated (for found errors) and are consumed by listeners that implement the <span class="code">AuditListener</span> interface. The standard distribution comes with the following listeners:</p>
+<p>The Checkstyle engine has a flexible output mechanism inspired by ANT. <a href="api/com/puppycrawl/tools/checkstyle/AuditEvent.html">AuditEvent</a> objects are generated (for found errors) and are consumed by listeners that implement the <a href="api/com/puppycrawl/tools/checkstyle/AuditListener.html">AuditListener</a> interface. The standard distribution comes with the following listeners:</p>
 
 <ul>
-  <li>plain - outputs the messages in Emacs format.</li>
-  <li>xml - outputs the messages in an XML format. This is ideal for generating pretty reports, or if you want to parse the output of Checkstyle.</li>
+  <li><a href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a> - outputs the events in Emacs format. This is the one used by default (no surprise there:-).</li>
+  <li><a href="api/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a> - outputs the messages in an XML format. This is ideal for generating pretty reports, or if you want to parse the output of Checkstyle.</li>
 </ul>
-
-<p>By default Checkstyle will use the plain listener.</p>
 
 
 <hr>
