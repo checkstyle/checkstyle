@@ -31,11 +31,18 @@ import org.apache.commons.beanutils.ConversionException;
  * @version 1.0
  */
 public class RightCurlyCheck
-    extends Check
+    extends AbstractOptionCheck
 {
-    /** the policy to enforce */
-    private RightCurlyOption mOption = RightCurlyOption.SAME;
 
+    /**
+     * Sets the right curly otion to same.
+     */  
+    public RightCurlyCheck()
+    {
+        super();
+        mOption = RightCurlyOption.SAME;
+    }
+    
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -79,20 +86,6 @@ public class RightCurlyCheck
                 log(rcurly.getLineNo(), rcurly.getColumnNo(),
                     "line.alone", "}");
             }
-        }
-    }
-
-    /**
-     * Describe <code>setOption</code> method here.
-     *
-     * @param aFromStr a <code>String</code> value
-     * @throws ConversionException if unable to decode
-     */
-    public void setOption(String aFromStr)
-    {
-        mOption = RightCurlyOption.decode(aFromStr);
-        if (mOption == null) {
-            throw new ConversionException("unable to decode " + aFromStr);
         }
     }
 }

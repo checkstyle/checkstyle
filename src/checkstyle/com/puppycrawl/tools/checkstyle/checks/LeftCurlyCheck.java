@@ -11,7 +11,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import org.apache.commons.beanutils.ConversionException;
 
 /**
  * Abstract class for checks for Left Curly placement.
@@ -19,26 +18,20 @@ import org.apache.commons.beanutils.ConversionException;
  * @version 1.0
  */
 public abstract class LeftCurlyCheck
-    extends Check
+    extends AbstractOptionCheck
 {
-    /** the option for placement */
-    private LeftCurlyOption mOption = LeftCurlyOption.EOL;
     /** TODO: replace this ugly hack **/
     private int mMaxLineLength = 80;
 
     /**
-     * Set the option for placement.
-     * @param aFromStr string to decode option
-     * @throws ConversionException if unable to decode
-     */
-    public void setOption(String aFromStr)
+     * Sets the left curly otion to eol.
+     */  
+    public LeftCurlyCheck()
     {
-        mOption = LeftCurlyOption.decode(aFromStr);
-        if (mOption == null) {
-            throw new ConversionException("unable to decode " + aFromStr);
-        }
+        super();
+        mOption = LeftCurlyOption.EOL;
     }
-
+    
     /** @see the hack above */
     public void setMaxLineLength(int aMaxLineLength)
     {
