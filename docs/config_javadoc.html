@@ -1,69 +1,172 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>Checks for Javadoc Comments</title>
-  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <link rel="stylesheet" type="text/css" href="mystyle.css"/>
 </head>
 
-<body>
-<h1>Checks for Javadoc Comments</h1>
+  <body>
+  <!-- The header -->
+  <table border="0" width="100%" summary="header layout">
+    <tr>
+      <td><h1>Checks for Javadoc Comments</h1></td>
+      <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
+    </tr>
+  </table>
+  <!-- content -->
+  <table border="0" width="100%" cellpadding="5" summary="body layout">
+    <tr>
+      <!--Left menu-->
+      <td class="menu" valign="top">
+        <ul>
+          <li>
+            <a href="#PackageHtml">PackageHtml</a>
+          </li>
+          <li>
+            <a href="#JavadocType">JavadocType</a>
+          </li>
+          <li>
+            <a href="#JavadocMethod">JavadocMethod</a>
+          </li>
+          <li>
+            <a href="#JavadocVariable">JavadocVariable</a>
+          </li>
+        </ul>
+      </td>
+      <!--Content-->
+      <td class="content" valign="top" align="left">
 
-<p>Checkstyle will check that the following constructs have a Javadoc comment:</p>
-<ul>
-  <li>class</li>
-  <li>interface</li>
-  <li>variable</li>
-  <li>method</li>
-</ul>
+        <a name="PackageHtml"></a> <h2>PackageHtml</h2> <h4>Description</h4>
+        <p class="body">
+        Checks that a <span class="code">package.html</span> file exists for each 
+        package.
+        </p>
 
-<p>The property <span class="code">checkstyle.javadoc.scope</span> controls
-the visibility scope where Javadoc comments are checked. The property type is
-<a href="property_types.html#scope">scope</a> and defaults to
-<span class="default">private</span>.</p>
+        <h4>Example</h4>
+        <p class="body">
+        To configure the check:
+        </p>
+        <pre class="body">
+&lt;module name="PackageHtml"/&gt;
+        </pre>
 
-<p>For example, you can check Javadoc comments only for <span
-class="code">public</span> and <span class="code">protected</span> definitions
-by setting the property to <span class="default">protected</span>. Scoping
-rules apply, so a <span class="code">public</span> method in a package visible
-class is not checked.</p>
+        <h4>Package</h4>
+        <p class="body">
+        com.puppycrawl.tools.checkstyle.checks
+        </p>
+        <h4>Parent Module</h4>
+        <p class="body">
+        Checker
+        </p>
 
+        <a name="JavadocType"></a> <h2>JavadocType</h2> <h4>Description</h4>
+        <p class="body">
+        Checks Javadoc comments for class and interface definitions.
+        </p>
 
-<h2>package.html check</h2>
+        <h4>Properties</h4>
 
-<p>The property <span class="code">checkstyle.require.packagehtml</span>
-controls whether to require that a <span class="code">package.html</span> file
-exists for each package. The property type is
-<a href="property_types.html#boolean">boolean</a> and defaults to
-<span class="default">false</span>.</p>
+        <table width="100%" border="1" cellpadding="5" class="body">
+          <tr class="header">
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>scope</td>
+            <td>visibility scope where Javadoc comments are checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">private</span></td>
+          </tr>
+          <tr>
+            <td>authorFormat</td>
+            <td>pattern for @author tag</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">null</span> (tag not required)</td>
+          </tr>
+          <tr>
+            <td>versionFormat</td>
+            <td>pattern for @version tag</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">null</span> (tag not required)</td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>definitions to check</td>
+            <td>subset of acceptable tokens INTERFACE_DEF, CLASS_DEF</td>
+            <td>INTERFACE_DEF, CLASS_DEF</td>
+          </tr>
+        </table>
 
+        <h4>Examples</h4>
+        <p class="body">
+        To configure the default check:
+        </p>
+        <pre class="body">
+&lt;module name="JavadocType"/&gt;
+        </pre>
+        <p  class="body">
+        To configure the check for <span class="default">public</span> scope:
+        </p>
+        <pre  class="body">
+&lt;module name="JavadocType"&gt;
+   &lt;property name="scope" value="public"/&gt;
+&lt;/module&gt;
+        </pre>
+        <p class="body">
+        To configure the check for an @author tag:
+        </p>
+        <pre class="body">
+&lt;module name="JavadocType"&gt;
+   &lt;property name="authorFormat" value="\S"/&gt;
+&lt;/module&gt;
+        </pre>
+        <p class="body">
+        To configure the check for a CVS revision version tag:
+        </p>
+        <pre class="body">
+&lt;module name="JavadocType"&gt;
+   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
+&lt;/module&gt;
+        </pre>
 
-<h2>Class/Interface Javadoc checks</h2>
+        <h4>Package</h4>
+        <p class="body">
+        com.puppycrawl.tools.checkstyle.checks
+        </p>
+        <h4>Parent Module</h4>
+        <p class="body">
+        <a href="TreeWalker">TreeWalker</a>
+        </p>
 
-<p>The property <span class="code">checkstyle.require.version</span> controls
-whether to require an <span class="default">@version</span> tag to be defined
-for class and interface Javadoc comments. The property type is
-<a href="property_types.html#boolean">boolean</a> and defaults to
-<span class="default">false</span>.</p>
+        <a name="JavadocMethod"></a> <h2>JavadocMethod</h2> <h4>Description</h4>
+        <p class="body">
+        Checks to ensure that the following tags exist (if required):
+        </p>
+        <ul class="body">
+          <li>
+            <span class="code">@return</span>
+          </li>
+          <li>
+            <span class="code">@param</span>
+          </li>
+          <li>
+            <span class="code">@throws</span> or <span class="code">@exception</span>
+          </li>
+          <li>
+            <span class="code">@see</span>
+          </li>
+        </ul>
 
-<p>The property <span class="code">checkstyle.allow.noauthor</span> controls
-whether to allow no <span class="default">@author</span> tag to be defined for
-class and interface Javadoc comments.  The property type is
-<a href="property_types.html#boolean">boolean</a> and defaults to
-<span class="default">false</span>.</p>
-
-
-<h2>Method Javadoc checks</h2>
-
-<p>Javadoc comments for methods are checked to ensure that the following tags exist (if required):</p>
-<ul>
-  <li><span class="code">@return</span></li>
-  <li><span class="code">@param</span></li>
-  <li><span class="code">@throws</span> or <span class="code">@exception</span></li>
-  <li><span class="code">@see</span></li>
-</ul>
-
-<p>For example the following is valid:</p>
-<pre>
+        <p class="body">
+        For example, the following is valid:
+        </p>
+        <a name="checkReturnTag"></a>
+        <pre class="body">
     /**
      * Checks for a return tag.
      * @return the index of the next unchecked tag
@@ -74,42 +177,143 @@ class and interface Javadoc comments.  The property type is
     public int checkReturnTag(final int aTagIndex,
                               JavadocTag[] aTags,
                               int aLineNo)
-</pre>
+        </pre>
 
-<p>The property <span class="code">checkstyle.javadoc.checkUnusedThrows</span>
-controls whether to check if an undocumented exception is a subclass of
-<span class="code">java.lang.RuntimeException</span>.  The property type is
-<a href="property_types.html#boolean">boolean</a> and defaults to
-<span class="default">false</span>.</p>
+        <p class="body">
+        This supports the convention in the <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html#throwstag">Sun 
+        Javadoc Guidelines</a> and the "Effective Java" book.
+        </p>
 
-<p>This supports the convention in
-the <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html#throwstag">Sun Javadoc Guidelines</a>
-and the "Effective Java" book.</p>
+        <h4>Properties</h4>
 
-<p>The classpath may need to be configured to locate the class
-information. The classpath configuration is dependent on the mechanism used to
-invoke Checkstyle.</p>
+        <table width="100%" border="1" cellpadding="5" class="body">
+          <tr class="header">
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>scope</td>
+            <td>visibility scope where Javadoc comments are checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">private</span></td>
+          </tr>
+          <tr>
+            <td>checkUnusedImports</td>
+            <td>whether to check if an undocumented exception is a subclass of <span class="code">
+        java.lang.RuntimeException</span></td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>definitions to check</td>
+            <td>subset of acceptable tokens METHOD_DEF, CTOR_DEF</td>
+            <td>METHOD_DEF, CTOR_DEF</td>
+          </tr>
+        </table>
 
-<div class="tip">
-<h4 class="tip">Tip</h4>
+        <h4>Examples</h4>
+        <p class="body">
+        To configure the default check:
+        </p>
+        <pre class="body">
+&lt;module name="JavadocMethod"/&gt;
+        </pre>
+        <p class="body">
+        To configure the check for <span class="default">public</span> scope and to 
+        check for unused imports:
+        </p>
+        <pre class="body">
+&lt;module name="JavadocMethod"&gt;
+   &lt;property name="scope" value="public"/&gt;
+   &lt;property name="checkUnusedThrows" value="true"/&gt;
+&lt;/module&gt;
+        </pre>
+        <h4>Notes</h4>
 
-<p>It can be extremely painful writing or duplicating Javadoc for a method
-required for an interface. Hence checkstyle supports using the convention of
-using a single <span class="code">@see</span> tag instead of all the other
-tags. For example, if the previous method was implementing a method required
-by the <span class="code">com.puppycrawl.tools.checkstyle.Verifier</span>
-interface, then the Javadoc could be done as:</p>
-
-<pre>
+        <ul class="body">
+        <li>The classpath may need to be configured to locate the class information. The 
+        classpath configuration is dependent on the mechanism used to invoke Checkstyle.
+        </li>
+        <li>
+          It can be extremely painful writing or duplicating Javadoc for a method required 
+          for an interface. Hence checkstyle supports using the convention of using a 
+          single <span class="code">@see</span> tag instead of all the other tags. For 
+          example, if the <a href="#checkReturnTag">above method</a> was implementing a method required by the <span class="code">
+          com.puppycrawl.tools.checkstyle.Verifier</span> interface, then the Javadoc 
+          could be done as:
+          
+          <pre class="body">
     /** @see com.puppycrawl.tools.checkstyle.Verifier **/
     public int checkReturnTag(final int aTagIndex,
                               JavadocTag[] aTags,
                               int aLineNo)
-</pre>
-</div>
+          </pre>
+          </li>
+          </ul>
+        <h4>Package</h4>
+        <p class="body">
+        com.puppycrawl.tools.checkstyle.checks
+        </p>
+        <h4>Parent Module</h4>
+        <p class="body">
+        <a href="TreeWalker">TreeWalker</a>
+        </p>
 
-<hr>
-<p align="center">Copyright &copy; 2002 Oliver Burn. All rights Reserved.</p>
 
-</body>
+        <a name="JavadocVariable"></a> <h2>JavadocVariable</h2> <h4>Description</h4>
+        <p class="body">
+        Checks that variables have Javadoc comments.
+        </p>
+        <h4>Properties</h4>
+
+        <table width="100%" border="1" cellpadding="5" class="body">
+          <tr class="header">
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>scope</td>
+            <td>visibility scope where Javadoc comments are checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">private</span></td>
+          </tr>
+        </table>
+
+        <h4>Examples</h4>
+        <p class="body">
+        To configure the default check:
+        </p>
+        <pre class="body">
+&lt;module name="JavadocVariable"/&gt;
+        </pre>
+        <p class="body">
+        To configure the check for <span class="default">public</span> scope:
+        </p>
+        <pre class="body">
+&lt;module name="JavadocVariable"&gt;
+   &lt;property name="scope" value="public"/&gt;
+&lt;/module&gt;
+        </pre>
+        <h4>Package</h4>
+        <p class="body">
+        com.puppycrawl.tools.checkstyle.checks
+        </p>
+        <h4>Parent Module</h4>
+        <p class="body">
+        <a href="TreeWalker">TreeWalker</a>
+        </p>
+      </td>
+      </tr>
+  </table>
+  <hr />
+  <p>
+  Copyright &copy; 2002 Oliver Burn. All rights Reserved.
+  </p>
+
+  </body>
 </html>
