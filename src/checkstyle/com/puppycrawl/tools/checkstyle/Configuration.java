@@ -95,6 +95,8 @@ class Configuration
     private boolean mIgnoreImports = false;
     /** whether to ignore whitespace **/
     private boolean mIgnoreWhitespace = false;
+    /** whether to ignore braces **/
+    private boolean mIgnoreBraces = false;
 
     /** the header lines to check for **/
     private String[] mHeaderLines = {};
@@ -143,6 +145,9 @@ class Configuration
             getBooleanProperty(aProps,
                                IGNORE_WHITESPACE_PROP,
                                mIgnoreWhitespace));
+        setIgnoreBraces(getBooleanProperty(aProps,
+                                           IGNORE_BRACES_PROP,
+                                           mIgnoreBraces));
         setHeaderIgnoreLineNo(
             getIntProperty(aProps, aLog, HEADER_IGNORE_LINE_PROP,
                            mHeaderIgnoreLineNo));
@@ -282,6 +287,12 @@ class Configuration
         return mIgnoreWhitespace;
     }
 
+    /** @return whether to ignore checks for braces **/
+    boolean isIgnoreBraces()
+    {
+        return mIgnoreBraces;
+    }
+
     /** @return the header lines to check for **/
     String[] getHeaderLines()
     {
@@ -407,6 +418,14 @@ class Configuration
     void setIgnoreWhitespace(boolean aTo)
     {
         mIgnoreWhitespace = aTo;
+    }
+
+    /**
+     * @param aTo whether to ignore checks for braces
+     */
+    void setIgnoreBraces(boolean aTo)
+    {
+        mIgnoreBraces = aTo;
     }
 
     /**

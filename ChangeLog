@@ -1,3 +1,17 @@
+2001-07-02  Oliver Burn  <oliver-work@puppycrawl.com>
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/VerifierImpl.java:
+	Added support for the IgnoreBraces property.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/Defn.java: Added
+	IGNORE_BRACES_PROP.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/Configuration.java:
+	Added IgnoreBraces property.
+
+	* src/tests/com/puppycrawl/tools/checkstyle/CheckerTest.java: Added test
+	for IgnoreBraces property.
+
 2001-06-30  Oliver Burn  <checkstyle@puppycrawl.com>
 
 	* src/tests/com/puppycrawl/tools/checkstyle/CheckerTest.java:

@@ -105,6 +105,19 @@ public class CheckerTest
         verify(c, "InputBraces.java", expected);
     }
 
+    public void testBracesOff()
+        throws Exception
+    {
+        mConfig.setIgnoreBraces(true);
+        final Checker c = new Checker(mConfig, mStream);
+        final String[] expected = {
+            "InputBraces.java:41: ';' is not preceeded with whitespace.",
+            "InputBraces.java:58: ';' is not preceeded with whitespace.",
+            "InputBraces.java:81: ';' is not preceeded with whitespace.",
+        };
+        verify(c, "InputBraces.java", expected);
+    }
+
     public void testTags()
         throws Exception
     {
