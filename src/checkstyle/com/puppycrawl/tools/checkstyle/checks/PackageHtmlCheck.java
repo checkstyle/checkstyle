@@ -59,12 +59,12 @@ public class PackageHtmlCheck extends AbstractFileSetCheck
      */
     public void process(File[] aFiles)
     {
-        File[] javaFiles = filter(aFiles);
-        Set directories = getParentDirs(javaFiles);
+        final File[] javaFiles = filter(aFiles);
+        final Set directories = getParentDirs(javaFiles);
         for (Iterator it = directories.iterator(); it.hasNext();) {
-            File dir = (File) it.next();
-            File packageHtml = new File(dir, "package.html");
-            MessageDispatcher dispatcher = getMessageDispatcher();
+            final File dir = (File) it.next();
+            final File packageHtml = new File(dir, "package.html");
+            final MessageDispatcher dispatcher = getMessageDispatcher();
             final String path = packageHtml.getPath();
             dispatcher.fireFileStarted(path);
             if (!packageHtml.exists()) {
@@ -84,11 +84,11 @@ public class PackageHtmlCheck extends AbstractFileSetCheck
      */
     protected final Set getParentDirs(File[] aFiles)
     {
-        Set directories = new HashSet();
+        final Set directories = new HashSet();
         for (int i = 0; i < aFiles.length; i++) {
-            File file = aFiles[i].getAbsoluteFile();
-            if (file.getName().endsWith(".java")) {
-                File dir = file.getParentFile();
+            final File f = aFiles[i].getAbsoluteFile();
+            if (f.getName().endsWith(".java")) {
+                final File dir = f.getParentFile();
                 directories.add(dir); // duplicates are handled automatically
             }
         }
