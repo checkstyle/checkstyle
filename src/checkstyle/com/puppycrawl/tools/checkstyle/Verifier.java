@@ -870,9 +870,10 @@ class Verifier
      * Report the name of the package the file is in.
      * @param aName the name of the package
      **/
-    void reportPackageName(String aName)
+    void reportPackageName(LineText aName)
     {
-        mPkgName = aName;
+        mPkgName = aName.getText();
+        checkPackageName(aName);
     }
 
 
@@ -1156,6 +1157,21 @@ class Verifier
             mMessages.add(aParam.getLineNo(), aParam.getColumnNo(),
                           "name.invalidPattern",
                           aParam.getText(), mConfig.getParamPat());
+        }
+    }
+
+
+    /**
+     * Verify that a package name conforms to the style.
+     * @param aName the package name
+     **/
+    private void checkPackageName(LineText aName)
+    {
+        RE packageRegexp = mConfig.getPackageRegexp();
+        if (!packageRegexp.match(aName.getText())) {
+            mMessages.add(aName.getLineNo(), aName.getColumnNo(),
+                          "name.invalidPattern",
+                          aName.getText(), mConfig.getPackagePat());
         }
     }
 

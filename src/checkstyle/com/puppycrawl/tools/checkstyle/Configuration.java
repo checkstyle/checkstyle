@@ -76,6 +76,12 @@ public class Configuration
                              "^[a-z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.METHOD_PATTERN_PROP, "^[a-z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP, "^$");
+
+        // Uppercase letters seem rather uncommon, but they're allowed in
+        // http://java.sun.com/docs/books/jls/
+        //   second_edition/html/packages.doc.html#40169
+        PATTERN_DEFAULTS.put(Defn.PACKAGE_PATTERN_PROP,
+                             "^[a-z]+(\\.[a-zA-Z_][a-zA-Z_0-9]*)*$");
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -401,6 +407,18 @@ public class Configuration
     RE getParamRegexp()
     {
         return getRegexpProperty(Defn.PARAMETER_PATTERN_PROP);
+    }
+
+    /** @return pattern to match package names **/
+    public String getPackagePat()
+    {
+        return getPatternProperty(Defn.PACKAGE_PATTERN_PROP);
+    }
+
+    /** @return regexp to match package names **/
+    public RE getPackageRegexp()
+    {
+        return getRegexpProperty(Defn.PACKAGE_PATTERN_PROP);
     }
 
     /** @return pattern to match static variables **/

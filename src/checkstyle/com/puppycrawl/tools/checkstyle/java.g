@@ -97,7 +97,7 @@ compilationUnit
 packageDefinition
 	options {defaultErrorHandler = true;} // let ANTLR handle errors
 	:	p:"package"^ {#p.setType(PACKAGE_DEF);} identifier SEMI!
-        { ver.reportPackageName(sLastIdentifier.getText()); }
+        { ver.reportPackageName(sLastIdentifier); }
 	;
 
 
