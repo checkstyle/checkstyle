@@ -32,6 +32,9 @@
           <a href="#MethodLength">MethodLength</a>
         </li>
         <li>
+          <a href="#AnonInnerLength">AnonInnerLength</a>
+        </li>
+        <li>
           <a href="#ParameterNumber">ParameterNumber</a>
         </li>
       </ul>
@@ -234,6 +237,54 @@
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
 
+
+      <a name="AnonInnerLength"></a> <h2>AnonInnerLength</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for long anonymous inner classes.
+      </p>
+      <p class="body">
+      Rationale: If an anonymous inner class becomes very long
+      it is hard to understand and to see the flow of the method
+      where the class is defined. Therefore long anonymous inner
+      classes should usually be refactored into a named inner class.
+      See also Bloch, Effective Java, p. 93.
+      </p>
+
+      <h4>Properties</h4>
+
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>maximum allowable number of lines</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td>20</td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check to accept files with up to 60 lines:
+      </p>
+      <pre class="body">
+&lt;module name="AnonInnerLength"&gt;
+      &lt;property name="max" value="60"/&gt;
+&lt;/module&gt;
+        </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
 
       <a name="ParameterNumber"></a> <h2>ParameterNumber</h2> <h4>Description</h4>
       <p class="body">
