@@ -18,16 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
-
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
-import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
-import com.puppycrawl.tools.checkstyle.checks.PackageHtmlCheck;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -137,10 +134,10 @@ public class Checker
         // additional errors that are not expected in the current test code
         // (which should stay like it currently is!)
 
-        FileSetCheck translationCheck = new TranslationCheck();
+        //FileSetCheck translationCheck = new TranslationCheck();
         // addFileSetCheck(translationCheck);
 
-        FileSetCheck packageHtmlCheck = new PackageHtmlCheck();
+        //FileSetCheck packageHtmlCheck = new PackageHtmlCheck();
         // addFileSetCheck(packageHtmlCheck);
 
         final TreeWalker walker = new TreeWalker(mConfig);
