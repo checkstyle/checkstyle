@@ -85,3 +85,9 @@ class ArrayMagicTest
     private int[] magic = {3};
 }
 
+/** test long hex */
+class LongHex
+{
+    long l = 0xffffffff;
+} 
+
