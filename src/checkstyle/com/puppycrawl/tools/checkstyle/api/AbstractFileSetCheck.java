@@ -40,7 +40,7 @@ public abstract class AbstractFileSetCheck
     /** collects the error messages */
     private final LocalizedMessages mMessages = new LocalizedMessages();
 
-    /** @{inheritDoc} */
+    /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
     public void destroy()
     {
     }
@@ -81,7 +81,7 @@ public abstract class AbstractFileSetCheck
         if ((mFileExtensions == null) || (mFileExtensions.length == 0)) {
             return aFiles;
         }
-        
+
         final ArrayList files = new ArrayList(aFiles.length);
         for (int i = 0; i < aFiles.length; i++) {
             final File f = aFiles[i];
@@ -108,7 +108,7 @@ public abstract class AbstractFileSetCheck
             mFileExtensions = null;
             return;
         }
-        
+
         mFileExtensions = new String[aExtensions.length];
         for (int i = 0; i < aExtensions.length; i++) {
             final String extension = aExtensions[i];
