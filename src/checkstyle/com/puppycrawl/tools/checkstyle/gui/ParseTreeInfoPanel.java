@@ -24,7 +24,6 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -35,10 +34,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
 
 import antlr.ANTLRException;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.CommentManager;
-import com.puppycrawl.tools.checkstyle.Java14Lexer;
-import com.puppycrawl.tools.checkstyle.Java14Recognizer;
-import com.puppycrawl.tools.checkstyle.StringArrayReader;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
@@ -104,29 +101,17 @@ public class ParseTreeInfoPanel extends JPanel
 
     /**
      * Parses a file and returns the parse tree.
-     * @param aFilename the file to parse
+     * @param aFileName the file to parse
      * @return the root node of the parse tree
      * @throws IOException if the file cannot be opened
      * @throws ANTLRException if the file is not a Java source
      */
-    public static DetailAST parseFile(String aFilename)
+    public static DetailAST parseFile(String aFileName)
         throws IOException, ANTLRException
     {
-        // Todo: remove duplicate code, see c.p.t.c.Checker
-
-        final String[] lines = Utils.getLines(aFilename);
+        final String[] lines = Utils.getLines(aFileName);
         final CommentManager cmgr = new CommentManager(lines);
-        final Reader sar = new StringArrayReader(lines);
-        final Java14Lexer jl = new Java14Lexer(sar);
-        jl.setFilename(aFilename);
-        jl.setCommentManager(cmgr);
-
-        final Java14Recognizer jr = new Java14Recognizer(jl);
-        jr.setFilename(aFilename);
-        jr.setASTNodeClass(DetailAST.class.getName());
-        jr.compilationUnit();
-        final DetailAST rootAST = (DetailAST) jr.getAST();
-        return rootAST;
+        return Checker.parse(lines, aFileName, cmgr);
     }
 
     /**
