@@ -35,9 +35,6 @@
           <a href="#treewalker">TreeWalker Checks</a>
         </li>
         <li>
-          <a href="#tokens">Tokens</a>
-        </li>
-        <li>
           <a href="#xml">XML</a>
         </li>
       </ul>
@@ -199,15 +196,71 @@
       &lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
       </pre>
       <p class="body">
-      Thus, you can re-specify a module property value without changing the configuration document.
+      You can use property expansion to re-specify a module property value
+      without changing the configuration document.
       </p>
       
       <a name="treewalker"></a> <h2>TreeWalker Checks</h2>
       <p class="body">
-      Lead-in paragraph.
-      </p>
+     The <span class="code">TreeWalker</span> module creates a syntax tree for a Java source file
+     and invokes its submodules, called <em>Checks</em>, during a walk, or traversal, of the nodes
+     of the tree.
+     Every node of the syntax tree has a token. A visit to a node during the traversal
+     triggers all Checks that are configured for its token.
+     For example, if Check <span class="code">MethodLength</span> has been configured as
+     a submodule of <span class="code">TreeWalker</span>, then a visit to a node
+     with a method or a constructor definition
+     token triggers <span class="code">MethodLength</span> to check the number of lines
+     of the node&apos;s code block.
+     </p>
+     <p class="body">
+     Some Checks, such as <span class="code">FileLength</span>
+     and <span class="code">LineLength</span>, apply directly to the source file and do not involve tokens
+     of the syntax tree.
+     Other Checks are associated with configurable sets of trigger tokens.
+     By default, each such Check has a set of <em>default tokens</em> that trigger the Check.
+     For example, this element configures Check <span class="code">MethodLength</span>:
+     </p>
+      <pre class="body">
+    &lt;module name=&quot;MethodLength&quot;/&gt;
+    </pre>
+    <p class="body">
+    The default token set for <span class="code">MethodLength</span> is
+     <span class="code">{METHOD_DEF, CTOR_DEF}</span>, method definition and constructor definition
+     tokens, so <span class="code">TreeWalker</span> invokes
+     <span class="code">MethodLength</span> whenever it visits a node with a
+     <span class="code">METHOD_DEF</span> or a <span class="code">CTOR_DEF</span> token.
+     </p>
+     <p class="body">
+     You can specify the trigger tokens for a Check with property <span class="code">tokens</span>.
+     The value of <span class="code">tokens</span> is a list that denotes a subset of the Check&apos;s
+     <em>acceptable tokens</em>, as in the following element that configures Check
+     <span class="code">MethodLength</span> to check the number of lines of methods only: 
+     </p>
+      <pre class="body">
+        &lt;module name=&quot;MethodLength&quot;&gt;
+            &lt;property name=&quot;tokens&quot; value=&quot;{METHOD_DEF}&quot;/&gt;
+        &lt;/module&gt;
+    </pre>
+    <p class="body">
+    To apply particular properties to different subsets of acceptable tokens for a Check, repeat the Check.
+    For example, to check that the length of each method is at most 150 lines (the default value
+    of <span class="code">MethodLength</span> property <span class="code">max</span>) and the
+    length of each constructor is at most 60 lines, include the following in the
+    <span class="code">TreeWalker</span> configuration:
+    </p>
+      <pre class="body">
+        &lt;module name=&quot;MethodLength&quot;&gt;
+            &lt;property name=&quot;tokens&quot; value=&quot;{METHOD_DEF}&quot;/&gt;
+        &lt;/module&gt;
+
+        &lt;module name=&quot;MethodLength&quot;&gt;
+            &lt;property name=&quot;tokens&quot; value=&quot;{CTOR_DEF}&quot;/&gt;
+            &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+        &lt;/module&gt;
+    </pre>
       <p class="body">
-      Configuration of the checks are specified in the following pages:
+      Configurations of the Checks are specified in the following pages:
       </p>
 
       <ul class="body">
@@ -239,11 +292,6 @@
           <a href="config_misc.html">Miscellaneous Checks</a>
         </li>
       </ul>
-      <a name="tokens"></a> <h2>Tokens</h2>
-      <p class="body">
-      What is a token? Default tokens. Acceptable tokens.
-      Repeated modules with different tokens/properties.
-      </p>
       <a name="xml"></a> <h2>XML</h2>
       <p class="body">
       DTD. DOCTYPE.
