@@ -281,7 +281,7 @@
 <h3>Modifiers</h3>
 <p>Checks that the order of modifiers conforms to the suggestions in the <a href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">Java Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>. The correct order is <span class="code">public protected private abstract static final transient volatile synchronized native strictfp</span>.</p>
 
-<p>Checks that method declarations in interfaces do not include the <span class="code">public</span> modifier, see the <a href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java Language specification, section 9.4</a>.</p>
+<p>Checks that method declarations in interfaces do not include the <span class="code">public</span> or <span class="code">abstract</span> modifiers, see the <a href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java Language specification, section 9.4</a>.</p>
 
 <h3>Visibility Modifiers</h3>
 <p>Checks for data members that are not declared <span class="code">private</span>. Also finds <span class="code">static</span> non-<span class="code">final</span> data members that are not declared as <code>private</code>.</p>
