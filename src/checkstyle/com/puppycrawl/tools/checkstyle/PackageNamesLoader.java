@@ -71,8 +71,8 @@ public class PackageNamesLoader
     }
     
     /**
-     * Returns the set of package names in the last file parsed.
-     * @return the name to class name map.
+     * Returns the list of package names in the last file parsed.
+     * @return the list of package names.
      */
     private String[] getPackageNames()
     {
@@ -150,7 +150,7 @@ public class PackageNamesLoader
      * Returns the package names in a specified file.
      * @param aFilename name of the package file.
      * @return the list of package names stored in the
-     * map file. 
+     *  package file. 
      * @throws CheckstyleException if an error occurs.
      */      
     public static String[] loadPackageNames(String aFilename)
