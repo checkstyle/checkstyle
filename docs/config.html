@@ -152,8 +152,10 @@
         &lt;module name=&quot;AvoidStarImport&quot;/&gt;
           </pre>
           Checkstyle applies packages <span class="code">
-        com.puppycrawl.tools.checkstyle</span> and <span class="code">
-        com.puppycrawl.tools.checkstyle.checks</span> by default. You can specify other 
+        com.puppycrawl.tools.checkstyle</span>, <span class="code">
+        com.puppycrawl.tools.checkstyle.filters</span>, and <span class="code">
+        com.puppycrawl.tools.checkstyle.checks</span> and its sub-packages (only
+        those included in the Checkstyle distribution). You can specify other 
         packages in a <a href="#packagenames"><em>package names XML document</em></a>
           when you invoke Checkstyle at the <a href="cmdline.html">command line</a>, 
         and when you run a <a href="anttask.html">Checkstyle task</a> in ant.
@@ -620,16 +622,19 @@
       of a <span class="code">module</span> element, and automatically appends pre-specified
       package prefixes to that <span class="code">name</span> in its search for a loadable class. 
       By default, Checkstyle applies packages <span class="code">
-        com.puppycrawl.tools.checkstyle</span> and <span class="code">
-        com.puppycrawl.tools.checkstyle.checks</span>. To specify other packages to apply, 
+        com.puppycrawl.tools.checkstyle</span>, <span class="code">
+        com.puppycrawl.tools.checkstyle.filters</span>, and <span class="code">
+        com.puppycrawl.tools.checkstyle.checks</span> as well as any sub-packages of
+        <span class="code">com.puppycrawl.tools.checkstyle.checks</span> that are
+        distributed with Checkstyle. To specify other packages to apply, 
         create a <em>package names XML document</em> in a file, and provide that file as a
         <a href="cmdline.html">command line</a> option or as a
          attribute of an <a href="anttask.html">ant Checkstyle task</a>.
          This is useful for integrating other modules in your configuration.
         </p>
          <p class="body">
-         A <em>package names XML document</em> specifies a list of package names. Here is the root of the
-         default Checkstyle package names XML document for packages <span class="code">
+         A <em>package names XML document</em> specifies a list of package names. Here is a
+         sample package names XML document for packages <span class="code">
         com.puppycrawl.tools.checkstyle</span> and <span class="code">
         com.puppycrawl.tools.checkstyle.checks</span>:
          </p>
@@ -661,7 +666,20 @@
 &lt;checkstyle-packages&gt;
   &lt;package name=&quot;com.mycompany.checks&quot;&gt;
   &lt;package name=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
-    &lt;package name=&quot;checks&quot;/&gt;
+    &lt;package name=&quot;checks&quot;&gt;
+      &lt;package name=&quot;blocks&quot;/&gt;
+      &lt;package name=&quot;coding&quot;/&gt;
+      &lt;package name=&quot;design&quot;/&gt;
+      &lt;package name=&quot;imports&quot;/&gt;
+      &lt;package name=&quot;indentation&quot;/&gt;
+      &lt;package name=&quot;j2ee&quot;/&gt;
+      &lt;package name=&quot;javadoc&quot;/&gt;
+      &lt;package name=&quot;metrics&quot;/&gt;
+      &lt;package name=&quot;naming&quot;/&gt;
+      &lt;package name=&quot;sizes&quot;/&gt;
+      &lt;package name=&quot;whitespace&quot;/&gt;
+    &lt;/package&gt;
+    &lt;package name="filters"/&gt;    
   &lt;/package&gt;
 &lt;/checkstyle-packages&gt;
     </pre>
