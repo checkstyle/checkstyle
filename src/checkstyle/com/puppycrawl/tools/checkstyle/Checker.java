@@ -125,7 +125,8 @@ public class Checker
                     os.flush();
                     os.close();
                 }
-                catch (IOException ignored) {
+                catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
             it.remove();
