@@ -50,6 +50,8 @@ public interface Defn
     String MAX_CONSTRUCTOR_LENGTH_PROP = "checkstyle.maxconstructorlen";
     /** property name for length of files **/
     String MAX_FILE_LENGTH_PROP = "checkstyle.maxfilelen";
+    /** property name for maximum number of parameters **/
+    String MAX_PARAMETERS_PROP = "checkstyle.maxparameters";
     /** property name for allowing tabs **/
     String ALLOW_TABS_PROP = "checkstyle.allow.tabs";
     /** property name for allowing protected data **/

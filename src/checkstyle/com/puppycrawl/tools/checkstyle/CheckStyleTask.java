@@ -222,6 +222,12 @@ public class CheckStyleTask
         setIntProperty(Defn.MAX_FILE_LENGTH_PROP, aLen);
     }
 
+    /** @param aNum max allowed file length **/
+    public void setMaxParameters(final int aNum)
+    {
+        setIntProperty(Defn.MAX_PARAMETERS_PROP, aNum);
+    }
+
     /** @param aPat line length check exclusion pattern */
     public void setIgnoreLineLengthPattern(final String aPat)
     {
