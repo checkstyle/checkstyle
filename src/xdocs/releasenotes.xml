@@ -31,6 +31,11 @@
         serializaition-related methods (readObject(), writeObject(),
         readResolve() and writeReplace()) (rfe 1036387)</li>
 
+        <li>Added support for the property
+        <code>allowMissingPropertyJavadoc </code> on the <a
+        href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
+        check.</li>
+
       </ul>
 
 

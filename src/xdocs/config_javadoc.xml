@@ -182,47 +182,50 @@
     <section name="JavadocMethod">
       <subsection name="Description">
         <p>
-          Checks to ensure that the following tags exist (if required):
+          Checks the Javadoc of a method or constructor. By default,
+          does not check for unused throws. To allow documented
+          <code>java.lang.RuntimeException</code>s that are not
+          declared, set property allowUndeclaredRTE to true. The scope
+          to verify is specified using the <code>Scope</code> class and
+          defaults to <code>Scope.PRIVATE</code>. To verify another
+          scope, set property scope to one of the <code>Scope</code>
+          constants.
         </p>
-
-        <ul>
-          <li>
-            <span class="code">@return</span>
-          </li>
-          <li>
-            <span class="code">@param</span>
-          </li>
-          <li>
-            <span class="code">@throws</span> or <span
-            class="code">@exception</span>
-          </li>
-          <li>
-            <span class="code">@see</span> or <span
-            class="code">{@inheritDoc}</span>
-          </li>
-        </ul>
 
         <p>
-          For example, the following is valid:
+          Error messages about parameters for which no param tags are
+          present can be suppressed by defining property
+          <code>allowMissingParamTags</code>. Error messages about
+          exceptions which are declared to be thrown, but for which no
+          throws tag is present can be suppressed by defining property
+          <code>allowMissingThrowsTags</code>. Error messages about
+          methods which return non-void but for which no return tag is
+          present can be suppressed by defining property
+          <code>allowMissingReturnTag</code>.
         </p>
-        <source>
-/**
- * Checks for a return tag.
- * @return the index of the next unchecked tag
- * @param aTagIndex the index to start in the tags
- * @param aTags the tags to check
- * @param aLineNo the line number of the expected tag
- **/
-public int checkReturnTag(final int aTagIndex,
-                          JavadocTag[] aTags,
-                          int aLineNo)
-        </source>
 
         <p>
-          This supports the convention in the <a
-          href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html#throwstag">Sun
-          Javadoc Guidelines</a> and the "Effective Java" book.
+          An example of how to configure the check is:
         </p>
+
+        <pre>
+&lt;module name=&quot;JavadocMethod&quot;/&gt;
+        </pre>
+
+        <p>
+          An example of how to configure the check to check to allow
+          documentation of undeclared RuntimeExceptions and for the
+          <code>Scope.PUBLIC</code> scope, while ignoring any missing
+          param tags is:
+        </p>
+
+        <pre>
+&lt;module name=&quot;JavadocMethod&quot;&gt;
+  &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+  &lt;property name=&quot;allowUndeclaredRTE&quot; value=&quot;true&quot;/&gt;
+   &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </pre>
       </subsection>
 
       <subsection name="Properties">
@@ -282,12 +285,42 @@ public int checkReturnTag(final int aTagIndex,
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>
+
           <tr>
             <td>allowMissingJavadoc</td>
             <td>whether to ignore errors when a method javadoc is missed.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>
+
+          <tr>
+            <td>allowMissingPropertyJavadoc</td>
+            <td>
+              Whether to allow missing Javadoc on accessor methods for
+              properties (setters and getters). The setter and getter
+              methods must match exactly the structures below.
+
+              <pre>
+public void setNumber(final int number)
+{
+    mNumber = number;
+}
+
+public int getNumber()
+{
+    return mNumber;
+}
+
+public boolean isSomething()
+{
+    return false;
+}
+              </pre>
+            </td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+
           <tr>
             <td>tokens</td>
             <td>definitions to check</td>

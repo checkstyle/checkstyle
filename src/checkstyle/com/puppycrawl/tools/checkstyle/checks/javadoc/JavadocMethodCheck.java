@@ -40,46 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
 
 /**
- * <p>
- * Checks the Javadoc of a method or constructor. By default, does not check for
- * unused throws. To allow documented <code>java.lang.RuntimeException</code>
- * s that are not declared, set property allowUndeclaredRTE to true. The scope
- * to verify is specified using the {@link Scope}class and defaults to
- * {@link Scope#PRIVATE}. To verify another scope, set property scope to one of
- * the {@link Scope}constants.
- * </p>
- * <p>
- * Error messages about parameters for which no param tags are present can be
- * suppressed by defining property <code>allowMissingParamTags</code>. Error
- * messages about exceptions which are declared to be thrown, but for which no
- * throws tag is present can be suppressed by defining property
- * <code>allowMissingThrowsTags</code>. Error messages about methods which
- * return non-void but for which no return tag is present can be suppressed by
- * defining property <code>allowMissingReturnTag</code>.
- * </p>
- * <p>
- * An example of how to configure the check is:
- * </p>
- *
- * <pre>
- *   &lt;module name=&quot;JavadocMethod&quot;/&gt;
- * </pre>
- *
- * <p>
- * An example of how to configure the check to check to allow documentation of
- * undeclared RuntimeExceptions and for the {@link Scope#PUBLIC}scope, while
- * ignoring any missing param tags is:
- * </p>
- *
- * <pre>
- * &lt;module name=&quot;JavadocMethod&quot;&gt;
- *   &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
- *   &lt;property name=&quot;allowUndeclaredRTE&quot;
- value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;allowMissingParamTags&quot;
- value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
+ * Checks the Javadoc of a method or constructor.
  *
  * @author Oliver Burn
  * @author Rick Giles
