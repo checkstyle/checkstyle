@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 import java.util.Stack;
 
 /**
- * Restricts nested boolean operators (&&, || and ^) to
+ * Restricts nested boolean operators (&amp;&amp;, || and ^) to
  * a specified depth (default = 3).
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>

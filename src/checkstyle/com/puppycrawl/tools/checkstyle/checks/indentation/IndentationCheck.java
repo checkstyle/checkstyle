@@ -86,8 +86,6 @@ import org.apache.commons.collections.ArrayStack;
  *  while loop handler checks the while loop as well as the braces
  *  and immediate children.
  * </p>
- * Created on November 2, 2002, 10:59 PM
- * <p>
  * <pre>
  *   - handler class -to-> ID mapping kept in Map
  *   - parent passed in during construction
