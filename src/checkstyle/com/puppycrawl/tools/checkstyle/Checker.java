@@ -124,8 +124,8 @@ public class Checker extends AutomaticBean
     /** the context of all child components */
     private Context mChildContext;
 
-    /** The audit event filter chain */
-    private final FilterSet mFilterChain = new FilterSet();
+    /** The audit event filters */
+    private final FilterSet mFilters = new FilterSet();
 
     /**
      * The severity level of any violations found by submodules.
@@ -229,7 +229,7 @@ public class Checker extends AutomaticBean
      */
     public void addFilter(Filter aFilter)
     {
-        mFilterChain.addFilter(aFilter);
+        mFilters.addFilter(aFilter);
     }
 
     /** Cleans up the object. **/
@@ -298,7 +298,7 @@ public class Checker extends AutomaticBean
     protected void fireAuditStarted()
     {
         final AuditEvent evt = new AuditEvent(this);
-        if (mFilterChain.accept(evt)) {
+        if (mFilters.accept(evt)) {
             final Iterator it = mListeners.iterator();
             while (it.hasNext()) {
                 final AuditListener listener = (AuditListener) it.next();
@@ -311,7 +311,7 @@ public class Checker extends AutomaticBean
     protected void fireAuditFinished()
     {
         final AuditEvent evt = new AuditEvent(this);
-        if (mFilterChain.accept(evt)) {
+        if (mFilters.accept(evt)) {
             final Iterator it = mListeners.iterator();
             while (it.hasNext()) {
                 final AuditListener listener = (AuditListener) it.next();
@@ -328,7 +328,7 @@ public class Checker extends AutomaticBean
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        if (mFilterChain.accept(evt)) {
+        if (mFilters.accept(evt)) {
             final Iterator it = mListeners.iterator();
             while (it.hasNext()) {
                 final AuditListener listener = (AuditListener) it.next();
@@ -345,7 +345,7 @@ public class Checker extends AutomaticBean
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        if (mFilterChain.accept(evt)) {
+        if (mFilters.accept(evt)) {
             final Iterator it = mListeners.iterator();
             while (it.hasNext()) {
                 final AuditListener listener = (AuditListener) it.next();
@@ -364,7 +364,7 @@ public class Checker extends AutomaticBean
         final String stripped = getStrippedFileName(aFileName);
         for (int i = 0; i < aErrors.length; i++) {
             final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);
-            if (mFilterChain.accept(evt)) {
+            if (mFilters.accept(evt)) {
                 final Iterator it = mListeners.iterator();
                 while (it.hasNext()) {
                     final AuditListener listener = (AuditListener) it.next();
