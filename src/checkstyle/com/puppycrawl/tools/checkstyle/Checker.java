@@ -186,13 +186,12 @@ public class Checker
         try {
             fireFileStarted(aFileName);
             final String[] lines = getLines(aFileName);
-            VerifierSingleton.getInstance().clearMessages();
-            VerifierSingleton.getInstance().setLines(lines);
             try {
                 // try the 1.4 grammar first, this will succeed for
                 // all code that compiles without any warnings in JDK 1.4,
                 // that should cover most cases
-
+                VerifierSingleton.getInstance().clearMessages();
+                VerifierSingleton.getInstance().setLines(lines);
                 final Reader sar = new StringArrayReader(lines);
                 final GeneratedJava14Lexer jl = new GeneratedJava14Lexer(sar);
                 jl.setFilename(aFileName);
@@ -209,6 +208,8 @@ public class Checker
                 // and not as a keyword
 
                 // Arghh - the pain - duplicate code!
+                VerifierSingleton.getInstance().clearMessages();
+                VerifierSingleton.getInstance().setLines(lines);
                 final Reader sar = new StringArrayReader(lines);
                 final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
                 jl.setFilename(aFileName);
