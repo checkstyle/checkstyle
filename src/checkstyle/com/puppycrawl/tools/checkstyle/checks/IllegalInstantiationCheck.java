@@ -36,7 +36,7 @@ import antlr.collections.AST;
  * <p>
  * Rationale: Depending on the project, for some classes it might be
  * preferable to create instances through factory methods rather than
- * calling the classes constructor.
+ * calling the constructor.
  * </p>
  * <p>
  * A simple example is the java.lang.Boolean class, to save memory and CPU
@@ -51,7 +51,7 @@ import antlr.collections.AST;
  *
  * Limitations: It is currently not possible to specify array classes.
  *
- * @author Lars Kühne
+ * @author lkuehne
  */
 public class IllegalInstantiationCheck
         extends ImportCheck
@@ -119,8 +119,9 @@ public class IllegalInstantiationCheck
      */
     private void processPackageDef(DetailAST aAST)
     {
-        DetailAST packageNameAST = (DetailAST) aAST.getFirstChild();
-        FullIdent packageIdent = FullIdent.createFullIdent(packageNameAST);
+        final DetailAST packageNameAST = (DetailAST) aAST.getFirstChild();
+        final FullIdent packageIdent =
+                FullIdent.createFullIdent(packageNameAST);
         mPkgName = packageIdent.getText();
     }
 
@@ -130,9 +131,9 @@ public class IllegalInstantiationCheck
      */
     private void processLiteralNew(DetailAST aAST)
     {
-        DetailAST typeNameAST = (DetailAST) aAST.getFirstChild();
+        final DetailAST typeNameAST = (DetailAST) aAST.getFirstChild();
 
-        AST nameSibling = typeNameAST.getNextSibling();
+        final AST nameSibling = typeNameAST.getNextSibling();
         if (nameSibling != null
                 && nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR)
         {

@@ -28,7 +28,7 @@ import antlr.collections.AST;
  * An extension of the CommonAST that records the line and column number.
  * The idea was taken from http://www.jguru.com/jguru/faq/view.jsp?EID=62654.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @author Lars K?hne
+ * @author lkuehne
  * @version 1.0
  */
 public class DetailAST
@@ -73,6 +73,10 @@ public class DetailAST
         mColumnNo = da.getColumnNo();
     }
 
+    /**
+     * Sets this AST's first Child
+     * @param aAST the new first child
+     */
     public void setFirstChild(AST aAST)
     {
         mChildCount = NOT_INITIALIZED;
