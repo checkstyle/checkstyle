@@ -189,6 +189,15 @@
     </xsl:template>
 
     <!--
+    Replace DOS characters in a path.
+    Replace '\' with '/', ':' with '_'.
+    -->
+    <xsl:template name="from-dos">
+        <xsl:param name="path"/>
+        <xsl:value-of select="translate($path, '\:', '/_')"/>
+    </xsl:template>
+    
+    <!--
     Creates an all-classes.html file that contains a link to all files.
     -->
     <xsl:template match="checkstyle" mode="all.classes">
@@ -224,12 +233,17 @@
     </xsl:template>
 
     <xsl:template match="file" mode="filelist">
+        <xsl:variable name="new-name">
+            <xsl:call-template name="from-dos">
+                <xsl:with-param name="path" select="@name"/>
+            </xsl:call-template>
+        </xsl:variable>
         <tr>
             <xsl:call-template name="alternated-row"/>
             <td nowrap="nowrap">
                 <a>
                     <xsl:attribute name="href">
-                        <xsl:text>files/</xsl:text><xsl:value-of select="@name"/><xsl:text>.html</xsl:text>
+                        <xsl:text>files/</xsl:text><xsl:value-of select="$new-name"/><xsl:text>.html</xsl:text>
                     </xsl:attribute>
                     <xsl:value-of select="@name"/>
                 </a>
@@ -239,11 +253,16 @@
     </xsl:template>
 
     <xsl:template match="file" mode="all.classes">
+        <xsl:variable name="new-name">
+            <xsl:call-template name="from-dos">
+                <xsl:with-param name="path" select="@name"/>
+            </xsl:call-template>
+        </xsl:variable>
         <tr>
             <td nowrap="nowrap">
                 <a target="fileFrame">
                     <xsl:attribute name="href">
-                        <xsl:text>files/</xsl:text><xsl:value-of select="@name"/><xsl:text>.html</xsl:text>
+                        <xsl:text>files/</xsl:text><xsl:value-of select="$new-name"/><xsl:text>.html</xsl:text>
                     </xsl:attribute>
                     <xsl:value-of select="@name"/>
                 </a>
@@ -269,11 +288,16 @@
     </xsl:template>
 
     <xsl:template match="file">
-        <redirect:write file="{$output.dir}/files/{@name}.html">
+        <xsl:variable name="new-name">
+            <xsl:call-template name="from-dos">
+                <xsl:with-param name="path" select="@name"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <redirect:write file="{$output.dir}/files/{$new-name}.html">
             <html>
                 <head>
                     <link rel="stylesheet" type="text/css">
-                        <xsl:attribute name="href"><xsl:call-template name="path"><xsl:with-param name="path" select="@name"/></xsl:call-template><xsl:text>stylesheet.css</xsl:text></xsl:attribute>
+                        <xsl:attribute name="href"><xsl:call-template name="path"><xsl:with-param name="path" select="$new-name"/></xsl:call-template><xsl:text>stylesheet.css</xsl:text></xsl:attribute>
                     </link>
                 </head>
                 <body>
