@@ -288,30 +288,27 @@ public final class CheckUtils
      * are operators).
      * @param aNode the token node
      * @return true if {@link TokenTypes.LT LT}, {@link TokenTypes.GT GT},
-     *         {@link TokenTypes.QUESTION QUESTION} or {@link TokenTypes.BAND BAND}
+     *         {@link TokenTypes.QUESTION QUESTION} or
+     *         {@link TokenTypes.BAND BAND}
      *         tokens and is part of a generic declaration, false otherwise
      *
      */
-    public static boolean isOperatorTokenPartOfGenericDeclaration(final DetailAST aNode)
+    public static boolean isOperatorTokenPartOfGenericDeclaration(
+        final DetailAST aNode)
     {
         int type = aNode.getType();
         int parentType = aNode.getParent().getType();
 
         // Comparable < String >
-        if ((type == TokenTypes.GT || type == TokenTypes.LT)
-            && (parentType == TokenTypes.TYPE_ARGUMENTS || parentType == TokenTypes.TYPE_PARAMETERS))
+        if (((type == TokenTypes.GT) || (type == TokenTypes.LT))
+            && ((parentType == TokenTypes.TYPE_ARGUMENTS)
+                || (parentType == TokenTypes.TYPE_PARAMETERS)))
         {
             return true;
         }
         // Comparable < ? extends Serializable & CharSequence >
-        else  if (type == TokenTypes.BAND
-            && (parentType == TokenTypes.TYPE_UPPER_BOUNDS || parentType == TokenTypes.TYPE_LOWER_BOUNDS))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return (type == TokenTypes.BAND)
+            && ((parentType == TokenTypes.TYPE_UPPER_BOUNDS)
+                || (parentType == TokenTypes.TYPE_LOWER_BOUNDS));
     }
 }
