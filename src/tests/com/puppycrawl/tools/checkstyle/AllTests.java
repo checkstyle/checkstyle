@@ -57,6 +57,7 @@ import com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportTest;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheckTest;
@@ -156,6 +157,7 @@ public class AllTests {
         suite.addTest(new TestSuite(HeaderCheckTest.class));
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
         suite.addTest(new TestSuite(HideUtilityClassConstructorCheckTest.class));
+        suite.addTest(new TestSuite(ImportOrderCheckTest.class));
         suite.addTest(new TestSuite(IllegalCatchCheckTest.class));
         suite.addTest(new TestSuite(IllegalImportCheckTest.class));
         suite.addTest(new TestSuite(IllegalInstantiationCheckTest.class));
