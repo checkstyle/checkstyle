@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTest;
@@ -155,6 +156,7 @@ public class AllTests {
         suite.addTest(new TestSuite(IllegalInstantiationCheckTest.class));
         suite.addTest(new TestSuite(IllegalTokenCheckTest.class));
         suite.addTest(new TestSuite(IllegalTokenTextCheckTest.class));
+        suite.addTest(new TestSuite(IllegalTypeCheckTest.class));
         suite.addTest(new TestSuite(IndentationCheckTest.class));
         suite.addTest(new TestSuite(InnerAssignmentCheckTest.class));
         suite.addTest(new TestSuite(InterfaceIsTypeCheckTest.class));

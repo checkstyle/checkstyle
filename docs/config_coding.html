@@ -56,6 +56,9 @@
           <a href="#IllegalTokenText">IllegalTokenText</a>
         </li>
         <li>
+          <a href="#IllegalType">IllegalType</a>
+        </li>
+        <li>
           <a href="#InnerAssignment">InnerAssignment</a>
         </li>
         <li>
@@ -1172,6 +1175,80 @@ return !valid();
       <pre class="body">
 &lt;module name=&quot;ReturnCount&quot;&gt;
     &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="IllegalType"></a> <h2>IllegalType</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that particular class are never used as types in variable
+      declarations, return values or parameters. Includes
+      a pattern check that by default disallows abstract classes.
+      </p>
+
+      <p class="body">
+      Rationale:
+      Helps reduce coupling on concrete classes. In addition abstract
+      classes should be thought of a convenience base class implementations
+      of interfaces and as such are not types themsleves. 
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of tokens <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+          <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a></td>
+
+          <td><a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+          <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a></td>
+          </tr>
+        <tr>
+          <td>illegalClassNames</td>
+          <td>classes that should not be used as types in variable
+          declarations, return values or parameters. </td>
+          <td><a href="property_types.html#stringSet">String Set</a></td>
+          <td>&quot;java.util.GregorianCalendar, java.util.Hashtable,
+          java.util.HashSet, java.util.HashMap, java.util.ArrayList,
+          java.util.LinkedList, java.util.LinkedHashMap,
+          java.util.LinkedHashSet, java.util.TreeSet,
+          java.util.TreeMap, java.util.Vector&quot;</td>
+        </tr>
+        <tr>
+          <td>ignoredMethodNames</td>
+          <td>methods that should not be checked</td>
+          <td><a href="property_types.html#stringSet">String Set</a></td>
+          <td>&quot;getInitialContext, getEnvironment&quot; </td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check so that it ignore getInstance() method:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;IllegalType&quot;&gt;
+    &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;getInstance&quot;/&gt;
 &lt;/module&gt;
       </pre>
       <h4>Package</h4>
