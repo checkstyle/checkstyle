@@ -112,6 +112,8 @@ public class CheckerTest
             filepath + ":39: 'try' is not followed by whitespace.",
             filepath + ":41: 'catch' is not followed by whitespace.",
             filepath + ":58: 'if' is not followed by whitespace.",
+            filepath + ":59: '{' should be on the previous line.",
+            filepath + ":75: '{' should be on the previous line.",
             filepath + ":76: 'return' is not followed by whitespace.",
             filepath + ":88: cast needs to be followed by whitespace.",
             filepath + ":97: '?' is not preceeded with whitespace.",
@@ -170,6 +172,8 @@ public class CheckerTest
             filepath + ":39: 'try' is not followed by whitespace.",
             filepath + ":41: 'catch' is not followed by whitespace.",
             filepath + ":58: 'if' is not followed by whitespace.",
+            filepath + ":59: '{' should be on the previous line.",
+            filepath + ":75: '{' should be on the previous line.",
             filepath + ":76: 'return' is not followed by whitespace.",
             filepath + ":97: '?' is not preceeded with whitespace.",
             filepath + ":97: '?' is not followed by whitespace.",
@@ -206,6 +210,8 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":13: type Javadoc comment is missing an @author tag.",
+            filepath + ":59: '{' should be on the previous line.",
+            filepath + ":75: '{' should be on the previous line.",
         };
         verify(c, filepath, expected);
     }
@@ -632,6 +638,8 @@ public class CheckerTest
         final String filepath = getPath("InputLeftCurlyOther.java");
         assertNotNull(c);
         final String[] expected = {
+            filepath + ":19: '{' should be on the previous line.",
+            filepath + ":22: '{' should be on the previous line.",
             filepath + ":33: '{' should be on the previous line.",
         };
         verify(c, filepath, expected);

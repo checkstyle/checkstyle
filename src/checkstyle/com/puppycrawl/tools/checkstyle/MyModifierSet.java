@@ -101,16 +101,13 @@ class MyModifierSet
     /** @return the visibility scope of the modifiers. */
     Scope getVisibilityScope()
     {
-        if (containsPublic())
-        {
+        if (containsPublic()) {
             return Scope.PUBLIC;
         }
-        if (containsProtected())
-        {
+        else if (containsProtected()) {
             return Scope.PROTECTED;
         }
-        if (containsPrivate())
-        {
+        else if (containsPrivate()) {
             return Scope.PRIVATE;
         }
         return Scope.PACKAGE;

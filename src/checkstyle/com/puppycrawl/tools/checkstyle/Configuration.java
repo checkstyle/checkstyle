@@ -481,8 +481,7 @@ public class Configuration
      **/
     public int getHeaderIgnoreLineNo()
     {
-        if (mHeaderIgnoreLineNo.isEmpty())
-        {
+        if (mHeaderIgnoreLineNo.isEmpty()) {
             return -1;
         }
         else
@@ -764,14 +763,12 @@ public class Configuration
     {
         mHeaderIgnoreLineNo.clear();
 
-        if (aList == null)
-        {
+        if (aList == null) {
             return;
         }
 
         final StringTokenizer tokens = new StringTokenizer(aList, ",");
-        while (tokens.hasMoreTokens())
-        {
+        while (tokens.hasMoreTokens()) {
             final String ignoreLine = tokens.nextToken();
             mHeaderIgnoreLineNo.add(new Integer(ignoreLine));
         }

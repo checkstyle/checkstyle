@@ -188,8 +188,7 @@ public class Checker
      */
     private int checkPackageHtml(String[] aFiles)
     {
-        if (!mConfig.isRequirePackageHtml())
-        {
+        if (!mConfig.isRequirePackageHtml()) {
             return 0;
         }
 
@@ -199,14 +198,12 @@ public class Checker
         {
             final File file = new File(aFiles[i]);
             final File packageDir = file.getParentFile();
-            if (!checkedPackages.contains(packageDir))
-            {
+            if (!checkedPackages.contains(packageDir)) {
                 final File packageDoc =
                     new File(packageDir, "package.html");
                 final String docFile = packageDoc.toString();
                 fireFileStarted(docFile);
-                if (!packageDoc.exists())
-                {
+                if (!packageDoc.exists()) {
                     final LineText error =
                         new LineText(0, "missing package documentation file.");
                     fireErrors(docFile, new LineText[]{error} );
