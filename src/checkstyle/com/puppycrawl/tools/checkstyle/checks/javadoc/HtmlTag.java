@@ -82,6 +82,9 @@ class HtmlTag
      */
     public boolean isCloseTag()
     {
+        if (mPosition == (mText.length() - 1)) {
+            return false;
+        }
         return (mText.charAt(mPosition + 1) == '/');
     }
 
