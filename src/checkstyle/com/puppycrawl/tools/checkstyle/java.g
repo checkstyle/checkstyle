@@ -106,7 +106,7 @@ typeDefinition
 { MyModifierSet modSet = new MyModifierSet(); }
 	:	m:modifiers[modSet]!
 		( classDefinition[#m, modSet]
-		| interfaceDefinition[#m]
+		| interfaceDefinition[#m, modSet]
 		)
 	|	SEMI!
 	;
@@ -115,7 +115,8 @@ typeDefinition
  *  Create a separate Type/Var tree for each var in the var list.
  */
 declaration!
-	:	m:modifiers[new MyModifierSet()] t:typeSpec[false] v:variableDefinitions[#m,#t]
+{ MyModifierSet modSet = new MyModifierSet(); }
+	:	m:modifiers[modSet] t:typeSpec[false] v:variableDefinitions[#m,#t, modSet]
 		{#declaration = #v;}
 	;
 
@@ -227,13 +228,15 @@ classDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 		ic:implementsClause
 		// now parse the body of the class
         {
-            System.out.println(">>> enter class block");
-            System.out.println("modSet = " + modSet);
+            ver.verifyType(modSet, #IDENT);
+            ver.reportStartTypeBlock(modSet.getVisibilityScope(), false);
         }
 		cb:classBlock
 		{#classDefinition = #(#[CLASS_DEF,"CLASS_DEF"],
 							   modifiers,IDENT,sc,ic,cb);}
-        {System.out.println("-------<<< leave class block");}
+        {
+            ver.reportEndTypeBlock();
+        }
 	;
 
 superClassClause!
@@ -242,16 +245,21 @@ superClassClause!
 	;
 
 // Definition of a Java Interface
-interfaceDefinition![MyCommonAST modifiers]
+interfaceDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 	:	"interface" IDENT
 		// it might extend some other interfaces
 		ie:interfaceExtends
 		// now parse the body of the interface (looks like a class...)
-        {System.out.println("------->>> enter interface block");}
+        {
+            ver.verifyType(modSet, #IDENT);
+            ver.reportStartTypeBlock(modSet.getVisibilityScope(), true);
+        }
 		cb:classBlock
 		{#interfaceDefinition = #(#[INTERFACE_DEF,"INTERFACE_DEF"],
 									modifiers,IDENT,ie,cb);}
-        {System.out.println("-------<<< leave interface block");}
+        {
+            ver.reportEndTypeBlock();
+        }
 	;
 
 
@@ -288,30 +296,48 @@ implementsClause
 //   for example), and if this grammar were used for a compiler there would
 //   need to be some semantic checks to make sure we're doing the right thing...
 field!
-{ MyModifierSet modSet = new MyModifierSet(); }
+{
+    MyModifierSet modSet = new MyModifierSet();
+    java.util.List exs = new java.util.ArrayList();
+    MethodSignature msig = new MethodSignature();
+}
 	:	// method, constructor, or variable declaration
 		mods:modifiers[modSet]
-		(	h:ctorHead s:constructorBody // constructor
+		(	h:ctorHead[exs, msig]
+            {
+                msig.setThrows(exs);
+                msig.setLineNo(#h.getLineNo());
+                ver.verifyMethodJavadoc(modSet, null, msig);
+                ver.reportStartMethodBlock();
+            } 
+            s:constructorBody // constructor
 			{#field = #(#[CTOR_DEF,"CTOR_DEF"], mods, h, s);}
+            {ver.reportEndMethodBlock();} 
 
 		|	cd:classDefinition[#mods, modSet]       // inner class
 			{#field = #cd;}
 
-		|	id:interfaceDefinition[#mods]   // inner interface
+		|	id:interfaceDefinition[#mods, modSet]   // inner interface
 			{#field = #id;}
 
 		|	t:typeSpec[false]  // method or variable declaration(s)
 			(	IDENT  // the name of the method
 
 				// parse the formal parameter declarations.
-				LPAREN! param:parameterDeclarationList RPAREN!
+				LPAREN! param:parameterDeclarationList[msig] RPAREN!
 
 				rt:declaratorBrackets[#t]
 
 				// get the list of exceptions that this method is
 				// declared to throw
-				(tc:throwsClause)?
+				(tc:throwsClause[exs])?
 
+                {
+                    msig.setThrows(exs);
+                    msig.setLineNo(#t.getLineNo());
+                    ver.verifyMethodJavadoc(modSet, #t, msig);
+                    ver.reportStartMethodBlock();
+                } 
 				( s2:compoundStatement {ver.verifyMethodLength(#s2.getLineNo(), sCompoundLength);} | SEMI )
 				{#field = #(#[METHOD_DEF,"METHOD_DEF"],
 						     mods,
@@ -320,8 +346,8 @@ field!
 							 param,
 							 tc,
 							 s2); }
-			|	v:variableDefinitions[#mods,#t] SEMI
-//				{#field = #(#[VARIABLE_DEF,"VARIABLE_DEF"], v);}
+                {ver.reportEndMethodBlock();} 
+			|	v:variableDefinitions[#mods,#t, modSet] SEMI
 				{#field = #v;}
 			)
 		)
@@ -367,12 +393,14 @@ explicitConstructorInvocation
 		)
     ;
 
-variableDefinitions[MyCommonAST mods, MyCommonAST t]
+variableDefinitions[MyCommonAST mods, MyCommonAST t, MyModifierSet modSet]
 	:	variableDeclarator[(MyCommonAST) getASTFactory().dupTree(mods),
-						   (MyCommonAST) getASTFactory().dupTree(t)]
+						   (MyCommonAST) getASTFactory().dupTree(t),
+                           modSet]
 		(	COMMA!
 			variableDeclarator[(MyCommonAST) getASTFactory().dupTree(mods),
-							   (MyCommonAST) getASTFactory().dupTree(t)]
+							   (MyCommonAST) getASTFactory().dupTree(t),
+                               modSet]
 		)*
 	;
 
@@ -380,9 +408,12 @@ variableDefinitions[MyCommonAST mods, MyCommonAST t]
  *   or a local variable in a method
  * It can also include possible initialization.
  */
-variableDeclarator![MyCommonAST mods, MyCommonAST t]
+variableDeclarator![MyCommonAST mods, MyCommonAST t, MyModifierSet modSet]
 	:	id:IDENT d:declaratorBrackets[t] v:varInitializer
 		{#variableDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], mods, #(#[TYPE,"TYPE"],d), id, v);}
+        {
+            ver.verifyVariable(new MyVariable(new LineText(id.getLine(), id.getText()), modSet));
+        }
 	;
 
 declaratorBrackets[MyCommonAST typ]
@@ -425,35 +456,39 @@ initializer
 // This is the header of a method.  It includes the name and parameters
 //   for the method.
 //   This also watches for a list of exception classes in a "throws" clause.
-ctorHead
+ctorHead[java.util.List exs, MethodSignature msig]
 	:	IDENT  // the name of the method
 
 		// parse the formal parameter declarations.
-		LPAREN! parameterDeclarationList RPAREN!
+		LPAREN! parameterDeclarationList[msig] RPAREN!
 
 		// get the list of exceptions that this method is declared to throw
-		(throwsClause)?
+		(throwsClause[exs])?
 	;
 
 // This is a list of exception classes that the method is declared to throw
-throwsClause
-	:	"throws"^ identifier ( COMMA! identifier )*
+throwsClause[java.util.List exs]
+	:	"throws"^ i1:identifier { exs.add(sLastIdentifier); }
+        ( COMMA! i2:identifier { exs.add(sLastIdentifier); } )*
 	;
 
 
 // A list of formal parameters
-parameterDeclarationList
-	:	( parameterDeclaration ( COMMA! parameterDeclaration )* )?
+parameterDeclarationList[MethodSignature msig]
+	:	( parameterDeclaration[msig] ( COMMA! parameterDeclaration[msig] )* )?
 		{#parameterDeclarationList = #(#[PARAMETERS,"PARAMETERS"],
 									#parameterDeclarationList);}
 	;
 
 // A formal parameter.
-parameterDeclaration!
+parameterDeclaration![MethodSignature msig]
 	:	pm:parameterModifier t:typeSpec[false] id:IDENT
 		pd:declaratorBrackets[#t]
 		{#parameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
 									pm, #([TYPE,"TYPE"],pd), id);}
+        {
+            msig.addParam(new LineText(#id.getLineNo(), #id.getText()));
+        }
 	;
 
 parameterModifier
@@ -625,7 +660,7 @@ tryBlock
 
 // an exception handler
 handler
-	:	c:"catch"^ LPAREN! parameterDeclaration RPAREN! compoundStatement
+	:	c:"catch"^ LPAREN! parameterDeclaration[new MethodSignature()] RPAREN! compoundStatement
         {ver.verifyWSAroundBegin(c.getLine(), c.getColumn(), c.getText());}
 	;
 
@@ -920,7 +955,7 @@ primaryExpression
  */
 newExpression
 	:	"new"^ type
-		(	LPAREN! argList RPAREN! (classBlock)?
+		(	LPAREN! argList RPAREN! ({ver.reportStartTypeBlock(Scope.ANONINNER, false);}  classBlock  {ver.reportEndTypeBlock();})?
 
 			//java 1.1
 			// Note: This will allow bad constructs like

@@ -65,9 +65,8 @@ interface Verifier
     /**
      * Verify that a variable conforms to the style.
      * @param aVar the variable details
-     * @param aInInterface indicates if variable is in a interface declaration
      **/
-    void verifyVariable(MyVariable aVar, boolean aInInterface);
+    void verifyVariable(MyVariable aVar);
 
     /**
      * Verify that a parameter conforms to the style.
@@ -159,6 +158,18 @@ interface Verifier
      **/
     void reportCComment(int aStartLineNo, int aStartColNo,
                         int aEndLineNo, int aEndColNo);
+
+    /**
+     * Report that the parser is entering a block associated with method or
+     * constructor.
+     **/
+    void reportStartMethodBlock();
+
+    /**
+     * Report that the parser is leaving a block associated with method or
+     * constructor.
+     **/
+    void reportEndMethodBlock();
 
     /**
      * Report a reference to a type.

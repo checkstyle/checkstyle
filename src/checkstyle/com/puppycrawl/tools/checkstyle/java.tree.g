@@ -60,14 +60,8 @@ typeDefinition
 {
    MyModifierSet mods;
 }
-   :  #(CLASS_DEF mods=modifiers IDENT extendsClause implementsClause {ver.reportStartTypeBlock(mods.getVisibilityScope(), false);} objBlock {ver.reportEndTypeBlock();} )
-      {
-         ver.verifyType(mods, #IDENT);
-      }
-   |  #(INTERFACE_DEF mods=modifiers IDENT extendsClause {ver.reportStartTypeBlock(mods.getVisibilityScope(), true);} interfaceBlock {ver.reportEndTypeBlock();})
-      {
-         ver.verifyType(mods, #IDENT);
-      }
+   :  #(CLASS_DEF mods=modifiers IDENT extendsClause implementsClause objBlock)
+   |  #(INTERFACE_DEF mods=modifiers IDENT extendsClause interfaceBlock)
    ;
 
 typeSpec
@@ -137,7 +131,7 @@ interfaceBlock
 }
    :  #(OBJBLOCK
          (  methodDecl
-         |  var=variableDef { ver.verifyVariable(var, true); }
+         |  var=variableDef
          |  typeDefinition    // OJB ADDED THIS RULE
          )*
       )
@@ -151,7 +145,7 @@ objBlock
    :  #(OBJBLOCK
          (ctorDef
          |  methodDef
-         |  var=variableDef { ver.verifyVariable(var, false); }
+         |  var=variableDef
          |  typeDefinition
          |  #(STATIC_INIT slist)
          |  #(INSTANCE_INIT slist)
@@ -165,9 +159,6 @@ ctorDef
    MethodSignature ms;
 }
    :  #(CTOR_DEF mods=modifiers ms=methodHead ctorSList )
-      {
-         ver.verifyMethodJavadoc(mods, null, ms);
-      }
    ;
 
 methodDecl
@@ -176,9 +167,6 @@ methodDecl
    MethodSignature ms;
 }
    :  #(METHOD_DEF mods=modifiers ts:typeSpec ms=methodHead)
-      {
-         ver.verifyMethodJavadoc(mods, ts, ms);
-      }
    ;
 
 methodDef
@@ -187,9 +175,6 @@ methodDef
    MethodSignature ms;
 }
    :  #(METHOD_DEF mods=modifiers ts:typeSpec ms=methodHead (slist)? )
-      {
-         ver.verifyMethodJavadoc(mods, ts, ms);
-      }
    ;
 
 variableDef returns [MyVariable r]
@@ -257,7 +242,7 @@ methodHead returns [MethodSignature r]
    java.util.List throwsList = new java.util.ArrayList(); // emtpy list
    LineText p = null;
 }
-   :  ii:IDENT #( PARAMETERS (p=parameterDef { ver.verifyParameter(p); r.addParam(p); } )* ) (throwsList=throwsClause)?
+   :  ii:IDENT #( PARAMETERS (p=parameterDef )* ) (throwsList=throwsClause)?
       {
          r.setLineNo(ii.getLineNo());
          r.setThrows(throwsList);

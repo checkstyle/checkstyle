@@ -70,6 +70,9 @@ class VerifierImpl
     /** stack tracking the visibility scope currently in **/
     private final Stack mInScope = new Stack();
 
+    /** tracks the level of block definitions for methods **/
+    private int mMethodBlockLevel = 0;
+
     /** the messages being logged **/
     private final List mMessages = new ArrayList();
 
@@ -135,6 +138,7 @@ class VerifierImpl
         mComments.clear();
         mImports.clear();
         mReferenced.clear();
+        mMethodBlockLevel = 0;
     }
 
     /** @see Verifier **/
@@ -175,6 +179,13 @@ class VerifierImpl
                                     MyCommonAST aReturnType,
                                     MethodSignature aSig)
     {
+        // Always verify the parameters are ok
+        for (Iterator it = aSig.getParams().iterator(); it.hasNext();) {
+            verifyParameter((LineText)it.next());
+        }
+
+
+        // now check the javadoc
         final Scope methodScope =
             inInterfaceBlock() ? Scope.PUBLIC : aMods.getVisibilityScope();
 
@@ -190,7 +201,7 @@ class VerifierImpl
 
         final boolean isFunction = (aReturnType == null)
             ? false
-            : !"void".equals(aReturnType.getFirstChild().getText());
+            : !"void".equals(aReturnType.getText().trim());
 
         final String[] jd = getJavadocBefore(lineNo - 1);
         if (jd == null) {
@@ -258,8 +269,12 @@ class VerifierImpl
 
 
     /** @see Verifier **/
-    public void verifyVariable(MyVariable aVar, boolean aInInterface)
+    public void verifyVariable(MyVariable aVar)
     {
+        if (inMethodBlock()) {
+            return;
+        }
+
         final Scope declaredScope =
             aVar.getModifierSet().getVisibilityScope();
         final Scope variableScope =
@@ -273,7 +288,7 @@ class VerifierImpl
         }
 
         // Check correct format
-        if (aInInterface) {
+        if (inInterfaceBlock()) {
             // The only declarations allowed in interfaces are all static final,
             // even if not declared that way.
             checkVariable(aVar,
@@ -282,11 +297,6 @@ class VerifierImpl
         }
         else {
             final MyModifierSet mods = aVar.getModifierSet();
-
-            // Logic to detect unused variables
-            //if (mods.containsPrivate()) {
-            //    System.out.println("Need to check for " + aVar.getText());
-            //}
 
             if (mods.containsStatic()) {
                 if (mods.containsFinal()) {
@@ -558,6 +568,18 @@ class VerifierImpl
     }
 
     /** @see Verifier **/
+    public void reportStartMethodBlock()
+    {
+        mMethodBlockLevel++;
+    }
+
+    /** @see Verifier **/
+    public void reportEndMethodBlock()
+    {
+        mMethodBlockLevel--;
+    }
+
+    /** @see Verifier **/
     public void reportIdentifier(MyCommonAST aAST)
     {
         //System.out.println("Just got reported = " + aAST);
@@ -596,9 +618,9 @@ class VerifierImpl
         // to implement this we search up the scope stack
         // that all stack elements are also in configScope
 
-        Iterator scopeIterator = mInScope.iterator();
+        final Iterator scopeIterator = mInScope.iterator();
         while (retVal && scopeIterator.hasNext()) {
-            Scope stackScope = (Scope) scopeIterator.next();
+            final Scope stackScope = (Scope) scopeIterator.next();
             retVal = stackScope.isIn(configScope);
         }
         return retVal;
@@ -923,6 +945,12 @@ class VerifierImpl
     {
         return (!mInInterface.empty() &&
                 Boolean.TRUE.equals(mInInterface.peek()));
+    }
+
+    /** @return whether currently in a method block **/
+    private boolean inMethodBlock()
+    {
+        return (mMethodBlockLevel > 0);
     }
 
     /**
