@@ -68,12 +68,25 @@ public final class ASTManager
 
     /**
      * Add the parse tree for a file to the set of parse trees.
+     * Postcondition: since all checks are local to one source file,
+     * all managed elements are cleared.
      * @param aFileName the name of the file.
      * @param aRoot the root of the AST.
      */
     public void addTree(String aFileName, AST aRoot)
     {
+        clear();
         mTrees.put(aFileName, aRoot);
+    }
+
+    /**
+     * Clears all managed elements.
+     */
+    private void clear() {
+        mCheckNodes.clear();
+        mTrees.clear();
+        mMap.clear();
+        mCompleteTree = null;        
     }
 
     /**
@@ -205,9 +218,7 @@ public final class ASTManager
     {
         mCheckNodes.remove(aCheck);
         if (mCheckNodes.isEmpty()) {
-            mCompleteTree = null;
-            mMap.clear();
-            mTrees.clear();
+            clear();
         }
     }
 }
