@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheckTest;
@@ -155,6 +156,7 @@ public class AllTests {
         suite.addTest(new TestSuite(SimplifyBooleanReturnCheckTest.class));
         suite.addTest(new TestSuite(StaticVariableNameCheckTest.class));
         suite.addTest(new TestSuite(StringArrayReaderTest.class));
+        suite.addTest(new TestSuite(StringLiteralEqualityCheckTest.class));
         suite.addTest(new TestSuite(TabCharacterCheckTest.class));
         suite.addTest(new TestSuite(TodoCommentCheckTest.class));
         suite.addTest(new TestSuite(TranslationCheckTest.class));
