@@ -55,6 +55,10 @@ This command line tool is included in the checkstyle distribution.</p>
     <td valign="top">Indicates whether to allow protected data. Defaults to <span class="default">&quot;no&quot;</span>.</td>
  </tr>
   <tr>
+    <td valign="top">checkstyle.allow.package</td>
+    <td valign="top">Indicates whether to allow package visible data. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+ </tr>
+  <tr>
      <td valign="top">checkstyle.allow.noauthor</td> 
     <td valign="top">Indicates whether to allow no <span class="default">@author</span> tag to be defined for class and interface Javadoc comments. Defaults to <span class="default">&quot;no&quot;</span>.</td>
   </tr>
@@ -103,6 +107,14 @@ This command line tool is included in the checkstyle distribution.</p>
     <td valign="top">Specifies the regular expression to match against type names. Default value is defined <a href="engine.html#typeformat">here</a>.</td>
   </tr>
   <tr>
+    <td valign="top">checkstyle.pattern.method</td>
+    <td valign="top">Specifies the regular expression to match against method names. Default value is defined <a href="engine.html#methodformat">here</a>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.pattern.localvar</td>
+    <td valign="top">Specifies the regular expression to match against local variable names. Default value is defined <a href="engine.html#localvarformat">here</a>.</td>
+  </tr>
+  <tr>
     <td valign="top">checkstyle.header.file</td> 
     <td valign="top">Specifies the file containing the header lines. Default is to not check.</td>
   </tr>
@@ -113,6 +125,11 @@ This command line tool is included in the checkstyle distribution.</p>
   <tr>
     <td valign="top">checkstyle.javadoc.scope</td> 
     <td valign="top">Specifies the visibility scope where javadoc comments are checked. Valid values are <span class="default">&quot;nothing&quot;</span>, <span class="default">&quot;public&quot;</span>, <span class="default">&quot;protected&quot;</span>, <span class="default">&quot;package&quot;</span>, <span class="default">&quot;private&quot;</span> and <span class="default">&quot;anoninner&quot;</span>. Defaults to <span class="default">&quot;private&quot;</span>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.require.packagehtml</td>
+    <td valign="top">Specifies whether to require that package documentation is available. Defaults to <span class="default">&quot;false&quot;</span>.</td>
+    <td align="center" valign="top">No</td>
   </tr>
   <tr>
     <td valign="top">checkstyle.ignore.imports</td> 

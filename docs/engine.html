@@ -53,6 +53,8 @@
   <li>method</li>
 </ul>
 
+<p>You can require that a <span class="code">package.html</span> file exists for each package. This check is turned off by default.</p>
+
 <p>Javadoc comments for class and interface declarations are checked to ensure that the <span class="code">@author</span> tag exists. This can be turned off.</p>
 
 <p>You can control the visibility scope where Javadoc comments are checked. For example, you can check Javadoc code only for <span class="code">public</span> and <span class="code">protected</span> variables, methods, interfaces and class definitions. Scoping rules apply, in the above example a public method in a package visible class is not checked. You can also completely turn off all checking for Javadoc comments.</p>
@@ -164,10 +166,18 @@
 <p>Verifies that the format of public member names conform to a specified regular expression. The default is <span class="code">^f[A-Z][a-zA-Z0-9]*$</span>. This is useful for the fields required for Container Managed Persistence (CMP) Enterprise JavaBeans 1.1.</p>
 
 
+<h3><a name="methodformat">Format of method names</a></h3>
+<p>Verifies that the format of method names conform to a specified regular expression. The default is <span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
+
+
+<h3><a name="localvarformat">Format of local variable names</a></h3>
+<p>Verifies that the format of local variables conform to a specified regular expression. The default is <span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
+
+
 <h3>Visibility Modifiers</h3>
 <p>Checks for data members that are not declared <code>private</code>. Also finds <code>static</code> non-<code>final</code> data members that are not declared as <code>private</code>.</p>
 
-<p>Note: you can turn on allowing <code>protected</code> data members.</p>
+<p>Note: you can turn on allowing <code>protected</code> or package visible data members.</p>
 
 <div class="tip">  
 <h4 class="tip">Tip</h4>
