@@ -28,6 +28,9 @@ import java.util.Map;
  */
 public abstract class Check
 {
+    /** resuable constant for message formating */
+    private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
+
     /** name to store lines under */
     private static final String LINES_ATTRIBUTE = "lines";
     /** name to store filename under */
@@ -170,7 +173,7 @@ public abstract class Check
      * Set the lines associated with the tree.
      * @param aLines the file contents
      */
-    public void setLines(String[] aLines)
+    public final void setLines(String[] aLines)
     {
         getTreeContext().put(LINES_ATTRIBUTE, aLines);
     }
@@ -179,7 +182,7 @@ public abstract class Check
      * Returns the lines associated with the tree.
      * @return the file contents
      */
-    public String[] getLines()
+    protected final String[] getLines()
     {
         return (String[]) getTreeContext().get(LINES_ATTRIBUTE);
     }
@@ -188,7 +191,7 @@ public abstract class Check
      * Set the name of the file associated with the tree.
      * @param aFilename the file name
      */
-    public void setFilename(String aFilename)
+    public final void setFilename(String aFilename)
     {
         getTreeContext().put(FILENAME_ATTRIBUTE, aFilename);
     }
@@ -197,15 +200,120 @@ public abstract class Check
      * Returns the filename associated with the tree.
      * @return the file name
      */
-    public String getFilename()
+    protected final String getFilename()
     {
         return (String) getTreeContext().get(FILENAME_ATTRIBUTE);
     }
 
-    /** @see needs to be fixed */
-    public void log(int aLine, String aMessage)
+    /**
+     * Log an error message.
+     *
+     * @param aLine the line number where the error was found
+     * @param aKey the message that describes the error
+     */
+    protected final void log(int aLine, String aKey)
     {
-        final String fname = (String) getTreeContext().get(FILENAME_ATTRIBUTE);
-        System.out.println(fname + ":" + aLine + ": " + aMessage);
+        log(aLine, aKey, EMPTY_OBJECT_ARRAY);
+    }
+
+    /**
+     * Log an error message.
+     *
+     * @param aLine the line number where the error was found
+     * @param aKey the message that describes the error
+     * @param aArgs the details of the message
+     *
+     * @see java.text.MessageFormat
+     */
+    protected final void log(int aLine, String aKey, Object aArgs[])
+    {
+        log(aLine, 0, aKey, aArgs);
+    }
+
+
+    /**
+     * Helper method to log a LocalizedMessage. Column defaults to 0.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArg0 first argument
+     */
+    public void log(int aLineNo, String aKey, Object aArg0)
+    {
+        log(aLineNo, aKey, new Object[] {aArg0});
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage. Column defaults to 0.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArg0 first argument
+     * @param aArg1 second argument
+     */
+    public void log(int aLineNo, String aKey, Object aArg0, Object aArg1)
+    {
+        log(aLineNo, aKey, new Object[] {aArg0, aArg1});
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage. Column defaults to 0.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArg0 first argument
+     * @param aArg1 second argument
+     * @param aArg2 third argument
+     */
+    public void log(int aLineNo, String aKey,
+             Object aArg0, Object aArg1, Object aArg2)
+    {
+        log(aLineNo, aKey, new Object[] {aArg0, aArg1, aArg2});
+    }
+
+
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aColNo column number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArgs arguments for message
+     */
+    public void log(int aLineNo, int aColNo, String aKey, Object[] aArgs)
+    {
+        final String fname = getFilename();
+        System.out.println(fname + ":" + aLineNo + ": " + aKey);
+
+        final int col = aColNo + 1;
+//        final int col = 1 + Utils.lengthExpandedTabs(
+//            mLines[aLineNo - 1], aColNo, mTabWidth);
+        mMessages.add(new LocalizedMessage(
+                aLineNo, col, getResourceBundle(), aKey, aArgs));
+    }
+
+
+    /**
+     * TODO: Should this method be protected or should we keep the api simple?
+     * Returns the name of a a resource bundle that contains the messages
+     * used by this check.
+     *
+     * The default implementation expects the resource files to be named
+     * messages.properties, messages_de.properties, etc. The file should
+     * be placed in the same package as the Check implementation.
+     *
+     * Example: If you write com/foo/MyCoolCheck, create resource files
+     * com/foo/messages.properties, com/foo/messages_de.properties, etc.
+     *
+     * @return name of a resource bundle that contains the messages
+     * used by this check
+     */
+    private String getResourceBundle()
+    {
+        // PERF: check perf impact, maybe cache result
+        final String className = this.getClass().getName();
+        final String packageName =
+                className.substring(className.lastIndexOf('.') + 1);
+        return packageName + "." + "messages";
     }
 }

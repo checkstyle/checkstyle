@@ -51,6 +51,7 @@ tokens {
 	STRICTFP="strictfp"; SUPER_CTOR_CALL; CTOR_CALL;
 }
 
+
 // Compilation Unit: In Java, this is a single file.  This is the start
 //   rule for this parser
 compilationUnit
@@ -927,6 +928,24 @@ options {
 	codeGenBitsetTestThreshold=20;
 }
 
+// JavaLexer verbatim source code
+{
+
+    // explicitly set tab width to 1 (default in ANTLR 2.7.1)
+    // in ANTLR 2.7.2a2 the default has changed from 1 to 8
+    public void tab()
+    {
+        setColumn( getColumn() + 1 );
+    }
+
+    private CommentManager mCommentManager = null;
+
+    void setCommentManager(CommentManager aCommentManager)
+    {
+      mCommentManager = aCommentManager;
+    }
+
+}
 
 
 // OPERATORS
@@ -995,14 +1014,18 @@ WS	:	(	' '
 
 // Single-line comments
 SL_COMMENT
-	:	"//"
+	:	"//" { mCommentManager.reportCPPComment(getLine(), getColumn() - 3); }
 		(~('\n'|'\r'))* ('\n'|'\r'('\n')?)
 		{$setType(Token.SKIP); newline();}
 	;
 
 // multiple-line comments
 ML_COMMENT
-	:	"/*"
+{
+   int startLine;
+   int startCol;
+}
+	:	"/*"  { startLine = getLine(); startCol = getColumn() - 3; }
 		(	/*	'\r' '\n' can be matched in one alternative or by matching
 				'\r' in one iteration and '\n' in another.  I am trying to
 				handle any flavor of newline that comes in, but the language
@@ -1021,7 +1044,11 @@ ML_COMMENT
 		|	~('*'|'\n'|'\r')
 		)*
 		"*/"
-		{$setType(Token.SKIP);}
+      {
+         mCommentManager.reportCComment(startLine, startCol,
+                            getLine(), getColumn() - 2);
+         $setType(Token.SKIP);
+      }
 	;
 
 

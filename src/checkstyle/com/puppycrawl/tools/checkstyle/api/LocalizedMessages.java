@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+// TODO: check that this class is in the right package
+// as soon as architecture has settled. At the time of writing
+// this class is not necessary as a part of the public api
+
 import java.util.Collections;
 import java.util.ArrayList;
 
@@ -34,6 +38,8 @@ public class LocalizedMessages
     private final int mTabWidth;
     /** the lines of the file being checked **/
     private String[] mLines;
+    private static final String OLD_BUNDLE =
+            "com.puppycrawl.tools.checkstyle.messages";
 
     /**
      * Creates a new <code>LocalizedMessages</code> instance.
@@ -75,16 +81,21 @@ public class LocalizedMessages
         mMessages.add(aMsg);
     }
 
+    // TODO: remove the add() methods below and the OLD_BUNDLE constant
+    // this has to wait until they are not referenced by Verifier any more
+
     /**
      * Helper method to log a LocalizedMessage. Column defaults to 0.
      *
      * @param aLineNo line number to associate with the message
      * @param aKey key to locale message format
      * @param aArgs arguments for message
+     *
+     * @deprecated replaced by Check.log()
      */
     public void add(int aLineNo, String aKey, Object[] aArgs)
     {
-        add(new LocalizedMessage(aLineNo, 0, aKey, aArgs));
+        add(new LocalizedMessage(aLineNo, 0, OLD_BUNDLE, aKey, aArgs));
     }
 
     /**
@@ -92,6 +103,8 @@ public class LocalizedMessages
      *
      * @param aLineNo line number to associate with the message
      * @param aKey key to locale message format
+     *
+     * @deprecated replaced by Check.log()
      */
     public void add(int aLineNo, String aKey)
     {
@@ -104,6 +117,8 @@ public class LocalizedMessages
      * @param aLineNo line number to associate with the message
      * @param aKey key to locale message format
      * @param aArg0 first argument
+     *
+     * @deprecated replaced by Check.log()
      */
     public void add(int aLineNo, String aKey, Object aArg0)
     {
@@ -117,6 +132,8 @@ public class LocalizedMessages
      * @param aKey key to locale message format
      * @param aArg0 first argument
      * @param aArg1 second argument
+     *
+     * @deprecated replaced by Check.log()
      */
     public void add(int aLineNo, String aKey, Object aArg0, Object aArg1)
     {
@@ -131,6 +148,8 @@ public class LocalizedMessages
      * @param aArg0 first argument
      * @param aArg1 second argument
      * @param aArg2 third argument
+     *
+     * @deprecated replaced by Check.log()
      */
     public void add(int aLineNo, String aKey,
              Object aArg0, Object aArg1, Object aArg2)
@@ -145,12 +164,15 @@ public class LocalizedMessages
      * @param aColNo column number to associate with the message
      * @param aKey key to locale message format
      * @param aArgs arguments for message
+     *
+     * @deprecated replaced by Check.log()
      */
     public void add(int aLineNo, int aColNo, String aKey, Object[] aArgs)
     {
         final int col = 1 + Utils.lengthExpandedTabs(
             mLines[aLineNo - 1], aColNo, mTabWidth);
-        mMessages.add(new LocalizedMessage(aLineNo, col, aKey, aArgs));
+        mMessages.add(
+                new LocalizedMessage(aLineNo, col, OLD_BUNDLE, aKey, aArgs));
     }
 
     /**
@@ -159,6 +181,8 @@ public class LocalizedMessages
      * @param aLineNo line number to associate with the message
      * @param aColNo column number to associate with the message
      * @param aKey key to locale message format
+     *
+     * @deprecated replaced by Check.log()
      */
     public void add(int aLineNo, int aColNo, String aKey)
     {
@@ -172,6 +196,8 @@ public class LocalizedMessages
      * @param aColNo column number to associate with the message
      * @param aKey key to locale message format
      * @param aArg0 first argument
+     *
+     * @deprecated replaced by Check.log()
      */
     public void add(int aLineNo, int aColNo, String aKey, Object aArg0)
     {
@@ -186,6 +212,8 @@ public class LocalizedMessages
      * @param aKey key to locale message format
      * @param aArg0 first argument
      * @param aArg1 second argument
+     *
+     * @deprecated replaced by Check.log()
      */
     public void add(int aLineNo, int aColNo, String aKey,
              Object aArg0, Object aArg1)
@@ -202,6 +230,8 @@ public class LocalizedMessages
      * @param aArg0 first argument
      * @param aArg1 second argument
      * @param aArg2 third argument
+     *
+     * @deprecated replaced by Check.log()
      */
     void add(int aLineNo, int aColNo, String aKey,
              Object aArg0, Object aArg1, Object aArg2)

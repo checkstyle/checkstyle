@@ -18,8 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+// TODO: check that this class is in the right package
+// as soon as architecture has settled. At the time of writing
+// this class is not necessary as a part of the public api
+
 import java.util.ResourceBundle;
 import java.util.Locale;
+import java.util.MissingResourceException;
 import java.text.MessageFormat;
 
 /**
@@ -33,10 +38,6 @@ import java.text.MessageFormat;
 public class LocalizedMessage
     implements Comparable
 {
-    /** name of the resource bundle to get messages from **/
-    private static final String MESSAGE_BUNDLE =
-        "com.puppycrawl.tools.checkstyle.messages";
-
     /** the locale to localise messages to **/
     private static Locale sLocale = Locale.getDefault();
 
@@ -51,16 +52,22 @@ public class LocalizedMessage
     /** arguments for MessageFormat **/
     private final Object[] mArgs;
 
+    /** name of the resource bundle to get messages from **/
+    private final String mBundle;
+
+
     /**
      * Creates a new <code>LocalizedMessage</code> instance.
      *
      * @param aLineNo line number associated with the message
      * @param aColNo column number associated with the message
+     * @param aBundle resource bundle name
      * @param aKey the key to locate the translation
      * @param aArgs arguments for the translation
      */
     public LocalizedMessage(int aLineNo,
                             int aColNo,
+                            String aBundle,
                             String aKey,
                             Object[] aArgs)
     {
@@ -68,6 +75,7 @@ public class LocalizedMessage
         mColNo = aColNo;
         mKey = aKey;
         mArgs = aArgs;
+        mBundle = aBundle;
     }
 
     /**
@@ -75,25 +83,36 @@ public class LocalizedMessage
      * defaults to 0.
      *
      * @param aLineNo line number associated with the message
+     * @param aBundle name of a resource bundle that contains error messages
      * @param aKey the key to locate the translation
      * @param aArgs arguments for the translation
      */
-    public LocalizedMessage(int aLineNo, String aKey, Object[] aArgs)
+    public LocalizedMessage(
+            int aLineNo, String aBundle, String aKey, Object[] aArgs)
     {
-        this(aLineNo, 0, aKey, aArgs);
+        this(aLineNo, 0, aBundle, aKey, aArgs);
     }
 
     /** @return the translated message **/
     public String getMessage()
     {
-        // Very simple approach - wait for performance problems.
-        // Important to use the default class loader, and not the one in the
-        // Configuration object. This is because the class loader in the
-        // Configuration is specified by the user for resolving custom classes.
-        final ResourceBundle bundle =
-            ResourceBundle.getBundle(MESSAGE_BUNDLE, sLocale);
-        final String pattern = bundle.getString(mKey);
-        return MessageFormat.format(pattern, mArgs);
+        try {
+            // PERF: Very simple approach - wait for performance problems.
+            // Important to use the default class loader, and not the one in the
+            // Configuration object. This is because the class loader in the
+            // Configuration is specified by the user for resolving custom
+            // classes.
+            final ResourceBundle bundle =
+                    ResourceBundle.getBundle(mBundle, sLocale);
+            final String pattern = bundle.getString(mKey);
+            return MessageFormat.format(pattern, mArgs);
+        }
+        catch (MissingResourceException ex) {
+            // If the Check author didn't provide i18n resource bundles
+            // and logs error messages directly, this will return
+            // the author's original message
+            return MessageFormat.format(mKey, mArgs);
+        }
     }
 
     /** @return the line number **/
