@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Checks for Size Violations</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+<body>
+<h1>Checks for Size Violations</h1>
+
+
+<h2>Long Lines</h2>
+
+<p>The property <span class="code">checkstyle.maxlinelen</span> defines the
+maximum allowed line length. The property type is <a
+href="property_types.html#integer">integer</a> and defaults to <span
+class="code">80</span>.</p>
+
+<p>The property <span class="code">checkstyle.tab.width</span> defines the
+distance between tab stops to be used in line number and column
+calculations. The property type is <a
+href="property_types.html#integer">integer</a> and defaults to <span
+class="code">8</span>.</p>
+
+<p>The property <span class="code">checkstyle.ignore.importlength</span>
+defines whether to ignore the maximum line length for import statements. The
+property type is <a href="property_types.html#boolean">boolean</a> and
+defaults to <span class="code">false</span>.</p>
+
+<p>The property <span class="code">checkstyle.ignore.maxlinelen</span> defines
+a regular expression for lines to ignore in maximum line length checks. The
+property type is <a href="property_types.html#regexp">regular expression</a>
+and defaults to <span class="code">^$</span>.</p>
+
+
+<h2>Method Body Length</h2>
+
+<p>The property <span class="code">checkstyle.maxmethodlen</span> defines the
+maximum allowed number of lines for a method. The lines are counted from the
+opening brace <span class="code">'{'</span> to the closing brace <span
+class="code">'}'</span>.  The property type is <a
+href="property_types.html#integer">integer</a> and defaults to <span
+class="code">150</span>.</p>
+
+
+<h2>Constructor Body Length</h2>
+
+<p>The property <span class="code">checkstyle.maxconstructorlen</span> defines
+the maximum allowed number of lines for a constructor. The lines are counted
+from the opening brace <span class="code">'{'</span> to the closing brace
+<span class="code">'}'</span>.  The property type is <a
+href="property_types.html#integer">integer</a> and defaults to <span
+class="code">150</span>.</p>
+
+
+<h2>File Length</h2>
+
+<p>The property <span class="code">checkstyle.maxfilelen</span> defines the
+maximum allowed number of lines in a file. The property type is <a
+href="property_types.html#integer">integer</a> and defaults to <span
+class="code">2000</span>.</p>
+
+
+<h2>Number of parameters</h2>
+
+<p>The property <span class="code">checkstyle.maxparameters</span> defines the
+maximum allowed number of parameters to a method or constructor. The property
+type is <a href="property_types.html#integer">integer</a> and defaults to
+<span class="code">7</span>.</p>
+
+</body>
+</html>
