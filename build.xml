@@ -425,7 +425,7 @@
          basedir="target/checkstyle"
          excludes="**/usage/**, **/j2ee/**"
          manifest="config/manifest.mf" />
-    <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-${version}-optional.jar"
+    <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-optional-${version}.jar"
          basedir="target/checkstyle"
          includes="**/usage/**, **/j2ee/**"/>
     <!-- copy the JARS and make a mega JAR out of them -->
