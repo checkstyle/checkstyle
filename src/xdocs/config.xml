@@ -51,37 +51,6 @@
         a sample configuration file <em>sun_checks.xml</em> which
         configures Checkstyle to check for the Sun coding conventions.
       </p>
-
-      <p>
-        OK, so you have finally decided to write your own Check.
-        Welcome aboard, this is really a fun thing to do.  There are
-        actually two kinds of Checks, so before you can start, you have
-        to find out which kind of Check you want to implement.
-      </p>
-
-      <p>
-        The functionality of Checkstyle is implemented in modules that
-        can be plugged into Checkstyle. Modules can be containers for
-        other modules, i.e. they form a tree structure. The toplevel
-        modules that are known directly to the Checkstyle kernel (which
-        is also a module and forms the root of the tree) implement the
-        <a
-        href="api/com/puppycrawl/tools/checkstyle/api/FileSetCheck.html">FileSetCheck</a>
-        interface. These are pretty simple to grasp: they take a set of
-        input files and fire error messages.
-      </p>
-
-      <p>
-        Checkstyle provides a few FileSetCheck implementations by
-        default and one of them happens to be the <a
-        href="api/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>. A
-        TreeWalker supports submodules that are derived from the <a
-        href="api/com/puppycrawl/tools/checkstyle/api/Check.html">Check</a>
-        class. The TreeWalker operates by separately transforming each
-        of the Java input files into an abstract syntax tree and then
-        handing the result over to each of the Check submodules which in
-        turn have a look at a certain aspect of the tree.
-      </p>
     </section>
 
     <section name="Modules">
