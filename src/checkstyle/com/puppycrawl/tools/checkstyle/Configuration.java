@@ -150,6 +150,9 @@ public class Configuration
     /** line numbers to ignore in header **/
     private TreeSet mHeaderIgnoreLineNo = new TreeSet();
 
+    /** where to place left curlies on methods **/
+    private LeftCurlyOption mLCurlyMethod = LeftCurlyOption.EOL;
+
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
     ////////////////////////////////////////////////////////////////////////////
@@ -227,6 +230,9 @@ public class Configuration
             setHeaderFile(fname);
         }
 
+        setLCurlyMethod(getLeftCurlyOptionProperty(
+                            aProps, LCURLY_METHOD_PROP,
+                            LeftCurlyOption.EOL, aLog));
     }
 
     /**
@@ -769,6 +775,19 @@ public class Configuration
         mCacheFile = aCacheFile;
     }
 
+    /** @return the left curly placement option for methods **/
+    public LeftCurlyOption getLCurlyMethod()
+    {
+        return mLCurlyMethod;
+    }
+
+    /** @param aTo set the left curly placement option for methods **/
+    public void setLCurlyMethod(LeftCurlyOption aTo)
+    {
+        mLCurlyMethod = aTo;
+    }
+
+
     ////////////////////////////////////////////////////////////////////////////
     // Private methods
     ////////////////////////////////////////////////////////////////////////////
@@ -817,6 +836,34 @@ public class Configuration
             strRep = strRep.toLowerCase().trim();
             retVal = strRep.equals("true") || strRep.equals("yes") ||
                 strRep.equals("on");
+        }
+        return retVal;
+    }
+
+    /**
+     * @param aProps the properties set to use
+     * @param aLog where to log errors to
+     * @param aName the name of the property to parse
+     * @param aDefault the default value to use.
+     *
+     * @return the value of a LeftCurlyOption property. If the property is not
+     *    defined or cannot be decoded, then a default value is returned.
+     */
+    private static LeftCurlyOption getLeftCurlyOptionProperty(
+        Properties aProps,
+        String aName,
+        LeftCurlyOption aDefault,
+        PrintStream aLog)
+    {
+        LeftCurlyOption retVal = aDefault;
+        final String strRep = aProps.getProperty(aName);
+        if (strRep != null) {
+            retVal = LeftCurlyOption.decode(strRep);
+            if (retVal == null) {
+                aLog.println("Unable to parse " + aName +
+                             " property with value " + strRep +
+                             ", defaulting to " + aDefault + ".");
+            }
         }
         return retVal;
     }

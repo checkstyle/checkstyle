@@ -78,4 +78,7 @@ public interface Defn
     String CACHE_FILE_PROP = "checkstyle.cache.file";
     /** property name for ignoring line length of import statements **/
     String IGNORE_IMPORT_LENGTH_PROP = "checkstyle.ignore.importlength";
+
+    /** property name for lcurly placement for methods **/
+    String LCURLY_METHOD_PROP = "checkstyle.lcurly.method";
 }

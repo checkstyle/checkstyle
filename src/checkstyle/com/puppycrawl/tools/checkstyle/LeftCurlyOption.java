@@ -27,8 +27,11 @@ import java.util.HashMap;
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-final class LeftCurlyOption
+public final class LeftCurlyOption
 {
+    /** maps from a string representation to an option **/
+    private static final Map STR_TO_OPT = new HashMap();
+
     /** represents placing the brace at the end of line **/
     public static final LeftCurlyOption EOL = new LeftCurlyOption("eol");
     /** represents ignoring the placement **/
@@ -41,9 +44,6 @@ final class LeftCurlyOption
     /** represents placing on a new line **/
     public static final LeftCurlyOption NL = new LeftCurlyOption("nl");
 
-    /** maps from a string representation to an option **/
-    private static final Map STR_TO_OPT = new HashMap();
-
     /** the string representation of the option **/
     private final String mStrRep;
 
@@ -55,5 +55,17 @@ final class LeftCurlyOption
     {
         mStrRep = aStrRep.trim().toLowerCase();
         STR_TO_OPT.put(mStrRep, this);
+    }
+
+    /**
+     * Returns the LeftCurlyOption specified by a string representation. If no
+     * option exists then null is returned.
+     * @param aStrRep the String representation to parse
+     * @return the <code>LeftCurlyOption</code> value represented by aStrRep, or
+     *         null if none exists.
+     */
+    public static LeftCurlyOption decode(String aStrRep)
+    {
+        return (LeftCurlyOption) STR_TO_OPT.get(aStrRep.trim().toLowerCase());
     }
 }
