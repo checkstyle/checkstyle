@@ -50,8 +50,6 @@ public class CheckerTest
                            LeftCurlyOption.NL.toString());
         mProps.setProperty(Defn.LCURLY_OTHER_PROP,
                            LeftCurlyOption.NLOW.toString());
-        mProps.setProperty(Defn.LCURLY_TYPE_PROP,
-                           LeftCurlyOption.NL.toString());
         mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, Boolean.TRUE.toString());
         mProps.setProperty(Defn.LOCALE_COUNTRY_PROP,
                            Locale.ENGLISH.getCountry());

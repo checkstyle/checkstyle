@@ -599,7 +599,6 @@ class Verifier
      */
     void verifyLCurlyType(int aTypeLine, MyCommonAST aBrace)
     {
-        checkLCurly(aTypeLine, aBrace, mConfig.getLCurlyType());
     }
 
 

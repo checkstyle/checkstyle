@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.Utils;
+import org.apache.regexp.RE;
+import org.apache.regexp.RESyntaxException;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InvalidObjectException;
@@ -31,11 +35,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.RightCurlyOption;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
 
 /**
  * Represents the configuration that checkstyle uses when checking. The
@@ -117,7 +116,6 @@ public class Configuration
     {
 
         mLCurliesProps.put(Defn.LCURLY_METHOD_PROP, LeftCurlyOption.EOL);
-        mLCurliesProps.put(Defn.LCURLY_TYPE_PROP, LeftCurlyOption.EOL);
         mLCurliesProps.put(Defn.LCURLY_OTHER_PROP, LeftCurlyOption.EOL);
     }
 
@@ -560,12 +558,6 @@ public class Configuration
         return getLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP);
     }
 
-    /** @return the left curly placement option for types **/
-    LeftCurlyOption getLCurlyType()
-    {
-        return getLeftCurlyOptionProperty(Defn.LCURLY_TYPE_PROP);
-    }
-
     /** @return the left curly placement option for others **/
     LeftCurlyOption getLCurlyOther()
     {
@@ -789,34 +781,6 @@ public class Configuration
                 setLeftCurlyOptionProperty(aName, opt);
             }
         }
-    }
-
-    /**
-     * @param aProps the properties set to use
-     * @param aLog where to log errors to
-     * @param aName the name of the property to parse
-     * @param aDefault the default value to use.
-     *
-     * @return the value of a RightCurlyOption property. If the property is not
-     *    defined or cannot be decoded, then a default value is returned.
-     */
-    private static RightCurlyOption getRightCurlyOptionProperty(
-        Properties aProps,
-        String aName,
-        RightCurlyOption aDefault,
-        PrintStream aLog)
-    {
-        RightCurlyOption retVal = aDefault;
-        final String strRep = aProps.getProperty(aName);
-        if (strRep != null) {
-            retVal = RightCurlyOption.decode(strRep);
-            if (retVal == null) {
-                aLog.println("Unable to parse " + aName
-                             + " property with value " + strRep
-                             + ", defaulting to " + aDefault + ".");
-            }
-        }
-        return retVal;
     }
 
     /**

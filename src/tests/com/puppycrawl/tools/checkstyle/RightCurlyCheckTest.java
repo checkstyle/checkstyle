@@ -1,11 +1,10 @@
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.checks.UpperEllCheck;
 import com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.RightCurlyOption;
 
 public class RightCurlyCheckTest
-extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
     public RightCurlyCheckTest(String aName)
     {
