@@ -25,11 +25,33 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.StringTokenizer;
 import java.util.Iterator;
 
 /**
- * Checks for imports from illegal packages.
+ * <p>
+ * Checks for imports from a set of illegal packages.
+ * By default, the check rejects all <code>sun.*</code> packages. 
+ * To reject other packages, set property illegalPkgs to a comma-separated
+ * list of the illegal packages.  
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * TODO: re-visit after configuration format settled.
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck"/&gt;
+ * </pre>
+ * <p>
+ * An example of how to configure the check so that it rejects packages
+ * <code>java.io.*</code> and <code>java.sql.*</code> is
+ * </p>
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck"&gt;
+ *    &lt;property name="illegalPkgs" value="java.io, java.sql"/&gt;
+ * &lt;/check&gt;
+ * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author Lars Kühne
  * @version 1.0
@@ -37,7 +59,7 @@ import java.util.Iterator;
 public class IllegalImportCheck
     extends AbstractImportCheck
 {
-    /** list of illegal packages */
+    /** set of illegal packages */
     private final Set mIllegalPkgs = new TreeSet();
 
     /**
@@ -45,19 +67,19 @@ public class IllegalImportCheck
      */
     public IllegalImportCheck()
     {
-        setIllegalPkgs("sun");
+        setIllegalPkgs(new String[] {"sun"});
     }
 
     /**
      * Set the list of illegal packages.
-     * @param aFrom comma seperated list of illegal packages
+     * @param aFrom array of illegal packages
      */
-    public void setIllegalPkgs(String aFrom)
+    public void setIllegalPkgs(String[] aFrom)
     {
         mIllegalPkgs.clear();
-        final StringTokenizer tok = new StringTokenizer(aFrom, ",");
-        while (tok.hasMoreTokens()) {
-            mIllegalPkgs.add(tok.nextToken());
+        for (int i = 0; i < aFrom.length; i++) {
+            final String s = aFrom[i];
+            mIllegalPkgs.add(s);
         }
     }
 
