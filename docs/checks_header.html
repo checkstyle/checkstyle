@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Checks for Headers</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+<body>
+<h1>Checks for Headers</h1>
+
+<p>The property <span class="code">checkstyle.header.file</span> controls
+whether Checkstyle checks that each files with a specified header. The header
+contents are specified in the file. If no file is specified, checkstyle does
+not check for a header. The property type is <span
+class="code">java.lang.String</span> and defaults to <span
+class="default">null</span> (which means do not check).</p>
+
+<p>The property <span class="code">checkstyle.header.ignoreline</span> can be
+used to tell Checkstyle to ignore matching lines in a header file. The
+property type is a list of comma separated integers and defaults to an empty
+list. This property is very useful for supporting headers that contain
+copyright dates. For example, consider the following header:</p>
+
+<pre>
+line 1: ///////////////////////////////////////////////////////////////////////
+line 2: // checkstyle: Checks Java source code for adherence to a set of rules.
+line 3: // Copyright (C) 2001  Oliver Burn
+line 4: ///////////////////////////////////////////////////////////////////////
+</pre>
+
+<p>Since the year information will change over time, you can tell checkstyle
+to ignore line 3 by setting the property to <span class="code">3</span>.</p>
+
+<p>The property <span class="code">checkstyle.header.regexp</span> controls
+whether Checkstyle will interpret each header line as a regular
+expression. The property type is boolean and defaults to <span
+class="default">false</span>. For example, consider the following header when
+regular expression checking is turned on:</p>
+
+<pre>
+line 1: /{71}
+line 2: // checkstyle: Checks Java source code for adherence to a set of rules\.
+line 3: // Copyright \(C\) \d\d\d\d  Oliver Burn
+line 4: // Last modification by \$Author.*\$
+line 5: /{71}
+</pre>
+
+<p>Lines 1 and 5 demonstrate a more compact notation for 71 '/'
+characters. Line 3 enforces that the copyright notice includes a four digit
+year. Line 4 is an example how to enforce revision control keywords in a file
+header.</p>
+
+</body>
+</html>

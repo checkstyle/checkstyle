@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Checks for Javadoc</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+<body>
+<h1>Checks for Javadoc</h1>
+
+<p>Checkstyle will check that the following constructs have a Javadoc comment:</p>
+<ul>
+  <li>class</li>
+  <li>interface</li>
+  <li>variable</li>
+  <li>method</li>
+</ul>
+
+<p>The property <span class="code">checkstyle.javadoc.scope</span> controls the visibility scope where Javadoc comments are checked. For example, you can check Javadoc code only for <span class="code">public</span> and <span class="code">protected</span> variables, methods, interfaces and class definitions. Scoping rules apply, in the above example a public method in a package visible class is not checked.</p>
+
+<p>Valid values for <span class="code">checkstyle.javadoc.scope</span> are:</p>
+<ul>
+  <li><span class="default">&quot;nothing&quot;</span>
+  <li><span class="default">&quot;public&quot;</span>
+  <li><span class="default">&quot;protected&quot;</span>
+  <li><span class="default">&quot;package&quot;</span>
+  <li><span class="default">&quot;private&quot;</span> (default value)
+  <li><span class="default">&quot;anoninner&quot;</span>
+</ul>
+
+<h2>package.html check</h2>
+<p>The property <span class="code">checkstyle.require.packagehtml</span> controls whether to require that a <span class="code">package.html</span> file exists for each package. The property type is boolean and defaults to <span class="default">false</span>.</p>
+
+
+<h2>Class/Interface Javadoc checks</h2>
+
+<p>The property <span class="code">checkstyle.require.version</span> controls whether to require an <span class="default">@version</span> tag to be defined for class and interface Javadoc comments. The property is boolean and defaults to <span class="default">&quot;false&quot;</span>.</p>
+
+<p>The property <span class="code">checkstyle.allow.noauthor</span> controls whether to allow no <span class="default">@author</span> tag to be defined for class and interface Javadoc comments. The property is boolean and defaults to <span class="default">&quot;false&quot;</span>.</p>
+
+<hr>
+<h2>Method Javadoc checks</h2>
+
+<p>Javadoc comments for methods are checked to ensure that the following tags exist (if required):</p>
+<ul>
+  <li><span class="code">@return</span></li>
+  <li><span class="code">@param</span></li>
+  <li><span class="code">@throws</span> or <span class="code">@exception</span></li>
+  <li><span class="code">@see</span></li>
+</ul>
+
+<p>For example the following is valid:</p>
+<pre>
+    /**
+     * Checks for a return tag.
+     * @return the index of the next unchecked tag
+     * @param aTagIndex the index to start in the tags
+     * @param aTags the tags to check
+     * @param aLineNo the line number of the expected tag
+     **/
+    public int checkReturnTag(final int aTagIndex,
+                              JavadocTag[] aTags,
+                              int aLineNo)
+</pre>
+
+<p>By default an unused <span class="code">@throws</span> tag is reported as error. The property <span class="code">checkstyle.javadoc.checkUnusedThrows</span> controls checking to determine if the exception is a subclass of <span class="code">java.lang.RuntimeException</span>. This supports the convention in the <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html#throwstag">Sun Javadoc Guidelines</a> and the "Effective Java" book. The property is boolean and defaults to <span class="default">false</span>. The classpath may need to be configured to locate the class information..</p>
+
+<div class="tip">
+<h4 class="tip">Tip</h4>
+<p>It can be extremely painful writing or duplicating Javadoc for a method required for an interface. Hence checkstyle supports using the convention of using a single <span class="code">@see</span> tag instead of all the other tags. For example, if the previous method was implementing a method required by the <span class="code">com.puppycrawl.tools.checkstyle.Verifier</span> interface, then the Javadoc could be done as:</p>
+
+<pre>
+    /** @see com.puppycrawl.tools.checkstyle.Verifier **/
+    public int checkReturnTag(final int aTagIndex,
+                              JavadocTag[] aTags,
+                              int aLineNo)
+</pre>
+</div>
+
+
+<hr>
+<address></address>
+<!-- hhmts start --> Last modified: Mon Sep 02 21:18:01 EST 2002 <!-- hhmts end -->
+</body> </html>
