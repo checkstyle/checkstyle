@@ -57,7 +57,7 @@ public class RedundantImportCheck
     private final Set mImports = new HashSet();
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void beginTree()
+    public void beginTree(DetailAST aRootAST)
     {
         mPkgName = null;
         mImports.clear();

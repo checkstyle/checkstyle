@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * <p>
@@ -63,7 +64,7 @@ public class FileLengthCheck extends Check
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void beginTree()
+    public void beginTree(DetailAST aRootAST)
     {
         final String[] lines = getLines();
         if (lines.length > mMaxFileLength) {

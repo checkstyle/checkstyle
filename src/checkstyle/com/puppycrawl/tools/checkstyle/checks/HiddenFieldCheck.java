@@ -85,7 +85,7 @@ public class HiddenFieldCheck
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void beginTree()
+    public void beginTree(DetailAST aRootAST)
     {
         mFieldsStack = new LinkedList();
     }

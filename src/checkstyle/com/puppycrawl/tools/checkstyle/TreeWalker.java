@@ -117,7 +117,7 @@ public final class TreeWalker
 
     /** context of child components */
     private Context mChildContext;
-    
+
     /**
      * HACK - a reference to a private "mParent" field in DetailAST.
      * Don't do this at home!
@@ -344,7 +344,7 @@ public final class TreeWalker
     private void walk(DetailAST aAST, FileContents aContents)
     {
         mMessages.reset();
-        notifyBegin(aContents);
+        notifyBegin(aAST, aContents);
 
          // empty files are not flagged by javac, will yield aAST == null
         if (aAST != null) {
@@ -352,7 +352,7 @@ public final class TreeWalker
             process(aAST);
         }
 
-        notifyEnd();
+        notifyEnd(aAST);
     }
 
     /**
@@ -376,27 +376,29 @@ public final class TreeWalker
 
     /**
      * Notify interested checks that about to begin walking a tree.
+     * @param aRootAST the root of the tree
      * @param aContents the contents of the file the AST was generated from
      */
-    private void notifyBegin(FileContents aContents)
+    private void notifyBegin(DetailAST aRootAST, FileContents aContents)
     {
         final Iterator it = mAllChecks.iterator();
         while (it.hasNext()) {
             final Check check = (Check) it.next();
             check.setFileContents(aContents);
-            check.beginTree();
+            check.beginTree(aRootAST);
         }
     }
 
     /**
      * Notify checks that finished walking a tree.
+     * @param aRootAST the root of the tree
      */
-    private void notifyEnd()
+    private void notifyEnd(DetailAST aRootAST)
     {
         final Iterator it = mAllChecks.iterator();
         while (it.hasNext()) {
             final Check check = (Check) it.next();
-            check.finishTree();
+            check.finishTree(aRootAST);
         }
     }
 

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
@@ -96,7 +97,7 @@ public class LineLengthCheck extends Check
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void beginTree()
+    public void beginTree(DetailAST aRootAST)
     {
         final String[] lines = getLines();
         for (int i = 0; i < lines.length; i++) {

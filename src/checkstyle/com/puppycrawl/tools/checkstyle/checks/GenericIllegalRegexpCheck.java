@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+
 /**
  * <p>
  * A generic check for code problems, the user can search for any pattern.
@@ -55,7 +57,7 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void beginTree()
+    public void beginTree(DetailAST aRootAST)
     {
         final String[] lines = getLines();
         for (int i = 0; i < lines.length; i++) {

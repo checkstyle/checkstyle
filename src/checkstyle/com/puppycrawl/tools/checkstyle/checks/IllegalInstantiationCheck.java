@@ -102,9 +102,9 @@ public class IllegalInstantiationCheck
     }
     
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void beginTree()
+    public void beginTree(DetailAST aRootAST)
     {
-        super.beginTree();
+        super.beginTree(aRootAST);
         mPkgName = null;
         mImports.clear();
     }
