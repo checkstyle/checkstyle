@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Writing your own checks</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css"/>
+</head>
+
+<body>
+
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td>
+      <h1>Writing your own Checks</h1>
+    </td>
+    <td align="right">
+      <img src="logo.png" alt="Checkstyle Logo"/>
+    </td>
+  </tr>
+</table>
+
+<!-- content -->
+<table border="0" width="100%" cellpadding="5" summary="body layout">
+  <tr>
+    <!--Left menu-->
+    <td class="menu" valign="top">
+      <p><a href="#overview">Overview</a></p>
+      <p><a href="#filesetchecks">FileSetChecks</a>
+      <p><a href="#checks">Checks</a></p>
+      <ul>
+        <li><a href="#grammar">Java Grammar</a></li>
+        <li><a href="#gui">Checkstyle GUI</a></li>
+        <li><a href="#visitor">Vistor Pattern</a></li>
+        <li><a href="#regtokens">Visitor in Action</a></li>
+        <li><a href="#astnav">Navigating the AST</a></li>
+        <li><a href="#integrate">Integrating Checks</a></li>
+        <li><a href="#limitations">Limitations</a></li>
+        <li><a href="#huh">Huh?</a></li>
+      </ul>
+    </td>
+
+    <!--Content-->
+    <td class="content" valign="top" align="left">
+      <a name="overview"></a>
+      <h2>Overview</h2>
+      <p class="body">
+
+      OK, so you have finally decided to write your own check.
+      Welcome aboard, this is really a fun thing to do.
+
+      TODO: Write about FileSetChecks, TreeWalker and Checks here.
+      </p>
+
+      <a name="filesetchecks"></a>
+      <h2>Writing FileSetChecks</h2>
+      <p class="body">
+        TODO: How to write a FileSetCheck should go here.
+      </p>
+
+      <a name="checks"></a>
+      <h2>Writing Checks</h2>
+      <p class="body">
+
+      Most of the functionality of Checkstyle is implemented as
+      Checks. If you know how to write your own Checks, you can extend
+      Checkstyle according to your needs without having to wait for
+      the checkstyle development team. You are about to become a
+      Checkstyle Expert.
+      </p>
+
+      <p class="body">
+      This chapter is organized as a tour that takes you through the
+      process step by step and explains both the theoretical
+      foundations and the Checkstyle API along the way.
+
+      </p>
+
+      <a name="grammar"></a>
+      <h3>Java Grammar</h3>
+      <p class="body">
+      TODO: Explain that a Java file is structured according to a grammar.
+      </p>
+
+      <a name="gui"></a>
+      <h3>The Checkstyle SDK gui</h3>
+      <p class="body">
+      TODO: Screenshot, see grammar in action, identify token types.
+      </p>
+
+      <a name="visitor"></a>
+      <h3>Understanding the visitor pattern</h3>
+      <p class="body">
+      TODO: A brief explanation of the Visitor pattern, xref to
+      GoF/pattern wiki.
+      </p>
+
+      <a name="regtokens"></a>
+      <h3>Visitor in action</h3>
+      <p class="body">
+      TODO: Explain the registration procedure and the visitor methods
+      (visitToken, leaveToken, beginTree, endTree).
+      </p>
+
+      <a name="astnav"></a>
+      <h3>Navigating the Abstract Syntax Tree (AST)</h3>
+      <p class="body">
+      TODO: Explain the navigation methods in DetailAST and how to
+      use them.
+      </p>
+
+      <a name="logerrors"></a>
+      <h3>Logging errors</h3>
+      <p class="body">
+      TODO: Explain Check.log and i18n issues.
+      </p>
+
+      <a name="integrate"></a>
+      <h3>Integrate your Check</h3>
+      <p class="body">
+      TODO: Explain the config system and how to integrate a user check.
+      </p>
+
+      <a name="limitations"></a>
+      <h3>Limitations</h3>
+      <p class="body">
+      OK, so you have written your first Check, and you have found
+      several flaws in many of your programs. You now know that your
+      boss does not follow the coding conventions he wrote.  And you
+      know that you are the king of the world. To become a programming
+      god, you want to write your second check - now wait, first you
+      should know what your limits are.
+      </p>
+
+      <p class="body">
+      There are basically only two of them:
+      <ul>
+      <li>You cannot determine the type of an expression.</li>
+      <li>You cannot see the content of other files.</li>
+      </ul>
+      TODO: Explain the practical consequences of these limitations.
+      </p>
+
+      <a name="huh"></a>
+      <h3>Huh? I can't figure it out!</h3>
+      <p class="body">
+      Then we have to provide better docs. Please do not hesitate to ask
+      questions on the user mailing list.
+      </p>
+
+    </td>
+  </tr>
+</table>
+<hr />
+</body> </html>
