@@ -157,9 +157,9 @@ public class TranslationCheck
             args = new String[] {aEx.getMessage()};
             key = "general.exception";
         }
-        LocalizedMessage message =
+        final LocalizedMessage message =
                 new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE, key, args);
-        LocalizedMessage[] messages = new LocalizedMessage[]{message};
+        final LocalizedMessage[] messages = new LocalizedMessage[]{message};
         getMessageDispatcher().fireErrors(aFile.getPath(), messages);
     }
 
@@ -192,9 +192,7 @@ public class TranslationCheck
                     log(0, "translation.missingKey", key);
                 }
             }
-            final LocalizedMessage[] errors =
-                getMessageCollector().getMessages();
-            getMessageDispatcher().fireErrors(path, errors);
+            fireErrors(path);
             dispatcher.fireFileFinished(path);
         }
     }
