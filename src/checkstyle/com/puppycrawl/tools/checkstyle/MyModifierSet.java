@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Iterator;
 
 /**
  * Represents a set of modifiers and tracks the first line of the modifiers.
@@ -105,4 +106,15 @@ class MyModifierSet
         return Scope.PACKAGE;
     }
 
+    /** @see Object **/
+    public String toString()
+    {
+        final StringBuffer buf = new StringBuffer("MyModifierSet [ ");
+        for (Iterator it = mModifiers.iterator(); it.hasNext(); ) {
+            buf.append((String) it.next());
+            buf.append(" ");
+        }
+        buf.append("]");
+        return buf.toString();
+    }
 }
