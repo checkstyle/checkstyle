@@ -408,6 +408,10 @@ convention of using a
           malformed.
 	  </li>
 
+          <li> Check text for Javadoc statements that do not have any description.
+          This includes both completely empty Javadoc, and Javadoc with only
+          tags such as @param and @return.</li>
+
           <li> Check text for incomplete HTML tags.  Verifies that HTML tags
           have corresponding end tags and issues an "Unclosed HTML tag found:"
           error if not.  An "Extra HTML tag found:" error is issued if an end
@@ -439,6 +443,12 @@ convention of using a
             <td>Whether to check the first sentence for proper end of sentence.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><span class="default">true</span></td>
+          </tr>
+          <tr>
+            <td>checkEmptyJavadoc</td>
+            <td>Whether to check if the Javadoc is missing a describing text.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
           </tr>
           <tr>
             <td>checkHtml</td>
