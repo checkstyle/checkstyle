@@ -87,6 +87,7 @@ public class CheckerTest
     {
         mConfig.setIgnoreCastWhitespace(false);
         mConfig.setParenPadOption(PadOption.NOSPACE);
+        mConfig.setAllowEmptyCatch(true);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -157,6 +158,7 @@ public class CheckerTest
     {
         mConfig.setIgnoreCastWhitespace(true);
         mConfig.setParenPadOption(PadOption.IGNORE);
+        mConfig.setAllowEmptyCatch(true);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -221,6 +223,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setIgnoreWhitespace(true);
+        mConfig.setAllowEmptyCatch(true);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -756,4 +759,22 @@ public class CheckerTest
         };
         verify(c, filepath, expected);
     }
+
+    public void testSemantic()
+        throws Exception
+    {
+        mConfig.setJavadocScope(Scope.NOTHING);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputSemantic.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":15:21: Avoid instantiation of java.lang.Boolean",
+            filepath + ":20:21: Avoid instantiation of java.lang.Boolean",
+            filepath + ":26:21: Avoid instantiation of java.lang.Boolean",
+            filepath + ":34:9: Empty catch block.",
+            filepath + ":36:9: Empty catch block.",
+        };
+        verify(c, filepath, expected);
+    }
+
 }

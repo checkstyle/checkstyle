@@ -657,6 +657,18 @@ public class CheckStyleTask
             });
     }
 
+    /** @param aAllowed whether empty catch blocks are allowed **/
+    public void setAllowEmptyCatch(final boolean aAllowed)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setAllowEmptyCatch(aAllowed);
+                }
+            });
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // The doers
     ////////////////////////////////////////////////////////////////////////////

@@ -100,4 +100,7 @@ public interface Defn
     String RCURLY_PROP = "checkstyle.rcurly";
     /** property name for padding around parenthesis **/
     String PAREN_PAD_PROP = "checkstyle.paren.pad";
+
+    /** property name for allowing empty exception handlers **/
+    String ALLOW_EMPTY_CATCH_PROP = "checkstyle.allow.empty.catch";
 }

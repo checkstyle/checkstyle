@@ -868,6 +868,37 @@ class Verifier
         mMethodBlockLevel--;
     }
 
+    /**
+     * Report that the parser has found a (potentially empty) catch block.
+     * @param aLineNo the line number of the catch keyword
+     * @param aColNo the column number of the catch keyword
+     * @param aIsEmpty whether the block contains any statement
+     */
+    void reportCatchBlock(int aLineNo, int aColNo, boolean aIsEmpty)
+    {
+        if (aIsEmpty && !mConfig.isAllowEmptyCatch()) {
+            log(aLineNo, aColNo - 1, "Empty catch block.");
+        }
+    }
+
+    /**
+     * Report an object instantiation.
+     *
+     * @param aNewAST the AST of 'new', used for line/column number reporting
+     * @param aTypeName the typename, may or may not be qualified
+     */
+    void reportInstantiation(MyCommonAST aNewAST, LineText aTypeName)
+    {
+        final String typeName = aTypeName.getText();
+        final int lineNo = aNewAST.getLineNo();
+        final int colNo = aNewAST.getColumnNo();
+        if ("java.lang.Boolean".equals(typeName) ||
+            "Boolean".equals(typeName))
+        {
+            log(lineNo, colNo, "Avoid instantiation of java.lang.Boolean");
+        }
+    }
+
     // }}}
 
     // {{{ Private methods
@@ -1237,7 +1268,7 @@ class Verifier
                         mConfig.getHeaderLinesRegexp()
                         ? Utils.getRE(headerLine).match(mLines[i])
                         : headerLine.equals(mLines[i]);
-    
+
                     if (!match) {
                         log(i + 1,
                             "Line does not match expected header line of '" +
