@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheckTe
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.JUnitTestCaseCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheckTest;
@@ -154,6 +155,7 @@ public class AllTests {
         suite.addTest(new TestSuite(JavadocStyleCheckTest.class));
         suite.addTest(new TestSuite(JavadocTypeCheckTest.class));
         suite.addTest(new TestSuite(JavadocVariableCheckTest.class));
+        suite.addTest(new TestSuite(JUnitTestCaseCheckTest.class));
         suite.addTest(new TestSuite(LineLengthCheckTest.class));
         suite.addTest(new TestSuite(LocalFinalVariableNameCheckTest.class));
         suite.addTest(new TestSuite(LocalVariableNameCheckTest.class));
