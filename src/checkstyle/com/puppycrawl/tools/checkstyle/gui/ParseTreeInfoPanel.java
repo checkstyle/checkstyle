@@ -133,7 +133,7 @@ public class ParseTreeInfoPanel extends JPanel
         }
     }
 
-    private void openFile(File aFile, final Component aParent)
+    public void openFile(File aFile, final Component aParent)
     {
         if (aFile != null) {
             try {
