@@ -1,18 +1,68 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
 <head>
-  <title></title>
+  <title>Checks for whitespace</title>
   <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
 <body>
-<h1></h1>
+<h1>Checks for whitespace</h1>
 
-  <li>checkstyle.allow.tabs"</li>
-  <li>checkstyle.ignore.whitespace"</li>
-  <li>checkstyle.ignore.whitespace.cast"</li>
-  <li>checkstyle.paren.pad"</li>
-  <li>checkstyle.wrap.operator"</li>
+<h2>Tab characters</h2>
+
+<p>The property <span class="code">checkstyle.allow.tabs</span> controls
+whether to silently allow lines that contain tab (<code>'\t'</code>)
+characters. The property type is
+<a href="property_types.html#boolean">boolean</a> and defaults to
+<span class="default">false</span>.</p>
+
+<h2>Surrounding Whitespace</h2>
+
+<p>The property <span class="code">checkstyle.ignore.whitespace</span>
+controls whether to check whitespace. It overrides all the other properties in
+this section. The property type is
+<a href="property_types.html#boolean">boolean</a> and defaults to
+<span class="default">false</span>.</p>
+
+<p>The following checks are performed:</p>
+
+<ul>
+
+  <li>Binary operators are separated from operands by spaces. For example
+  <span class="code">x = y + 1;</span></li>
+
+  <li>Unary operators are not separated by spaces. For example
+  <span class="code">x = --y + z++;</span></li>
+
+  <li>The keywords
+  <span class="code">if/for/while/do/catch/synchronized/return</span> are
+  surrounded by spaces.</li>
+
+  <li>Casts and commas (',') are followed by whitespace.</li>
+
+  <li>Periods ('.') are not surrounded by whitespace.</li>
+
+  <li>Correct padding of parenthesises <span class="code">()</span>'s.</li>
+</ul>
+
+
+<p>The property <span class="code">checkstyle.ignore.whitespace.cast</span>
+controls whether to ignore checking for whitespace after a cast. The property
+type is <a href="property_types.html#boolean">boolean</a> and defaults to
+<span class="default">false</span>.</p>
+
+<p>The property <span class="code">checkstyle.paren.pad</span> specifies the
+policy on how parenthesises are to be padded. The property type is
+<a href="property_types.html#parenPad">pad parenthesis policy</a> and defaults to <span
+class="default">nospace</span>.</p>
+
+
+<h2>Line wrapping on operators</h2>
+
+<p>The property <span class="code">checkstyle.wrap.operator</span> specifies
+the policy on how to wrap lines on operators. The property type is <a
+href="property_types.html#wrapOp">wrap operator policy</a> and defaults to
+<span class="default">nl</span>.</p>
 
 </body>
 </html>
