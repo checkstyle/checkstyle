@@ -53,12 +53,5 @@ public class ConfigurationTest
         c.setPatternProperty(Defn.MEMBER_PATTERN_PROP, "bulldogs");
         assertEquals("bulldogs",
                      c.getProperties().getProperty(Defn.MEMBER_PATTERN_PROP));
-        c.setStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP, "a,b,c,d");
-        assertEquals("a,b,c,d",
-                     c.getProperties().getProperty(Defn.ILLEGAL_IMPORTS_PROP));
-        c.setStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP, "a");
-        assertEquals("a",
-                     c.getProperties().getProperty(Defn.ILLEGAL_IMPORTS_PROP));
-       
     }
 }

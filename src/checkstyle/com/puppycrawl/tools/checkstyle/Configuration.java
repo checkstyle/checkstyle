@@ -675,7 +675,7 @@ public class Configuration
      * @param aName name of the property to set
      * @param aFrom the String to parse
      */
-    public void setStringSetProperty(String aName, String aFrom)
+    private void setStringSetProperty(String aName, String aFrom)
     {
         final Set s = new TreeSet();
         final StringTokenizer tok = new StringTokenizer(aFrom, ",");
@@ -698,7 +698,7 @@ public class Configuration
      * @param aName name of the property. Should be defined in Defn.
      * @param aTo the value to set
      */
-    public void setBooleanProperty(String aName, boolean aTo)
+    private void setBooleanProperty(String aName, boolean aTo)
     {
         if (aTo) {
             mBooleanProps.add(aName);
@@ -713,7 +713,7 @@ public class Configuration
      * @param aName name of the property. Should be defined in Defn.
      * @param aTo the value to set
      */
-    public void setStringProperty(String aName, String aTo)
+    private void setStringProperty(String aName, String aTo)
     {
         mStringProps.put(aName, aTo);
     }
@@ -723,7 +723,7 @@ public class Configuration
      * @throws FileNotFoundException if an error occurs
      * @throws IOException if an error occurs
      */
-    public void setHeaderFile(String aFileName)
+    private void setHeaderFile(String aFileName)
         throws FileNotFoundException, IOException
     {
         // Handle a missing property, or an empty one
@@ -748,7 +748,7 @@ public class Configuration
     /**
      * @param aList comma separated list of line numbers to ignore in header.
      */
-    public void setHeaderIgnoreLines(String aList)
+    private void setHeaderIgnoreLines(String aList)
     {
         mHeaderIgnoreLineNo.clear();
 
@@ -788,7 +788,7 @@ public class Configuration
     }
 
     /** @param aTo set the right curly placement option **/
-    public void setRCurly(RightCurlyOption aTo)
+    private void setRCurly(RightCurlyOption aTo)
     {
         mRCurly = aTo;
     }
@@ -818,7 +818,7 @@ public class Configuration
     }
 
     /** @param aTo set the parenthesis option **/
-    public void setParenPadOption(PadOption aTo)
+    private void setParenPadOption(PadOption aTo)
     {
         mParenPadOption = aTo;
     }
@@ -830,7 +830,7 @@ public class Configuration
     }
 
     /** @param aTo set the wrap on operator option **/
-    public void setWrapOpOption(WrapOpOption aTo)
+    private void setWrapOpOption(WrapOpOption aTo)
     {
         mWrapOpOption = aTo;
     }
