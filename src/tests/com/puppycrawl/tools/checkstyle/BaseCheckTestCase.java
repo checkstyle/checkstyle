@@ -46,8 +46,11 @@ public abstract class BaseCheckTestCase
     {
         final DefaultConfiguration dc = createCheckerConfig(aCheckConfig);
         final Checker c = new Checker();
-        c.setLocaleCountry(Locale.getDefault().getCountry());
-        c.setLocaleLanguage(Locale.getDefault().getLanguage());
+        // make sure the tests always run with english error messages
+        // so the tests don't fail in supported locales like german
+        final Locale locale = Locale.ENGLISH;
+        c.setLocaleCountry(locale.getCountry());
+        c.setLocaleLanguage(locale.getLanguage());
         c.configure(dc);
         c.addListener(new BriefLogger(mStream));
         return c;
