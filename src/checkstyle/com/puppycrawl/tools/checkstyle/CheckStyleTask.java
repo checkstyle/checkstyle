@@ -27,6 +27,7 @@ import org.apache.tools.ant.taskdefs.LogOutputStream;
 import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
+import org.apache.regexp.RESyntaxException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -153,20 +154,33 @@ public class CheckStyleTask
      */
     public void setProperties(File aProps)
     {
-        Properties mProperties = new Properties();
+        final Properties mProperties = new Properties();
         try {
             mProperties.load(new FileInputStream(aProps));
-            mConfig = new Configuration(mProperties, System.out);
         }
         catch (FileNotFoundException e) {
             throw new BuildException(
-                "Could not find Properties file '" + aProps + "'",
-                e, getLocation());
+                    "Could not find Properties file '" + aProps + "'",
+                    e, getLocation());
         }
-        catch (Exception e) {
+        catch (IOException e) {
             throw new BuildException(
-                "Error loading Properties file '" + aProps + "'",
-                e, getLocation());
+                    "Error loading Properties file '" + aProps + "'",
+                    e, getLocation());
+        }
+
+        try {
+            mConfig = new Configuration(mProperties, System.out);
+        }
+        catch (RESyntaxException e) {
+            throw new BuildException(
+                    "An regular expression error exists in '" + aProps + "'",
+                    e, getLocation());
+        }
+        catch (IOException e) {
+            throw new BuildException(
+                    "An error loading the file '" + e.getMessage() + "'",
+                    e, getLocation());
         }
     }
 
