@@ -17,7 +17,11 @@
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck"/>
+    
+    <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck">
+        <set-property name="checkUnusedThrows" value="false"/>
+    </check>
+    
     <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocVariableCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.LineLengthCheck"/>
 
