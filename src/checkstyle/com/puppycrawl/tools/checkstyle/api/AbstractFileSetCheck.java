@@ -66,7 +66,7 @@ public abstract class AbstractFileSetCheck
         // TODO: This is a hack to check that aCharset is supported.
         // TODO: Find a better way in Java 1.3
         try {
-            final String hack = new String(new byte[] {}, aCharset);
+            new String(new byte[] {}, aCharset);
         }
         catch (UnsupportedEncodingException es) {
             final String message = "unsupported charset: " + es.getMessage();
