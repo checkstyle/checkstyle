@@ -572,55 +572,26 @@ class Verifier
         }
     }
 
+
     /**
      * Verify that a method has correct placement of the left curly brace.
      * @param aMethodLine line the method starts on
      * @param aBrace location of the brace
      */
-    void verifyMethodLCurly(int aMethodLine, MyCommonAST aBrace)
+    void verifyLCurlyMethod(int aMethodLine, MyCommonAST aBrace)
     {
-        final String prevLine = mLines[aBrace.getLineNo() - 2];
-        final String braceLine = mLines[aBrace.getLineNo() - 1];
-        final LeftCurlyOption option = mConfig.getLCurlyMethod();
+        checkLCurly(aMethodLine, aBrace, mConfig.getLCurlyMethod());
+    }
 
-        // Check for being told to ignore, or have '{}' which is a special case
-        if ((option == LeftCurlyOption.IGNORE)
-            || ((braceLine.length() > (aBrace.getColumnNo() + 1))
-                && (braceLine.charAt(aBrace.getColumnNo() + 1) == '}')))
-        {
-            // ignore
-        }
-        else if (option == LeftCurlyOption.NL) {
-            if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                log(aBrace.getLineNo(), "'{' should be on a new line.");
-            }
-        }
-        else if (option == LeftCurlyOption.EOL) {
-            if (Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)
-                && ((Utils.lengthMinusTrailingWhitespace(prevLine) + 2)
-                    <= mConfig.getMaxLineLength()))
-            {
-                log(aBrace.getLineNo(), "'{' should be on the previous line.");
-            }
-        }
-        else if (option == LeftCurlyOption.NLOW) {
-            if (aMethodLine == aBrace.getLineNo()) {
-                // all ok as on the same line
-            }
-            else if ((aMethodLine + 1) == aBrace.getLineNo()) {
-                if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                    log(aBrace.getLineNo(), "'{' should be on a new line.");
-                }
-                else if ((Utils.lengthMinusTrailingWhitespace(prevLine) + 2)
-                         <= mConfig.getMaxLineLength()) {
-                    log(aBrace.getLineNo(),
-                        "'{' should be on the previous line.");
-                }
-            }
-            else if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                log(aBrace.getLineNo(), "'{' should be on a new line.");
-            }
-        }
+
+    /**
+     * Verify that a type has correct placement of the left curly brace.
+     * @param aTypeLine line the type starts on
+     * @param aBrace location of the brace
+     */
+    void verifyLCurlyType(int aTypeLine, MyCommonAST aBrace)
+    {
+        checkLCurly(aTypeLine, aBrace, mConfig.getLCurlyType());
     }
 
 
@@ -1212,6 +1183,64 @@ class Verifier
             }
         }
         return retVal;
+    }
+
+    /**
+     * Verify the correct placement of the left curly brace.
+     * @param aStartLine line the construct starts on
+     * @param aBrace location of the brace
+     * @param aOption specifies where the brace should be
+     */
+    private void checkLCurly(int aStartLine,
+                             MyCommonAST aBrace,
+                             LeftCurlyOption aOption)
+    {
+        final String braceLine = mLines[aBrace.getLineNo() - 1];
+
+        // calculate the previous line length without trailing whitespace. Need
+        // to handle the case where there is no previous line, cause the line
+        // being check is the first line in the file.
+        final int prevLineLen = (aBrace.getLineNo() == 1)
+            ? mConfig.getMaxLineLength()
+            : Utils.lengthMinusTrailingWhitespace(
+                mLines[aBrace.getLineNo() - 2]);
+
+        // Check for being told to ignore, or have '{}' which is a special case
+        if ((aOption == LeftCurlyOption.IGNORE)
+            || ((braceLine.length() > (aBrace.getColumnNo() + 1))
+                && (braceLine.charAt(aBrace.getColumnNo() + 1) == '}')))
+        {
+            // ignore
+        }
+        else if (aOption == LeftCurlyOption.NL) {
+            if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
+                log(aBrace.getLineNo(), "'{' should be on a new line.");
+            }
+        }
+        else if (aOption == LeftCurlyOption.EOL) {
+            if (Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)
+                && ((prevLineLen + 2) <= mConfig.getMaxLineLength()))
+            {
+                log(aBrace.getLineNo(), "'{' should be on the previous line.");
+            }
+        }
+        else if (aOption == LeftCurlyOption.NLOW) {
+            if (aStartLine == aBrace.getLineNo()) {
+                // all ok as on the same line
+            }
+            else if ((aStartLine + 1) == aBrace.getLineNo()) {
+                if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
+                    log(aBrace.getLineNo(), "'{' should be on a new line.");
+                }
+                else if ((prevLineLen + 2) <= mConfig.getMaxLineLength()) {
+                    log(aBrace.getLineNo(),
+                        "'{' should be on the previous line.");
+                }
+            }
+            else if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
+                log(aBrace.getLineNo(), "'{' should be on a new line.");
+            }
+        }
     }
 
     // }}}

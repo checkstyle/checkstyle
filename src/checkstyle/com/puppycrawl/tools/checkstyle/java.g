@@ -229,7 +229,7 @@ modifier
 
 // Definition of a Java class
 classDefinition![MyCommonAST modifiers, MyModifierSet modSet]
-	:	"class" IDENT
+	:	cc:"class" IDENT
 		// it _might_ have a superclass...
 		sc:superClassClause
 		// it might implement some interfaces...
@@ -239,7 +239,7 @@ classDefinition![MyCommonAST modifiers, MyModifierSet modSet]
             ver.verifyType(modSet, #IDENT);
             ver.reportStartTypeBlock(modSet.getVisibilityScope(), false);
         }
-		cb:classBlock
+		cb:classBlock[(modSet.size() == 0) ? #cc.getLineNo() : modSet.getFirstLineNo()]
 		{#classDefinition = #(#[CLASS_DEF,"CLASS_DEF"],
 							   modifiers,IDENT,sc,ic,cb);}
         {
@@ -254,7 +254,7 @@ superClassClause!
 
 // Definition of a Java Interface
 interfaceDefinition![MyCommonAST modifiers, MyModifierSet modSet]
-	:	"interface" IDENT
+	:	ii:"interface" IDENT
 		// it might extend some other interfaces
 		ie:interfaceExtends
 		// now parse the body of the interface (looks like a class...)
@@ -262,7 +262,7 @@ interfaceDefinition![MyCommonAST modifiers, MyModifierSet modSet]
             ver.verifyType(modSet, #IDENT);
             ver.reportStartTypeBlock(modSet.getVisibilityScope(), true);
         }
-		cb:classBlock
+		cb:classBlock[(modSet.size() == 0) ? #ii.getLineNo() : modSet.getFirstLineNo()]
 		{#interfaceDefinition = #(#[INTERFACE_DEF,"INTERFACE_DEF"],
 									modifiers,IDENT,ie,cb);}
         {
@@ -273,8 +273,8 @@ interfaceDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 
 // This is the body of a class.  You can have fields and extra semicolons,
 // That's about it (until you see what a field is...)
-classBlock
-	:	LCURLY!
+classBlock[int aLine]
+	:	lc:LCURLY! { if (aLine != -1) ver.verifyLCurlyType(aLine, #lc); }
 			( field | SEMI! )*
 		RCURLY!
 		{#classBlock = #([OBJBLOCK, "OBJBLOCK"], #classBlock);}
@@ -349,7 +349,7 @@ field!
 				(
                     s2:compoundStatement[lcurls]
                     {
-                        ver.verifyMethodLCurly(msig.getLineNo(), lcurls[0]);
+                        ver.verifyLCurlyMethod(msig.getLineNo(), lcurls[0]);
                         ver.verifyMethodLength(#s2.getLineNo(),
                                                sCompoundLength);
                     }
@@ -379,13 +379,13 @@ field!
 	;
 
 constructorBody[int aLineNo]
-    :   lc:LCURLY^ {#lc.setType(SLIST); ver.verifyMethodLCurly(aLineNo, #lc); }
+    :   lc:LCURLY^ {#lc.setType(SLIST); ver.verifyLCurlyMethod(aLineNo, #lc); }
 		// Predicate might be slow but only checked once per constructor def
 		// not for general methods.
 		(	(explicitConstructorInvocation) => explicitConstructorInvocation
 		|
 		)
-        (statement[sIgnoreType])*
+        (statement[sIgnoreType, sIgnoreAST])*
         rc:RCURLY! {ver.verifyConstructorLength(#lc.getLineNo(), #rc.getLineNo() - #lc.getLineNo() + 1);}
     ;
 
@@ -525,7 +525,7 @@ parameterModifier
 compoundStatement[MyCommonAST[] aCurlies]
 	:	lc:LCURLY^ {#lc.setType(SLIST); aCurlies[0] = #lc;}
 			// include the (possibly-empty) list of statements
-			(statement[sIgnoreType])*
+			(statement[sIgnoreType, sIgnoreAST])*
 		rc:RCURLY!
         {
             sCompoundLength = rc.getLine() - lc.getLine() + 1;
@@ -534,14 +534,14 @@ compoundStatement[MyCommonAST[] aCurlies]
 	;
 
 
-statement[int[] aType]
+statement[int[] aType, MyCommonAST[] aCurlies]
 {
     final MyModifierSet modSet = new MyModifierSet();
     final int[] stmtType = new int[1];
     stmtType[0] = STMT_OTHER;
 }
 	// A list of statements in curly braces -- start a new scope!
-	:	compoundStatement[sIgnoreAST] { aType[0] = STMT_COMPOUND; }
+	:	compoundStatement[aCurlies] { aType[0] = STMT_COMPOUND; }
 
 	// declarations are ambiguous with "ID DOT" relative to expression
 	// statements.  Must backtrack to be sure.  Could use a semantic
@@ -558,10 +558,10 @@ statement[int[] aType]
 	|	m:modifiers[modSet]! classDefinition[#m, modSet]
 
 	// Attach a label to the front of a statement
-	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement[sIgnoreType]
+	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement[sIgnoreType, sIgnoreAST]
 
 	// If-else statement
-	|	ii:"if"^ LPAREN! expression RPAREN! statement[stmtType]
+	|	ii:"if"^ LPAREN! expression RPAREN! statement[stmtType, sIgnoreAST]
         {
             aType[0] = STMT_IF;
             ver.verifyWSAroundBegin(ii.getLine(), ii.getColumn(), ii.getText());
@@ -577,7 +577,7 @@ statement[int[] aType]
 				warnWhenFollowAmbig = false;
 			}
 		:
-			ee:"else"! {stmtType[0] = STMT_OTHER; } statement[stmtType]
+			ee:"else"! {stmtType[0] = STMT_OTHER; } statement[stmtType, sIgnoreAST]
             {
                 ver.verifyWSAroundBegin(ee.getLine(), ee.getColumn(), ee.getText());
                 if (stmtType[0] == STMT_OTHER) {
@@ -593,7 +593,7 @@ statement[int[] aType]
         forCond	s2:SEMI! // condition test
         forIter         // updater
         RPAREN!
-        statement[stmtType] // statement to loop over
+        statement[stmtType, sIgnoreAST] // statement to loop over
         {
             ver.verifyWSAroundBegin(ff.getLine(), ff.getColumn(), ff.getText());
             ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);
@@ -604,7 +604,7 @@ statement[int[] aType]
         }
 
 	// While statement
-	|	ww:"while"^ LPAREN! expression RPAREN! statement[stmtType]
+	|	ww:"while"^ LPAREN! expression RPAREN! statement[stmtType, sIgnoreAST]
         {
             ver.verifyWSAroundBegin(ww.getLine(), ww.getColumn(), ww.getText());
             if (stmtType[0] != STMT_COMPOUND) {
@@ -613,7 +613,7 @@ statement[int[] aType]
         }
 
 	// do-while statement
-	|	dd:"do"^ statement[stmtType] dw:"while"! LPAREN! expression RPAREN! SEMI!
+	|	dd:"do"^ statement[stmtType, sIgnoreAST] dw:"while"! LPAREN! expression RPAREN! SEMI!
         {
             ver.verifyWSAroundBegin(dd.getLine(), dd.getColumn(), dd.getText());
             ver.verifyWSAroundBegin(dw.getLine(), dw.getColumn(), dw.getText());
@@ -674,7 +674,7 @@ aCase
 	;
 
 caseSList
-	:	(statement[sIgnoreType])*
+	:	(statement[sIgnoreType, sIgnoreAST])*
 		{#caseSList = #(#[SLIST,"SLIST"],#caseSList);}
 	;
 
@@ -1004,7 +1004,7 @@ primaryExpression
  */
 newExpression
 	:	"new"^ type
-		(	LPAREN! argList RPAREN! ({ver.reportStartTypeBlock(Scope.ANONINNER, false);}  classBlock  {ver.reportEndTypeBlock();})?
+		(	LPAREN! argList RPAREN! ({ver.reportStartTypeBlock(Scope.ANONINNER, false);}  classBlock[-1]  {ver.reportEndTypeBlock();})?
 
 			//java 1.1
 			// Note: This will allow bad constructs like

@@ -43,6 +43,7 @@ public class CheckerTest
     {
         mConfig.setHeaderFile(getPath("java.header"));
         mConfig.setLCurlyMethod(LeftCurlyOption.NL);
+        mConfig.setLCurlyType(LeftCurlyOption.NL);
     }
 
     protected String getPath(String aFilename)
