@@ -533,9 +533,11 @@ class Configuration
                                               boolean aDefault)
     {
         boolean retVal = aDefault;
-        final String strRep = aProps.getProperty(aName);
+        String strRep = aProps.getProperty(aName);
         if (strRep != null) {
-            retVal = Boolean.valueOf(strRep).booleanValue();
+            strRep = strRep.toLowerCase().trim();
+            retVal = strRep.equals("true") || strRep.equals("yes") ||
+                strRep.equals("on");
         }
         return retVal;
     }

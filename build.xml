@@ -87,12 +87,13 @@
   <!-- -->
 
   <!-- runs the command line version on a file -->
-  <target name="run.checkstyle" depends="compile.checkstyle">
+  <target name="run.checkstyle" depends="compile.tests">
     <java classname="com.puppycrawl.tools.checkstyle.Main"
           fork="yes"
-	  dir="${checkstyle.dir}"
+	  dir="src/tests/com/puppycrawl/tools/checkstyle"
           classpathref="run.classpath">
-      <arg value="VerifierImpl.java" />
+      <sysproperty key="checkstyle.allow.tabs" value="yes"/> 
+      <arg value="InputSimple.java" />
     </java>
   </target>
 
