@@ -47,7 +47,7 @@ public class PackageHtmlCheck extends AbstractFileSetCheck
             dispatcher.fireFileStarted(path);
             if (!packageHtml.exists()) {
                 LocalizedMessage[] errors = new LocalizedMessage[1];
-                final String bundle = this.getClass().getName() + ".messages";
+                final String bundle = this.getClass().getPackage().getName() + ".messages";
                 errors[0] = new LocalizedMessage(
                         0, bundle, "javadoc.packageHtml", null);
                 getMessageDispatcher().fireErrors(path, errors);
