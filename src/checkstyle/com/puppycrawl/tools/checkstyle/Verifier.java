@@ -259,11 +259,6 @@ class Verifier
                           mConfig.getMethodPat());
         }
 
-        // Always verify the parameters are ok
-        for (Iterator it = aSig.getParams().iterator(); it.hasNext();) {
-            checkParameter((LineText) it.next());
-        }
-
         // Always check that the order of modifiers follows the JLS suggestion
         checkModOrder(aSig.getModSet());
 
@@ -1146,20 +1141,6 @@ class Verifier
             mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
                           "name.invalidPattern",
                           aVar.getText(), aPattern);
-        }
-    }
-
-
-    /**
-     * Verify that a parameter conforms to the style.
-     * @param aParam the parameter details
-     **/
-    private void checkParameter(LineText aParam)
-    {
-        if (!mConfig.getParamRegexp().match(aParam.getText())) {
-            mMessages.add(aParam.getLineNo(), aParam.getColumnNo(),
-                          "name.invalidPattern",
-                          aParam.getText(), mConfig.getParamPat());
         }
     }
 

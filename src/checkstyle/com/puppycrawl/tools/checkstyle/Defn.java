@@ -31,8 +31,6 @@ public interface Defn
 
     /** property name for the to-do pattern **/
     String TODO_PATTERN_PROP = "checkstyle.pattern.todo";
-    /** property name for the parameter pattern **/
-    String PARAMETER_PATTERN_PROP = "checkstyle.pattern.parameter";
     /** property name for the static variable pattern **/
     String STATIC_PATTERN_PROP = "checkstyle.pattern.static";
     /** property name for the static final variable pattern **/
@@ -158,7 +156,6 @@ public interface Defn
     String[] ALL_PATTERN_PROPS = new String[]
         {
             TODO_PATTERN_PROP,
-            PARAMETER_PATTERN_PROP,
             STATIC_PATTERN_PROP,
             CONST_PATTERN_PROP,
             MEMBER_PATTERN_PROP,

@@ -63,8 +63,6 @@ public class Configuration
     private static final Map PATTERN_DEFAULTS = new HashMap();
     static {
         PATTERN_DEFAULTS.put(Defn.TODO_PATTERN_PROP, "TODO:");
-        PATTERN_DEFAULTS.put(Defn.PARAMETER_PATTERN_PROP,
-                             "^[a-z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.STATIC_PATTERN_PROP, "^[a-z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.CONST_PATTERN_PROP, "^[A-Z](_?[A-Z0-9]+)*$");
         PATTERN_DEFAULTS.put(Defn.MEMBER_PATTERN_PROP, "^[a-z][a-zA-Z0-9]*$");
@@ -396,18 +394,6 @@ public class Configuration
     RE getTodoRegexp()
     {
         return getRegexpProperty(Defn.TODO_PATTERN_PROP);
-    }
-
-    /** @return pattern to match parameters **/
-    String getParamPat()
-    {
-        return getPatternProperty(Defn.PARAMETER_PATTERN_PROP);
-    }
-
-    /** @return regexp to match parameters **/
-    RE getParamRegexp()
-    {
-        return getRegexpProperty(Defn.PARAMETER_PATTERN_PROP);
     }
 
     /** @return pattern to match package names **/

@@ -466,7 +466,6 @@ public class CheckerTest
         mProps.setProperty(Defn.MAX_FILE_LENGTH_PROP, "20");
         mProps.setProperty(Defn.MAX_METHOD_LENGTH_PROP, "19");
         mProps.setProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, "9");
-        mProps.setProperty(Defn.PARAMETER_PATTERN_PROP, "^a[A-Z][a-zA-Z0-9]*$");
         mProps.setProperty(Defn.STATIC_PATTERN_PROP, "^s[A-Z][a-zA-Z0-9]*$");
         mProps.setProperty(Defn.MEMBER_PATTERN_PROP, "^m[A-Z][a-zA-Z0-9]*$");
         mProps.setProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP,
@@ -494,10 +493,7 @@ public class CheckerTest
             filepath + ":53:16: Variable 'sTest2' must be private and have accessor methods.",
             filepath + ":56:9: Variable 'mTest1' must be private and have accessor methods.",
             filepath + ":58:16: Variable 'mTest2' must be private and have accessor methods.",
-            filepath + ":71:19: Name 'badFormat1' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":71:30: ',' is not followed by whitespace.",
-            filepath + ":71:34: Name 'badFormat2' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
-            filepath + ":72:25: Name 'badFormat3' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":80: Method length is 20 lines (max allowed is 19).",
             filepath + ":103: Constructor length is 10 lines (max allowed is 9).",
             filepath + ":119:13: Name 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
