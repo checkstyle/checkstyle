@@ -9,8 +9,8 @@ public class RightCurlyCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(RightCurlyCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RightCurlyCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputLeftCurlyOther.java");
         final String[] expected = {
@@ -25,9 +25,9 @@ public class RightCurlyCheckTest
     public void testSame()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(RightCurlyCheck.class.getName());
-        checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputLeftCurlyOther.java");
         final String[] expected = {
@@ -42,9 +42,9 @@ public class RightCurlyCheckTest
     public void testAlone()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(RightCurlyCheck.class.getName());
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputLeftCurlyOther.java");
         final String[] expected = {

@@ -8,8 +8,8 @@ public class ParameterNumberCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParameterNumberCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParameterNumberCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
@@ -21,9 +21,9 @@ public class ParameterNumberCheckTest
     public void testNum()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParameterNumberCheck.class.getName());
-        checkConfig.addProperty("max", "2");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParameterNumberCheck.class);
+        checkConfig.addAttribute("max", "2");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {

@@ -8,8 +8,8 @@ public class RedundantModifierTest
     public void testIt()
             throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(RedundantModifierCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RedundantModifierCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputModifier.java");
         final String[] expected = {

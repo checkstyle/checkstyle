@@ -9,8 +9,8 @@ public class ParenPadCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParenPadCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParenPadCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
@@ -25,9 +25,9 @@ public class ParenPadCheckTest
     public void testSpace()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParenPadCheck.class.getName());
-        checkConfig.addProperty("option", PadOption.SPACE.toString());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParenPadCheck.class);
+        checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
