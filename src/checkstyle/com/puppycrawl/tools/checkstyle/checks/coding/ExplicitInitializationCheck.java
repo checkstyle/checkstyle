@@ -65,8 +65,11 @@ public class ExplicitInitializationCheck extends Check
     /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
-        // do not check local variables
-        if (ScopeUtils.isLocalVariableDef(aAST)) {
+        // do not check local variables and
+        // fields declared in interface
+        if (ScopeUtils.isLocalVariableDef(aAST)
+            || ScopeUtils.inInterfaceBlock(aAST))
+        {
             return;
         }
         DetailAST assign = aAST.findFirstToken(TokenTypes.ASSIGN);
