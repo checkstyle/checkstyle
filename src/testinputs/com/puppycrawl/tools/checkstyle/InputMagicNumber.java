@@ -54,5 +54,21 @@ public class InputMagicNumber {
         if (int_magic1 < 3) {
             int_magic1 = int_magic1 + 3;
         }
+        
+        //octal
+        int octalVar0 = 00;
+        int octalVar8 = 010;
+        int octalVar9 = 011;
+        
+        long longOctalVar8 = 010L;
+        long longOctalVar9 = 011l;
+        
+        //hex
+        int hexVar0 = 0x0;
+        int hexVar16 = 0x10;
+        int hexVar17 = 0X011;
+        long longHexVar0 = 0x0L;
+        long longHexVar16 = 0x10L;
+        long longHexVar17 = 0X11l;       
     }
 }

@@ -77,30 +77,61 @@ public class MagicNumberCheck extends Check
      */
     private boolean inIgnoreList(DetailAST aAST)
     {
-      float value = 0; //value of aAST
-      switch (aAST.getType()) {
-          case TokenTypes.NUM_DOUBLE :
-              value = (float) Double.parseDouble(aAST.getText());
-              break;
-          case TokenTypes.NUM_FLOAT :
-              value = Float.parseFloat(aAST.getText());
-              break;
-          case TokenTypes.NUM_INT :
-              value = Integer.parseInt(aAST.getText());
-              break;
-          case TokenTypes.NUM_LONG :
-              // Long.parseLong requires that the text ends with neither 'L'
-              // nor 'l'.
-              String text = aAST.getText();
-              if ((text.endsWith("L")) || (text.endsWith("l"))) {
-                  text = text.substring(0, text.length() - 1); 
-              }
-              value = Long.parseLong(text);
-              break;
-          default :
-              break;
-      }
-      return (Arrays.binarySearch(mIgnoreNumbers, value) >= 0);
+        final float value = parseFloat(aAST.getText(), aAST.getType());
+        return (Arrays.binarySearch(mIgnoreNumbers, value) >= 0);
+    }
+
+    /**
+     * Returns the value represented by the specified string of the specified
+     * type. Returns 0 for types other than float, double, int, and long.
+     * @param aText the string to be parsed.
+     * @param aType the token type of the text. Should be a constant of
+     * {@link com.puppycrawl.tools.checkstyle.api.TokenTypes}.
+     * @return the float value represented by the string argument.
+     */
+    private float parseFloat(String aText, int aType)
+    {
+        if (aType == TokenTypes.NUM_FLOAT) {
+            return Float.parseFloat(aText);
+        }
+        if (aType == TokenTypes.NUM_DOUBLE) {
+            return (float) Double.parseDouble(aText);
+        }
+        else {
+            int radix = 10;
+            if (aText.startsWith("0x") || aText.startsWith("0X")) {
+                radix = 16;
+                aText = aText.substring(2);
+            }
+            else if (aText.charAt(0) == '0') {
+                radix = 8;
+                aText = aText.substring(1);
+            }
+            if (aType == TokenTypes.NUM_INT) {
+                if (aText.length() > 0) {
+                    return (float) Integer.parseInt(aText, radix);
+                }
+                else {
+                    return 0;
+                }
+            }
+            else if (aType == TokenTypes.NUM_LONG) {
+                // Long.parseLong requires that the text ends with neither 'L'
+                // nor 'l'.
+                if ((aText.endsWith("L")) || (aText.endsWith("l"))) {
+                    aText = aText.substring(0, aText.length() - 1);
+                }
+                if (aText.length() > 0) {
+                    return (float) Long.parseLong(aText, radix);
+                }
+                else {
+                    return 0;
+                } 
+            }
+            else {
+                return 0;
+            }
+        }
     }
 
     /**
