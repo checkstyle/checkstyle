@@ -412,15 +412,16 @@ public class CheckStyleTask
     private AuditListener createCustomListener(Listener aListener)
     {
         final String classname = aListener.getClassname();
+
+        // use the task classpath property
         final ClassLoader loader =
-            new AntClassLoader(getProject(), mClasspath);
+            new AntClassLoader(getClass().getClassLoader(), getProject(),
+                 mClasspath, true);
+
         AuditListener listener = null;
         try {
-            //TODO: this works:
-            final Class listenerClass = Class.forName(classname);
-            // this causes the next statement to throw a ClassCastException
-            //final Class listenerClass =
-            //    Class.forName(classname, true, loader);
+            final Class listenerClass =
+                Class.forName(classname, true, loader);
             listener =
                 (AuditListener) listenerClass.newInstance();
         }
@@ -430,6 +431,7 @@ public class CheckStyleTask
         }
         return listener;
     }
+
     /**
      * returns the list of files (full path name) to process.
      * @return the list of files included via the filesets.
