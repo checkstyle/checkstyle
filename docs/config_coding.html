@@ -140,12 +140,12 @@
       Checks that array initialization contains a trailing comma.
       </p>
       <pre class="body"	>
-      int[] a = new int[] 
+      int[] a = new int[]
       {
-          1, 
-          2, 
-          3, 
-      }; 
+          1,
+          2,
+          3,
+      };
       </pre>
       <p class="body">
       The check allows to not add a comma if both left and right curlys
@@ -156,7 +156,7 @@
       </pre>
       <p class="body">
       Rationale: Putting this comma in makes it easier to change the
-      order of the elements or add new elements on the end. 
+      order of the elements or add new elements on the end.
       </p>
       <h4>Examples</h4>
       <p class="body">
@@ -303,7 +303,7 @@ public class MySingleton
       <p class="body">
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
-    
+
       <!-- --> <a name="EqualsHashCode"></a> <h2>EqualsHashCode</h2>
       <h4>Description</h4>
       <p class="body">
@@ -624,7 +624,7 @@ public class MySingleton
         </tr>
         <tr>
           <td>message</td>
-          <td>Message which is used to notify about violations; 
+          <td>Message which is used to notify about violations;
           if empty then the default message is used.</td>
           <td><a href="property_types.html#String">String</a></td>
           <td><span class="default">&quot;&quot;</span>(empty)</td>
@@ -820,7 +820,7 @@ public class MySingleton
       <!-- --> <a name="RedundantThrows"></a> <h2>RedundantThrows</h2> <h4>Description</h4>
       <p class="body">
        Checks for redundant exceptions declared in throws clause
-        such as duplicates, unchecked exceptions or subclasses of 
+        such as duplicates, unchecked exceptions or subclasses of
         another declared exception.
       </p>
       <h4>Properties</h4>
@@ -839,7 +839,7 @@ public class MySingleton
         </tr>
         <tr>
           <td>allowSubclasses</td>
-          <td> whether subclass of another declared exception 
+          <td> whether subclass of another declared exception
           is allowed in throws clause </td>
           <td><a href="property_types.html#boolean">boolean</a></td>
           <td><span class="default">false</span></td>
@@ -1008,7 +1008,7 @@ return !valid();
       <!-- --> <a name="NestedTryDepth"></a> <h2>NestedTryDepth</h2>
       <h4>Description</h4>
       <p class="body">
-      Restricts nested if-else blocks to a specified depth (default = 1).
+      Restricts nested try blocks to a specified depth (default = 1).
       </p>
 
       <h4>Properties</h4>
@@ -1057,7 +1057,7 @@ return !valid();
       Checks that an overriding <span class="code">clone()</span> method invokes <span class="code">super.clone()</span>.
       </p>
       <p class="body">
-      Reference: <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Object.html#clone()">Object.clone()</a>. 
+      Reference: <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Object.html#clone()">Object.clone()</a>.
       </p>
       <h4>Examples</h4>
       <p class="body">
@@ -1082,7 +1082,7 @@ return !valid();
       </p>
       <p class="body">
       Reference: <a href="http://java.sun.com/docs/books/tutorial/java/data/garbagecollection.html">Cleaning
-      Up Unused Objects</a>. 
+      Up Unused Objects</a>.
       </p>
       <h4>Examples</h4>
       <p class="body">
@@ -1144,7 +1144,7 @@ return !valid();
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
 
-      <!-- --> <a name="PackageDeclaration"></a> <h2>PackageDeclaration</h2> 
+      <!-- --> <a name="PackageDeclaration"></a> <h2>PackageDeclaration</h2>
       <h4>Description</h4>
       <p class="body">
       Ensure a class is has a package declaration.
@@ -1170,7 +1170,7 @@ return !valid();
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
 
-      <!-- --> <a name="JUnitTestCase"></a> <h2>JUnitTestCase</h2> 
+      <!-- --> <a name="JUnitTestCase"></a> <h2>JUnitTestCase</h2>
       <h4>Description</h4>
       <p class="body">
       Ensures that the setUp(), tearDown()methods are named correctly,
@@ -1274,7 +1274,7 @@ return !valid();
       Rationale:
       Helps reduce coupling on concrete classes. In addition abstract
       classes should be thought of a convenience base class implementations
-      of interfaces and as such are not types themsleves. 
+      of interfaces and as such are not types themsleves.
       </p>
 
       <h4>Properties</h4>
@@ -1438,7 +1438,7 @@ return !valid();
       statement.
       </p>
       <p class="body">
-      Rationale: Java allows <span class="code">default</span> anywhere 
+      Rationale: Java allows <span class="code">default</span> anywhere
       within the <span class="code">switch</span> statement. But it is more
       readable if it comes after the last <span class="code">case</span>.
       </p>
@@ -1485,7 +1485,7 @@ return !valid();
       Finds locations where a <span class="code">case</span> contains<br>
       Java code - but lacks a <span class="code">break</span>, <span
       class="code">return</span>, <span class="code">throw</span> or
-      <span class="code">continue</span> statement. 
+      <span class="code">continue</span> statement.
       </p>
       <p class="body">
       Note: the check works in assumption that there is no unreachable
