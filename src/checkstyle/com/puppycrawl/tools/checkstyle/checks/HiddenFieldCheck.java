@@ -101,8 +101,21 @@ public class HiddenFieldCheck
                 }
                 break;
             case TokenTypes.CLASS_DEF:
-                //push
-                mFieldsStack.addLast(new HashSet());
+                //find and push fields
+                final HashSet fieldSet = new HashSet(); //fields container
+                //add fields to container
+                final DetailAST objBlock =
+                    aAST.findFirstToken(TokenTypes.OBJBLOCK);
+                DetailAST child = (DetailAST) objBlock.getFirstChild();
+                while (child != null) {
+                    if (child.getType() == TokenTypes.VARIABLE_DEF) {
+                        final String name =
+                            child.findFirstToken(TokenTypes.IDENT).getText();
+                        fieldSet.add(name);
+                    }
+                    child = (DetailAST) child.getNextSibling();
+                }                
+                mFieldsStack.addLast(fieldSet); //push container              
                 break;
         }
     }
@@ -129,7 +142,7 @@ public class HiddenFieldCheck
                 //local variable or parameter. Does it shadow a field?
                 final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
                 final String name = nameAST.getText();
-                Iterator it = mFieldsStack.iterator();
+                final Iterator it = mFieldsStack.iterator();
                 while (it.hasNext()) {
                     final HashSet aFieldsSet = (HashSet) it.next();
                     if (aFieldsSet.contains(name)) {
@@ -138,12 +151,6 @@ public class HiddenFieldCheck
                         break;
                     }
                 }
-            }
-            else {
-                //field. Add its name to the top stack element
-                final String name =
-                    aAST.findFirstToken(TokenTypes.IDENT).getText();
-                ((HashSet) mFieldsStack.getLast()).add(name);
             }
         }
     }
