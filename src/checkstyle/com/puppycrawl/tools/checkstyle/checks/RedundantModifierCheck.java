@@ -64,32 +64,64 @@ public class RedundantModifierCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        if (!ScopeUtils.inInterfaceBlock(aAST)) {
-            return;
-        }
+        if (ScopeUtils.inInterfaceBlock(aAST)) {
+            final DetailAST modifiers =
+                aAST.findFirstToken(TokenTypes.MODIFIERS);
 
-        DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+            DetailAST modifier = (DetailAST) modifiers.getFirstChild();
+            while (modifier != null) {
 
-        DetailAST modifier = (DetailAST) modifiers.getFirstChild();
-        while (modifier != null) {
+                // javac does not allow final or static in interface methods
+                // hence no need to check that this is not a method
 
-            // javac does not allow final or static in interface methods
-            // hence no need to check that this is not a method
+                final int type = modifier.getType();
+                if (type == TokenTypes.LITERAL_PUBLIC
+                    || type == TokenTypes.ABSTRACT
+                    || type == TokenTypes.LITERAL_STATIC
+                    || type == TokenTypes.FINAL)
+                {
+                    log(modifier.getLineNo(),
+                        modifier.getColumnNo(),
+                        "redundantModifier",
+                        new String[] {modifier.getText()});
+                    break;
+                }
 
-            final int type = modifier.getType();
-            if (type == TokenTypes.LITERAL_PUBLIC
-                || type == TokenTypes.ABSTRACT
-                || type == TokenTypes.LITERAL_STATIC
-                || type == TokenTypes.FINAL)
-            {
-                log(modifier.getLineNo(),
-                    modifier.getColumnNo(),
-                    "redundantModifier",
-                    new String[] {modifier.getText()});
-                break;
+                modifier = (DetailAST) modifier.getNextSibling();
             }
-
-            modifier = (DetailAST) modifier.getNextSibling();
+        }
+        else if (aAST.getType() == TokenTypes.METHOD_DEF) {
+            final DetailAST modifiers =
+                            aAST.findFirstToken(TokenTypes.MODIFIERS);
+            // private method?
+            boolean checkFinal =
+                modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
+            // declared in a final class?
+            DetailAST parent = aAST.getParent();
+            while (parent != null) {
+                if (parent.getType() == TokenTypes.CLASS_DEF) {
+                    final DetailAST classModifiers =
+                        parent.findFirstToken(TokenTypes.MODIFIERS);
+                    checkFinal |=
+                        classModifiers.branchContains(TokenTypes.FINAL);
+                    break;
+                }
+                parent = parent.getParent();
+            }
+            if (checkFinal) {
+                DetailAST modifier = (DetailAST) modifiers.getFirstChild();
+                while (modifier != null) {
+                    final int type = modifier.getType();
+                    if (type == TokenTypes.FINAL) {
+                        log(modifier.getLineNo(),
+                            modifier.getColumnNo(),
+                            "redundantModifier",
+                            new String[] {modifier.getText()});
+                        break;
+                    }
+                    modifier = (DetailAST) modifier.getNextSibling();
+                }
+            }
         }
     }
 

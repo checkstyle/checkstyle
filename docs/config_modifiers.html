@@ -98,20 +98,28 @@
       <a name="RedundantModifier"></a><h2>RedundantModifier</h2>
 
       <p class="body">
-      Checks that method declarations in interfaces include neither the <span class="code">
+      Checks that
+      <ul class="body">
+        <li>method declarations in interfaces include neither the <span class="code">
       public</span> modifier nor the <span class="code">abstract</span> modifier (see
       the <a
 href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java
 Language specification, section 9.4</a>).
-      </p>
-      <p class="body">
-      Also checks that variable declarations in interfaces include none of the following
+      </li>
+      <li>all <span class="code">private</span> method declarations and all method declarations in a
+        <span class="code">final</span> class do not include modifier
+        <span class="code">final</span> (see the <a
+href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#11246">Java
+Language specification, section 8.4.3.3</a>).</li>
+      <li>
+      variable declarations in interfaces include none of the following
       modifiers: <span class="code">public</span>, <span class="code">static</span>,
       <span class="code">final</span> (variables in interface definitions are constants
       and have these modifiers implicitly, see the <a
 href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java
 Language specification, section 9.3</a>).
-      </p>
+      </li>
+      </ul>
 
       <h4>Properties</h4>
       <table width="100%" border="1" cellpadding="5" class="body">

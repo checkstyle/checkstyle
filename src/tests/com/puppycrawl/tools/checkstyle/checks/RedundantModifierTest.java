@@ -17,6 +17,8 @@ public class RedundantModifierTest
             "41:9: Redundant 'public' modifier.",
             "44:9: Redundant 'abstract' modifier.",
             "47:9: Redundant 'final' modifier.",
+            "54:13: Redundant 'final' modifier.",
+            "63:12: Redundant 'final' modifier.",
         };
         verify(checkConfig, getPath("InputModifier.java"), expected);
     }
