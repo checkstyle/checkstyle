@@ -3,13 +3,8 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck;
 
 public class GenericIllegalRegexpCheckTest
-        extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public GenericIllegalRegexpCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt()
             throws Exception
     {

@@ -7,11 +7,6 @@ import com.puppycrawl.tools.checkstyle.checks.JavadocVariableCheck;
 public class JavadocVariableCheckTest
     extends BaseCheckTestCase
 {
-    public JavadocVariableCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testDefault()
         throws Exception
     {

@@ -3,13 +3,8 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.checks.ModifierCheck;
 
 public class ModifierCheckTest
-        extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public ModifierCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt() throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();

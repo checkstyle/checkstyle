@@ -6,17 +6,12 @@ public class WhitespaceAfterCheckTest
     extends BaseCheckTestCase
 {
     private CheckConfiguration mCheckConfig;
-    
-    public WhitespaceAfterCheckTest(String aName)
-    {
-        super(aName);
-    }
-    
+
     public void setUp() {
         mCheckConfig = new CheckConfiguration();
         mCheckConfig.setClassname(WhitespaceAfterCheck.class.getName());
     }
-    
+
     public void testDefault() throws Exception
     {
         final Checker c = createChecker(mCheckConfig);
@@ -27,7 +22,7 @@ public class WhitespaceAfterCheckTest
         };
         verify(c, fname, expected);
     }
-    
+
     public void testCast() throws Exception
     {
         mCheckConfig.addTokens("TYPECAST");
@@ -38,7 +33,7 @@ public class WhitespaceAfterCheckTest
         };
         verify(c, fname, expected);
     }
-    
+
     public void testSemi() throws Exception
     {;
         final Checker c = createChecker(mCheckConfig);

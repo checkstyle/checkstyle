@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.MethodNameCheck;
 public class MethodNameCheckTest
     extends BaseCheckTestCase
 {
-    public MethodNameCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testDefault()
         throws Exception
     {

@@ -3,13 +3,8 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheck;
 
 public class VisibilityModifierCheckTest
-        extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public VisibilityModifierCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     private Checker getChecker() throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();

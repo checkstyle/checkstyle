@@ -6,11 +6,6 @@ import com.puppycrawl.tools.checkstyle.CheckstyleException;
 
 public class HeaderCheckTest extends BaseCheckTestCase
 {
-    public HeaderCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testStaticHeader()
             throws Exception
     {

@@ -4,12 +4,8 @@ import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.checks.PackageHtmlCheck;
 
 public class PackageHtmlCheckTest
-        extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public PackageHtmlCheckTest(String s) {
-        super(s);
-    }
-
     public void testPackageHtml()
          throws Exception
     {

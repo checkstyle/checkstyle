@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundCheck;
 public class WhitespaceAroundTest
     extends BaseCheckTestCase
 {
-    public WhitespaceAroundTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt()
         throws Exception
     {

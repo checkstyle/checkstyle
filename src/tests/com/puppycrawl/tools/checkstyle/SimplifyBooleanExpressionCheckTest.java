@@ -3,13 +3,8 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanExpressionCheck;
 
 public class SimplifyBooleanExpressionCheckTest
-extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public SimplifyBooleanExpressionCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt()
             throws Exception
     {

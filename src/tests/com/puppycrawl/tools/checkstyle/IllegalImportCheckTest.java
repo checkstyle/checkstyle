@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck;
 public class IllegalImportCheckTest
 extends BaseCheckTestCase
 {
-    public IllegalImportCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testWithSupplied()
         throws Exception
     {

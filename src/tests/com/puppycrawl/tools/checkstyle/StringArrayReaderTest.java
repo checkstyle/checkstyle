@@ -7,11 +7,6 @@ import java.io.IOException;
 public class StringArrayReaderTest
     extends TestCase
 {
-    public StringArrayReaderTest(String name)
-    {
-        super(name);
-    }
-
     public void testClose()
     {
         final StringArrayReader o = new StringArrayReader(new String[] {""});

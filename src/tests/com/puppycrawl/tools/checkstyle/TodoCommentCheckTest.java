@@ -3,13 +3,8 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
 
 public class TodoCommentCheckTest
-        extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public TodoCommentCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt()
             throws Exception
     {

@@ -3,13 +3,8 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheck;
 
 public class InnerAssignmentCheckTest
-        extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public InnerAssignmentCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt() throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();

@@ -6,11 +6,6 @@ import com.puppycrawl.tools.checkstyle.checks.PadOption;
 public class ParenPadCheckTest
     extends BaseCheckTestCase
 {
-    public ParenPadCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testDefault()
         throws Exception
     {

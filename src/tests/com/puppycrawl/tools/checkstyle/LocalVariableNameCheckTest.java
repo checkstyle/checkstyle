@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.LocalVariableNameCheck;
 public class LocalVariableNameCheckTest
     extends BaseCheckTestCase
 {
-    public LocalVariableNameCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testDefault()
         throws Exception
     {

@@ -6,17 +6,12 @@ public class NoWhitespaceAfterCheckTest
     extends BaseCheckTestCase
 {
     private CheckConfiguration checkConfig;
-    
-    public NoWhitespaceAfterCheckTest(String aName)
-    {
-        super(aName);
-    }
-    
+
     public void setUp() {
         checkConfig = new CheckConfiguration();
         checkConfig.setClassname(NoWhitespaceAfterCheck.class.getName());
     }
-        
+
     public void testDefault() throws Exception
     {
         final Checker c = createChecker(checkConfig);
@@ -31,7 +26,7 @@ public class NoWhitespaceAfterCheckTest
         };
         verify(c, fname, expected);
     }
-    
+
     public void testDot() throws Exception
     {
         checkConfig.addTokens("DOT");
@@ -47,7 +42,7 @@ public class NoWhitespaceAfterCheckTest
         verify(c, fname, expected);
     }
 
-    
+
     public void testDotAllowLineBreaks() throws Exception
     {
         checkConfig.addTokens("DOT");
@@ -61,5 +56,5 @@ public class NoWhitespaceAfterCheckTest
         };
         verify(c, fname, expected);
     }
-    
+
 }

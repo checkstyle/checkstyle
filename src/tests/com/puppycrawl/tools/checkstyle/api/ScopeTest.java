@@ -5,11 +5,6 @@ import junit.framework.TestCase;
 public class ScopeTest
     extends TestCase
 {
-    public ScopeTest(String name)
-    {
-        super(name);
-    }
-
     public void testMisc()
     {
         final Scope o = Scope.getInstance("public");

@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.HiddenFieldCheck;
 public class HiddenFieldCheckTest
     extends BaseCheckTestCase
 {
-    public HiddenFieldCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testNoParameters()
         throws Exception
     {

@@ -4,12 +4,6 @@ import com.puppycrawl.tools.checkstyle.checks.LineLengthCheck;
 
 public class LineLengthCheckTest extends BaseCheckTestCase
 {
-    public LineLengthCheckTest(String aName)
-    {
-        super(aName);
-    }
-
-
     public void testSimple()
         throws Exception
     {

@@ -7,11 +7,6 @@ import com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck;
 public class JavadocMethodCheckTest
     extends BaseCheckTestCase
 {
-    public JavadocMethodCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testTags()
         throws Exception
     {
@@ -49,7 +44,7 @@ public class JavadocMethodCheckTest
 
     public void testTagsWithResolver()
         throws Exception
-    {      
+    {
         final CheckConfiguration checkConfig = new CheckConfiguration();
         checkConfig.setClassname(JavadocMethodCheck.class.getName());
         checkConfig.addProperty("checkUnusedThrows", "true");
@@ -123,7 +118,7 @@ public class JavadocMethodCheckTest
     public void testRelaxedJavadoc()
         throws Exception
     {
-        
+
         final CheckConfiguration checkConfig = new CheckConfiguration();
         checkConfig.setClassname(JavadocMethodCheck.class.getName());
         checkConfig.addProperty("scope", Scope.PROTECTED.getName());
@@ -182,7 +177,7 @@ public class JavadocMethodCheckTest
         };
         verify(c, fname, expected);
     }
-    
+
         public void testScopeAnonInnerWithResolver()
         throws Exception
     {

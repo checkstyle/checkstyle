@@ -8,11 +8,6 @@ import java.util.HashSet;
 public class ClassResolverTest
     extends TestCase
 {
-    public ClassResolverTest(String name)
-    {
-        super(name);
-    }
-
     public void testMisc() throws ClassNotFoundException
     {
         final Set imps = new HashSet();

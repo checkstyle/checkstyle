@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck;
 public class ParameterNameCheckTest
     extends BaseCheckTestCase
 {
-    public ParameterNameCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testSpecified()
         throws Exception
     {

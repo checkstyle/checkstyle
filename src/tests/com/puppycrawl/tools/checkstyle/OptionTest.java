@@ -14,14 +14,6 @@ import junit.framework.TestCase;
  */
 public class OptionTest extends TestCase {
 
-    /**
-     * Constructor for OptionTest.
-     * @param arg0
-     */
-    public OptionTest(String arg0) {
-        super(arg0);
-    }
-    
     public void testBlockOption()
     {
         BlockOption stmtOpt = BlockOption.STMT;

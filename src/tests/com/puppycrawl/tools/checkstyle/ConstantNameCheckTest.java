@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck;
 public class ConstantNameCheckTest
     extends BaseCheckTestCase
 {
-    public ConstantNameCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testDefault()
         throws Exception
     {
@@ -23,7 +18,7 @@ public class ConstantNameCheckTest
         };
         verify(c, fname, expected);
     }
-    
+
     public void testInterface()
         throws Exception
     {

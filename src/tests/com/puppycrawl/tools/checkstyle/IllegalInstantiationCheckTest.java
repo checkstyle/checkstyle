@@ -3,13 +3,8 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.checks.IllegalInstantiationCheck;
 
 public class IllegalInstantiationCheckTest
-        extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public IllegalInstantiationCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt() throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();
