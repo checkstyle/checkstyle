@@ -10,11 +10,12 @@ public class HiddenFieldCheckTest
         super(aName);
     }
 
-    public void testDefault()
+    public void testNoParameters()
         throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(HiddenFieldCheck.class.getName());;
+        checkConfig.setClassname(HiddenFieldCheck.class.getName());
+        checkConfig.addProperty("checkParameters", "false");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputHiddenField.java");
         final String[] expected = {
@@ -23,19 +24,21 @@ public class HiddenFieldCheckTest
             "30:18: 'hidden' hides a field.",
             "44:17: 'innerHidden' hides a field.",
             "53:17: 'innerHidden' hides a field.",
+            "54:17: 'hidden' hides a field.",
             "59:22: 'innerHidden' hides a field.",
+            "62:22: 'hidden' hides a field.",
             "74:17: 'innerHidden' hides a field.",
-            "79:13: 'hidden' hides a field.",
+            "75:17: 'hidden' hides a field.",
+            "80:13: 'hidden' hides a field.",
         };
         verify(c, fname, expected);
     }
 
-    public void testParameters()
+    public void testDefault()
         throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();
         checkConfig.setClassname(HiddenFieldCheck.class.getName());
-        checkConfig.addProperty("checkParameters", "true");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputHiddenField.java");
         final String[] expected = {
@@ -47,10 +50,14 @@ public class HiddenFieldCheckTest
             "44:17: 'innerHidden' hides a field.",
             "47:26: 'innerHidden' hides a field.",
             "53:17: 'innerHidden' hides a field.",
+            "54:17: 'hidden' hides a field.",
             "59:22: 'innerHidden' hides a field.",
+            "62:22: 'hidden' hides a field.",
             "67:17: 'innerHidden' hides a field.",
+            "68:17: 'hidden' hides a field.",
             "74:17: 'innerHidden' hides a field.",
-            "79:13: 'hidden' hides a field.",
+            "75:17: 'hidden' hides a field.",
+            "80:13: 'hidden' hides a field.",
         };
         verify(c, fname, expected);
     }

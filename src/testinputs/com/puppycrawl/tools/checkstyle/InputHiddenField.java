@@ -50,28 +50,29 @@ class InputHiddenField
         
         private void innerShadow()
         {
-            int innerHidden = 0; //shadows field
-            int hidden = 0; //not an error
+            int innerHidden = 0; //shadows inner field
+            int hidden = 0; //shadows outer field
         }
         
         private void innerShadowFor()
         {
             for (int innerHidden = 0; innerHidden < 1; innerHidden++) {
             }
-            //not an error
+            //shadows outer field
             for (int hidden = 0; hidden < 1; hidden++) {
             }
         }
         
         private void shadowParam(
-            int innerHidden, //parameter shadows field
-            int hidden //not an error
+            int innerHidden, //parameter shadows inner field
+            int hidden //parameter shadows outer field
         )
         {
         }
         
         {
-            int innerHidden = 0;//shadows field
+            int innerHidden = 0;//shadows inner field
+            int hidden = 0; //shadows outer field
         }
     }
 
