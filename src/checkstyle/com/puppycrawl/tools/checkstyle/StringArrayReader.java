@@ -24,7 +24,11 @@ import java.io.IOException;
 /**
  * A Reader that reads from an underlying String array, assuming each
  * array element corresponds to one line of text.
- *
+ * <p>
+ * <strong>Note: This class is not thread safe, concurrent reads might produce
+ * unexpected results!</strong> Checkstyle only works with one thread so
+ * currently there is no need to introduce synchronization here.
+ * </p>
  * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne</a>
  */
 class StringArrayReader extends Reader
@@ -71,9 +75,7 @@ class StringArrayReader extends Reader
     /** @see Reader */
     public int read(char[] aCbuf, int aOff, int aLen) throws IOException
     {
-        if (mClosed) {
-            throw new IOException("already closed");
-        }
+        ensureOpen();
 
         int retVal = 0;
 
@@ -105,4 +107,37 @@ class StringArrayReader extends Reader
         }
         return retVal;
     }
+
+    /** @see Reader */
+    public int read() throws IOException
+    {
+        if (mUnreportedNewline) {
+            mUnreportedNewline = false;
+            return '\n';
+        }
+
+        if (mArrayIdx < mUnderlyingArray.length
+            && mStringIdx < mUnderlyingArray[mArrayIdx].length() )
+        {
+            // this is the common case,
+            // avoid char[] creation in super.read for performance
+            ensureOpen();
+            return mUnderlyingArray[mArrayIdx].charAt(mStringIdx++);
+        }
+        else {
+            // don't bother duplicating the new line handling above
+            // for the uncommon case
+            return super.read();
+        }
+    }
+
+    /** Throws an IOException if the reader has already been closed. */
+    private void ensureOpen() throws IOException
+    {
+        if (mClosed) {
+            throw new IOException("already closed");
+        }
+    }
+
+
 }
