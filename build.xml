@@ -132,6 +132,11 @@
        <entry key="checkstyle.compile.timestamp" type="date" value="now" pattern="E MMMM dd yyyy, HH:mm z"/>
     </propertyfile>
 
+    <native2ascii src="src/checkstyle"
+                  dest="target/checkstyle"
+                  encoding="EUC-JP"
+                  includes="**/*_ja.properties" />
+
     <copy todir="target/checkstyle">
       <fileset dir="src/checkstyle" includes="**/*.properties"/>
       <fileset dir="src/checkstyle" includes="**/*.xml"/>
