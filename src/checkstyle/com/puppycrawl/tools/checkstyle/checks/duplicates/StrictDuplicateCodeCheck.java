@@ -47,11 +47,6 @@ import org.apache.commons.logging.LogFactory;
  * our tool is not tied to a particular programming language.
  * </p>
  * <p>
- * We aim to achieve a performance on par with the
- * <a href="http://pmd.sourceforge.net">PMD Copy+Paste detection tool</a>,
- * but with significantly lower memory requirements.
- * </p>
- * <p>
  * <a href="http://www.redhillconsulting.com.au/products/simian/">Simian</a>
  * is a very good commercial duplicate code detection tool. It comes with
  * a Checkstyle module, so we encourage all users to evaluate Simian
@@ -64,7 +59,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 {
     /**
      * Converts each of the original source lines
-     * to a checksum that is checked against to find duplicates
+     * to a checksum that is checked against to find duplicates.
      */
     private interface ChecksumGenerator
     {
@@ -78,22 +73,16 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         long[] convertLines(String[] aOriginalLines);
     }
 
+
     /**
-     * Calculates checksums for java source files.
-     * Removes leading and trainling whitespace and
-     * ignores imports.
+     * Calculates checksums for text files.
+     * Removes leading and trainling whitespace.
      */
-    private class JavaChecksumGenerator implements ChecksumGenerator
+    private class TextfileChecksumGenerator implements ChecksumGenerator
     {
         /** @see ChecksumGenerator#convertLines */
         public long[] convertLines(String[] aOriginalLines)
         {
-            // TODO: return IGNORE for lines in the header comment?
-            // That would require some simple parsing...
-
-            // we could also parse the java code using the TreeWalker
-            // and then ignore everything before the CLASS_DEF...
-
             long[] checkSums = new long[aOriginalLines.length];
             for (int i = 0; i < aOriginalLines.length; i++) {
                 String line = aOriginalLines[i].trim();
@@ -103,27 +92,11 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         }
 
         /**
-         * computes a checksum for a aLine. to avoid false alarms it is
-         * important that different lines result in different checksums.
+         * Computes a checksum for a a single line of text.
          * @param aLine the aLine
          * @return checksum
          */
-        private long calcChecksum(String aLine)
-        {
-            if (aLine.startsWith("import ")) {
-                return IGNORE;
-            }
-            else {
-                return reallyCalcChecksum(aLine);
-            }
-        }
-
-        /**
-         * Does the dirty work for computing a checksum for a aLine.
-         * @param aLine the aLine
-         * @return checksum
-         */
-        private long reallyCalcChecksum(String aLine)
+        protected long calcChecksum(String aLine)
         {
             // important that it's larger than the length of most lines
             // see http://www.utm.edu/research/primes/lists/small/1000.txt
@@ -139,6 +112,36 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             }
             return result;
         }
+    }
+
+    /**
+     * A TextfileChecksumGenerator that also ignores imports.
+     */
+    private class JavaChecksumGenerator extends TextfileChecksumGenerator
+    {
+        // TODO: return IGNORE for lines in the header comment?
+        // That would require some simple parsing...
+
+        // we could also parse the java code using the TreeWalker
+        // and then ignore everything before the CLASS_DEF...
+
+
+        /**
+         * computes a checksum for a aLine. to avoid false alarms it is
+         * important that different lines result in different checksums.
+         * @param aLine the aLine
+         * @return checksum
+         */
+        protected long calcChecksum(String aLine)
+        {
+            if (aLine.startsWith("import ")) {
+                return IGNORE;
+            }
+            else {
+                return super.calcChecksum(aLine);
+            }
+        }
+
     }
 
     /** a jakarta commons log */
@@ -180,7 +183,18 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     /** Creates a new instance of this class. */
     public StrictDuplicateCodeCheck()
     {
-        setFileExtensions(new String[]{"java"});
+    }
+
+    /**
+     * Sets the minimum number of lines that must be equivalent
+     * before the check complains.
+     *
+     * @param aMin the number of lines that must be equal before
+     * triggering a 'duplicate code' message.
+     */
+    public void setMin(int aMin)
+    {
+        mMin = aMin;
     }
 
     /**
@@ -207,7 +221,12 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
                 mLineChecksums[i] = transformer.convertLines(lines);
             }
             catch (IOException ex) {
-                ex.printStackTrace(); // TODO
+                LOG.error("Cannot access files to check, giving up: "
+                        + ex.getMessage(), ex);
+                // TODO: better to throw an exception here?
+                // it would be best to throw IOException from process(),
+                // but interface definition doesn't allow that...
+                mLineChecksums = new long[0][0];
             }
         }
         fillSortedRelevantChecksums();
@@ -234,9 +253,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             return new JavaChecksumGenerator();
         }
         else {
-            throw new IllegalArgumentException(
-                    "Non-Java files are currently not supported "
-                    + "(for no particular reason)");
+            // TODO: Not sure what to do with binary files such as gifs
+            return new TextfileChecksumGenerator();
         }
     }
 
@@ -413,8 +431,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             int aEquivalent, int aILine, File aJFile, int aJLine)
     {
         final Integer dupLines = new Integer(aEquivalent);
-        final Integer startLine = new Integer(aJLine);
-        log(aILine, "duplicates.lines",
+        final Integer startLine = new Integer(aJLine + 1);
+        log(aILine + 1, "duplicates.lines",
                 new Object[]{dupLines, aJFile, startLine});
         mDuplicates += 1;
     }
