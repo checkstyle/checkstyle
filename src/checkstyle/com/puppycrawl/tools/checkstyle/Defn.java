@@ -123,4 +123,6 @@ public interface Defn
 
     /** property name for the locale language for reporting **/
     String LOCALE_LANGUAGE_PROP = "checkstyle.locale.language";
+    /** property name for the locale country for reporting **/
+    String LOCALE_COUNTRY_PROP = "checkstyle.locale.country";
 }

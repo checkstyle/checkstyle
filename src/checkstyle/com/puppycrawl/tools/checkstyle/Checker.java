@@ -108,7 +108,8 @@ public class Checker
         mCache = new PropertyCacheFile(aConfig);
         final Verifier v = new Verifier(aConfig);
         VerifierSingleton.setInstance(v);
-        LocalizedMessage.init(new Locale(mConfig.getLocaleLanguage()),
+        LocalizedMessage.init(new Locale(mConfig.getLocaleLanguage(),
+                                         mConfig.getLocaleCountry()),
                               mConfig.getClassLoader());
     }
 
