@@ -9,14 +9,15 @@
 package com.puppycrawl.tools.checkstyle;
 
 import junit.framework.TestCase;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 
 public class TreeWalkerTest
     extends TestCase
 {
     public void testCreate()
     {
-        new TreeWalker(new LocalizedMessages(), 8);
+        // TODO: This test does not make sense, what does it actually test?
+        GlobalProperties props = new GlobalProperties();
+        new TreeWalker(props);
         assertTrue(true);
     }
 }

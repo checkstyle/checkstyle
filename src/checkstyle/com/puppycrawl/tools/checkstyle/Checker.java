@@ -19,20 +19,15 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
 
-import antlr.RecognitionException;
-import antlr.TokenStreamException;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
+import com.puppycrawl.tools.checkstyle.checks.PackageHtmlCheck;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -99,17 +94,10 @@ public class Checker
     /** configuration */
     private final GlobalProperties mConfig;
 
-    /** cache file **/
-    private final PropertyCacheFile mCache;
-
     /** vector of listeners */
     private final ArrayList mListeners = new ArrayList();
 
-    /** used to collect messages TODO: delete */
-    private final LocalizedMessages mMessages = new LocalizedMessages();
-
-    /** used to walk an AST and notify the checks */
-    private final TreeWalker mWalker;
+    private final ArrayList mFileSetChecks = new ArrayList();
 
     /**
      * Creates a new <code>Checker</code> instance.
@@ -134,10 +122,27 @@ public class Checker
         throws CheckstyleException
     {
         mConfig = aConfig;
-        mCache = new PropertyCacheFile(aConfig);
         LocalizedMessage.setLocale(new Locale(mConfig.getLocaleLanguage(),
                                               mConfig.getLocaleCountry()));
-        mWalker = new TreeWalker(mMessages, mConfig.getTabWidth());
+
+        // TODO: create, configure and register the FileSetChecks from config
+        // file instead of hardcoding it here in the Checker constructor.
+        // Probably the addFileSetCheck mthod must be called from outside
+        // the checker, just like the TreeWalker is not concerned with
+        // finding all the checks it has to execute (IOC principle).
+
+        // TODO: uncommenting the addFileSetCheck calls breaks the tests
+        // because the packageHtml check is always executed and yields
+        // additional errors that are not expected in the current test code
+        // (which should stay like it currently is!)
+
+        FileSetCheck translationCheck = new TranslationCheck();
+        // addFileSetCheck(translationCheck);
+
+        FileSetCheck packageHtmlCheck = new PackageHtmlCheck();
+        // addFileSetCheck(packageHtmlCheck);
+
+        TreeWalker mWalker = new TreeWalker(mConfig);
         // TODO: improve the error handing
         for (int i = 0; i < aConfigs.length; i++) {
             final CheckConfiguration config = aConfigs[i];
@@ -147,13 +152,24 @@ public class Checker
                 config.createInstance(this.getClass().getClassLoader()),
                 config);
         }
+        addFileSetCheck(mWalker);
+
         this.addListener(mCounter);
+    }
+
+    /**
+     * Adds a FileSetCheck to the list of FileSetChecks that is executed in process().
+     * @param aFileSetCheck the additional FileSetCheck
+     */
+    public void addFileSetCheck(FileSetCheck aFileSetCheck)
+    {
+        aFileSetCheck.setMessageDispatcher(this);
+        mFileSetChecks.add(aFileSetCheck);
     }
 
     /** Cleans up the object **/
     public void destroy()
     {
-        mCache.destroy();
         mListeners.clear();
     }
 
@@ -167,7 +183,7 @@ public class Checker
     }
 
     /**
-     * Processes a set of files.
+     * Processes a set of files with all FileSetChecks.
      * Once this is done, it is highly recommended to call for
      * the destroy method to close and remove the listeners.
      * @param aFiles the list of files to be audited.
@@ -177,65 +193,15 @@ public class Checker
     public int process(File[] aFiles)
     {
         fireAuditStarted();
-        for (int i = 0; i < aFiles.length; i++) {
-            process(aFiles[i]);
+        for (int i = 0; i < mFileSetChecks.size(); i++) {
+            FileSetCheck fileSetCheck = (FileSetCheck) mFileSetChecks.get(i);
+            fileSetCheck.process(aFiles);
         }
         int errorCount = mCounter.getCount();
         fireAuditFinished();
         return errorCount;
     }
 
-    /**
-     * Processes a specified file and reports all errors found.
-     * @param aFile the file to process
-     **/
-    private void process(File aFile)
-    {
-        // check if already checked and passed the file
-        final String fileName = aFile.getPath();
-        final long timestamp = aFile.lastModified();
-        if (mCache.alreadyChecked(fileName, timestamp)) {
-            return;
-        }
-
-        mMessages.reset();
-        try {
-            fireFileStarted(fileName);
-            final String[] lines = Utils.getLines(fileName);
-            final FileContents contents = new FileContents(fileName, lines);
-            final DetailAST rootAST = TreeWalker.parse(contents);
-            mWalker.walk(rootAST, contents, mConfig.getClassLoader());
-        }
-        catch (FileNotFoundException fnfe) {
-            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                               "general.fileNotFound", null));
-        }
-        catch (IOException ioe) {
-            mMessages.add(new LocalizedMessage(
-                              0, Defn.CHECKSTYLE_BUNDLE,
-                              "general.exception",
-                              new String[] {ioe.getMessage()}));
-        }
-        catch (RecognitionException re) {
-            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                               "general.exception",
-                                               new String[] {re.getMessage()}));
-        }
-        catch (TokenStreamException te) {
-            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                               "general.exception",
-                                               new String[] {te.getMessage()}));
-        }
-
-        if (mMessages.size() == 0) {
-            mCache.checkedOk(fileName, timestamp);
-        }
-        else {
-            fireErrors(fileName, mMessages.getMessages());
-        }
-
-        fireFileFinished(fileName);
-    }
 
     /**
      * Create a stripped down version of a filename.
