@@ -27,19 +27,6 @@ public class OperatorWrapCheckTest
         verify(c, fname, expected);
     }
 
-    public void testOpWrapIgnore()
-        throws Exception
-    {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(OperatorWrapCheck.class.getName());
-        checkConfig.addProperty("option", OperatorWrapOption.IGNORE.toString());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputOpWrap.java");
-        final String[] expected = {
-        };
-        verify(c, fname, expected);
-    }
-
     public void testOpWrapEOL()
         throws Exception
     {
