@@ -1,305 +1,153 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
 <head>
-  <title>Java Check Style Tool</title>
-  <style type="text/css">
-h2 {padding-left: 1%; border: dotted; text-transform: capitalize;}
-h4.tip {text-transform: capitalize; text-align: center;}
-tr.header {background-color: Silver; font-weight: bolder; text-align: center;}
-span.code {white-space: nowrap; font-family: monospace; font-size: x-small;}
-span.prop {font-family: monospace; font-size: large;}
-span.tip {background-color: Silver; font-weight: bolder; text-align: center;}
-span.default {white-space: nowrap;font-family: monospace;font-size: x-small;}
-div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%; background-color: Silver; border: ridge;}
-</style>
+<title>Checkstyle Home Page</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
 <body>
-<h1 align="center">Java Check Style Tool</h1>
 
-<p align="center">Author: <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a></p>
-
-<h2>Introduction</h2>
-<p>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard. Its purpose is to automate the process of checking Java code, and to spare humans of this boring (but important) task.</p>
-
-<p>My experience from using a similar proprietary tool at a previous employer was that it increased the productivity of code reviews. This is because it allowed the reviewers to get on with reviewing the code and not get into &quot;style&quot; debates. It also helped that all the code had the same style.</p>
-
-<p>The things that checkstyle checks for are:</p>
-<ul>
-  <li>Javadoc comments are defined for class, interface, variable and method declarations.</li>
-  <li>Javadoc tags for a method match the actual code.</li>
-  <li>The file starts with a specified header. This is useful to ensure that a file has a copyright notice.</li>
-  <li>An <span class="code">@author</span> tag exists for class and interface Javadoc comments. Note: this can be turned off.</li>
-  <li>Format of variable names match specified regular expressions. For example, can enforce that all <span class="code">static</span> variables must start with <span class="code">&quot;s&quot;</span>.</li>
-  <li>Format of class and interface names match a specified regular expression.</li>
-  <li>Format of parameter names match a specified regular expression.</li>
-  <li>Variables that are not declared as <span class="code">private</span> or <span class="code">protected</span>.</li>
-  <li>Correct use of white space around binary and unary operators. For example, <span class="code">x -=- 1;</span> is illegal, whereas <span class="code">x -= -1;</span> is not. Note: these checks can be turned off.</li>
-  <li>Ensure white space follows casts and commas. For example both <span class="code">x = (File)obj</span> and <span class="code">run(arg1,arg2)</span> are illegal, whereas <span class="code">x = (File) obj</span> and <span class="code">run(arg1, arg2)</span> are not. Note: these checks can be turned off.</li>
-  <li>Ensure <span class="code">{}</span>'s are used for <span class="code">if/while/for/do</span> constructs. Note: this check can be turned off.</li>
-  <li>Lines are not longer than a specified length.</li>
-  <li>Methods and constructors that are longer than a specified number of lines.</li>
-  <li>Files that are longer than a specified number of lines.</li>
-  <li>Lines do not contain tabs. Note: this check can be turned off.</li>
-</ul>
-
-<p>The following list outlines some things checkstyle is not:</p>
-<ul>
-  <li>A code formatter. Note that a code formatter cannot create meaningful Javadoc comments, or 100% safely reformat code. If you want a code formatter, check out <a href="http://home.wtal.de/software-solutions/jindent/">Jindent</a> (commercial product).</li>
-  <li>A replacement for a coding standard. It merely helps to enforce syntactic aspects of a coding standard.</li>
-  <li>A tool for editing Javadoc comments. If you want a tool for this, check out <a href="http://www.mindspring.com/~chroma/docwiz/index.html">DocWiz</a> or <a href="http://www.woodenchair.com/products/DocPlus/docPlus.htm">Doc+</a> (commercial product).</li>
-  <li>A replacement for code reviews.</li>
-</ul>
-
-<h2>Getting checkstyle</h2>
-
-<p>Binary and source distributions are available from <a href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a>.</p>
-
-<p>Source code is stored under CVS at <a href="http://sourceforge.net">SourceForge</a>. The project page is <a href="http://sourceforge.net/projects/checkstyle">http://sourceforge.net/projects/checkstyle</a>.</p>
-
-
-<!-- System requirements -->
-<h2>system requirements</h2>
-<p>To run checkstyle you will need:</p>
-<ul>
-  <li>JRE 1.2 or later</li>
-  <li><a href="http://www.antlr.org">ANTLR 2.7.1</a> (JAR supplied in binary distribution)</li>
-  <li><a href="http://jakarta.apache.org/regexp">Regexp 1.2</a> (JAR supplied in binary distribution)</li>
-</ul>
-
-<p>To build checkstyle you will need:</p>
-<ul>
-  <li>JDK 1.2 or later</li>
-  <li><a href="http://www.antlr.org">ANTLR 2.7.1</a></li>
-  <li><a href="http://jakarta.apache.org/regexp">Regexp 1.2</a></li>
-  <li><a href="http://jakarta.apache.org/ant">ANT 1.4.1</a></li>
-</ul>
-
-<h2>Installing and Running Checkstyle</h2>
-
-<p>The following ways are supported for running checkstyle:</p>
-<ul>
-  <li><a href="http://jakarta.apache.org/ant/">ANT Task</a> - see <a href="anttask.html">anttask.html</a> for more information.</li>
-  <li>Command line tool - see <a href="cmdline.html">cmdline.html</a> for more information.</li>
-</ul>
-
-<p>Checkstyle has been tested using
-<ul>
-<li>JRE1.2.2 and JRE1.3.1 on Windows 2000</li>
-<li>JRE1.3.1 on Windows NT 4</li>
-<li>JRE1.4beta3 on Red Hat Linux 7.2</li>
-</ul>
-</p>
-
-
-<h2>What checkstyle checks</h2>
-
-<h3><a name="imports">Unused Imports</a></h3>
-<p>Checks for import statements that are not used. It will warn about wild-card imports like <span class="code">import java.io.*;</span>. It will also warn about duplicate import statements.</p>
-
-<p>Removing unused import statements reduces unnecessary dependencies in a code base. This feature can be turned off.</p>
-
-<h3>Javadoc tags</h3>
-
-<p>Checks that the following constructs have a Javadoc comment:</p>
-<ul>
-  <li>class</li>
-  <li>interface</li>
-  <li>variable</li>
-  <li>method</li>
-</ul>
-
-<p>Javadoc comments for class and interface declarations are checked to ensure that the <span class="code">@author</span> tag exists. This can be turned off.</p>
-
-<p>You can control the visibility scope where Javadoc comments are checked. For example, you can check Javadoc code only for <span class="code">public</span> and <span class="code">protected</span> variables, methods, interfaces and class definitions. Scoping rules apply, in the above example a public method in a package visible class is not checked. You can also completely turn off all checking for Javadoc comments.</p>
-
-<p>Javadoc comments for methods are checked to ensure that the following tags exist (if required):</p>
-<ul>
-  <li><span class="code">@return</span></li>
-  <li><span class="code">@param</span></li>
-  <li><span class="code">@throws</span> or <span class="code">@exception</span></li>
-  <li><span class="code">@see</span></li>
-</ul>
-
-<p>For example the following is valid:</p>
-<pre>
-    /**
-     * Checks for a return tag.
-     * @return the index of the next unchecked tag
-     * @param aTagIndex the index to start in the tags
-     * @param aTags the tags to check
-     * @param aLineNo the line number of the expected tag
-     **/
-    public int checkReturnTag(final int aTagIndex,
-                              JavadocTag[] aTags,
-                              int aLineNo)
-</pre>
-
-<div class="tip">  
-<h4 class="tip">Tip</h4>
-<p>It can be extremely painful writing or duplicating Javadoc for a method required for an interface. Hence checkstyle supports using the convention of using a single <span class="code">@see</span> tag instead of all the other tags. For example, if the previous method was implementing a method required by the <span class="code">com.puppycrawl.tools.checkstyle.Verifier</span> interface, then the Javadoc could be done as:</p>
-
-<pre>
-    /** @see com.puppycrawl.tools.checkstyle.Verifier **/
-    public int checkReturnTag(final int aTagIndex,
-                              JavadocTag[] aTags,
-                              int aLineNo)
-</pre>
-</div>
-
-<h3><a name="length">Long Lines</a></h3>
-<p>Checks for lines that are longer that a specified length. The default is <span class="default">&quot;80&quot;</span>. This can be turned off for <code>import</code> statements.</p>
-
-<h3><a name="methodLength">Method Body Length</a></h3>
-<p>Checks for method bodies that are longer that a specified number of lines. The default is <span class="default">&quot;150&quot;</span>.
-
-<h3><a name="constructorLength">Constructor Body Length</a></h3>
-<p>Checks for constructor bodies that are longer that a specified number of lines. The default is <span class="default">&quot;150&quot;</span>.
-
-<h3><a name="fileLength">File Length</a></h3>
-<p>Checks for files that are longer that a specified number of lines. The default is <span class="default">&quot;2000&quot;</span>.
-
-<h3>Tab characters</h3>
-<p>Checks for lines that contain tab (<code>'\t'</code>) characters. This can be turned off.</p>
-
-<h3>Format of variable names</h3>
-<p>Verifies that the format of the variable names conform to a specified regular expression. The formats can be overridden. The following table outlines the defaults:</p>
-<a name="varformat"></a><table border="1">
-  <tr class="header">
-    <td>Scope</td>
-    <td>Default Format</td>
-    <td>Example</td>
-  </tr>
+<!-- The header -->
+<table border="0" width="100%">
   <tr>
-    <td>Constants (<span class="code">static</span> and <span class="code">final</span>)</td>
-    <td><span class="code">^[A-Z]([A-Z0-9_]*[A-Z0-9])?$</span><br>The exception to the rule is for <span class="code">serialVersionUID</span>.</td>
-    <td><span class="code">public static final int MAX_ROWS = 2;</span></td>
-  </tr>
-  <tr>
-    <td>Static variables (<span class="code">static</span> only)</td>
-    <td><span class="code">^[a-z][a-zA-Z0-9]*$</span></td>
-    <td><span class="code">private static int numCreated = 0;</span></td>
-  </tr>
-  <tr>
-    <td>Members (non <span class="code">static</span>)</td>
-    <td><span class="code">^[a-z][a-zA-Z0-9]*$</span></td>
-    <td><span class="code">private int mySize = 0;</span></td>
-  </tr>
-  <tr>
-    <td>Public members (non <span class="code">static public</span>)</td>
-    <td><span class="code">^f[A-Z][a-zA-Z0-9]*$</span></td>
-    <td><span class="code">public int fCMPField;</span></td>
+    <td>
+      <font style="font-family: Courier New; font-size=36; font-weight:bold; color:#aaaaaa">Checkstyle Home Page</font>
+    </td>
+    <td align="right">
+      <img src="logo.png">
+    </td>
   </tr>
 </table>
 
-<p>The default values prior to release 1.4 were:</p>
-<table border="1">
-  <tr class="header">
-    <td>Scope</td>
-    <td>Old Format</td>
-  </tr>
+<!-- content -->
+<table border="0" width="100%" cellpadding="5">
   <tr>
-    <td><span class="code">static</span> only</td>
-    <td><span class="code">^s[A-Z][a-zA-Z0-9]*$</span></td>
-  </tr>
-  <tr>
-    <td>non <span class="code">static</span></td>
-    <td><span class="code">^m[A-Z][a-zA-Z0-9]*$</span></td>
+    <!--Left menu-->
+    <td valign="top" align="left" nowrap="true" bgcolor="#EEEEEE">
+      <p>Checkstyle</p>
+      <ul>
+	<li><a href="#overview">Overview</a></li>
+	<li><a href="#features">Features</a></li>
+	<li><a href="#download">Download</a></li>
+	<li><a href="java.header">License</a></li>
+	<li><a href="#related">Related Tools</a></li>
+      </ul>
+      
+      <p>Documentation</p>
+      <ul>
+	<li><a href="engine.html">Core Engine</a></li>
+	<li><a href="anttask.html">ANT Task</a></li>
+	<li><a href="cmdline.html">Command Line</a></li>
+      </ul>
+      
+      <p>SourceForge</p>
+      <ul>
+	<li><a href="http://sourceforge.net/mail/?group_id=29721">Mailing Lists</a></li>
+	<li><a href="http://sourceforge.net/tracker/?atid=397078&group_id=29721&func=browse">Bug Database</a></li>
+	<li><a href="http://sourceforge.net/tracker/?atid=397081&group_id=29721&func=browse">Feature Requests</a></li>
+      </ul>
+
+      <p>Developers</p>
+      <ul>
+	<li><a href="http://sourceforge.net/projects/checkstyle">Project Page</a></li>
+	<li><a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/checkstyle/">CVS Repository</a></li>
+
+
+	<li>JavaDoc</li>
+      </ul>
+    </td>
+
+    <!--Content-->
+    <td width="100%" valign="top" align="left">
+
+      <a name="overview">
+      <h2>Overview</h2>
+      <p class="body">
+      Checkstyle is a development tool to help programmers write Java code
+      that adheres to a coding standard. It automates the process
+      of checking Java code to spare humans of this boring (but important)
+      task. This makes it ideal for projects that want to enforce a coding
+      standard.
+      </p>
+
+      <p class="body">
+      By default it supports the <a href="http://java.sun.com/docs/codeconv/">
+      Sun Code Conventions</a>. However, Checkstyle is highly configurable. 
+      </p>
+      
+      <p class="body">
+      My experience from using a similar proprietary tool at a previous employer
+      was that it increased the productivity of code reviews. This is because it
+      allowed the reviewers to get on with reviewing the code and not get into
+      "style" debates.
+      </p>
+      
+      <a name="features"></a>
+      <h2>Features</h2>
+      <p class="body">The things that checkstyle checks for are:</p>
+      <ul>
+	<li class="body">Unused or duplicate <span class="code">import</span> statements. Note: this can be turned off.</li>
+	<li class="body">Javadoc comments are defined for class, interface, variable and method declarations. Note: This can be made to check only <span class="code">public</span> and <span class="code">protected</span> declarations.</li>
+	<li class="body">Javadoc tags for a method match the actual code.</li>
+	<li class="body">The file starts with a specified header. This is useful to ensure that a file has a copyright notice.</li>
+	<li class="body">An <span class="code">@author</span> tag exists for class and interface Javadoc comments. Note: this can be turned off.</li>
+	<li class="body">Format of variable names match specified regular expressions. For example, can enforce that all <span class="code">static</span> variables must start with <span class="code">"s"</span>.</li>
+	<li class="body">Format of class and interface names match a specified regular expression.</li>
+	<li class="body">Format of parameter names match a specified regular expression.</li>
+	<li class="body">Variables that are not declared as <span class="code">private</span> or <span class="code">protected</span>.</li>
+	<li class="body">Correct use of white space around binary and unary operators. For example, <span class="code">x -=- 1;</span> is illegal, whereas <span class="code">x -= -1;</span> is not.</li>
+	<li class="body">Ensure white space follows casts and commas. For example both <span class="code">x = (File)obj</span> and <span class="code">run(arg1,arg2)</span> are illegal, whereas <span class="code">x = (File) obj</span> and <span class="code">run(arg1, arg2)</span> are not. Note: these checks can be turned off.</li>
+	<li class="body">Ensure <span class="code">{}</span>'s are used for <span class="code">if/while/for/do</span> constructs.</li>
+	<li class="body">Lines do not contain tabs. Note: this check can be turned off.</li>
+	<li class="body">Lines are not longer than a specified length.</li>
+	<li class="body">Methods/Constructors are not longer than a specified number of lines.</li>
+	<li class="body">Files are not longer than a specified number of lines.</li>
+      </ul>
+
+      <a name="download"></a>
+      <h2>Download</h2>
+
+      <p class="body"> 
+        The latest release of Checkstyle can be downloaded from <a href="http://sourceforge.net/project/showfiles.php?group_id=29721">the SourceForge download page</a>.
+      </p>
+
+      <p class="body">
+        If you want to live on the bleeding edge, you can <a href="http://sourceforge.net/cvs/?group_id=29721">checkout the current development code from CVS</a> and compile yourself.
+      </p>
+
+      <a  name="related"></a>
+      <h2>Related Tools</h2>
+
+      <p class="body">
+        Checkstyle is most useful if you integrate it in your build process or your development environment. The distribution includes:
+      </p>
+
+        <ul>
+	  <li class="body">An <a href="http://jakarta.apache.org/ant/index.html">Ant</a> task.</li>
+	  <li class="body">A command line tool.</li>
+        </ul> 
+      <p class="body">
+        Additionally
+      </p>
+
+        <ul>
+
+          <li class="body">Angus Chan has written <a href="http://jbcheckstyle.sourceforge.net">jbCheckStyle</a>, an Open Tool for JBuilder.</li>
+
+          <li class="body">Markus Mohnen has written a nice interface to Checkstyle for the <a href="http://jde.sunsite.dk">Emacs JDE</a>. It is available from <a href="http://jde.sunsite.dk/contributions.html">http://jde.sunsite.dk/contributions.html</a>. Highly recommended if you are using the JDE.</li>
+
+        </ul>
+
+      </p>
+      <p class="body">
+
+        If you have written a plugin for other IDEs, like <a href="http://www.netbeans.org">Netbeans</a> or <a href="http://www.eclipse.org/">Eclipse</a>, please <a href="mailto:checkstyle@puppycrawl.com">let us know</a>, so we can provide a link here.
+
+      </p>
+    </td>
   </tr>
 </table>
-
-<h3><a name="paramformat">Format of parameter names</a></h3>
-<p>Verifies that the format of parameter names conform to a specified regular expression. The default is <span class="code">^[a-z][a-zA-Z0-9]*$</span>. The default value prior to release 1.4 was <span class="code">^a[A-Z][a-zA-Z0-9]*$</span>.</p>
-
-
-<h3><a name="typeformat">Format of type names</a></h3>
-<p>Verifies that the format of class and interface names conform to a specified regular expression. The default is <span class="code">^[A-Z][a-zA-Z0-9]*$</span>.</p>
-
-
-<h3><a name="fieldformat">Format of public member names</a></h3>
-<p>Verifies that the format of public member names conform to a specified regular expression. The default is <span class="code">^f[A-Z][a-zA-Z0-9]*$</span>. This is useful for the fields required for Container Managed Persistence (CMP) Enterprise JavaBeans 1.1.</p>
-
-
-<h3>Access Permissions</h3>
-<p>Checks for data members that are not declared <code>private</code>. Also finds <code>static</code> non-<code>final</code> data members that are not declared as <code>private</code>.</p>
-
-<p>Note: you can turn on allowing <code>protected</code> data members.</p>
-
-<div class="tip">  
-<h4 class="tip">Tip</h4>
-<p>Container Managed Persistence EJBs require that managed fields are declared <span class="code">public</span>. This will cause checkstyle to complain that the fields should be declared <span class="code">private</span>. Hence checkstyle supports ignoring <span class="code">public</span> that match a specified regular expression. The default is <span class="code">^f[A-Z][a-zA-Z0-9]*$</span>.</p>
-</div>
-
-<h3>White space</h3>
-<p>Checks for the following use of white space:</p>
-<ul>
-  <li>Binary operators are separated from operands by spaces. For example <span class="code">x = y + 1;</span></li>
-  <li>Unary operators are not separated by spaces. For example <span class="code">x = --y + z++;</span></li>
-  <li>The keywords <span class="code">if/for/while/do/catch/synchronized/return</span> are surrounded by spaces.</li>
-  <li>Casts and commas (',') are followed by white space.
-</ul>
-
-<p>This feature can be turned off.</p>
-
-
-<h3>Missing Braces</h3>
-<p>Checks for missing braces <span class="code">{}</span>'s for the following constructs:</p>
-<ul>
-  <li><span class="code">if/else</span></li>
-  <li><span class="code">while</span></li>
-  <li><span class="code">for</span></li>
-  <li><span class="code">do/while</span></li>
-</ul>
-
-<p>This feature can be turned off.</p>
-
-
-<h3><a name="File Header">File Header</a></h3>
-<p>Ensure that the file starts with a specified header. The header contents are specified in a file. If no file is specified, checkstyle does not check for a header.</p>
-
-<div class="tip">  
-<h4 class="tip">Tip</h4>
-<p>Most copyright headers will contain date information (for example the year) which will change over time. To support this, checkstyle supports specifying a line in the header to ignore when comparing the start of the file with the header. For example, consider the following header:</p>
-
-<pre>
-line 1: ///////////////////////////////////////////////////////////////////////
-line 2: // checkstyle: Checks Java source code for adherence to a set of rules.
-line 3: // Copyright (C) 2001  Oliver Burn
-line 4: ///////////////////////////////////////////////////////////////////////
-</pre>
-
-<p>Since the year information will change over time, you can tell checkstyle to ignore line 3.</p>
-</div>
-
-
-<h2>License</h2>
-
-<pre>
-checkstyle: Checks Java source code for adherence to a set of rules.
-Copyright (C) 2001  Oliver Burn
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-</pre>
-
-<h2>Feedback</h2>
-<p>If you have general feedback (i.e. success stories ;-) on this tool, please send email to <a href="mailto:checkstyle@puppycrawl.com">checkstyle@puppycrawl.com</a>. Please use the SourceForge pages to report <a href="http://sourceforge.net/tracker/?atid=397078&group_id=29721&func=browse">bugs</a> or to submit <a href="http://sourceforge.net/tracker/?atid=397081&group_id=29721&func=browse">feature requests</a>. The developers of checkstyle are interested in any improvements you would like to see (or hopefully made!).</p>
- 
-<p>Also, you can subscribe to the <a href="http://lists.sourceforge.net/lists/listinfo/checkstyle-announce">checkstyle-announce</a> mailing list if you would like to be notified when a newer version of checkstyle is released.</p>
-
 <hr>
 <p align="center">Copyright &copy; 2001 Oliver Burn. All rights Reserved.</p>
-</body>
-</html>
+
+</body> </html>
