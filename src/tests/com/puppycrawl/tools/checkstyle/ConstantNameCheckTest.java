@@ -5,6 +5,21 @@ import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck;
 public class ConstantNameCheckTest
     extends BaseCheckTestCase
 {
+    public void testIllegalRegexp()
+        throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(ConstantNameCheck.class.getName());
+        checkConfig.addProperty("format", "\\");
+        try {
+            createChecker(checkConfig);
+            fail();
+        }
+        catch (CheckstyleException ex) {
+            // expected exception
+        }
+    }
+
     public void testDefault()
         throws Exception
     {
