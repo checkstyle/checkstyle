@@ -6,16 +6,21 @@ import com.puppycrawl.tools.checkstyle.checks.OperatorWrapOption;
 public class OperatorWrapCheckTest
     extends BaseCheckTestCase
 {
+    private CheckConfiguration checkConfig;
+    
     public OperatorWrapCheckTest(String aName)
     {
         super(aName);
+    }
+    
+    public void setUp() {
+        checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(OperatorWrapCheck.class.getName());
     }
 
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(OperatorWrapCheck.class.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputOpWrap.java");
         final String[] expected = {
@@ -30,8 +35,6 @@ public class OperatorWrapCheckTest
     public void testOpWrapEOL()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(OperatorWrapCheck.class.getName());
         checkConfig.addProperty("option", OperatorWrapOption.EOL.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputOpWrap.java");
@@ -39,6 +42,19 @@ public class OperatorWrapCheckTest
             "18:13: '-' should be on the previous line.",
             "22:13: '&&' should be on the previous line.",
             "27:13: '&&' should be on the previous line.",
+        };
+        verify(c, fname, expected);
+    }
+    
+    public void testAssignEOL()
+        throws Exception
+    {
+        checkConfig.addTokens("ASSIGN");
+        checkConfig.addProperty("option", OperatorWrapOption.EOL.toString());
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputOpWrap.java");
+        final String[] expected = {
+            "33:13: '=' should be on the previous line.",
         };
         verify(c, fname, expected);
     }    
