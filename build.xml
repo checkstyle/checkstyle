@@ -186,17 +186,6 @@
     </java>
   </target>
 
-  <!-- display a specified file in a UI frame -->
-  <target name="run.treeviewer" depends="compile.checkstyle"
-          description="Display a specified file in GUI tree">
-    <property name="treeviewer.file"
-              value="src/checkstyle/com/puppycrawl/tools/checkstyle/Verifier.java"/>
-    <java classname="com.puppycrawl.tools.checkstyle.TreeViewer"
-          fork="yes" classpathref="run.classpath">
-      <arg line="${treeviewer.file}"/>
-    </java>
-  </target>
-
   <!-- runs the command line version on a file -->
   <target name="run.simple" depends="compile.tests"
           description="Runs the command line version on a file">
@@ -396,16 +385,11 @@
       <report todir="${testreport.dir}"/>
     </junitreport>
 
-    <!-- if only fail had an if attribute ... ugly workaround follows -->
-    <antcall target="check.tests.failed"/>
-
-  </target>
-
-  <target name="check.tests.failed" if="tests.have.failed"
-          description="Fails if the unit tests have failed">
     <property name="report"
               value="${basedir}/${testreport.dir}/index.html"/>
-    <fail message="Unit tests failed - Report is available in ${report}"/>
+
+    <fail if="tests.have.failed"
+          message="Unit tests failed - Report is available in ${report}"/>
   </target>
 
   <!-- To run the tests need Xalan in the classpath -->
@@ -440,8 +424,11 @@
       <report todir="${testreport.dir}"/>
     </junitreport>
 
-    <!-- if only fail had an if attribute ... ugly workaround follows -->
-    <antcall target="check.tests.failed"/>
+    <property name="report"
+              value="${basedir}/${testreport.dir}/index.html"/>
+
+    <fail if="tests.have.failed"
+          message="Unit tests failed - Report is available in ${report}"/>
 
   </target>
 
