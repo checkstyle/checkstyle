@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- TODO: enable DOCTYPE in distribution
+<!--
+<!DOCTYPE checkstyle-packages SYSTEM "docs/package_names.dtd">
+-->
 <checkstyle-packages>
   <package name="com.puppycrawl.tools.checkstyle">
     <package name="checks"/>

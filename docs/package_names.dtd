@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT checkstyle-packages (package)*>
+
+<!ELEMENT package (package)*>
+<!ATTLIST package name NMTOKEN #REQUIRED>
