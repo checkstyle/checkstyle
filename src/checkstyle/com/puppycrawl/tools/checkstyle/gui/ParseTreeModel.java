@@ -22,12 +22,13 @@ package com.puppycrawl.tools.checkstyle.gui;
 import antlr.collections.AST;
 import antlr.ASTFactory;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * The model that backs the parse tree in the GUI.
  *
  * @author Lars Kühne
- * @version $Id: ParseTreeModel.java,v 1.1 2002-10-17 00:13:03 lkuehne Exp $
+ * @version $Id: ParseTreeModel.java,v 1.2 2002-10-19 06:25:45 oburn Exp $
  */
 public class ParseTreeModel extends AbstractTreeTableModel
 {
@@ -45,8 +46,8 @@ public class ParseTreeModel extends AbstractTreeTableModel
     {
         ASTFactory factory = new ASTFactory();
         factory.setASTNodeType(DetailAST.class.getName());
-        DetailAST retVal = (DetailAST) factory.create(0, "ROOT");
-        return retVal;
+        // TODO: Need to resolve if need a fake root node....
+        return (DetailAST) factory.create(1, "ROOT");
     }
 
     void setParseTree(DetailAST parseTree)
@@ -94,8 +95,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
             case 0:
                 return null;
             case 1:
-                // TODO: use token type name as in TreeWalker.TOKEN_VALUE_TO_NAME
-                return String.valueOf(ast.getType());
+                return TokenTypes.getTokenName(ast.getType());
             case 2:
                 return new Integer(ast.getLineNo());
             case 3:
