@@ -24,33 +24,70 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
+ * <p>
  * Checks for assignments in subexpressions, such as in
  * <code>String s = Integer.toString(i = 2);</code>.
- *
+ * </p>
+ * <p>
  * Rationale: With the exception of <code>for</code> iterators, all assignments
  * should occur in their own toplevel statement to increase readability.
  * With inner assignments like the above it is difficult to see all places
  * where a variable is set.
+ * </p>
+ * <p>
+ * By default the check will check the following assignment operators:
+ *  {@link TokenTypes#ASSIGN ASSIGN},
+ *  {@link TokenTypes#BAND_ASSIGN BAND_ASSIGN},
+ *  {@link TokenTypes#BOR_ASSIGN BOR_ASSIGN},
+ *  {@link TokenTypes#BSR_ASSIGN BSR_ASSIGN},
+ *  {@link TokenTypes#BXOR_ASSIGN BXOR_ASSIGN},
+ *  {@link TokenTypes#DIV_ASSIGN DIV_ASSIGN},
+ *  {@link TokenTypes#MINUS_ASSIGN MINUS_ASSIGN},
+ *  {@link TokenTypes#MOD_ASSIGN MOD_ASSIGN},
+ *  {@link TokenTypes#PLUS_ASSIGN PLUS_ASSIGN},
+ *  {@link TokenTypes#SL_ASSIGN SL_ASSIGN},
+ *  {@link TokenTypes#SR_ASSIGN SR_ASSIGN},
+ *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN}.
+ * </p>
+ * <p> An example of how to configure the check is:
+ *  * TODO: re-visit, and correct, after configuration format settled.
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheck"/&gt;
+ * </pre>
  *
+ * <p> An example of how to configure the check for only <code>+</code>,
+ * <code>+=</code>, and <code>-=</code> operators is:
+ *
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheck"&gt;
+ *    &lt;tokens&gt;ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN&lt;/tokens&gt;
+ * &lt;/check&gt;
+ * </pre>
+
  * @author lkuehne
  */
 public class InnerAssignmentCheck
         extends Check
 {
-    /**
-     * The default tokens.
-     * TODO: this has to be tweaked with |= and friends
-     */
-    private static final int[] DEFAULT_TOKENS = new int[] {
-        TokenTypes.ASSIGN,
-        TokenTypes.PLUS_ASSIGN,
-        TokenTypes.MINUS_ASSIGN
-    };
-
     /** @see Check */
     public int[] getDefaultTokens()
     {
-        return DEFAULT_TOKENS;
+        return new int[] {
+            TokenTypes.ASSIGN,            // '='
+            TokenTypes.DIV_ASSIGN,        // "/="
+            TokenTypes.PLUS_ASSIGN,       // "+="
+            TokenTypes.MINUS_ASSIGN,      //"-="
+            TokenTypes.STAR_ASSIGN,       // "*="
+            TokenTypes.MOD_ASSIGN,        // "%="
+            TokenTypes.SR_ASSIGN,         // ">>="
+            TokenTypes.BSR_ASSIGN,        // ">>>="
+            TokenTypes.SL_ASSIGN,         // "<<="
+            TokenTypes.BXOR_ASSIGN,       // "^="
+            TokenTypes.BOR_ASSIGN,        // "|="
+            TokenTypes.BAND_ASSIGN,       // "&="
+        };
     }
 
     /** @see Check */
