@@ -40,54 +40,42 @@
     <!--Content-->
     <td class="content" valign="top" align="left"><a name="overview"></a> <h2>Overview</h2>
       <p class="body">
-      A <span class="code">Checker</span> has a chain of <span class="code">Filter</span>s
+      A <span class="code">Checker</span> has a set of <span class="code">Filter</span>s
       that decide which audit events the <span class="code">Checker</span> reports through its listeners.
-      Interface <span class="code">Filter</span> and class <span class="code">FilterChain</span>
-      are intended to support general <span class="code">Object</span> filtering in a filter chain.
+      Interface <span class="code">Filter</span> and class <span class="code">FilterSet</span>
+      are intended to support general <span class="code">Object</span> filtering using a set of <span class="code">Filter</span>s.
       <p>
       <p class="body">
-      A <span class="code">Filter</span> has one method, <span class="code">decide(Object)</span>,
-      that determines the result of filtering an <span class="code">Object</span>.
-      Method <span class="code">decide(Object)</span> should return one of three constants, 
-      <span class="code">Filter.ACCEPT</span>, <span class="code">Filter.DENY</span>,
-      or <span class="code">Filter.NEUTRAL</span> which may be interpreted as the <span class="code">Filter</span>
-      accepts, denies, or is neutral towards the <span class="code">Object</span> parameter.
+      A <span class="code">Filter</span> has <span class="code">boolean</span> method <span class="code">accept(Object)</span>
+      that returns <span class="code">true</span> if the <span class="code">Filter</span> accepts the
+      <span class="code">Object</span> parameter and returns <span class="code">false</span> if the <span class="code">Filter</span>
+      rejects it.
       </p>
       <p class="body">
-      A <span class="code">FilterChain</span> is a particular <span class="code">Filter</span>
-      that contains a chain of <span class="code">Filter</span>s.
-      <span class="code">FilterChain</span> method <span class="code">decide(Object)</span>
-      applies the <span class="code">Filter</span>s in chain order.
-      If a <span class="code">Filter</span> in the chain
-      accepts the <span class="code">Object</span>, then the <span class="code">FilterChain</span>
-      accepts the <span class="code">Object</span> without consulting the remaining <span class="code">Filter</span>s. 
-      If a <span class="code">Filter</span>
-      denies the <span class="code">Object</span>, then the <span class="code">FilterChain</span>
-      denies the <span class="code">Object</span> without consulting the remaining <span class="code">Filter</span>s.
-      If all <span class="code">Filter</span>s are neutral towards the <span class="code">Object</span>,
-      then so too is the <span class="code">FilterChain</span>. When you require filtering based on a sequence
-      of simpler decisions, you should consider incorporating <span class="code">Filter</span>s
-      in a <span class="code">FilterChain</span>.
-      <a href="api/com/puppycrawl/tools/checkstyle/filters/CSVFilter.html">CSVFilter</a>, a filter for comma-separated values,
-      is an example of such filtering. 
+      A <span class="code">FilterSet</span> is a particular <span class="code">Filter</span>
+      that contains a set of <span class="code">Filter</span>s. A <span class="code">FilterSet</span> accepts an
+      <span class="code">Object</span> if and only if
+      all <span class="code">Filter</span>s in the set accept the <span class="code">Object</span>. 
       </p>
       <p class="body">
       Here is a UML diagram for interface <span class="code">Filter</span> 
-      and class <span class="code">FilterChain</span>.
+      and class <span class="code">FilterSet</span>.
       </p>
-      <img src="Filter.gif" width="261" height="379" alt="Filter UML diagram"/>
+      <img src="Filter.gif" width="267" height="355" alt="Filter UML diagram"/>
 
       <a name="writing"></a> <h2>Writing Filters</h2>
 
       <p class="body">
-      The <span class="code">Filter</span> that we demonstrate here denies audit events for files whose name matches a
+      The <span class="code">Filter</span> that we demonstrate here rejects audit events for files whose name matches a
       <a href="property_types.html#regexp">regular expression</a>.
       In order to enable the specification of the file name pattern as a property in a configuration file,
       the <span class="code">Filter</span> is an
       <a href="api/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
       with mutator method <span class="code">setFiles(String)</span> that receives the file name pattern.
       An <span class="code">AutomaticBean</span> uses JavaBean introspection to set JavaBean properties such as
-      <span class="code">files</span>.
+      <span class="code">files</span>. Method <span class="code">accept(Object)</span> has the precondition
+      that the <span class="code">Object</span> parameter is an <span class="code">AuditEvent</span>, which
+      is the case when the <span class="code">Filter</span> is created for a <span class="code">Checker</span>.
       </p>
 
       <pre class="body">
@@ -113,20 +101,11 @@ public class FilesFilter
         setFiles("^$");
     }
     
-    public int decide(Object aObject)
+    public boolean accept(Object aObject)
     {
-        if (!(aObject instanceof AuditEvent)) {
-            return Filter.NEUTRAL;
-        }
-        
         final AuditEvent event = (AuditEvent) aObject;
         final String fileName = event.getFileName();
-        if ((fileName != null) && mFileRegexp.match(fileName)) {
-            return Filter.DENY;        
-        }
-        else {
-            return Filter.NEUTRAL;
-        }
+        return ((fileName == null) || !mFileRegexp.match(fileName));
     }
 
     public void setFiles(String aFilesPattern)
@@ -134,14 +113,15 @@ public class FilesFilter
     {
         mFileRegexp = Utils.getRE(aFilesPattern);
     }
-}    </pre>
+}
+    </pre>
       <a name="using"></a> <h2>Using Filters</h2>
 
       <p class="body">
-      To incorporate a <span class="code">Filter</span> in the filter chain for a <span class="code">Checker</span>,
+      To incorporate a <span class="code">Filter</span> in the filter set for a <span class="code">Checker</span>,
       include a module element for the <span class="code">Filter</span> in the
       <a href="config.html#filters">configuration file<a>. For example, to configure a <span class="code">Checker</span>  
-      so that it uses custom filter <span class="code">FilesFilter</span> to deny reporting of
+      so that it uses custom filter <span class="code">FilesFilter</span> to prevent reporting of
       audit events for files whose name contains &quot;Generated&quot;, include the following module in the
       configuration file:
       </p>
