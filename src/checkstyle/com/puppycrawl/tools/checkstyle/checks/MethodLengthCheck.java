@@ -23,7 +23,7 @@ public class MethodLengthCheck extends Check
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.METHOD_DEF};
+        return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
