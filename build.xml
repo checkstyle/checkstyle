@@ -335,7 +335,7 @@
   </target>
 
   <!-- Targets to verify that Xalan is in the classpath -->
-  <target name="check.xalan" 
+  <target name="check.xalan"
           description="Checks whether xalan is in the classpath">
     <condition property="have.xalan">
       <or>
@@ -345,7 +345,7 @@
         <!-- the tests, but there is no Version class in jdk 1.4: -->
         <!-- fallback to stable jaxp implementation class -->
         <available classname="org.apache.xalan.transformer.TransformerImpl"/>
-        <!-- 
+        <!--
              In JDK 1.5 Sun has decided to repackage Xalan in it's own
              package com.sun.org.apache..., see Java bug 4740355.
              Additionally at least Ant 1.6.2 is required to make junitreport
@@ -593,7 +593,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
   </target>
 
   <target name="xdocs" depends="compile.checkstyle">
-    
+
     <mkdir dir="${xdocs.dest}"/>
 
     <mkdir dir="target/xdocs"/>
@@ -617,18 +617,18 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
 	<include name="**/checks" />
       </packageset>
     </javadoc>
-    
+
     <taskdef name="anakia" classname="org.apache.velocity.anakia.AnakiaTask">
       <classpath refid="velocity.classpath"/>
     </taskdef>
-    
+
     <copy todir="${xdocs.dest}">
       <fileset dir="${xdocs.src}">
 	<include name="**/*.png"/>
 	<include name="**/*.css"/>
       </fileset>
     </copy>
-    
+
     <anakia basedir="target/xdocs" destdir="${xdocs.dest}/"
       extension=".html"
       style="site.vsl"
@@ -638,7 +638,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
       lastModifiedCheck="true"
       templatePath="src/xdocs/stylesheets">
     </anakia>
-    
+
   </target>
 
   <!-- Added for GUMP testing -->

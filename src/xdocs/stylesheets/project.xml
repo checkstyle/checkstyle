@@ -11,7 +11,7 @@
                 href="/index.html"/>
         </menu>
         <menu name="Documentation">
-            <item name="Configuration"/>
+            <item name="Configuration" href="/configuration.html"/>
             <item name="Available Checks" href="/checks.html">
                 <item name="Javadoc Comments"     href="/config_javadoc.html"/>
                 <item name="Naming Conventions"   href="/config_naming.html"/>
