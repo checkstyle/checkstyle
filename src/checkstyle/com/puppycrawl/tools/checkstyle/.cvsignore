@@ -1,7 +1,7 @@
 GeneratedJava*.java
 GeneratedJava*.txt
-JavaLexer.java
-JavaRecognizer.java
-JavaTokenTypes.java
-JavaTokenTypes.txt
-expandedjava14.g
+Java*Lexer.java
+Java*Recognizer.java
+Java*TokenTypes.java
+Java*TokenTypes.txt
+expandedjava*.g
