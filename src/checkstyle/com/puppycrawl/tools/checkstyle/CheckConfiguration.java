@@ -70,6 +70,15 @@ class CheckConfiguration
     }
 
     /**
+     * Returns the tokens registered for the check.
+     * @return the set of token names
+     */
+    Set getTokens()
+    {
+        return mTokens;
+    }
+
+    /**
      * Adds a property for the check.
      * @param aName name of the property
      * @param aValue value of the property
