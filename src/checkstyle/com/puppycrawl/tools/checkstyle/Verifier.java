@@ -338,16 +338,7 @@ class Verifier
             final boolean isProt = Scope.PROTECTED.equals(variableScope);
 
             if (mods.containsStatic()) {
-                if (mods.containsFinal()) {
-                    // Handle the serialVersionUID constant which is used for
-                    // Serialization. Cannot enforce rules on it. :-)
-                    if (!"serialVersionUID".equals(aVar.getText())) {
-                        checkVariable(aVar,
-                                      mConfig.getStaticFinalRegexp(),
-                                      mConfig.getStaticFinalPat());
-                    }
-                }
-                else {
+                if (!mods.containsFinal()) {
                     if (Scope.PRIVATE.equals(variableScope)
                         || (mConfig.isAllowPackage() && isPckg)
                         || (mConfig.isAllowProtected() && isProt))

@@ -324,7 +324,6 @@ public class CheckerTest
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":25:29: Name 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":30:24: Name 'badStatic' must match pattern '^s[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":35:17: Name 'badMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":42:40: ',' is not followed by whitespace.",
@@ -334,7 +333,6 @@ public class CheckerTest
             filepath + ":122:19: Name 'cde' must match pattern '[A-Z]+'.",
             filepath + ":130:18: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":132:20: Name 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            filepath + ":142:30: Name 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":161: Comment matches to-do format 'FIXME:'.",
             filepath + ":162: Comment matches to-do format 'FIXME:'.",
             filepath + ":163: Comment matches to-do format 'FIXME:'.",

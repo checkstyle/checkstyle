@@ -46,39 +46,32 @@ public class ConstantNameCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        //precondition
-        if (aAST.getType() != TokenTypes.VARIABLE_DEF) {
-            return;
-        }
-
+        // TODO: Need to consider the case of being in an interface! In that
+        // case, does not matter if "static" and "final" keywords are there.
+        
         //constant?
         final DetailAST modifiers =
                     Utils.findFirstToken(aAST.getFirstChild(),
                                          TokenTypes.MODIFIERS);
-        if (modifiers == null
-                || !modifiers.branchContains(TokenTypes.LITERAL_STATIC)
-                || !modifiers.branchContains(TokenTypes.FINAL)) {
-            return;
-        }      
-        
-        //name check
-        final DetailAST name = Utils.findFirstToken(aAST.getFirstChild(),
-                                              TokenTypes.IDENT);
-        if (name == null) {
-            return;
-        }
-        // Handle the serialVersionUID constant which is used for
-        // Serialization. Cannot enforce rules on it. :-)
-        if ("serialVersionUID".equals(name.getText())) {
-            return;
-        }
-        
-        if (!getRegexp().match(name.getText())) {
-            log(name.getLineNo(),
-                name.getColumnNo(),
-                "name.invalidPattern",
-                name.getText(),
-                getFormat());
+        if ((modifiers != null)
+            && modifiers.branchContains(TokenTypes.LITERAL_STATIC)
+            && modifiers.branchContains(TokenTypes.FINAL))
+        {
+            //name check
+            final DetailAST name =
+                Utils.findFirstToken(aAST.getFirstChild(), TokenTypes.IDENT);
+
+            // Handle the serialVersionUID constant which is used for
+            // Serialization. Cannot enforce rules on it. :-)
+            if (!"serialVersionUID".equals(name.getText())
+                && !getRegexp().match(name.getText()))
+            {
+                log(name.getLineNo(),
+                    name.getColumnNo(),
+                    "name.invalidPattern",
+                    name.getText(),
+                    getFormat());
+            }
         }
     }
 }
