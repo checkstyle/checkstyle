@@ -92,8 +92,17 @@ public class RightCurlyCheck
             rcurly = firstChild.getLastChild();
         }
 
+        // handle if-then-else without curlies:
+        // if (cond)
+        //     return 1;
+        // else
+        //     return 2;
+        if (rcurly == null || rcurly.getType() != TokenTypes.RCURLY) {
+            return;
+        }
+
         // If have both tokens, perform the check
-        if ((rcurly != null) && (nextToken != null)) {
+        if (nextToken != null) {
             if ((getAbstractOption() == RightCurlyOption.SAME)
                 && (rcurly.getLineNo() != nextToken.getLineNo()))
             {
