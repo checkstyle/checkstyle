@@ -636,7 +636,7 @@ statement[int[] aType]
 	|	s:SEMI {#s.setType(EMPTY_STAT);}
 
 	// assert statement
-	|	"assert"^ expression (COLON^ expression)? SEMI!
+	// |	"assert"^ expression (COLON^ expression)? SEMI!
 	;
 
 
