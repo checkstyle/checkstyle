@@ -41,8 +41,9 @@ public class PackageNamesLoaderTest extends TestCase
     public void testFile()
         throws CheckstyleException
     {
-        ModuleFactory moduleFactory =
-            PackageNamesLoader.loadModuleFactory("src/checkstyle/checkstyle_packages.xml");
+        final ModuleFactory moduleFactory =
+            PackageNamesLoader.loadModuleFactory(
+                "src/checkstyle/com/puppycrawl/tools/checkstyle/checkstyle_packages.xml");
         validateFactory(moduleFactory);
     }
     
