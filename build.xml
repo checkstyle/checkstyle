@@ -378,7 +378,8 @@
     <mkdir dir="${testreport.dir}"/>
     <property name="testinputs.dir"
               location="src/testinputs/com/puppycrawl/tools/checkstyle"/>
-    <property name="testcases" value="**/AllTests.java"/>
+    <property name="testcases"
+              value="com/puppycrawl/tools/checkstyle/AllTests.java"/>
 
     <junit printsummary="yes"
            fork="yes"
