@@ -23,10 +23,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks the npath complexity against a specified limt (default = 200).
- * The npath metric computes the number of
- * possible execution paths through a function. Similar to the cyclomatic
- * complexity but also takes into account the
- * nesting of conditional statements and multi-part boolean expressions.
+ * The npath metric computes the number of possible execution paths
+ * through a function. Similar to the cyclomatic complexity but also
+ * takes into account the nesting of conditional statements and
+ * multi-part boolean expressions.
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky

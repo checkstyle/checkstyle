@@ -22,14 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * This metric measures the number of instantiations of other classes
- * within the given class. This type of coupling is
- * not caused by inheritance or the object oriented paradigm.
- * Generally speaking, any abstract data type with other
- * abstract data types as members has data abstraction coupling; therefore,
- * if a class has a local variable that is an
- * instantiation (object) of another class, there is data abstraction coupling.
- * The higher the DAC, the more complex the
- * data structure (classes) of the system.
+ * within the given class.
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
