@@ -43,7 +43,7 @@ public class DefaultConfiguration implements Configuration
 
     /**
      * Instantiates a DefaultConfiguration.
-     * @param aName
+     * @param aName the name for this DefaultConfiguration.
      */
     public DefaultConfiguration(String aName)
     {
@@ -71,7 +71,8 @@ public class DefaultConfiguration implements Configuration
     /** @see Configuration */
     public Configuration[] getChildren()
     {
-        return (Configuration[]) mChildren.toArray(new Configuration[mChildren.size()]);
+        return (Configuration[]) mChildren.toArray(
+            new Configuration[mChildren.size()]);
     }
 
     /** @see Configuration */
@@ -80,11 +81,20 @@ public class DefaultConfiguration implements Configuration
         return mName;
     }
 
+    /**
+     * Makes a configuration a child of this configuration.
+     * @param aConfiguration the child configuration.
+     */
     public void addChild(Configuration aConfiguration)
     {
         mChildren.add(aConfiguration);
     }
 
+    /**
+     * Adds an attribute to this configuration.
+     * @param aName the name of the attribute.
+     * @param aValue the value of the attribute.
+     */
     public void addAttribute(String aName, String aValue)
     {
         mAttributeMap.put(aName, aValue);

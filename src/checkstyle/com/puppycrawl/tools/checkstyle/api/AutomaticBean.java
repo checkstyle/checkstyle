@@ -44,6 +44,7 @@ import org.apache.commons.beanutils.converters.StringArrayConverter;
 /**
  * A Java Bean that implements the component lifecycle interfaces by
  * calling the bean's setters for all configration attributes.
+ * @author lkuehne
  */
 public class AutomaticBean
         implements Configurable, Contextualizable
@@ -129,16 +130,21 @@ public class AutomaticBean
             }
             catch (InvocationTargetException e) {
                 throw new CheckstyleException(
-                        "for " + aConfiguration.getName() + " unable to set " + key
-                        + " with " + value);
+                        "for " + aConfiguration.getName() + " unable to set "
+                        + key + " with " + value);
             }
             catch (IllegalAccessException e) {
                 throw new CheckstyleException(
-                        "cannot access " + key + " in " + this.getClass().getName());
+                        "cannot access " + key + " in "
+                        + this.getClass().getName());
             }
         }
     }
 
+    /**
+     * Implements the Contextualizable interface using bean introspection.
+     * @see Contextualizable
+     */
     public void contextualize(Context aContext)
             throws CheckstyleException
     {
@@ -157,7 +163,8 @@ public class AutomaticBean
             }
             catch (IllegalAccessException e) {
                 throw new CheckstyleException(
-                        "cannot access " + key + " in " + this.getClass().getName());
+                        "cannot access " + key + " in "
+                        + this.getClass().getName());
             }
         }
     }

@@ -27,7 +27,16 @@ package com.puppycrawl.tools.checkstyle.api;
  */
 public interface Context
 {
-    Object get(String key);
+    /**
+     * Searches for the value with the specified attribute key in this context.
+     * @param aKey the attribute key.
+     * @return the value in this context with the specified attribute key value.
+     */
+    Object get(String aKey);
 
+    /**
+     * Returns the names of all atttributes of this context.
+     * @return the names of all atttributes of this context. 
+     */
     String[] getAttributeNames();
 }
