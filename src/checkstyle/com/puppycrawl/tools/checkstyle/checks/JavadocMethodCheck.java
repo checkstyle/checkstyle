@@ -160,7 +160,7 @@ public class JavadocMethodCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree()
     {
-        mPackageFullIdent = new FullIdent();
+        mPackageFullIdent = FullIdent.createFullIdent(null);
         mImports.clear();
     }
 

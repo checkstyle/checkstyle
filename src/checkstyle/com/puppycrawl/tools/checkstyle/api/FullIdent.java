@@ -31,16 +31,19 @@ package com.puppycrawl.tools.checkstyle.api;
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
-public class FullIdent
+public final class FullIdent
 {
-    // TODO: We should hide public default constructor.
-
     /** the string **/
     private final StringBuffer mBuffer = new StringBuffer();
     /** the line number **/
     private int mLineNo;
     /** the column number **/
     private int mColNo;
+
+    /** hide default constructor */
+    private FullIdent()
+    {
+    }
 
     /** @return the text **/
     public String getText()
@@ -112,7 +115,6 @@ public class FullIdent
      */
     private static void extractFullIdent(FullIdent aFull, DetailAST aAST)
     {
-        // A guard to be paranoid
         if (aAST == null) {
             return;
         }
