@@ -527,7 +527,9 @@ class Verifier
             // verify all characters before '.' are whitespace
             for (int i = 0; i < before; i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
-                    log(aAST.getLineNo(), "'.' is preceeded with whitespace.");
+                    log(aAST.getLineNo(),
+                        aAST.getColumnNo(),
+                        "'.' is preceeded with whitespace.");
                     break;
                 }
             }
@@ -881,13 +883,24 @@ class Verifier
     }
 
     /**
-     * Logs a message to be reported.
+     * Logs a message to be reported. The column defaults to 0.
      * @param aLineNo the line number associated with the message
      * @param aMsg the message to log
      **/
     private void log(int aLineNo, String aMsg)
     {
         mMessages.add(new LineText(aLineNo, aMsg));
+    }
+
+    /**
+     * Logs a message to be reported.
+     * @param aLineNo the line number associated with the message
+     * @param aColNo the column number associated with the message
+     * @param aMsg the message to log
+     **/
+    private void log(int aLineNo, int aColNo, String aMsg)
+    {
+        mMessages.add(new LineText(aLineNo, aColNo, aMsg));
     }
 
 

@@ -29,15 +29,29 @@ class LineText
     private String mText;
     /** the line number **/
     private final int mLineNo;
+    /** the column number **/
+    private final int mColNo;
 
     /**
-     * Constructs the object.
+     * Constructs the object with a column number of 0.
      * @param aLineNo the line number
      * @param aText the text
      **/
     LineText(int aLineNo, String aText)
     {
+        this(aLineNo, 0, aText);
+    }
+
+    /**
+     * Constructs the object.
+     * @param aLineNo the line number
+     * @param aColNo the column number
+     * @param aText the text
+     **/
+    LineText(int aLineNo, int aColNo, String aText)
+    {
         mLineNo = aLineNo;
+        mColNo = aColNo;
         mText = aText;
     }
 
@@ -62,9 +76,15 @@ class LineText
         return mLineNo;
     }
 
+    /** @return the column number **/
+    public int getColumnNo()
+    {
+        return mColNo;
+    }
+
     /** Appends to the string.
-    * @param aText the text to append
-    **/
+     * @param aText the text to append
+     **/
     void appendText(String aText)
     {
         mText += aText;
@@ -73,7 +93,8 @@ class LineText
     /** @return a string representation of the object **/
     public String toString()
     {
-        return "{Text = '" + getText() + "', Line = " + getLineNo() + "}";
+        return "{Text = '" + getText() + "', Line = " + getLineNo()
+            + ", Column = " + getColumnNo() + "}";
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -85,13 +106,12 @@ class LineText
     {
         final LineText lt = (LineText) aOther;
         if (getLineNo() == lt.getLineNo()) {
-            return 0;
+            if (getColumnNo() == lt.getColumnNo()) {
+                return 0;
+            }
+            return (getColumnNo() < lt.getColumnNo()) ? -1 : 1;
         }
-        else if (getLineNo() < lt.getLineNo()) {
-            return -1;
-        }
-        else {
-            return 1;
-        }
+
+        return (getLineNo() < lt.getLineNo()) ? -1 : 1;
     }
 }

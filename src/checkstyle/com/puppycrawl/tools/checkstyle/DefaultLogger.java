@@ -71,9 +71,19 @@ public class DefaultLogger
     /** @see AuditListener **/
     public void addError(AuditEvent aEvt)
     {
-        // Print an Emacs compliant line.
-        mWriter.println(aEvt.getFileName() + ":" + aEvt.getLine()
-                        + ": " + aEvt.getMessage());
+        // Print an Emacs compliant line. If the column number is non zero,
+        // then also display it.
+        if (aEvt.getColumn() > 0) {
+            mWriter.println(aEvt.getFileName()
+                            + ":" + aEvt.getLine()
+                            + ":" + aEvt.getColumn()
+                            + ": " + aEvt.getMessage());
+        }
+        else {
+            mWriter.println(aEvt.getFileName()
+                            + ":" + aEvt.getLine()
+                            + ": " + aEvt.getMessage());
+        }
     }
 
     /** @see AuditListener **/
