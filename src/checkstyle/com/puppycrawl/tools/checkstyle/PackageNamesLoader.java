@@ -97,17 +97,14 @@ public final class PackageNamesLoader
      */
     private String getPackageName()
     {
-        if (mPackageStack.isEmpty()) {
-            return "";
-        }
         final StringBuffer buf = new StringBuffer();
         final Iterator it = mPackageStack.iterator();
         while (it.hasNext()) {
             String subPackage = (String) it.next();
-            if (!subPackage.endsWith(".")) {
-                subPackage += ".";
-            }
             buf.append(subPackage);
+            if (!subPackage.endsWith(".")) {
+                buf.append(".");
+            }
         }
         return buf.toString();
     }
