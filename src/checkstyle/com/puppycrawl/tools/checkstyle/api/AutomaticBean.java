@@ -209,7 +209,7 @@ public class AutomaticBean
      * @see Contextualizable
      */
     public final void contextualize(Context aContext)
-            throws CheckstyleException
+        throws CheckstyleException
     {
         // TODO: debug log messages
         final String[] attributes = aContext.getAttributeNames();

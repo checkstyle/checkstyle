@@ -89,7 +89,7 @@ public final class ConfigurationLoader
                                  String aLocalName,
                                  String aQName,
                                  Attributes aAtts)
-                throws SAXException
+            throws SAXException
         {
             // TODO: debug logging for support puposes
             if (aQName.equals(MODULE)) {
@@ -266,9 +266,8 @@ public final class ConfigurationLoader
      * Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      */
-    static String replaceProperties(
-        String aValue, PropertyResolver aProps)
-            throws CheckstyleException
+    static String replaceProperties(String aValue, PropertyResolver aProps)
+        throws CheckstyleException
     {
         if (aValue == null) {
             return null;

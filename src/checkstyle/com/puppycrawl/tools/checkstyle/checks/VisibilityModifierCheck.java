@@ -186,12 +186,12 @@ public class VisibilityModifierCheck
         DetailAST ast = aAST.getParent();
         while (ast != null) {
             switch (ast.getType()) {
-                case TokenTypes.INTERFACE_DEF:
-                    return true;
-                case TokenTypes.CLASS_DEF:
-                    return false;
-                default:
-                    ast = ast.getParent();
+            case TokenTypes.INTERFACE_DEF:
+                return true;
+            case TokenTypes.CLASS_DEF:
+                return false;
+            default:
+                ast = ast.getParent();
             }
         }
         return false;

@@ -89,7 +89,7 @@ public class EqualsHashCodeCheck
                 && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
                 && parameters.getChildCount() == 1
                 && isObjectParam(parameters.getFirstChild())
-                )
+            )
         {
             mObjBlockEquals.put(aAST.getParent(), aAST);
         }
@@ -112,17 +112,17 @@ public class EqualsHashCodeCheck
         final AST modifiers = aFirstChild.getFirstChild();
         AST type = modifiers.getNextSibling();
         switch (type.getFirstChild().getType()) {
-            case TokenTypes.LITERAL_BOOLEAN:
-            case TokenTypes.LITERAL_BYTE:
-            case TokenTypes.LITERAL_CHAR:
-            case TokenTypes.LITERAL_DOUBLE:
-            case TokenTypes.LITERAL_FLOAT:
-            case TokenTypes.LITERAL_INT:
-            case TokenTypes.LITERAL_LONG:
-            case TokenTypes.LITERAL_SHORT:
-                return false;
-            default:
-                return true;
+        case TokenTypes.LITERAL_BOOLEAN:
+        case TokenTypes.LITERAL_BYTE:
+        case TokenTypes.LITERAL_CHAR:
+        case TokenTypes.LITERAL_DOUBLE:
+        case TokenTypes.LITERAL_FLOAT:
+        case TokenTypes.LITERAL_INT:
+        case TokenTypes.LITERAL_LONG:
+        case TokenTypes.LITERAL_SHORT:
+            return false;
+        default:
+            return true;
         }
     }
 

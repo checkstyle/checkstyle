@@ -127,7 +127,7 @@ public class EmptyBlockCheck
                 final String txt = lines[slistLineNo - 1]
                     .substring(slistColNo + 1, rcurlyColNo);
                 if (txt.trim().length() != 0) {
-                     retVal = true;
+                    retVal = true;
                 }
             }
             else {

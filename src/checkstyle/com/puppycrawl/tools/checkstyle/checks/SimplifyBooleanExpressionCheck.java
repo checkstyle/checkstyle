@@ -68,16 +68,16 @@ public class SimplifyBooleanExpressionCheck
     {
         final DetailAST parent = aAST.getParent();
         switch (parent.getType()) {
-            case TokenTypes.NOT_EQUAL:
-            case TokenTypes.EQUAL:
-            case TokenTypes.LNOT:
-            case TokenTypes.LOR:
-            case TokenTypes.LAND:
-                log(parent.getLineNo(), parent.getColumnNo(),
-                        "simplify.expression");
-                break;
-            default:
-                break;
+        case TokenTypes.NOT_EQUAL:
+        case TokenTypes.EQUAL:
+        case TokenTypes.LNOT:
+        case TokenTypes.LOR:
+        case TokenTypes.LAND:
+            log(parent.getLineNo(), parent.getColumnNo(),
+                "simplify.expression");
+            break;
+        default:
+            break;
         }
     }
 }
