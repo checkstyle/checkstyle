@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.TabCharacterCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class TabCharacterCheckTest
         extends BaseCheckTestCase
@@ -9,8 +10,6 @@ public class TabCharacterCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TabCharacterCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
         final String[] expected = {
             "19:25: Line contains a tab character.",
             "145:35: Line contains a tab character.",
@@ -21,6 +20,6 @@ public class TabCharacterCheckTest
             "157:3: Line contains a tab character.",
             "158:3: Line contains a tab character."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 }

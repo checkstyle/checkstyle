@@ -1,5 +1,6 @@
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.checks.*;
 import com.puppycrawl.tools.checkstyle.checks.AvoidStarImportTest;
 import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheckTest;

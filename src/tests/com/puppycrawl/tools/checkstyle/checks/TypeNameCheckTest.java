@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.TypeNameCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class TypeNameCheckTest
     extends BaseCheckTestCase
@@ -11,11 +12,9 @@ public class TypeNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("format", "^inputHe");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("inputHeader.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("inputHeader.java"), expected);
     }
 
     public void testDefault()
@@ -23,11 +22,9 @@ public class TypeNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypeNameCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("inputHeader.java");
         final String[] expected = {
             "1:48: Name 'inputHeader' must match pattern '^[A-Z][a-zA-Z0-9]*$'."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("inputHeader.java"), expected);
     }
 }

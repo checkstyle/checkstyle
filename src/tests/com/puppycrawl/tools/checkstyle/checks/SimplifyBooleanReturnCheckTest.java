@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanReturnCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /*
  * Created by IntelliJ IDEA.
@@ -17,12 +18,10 @@ public class SimplifyBooleanReturnCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(SimplifyBooleanReturnCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimplifyBoolean.java");
         final String[] expected = {
             "20:9: Remove conditional logic.",
             "33:9: Remove conditional logic.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimplifyBoolean.java"), expected);
     }
 }
