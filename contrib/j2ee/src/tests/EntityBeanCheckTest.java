@@ -11,6 +11,8 @@ public class EntityBeanCheckTest extends BaseCheckTestCase
             createCheckConfig(EntityBeanCheck.class);
         final String[] expected = {
             "13:14: Entity bean must have a public constructor with no parameters.",
+            "75:16: Entity bean must be public.",
+            "75:16: Entity bean must not have modifier abstract.",
             "83:13: Entity bean must be public.",
             "83:13: Entity bean must not have modifier final.",
         };

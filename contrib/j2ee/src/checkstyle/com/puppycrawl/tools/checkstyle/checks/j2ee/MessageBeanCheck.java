@@ -43,8 +43,7 @@ public class MessageBeanCheck
     public void visitToken(DetailAST aAST)
     {
         if (Utils.hasImplements(aAST, "javax.ejb.MessageDrivenBean")
-            && Utils.hasImplements(aAST, "javax.jms.MessageListener")
-            && !Utils.isAbstract(aAST))
+            && Utils.hasImplements(aAST, "javax.jms.MessageListener"))
         {
             checkBean(aAST, "Message bean");
             if (!hasRequiredEjbCreate(aAST)) {
