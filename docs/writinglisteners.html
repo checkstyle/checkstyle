@@ -227,10 +227,76 @@
       &lt;/checkstyle&gt;
   </pre>
 
-      <a name="examples"></a> <h2>Examples</h2> <a name="CommonsLoggingListener"></a><h4>CommonsLoggingListener</h4>
+      <a name="examples"></a> <h2>Examples</h2>
       <p class="body">
-      TODO
+      This section describes two examples based on ANT listeners. The first listener, <span class="code"> 
+      CommonsLoggingListener</span>, hands off events to the <a href="http://jakarta.apache.org/commons/logging.html">Jakarata 
+      Commons Logging</a> fa&ccedil;ade and the second, <span class="code">MailLogger</span>, 
+      sends a report of an audit via e-mail. The discussion of these examples and how 
+      to use them is derived from material in <a href="http://www.manning.com/antbook">&quot;Java 
+      Development with Ant&quot;</a> by Eric Hatcher and Steve Loughran, an excellent 
+      ANT book.
+
+      <a name="CommonsLoggingListener"></a><h4>CommonsLoggingListener</h4>
+      <p class="body">
+      <a href="http://jakarta.apache.org/commons/logging.html">Jakarata Commons 
+      Logging</a> provides a  fa&ccedil;ade for logging tools <a href="http://jakarta.apache.org/log4j/docs/index.html">log4j</a>,
+      <a href="http://jakarta.apache.org/avalon/logkit/index.html">Avalon LogKit</a>, 
+      J2SE 1.4, and others. Checkstyle listener <span class="code"> 
+      CommonsLoggingListener</span> responds to an AuditEvent by handing it off to the 
+      current Commons Logging Log.
       </p>
+      <p class="body">
+      The source code for <span class="code">CommonsLoggingListener</span> is in 
+      distribution directory <span class="default">contrib/examples/listeners</span>. 
+      Notice that each <span class="code">AuditListener</span> method that receives an <span class="code"> 
+      AuditEvent</span> calls a method for the Commons Logging log level corresponding 
+      to the Checkstyle <span class="code">SeverityLevel</span> of the <span class="code"> 
+      AuditEvent</span>.
+      </p>
+      <p class="body">
+      The easiest way to use <span class="code">CommonsLoggingListener</span> is to 
+      include <span class="default">checkstyle-all-@CHECKSTYLE_VERSION@.jar</span> in 
+      the classpath because that jar file contains all the Commons Logging classes. 
+      The default Log under J2SE 1.4 is wrapper class <a href="http://jakarta.apache.org/commons/logging/api/org/apache/commons/logging/impl/Jdk14Logger.html">Jdk14Logger</a>. 
+      Under earlier Java versions, the default Log is a simple wrapper class, <a href="http://jakarta.apache.org/commons/logging/api/org/apache/commons/logging/impl/SimpleLog.html">SimpleLog</a>. 
+      Both default logging tools can be used directly from Commons Logging; if you 
+      need to use other tools such as log4j, then you must include the appropriate jar 
+      file(s) in the classpath.
+      </p>
+      <p class="body">
+      Logging configuration details for Jakarta Commons Logging are in the <a href="http://jakarta.apache.org/commons/logging.html">documentation</a>. 
+      As a simple example, assume that <span class="default">log4j.jar</span> is in 
+      the classpath and the following <span class="default">log4j.properties</span> 
+      file is in the current directory:
+      </p>
+      <pre>
+      # Set root logger level to INFO and its only appender to A1.
+      log4j.rootLogger=INFO, A1
+
+      # A1 is set to be a ConsoleAppender.
+      log4j.appender.A1=org.apache.log4j.ConsoleAppender
+
+      # A1 uses PatternLayout.
+      log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+      log4j.appender.A1.layout.ConversionPattern=%-5p %c %x- %m%n
+    </pre>
+      <p class="body">
+      Running a Checkstyle audit with a <span class="code">CommonsLoggingListener</span> 
+      yields this (abbreviated) output:
+      </p>
+      <pre>
+      INFO  com.puppycrawl...Checker  - Audit started.
+      INFO  com.puppycrawl...Checker  - File "CommonsLoggingListener.java" started.
+      INFO  com.puppycrawl...Checker  - File "CommonsLoggingListener.java" finished.
+      INFO  com.puppycrawl...Checker  - File "MailLogger.java" started.
+      INFO  com.puppycrawl...Checker  - File "MailLogger.java" finished.
+      INFO  com.puppycrawl...Checker  - File "VerboseListener.java" started.
+      ERROR com.puppycrawl...ParenPadCheck  - Line: 23 Column: 28 ...
+      INFO  com.puppycrawl...Checker  - File "VerboseListener.java" finished.
+      INFO  com.puppycrawl...Checker  - Audit finished.
+    </pre>
+
       <a name="MailLogger"></a><h4>MailLogger</h4>
       <p class="body">
       TODO
