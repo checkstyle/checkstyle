@@ -183,7 +183,7 @@ public class JavadocTypeCheck
      * @param aTag the required tag name.
      * @param aTagRE regexp for the full tag.
      * @param aFormatRE regexp for the tag value.
-     * @param aFormat patter for the tag value.
+     * @param aFormat pattern for the tag value.
      */
     private void checkTag(
             int aLineNo,
