@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * Checks that a token is surrounded by whitespace.
  * </p>
  * <p> By default the check will check the following operators:
- *  {@link TokenTypes#ASSERT ASSERT},
+ *  {@link TokenTypes#LITERAL_ASSERT ASSERT},
  *  {@link TokenTypes#ASSIGN ASSIGN},
  *  {@link TokenTypes#BAND BAND},
  *  {@link TokenTypes#BAND_ASSIGN BAND_ASSIGN},
@@ -147,8 +147,7 @@ public class WhitespaceAroundCheck
             TokenTypes.SR_ASSIGN,
             TokenTypes.STAR,
             TokenTypes.STAR_ASSIGN,
-            TokenTypes.ASSERT     // TODO: why is it not LITERAL_assert?
-                                  // maybe it's a bug in the grammar?
+            TokenTypes.LITERAL_ASSERT
         };
     }
 
