@@ -84,10 +84,8 @@ public class RedundantImportCheck
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
-            mPkgName =
-                FullIdent.createFullIdent(
-                    (DetailAST) aAST.getLastChild()
-                        .getPreviousSibling()).getText();
+            mPkgName = FullIdent.createFullIdent(
+                    aAST.getLastChild().getPreviousSibling()).getText();
         }
         else if (aAST.getType() == TokenTypes.IMPORT) {
             final FullIdent imp = FullIdent.createFullIdentBelow(aAST);

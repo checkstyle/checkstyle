@@ -183,8 +183,8 @@ public class IllegalInstantiationCheck
      */
     private void processPackageDef(DetailAST aAST)
     {
-        final DetailAST packageNameAST =
-            (DetailAST) aAST.getLastChild().getPreviousSibling();
+        final DetailAST packageNameAST = aAST.getLastChild()
+                .getPreviousSibling();
         final FullIdent packageIdent =
                 FullIdent.createFullIdent(packageNameAST);
         mPkgName = packageIdent.getText();

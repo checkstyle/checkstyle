@@ -132,9 +132,8 @@ public class UncommentedMainCheck
      */
     private void visitPackageDef(DetailAST aPackage)
     {
-        mPackage =
-            FullIdent.createFullIdent(
-                (DetailAST) aPackage.getLastChild().getPreviousSibling());
+        mPackage = FullIdent.createFullIdent(aPackage.getLastChild()
+                .getPreviousSibling());
     }
 
     /**

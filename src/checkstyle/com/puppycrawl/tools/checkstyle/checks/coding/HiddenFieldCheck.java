@@ -204,7 +204,6 @@ public class HiddenFieldCheck
                 //local variable or parameter. Does it shadow a field?
                 final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
                 final String name = nameAST.getText();
-                boolean inStatic = inStatic(aAST);
                 if ((mCurrentFrame.containsStaticField(name)
                      || (!inStatic(aAST)
                          && mCurrentFrame.containsInstanceField(name)))
@@ -224,7 +223,7 @@ public class HiddenFieldCheck
      * @param aAST the node to check.
      * @return true if aAST is in a static method or a static block;
      */
-    private boolean inStatic(DetailAST aAST)
+    private static boolean inStatic(DetailAST aAST)
     {
         DetailAST parent = aAST.getParent();
         while (parent != null) {
