@@ -59,7 +59,7 @@ options {
 	exportVocab=GeneratedJava14;    // call the vocabulary "Java14",
 	testLiterals=false;    // don't automatically test for literals
 	k=4;                   // four characters of lookahead
-	charVocabulary='\u0003'..'\uFFFF';
+	charVocabulary='\u0003'..'\uFFFE';
 	codeGenBitsetTestThreshold=20;
 }
 
