@@ -24,6 +24,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
 /**
  * Simple XML logger.
  * It outputs everything in UTF8 (default XML encoding is UTF8) in case
@@ -107,14 +109,18 @@ public class XMLLogger
     /** @see AuditListener **/
     public void addError(AuditEvent aEvt)
     {
-        mWriter.print("<error" + " line=\"" + aEvt.getLine() + "\"");
-        if (aEvt.getColumn() > 0) {
-            mWriter.print(" column=\"" + aEvt.getColumn() + "\"");
+        if (!SeverityLevel.IGNORE.equals(aEvt.getSeverityLevel())) {
+            mWriter.print("<error" + " line=\"" + aEvt.getLine() + "\"");
+            if (aEvt.getColumn() > 0) {
+                mWriter.print(" column=\"" + aEvt.getColumn() + "\"");
+            }
+            mWriter.print(" severity=\""
+                + aEvt.getSeverityLevel().getName()
+                + "\"");
+            mWriter.println(" message=\""
+                + encode(aEvt.getMessage())
+                + "\"/>");
         }
-        mWriter.print(" severity=\""
-                      + aEvt.getSeverityLevel().getName()
-                      + "\"");
-        mWriter.println(" message=\"" + encode(aEvt.getMessage()) + "\"/>");
     }
 
     /** @see AuditListener **/
