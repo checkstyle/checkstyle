@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.Map;
+
 import java.util.Set;
 import java.util.HashSet;
 import java.io.File;
 
-import com.puppycrawl.tools.checkstyle.ClassNameMapLoader;
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 
 /**
@@ -38,7 +37,7 @@ public abstract class AbstractFileSetCheck
     private MessageDispatcher mDispatcher = null;
     
     /** List of package names for object instantiation */
-    protected String[] mPackageNames;
+    private String[] mPackageNames;
 
 
     /**
@@ -89,4 +88,14 @@ public abstract class AbstractFileSetCheck
         }
         mPackageNames = aPackageNames;
     }
+    
+    /**
+     * Returns the list of package names for object instantiation.
+     * @return the list of package names.
+     */
+    public String[] getPackageNames()
+    {
+        return mPackageNames;
+    }
+        
 }
