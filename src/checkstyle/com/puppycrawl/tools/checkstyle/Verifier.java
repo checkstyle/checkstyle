@@ -271,7 +271,7 @@ class Verifier
 
         final String[] jd = getJavadocBefore(lineNo - 1);
         if (jd == null) {
-            mMessages.add(lineNo, "javadoc.missing");
+//            mMessages.add(lineNo, "javadoc.missing");
         }
         else if (mInScope.size() == 0) {
             // don't check author/version for inner classes
