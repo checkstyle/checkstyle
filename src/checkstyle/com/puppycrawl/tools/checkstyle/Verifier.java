@@ -1460,7 +1460,7 @@ class Verifier
         }
 
         final int clsNameLen = aClassName.length();
-        final int pkgNameLen = mPkgName.length();
+        final int pkgNameLen = (mPkgName == null) ? 0 : mPkgName.length();
 
         final Iterator illIter = illegalInsts.iterator();
         while (illIter.hasNext()) {
