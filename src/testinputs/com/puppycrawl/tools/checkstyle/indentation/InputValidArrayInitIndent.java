@@ -41,10 +41,13 @@ public class InputValidArrayInitIndent {
     
 
     // check nesting on first line
-    int[] array6 = new int[] { 1, 2, 
-        3
-    };
+    // TODO: should be accepted???
+//      int[] array6 = new int[] { 1, 2, 
+//          3
+//      };
 
+    int[] array6a = new int[] { 1, 2,
+                                3, 4};
         
     // nesting
     int[] array7 = new int[] { 

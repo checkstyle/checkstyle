@@ -120,4 +120,49 @@ public class ArrayInitHandler extends BlockParentHandler
     {
         return getMainAst();
     }
+
+    /** @see BlockParentHandler */
+    protected int getChildrenExpectedLevel()
+    {
+        // now we accept "new int[] {1,
+        //                           2};"
+        // TODO: should be accepted 
+        // new int[] {1, 2,
+        //     3};
+        // see InputValidArrayIndent.java (array6)
+
+        final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
+        if (hasCurlys() && firstLine == getLCurly().getLineNo()) {
+            final int lcurlyPos = expandedTabsColumnNo(getLCurly());
+            int firstChildPos =
+                getNextFirstNonblankOnLineAfter(firstLine, lcurlyPos);
+            if (firstChildPos >= 0) {
+                return firstChildPos;
+            }
+        }
+
+        return super.getChildrenExpectedLevel();
+    }
+
+    /**
+     * @param aLineNo   number of line on which we search
+     * @param aColumnNo number of column after which we search
+     *
+     * @return column number of first non-blank char after
+     *         specified column on specified line or -1 if
+     *         such char doesn't exist.
+     */
+    private int getNextFirstNonblankOnLineAfter(int aLineNo, int aColumnNo)
+    {
+        int columnNo = aColumnNo + 1;
+        final String line = getIndentCheck().getLines()[aLineNo - 1];
+        final int lineLength = line.length();
+        while (columnNo < lineLength
+               && Character.isWhitespace(line.charAt(columnNo)))
+        {
+            columnNo++;
+        }
+
+        return (columnNo == lineLength) ? -1 : columnNo;
+    }
 }
