@@ -632,7 +632,7 @@ public class CheckerTest
         throws Exception
     {
         final Checker c = createChecker();
-        mConfig.setHeaderLinesRegexp(true);
+        mConfig.setBooleanFlag(Defn.HEADER_LINES_REGEXP_PROP, true);
         mConfig.setHeaderFile(getPath("regexp.header"));
         mConfig.setHeaderIgnoreLines("4,5");
         final String filepath = getPath("InputScopeAnonInner.java");
@@ -654,7 +654,7 @@ public class CheckerTest
     public void testImport()
         throws Exception
     {
-        mConfig.setIgnoreImportLength(true);
+        mConfig.setBooleanFlag(Defn.IGNORE_IMPORT_LENGTH_PROP, true);
         final Checker c = createChecker();
         final String filepath = getPath("InputImport.java");
         assertNotNull(c);
