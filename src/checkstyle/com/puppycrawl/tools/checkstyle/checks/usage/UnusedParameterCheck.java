@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="usage.UnusedParameter"/&gt;
  * </pre>
- * <p>
+ *
  * @author Rick Giles
  */
 public class UnusedParameterCheck extends AbstractUsageCheck

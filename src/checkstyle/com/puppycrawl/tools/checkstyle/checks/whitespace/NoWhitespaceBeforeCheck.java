@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p> An example of how to configure the check to allow linebreaks before
  * a {@link TokenTypes#DOT DOT} token is:
+ * </p>
  * <pre>
  * &lt;module name="NoWhitespaceBefore"&gt;
  *     &lt;property name="tokens" value="DOT"/&gt;

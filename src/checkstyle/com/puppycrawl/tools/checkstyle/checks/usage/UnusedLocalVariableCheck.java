@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="usage.UnusedLocalVariable"/&gt;
  * </pre>
- * <p>
+ *
  * @author Rick Giles
  */
 public class UnusedLocalVariableCheck extends AbstractUsageCheck
