@@ -102,9 +102,10 @@ public class PackageObjectFactory
     }
 
     /**
-     * Creates a new instance of a class from a given name. If the name is
+     * Creates a new instance of a class from a given name, or that name
+     * concatenated with &quot;Check&quot;. If the name is
      * a classname, creates an instance of the named class. Otherwise, creates
-     * an instance of a classname obtained by concatenating the given
+     * an instance of a classname obtained by concatenating the given name
      * to a package name from a given list of package names.
      * @param aPackages list of package names.
      * @param aLoader the <code>ClassLoader</code> to create the instance with.
@@ -117,6 +118,19 @@ public class PackageObjectFactory
         throws CheckstyleException
     {
         final PackageObjectFactory factory = new PackageObjectFactory();
-        return factory.doMakeObject(aPackages, aLoader, aName);
+        try {
+            return factory.doMakeObject(aPackages, aLoader, aName);
+        }
+        catch (CheckstyleException ex) {
+            //try again with suffix "Check"
+            try {
+                return factory.
+                    doMakeObject(aPackages, aLoader, aName + "Check");
+            }
+            catch (CheckstyleException ex2) {
+                throw new CheckstyleException(
+                    "Unable to instantiate " + aName);
+            }
+        }
     }
 }
