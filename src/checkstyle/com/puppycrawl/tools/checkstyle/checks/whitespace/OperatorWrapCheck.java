@@ -184,8 +184,7 @@ public class OperatorWrapCheck
         // Check if rest of line is whitespace, and not just the operator
         // by itself. This last bit is to handle the operator on a line by
         // itself.
-        if (CheckUtils.isOperatorTokenPartOfGenericDeclaration(aAST))
-        {
+        if (CheckUtils.isOperatorTokenPartOfGenericDeclaration(aAST)) {
             return;
         }
         else if (wOp == OperatorWrapOption.NL
