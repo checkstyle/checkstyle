@@ -21,30 +21,31 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.Check;
 
 /**
- * Check that finds import statement that use the * notation.
+ * Checks that long constants are defined with an uppper ell. That is 'L' and
+ * not 'l'.
  *
- * <p> Rationale: Importing all classes from a package leads to tight coupling
- * between packages and might lead to problems when a new version of a library
- * introduces name clashes.
+ * <p> Rationale: The letter l looks a lot like 1.
  *
  * @author Oliver Burn
  * @version 1.0
  */
-public class AvoidStarImport
-    extends ImportCheck
+public class UpperEllCheck
+    extends Check
 {
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.IMPORT};
+        return new int[] {JavaTokenTypes.NUM_LONG};
     }
 
-    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST aAST)
+    public void visitToken(DetailAST aAST)
     {
-        final String name = getImportText(aAST);
-        if ((name != null) && name.endsWith(".*")) {
-            log(aAST.getLineNo(), "import.avoidStar");
+        if (aAST.getText().endsWith("l")) {
+            log(aAST.getLineNo(),
+                aAST.getColumnNo() + aAST.getText().length() - 1,
+                "upperEll");
         }
     }
 }

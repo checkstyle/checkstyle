@@ -102,8 +102,6 @@ public interface Defn
     String IGNORE_CAST_WHITESPACE_PROP = "checkstyle.ignore.whitespace.cast";
     /** property name for ignoring braces **/
     String IGNORE_BRACES_PROP = "checkstyle.ignore.braces";
-    /** property name for ignoring long 'L' **/
-    String IGNORE_LONG_ELL_PROP = "checkstyle.ignore.longell";
     /** property name for ignoring 'public' in interface definitions **/
     String IGNORE_PUBLIC_IN_INTERFACE_PROP =
         "checkstyle.ignore.public.in.interface";
@@ -151,7 +149,6 @@ public interface Defn
             IGNORE_CAST_WHITESPACE_PROP,
             IGNORE_IMPORTS_PROP,
             IGNORE_IMPORT_LENGTH_PROP,
-            IGNORE_LONG_ELL_PROP,
             IGNORE_PUBLIC_IN_INTERFACE_PROP,
             IGNORE_WHITESPACE_PROP,
             JAVADOC_CHECK_UNUSED_THROWS_PROP,

@@ -278,6 +278,18 @@ public abstract class Check
      * @param aLineNo line number to associate with the message
      * @param aColNo column number to associate with the message
      * @param aKey key to locale message format
+     */
+    public void log(int aLineNo, int aColNo, String aKey)
+    {
+        log(aLineNo, aColNo, aKey, EMPTY_OBJECT_ARRAY);
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aColNo column number to associate with the message
+     * @param aKey key to locale message format
      * @param aArgs arguments for message
      */
     public void log(int aLineNo, int aColNo, String aKey, Object[] aArgs)

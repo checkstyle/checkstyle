@@ -658,12 +658,6 @@ public class Configuration
         return getBooleanProperty(Defn.IGNORE_BRACES_PROP);
     }
 
-    /** @return whether to ignore long 'L' **/
-    boolean isIgnoreLongEll()
-    {
-        return getBooleanProperty(Defn.IGNORE_LONG_ELL_PROP);
-    }
-
     /** @return whether to ignore 'public' keyword in interface definitions **/
     boolean isIgnorePublicInInterface()
     {
