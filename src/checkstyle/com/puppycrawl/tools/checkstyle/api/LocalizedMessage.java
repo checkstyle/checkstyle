@@ -108,7 +108,6 @@ public class LocalizedMessage
             return MessageFormat.format(pattern, mArgs);
         }
         catch (MissingResourceException ex) {
-            ex.printStackTrace();
             // If the Check author didn't provide i18n resource bundles
             // and logs error messages directly, this will return
             // the author's original message
