@@ -80,9 +80,7 @@ public class FilterSet
             final FilterSet other = (FilterSet) aObject;
             return this.mFilters.equals(other.mFilters);
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Filter */
