@@ -164,7 +164,7 @@ public class NewlineAtEndOfFileCheck
                 Defn.CHECKSTYLE_BUNDLE,
                 key,
                 args,
-                this.getClass().getName());
+                this.getClass());
         getMessageCollector().add(message);
     }
     ///CLOVER:ON

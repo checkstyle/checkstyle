@@ -134,12 +134,12 @@ public class XMLLoggerTest extends TestCase
                 "key",
                 null,
                 SeverityLevel.ERROR,
-                "aSource");
+                this.getClass());
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
         logger.addError(ev);
         logger.auditFinished(null);
         final String[] expectedLines =
-            {"<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\" source=\"aSource\"/>"};
+            {"<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\" source=\"com.puppycrawl.tools.checkstyle.XMLLoggerTest\"/>"};
         verifyLines(expectedLines);
     }
 
@@ -149,7 +149,7 @@ public class XMLLoggerTest extends TestCase
         final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         final LocalizedMessage message =
-            new LocalizedMessage( 1, 1, "messages.properties", null, null);
+            new LocalizedMessage(1, 1, "messages.properties", null, null, this.getClass());
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
         logger.addException(ev, new TestThrowable());
         logger.auditFinished(null);

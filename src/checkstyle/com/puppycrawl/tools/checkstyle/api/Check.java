@@ -242,7 +242,7 @@ public abstract class Check extends AbstractViolationReporter
                 aKey,
                 aArgs,
                 getSeverityLevel(),
-                this.getClass().getName()));
+                this.getClass()));
     }
 
 
@@ -267,6 +267,6 @@ public abstract class Check extends AbstractViolationReporter
                 aKey,
                 aArgs,
                 getSeverityLevel(),
-                this.getClass().getName()));
+                this.getClass()));
     }
 }

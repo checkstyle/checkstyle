@@ -215,33 +215,49 @@ public final class TreeWalker
             walk(rootAST, contents);
         }
         catch (FileNotFoundException fnfe) {
-            getMessageCollector().add(new LocalizedMessage(
-                0, Defn.CHECKSTYLE_BUNDLE,
-                "general.fileNotFound", null));
+            getMessageCollector().add(
+                new LocalizedMessage(
+                    0,
+                    Defn.CHECKSTYLE_BUNDLE,
+                    "general.fileNotFound",
+                    null,
+                    this.getClass()));
         }
         catch (IOException ioe) {
-            getMessageCollector().add(new LocalizedMessage(
-                0, Defn.CHECKSTYLE_BUNDLE,
-                "general.exception",
-                new String[] {ioe.getMessage()}));
+            getMessageCollector().add(
+                new LocalizedMessage(
+                    0,
+                    Defn.CHECKSTYLE_BUNDLE,
+                    "general.exception",
+                    new String[] {ioe.getMessage()},
+                    this.getClass()));
         }
         catch (RecognitionException re) {
-            getMessageCollector().add(new LocalizedMessage(
-                0, Defn.CHECKSTYLE_BUNDLE,
-                "general.exception",
-                new String[] {re.getMessage()}));
+            getMessageCollector().add(
+                new LocalizedMessage(
+                    0,
+                    Defn.CHECKSTYLE_BUNDLE,
+                    "general.exception",
+                    new String[] {re.getMessage()},
+                    this.getClass()));
         }
         catch (TokenStreamException te) {
-            getMessageCollector().add(new LocalizedMessage(
-                0, Defn.CHECKSTYLE_BUNDLE,
-                "general.exception",
-                new String[] {te.getMessage()}));
+            getMessageCollector().add(
+                new LocalizedMessage(
+                    0,
+                    Defn.CHECKSTYLE_BUNDLE,
+                    "general.exception",
+                    new String[] {te.getMessage()},
+                    this.getClass()));
         }
         catch (Throwable err) {
-            getMessageCollector().add(new LocalizedMessage(
-                0, Defn.CHECKSTYLE_BUNDLE,
-                "general.exception",
-                new String[] {"" + err}));
+            getMessageCollector().add(
+                new LocalizedMessage(
+                    0,
+                    Defn.CHECKSTYLE_BUNDLE,
+                    "general.exception",
+                    new String[] {"" + err},
+                    this.getClass()));
         }
 
         if (getMessageCollector().size() == 0) {
