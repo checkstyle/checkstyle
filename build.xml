@@ -15,7 +15,7 @@
   <property name="checkstyle.dir" value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
   <property name="testreport.dir" value="testreports"/>
 
-  <property name="version" value="2.0" />
+  <property name="version" value="2.1" />
 
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
