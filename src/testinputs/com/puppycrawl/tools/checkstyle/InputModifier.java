@@ -69,3 +69,18 @@ final class FinalClass
     {
     }
 }
+
+/** Holder for redundant modifiers of inner implementation */
+interface InnerImplementation
+{
+    InnerImplementation inner =
+        new InnerImplementation()
+        {
+            /** compiler requires 'public' modifier */
+            public void method()
+            {
+            }
+        };
+    
+    void method();
+}
