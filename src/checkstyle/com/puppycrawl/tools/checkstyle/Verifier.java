@@ -229,6 +229,13 @@ class Verifier
         // Always check that the order of modifiers follows the JLS suggestion
         checkModOrder(aSig.getModSet());
 
+        // JLS, chapter 9.4 - public in interface is strongly discouraged
+        if (!mConfig.isIgnorePublicInInterface() &&
+            inInterfaceBlock() && aSig.getModSet().containsPublic())
+        {
+            log(aSig.getLineNo(), "redundant 'public' modifier.");
+        }
+
         // now check the javadoc
         final Scope methodScope = inInterfaceBlock()
             ? Scope.PUBLIC
