@@ -103,7 +103,7 @@ public final class ConfigurationLoader
                 //add configuration to it's parent
                 if (!mConfigStack.isEmpty()) {
                     final DefaultConfiguration top =
-                            (DefaultConfiguration) mConfigStack.peek();
+                        (DefaultConfiguration) mConfigStack.peek();
                     top.addChild(conf);
                 }
 
