@@ -23,7 +23,7 @@ public class PackageNamesLoaderTest extends TestCase
             this.getClass().getClassLoader());
         validateFactory(moduleFactory);
     }
-    
+
     public void testNoFile()
     {
         try {
@@ -45,7 +45,7 @@ public class PackageNamesLoaderTest extends TestCase
                 "src/checkstyle/com/puppycrawl/tools/checkstyle/checkstyle_packages.xml");
         validateFactory(moduleFactory);
     }
-    
+
     private void validateFactory(ModuleFactory aModuleFactory)
     {
         final String[] checkstylePackages = {
@@ -55,6 +55,7 @@ public class PackageNamesLoaderTest extends TestCase
             "com.puppycrawl.tools.checkstyle.checks.coding.",
             "com.puppycrawl.tools.checkstyle.checks.design.",
             "com.puppycrawl.tools.checkstyle.checks.duplicates.",
+            "com.puppycrawl.tools.checkstyle.checks.header.",
             "com.puppycrawl.tools.checkstyle.checks.imports.",
             "com.puppycrawl.tools.checkstyle.checks.indentation.",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.",
@@ -63,7 +64,7 @@ public class PackageNamesLoaderTest extends TestCase
             "com.puppycrawl.tools.checkstyle.checks.sizes.",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.",
             "com.puppycrawl.tools.checkstyle.filters.",
-            
+
         };
 
         PackageObjectFactory factory = (PackageObjectFactory) aModuleFactory;
@@ -74,7 +75,7 @@ public class PackageNamesLoaderTest extends TestCase
         Set checkstylePackagesSet =
             new HashSet(Arrays.asList(checkstylePackages));
         Set pkgNamesSet = new HashSet(Arrays.asList(pkgNames));
-        assertEquals("names set.", checkstylePackagesSet, pkgNamesSet); 
+        assertEquals("names set.", checkstylePackagesSet, pkgNamesSet);
     }
-        
+
 }
