@@ -158,7 +158,7 @@ public abstract class AbstractFileSetCheck
                                  aKey,
                                  aArgs,
                                  getSeverityLevel(),
-                                 this.getClass().getName()));
+                                 this.getClass()));
     }
 
     /**

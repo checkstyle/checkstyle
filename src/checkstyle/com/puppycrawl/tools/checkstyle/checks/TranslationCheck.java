@@ -163,7 +163,7 @@ public class TranslationCheck
                 Defn.CHECKSTYLE_BUNDLE,
                 key,
                 args,
-                this.getClass().getName());
+                this.getClass());
         final LocalizedMessage[] messages = new LocalizedMessage[] {message};
         getMessageDispatcher().fireErrors(aFile.getPath(), messages);
     }
