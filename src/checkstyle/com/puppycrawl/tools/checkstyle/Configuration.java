@@ -107,7 +107,6 @@ public class Configuration
         mIntProps.put(Defn.MAX_LINE_LENGTH_PROP, new Integer(80));
         mIntProps.put(Defn.MAX_METHOD_LENGTH_PROP, new Integer(150));
         mIntProps.put(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, new Integer(150));
-        mIntProps.put(Defn.MAX_FILE_LENGTH_PROP, new Integer(2000));
         mIntProps.put(Defn.MAX_PARAMETERS_PROP, new Integer(7));
         mIntProps.put(Defn.TAB_WIDTH_PROP, new Integer(8));
     }
@@ -454,18 +453,6 @@ public class Configuration
     int getMaxConstructorLength()
     {
         return getIntProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP);
-    }
-
-    /** @return the maximum file length **/
-    int getMaxFileLength()
-    {
-        return getIntProperty(Defn.MAX_FILE_LENGTH_PROP);
-    }
-
-    /** @return whether to allow tabs **/
-    boolean isAllowTabs()
-    {
-        return getBooleanProperty(Defn.ALLOW_TABS_PROP);
     }
 
     /** @return distance between tab stops */

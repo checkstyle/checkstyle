@@ -462,7 +462,6 @@ public class CheckerTest
     public void testSimple()
         throws Exception
     {
-        mProps.setProperty(Defn.MAX_FILE_LENGTH_PROP, "20");
         mProps.setProperty(Defn.MAX_METHOD_LENGTH_PROP, "19");
         mProps.setProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, "9");
         mProps.setProperty(Defn.STATIC_PATTERN_PROP, "^s[A-Z][a-zA-Z0-9]*$");
@@ -476,9 +475,7 @@ public class CheckerTest
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":1: File length is 198 lines (max allowed is 20).",
             filepath + ":18: Line is longer than 80 characters.",
-            filepath + ":19:25: Line contains a tab character.",
             filepath + ":25:29: Name 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":30:24: Name 'badStatic' must match pattern '^s[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":35:17: Name 'badMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
@@ -500,18 +497,11 @@ public class CheckerTest
             filepath + ":132:20: Name 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":142:30: Name 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":145: Line is longer than 80 characters.",
-            filepath + ":145:35: Line contains a tab character.",
-            filepath + ":146:64: Line contains a tab character.",
             filepath + ":153:27: '=' is not followed by whitespace.",
-            filepath + ":154:9: Line contains a tab character.",
             filepath + ":154:27: '=' is not followed by whitespace.",
-            filepath + ":155:10: Line contains a tab character.",
             filepath + ":155:27: '=' is not followed by whitespace.",
-            filepath + ":156:1: Line contains a tab character.",
             filepath + ":156:27: '=' is not followed by whitespace.",
-            filepath + ":157:3: Line contains a tab character.",
             filepath + ":157:27: '=' is not followed by whitespace.",
-            filepath + ":158:3: Line contains a tab character.",
             filepath + ":158:27: '=' is not followed by whitespace.",
             filepath + ":161: Comment matches to-do format 'FIXME:'.",
             filepath + ":162: Comment matches to-do format 'FIXME:'.",
@@ -757,7 +747,6 @@ public class CheckerTest
         mProps.setProperty(Defn.LCURLY_METHOD_PROP,
                            LeftCurlyOption.NL.toString());
         mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
-        mProps.setProperty(Defn.ALLOW_TABS_PROP, "true");
         final Checker c = createChecker();
         final String filepath = getPath("InputLeftCurlyMethod.java");
         assertNotNull(c);
