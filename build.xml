@@ -298,6 +298,7 @@
 	    <include name="build.xml"/>
 	    <include name="docs/*"/>
 	    <include name="src/**"/>
+	    <include name="lib/**"/>
 	</fileset>
     </copy>
     <!-- Produce the final distributions -->
