@@ -33,6 +33,8 @@ public class MagicNumberCheckTest
             "71:29: '0x10L' is a magic number.",
             "72:29: '0X11l' is a magic number.",
             "85:28: '3' is a magic number.",
+            "91:14: '0xffffffff' is a magic number.",
+            
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -59,6 +61,7 @@ public class MagicNumberCheckTest
             "64:30: '011l' is a magic number.",
             "69:24: '0X011' is a magic number.",
             "72:29: '0X11l' is a magic number.",
+            "91:14: '0xffffffff' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -112,6 +115,7 @@ public class MagicNumberCheckTest
             "71:29: '0x10L' is a magic number.",
             "72:29: '0X11l' is a magic number.",
             "85:28: '3' is a magic number.",
+            "91:14: '0xffffffff' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -142,6 +146,7 @@ public class MagicNumberCheckTest
             "71:29: '0x10L' is a magic number.",
             "72:29: '0X11l' is a magic number.",
             "85:28: '3' is a magic number.",
+            "91:14: '0xffffffff' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }

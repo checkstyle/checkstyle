@@ -99,13 +99,13 @@ public class MagicNumberCheck extends Check
     private float parseFloat(String aText, int aType)
     {
         float result = 0;
-        if (aType == TokenTypes.NUM_FLOAT) {
-            result = Float.parseFloat(aText);
-        }
-        if (aType == TokenTypes.NUM_DOUBLE) {
+        switch (aType) {
+        case TokenTypes.NUM_FLOAT:
+        case TokenTypes.NUM_DOUBLE:
             result = (float) Double.parseDouble(aText);
-        }
-        else {
+            break;
+        case TokenTypes.NUM_INT:
+        case TokenTypes.NUM_LONG:
             int radix = BASE_10;
             if (aText.startsWith("0x") || aText.startsWith("0X")) {
                 radix = BASE_16;
@@ -115,21 +115,17 @@ public class MagicNumberCheck extends Check
                 radix = BASE_8;
                 aText = aText.substring(1);
             }
-            if (aType == TokenTypes.NUM_INT) {
-                if (aText.length() > 0) {
-                    result = (float) Integer.parseInt(aText, radix);
-                }
+            // Long.parseLong requires that the text ends with neither 'L'
+            // nor 'l'.
+            if ((aText.endsWith("L")) || (aText.endsWith("l"))) {
+                aText = aText.substring(0, aText.length() - 1);
             }
-            else if (aType == TokenTypes.NUM_LONG) {
-                // Long.parseLong requires that the text ends with neither 'L'
-                // nor 'l'.
-                if ((aText.endsWith("L")) || (aText.endsWith("l"))) {
-                    aText = aText.substring(0, aText.length() - 1);
-                }
-                if (aText.length() > 0) {
-                    result = (float) Long.parseLong(aText, radix);
-                }
+            if (aText.length() > 0) {
+                result = (float) Long.parseLong(aText, radix);
             }
+            break;
+        default:
+            break;
         }
         return result;
     }
@@ -142,6 +138,9 @@ public class MagicNumberCheck extends Check
      */
     private boolean isConstantDefinition(DetailAST aAST)
     {
+        if (ScopeUtils.inInterfaceBlock(aAST)) {
+            return true;
+        }
         DetailAST parent = aAST.getParent();
 
         //expression?
@@ -166,11 +165,10 @@ public class MagicNumberCheck extends Check
             return false;
         }
 
-        //final or interface constant
+        //final?
         final DetailAST modifiersAST =
             parent.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiersAST.branchContains(TokenTypes.FINAL)
-            || ScopeUtils.inInterfaceBlock(parent);
+        return modifiersAST.branchContains(TokenTypes.FINAL);
     }
 
     /**
