@@ -117,6 +117,7 @@ public final class TreeWalker
      */
     private Configuration mConfig;
 
+    /** class loader to resolve classes with. **/
     private ClassLoader mClassLoader;
 
     /**
@@ -127,23 +128,26 @@ public final class TreeWalker
         mMessages = new LocalizedMessages();
     }
 
-    /** sets the distance between tab stops */
+    /** @param aTabWidth the distance between tab stops */
     public void setTabWidth(int aTabWidth)
     {
         mTabWidth = aTabWidth;
     }
 
+    /** @param aFileName the cache file */
     public void setCacheFile(String aFileName)
     {
         mCache = new PropertyCacheFile(mConfig, aFileName);
     }
 
     // TODO: Call from contextualize
+    /** @param aClassLoader class loader to resolve classes with. */
     public void setClassLoader(ClassLoader aClassLoader)
     {
         mClassLoader = aClassLoader;
     }
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Configurable */
     public void configure(Configuration aConfiguration)
             throws CheckstyleException
     {
@@ -231,6 +235,7 @@ public final class TreeWalker
     /**
      * Register a check for a given configuration.
      * @param aCheck the check to register
+     * @throws CheckstyleException if an error occurs
      */
     void registerCheck(Check aCheck)
            throws CheckstyleException
@@ -466,35 +471,5 @@ public final class TreeWalker
     {
         super.destroy();
         mCache.destroy();
-    }
-
-    /**
-     * Create an instance of the check that is properly initialised.
-     *
-     * @param aLoader the <code>ClassLoader</code> to create the instance with
-     * @return the created check
-     * @throws CheckstyleException if an error occurs
-     */
-    private Check createCheck(
-            ClassLoader aLoader, String aClassName)
-        throws CheckstyleException
-    {
-        try {
-            final Class clazz = Class.forName(aClassName, true, aLoader);
-            final Check check = (Check) clazz.newInstance();
-            return check;
-        }
-        catch (ClassNotFoundException e) {
-            throw new CheckstyleException(
-                "Unable to find class for " + aClassName);
-        }
-        catch (InstantiationException e) {
-            throw new CheckstyleException(
-                "Unable to instantiate " + aClassName);
-        }
-        catch (IllegalAccessException e) {
-            throw new CheckstyleException(
-                "Unable to instantiate " + aClassName);
-        }
     }
 }
