@@ -1340,24 +1340,6 @@ class Verifier
     }
 
     /**
-     * Checks is an import statement is referenced.
-     * @param aImp the import parameter, e.g. "javax.swing.JButton".
-     * @return if aImp is used by one of the entries in mReferenced.
-     */
-    private boolean isReferencedImport(LineText aImp)
-    {
-        if (aImp.getText().endsWith(".*")) {
-            // we should try to figure out the used classes via classloader
-            return true;
-        }
-        String impText = aImp.getText();
-
-        return
-            mReferenced.contains(basename(impText))
-            || mReferenced.contains(impText);
-    }
-
-    /**
      * Checks illegal instantiations.
      * @param aClassName instantiated class, may or may not be qualified
      * @return the fully qualified class name of aClassName
@@ -1443,29 +1425,6 @@ class Verifier
     private boolean inMethodBlock()
     {
         return (mMethodBlockLevel > 0);
-    }
-
-    /**
-     * Determines in an import statement is for types from a specified package.
-     * @param aImport the import name
-     * @param aPkg the package name
-     * @return whether from the package
-     */
-    private static boolean fromPackage(String aImport, String aPkg)
-    {
-        boolean retVal = false;
-        if (aPkg == null) {
-            // If not package, then check for no package in the import.
-            retVal = (aImport.indexOf('.') == -1);
-        }
-        else {
-            final int index = aImport.lastIndexOf('.');
-            if (index != -1) {
-                final String front = aImport.substring(0, index);
-                retVal = front.equals(aPkg);
-            }
-        }
-        return retVal;
     }
 
     /**
@@ -1631,5 +1590,4 @@ class Verifier
             mCurrentTypeName += "." + (String) it.next();
         }
     }
-    // }}}
 }
