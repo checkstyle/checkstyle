@@ -35,7 +35,7 @@ import java.util.Iterator;
  * @version 1.0
  */
 public class IllegalImportCheck
-    extends ImportCheck
+    extends AbstractImportCheck
 {
     /** list of illegal packages */
     private final Set mIllegalPkgs = new TreeSet();

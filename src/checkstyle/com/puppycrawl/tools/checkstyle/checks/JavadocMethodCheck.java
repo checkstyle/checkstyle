@@ -43,7 +43,7 @@ import org.apache.regexp.RE;
  * @version 1.0
  */
 public class JavadocMethodCheck
-    extends ImportCheck
+    extends AbstractImportCheck
 {
 
        // {{{ Data declarations

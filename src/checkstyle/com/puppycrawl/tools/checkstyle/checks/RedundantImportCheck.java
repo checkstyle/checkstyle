@@ -34,7 +34,7 @@ import java.util.HashSet;
  * @version 1.0
  */
 public class RedundantImportCheck
-    extends ImportCheck
+    extends AbstractImportCheck
 {
     /** name of package in file */
     private String mPkgName;
