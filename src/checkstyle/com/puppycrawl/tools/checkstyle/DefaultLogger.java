@@ -114,13 +114,11 @@ public class DefaultLogger
     /** @see AuditListener **/
     public void fileFinished(AuditEvent aEvt)
     {
-        mInfoWriter.println("finished checking " + aEvt.getFileName());
     }
 
     /** @see AuditListener **/
     public void fileStarted(AuditEvent aEvt)
     {
-        mInfoWriter.println("Started checking " + aEvt.getFileName());
     }
 
     /** @see AuditListener **/
