@@ -5,7 +5,7 @@ import com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheck;
 public class WhitespaceAfterCheckTest
     extends BaseCheckTestCase
 {
-    private CheckConfiguration checkConfig;
+    private CheckConfiguration mCheckConfig;
     
     public WhitespaceAfterCheckTest(String aName)
     {
@@ -13,13 +13,13 @@ public class WhitespaceAfterCheckTest
     }
     
     public void setUp() {
-        checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(WhitespaceAfterCheck.class.getName());
+        mCheckConfig = new CheckConfiguration();
+        mCheckConfig.setClassname(WhitespaceAfterCheck.class.getName());
     }
     
     public void testDefault() throws Exception
     {
-        final Checker c = createChecker(checkConfig);
+        final Checker c = createChecker(mCheckConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
             "42:40: ',' is not followed by whitespace.",
@@ -30,11 +30,23 @@ public class WhitespaceAfterCheckTest
     
     public void testCast() throws Exception
     {
-        checkConfig.addTokens("TYPECAST");
-        final Checker c = createChecker(checkConfig);
+        mCheckConfig.addTokens("TYPECAST");
+        final Checker c = createChecker(mCheckConfig);
         final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
             "88:21: 'cast' is not followed by whitespace.",
+        };
+        verify(c, fname, expected);
+    }
+    
+    public void testSemi() throws Exception
+    {;
+        final Checker c = createChecker(mCheckConfig);
+        final String fname = getPath("InputBraces.java");
+        final String[] expected = {
+            "58:23: ';' is not followed by whitespace.",
+            "58:29: ';' is not followed by whitespace.",
+            "110:19: ';' is not followed by whitespace.",
         };
         verify(c, fname, expected);
     }

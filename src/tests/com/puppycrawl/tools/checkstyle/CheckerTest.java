@@ -84,18 +84,6 @@ public class CheckerTest
         aC.destroy();
     }
 
-    public void testBraces()
-        throws Exception
-    {
-        final Checker c = createChecker();
-        final String filepath = getPath("InputBraces.java");
-        final String[] expected = {
-            filepath + ":58:23: ';' is not followed by whitespace.",
-            filepath + ":58:29: ';' is not followed by whitespace.",
-        };
-        verify(c, filepath, expected);
-    }
-
     public void testSimple()
         throws Exception
     {

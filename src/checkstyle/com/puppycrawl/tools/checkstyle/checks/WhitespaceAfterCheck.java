@@ -37,6 +37,7 @@ public class WhitespaceAfterCheck
     {
         return new int[] {
             TokenTypes.COMMA,            // ','
+            TokenTypes.SEMI,             // ';'
         };
     }
 
@@ -45,6 +46,7 @@ public class WhitespaceAfterCheck
     {
         return new int[] {
             TokenTypes.COMMA,            // ','
+            TokenTypes.SEMI,             // ';'
             TokenTypes.TYPECAST,
         };
     }
@@ -52,7 +54,6 @@ public class WhitespaceAfterCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-
         final String[] lines = getLines();
         final Object[] message;
         final DetailAST targetAST;
@@ -69,13 +70,20 @@ public class WhitespaceAfterCheck
         final int after =
             targetAST.getColumnNo() + targetAST.getText().length();
 
-        if ((after < line.length())
-            && !Character.isWhitespace(line.charAt(after)))
-        {
-            log(targetAST.getLineNo(),
-                targetAST.getColumnNo() + targetAST.getText().length(),
-                "ws.notFollowed",
-                message);
+        if (after < line.length()) {
+            
+            final char charAfter = line.charAt(after);
+            if ((targetAST.getType() == TokenTypes.SEMI)
+                && ((charAfter == ';') || (charAfter == ')')))
+            {
+                return;
+            }
+            if (!Character.isWhitespace(charAfter)) {
+                log(targetAST.getLineNo(),
+                    targetAST.getColumnNo() + targetAST.getText().length(),
+                    "ws.notFollowed",
+                    message);
+            }
         }
     }
 }
