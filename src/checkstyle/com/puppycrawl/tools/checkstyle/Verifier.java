@@ -955,7 +955,7 @@ class Verifier
 
         // Check if rest of line is whitespace, and not just the operator by
         // itself. This last bit is to handle the operator on a line by itself
-        if (!mConfig.isIgnoreOpWrap()
+        if ((mConfig.getWrapOpOption() != WrapOpOption.IGNORE)
             && !aText.equals(mLines[aLineNo - 1].trim())
             && (mLines[aLineNo - 1].substring(aColNo + aText.length() - 1)
                 .trim().length() == 0))
