@@ -269,18 +269,6 @@ public class Configuration
         return getBooleanProperty(Defn.REQUIRE_PACKAGE_HTML_PROP);
     }
 
-    /** @return whether to ignore checks for whitespace **/
-    boolean isIgnoreWhitespace()
-    {
-        return getBooleanProperty(Defn.IGNORE_WHITESPACE_PROP);
-    }
-
-    /** @return whether to ignore checks for whitespace after casts **/
-    boolean isIgnoreCastWhitespace()
-    {
-        return getBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP);
-    }
-
     /** @return the File of the cache file **/
     String getCacheFile()
     {

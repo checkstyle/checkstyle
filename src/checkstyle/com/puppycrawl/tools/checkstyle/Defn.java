@@ -35,10 +35,6 @@ public interface Defn
     String TAB_WIDTH_PROP = "checkstyle.tab.width";
     /** property name for requiring package documentation */
     String REQUIRE_PACKAGE_HTML_PROP = "checkstyle.require.packagehtml";
-    /** property name for ignoring whitespace **/
-    String IGNORE_WHITESPACE_PROP = "checkstyle.ignore.whitespace";
-    /** property name for ignoring whitespace after casts **/
-    String IGNORE_CAST_WHITESPACE_PROP = "checkstyle.ignore.whitespace.cast";
     /** property name for cache file **/
     String CACHE_FILE_PROP = "checkstyle.cache.file";
 
@@ -53,8 +49,6 @@ public interface Defn
     /** All the properties that are a boolean. They all must default to false */
     String[] ALL_BOOLEAN_PROPS = new String[]
         {
-            IGNORE_CAST_WHITESPACE_PROP,
-            IGNORE_WHITESPACE_PROP,
             REQUIRE_PACKAGE_HTML_PROP,
         };
 
