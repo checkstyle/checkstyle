@@ -176,9 +176,22 @@ public class JavadocTypeCheck
         }
     }
 
+    /**
+     * Verifies that a type definition has a required tag.
+     * @param aLineNo the line number for the type definition.
+     * @param aCmt the Javadoc comment for the type definition.
+     * @param aTag the required tag name.
+     * @param aTagRE regexp for the full tag.
+     * @param aFormatRE regexp for the tag value.
+     * @param aFormat patter for the tag value.
+     */
     private void checkTag(
-            int aLineNo, String[] aCmt,
-            String aTag, RE aTagRE, RE aFormatRE, String aFormat)
+            int aLineNo,
+            String[] aCmt,
+            String aTag,
+            RE aTagRE,
+            RE aFormatRE,
+            String aFormat)
     {
         if (aTagRE == null) {
             return;
@@ -191,8 +204,7 @@ public class JavadocTypeCheck
                 tagCount += 1;
                 final int contentStart = aTagRE.getParenStart(1);
                 final String content = s.substring(contentStart);
-                if (!aFormatRE.match(content))
-                {
+                if (!aFormatRE.match(content)) {
                     log(aLineNo, "type.tagFormat", aTag, aFormat);
                 }
 
