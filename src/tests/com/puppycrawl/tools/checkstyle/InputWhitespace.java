@@ -44,8 +44,8 @@ class InputWhitespace
        skip blank lines between comment and code,
        should be ok
     **/
-    
-    
+
+
     private int mVar4 = 1;
 
 
@@ -78,5 +78,14 @@ class InputWhitespace
             return 2; // this is ok
         }
     }
-    
+
+    /** test casts **/
+    private void testCasts()
+    {
+        Object o = (Object) new Object(); // ok
+        o = (Object)o; // error
+        o = (Object) o; // ok
+        o = (Object)
+            o; // ok
+    }
 }

@@ -106,6 +106,13 @@ interface Verifier
     void verifyNoWSBefore(MyCommonAST aAST);
 
     /**
+     * Verify that whitespace IS after an typecast.
+     * @param aLineNo number of line to check
+     * @param aColNo column where the cast ends
+     */
+    void verifyWSAfterCast(int aLineNo, int aColNo);
+
+    /**
      * Report the location of a C++ comment.
      * @param aLineNo the line number
      * @param aColNo the column number

@@ -103,6 +103,7 @@ public class CheckerTest
             filepath + ":35: 'synchronized' is not proceeded with whitespace.",
             filepath + ":39: 'catch' is not proceeded with whitespace.",
             filepath + ":74: 'return' is not proceeded with whitespace.",
+            filepath + ":86: cast needs to be followed by whitespace.",
         };
         verify(c, filepath, expected);
     }
