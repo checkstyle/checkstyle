@@ -117,7 +117,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "142: method call child at indentation level 10 not at correct indentation, 12",
             // todo: 152 -- 8 should be 12
             "152: method call child at indentation level 6 not at correct indentation, 8", 
-            "158: method def throws at indentation level 6 not at correct indentation, 4",
+            "158: method def throws at indentation level 6 not at correct indentation, 8",
         };
         verify(c, fname, expected);
     }
@@ -562,7 +562,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("indentation/InputValidBlockIndent.java");
         final String[] expected = {
-            // TODO: This currently fails, raises two false alarms - or are they justified?
         };
         verify(c, fname, expected);
     }
