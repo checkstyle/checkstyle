@@ -11,4 +11,13 @@
     <suppress checks="FileLength"
               files="TokenTypes.java"
               lines="1"/>
+    <suppress checks="LineLengthCheck"
+              files="LeftCurlyCheck.java"
+              lines="60-110"/>
+    <suppress checks="LineLengthCheck"
+              files="NeedBracesCheck.java"
+              lines="40-60"/>
+    <suppress checks="LineLengthCheck"
+              files="RightCurlyCheck.java"
+              lines="50-70"/>
 </suppressions>
