@@ -38,7 +38,7 @@ class InputBraces
         }
 
         // Invalid
-        while (condition());
+        while(condition());
         while (condition())
             testWhile();
         while (condition())
@@ -55,7 +55,7 @@ class InputBraces
         }
 
         // Invalid
-        for (int i = 1;i < 5;i++);
+        for(int i = 1;i < 5;i++);
         for (int i = 1; i < 5; i++)
             testFor();
         for (int i = 1; i < 5;
