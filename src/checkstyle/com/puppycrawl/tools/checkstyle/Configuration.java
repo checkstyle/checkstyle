@@ -76,6 +76,8 @@ public class Configuration
     private static final int MAX_FILE_LENGTH = 2000;
     /** the set of illegal imports (comma separated package prefixes) **/
     private static final String ILLEGAL_IMPORTS = "sun";
+    /** the set of illegal instantiations (comma separated class names) **/
+    private static final String ILLEGAL_INSTANTIATIONS = "";
     /** the number of spaces that are represented by one tab character **/
     private static final int TAB_WIDTH = 8;
 
@@ -152,8 +154,10 @@ public class Configuration
     private boolean mRequirePackageHtml = false;
     /** whether to ignore imports **/
     private boolean mIgnoreImports = false;
-    /** whether to ignore imports **/
+    /** illegal imports **/
     private final HashSet mIllegalImports = new HashSet();
+    /** illegal instantiations **/
+    private final HashSet mIllegalInstantiations = new HashSet();
     /** whether to ignore whitespace **/
     private boolean mIgnoreWhitespace = false;
     /** whether to ignore cast whitespace **/
@@ -250,6 +254,8 @@ public class Configuration
             getBooleanProperty(aProps, IGNORE_IMPORTS_PROP, mIgnoreImports));
         setIllegalImports(
             aProps.getProperty(ILLEGAL_IMPORTS_PROP, ILLEGAL_IMPORTS));
+        setIllegalInstantiations(aProps.getProperty(ILLEGAL_INSTANTIATIONS_PROP,
+                                                   ILLEGAL_INSTANTIATIONS));
         setIgnoreWhitespace(getBooleanProperty(aProps,
                                                IGNORE_WHITESPACE_PROP,
                                                mIgnoreWhitespace));
@@ -302,6 +308,7 @@ public class Configuration
         throws IllegalStateException
     {
         setIllegalImports(ILLEGAL_IMPORTS);
+        setIllegalInstantiations(ILLEGAL_INSTANTIATIONS);
         try {
             setTodoPat(TODO_PATTERN);
             setParamPat(PARAMETER_PATTERN);
@@ -544,6 +551,12 @@ public class Configuration
     public Set getIllegalImports()
     {
         return mIllegalImports;
+    }
+
+    /** @return Set of classes where calling a constructor is illegal */
+    public Set getIllegalInstantiations()
+    {
+        return mIllegalInstantiations;
     }
 
     /** @return pattern to exclude from line lengh checking **/
@@ -796,6 +809,18 @@ public class Configuration
         final StringTokenizer st = new StringTokenizer(aPkgPrefixList, ",");
         while (st.hasMoreTokens()) {
             mIllegalImports.add(st.nextToken());
+        }
+    }
+
+    /**
+     * @param aClassList comma separated list of fully qualified class names
+     */
+    public void setIllegalInstantiations(String aClassList)
+    {
+        mIllegalInstantiations.clear();
+        final StringTokenizer st = new StringTokenizer(aClassList, ",");
+        while (st.hasMoreTokens()) {
+            mIllegalInstantiations.add(st.nextToken());
         }
     }
 

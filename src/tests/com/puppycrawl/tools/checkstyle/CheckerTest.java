@@ -765,18 +765,28 @@ public class CheckerTest
     {
         mConfig.setJavadocScope(Scope.NOTHING);
         mConfig.setCatchBlock(CatchBlockOption.STMT);
+        mConfig.setIgnoreImports(true);
+        mConfig.setIllegalInstantiations(
+            "java.lang.Boolean," +
+            "com.puppycrawl.tools.checkstyle.InputModifier," +
+            "java.io.File," +
+            "java.awt.Color");
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":15:21: Avoid instantiation of java.lang.Boolean",
-            filepath + ":20:21: Avoid instantiation of java.lang.Boolean",
-            filepath + ":26:16: Avoid instantiation of java.lang.Boolean",
-            filepath + ":34:65: Must have at least one statement.",
-            filepath + ":36:41: Must have at least one statement.",
-            filepath + ":53:38: Must have at least one statement.",
-            filepath + ":54:52: Must have at least one statement.",
-            filepath + ":55:45: Must have at least one statement.",
+            filepath + ":19:21: Avoid instantiation of java.lang.Boolean",
+            filepath + ":24:21: Avoid instantiation of java.lang.Boolean",
+            filepath + ":30:16: Avoid instantiation of java.lang.Boolean",
+            filepath + ":37:21: Avoid instantiation of " +
+                               "com.puppycrawl.tools.checkstyle.InputModifier",
+            filepath + ":40:18: Avoid instantiation of java.io.File",
+            filepath + ":43:21: Avoid instantiation of java.awt.Color",
+            filepath + ":51:65: Must have at least one statement.",
+            filepath + ":53:41: Must have at least one statement.",
+            filepath + ":70:38: Must have at least one statement.",
+            filepath + ":71:52: Must have at least one statement.",
+            filepath + ":72:45: Must have at least one statement.",
         };
         verify(c, filepath, expected);
     }
@@ -786,16 +796,15 @@ public class CheckerTest
     {
         mConfig.setJavadocScope(Scope.NOTHING);
         mConfig.setCatchBlock(CatchBlockOption.TEXT);
+        mConfig.setIgnoreImports(true);
+        mConfig.setIllegalInstantiations("");
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":15:21: Avoid instantiation of java.lang.Boolean",
-            filepath + ":20:21: Avoid instantiation of java.lang.Boolean",
-            filepath + ":26:16: Avoid instantiation of java.lang.Boolean",
-            filepath + ":34:65: Empty catch block.",
-            filepath + ":54:52: Empty catch block.",
-            filepath + ":55:45: Empty catch block.",
+            filepath + ":51:65: Empty catch block.",
+            filepath + ":71:52: Empty catch block.",
+            filepath + ":72:45: Empty catch block.",
         };
         verify(c, filepath, expected);
     }

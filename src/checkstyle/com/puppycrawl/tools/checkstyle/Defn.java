@@ -74,6 +74,8 @@ public interface Defn
     String IGNORE_IMPORTS_PROP = "checkstyle.ignore.imports";
     /** property name for illegal import statements **/
     String ILLEGAL_IMPORTS_PROP = "checkstyle.illegal.imports";
+    /** property name for illegal instantiations **/
+    String ILLEGAL_INSTANTIATIONS_PROP = "checkstyle.illegal.instantiations";
     /** property name for the line length check exclusion pattern **/
     String IGNORE_LINE_LENGTH_PATTERN_PROP = "checkstyle.ignore.maxlinelen";
     /** property name for ignoring whitespace **/
