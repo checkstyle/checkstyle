@@ -24,7 +24,8 @@ public class JavadocStyleCheckTest
             "81: First sentence should end with a period.",
             "82:31: Unclosed HTML tag found: <b>should fail",
             "88: First sentence should end with a period.",
-            "89:31: Extra HTML tag found: </code>"
+            "89:31: Extra HTML tag found: </code>",
+            "90: Incomplete HTML tag found:     * should fail <",
             };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -59,7 +60,8 @@ public class JavadocStyleCheckTest
             "68:19: Unclosed HTML tag found: <code>dummy.",
             "75:23: Unclosed HTML tag found: <b>should fail",
             "82:31: Unclosed HTML tag found: <b>should fail",
-            "89:31: Extra HTML tag found: </code>"
+            "89:31: Extra HTML tag found: </code>",
+            "90: Incomplete HTML tag found:     * should fail <",
          };
 
       verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -76,7 +78,8 @@ public class JavadocStyleCheckTest
     final String[] expected =
        {
           "88: First sentence should end with a period.",
-          "89:31: Extra HTML tag found: </code>"
+          "89:31: Extra HTML tag found: </code>",
+          "90: Incomplete HTML tag found:     * should fail <",
        };
 
       verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -95,7 +98,8 @@ public class JavadocStyleCheckTest
           "74: First sentence should end with a period.",
           "75:23: Unclosed HTML tag found: <b>should fail",
           "88: First sentence should end with a period.",
-          "89:31: Extra HTML tag found: </code>"
+          "89:31: Extra HTML tag found: </code>",
+          "90: Incomplete HTML tag found:     * should fail <",
        };
 
       verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -116,7 +120,8 @@ public class JavadocStyleCheckTest
           "81: First sentence should end with a period.",
           "82:31: Unclosed HTML tag found: <b>should fail",
           "88: First sentence should end with a period.",
-          "89:31: Extra HTML tag found: </code>"
+          "89:31: Extra HTML tag found: </code>",
+          "90: Incomplete HTML tag found:     * should fail <",
        };
 
       verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
