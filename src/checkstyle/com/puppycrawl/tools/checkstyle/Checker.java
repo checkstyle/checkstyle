@@ -37,7 +37,7 @@ import org.xml.sax.SAXException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
+// import com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
 
 import javax.xml.parsers.ParserConfigurationException;
 
