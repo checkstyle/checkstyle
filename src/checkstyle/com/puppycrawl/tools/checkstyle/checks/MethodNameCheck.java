@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * a lower case letter, followed by letters, digits, and underscores is:
  * </p>
  * <pre>
- * &lt;config name="MethodNameCheck"/&gt;
+ * &lt;config name="MethodNameCheck"&gt;
  *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/config&gt;
  * </pre>
