@@ -2,6 +2,8 @@ package com.puppycrawl.tools.checkstyle;
 
 import junit.framework.TestCase;
 
+import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.Properties;
 
 public class ConfigurationTest
@@ -38,5 +40,25 @@ public class ConfigurationTest
         p.setProperty(Defn.PAREN_PAD_PROP, "at sleeping");
         final Configuration c = new Configuration(p, System.out);
         assertNotNull(c);
+    }
+
+    public void testGetProperties() throws Exception
+    {
+        final Configuration c = new Configuration();
+        assertEquals("80",
+                     c.getProperties().getProperty(Defn.MAX_LINE_LENGTH_PROP));
+        c.setIntProperty(Defn.MAX_LINE_LENGTH_PROP, 666);
+        assertEquals("666",
+                     c.getProperties().getProperty(Defn.MAX_LINE_LENGTH_PROP));
+        c.setPatternProperty(Defn.MEMBER_PATTERN_PROP, "bulldogs");
+        assertEquals("bulldogs",
+                     c.getProperties().getProperty(Defn.MEMBER_PATTERN_PROP));
+        c.setStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP, "a,b,c,d");
+        assertEquals("a,b,c,d",
+                     c.getProperties().getProperty(Defn.ILLEGAL_IMPORTS_PROP));
+        c.setStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP, "a");
+        assertEquals("a",
+                     c.getProperties().getProperty(Defn.ILLEGAL_IMPORTS_PROP));
+       
     }
 }

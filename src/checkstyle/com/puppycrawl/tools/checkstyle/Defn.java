@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle;
 
 /**
  * Contains definitions common to the package.
+ * Very important that all boolean properties default to false.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
 public interface Defn
@@ -129,4 +130,87 @@ public interface Defn
     String LOCALE_LANGUAGE_PROP = "checkstyle.locale.language";
     /** property name for the locale country for reporting **/
     String LOCALE_COUNTRY_PROP = "checkstyle.locale.country";
+
+    /** All the properties that are a boolean. They all must default to false */
+    String[] ALL_BOOLEAN_PROPS = new String[]
+        {
+            ALLOW_NO_AUTHOR_PROP,
+            ALLOW_PACKAGE_PROP,
+            ALLOW_PROTECTED_PROP,
+            ALLOW_TABS_PROP,
+            HEADER_LINES_REGEXP_PROP,
+            IGNORE_BRACES_PROP,
+            IGNORE_CAST_WHITESPACE_PROP,
+            IGNORE_IMPORTS_PROP,
+            IGNORE_IMPORT_LENGTH_PROP,
+            IGNORE_LONG_ELL_PROP,
+            IGNORE_PUBLIC_IN_INTERFACE_PROP,
+            IGNORE_WHITESPACE_PROP,
+            JAVADOC_CHECK_UNUSED_THROWS_PROP,
+            REQUIRE_PACKAGE_HTML_PROP,
+            REQUIRE_VERSION_PROP,
+        };
+
+    /** All the properties that are a regulare expression */
+    String[] ALL_PATTERN_PROPS = new String[]
+        {
+            TODO_PATTERN_PROP,
+            PARAMETER_PATTERN_PROP,
+            STATIC_PATTERN_PROP,
+            CONST_PATTERN_PROP,
+            MEMBER_PATTERN_PROP,
+            PUBLIC_MEMBER_PATTERN_PROP,
+            TYPE_PATTERN_PROP,
+            LOCAL_VAR_PATTERN_PROP,
+            LOCAL_FINAL_VAR_PATTERN_PROP,
+            METHOD_PATTERN_PROP,
+            IGNORE_LINE_LENGTH_PATTERN_PROP,
+        };
+
+    /** All the integer properties */
+    String[] ALL_INT_PROPS = new String[]
+        {
+            MAX_CONSTRUCTOR_LENGTH_PROP,
+            MAX_FILE_LENGTH_PROP,
+            MAX_LINE_LENGTH_PROP,
+            MAX_METHOD_LENGTH_PROP,
+            MAX_PARAMETERS_PROP,
+            TAB_WIDTH_PROP,
+        };
+
+    /** All the block properties */
+    String[] ALL_BLOCK_PROPS = new String[]
+        {
+            TRY_BLOCK_PROP,
+            CATCH_BLOCK_PROP,
+            FINALLY_BLOCK_PROP,
+        };
+
+    /** All the String properties */
+    String[] ALL_STRING_PROPS = new String[]
+        {
+            BASEDIR_PROP,
+            CACHE_FILE_PROP,
+            HEADER_FILE_PROP,
+            LOCALE_COUNTRY_PROP,
+            LOCALE_LANGUAGE_PROP,
+        };
+
+    /** All the LeftCurlyOption properties */
+    String[] ALL_LCURLY_PROPS = new String[]
+        {
+            LCURLY_METHOD_PROP,
+            LCURLY_TYPE_PROP,
+            LCURLY_OTHER_PROP,
+        };
+
+    /**
+     * All the String Set properties. That is, set of String values that are
+     * seperated by a ",".
+     **/
+    String[] ALL_STRING_SET_PROPS = new String[]
+        {
+            ILLEGAL_IMPORTS_PROP,
+            ILLEGAL_INSTANTIATIONS_PROP,
+        };
 }

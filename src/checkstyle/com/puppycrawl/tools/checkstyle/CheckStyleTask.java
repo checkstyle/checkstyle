@@ -377,25 +377,13 @@ public class CheckStyleTask
     /** @param aPkgPrefixList comma separated list of package prefixes */
     public void setIllegalImports(final String aPkgPrefixList)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setIllegalImports(aPkgPrefixList);
-                }
-            });
+        setStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP, aPkgPrefixList);
     }
 
     /** @param aClassList comma separated list of fully qualified class names */
     public void setIllegalInstantiations(final String aClassList)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setIllegalInstantiations(aClassList);
-                }
-            });
+        setStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP, aClassList);
     }
 
     /** @param aIgnore whether to ignore whitespace **/
@@ -867,6 +855,22 @@ public class CheckStyleTask
                 public void run()
                 {
                     mConfig.setStringProperty(aName, aTo);
+                }
+            });
+    }
+
+    /**
+     * Set the specified String Set property.
+     * @param aName name of property to set
+     * @param aTo the value of the property
+     */
+    private void setStringSetProperty(final String aName, final String aTo)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setStringSetProperty(aName, aTo);
                 }
             });
     }

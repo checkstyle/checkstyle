@@ -19,7 +19,10 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
@@ -117,5 +120,38 @@ final class Utils
             CREATED_RES.put(aPattern, retVal);
         }
         return retVal;
+    }
+
+    /**
+     * Conditionally add a String to a set of properties.
+     * @param aProps the Properties to add to
+     * @param aKey the key to add the property under
+     * @param aValue if not null, then the value to add the property with
+     */
+    static void addObjectString(Properties aProps, String aKey, Object aValue)
+    {
+        if (aValue != null) {
+            aProps.put(aKey, aValue.toString());
+        }
+    }
+
+    /**
+     * Add a Set add a String to a set of properties. The Set will be encoded
+     * by seperating the Set with ",".
+     * @param aProps the Properties to add to
+     * @param aKey the key to add the property under
+     * @param aSet the Set to encode
+     */
+    static void addSetString(Properties aProps, String aKey, Set aSet)
+    {
+        final StringBuffer buf = new StringBuffer();
+        final Iterator it = aSet.iterator();
+        while (it.hasNext()) {
+            buf.append(it.next().toString());
+            if (it.hasNext()) {
+                buf.append(",");
+            }
+        }
+        aProps.put(aKey, buf.toString());
     }
 }
