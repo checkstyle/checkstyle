@@ -130,4 +130,13 @@ public class InputJavadocStyleCheck
     //private void method11()
     //{ // JavadocStyle should not report any error for this method
     //}
+
+    /**
+     * Tags for two lines.
+     * <a href="some_link"
+     * />Link Text</a>
+     */
+//     private void method12()
+//     {
+//     }
 }
