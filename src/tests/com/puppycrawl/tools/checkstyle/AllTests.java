@@ -78,7 +78,13 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.PackageHtmlCheckTest;
+
+import com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheckTest;
+
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheckTest;
@@ -135,7 +141,10 @@ public class AllTests {
         suite.addTest(new TestSuite(AvoidInlineConditionalsCheckTest.class));
         suite.addTest(new TestSuite(AvoidNestedBlocksCheckTest.class));
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
+        suite.addTest(new TestSuite(BooleanExpressionComplexityCheckTest.class));
         suite.addTest(new TestSuite(CheckerTest.class));
+        suite.addTest(new TestSuite(ClassFanOutComplexityCheckTest.class));
+        suite.addTest(new TestSuite(ClassDataAbstractionCouplingCheckTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
         suite.addTest(new TestSuite(CovariantEqualsCheckTest.class));
@@ -191,6 +200,7 @@ public class AllTests {
         suite.addTest(new TestSuite(NewlineAtEndOfFileCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceBeforeCheckTest.class));
+        suite.addTest(new TestSuite(NPathComplexityCheckTest.class));
         suite.addTest(new TestSuite(OperatorWrapCheckTest.class));
         suite.addTest(new TestSuite(OptionTest.class));
         suite.addTest(new TestSuite(PackageDeclarationCheckTest.class));

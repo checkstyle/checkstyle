@@ -27,31 +27,48 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Oliver Burn
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
+ * @author o_sukhodolsky
  */
 public final class CheckUtils
 {
-    // TODO: Make this a regex?
-    // private static final String EQUALS_METHOD_NAME = "equals";
-
     /** prevent instances */
     private CheckUtils()
     {
         throw new UnsupportedOperationException();
     }
 
-//    public static FullIdent createFullType(DetailAST typeAST) {
-//        DetailAST arrayDeclAST =
-//            typeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
-//
-//        return createFullTypeNoArrays(
-//            arrayDeclAST == null ? typeAST : arrayDeclAST);
-//    }
-//
-//    public static boolean isEqualsMethod(DetailAST detailAST) {
-//        return detailAST.findFirstToken(TokenTypes.IDENT).getText().equals(
-//            EQUALS_METHOD_NAME);
-//    }
-//
+    /**
+     * Tests whether a method definition AST defines an equals covariant.
+     * @param aAST the method definition AST to test.
+     * Precondition: aAST is a TokenTypes.METHOD_DEF node.
+     * @return true if aAST defines an equals covariant.
+     */
+    public static boolean isEqualsMethod(DetailAST aAST)
+    {
+        if (aAST.getType() != TokenTypes.METHOD_DEF) {
+            throw new IllegalArgumentException("A node must be method def");
+        }
+
+        // non-static, non-abstract?
+        final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers.branchContains(TokenTypes.LITERAL_STATIC)
+            || modifiers.branchContains(TokenTypes.ABSTRACT))
+        {
+            return false;
+        }
+
+        // named "equals"?
+        final DetailAST nameNode = aAST.findFirstToken(TokenTypes.IDENT);
+        final String name = nameNode.getText();
+        if (!"equals".equals(name)) {
+            return false;
+        }
+
+        // one parameter?
+        final DetailAST paramsNode = aAST.findFirstToken(TokenTypes.PARAMETERS);
+        return (paramsNode.getChildCount() == 1);
+    }
+
 //    public static boolean isFinal(DetailAST detailAST) {
 //        DetailAST modifiersAST =
     //detailAST.findFirstToken(TokenTypes.MODIFIERS);
@@ -66,11 +83,6 @@ public final class CheckUtils
 //    public static String getIdentText(DetailAST detailAST) {
 //        return detailAST.findFirstToken(TokenTypes.IDENT).getText();
 //    }
-//
-//    private static FullIdent createFullTypeNoArrays(DetailAST typeAST) {
-//        return FullIdent.createFullIdent((DetailAST) typeAST.getFirstChild());
-//    }
-
 
     /**
      * Returns whether a token represents an ELSE as part of an ELSE / IF set.
