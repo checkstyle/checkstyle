@@ -159,7 +159,7 @@ public final class Scope implements Comparable, Serializable
     static Scope getInstance(String aScopeName)
     {
         // canonicalize argument
-        String scopeName = aScopeName.toLowerCase();
+        final String scopeName = aScopeName.trim().toLowerCase();
 
         final Scope retVal = (Scope) NAME_TO_SCOPE.get(scopeName);
         if (retVal == null) {
