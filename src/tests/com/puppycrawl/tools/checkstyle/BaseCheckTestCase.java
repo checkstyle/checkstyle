@@ -51,12 +51,13 @@ public abstract class BaseCheckTestCase
         return c;
     }
 
-    protected DefaultConfiguration createCheckerConfig(Configuration aCheckConfig)
+    protected DefaultConfiguration createCheckerConfig(Configuration aConfig)
     {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
+        final DefaultConfiguration dc =
+            new DefaultConfiguration("configuration");
         final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
         dc.addChild(twConf);
-        twConf.addChild(aCheckConfig);
+        twConf.addChild(aConfig);
         return dc;
     }
 
