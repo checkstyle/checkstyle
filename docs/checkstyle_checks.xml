@@ -37,6 +37,7 @@
         </module>
         <module name="JavadocMethod">
             <property name="allowUndeclaredRTE" value="true"/>
+            <property name="allowThrowsTagsForSubclasses" value="true"/>
         </module>
         <module name="JavadocVariable"/>
 

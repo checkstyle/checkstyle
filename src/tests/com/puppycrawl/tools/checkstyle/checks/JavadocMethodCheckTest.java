@@ -36,6 +36,7 @@ public class JavadocMethodCheckTest
             "109:66: Expected @param tag for 'aFive'.",
             "178: Unused @throws tag for 'ThreadDeath'.",
             "179: Unused @throws tag for 'ArrayStoreException'.",
+            "236: Unused @throws tag for 'java.io.FileNotFoundException'.",
         };
 
         verify(checkConfig, getPath("InputTags.java"), expected);
@@ -69,6 +70,7 @@ public class JavadocMethodCheckTest
             "109:23: Expected @param tag for 'aOne'.",
             "109:55: Expected @param tag for 'aFour'.",
             "109:66: Expected @param tag for 'aFive'.",
+            "236: Unused @throws tag for 'java.io.FileNotFoundException'.",
         };
         verify(checkConfig, getPath("InputTags.java"), expected);
     }
@@ -163,7 +165,7 @@ public class JavadocMethodCheckTest
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
-        public void testScopeAnonInnerWithResolver()
+    public void testScopeAnonInnerWithResolver()
         throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -172,5 +174,39 @@ public class JavadocMethodCheckTest
         final String[] expected = {
         };
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+    }
+
+    public void testTagsWithSubclassesAllowed()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
+        final String[] expected = {
+            "14:5: Missing a Javadoc comment.",
+            "18: Unused @param tag for 'unused'.",
+            "24: Expected an @return tag.",
+            "33: Expected an @return tag.",
+            "40:16: Expected @throws tag for 'Exception'.",
+            "49:16: Expected @throws tag for 'Exception'.",
+            "53: Unable to get class information for @throws tag 'WrongException'.",
+            "53: Unused @throws tag for 'WrongException'.",
+            "55:16: Expected @throws tag for 'Exception'.",
+            "55:27: Expected @throws tag for 'NullPointerException'.",
+            "60:22: Expected @param tag for 'aOne'.",
+            "68:22: Expected @param tag for 'aOne'.",
+            "72: Unused @param tag for 'WrongParam'.",
+            "73:23: Expected @param tag for 'aOne'.",
+            "73:33: Expected @param tag for 'aTwo'.",
+            "78: Unused @param tag for 'Unneeded'.",
+            "79: Unused Javadoc tag.",
+            "87: Duplicate @return tag.",
+            "109:23: Expected @param tag for 'aOne'.",
+            "109:55: Expected @param tag for 'aFour'.",
+            "109:66: Expected @param tag for 'aFive'.",
+            "178: Unused @throws tag for 'ThreadDeath'.",
+            "179: Unused @throws tag for 'ArrayStoreException'.",
+        };
+        verify(checkConfig, getPath("InputTags.java"), expected);
     }
 }
