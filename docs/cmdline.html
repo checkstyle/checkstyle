@@ -13,31 +13,25 @@
 <h2>Description</h2>
 
 <p>
-This document describes how to run checkstyle using the command line tool. The 
-latest version of checkstyle can be found at <a href="http://checkstyle.sourceforge.net">http://checkstyle.sourceforge.net</a>. 
+This document describes how to run checkstyle using the command line tool. The
+latest version of checkstyle can be found at <a href="http://checkstyle.sourceforge.net">http://checkstyle.sourceforge.net</a>.
 This command line tool is included in the checkstyle distribution.
 </p>
 
 
 <h2>Installation</h2>
 <p>
-The easiest way is to include <span class="default">checkstyle-all-@ 
-CHECKSTYLE_VERSION@.jar</span> in the classpath. This contains all the classes 
-required to run checkstyle. Alternatively, you must include the following in the 
-classpath:
+The easiest way is to include <span class="default">checkstyle-all-@CHECKSTYLE_VERSION@.jar</span> in the classpath. This contains all the classes
+required to run checkstyle. Alternatively, you must include the following in the classpath:
 </p>
 <ol>
-  <li>
-    <span class="default">checkstyle-@CHECKSTYLE_VERSION@.jar</span>
-  </li>
-  <li>
-    ANTLR 2.7.1 classes. <span class="default">antlr.jar</span> is included in the 
-    distribution.
-  </li>
-  <li>
-    Jakarta Regexp 1.2 classes. <span class="default">jakarta-regexp-1.2.jar</span> 
-    is included in the distribution.
-  </li>
+  <li><span class="default">checkstyle-@CHECKSTYLE_VERSION@.jar</span></li>
+  <li>ANTLR 2.7.1 classes. <span class="default">antlr.jar</span> is included in the distribution.</li>
+  <li>Jakarta Regexp 1.2 classes. <span class="default">jakarta-regexp-1.2.jar</span> is included in the distribution.</li>
+  <li>Jakarta Commons Beanutils classes. <span class="default">commons-beanutils.jar</span> is included in the distribution.</li>
+  <li>Jakarta Commons Collections classes. <span class="default">commons-collections.jar</span> is included in the distribution.</li>
+  <li>Jakarta Commons Logging classes. <span class="default">commons-logging.jar</span> is included in the distribution.</li>
+  <li>Jakarta Commons CLI (command line interface) classes. <span class="default">commons-cli.jar</span> is included in the distribution.</li>
 </ol>
 
 
@@ -53,7 +47,7 @@ The command line usage is:
 </pre>
 
 <p>
-Checkstyle will process the specified files and by default report errors to 
+Checkstyle will process the specified files and by default report errors to
 standard out in plain format. Checkstyle requires a <a href="config.html">configuration XML file</a> that configures the
 checks to apply. Command line options are:
 </p>
@@ -65,28 +59,28 @@ checks to apply. Command line options are:
     <a href="config.html#packagenames">package names file</a> to use.
   </li>
   <li>
-    <span class="default">-f format</span> - specify the output format. Options are <span class="default"> 
-    "plain"</span> for the <a href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a> 
-    and <span class="default">"xml"</span> for the <a href="api/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>. 
+    <span class="default">-f format</span> - specify the output format. Options are <span class="default">
+    "plain"</span> for the <a href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
+    and <span class="default">"xml"</span> for the <a href="api/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>.
     Defaults to <span class="default">"plain"</span>.
   </li>
   <li>
-    <span class="default">-p propertiesFile</span> - specify a properties file to 
+    <span class="default">-p propertiesFile</span> - specify a properties file to
     use.
   </li>
   <li>
     <span class="default">-o file</span> - specify the file to output to.
   </li>
   <li>
-    <span class="default">-r dir</span> - specify the directory to traverse for Java 
+    <span class="default">-r dir</span> - specify the directory to traverse for Java
     source files.
   </li>
 </ul>
 
 <p>
 Set the properties for <a href="config.html#properties">expanded property values</a>
-by either by assigning system 
-properties using the <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to 
+by either by assigning system
+properties using the <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to
 java or specifying a property file using the <code>-p</code> option.
 If a property file is specified, the system properties are ignored.
 </p>
@@ -148,8 +142,8 @@ provide a package names file</b>
 <div class="tip">
   <h4 class="tip">Tip</h4>
   <p>
-  It is possible to run Checkstyle directly from the JAR file using the <span class="code">- 
-  jar</span> option. An example would be: 
+  It is possible to run Checkstyle directly from the JAR file using the <span class="code">-
+  jar</span> option. An example would be:
   </p>
 
   <pre>
