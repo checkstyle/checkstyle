@@ -49,7 +49,7 @@ public class Configuration
     /** the pattern to match against static names **/
     private static final String STATIC_PATTERN = "^[a-z][a-zA-Z0-9]*$";
     /** the pattern to match against constant names **/
-    private static final String CONST_PATTERN = "^[A-Z]([A-Z0-9_]*[A-Z0-9])?$";
+    private static final String CONST_PATTERN = "^[A-Z](_?[A-Z0-9]+)*$";
     /** the pattern to match against member names **/
     private static final String MEMBER_PATTERN = "^[a-z][a-zA-Z0-9]*$";
     /** the pattern to match against public member names **/
