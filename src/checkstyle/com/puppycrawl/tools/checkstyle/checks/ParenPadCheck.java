@@ -46,8 +46,8 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * &lt;config name="ParenPadCheck"/&gt;
  * </pre> 
  * <p>
- * An example of how to configure the check to require spaces for the parentheses of
- * constructor, method, and super constructor invocations is:
+ * An example of how to configure the check to require spaces for the
+ * parentheses of constructor, method, and super constructor invocations is:
  * </p>
  * <pre>
  * &lt;config name="ParenPadCheck"&gt;

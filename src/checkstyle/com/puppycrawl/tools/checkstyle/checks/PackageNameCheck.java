@@ -29,7 +29,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
  * regular expression</a>
  * and defaults to
- * <strong>^[a-z]+(\\.[a-zA-Z_][a-zA-Z_0-9]*)*$</strong>.
+ * <strong>^[a-z]+(\.[a-zA-Z_][a-zA-Z_0-9]*)*$</strong>.
+ * </p>
+ * The default format has been chosen to match the requirements in the
+ * <a href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169">
+ * Java Language specification</a> and the Sun coding conventions.
+ * However both underscores and uppercase letters are rather uncommon,
+ * so most projects should probably use
+ * <strong>^[a-z]+(\.[a-z][a-z0-9]*)*$</strong>.
  * </p>
  * <p>
  * An example of how to configure the check is:

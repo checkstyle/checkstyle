@@ -29,13 +29,44 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
+ * <p>
  * Checks the header of the source against a fixed header file.
- *
+ * </p>
  * <p>
  * Rationale: In most projects each file must have a fixed header,
  * since usually the header contains copyright information.
  * </p>
+ * <p> The header contents are specified in the file identified by property
+ * headerFile. 
+ * </p>
+ * <p>Property ignoreLines specifies the line numbers to ignore when
+ * matching lines in a header file.
+ * The property type is a comma-separated list of integers and defaults to an
+ * empty list.
+ * </p>
  *
+ * <p>This property is very useful for supporting headers that contain copyright
+ * dates. For example, consider the following header:</p>
+ *
+ * <pre>
+ * line 1: ///////////////////////////////////////////////////////////////////////
+ * line 2: // checkstyle: Checks Java source code for adherence to a set of rules.
+ * line 3: // Copyright (C) 2001  Oliver Burn
+ * line 4: ///////////////////////////////////////////////////////////////////////
+ * </pre>
+ *
+ * <p>Since the year information will change over time, you can tell checkstyle
+ * to ignore line 3 by setting property ignoreLines to <strong>3</strong>.</p>
+ * <p>
+ * An example of how to configure the check to use header file
+ * &quot;java.header&quot; and ignore lines 3 and 5 is:
+ * </p>
+ * <pre>
+ * &lt;config name="HeaderCheck"&gt;
+ *    &lt;property name="headerFile" value="java.header"/&gt;
+ *    &lt;property name="ignoreLines" value="3, 5"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  * @author Lars Kühne
  */
 public class HeaderCheck
