@@ -24,7 +24,6 @@ public class ConfigurationTest
         mProps.setProperty(Defn.BASEDIR_PROP, BASEDIR);
         mProps.setProperty(Defn.CACHE_FILE_PROP, CACHE_FILE);
         mProps.setProperty(Defn.TAB_WIDTH_PROP, "" + TAB_WIDTH);
-        mProps.setProperty(Defn.REQUIRE_PACKAGE_HTML_PROP, "true");
         mGlobalProps = new GlobalProperties(mProps, System.out);
         mConfig = new Configuration(mGlobalProps, new CheckConfiguration[0]);
         mConfig.setClassLoader(this.getClass().getClassLoader());
@@ -73,17 +72,10 @@ public class ConfigurationTest
     public void testGetProperties()
     {
         Properties props = mConfig.getProperties();
-        int expectedSize = Defn.ALL_BOOLEAN_PROPS.length
-                           + Defn.ALL_STRING_PROPS.length
+        int expectedSize = Defn.ALL_STRING_PROPS.length
                            + Defn.ALL_INT_PROPS.length;
         assertEquals("size", expectedSize, props.size());
         
-        for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
-            final String key = Defn.ALL_BOOLEAN_PROPS[i];
-            assertTrue("Missing property: " + key,
-                       props.containsKey(key));
-        }
-
         for (int i = 0; i < Defn.ALL_INT_PROPS.length; i++) {
             final String key = Defn.ALL_INT_PROPS[i];
             assertTrue("Missing property: " + key,
@@ -100,10 +92,5 @@ public class ConfigurationTest
     public void testGetTabWidth()
     {
         assertEquals(TAB_WIDTH, mConfig.getTabWidth());
-    }
-    
-    public void testIsRequirePackageHtml()
-    {
-        assertTrue(mConfig.isRequirePackageHtml());
     }
 }
