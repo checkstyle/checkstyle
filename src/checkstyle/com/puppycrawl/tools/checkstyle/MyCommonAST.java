@@ -38,7 +38,7 @@ public class MyCommonAST
     /** the column number **/
     private int mColumnNo = 0;
 
-    /** @see antlr.CommonAST **/
+    /** @see antlr.CommonAST */
     public void initialize(Token aTok)
     {
         super.initialize(aTok);
@@ -46,13 +46,13 @@ public class MyCommonAST
         mColumnNo = aTok.getColumn() - 1; // expect columns to start @ 0
     }
 
-    /** @return the line number **/
+    /** @return the line number */
     public int getLineNo()
     {
         return mLineNo;
     }
 
-    /** @return the column number **/
+    /** @return the column number */
     public int getColumnNo()
     {
         return mColumnNo;

@@ -224,7 +224,6 @@ public class CheckerTest
         final String filepath = getPath("InputTags.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":8: Missing a Javadoc comment.",
             filepath + ":14:5: Missing a Javadoc comment.",
             filepath + ":18: Unused @param tag for 'unused'.",
             filepath + ":24: Expected an @return tag.",
@@ -260,7 +259,6 @@ public class CheckerTest
         final String filepath = getPath("InputTags.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":8: Missing a Javadoc comment.",
             filepath + ":14:5: Missing a Javadoc comment.",
             filepath + ":18: Unused @param tag for 'unused'.",
             filepath + ":24: Expected an @return tag.",
@@ -294,10 +292,7 @@ public class CheckerTest
         final String filepath = getPath("InputInner.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":14: Missing a Javadoc comment.",
-            filepath + ":21: Missing a Javadoc comment.",
             filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
-            filepath + ":27: Missing a Javadoc comment.",
         };
         verify(c, filepath, expected);
     }
@@ -311,10 +306,7 @@ public class CheckerTest
         final String filepath = getPath("InputInner.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":14: Missing a Javadoc comment.",
-            filepath + ":21: Missing a Javadoc comment.",
             filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
-            filepath + ":27: Missing a Javadoc comment.",
         };
         verify(c, filepath, expected);
     }
@@ -359,13 +351,9 @@ public class CheckerTest
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":7: Missing a Javadoc comment.",
-            filepath + ":9: Missing a Javadoc comment.",
             filepath + ":12:9: Missing a Javadoc comment.",
-            filepath + ":14: Missing a Javadoc comment.",
             filepath + ":18:13: Missing a Javadoc comment.",
             filepath + ":25:13: Missing a Javadoc comment.",
-            filepath + ":34: Missing a Javadoc comment.",
             filepath + ":38:9: Missing a Javadoc comment.",
             filepath + ":49:5: Missing a Javadoc comment.",
             filepath + ":54:5: Missing a Javadoc comment.",
@@ -405,7 +393,6 @@ public class CheckerTest
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":7: Missing a Javadoc comment.",
             filepath + ":59:5: Missing a Javadoc comment.",
             filepath + ":64:5: Missing a Javadoc comment.",
             filepath + ":79:5: Missing a Javadoc comment.",
@@ -423,39 +410,8 @@ public class CheckerTest
         final String filepath = getPath("InputScopeInnerInterfaces.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":7: Missing a Javadoc comment.",
-            filepath + ":38: Missing a Javadoc comment.",
             filepath + ":43:9: Missing a Javadoc comment.",
             filepath + ":44:9: Missing a Javadoc comment."
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testScopeInnerClassesPackage()
-        throws Exception
-    {
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP,
-                           Scope.getInstance("package").getName());
-        final Checker c = createChecker();
-        final String filepath = getPath("InputScopeInnerClasses.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":18: Missing a Javadoc comment.",
-            filepath + ":20: Missing a Javadoc comment.",
-            filepath + ":22: Missing a Javadoc comment."
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testScopeInnerClassesPublic()
-        throws Exception
-    {
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.PUBLIC.getName());
-        final Checker c = createChecker();
-        final String filepath = getPath("InputScopeInnerClasses.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":18: Missing a Javadoc comment.",
         };
         verify(c, filepath, expected);
     }
