@@ -36,8 +36,7 @@ public abstract class BaseCheckTestCase
     public static DefaultConfiguration createCheckConfig(Class aClazz)
     {
         final DefaultConfiguration checkConfig =
-            new DefaultConfiguration("test");
-        checkConfig.addAttribute("classname", aClazz.getName());
+            new DefaultConfiguration(aClazz.getName());
         return checkConfig;
     }
 
