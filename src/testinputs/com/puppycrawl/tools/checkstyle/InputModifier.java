@@ -57,7 +57,7 @@ strictfp final class InputModifier // illegal order of modifiers for class
 }
 
 /** Holder for redundant 'final' check. */
-final class FinalClass
+final class RedundantFinalClass
 {
     /** redundant 'final' modifier */
     public final void finalMethod()
