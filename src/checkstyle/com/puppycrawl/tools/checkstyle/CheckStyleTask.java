@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import java.io.FileInputStream;
 import org.apache.regexp.RESyntaxException;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -62,11 +64,32 @@ public class CheckStyleTask
     private final List mFormatters = new ArrayList();
 
     /** the configuration to pass to the checker **/
-    private final Configuration mConfig = new Configuration();
+    private Configuration mConfig = new Configuration();
+
+    /** the properties **/
+    private Properties mProperties = null;
 
     ////////////////////////////////////////////////////////////////////////////
     // Setters for attributes
     ////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Sets a properties file for use instead
+     * of individually setting them
+     * @param props the properties File to use
+     */
+    public void setProperties(File props)
+    {
+        Properties mProperties = new Properties();
+        try {
+            mProperties.load(new FileInputStream(props));
+            mConfig = new Configuration(mProperties, System.out);
+        }
+        catch (Exception e) {
+            throw new BuildException(
+                "Could not find Properties file '" + props + "'", location);
+        }
+    }
 
     /**
      * Adds a set of files (nested fileset attribute).
