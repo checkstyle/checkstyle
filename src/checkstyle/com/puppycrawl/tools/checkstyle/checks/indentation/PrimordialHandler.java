@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
-
 /**
  * A default no-op handler.
  *
