@@ -110,32 +110,9 @@ public class FinalParametersCheck extends Check
     {
         if (!aParam.branchContains(TokenTypes.FINAL)) {
             final DetailAST paramName = aParam.findFirstToken(TokenTypes.IDENT);
-            final DetailAST firstNode = getFirstNode(aParam);
+            final DetailAST firstNode = CheckUtils.getFirstNode(aParam);
             log(firstNode.getLineNo(), firstNode.getColumnNo(),
                 "final.parameter", paramName.getText());
         }
-    }
-
-    /**
-     * Finds sub-node for given node minimal (line, column) pair.
-     * @param aNode the root of tree for search.
-     * @return sub-node with minimal (line, column) pair.
-     */
-    private DetailAST getFirstNode(final DetailAST aNode)
-    {
-        DetailAST currentNode = aNode;
-        DetailAST child = (DetailAST) aNode.getFirstChild();
-        while (child != null) {
-            final DetailAST newNode = getFirstNode(child);
-            if (newNode.getLineNo() < currentNode.getLineNo()
-                || (newNode.getLineNo() == currentNode.getLineNo()
-                    && newNode.getColumnNo() < currentNode.getColumnNo()))
-            {
-                currentNode = newNode;
-            }
-            child = (DetailAST) child.getNextSibling();
-        }
-
-        return currentNode;
     }
 }

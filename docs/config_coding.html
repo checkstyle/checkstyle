@@ -89,6 +89,9 @@
           <a href="#MissingSwitchDefault">MissingSwitchDefault</a>
         </li>
         <li>
+          <a href="#MultipleVariableDeclarations">MultipleVariableDeclarations</a>
+        </li>
+        <li>
           <a href="#NestedIfDepth">NestedIfDepth</a>
         </li>
         <li>
@@ -1470,6 +1473,34 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;FallThrough&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="MultipleVariableDeclarations"></a>
+      <h2>MultipleVariableDeclarations</h2> <h4>Description</h4>
+      <p class="body">
+       Checks that each variable declaration is in its own statement
+       and on its own line.
+      </p>
+      <p class="body">
+       Rationale: <a
+       href="http://java.sun.com/docs/codeconv/html/CodeConventions.doc5.html#2991">
+       the SUN Code conventions chapter 6.1</a> recommends that
+       declarations should be one per line/statement.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;MultipleVariableDeclarations&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
