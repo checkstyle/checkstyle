@@ -8,7 +8,6 @@
   <property file="${user.home}/checkstyle.buildproperties" />
 
   <property name="antlr.jar" value="lib/antlr.jar" />
-  <property name="antlr-tools.jar" value="lib/antlr-tools.jar" />
   <property name="regexp.jar" value="lib/jakarta-regexp-1.2.jar" />
   <property name="junit.jar" value="lib/junit.jar" />
   <property name="beanutils.jar" value="lib/commons-beanutils.jar" />
@@ -36,7 +35,7 @@
 
   <path id="run.classpath">
     <pathelement location="target/checkstyle" />
-    <pathelement location="${antlr-tools.jar}" />
+    <pathelement location="${antlr.jar}" />
     <path refid="build.classpath" />
   </path>
 
@@ -97,13 +96,13 @@
   <target name="build.antlr" depends="check.antlr" unless="uptodate.antlr"
           description="Conditionally compiles the grammar files">
     <java classname="antlr.Tool"
-          classpath="${antlr-tools.jar}"
+          classpath="${antlr.jar}"
           fork="yes"
           dir="${checkstyle.dir}">
       <arg value="java.g" />
     </java>
     <java classname="antlr.Tool"
-          classpath="${antlr-tools.jar}"
+          classpath="${antlr.jar}"
           fork="yes"
           dir="${checkstyle.dir}">
       <arg value="-glib" />
