@@ -4,9 +4,9 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 /**
- * Enter a description of class AllTests1.java.
+ * Test suite for all tests.
  * @author Rick Giles
- * @version 15-Nov-2002
+ * @version 22-Nov-2002
  */
 public class AllTests {
 
@@ -60,6 +60,7 @@ public class AllTests {
         suite.addTest(new TestSuite(PublicMemberNameCheckTest.class));
         suite.addTest(new TestSuite(RedundantImportCheckTest.class));
         suite.addTest(new TestSuite(RedundantModifierTest.class));
+        suite.addTest(new TestSuite(ReplaceTest.class));
         suite.addTest(new TestSuite(RightCurlyCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanExpressionCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanReturnCheckTest.class));
