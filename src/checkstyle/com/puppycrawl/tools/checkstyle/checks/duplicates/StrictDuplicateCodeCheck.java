@@ -29,7 +29,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Checks for duplicate code.
+ * Checks for duplicate code that only differs by indentation.
  *
  * <p>
  * There are many approaches for detecting duplicate code. Some involve
@@ -45,12 +45,6 @@ import org.apache.commons.logging.LogFactory;
  * corporate problem of reuse by copy and paste. Usually this leaves linebreaks
  * and variable names intact. Since we do not need to analyse a parse tree
  * our tool is not tied to a particular programming language.
- * </p>
- * <p>
- * <a href="http://www.redhillconsulting.com.au/products/simian/">Simian</a>
- * is a very good commercial duplicate code detection tool. It comes with
- * a Checkstyle module, so we encourage all users to evaluate Simian
- * as an alternative to this check.
  * </p>
  *
  * @author Lars K&uuml;hne
