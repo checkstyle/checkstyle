@@ -357,7 +357,7 @@ class Verifier
             {
                 mMessages.add(lineNo, "type.missingTag", "@author");
             }
-            if (mConfig.isRequireVersion() 
+            if (mConfig.isRequireVersion()
                 && (MATCH_JAVADOC_VERSION.grep(jd).length == 0))
             {
                 mMessages.add(lineNo, "type.missingTag", "@version");
@@ -711,8 +711,16 @@ class Verifier
         final String line = mLines[aLineNo - 1];
         final int after = aColNo - 1;
         if (after < line.length()) {
-            if (Character.isWhitespace(line.charAt(after))) {
+            if ((PadOption.NOSPACE == mConfig.getParenPadOption())
+                && (Character.isWhitespace(line.charAt(after))))
+            {
                 mMessages.add(aLineNo, after, "ws.followed", "(");
+            }
+            else if ((PadOption.SPACE == mConfig.getParenPadOption())
+                     && !Character.isWhitespace(line.charAt(after))
+                     && (line.charAt(after) != ')'))
+            {
+                mMessages.add(aLineNo, after, "ws.notFollowed", "(");
             }
         }
     }
@@ -733,10 +741,17 @@ class Verifier
         final String line = mLines[aLineNo - 1];
         final int before = aColNo - 3;
         if (before >= 0) {
-            if (Character.isWhitespace(line.charAt(before))
+            if ((PadOption.NOSPACE == mConfig.getParenPadOption())
+                && Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line))
             {
                 mMessages.add(aLineNo, before, "ws.preceeded", ")");
+            }
+            else if ((PadOption.SPACE == mConfig.getParenPadOption())
+                     && !Character.isWhitespace(line.charAt(before))
+                     && (line.charAt(before) != '('))
+            {
+                mMessages.add(aLineNo, before, "ws.notPreceeded", ")");
             }
         }
     }
