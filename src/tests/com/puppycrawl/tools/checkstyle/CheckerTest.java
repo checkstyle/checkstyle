@@ -2,7 +2,9 @@ package com.puppycrawl.tools.checkstyle;
 
 import junit.framework.TestCase;
 import org.apache.regexp.RESyntaxException;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -67,7 +69,7 @@ public class CheckerTest
     }
 
     protected Checker createChecker()
-        throws RESyntaxException, FileNotFoundException, IOException
+        throws RESyntaxException, FileNotFoundException, IOException, ParserConfigurationException, SAXException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         final Configuration config = new Configuration(mProps, mStream);
         final Checker c = new Checker(config);

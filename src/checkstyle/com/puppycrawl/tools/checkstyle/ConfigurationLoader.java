@@ -22,7 +22,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
@@ -43,7 +42,7 @@ class ConfigurationLoader
     /** parser to read XML files */
     private final XMLReader mParser;
     /** the loaded configurations */
-    private final List mCheckConfigs = new ArrayList();
+    private final ArrayList mCheckConfigs = new ArrayList();
     /** the current configuration being created */
     private CheckConfiguration mCurrent;
     /** buffer for collecting text **/
@@ -78,22 +77,16 @@ class ConfigurationLoader
      * Returns the configuration information in the last file parsed.
      * @return list of CheckConfiguration objects
      */
-    List getCheckConfigs()
+    CheckConfiguration[] getConfigs()
     {
-        return mCheckConfigs;
+        return (CheckConfiguration[]) mCheckConfigs.toArray(
+            new CheckConfiguration[mCheckConfigs.size()]);
     }
 
 
     ///////////////////////////////////////////////////////////////////////////
     // Document handler methods
     ///////////////////////////////////////////////////////////////////////////
-
-    /** @see org.xml.sax.helpers.DefaultHandler **/
-    public void startDocument()
-        throws SAXException
-    {
-        mCheckConfigs.clear();
-    }
 
     /** @see org.xml.sax.helpers.DefaultHandler **/
     public void characters(char[] aChars, int aStart, int aLength)

@@ -30,8 +30,15 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.Set;
+
 import org.apache.regexp.RESyntaxException;
+import org.xml.sax.SAXException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -51,12 +58,58 @@ public class Checker
      */
     private class SilentJava14Recognizer extends GeneratedJava14Recognizer
     {
+        // TODO: remove
         /**
          * Creates a new <code>SilentJava14Recognizer</code> instance.
          *
          * @param aLexer the tokenstream the recognizer operates on.
          */
         private SilentJava14Recognizer(GeneratedJava14Lexer aLexer)
+        {
+            super(aLexer);
+        }
+
+        /**
+         * Parser error-reporting function, does nothing.
+         * @param aRex the exception to be reported
+         */
+        public void reportError(RecognitionException aRex)
+        {
+        }
+
+        /**
+         * Parser error-reporting function, does nothing.
+         * @param aMsg the error message
+         */
+        public void reportError(String aMsg)
+        {
+        }
+
+        /**
+         * Parser warning-reporting function, does nothing.
+         * @param aMsg the error message
+         */
+        public void reportWarning(String aMsg)
+        {
+        }
+    }
+
+    /**
+     * Overrides ANTLR error reporting so we completely control
+     * checkstyle's output during parsing. This is important because
+     * we try parsing with several grammers (with/without support for
+     * <code>assert</code>). We must not write any error messages when
+     * parsing fails because with the next grammar it might succeed
+     * and the user will be confused.
+     */
+    private class NEWSilentJava14Recognizer extends Java14Recognizer
+    {
+        /**
+         * Creates a new <code>SilentJava14Recognizer</code> instance.
+         *
+         * @param aLexer the tokenstream the recognizer operates on.
+         */
+        private NEWSilentJava14Recognizer(Java14Lexer aLexer)
         {
             super(aLexer);
         }
@@ -95,6 +148,30 @@ public class Checker
     /** vector of listeners */
     private final ArrayList mListeners = new ArrayList();
 
+    // TODO: delete me
+    private final LocalizedMessages mMessages;
+
+    private final TreeWalker mWalker;
+
+    public Checker(Configuration aConfig, CheckConfiguration[] aConfigs)
+        throws ClassNotFoundException, InstantiationException,
+               IllegalAccessException
+    {
+        // TODO: document to make testing easier
+        mConfig = aConfig;
+        mCache = new PropertyCacheFile(aConfig);
+        LocalizedMessage.setLocale(new Locale(mConfig.getLocaleLanguage(),
+                                              mConfig.getLocaleCountry()));
+        mMessages = new LocalizedMessages(mConfig.getTabWidth());
+        mWalker = new TreeWalker(mMessages);
+        // TODO: improve the error handing
+        for (int i = 0; i < aConfigs.length; i++) {
+            final CheckConfiguration config = aConfigs[i];
+            mWalker.registerCheck(
+                config.createInstance(mConfig.getClassLoader()), config);
+        }
+    }
+
     /**
      * Constructs the object.
      * @param aConfig contains the configuration to check with
@@ -102,8 +179,10 @@ public class Checker
      * @throws IOException if an error occurs
      */
     public Checker(Configuration aConfig)
-        throws RESyntaxException, IOException
+        throws RESyntaxException, IOException,
+        ParserConfigurationException, SAXException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
+        // TODO: remove the dead code and make use the other constuctor
         mConfig = aConfig;
         mConfig.loadFiles();
         mCache = new PropertyCacheFile(aConfig);
@@ -111,6 +190,25 @@ public class Checker
         VerifierSingleton.setInstance(v);
         LocalizedMessage.setLocale(new Locale(mConfig.getLocaleLanguage(),
                                               mConfig.getLocaleCountry()));
+        mMessages = new LocalizedMessages(mConfig.getTabWidth());
+        // Load the check configurations
+        final ConfigurationLoader loader = new ConfigurationLoader();
+        final Set configFiles = mConfig.getCheckConfigFiles();
+        // TODO: check for null
+        for (Iterator it = configFiles.iterator(); it.hasNext();) {
+            final String fname = (String) it.next();
+            loader.parseFile(fname);
+        }
+
+        // Initialise the treewalker
+        // TODO: improve the error handing
+        mWalker = new TreeWalker(mMessages);
+        final CheckConfiguration[] configs = loader.getConfigs();
+        for (int i = 0; i < configs.length; i++) {
+            final CheckConfiguration config = configs[i];
+            mWalker.registerCheck(
+                config.createInstance(mConfig.getClassLoader()), config);
+        }
     }
 
     /** Cleans up the object **/
@@ -139,6 +237,7 @@ public class Checker
      */
     public int process(String[] aFiles)
     {
+        // TODO: delete
         int total = 0;
         fireAuditStarted();
 
@@ -152,6 +251,35 @@ public class Checker
 
         for (int i = 0; i < aFiles.length; i++) {
             total += process(aFiles[i]);
+        }
+        fireAuditFinished();
+        return total;
+    }
+
+    /**
+     * Processes a set of files.
+     * Once this is done, it is highly recommended to call for
+     * the destroy method to close and remove the listeners.
+     * @param aFiles the list of files to be audited.
+     * @return the total number of errors found
+     * @see #destroy()
+     */
+    public int processNEW(String[] aFiles)
+    {
+        // TODO: rename and blow away the old stuff
+        int total = 0;
+        fireAuditStarted();
+
+        // If you move checkPackageHtml() around beware of the caching
+        // functionality of checkstyle. Make sure that package.html
+        // checks are not skipped because of caching. Otherwise you
+        // might e.g. have a package.html file, check all java files
+        // without errors, delete package.html and then recheck without
+        // errors because the html file is not covered by the cache.
+        total += checkPackageHtml(aFiles);
+
+        for (int i = 0; i < aFiles.length; i++) {
+            total += processNEW(aFiles[i]);
         }
         fireAuditFinished();
         return total;
@@ -255,6 +383,108 @@ public class Checker
 
         fireFileFinished(stripped);
         return errors.length;
+    }
+
+    /**
+     * Processes a specified file and prints out all errors found.
+     * @return the number of errors found
+     * @param aFileName the name of the file to process
+     **/
+    private int processNEW(String aFileName)
+    {
+        // TODO: blow away the old process and rename this one
+
+        // check if already checked and passed the file
+        final File f = new File(aFileName);
+        final long timestamp = f.lastModified();
+        if (mCache.alreadyChecked(aFileName, timestamp)) {
+            return 0;
+        }
+
+        // Create a stripped down version
+        final String stripped;
+        final String basedir = mConfig.getBasedir();
+        if ((basedir == null) || !aFileName.startsWith(basedir)) {
+            stripped = aFileName;
+        }
+        else {
+            // making the assumption that there is text after basedir
+            final int skipSep = basedir.endsWith(File.separator) ? 0 : 1;
+            stripped = aFileName.substring(basedir.length() + skipSep);
+        }
+
+        mMessages.reset();
+        try {
+            fireFileStarted(stripped);
+            final String[] lines = getLines(aFileName);
+            final CommentManager cmgr = new CommentManager(lines);
+            DetailAST rootAST;
+            try {
+                // try the 1.4 grammar first, this will succeed for
+                // all code that compiles without any warnings in JDK 1.4,
+                // that should cover most cases
+                final Reader sar = new StringArrayReader(lines);
+                final Java14Lexer jl = new Java14Lexer(sar);
+                jl.setFilename(aFileName);
+                jl.setCommentManager(cmgr);
+
+                final Java14Recognizer jr =
+                    new NEWSilentJava14Recognizer(jl);
+                jr.setFilename(aFileName);
+                jr.setASTNodeClass(DetailAST.class.getName());
+                jr.compilationUnit();
+                rootAST = (DetailAST) jr.getAST();
+            }
+            catch (RecognitionException re) {
+                // Parsing might have failed because the checked
+                // file contains "assert" as an identifier. Retry with a
+                // grammar that treats "assert" as an identifier
+                // and not as a keyword
+
+                // Arghh - the pain - duplicate code!
+                final Reader sar = new StringArrayReader(lines);
+                final JavaLexer jl = new JavaLexer(sar);
+                jl.setFilename(aFileName);
+                jl.setCommentManager(cmgr);
+
+                final JavaRecognizer jr = new JavaRecognizer(jl);
+                jr.setFilename(aFileName);
+                jr.setASTNodeClass(DetailAST.class.getName());
+                jr.compilationUnit();
+                rootAST = (DetailAST) jr.getAST();
+            }
+            mWalker.walk(rootAST, lines, aFileName);
+        }
+        catch (FileNotFoundException fnfe) {
+            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
+                                               "general.fileNotFound", null));
+        }
+        catch (IOException ioe) {
+            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
+                                               "general.exception",
+                                               new String[] {ioe.getMessage()}));
+        }
+        catch (RecognitionException re) {
+            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
+                                               "general.exception",
+                                               new String[] {re.getMessage()}));
+        }
+        catch (TokenStreamException te) {
+            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
+                                               "general.exception",
+                                               new String[] {te.getMessage()}));
+        }
+
+        System.out.println("mMessages.size() = " + mMessages.size());
+        if (mMessages.size() == 0) {
+            mCache.checkedOk(aFileName, timestamp);
+        }
+        else {
+            fireErrors(stripped, mMessages.getMessages());
+        }
+
+        fireFileFinished(stripped);
+        return mMessages.size();
     }
 
     /**

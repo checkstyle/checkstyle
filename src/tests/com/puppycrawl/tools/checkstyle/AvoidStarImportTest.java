@@ -32,4 +32,20 @@ extends AbstractCheckTestCase
         verifyMessage(msgs, 2, 10, 1, "Avoid using the '.*' form of import.");
     }
 
+    public void testWithChecker()
+        throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(AvoidStarImport.class.getName());
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputImport.java");
+        final String[] expected = {
+            "7:1: Avoid using the '.*' form of import.",
+            "9:1: Avoid using the '.*' form of import.",
+            "10:1: Avoid using the '.*' form of import.",
+        };
+        verify(c, fname, expected);
+
+    }
+
 }
