@@ -115,7 +115,7 @@ public class NewlineAtEndOfFileCheck
      */
     public void setLineSeparator(String aLineSeparator)
     {
-        AbstractOption option =
+        final AbstractOption option =
             LineSeparatorOption.SYSTEM.decode(aLineSeparator);
 
         if (option == null) {
@@ -159,7 +159,7 @@ public class NewlineAtEndOfFileCheck
             args = new String[] {aEx.getMessage()};
             key = "general.exception";
         }
-        LocalizedMessage message =
+        final LocalizedMessage message =
             new LocalizedMessage(
                 0,
                 Defn.CHECKSTYLE_BUNDLE,

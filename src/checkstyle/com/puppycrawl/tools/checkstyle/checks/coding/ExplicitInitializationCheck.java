@@ -72,13 +72,14 @@ public class ExplicitInitializationCheck extends Check
         {
             return;
         }
-        DetailAST assign = aAST.findFirstToken(TokenTypes.ASSIGN);
+
+        final DetailAST assign = aAST.findFirstToken(TokenTypes.ASSIGN);
         if (assign == null) {
             // no assign - no check
             return;
         }
 
-        DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers != null
             && modifiers.branchContains(TokenTypes.FINAL))
         {
@@ -86,16 +87,17 @@ public class ExplicitInitializationCheck extends Check
             return;
         }
 
-        DetailAST type = aAST.findFirstToken(TokenTypes.TYPE);
-        DetailAST ident = aAST.findFirstToken(TokenTypes.IDENT);
-        DetailAST exprStart =
+        final DetailAST type = aAST.findFirstToken(TokenTypes.TYPE);
+        final DetailAST ident = aAST.findFirstToken(TokenTypes.IDENT);
+        final DetailAST exprStart =
             (DetailAST) assign.getFirstChild().getFirstChild();
         if (isObjectType(type)
             && exprStart.getType() == TokenTypes.LITERAL_NULL)
         {
             log(ident, "explicit.init", ident.getText(), "null");
         }
-        int primitiveType = type.getFirstChild().getType();
+
+        final int primitiveType = type.getFirstChild().getType();
         if (primitiveType == TokenTypes.LITERAL_BOOLEAN
             && exprStart.getType() == TokenTypes.LITERAL_FALSE)
         {
@@ -120,7 +122,7 @@ public class ExplicitInitializationCheck extends Check
      */
     private boolean isObjectType(DetailAST aType)
     {
-        int type = aType.getFirstChild().getType();
+        final int type = aType.getFirstChild().getType();
         return (type == TokenTypes.IDENT || type == TokenTypes.DOT
                 || type == TokenTypes.ARRAY_DECLARATOR);
     }

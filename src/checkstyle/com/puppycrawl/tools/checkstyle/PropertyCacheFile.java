@@ -69,8 +69,10 @@ final class PropertyCacheFile
             try {
                 inStream = new FileInputStream(fileName);
                 mDetails.load(inStream);
-                String cachedConfigHash = mDetails.getProperty(CONFIG_HASH_KEY);
-                String currentConfigHash = getConfigHashCode(aCurrentConfig);
+                final String cachedConfigHash =
+                    mDetails.getProperty(CONFIG_HASH_KEY);
+                final String currentConfigHash =
+                    getConfigHashCode(aCurrentConfig);
                 setInActive = false;
                 if ((cachedConfigHash == null)
                     || !cachedConfigHash.equals(currentConfigHash))
@@ -166,8 +168,8 @@ final class PropertyCacheFile
         try {
             // im-memory serialization of Configuration
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            final ObjectOutputStream oos = new ObjectOutputStream(baos);
             oos.writeObject(aConfiguration);
             oos.flush();
             oos.close();
@@ -176,7 +178,7 @@ final class PropertyCacheFile
             // use a message digest here to keep the length of the
             // hashcode reasonable
 
-            MessageDigest md = MessageDigest.getInstance("SHA");
+            final MessageDigest md = MessageDigest.getInstance("SHA");
             md.update(baos.toByteArray());
 
             return hexEncode(md.digest());

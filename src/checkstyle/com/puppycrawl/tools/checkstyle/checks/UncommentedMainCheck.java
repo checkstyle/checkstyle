@@ -145,7 +145,7 @@ public class UncommentedMainCheck
         // we are not use inner classes because they can not
         // have static methods
         if (mClassDepth == 0) {
-            DetailAST ident = aClass.findFirstToken(TokenTypes.IDENT);
+            final DetailAST ident = aClass.findFirstToken(TokenTypes.IDENT);
             mCurrentClass = mPackage.getText() + "." + ident.getText();
             mClassDepth++;
         }
@@ -190,7 +190,7 @@ public class UncommentedMainCheck
      */
     private boolean checkName(DetailAST aMethod)
     {
-        DetailAST ident = aMethod.findFirstToken(TokenTypes.IDENT);
+        final DetailAST ident = aMethod.findFirstToken(TokenTypes.IDENT);
         return "main".equals(ident.getText());
     }
 
@@ -201,7 +201,8 @@ public class UncommentedMainCheck
      */
     private boolean checkModifiers(DetailAST aMethod)
     {
-        DetailAST modifiers = aMethod.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiers =
+            aMethod.findFirstToken(TokenTypes.MODIFIERS);
 
         return modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
             && modifiers.branchContains(TokenTypes.LITERAL_STATIC);
@@ -214,7 +215,7 @@ public class UncommentedMainCheck
      */
     private boolean checkType(DetailAST aMethod)
     {
-        DetailAST type =
+        final DetailAST type =
             (DetailAST) aMethod.findFirstToken(TokenTypes.TYPE).getFirstChild();
         return type.getType() == TokenTypes.LITERAL_VOID;
     }
@@ -226,24 +227,24 @@ public class UncommentedMainCheck
      */
     private boolean checkParams(DetailAST aMethod)
     {
-        DetailAST params = aMethod.findFirstToken(TokenTypes.PARAMETERS);
+        final DetailAST params = aMethod.findFirstToken(TokenTypes.PARAMETERS);
         if (params.getChildCount() != 1) {
             return false;
         }
-        DetailAST paramType = ((DetailAST) params.getFirstChild())
+        final DetailAST paramType = ((DetailAST) params.getFirstChild())
             .findFirstToken(TokenTypes.TYPE);
-        DetailAST arrayDecl =
+        final DetailAST arrayDecl =
             paramType.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
         if (arrayDecl == null) {
             return false;
         }
 
-        DetailAST arrayType = (DetailAST) arrayDecl.getFirstChild();
+        final DetailAST arrayType = (DetailAST) arrayDecl.getFirstChild();
 
         if (arrayType.getType() == TokenTypes.IDENT
             || arrayType.getType() == TokenTypes.DOT)
         {
-            FullIdent type = FullIdent.createFullIdent(arrayType);
+            final FullIdent type = FullIdent.createFullIdent(arrayType);
             return ("String".equals(type.getText())
                     || "java.lang.String".equals(type.getText()));
         }

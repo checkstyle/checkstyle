@@ -103,7 +103,7 @@ public final class SeverityLevel implements Comparable, Serializable
      */
     public int compareTo(Object aObject)
     {
-        SeverityLevel severity = (SeverityLevel) aObject;
+        final SeverityLevel severity = (SeverityLevel) aObject;
         return this.mCode - severity.mCode;
     }
 

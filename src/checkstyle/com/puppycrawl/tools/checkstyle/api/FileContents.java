@@ -255,14 +255,14 @@ public final class FileContents implements CommentListener
             int aStartLineNo, int aStartColNo, int aEndLineNo, int aEndColNo)
     {
         // Check C comments (all comments should be checked)
-        Collection values = mCComments.values();
+        final Collection values = mCComments.values();
 
-        Iterator it = values.iterator();
+        final Iterator it = values.iterator();
         while (it.hasNext()) {
-            List row = (List) it.next();
-            Iterator rowIterator = row.iterator();
+            final List row = (List) it.next();
+            final Iterator rowIterator = row.iterator();
             while (rowIterator.hasNext()) {
-                TextBlock comment = (TextBlock) rowIterator.next();
+                final TextBlock comment = (TextBlock) rowIterator.next();
                 if (comment.intersects(
                         aStartLineNo, aStartColNo, aEndLineNo, aEndColNo))
                 {
@@ -275,7 +275,7 @@ public final class FileContents implements CommentListener
         for (int lineNumber = aStartLineNo; lineNumber <= aEndLineNo;
             lineNumber++)
         {
-            TextBlock comment =
+            final TextBlock comment =
                 (TextBlock) mCPlusPlusComments.get(new Integer(lineNumber));
             if (comment != null && comment.intersects(aStartLineNo, aStartColNo,
                 aEndLineNo, aEndColNo))

@@ -92,7 +92,7 @@ public abstract class Check extends AbstractViolationReporter
     public final void setTokens(String[] aStrRep)
     {
         for (int i = 0; i < aStrRep.length; i++) {
-            String s = aStrRep[i];
+            final String s = aStrRep[i];
             mTokens.add(s);
         }
     }

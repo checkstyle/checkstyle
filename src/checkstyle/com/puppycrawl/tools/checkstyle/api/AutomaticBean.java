@@ -154,8 +154,8 @@ public class AutomaticBean
                 // BeanUtils.copyProperties silently ignores missing setters
                 // for key, so we have to go through great lengths here to
                 // figure out if the bean property really exists.
-                PropertyDescriptor pd =
-                        PropertyUtils.getPropertyDescriptor(this, key);
+                final PropertyDescriptor pd =
+                    PropertyUtils.getPropertyDescriptor(this, key);
                 if (pd == null || pd.getWriteMethod() == null) {
                     throw new CheckstyleException(
                         "Property '" + key + "' in module "
@@ -197,7 +197,7 @@ public class AutomaticBean
 
         finishLocalSetup();
 
-        Configuration[] childConfigs = aConfiguration.getChildren();
+        final Configuration[] childConfigs = aConfiguration.getChildren();
         for (int i = 0; i < childConfigs.length; i++) {
             final Configuration childConfig = childConfigs[i];
             setupChild(childConfig);

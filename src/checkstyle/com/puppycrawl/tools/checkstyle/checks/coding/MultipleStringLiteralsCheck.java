@@ -64,28 +64,35 @@ public class MultipleStringLiteralsCheck extends Check
     /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
-        String currentString = aAST.getText();
-        ArrayList i = (ArrayList) mStringMap.get(currentString);
-        if (i == null) {
-            i = new ArrayList();
-            mStringMap.put(currentString, i);
+        final String currentString = aAST.getText();
+        ArrayList hitList = (ArrayList) mStringMap.get(currentString);
+        if (hitList == null) {
+            hitList = new ArrayList();
+            mStringMap.put(currentString, hitList);
         }
         int line = aAST.getLineNo();
         int col = aAST.getColumnNo();
-        i.add(new StringInfo(line, col));
+        hitList.add(new StringInfo(line, col));
+    }
+
+    /** {@inheritDoc} */
+    public void beginTree(DetailAST aRootAST)
+    {
+        super.beginTree(aRootAST);
+        mStringMap.clear();
     }
 
     /** {@inheritDoc} */
     public void finishTree(DetailAST aRootAST)
     {
-        Set keys = mStringMap.keySet();
-        Iterator keyIterator = keys.iterator();
+        final Set keys = mStringMap.keySet();
+        final Iterator keyIterator = keys.iterator();
         while (keyIterator.hasNext()) {
-            String key = (String) keyIterator.next();
-            ArrayList hits = (ArrayList) mStringMap.get(key);
+            final String key = (String) keyIterator.next();
+            final ArrayList hits = (ArrayList) mStringMap.get(key);
             if (hits.size() > mAllowedDuplicates) {
-                StringInfo firstFinding = (StringInfo) hits.get(0);
-                int line = firstFinding.getLine();
+                final StringInfo firstFinding = (StringInfo) hits.get(0);
+                final int line = firstFinding.getLine();
                 int col = firstFinding.getCol();
                 Object[] args = new Object[]{key, new Integer(hits.size())};
                 log(line, col, "multiple.string.literal", args);
@@ -101,11 +108,11 @@ public class MultipleStringLiteralsCheck extends Check
         /**
          * Line of finding
          */
-        private int mLine;
+        private final int mLine;
         /**
          * Column of finding
          */
-        private int mCol;
+        private final int mCol;
         /**
          * Creates information about a string position.
          * @param aLine int

@@ -180,7 +180,7 @@ public final class ConfigurationLoader
      */
     private static Map createIdToResourceNameMap()
     {
-        Map map = new HashMap();
+        final Map map = new HashMap();
         map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
         map.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
@@ -237,7 +237,7 @@ public final class ConfigurationLoader
             // figure out if this is a File or a URL
             InputStream configStream;
             try {
-                URL url = new URL(aConfig);
+                final URL url = new URL(aConfig);
                 configStream = url.openStream();
             }
             catch (MalformedURLException ex) {

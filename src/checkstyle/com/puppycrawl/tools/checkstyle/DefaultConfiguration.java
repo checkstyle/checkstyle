@@ -53,7 +53,7 @@ public final class DefaultConfiguration implements Configuration
     /** @see Configuration */
     public String[] getAttributeNames()
     {
-        Set keySet = mAttributeMap.keySet();
+        final Set keySet = mAttributeMap.keySet();
         return (String[]) keySet.toArray(new String[keySet.size()]);
     }
 

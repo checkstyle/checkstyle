@@ -156,8 +156,8 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
         final boolean foundMatch = regexp.match(aLine, aStartPosition);
         if (foundMatch) {
             // match is found, check for intersection with comment
-            int startCol = regexp.getParenStart(0);
-            int endCol = regexp.getParenEnd(0);
+            final int startCol = regexp.getParenStart(0);
+            final int endCol = regexp.getParenEnd(0);
             final FileContents fileContents = getFileContents();
             if (fileContents.hasIntersectionWithComment(aLineNumber,
                 startCol, aLineNumber, endCol))

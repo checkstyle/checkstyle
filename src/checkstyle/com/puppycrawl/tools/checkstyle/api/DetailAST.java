@@ -144,7 +144,7 @@ public final class DetailAST
         // TODO: Check visibility, could be private
         // if set in setFirstChild() and friends
         mParent = aParent;
-        DetailAST nextSibling = (DetailAST) getNextSibling();
+        final DetailAST nextSibling = (DetailAST) getNextSibling();
         if (nextSibling != null) {
             nextSibling.setParent(aParent);
         }

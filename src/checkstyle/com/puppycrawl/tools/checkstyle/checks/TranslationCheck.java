@@ -122,7 +122,7 @@ public class TranslationCheck
         try {
             // Load file and properties.
             inStream = new FileInputStream(aFile);
-            Properties props = new Properties();
+            final Properties props = new Properties();
             props.load(inStream);
 
             // Gather the keys and put them into a set
@@ -195,7 +195,7 @@ public class TranslationCheck
             // Remaining elements in the key set are missing in the current file
             if (!keysClone.isEmpty()) {
                 for (Iterator it = keysClone.iterator(); it.hasNext();) {
-                    Object key = it.next();
+                    final Object key = it.next();
                     log(0, "translation.missingKey", key);
                 }
             }

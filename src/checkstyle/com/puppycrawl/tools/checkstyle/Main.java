@@ -259,7 +259,7 @@ public final class Main
     /** Prints the usage information. **/
     private static void usage()
     {
-        HelpFormatter hf = new HelpFormatter();
+        final HelpFormatter hf = new HelpFormatter();
         hf.printHelp(
             "java "
                 + Main.class.getName()
@@ -298,7 +298,7 @@ public final class Main
      */
     private static Properties loadProperties(File aFile)
     {
-        Properties properties = new Properties();
+        final Properties properties = new Properties();
         try {
             FileInputStream fis = null;
             fis = new FileInputStream(aFile);

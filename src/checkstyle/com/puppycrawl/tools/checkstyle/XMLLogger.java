@@ -166,7 +166,7 @@ public class XMLLogger
     {
         final StringBuffer sb = new StringBuffer();
         for (int i = 0; i < aValue.length(); i++) {
-            char c = aValue.charAt(i);
+            final char c = aValue.charAt(i);
             switch (c) {
             case '<':
                 sb.append("&lt;");
@@ -181,7 +181,7 @@ public class XMLLogger
                 sb.append("&quot;");
                 break;
             case '&':
-                int nextSemi = aValue.indexOf(";", i);
+                final int nextSemi = aValue.indexOf(";", i);
                 if ((nextSemi < 0)
                     || !isReference(aValue.substring(i, nextSemi + 1)))
                 {

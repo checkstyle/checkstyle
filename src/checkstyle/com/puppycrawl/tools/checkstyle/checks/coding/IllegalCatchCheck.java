@@ -65,10 +65,10 @@ public final class IllegalCatchCheck extends Check
     /** @see Check */
     public void visitToken(DetailAST aDetailAST)
     {
-        DetailAST paramDef =
+        final DetailAST paramDef =
             aDetailAST.findFirstToken(TokenTypes.PARAMETER_DEF);
-        DetailAST excType = paramDef.findFirstToken(TokenTypes.TYPE);
-        FullIdent ident = CheckUtils.createFullType(excType);
+        final DetailAST excType = paramDef.findFirstToken(TokenTypes.TYPE);
+        final FullIdent ident = CheckUtils.createFullType(excType);
 
         if (isIllegalClassName(ident.getText())) {
             log(aDetailAST, "illegal.catch", ident.getText());
@@ -93,11 +93,12 @@ public final class IllegalCatchCheck extends Check
     {
         mIllegalClassNames.clear();
         for (int i = 0; i < aClassNames.length; i++) {
-            String name = aClassNames[i];
+            final String name = aClassNames[i];
             mIllegalClassNames.add(name);
-            int lastDot = name.lastIndexOf(".");
+            final int lastDot = name.lastIndexOf(".");
             if (lastDot > 0 && lastDot < (name.length() - 1)) {
-                String shortName = name.substring(name.lastIndexOf(".") + 1);
+                final String shortName =
+                    name.substring(name.lastIndexOf(".") + 1);
                 mIllegalClassNames.add(shortName);
             }
         }

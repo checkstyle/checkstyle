@@ -128,7 +128,7 @@ public final class CheckUtils
      */
     public static FullIdent createFullType(DetailAST aTypeAST)
     {
-        DetailAST arrayDeclAST =
+        final DetailAST arrayDeclAST =
             aTypeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
 
         return createFullTypeNoArrays(arrayDeclAST == null ? aTypeAST

@@ -90,7 +90,7 @@ public class RightCurlyCheck
             rcurly = aAST.getLastChild().getLastChild();
         }
         else if (aAST.getType() == TokenTypes.LITERAL_TRY) {
-            DetailAST firstChild = (DetailAST) aAST.getFirstChild();
+            final DetailAST firstChild = (DetailAST) aAST.getFirstChild();
             nextToken = (DetailAST) firstChild.getNextSibling();
             rcurly = firstChild.getLastChild();
         }
