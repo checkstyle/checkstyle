@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<title>Checkstyle Release Notes</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+<body>
+
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td>
+      <h1>Checkstyle Release Notes</h1>
+    </td>
+    <td align="right">
+      <img src="logo.png" alt="Checkstyle Logo">
+    </td>
+  </tr>
+</table>
+
+<!-- content -->
+<table border="0" width="100%" cellpadding="5" summary="body layout">
+  <tr>
+    <!--Left menu-->
+    <td valign="top" align="left" nowrap="true" bgcolor="#EEEEEE">
+      <p>Checkstyle 2</p>
+      <ul>
+	<li><a href="#release2_2">Release 2.2</a></li>
+	<li><a href="#release2_1">Release 2.1</a></li>
+	<li><a href="#release2_0">Release 2.0</a></li>
+      </ul>
+    </td>
+
+    <!--Content-->
+    <td width="100%" valign="top" align="left">
+
+      <a name="release2_2"></a>
+      <h2>Release 2.2</h2>
+      <p class="body">
+        Resolved bugs:
+        <ul>
+	  <li class="body">Checkstyle reported unused @throws tag for multiple declaration of the same Exception. According to the <a href="http://developer.java.sun.com/developer/bugParade/bugs/4525364.html">Java BugParade</a> this is incorrect, multiple @throws tags for the same exception are OK (Bug 540384).</li>
+	  <li class="body">The Cache was not invalidated upon parameter change (Bug 522282).</li>
+          <li class="body">The documentation of the command line property names did not list the property checkstyle.allow.tabs (Bug 529975).</li>
+	</ul>
+      </p>
+
+      <p class="body">
+        New features:
+        <ul>
+	  <li class="body">Support for JDK 1.4 assert statements (Feature request 500122).</li>
+          <li class="body">Regexp-disable line-length checking (Feature request 524650).</li>
+          <li class="body">Disallow import of package hierarchies, e.g. sun.* (Feature request 531229).</li>
+          <li class="body">Warn about public modifier in interface method declarations, as indicated in chapter 9.4 of the JLS (Feature request 537107).</li>
+          <li class="body">Check order of modifiers against the standard order in the JLS, sections 8.1.1, 8.3.1 and 8.4.3 (Feature request 514033).</li>
+          <li class="body">failureProperty in ANT task (Feature request 534038).</li>
+          <li class="body">ANT task failureProperty (Feature request 534038).</li>
+          <li class="body">ANT task supports configuration through a property file (Patch 531230 + enhancements).</li>
+          <li class="body">Commandline frontend supports -r "dir" option that will find all Java files contained in a specified directory (Feature request 545128).</li>
+          <li class="body">New contrib directory, contains XSL stylesheets for formating checkstyle's XML output (contributions by multiple authors).</li>
+          <li class="body">Error messages now contain the column number for better Emacs integration (Feature request 515787).</li>
+          <li class="body">Check for whitespace around '()' (Feature request 498879).</li>
+	</ul>
+      </p>
+
+
+      <a name="release2_1"></a>
+      <h2>Release 2.1</h2>
+      <p class="body">
+        New features:
+        <ul>
+        </ul>
+      </p>
+
+      <a name="release2_0"></a>
+      <h2>Release 2.0</h2>
+      <p class="body">
+	License change, Checkstyle is now licensed under the LGPL.
+      </p>
+
+    </td>
+  </tr>
+</table>
+<hr>
+</body> </html>
