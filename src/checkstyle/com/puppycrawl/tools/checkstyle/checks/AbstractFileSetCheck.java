@@ -28,7 +28,10 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 /**
  * Provides common functionality for many FileSetChecks.
  * TODO: maybe this should be a public class and go into the api package?
- * TODO: shouldn't be public if it stays in this package
+ * TODO: shouldn't be public if it stays in this package.
+ * (oliver here) I think this class should remain public, even if it stays in
+ * this package. That said, it should be in the API package.
+ * 
  * @author lkuehne
  */
 public abstract class AbstractFileSetCheck implements FileSetCheck
