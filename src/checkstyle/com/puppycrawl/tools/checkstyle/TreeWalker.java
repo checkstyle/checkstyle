@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -32,17 +33,17 @@ import java.util.Set;
 
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.Context;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -119,11 +120,32 @@ public final class TreeWalker
     private Context mChildContext;
 
     /**
+     * HACK - a reference to a private "mParent" field in DetailAST.
+     * Don't do this at home!
+     */
+    private Field mDetailASTmParent;
+
+    /**
      * Creates a new <code>TreeWalker</code> instance.
      */
     public TreeWalker()
     {
         mMessages = new LocalizedMessages();
+
+        // TODO: I (lkuehne) can't believe I wrote this! HACK HACK HACK!
+
+        // the parent relationship should really be managed by the DetailAST
+        // itself but ANTLR calls setFirstChild and friends in an
+        // unpredictable way. Introducing this hack for now to make
+        // DetailsAST.setParent() private...
+        try {
+            mDetailASTmParent = DetailAST.class.getDeclaredField("mParent");
+            // this will fail in environments with security managers
+            mDetailASTmParent.setAccessible(true);
+        }
+        catch (NoSuchFieldException e) {
+            mDetailASTmParent = null;
+        }
     }
 
     /** @param aTabWidth the distance between tab stops */
@@ -314,11 +336,30 @@ public final class TreeWalker
 
          // empty files are not flagged by javac, will yield aAST == null
         if (aAST != null) {
-            aAST.setParent(null);
+            setParent(aAST, null); // TODO: Manage parent in DetailAST
             process(aAST);
         }
 
         notifyEnd();
+    }
+
+    /**
+     * Sets the parent of an AST.
+     * @param aChildAST the child that gets a new parent
+     * @param aParentAST the new parent
+     */
+    // TODO: remove this method and manage parent in DetailAST
+    private void setParent(DetailAST aChildAST, DetailAST aParentAST)
+    {
+        // HACK
+        try {
+            mDetailASTmParent.set(aChildAST, aParentAST);
+        }
+        catch (IllegalAccessException iae) {
+            // can't happen because method has been made accesible
+            throw new RuntimeException();
+        }
+        // End of HACK
     }
 
     /**
@@ -364,7 +405,7 @@ public final class TreeWalker
 
         final DetailAST child = (DetailAST) aAST.getFirstChild();
         if (child != null) {
-            child.setParent(aAST);
+            setParent(child, aAST); // TODO: Manage parent in DetailAST
             process(child);
         }
 
@@ -372,7 +413,7 @@ public final class TreeWalker
 
         final DetailAST sibling = (DetailAST) aAST.getNextSibling();
         if (sibling != null) {
-            sibling.setParent(aAST.getParent());
+            setParent(sibling, aAST.getParent()); // TODO: Manage parent ...
             process(sibling);
         }
 

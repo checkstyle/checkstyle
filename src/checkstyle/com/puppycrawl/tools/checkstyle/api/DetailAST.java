@@ -109,7 +109,9 @@ public final class DetailAST
      * Set the parent token.
      * @param aParent the parent token
      */
-    public void setParent(DetailAST aParent)
+    // TODO: should be private but that breaks the DetailASTTest
+    // until we manage parent in DetailAST instead of externally
+    void setParent(DetailAST aParent)
     {
         // TODO: Check visibility, could be private
         // if set in setFirstChild() and friends
