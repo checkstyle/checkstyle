@@ -269,19 +269,6 @@ class Verifier
 
 
     /**
-     * Report that a statement should be using a compound statement
-     * (that is, {}'s).
-     * @param aStmt the token for the statement
-     */
-    void reportNeedBraces(Token aStmt)
-    {
-        if (!mConfig.isIgnoreBraces()) {
-            mMessages.add(aStmt.getLine(), "needBraces", aStmt.getText());
-        }
-    }
-
-
-    /**
      * Verify that no whitespace after an AST.
      * @param aAST the AST to check
      **/

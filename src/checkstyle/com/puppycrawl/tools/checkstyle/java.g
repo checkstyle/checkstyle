@@ -573,9 +573,9 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 	|	ii:"if"^ LPAREN! expression RPAREN! statement[stmtType, stmtBraces]
         {
             aType[0] = STMT_IF;
-            if (stmtType[0] != STMT_COMPOUND) {
-                ver.reportNeedBraces(ii);
-            }
+//            if (stmtType[0] != STMT_COMPOUND) {
+//                ver.reportNeedBraces(ii);
+//            }
         }
 		(
 			// CONFLICT: the old "dangling-else" problem...
@@ -591,9 +591,9 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
             }
             statement[stmtType, stmtBraces]
             {
-                if (stmtType[0] == STMT_OTHER) {
-                    ver.reportNeedBraces(ee);
-                }
+//                if (stmtType[0] == STMT_OTHER) {
+//                    ver.reportNeedBraces(ee);
+//                }
             }
 		)?
 
@@ -608,25 +608,25 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
         {
             ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);
             ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON, ")");
-            if (stmtType[0] != STMT_COMPOUND) {
-                ver.reportNeedBraces(ff);
-            }
+//            if (stmtType[0] != STMT_COMPOUND) {
+//                ver.reportNeedBraces(ff);
+//            }
         }
 
 	// While statement
 	|	ww:"while"^ LPAREN! expression RPAREN! statement[stmtType, stmtBraces]
         {
-            if (stmtType[0] != STMT_COMPOUND) {
-                ver.reportNeedBraces(ww);
-            }
+//            if (stmtType[0] != STMT_COMPOUND) {
+//                ver.reportNeedBraces(ww);
+//            }
         }
 
 	// do-while statement
 	|	dd:"do"^ statement[stmtType, stmtBraces] dw:"while"! LPAREN! expression RPAREN! SEMI!
         {
-            if (stmtType[0] != STMT_COMPOUND) {
-                ver.reportNeedBraces(dd);
-            }
+//            if (stmtType[0] != STMT_COMPOUND) {
+//                ver.reportNeedBraces(dd);
+//            }
         }
 
 	// get out of a loop (or switch)
