@@ -498,6 +498,48 @@ class Verifier
         }
     }
 
+    /**
+     * Verifies that the '.' as the location specified by aAST follows the
+     * following rules:
+     * 1. It is not preceeded with whitespace, or all characters on the line
+     *    before are whitespace;
+     * 2. It is not followed by whitespace, or all characters on the line
+     *    after are whitespace;
+     * @param aAST specified the location of the dot.
+     **/
+    void verifyDot(MyCommonAST aAST)
+    {
+        if (mConfig.isIgnoreWhitespace()) {
+            return;
+        }
+
+        final String line = mLines[aAST.getLineNo() - 1];
+
+        // check before
+        final int before = aAST.getColumnNo() - 1;
+        if ((before >= 0) && Character.isWhitespace(line.charAt(before))) {
+            // verify all characters before '.' are whitespace
+            for (int i = 0; i < before; i++) {
+                if (!Character.isWhitespace(line.charAt(i))) {
+                    log(aAST.getLineNo(), "'.' is preceeded with whitespace.");
+                    break;
+                }
+            }
+        }
+
+        // check after
+        final int after = aAST.getColumnNo() + 1;
+        if ((after < line.length())
+            && Character.isWhitespace(line.charAt(after)))
+        {
+            for (int i = after + 1; i < line.length(); i++) {
+                if (!Character.isWhitespace(line.charAt(i))) {
+                    log(aAST.getLineNo(), "'.' is followed by whitespace.");
+                    break;
+                }
+            }
+        }
+    }
 
     /**
      * Verify that whitespace IS after a specified column.
