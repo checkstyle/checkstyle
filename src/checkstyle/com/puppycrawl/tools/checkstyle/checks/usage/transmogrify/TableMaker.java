@@ -409,6 +409,9 @@ public void processAssert(SymTabAST tree) {
    */
   public void processImplicitPackage( File file ) {
     String name = file.getParent();
+    if (name == null) {
+        name = "";
+    }
     PackageDef pkg = symbolTable.getPackage( name );
 
     if ( pkg == null ) {
