@@ -132,7 +132,7 @@ public class XMLLoggerTest extends TestCase
         logger.addError(ev);
         logger.auditFinished(null);
         final String[] expectedLines =
-            {"<error line=\"1\" column=\"1\" severity=\"warning\" message=\"key\"/>"};
+            {"<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\"/>"};
         verifyLines(expectedLines);
     }
 
