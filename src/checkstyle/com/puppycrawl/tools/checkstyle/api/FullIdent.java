@@ -51,10 +51,20 @@ public class FullIdent
         return mColNo;
     }
 
+    /**
+     * Append the specified text.
+     * @param aText the text to append
+     */
     public void append(String aText)
     {
         mBuffer.append(".");
     }
+
+    /**
+     * Append the specified token and also recalibrate the first line and
+     * column.
+     * @param aAST the token to append
+     */
     public void append(DetailAST aAST)
     {
         mBuffer.append(aAST.getText());
@@ -73,6 +83,11 @@ public class FullIdent
         }
     }
 
+    /**
+     * Creates a new FullIdent starting from the specified node.
+     * @param aAST the node to start from
+     * @return a <code>FullIdent</code> value
+     */
     public static FullIdent createFullIdent(DetailAST aAST)
     {
         final FullIdent fi = new FullIdent();
@@ -80,6 +95,12 @@ public class FullIdent
         return fi;
     }
 
+    /**
+     * Recursively extract a FullIdent.
+     *
+     * @param aFull the FullIdent to add to
+     * @param aAST the node to recurse from
+     */
     public static void extractFullIdent(FullIdent aFull, DetailAST aAST)
     {
         // A guard to be paranoid
