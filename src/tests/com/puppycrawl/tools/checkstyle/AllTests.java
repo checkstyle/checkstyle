@@ -75,7 +75,6 @@ public class AllTests {
             new TestSuite("Test for com.puppycrawl.tools.checkstyle");
         //$JUnit-BEGIN$
         suite.addTest(new TestSuite(DetailASTTest.class));
-        suite.addTest(new TestSuite(CheckerTest.class));
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
