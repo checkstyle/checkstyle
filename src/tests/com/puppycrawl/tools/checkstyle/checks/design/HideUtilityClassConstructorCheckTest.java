@@ -1,5 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import java.io.File;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
@@ -25,6 +27,15 @@ public class HideUtilityClassConstructorCheckTest
         final String[] expected = {
         };
         verify(checkConfig, getPath("InputDesignForExtension.java"), expected);
+    }
+
+    public void testDerivedNonUtilClass() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HideUtilityClassConstructorCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("design" + File.separator + "InputNonUtilityClass.java"), expected);
     }
 
 }

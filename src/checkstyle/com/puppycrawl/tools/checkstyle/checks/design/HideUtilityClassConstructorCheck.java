@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class HideUtilityClassConstructorCheck extends Check
 {
@@ -78,7 +78,18 @@ public class HideUtilityClassConstructorCheck extends Check
 
         final boolean hasAccessibleCtor = (hasDefaultCtor || hasPublicCtor);
 
-        if (hasMethod && !hasNonStaticMethod && hasAccessibleCtor) {
+        // figure out if class extends java.lang.object directly
+        // keep it simple for now and get a 99% solution
+        // TODO: check for "extends java.lang.Object" and "extends Object"
+        // consider "import org.omg.CORBA.*"
+        final DetailAST extendsClause =
+                aAST.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
+        final boolean extendsJLO = // J.Lo even made it into in our sources :-)
+                extendsClause.getFirstChild() == null;
+
+        if (extendsJLO
+                && hasMethod && !hasNonStaticMethod && hasAccessibleCtor)
+        {
             log(aAST.getLineNo(), aAST.getColumnNo(),
                 "Utility classes should not have "
                 + "a public or default constructor.");
