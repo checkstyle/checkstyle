@@ -13,7 +13,6 @@
       <package name="duplicates"/>
       <package name="imports"/>
       <package name="indentation"/>
-      <package name="j2ee"/>
       <package name="javadoc"/>
       <package name="metrics"/>
       <package name="naming"/>
