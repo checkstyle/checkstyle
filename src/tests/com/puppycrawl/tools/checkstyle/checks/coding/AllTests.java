@@ -32,6 +32,7 @@ public class AllTests {
         suite.addTest(new TestSuite(InnerAssignmentCheckTest.class));
         suite.addTest(new TestSuite(JUnitTestCaseCheckTest.class));
         suite.addTest(new TestSuite(MagicNumberCheckTest.class));
+        suite.addTest(new TestSuite(MissingCtorCheckTest.class));
         suite.addTest(new TestSuite(MissingSwitchDefaultCheckTest.class));
         suite.addTest(new TestSuite(NestedIfDepthCheckTest.class));
         suite.addTest(new TestSuite(NestedTryDepthCheckTest.class));
