@@ -58,8 +58,6 @@ public class Configuration
         PATTERN_DEFAULTS.put(Defn.MEMBER_PATTERN_PROP, "^[a-z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.PUBLIC_MEMBER_PATTERN_PROP,
                              "^f[A-Z][a-zA-Z0-9]*$");
-        PATTERN_DEFAULTS.put(Defn.LOCAL_VAR_PATTERN_PROP,
-                             "^[a-z][a-zA-Z0-9]*$");
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -347,18 +345,6 @@ public class Configuration
     RE getPublicMemberRegexp()
     {
         return getRegexpProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP);
-    }
-
-    /** @return pattern to match local variables **/
-    String getLocalVarPat()
-    {
-        return getPatternProperty(Defn.LOCAL_VAR_PATTERN_PROP);
-    }
-
-    /** @return regexp to match local variables **/
-    RE getLocalVarRegexp()
-    {
-        return getRegexpProperty(Defn.LOCAL_VAR_PATTERN_PROP);
     }
 
     /** @return the maximum constructor length **/
