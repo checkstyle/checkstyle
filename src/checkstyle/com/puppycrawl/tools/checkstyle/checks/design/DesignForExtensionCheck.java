@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class DesignForExtensionCheck extends Check
 {
@@ -81,9 +81,13 @@ public class DesignForExtensionCheck extends Check
             return;
         }
 
-        // method is ok if it is empty
-        DetailAST implemetation = aAST.findFirstToken(TokenTypes.SLIST);
-        if (implemetation.getFirstChild().getType() == TokenTypes.RCURLY) {
+        // method is ok if it is implementation can verified to be empty
+        // Note: native methods don't have impl in java code, so
+        // implementation can be null even if method not abstract
+        DetailAST implementation = aAST.findFirstToken(TokenTypes.SLIST);
+        if (implementation != null
+            && implementation.getFirstChild().getType() == TokenTypes.RCURLY)
+        {
             return;
         }
 
