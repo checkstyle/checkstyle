@@ -5,6 +5,8 @@
 
 <module name="Checker">
 
+    <property name="severity" value="error"/>
+
     <module name="PackageHtml"/>
 
     <module name="Translation"/>
