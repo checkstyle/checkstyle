@@ -41,6 +41,7 @@ public class AllTests {
         suite.addTest(new TestSuite(ParameterAssignmentCheckTest.class));
         suite.addTest(new TestSuite(RedundantThrowsCheckTest.class));
         suite.addTest(new TestSuite(ReturnCountCheckTest.class));
+        suite.addTest(new TestSuite(RequireThisCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanExpressionCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanReturnCheckTest.class));
         suite.addTest(new TestSuite(StringLiteralEqualityCheckTest.class));
