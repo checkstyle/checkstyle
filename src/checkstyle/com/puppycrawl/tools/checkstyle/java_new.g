@@ -1031,7 +1031,7 @@ WS	:	(	' '
 
 // Single-line comments
 SL_COMMENT
-	:	"//" { mFileContents.reportCPPComment(getLine(), getColumn() - 3); }
+	:	"//" { mFileContents.reportCppComment(getLine(), getColumn() - 3); }
 		(~('\n'|'\r'))* ('\n'|'\r'('\n')?)
 		{$setType(Token.SKIP); newline();}
 	;
