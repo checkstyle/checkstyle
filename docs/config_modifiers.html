@@ -23,41 +23,17 @@
     <td class="menu" valign="top">
       <ul>
         <li>
-          <a href="#FinalClass">FinalClass</a>
-        </li>
-        <li>
           <a href="#ModifierOrder">ModifierOrder</a>
         </li>
         <li>
           <a href="#RedundantModifier">RedundantModifier</a>
         </li>
-        <li>
-          <a href="#VisibilityModifier">VisibilityModifier</a>
-        </li>
       </ul>
     </td>
     <!--Content-->
-    <td class="content" valign="top" align="left"><a name="FinalClass"></a><h2>FinalClass</h2>
+    <td class="content" valign="top" align="left">
 
-    <p class="body">
-    Checks that a class which has only private constructors is declared as final.
-    </p>
-      <h4>Example</h4>
-      <p class="body">
-      To configure the check:
-      </p>
-      <pre class="body">
-&lt;module name=&quot;FinalClass&quot;/&gt;
-      </pre>
-      <h4>Package</h4>
-      <p class="body">
-      com.puppycrawl.tools.checkstyle.checks
-      </p>
-      <h4>Parent Module</h4>
-      <p class="body">
-      <a href="config.html#treewalker">TreeWalker</a>
-      </p>
-<a name="ModifierOrder"></a> <h2>ModifierOrder</h2>
+      <!-- --><a name="ModifierOrder"></a> <h2>ModifierOrder</h2>
       <h4>Description</h4>
 
       <p class="body">
@@ -178,87 +154,6 @@ Language specification, section 9.3</a>).
       </p>
 
 
-      <a name="VisibilityModifier"></a><h2>VisibilityModifier</h2>
-      <p class="body">
-      Checks visibility of class members. Only static final members
-      may be public; other class members must be private unless
-      property <span class="code">protectedAllowed</span> or <span
-      class="code">packageAllowed</span> is set.
-      </p>
-
-      <p class="body">
-      Public members are not flagged if the name matches the public
-      member regular expression (contains <span
-      class="code">"^serialVersionUID$"</span> by default).  Note:
-      Checkstyle 2 used to include <span
-      class="code">"^f[A-Z][a-zA-Z0-9]*$"</span> in the default
-      pattern to allow CMP for EJB 1.1 with the default settings.
-      With EJB 2.0 it is not longer necessary to have public access
-      for persistent fields, hence the default has been changed.
-      </p>
-      <p class="body">
-      Rationale: Enforce encapsulation.
-      </p>
-
-
-      <h4>Properties</h4>
-      <table width="100%" border="1" cellpadding="5" class="body">
-        <tr class="header">
-          <th>name</th>
-          <th>description</th>
-          <th>type</th>
-          <th>default value</th>
-        </tr>
-        <tr>
-          <td>packageAllowed</td>
-          <td>whether package visible members are allowed</td>
-          <td><a href="property_types.html#boolean">boolean</a></td>
-          <td><span class="default">false</span></td>
-        </tr>
-        <tr>
-          <td>protectedAllowed</td>
-          <td>whether protected members are allowed</td>
-          <td><a href="property_types.html#boolean">boolean</a></td>
-          <td><span class="default">false</span></td>
-        </tr>
-        <tr>
-          <td>publicMemberPattern</td>
-          <td>pattern for public members that should be ignored</td>
-          <td><a href="property_types.html#regexp">regular expression</a></td>
-          <td><span class="default">^serialVersionUID$</span></td>
-        </tr>
-      </table>
-      <h4>Examples</h4>
-      <p class="body">
-      To configure the check:
-      </p>
-      <pre class="body">
-&lt;module name=&quot;VisibilityModifier&quot;/&gt;
-      </pre>
-      <p class="body">
-      To configure the check so that it allows package visible members:
-      </p>
-      <pre class="body">
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-    &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-      </pre>
-      <p class="body">
-      To configure the check so that it allows no public members:
-      </p>
-      <pre class="body">
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-    &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
-&lt;/module&gt;
-      </pre>
-      <h4>Package</h4>
-      <p class="body">
-      com.puppycrawl.tools.checkstyle.checks
-      </p>
-      <h4>Parent Module</h4>
-      <p class="body">
-      <a href="config.html#treewalker">TreeWalker</a>
-      </p>
     </td>
   </tr>
 </table>
