@@ -55,13 +55,13 @@
         <li>
           <a href="#AvoidInlineConditionals">AvoidInlineConditionals</a>
         </li>
-        <hr/><font color="red">docs missing for:</font>
         <li>
           <a href="#InterfaceIsType">InterfaceIsType</a>
         </li>
         <li>
           <a href="#HideUtilityClassConstructor">HideUtilityClassConstructor</a>
         </li>
+        <hr/><font color="red">docs missing for:</font>
         <li>
           <a href="#DesignForInheritance">DesignForInheritance</a>
         </li>
@@ -511,16 +511,108 @@ String b = (a==null || a.length<1) ? null : a.substring(1);
       Rationale: Some developers find inline conditionals hard to read,
       so their company's coding standards forbids them.
       </p>
-      <p class="body">
-	  Rationale: Some developers find inline conditionals hard to read,
-      so their company's coding standards forbids them.
-      </p>
       <h4>Examples</h4>
       <p class="body">
       To configure the check:
       </p>
       <pre class="body">
 &lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="InterfaceIsType"></a> <h2>InterfaceIsType</h2> <h4>Description</h4>
+      <p class="body">
+  	  Implements Bloch, Effective Java, Item 17 -
+      Use Interfaces only to define types.
+      </p>
+
+      <p class="body">
+      According to Bloch, an interface should describe a <em>type</em>.
+      It is therefore inappropriate to define an interface that does not
+      contain any methods but only constants. The Standard class
+      <a href="http://java.sun.com/j2se/1.4.1/docs/api/javax/swing/SwingConstants.html">javax.swing.SwingConstants</a>
+      is an example of a class that would be flagged by this check.
+      </p>
+
+      <p class="body">
+      The check can be configured to also disallow marker interfaces like
+      <code>java.io.Serializable</code>, that do not contain methods or
+      constants at all.
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>allowMarkerInterfaces</td>
+          <td>Controls whether marker interfaces like Serializable are allowed.</td>
+          <td><a href="property_types.html#boolean">Boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;InterfaceIsType&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="HideUtilityClassConstructor"></a> <h2>HideUtilityClassConstructor</h2> <h4>Description</h4>
+      <p class="body">
+      Make sure that utility classes (classes that contain only static methods)
+      do not have a public constructor.
+      </p>
+      <p class="body">
+      Rationale: Instantiating utility classes does not make sense.
+      Hence the constructors should either be private or (if you
+      want to allow subclassing) protected. A common mistake is forgetting
+      to hide the default constructor.
+      </p>
+      <p class="body">
+      If you make the constructor protected you may want to consider
+      the following constructor implementation technique to disallow
+      instantiating subclasses:
+      </p>
+      <pre class="body">
+public class StringUtils // not final to allow subclassing
+{
+    protected StringUtils() {
+        throw new UnsupportedOperationException(); // prevents calls from subclass
+    }
+
+    public int count(char c, String s) {
+        // ...
+    }
+}
+      </pre>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;HideUtilityClassConstructor&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
