@@ -31,6 +31,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Arrays;
+import java.io.Reader;
+
+import antlr.RecognitionException;
+import antlr.TokenStreamException;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -41,6 +45,51 @@ import java.util.Arrays;
  */
 class TreeWalker
 {
+    /**
+     * Overrides ANTLR error reporting so we completely control
+     * checkstyle's output during parsing. This is important because
+     * we try parsing with several grammers (with/without support for
+     * <code>assert</code>). We must not write any error messages when
+     * parsing fails because with the next grammar it might succeed
+     * and the user will be confused.
+     */
+    private static class SilentJava14Recognizer
+        extends GeneratedJava14Recognizer
+    {
+        /**
+         * Creates a new <code>SilentJava14Recognizer</code> instance.
+         *
+         * @param aLexer the tokenstream the recognizer operates on.
+         */
+        private SilentJava14Recognizer(GeneratedJava14Lexer aLexer)
+        {
+            super(aLexer);
+        }
+
+        /**
+         * Parser error-reporting function, does nothing.
+         * @param aRex the exception to be reported
+         */
+        public void reportError(RecognitionException aRex)
+        {
+        }
+
+        /**
+         * Parser error-reporting function, does nothing.
+         * @param aMsg the error message
+         */
+        public void reportError(String aMsg)
+        {
+        }
+
+        /**
+         * Parser warning-reporting function, does nothing.
+         * @param aMsg the error message
+         */
+        public void reportWarning(String aMsg)
+        {
+        }
+    }
     // TODO: really need to optimise the performance of this class.
 
     /** maps from token name to checks */
@@ -235,5 +284,53 @@ class TreeWalker
                 check.leaveToken(aAST);
             }
         }
+    }
+
+    /**
+     *
+     * @param aContents contains the contents of the file
+     * @return the root of the AST
+     * @throws TokenStreamException if lexing failed
+     * @throws RecognitionException if parsing failed
+     */
+    public static DetailAST parse(FileContents aContents)
+        throws TokenStreamException, RecognitionException
+    {
+        DetailAST rootAST;
+        try {
+            // try the 1.4 grammar first, this will succeed for
+            // all code that compiles without any warnings in JDK 1.4,
+            // that should cover most cases
+            final Reader sar = new StringArrayReader(aContents.getLines());
+            final GeneratedJava14Lexer jl = new GeneratedJava14Lexer(sar);
+            jl.setFilename(aContents.getFilename());
+            jl.setFileContents(aContents);
+
+            final GeneratedJava14Recognizer jr =
+                new SilentJava14Recognizer(jl);
+            jr.setFilename(aContents.getFilename());
+            jr.setASTNodeClass(DetailAST.class.getName());
+            jr.compilationUnit();
+            rootAST = (DetailAST) jr.getAST();
+        }
+        catch (RecognitionException re) {
+            // Parsing might have failed because the checked
+            // file contains "assert" as an identifier. Retry with a
+            // grammar that treats "assert" as an identifier
+            // and not as a keyword
+
+            // Arghh - the pain - duplicate code!
+            final Reader sar = new StringArrayReader(aContents.getLines());
+            final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
+            jl.setFilename(aContents.getFilename());
+            jl.setFileContents(aContents);
+
+            final GeneratedJavaRecognizer jr = new GeneratedJavaRecognizer(jl);
+            jr.setFilename(aContents.getFilename());
+            jr.setASTNodeClass(DetailAST.class.getName());
+            jr.compilationUnit();
+            rootAST = (DetailAST) jr.getAST();
+        }
+        return rootAST;
     }
 }
