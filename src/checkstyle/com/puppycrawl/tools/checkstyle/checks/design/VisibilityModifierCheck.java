@@ -138,8 +138,8 @@ public class VisibilityModifierCheck
         }
 
         final DetailAST varNameAST = getVarNameAST(aAST);
-        String varName = varNameAST.getText();
-        boolean inInterfaceBlock = inInterfaceBlock(aAST);
+        final String varName = varNameAST.getText();
+        final boolean inInterfaceBlock = inInterfaceBlock(aAST);
         final Set mods = getModifiers(aAST);
         final String declaredScope = getVisibilityScope(mods);
         final String variableScope =
@@ -227,7 +227,7 @@ public class VisibilityModifierCheck
     {
         final String[] explicitModifiers = {"public", "private", "protected"};
         for (int i = 0; i < explicitModifiers.length; i++) {
-            String candidate = explicitModifiers[i];
+            final String candidate = explicitModifiers[i];
             if (aModifiers.contains(candidate)) {
                 return candidate;
             }

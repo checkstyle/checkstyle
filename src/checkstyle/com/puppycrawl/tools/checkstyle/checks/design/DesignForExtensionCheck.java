@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class DesignForExtensionCheck extends Check
 {
@@ -73,7 +73,7 @@ public class DesignForExtensionCheck extends Check
         }
 
         // method is ok if it is private or abstract or final
-        DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
             || modifiers.branchContains(TokenTypes.ABSTRACT)
             || modifiers.branchContains(TokenTypes.FINAL)
@@ -91,7 +91,7 @@ public class DesignForExtensionCheck extends Check
         // method is ok if it is implementation can verified to be empty
         // Note: native methods don't have impl in java code, so
         // implementation can be null even if method not abstract
-        DetailAST implementation = aAST.findFirstToken(TokenTypes.SLIST);
+        final DetailAST implementation = aAST.findFirstToken(TokenTypes.SLIST);
         if (implementation != null
             && implementation.getFirstChild().getType() == TokenTypes.RCURLY)
         {
@@ -99,14 +99,15 @@ public class DesignForExtensionCheck extends Check
         }
 
         // check if the containing class can be subclassed
-        DetailAST classDef = findContainingClass(aAST);
-        DetailAST classMods = classDef.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST classDef = findContainingClass(aAST);
+        final DetailAST classMods =
+            classDef.findFirstToken(TokenTypes.MODIFIERS);
         if (classMods.branchContains(TokenTypes.FINAL)) {
             return;
         }
 
         // check if subclassing is prevented by having only private ctors
-        DetailAST objBlock = classDef.findFirstToken(TokenTypes.OBJBLOCK);
+        final DetailAST objBlock = classDef.findFirstToken(TokenTypes.OBJBLOCK);
 
         boolean hasDefaultConstructor = true;
         boolean hasExplNonPrivateCtor = false;
@@ -117,7 +118,7 @@ public class DesignForExtensionCheck extends Check
             if (candidate.getType() == TokenTypes.CTOR_DEF) {
                 hasDefaultConstructor = false;
 
-                DetailAST ctorMods =
+                final DetailAST ctorMods =
                     candidate.findFirstToken(TokenTypes.MODIFIERS);
                 if (!ctorMods.branchContains(TokenTypes.LITERAL_PRIVATE)) {
                     hasExplNonPrivateCtor = true;
@@ -128,7 +129,7 @@ public class DesignForExtensionCheck extends Check
         }
 
         if (hasDefaultConstructor || hasExplNonPrivateCtor) {
-            String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
+            final String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
             log(aAST.getLineNo(), aAST.getColumnNo(),
                 "design.forExtension", name);
         }

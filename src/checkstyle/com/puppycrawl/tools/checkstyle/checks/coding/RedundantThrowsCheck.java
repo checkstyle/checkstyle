@@ -136,7 +136,7 @@ public class RedundantThrowsCheck
     private void checkException(FullIdent aExc, List aKnownExcs)
     {
         // Let's try to load class.
-        ClassInfo newClassInfo = new ClassInfo(aExc);
+        final ClassInfo newClassInfo = new ClassInfo(aExc);
 
         if (!mAllowUnchecked) {
             if (isUnchecked(newClassInfo.getClazz())) {

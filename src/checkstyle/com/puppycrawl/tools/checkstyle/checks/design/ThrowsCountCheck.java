@@ -105,7 +105,7 @@ public final class ThrowsCountCheck extends Check
     private void visitLiteralThrows(DetailAST aAST)
     {
         // Account for all the commas!
-        int count = (aAST.getChildCount() + 1) / 2;
+        final int count = (aAST.getChildCount() + 1) / 2;
         if (count > getMax()) {
             log(aAST.getLineNo(),  aAST.getColumnNo(), "throws.count",
                 new Integer(count), new Integer(getMax()));
