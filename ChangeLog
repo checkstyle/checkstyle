@@ -1,3 +1,9 @@
+2001-08-17  Oliver Burn  <oliver@cortexebusiness.com.au>
+
+	* src/tests/com/puppycrawl/tools/checkstyle/CheckerTest.java:
+	Automagically locate the files from the classpath. Neat patch from
+	Stephane Bailliez [stephane DOT bailliez AT wanadoo DOT fr].
+
 2001-08-06  Oliver Burn  <oliver-work@puppycrawl.com>
 
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/Main.java: Now destroys
