@@ -26,6 +26,7 @@ import java.io.LineNumberReader;
 import java.io.ObjectInputStream;
 import java.io.PrintStream;
 import java.io.Serializable;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -36,6 +37,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
+
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
@@ -84,8 +86,6 @@ public class Configuration
     /** visibility scope where Javadoc is checked **/
     private Scope mJavadocScope = Scope.PRIVATE;
 
-    /** the name of the header file **/
-    private String mHeaderFile;
     /** the header lines to check for **/
     private transient String[] mHeaderLines = {};
 
@@ -95,6 +95,9 @@ public class Configuration
      **/
     private transient ClassLoader mLoader =
         Thread.currentThread().getContextClassLoader();
+
+    /** the root directory for relative paths **/
+    private File mRootDir;
 
     /** the lines in the header to ignore */
     private TreeSet mHeaderIgnoreLineNo = new TreeSet();
@@ -191,7 +194,6 @@ public class Configuration
                                                 Defn.WRAP_OP_PROP,
                                                 WrapOpOption.NL,
                                                 aLog));
-        setHeaderFile(aProps.getProperty(Defn.HEADER_FILE_PROP));
 
         // Initialise the general properties
         for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
@@ -259,8 +261,10 @@ public class Configuration
         // initialize the transient fields
         mLoader = Thread.currentThread().getContextClassLoader();
         mRegexps = new HashMap();
-        // reset the header file to re-read the lines
-        setHeaderFile(mHeaderFile);
+
+        // load the file to re-read the lines
+        loadFiles();
+
         try {
             // Loop on the patterns creating the RE's
             final Iterator keys = mPatterns.keySet().iterator();
@@ -277,6 +281,15 @@ public class Configuration
         }
     }
 
+    /**
+     * Loads the files specified by properties.
+     * @throws IOException if an error occurs
+     */
+    void loadFiles()
+        throws IOException
+    {
+        loadHeaderFile();
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     // Getters
@@ -298,7 +311,6 @@ public class Configuration
                               mParenPadOption.toString());
         Utils.addObjectString(retVal, Defn.WRAP_OP_PROP,
                               mWrapOpOption.toString());
-        Utils.addObjectString(retVal, Defn.HEADER_FILE_PROP, mHeaderFile);
 
         for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
             final String key = Defn.ALL_BOOLEAN_PROPS[i];
@@ -649,15 +661,28 @@ public class Configuration
         return mHeaderIgnoreLineNo.contains(new Integer(aLineNo));
     }
 
-    /** @return the name of the cache file **/
+    /** @return the File of the cache file **/
     public String getCacheFile()
     {
-        return getStringProperty(Defn.CACHE_FILE_PROP);
+        final String fname = getStringProperty(Defn.CACHE_FILE_PROP);
+        return (fname == null) ? null : getAbsoluteFilename(fname);
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // Setters
     ////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Set the root directory for files.
+     * @param aRoot the root directory
+     */
+    public void setRootDir(File aRoot)
+    {
+        if ((aRoot == null) || !aRoot.isDirectory() || !aRoot.isAbsolute()) {
+            throw new IllegalArgumentException("Invalid root directory");
+        }
+        mRootDir = aRoot;
+    }
 
     /**
      * Set the class loader for locating classes.
@@ -719,24 +744,22 @@ public class Configuration
     }
 
     /**
-     * @param aFileName the header lines to check for
+     * Attempts to load the contents of a header file
      * @throws FileNotFoundException if an error occurs
      * @throws IOException if an error occurs
      */
-    private void setHeaderFile(String aFileName)
+    private void loadHeaderFile()
         throws FileNotFoundException, IOException
     {
-        // TODO: Need to fix bug that relative paths are not handled. Need to
-        // be given an absolute path to add to paths. This is needed for
-        // all properties that specified paths (headerFile, baseDir).
-
+        final String fname = getStringProperty(Defn.HEADER_FILE_PROP);
         // Handle a missing property, or an empty one
-        if ((aFileName == null) || (aFileName.trim().length() == 0)) {
+        if ((fname == null) || (fname.trim().length() == 0)) {
             return;
         }
 
+        // load the file
         final LineNumberReader lnr =
-            new LineNumberReader(new FileReader(aFileName));
+            new LineNumberReader(new FileReader(getAbsoluteFilename(fname)));
         final ArrayList lines = new ArrayList();
         while (true) {
             final String l = lnr.readLine();
@@ -746,7 +769,24 @@ public class Configuration
             lines.add(l);
         }
         mHeaderLines = (String[]) lines.toArray(new String[0]);
-        mHeaderFile = aFileName;
+    }
+
+    /**
+     * @return the absolute file name for a given filename. If the passed
+     * filename is absolute, then that is returned. If the setRootDir() was
+     * called, that is used to caluclate the absolute path. Otherise, the
+     * absolute path of the given filename is returned (this behaviour cannot
+     * be determined).
+     *
+     * @param aFilename the filename to make absolute
+     */
+    private String getAbsoluteFilename(String aFilename)
+    {
+        File f = new File(aFilename);
+        if (!f.isAbsolute() && (mRootDir != null)) {
+            f = new File(mRootDir, aFilename);
+        }
+        return f.getAbsolutePath();
     }
 
     /**
