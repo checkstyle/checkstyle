@@ -1305,10 +1305,12 @@ class Verifier
                 // TODO: Need write unit tests.
                 boolean reqd = true;
                 if (mConfig.isEnableCheckUnusedThrows()) {
+                    final ClassResolver cr = new ClassResolver(
+                        Thread.currentThread().getContextClassLoader(),
+                        mPkgName, mImports);
                     try {
-                        reqd = !Utils.isRuntimeException(
-                            tag.getArg1(),
-                            this.getClass().getClassLoader());
+                        reqd = !RuntimeException.class.isAssignableFrom(
+                            cr.resolve(tag.getArg1()));
                     }
                     catch (ClassNotFoundException e) {
                         log(tag.getLineNo(),
