@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE module [
+<!ELEMENT module (module|property|xi:include)*>
+<!ATTLIST module name NMTOKEN #REQUIRED>
+
+<!ELEMENT xi:include EMPTY>
+<!ATTLIST xi:include
+    href CDATA #REQUIRED
+    xmlns:xi CDATA #REQUIRED
+>
+
+<!ELEMENT property EMPTY>
+<!ATTLIST property
+    name NMTOKEN #REQUIRED
+    value CDATA #REQUIRED
+    default CDATA #IMPLIED
+>
+
+]>
+<module name="Checker">
+    <module name="TreeWalker">
+        <xi:include
+            href="T:/checkstyle/test/xiinclude/treewalker.xml"
+            xmlns:xi="http://www.w3.org/2003/XInclude"/>
+    </module>
+</module>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>XInclude Processing</title>
+  <link rel="stylesheet" type="text/css" href="../../../docs/mystyle.css"/>
+</head>
+
+<body>
+<h1>XInclude Processing</h1>
+<h3>Description</h3>
+<p>This is an example of how you can separate a Checkstyle configuration file
+into several files and process the configuration using
+<a href="http://www.w3.org/TR/2003/WD-xinclude-20031110/">XInclude processing</a>.
+This requires a SAX parser that supports XML namespaces.
+First we give an example a SAX parser factory that produces parsers supporting XML namespaces
+and indicate how to configure your system to use this factory.
+Then we give an example XML configuration files with XInclude processing and
+an ant target that uses the <a href="../../../docs/anttask.html">Checkstyle ant task</a>
+to check a Java source file with the configuration files. 
+</p>
+<h3>Parsers</h3>
+<p>SAX parser factory <a href="NamespacesSAXParserFactoryImpl.java"><span class="code">NamespacesSAXParserFactoryImpl</span></a>
+is an example of a factory that produces parsers
+supporting XML namespaces:
+<pre>
+package com.puppycrawl.tools.checkstyle;
+
+import org.apache.xerces.jaxp.SAXParserFactoryImpl;
+
+/**
+ * A parser factory that produces parsers that support XML namespaces. 
+ * @author Rick Giles
+ * @version May 28, 2004
+ */
+public class NamespacesSAXParserFactoryImpl extends SAXParserFactoryImpl
+{
+    /**
+     * Constructs a NamespacesSAXParserFactoryImpl. Initializes
+     * it to produce parsers that support XML namespaces. 
+     */
+    public NamespacesSAXParserFactoryImpl()
+    {
+        super();
+        setNamespaceAware(true);
+    }
+}
+</pre>
+</p>
+<p>
+In order to use <span class="code">NamespacesSAXParserFactoryImpl</span> as the
+SAX parser factory, place <span class="code">NamespacesSAXParserFactoryImpl</span>
+in the classpath and
+<a href="http://java.sun.com/j2se/1.4.2/docs/api/javax/xml/parsers/SAXParserFactory.html#newInstance()">configure your system</a>
+to load
+<span class="code">NamespacesSAXParserFactoryImpl</span>
+as the <span class="code">SAXParserFactory</span>.
+For example, you can create a file called <span class="code">jaxp.properties</span> 
+in the lib subdirectory of the JRE installation with contents
+<pre>
+javax.xml.parsers.SAXParserFactory=com.puppycrawl.tools.checkstyle.NamespacesSAXParserFactoryImpl
+</pre> 
+</p>  
+<p>
+XInclude processing requires an XML parser that implements XML inclusions.
+Here we use the <a href="http://xml.apache.org/xerces2-j/index.html">Xerces parser</a>
+that is in the ant distribution. In order
+to <a href="http://xml.apache.org/xerces2-j/faq-xinclude.html">enable Xinclude processing</a>,
+you can change the parser configuration by creating a file called <span class="code">xerces.properties</span> 
+in the lib subdirectory of the JRE installation with contents
+<pre>
+org.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration
+</pre>
+<h3>Checkstyle Configuration</h3>
+</p> 
+<p>The Checkstyle configuration of this example is in two files.
+File <a href="config.xml"><span class="code">config.xml</span></a> has an internal DTD that supports
+<span class="code">xi:include</span> elements: 
+<pre>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE module [
+&lt;!ELEMENT module (module|property|xi:include)*&gt;
+&lt;!ATTLIST module name NMTOKEN #REQUIRED&gt;
+
+&lt;!ELEMENT xi:include EMPTY&gt;
+&lt;!ATTLIST xi:include
+    href CDATA #REQUIRED
+    xmlns:xi CDATA #REQUIRED
+&gt;
+
+&lt;!ELEMENT property EMPTY&gt;
+&lt;!ATTLIST property
+    name NMTOKEN #REQUIRED
+    value CDATA #REQUIRED
+    default CDATA #IMPLIED
+&gt;
+]&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;xi:include
+            href=&quot;treewalker.xml&quot;
+            xmlns:xi=&quot;http://www.w3.org/2003/XInclude&quot;/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+</pre>
+</p>
+<p>
+The configuration in <span class="code">config.xml</span> includes a second
+configuration file, <a href="treewalker.xml"><span class="code">treewalker.xml</span></a>, that applies
+the <span class="code">TypeName</span> module:
+<pre>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE module PUBLIC
+    &quot;-//Puppy Crawl//DTD Check Configuration 1.2//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/configuration_1_2.dtd&quot;&gt;
+&lt;module name=&quot;TypeName&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;${typename.format}&quot;/&gt;
+&lt;/module&gt;
+</pre>
+</p>
+<p>
+Notice that the configuration of <span class="code">treewalker.xml</span>
+applies property <span class="code">${typename.format}</span>.
+That propery is set in the following segment of an ant build file that uses the
+Checkstyle ant task to check file <span class="code">InputHeader.java</span>
+with the configuration of <span class="code">config.xml</span>:
+<pre>
+    &lt;taskdef
+        resource=&quot;checkstyletask.properties&quot;
+        classpath=&quot;/path/to/checkstyle-all-@CHECKSTYLE_VERSION@.jar&quot; /&gt;
+    &lt;target name=&quot;checkstyle&quot; description=&quot;run checkstyle&quot;&gt;
+        &lt;checkstyle file=&quot;InputHeader.java&quot; config=&quot;config.xml&quot;&gt;
+            &lt;property key=&quot;typename.format&quot; value=&quot;xyz&quot; /&gt;
+        &lt;/checkstyle&gt;
+    &lt;/target&gt;
+</pre>
+</p>
+</body>
+</html>
