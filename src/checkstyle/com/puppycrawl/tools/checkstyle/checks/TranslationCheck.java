@@ -32,9 +32,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Enumeration;
 
-import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
-
-
 /**
  * The TranslationCheck class helps to ensure the correct translation of code by
  * checking property files for consistency regarding their keys.
@@ -46,8 +43,12 @@ import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
  */
 public class TranslationCheck extends AbstractFileSetCheck
 {
+    /**
+     * Filter for properties files.
+     */
     private static class PropertyFileFilter implements FileFilter
     {
+        /** @see FileFilter */
         public boolean accept(File pathname)
         {
             return pathname.getPath().endsWith(".properties");
@@ -56,8 +57,8 @@ public class TranslationCheck extends AbstractFileSetCheck
 
     /**
      * Gets the basename (the unique prefix) of a property file. For example
-     * "messages" is the basename of "messages.properties", "messages_de_AT.properties",
-     * "messages_en.properties", etc.
+     * "messages" is the basename of "messages.properties",
+     * "messages_de_AT.properties", "messages_en.properties", etc.
      *
      * @param fileName the file name
      * @return the extracted basename
@@ -102,7 +103,8 @@ public class TranslationCheck extends AbstractFileSetCheck
 
 
     /**
-     * Searches for all files with suffix ".properties" in the given set of directories.
+     * Searches for all files with suffix ".properties" in the
+     * given set of directories.
      * @param dirs the file set to search in
      * @return the property files
      */
@@ -145,7 +147,8 @@ public class TranslationCheck extends AbstractFileSetCheck
             }
         }
         catch (FileNotFoundException e) {
-            System.out.println("The file " + file.getName() + " could not be found!");
+            System.out.println(
+                    "The file " + file.getName() + " could not be found!");
         }
         catch (IOException e) {
             System.out.println("IOException occured");
@@ -163,9 +166,8 @@ public class TranslationCheck extends AbstractFileSetCheck
 
 
     /**
-     * Compares the key sets of the given property files (arranged in a map) with the
-     * specified key set. If a key out of this set misses in any file key set an error
-     * message is written on the standard output.
+     * Compares the key sets of the given property files (arranged in a map)
+     * with the specified key set. All missing keys are reported.
      * @param keys the set of keys to compare with
      * @param fileMap a Map from property files to their key sets
      * @return the number of inconsistencies detected
@@ -200,11 +202,13 @@ public class TranslationCheck extends AbstractFileSetCheck
 
 
     /**
-     * This method tests whether the given property files
-     * (arranged by their prefixes in a Map) contain the proper keys.
+     * Tests whether the given property files (arranged by their prefixes
+     * in a Map) contain the proper keys.
      *
      * Each group of files must have the same keys. If this is not the case
-     * an error message is posted giving information which key misses in which file.
+     * an error message is posted giving information which key misses in
+     * which file.
+     *
      * @param propFiles the property files organized as Map
      * @return the number of inconsistencies detected
      */
@@ -213,14 +217,12 @@ public class TranslationCheck extends AbstractFileSetCheck
         int res = 0;
         Set keySet = propFiles.keySet();
 
-        // Go through all property file sets
         for (Iterator iterator = keySet.iterator(); iterator.hasNext();) {
             String baseName = (String) iterator.next();
             Set files = (Set) propFiles.get(baseName);
 
-            // If there are at least two files in one set start comparing them
             if (files.size() >= 2) {
-                // Collect all keys in a set and save files and corresponding keys in a map construct
+                // build a map from files to the keys they contain
                 Set keys = new HashSet();
                 Map fileMap = new HashMap();
 
@@ -231,8 +233,7 @@ public class TranslationCheck extends AbstractFileSetCheck
                     fileMap.put(file, fileKeys);
                 }
 
-                // Go through all files and compare their keys,
-                // sum up the number of errors
+                // check the map for consistency
                 res = res + compareKeySets(keys, fileMap);
             }
         }
@@ -247,7 +248,7 @@ public class TranslationCheck extends AbstractFileSetCheck
      * Two property files which have the same prefix should use the same
      * keys. If this is not the case the missing keys are reported.
      *
-     * @see FileSetCheck
+     * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
      */
     public int process(File[] files)
     {

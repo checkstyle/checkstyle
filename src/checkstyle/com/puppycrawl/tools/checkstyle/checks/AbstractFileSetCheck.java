@@ -44,7 +44,8 @@ abstract class AbstractFileSetCheck implements FileSetCheck
      * @param aFiles s set of files
      * @return the set of parent directories of the given files
      */
-    protected Set getParentDirs(File[] aFiles) {
+    protected Set getParentDirs(File[] aFiles)
+    {
         Set directories = new HashSet();
         for (int i = 0; i < aFiles.length; i++) {
             File file = aFiles[i];
