@@ -63,6 +63,7 @@ public class EmptyBlockCheck extends Check
             return;
         }
 
+        // TODO: port BlockOption.TEXT
         if (aAST.getChildCount() == 0) {
             DetailAST parent = aAST.getParent();
             String parentText = parent.getText();
