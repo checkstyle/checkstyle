@@ -165,7 +165,7 @@ public class Checker
      * @return the total number of errors found
      * @see #destroy()
      */
-    public int process(String[] aFiles)
+    public int process(File[] aFiles)
     {
         int total = 0;
         fireAuditStarted();
@@ -179,34 +179,34 @@ public class Checker
     /**
      * Processes a specified file and prints out all errors found.
      * @return the number of errors found
-     * @param aFileName the name of the file to process
+     * @param aFile the file to process
      **/
-    private int process(String aFileName)
+    private int process(File aFile)
     {
         // check if already checked and passed the file
-        final File f = new File(aFileName);
-        final long timestamp = f.lastModified();
-        if (mCache.alreadyChecked(aFileName, timestamp)) {
+        final String fileName = aFile.getPath();
+        final long timestamp = aFile.lastModified();
+        if (mCache.alreadyChecked(fileName, timestamp)) {
             return 0;
         }
 
         // Create a stripped down version
         final String stripped;
         final String basedir = mConfig.getBasedir();
-        if ((basedir == null) || !aFileName.startsWith(basedir)) {
-            stripped = aFileName;
+        if ((basedir == null) || !fileName.startsWith(basedir)) {
+            stripped = fileName;
         }
         else {
             // making the assumption that there is text after basedir
             final int skipSep = basedir.endsWith(File.separator) ? 0 : 1;
-            stripped = aFileName.substring(basedir.length() + skipSep);
+            stripped = fileName.substring(basedir.length() + skipSep);
         }
 
         mMessages.reset();
         try {
             fireFileStarted(stripped);
-            final String[] lines = Utils.getLines(aFileName);
-            final FileContents contents = new FileContents(aFileName, lines);
+            final String[] lines = Utils.getLines(fileName);
+            final FileContents contents = new FileContents(fileName, lines);
             final DetailAST rootAST = parse(contents);
             mWalker.walk(rootAST, contents, mConfig.getClassLoader());
         }
@@ -232,7 +232,7 @@ public class Checker
         }
 
         if (mMessages.size() == 0) {
-            mCache.checkedOk(aFileName, timestamp);
+            mCache.checkedOk(fileName, timestamp);
         }
         else {
             fireErrors(stripped, mMessages.getMessages());

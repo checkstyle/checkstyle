@@ -334,7 +334,7 @@ public class CheckStyleTask
             }
 
             // Process the files
-            final String[] files = scanFileSets();
+            final File[] files = scanFileSets();
             final int numErrs = c.process(files);
 
             // Handle the return status
@@ -424,14 +424,14 @@ public class CheckStyleTask
      * returns the list of files (full path name) to process.
      * @return the list of files included via the filesets.
      */
-    protected String[] scanFileSets()
+    protected File[] scanFileSets()
     {
         final ArrayList list = new ArrayList();
         if (mFileName != null) {
             // oops we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
-            list.add(mFileName);
+            list.add(new File(mFileName));
         }
         for (int i = 0; i < mFileSets.size(); i++) {
             final FileSet fs = (FileSet) mFileSets.get(i);
@@ -446,11 +446,11 @@ public class CheckStyleTask
             for (int j = 0; j < names.length; j++) {
                 final String pathname =
                     ds.getBasedir() + File.separator + names[j];
-                list.add(pathname);
+                list.add(new File(pathname));
             }
         }
 
-        return (String[]) list.toArray(new String[0]);
+        return (File[]) list.toArray(new File[0]);
     }
 
     /**

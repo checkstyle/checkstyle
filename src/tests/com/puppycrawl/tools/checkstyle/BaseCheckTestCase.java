@@ -54,7 +54,7 @@ public abstract class BaseCheckTestCase
         throws Exception
     {
         mStream.flush();
-        final int errs = aC.process(new String[] {aFilename});
+        final int errs = aC.process(new File[] {new File(aFilename)});
 
         // process each of the lines
         final ByteArrayInputStream bais =
