@@ -157,7 +157,6 @@ public abstract class Check
      */
     public void init()
     {
-
     }
 
     /**
