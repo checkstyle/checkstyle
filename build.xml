@@ -14,6 +14,7 @@
   <property name="beanutils.jar" value="lib/commons-beanutils.jar" />
   <property name="collections.jar" value="lib/commons-collections.jar" />
   <property name="logging.jar" value="lib/commons-logging.jar" />
+  <property name="clover.lib" location="/apps/clover-1.0/lib"/>
 
   <property name="checkstyle.dir"
             value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
@@ -50,6 +51,7 @@
 
   <path id="tests.runpath">
     <pathelement location="target/tests" />
+    <pathelement path="${clover.lib}/clover.jar"/>
     <path refid="tests.buildpath" />
   </path>
 
@@ -548,4 +550,37 @@
   <!-- Added for GUMP testing -->
   <target name="gump" depends="build.bindist,build.srcdist,run.tests"
           description="Runs the test for GUMP testing"/>
+
+  <!-- Added for Clover testing -->
+    <property name="clover.initstring" location="/tmp/mycoverage.db"/>
+    <property name="clover.excludes" value="**/CheckStyleTas*,**/Generated*.java,**/Java*Recognizer.java,**/Java*Lexer.java,**/Java*TokenTypes.java,**/gui/*"/>
+
+    <target name="with.clover">
+        <echo>Need to setup the location for the database</echo>
+        <property name="build.compiler"
+                  value="org.apache.tools.ant.taskdefs.CloverCompilerAdapter"/>
+    </target>
+
+    <path id="clover.classpath">
+        <pathelement path="${clover.lib}/clover.jar"/>
+        <pathelement path="${clover.lib}/velocity.jar"/>
+    </path>
+
+    <target name="clover.viewer">
+        <java classname="com.cortexeb.tools.clover.reporters.jfc.Viewer"
+              fork="yes">
+            <arg line="${clover.initstring}"/>
+            <classpath refid="clover.classpath"/>
+        </java>
+    </target>
+
+    <target name="clover.report">
+        <echo>Need to customise report location</echo>
+        <java classname="com.cortexeb.tools.clover.reporters.html.HtmlReporter"
+              fork="true">
+            <arg line="--outputdir /tmp/clover_html --showSrc --initstring ${clover.initstring} --title 'Checkstyle Project'"/>
+            <classpath refid="clover.classpath"/>
+        </java>
+    </target>
+
 </project>
