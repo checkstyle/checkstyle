@@ -240,8 +240,26 @@
     </checkstyle>
   </target>
 
-  <target name="checkstyle.style" depends="checkstyle.checkstyle"
+  <target name="checkstyle.style" depends="compile.checkstyle"
           description="Runs checkstyle against it's own sources to test generation of error reports">
+    <taskdef name="checkstyle"
+             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+      <classpath refid="run.classpath"/>
+    </taskdef>
+    <delete file="target/cachefile" />
+
+    <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
+    <property name="check.config" location="docs/checkstyle_checks.xml"/>
+    <checkstyle failonviolation="false" config="${check.config}">
+      <fileset dir="src/checkstyle"
+               includes="**/*.java,**/*.properties"
+               excludes="**/Generated*.java,**/gui/*,**/IndentationCheck.java"/>
+        <!-- TODO: add javadoc to IndentationCheck so it can be removed from excludes list -->
+      <formatter type="xml" toFile="target/cs_errors.xml"/>
+      <classpath refid="run.classpath"/>
+      <property key="checkstyle.cache.file" file="target/cachefile"/>
+      <property key="checkstyle.header.file" file="docs/java.header"/>
+    </checkstyle>
     <mkdir dir="target/style/frames"/>
     <mkdir dir="target/style/noframes"/>
     <mkdir dir="target/style/simple"/>
