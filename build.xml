@@ -101,7 +101,7 @@
                destdir="classes/checkstyle"
                deprecation="on" debug="on"
                classpathref="build.classpath" />
-        <copy file="src/checkstyle/anttasks.properties"
+        <copy file="src/checkstyle/checkstyletask.properties"
               todir="classes/checkstyle"/>
     </target>
 
@@ -130,7 +130,7 @@
     </target>
 
     <target name="checkstyle.simple" depends="compile.tests">
-        <taskdef resource="anttasks.properties">
+        <taskdef resource="checkstyletask.properties">
             <classpath refid="run.classpath"/>
         </taskdef>
         <checkstyle file="src/tests/com/puppycrawl/tools/checkstyle/InputWhitespace.java"/>
