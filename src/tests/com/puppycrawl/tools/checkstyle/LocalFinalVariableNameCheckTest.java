@@ -8,8 +8,8 @@ public class LocalFinalVariableNameCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(LocalFinalVariableNameCheck.class.getName());;
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(LocalFinalVariableNameCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
@@ -21,9 +21,9 @@ public class LocalFinalVariableNameCheckTest
     public void testSet()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(LocalFinalVariableNameCheck.class.getName());
-        checkConfig.addProperty("format", "[A-Z]+");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(LocalFinalVariableNameCheck.class);
+        checkConfig.addAttribute("format", "[A-Z]+");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {

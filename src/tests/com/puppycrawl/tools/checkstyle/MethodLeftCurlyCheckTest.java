@@ -9,8 +9,8 @@ public class MethodLeftCurlyCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(MethodLeftCurlyCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MethodLeftCurlyCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputLeftCurlyMethod.java");
         final String[] expected = {
@@ -24,9 +24,9 @@ public class MethodLeftCurlyCheckTest
     public void testNL()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(MethodLeftCurlyCheck.class.getName());
-        checkConfig.addProperty("option", LeftCurlyOption.NL.toString());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MethodLeftCurlyCheck.class);
+        checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputLeftCurlyMethod.java");
         final String[] expected = {
