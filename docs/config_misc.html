@@ -35,6 +35,9 @@
           <a href="#GenericIllegalRegexp">GenericIllegalRegexp</a>
         </li>
         <li>
+          <a href="#Indentation">Indentation</a>
+        </li>
+        <li>
           <a href="#NewlineAtEndOfFile">NewlineAtEndOfFile</a>
         </li>
         <li>
@@ -679,9 +682,82 @@ like <span class="code">1</span>.
             &lt;property name="maximumDepth" value="2"/&gt;
             &lt;property name="maximumNumber" value="10"/&gt;
         &lt;/module&gt;
+        </pre>
       <h4>Package</h4>
       <p class="body">
       com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="Indentation">Indentation</a>
+       <h2>Indentation</h2> <h4>Description</h4>
+      <p class="body">
+      Checks correct indentation of Java Code.
+      </p>
+      <p class="body">
+      The basic idea behind this is that while
+      pretty printers are sometimes convienent for bulk reformats of
+      legacy code, they often either aren't configurable enough or
+      just can't anticipate how format should be done.  Sometimes this is
+      personal preference, other times it is practical experience.  In any
+      case, this check should just ensure that a minimal set of indentation
+      rules are followed.
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>basicOffset</td>
+          <td>how many spaces to use for new indentation level</td>
+          <td><a href="property_types.html#String">String</a></td>
+          <td>&quot;4&quot;</td>
+        </tr>
+        <tr>
+          <td>braceAdjustment</td>
+          <td>how far brace should be indented when on next line</td>
+          <td><a href="property_types.html#String">String</a></td>
+          <td>&quot;0&quot;</td>
+        </tr>
+        <tr>
+          <td>caseIndent</td>
+          <td>how much to indent a case label</td>
+          <td><a href="property_types.html#String">String</a></td>
+          <td>&quot;4&quot;</td>
+        </tr>
+      </table>
+      <u>NOTE</u>: although all properties have a String type
+      currently they must be a string representation of ineger
+      numbers.  This were made to be able enhance these properties in
+      next releases in compatible manner.
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      <pre class="body">
+&lt;module name=&quot;Indentation&quot;/&gt;
+      </pre>
+      </p>
+      <p class="body">
+      To configure the check to enforce indentation style recommended
+      by Sun:
+      <pre class="body">
+&lt;module name=&quot;Indentation&quot;&gt;
+    &lt;property name=&quot;braceAdjustment&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      </p>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.indentation
       </p>
       <h4>Parent Module</h4>
       <p class="body">

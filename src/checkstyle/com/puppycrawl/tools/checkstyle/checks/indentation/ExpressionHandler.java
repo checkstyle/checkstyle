@@ -568,7 +568,7 @@ public abstract class ExpressionHandler
      */
     protected final int getBasicOffset()
     {
-        return getIndentCheck().getBasicOffset();
+        return Integer.parseInt(getIndentCheck().getBasicOffset());
     }
 
     /**
@@ -578,6 +578,6 @@ public abstract class ExpressionHandler
      */
     protected final int getBraceAdjustement()
     {
-        return getIndentCheck().getBraceAdjustement();
+        return Integer.parseInt(getIndentCheck().getBraceAdjustement());
     }
 }
