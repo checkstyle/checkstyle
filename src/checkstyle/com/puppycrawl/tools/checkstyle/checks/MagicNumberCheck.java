@@ -16,14 +16,12 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks;
-
-import java.util.Arrays;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Arrays;
 
 /**
  * <p>
@@ -60,8 +58,7 @@ public class MagicNumberCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         if (!inIgnoreList(aAST) && !isConstantDefinition(aAST)) {
-            log(
-                aAST.getLineNo(),
+            log(aAST.getLineNo(),
                 aAST.getColumnNo(),
                 "magic.number",
                 aAST.getText());
@@ -145,19 +142,19 @@ public class MagicNumberCheck extends Check
         DetailAST parent = aAST.getParent();
 
         //expression?
-        if ((parent == null) || parent.getType() != TokenTypes.EXPR) {
+        if ((parent == null) || (parent.getType() != TokenTypes.EXPR)) {
             return false;
         }
 
         //assignment?
         parent = parent.getParent();
-        if ((parent == null) || parent.getType() != TokenTypes.ASSIGN) {
+        if ((parent == null) || (parent.getType() != TokenTypes.ASSIGN)) {
             return false;
         }
 
         //variable definition?
         parent = parent.getParent();
-        if ((parent == null) || parent.getType() != TokenTypes.VARIABLE_DEF) {
+        if ((parent == null) || (parent.getType() != TokenTypes.VARIABLE_DEF)) {
             return false;
         }
 
@@ -174,7 +171,7 @@ public class MagicNumberCheck extends Check
      */    
     public void setIgnoreNumbers(float[] aList)
     {
-        if (aList == null || aList.length == 0) {
+        if ((aList == null) || (aList.length == 0)) {
             mIgnoreNumbers = new float[0];
         }
         else {
