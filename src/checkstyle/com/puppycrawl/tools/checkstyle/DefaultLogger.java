@@ -32,7 +32,7 @@ import java.io.PrintWriter;
  * @see XMLLogger
  */
 public class DefaultLogger
-    implements AuditListener, Streamable
+    implements AuditListener
 {
     /** where to log **/
     private OutputStream mStream;
@@ -55,14 +55,14 @@ public class DefaultLogger
         setOutputStream(aOS);
     }
 
-    /** @see Streamable **/
+    /** @see AuditListener **/
     public void setOutputStream(OutputStream aOS)
     {
         mWriter = new PrintWriter(aOS);
         mStream = aOS;
     }
 
-    /** @see Streamable **/
+    /** @see AuditListener **/
     public OutputStream getOutputStream()
     {
         return mStream;

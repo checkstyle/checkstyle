@@ -68,25 +68,22 @@ public class Checker
     {
         mCache.destroy();
 
-        // close all streamable listeners
+        // close all listeners
         final Iterator it = mListeners.iterator();
         while (it.hasNext()) {
-            final Object obj = it.next();
-            if (obj instanceof Streamable) {
-                final Streamable str = (Streamable) obj;
-                final OutputStream os = str.getOutputStream();
-                // close only those that can be closed...
-                if ((os != System.out) && (os != System.err) && (os != null)) {
-                    try  {
-                        os.flush();
-                        os.close();
-                    }
-                    catch (IOException ignored) {
-                    }
+            final AuditListener listener = (AuditListener) it.next();
+            final OutputStream os = listener.getOutputStream();
+            // close only those that can be closed...
+            if ((os != System.out) && (os != System.err) && (os != null)) {
+                try  {
+                    os.flush();
+                    os.close();
+                }
+                catch (IOException ignored) {
                 }
             }
-            it.remove();
         }
+        it.remove();
     }
 
     /**

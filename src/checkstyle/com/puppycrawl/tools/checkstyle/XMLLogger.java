@@ -33,7 +33,7 @@ import java.io.UnsupportedEncodingException;
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  */
 public class XMLLogger
-    implements AuditListener, Streamable
+    implements AuditListener
 {
     /** the original wrapped stream */
     private OutputStream mStream;
@@ -59,7 +59,7 @@ public class XMLLogger
         setOutputStream(aOS);
     }
 
-    /** @see Streamable **/
+    /** @see AuditListener **/
     public void setOutputStream(OutputStream aOS)
     {
         try {
@@ -75,7 +75,7 @@ public class XMLLogger
         }
     }
 
-    /** @see Streamable **/
+    /** @see AuditListener **/
     public OutputStream getOutputStream()
     {
         return mStream;
