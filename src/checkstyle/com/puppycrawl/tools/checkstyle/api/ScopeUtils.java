@@ -180,9 +180,9 @@ public final class ScopeUtils
     }
 
     /**
-     * Determines whether a node is a local variable definition,
-     * i.e. is declared in a code block, a for initializer, or a
-     * catch parameter.
+     * Determines whether a node is a local variable definition.
+     * I.e. if it is declared in a code block, a for initializer,
+     * or a catch parameter.
      * @param aAST the node to check.
      * @return whether aAST is a local variable definition.
      */
