@@ -11,10 +11,10 @@ public class UnusedLocalVariableCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(UnusedLocalVariableCheck.class);
         final String[] expected = {
-            "13:13: Unread local variable 'mUnreadPrimitive'.",
-            "24:16: Unread local variable 'unreadObject'.",
-            "36:15: Unread local variable 'unreadArray'.",
-            "45:13: Unread local variable 'java'.",
+            "13:13: Unused local variable 'mUnreadPrimitive'.",
+            "24:16: Unused local variable 'unreadObject'.",
+            "36:15: Unused local variable 'unreadArray'.",
+            "45:13: Unused local variable 'java'.",
         };
         verify(checkConfig, getPath("usage/InputUnusedLocal.java"), expected);
     }
@@ -25,9 +25,9 @@ public class UnusedLocalVariableCheckTest
                 createCheckConfig(UnusedLocalVariableCheck.class);
             checkConfig.addAttribute("ignoreFormat", "Array$");
             final String[] expected = {
-                "13:13: Unread local variable 'mUnreadPrimitive'.",
-                "24:16: Unread local variable 'unreadObject'.",
-                "45:13: Unread local variable 'java'.",
+                "13:13: Unused local variable 'mUnreadPrimitive'.",
+                "24:16: Unused local variable 'unreadObject'.",
+                "45:13: Unused local variable 'java'.",
             };
             verify(checkConfig, getPath("usage/InputUnusedLocal.java"), expected);
         }
