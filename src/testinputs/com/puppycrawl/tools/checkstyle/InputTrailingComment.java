@@ -13,6 +13,9 @@ public class InputTrailingComment {
     /*
       Let's check multi-line comments.
     */
-    /* c-style */ // we do not allow several comments on one line
+    /* c-style */ // cpp-style
     /* c-style 1 */ /*c-style 2 */
+
+    void method2(long ms /* we should ignore this */) {
+    }
 }

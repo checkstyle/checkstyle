@@ -31,7 +31,71 @@ import org.apache.commons.beanutils.ConversionException;
 import org.apache.regexp.RE;
 
 /**
- * The check.
+ * <p>
+ * The check to ensure that requires that comments be the only thing on a line.
+ * For the case of // comments that means that the only thing that should
+ * precede it is whitespace.
+ * It doesn't check comments if they do not end line, i.e. it accept
+ * the following:
+ * <code>Thread.sleep( 10 &lt;some comment here&gt; );</code>
+ * Format property is intended to deal with the "} // while" example.
+ * </p>
+ * <p>
+ * Rationale: Steve McConnel in &quot;Code Complete&quot; suggests that endline
+ * comments are a bad practice. An end line comment would
+ * be one that is on the same line as actual code. For example:
+ * <pre>
+ *  a = b + c;      // Some insightful comment
+ *  d = e / f;        // Another comment for this line
+ * </pre>
+ * Quoting &quot;Code Complete&quot; for the justfication:
+ * <ul>
+ * <li>
+ * &quot;The comments have to be aligned so that they do not
+ * interfere with the visual structure of the code. If you don't
+ * align them neatly, they'll make your listing look like it's been
+ * through a washing machine.&quot;
+ * </li>
+ * <li>
+ * &quot;Endline comments tend to be hard to format...It takes time
+ * to align them. Such time is not spent learning more about
+ * the code; it's dedicated solely to the tedious task of
+ * pressing the spacebar or tab key.&quot;
+ * </li>
+ * <li>
+ * &quot;Endline comments are also hard to maintain. If the code on
+ * any line containing an endline comment grows, it bumps the
+ * comment farther out, and all the other endline comments will
+ * have to bumped out to match. Styles that are hard to
+ * maintain aren't maintained....&quot;
+ * </li>
+ * <li>
+ * &quot;Endline comments also tend to be cryptic. The right side of
+ * the line doesn't offer much room and the desire to keep the
+ * comment on one line means the comment must be short.
+ * Work then goes into making the line as short as possible
+ * instead of as clear as possible. The comment usually ends
+ * up as cryptic as possible....&quot;
+ * </li>
+ * <li>
+ * &quot;A systemic problem with endline comments is that it's hard
+ * to write a meaningful comment for one line of code. Most
+ * endline comments just repeat the line of code, which hurts
+ * more than it helps.&quot;
+ * </li>
+ * </ul>
+ * His comments on being hard to maintain when the size of
+ * the line changes are even more important in the age of
+ * automated refactorings.
+ * </p>
+ * <p>
+ * To configure the check so it enforces only comment on a line:
+ * <pre>
+ * &lt;module name=&quot;TrailingComment&quot;&gt;
+ *    &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * </p>
  * @author o_sukhodolsky
  */
 public class TrailingCommentCheck extends AbstractFormatCheck
@@ -56,7 +120,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck
     /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
-        // do nothing
+        throw new IllegalStateException("visitToken() shouldn't be called.");
     }
 
     /** {@inheritDoc} */
@@ -72,20 +136,9 @@ public class TrailingCommentCheck extends AbstractFormatCheck
         final Iterator linesIter = lines.iterator();
         while (linesIter.hasNext()) {
             final Integer lineNo = (Integer) linesIter.next();
-            // I don't want handle several comments on one line :(
-            // Perhaps I'm wrong :)
-            if (cppComments.containsKey(lineNo)
-                && cComments.containsKey(lineNo)
-                || cComments.containsKey(lineNo)
-                && ((List) cComments.get(lineNo)).size() > 1)
-            {
-                log(lineNo.intValue(), "Too many comments.");
-                continue;
-            }
 
             final String line = getLines()[lineNo.intValue() - 1];
             String lineBefore = "";
-            String lineAfter = "";
             if (cppComments.containsKey(lineNo)) {
                 final TextBlock comment = (TextBlock) cppComments.get(lineNo);
                 lineBefore = line.substring(0, comment.getStartColNo());
@@ -93,14 +146,18 @@ public class TrailingCommentCheck extends AbstractFormatCheck
             else if (cComments.containsKey(lineNo)) {
                 final List commentList = (List) cComments.get(lineNo);
                 final TextBlock comment =
-                    (TextBlock) commentList.iterator().next();
+                    (TextBlock) commentList.get(commentList.size() - 1);
                 lineBefore = line.substring(0, comment.getStartColNo());
                 if (comment.getText().length == 1) {
-                    lineAfter = line.substring(comment.getEndColNo() + 1);
+                    String lineAfter =
+                        line.substring(comment.getEndColNo() + 1).trim();
+                    if (!"".equals(lineAfter)) {
+                        // do not check comment which doesn't end line
+                        continue;
+                    }
                 }
             }
-            lineAfter = lineAfter.trim();
-            if (!blankLinePattern.match(lineBefore) || !"".equals(lineAfter)) {
+            if (!blankLinePattern.match(lineBefore)) {
                 log(lineNo.intValue(), "trailing.comments");
             }
         }
