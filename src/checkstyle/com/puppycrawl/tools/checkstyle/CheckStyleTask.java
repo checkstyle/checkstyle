@@ -326,12 +326,6 @@ public class CheckStyleTask
         mConfig.setIgnoreCastWhitespace(aIgnore);
     }
 
-    /** @param aIgnore whether to ignore whitespace around parenthesis **/
-    public void setIgnoreParenWhitespace(boolean aIgnore)
-    {
-        mConfig.setIgnoreParenWhitespace(aIgnore);
-    }
-
     /** @param aIgnore whether to ignore braces **/
     public void setIgnoreBraces(boolean aIgnore)
     {
@@ -372,6 +366,12 @@ public class CheckStyleTask
     public void setRCurly(String aTo)
     {
         mConfig.setRCurly(extractRightCurlyOption(aTo));
+    }
+
+    /** @param aTo the parenthesis padding option **/
+    public void setParenPad(String aTo)
+    {
+        mConfig.setParenPadOption(extractPadOption(aTo));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -515,8 +515,6 @@ public class CheckStyleTask
     {
         /** class name of formatter **/
         private String mClassName = null;
-        /** whether formatter users a file **/
-        private boolean mUseFile = true;
         /** the file to output to **/
         private File mToFile = null;
 
@@ -621,4 +619,19 @@ public class CheckStyleTask
         }
         return opt;
     }
-}
+
+    /**
+     * @param aFrom String to decode the option from
+     * @return the PadOption represented by aFrom
+     * @throws BuildException if unable to decode aFrom
+     */
+    private PadOption extractPadOption(String aFrom)
+        throws BuildException
+    {
+        final PadOption opt = PadOption.decode(aFrom);
+        if (opt == null) {
+            throw new BuildException("Unable to parse '" + aFrom + "'.",
+                                     location);
+        }
+        return opt;
+    }}
