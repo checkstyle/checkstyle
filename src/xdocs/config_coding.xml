@@ -1561,6 +1561,12 @@ if (&quot;something&quot;.equals(x))
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>&quot;getInitialContext, getEnvironment&quot; </td>
           </tr>
+          <tr>
+            <td>format</td>
+            <td>pattern for illegal class name</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">^(.*[\\.])?Abstract.*$</span></td>
+          </tr>
         </table>
       </subsection>
       
