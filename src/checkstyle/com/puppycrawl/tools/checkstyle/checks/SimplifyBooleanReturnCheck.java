@@ -26,10 +26,16 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 
 /**
+ * <p>
  * Checks for overly complicated boolean return statements.
- *
  * Idea shamelessly stolen from the equivalent PMD rule (pmd.sourceforge.net).
- *
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="SimplifyBooleanReturnCheck"/&gt;
+ * </pre>
  * @author Lars Kühne
  */
 public class SimplifyBooleanReturnCheck
@@ -48,7 +54,7 @@ public class SimplifyBooleanReturnCheck
         // '('
         // condition
         // ')'
-        // thenstatement
+        // thenStatement
         // [ LITERAL_ELSE (with the elseStatement as a child) ]
 
         // don't bother if this is not if then else
