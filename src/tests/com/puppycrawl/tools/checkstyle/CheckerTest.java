@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.Locale;
+
 import junit.framework.TestCase;
 import org.apache.regexp.RESyntaxException;
 
@@ -47,6 +49,10 @@ public class CheckerTest
         mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_TYPE_PROP,
                                            LeftCurlyOption.NL);
         mConfig.setRCurly(RightCurlyOption.ALONE);
+        mConfig.setStringProperty(Defn.LOCALE_COUNTRY_PROP,
+                                  Locale.ENGLISH.getCountry());
+        mConfig.setStringProperty(Defn.LOCALE_LANGUAGE_PROP,
+                                  Locale.ENGLISH.getLanguage());
     }
 
     static String getPath(String aFilename)
