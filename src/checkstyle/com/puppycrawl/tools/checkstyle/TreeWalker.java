@@ -22,6 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -115,13 +116,12 @@ class TreeWalker
     /**
      * Initiates the walk of an AST.
      * @param aAST the root AST
-     * @param aLines the lines of the file the AST was generated from
-     * @param aFilename the file name of the file the AST was generated from
+     * @param aContents the contents of the file the AST was generated from
      */
-    void walk(DetailAST aAST, String[] aLines, String aFilename)
+    void walk(DetailAST aAST, FileContents aContents)
     {
         mMessages.reset();
-        notifyBegin(aLines, aFilename);
+        notifyBegin(aContents);
         aAST.setParent(null);
         process(aAST);
         notifyEnd();
@@ -129,10 +129,9 @@ class TreeWalker
 
     /**
      * Notify interested checks that about to begin walking a tree.
-     * @param aLines the lines of the file the AST was generated from
-     * @param aFilename the file name of the file the AST was generated from
+     * @param aContents the contents of the file the AST was generated from
      */
-    private void notifyBegin(String[] aLines, String aFilename)
+    private void notifyBegin(FileContents aContents)
     {
         // TODO: do not track Context properly for token
         final Iterator it = mAllChecks.iterator();
@@ -140,8 +139,7 @@ class TreeWalker
             final Check check = (Check) it.next();
             final HashMap treeContext = new HashMap();
             check.setTreeContext(treeContext);
-            check.setFilename(aFilename);
-            check.setLines(aLines);
+            check.setFileContents(aContents);
             check.beginTree();
         }
     }

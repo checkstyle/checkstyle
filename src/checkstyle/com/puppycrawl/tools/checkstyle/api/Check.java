@@ -31,10 +31,8 @@ public abstract class Check
     /** resuable constant for message formating */
     private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
 
-    /** name to store lines under */
-    private static final String LINES_ATTRIBUTE = "lines";
-    /** name to store filename under */
-    private static final String FILENAME_ATTRIBUTE = "filename";
+    /** name to store file contents under */
+    private static final String FILE_CONTENTS_ATTRIBUTE = "fILEcONTENTS";
 
     /** the global context for the check */
     private Map mGlobalContext;
@@ -172,30 +170,30 @@ public abstract class Check
     }
 
     /**
-     * Set the lines associated with the tree.
-     * @param aLines the file contents
-     */
-    public final void setLines(String[] aLines)
-    {
-        getTreeContext().put(LINES_ATTRIBUTE, aLines);
-    }
-
-    /**
      * Returns the lines associated with the tree.
      * @return the file contents
      */
     public final String[] getLines()
     {
-        return (String[]) getTreeContext().get(LINES_ATTRIBUTE);
+        return getFileContents().getLines();
     }
 
     /**
-     * Set the name of the file associated with the tree.
-     * @param aFilename the file name
+     * Set the file contents associated with the tree.
+     * @param aContents the manager
      */
-    public final void setFilename(String aFilename)
+    public final void setFileContents(FileContents aContents)
     {
-        getTreeContext().put(FILENAME_ATTRIBUTE, aFilename);
+        getTreeContext().put(FILE_CONTENTS_ATTRIBUTE, aContents);
+    }
+
+    /**
+     * Returns the file contents associated with the tree.
+     * @return the file contents
+     */
+    public final FileContents getFileContents()
+    {
+        return (FileContents) getTreeContext().get(FILE_CONTENTS_ATTRIBUTE);
     }
 
     /** @return the tab width to report errors with */
@@ -211,15 +209,6 @@ public abstract class Check
     public void setTabWidth(int aTabWidth)
     {
         mTabWidth = aTabWidth;
-    }
-
-    /**
-     * Returns the filename associated with the tree.
-     * @return the file name
-     */
-    public final String getFilename()
-    {
-        return (String) getTreeContext().get(FILENAME_ATTRIBUTE);
     }
 
     /**

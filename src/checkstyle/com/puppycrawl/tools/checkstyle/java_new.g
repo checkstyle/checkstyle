@@ -20,6 +20,7 @@ header {
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 }
 
 /** Java 1.3 Recognizer
@@ -952,13 +953,13 @@ options {
         setColumn( getColumn() + 1 );
     }
 
-    private CommentManager mCommentManager = null;
+    private FileContents mFileContents = null;
 
     // TODO: Check visibility of this method one parsing is done in central
     // utility method
-    public void setCommentManager(CommentManager aCommentManager)
-    {
-        mCommentManager = aCommentManager;
+    public void setFileContents(FileContents aContents)
+    { 
+        mFileContents = aContents;
     }
 
 }
@@ -1030,7 +1031,7 @@ WS	:	(	' '
 
 // Single-line comments
 SL_COMMENT
-	:	"//" { mCommentManager.reportCPPComment(getLine(), getColumn() - 3); }
+	:	"//" { mFileContents.reportCPPComment(getLine(), getColumn() - 3); }
 		(~('\n'|'\r'))* ('\n'|'\r'('\n')?)
 		{$setType(Token.SKIP); newline();}
 	;
@@ -1061,7 +1062,7 @@ ML_COMMENT
 		)*
 		"*/"
       {
-         mCommentManager.reportCComment(startLine, startCol,
+         mFileContents.reportCComment(startLine, startCol,
                             getLine(), getColumn() - 2);
          $setType(Token.SKIP);
       }
