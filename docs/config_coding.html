@@ -1082,29 +1082,6 @@ return !valid();
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
 
-      <!-- --> <a name="SuperClone"></a> <h2>SuperClone</h2> <h4>Description</h4>
-      <p class="body">
-      Checks that an overriding <span class="code">clone()</span> method invokes <span class="code">super.clone()</span>.
-      </p>
-      <p class="body">
-      Reference: <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Object.html#clone()">Object.clone()</a>. 
-      </p>
-      <h4>Examples</h4>
-      <p class="body">
-      To configure the check:
-      </p>
-      <pre class="body">
-&lt;module name=&quot;SuperClone&quot;/&gt;
-      </pre>
-      <h4>Package</h4>
-      <p class="body">
-      com.puppycrawl.tools.checkstyle.checks.coding
-      </p>
-      <h4>Parent Module</h4>
-      <p class="body">
-      <a href="config.html#treewalker">TreeWalker</a>
-      </p>
-
       <!-- --> <a name="IllegalCatch"></a> <h2>IllegalCatch</h2> <h4>Description</h4>
       <p class="body">
       Catching java.lang.Exception, java.lang.Error or java.lang.RuntimeException
@@ -1389,7 +1366,7 @@ return !valid();
       class="code">null</span> for object references, zero for numeric
       types and <span class="code">char</span> and <span
       class="code">false</span> for <span
-      class="code">booolean</span>.</p>
+      class="code">boolean</span>.</p>
       <p class="body">Rationale: each instance variable gets
       initialized twice, to the same value.  Java
       initializes each instance variable to its default

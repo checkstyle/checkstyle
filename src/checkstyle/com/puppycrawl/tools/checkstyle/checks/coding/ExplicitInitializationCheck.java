@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * Checks if any class or object member explicitly initialized
  * to default for its type value (<code>null</code> for object
  * references, zero for numeric types and <code>char</code>
- * and <code>false</code> for <code>booolean</code>.
+ * and <code>false</code> for <code>boolean</code>.
  * </p>
  * <p>
  * Rationale: each instance variable gets
