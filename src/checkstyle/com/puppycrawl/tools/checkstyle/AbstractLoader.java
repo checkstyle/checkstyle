@@ -83,9 +83,9 @@ abstract class AbstractLoader
         mParser.parse(aInputSource);
     }
 
-    /** @see org.xml.sax.EntityResolver */
+    /** Jibber inheritDoc */
     public InputSource resolveEntity(String aPublicId, String aSystemId)
-        throws SAXException
+        throws SAXException, IOException
     {
         if (mPublicId.equals(aPublicId)) {
             final InputStream dtdIS = getClass().getClassLoader()
