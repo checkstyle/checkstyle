@@ -392,32 +392,34 @@ public class Resolver extends DefinitionTraverser {
         if (body.getType() == TokenTypes.RPAREN) {
             body = (SymTabAST) body.getNextSibling();
         }
-        if (body != null && body.getType() == TokenTypes.SLIST) {
-            handleSList(body, block);
-        }
-        else {
-            resolveExpression(body, block, null, true);
-        }
+        if (body != null) {
+        	if (body.getType() == TokenTypes.SLIST) {
+            	handleSList(body, block);
+        	}
+        	else {
+            	resolveExpression(body, block, null, true);
+        	}
 
-        SymTabAST elseBody = (SymTabAST) body.getNextSibling();
-        //handle Checkstyle grammar
-        while ((elseBody != null)
-            && (elseBody.getType() != TokenTypes.LITERAL_ELSE)) {
-            elseBody = (SymTabAST) elseBody.getNextSibling();
-        }
-        /*
-         if (elseBody != null && elseBody.getType() == TokenTypes.SLIST) {
-             handleSList(elseBody, block);
-         }else{
-             resolveExpression(elseBody, block, null, true);
-         }
-         */
-        if (elseBody != null) {
-            elseBody = (SymTabAST) elseBody.getFirstChild();
-        }
-        if (elseBody != null) {
-            resolveExpression(elseBody, block.getParentScope(), null, true);
-        }
+	        SymTabAST elseBody = (SymTabAST) body.getNextSibling();
+	        //handle Checkstyle grammar
+	        while ((elseBody != null)
+	            && (elseBody.getType() != TokenTypes.LITERAL_ELSE)) {
+	            elseBody = (SymTabAST) elseBody.getNextSibling();
+	        }
+	        /*
+	         if (elseBody != null && elseBody.getType() == TokenTypes.SLIST) {
+	             handleSList(elseBody, block);
+	         }else{
+	             resolveExpression(elseBody, block, null, true);
+	         }
+	         */
+	        if (elseBody != null) {
+	            elseBody = (SymTabAST) elseBody.getFirstChild();
+	        }
+	        if (elseBody != null) {
+	            resolveExpression(elseBody, block.getParentScope(), null, true);
+	        }
+	    }
     }
 
     /**
