@@ -229,9 +229,6 @@ class Verifier
      **/
     void verifyMethod(MethodSignature aSig)
     {
-        // Always check that the order of modifiers follows the JLS suggestion
-        checkModOrder(aSig.getModSet());
-
         // Check for to many parameters
         if (aSig.getParams().size() > mConfig.getMaxParameters()) {
             mMessages.add(aSig.getFirstLineNo(),
@@ -287,9 +284,6 @@ class Verifier
      **/
     void verifyType(MyModifierSet aMods, MyCommonAST aType)
     {
-        // Always check that the order of modifiers follows the JLS suggestion
-        checkModOrder(aMods);
-
         //
         // Only Javadoc testing below
         //
@@ -348,9 +342,6 @@ class Verifier
         final Scope declaredScope = mods.getVisibilityScope();
         final Scope variableScope =
             inInterfaceBlock() ? Scope.PUBLIC : declaredScope;
-
-        // Always check that the order of modifiers follows the JLS suggestion
-        checkModOrder(mods);
 
         if (inCheckScope(variableScope)
             && (getJavadocBefore(aVar.getStartLineNo() - 1) == null))
@@ -1337,21 +1328,6 @@ class Verifier
         }
     }
 
-
-    /**
-     * checks if the order of modifiers follows the suggestions
-     * in the JLS and logs an error message accordingly.
-     *
-     * @param aModSet the set of modifiers
-     */
-    private void checkModOrder(MyModifierSet aModSet)
-    {
-        final MyCommonAST error = aModSet.checkOrderSuggestedByJLS();
-        if (error != null) {
-            mMessages.add(error.getLineNo(), error.getColumnNo(),
-                          "mod.order", error.getText());
-        }
-    }
 
     /**
      * @return the class name from a fully qualified name
