@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<configuration>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck">
-        <property name="option" value="alone"/>
-    </check>
-</configuration>
