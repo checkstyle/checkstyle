@@ -52,6 +52,9 @@ public class CheckStyleTask
     /** whether to fail build on violations **/
     private boolean mFailOnViolation = true;
 
+    /** property to set on violations **/
+    private String mFailureProperty = null;
+
     /** contains the filesets to process **/
     private final List mFileSets = new ArrayList();
 
@@ -258,6 +261,17 @@ public class CheckStyleTask
         mFailOnViolation = aFail;
     }
 
+    /**
+     * Tells this task to set the named property to "true" when there
+     * is a violation.
+     * @param aPropertyName the name of the property to set
+     *                      in the event of an failure.
+     */
+    public void setFailureProperty(String aPropertyName)
+    {
+        mFailureProperty = aPropertyName;
+    }
+
     /** @param aList Comma separated list of line numbers **/
     public void setHeaderIgnoreLine(String aList)
     {
@@ -367,6 +381,10 @@ public class CheckStyleTask
             if (c != null) {
                 c.destroy();
             }
+        }
+
+        if ((numErrs > 0) && mFailureProperty != null) {
+            getProject().setProperty(mFailureProperty, "true");
         }
 
         if ((numErrs > 0) && mFailOnViolation) {
