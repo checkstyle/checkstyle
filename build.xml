@@ -98,12 +98,14 @@
     <java classname="antlr.Tool"
           classpath="${antlr.jar}"
           fork="yes"
+          failonerror="true"
           dir="${checkstyle.dir}">
       <arg value="java.g" />
     </java>
     <java classname="antlr.Tool"
           classpath="${antlr.jar}"
           fork="yes"
+          failonerror="true"
           dir="${checkstyle.dir}">
       <arg value="-glib" />
       <arg value="java.g" />
