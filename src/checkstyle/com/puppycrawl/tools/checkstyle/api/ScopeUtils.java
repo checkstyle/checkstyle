@@ -101,8 +101,8 @@ public class ScopeUtils
     }
 
     /**
-     * Returns whether a node is contained within a code block. A code block
-     * is a method or constructor body, or a initialiser block.
+     * Returns whether the scope of a node is restricted to a code block.
+     * A code block is a method or constructor body, or a initialiser block.
      *
      * @param aAST the node to check
      * @return a <code>boolean</code> value
