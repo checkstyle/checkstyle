@@ -19,7 +19,6 @@ public class AllTests {
         suite.addTest(new TestSuite(FileSetCheckLifecycleTest.class));
         suite.addTest(new TestSuite(FinalParametersCheckTest.class));
         suite.addTest(new TestSuite(GenericIllegalRegexpCheckTest.class));
-        suite.addTest(new TestSuite(HeaderCheckTest.class));
         suite.addTest(new TestSuite(ModifierOrderCheckTest.class));
         suite.addTest(new TestSuite(NewlineAtEndOfFileCheckTest.class));
         suite.addTest(new TestSuite(RedundantModifierTest.class));
@@ -34,6 +33,7 @@ public class AllTests {
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.blocks.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.coding.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.design.AllTests.suite());
+        suite.addTest(com.puppycrawl.tools.checkstyle.checks.header.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.imports.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.indentation.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.j2ee.AllTests.suite());
