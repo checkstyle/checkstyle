@@ -48,6 +48,11 @@ public class XMLLogger
     private final static String[] ENTITIES = {"gt", "amp", "lt", "apos",
                                               "quot"};
 
+    /** Creates a new <code>XMLLogger</code> instance. */
+    public XMLLogger()
+    {
+    }
+
     /**
      * sets the output to a defined stream
      * @param aOS the stream to write logs to.
