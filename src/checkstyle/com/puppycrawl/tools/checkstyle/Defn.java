@@ -89,8 +89,6 @@ public interface Defn
     String IGNORE_BRACES_PROP = "checkstyle.ignore.braces";
     /** property name for ignoring long 'L' **/
     String IGNORE_LONG_ELL_PROP = "checkstyle.ignore.longell";
-    /** property name for ignoring wrapping lines on operators **/
-    String IGNORE_OP_WRAP_PROP = "checkstyle.ignore.opwrap";
     /** property name for ignoring 'public' in interface definitions **/
     String IGNORE_PUBLIC_IN_INTERFACE_PROP =
         "checkstyle.ignore.public.in.interface";
@@ -118,4 +116,6 @@ public interface Defn
     String FINALLY_BLOCK_PROP = "checkstyle.block.finally";
     /** property name for the base directory **/
     String BASEDIR_PROP = "checkstyle.basedir";
+    /** property name for wrapping lines on operators **/
+    String WRAP_OP_PROP = "checkstyle.wrap.operator";
 }

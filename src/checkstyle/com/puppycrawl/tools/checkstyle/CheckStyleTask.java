@@ -389,12 +389,6 @@ public class CheckStyleTask
         setBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, aIgnore);
     }
 
-    /** @param aIgnore whether to ignore operator wrapping **/
-    public void setIgnoreOpWrap(final boolean aIgnore)
-    {
-        setBooleanProperty(Defn.IGNORE_OP_WRAP_PROP, aIgnore);
-    }
-
     /** @param aIgnore whether to ignore braces **/
     public void setIgnoreBraces(final boolean aIgnore)
     {
@@ -499,6 +493,18 @@ public class CheckStyleTask
                 public void run()
                 {
                     mConfig.setParenPadOption(extractPadOption(aTo));
+                }
+            });
+    }
+
+    /** @param aTo the operator wrapping option **/
+    public void setWrapOp(final String aTo)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setWrapOpOption(extractWrapOpOption(aTo));
                 }
             });
     }
@@ -753,6 +759,22 @@ public class CheckStyleTask
         throws BuildException
     {
         final PadOption opt = PadOption.decode(aFrom);
+        if (opt == null) {
+            throw new BuildException("Unable to parse '" + aFrom + "'.",
+                                     location);
+        }
+        return opt;
+    }
+
+    /**
+     * @param aFrom String to decode the option from
+     * @return the WrapOpOption represented by aFrom
+     * @throws BuildException if unable to decode aFrom
+     */
+    private WrapOpOption extractWrapOpOption(String aFrom)
+        throws BuildException
+    {
+        final WrapOpOption opt = WrapOpOption.decode(aFrom);
         if (opt == null) {
             throw new BuildException("Unable to parse '" + aFrom + "'.",
                                      location);

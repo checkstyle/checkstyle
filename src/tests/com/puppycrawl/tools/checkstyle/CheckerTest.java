@@ -852,7 +852,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setBooleanProperty(Defn.IGNORE_OP_WRAP_PROP, false);
+        mConfig.setWrapOpOption(WrapOpOption.NL);
         final Checker c = createChecker();
         final String filepath = getPath("InputOpWrap.java");
         assertNotNull(c);
@@ -868,7 +868,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setBooleanProperty(Defn.IGNORE_OP_WRAP_PROP, true);
+        mConfig.setWrapOpOption(WrapOpOption.IGNORE);
         final Checker c = createChecker();
         final String filepath = getPath("InputOpWrap.java");
         assertNotNull(c);

@@ -114,9 +114,10 @@ public class Configuration
 
     /** where to place right curlies  **/
     private RightCurlyOption mRCurly = RightCurlyOption.SAME;
-
     /** how to pad parenthesis **/
     private PadOption mParenPadOption = PadOption.NOSPACE;
+    /** how to wrap operators **/
+    private WrapOpOption mWrapOpOption = WrapOpOption.NL;
 
     /** whether to use basedir **/
     private String mBasedir;
@@ -212,7 +213,6 @@ public class Configuration
                                ILLEGAL_INSTANTIATIONS));
         setBooleanProperty(aProps, Defn.IGNORE_WHITESPACE_PROP);
         setBooleanProperty(aProps, Defn.IGNORE_CAST_WHITESPACE_PROP);
-        setBooleanProperty(aProps, Defn.IGNORE_OP_WRAP_PROP);
         setBooleanProperty(aProps, Defn.IGNORE_BRACES_PROP);
         setBooleanProperty(aProps, Defn.IGNORE_LONG_ELL_PROP);
         setBooleanProperty(aProps, Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP);
@@ -240,6 +240,10 @@ public class Configuration
                                                PadOption.NOSPACE,
                                                aLog));
         setBasedir(aProps.getProperty(Defn.BASEDIR_PROP));
+        setWrapOpOption(getWrapOpOptionProperty(aProps,
+                                                Defn.WRAP_OP_PROP,
+                                                WrapOpOption.NL,
+                                                aLog));
     }
 
     /**
@@ -536,12 +540,6 @@ public class Configuration
         return getBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP);
     }
 
-    /** @return whether to ignore checks for operator wrapping **/
-    public boolean isIgnoreOpWrap()
-    {
-        return getBooleanProperty(Defn.IGNORE_OP_WRAP_PROP);
-    }
-
     /** @return whether to ignore checks for braces **/
     public boolean isIgnoreBraces()
     {
@@ -759,6 +757,18 @@ public class Configuration
     public void setParenPadOption(PadOption aTo)
     {
         mParenPadOption = aTo;
+    }
+
+    /** @return the wrapping on operator option **/
+    public WrapOpOption getWrapOpOption()
+    {
+        return mWrapOpOption;
+    }
+
+    /** @param aTo set the wrap on operator option **/
+    public void setWrapOpOption(WrapOpOption aTo)
+    {
+        mWrapOpOption = aTo;
     }
 
     /** @return the base directory **/
@@ -1005,6 +1015,34 @@ public class Configuration
         final String strRep = aProps.getProperty(aName);
         if (strRep != null) {
             retVal = PadOption.decode(strRep);
+            if (retVal == null) {
+                aLog.println("Unable to parse " + aName
+                             + " property with value " + strRep
+                             + ", defaulting to " + aDefault + ".");
+            }
+        }
+        return retVal;
+    }
+
+    /**
+     * @param aProps the properties set to use
+     * @param aLog where to log errors to
+     * @param aName the name of the property to parse
+     * @param aDefault the default value to use.
+     *
+     * @return the value of a WrapOpOption property. If the property is not
+     *    defined or cannot be decoded, then a default value is returned.
+     */
+    private static WrapOpOption getWrapOpOptionProperty(
+        Properties aProps,
+        String aName,
+        WrapOpOption aDefault,
+        PrintStream aLog)
+    {
+        WrapOpOption retVal = aDefault;
+        final String strRep = aProps.getProperty(aName);
+        if (strRep != null) {
+            retVal = WrapOpOption.decode(strRep);
             if (retVal == null) {
                 aLog.println("Unable to parse " + aName
                              + " property with value " + strRep
