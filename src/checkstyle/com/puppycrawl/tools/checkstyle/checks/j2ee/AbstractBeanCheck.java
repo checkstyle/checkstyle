@@ -22,6 +22,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
+ * Abstract class for checks that verify Bean implementation.
+ *
  * Checks that a Bean implementation satisfies Bean
  * requirements:
  * <ul>
@@ -53,7 +55,7 @@ public abstract class AbstractBeanCheck
     }
 
 /**
- * Checks a bean class requirements:
+ * Checks a bean class requirements.
  * <ul>
  * <li>The class is defined as <code>public</code>.</li>
   * <li>It contains a <code>public</code> constructor with no parameters.</li>
