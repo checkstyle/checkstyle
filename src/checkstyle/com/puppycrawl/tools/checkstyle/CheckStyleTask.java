@@ -18,6 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+import java.util.Hashtable;
+
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -27,20 +40,6 @@ import org.apache.tools.ant.taskdefs.LogOutputStream;
 import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
-//import org.apache.regexp.RESyntaxException;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.Iterator;
-
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 /**
  * An implementation of a ANT task for calling checkstyle. See the documentation
@@ -267,7 +266,7 @@ public class CheckStyleTask
     /**
      * Create the Properties object based on the arguments specified
      * to the ANT task.
-     * @return Properties object
+     * @return the properties for property expansion expansion
      * @throws BuildException if an error occurs
      */
     private Properties createOverridingProperties()
@@ -306,7 +305,15 @@ public class CheckStyleTask
             }
         }
 
-        // Now override the properties specified
+        // override with Ant properties like ${basedir}
+        Hashtable antProps = this.getProject().getProperties();
+        for (Iterator it = antProps.keySet().iterator(); it.hasNext();) {
+            final String key = (String) it.next();
+            final String value = String.valueOf(antProps.get(key));
+            retVal.put(key, value);
+        }
+
+        // override with properties specified in subelements
         for (Iterator it = mOverrideProps.iterator(); it.hasNext();) {
             final Property p = (Property) it.next();
             retVal.put(p.getKey(), p.getValue());
