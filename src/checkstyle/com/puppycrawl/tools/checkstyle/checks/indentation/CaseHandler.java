@@ -55,9 +55,10 @@ public class CaseHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
-    public int getLevelImpl()
+    public IndentLevel getLevelImpl()
     {
-        return getParent().getLevel() + getIndentCheck().getCaseIndent();
+        return new IndentLevel(getParent().getLevel(),
+                               getIndentCheck().getCaseIndent());
     }
 
     /**
@@ -65,8 +66,7 @@ public class CaseHandler extends ExpressionHandler
      */
     private void checkCase()
     {
-        checkChildren(getMainAst(), mCaseChildren, new IndentLevel(getLevel()),
-                      true, false);
+        checkChildren(getMainAst(), mCaseChildren, getLevel(), true, false);
     }
 
     /**
@@ -78,7 +78,7 @@ public class CaseHandler extends ExpressionHandler
      *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         return getLevel();
     }

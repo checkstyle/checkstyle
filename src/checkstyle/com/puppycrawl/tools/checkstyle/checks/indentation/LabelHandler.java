@@ -54,10 +54,9 @@ public class LabelHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
-    public int getLevelImpl()
+    public IndentLevel getLevelImpl()
     {
-        return super.getLevelImpl()
-            - getIndentCheck().getBasicOffset();
+        return new IndentLevel(super.getLevelImpl(), -getBasicOffset());
     }
 
     /**
@@ -65,8 +64,7 @@ public class LabelHandler extends ExpressionHandler
      */
     private void checkLabel()
     {
-        checkChildren(getMainAst(), mLabelChildren,
-                      new IndentLevel(getLevel()), true, false);
+        checkChildren(getMainAst(), mLabelChildren, getLevel(), true, false);
     }
 
     /**
@@ -78,9 +76,9 @@ public class LabelHandler extends ExpressionHandler
         // need to check children (like 'block' parents do)
         DetailAST parent = (DetailAST)
             getMainAst().getFirstChild().getNextSibling();
-        checkExpressionSubtree(parent,
-                               getLevel() + getIndentCheck().getBasicOffset(),
-                               true,
-                               false);
+
+        IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
+
+        checkExpressionSubtree(parent, expected, true, false);
     }
 }

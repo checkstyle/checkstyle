@@ -52,9 +52,9 @@ public class PrimordialHandler extends ExpressionHandler
      *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
-        return 0;
+        return new IndentLevel(0);
     }
 
     /**
@@ -62,8 +62,8 @@ public class PrimordialHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
-    public int getLevelImpl()
+    public IndentLevel getLevelImpl()
     {
-        return 0;
+        return new IndentLevel(0);
     }
 }

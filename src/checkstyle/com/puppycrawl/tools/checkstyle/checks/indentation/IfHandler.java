@@ -51,7 +51,7 @@ public class IfHandler extends BlockParentHandler
      *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         if (aChild instanceof ElseHandler) {
             return getLevel();
@@ -66,9 +66,9 @@ public class IfHandler extends BlockParentHandler
      *
      * @return the expected indentation amount
      */
-    public int getLevelImpl()
+    public IndentLevel getLevelImpl()
     {
-        if (isElseIf()) {
+        if (isIfAfterElse()) {
             return getParent().getLevel();
         }
         else {
@@ -77,11 +77,12 @@ public class IfHandler extends BlockParentHandler
     }
 
     /**
-     * Determines if this 'if' statement is part of an 'else' clause.
+     * Determines if this 'if' statement is part of an 'else' clause
+     * and on the same line.
      *
      * @return true if this 'if' is part of an 'else', false otherwise
      */
-    private boolean isElseIf()
+    private boolean isIfAfterElse()
     {
         // check if there is an 'else' and an 'if' on the same line
         DetailAST parent = getMainAst().getParent();
@@ -94,7 +95,7 @@ public class IfHandler extends BlockParentHandler
      */
     protected void checkToplevelToken()
     {
-        if (isElseIf()) {
+        if (isIfAfterElse()) {
             return;
         }
 
@@ -108,9 +109,9 @@ public class IfHandler extends BlockParentHandler
     {
         DetailAST condAst = (DetailAST)
             getMainAst().findFirstToken(TokenTypes.LPAREN).getNextSibling();
-        int expectedLevel =
-            getLevel() + getIndentCheck().getBasicOffset();
-        checkExpressionSubtree(condAst, expectedLevel, false, false);
+        IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
+
+        checkExpressionSubtree(condAst, expected, false, false);
     }
 
     /**

@@ -87,7 +87,7 @@ public class ObjectBlockHandler extends BlockParentHandler
      *
      * @return the expected indentation amount
      */
-    public int getLevelImpl()
+    public IndentLevel getLevelImpl()
     {
         return getParent().getLevel();
     }

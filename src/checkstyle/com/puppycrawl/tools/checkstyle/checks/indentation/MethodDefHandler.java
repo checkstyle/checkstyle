@@ -61,7 +61,7 @@ public class MethodDefHandler extends BlockParentHandler
     {
         DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
         int columnNo = expandedTabsColumnNo(ident);
-        if (startsLine(ident) && columnNo != getLevel()) {
+        if (startsLine(ident) && !getLevel().accept(columnNo)) {
             logError(ident, "", columnNo);
         }
     }
@@ -79,7 +79,7 @@ public class MethodDefHandler extends BlockParentHandler
 
         int columnNo = expandedTabsColumnNo(throwsAst);
         IndentLevel expectedColumnNo =
-            new IndentLevel(getLevel() + getIndentCheck().getBasicOffset());
+            new IndentLevel(getLevel(), getBasicOffset());
 
         if (startsLine(throwsAst)
             && !expectedColumnNo.accept(columnNo))
@@ -95,7 +95,7 @@ public class MethodDefHandler extends BlockParentHandler
     {
         DetailAST ident = getMainAst().findFirstToken(TokenTypes.TYPE);
         int columnNo = expandedTabsColumnNo(ident);
-        if (startsLine(ident) && columnNo != getLevel()) {
+        if (startsLine(ident) && !getLevel().accept(columnNo)) {
             logError(ident, "return type", columnNo);
         }
     }

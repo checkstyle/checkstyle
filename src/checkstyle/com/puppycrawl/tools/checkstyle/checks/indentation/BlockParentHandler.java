@@ -83,7 +83,7 @@ public class BlockParentHandler extends ExpressionHandler
         DetailAST toplevel = getToplevelAST();
 
         if (toplevel == null
-            || expandedTabsColumnNo(toplevel) == getLevel())
+            || getLevel().accept(expandedTabsColumnNo(toplevel)))
         {
             return;
         }
@@ -146,15 +146,16 @@ public class BlockParentHandler extends ExpressionHandler
         // the lcurly can either be at the correct indentation, or nested
         // with a previous expression
         DetailAST lcurly = getLCurly();
+        int lcurlyPos = expandedTabsColumnNo(lcurly);
 
         if (lcurly == null
-            || expandedTabsColumnNo(lcurly) == curlyLevel()
+            || curlyLevel().accept(lcurlyPos)
             || !startsLine(lcurly))
         {
             return;
         }
 
-        logError(lcurly, "lcurly", expandedTabsColumnNo(lcurly));
+        logError(lcurly, "lcurly", lcurlyPos);
     }
 
     /**
@@ -162,9 +163,9 @@ public class BlockParentHandler extends ExpressionHandler
      *
      * @return the curly brace indentation level
      */
-    private int curlyLevel()
+    private IndentLevel curlyLevel()
     {
-        return getLevel() + getIndentCheck().getBraceAdjustement();
+        return new IndentLevel(getLevel(), getBraceAdjustement());
     }
 
     /**
@@ -196,15 +197,16 @@ public class BlockParentHandler extends ExpressionHandler
         // on the same line as the lcurly
         DetailAST lcurly = getLCurly();
         DetailAST rcurly = getRCurly();
+        int rcurlyPos = expandedTabsColumnNo(rcurly);
+
         if (rcurly == null
-            || expandedTabsColumnNo(rcurly) == curlyLevel()
+            || curlyLevel().accept(rcurlyPos)
             || (!rcurlyMustStart() && !startsLine(rcurly))
             || areOnSameLine(rcurly, lcurly))
         {
             return;
         }
-        logError(rcurly, "rcurly", expandedTabsColumnNo(rcurly),
-                 new IndentLevel(curlyLevel()));
+        logError(rcurly, "rcurly", rcurlyPos, curlyLevel());
     }
 
     /**
@@ -229,10 +231,9 @@ public class BlockParentHandler extends ExpressionHandler
             return;
         }
 
-        checkExpressionSubtree(nonlist,
-                               getLevel() + getIndentCheck().getBasicOffset(),
-                               false,
-                               false);
+        IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
+
+        checkExpressionSubtree(nonlist, expected, false, false);
     }
 
     /**
@@ -280,9 +281,7 @@ public class BlockParentHandler extends ExpressionHandler
         // the rcurly can either be at the correct indentation,
         // or not first on the line ...
         final int rparenLevel = expandedTabsColumnNo(rparen);
-        if (rparenLevel == getLevel()
-            || !startsLine(rparen))
-        {
+        if (getLevel().accept(rparenLevel) || !startsLine(rparen)) {
             return;
         }
 
@@ -305,7 +304,7 @@ public class BlockParentHandler extends ExpressionHandler
         // same line as the lcurly
         DetailAST lparen = getLParen();
         if (lparen == null
-            || expandedTabsColumnNo(lparen) == getLevel()
+            || getLevel().accept(expandedTabsColumnNo(lparen))
             || !startsLine(lparen))
         {
             return;
@@ -347,6 +346,6 @@ public class BlockParentHandler extends ExpressionHandler
      */
     protected IndentLevel getChildrenExpectedLevel()
     {
-        return new IndentLevel(getLevel() + getIndentCheck().getBasicOffset());
+        return new IndentLevel(getLevel(), getBasicOffset());
     }
 }
