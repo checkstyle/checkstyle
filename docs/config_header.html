@@ -112,18 +112,29 @@ line 5: ////////////////////////////////////////////////////////////////////
       For example, consider the following header file:
       </p>
       <pre class="body">
-line 1: /{71}
-line 2: // checkstyle:
-line 3: // Checks Java source code for adherence to a set of rules\.
-line 4: // Copyright \(C\) \d\d\d\d  Oliver Burn
-line 5: // Last modification by \$Author.*\$
-line 6: /{71}
+line  1: ^/{71}$
+line  2: ^// checkstyle:$
+line  3: ^// Checks Java source code for adherence to a set of rules\.$
+line  4: ^// Copyright \(C\) \d\d\d\d  Oliver Burn$
+line  5: ^// Last modification by \$Author.*\$$
+line  6: ^/{71}$
+line  7: 
+line  8: ^package
+line  9:
+line 10: ^import
+line 11:
+line 12: ^/\*\*
+line 13: ^ \*([^/]|$)
+line 14: ^ \*/
       </pre>
 
       <p class="body">
-      Lines 1 and 6 demonstrate a more compact notation for 71 '/' characters. Line 4 
-      enforces that the copyright notice includes a four digit year. Line 5 is an 
-      example how to enforce revision control keywords in a file header.
+      Lines 1 and 6 demonstrate a more compact notation for 71 '/'
+      characters. Line 4 enforces that the copyright notice includes a
+      four digit year. Line 5 is an example how to enforce revision
+      control keywords in a file header. Lines 12-14 is a template for
+      javadoc (line 13 is so complecated to remove conflict with
+      and of javadoc comment).
       </p>
       <h4>Properties</h4>
       <table width="100%" border="1" cellpadding="5" class="body">
@@ -140,8 +151,8 @@ line 6: /{71}
           <td><span class="default">null</span></td>
         </tr>
         <tr>
-          <td>ignoreLines</td>
-          <td>line numbers to ignore</td>
+          <td>multiLines</td>
+          <td>line numbers to repeat (zero or more times)</td>
           <td><a href="property_types.html#intSet">list of integers</a></td>
           <td><span class="default">{}</span></td>
         </tr>
@@ -149,16 +160,22 @@ line 6: /{71}
 
       <h4>Example</h4>
       <p class="body">
-      To configure the check to use header file <span class="code">&quot;java.header&quot;</span> 
-      and ignore lines <span class="code">2</span>, <span class="code">3</span>, and <span class="code">
-      4</span>:
+      To configure the check to use header file <span
+      class="code">&quot;java.header&quot;</span> and <span
+      class="code">10</span> and  <span class="code">13</span>
+      muli-lines:
       </p>
       <pre class="body">
 &lt;module name=&quot;RegexpHeader&quot;&gt;
     &lt;property name=&quot;headerFile&quot; value=&quot;java.header&quot;/&gt;
-    &lt;property name=&quot;ignoreLines&quot; value=&quot;2, 3, 4&quot;/&gt;
+    &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
 &lt;/module&gt;
       </pre>
+      <p class="body">
+      <u>Note</u>: <span class="code">ignoreLines</span> property has been
+      removed from this check to simplify it.  To make some line
+      optional use &quot;^.*$&quot; regexp for this line.
+      </p>
       <h4>Package</h4>
       <p class="body">
       com.puppycrawl.tools.checkstyle.checks
