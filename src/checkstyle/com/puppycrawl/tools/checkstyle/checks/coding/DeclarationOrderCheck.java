@@ -185,14 +185,4 @@ public class DeclarationOrderCheck extends Check
         default:
         }
     }
-
-    /**
-     * Our own logging method
-     * @param aAST The AST to log
-     * @param aError The type of error to log
-     */
-    private void log(DetailAST aAST, String aError)
-    {
-        log(aAST.getLineNo(), aAST.getColumnNo(), aError);
-    }
 }
