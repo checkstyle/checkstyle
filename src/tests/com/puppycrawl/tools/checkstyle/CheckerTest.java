@@ -461,6 +461,7 @@ public class CheckerTest
         mConfig.setPatternProperty(Defn.MEMBER_PATTERN_PROP, "^m[A-Z][a-zA-Z0-9]*$");
         mConfig.setPatternProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP,"^.*is OK.*regexp.*$");
         mConfig.setPatternProperty(Defn.TODO_PATTERN_PROP, "FIXME:");
+        mConfig.setPatternProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP, "[A-Z]+");
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
@@ -486,7 +487,7 @@ public class CheckerTest
             filepath + ":80: Method length is 20 lines (max allowed is 19).",
             filepath + ":103: Constructor length is 10 lines (max allowed is 9).",
             filepath + ":119:13: variable name 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            filepath + ":123:19: variable name 'CDE' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            filepath + ":122:19: variable name 'cde' must match pattern '[A-Z]+'.",
             filepath + ":127:9: '{' should be on the previous line.",
             filepath + ":130:18: variable name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":131:9: '{' should be on the previous line.",
