@@ -72,13 +72,7 @@ public class EqualsHashCodeCheck
             return;
         }
 
-        AST modifiers = aAST.getFirstChild();
-        final Set mods = new HashSet();
-        AST modifier = modifiers.getFirstChild();
-        while (modifier != null) {
-            mods.add(modifier.getText());
-            modifier = modifier.getNextSibling();
-        }
+        DetailAST modifiers = (DetailAST) aAST.getFirstChild();
 
         AST type = modifiers.getNextSibling();
         AST methodName = type.getNextSibling();
@@ -86,7 +80,7 @@ public class EqualsHashCodeCheck
 
         if (type.getFirstChild().getType() == TokenTypes.LITERAL_BOOLEAN
                 && "equals".equals(methodName.getText())
-                && mods.contains("public")
+                && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
                 && parameters.getChildCount() == 1
                 && isObjectParam(parameters.getFirstChild())
                 )
@@ -95,7 +89,7 @@ public class EqualsHashCodeCheck
         }
         else if (type.getFirstChild().getType() == TokenTypes.LITERAL_INT
                 && "hashCode".equals(methodName.getText())
-//                && modifiers.subTreeContains(TokenTypes.LITERAL_PUBLIC)
+                && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
                 && parameters.getFirstChild() == null) // no params
         {
             objBlockWithHashCode.add(aAST.getParent());

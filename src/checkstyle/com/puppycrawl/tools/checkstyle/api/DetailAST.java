@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Arrays;
+
 import antlr.CommonAST;
 import antlr.Token;
 import antlr.collections.AST;
@@ -43,6 +45,14 @@ public class DetailAST
     private int mChildCount = NOT_INITIALIZED;
     /** the parent token */
     private DetailAST mParent;
+
+    /**
+     * All token types in this branch, sorted.
+     *
+     * Note: This is not a Set to avoid creating zillions of
+     * Integer objects in branchContains().
+     */
+    private int[] mBranchTokenTypes = null;
 
     /** @see antlr.CommonAST **/
     public void initialize(Token aTok)
@@ -158,5 +168,46 @@ public class DetailAST
             ast = ast.getNextSibling();
         }
         return (DetailAST) ast;
+    }
+
+    /**
+     * @return the token types that occur in the branch as a sorted set.
+     */
+    private int[] getBranchTokenTypes()
+    {
+        // lazy init
+        if (mBranchTokenTypes == null) {
+
+            // TODO improve algorithm to avoid most array creation
+            int[] bag = new int[] { getType() };
+
+            // add union of all childs
+            DetailAST child = (DetailAST) getFirstChild();
+            while (child != null) {
+                int[] childTypes = child.getBranchTokenTypes();
+                int[] savedBag = bag;
+                bag = new int[savedBag.length + childTypes.length];
+                System.arraycopy(savedBag, 0, bag, 0, savedBag.length);
+                System.arraycopy(childTypes, 0, bag, savedBag.length,
+                        childTypes.length);
+                child = (DetailAST) child.getNextSibling();
+            }
+            // TODO: remove duplicates to speed up searching
+            mBranchTokenTypes = bag;
+            Arrays.sort(mBranchTokenTypes);
+        }
+        return mBranchTokenTypes;
+    }
+
+    /**
+     * Checks if this branch of the parse tree contains a token
+     * of the provided type.
+     * @param aType a TokenType
+     * @return true if and only if this branch (including this node)
+     * contains a token of type <code>aType</code>.
+     */
+    public boolean branchContains(int aType)
+    {
+        return Arrays.binarySearch(getBranchTokenTypes(), aType) >= 0;
     }
 }
