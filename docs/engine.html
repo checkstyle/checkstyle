@@ -93,6 +93,56 @@
 </pre>
 </div>
 
+<h3><a name="curly">Curly Braces</a></h3>
+<p>Checks for the correct placement of left curly braces <span class="code">'{'</span>. The check can be configured with the following options:</p>
+<a name="lcurlyopt"></a>
+<table border="1" summary="left curly options">
+  <tr class="header">
+    <td>Option</td>
+    <td>Definition</td>
+  </tr>
+  <tr>
+    <td><span class="code">ignore</span></td>
+    <td>Ignore the placement of the brace.</td>
+  </tr>
+  <tr>
+    <td><span class="code">nl</span></td>
+    <td>The brace must always be on a new line. For example:
+<pre>
+    if (condition)
+    {
+        ...
+</pre>      
+    </td>
+  </tr>
+  <tr>
+    <td><span class="code">eol</span></td>
+    <td>The brace must always be on the end of the line. For example:
+<pre>
+    if (condition) {
+        ...
+</pre>
+      This is the default value.
+  </tr>
+  <tr>
+    <td><span class="code">nlow</span></td>
+    <td>If the brace will fit on the first line of the statement, taking into account making line length, then apply <span class="code">eol</span> rule. Otherwise apply the <span class="code">nl</span> rule. <span class="code">nlow</span> is a mnemonic for "new line on wrap". For the example above Checkstyle will enforce:
+<pre>
+    if (condition) {
+        ...
+</pre>
+      But for a statement spanning multiple lines, Checkstyle will enforce:
+<pre>
+    if (condition1 && condition2 &&
+        condition3 && condition4)
+    {
+        ...
+</pre>
+      
+  </tr>
+</table>
+
+
 <h3><a name="length">Long Lines</a></h3>
 <p>Checks for lines that are longer than a specified length. The default is <span class="default">&quot;80&quot;</span>. This can be turned off for <code>import</code> statements.</p>
 
