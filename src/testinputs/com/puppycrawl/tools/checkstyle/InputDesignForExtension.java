@@ -49,7 +49,24 @@ public class InputDesignForExtension
     }
 
     // has a potentially complex implementation in native code.
-    // We can't check that, so to be safe DesignForExtension requirves
+    // We can't check that, so to be safe DesignForExtension requires
     // native methods to also be final
     public native void aNativeMethod();
+
+    // tries to trigger bug #884035
+    // MyComparator is a private class, so there cannot be subclasses
+    // and it should not be neccessary to declare compare() as final
+    private class MyComparator implements java.util.Comparator
+    {
+        public int compare(Object o1, Object o2)
+        {
+            // some complex stuff that would normally trigger an error report
+            if (o1.hashCode() > o2.hashCode()) {
+                return -1;
+            }
+            else {
+                return 1;
+            }
+        }
+    }
 }
