@@ -99,7 +99,7 @@ public class InputJavadocStyleCheck
    }
 
     
-    // Testcases to excercize the Tag parser (bug 841942)
+    // Testcases to excercize the Tag parser (bug 843887)
 
     /**
      * Real men don't use XHTML.
