@@ -3,6 +3,10 @@ TODO LIST:
 Add Features:
 =============
 
+  Note: 
+  This list might be outdated, for an up to date list visit
+  http://sourceforge.net/tracker/?atid=397081&group_id=29721&func=browse
+
 o Detect unused Javadoc comments
 
 o Do more rigorous QA on the Javadoc tags. Things to check are:
@@ -18,8 +22,6 @@ o Code after {}'s. Two examples are:
 
 o Allow the error message format to be defined.
 
-o Do not require Javadoc comments for annoymous classes.
-
 o Make the handling of dates in the header smarter that just ignoring a single
   line.
 
@@ -27,20 +29,13 @@ o Make the handling of dates in the header smarter that just ignoring a single
 Fix known bugs:
 ===============
 
+  Note: 
+  This list might be outdated, for an up to date list visit
+  http://sourceforge.net/tracker/?group_id=29721&atid=397078
+
 o Cannot correctly determine the starting line number for a method with no
   modifiers ("static", "private", etc). For example the method
     int getLine().
-
-o Requires Javadoc comments to directly precede the statement. For example:
-
-    /** a comment **/
-    private int mData;
-
-  is ok, but the following is not:
-
-    /** an empty line follows **/
-
-    private int mData2;
 
 o Incorporate known Java Grammer bugs outlined in the article
   http://groups.yahoo.com/group/antlr-interest/message/2687.
