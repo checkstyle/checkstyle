@@ -136,7 +136,7 @@ class ConfigurationLoader
             mCurrent = new CheckConfiguration();
             mCurrent.setClassname(aAtts.getValue("classname"));
         }
-        else if ("set-property".equals(aQName)) {
+        else if ("property".equals(aQName)) {
             final String name = aAtts.getValue("name");
             String value = aAtts.getValue("value");
             

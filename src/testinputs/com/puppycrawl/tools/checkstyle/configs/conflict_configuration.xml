@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <configuration>
     <global>
-        <set-property name="option" value="nl"/>
+        <property name="option" value="nl"/>
     </global>
     <check classname="com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck">
-        <set-property name="option" value="alone"/>
-        <set-property name="checkstyle.tab.width" value="4"/>
+        <property name="option" value="alone"/>
+        <property name="checkstyle.tab.width" value="4"/>
     </check>
 </configuration>
