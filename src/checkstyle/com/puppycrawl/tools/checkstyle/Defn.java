@@ -24,6 +24,8 @@ package com.puppycrawl.tools.checkstyle;
  **/
 public interface Defn
 {
+    /** property name for the todo pattern **/
+    String TODO_PATTERN_PROP = "checkstyle.pattern.todo";
     /** property name for the parameter pattern **/
     String PARAMETER_PATTERN_PROP = "checkstyle.pattern.parameter";
     /** property name for the static variable pattern **/

@@ -182,7 +182,8 @@
                     lcurlyOther="nlow"
                     lcurlyType="nl"
                     rcurly="alone"
-                    parenPad="nospace">
+                    parenPad="nospace"
+                    todoPattern="TODO:">
             <fileset dir="src/checkstyle"
                      includes="**/*.java"
                      excludes="**/Generated*.java"/>

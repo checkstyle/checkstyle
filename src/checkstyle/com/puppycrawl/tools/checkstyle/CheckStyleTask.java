@@ -321,6 +321,24 @@ public class CheckStyleTask
             });
     }
 
+    /** @param aPat pattern for todo lines **/
+    public void setTodoPattern(final String aPat)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setTodoPat(aPat);
+                    }
+                    catch (RESyntaxException ex) {
+                        throw new BuildException(
+                            "Unable to parse todoPattern - ", ex);
+                    }
+                }
+            });
+    }
+
     /** @param aPat pattern for parameters **/
     public void setParamPattern(final String aPat)
     {
@@ -706,8 +724,6 @@ public class CheckStyleTask
         throws ClassNotFoundException, InstantiationException,
         IllegalAccessException, IOException
     {
-        // @todo should we add a default plain stdout
-        // formatter ?
         if (mFormatters.size() == 0) {
             final Formatter f = new Formatter();
             final FormatterType type = new FormatterType();
@@ -907,9 +923,9 @@ public class CheckStyleTask
      */
     private void applyExplicitOptions()
     {
-        Iterator it = mOptionMemory.iterator();
+        final Iterator it = mOptionMemory.iterator();
         while (it.hasNext()) {
-            Runnable runnable = (Runnable) it.next();
+            final Runnable runnable = (Runnable) it.next();
             runnable.run();
         }
         mOptionMemory.clear();

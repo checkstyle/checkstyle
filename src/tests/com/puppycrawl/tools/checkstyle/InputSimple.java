@@ -17,7 +17,7 @@ final class InputSimple
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->	<-
-    // Contains trailing whitespace -> 
+    // Contains trailing whitespace ->
 
     // Name format tests
     //
@@ -157,4 +157,12 @@ final class InputSimple
   	  	int tab4 =1;
   	        int tab5 =1;
     }
+
+    // FIXME:
+    /* FIXME: a
+     * FIXME:
+     * TODO
+     */
+    /* NOTHING */
+    /* YES */ /* FIXME: x */ /* YES!! */
 }
