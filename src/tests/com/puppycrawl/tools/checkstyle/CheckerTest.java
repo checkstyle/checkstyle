@@ -13,6 +13,7 @@ public class CheckerTest
     public void testPackageNames() throws CheckstyleException
     {
         final Checker c = new Checker();
+        assertNotNull(c);
 
         // TODO: reintegrate the following test?
         //        final String[] pkgs = new String[0];
