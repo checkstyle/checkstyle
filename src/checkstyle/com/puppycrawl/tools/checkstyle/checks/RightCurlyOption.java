@@ -27,7 +27,7 @@ import java.util.HashMap;
  * Represents the options for placing the right curly brace '}'.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: RightCurlyOption.java,v 1.1 2002-10-07 09:17:15 oburn Exp $
+ * @version $Id: RightCurlyOption.java,v 1.2 2002-10-13 12:46:33 oburn Exp $
  */
 public final class RightCurlyOption implements Serializable
 {
@@ -38,9 +38,6 @@ public final class RightCurlyOption implements Serializable
     public static final RightCurlyOption ALONE = new RightCurlyOption("alone");
     /** represents placing the brace on the same line **/
     public static final RightCurlyOption SAME = new RightCurlyOption("same");
-    /** represents ignoring the placement **/
-    public static final RightCurlyOption IGNORE =
-        new RightCurlyOption("ignore");
 
     /** the string representation of the option **/
     private final String mStrRep;
