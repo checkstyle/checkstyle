@@ -46,8 +46,6 @@ public class CheckerTest
     protected void setUp()
         throws Exception
     {
-        mProps.setProperty(Defn.LCURLY_METHOD_PROP,
-                           LeftCurlyOption.NL.toString());
         mProps.setProperty(Defn.LCURLY_OTHER_PROP,
                            LeftCurlyOption.NLOW.toString());
         mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, Boolean.TRUE.toString());
@@ -621,39 +619,6 @@ public class CheckerTest
             filepath + ":53:42: '(' is followed by whitespace.",
             filepath + ":53:57: ')' is preceeded with whitespace.",
             filepath + ":57:14: ')' is preceeded with whitespace.",
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testLCurlyMethodIgnore()
-        throws Exception
-    {
-        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
-        mProps.setProperty(Defn.LCURLY_METHOD_PROP,
-                           LeftCurlyOption.IGNORE.toString());
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
-        final Checker c = createChecker();
-        final String filepath = getPath("InputLeftCurlyMethod.java");
-        assertNotNull(c);
-        final String[] expected = {
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testLCurlyMethodNL()
-        throws Exception
-    {
-        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
-        mProps.setProperty(Defn.LCURLY_METHOD_PROP,
-                           LeftCurlyOption.NL.toString());
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
-        final Checker c = createChecker();
-        final String filepath = getPath("InputLeftCurlyMethod.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":14:39: '{' should be on a new line.",
-            filepath + ":21:20: '{' should be on a new line.",
-            filepath + ":34:31: '{' should be on a new line.",
         };
         verify(c, filepath, expected);
     }

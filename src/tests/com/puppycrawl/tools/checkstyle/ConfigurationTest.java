@@ -4,8 +4,6 @@ import junit.framework.TestCase;
 
 import java.util.Properties;
 
-import com.puppycrawl.tools.checkstyle.checks.RightCurlyOption;
-
 public class ConfigurationTest
     extends TestCase
 {
@@ -18,7 +16,6 @@ public class ConfigurationTest
     {
         final Properties p = new Properties();
         p.setProperty(Defn.MAX_LINE_LENGTH_PROP, "66");
-        p.setProperty(Defn.LCURLY_METHOD_PROP, "ignore");
         p.setProperty(Defn.LCURLY_OTHER_PROP, "claiea");
         p.setProperty(Defn.CATCH_BLOCK_PROP, "text");
         p.setProperty(Defn.PAREN_PAD_PROP, "ignore");

@@ -115,7 +115,6 @@ public class Configuration
     private final Map mLCurliesProps = new HashMap();
     {
 
-        mLCurliesProps.put(Defn.LCURLY_METHOD_PROP, LeftCurlyOption.EOL);
         mLCurliesProps.put(Defn.LCURLY_OTHER_PROP, LeftCurlyOption.EOL);
     }
 
@@ -550,12 +549,6 @@ public class Configuration
     private void setStringProperty(String aName, String aTo)
     {
         mStringProps.put(aName, aTo);
-    }
-
-    /** @return the left curly placement option for methods **/
-    LeftCurlyOption getLCurlyMethod()
-    {
-        return getLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP);
     }
 
     /** @return the left curly placement option for others **/
