@@ -101,6 +101,6 @@ public interface Defn
     /** property name for padding around parenthesis **/
     String PAREN_PAD_PROP = "checkstyle.paren.pad";
 
-    /** property name for allowing empty exception handlers **/
-    String ALLOW_EMPTY_CATCH_PROP = "checkstyle.allow.empty.catch";
+    /** property name for catch block options **/
+    String CATCH_BLOCK_PROP = "checkstyle.catchblock";
 }

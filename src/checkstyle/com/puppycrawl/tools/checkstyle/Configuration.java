@@ -186,12 +186,11 @@ public class Configuration
     private LeftCurlyOption mLCurlyOther = LeftCurlyOption.EOL;
     /** where to place right curlies  **/
     private RightCurlyOption mRCurly = RightCurlyOption.SAME;
+    /** how to process catch blocks **/
+    private CatchBlockOption mCatchBlock = CatchBlockOption.TEXT;
 
     /** how to pad parenthesis **/
     private PadOption mParenPadOption = PadOption.NOSPACE;
-
-    /** whether to allow emtpy exception handlers **/
-    private boolean mAllowEmptyCatch = false;
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -285,12 +284,13 @@ public class Configuration
                            LeftCurlyOption.EOL, aLog));
         setRCurly(getRightCurlyOptionProperty(
                       aProps, RCURLY_PROP, RightCurlyOption.SAME, aLog));
+        setCatchBlock(
+            getCatchBlockOptionProperty(
+                aProps, CATCH_BLOCK_PROP, CatchBlockOption.TEXT, aLog));
         setParenPadOption(getPadOptionProperty(aProps,
                                                PAREN_PAD_PROP,
                                                PadOption.NOSPACE,
                                                aLog));
-        setAllowEmptyCatch(getBooleanProperty(
-            aProps, ALLOW_EMPTY_CATCH_PROP, mAllowEmptyCatch));
     }
 
     /**
@@ -1005,6 +1005,18 @@ public class Configuration
         mRCurly = aTo;
     }
 
+    /** @return the catch block option **/
+    public CatchBlockOption getCatchBlock()
+    {
+        return mCatchBlock;
+    }
+
+    /** @param aTo set the catch block option **/
+    public void setCatchBlock(CatchBlockOption aTo)
+    {
+        mCatchBlock = aTo;
+    }
+
     /** @return the parenthesis padding option **/
     public PadOption getParenPadOption()
     {
@@ -1015,18 +1027,6 @@ public class Configuration
     public void setParenPadOption(PadOption aTo)
     {
         mParenPadOption = aTo;
-    }
-
-    /** @return whether empty catch blocks are allowed */
-    public boolean isAllowEmptyCatch()
-    {
-        return mAllowEmptyCatch;
-    }
-
-    /** @param aAllowEmptyCatch whether empty catch blocks are allowed */
-    public void setAllowEmptyCatch(boolean aAllowEmptyCatch)
-    {
-        mAllowEmptyCatch = aAllowEmptyCatch;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -1128,6 +1128,34 @@ public class Configuration
         final String strRep = aProps.getProperty(aName);
         if (strRep != null) {
             retVal = RightCurlyOption.decode(strRep);
+            if (retVal == null) {
+                aLog.println("Unable to parse " + aName +
+                             " property with value " + strRep +
+                             ", defaulting to " + aDefault + ".");
+            }
+        }
+        return retVal;
+    }
+
+    /**
+     * @param aProps the properties set to use
+     * @param aLog where to log errors to
+     * @param aName the name of the property to parse
+     * @param aDefault the default value to use.
+     *
+     * @return the value of a CatchBlockOption property. If the property is not
+     *    defined or cannot be decoded, then a default value is returned.
+     */
+    private static CatchBlockOption getCatchBlockOptionProperty(
+        Properties aProps,
+        String aName,
+        CatchBlockOption aDefault,
+        PrintStream aLog)
+    {
+        CatchBlockOption retVal = aDefault;
+        final String strRep = aProps.getProperty(aName);
+        if (strRep != null) {
+            retVal = CatchBlockOption.decode(strRep);
             if (retVal == null) {
                 aLog.println("Unable to parse " + aName +
                              " property with value " + strRep +
