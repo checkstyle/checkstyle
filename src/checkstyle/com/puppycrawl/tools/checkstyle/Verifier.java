@@ -225,13 +225,6 @@ class Verifier
      **/
     void verifyMethod(MethodSignature aSig)
     {
-        // Check for to many parameters
-        if (aSig.getParams().size() > mConfig.getMaxParameters()) {
-            mMessages.add(aSig.getFirstLineNo(),
-                          aSig.getFirstColNo(),
-                          "maxParam", new Integer(mConfig.getMaxParameters()));
-        }
-
         // now check the javadoc
         final Scope methodScope = inInterfaceBlock()
             ? Scope.PUBLIC
