@@ -180,7 +180,7 @@ public class DetailAST
         if (mBranchTokenTypes == null) {
 
             // TODO: improve algorithm to avoid most array creation
-            int[] bag = new int[] { getType() };
+            int[] bag = new int[] {getType()};
 
             // add union of all childs
             DetailAST child = (DetailAST) getFirstChild();
