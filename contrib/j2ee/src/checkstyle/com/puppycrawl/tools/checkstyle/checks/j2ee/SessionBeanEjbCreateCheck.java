@@ -22,37 +22,31 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that a SessionBean implementation satisfies SessionBean
- * requirements:
+ * Checks that a SessionBean ejbCreate method satisfies these requirements:
  * <ul>
- * <li>The class is defined as <code>public</code>.</li>
- * <li>The class cannot be defined as <code>abstract</code> or
- * <code>final</code>.</li>
- * <li>It implements one or more <code>ejbCreate</code> methods.</li>
- * <li>It contains a <code>public</code> constructor with no parameters.</li>
- * <li>It must not define the <code>finalize</code> method.</li>
-</ul>
+ * <li>The access control modifier must be <code>public</code>.</li>
+ * <li>The return type must be void.</li>
+ * <li>The method modifier cannot be <code>final</code>
+ * or <code>static</code>.</li>
+ * </ul>
  * @author Rick Giles
  */
-public class SessionBeanCheck
-    extends AbstractBeanCheck
+public class SessionBeanEjbCreateCheck
+    extends AbstractMethodCheck
 {
-    /**
+   /**
      * @see com.puppycrawl.tools.checkstyle.api.Check
      */
     public void visitToken(DetailAST aAST)
     {
-        if (Utils.hasImplements(aAST, "javax.ejb.SessionBean")
-            && !Utils.isAbstract(aAST))
+        final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+        if (nameAST.getText().equals("ejbCreate")
+            && Utils.implementsSessionBean(aAST))
         {
-            checkBean(aAST, "Session bean");
-            if (!Utils.hasPublicMethod(aAST, "ejbCreate", true)) {
-                final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-                log(
-                    nameAST.getLineNo(),
-                    nameAST.getColumnNo(),
-                    "missingmethod.bean",
-                    new Object[] {"Session bean", "ejbCreate"});
+            checkMethod(aAST);
+            if (!Utils.isVoid(aAST)) {
+                log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                    "nonvoidmethod.bean", "ejbCreate");
             }
         }
     }

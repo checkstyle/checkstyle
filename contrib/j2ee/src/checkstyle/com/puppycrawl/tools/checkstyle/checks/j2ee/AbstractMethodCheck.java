@@ -18,15 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.j2ee;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that a ejbCreate method is void. Useful for checking SessionBeans.
+ * Abstract class for method checks
  * @author Rick Giles
  */
-public class NonVoidEjbCreateCheck
-    extends AbstractBeanCheck
+public class AbstractMethodCheck
+    extends Check
 {
     /**
      * @see com.puppycrawl.tools.checkstyle.api.Check
@@ -45,25 +46,31 @@ public class NonVoidEjbCreateCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * Checks method requirements:
+     * <ul>
+     * <li>The access control modifier must be <code>public</code>.</li>
+     * <li>The method modifier cannot be <code>final</code>
+     * or <code>static</code>.</li>
+     * </ul>
+     * @param aAST METHOD_DEF node for method definition to check.
      */
-    public void visitToken(DetailAST aAST)
+    protected void checkMethod(DetailAST aAST)
     {
-        DetailAST definer = aAST.getParent();
-        while ((definer != null)) {
-            if (definer.getType() == TokenTypes.CLASS_DEF) {
-                break;
-            }
-            definer = definer.getParent();
+        final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+        final String nameMessage = "Method " + nameAST.getText();
+        if (!Utils.isPublic(aAST)) {
+            log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                "nonpublic.bean", nameMessage);
         }
-        if (definer != null) {
-            if (Utils.hasImplements(definer, "javax.ejb.SessionBean")) {
-                final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-                if (Utils.isPublicMethod(aAST, "ejbCreate", false, 1)) {
-                    log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                        "nonvoidejbcreate.sessionbean");
-                }
-            }
+        if (Utils.isFinal(aAST)) {
+            log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                "illegalmodifier.bean",
+                new Object[] {nameMessage, "final"});
+        }
+        if (Utils.isStatic(aAST)) {
+            log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                "illegalmodifier.bean",
+                new Object[] {nameMessage, "static"});
         }
     }
 }

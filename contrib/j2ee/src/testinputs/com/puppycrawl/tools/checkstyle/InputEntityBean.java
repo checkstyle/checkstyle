@@ -87,6 +87,11 @@ final class FinalEntityBean
     {
     }
 
+    /** invalid */
+    protected static final void ejbCreate(int i)
+    {
+    }
+
     /**
      * @see javax.ejb.EntityBean#setEntityContext(javax.ejb.EntityContext)
      */

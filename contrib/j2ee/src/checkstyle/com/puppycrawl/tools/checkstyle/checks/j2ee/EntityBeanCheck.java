@@ -43,7 +43,7 @@ public class EntityBeanCheck
         if (Utils.hasImplements(aAST, "javax.ejb.EntityBean")
             && !Utils.isAbstract(aAST))
         {
-            checkBean(aAST, "Entity");
+            checkBean(aAST, "Entity bean");
         }
     }
 }
