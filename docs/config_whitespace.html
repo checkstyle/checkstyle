@@ -23,6 +23,9 @@
     <td class="menu" valign="top">
       <ul>
         <li>
+          <a href="#EmptyForIteratorPad">EmptyForIteratorPad</a>
+        </li>
+        <li>
           <a href="#NoWhitespaceAfter">NoWhitespaceAfter</a>
         </li>
         <li>
@@ -46,7 +49,57 @@
       </ul>
     </td>
     <!--Content-->
-    <td class="content" valign="top" align="left"><a name="NoWhitespaceAfter"></a> <h2>NoWhitespaceAfter</h2>
+    <td class="content" valign="top" align="left">
+    
+      <a name="EmptyForIteratorPad"></a> <h2>EmptyForIteratorPad</h2> <h4>Description</h4>
+
+      <p class="body">
+      Checks the padding of an empty for iterator; that is whether white
+      space is required at an empty for iterator, or such white space is
+     forbidden.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>option</td>
+          <td>policy on how to pad an empty for iterator</td>
+          <td><a href="property_types.html#parenPad">pad policy</a></td>
+          <td><span class="default">nospace</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;EmptyForIteratorPad&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to require white space at an empty for iterator:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;EmptyForIteratorPad&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <a name="NoWhitespaceAfter"></a> <h2>NoWhitespaceAfter</h2>
       <h4>Description</h4>
 
       <p class="body">
@@ -392,7 +445,7 @@
         <tr>
           <td>option</td>
           <td>policy on how to pad parentheses</td>
-          <td><a href="property_types.html#parenPad">pad parentheses policy</a></td>
+          <td><a href="property_types.html#parenPad">pad policy</a></td>
           <td><span class="default">nospace</span></td>
         </tr>
         <tr>
