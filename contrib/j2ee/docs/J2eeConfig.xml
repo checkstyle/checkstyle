@@ -7,6 +7,9 @@
     <property name="severity" value="error"/>
     
     <module name="TreeWalker">
+    	 <module name="coding.IllegalToken">
+    	     <property name="tokens" value="LITERAL_NATIVE"/>
+    	 </module>
          <module name="j2ee.EntityBean"/>
          <module name="j2ee.EntityBeanEjbCreate"/>
          <module name="j2ee.EntityBeanEjbHome"/>
