@@ -288,21 +288,6 @@ public abstract class ExpressionHandler
             // expression that was required to be checked (it could be
             // checked by a child expression)
 
-            // TODO: not sure if this does anything, look at taking it out
-
-            // TODO: we can check here if this line starts or the previous
-            // line ends in a dot.  If so, we should increase the indent.
-
-            // TODO: check if -2 is possible here?  but unlikely to be a
-            // problem...
-            String thisLine = mIndentCheck.getLines()[i - 1];
-            String prevLine = mIndentCheck.getLines()[i - 2];
-            if (thisLine.matches("^\\s*\\.")
-                || prevLine.matches("\\.\\s*$"))
-            {
-                aIndentLevel = new IndentLevel(aIndentLevel, getBasicOffset());
-            }
-
             if (col != null) {
                 checkSingleLine(i, col.intValue(), aIndentLevel, false);
             }
