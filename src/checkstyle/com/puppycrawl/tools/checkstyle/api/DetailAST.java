@@ -31,7 +31,7 @@ import antlr.collections.AST;
  * @author lkuehne
  * @version 1.0
  */
-public class DetailAST
+public final class DetailAST
     extends CommonAST
 {
     /** constant to indicate if not calculated the child count */
