@@ -27,6 +27,12 @@ public class ConfigurationRuleParser extends DigesterRuleParser
         aDigester.addRule(
             "*/config-create-rule", new PatternRule("pattern"));
         aDigester.addSetNext("*/config-create-rule", "add", ruleClassName);
+        
+        aDigester.addFactoryCreate(
+            "*/config", new ConfigRuleFactory());
+        aDigester.addRule(
+            "*/config", new PatternRule("pattern"));
+        aDigester.addSetNext("*/config", "add", ruleClassName);
     }
 
     /**
@@ -40,6 +46,21 @@ public class ConfigurationRuleParser extends DigesterRuleParser
             final String className = anAttributes.getValue("classname");
 
             return new ConfigCreateRule(className);
+        }
+    }
+    
+    /**
+     * Factory for creating a configCreateRule
+     */
+    protected class ConfigRuleFactory
+        extends AbstractObjectCreationFactory
+    {
+        public Object createObject(Attributes anAttributes)
+        {
+            final String name = anAttributes.getValue("name");
+            final String className = anAttributes.getValue("classname");
+
+            return new ConfigRule(name, className);
         }
     }
 
@@ -72,7 +93,7 @@ public class ConfigurationRuleParser extends DigesterRuleParser
          * @param aAttrs the attributes to search.
          * 
          */
-        public void begin(Attributes aAttrs)
+        public void begin(String namespace, String name, Attributes aAttrs)
         {
             mPattern = aAttrs.getValue(mAttrName);
             if (mPattern != null) {
@@ -84,13 +105,93 @@ public class ConfigurationRuleParser extends DigesterRuleParser
          * If there was a pattern for this element, pop it off the pattern
          * stack.
          */
-        public void end()
+        public void end(String namespace, String name)
         {
             if (mPattern != null) {
                 patternStack.pop();
             }
         }
     }
+    
+    protected class ConfigRule extends Rule
+    {
+        private String mName;
+        /** name of the class for the configuration */
+        private String mClassName;
+        private boolean isNameMatch;
+
+        /**
+         * Construct an configuration create rule with the specified class
+         * name.
+         *
+         * @param aClassName Java class name of the object to be created
+         */
+        public ConfigRule(String aName, String aClassName)
+        {
+            mName = aName;
+            mClassName = aClassName;
+        }
+
+        /**
+         * Process the beginning of this element.
+         * @param aAtts The attribute list of this element
+         */
+        public void begin(String aNamespace, String aName, Attributes aAtts)
+        {
+            // TODO: add logging
+//            if (digester.log.isDebugEnabled()) {
+//                digester.log.debug(
+//                    "[ObjectCreateRule]{" + digester.match + "}New "
+//                    + realClassName);
+//            }
+
+            // Instantiate the new object and push it on the context stack
+            final String name = aAtts.getValue("name");
+            if ((name != null) && (mName.equals(name))) {
+                isNameMatch = true;
+                final DefaultConfiguration config =
+                    new DefaultConfiguration(mName);
+                config.addAttribute("classname", mClassName);
+                final DefaultConfiguration parent =
+                    (DefaultConfiguration) digester.peek();
+                parent.addChild(config);
+                digester.push(config);
+            }
+            else {
+                isNameMatch = false;
+            }
+        }
+        
+        /**
+         * Process the end of this element.
+         */
+        public void end(String namespace, String name)
+        {
+            if (isNameMatch) {
+                Object top = digester.pop();
+            }
+            // TODO: add logging
+//            if (digester.log.isDebugEnabled()) {
+//                digester.log.debug("[ObjectCreateRule]{" + digester.match +
+//                        "} Pop " + top.getClass().getName());
+//            }   
+        }
+    
+    
+        /**
+         * Render a printable version of this Rule.
+         * @return a String representation of this Rule.
+         */
+        public String toString()
+        {   
+            StringBuffer sb = new StringBuffer("ConfigCreateRule0[");
+            sb.append("className=");
+            sb.append(mClassName);
+             sb.append("]");
+            return (sb.toString());    
+        }
+    }
+    
     protected class ConfigCreateRule extends Rule
     {
         /** name of the class for the configuration */
@@ -111,7 +212,7 @@ public class ConfigurationRuleParser extends DigesterRuleParser
          * Process the beginning of this element.
          * @param aAtts The attribute list of this element
          */
-        public void begin(Attributes aAtts)
+        public void begin(String aNamespace, String aName, Attributes aAtts)
         {
             // TODO: add logging
 //            if (digester.log.isDebugEnabled()) {
@@ -139,7 +240,7 @@ public class ConfigurationRuleParser extends DigesterRuleParser
         /**
          * Process the end of this element.
          */
-        public void end()
+        public void end(String namespace, String name)
         {
     
             Object top = digester.pop();
