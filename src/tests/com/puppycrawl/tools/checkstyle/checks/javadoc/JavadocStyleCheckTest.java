@@ -26,6 +26,7 @@ public class JavadocStyleCheckTest
             "88: First sentence should end with a period.",
             "89:31: Extra HTML tag found: </code>",
             "90: Incomplete HTML tag found:     * should fail <",
+            "109:39: Extra HTML tag found: </img>",
             };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -62,6 +63,7 @@ public class JavadocStyleCheckTest
             "82:31: Unclosed HTML tag found: <b>should fail",
             "89:31: Extra HTML tag found: </code>",
             "90: Incomplete HTML tag found:     * should fail <",
+            "109:39: Extra HTML tag found: </img>",
          };
 
       verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);

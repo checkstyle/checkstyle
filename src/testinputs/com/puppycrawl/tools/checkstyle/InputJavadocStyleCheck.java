@@ -108,9 +108,9 @@ public class InputJavadocStyleCheck
      * < br/>
      * <img src="schattenparker.jpg"/></img>
      */
-    //private void method10()
-    //{ // </img> should be the only error
-    //}
+    private void method10()
+    { // </img> should be the only error
+    }
 
     /**
      * Tag content can be really mean.
@@ -127,16 +127,58 @@ public class InputJavadocStyleCheck
      * <img src="slashesCanOccurWithin/attributes.jpg">
      * <!-- comments <div> should not be checked. -->
      */
-    //private void method11()
-    //{ // JavadocStyle should not report any error for this method
-    //}
+    private void method11()
+    { // JavadocStyle should not report any error for this method
+    }
 
     /**
      * Tags for two lines.
      * <a href="some_link"
-     * />Link Text</a>
+     * >Link Text</a>
      */
-//     private void method12()
-//     {
-//     }
+    private void method12()
+    {// JavadocStyle should not report any error for this method
+    }
+
+    /**
+     * First sentence.
+     * <pre>
+     * +--LITERAL_DO (do)
+     *     |
+     *     +--SLIST ({)
+     *         |
+     *         +--EXPR
+     *             |
+     *             +--ASSIGN (=)
+     *                 |
+     *                 +--IDENT (x)
+     *                 +--METHOD_CALL (()
+     *                     |
+     *                     +--DOT (.)
+     *                         |
+     *                         +--IDENT (rand)
+     *                         +--IDENT (nextInt)
+     *                     +--ELIST
+     *                         |
+     *                         +--EXPR
+     *                             |
+     *                             +--NUM_INT (10)
+     *                     +--RPAREN ())
+     *         +--SEMI (;)
+     *         +--RCURLY (})
+     *     +--LPAREN (()
+     *     +--EXPR
+     *         |
+     *         +--LT (<)
+     *             |
+     *             +--IDENT (x)
+     *             +--NUM_INT (5)
+     *     +--RPAREN ())
+     *     +--SEMI (;)
+     * </pre>
+     */
+    private void method13()
+    {// JavadocStyle should not report any error for this method
+    }
+
 }
