@@ -52,6 +52,7 @@ public class PackageNamesLoaderTest extends TestCase
         final String[] checkstylePackages = {
             "com.puppycrawl.tools.checkstyle.",
             "com.puppycrawl.tools.checkstyle.checks.",
+            "com.puppycrawl.tools.checkstyle.checks.imports.",
             "com.puppycrawl.tools.checkstyle.checks.javadoc."
         };
 
