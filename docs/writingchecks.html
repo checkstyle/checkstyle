@@ -116,10 +116,12 @@
       <pre>
       java -classpath checkstyle-all-${version}.jar com.puppycrawl.toos.checkstyle.gui.Main
       </pre>
+      </p>
+      <p class="body">
       on the command line. Click the button at the botton of the frame
-      and select a Java source file (make sure that the file is
-      syntactically correct first). The frame will be populated with a tree
-      that corresponds to the structure of the java source code.
+      and select a syntactically correct Java source file. The frame
+      will be populated with a tree that corresponds to the structure
+      of the java source code.
       </p>
 
       <p class="body">
@@ -170,7 +172,49 @@
       <a name="logerrors"></a>
       <h3>Logging errors</h3>
       <p class="body">
-      TODO: Explain Check.log and i18n issues.
+      Detecting errors is one thing, presenting them to the user is
+      another. To do that, the Check base class provides several log
+      messages, the most simple of them is Check.log(String). In your
+      check you can simply use a verbatim error string like in <span
+      class="code">log(&quot;Too many methods, only &quot; + mMax +
+      &quot; are allowed&quot;);</span> as the argument. That will
+      work, but it's not the best possible solution if your check is
+      intended for a wider audience.
+      </p>
+
+      <p class="body">
+      If you are not living in a country where people speak English
+      you may have noticed that Checkstyle writes internationalized
+      error messages, for example if you live in Germany the error
+      messages are german. The individual checks don't have to do
+      anything fancy to achieve this, it's actually quite easy and the
+      Checkstyle framework does most of the work.
+      </p>
+
+      <p class="body">
+      To support internationalized error messages, you need to create
+      a message.properties file alongside your Check class, i.e. the
+      java file and the properties files should be in the same
+      directory.  Add a symbolic error code and an english
+      representation to the messages.properties, the file should
+      contain the following line: <span
+      class="code">too.many.methods=Too many methods, only {0} are
+      allowed</span>.  Then replace the verbatim error message with
+      the symbolic representation and use one of the log helper
+      methods to provide the dynamic part of the message (mMax in this
+      case): <span class="code">log(&quot;too.many.methods&quot;,
+      mMax);</span>. Please consult the documentation of Java's <a
+      href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/MessageFormat.html">MassageFormat</a>
+      to learn about the syntax of format strings (especially about
+      those funny numbers in the translated text).
+      </p>
+
+      <p class="body">
+      Supporting a new language is very easy now, simply create a new
+      messages file for the language, e.g. messages_fr.properties to
+      provide french error messages. The correct file will be chosen
+      automatically, based on the language settings of the user's
+      operating system.
       </p>
 
       <a name="integrate"></a>
@@ -202,8 +246,12 @@
       <a name="huh"></a>
       <h3>Huh? I can't figure it out!</h3>
       <p class="body">
-      Then we have to provide better docs. Please do not hesitate to ask
-      questions on the user mailing list.
+      That's probably our fault, it means that we have to provide
+      better docs. Please do not hesitate to ask questions on the user
+      mailing list, this will help us to improve this document.
+      Please make your question as precise as possible, we will not
+      be able to answer questions like &quot;I want to write a check
+      but I don't know how, can you help me?&quot;.
       </p>
 
     </td>
