@@ -63,7 +63,9 @@
   <target name="clean" depends="clean.antlr">
     <delete dir="classes" />
     <delete dir="dist" />
-    <delete dir="docs/api" />
+    <delete includeemptydirs="true">
+      <fileset dir="docs/api" includes="**" excludes=".cvsignore,CVS/**"/>
+    </delete>
     <delete dir="${testreport.dir}" />
   </target>
 
