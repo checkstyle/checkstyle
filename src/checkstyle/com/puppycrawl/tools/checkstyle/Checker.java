@@ -100,7 +100,7 @@ public class Checker
      * parsing fails because with the next grammar it might succeed
      * and the user will be confused.
      */
-    private class NEWSilentJava14Recognizer extends Java14Recognizer
+    private static class NEWSilentJava14Recognizer extends Java14Recognizer
     {
         /**
          * Creates a new <code>SilentJava14Recognizer</code> instance.
@@ -415,41 +415,7 @@ public class Checker
             fireFileStarted(stripped);
             final String[] lines = Utils.getLines(aFileName);
             final CommentManager cmgr = new CommentManager(lines);
-            DetailAST rootAST;
-            try {
-                // try the 1.4 grammar first, this will succeed for
-                // all code that compiles without any warnings in JDK 1.4,
-                // that should cover most cases
-                final Reader sar = new StringArrayReader(lines);
-                final Java14Lexer jl = new Java14Lexer(sar);
-                jl.setFilename(aFileName);
-                jl.setCommentManager(cmgr);
-
-                final Java14Recognizer jr =
-                    new NEWSilentJava14Recognizer(jl);
-                jr.setFilename(aFileName);
-                jr.setASTNodeClass(DetailAST.class.getName());
-                jr.compilationUnit();
-                rootAST = (DetailAST) jr.getAST();
-            }
-            catch (RecognitionException re) {
-                // Parsing might have failed because the checked
-                // file contains "assert" as an identifier. Retry with a
-                // grammar that treats "assert" as an identifier
-                // and not as a keyword
-
-                // Arghh - the pain - duplicate code!
-                final Reader sar = new StringArrayReader(lines);
-                final JavaLexer jl = new JavaLexer(sar);
-                jl.setFilename(aFileName);
-                jl.setCommentManager(cmgr);
-
-                final JavaRecognizer jr = new JavaRecognizer(jl);
-                jr.setFilename(aFileName);
-                jr.setASTNodeClass(DetailAST.class.getName());
-                jr.compilationUnit();
-                rootAST = (DetailAST) jr.getAST();
-            }
+            DetailAST rootAST = parse(lines, aFileName, cmgr);
             // ParseTreeInfoPanel.show(rootAST);
             mWalker.walk(rootAST, lines, aFileName);
         }
@@ -483,6 +449,57 @@ public class Checker
 
         fireFileFinished(stripped);
         return mMessages.size();
+    }
+
+    /**
+     *
+     * @param aLines the individual lines of the java file
+     * @param aFileName the filename of the file (used for error messages?)
+     * @param aCmgr the comment manager is informed of comments during parsing
+     * @return the root of the AST
+     * @throws TokenStreamException if lexing failed
+     * @throws RecognitionException if parsing failed
+     */
+    public static DetailAST parse(
+            final String[] aLines, String aFileName, final CommentManager aCmgr)
+            throws TokenStreamException, RecognitionException
+    {
+        DetailAST rootAST;
+        try {
+            // try the 1.4 grammar first, this will succeed for
+            // all code that compiles without any warnings in JDK 1.4,
+            // that should cover most cases
+            final Reader sar = new StringArrayReader(aLines);
+            final Java14Lexer jl = new Java14Lexer(sar);
+            jl.setFilename(aFileName);
+            jl.setCommentManager(aCmgr);
+
+            final Java14Recognizer jr =
+                new NEWSilentJava14Recognizer(jl);
+            jr.setFilename(aFileName);
+            jr.setASTNodeClass(DetailAST.class.getName());
+            jr.compilationUnit();
+            rootAST = (DetailAST) jr.getAST();
+        }
+        catch (RecognitionException re) {
+            // Parsing might have failed because the checked
+            // file contains "assert" as an identifier. Retry with a
+            // grammar that treats "assert" as an identifier
+            // and not as a keyword
+
+            // Arghh - the pain - duplicate code!
+            final Reader sar = new StringArrayReader(aLines);
+            final JavaLexer jl = new JavaLexer(sar);
+            jl.setFilename(aFileName);
+            jl.setCommentManager(aCmgr);
+
+            final JavaRecognizer jr = new JavaRecognizer(jl);
+            jr.setFilename(aFileName);
+            jr.setASTNodeClass(DetailAST.class.getName());
+            jr.compilationUnit();
+            rootAST = (DetailAST) jr.getAST();
+        }
+        return rootAST;
     }
 
     /**
