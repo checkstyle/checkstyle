@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck;
 
 import junit.framework.TestCase;
 
@@ -21,6 +22,17 @@ public class PackageObjectFactoryTest extends TestCase
                 getClass().getClassLoader(),
                 "com.puppycrawl.tools.checkstyle.PackageObjectFactory");
         assertNotNull(factory);
+    }
+
+    public void testMakeCheckFromName()
+        throws CheckstyleException
+    {
+        final ConstantNameCheck check =
+            (ConstantNameCheck) PackageObjectFactory.makeObject(
+                new String[] {},
+                getClass().getClassLoader(),
+                "com.puppycrawl.tools.checkstyle.checks.ConstantName");
+        assertNotNull(check);
     }
     
     public void testMakeObectFromList()
