@@ -3,6 +3,7 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporterTest;
 import com.puppycrawl.tools.checkstyle.api.DetailASTTest;
 import com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.FileSetCheckLifecycleTest;
 import com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheckTest;
@@ -125,6 +126,7 @@ public class AllTests {
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
         suite.addTest(new TestSuite(CovariantEqualsCheckTest.class));
         suite.addTest(new TestSuite(CyclomaticComplexityCheckTest.class));
+        suite.addTest(new TestSuite(DescendantTokenCheckTest.class));
         suite.addTest(new TestSuite(DesignForExtensionCheckTest.class));
         suite.addTest(new TestSuite(DoubleCheckedLockingCheckTest.class));
         suite.addTest(new TestSuite(EmptyBlockCheckTest.class));
