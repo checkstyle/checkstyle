@@ -21,8 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
 /**
- * This filter accepts an Integer in a range and is neutral
- * on other Objects.
+ * This filter accepts an Integer in a range.
  * @author Rick Giles
  */
 public class IntRangeFilter
