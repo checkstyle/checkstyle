@@ -134,9 +134,9 @@ public class ImportOrderCheck extends Check
     }
 
     /**
-     * Sets whether strings comprision should be case sensitive
+     * Sets whether string comparision should be case sensitive
      * or not.
-     * @param aCaseSensitive whether string comprition should be
+     * @param aCaseSensitive whether string comparision should be
      *                       case sensitive.
      */
     public void setCaseSensitive(boolean aCaseSensitive)

@@ -273,7 +273,7 @@
           </tr>
           <tr>
             <td>caseSensitive</td>
-            <td>whether strings comprision should be case sensitive or not</td>
+            <td>whether string comparision should be case sensitive or not</td>
             <td><a href="property_types.html#Boolean">Boolean</a></td>
             <td>true</td>
           </tr>

@@ -404,7 +404,7 @@
         <li>Fixed bug #791245: checkstyle-frames.xsl
         cannot handle multiple leafs.</li>
 
-        <li>Fixed handling of inheritDoc in JavadocMathod
+        <li>Fixed handling of inheritDoc in JavadocMethod
         check (bug 855839).</li>
 
         <li>Fixed bug #853225 - Indentation gives false
