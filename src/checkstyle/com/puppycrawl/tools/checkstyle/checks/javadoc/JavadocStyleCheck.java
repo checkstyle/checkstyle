@@ -185,17 +185,12 @@ public class JavadocStyleCheck
             final int textStart = findTextStart(line);
 
             if (textStart != -1) {
-                // Look for Javadoc tag that's neither a @link nor a
-                // @inheritDoc since they can appear
-                // within the comment text.
+                // Look for Javadoc tag that's not an inline tag
+                // it can appear within the comment text.
+                // Inline tags are denoted by curly braces: {@tag}
                 final int ndx = line.indexOf('@');
                 if ((ndx != -1)
-                    && !line.regionMatches(ndx + 1, "link", 0, "link".length())
-                    && !line.regionMatches(
-                        ndx + 1,
-                        "inheritDoc",
-                        0,
-                        "inheritDoc".length()))
+                    && (ndx == 0 || line.charAt(ndx - 1) != '{'))
                 {
                     foundTag = true;
                     line = line.substring(0, ndx);
