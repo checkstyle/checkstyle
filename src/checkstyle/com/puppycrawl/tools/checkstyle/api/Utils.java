@@ -30,6 +30,7 @@ import java.io.FileReader;
 
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
+import org.apache.commons.beanutils.ConversionException;
 import antlr.collections.AST;
 
 /**
@@ -236,5 +237,27 @@ public final class Utils
             }
         }
         return count;
+    }
+
+    /**
+     * Helper method to create a regular expression.
+     * @param aPattern the pattern to match
+     * @return a created regexp object
+     * @throws ConversionException if unable to create RE object.
+     **/
+    public static RE createRE(String aPattern)
+    {
+        RE retVal = null;
+        try {
+            retVal = getRE(aPattern);
+        }
+        catch (RESyntaxException e) {
+            System.out.println("Failed to initialise regexp expression "
+                               + aPattern);
+            e.printStackTrace(System.out);
+            throw new ConversionException(
+                "Failed to initialise regexp expression " + aPattern, e);
+        }
+        return retVal;
     }
 }
