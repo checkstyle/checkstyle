@@ -18,7 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import com.puppycrawl.tools.checkstyle.api.*;
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks that classes are designed for inheritance.
@@ -50,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.*;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class DesignForExtensionCheck extends Check
 {
@@ -80,8 +84,7 @@ public class DesignForExtensionCheck extends Check
 
         // method is ok if containing class is not visible in API and
         // cannot be extended by 3rd parties (bug #884035)
-        if (!ScopeUtils.getSurroundingScope(aAST).isIn(Scope.PROTECTED))
-        {
+        if (!ScopeUtils.getSurroundingScope(aAST).isIn(Scope.PROTECTED)) {
             return;
         }
 
