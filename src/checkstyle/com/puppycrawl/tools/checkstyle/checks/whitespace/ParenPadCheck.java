@@ -103,8 +103,10 @@ public class ParenPadCheck
     {
         boolean followsEmptyForIterator = false;
         final DetailAST parent = aAST.getParent();
+        //Only traditional for statements are examined, not for-each statements
         if ((parent != null)
-            && (parent.getType() == TokenTypes.LITERAL_FOR))
+            && (parent.getType() == TokenTypes.LITERAL_FOR)
+            && (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null))
         {
             final DetailAST forIterator =
                 parent.findFirstToken(TokenTypes.FOR_ITERATOR);
@@ -122,8 +124,10 @@ public class ParenPadCheck
     {
         boolean preceedsEmptyForInintializer = false;
         final DetailAST parent = aAST.getParent();
+        //Only traditional for statements are examined, not for-each statements
         if ((parent != null)
-                && (parent.getType() == TokenTypes.LITERAL_FOR))
+            && (parent.getType() == TokenTypes.LITERAL_FOR)
+            && (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null))
         {
             final DetailAST forIterator =
                     parent.findFirstToken(TokenTypes.FOR_INIT);

@@ -229,5 +229,8 @@ class SpecialCasesInForLoop
 	for ( ; i < 5; i++ ) {
 	//   ^ whitespace
 	}
+        for (int anInt : getSomeInts()) {
+            //Should be ignored
+        }
     }
 }

@@ -51,6 +51,8 @@ public class ParenPadCheckTest
             "178:14: '(' is not followed by whitespace.",
             "178:36: ')' is not preceded with whitespace.",
             "222:14: '(' is not followed by whitespace.",
+            "232:14: '(' is not followed by whitespace.",
+            "232:39: ')' is not preceded with whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
