@@ -28,9 +28,7 @@ import java.util.EventListener;
  * auditStarted
  *   (fileStarted
  *     (addError)*
- *     (addException)*
  *   fileFinished )*
- *   (addException)*
  * auditFinished
  * </pre>
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
