@@ -170,7 +170,6 @@ public final class TreeWalker
         mCache = new PropertyCacheFile(configuration, aFileName);
     }
 
-    // TODO: Call from contextualize
     /** @param aClassLoader class loader to resolve classes with. */
     public void setClassLoader(ClassLoader aClassLoader)
     {
@@ -244,8 +243,6 @@ public final class TreeWalker
             walk(rootAST, contents);
         }
         catch (FileNotFoundException fnfe) {
-            // TODO: this dependency on the checkstyle package is not good. It
-            // introduces a circular dependency between packages.
             mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
                                                "general.fileNotFound", null));
         }
@@ -301,7 +298,7 @@ public final class TreeWalker
                     if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
                         registerCheck(token, aCheck);
                     }
-                    // TODO: else error message?
+                    // TODO: else log warning
                 }
                 catch (IllegalArgumentException ex) {
                     throw new CheckstyleException("illegal token \""
