@@ -16,6 +16,7 @@ public class ParenPadCheckTest
             "58:36: ')' is preceded with whitespace.",
             "74:13: '(' is followed by whitespace.",
             "74:18: ')' is preceded with whitespace.",
+            "229:27: ')' is preceded with whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -49,6 +50,7 @@ public class ParenPadCheckTest
             "165:10: ')' is not preceded with whitespace.",
             "178:14: '(' is not followed by whitespace.",
             "178:36: ')' is not preceded with whitespace.",
+            "222:14: '(' is not followed by whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -61,6 +63,11 @@ public class ParenPadCheckTest
         final String[] expected = {
             "17:34: ')' is preceded with whitespace.",
             "20:35: ')' is preceded with whitespace.",
+            "40:14: '(' is followed by whitespace.",
+            "40:36: ')' is preceded with whitespace.",
+            "43:14: '(' is followed by whitespace.",
+            "48:27: ')' is preceded with whitespace.",
+            "51:26: ')' is preceded with whitespace.",
         };
         verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
