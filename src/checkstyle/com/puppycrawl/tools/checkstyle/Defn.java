@@ -66,8 +66,6 @@ public interface Defn
     String REQUIRE_PACKAGE_HTML_PROP = "checkstyle.require.packagehtml";
     /** property name for requiring a version tag **/
     String REQUIRE_VERSION_PROP = "checkstyle.require.version";
-    /** property name for the line length check exclusion pattern **/
-    String IGNORE_LINE_LENGTH_PATTERN_PROP = "checkstyle.ignore.maxlinelen";
     /** property name for ignoring whitespace **/
     String IGNORE_WHITESPACE_PROP = "checkstyle.ignore.whitespace";
     /** property name for ignoring whitespace after casts **/
@@ -76,8 +74,6 @@ public interface Defn
     String IGNORE_BRACES_PROP = "checkstyle.ignore.braces";
     /** property name for cache file **/
     String CACHE_FILE_PROP = "checkstyle.cache.file";
-    /** property name for ignoring line length of import statements **/
-    String IGNORE_IMPORT_LENGTH_PROP = "checkstyle.ignore.importlength";
 
     /** property name for try block options **/
     String TRY_BLOCK_PROP = "checkstyle.block.try";
@@ -103,7 +99,6 @@ public interface Defn
             ALLOW_PROTECTED_PROP,
             IGNORE_BRACES_PROP,
             IGNORE_CAST_WHITESPACE_PROP,
-            IGNORE_IMPORT_LENGTH_PROP,
             IGNORE_WHITESPACE_PROP,
             JAVADOC_CHECK_UNUSED_THROWS_PROP,
             REQUIRE_PACKAGE_HTML_PROP,
@@ -120,7 +115,6 @@ public interface Defn
             PUBLIC_MEMBER_PATTERN_PROP,
             LOCAL_VAR_PATTERN_PROP,
             LOCAL_FINAL_VAR_PATTERN_PROP,
-            IGNORE_LINE_LENGTH_PATTERN_PROP,
         };
 
     /** All the integer properties */
