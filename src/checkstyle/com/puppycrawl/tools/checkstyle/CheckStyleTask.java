@@ -288,7 +288,7 @@ public class CheckStyleTask
         final int numErrs;
         Checker c = null;
         try {
-            c = new Checker(mConfig, System.out);
+            c = new Checker(mConfig);
             AuditListener[] listeners = getListeners();
             for (int i = 0; i < listeners.length; i++) {
                 c.addListener(listeners[i]);
