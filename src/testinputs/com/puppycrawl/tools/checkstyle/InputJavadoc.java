@@ -31,3 +31,12 @@ class InputJavadoc1
 class InputJavadoc2
 {
 }
+
+//Testing tag on first comment line
+/**
+* @author ABC
+* @version 1.1
+*/
+class InputJavadocType
+{
+}
