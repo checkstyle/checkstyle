@@ -18,32 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.io.File;
-
 /**
- * Interface for Checking a set of files for some criteria.
- *
- * @author lkuehne
+ * Interface for instantiating objects from a list of packages.
+ * @author Rick Giles
+ * @version 5-Dec-2002
  */
-public interface FileSetCheck
-    extends Configurable, Contextualizable, PackageNamesClient
+public interface PackageNamesClient
 {
     /**
-     * Sets the MessageDispatcher that is used to dispatch error
-     * messages to AuditListeners during processing.
-     * @param aDispatcher the dispatcher
+     * Sets the package names for instantiating objects.
+     * @param aPackageNames The list of package names.
+     * @throws CheckstyleException if there is an error.
      */
-    void setMessageDispatcher(MessageDispatcher aDispatcher);
-
-    /**
-     * Processes a set of files and fires errors to the MessageDispatcher.
-     * Once this is done, it is highly recommended to call for
-     * the destroy method to close and remove the listeners.
-     * @param aFiles the files to be audited.
-     * @see #destroy()
-     */
-    void process(File[] aFiles);
-
-    /** Cleans up the object **/
-    void destroy();
+    public void setPackageNames(String[] aPackageNames) throws CheckstyleException;
 }

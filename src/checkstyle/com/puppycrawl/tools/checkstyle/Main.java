@@ -51,6 +51,7 @@ public final class Main
         OPTS.addOption("r", true, "Traverse the directory for source files");
         OPTS.addOption("o", true, "Sets the output file. Defaults to stdout");
         OPTS.addOption("p", true, "Loads the properties file");
+        OPTS.addOption("n", true, "Loads the package names file");
         OPTS.addOption(
             "f",
             true,
@@ -97,6 +98,20 @@ public final class Main
             System.out.println("Error loading configuration file");
             e.printStackTrace(System.out);
             System.exit(1);
+        }
+        
+        //Load the set of package names
+        String[] packageNames = null;
+        if (line.hasOption("n")) {
+            try {
+                packageNames = PackageNamesLoader.loadPackageNames(
+                    line.getOptionValue("n"));
+            }
+            catch (CheckstyleException e) {
+                System.out.println("Error loading package names file");
+                e.printStackTrace(System.out);
+                System.exit(1);
+            }
         }
 
         // setup the output stream
@@ -158,6 +173,7 @@ public final class Main
         Checker c = null;
         try {
             c = new Checker();
+            c.setPackageNames(packageNames);
             c.configure(config);
             c.addListener(listener);
         }
