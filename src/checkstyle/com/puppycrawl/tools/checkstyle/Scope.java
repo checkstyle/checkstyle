@@ -61,27 +61,27 @@ public final class Scope implements Comparable, Serializable
     private static final String SCOPENAME_ANONINNER = "anoninner";
 
     /** nothing scope */
-    static final Scope NOTHING =
+    public static final Scope NOTHING =
         new Scope(SCOPECODE_NOTHING, SCOPENAME_NOTHING);
 
     /** public scope */
-    static final Scope PUBLIC =
+    public static final Scope PUBLIC =
         new Scope(SCOPECODE_PUBLIC, SCOPENAME_PUBLIC);
 
     /** protected scope */
-    static final Scope PROTECTED =
+    public static final Scope PROTECTED =
         new Scope(SCOPECODE_PROTECTED, SCOPENAME_PROTECTED);
 
     /** package scope */
-    static final Scope PACKAGE =
+    public static final Scope PACKAGE =
         new Scope(SCOPECODE_PACKAGE, SCOPENAME_PACKAGE);
 
     /** private scope */
-    static final Scope PRIVATE =
+    public static final Scope PRIVATE =
         new Scope(SCOPECODE_PRIVATE, SCOPENAME_PRIVATE);
 
     /** anon inner scope */
-    static final Scope ANONINNER =
+    public static final Scope ANONINNER =
         new Scope(SCOPECODE_ANONINNER, SCOPENAME_ANONINNER);
 
     /** map from scope names to the respective Scope */
@@ -112,7 +112,7 @@ public final class Scope implements Comparable, Serializable
     /**
      * @return the name of this scope.
      */
-    String getName()
+    public String getName()
     {
         return mName;
     }
@@ -133,7 +133,7 @@ public final class Scope implements Comparable, Serializable
      * @param aScope a <code>Scope</code> value
      * @return if <code>this</code> is a subscope of <code>aScope</code>.
      */
-    boolean isIn(Scope aScope)
+    public boolean isIn(Scope aScope)
     {
         return (compareTo(aScope) <= 0);
     }
@@ -156,8 +156,9 @@ public final class Scope implements Comparable, Serializable
      * @param aScopeName scope name, such as "nothing", "public", etc.
      * @return the <code>Scope</code> associated with <code>aScopeName</code>
      */
-    static Scope getInstance(String aScopeName)
+    public static Scope getInstance(String aScopeName)
     {
+        // TODO: change scope....
         // canonicalize argument
         final String scopeName = aScopeName.trim().toLowerCase();
 

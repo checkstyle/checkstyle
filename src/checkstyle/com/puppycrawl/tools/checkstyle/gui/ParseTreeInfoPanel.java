@@ -19,11 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
+import antlr.ANTLRException;
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.Utils;
+
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -32,12 +33,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
-
-import antlr.ANTLRException;
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.CommentManager;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Utils;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Displays information about a parse tree.
@@ -110,8 +110,8 @@ public class ParseTreeInfoPanel extends JPanel
         throws IOException, ANTLRException
     {
         final String[] lines = Utils.getLines(aFileName);
-        final CommentManager cmgr = new CommentManager(lines);
-        return Checker.parse(lines, aFileName, cmgr);
+        final FileContents contents = new FileContents(aFileName, lines);
+        return Checker.parse(contents);
     }
 
     /**

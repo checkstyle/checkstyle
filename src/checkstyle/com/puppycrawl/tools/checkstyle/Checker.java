@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 import org.apache.regexp.RESyntaxException;
 import org.xml.sax.SAXException;
 
@@ -414,10 +415,9 @@ public class Checker
         try {
             fireFileStarted(stripped);
             final String[] lines = Utils.getLines(aFileName);
-            final CommentManager cmgr = new CommentManager(lines);
-            DetailAST rootAST = parse(lines, aFileName, cmgr);
-            // ParseTreeInfoPanel.show(rootAST);
-            mWalker.walk(rootAST, lines, aFileName);
+            final FileContents contents = new FileContents(aFileName, lines);
+            final DetailAST rootAST = parse(contents);
+            mWalker.walk(rootAST, contents);
         }
         catch (FileNotFoundException fnfe) {
             mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
@@ -453,30 +453,27 @@ public class Checker
 
     /**
      *
-     * @param aLines the individual lines of the java file
-     * @param aFileName the filename of the file (used for error messages?)
-     * @param aCmgr the comment manager is informed of comments during parsing
+     * @param aContents contains the contents of the file
      * @return the root of the AST
      * @throws TokenStreamException if lexing failed
      * @throws RecognitionException if parsing failed
      */
-    public static DetailAST parse(
-            final String[] aLines, String aFileName, final CommentManager aCmgr)
-            throws TokenStreamException, RecognitionException
+    public static DetailAST parse(FileContents aContents)
+        throws TokenStreamException, RecognitionException
     {
         DetailAST rootAST;
         try {
             // try the 1.4 grammar first, this will succeed for
             // all code that compiles without any warnings in JDK 1.4,
             // that should cover most cases
-            final Reader sar = new StringArrayReader(aLines);
+            final Reader sar = new StringArrayReader(aContents.getLines());
             final Java14Lexer jl = new Java14Lexer(sar);
-            jl.setFilename(aFileName);
-            jl.setCommentManager(aCmgr);
+            jl.setFilename(aContents.getFilename());
+            jl.setFileContents(aContents);
 
             final Java14Recognizer jr =
                 new NEWSilentJava14Recognizer(jl);
-            jr.setFilename(aFileName);
+            jr.setFilename(aContents.getFilename());
             jr.setASTNodeClass(DetailAST.class.getName());
             jr.compilationUnit();
             rootAST = (DetailAST) jr.getAST();
@@ -488,13 +485,13 @@ public class Checker
             // and not as a keyword
 
             // Arghh - the pain - duplicate code!
-            final Reader sar = new StringArrayReader(aLines);
+            final Reader sar = new StringArrayReader(aContents.getLines());
             final JavaLexer jl = new JavaLexer(sar);
-            jl.setFilename(aFileName);
-            jl.setCommentManager(aCmgr);
+            jl.setFilename(aContents.getFilename());
+            jl.setFileContents(aContents);
 
             final JavaRecognizer jr = new JavaRecognizer(jl);
-            jr.setFilename(aFileName);
+            jr.setFilename(aContents.getFilename());
             jr.setASTNodeClass(DetailAST.class.getName());
             jr.compilationUnit();
             rootAST = (DetailAST) jr.getAST();
