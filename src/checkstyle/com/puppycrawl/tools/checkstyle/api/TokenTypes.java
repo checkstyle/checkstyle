@@ -37,17 +37,18 @@ public class TokenTypes
     // The following three types are never part of an AST,
     // left here as a reminder so nobody will readd them accidentally
 
-    /* * token representing a EOF */
-    // public static final int EOF = 1;
     /* * token representing a NULL_TREE_LOOKAHEAD */
     // public static final int NULL_TREE_LOOKAHEAD = 3;
     /* * token representing a BLOCK */
     // public static final int BLOCK = 4;
-
+    /* * token representing a VOCAB */
+    // public static final int VOCAB = 149;
 
     // These are the types that can actually occur in an AST
-    // it makes sense to register CHecks for these types
+    // it makes sense to register Checks for these types
 
+    /** token representing a EOF */
+    public static final int EOF = 1;
     /** token representing a MODIFIERS */
     public static final int MODIFIERS = 5;
     /** token representing a OBJBLOCK */
@@ -336,8 +337,6 @@ public class TokenTypes
     public static final int ESC = 147;
     /** token representing a HEX_DIGIT */
     public static final int HEX_DIGIT = 148;
-    /** token representing a VOCAB */
-    public static final int VOCAB = 149;
     /** token representing a EXPONENT */
     public static final int EXPONENT = 150;
     /** token representing a FLOAT_SUFFIX */
