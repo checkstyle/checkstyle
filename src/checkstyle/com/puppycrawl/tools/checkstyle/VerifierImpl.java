@@ -181,8 +181,8 @@ class VerifierImpl
                                     MethodSignature aSig)
     {
         // Always verify the parameters are ok
-        for (Iterator it = aSig.getParams().iterator(); it.hasNext();) {
-            verifyParameter((LineText)it.next());
+        for (Iterator it = aSig.getParams().iterator(); it.hasNext(); ) {
+            verifyParameter((LineText) it.next());
         }
 
 
@@ -362,7 +362,8 @@ class VerifierImpl
             return;
         }
 
-        log(aToken.getLine(), "'" + aToken.getText() + "' construct must use '{}'s.");
+        log(aToken.getLine(),
+            "'" + aToken.getText() + "' construct must use '{}'s.");
     }
 
     /** @see Verifier **/

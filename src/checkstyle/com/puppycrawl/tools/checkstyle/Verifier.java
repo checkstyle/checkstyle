@@ -79,8 +79,9 @@ interface Verifier
     /**
      * Report that a statement should be using a compound statement
      * (that is, {}'s).
+     * @param aStmt the token for the statement
      */
-    void reportNeedBraces(Token aToken);
+    void reportNeedBraces(Token aStmt);
 
     /**
      * Verify that whitespace surrounds an AST.
