@@ -11,7 +11,7 @@ public class HiddenFieldCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
-        checkConfig.addAttribute("checkParameters", "false");
+        checkConfig.addAttribute("tokens", "VARIABLE_DEF");
         final String[] expected = {
             "18:13: 'hidden' hides a field.",
             "27:13: 'hidden' hides a field.",

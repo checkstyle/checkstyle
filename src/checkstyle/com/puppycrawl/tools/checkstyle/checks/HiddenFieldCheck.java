@@ -29,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>Checks that a local variable or a parameter does not shadow
- * a field that is defined in the same class. To disable checking of
- * parameters, set the checkParameters property to <strong>false</strong>.
+ * a field that is defined in the same class.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -39,12 +38,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name="HiddenField"/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check so that it doesn't check parameters
- * is:
+ * An example of how to configure the check so that it checks variables but not
+ * parameters is:
  * </p>
  * <pre>
  * &lt;module name="HiddenField"&gt;
- *    &lt;property name="checkParameters" value="false"/&gt;
+ *    &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
  * &lt;/module&gt;
  * </pre>
  * @author Rick Giles
@@ -58,24 +57,29 @@ public class HiddenFieldCheck
      * one for each class of a set of nested classes */
     private LinkedList mFieldsStack = null;
 
-    /** check for shadowing parameters **/
-    private boolean mCheckParameters = true;
-
-    /**
-     * Set whether to check for shadowing parameters.
-     * @param aFlag a <code>Boolean</code> value
-     */
-    public void setCheckParameters(boolean aFlag)
-    {
-        mCheckParameters = aFlag;
-    }
-
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
+            TokenTypes.CLASS_DEF,
+        };
+    }
+    
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.PARAMETER_DEF,
+        };
+    }
+    
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public int[] getRequiredTokens()
+    {
+        return new int[] {
             TokenTypes.CLASS_DEF,
         };
     }
@@ -89,32 +93,26 @@ public class HiddenFieldCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        switch (aAST.getType()) {
-            case TokenTypes.VARIABLE_DEF:
-                processVariable(aAST);
-                break;
-            case TokenTypes.PARAMETER_DEF:
-                if (mCheckParameters) {
-                    processVariable(aAST);
+        if (aAST.getType() == TokenTypes.CLASS_DEF) {
+            //find and push fields
+            final HashSet fieldSet = new HashSet(); //fields container
+            //add fields to container
+            final DetailAST objBlock =
+                aAST.findFirstToken(TokenTypes.OBJBLOCK);
+            DetailAST child = (DetailAST) objBlock.getFirstChild();
+            while (child != null) {
+                if (child.getType() == TokenTypes.VARIABLE_DEF) {
+                    final String name =
+                        child.findFirstToken(TokenTypes.IDENT).getText();
+                    fieldSet.add(name);
                 }
-                break;
-            case TokenTypes.CLASS_DEF:
-                //find and push fields
-                final HashSet fieldSet = new HashSet(); //fields container
-                //add fields to container
-                final DetailAST objBlock =
-                    aAST.findFirstToken(TokenTypes.OBJBLOCK);
-                DetailAST child = (DetailAST) objBlock.getFirstChild();
-                while (child != null) {
-                    if (child.getType() == TokenTypes.VARIABLE_DEF) {
-                        final String name =
-                            child.findFirstToken(TokenTypes.IDENT).getText();
-                        fieldSet.add(name);
-                    }
-                    child = (DetailAST) child.getNextSibling();
-                }                
-                mFieldsStack.addLast(fieldSet); //push container              
-                break;
+                child = (DetailAST) child.getNextSibling();
+            }                
+            mFieldsStack.addLast(fieldSet); //push container              
+        }
+        else {
+            //must be VARIABLE_DEF or PARAMETER_DEF
+            processVariable(aAST);
         }
     }
 

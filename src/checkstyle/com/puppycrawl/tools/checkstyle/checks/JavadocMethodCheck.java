@@ -159,6 +159,14 @@ public class JavadocMethodCheck
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF};
     }
+    
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public int[] getRequiredTokens()
+    {
+        return new int[] {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT};
+    }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree()
