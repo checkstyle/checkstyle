@@ -34,6 +34,9 @@
         <li>
           <a href="#RightCurly">RightCurly</a>
         </li>
+        <li>
+          <a href="#AvoidNestedBlocks">AvoidNestedBlocks</a>
+        </li>
       </ul>
     </td>
     <!--Content-->
@@ -250,6 +253,57 @@
       <p class="body">
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
+
+      <!-- --> <a name="AvoidNestedBlocks"></a> <h2>AvoidNestedBlocks</h2> <h4>Description</h4>
+      <p class="body">
+      Finds nested blocks, i.e. blocks that are used freely in the code.
+      For example this Check finds the obsolete braces in
+      </p>
+      <pre class="body">
+ switch (a)
+ {
+     case 0:
+         {
+             x = 1;
+         }
+         break;
+     default:
+         break;
+ }
+      </pre>
+      <p class="body">
+      and flags confusing code like
+      </p>
+      <pre class="body">
+ public void guessTheOutput()
+ {
+     int whichIsWich = 0;
+     {
+         int whichIsWhich = 2;
+     }
+     System.out.println("value = " + whichIsWhich);
+ }
+ </pre>
+      <p class="body">
+	  Rationale: Nested blocks are often leftovers from the debugging process, they confuse
+	  the reader.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;AvoidNestedBlocks&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
     </td>
   </tr>
 </table>
