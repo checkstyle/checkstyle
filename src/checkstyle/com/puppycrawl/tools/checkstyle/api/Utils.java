@@ -23,12 +23,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Vector;
-
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
@@ -216,17 +215,17 @@ public final class Utils
             return null;
         }
 
-        final Vector fragments = new Vector();
-        final Vector propertyRefs = new Vector();
+        final List fragments = new ArrayList();
+        final List propertyRefs = new ArrayList();
         parsePropertyString(aValue, fragments, propertyRefs);
 
         final StringBuffer sb = new StringBuffer();
-        final Enumeration i = fragments.elements();
-        final Enumeration j = propertyRefs.elements();
-        while (i.hasMoreElements()) {
-            String fragment = (String) i.nextElement();
+        final Iterator i = fragments.iterator();
+        final Iterator j = propertyRefs.iterator();
+        while (i.hasNext()) {
+            String fragment = (String) i.next();
             if (fragment == null) {
-                final String propertyName = (String) j.nextElement();
+                final String propertyName = (String) j.next();
                 if (!aProps.containsKey(propertyName)) {
                     throw new CheckstyleException(
                             "Property ${" + propertyName + "} has not been set");
@@ -260,8 +259,9 @@ public final class Utils
      * Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      */
-    public static void parsePropertyString(String aValue, Vector aFragments,
-                                           Vector aPropertyRefs)
+    public static void parsePropertyString(String aValue,
+                                           List aFragments,
+                                           List aPropertyRefs)
         throws CheckstyleException
     {
         int prev = 0;
@@ -274,12 +274,12 @@ public final class Utils
             //seems like this current version could stick empty strings
             //into the list
             if (pos > 0) {
-                aFragments.addElement(aValue.substring(prev, pos));
+                aFragments.add(aValue.substring(prev, pos));
             }
             //if we are at the end of the string, we tack on a $
             //then move past it
             if (pos == (aValue.length() - 1)) {
-                aFragments.addElement("$");
+                aFragments.add("$");
                 prev = pos + 1;
             }
             else if (aValue.charAt(pos + 1) != '{') {
@@ -291,12 +291,12 @@ public final class Utils
                 */
                 if (aValue.charAt(pos + 1) == '$') {
                     //backwards compatibility two $ map to one mode
-                    aFragments.addElement("$");
+                    aFragments.add("$");
                     prev = pos + 2;
                 }
                 else {
                     //new behaviour: $X maps to $X for all values of X!='$'
-                    aFragments.addElement(aValue.substring(pos, pos + 2));
+                    aFragments.add(aValue.substring(pos, pos + 2));
                     prev = pos + 2;
                 }
 
@@ -309,15 +309,15 @@ public final class Utils
                                                     + aValue);
                 }
                 final String propertyName = aValue.substring(pos + 2, endName);
-                aFragments.addElement(null);
-                aPropertyRefs.addElement(propertyName);
+                aFragments.add(null);
+                aPropertyRefs.add(propertyName);
                 prev = endName + 1;
             }
         }
         //no more $ signs found
         //if there is any tail to the file, append it
         if (prev < aValue.length()) {
-            aFragments.addElement(aValue.substring(prev));
+            aFragments.add(aValue.substring(prev));
         }
     }
 }
