@@ -317,6 +317,9 @@ public class CheckerTest
         mConfig.setMaxFileLength(20);
         mConfig.setMaxMethodLength(19);
         mConfig.setMaxConstructorLength(9);
+        mConfig.setParamPat("^a[A-Z][a-zA-Z0-9]*$");
+        mConfig.setStaticPat("^s[A-Z][a-zA-Z0-9]*$");
+        mConfig.setMemberPat("^m[A-Z][a-zA-Z0-9]*$");
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);

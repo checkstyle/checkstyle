@@ -86,7 +86,7 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
 
 <p>Checkstyle has been tested using
 <ul>
-<li>JRE1.2.2 and JRE1.3 on Windows 2000</li>
+<li>JRE1.2.2 and JRE1.3.1 on Windows 2000</li>
 <li>JRE1.3.1 on Windows NT 4</li>
 <li>JRE1.4beta3 on Red Hat Linux 7.2</li>
 </ul>
@@ -178,13 +178,13 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
   </tr>
   <tr>
     <td><span class="code">static</span> only</td>
-    <td><span class="code">^s[A-Z][a-zA-Z0-9]*$</span></td>
-    <td><span class="code">private static int sNumCreated = 0;</span></td>
+    <td><span class="code">^[a-z][a-zA-Z0-9]*$</span></td>
+    <td><span class="code">private static int numCreated = 0;</span></td>
   </tr>
   <tr>
     <td>non <span class="code">static</span></td>
-    <td><span class="code">^m[A-Z][a-zA-Z0-9]*$</span></td>
-    <td><span class="code">private int mNumCreated = 0;</span></td>
+    <td><span class="code">^[a-z][a-zA-Z0-9]*$</span></td>
+    <td><span class="code">private int mySize = 0;</span></td>
   </tr>
   <tr>
     <td>non <span class="code">static public</span></td>
@@ -193,9 +193,24 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
   </tr>
 </table>
 
+<p>The default values prior to release 1.4 were:</p>
+<table border="1">
+  <tr class="header">
+    <td>Scope</td>
+    <td>Old Format</td>
+  </tr>
+  <tr>
+    <td><span class="code">static</span> only</td>
+    <td><span class="code">^s[A-Z][a-zA-Z0-9]*$</span></td>
+  </tr>
+  <tr>
+    <td>non <span class="code">static</span></td>
+    <td><span class="code">^m[A-Z][a-zA-Z0-9]*$</span></td>
+  </tr>
+</table>
 
 <h3><a name="paramformat">Format of parameter names</a></h3>
-<p>Verifies that the format of parameter names conform to a specified regular expression. The default is <span class="code">^a[A-Z][a-zA-Z0-9]*$</span>.</p>
+<p>Verifies that the format of parameter names conform to a specified regular expression. The default is <span class="code">^[a-z][a-zA-Z0-9]*$</span>. The default value prior to release 1.4 was <span class="code">^a[A-Z][a-zA-Z0-9]*$</span>.</p>
 
 
 <h3><a name="typeformat">Format of type names</a></h3>

@@ -40,13 +40,13 @@ class Configuration
     ////////////////////////////////////////////////////////////////////////////
 
     /** the pattern to match against parameter names **/
-    private static final String PARAMETER_PATTERN = "^a[A-Z][a-zA-Z0-9]*$";
+    private static final String PARAMETER_PATTERN = "^[a-z][a-zA-Z0-9]*$";
     /** the pattern to match against static names **/
-    private static final String STATIC_PATTERN = "^s[A-Z][a-zA-Z0-9]*$";
+    private static final String STATIC_PATTERN = "^[a-z][a-zA-Z0-9]*$";
     /** the pattern to match against constant names **/
     private static final String CONST_PATTERN = "^[A-Z]([A-Z0-9_]*[A-Z0-9])?$";
     /** the pattern to match against member names **/
-    private static final String MEMBER_PATTERN = "^m[A-Z][a-zA-Z0-9]*$";
+    private static final String MEMBER_PATTERN = "^[a-z][a-zA-Z0-9]*$";
     /** the pattern to match against public member names **/
     private static final String PUBLIC_MEMBER_PATTERN = "^f[A-Z][a-zA-Z0-9]*$";
     /** the pattern to match against type names **/
