@@ -41,9 +41,10 @@ public class EmptyBlockCheck extends Check
         mCheckFor.add("try");
         mCheckFor.add("catch");
         mCheckFor.add("finally");
-        // TODO: currently there is no way to differenciate between if and else
-        // else is not available as a parent token, instead if has two statement children
-        // needs grammar change or workaround here to make config simple
+        // TODO: currently there is no way to differenciate between if and
+        // else is not available as a parent token, instead if has two
+        // statement children needs grammar change or workaround here to make
+        // config simple
     }
 
     // TODO: overwrite mCheckFor based on user settings in config file
