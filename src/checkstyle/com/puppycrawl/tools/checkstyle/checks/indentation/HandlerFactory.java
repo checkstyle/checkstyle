@@ -28,6 +28,9 @@ import java.util.Set;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * Factory for handlers. Looks up constructor via reflection.
  *
@@ -35,6 +38,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class HandlerFactory
 {
+    /** Logger for indentation check */
+    private static final Log LOG =
+        LogFactory.getLog("com.puppycrawl.tools.checkstyle.checks.indentation");
+
     /**
      * Registered handlers.
      */
@@ -62,9 +69,9 @@ public class HandlerFactory
                                        + aHandlerClass);
         }
         catch (SecurityException e) {
+            LOG.debug("couldn't find ctor for " + aHandlerClass, e);
             throw new RuntimeException("couldn't find ctor for "
-                                       + aHandlerClass,
-                                       e);
+                                       + aHandlerClass);
         }
         ///CLOVER:ON
     }
@@ -171,17 +178,19 @@ public class HandlerFactory
         }
         ///CLOVER:OFF
         catch (InstantiationException e) {
+            LOG.debug("couldn't instantiate constructor for " + aAst, e);
             throw new RuntimeException("couldn't instantiate constructor for "
-                                       + aAst, e);
+                                       + aAst);
         }
         catch (IllegalAccessException e) {
+            LOG.debug("couldn't access constructor for " + aAst, e);
             throw new RuntimeException("couldn't access constructor for "
-                                       + aAst,
-                                       e);
+                                       + aAst);
         }
         catch (InvocationTargetException e) {
+            LOG.debug("couldn't instantiate constructor for " + aAst, e);
             throw new RuntimeException("couldn't instantiate constructor for "
-                                       + aAst, e);
+                                       + aAst);
         }
         if (expHandler == null) {
             throw new RuntimeException("no handler for type " + type);
