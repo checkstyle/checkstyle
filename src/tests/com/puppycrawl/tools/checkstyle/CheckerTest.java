@@ -80,6 +80,7 @@ public class CheckerTest
             assertEquals(aExpected[i], lnr.readLine());
         }
         assertEquals(aExpected.length, errs);
+        aC.destroy();
     }
 
 
