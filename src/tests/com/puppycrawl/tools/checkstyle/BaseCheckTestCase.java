@@ -80,8 +80,10 @@ public abstract class BaseCheckTestCase
         verify(aC, aFileName, aFileName, aExpected);
     }
 
-    protected void verify(Checker aC, String aProcessedFilename,
-            String aMessageFileName, String[] aExpected)
+    protected void verify(Checker aC,
+                          String aProcessedFilename,
+                          String aMessageFileName,
+                          String[] aExpected)
         throws Exception
     {
         mStream.flush();

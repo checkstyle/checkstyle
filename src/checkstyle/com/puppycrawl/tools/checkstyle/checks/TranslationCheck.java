@@ -237,20 +237,20 @@ public class TranslationCheck extends AbstractFileSetCheck
      */
     private void checkPropertyFileSets(Map aPropFiles)
     {
-        Set keySet = aPropFiles.keySet();
+        final Set keySet = aPropFiles.keySet();
 
         for (Iterator iterator = keySet.iterator(); iterator.hasNext();) {
-            String baseName = (String) iterator.next();
-            Set files = (Set) aPropFiles.get(baseName);
+            final String baseName = (String) iterator.next();
+            final Set files = (Set) aPropFiles.get(baseName);
 
             if (files.size() >= 2) {
                 // build a map from files to the keys they contain
-                Set keys = new HashSet();
-                Map fileMap = new HashMap();
+                final Set keys = new HashSet();
+                final Map fileMap = new HashMap();
 
                 for (Iterator iter = files.iterator(); iter.hasNext();) {
-                    File file = (File) iter.next();
-                    Set fileKeys = loadKeys(file);
+                    final File file = (File) iter.next();
+                    final Set fileKeys = loadKeys(file);
                     keys.addAll(fileKeys);
                     fileMap.put(file, fileKeys);
                 }
@@ -273,8 +273,8 @@ public class TranslationCheck extends AbstractFileSetCheck
      */
     public void process(File[] aFiles)
     {
-        Set dirs = getParentDirs(aFiles);
-        Set propertyFiles = getPropertyFiles(dirs);
+        final Set dirs = getParentDirs(aFiles);
+        final Set propertyFiles = getPropertyFiles(dirs);
         final Map propFilesMap = arrangePropertyFiles(propertyFiles);
         checkPropertyFileSets(propFilesMap);
     }
