@@ -4,14 +4,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-class InputPublicOnly // ignore - need javadoc
+public class InputPublicOnly // ignore - need javadoc
 {
-    private interface InnerInterface // ignore -- need javadoc
+    private interface InnerInterface // ignore - when not relaxed about Javadoc
     {
-        String CONST = "InnerInterface"; // ignore -- need javadoc
-        void method(); // ignore -- need javadoc
+        String CONST = "InnerInterface"; // ignore - w.n.r.a.j
+        void method(); // ignore - when not relaxed about Javadoc
         
-        class InnerInnerClass // ignore -- need javadoc
+        class InnerInnerClass // ignore - when not relaxed about Javadoc
         {
             private int mData; // ignore - when not relaxed about Javadoc
 
@@ -84,4 +84,15 @@ class InputPublicOnly // ignore - need javadoc
     public void method(StringBuffer aA)
     {
     }
+
+
+    /**
+       A param tag should not be required here when relaxed about Javadoc.
+       Writing a little documentation should not be worse than not
+       writing any documentation at all.
+     */
+    private void method(String aA)
+    {
+    }
+
 }

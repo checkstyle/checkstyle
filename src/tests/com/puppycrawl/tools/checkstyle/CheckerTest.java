@@ -305,7 +305,8 @@ public class CheckerTest
             filepath + ":69: method is missing a Javadoc comment.",
             filepath + ":74: method is missing a Javadoc comment.",
             filepath + ":79: method is missing a Javadoc comment.",
-            filepath + ":84: method is missing a Javadoc comment."
+            filepath + ":84: method is missing a Javadoc comment.",
+            filepath + ":94: Expected @param tag for 'aA'."
         };
         verify(c, filepath, expected);
     }
@@ -313,7 +314,7 @@ public class CheckerTest
     public void testNoJavadoc()
         throws Exception
     {
-        mConfig.setIgnoreJavadoc(true);
+        mConfig.setJavadocScope(Scope.NOTHING);
         final Checker c = createChecker();
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
@@ -325,20 +326,16 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
+    // pre 1.4 relaxed mode is roughly equivalent with check=protected
     public void testRelaxedJavadoc()
         throws Exception
     {
-        mConfig.setRelaxJavadoc(true);
+        mConfig.setJavadocScope(Scope.PROTECTED);
         final Checker c = createChecker();
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
         final String[] expected = {
             filepath + ":7: type is missing a Javadoc comment.",
-            filepath + ":9: type is missing a Javadoc comment.",
-            filepath + ":11: variable 'CONST' missing Javadoc.",
-            filepath + ":12: method is missing a Javadoc comment.",
-            filepath + ":14: type is missing a Javadoc comment.",
-            filepath + ":34: type is missing a Javadoc comment.",
             filepath + ":44: variable 'mLen' must be private and have accessor methods.",
             filepath + ":45: variable 'mDeer' missing Javadoc.",
             filepath + ":45: variable 'mDeer' must be private and have accessor methods.",
@@ -348,6 +345,80 @@ public class CheckerTest
             filepath + ":64: method is missing a Javadoc comment.",
             filepath + ":79: method is missing a Javadoc comment.",
             filepath + ":84: method is missing a Javadoc comment."
+        };
+        verify(c, filepath, expected);
+    }
+
+    
+    public void testScopeInnerInterfacesPublic()
+        throws Exception
+    {
+        mConfig.setJavadocScope(Scope.PUBLIC);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputScopeInnerInterfaces.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":7: type is missing a Javadoc comment.",
+            filepath + ":38: type is missing a Javadoc comment.",
+            filepath + ":40: variable 'CA' missing Javadoc.",
+            filepath + ":41: variable 'CB' missing Javadoc.",
+            filepath + ":43: method is missing a Javadoc comment.",
+            filepath + ":44: method is missing a Javadoc comment."
+        };
+        verify(c, filepath, expected);
+    }
+
+    public void testScopeInnerClassesPackage()
+        throws Exception
+    {
+        mConfig.setJavadocScope(Scope.PACKAGE);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputScopeInnerClasses.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":18: type is missing a Javadoc comment.",
+            filepath + ":20: type is missing a Javadoc comment.",
+            filepath + ":22: type is missing a Javadoc comment."
+        };
+        verify(c, filepath, expected);
+    }
+
+    public void testScopeInnerClassesPublic()
+        throws Exception
+    {
+        mConfig.setJavadocScope(Scope.PUBLIC);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputScopeInnerClasses.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":18: type is missing a Javadoc comment.",
+        };
+        verify(c, filepath, expected);
+    }
+    
+    public void testScopeAnonInnerPrivate()
+        throws Exception
+    {
+        mConfig.setJavadocScope(Scope.PRIVATE);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputScopeAnonInner.java");
+        assertNotNull(c);
+        final String[] expected = {
+        };
+        verify(c, filepath, expected);
+    }
+
+    public void testScopeAnonInnerAnonInner()
+        throws Exception
+    {
+        mConfig.setJavadocScope(Scope.ANONINNER);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputScopeAnonInner.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":26: method is missing a Javadoc comment.",
+            filepath + ":39: method is missing a Javadoc comment.",
+            filepath + ":53: method is missing a Javadoc comment."
         };
         verify(c, filepath, expected);
     }
