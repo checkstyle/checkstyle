@@ -405,6 +405,10 @@
       </p>
 
       <pre>
+      &lt;?xml version=&quot;1.0&quot;?&gt;
+      &lt;!DOCTYPE module PUBLIC
+          &quot;-//Puppy Crawl//DTD Check Configuration 1.0//EN&quot;
+          &quot;http://www.puppycrawl.com/dtds/configuration_1_0.dtd&quot;&gt;
       &lt;module name=&quot;Checker&quot;&gt;
         &lt;module name=&quot;TreeWalker&quot;&gt;
 
@@ -423,11 +427,12 @@
       <p class="body">
       To run the new Check on the command line compile your Check,
       create a jar that contains the classes and property files,
-      e.g. <span class="code">mycompanychecks.jar</span>. Then run:
+      e.g. <span class="code">mycompanychecks.jar</span>. Then run
+      (with the path separator adjusted to your platform):
       </p>
       <pre>
-      java -classpath mycompanychecks.jar \
-           -jar checkstyle-all-@CHECKSTYLE_VERSION@ \
+      java -classpath mycompanychecks.jar:checkstyle-all-@CHECKSTYLE_VERSION@.jar \
+           com.puppycrawl.tools.checkstyle.Main \
            -c config.xml -r .
       </pre>
 
