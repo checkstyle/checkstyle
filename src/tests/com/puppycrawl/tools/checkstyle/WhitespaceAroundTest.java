@@ -1,9 +1,6 @@
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundCheck;
-import com.puppycrawl.tools.checkstyle.checks.RedundantModifierCheck;
 
 public class WhitespaceAroundTest
         extends BaseCheckTestCase
