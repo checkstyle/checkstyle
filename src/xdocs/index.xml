@@ -3,6 +3,7 @@
 <document>
 
  <properties>
+  <meta name="keywords" content="inspection, lint, java"/>
   <title>Checkstyle</title>
   <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
  </properties>
@@ -34,9 +35,19 @@
 
 <section name="Features">
 
-<p>
-</p>
+      <p>
+        Checkstyle can check many aspects of your source code. Historically
+        it's main functionality has been to check code layout issues,
+        but since the internal architecture was changed in version 3,
+        more and more checks for other purposes have been added.
+        Now Checkstyle provides checks that find class design problems,
+        duplicate code, or bug patterns like double checked locking.
+      </p>
 
+      <p>
+        For a detailed list of available checks please refer to the
+        <a href="checks.html">Available Checks</a> page.
+      </p>
 </section>
 
 <section name="Download">
@@ -47,6 +58,137 @@
 
       <p>
         If you want to live on the bleeding edge, you can <a href="http://sourceforge.net/cvs/?group_id=29721">checkout the current development code from CVS</a> and compile yourself.
+      </p>
+
+</section>
+
+<section name="Related Tools">
+
+      <p>
+        Checkstyle is most useful if you integrate it in your build process or
+        your development environment. The distribution includes:
+      </p>
+
+      <ul>
+        <li>An <a href="http://ant.apache.org/index.html">Ant</a> task.</li>
+        <li>A command line tool.</li>
+      </ul>
+
+      <p>
+        Additionally plug-ins are written by third-parties. Some of them
+        are still based on the Checkstyle 2.4 release, although there have
+        been many improvements since then. If you have to use
+	such a plugin, the documentation for Checkstyle 2.4 is still
+	<a href="http://checkstyle.sourceforge.net/old-2.4/">available</a>,
+        but we strongly encourage plugin authors to upgrade.
+        The known plug-ins are:
+      </p>
+
+      <table>
+	<tr>
+	  <th>IDE / Build tool</th>
+	  <th>Main/Initial Author</th>
+	  <th>Available from</th>
+	  <th>Remarks</th>
+	</tr>
+	<tr>
+          <td><a href="http://www.eclipse.org">Eclipse/WSAD</a></td>
+          <td>David Schneider</td>
+          <td><a
+	      href="http://eclipse-cs.sourceforge.net/">Eclipse-CS Home Page/</a></td>
+          <td></td>
+	</tr>
+	<tr>
+          <td><a href="http://www.eclipse.org">Eclipse/WSAD</a></td>
+          <td>Marco van Meegen</td>
+          <td><a
+href="http://www.mvmsoft.de/content/plugins/checkclipse/checkclipse.htm">Checklipse Home Page</a></td>
+          <td></td>
+	</tr>
+	<tr>
+          <td><a href="http://www.intellij.com/idea/">IntelliJ IDEA</a></td>
+          <td>Mark Lussier</td>
+          <td><a
+	      href="http://sourceforge.net/projects/jetstyle">Jetstyle Project Page</a></td>
+          <td>Checkstyle 2.4</td>
+	</tr>
+	<tr>
+          <td><a href="http://www.netbeans.org">NetBeans</a></td>
+          <td>Paul Goulbourn</td>
+          <td><a href="http://nbcheckstyle.sourceforge.net">nbCheckStyle</a></td>
+          <td></td>
+	</tr>
+	<tr>
+          <td><a href="http://www.borland.com/jbuilder/">Borland JBuilder</a></td>
+          <td>Darrel King</td>
+          <td><a href="http://www.pautinka.com/">http://www.pautinka.com/</a></td>
+          <td></td>
+	</tr>
+	<tr>
+          <td><a href="http://www.borland.com/jbuilder/">Borland JBuilder</a></td>
+          <td>Henri Tremblay</td>
+          <td><a href="http://sourceforge.net/projects/jbcheckstyle-pg/">JBCS Sourceforge Project Page</a></td>
+          <td></td>
+	</tr>
+	<tr>
+          <td><a href="http://www.borland.com/jbuilder/">Borland JBuilder</a></td>
+          <td>Angus Chan</td>
+          <td><a href="http://jbcheckstyle.sourceforge.net">jbCheckStyle</a></td>
+          <td>Checkstyle 2.4</td>
+	</tr>
+	<tr>
+          <td><a href="http://www.bluej.org">BlueJ</a></td>
+          <td>Rick Giles</td>
+          <td><a href="http://bluejcheckstyle.sourceforge.net/">bluejcheckstyle
+	    home page</a></td>
+          <td></td>
+	</tr>
+	<tr>
+          <td><a href="http://jdee.sunsite.dk">Emacs JDE</a></td>
+          <td>Markus Mohnen</td>
+          <td>Part of the standard JDEE distribution</td>
+          <td></td>
+	</tr>
+	<tr>
+          <td><a href="http://www.jedit.org/">jEdit</a></td>
+          <td>Todd Papaioannou</td>
+          <td><a
+	      href="http://plugins.jedit.org/plugins/?CheckStylePlugin">JEdit CheckStylePlugin</a></td>
+          <td></td>
+	</tr>
+	<tr>
+          <td><a href="http://www.vim.org">Vim editor</a></td>
+          <td>Xandy Johnson</td>
+          <td><a
+	      href="http://vim.sourceforge.net/script.php?script_id=448">Plugin Homepage</a></td>
+          <td>Vim file-type plug-in</td>
+	</tr>
+	<tr>
+          <td><a href="http://www.krysalis.org/centipede/">Krysalis Centipede</a></td>
+          <td>unknown</td>
+          <td>Checkstyle supported out of the box</td>
+          <td></td>
+	</tr>
+	<tr>
+          <td><a href="http://maven.apache.org/">Maven</a></td>
+          <td>Vincent Massol</td>
+          <td>Checkstyle supported out of the box</td>
+          <td><a href="http://maven.apache.org/checkstyle-report.html">example report</a></td>
+	</tr>
+      </table>
+
+
+      <p>
+	Martin Smith has <a
+	href="http://www.beansmith.com/coding/CheckStyle_SlickEdit.html">written
+	instructions</a> on how to set-up Checkstyle with the <a
+	href="http://www.slickedit.com">SlickEdit</a> editor.
+      </p>
+
+	<p>
+        If you have written a plugin for other IDEs, please let us know, so we
+        can provide a link here.
+
       </p>
 
 </section>
