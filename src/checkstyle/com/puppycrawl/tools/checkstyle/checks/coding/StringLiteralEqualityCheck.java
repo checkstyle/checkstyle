@@ -24,9 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import antlr.collections.AST;
 
 /**
- * Checks that string literals are not used with
+ * <p>Checks that string literals are not used with
  * <code>==</code> or <code>&#33;=</code>.
- *
+ * </p>
  * <p>
  * Rationale: Novice Java programmers often use code like
  * <code>if (x == &quot;something&quot;)</code> when they mean
