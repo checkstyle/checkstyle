@@ -20,18 +20,13 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
-import com.puppycrawl.tools.checkstyle.LeftCurlyOption;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 public class TypeLeftCurlyCheck
-    extends Check
+    extends LeftCurlyCheck
 {
-    private LeftCurlyOption mOption = LeftCurlyOption.EOL;
-    // TODO: remove hack
-    private int mMaxLineLength = 80;
-
     /** @see Check */
     public int[] getDefaultTokens()
     {
@@ -49,65 +44,6 @@ public class TypeLeftCurlyCheck
         final DetailAST startToken =
             (DetailAST) aAST.getFirstChild().getNextSibling();
 
-        final String braceLine = getLines()[brace.getLineNo() - 1];
-
-        // calculate the previous line length without trailing whitespace. Need
-        // to handle the case where there is no previous line, cause the line
-        // being check is the first line in the file.
-        final int prevLineLen = (brace.getLineNo() == 1)
-            ? mMaxLineLength
-            : Utils.lengthMinusTrailingWhitespace(
-                getLines()[brace.getLineNo() - 2]);
-
-        // Check for being told to ignore, or have '{}' which is a special case
-        if ((mOption == LeftCurlyOption.IGNORE)
-            || ((braceLine.length() > (brace.getColumnNo() + 1))
-                && (braceLine.charAt(brace.getColumnNo() + 1) == '}')))
-        {
-            // ignore
-        }
-        else if (mOption == LeftCurlyOption.NL) {
-            if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                log(brace.getLineNo(), brace.getColumnNo(),
-                    "line.new", "{");
-            }
-        }
-        else if (mOption == LeftCurlyOption.EOL) {
-            if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)
-                && ((prevLineLen + 2) <= mMaxLineLength))
-            {
-                log(brace.getLineNo(), brace.getColumnNo(),
-                    "line.previous", "{");
-            }
-        }
-        else if (mOption == LeftCurlyOption.NLOW) {
-            if (startToken.getLineNo() == brace.getLineNo()) {
-                // all ok as on the same line
-            }
-            else if ((startToken.getLineNo() + 1) == brace.getLineNo()) {
-                if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                    log(brace.getLineNo(), brace.getColumnNo(),
-                        "line.new", "{");
-                }
-                else if ((prevLineLen + 2) <= mMaxLineLength) {
-                    log(brace.getLineNo(), brace.getColumnNo(),
-                        "line.previous", "{");
-                }
-            }
-            else if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                log(brace.getLineNo(), brace.getColumnNo(),
-                    "line.new", "{");
-            }
-        }
-    }
-
-    public void setOption(String aFromStr)
-    {
-        mOption = LeftCurlyOption.decode(aFromStr);
-    }
-
-    public void setMaxLineLength(int aMaxLineLength)
-    {
-        mMaxLineLength = aMaxLineLength;
+        verifyBrace(brace, startToken);
     }
 }
