@@ -46,7 +46,7 @@ public abstract class AbstractOption
         Map strToOpt = getStrToOpt();
         strToOpt.put(mStrRep, this);
     }
-    
+
     /**
      * Returns the map from string representations to options.
      * @return <code>Map</code> from strings to options.
@@ -66,7 +66,10 @@ public abstract class AbstractOption
         return (AbstractOption) strToOpt.get(aStrRep.trim().toLowerCase());
     }
 
-    /** @see java.lang.Object **/
+    /**
+     * Returns the string representation of this AbstractOption.
+     * @see java.lang.Object
+     **/
     public String toString()
     {
         return mStrRep;
