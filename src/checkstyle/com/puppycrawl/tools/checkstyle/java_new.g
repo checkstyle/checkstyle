@@ -222,7 +222,7 @@ interfaceDefinition![DetailAST modifiers]
 // This is the body of a class.  You can have fields and extra semicolons,
 // That's about it (until you see what a field is...)
 classBlock
-	:	LCURLY!
+	:	LCURLY
 			( field | SEMI! )*
 		RCURLY
 		{#classBlock = #([OBJBLOCK, "OBJBLOCK"], #classBlock);}
