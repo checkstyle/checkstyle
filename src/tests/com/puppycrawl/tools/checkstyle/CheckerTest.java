@@ -11,6 +11,8 @@ import java.io.PrintStream;
 import java.util.Locale;
 import java.util.Properties;
 
+import com.puppycrawl.tools.checkstyle.api.Scope;
+
 import junit.framework.TestCase;
 
 public class CheckerTest

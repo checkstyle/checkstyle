@@ -1,7 +1,6 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import antlr.collections.AST;
-import com.puppycrawl.tools.checkstyle.Scope;
 
 /**
  * Contains utility methods for working on scope.
