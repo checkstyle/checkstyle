@@ -206,7 +206,6 @@ public class Checker
     {
         // TODO: delete this method eventually
         this(aConfig, new CheckConfiguration[0]);
-        mConfig.loadFiles();
         final Verifier v = new Verifier(aConfig);
         VerifierSingleton.setInstance(v);
     }

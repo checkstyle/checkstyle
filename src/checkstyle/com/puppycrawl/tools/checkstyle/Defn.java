@@ -63,12 +63,6 @@ public interface Defn
     String ALLOW_PACKAGE_PROP = "checkstyle.allow.package";
     /** property name for allowing no author **/
     String ALLOW_NO_AUTHOR_PROP = "checkstyle.allow.noauthor";
-    /** property name for header file **/
-    String HEADER_FILE_PROP = "checkstyle.header.file";
-    /** property name for line in header file to ignore **/
-    String HEADER_IGNORE_LINE_PROP = "checkstyle.header.ignoreline";
-    /** property name for header file line interpretation as regexps */
-    String HEADER_LINES_REGEXP_PROP = "checkstyle.header.regexp";
     /** property name for visibility scope where Javadoc is checked **/
     String JAVADOC_CHECKSCOPE_PROP = "checkstyle.javadoc.scope";
     /** property name for checking for Runtime @throws in Javadoc **/
@@ -134,7 +128,6 @@ public interface Defn
             ALLOW_PACKAGE_PROP,
             ALLOW_PROTECTED_PROP,
             ALLOW_TABS_PROP,
-            HEADER_LINES_REGEXP_PROP,
             IGNORE_BRACES_PROP,
             IGNORE_CAST_WHITESPACE_PROP,
             IGNORE_IMPORTS_PROP,
@@ -183,7 +176,6 @@ public interface Defn
         {
             BASEDIR_PROP,
             CACHE_FILE_PROP,
-            HEADER_FILE_PROP,
             LOCALE_COUNTRY_PROP,
             LOCALE_LANGUAGE_PROP,
         };

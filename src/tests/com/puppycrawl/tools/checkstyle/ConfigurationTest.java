@@ -15,7 +15,6 @@ public class ConfigurationTest
     public void test1() throws Exception
     {
         final Properties p = new Properties();
-        p.setProperty(Defn.HEADER_FILE_PROP, CheckerTest.getPath("java.header"));
         p.setProperty(Defn.MAX_FILE_LENGTH_PROP, "a");
         p.setProperty(Defn.MAX_LINE_LENGTH_PROP, "66");
         p.setProperty(Defn.ALLOW_TABS_PROP, "true");

@@ -206,8 +206,6 @@ class Verifier
         mLines = aLines;
         mMessages.setLines(mLines);
 
-        checkHeader();
-
         // Iterate over the lines looking for:
         //    - long lines
         //    - tabs
@@ -1384,39 +1382,6 @@ class Verifier
         }
     }
 
-
-    /** checks that a file contains a valid header **/
-    private void checkHeader()
-    {
-        if (mConfig.getHeaderLines().length > mLines.length) {
-            mMessages.add(1, "header.missing");
-        }
-        else {
-            for (int i = 0; i < mConfig.getHeaderLines().length; i++) {
-                // skip lines we are meant to ignore
-                if (mConfig.isHeaderIgnoreLineNo(i + 1)) {
-                    continue;
-                }
-
-                final String headerLine = mConfig.getHeaderLines()[i];
-                try {
-                    final boolean match =
-                        mConfig.getHeaderLinesRegexp()
-                        ? Utils.getRE(headerLine).match(mLines[i])
-                        : headerLine.equals(mLines[i]);
-
-                    if (!match) {
-                        mMessages.add(i + 1, "header.mismatch",
-                                      mConfig.getHeaderLines()[i]);
-                        break; // stop checking
-                    }
-                }
-                catch (RESyntaxException e) {
-                    mMessages.add(i + 1, "regexp.parseError", headerLine);
-                }
-            }
-        }
-    }
 
     /**
      * checks if the order of modifiers follows the suggestions
