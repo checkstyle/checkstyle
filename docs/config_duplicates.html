@@ -89,8 +89,12 @@ Checkstyle plugins for duplicate code detection:
 
       <a name="StrictDuplicateCode"></a><h2>StrictDuplicateCode</h2>
       <p class="body">
+      Performs a line-by-line comparison of all code lines and reports
+      duplicate code, i.e. a sequence of lines that differ only in indentation.
+      All import statements in Java code are ignored, any other line -
+      including javadoc, whitespace lines between methods, etc. - is considered
+      (which is why the check is called <em>strict</em>).
       </p>
-
 
       <h4>Properties</h4>
       <table width="100%" border="1" cellpadding="5" class="body">
