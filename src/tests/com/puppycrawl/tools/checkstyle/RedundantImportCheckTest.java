@@ -22,6 +22,7 @@ public class RedundantImportCheckTest
             "8:38: Redundant import from the same package.",
             "10:1: Redundant import from the java.lang package.",
             "11:1: Redundant import from the java.lang package.",
+            "14:1: Duplicate import to line 13.",
         };
         verify(c, fname, expected);
     }

@@ -23,10 +23,23 @@ import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 
+import java.util.Iterator;
+import java.util.Set;
+import java.util.HashSet;
+
 public class RedundantImportCheck
     extends ImportCheck
 {
     private String mPkgName;
+    /** set of the imports */
+    private final Set mImports = new HashSet();
+
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public void beginTree()
+    {
+        mPkgName = null;
+        mImports.clear();
+    }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -49,6 +62,19 @@ public class RedundantImportCheck
             else if (fromPackage(imp.getText(), mPkgName)) {
                 log(aAST.getLineNo(), aAST.getColumnNo(), "import.same");
             }
+            // Check for a duplicate import
+            final Iterator it = mImports.iterator();
+            while (it.hasNext()) {
+                final FullIdent full = (FullIdent) it.next();
+                if (imp.getText().equals(full.getText())) {
+                    log(aAST.getLineNo(),
+                        aAST.getColumnNo(),
+                        "import.duplicate",
+                        new Integer(full.getLineNo()));
+                }
+            }
+
+            mImports.add(imp);
         }
     }
 
