@@ -62,6 +62,8 @@ public abstract class AbstractTypeAwareCheck
     {
         mPackageFullIdent = FullIdent.createFullIdent(null);
         mImports.clear();
+        // add java.lang.* since it's always imported
+        mImports.add("java.lang.*");
         mClassResolver = null;
         mCurrentClass = "";
     }

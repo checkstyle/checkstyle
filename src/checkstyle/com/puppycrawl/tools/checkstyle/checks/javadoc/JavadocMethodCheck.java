@@ -622,6 +622,7 @@ public class JavadocMethodCheck
                 final ExceptionInfo ei = (ExceptionInfo) throwIt.next();
                 final FullIdent fi = ei.getName();
                 final String declaredEx = fi.getText();
+
                 if (isSameType(declaredEx, documentedEx)) {
                     found = true;
                     ei.setFound();

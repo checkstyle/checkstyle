@@ -333,3 +333,29 @@ enum InputTagsEnum
     /** @return This tag is not valid here */
     String someField2();
 }
+
+/**
+ * Some javadoc.
+ */
+public class MyClass {
+
+    /**
+     * Constructor.
+     */
+    public MyClass() {
+    }
+
+   /**
+    * Sample method.
+    * @param arg1   first argument
+    * @param arg2   second argument
+    * @return java.lang.String      the result string
+    * @throws java.lang.Exception   in case of problem
+    */
+    public final String myMethod(final String arg1,
+                                 final Object arg2)
+      throws Exception
+    {
+        return null;
+    }
+}
