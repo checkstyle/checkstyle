@@ -11,17 +11,19 @@
 <h3>To-do comments</h3>
 
 <p>The property <span class="code">checkstyle.pattern.todo</span> specifies
-the pattern to match for to-do comments. Defaults to <span
-class="default">&quot;TODO:&quot;</span>.</p>
+the pattern to match for to-do comments. The property type is regular
+expression and defaults to <span class="default">&quot;TODO:&quot;</span>.</p>
 
 
 <h3>Integer Literals</h3>
 
-<p>Verifies that long integer literals use an uppercase <span
+<p>The property <span class="code">checkstyle.ignore.longell</span> specifies
+whether Checkstyle verifies that long integer literals use an uppercase <span
 class="code">L</span>. For example <span class="code">40L</span> instead of
 <span class="code">40l</span>. This is in accordance to the Java Language
 Specification, <a
 href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">Section
-3.10.1</a>. This check can be turned off.</p>
+3.10.1</a>. The property type is boolean and defaults to <span
+class="default">false</span>.</p>
 
 </body>
