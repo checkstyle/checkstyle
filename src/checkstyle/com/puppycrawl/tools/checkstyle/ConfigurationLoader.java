@@ -25,10 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 import javax.xml.parsers.ParserConfigurationException;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
@@ -47,13 +44,29 @@ import org.xml.sax.SAXParseException;
  */
 public final class ConfigurationLoader
 {
-    /** the public ID for the configuration dtd */
-    private static final String DTD_PUBLIC_ID =
+    /** the public ID for version 1_0 of the configuration dtd */
+    private static final String DTD_PUBLIC_ID_1_0 =
+        "-//Puppy Crawl//DTD Check Configuration 1.0//EN";
+
+    /** the resource for version 1_0 of the configuration dtd */
+    private static final String DTD_RESOURCE_NAME_1_0 =
+        "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd";
+
+    /** the public ID for version 1_1 of the configuration dtd */
+    private static final String DTD_PUBLIC_ID_1_1 =
         "-//Puppy Crawl//DTD Check Configuration 1.1//EN";
 
-    /** the resource for the configuration dtd */
-    private static final String DTD_RESOURCE_NAME =
+    /** the resource for version 1_1 of the configuration dtd */
+    private static final String DTD_RESOURCE_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/configuration_1_1.dtd";
+
+    /** the public ID for version 1_2 of the configuration dtd */
+    private static final String DTD_PUBLIC_ID_1_2 =
+        "-//Puppy Crawl//DTD Check Configuration 1.2//EN";
+
+    /** the resource for version 1_1 of the configuration dtd */
+    private static final String DTD_RESOURCE_NAME_1_2 =
+        "com/puppycrawl/tools/checkstyle/configuration_1_2.dtd";
 
     /** constant to specify two kilobyte of data */
     private static final int TWO_KB = 2048;
@@ -84,7 +97,8 @@ public final class ConfigurationLoader
         private InternalLoader()
             throws SAXException, ParserConfigurationException
         {
-            super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
+//            super(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
+            super(createIdToResourceNameMap());
         }
 
         /** @see org.xml.sax.helpers.DefaultHandler **/
@@ -154,6 +168,16 @@ public final class ConfigurationLoader
     private final Stack mConfigStack = new Stack();
     /** the Configuration that is being built */
     private Configuration mConfiguration;
+
+
+    private static Map createIdToResourceNameMap()
+    {
+        Map map = new HashMap(3);
+        map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
+        map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
+        map.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
+        return map;
+    }
 
 
     /**
