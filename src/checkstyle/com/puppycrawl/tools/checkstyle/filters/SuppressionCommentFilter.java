@@ -193,9 +193,8 @@ public class SuppressionCommentFilter
             if (mLine == other.mLine) {
                 return mColumn - other.mColumn;
             }
-            else {
-                return (mLine - other.mLine);
-            }
+            
+            return (mLine - other.mLine);
         }
 
         /**
@@ -257,14 +256,8 @@ public class SuppressionCommentFilter
     /** Whether to look in comments of the C++ type. */
     private boolean mCheckCPP = true;
 
-    /** Turns checkstyle reporting off. */
-    private String mOffCommentFormat;
-
     /** Parsed comment regexp that turns checkstyle reporting off. */
     private RE mOffRegexp;
-
-    /** Turns checkstyle reporting on. */
-    private String mOnCommentFormat;
 
     /** Parsed comment regexp that turns checkstyle reporting on. */
     private RE mOnRegexp;
@@ -313,7 +306,6 @@ public class SuppressionCommentFilter
     {
         try {
             mOffRegexp = Utils.getRE(aFormat);
-            mOffCommentFormat = aFormat;
         }
         catch (RESyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
@@ -330,7 +322,6 @@ public class SuppressionCommentFilter
     {
         try {
             mOnRegexp = Utils.getRE(aFormat);
-            mOnCommentFormat = aFormat;
         }
         catch (RESyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
@@ -379,7 +370,7 @@ public class SuppressionCommentFilter
     {
         // check that aFormat parses
         try {
-            RE messageRegexp = Utils.getRE(aFormat);
+            Utils.getRE(aFormat);
         }
         catch (RESyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
