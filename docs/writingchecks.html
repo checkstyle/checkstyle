@@ -47,17 +47,85 @@
       <a name="overview"></a>
       <h2>Overview</h2>
       <p class="body">
-
       OK, so you have finally decided to write your own check.
-      Welcome aboard, this is really a fun thing to do.
+      Welcome aboard, this is really a fun thing to do.  There are
+      actually two kinds of checks, so before you can start, you have
+      to find out which kind of Check you want to implement.
+      </p>
 
-      TODO: Write about FileSetChecks, TreeWalker and Checks here.
+      <p class="body">
+      The functionality of Checkstyle is implemented in modules that
+      can be plugged into Checkstyle. Modules can be containers for
+      other modules, i.e. they form a tree structures. The toplevel
+      modules that are known directly to the Checkstyle kernel (which
+      is also a module and forms the root of the tree) are
+      FileSetChecks. These are pretty simple to grasp: they take a set
+      of input files and fire error messages.
+      </p>
+
+      <p class="body">
+      Checkstyle provides a few FileSetCheck implementations by
+      default and one of them happens to be the TreeWalker. A
+      TreeWalker typically has some submodules, called Checks. The
+      TreeWalker operates by seperately transforming each of the java
+      input files into an abstract syntax tree and then handing the
+      result over to each of the Check submodules which in turn have a
+      look at a certain aspect of the tree.
       </p>
 
       <a name="filesetchecks"></a>
       <h2>Writing FileSetChecks</h2>
       <p class="body">
-        TODO: How to write a FileSetCheck should go here.
+      Writing a FileSetCheck is pretty straightforward: Just inherit
+      from AbstractFileSetCheck and implement the process(File[]
+      files) method and you're done. A very simple example could fire
+      an error if the number of files that are passed in exceeds a
+      certain limit.
+      </p>
+      <p class="body">
+      TODO: Implement that FSC and provide it as an example. Sketch:
+      <pre>
+      private int max = 100;
+
+      public void setMax(int aMax)
+      {
+          max = aMax;
+      }
+
+      public void process(File[] files)
+      {
+          if (files != null && files.length &gt max)
+          {
+              // build the error list
+              Object[] key = new Object[]{it.next()};
+              LocalizedMessage[] errors = new LocalizedMessage[1];
+              final String className = getClass().getName();
+              final int pkgEndIndex = className.lastIndexOf('.');
+              final String pkgName = className.substring(0, pkgEndIndex);
+              final String bundle = pkgName + ".messages";
+              errors[0] = new LocalizedMessage(
+                      0, bundle, "max.files.exceeded", key);
+
+              // fire the errors to the AuditListeners
+              getMessageDispatcher().fireErrors(path, errors);
+          }
+      }
+      </pre>
+      </p>
+      <p class="body">
+      Note that by implementing the setMax() method the FileSetCheck
+      automatically makes &quot;max&quot; a legal configuration
+      parameter that you can use in the Checkstyle configuration file.
+      </p>
+      <p class="body">
+      There are virtually no limits what you can do in
+      FileSetChecks. The most crazy ideas we've had so far are
+      <ul>
+      <li class="body">to port the TreeWalker solution to check C#
+      instead of Java.</li>
+      <li class="body">to implement a checking algorithm that finds
+      global problems like unused classes, unused public methods and
+      thelike.
       </p>
 
       <a name="checks"></a>
