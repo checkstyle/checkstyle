@@ -62,7 +62,6 @@ public class Configuration
                              "^[a-z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.LOCAL_FINAL_VAR_PATTERN_PROP,
                              "^[a-z][a-zA-Z0-9]*$");
-        PATTERN_DEFAULTS.put(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP, "^$");
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -444,18 +443,6 @@ public class Configuration
         return getBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP);
     }
 
-    /** @return pattern to exclude from line lengh checking **/
-    String getIgnoreLineLengthPat()
-    {
-        return getPatternProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP);
-    }
-
-    /** @return regexp to exclude from line lengh checking **/
-    RE getIgnoreLineLengthRegexp()
-    {
-        return getRegexpProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP);
-    }
-
     /** @return whether to ignore checks for whitespace **/
     boolean isIgnoreWhitespace()
     {
@@ -472,12 +459,6 @@ public class Configuration
     boolean isIgnoreBraces()
     {
         return getBooleanProperty(Defn.IGNORE_BRACES_PROP);
-    }
-
-    /** @return whether to ignore max line length for import statements **/
-    boolean isIgnoreImportLength()
-    {
-        return getBooleanProperty(Defn.IGNORE_IMPORT_LENGTH_PROP);
     }
 
     /** @return the File of the cache file **/

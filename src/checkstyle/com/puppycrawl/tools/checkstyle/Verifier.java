@@ -200,23 +200,6 @@ class Verifier
     {
         mLines = aLines;
         mMessages.setLines(mLines);
-
-        // Iterate over the lines looking for:
-        //    - long lines
-        for (int i = 0; i < mLines.length; i++) {
-            // check for long line, but possibly allow imports
-            final String line = mLines[i];
-            final int realLength = Utils.lengthExpandedTabs(
-                line, line.length(), mConfig.getTabWidth());
-            if ((realLength > mConfig.getMaxLineLength())
-                && !(mConfig.getIgnoreLineLengthRegexp().match(line))
-                && !(mConfig.isIgnoreImportLength()
-                     && line.trim().startsWith("import")))
-            {
-                mMessages.add(i + 1, "maxLineLen",
-                              new Integer(mConfig.getMaxLineLength()));
-            }
-        }
     }
 
     /**

@@ -334,8 +334,6 @@ public class CheckerTest
         mProps.setProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, "9");
         mProps.setProperty(Defn.STATIC_PATTERN_PROP, "^s[A-Z][a-zA-Z0-9]*$");
         mProps.setProperty(Defn.MEMBER_PATTERN_PROP, "^m[A-Z][a-zA-Z0-9]*$");
-        mProps.setProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP,
-                           "^.*is OK.*regexp.*$");
         mProps.setProperty(Defn.TODO_PATTERN_PROP, "FIXME:");
         mProps.setProperty(Defn.MEMBER_PATTERN_PROP, "^m[A-Z][a-zA-Z0-9]*$");
         mProps.setProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP, "[A-Z]+");
@@ -343,7 +341,6 @@ public class CheckerTest
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":18: Line is longer than 80 characters.",
             filepath + ":25:29: Name 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":30:24: Name 'badStatic' must match pattern '^s[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":35:17: Name 'badMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
@@ -356,7 +353,6 @@ public class CheckerTest
             filepath + ":130:18: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":132:20: Name 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":142:30: Name 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
-            filepath + ":145: Line is longer than 80 characters.",
             filepath + ":161: Comment matches to-do format 'FIXME:'.",
             filepath + ":162: Comment matches to-do format 'FIXME:'.",
             filepath + ":163: Comment matches to-do format 'FIXME:'.",
