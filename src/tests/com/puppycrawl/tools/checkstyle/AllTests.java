@@ -60,7 +60,6 @@ public class AllTests {
         suite.addTest(new TestSuite(PublicMemberNameCheckTest.class));
         suite.addTest(new TestSuite(RedundantImportCheckTest.class));
         suite.addTest(new TestSuite(RedundantModifierTest.class));
-        suite.addTest(new TestSuite(ReplaceTest.class));
         suite.addTest(new TestSuite(RightCurlyCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanExpressionCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanReturnCheckTest.class));
