@@ -5,7 +5,6 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.AvoidStarImport"/>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.ConstructorLengthCheck"/>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheck"/>
