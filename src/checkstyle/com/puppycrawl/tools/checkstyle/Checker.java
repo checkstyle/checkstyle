@@ -208,6 +208,7 @@ public class Checker extends AutomaticBean
         for (int i = 0; i < mFileSetChecks.size(); i++) {
             FileSetCheck fileSetCheck = (FileSetCheck) mFileSetChecks.get(i);
             fileSetCheck.process(aFiles);
+            fileSetCheck.destroy();
         }
         int errorCount = mCounter.getCount();
         fireAuditFinished();
