@@ -36,12 +36,6 @@ public class WhitespaceAroundTest
         verifyMessage(msgs, idx++, 28, 10, "'+=' is not preceeded with whitespace.");
         verifyMessage(msgs, idx++, 28, 12, "'+=' is not followed by whitespace.");
         verifyMessage(msgs, idx++, 29, 13, "'-=' is not followed by whitespace.");
-        //verifyMessage(msgs, idx++, 29, 14, "'-' is followed by whitespace.");
-        //verifyMessage(msgs, idx++, 29, 21, "'+' is followed by whitespace.");
-        //verifyMessage(msgs, idx++, 30, 14, "'++' is preceeded with whitespace.");
-        //verifyMessage(msgs, idx++, 30, 21, "'--' is preceeded with whitespace.");
-        //verifyMessage(msgs, idx++, 31, 15, "'++' is followed by whitespace.");
-        //verifyMessage(msgs, idx++, 31, 22, "'--' is followed by whitespace.");
         verifyMessage(msgs, idx++, 37, 21, "'synchronized' is not followed by whitespace.");
         verifyMessage(msgs, idx++, 39, 12, "'try' is not followed by whitespace.");
         verifyMessage(msgs, idx++, 41, 14, "'catch' is not followed by whitespace.");

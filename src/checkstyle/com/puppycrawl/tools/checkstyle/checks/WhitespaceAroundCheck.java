@@ -35,9 +35,9 @@ public class WhitespaceAroundCheck extends Check implements Java14TokenTypes
             NOT_EQUAL,         // "!="
             DIV,               // '/'
             DIV_ASSIGN,        // "/="
-            // PLUS,              //' +' TODO: unaray plus
+            PLUS,              //' +' (unaray plus is UNARY_PLUS)
             PLUS_ASSIGN,       // "+="
-            // MINUS,             // '-' TODO: unary minus
+            MINUS,             // '-' (unary minus is UNARY_MINUS)
             MINUS_ASSIGN,      //"-="
             STAR,              // '*'
             STAR_ASSIGN,       // "*="
