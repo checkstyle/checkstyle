@@ -50,7 +50,8 @@ public final class PackageNamesLoader
     /** Name of default checkstyle package names resource file.
      * The file must be in the classpath.
      */
-    private static final String DEFAULT_PACKAGES = "checkstyle_packages.xml";
+    private static final String DEFAULT_PACKAGES =
+        "com/puppycrawl/tools/checkstyle/checkstyle_packages.xml";
 
     /**
      * the factory to return in getModuleFactory(),
