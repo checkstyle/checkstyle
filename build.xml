@@ -28,6 +28,13 @@
     <path refid="build.classpath" />
   </path>
 
+  <!-- add classes to generate Javadoc -->
+  <path id="javadoc.classpath">
+    <pathelement location="${ant.home}/lib/ant.jar" />
+    <pathelement location="${ant.home}/lib/crimson.jar" />
+    <path refid="build.classpath" />
+  </path>
+
   <path id="tests.buildpath">
     <pathelement location="${junit.jar}" />
     <path refid="run.classpath" />
@@ -49,7 +56,7 @@
   <target name="clean">
     <delete dir="classes" />
     <delete dir="dist" />
-    <delete dir="javadoc" />
+    <delete dir="docs/api" />
     <delete dir="${testreport.dir}" />
     <delete>
       <fileset dir="src/checkstyle" includes="**/Generated*.java" />
@@ -263,11 +270,12 @@
   </target>
 
 
-  <target name="javadoc">
-    <mkdir dir="javadoc" />
-    <javadoc sourcepath="src/checkstyle" destdir="javadoc"
+  <target name="javadoc" depends="compile.checkstyle">
+    <mkdir dir="docs/api" />
+    <javadoc sourcepath="src/checkstyle" destdir="docs/api"
              packagenames="com.puppycrawl.tools.checkstyle"
-	     classpathref="run.classpath" />
+             Windowtitle="Checkstyle API"
+	     classpathref="javadoc.classpath" />
   </target>
 
 </project>
