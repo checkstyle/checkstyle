@@ -138,31 +138,6 @@ public class SuppressionCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
-    public void testEqualParen()
-            throws Exception
-    {
-        final DefaultConfiguration filterConfig = 
-            createFilterConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("offCommentFormat", "CSOFF");
-        filterConfig.addAttribute("onCommentFormat", "CSON\\: ([\\w\\|]+)");
-        filterConfig.addAttribute("checkFormat", "$1");
-        final String[] suppressed = {
-            "22:17: Name 'L' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "23:30: Name 'm' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "28:30: Name 'n' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-        };
-        try {
-            verifySuppressed(filterConfig, suppressed);
-            fail("No exception thrown.");
-        }
-        catch (CheckstyleException ex) {
-            //expected
-        }
-        catch (Exception ex) {
-            fail("Wrong exception type: " + ex);
-        }
-    }
-
     public void testMessage()
             throws Exception
     {

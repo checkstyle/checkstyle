@@ -31,7 +31,6 @@ import org.apache.regexp.RESyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
@@ -519,18 +518,5 @@ public class SuppressionCommentFilter
     {
         final Tag tag = new Tag(aLine, aColumn, aText, aOn);
         mTags.add(tag);
-    }
-
-    /**
-      * Check that everything was set up properly.
-      * @throws CheckstyleException if a comment format was not set
-      */
-    protected void finishLocalSetup() throws CheckstyleException
-    {
-        if (mOnRegexp.getParenCount() != mOffRegexp.getParenCount()) {
-            throw new CheckstyleException(
-                "onCommentFormat and offCommentFormat"
-                    + " have different paren counts.");
-        }
     }
 }
