@@ -63,6 +63,7 @@ import com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundTest;
 import com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.HideUtilityClassConstructorCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.AvoidNestedBlocksCheckTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -85,6 +86,7 @@ public class AllTests {
         suite.addTest(new TestSuite(AbstractViolationReporterTest.class));
         suite.addTest(new TestSuite(ArrayTypeStyleCheckTest.class));
         suite.addTest(new TestSuite(AvoidInlineConditionalsCheckTest.class));
+        suite.addTest(new TestSuite(AvoidNestedBlocksCheckTest.class));
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
