@@ -50,7 +50,7 @@ public class AssignHandler extends BlockParentHandler
         final IndentLevel expectedLevel = getChildrenExpectedLevel();
 
         // check indentation of assign if it starts line
-        DetailAST assign = getMainAst();
+        final DetailAST assign = getMainAst();
         if (startsLine(assign)
             && !expectedLevel.accept(expandedTabsColumnNo(assign)))
         {
