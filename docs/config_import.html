@@ -13,6 +13,8 @@ whether to check import statements. The property type is <a
 href="property_types.html#boolean">boolean</a> and defaults to <span
 class="default">false</span>.</p>
 
+<h2>Unused imports</h2>
+
 <p>Checkstyle uses a simple but very reliable algorithm to report on unused import statements. An import statement is considered unused if:</p>
 
 <ul>
@@ -31,6 +33,7 @@ class="default">false</span>.</p>
   <li>The class imported is from the same package.</li>
 </ul>
 
+<h2>Illegal imports</h2>
 
 <p>The property <span class="code">checkstyle.illegal.imports</span> contains
 the set of import illegal package prefixes for import statements. The property
