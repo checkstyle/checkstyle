@@ -29,7 +29,7 @@ public abstract class BaseCheckTestCase
     }
 
     private final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
-    private final PrintStream mStream = new PrintStream(mBAOS);
+    protected final PrintStream mStream = new PrintStream(mBAOS);
     protected final Properties mProps = new Properties();
 
     protected Checker createChecker(CheckConfiguration aCheckConfig)
@@ -50,11 +50,18 @@ public abstract class BaseCheckTestCase
         return f.getCanonicalPath();
     }
 
-    protected void verify(Checker aC, String aFilename, String[] aExpected)
+    protected void verify(Checker aC, String aFileName, String[] aExpected)
+            throws Exception
+    {
+        verify(aC, aFileName, aFileName, aExpected);
+    }
+
+    protected void verify(Checker aC, String aProcessedFilename,
+            String aMessageFileName, String[] aExpected)
         throws Exception
     {
         mStream.flush();
-        final int errs = aC.process(new File[] {new File(aFilename)});
+        final int errs = aC.process(new File[] {new File(aProcessedFilename)});
 
         // process each of the lines
         final ByteArrayInputStream bais =
@@ -63,7 +70,7 @@ public abstract class BaseCheckTestCase
             new LineNumberReader(new InputStreamReader(bais));
 
         for (int i = 0; i < aExpected.length; i++) {
-            assertEquals(aFilename + ":" + aExpected[i], lnr.readLine());
+            assertEquals(aMessageFileName + ":" + aExpected[i], lnr.readLine());
         }
         assertEquals(aExpected.length, errs);
         aC.destroy();
