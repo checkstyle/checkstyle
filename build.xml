@@ -208,6 +208,15 @@
     <checkstyle/>
   </target>
 
+  <target name="checkstyle.another" depends="compile.checkstyle">
+    <taskdef name="checkstyle"
+             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+      <classpath refid="run.classpath"/>
+    </taskdef>
+    <echo message="Calling checkstyle with missing properties file" />
+    <checkstyle properties="xzzaaqqwet3ad"/>
+  </target>
+
   <target name="checkstyle.style" depends="compile.checkstyle">
     <taskdef name="checkstyle"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
