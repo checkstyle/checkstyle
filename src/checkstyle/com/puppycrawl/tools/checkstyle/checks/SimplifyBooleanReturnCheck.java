@@ -49,19 +49,29 @@ public class SimplifyBooleanReturnCheck
             throw new IllegalArgumentException("not an if");
         }
 
+        // LITERAL_IF has the following four or five children:
+        // '('
+        // condition
+        // ')'
+        // thenstatement
+        // [ LITERAL_ELSE (with the elseStatement as a child) ]
+
         // don't bother if this is not if then else
-        if (aAST.getChildCount() != 3) {
+        if (aAST.getChildCount() != 5) {
             return;
         }
 
-        AST condition = aAST.getFirstChild();
-        AST thenStatement = condition.getNextSibling();
-        AST elseStatement = thenStatement.getNextSibling();
+        // skip '(' and ')'
+        // TODO: Introduce helpers in DetailAST
+        AST condition = aAST.getFirstChild().getNextSibling();
+        AST thenStatement = condition.getNextSibling().getNextSibling();
+        AST elseStatement = thenStatement.getNextSibling().getFirstChild();
 
         if (returnsOnlyBooleanLiteral(thenStatement)
                 && returnsOnlyBooleanLiteral(elseStatement))
         {
-            log(aAST.getLineNo(), "Remove conditional logic.");
+            // TODO: i18n
+            log(aAST.getLineNo(), aAST.getColumnNo(), "Remove conditional logic.");
         }
     }
 
