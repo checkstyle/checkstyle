@@ -57,4 +57,12 @@ public class InputSimplifyBoolean
             return;
         }
     }
+
+    public boolean ifNoElse()
+    {
+        if (isOddMillis()) {
+            return true;
+        }
+        return false;
+    }
 }
