@@ -91,4 +91,78 @@ class InputSemantic
 
     /** test **/
     private static final long IGNORE = 666l + 666L;
+
+    void innerAssignments()
+    {
+        int a;
+        int b;
+        int c;
+
+        a = b = c = 1; // flag two inner assignments
+
+        String s = Integer.toString(b = 2); // flag inner assignment
+
+        Integer i = new Integer(a += 5); // flag inner assigment
+
+        c = b++; // common practice, don't flag
+                 // even though technically an assigment to b
+
+        for (int j = 0; j < 6; j += 2) { // common practice, don't flag
+            a += j;
+        }
+    }
+
+    public class EqualsVsHashCode1
+    {
+        public boolean equals(int a) // wrong arg type, don't flag
+        {
+            return a == 1;
+        }
+    }
+
+    public class EqualsVsHashCode2
+    {
+        public boolean equals(String a) // flag
+        {
+            return true;
+        }
+    }
+
+    public class EqualsVsHashCode3
+    {
+        public boolean equals(Object a) // don't flag
+        {
+            return true;
+        }
+
+        public int hashCode()
+        {
+            return 0;
+        }
+    }
+
+    public class EqualsVsHashCode4
+    {
+        // in anon inner class
+        ByteArrayOutputStream bos1 = new ByteArrayOutputStream()
+        {
+            public boolean equals(Object a) // don't flag
+            {
+                return true;
+            }
+
+            public int hashCode()
+            {
+                return 0;
+            }
+        };
+
+        ByteArrayOutputStream bos2 = new ByteArrayOutputStream()
+        {
+            public boolean equals(Object a) // flag
+            {
+                return true;
+            }
+        };
+    }
 }
