@@ -327,6 +327,45 @@ public class CheckerTest
             filepath + ":109:55: Expected @param tag for 'aFour'.",
             filepath + ":109:66: Expected @param tag for 'aFive'.",
             filepath + ":129:5: '{' should be on the previous line.",
+            filepath + ":178: Unused @throws tag for 'ThreadDeath'.",
+            filepath + ":179: Unused @throws tag for 'ArrayStoreException'.",
+        };
+
+        verify(c, filepath, expected);
+    }
+
+    public void testTagsWithResolver()
+        throws Exception
+    {
+        mConfig.setBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP, true);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputTags.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":8: type is missing a Javadoc comment.",
+            filepath + ":11:17: variable 'mMissingJavadoc' missing Javadoc.",
+            filepath + ":14:5: method is missing a Javadoc comment.",
+            filepath + ":18: Unused @param tag for 'unused'.",
+            filepath + ":24: Expected an @return tag.",
+            filepath + ":33: Expected an @return tag.",
+            filepath + ":40:16: Expected @throws tag for 'Exception'.",
+            filepath + ":49:16: Expected @throws tag for 'Exception'.",
+            filepath + ":53: Unable to get class information for @throws tag 'WrongException'.",
+            filepath + ":53: Unused @throws tag for 'WrongException'.",
+            filepath + ":55:16: Expected @throws tag for 'Exception'.",
+            filepath + ":55:27: Expected @throws tag for 'NullPointerException'.",
+            filepath + ":60:22: Expected @param tag for 'aOne'.",
+            filepath + ":68:22: Expected @param tag for 'aOne'.",
+            filepath + ":72: Unused @param tag for 'WrongParam'.",
+            filepath + ":73:23: Expected @param tag for 'aOne'.",
+            filepath + ":73:33: Expected @param tag for 'aTwo'.",
+            filepath + ":78: Unused @param tag for 'Unneeded'.",
+            filepath + ":79: Unused Javadoc tag.",
+            filepath + ":87: Duplicate @return tag.",
+            filepath + ":109:23: Expected @param tag for 'aOne'.",
+            filepath + ":109:55: Expected @param tag for 'aFour'.",
+            filepath + ":109:66: Expected @param tag for 'aFive'.",
+            filepath + ":129:5: '{' should be on the previous line.",
         };
 
         verify(c, filepath, expected);
