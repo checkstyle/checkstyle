@@ -654,7 +654,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("braceAdjustment", new Integer(2).toString());
         final String[] expected = {
-            "24: if rcurly at indentation level 8 not at correct indentation, 8",
+            "24: if rcurly at indentation level 8 not at correct indentation, 10",
         };
         verify(checkConfig, getPath("indentation/InputBraceAdjustment.java"), expected);
     }

@@ -204,7 +204,7 @@ public class BlockParentHandler extends ExpressionHandler
         {
             return;
         }
-        logError(rcurly, "rcurly", expandedTabsColumnNo(rcurly));
+        logError(rcurly, "rcurly", expandedTabsColumnNo(rcurly), curlyLevel());
     }
 
     /**
