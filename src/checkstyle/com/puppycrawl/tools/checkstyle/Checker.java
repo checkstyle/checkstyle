@@ -111,19 +111,14 @@ public class Checker
         int total = 0;
         fireAuditStarted();
 
-        /*
-
-          If you move checkPackageHtml() around beware of the caching
-          functionality of checkstyle. Make sure that package.html
-          checks are not skipped because of caching. Otherwise you
-          might e.g. have a package.html file, check all java files
-          without errors, delete package.html and then recheck without
-          errors because the html file is not covered by the cache.
-
-        */
-
+        // If you move checkPackageHtml() around beware of the caching
+        // functionality of checkstyle. Make sure that package.html
+        // checks are not skipped because of caching. Otherwise you
+        // might e.g. have a package.html file, check all java files
+        // without errors, delete package.html and then recheck without
+        // errors because the html file is not covered by the cache.
         total += checkPackageHtml(aFiles);
-        
+
         for (int i = 0; i < aFiles.length; i++)
         {
             total += process(aFiles[i]);
@@ -197,7 +192,7 @@ public class Checker
     private int checkPackageHtml(String[] aFiles)
     {
         int packageHtmlErrors = 0;
-        
+
         if (aFiles != null && mConfig.isRequirePackageHtml())
         {
             final HashSet checkedPackages = new HashSet();
