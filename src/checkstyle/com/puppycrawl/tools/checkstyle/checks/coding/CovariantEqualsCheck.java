@@ -56,6 +56,9 @@ public class CovariantEqualsCheck
      */
     private class ClassAttributes
     {
+        /** root AST node for class definition */
+        private DetailAST mRootAST;
+
         /** Set of AST nodes for defined equals methods.
          * Empty if the class defines method equals(java.lang.Object)
          */
@@ -63,6 +66,24 @@ public class CovariantEqualsCheck
 
         /** true if class defines method equals(java.lang.Object) */
         private boolean mHasEqualsObject = false;
+
+        /**
+         * Constructs a ClassAttributes for a class definition.
+         * @param aAST the root AST node for the class definition.
+         */
+        public ClassAttributes(DetailAST aAST)
+        {
+            mRootAST = aAST;
+        }
+
+        /**
+         * Returns the root AST for the class definition.
+         * @return the root AST for the class definition.
+         */
+        public DetailAST getRootAST()
+        {
+            return mRootAST;
+        }
 
         /**
          * Adds a AST node for the definition of an equals method.
@@ -101,6 +122,7 @@ public class CovariantEqualsCheck
     {
         return new int[] {
             TokenTypes.CLASS_DEF,
+            TokenTypes.LITERAL_NEW,
             TokenTypes.METHOD_DEF,
         };
     }
@@ -110,7 +132,7 @@ public class CovariantEqualsCheck
     {
         return getDefaultTokens();
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree(DetailAST aRootAST)
     {
@@ -120,23 +142,57 @@ public class CovariantEqualsCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() == TokenTypes.CLASS_DEF) {
-            //push
-            mClassStack.add(new ClassAttributes());
-        }
-        else {
-            // METHOD_DEF
-            if (!ScopeUtils.inInterfaceBlock(aAST) && isEqualsMethod(aAST)) {
-                final ClassAttributes attrs =
-                    (ClassAttributes) mClassStack.getLast();
-                if (hasObjectParameter(aAST)) {
-                    attrs.setHasEqualsObject();
+        if (aAST.getType() == TokenTypes.METHOD_DEF) {
+            final DetailAST definer = getDefiner(aAST);
+            final int type = definer.getType();
+            if ((type == TokenTypes.CLASS_DEF)
+                || (type == TokenTypes.LITERAL_NEW))
+            {
+                if (mClassStack.isEmpty()) {
+                    mClassStack.add(new ClassAttributes(definer));
                 }
-                else {
-                    attrs.addEqualsNode(aAST);
+                final ClassAttributes attrs =
+                        (ClassAttributes) mClassStack.getLast();
+                final DetailAST currentRoot = attrs.getRootAST();
+                if (definer != currentRoot) {
+                    mClassStack.add(new ClassAttributes(definer));
+                }
+                if (!ScopeUtils.inInterfaceBlock(aAST)
+                    && isEqualsMethod(aAST))
+                {
+                    if (hasObjectParameter(aAST)) {
+                        attrs.setHasEqualsObject();
+                    }
+                    else {
+                        attrs.addEqualsNode(aAST);
+                    }
                 }
             }
         }
+    }
+
+    /**
+     * Determines the definer of an AST node. The definer is a class,
+     * interface or new (anonymous class).
+     * @param aAST the defined AST node.
+     * @return the definer of aAST.
+     */
+    private DetailAST getDefiner(DetailAST aAST)
+    {
+        for (DetailAST token = aAST.getParent();
+             token != null;
+             token = token.getParent())
+        {
+            final int type = token.getType();
+            if ((type == TokenTypes.CLASS_DEF)
+                || (type == TokenTypes.INTERFACE_DEF)
+                || (type == TokenTypes.LITERAL_NEW))
+            {
+                return token;
+            }
+
+        }
+        return null;
     }
 
     /**
@@ -196,18 +252,26 @@ public class CovariantEqualsCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void leaveToken(DetailAST aAST)
     {
-        if (aAST.getType() == TokenTypes.CLASS_DEF) {
-            //pop and report equals errors
-            final ClassAttributes attrs =
-                (ClassAttributes) mClassStack.removeLast();
-            final Set equalsNodes = attrs.getEqualsNodes();
-            final Iterator it = equalsNodes.iterator();
-            while (it.hasNext()) {
-                final DetailAST equalsAST = (DetailAST) it.next();
-                final DetailAST nameNode =
-                    equalsAST.findFirstToken(TokenTypes.IDENT);
-                log(nameNode.getLineNo(), nameNode.getColumnNo(),
-                        "covariant.equals");
+        final int type = aAST.getType();
+        if ((type == TokenTypes.LITERAL_NEW)
+            || (type == TokenTypes.CLASS_DEF))
+        {
+            // pop class stack
+            if (!mClassStack.isEmpty()) {
+                final ClassAttributes attrs =
+                    (ClassAttributes) mClassStack.getLast();
+                if (attrs.getRootAST() == aAST) {
+                    mClassStack.removeLast();
+                    final Set equalsNodes = attrs.getEqualsNodes();
+                    final Iterator it = equalsNodes.iterator();
+                    while (it.hasNext()) {
+                        final DetailAST equalsAST = (DetailAST) it.next();
+                        final DetailAST nameNode =
+                            equalsAST.findFirstToken(TokenTypes.IDENT);
+                        log(nameNode.getLineNo(), nameNode.getColumnNo(),
+                            "covariant.equals");
+                    }
+                }
             }
         }
     }
