@@ -11,8 +11,9 @@
 
     <module name="PackageHtml"/>
 
-    <!-- HACK HACK HACK - I turned this off for the moment -->
-    <!-- module name="Translation"/ -->
+    <module name="Translation">
+        <property name="severity" value="${translation.severity}"/>
+    </module>
 
     <module name="TreeWalker">
 
