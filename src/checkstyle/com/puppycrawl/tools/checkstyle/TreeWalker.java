@@ -110,6 +110,10 @@ public final class TreeWalker
     private final int mTabWidth;
     /** cache file **/
     private final PropertyCacheFile mCache;
+    /**
+     * the global configuration.
+     * TODO: should only know the treewalker part of the config
+     */
     private final GlobalProperties mConfig;
 
     /**
