@@ -20,26 +20,23 @@ package com.puppycrawl.tools.checkstyle;
 
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+import com.puppycrawl.tools.checkstyle.api.Utils;
+import org.apache.regexp.RESyntaxException;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.LineNumberReader;
 import java.io.Reader;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
-import java.lang.reflect.InvocationTargetException;
-
-import org.apache.regexp.RESyntaxException;
-import org.xml.sax.SAXException;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-// import com.puppycrawl.tools.checkstyle.gui.ParseTreeInfoPanel;
-
-import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -314,7 +311,7 @@ public class Checker
         LocalizedMessage[] errors;
         try {
             fireFileStarted(stripped);
-            final String[] lines = getLines(aFileName);
+            final String[] lines = Utils.getLines(aFileName);
             try {
                 // try the 1.4 grammar first, this will succeed for
                 // all code that compiles without any warnings in JDK 1.4,
@@ -416,7 +413,7 @@ public class Checker
         mMessages.reset();
         try {
             fireFileStarted(stripped);
-            final String[] lines = getLines(aFileName);
+            final String[] lines = Utils.getLines(aFileName);
             final CommentManager cmgr = new CommentManager(lines);
             DetailAST rootAST;
             try {
@@ -523,29 +520,6 @@ public class Checker
         return packageHtmlErrors;
     }
 
-
-    /**
-     * Loads the contents of a file in a String array.
-     * @return the lines in the file
-     * @param aFileName the name of the file to load
-     * @throws IOException error occurred
-     **/
-    private String[] getLines(String aFileName)
-        throws IOException
-    {
-        final LineNumberReader lnr =
-            new LineNumberReader(new FileReader(aFileName));
-        final ArrayList lines = new ArrayList();
-        while (true) {
-            final String l = lnr.readLine();
-            if (l == null) {
-                break;
-            }
-            lines.add(l);
-        }
-
-        return (String[]) lines.toArray(new String[0]);
-    }
 
     /** notify all listeners about the audit start */
     protected void fireAuditStarted()

@@ -33,6 +33,7 @@
 
   <path id="run.classpath">
     <pathelement location="target/checkstyle" />
+    <pathelement location="${antlr-tools.jar}" />
     <path refid="build.classpath" />
   </path>
 
@@ -184,6 +185,17 @@
   <!-- -->
   <!-- TEST TARGETS -->
   <!-- -->
+
+  <!-- display a specified file in a UI frame -->
+  <target name="run.treeviewer" depends="compile.checkstyle"
+          description="Display a specified file in GUI tree">
+    <property name="treeviewer.file"
+              value="src/checkstyle/com/puppycrawl/tools/checkstyle/Verifier.java"/>
+    <java classname="com.puppycrawl.tools.checkstyle.TreeViewer"
+          fork="yes" classpathref="run.classpath">
+      <arg line="${treeviewer.file}"/>
+    </java>
+  </target>
 
   <!-- runs the command line version on a file -->
   <target name="run.checkstyle" depends="compile.tests"
