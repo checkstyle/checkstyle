@@ -430,7 +430,7 @@
         <include name="checkstyle-${version}/**"/>
       </fileset>
     </zip>
-    <tar tarfile="${dist.dir}/checkstyle-${version}.tar"
+    <tar tarfile="${dist.dir}/checkstyle-${version}.tar" longfile="gnu"
          basedir="${dist.dir}" includes="checkstyle-${version}/**" />
     <gzip zipfile="${dist.dir}/checkstyle-${version}.tar.gz"
           src="${dist.dir}/checkstyle-${version}.tar" />
@@ -462,7 +462,7 @@
         <include name="checkstyle-src-${version}/**"/>
       </fileset>
     </zip>
-    <tar tarfile="${dist.dir}/checkstyle-src-${version}.tar"
+    <tar tarfile="${dist.dir}/checkstyle-src-${version}.tar" longfile="gnu"
          basedir="${dist.dir}" includes="checkstyle-src-${version}/**" />
     <gzip zipfile="${dist.dir}/checkstyle-src-${version}.tar.gz"
           src="${dist.dir}/checkstyle-src-${version}.tar" />
