@@ -283,7 +283,7 @@ class DebugFilter implements Filter
 {
     private boolean mCalled;
 
-    public boolean accept(Object aObject)
+    public boolean accept(AuditEvent aEvent)
     {
         mCalled = true;
         return true;

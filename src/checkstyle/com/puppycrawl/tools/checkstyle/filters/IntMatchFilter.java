@@ -18,14 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.filters;
 
-import com.puppycrawl.tools.checkstyle.api.Filter;
-
 /**
  * This filter accepts a matching Integer.
  * @author Rick Giles
  */
-public class IntMatchFilter
-    implements Filter
+class IntMatchFilter implements IntFilter
 {
     /** the matching Integer */
     private Integer mMatchValue;
@@ -39,10 +36,10 @@ public class IntMatchFilter
         mMatchValue = new Integer(aMatchValue);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Filter */
-    public boolean accept(Object aObject)
+    /** @see com.puppycrawl.tools.checkstyle.filters.IntFilter */
+    public boolean accept(Integer aInt)
     {
-        return mMatchValue.equals(aObject);
+        return mMatchValue.equals(aInt);
     }
 
     /** @see java.lang.Object#toString() */

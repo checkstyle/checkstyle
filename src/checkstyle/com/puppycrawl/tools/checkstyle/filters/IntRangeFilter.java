@@ -18,14 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.filters;
 
-import com.puppycrawl.tools.checkstyle.api.Filter;
-
 /**
  * This filter accepts an Integer in a range.
  * @author Rick Giles
  */
-public class IntRangeFilter
-    implements Filter
+class IntRangeFilter implements IntFilter
 {
     /** hash function multiplicand */
     private static final int HASH_MULT = 29;
@@ -48,14 +45,11 @@ public class IntRangeFilter
         mUpperBound = new Integer(aUpperBound);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Filter */
-    public boolean accept(Object aObject)
+    /** @see com.puppycrawl.tools.checkstyle.filters.IntFilter */
+    public boolean accept(Integer aInt)
     {
-        if (!(aObject instanceof Integer)) {
-            return false;
-        }
-        return ((mLowerBound.compareTo(aObject) <= 0)
-            && (mUpperBound.compareTo(aObject) >= 0));
+        return ((mLowerBound.compareTo(aInt) <= 0)
+            && (mUpperBound.compareTo(aInt) >= 0));
     }
 
     /** @see java.lang.Object#hashCode() */

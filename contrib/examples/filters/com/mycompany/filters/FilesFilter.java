@@ -20,10 +20,9 @@ public class FilesFilter
         setFiles("^$");
     }
     
-    public boolean accept(Object aObject)
+    public boolean accept(AuditEvent aEvent)
     {
-        final AuditEvent event = (AuditEvent) aObject;
-        final String fileName = event.getFileName();
+        final String fileName = aEvent.getFileName();
         return ((fileName == null) || !mFileRegexp.match(fileName));
     }
 

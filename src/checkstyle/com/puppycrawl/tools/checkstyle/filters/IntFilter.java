@@ -16,19 +16,19 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.api;
+package com.puppycrawl.tools.checkstyle.filters;
 
 /**
- * An interface for filtering AuditEvents.
- * @author Rick Giles
+ * An interface for filtering Integer.
+ * @author o_sukhodolsky
  */
-public interface Filter
+interface IntFilter
 
 {
     /**
-     * Determines whether or not a filtered AuditEvent is accepted.
-     * @param aEvent the AudtiEvent to filter.
-     * @return true if the aEvent is accepted.
+     * Determines whether or not a filtered Integer is accepted.
+     * @param aInt the Integer to filter.
+     * @return true if the aInt is accepted.
      */
-    boolean accept(AuditEvent aEvent);
+    boolean accept(Integer aInt);
 }
