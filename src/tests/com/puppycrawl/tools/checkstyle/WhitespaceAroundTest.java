@@ -8,8 +8,8 @@ public class WhitespaceAroundTest
     public void testIt()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(WhitespaceAroundCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(WhitespaceAroundCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
@@ -55,8 +55,8 @@ public class WhitespaceAroundTest
     public void testIt2()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(WhitespaceAroundCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(WhitespaceAroundCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
@@ -73,8 +73,8 @@ public class WhitespaceAroundTest
     public void testIt3()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(WhitespaceAroundCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(WhitespaceAroundCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputBraces.java");
         final String[] expected = {

@@ -5,11 +5,11 @@ import com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheck;
 public class WhitespaceAfterCheckTest
     extends BaseCheckTestCase
 {
-    private CheckConfiguration mCheckConfig;
+    private DefaultConfiguration mCheckConfig;
 
-    public void setUp() {
-        mCheckConfig = new CheckConfiguration();
-        mCheckConfig.setClassname(WhitespaceAfterCheck.class.getName());
+    public void setUp()
+    {
+        mCheckConfig = createCheckConfig(WhitespaceAfterCheck.class);
     }
 
     public void testDefault() throws Exception
