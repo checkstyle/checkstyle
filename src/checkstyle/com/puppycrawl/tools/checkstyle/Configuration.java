@@ -51,8 +51,6 @@ public class Configuration
     // Constants
     ////////////////////////////////////////////////////////////////////////////
 
-    /** the set of illegal imports (comma separated package prefixes) **/
-    private static final String ILLEGAL_IMPORTS = "sun";
     /** the set of illegal instantiations (comma separated class names) **/
     private static final String ILLEGAL_INSTANTIATIONS = "";
 
@@ -99,7 +97,6 @@ public class Configuration
     /** map of Set properties **/
     private final Map mStringSetProps = new HashMap();
     {
-        setStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP, ILLEGAL_IMPORTS);
         setStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP,
                              ILLEGAL_INSTANTIATIONS);
     }
@@ -513,22 +510,10 @@ public class Configuration
         return getBooleanProperty(Defn.REQUIRE_PACKAGE_HTML_PROP);
     }
 
-    /** @return whether to process imports **/
-    boolean isIgnoreImports()
-    {
-        return getBooleanProperty(Defn.IGNORE_IMPORTS_PROP);
-    }
-
     /** @return whether to check unused @throws **/
     boolean isCheckUnusedThrows()
     {
         return getBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP);
-    }
-
-    /** @return Set of pkg prefixes that are illegal in import statements */
-    Set getIllegalImports()
-    {
-        return getStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP);
     }
 
     /** @return Set of classes where calling a constructor is illegal */
