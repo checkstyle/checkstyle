@@ -12,6 +12,18 @@
 representations. This document describes how these string representations are
 mapped to typed properties.</p>
 
+<h2><a name="integer">Integer</a></h2>
+
+<p>This property represents an integer. The string representation is parsed
+using the <span class="code">java.lang.Integer</span> class.</p>
+
+
+<h2><a name="string">String</a></h2>
+
+<p>This property represents a string. The literal string representation is
+used.</p>
+
+
 <h2><a name="boolean">Boolean</a></h2>
 
 <p>This property represents a boolean. The default value is <span
@@ -33,10 +45,11 @@ class="code">false</span>. The following string representations will map to
 parsed as a set of comma (',') separated strings.</p>
 
 
-<h2><a name="integer">Integer</a></h2>
+<h2><a name="intSet">Integer Set</a></h2>
 
-<p>This property represents an integer. The string representation is parsed
-using the <span class="code">java.lang.Integer</span> class.</p>
+<p>This property represents a set of integers. The string representation is
+parsed as a set of comma (',') separated integers that are parsed using the
+<span class="code">java.lang.Integer</span> class.</p>
 
 
 <h2><a name="regexp">Regular Expression</a></h2>
@@ -95,6 +108,22 @@ following table describes the valid options:</p>
     </td>
   </tr>
 </table>
+
+
+<h2><a name="scope">Scope</a></h2>
+
+<p>This property represents a Java scope. The valid options are:</p>
+
+<ul>
+  <li><span class="default">nothing</span>
+  <li><span class="default">public</span>
+  <li><span class="default">protected</span>
+  <li><span class="default">package</span>
+  <li><span class="default">private</span>
+  <li><span class="default">anoninner</span>
+</ul>
+
+
 
 </body>
 </html>

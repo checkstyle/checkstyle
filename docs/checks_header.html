@@ -9,17 +9,19 @@
 <h1>Checks for Headers</h1>
 
 <p>The property <span class="code">checkstyle.header.file</span> controls
-whether Checkstyle checks that each files with a specified header. The header
+whether to check that each file begins with a specified header. The header
 contents are specified in the file. If no file is specified, checkstyle does
-not check for a header. The property type is <span
-class="code">java.lang.String</span> and defaults to <span
-class="default">null</span> (which means do not check).</p>
+not check for a header. The property type is
+<a href="property_types.html#string">string</a> and defaults to
+<span class="default">null</span> (which means do not check).</p>
 
-<p>The property <span class="code">checkstyle.header.ignoreline</span> can be
-used to tell Checkstyle to ignore matching lines in a header file. The
-property type is a list of comma separated integers and defaults to an empty
-list. This property is very useful for supporting headers that contain
-copyright dates. For example, consider the following header:</p>
+<p>The property <span class="code">checkstyle.header.ignoreline</span>
+specifies the line numbers to ignore when matching lines in a header file. The
+property type is <a href="property_types.html#intSet">integer set</a> and
+defaults to an empty list.</p>
+
+<p>This property is very useful for supporting headers that contain copyright
+dates. For example, consider the following header:</p>
 
 <pre>
 line 1: ///////////////////////////////////////////////////////////////////////
@@ -32,10 +34,12 @@ line 4: ///////////////////////////////////////////////////////////////////////
 to ignore line 3 by setting the property to <span class="code">3</span>.</p>
 
 <p>The property <span class="code">checkstyle.header.regexp</span> controls
-whether Checkstyle will interpret each header line as a regular
-expression. The property type is boolean and defaults to <span
-class="default">false</span>. For example, consider the following header when
-regular expression checking is turned on:</p>
+whether to interpret each header line as a regular expression. The property
+type is <a href="property_types.html#boolean">boolean</a> and defaults to
+<span class="default">false</span>.</p>
+
+<p>For example, consider the following header when regular expression checking
+is turned on:</p>
 
 <pre>
 line 1: /{71}
