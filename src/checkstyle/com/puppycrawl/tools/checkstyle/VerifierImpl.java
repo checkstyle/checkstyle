@@ -67,6 +67,9 @@ class VerifierImpl
     /** stack tracking the type of block currently in **/
     private final Stack mInInterface = new Stack();
 
+    /** stack tracking the visibility scope currently in **/
+    private final Stack mInScope = new Stack();
+
     /** tracks the level of block definitions for methods **/
     private int mMethodBlockLevel = 0;
 
@@ -130,6 +133,7 @@ class VerifierImpl
         mLines = null;
         mPkgName = null;
         mInInterface.clear();
+        mInScope.clear();
         mMethodBlockLevel = 0;
         mMessages.clear();
         mComments.clear();
@@ -175,7 +179,10 @@ class VerifierImpl
                                     MyCommonAST aReturnType,
                                     MethodSignature aSig)
     {
-        if (mConfig.isIgnoreJavadoc()) {
+        final Scope methodScope =
+            inInterfaceBlock() ? Scope.PUBLIC : aMods.getVisibilityScope();
+
+        if (!inCheckScope(methodScope)) {
             return; // no need to really check anything
         }
 
@@ -191,19 +198,7 @@ class VerifierImpl
 
         final String[] jd = getJavadocBefore(lineNo - 1);
         if (jd == null) {
-            // logic below is:
-            // - if in not in a method block (cause if we are, then this is an
-            // anonymous class); AND
-            // - one of:
-            //    o javadoc checking not relaxed; OR
-            //    o in an interface block (all methods must have javadoc); OR
-            //    o method is protected or public.
-            if (!inMethodBlock() &&
-                (!mConfig.isRelaxJavadoc() || inInterfaceBlock() ||
-                 (aMods.containsProtected() || aMods.containsPublic())))
-            {
-                log(lineNo, "method is missing a Javadoc comment.");
-            }
+            log(lineNo, "method is missing a Javadoc comment.");
         }
         else {
             final List tags = getMethodTags(jd, lineNo - 1);
@@ -242,8 +237,11 @@ class VerifierImpl
         //
         // Only Javadoc testing below
         //
-        if (mConfig.isIgnoreJavadoc()) {
-            return;
+        final Scope typeScope =
+            inInterfaceBlock() ? Scope.PUBLIC : aMods.getVisibilityScope();
+
+        if (!inCheckScope(typeScope)) {
+            return; // no need to really check anything
         }
 
         final int lineNo = (aMods.size() > 0)
@@ -252,7 +250,6 @@ class VerifierImpl
 
         final String[] jd = getJavadocBefore(lineNo - 1);
         if (jd == null) {
-            // demand that types have Javadoc, so ignore mRelaxJavadoc
             log(lineNo, "type is missing a Javadoc comment.");
         }
         else if (!mConfig.isAllowNoAuthor() &&
@@ -266,16 +263,16 @@ class VerifierImpl
     /** @see Verifier **/
     public void verifyVariable(MyVariable aVar, boolean aInInterface)
     {
-        if (!mConfig.isIgnoreJavadoc()) {
-            if (getJavadocBefore(aVar.getLineNo() - 1) == null) {
-                if (!mConfig.isRelaxJavadoc() || inInterfaceBlock() ||
-                    (aVar.getModifierSet().containsProtected() ||
-                     aVar.getModifierSet().containsPublic()))
-                {
-                    log(aVar.getLineNo(),
-                        "variable '" + aVar.getText() + "' missing Javadoc.");
-                }
-            }
+        final Scope declaredScope =
+            aVar.getModifierSet().getVisibilityScope();
+        final Scope variableScope =
+            inInterfaceBlock() ? Scope.PUBLIC : declaredScope;
+
+        if (inCheckScope(variableScope) &&
+            getJavadocBefore(aVar.getLineNo() - 1) == null)
+        {
+            log(aVar.getLineNo(),
+                "variable '" + aVar.getText() + "' missing Javadoc.");
         }
 
         // Check correct format
@@ -294,7 +291,6 @@ class VerifierImpl
             //    System.out.println("Need to check for " + aVar.getText());
             //}
 
-            // Checks for Javadoc
             if (mods.containsStatic()) {
                 if (mods.containsFinal()) {
                     // Handle the serialVersionUID constant which is used for
@@ -520,14 +516,16 @@ class VerifierImpl
     }
 
     /** @see Verifier **/
-    public void reportStartTypeBlock(boolean aIsInterface)
+    public void reportStartTypeBlock(Scope aScope, boolean aIsInterface)
     {
-        mInInterface.push(new Boolean(aIsInterface));
+        mInScope.push(aScope);
+        mInInterface.push(aIsInterface ? Boolean.TRUE : Boolean.FALSE);
     }
 
     /** @see Verifier **/
     public void reportEndTypeBlock()
     {
+        mInScope.pop();
         mInInterface.pop();
     }
 
@@ -555,6 +553,42 @@ class VerifierImpl
     ////////////////////////////////////////////////////////////////////////////
     // Private methods
     ////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Checks if aScope is a part of the Source code where we have
+     * to verify correct javadoc.
+     * @param aScope a <code>Scope</code> value
+     * @return if a Scope is a part of the Source code where we have
+     * to verify correct javadoc.
+     */
+    private boolean inCheckScope(Scope aScope)
+    {
+        final Scope configScope = mConfig.getJavadocScope();
+        boolean retVal = aScope.isIn(configScope);
+
+        // Need to handle where the scope of the enclosing type is not
+        // in the scope to be checked. For example:
+        // class Outer {
+        //     public class Inner {
+        //     }
+        // }
+        //
+        // If the scope we are checking is "protected", then even though
+        // Inner is public, we do not require Javadoc because Outer does
+        // not require it.
+
+        // to implement this we search up the scope stack
+        // that all stack elements are also in configScope
+
+        Iterator scopeIterator = mInScope.iterator();
+        while (retVal && scopeIterator.hasNext()) {
+            Scope stackScope = (Scope) scopeIterator.next();
+            retVal = stackScope.isIn(configScope);
+        }
+        return retVal;
+    }
+    
+    
 
     /**
      * Helper method to create a regular expression. Will exit if unable to
@@ -871,7 +905,8 @@ class VerifierImpl
     /** @return whether currently in an interface block **/
     private boolean inInterfaceBlock()
     {
-        return ((Boolean) mInInterface.peek()).booleanValue();
+        return (!mInInterface.empty() &&
+                Boolean.TRUE.equals(mInInterface.peek()));
     }
 
     /** @return whether currently in a method block **/

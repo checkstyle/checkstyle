@@ -86,4 +86,23 @@ class MyModifierSet
     {
         return mModifiers.contains("public");
     }
+
+    /** @return the visibility scope of the modifiers. */
+    Scope getVisibilityScope()
+    {
+        if (containsPublic())
+        {
+            return Scope.PUBLIC;
+        }
+        if (containsProtected())
+        {
+            return Scope.PROTECTED;
+        }
+        if (containsPrivate())
+        {
+            return Scope.PRIVATE;
+        }
+        return Scope.PACKAGE;
+    }
+
 }
