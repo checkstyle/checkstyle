@@ -39,7 +39,37 @@ import org.apache.commons.beanutils.ConversionException;
  * has been dropped as it is a special case of regexp: The user can set
  * the ignorePattern to "^import" and achieve the same effect.
  * </p>
- *
+ * <p>
+ * The default maximum allowable line length is 80 characters. To change the
+ * maximum, set property max.
+ * </p>
+ * <p>
+ * To ignore lines in the check, set property ignorePattern to a regular
+ * expression for the lines to ignore.
+ * </p> 
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="LineLengthCheck"/&gt;
+ * </pre>
+ * <p> An example of how to configure the check to accept lines up to 120
+ * characters long is:
+ *</p>
+ * <pre>
+ * &lt;config name="LineLengthCheck"&gt;
+ *    &lt;property name="max" value="120"/&gt;
+ * &lt;/config&gt;
+ * </pre>
+ * <p> An example of how to configure the check to ignore lines that begin with
+ * &quot; * &quot;, such as within a Javadoc comment, is:
+ * </p>
+ * <pre>
+ * &lt;config name="LineLengthCheck"&gt;
+ *    &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
+ * &lt;/config&gt;
+ * </pre>
+ * 
  * @author Lars Kühne
  */
 public class LineLengthCheck extends Check
