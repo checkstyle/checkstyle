@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheckTest;
@@ -49,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportTest;
 import com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheckTest;
@@ -118,22 +120,22 @@ public class AllTests {
         TestSuite suite =
             new TestSuite("Test for com.puppycrawl.tools.checkstyle");
         //$JUnit-BEGIN$
-        suite.addTest(new TestSuite(CheckerTest.class));
-        suite.addTest(new TestSuite(DetailASTTest.class));
         suite.addTest(new TestSuite(AbstractClassNameCheckTest.class));
         suite.addTest(new TestSuite(AbstractViolationReporterTest.class));
         suite.addTest(new TestSuite(AnonInnerLengthCheckTest.class));
+        suite.addTest(new TestSuite(ArrayTrailingCommaCheckTest.class));
         suite.addTest(new TestSuite(ArrayTypeStyleCheckTest.class));
         suite.addTest(new TestSuite(AvoidInlineConditionalsCheckTest.class));
         suite.addTest(new TestSuite(AvoidNestedBlocksCheckTest.class));
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
-        suite.addTest(new TestSuite(ArrayTrailingCommaCheckTest.class));
+        suite.addTest(new TestSuite(CheckerTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
         suite.addTest(new TestSuite(CovariantEqualsCheckTest.class));
         suite.addTest(new TestSuite(CyclomaticComplexityCheckTest.class));
         suite.addTest(new TestSuite(DescendantTokenCheckTest.class));
         suite.addTest(new TestSuite(DesignForExtensionCheckTest.class));
+        suite.addTest(new TestSuite(DetailASTTest.class));
         suite.addTest(new TestSuite(DoubleCheckedLockingCheckTest.class));
         suite.addTest(new TestSuite(EmptyBlockCheckTest.class));
         suite.addTest(new TestSuite(EmptyForIteratorPadCheckTest.class));
@@ -141,6 +143,7 @@ public class AllTests {
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
         suite.addTest(new TestSuite(FileLengthCheckTest.class));
         suite.addTest(new TestSuite(FileSetCheckLifecycleTest.class));
+        suite.addTest(new TestSuite(FinalClassCheckTest.class));
         suite.addTest(new TestSuite(FinalParametersCheckTest.class));
         suite.addTest(new TestSuite(GenericIllegalRegexpCheckTest.class));
         suite.addTest(new TestSuite(HeaderCheckTest.class));
@@ -154,11 +157,12 @@ public class AllTests {
         suite.addTest(new TestSuite(IndentationCheckTest.class));
         suite.addTest(new TestSuite(InnerAssignmentCheckTest.class));
         suite.addTest(new TestSuite(InterfaceIsTypeCheckTest.class));
+        suite.addTest(new TestSuite(JUnitTestCaseCheckTest.class));
         suite.addTest(new TestSuite(JavadocMethodCheckTest.class));
         suite.addTest(new TestSuite(JavadocStyleCheckTest.class));
         suite.addTest(new TestSuite(JavadocTypeCheckTest.class));
         suite.addTest(new TestSuite(JavadocVariableCheckTest.class));
-        suite.addTest(new TestSuite(JUnitTestCaseCheckTest.class));
+        suite.addTest(new TestSuite(LeftCurlyCheckTest.class));
         suite.addTest(new TestSuite(LineLengthCheckTest.class));
         suite.addTest(new TestSuite(LocalFinalVariableNameCheckTest.class));
         suite.addTest(new TestSuite(LocalVariableNameCheckTest.class));
@@ -166,6 +170,7 @@ public class AllTests {
         suite.addTest(new TestSuite(MemberNameCheckTest.class));
         suite.addTest(new TestSuite(MethodLengthCheckTest.class));
         suite.addTest(new TestSuite(MethodNameCheckTest.class));
+        suite.addTest(new TestSuite(MissingSwitchDefaultCheckTest.class));
         suite.addTest(new TestSuite(ModifierOrderCheckTest.class));
         suite.addTest(new TestSuite(MutableExceptionCheckTest.class));
         suite.addTest(new TestSuite(NeedBracesCheckTest.class));
@@ -187,6 +192,7 @@ public class AllTests {
         suite.addTest(new TestSuite(RedundantImportCheckTest.class));
         suite.addTest(new TestSuite(RedundantModifierTest.class));
         suite.addTest(new TestSuite(RedundantThrowsCheckTest.class));
+        suite.addTest(new TestSuite(ReturnCountCheckTest.class));
         suite.addTest(new TestSuite(RightCurlyCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanExpressionCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanReturnCheckTest.class));
@@ -196,11 +202,11 @@ public class AllTests {
         suite.addTest(new TestSuite(SuperCloneCheckTest.class));
         suite.addTest(new TestSuite(SuperFinalizeCheckTest.class));
         suite.addTest(new TestSuite(TabCharacterCheckTest.class));
+        suite.addTest(new TestSuite(ThrowsCountCheckTest.class));
         suite.addTest(new TestSuite(TodoCommentCheckTest.class));
         suite.addTest(new TestSuite(TranslationCheckTest.class));
-        suite.addTest(new TestSuite(TypecastParenPadCheckTest.class));
-        suite.addTest(new TestSuite(LeftCurlyCheckTest.class));
         suite.addTest(new TestSuite(TypeNameCheckTest.class));
+        suite.addTest(new TestSuite(TypecastParenPadCheckTest.class));
         suite.addTest(new TestSuite(UncommentedMainCheckTest.class));
         suite.addTest(new TestSuite(UnusedImportsCheckTest.class));
         suite.addTest(new TestSuite(UpperEllCheckTest.class));
@@ -209,8 +215,6 @@ public class AllTests {
         suite.addTest(new TestSuite(WhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAroundTest.class));
         suite.addTest(new TestSuite(XMLLoggerTest.class));
-        suite.addTest(new TestSuite(FinalClassCheckTest.class));
-        suite.addTest(new TestSuite(MissingSwitchDefaultCheckTest.class));
         
         // j2ee tests-BEGIN
         suite.addTest(new TestSuite(EntityBeanCheckTest.class));

@@ -38,6 +38,9 @@
           <a href="#MutableException">MutableException</a>
         </li>
         <li>
+          <a href="#ThrowsCount">ThrowsCount</a>
+        </li>
+        <li>
           <a href="#VisibilityModifier">VisibilityModifier</a>
         </li>
       </ul>
@@ -336,6 +339,59 @@ public class StringUtils // not final to allow subclassing
       </p>
       <pre class="body">
 &lt;module name=&quot;MutableException&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.design
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="ThrowsCount"></a> <h2>ThrowsCount</h2> <h4>Description</h4>
+      <p class="body">
+      Restricts throws statements to a specified count (default = 1).
+      </p>
+
+      <p class="body">
+      Rationale:
+      Exceptions form part of a methods interface. Declaring
+      a method to throw too many differently rooted
+      exceptions makes exception handling onerous and leads
+      to poor programming practices such as catch
+      (Exception). This check forces developers to put
+      exceptions into a heirachy such that in the simplest
+      case, only one type of exception need be checked for by
+      a caller but allows any sub-classes to be caught
+      specifically if necessary.
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>maximum allowed number of throws statments</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td><span class="default">1</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check so that it doesn't allow more than two
+      throws per method:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ThrowsCount&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+&lt;/module&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
