@@ -7,7 +7,6 @@
   <property file="${user.home}/checkstyle.buildproperties" />
 
   <property name="ant.jar" value="${ant.home}/lib/ant.jar" />
-  <property name="crimson.jar" value="${ant.home}/lib/crimson.jar" />
   <property name="xerces.jar" value="${ant.home}/lib/xercesImpl.jar" />
   <property name="xml-apis.jar" value="${ant.home}/lib/xml-apis.jar" />
   <property name="antlr.jar" value="lib/antlr.jar" />
@@ -52,7 +51,6 @@
 
   <!-- add classes to generate Javadoc -->
   <path id="javadoc.classpath">
-    <pathelement location="${crimson.jar}" />
     <path refid="run.classpath" />
   </path>
 
