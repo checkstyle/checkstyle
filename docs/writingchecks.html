@@ -399,22 +399,17 @@
       &lt;module name=&quot;Checker&quot;&gt;
         &lt;module name=&quot;TreeWalker&quot;&gt;
 
-	  &lt;!-- your standard Checks that come with Checkstyle --&gt;
+          &lt;!-- your standard Checks that come with Checkstyle --&gt;
           &lt;module name=&quot;UpperEll&quot;/&gt;
           &lt;module name=&quot;MethodLength&quot;/&gt;
 
-	  &lt;!-- your Check goes here --&gt;
+          &lt;!-- your Check goes here --&gt;
           &lt;module name=&quot;com.mycompany.checks.MethodLimitCheck&quot;&gt;
             &lt;property name=&quot;max&quot; value=&quot;45&quot;/&gt;
           &lt;/module&gt;
         &lt;/module&gt;
       &lt;/module&gt;
       </pre>
-      </p>
-
-      <p class="body">
-      TODO: Explain how to integrate a user check into the package
-      config file.
       </p>
 
       <p class="body">
@@ -430,6 +425,13 @@
       Did you see all those errors about &quot;too many methods&quot;
       flying over your screen? Congratulations. You can now consider
       youself a Checkstyle expert. Go to your fridge. Have a beer.
+      </p>
+
+      <p class="body">
+      Please consult the <a href="config.html#packagenames">checkstyle
+      configuration manual</a> to learn how to integrate your checks
+      into the package configuration so that you can use <span
+      class="code">MethodLimit</span> instead of the full class name.
       </p>
 
       <a name="limitations"></a>
