@@ -84,9 +84,17 @@ public class AssignHandler extends BlockParentHandler
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         final DetailAST assign = getMainAst();
+        final DetailAST child = aChild.getMainAst();
+
+        if (child == assign.getFirstChild()) {
+            // left side of assignment should have the same
+            // indentation as "assignment"
+            return getLevel();
+        }
         if (startsLine(assign)) {
             return new IndentLevel(expandedTabsColumnNo(assign));
         }
+
         return super.suggestedChildLevel(aChild);
     }
 }
