@@ -31,6 +31,13 @@
         <li>Improved french message translations
         (patch 1097980 by Olivier Parent).</li>
 
+        <li>Fixed typo in SuppressionCommentFilter which caused bug 1084654</li>
+
+        <li>Fixed 1048226 (Runtime problems of Checks are logged to checkstyle
+        audit), nowcheckstyle will fail if it can not load class for exception
+        from throws clause of javadoc (modules RedundantThrows and
+        JavadocMethod)</li>
+
       </ul>
 
     </section>
