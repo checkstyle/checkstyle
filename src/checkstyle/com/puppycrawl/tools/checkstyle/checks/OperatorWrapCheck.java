@@ -1,0 +1,112 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2002  Oliver Burn
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Utils;
+
+/**
+ * Checks wrapping for operators.
+ *
+ * @author Rick Giles
+ * @version 1.0
+ */
+public class OperatorWrapCheck
+    extends AbstractOptionCheck
+{
+    /**
+     * Sets the operator wrap otion to new line.
+     */  
+    public OperatorWrapCheck()
+    {
+        super(OperatorWrapOption.NL);
+    }
+
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public int[] getDefaultTokens()
+    {
+        return new int[] {
+            TokenTypes.QUESTION,          // '?'
+            TokenTypes.COLON,             // ':' (not reported for a case)
+            TokenTypes.ASSIGN,            // '='
+            TokenTypes.EQUAL,             // "=="
+            TokenTypes.NOT_EQUAL,         // "!="
+            TokenTypes.DIV,               // '/'
+            TokenTypes.DIV_ASSIGN,        // "/="
+            TokenTypes.PLUS,              //' +' (unary plus is UNARY_PLUS)
+            TokenTypes.PLUS_ASSIGN,       // "+="
+            TokenTypes.MINUS,             // '-' (unary minus is UNARY_MINUS)
+            TokenTypes.MINUS_ASSIGN,      //"-="
+            TokenTypes.STAR,              // '*'
+            TokenTypes.STAR_ASSIGN,       // "*="
+            TokenTypes.MOD,               // '%'
+            TokenTypes.MOD_ASSIGN,        // "%="
+            TokenTypes.SR,                // ">>"
+            TokenTypes.SR_ASSIGN,         // ">>="
+            TokenTypes.BSR,               // ">>>"
+            TokenTypes.BSR_ASSIGN,        // ">>>="
+            TokenTypes.GE,                // ">="
+            TokenTypes.GT,                // ">"
+            TokenTypes.SL,                // "<<"
+            TokenTypes.SL_ASSIGN,         // "<<="
+            TokenTypes.LE,                // "<="
+            TokenTypes.LT,                // '<'
+            TokenTypes.BXOR,              // '^'
+            TokenTypes.BXOR_ASSIGN,       // "^="
+            TokenTypes.BOR,               // '|'
+            TokenTypes.BOR_ASSIGN,        // "|="
+            TokenTypes.LOR,               // "||"
+            TokenTypes.BAND,              // '&'
+            TokenTypes.BAND_ASSIGN,       // "&="
+            TokenTypes.LAND,              // "&&"
+        };
+    }
+
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public void visitToken(DetailAST aAST)
+    {
+        final AbstractOption wOp = getAbstractOption();
+
+        if (wOp != OperatorWrapOption.NL.IGNORE) {
+            final String text = aAST.getText();
+            final int colNo = aAST.getColumnNo();
+            final int lineNo = aAST.getLineNo();
+            // TODO: Handle comments before and after operator
+            // Check if rest of line is whitespace, and not just the operator
+            // by itself. This last bit is to handle the operator on a line by
+            // itself.
+            if (wOp == OperatorWrapOption.NL
+                && !text.equals(getLines()[lineNo - 1].trim())
+                && (getLines()[lineNo - 1].substring(colNo + text.length())
+                    .trim().length() == 0))
+            {
+                log(lineNo, colNo, "line.new", text);
+            }
+            else if (wOp == OperatorWrapOption.EOL
+                      && Utils.whitespaceBefore(colNo - 1,
+                                               getLines()[lineNo - 1]))
+            {
+                log(lineNo, colNo, "line.previous", text);
+            }
+        }
+
+    }
+}

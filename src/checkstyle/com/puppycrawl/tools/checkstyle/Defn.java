@@ -53,8 +53,6 @@ public interface Defn
 
     /** property name for the base directory **/
     String BASEDIR_PROP = "checkstyle.basedir";
-    /** property name for wrapping lines on operators **/
-    String WRAP_OP_PROP = "checkstyle.wrap.operator";
 
     /** property name for the locale language for reporting **/
     String LOCALE_LANGUAGE_PROP = "checkstyle.locale.language";

@@ -73,9 +73,6 @@ public class Configuration
     private transient ClassLoader mLoader =
         Thread.currentThread().getContextClassLoader();
 
-    /** how to wrap operators **/
-    private WrapOpOption mWrapOpOption = WrapOpOption.NL;
-
     /** set of boolean properties **/
     private final Set mBooleanProps = new HashSet();
 
@@ -120,10 +117,6 @@ public class Configuration
         setJavadocScope(
             Scope.getInstance(aProps.getProperty(Defn.JAVADOC_CHECKSCOPE_PROP,
                                                  Scope.PRIVATE.getName())));
-        setWrapOpOption(getWrapOpOptionProperty(aProps,
-                                                Defn.WRAP_OP_PROP,
-                                                WrapOpOption.NL,
-                                                aLog));
 
         // Initialise the general properties
         for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
@@ -223,8 +216,6 @@ public class Configuration
 
         Utils.addObjectString(retVal, Defn.JAVADOC_CHECKSCOPE_PROP,
                               mJavadocScope.getName());
-        Utils.addObjectString(retVal, Defn.WRAP_OP_PROP,
-                              mWrapOpOption.toString());
 
         for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
             final String key = Defn.ALL_BOOLEAN_PROPS[i];
@@ -377,18 +368,6 @@ public class Configuration
     private void setStringProperty(String aName, String aTo)
     {
         mStringProps.put(aName, aTo);
-    }
-
-    /** @return the wrapping on operator option **/
-    WrapOpOption getWrapOpOption()
-    {
-        return mWrapOpOption;
-    }
-
-    /** @param aTo set the wrap on operator option **/
-    private void setWrapOpOption(WrapOpOption aTo)
-    {
-        mWrapOpOption = aTo;
     }
 
     /** @return the base directory **/
