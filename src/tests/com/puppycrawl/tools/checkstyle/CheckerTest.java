@@ -374,7 +374,7 @@ public class CheckerTest
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":1: file length is 146 lines (max allowed is 20).",
+            filepath + ":1: file length is 160 lines (max allowed is 20).",
             filepath + ":3: Line does not match expected header line of '// Created: 2001'.",
             filepath + ":18: line longer than 80 characters",
             filepath + ":19:25: line contains a tab character",
@@ -402,6 +402,20 @@ public class CheckerTest
             filepath + ":132:20: variable 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":137:10: method name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":142:30: variable 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
+            filepath + ":145: line longer than 80 characters",
+            filepath + ":145:35: line contains a tab character",
+            filepath + ":146:64: line contains a tab character",
+            filepath + ":153:27: '=' is not followed by whitespace.",
+            filepath + ":154:9: line contains a tab character",
+            filepath + ":154:27: '=' is not followed by whitespace.",
+            filepath + ":155:10: line contains a tab character",
+            filepath + ":155:27: '=' is not followed by whitespace.",
+            filepath + ":156:1: line contains a tab character",
+            filepath + ":156:27: '=' is not followed by whitespace.",
+            filepath + ":157:3: line contains a tab character",
+            filepath + ":157:27: '=' is not followed by whitespace.",
+            filepath + ":158:3: line contains a tab character",
+            filepath + ":158:27: '=' is not followed by whitespace.",
         };
         verify(c, filepath, expected);
     }
