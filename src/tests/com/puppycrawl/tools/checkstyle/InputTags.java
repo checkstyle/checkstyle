@@ -90,5 +90,16 @@ class InputTags
     {
         return 0;
     }
+
+    // Test static initialiser
+    static
+    {
+        int x = 1; // should not require any javadoc
+    }
+
+    // test initialiser
+    {
+        int z = 2; // should not require any javadoc
+    }
 }
 
