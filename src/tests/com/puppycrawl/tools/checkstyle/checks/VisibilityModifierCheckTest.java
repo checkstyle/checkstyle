@@ -11,6 +11,7 @@ public class VisibilityModifierCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("publicMemberPattern", "^f[A-Z][a-zA-Z0-9]*$");
         return createChecker(checkConfig);
     }
 

@@ -34,9 +34,9 @@ import antlr.collections.AST;
  * Checks visibility of class members. Only static final members may be public,
  * other class members must be private unless allowProtected/Package is set.
  * <p>
- * Public members are not flagged if they are in the set of allowed public
- * members, (contains "serialVersionUID" by default) or if the name matches
- * the public member regular expression.
+ * Public members are not flagged if the name matches the public
+ * member regular expression (contains "^serialVersionUID$" by
+ * default).
  * </p>
  * Rationale: Enforce encapsulation.
  *
@@ -51,10 +51,14 @@ public class VisibilityModifierCheck
     /** whether package visible members are allowed */
     private boolean mPackageAllowed = false;
 
-    // TODO: we should change the default to "^$"
-    // as EJB 1.1 is becoming obsolete (is it?)
-    /** pattern for public members that should be ignored */
-    private String mPublicMemberPattern = "^f[A-Z][a-zA-Z0-9]*$";
+    /**
+     * pattern for public members that should be ignored.  Note:
+     * Earlier versions of checkstyle used ^f[A-Z][a-zA-Z0-9]*$ as the
+     * default to allow CMP for EJB 1.1 with the default settings.
+     * With EJB 2.0 it is not longer necessary to have public access
+     * for persistent fields.
+     */
+    private String mPublicMemberPattern = "^serialVersionUID$";
 
     /** regexp for public members that should be ignored */
     private RE mPublicMemberRE = null;

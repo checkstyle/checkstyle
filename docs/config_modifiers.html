@@ -38,8 +38,8 @@
       <h4>Description</h4>
 
       <p class="body">
-      Checks that the order of modifiers conforms to the suggestions in the <a href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">Java 
-      Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>. The correct order 
+      Checks that the order of modifiers conforms to the suggestions in the <a href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">Java
+      Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>. The correct order
       is:
       </p>
 
@@ -100,9 +100,9 @@
 
       <p class="body">
       Checks that method declarations in interfaces include neither the <span class="code">
-      public</span> modifier nor the <span class="code">abstract</span> modifier (see 
+      public</span> modifier nor the <span class="code">abstract</span> modifier (see
       the <a
-href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java 
+href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java
 Language specification, section 9.4</a>).
       </p>
       <h4>Example</h4>
@@ -124,14 +124,19 @@ Language specification, section 9.4</a>).
 
       <a name="VisibilityModifier"></a><h2>VisibilityModifier</h2>
       <p class="body">
-      Checks visibility of class members. Only static final members may be public; 
+      Checks visibility of class members. Only static final members may be public;
       other class members must be private unless property <span class="code">
       protectedAllowed</span> or <span class="code">packageAllowed</span> is set.
       </p>
       <p class="body">
-      Public members are not flagged if they are in the set of allowed public members 
-      (contains <span class="code">"serialVersionUID"</span> by default), or if the 
-      name matches the public member regular expression.
+      Public members are not flagged if the name matches the public
+      member regular expression (contains <span
+      class="code">"^serialVersionUID$"</span> by default).  Note:
+      Checkstyle 2 used to include <span
+      class="code">"^f[A-Z][a-zA-Z0-9]*$"</span> in the default
+      pattern to allow CMP for EJB 1.1 with the default settings.
+      With EJB 2.0 it is not longer necessary to have public access
+      for persistent fields.
       </p>
       <p class="body">
       Rationale: Enforce encapsulation.
@@ -177,7 +182,7 @@ Language specification, section 9.4</a>).
       </p>
       <pre class="body">
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
-    &lt;property name=&quot;packageAllowed&quot; value=&quot;true;&quot;/&gt;
+    &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
       </pre>
       <p class="body">
