@@ -1,16 +1,16 @@
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.Properties;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-
 import junit.framework.TestCase;
-
-import java.util.Properties;
 
 
 /**
  * @author Rick Giles
- * @version 4-Dec-2002
+ * @author lkuehne
+ * @version $Revision$
  */
 public class ConfigurationLoaderTest extends TestCase
 {
@@ -165,4 +165,75 @@ public class ConfigurationLoaderTest extends TestCase
                 aConfig.getAttribute(attNames[i]));
         }
     }
+
+    public void testReplacePropertiesNoReplace()
+        throws CheckstyleException
+    {
+        final String[] testValues = {null, "", "a", "$a", "{a",
+                                       "{a}", "a}", "$a}", "$", "a$b"};
+        final Properties props = initProperties();
+        for (int i = 0; i < testValues.length; i++) {
+            final String value = ConfigurationLoader.replaceProperties(testValues[i], props);
+            assertEquals("\"" + testValues[i] + "\"", value, testValues[i]);
+        }
+    }
+
+    public void testReplacePropertiesSyntaxError()
+    {
+        final Properties props = initProperties();
+        try {
+            final String value = ConfigurationLoader.replaceProperties("${a", props);
+            fail("expected to fail, instead got: " + value);
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Syntax error in property: ${a", ex.getMessage());
+        }
+    }
+
+    public void testReplacePropertiesMissingProperty()
+    {
+        final Properties props = initProperties();
+        try {
+            final String value = ConfigurationLoader.replaceProperties("${c}", props);
+            fail("expected to fail, instead got: " + value);
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Property ${c} has not been set", ex.getMessage());
+        }
+    }
+
+    public void testReplacePropertiesReplace()
+        throws CheckstyleException
+    {
+        final String[][] testValues = {
+            {"${a}", "A"},
+            {"x${a}", "xA"},
+            {"${a}x", "Ax"},
+            {"${a}${b}", "AB"},
+            {"x${a}${b}", "xAB"},
+            {"${a}x${b}", "AxB"},
+            {"${a}${b}x", "ABx"},
+            {"x${a}y${b}", "xAyB"},
+            {"${a}x${b}y", "AxBy"},
+            {"x${a}${b}y", "xABy"},
+            {"x${a}y${b}z", "xAyBz"},
+            {"$$", "$"},
+            };
+        final Properties props = initProperties();
+        for (int i = 0; i < testValues.length; i++) {
+            final String value =
+                ConfigurationLoader.replaceProperties(testValues[i][0], props);
+            assertEquals("\"" + testValues[i][0] + "\"",
+                testValues[i][1], value);
+        }
+    }
+
+    private Properties initProperties()
+    {
+        final Properties props = new Properties();
+        props.put("a", "A");
+        props.put("b", "B");
+        return props;
+    }
+
 }

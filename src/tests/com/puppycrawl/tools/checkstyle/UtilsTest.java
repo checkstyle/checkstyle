@@ -39,67 +39,6 @@ public class UtilsTest
         final RE r2 = Utils.getRE("a");
         assertEquals(r1, r2);
     }
-    public void testReplacePropertiesNoReplace()
-        throws CheckstyleException
-    {
-        final String[] testValues = {null, "", "a", "$a", "{a",
-                                       "{a}", "a}", "$a}", "$", "a$b"};
-        final Properties props = initProperties();
-        for (int i = 0; i < testValues.length; i++) {
-            final String value = Utils.replaceProperties(testValues[i], props);
-            assertEquals("\"" + testValues[i] + "\"", value, testValues[i]);
-        }
-    }
-    
-    public void testReplacePropertiesSyntaxError()
-    {
-        final Properties props = initProperties();
-        try {
-            final String value = Utils.replaceProperties("${a", props);
-            fail("expected to fail, instead got: " + value);
-        }
-        catch (CheckstyleException ex) {
-            assertEquals("Syntax error in property: ${a", ex.getMessage());
-        }
-    }
-    
-    public void testReplacePropertiesMissingProperty()
-    {
-        final Properties props = initProperties();
-        try {
-            final String value = Utils.replaceProperties("${c}", props);
-            fail("expected to fail, instead got: " + value);
-        }
-        catch (CheckstyleException ex) {
-            assertEquals("Property ${c} has not been set", ex.getMessage());
-        }
-    }
-
-    public void testReplacePropertiesReplace()
-        throws CheckstyleException
-    {
-        final String[][] testValues = {
-            {"${a}", "A"},
-            {"x${a}", "xA"},
-            {"${a}x", "Ax"},
-            {"${a}${b}", "AB"},
-            {"x${a}${b}", "xAB"},
-            {"${a}x${b}", "AxB"},
-            {"${a}${b}x", "ABx"},
-            {"x${a}y${b}", "xAyB"},
-            {"${a}x${b}y", "AxBy"},
-            {"x${a}${b}y", "xABy"},
-            {"x${a}y${b}z", "xAyBz"},
-            {"$$", "$"},
-            };
-        final Properties props = initProperties();
-        for (int i = 0; i < testValues.length; i++) {
-            final String value =
-                Utils.replaceProperties(testValues[i][0], props);
-            assertEquals("\"" + testValues[i][0] + "\"",
-                testValues[i][1], value);
-        }
-    }
 
     public void testBadRegex()
     {
@@ -112,11 +51,4 @@ public class UtilsTest
         }
     }
 
-    private Properties initProperties()
-    {
-        final Properties props = new Properties();
-        props.put("a", "A");
-        props.put("b", "B");
-        return props;
-    }
 }
