@@ -34,7 +34,6 @@ import antlr.collections.AST;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.usage.ASTManager;
 
 
 

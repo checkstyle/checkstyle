@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.*;
 import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.ClassManager;
 import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.Definition;
 import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.SymTabAST;
