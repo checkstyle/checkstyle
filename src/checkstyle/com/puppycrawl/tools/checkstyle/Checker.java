@@ -177,15 +177,28 @@ public class Checker
      **/
     private int process(String aFileName)
     {
+        // check if already checked and passed the file
         final File f = new File(aFileName);
         final long timestamp = f.lastModified();
         if (mCache.alreadyChecked(aFileName, timestamp)) {
             return 0;
         }
 
+        // Create a stripped down version
+        final String stripped;
+        if ((mConfig.getBasedir() == null)
+            || !aFileName.startsWith(mConfig.getBasedir()))
+        {
+            stripped = aFileName;
+        }
+        else {
+            // making the assumption that there is text after basedir
+            stripped = aFileName.substring(mConfig.getBasedir().length() + 1);
+        }
+
         LineText[] errors;
         try {
-            fireFileStarted(aFileName);
+            fireFileStarted(stripped);
             final String[] lines = getLines(aFileName);
             try {
                 // try the 1.4 grammar first, this will succeed for
@@ -244,10 +257,10 @@ public class Checker
             mCache.checkedOk(aFileName, timestamp);
         }
         else {
-            fireErrors(aFileName, errors);
+            fireErrors(stripped, errors);
         }
 
-        fireFileFinished(aFileName);
+        fireFileFinished(stripped);
         return errors.length;
     }
 
