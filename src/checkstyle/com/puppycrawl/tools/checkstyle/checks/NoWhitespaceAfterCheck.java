@@ -47,12 +47,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="NoWhitespaceAfter"/&gt;
  * </pre> 
- * <p> An example of how to configure the check to allow linebreaks after
+ * <p> An example of how to configure the check to forbid linebreaks after
  * a {@link TokenTypes#DOT DOT} token is:
  * <pre>
  * &lt;module name="NoWhitespaceAfter"&gt;
  *     &lt;property name="tokens" value="DOT"/&gt;
- *     &lt;property name="allowLineBreaks" value="true"/&gt;
+ *     &lt;property name="allowLineBreaks" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
  * @author Rick Giles
