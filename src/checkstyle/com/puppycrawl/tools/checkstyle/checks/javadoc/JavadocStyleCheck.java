@@ -153,7 +153,8 @@ public class JavadocStyleCheck
      * Checks that the first sentence ends with proper puctuation.  This method
      * uses a regular expression that checks for the presence of a period,
      * question mark, or exclaimation mark followed either by whitespace, an
-     * HTML element, or the end of string.
+     * HTML element, or the end of string. This method ignores {@inheritDoc}
+     * comments.
      *
      * @param aAST (Abstract Syntax Tree) the token to process.
      * @param aComment the source lines that make up the Javadoc comment.
@@ -163,7 +164,8 @@ public class JavadocStyleCheck
         final String commentText = getCommentText(aComment);
 
         if ((commentText.length() != 0)
-            && !getEndOfSentenceRE().match(commentText))
+            && !getEndOfSentenceRE().match(commentText)
+            && !"{@inheritDoc}".equals(commentText))
         {
             log(aAST.getLineNo() - aComment.length, "javadoc.noperiod");
         }
@@ -184,11 +186,17 @@ public class JavadocStyleCheck
             final int textStart = findTextStart(line);
 
             if (textStart != -1) {
-                // Look for Javadoc tag that's not a @link since can appear
+                // Look for Javadoc tag that's neither a @link nor a
+                // @inheritDoc since they can appear
                 // within the comment text.
                 final int ndx = line.indexOf('@');
                 if ((ndx != -1)
-                    && !line.regionMatches(ndx + 1, "link", 0, "link".length()))
+                    && !line.regionMatches(ndx + 1, "link", 0, "link".length())
+                    && !line.regionMatches(
+                        ndx + 1,
+                        "inheritDoc",
+                        0,
+                        "inheritDoc".length()))
                 {
                     foundTag = true;
                     line = line.substring(0, ndx);
