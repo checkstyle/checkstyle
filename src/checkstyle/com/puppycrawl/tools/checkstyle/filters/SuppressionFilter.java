@@ -69,7 +69,7 @@ public class SuppressionFilter
     }
 
     /** @see java.lang.Object#equals(java.lang.Object) */
-    public boolean equals (Object aObject)
+    public boolean equals(Object aObject)
     {
         if (aObject instanceof SuppressionFilter) {
             final SuppressionFilter other = (SuppressionFilter) aObject;

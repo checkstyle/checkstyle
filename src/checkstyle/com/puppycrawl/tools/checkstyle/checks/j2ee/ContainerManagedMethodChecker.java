@@ -50,7 +50,7 @@ public class ContainerManagedMethodChecker
         final String name = nameAST.getText();
 
         if (name.startsWith("ejbSelect")) {
-            checkSelectMethod (aMethodAST);
+            checkSelectMethod(aMethodAST);
         }
     }
 

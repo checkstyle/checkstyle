@@ -74,7 +74,7 @@ public class FilterSet
     }
 
     /** @see java.lang.Object#equals(java.lang.Object) */
-    public boolean equals (Object aObject)
+    public boolean equals(Object aObject)
     {
         if (aObject instanceof FilterSet) {
             final FilterSet other = (FilterSet) aObject;

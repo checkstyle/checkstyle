@@ -114,7 +114,7 @@ class CSVFilter implements IntFilter
     }
 
     /** @see java.lang.Object#equals(java.lang.Object) */
-    public boolean equals (Object aObject)
+    public boolean equals(Object aObject)
     {
         if (aObject instanceof CSVFilter) {
             final CSVFilter other = (CSVFilter) aObject;
