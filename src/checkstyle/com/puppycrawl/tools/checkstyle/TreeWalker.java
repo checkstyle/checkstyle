@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.checks.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
