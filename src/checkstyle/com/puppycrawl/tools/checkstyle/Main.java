@@ -27,7 +27,6 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Properties;
 import java.util.LinkedList;
-import java.util.StringTokenizer;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -59,7 +58,6 @@ public final class Main
             "f",
             true,
             "Sets the output format. (plain|xml). Defaults to plain");
-        OPTS.addOption("l", true, "Adds a list of listeners");
     }
 
     /**
@@ -122,42 +120,12 @@ public final class Main
         final AuditListener listener = createListener(line, out, closeOut);
         final List files = getFilesToProcess(line);
         final Checker c = createChecker(config, moduleFactory, listener);
-        addCustomListeners(c, line);
 
         final File[] processedFiles = new File[files.size()];
         files.toArray(processedFiles);
         final int numErrs = c.process(processedFiles);
         c.destroy();
         System.exit(numErrs);
-    }
-
-    /**
-     * Added the custom listeners to a checker.
-     *
-     * @param aChecker who to add the listeners to
-     * @param aLine contains the command line options for what listeners to add
-     */
-    private static void addCustomListeners(Checker aChecker, CommandLine aLine)
-    {
-        if (aLine.hasOption("l")) {
-            final String listeners = aLine.getOptionValue("l");
-            final StringTokenizer t = new StringTokenizer(listeners, ",");
-            while (t.hasMoreTokens()) {
-                final String className = t.nextToken();
-                AuditListener customListener = null;
-                try {
-                    customListener =
-                        (AuditListener) Class.forName(className).newInstance();
-                }
-                catch (Exception e) {
-                    System.out.println("Unable to create listener '"
-                        + className + "': " + e);
-                    e.printStackTrace(System.out);
-                    System.exit(1);
-                }
-                aChecker.addListener(customListener);
-            }
-        }
     }
 
     /**

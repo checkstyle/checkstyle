@@ -114,9 +114,8 @@ then you will need the following <code>taskdef</code> declaration:</p>
 <p>This task supports the nested elements
 <a href="http://ant.apache.org/manual/CoreTypes/fileset.html">&lt;fileset&gt;</a>,
 <a href="http://ant.apache.org/manual/using.html#path">&lt;classpath&gt;</a>,
-<span class="default">&lt;formatter&gt;</span>,
-<span class="default">&lt;property&gt;</span>, and
-<span class="default">&lt;listener&gt;</span>.</p>
+<span class="default">&lt;formatter&gt;</span>, and
+<span class="default">&lt;property&gt;</span>.</p>
 
 <p>The parameters for the <span class="default">&lt;formatter&gt;</span> element are:</p>
 
@@ -177,25 +176,6 @@ The parameters for the <span class="default">&lt;property&gt;</span> element are
   </tr>
 </table>
 
-<p>A <span class="default">&lt;listener&gt;</span> element specifies a <a href="writinglisteners.html">custom listener</a>
-for the Checkstyle audit. Specify multiple listeners with a <span class="default">&lt;listener&gt;</span> element
-for each.
-The parameter for the <span class="default">&lt;listener&gt;</span> element is:</p>
-
-<table border="1" cellpadding="2" cellspacing="0" summary="nested elements">
-  <tr class="header">
-    <td><b>Attribute</b></td>
-    <td><b>Description</b></td>
-    <td><b>Required</b></td>
-  </tr>
-  <tr>
-    <td>classname</td>
-    <td>Classname for the listener class.
-    The class is located from the task&#39;s classpath property.</td>
-    <td class="required">Yes</td>
-  </tr>
-</table>
-
 <h3>Examples</h3>
 <p><b>Run checkstyle with configuration file <code>docs/checkstyle_checks.xml</code> on a single file</b></p>
 <pre>
@@ -232,15 +212,6 @@ provide a package names file</b>
 </pre>
 
 <p>
-<b>Run checkstyle  with configuration file <code>docs/checkstyle_checks.xml</code> on a file and
-provide a custom listener</b>
-</p>
-<pre>
-  &lt;checkstyle config=&quot;docs/checkstyle_checks.xml&quot;
-              file=&quot;Check.java&quot;&gt;
-    &lt;listener classname=&quot;com.mycompany.listeners.VerboseListener&quot;/&gt;
-  &lt;/checkstyle&gt;
-</pre>
 
 <p><b>Run checkstyle in an automated build and send an email report if style violations are detected</b></p>
 <pre>

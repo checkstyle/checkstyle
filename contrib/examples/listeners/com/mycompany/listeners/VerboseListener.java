@@ -1,47 +1,77 @@
 package com.mycompany.listeners;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
- * An AuditListener that reports every event to standard output.
+ * An AuditListener that reports every event to an output stream.
  * @author Rick Giles
  */
 public class VerboseListener
+    extends AutomaticBean
     implements AuditListener
 {
+    /** where to write messages */
+    private PrintWriter mWriter = new PrintWriter(System.out);
+
+    /** close output stream */   
+    private boolean mCloseOut = false;
+    
     /** total number of errors and exceptions */
     private int mTotalErrors;
 
     /** number of errors and exceptions in the audit of one file */
     private int mErrors;
 
+    /**
+     * Sets the output stream to a file.
+     * @param aFileName name of the output file.
+     * @throws FileNotFoundException if an error occurs.
+     */
+    public void setFile(String aFileName)
+        throws FileNotFoundException
+    {
+        final OutputStream out = new FileOutputStream(aFileName);
+        mWriter = new PrintWriter(out);
+        mCloseOut = true;
+    }
+
     /** @see com.puppycrawl.tools.checkstyle.api.AuditListener */
     public void auditStarted(AuditEvent aEvt)
     {
         mTotalErrors = 0;
-        System.out.println("Audit started.");
+        mWriter.println("Audit started.");
     }
-
+    
     /** @see com.puppycrawl.tools.checkstyle.api.AuditListener */
     public void auditFinished(AuditEvent aEvt)
     {
-        System.out.println("Audit finished. Total errors: " + mTotalErrors);
+        mWriter.println("Audit finished. Total errors: " + mTotalErrors);
+        mWriter.flush();
+        if (mCloseOut) {
+            mWriter.close();
+        }
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.AuditListener */
     public void fileStarted(AuditEvent aEvt)
     {
         mErrors = 0;
-        System.out.println(
+        mWriter.println(
             "Started checking file '" + aEvt.getFileName() + "'.");
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.AuditListener */
     public void fileFinished(AuditEvent aEvt)
     {
-        System.out.println("Finished checking file '" + aEvt.getFileName()
+        mWriter.println("Finished checking file '" + aEvt.getFileName()
             + "'. Errors: " + mErrors);
     }
 
@@ -70,7 +100,7 @@ public class VerboseListener
      */
     private void printEvent(AuditEvent aEvt)
     {
-        System.out.println("Logging error -"
+        mWriter.println("Logging error -"
             + " file: '" + aEvt.getFileName() + "'"
             + " line: " + aEvt.getLine()
             + " column: " + aEvt.getColumn()
@@ -78,6 +108,4 @@ public class VerboseListener
             + " message: " + aEvt.getMessage()
             + " source: " + aEvt.getSourceName());
     }
-
-
 }
