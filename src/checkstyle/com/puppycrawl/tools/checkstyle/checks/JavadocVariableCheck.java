@@ -34,8 +34,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class JavadocVariableCheck
     extends Check
 {
+    /** the scope to check */
     private Scope mScope = Scope.PRIVATE;
 
+    /**
+     * Sets the scope to check.
+     * @param aFrom string to get the scope from
+     */
     public void setScope(String aFrom)
     {
         mScope = Scope.getInstance(aFrom);
@@ -57,16 +62,16 @@ public class JavadocVariableCheck
                 ScopeUtils.inInterfaceBlock(aAST)
                     ? Scope.PUBLIC
                     : declaredScope;
-                    
+
             if (variableScope.isIn(mScope)) {
                 final Scope surroundingScope =
                     ScopeUtils.getSurroundingScope(aAST);
-                    
+
                 if (surroundingScope.isIn(mScope)) {
                     final FileContents contents = getFileContents();
                     final String[] cmt =
                         contents.getJavadocBefore(aAST.getLineNo());
-                        
+
                     if (cmt == null) {
                         log(aAST.getLineNo(),
                             aAST.getColumnNo(),

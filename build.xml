@@ -214,6 +214,7 @@
           classpathref="run.classpath">
       <sysproperty key="checkstyle.allow.tabs" value="yes"/>
       <arg value="docs/checkstyle_checks.xml" />
+      <arg value="src/checkstyle/com/puppycrawl/tools/checkstyle/checks/JavadocVariableCheck.java" />
       <arg value="src/testinputs/com/puppycrawl/tools/checkstyle/InputSimple.java" />
     </java>
   </target>
@@ -274,7 +275,7 @@
                 properties="docs/checkstyle.rules">
       <fileset dir="src/checkstyle"
                includes="**/*.java"
-               excludes="**/Generated*.java,**/Java*.java,**/gui/*"/>
+               excludes="**/Generated*.java,**/Java*Recognizer.java,**/Java*Lexer.java,**/Java*TokenTypes.java,**/gui/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>

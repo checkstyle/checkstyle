@@ -45,7 +45,7 @@ import org.apache.regexp.RE;
 public class JavadocMethodCheck
     extends ImportCheck
 {
-    
+
        // {{{ Data declarations
     /** the pattern to match Javadoc tags that take an argument **/
     private static final String MATCH_JAVADOC_ARG_PAT
@@ -95,16 +95,16 @@ public class JavadocMethodCheck
 
     /** full identifier for package of the method **/
     private FullIdent mPackageFullIdent = null;
-    
+
     /** imports details **/
     private Set mImports = new HashSet();
-    
-    /** the visibility scope where Javadoc comments are checked **/ 
+
+    /** the visibility scope where Javadoc comments are checked **/
     private Scope mScope = Scope.PRIVATE;
-    
+
     /** check for unused throws **/
     private boolean mCheckUnusedThrows = false;
-    
+
     /**
      * Set the scope.
      * @param aFrom a <code>String</code> value
@@ -113,7 +113,7 @@ public class JavadocMethodCheck
     {
         mScope = Scope.getInstance(aFrom);
     }
-    
+
     /**
      * Set whether to check for unused throws.
      * @param aFlag a <code>Boolean</code> value
@@ -142,7 +142,7 @@ public class JavadocMethodCheck
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
-    {            
+    {
         if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
             if (mCheckUnusedThrows) {
                 processPackage(aAST);
@@ -154,13 +154,13 @@ public class JavadocMethodCheck
             }
         }
         else {
-            //TokenTypes.METHOD_DEF or TokenTypes.CTOR_DEF 
+            //TokenTypes.METHOD_DEF or TokenTypes.CTOR_DEF
             processMethod(aAST);
         }
     }
 
 
-    
+
     /**
      * Collects the details of a package.
      * @param aAST node containing the package details
@@ -174,7 +174,7 @@ public class JavadocMethodCheck
     /**
      * Collects the details of imports.
      * @param aAST node containing the import details
-     */    
+     */
     private void processImport(DetailAST aAST)
     {
         final FullIdent name = getImportText(aAST);
@@ -182,28 +182,29 @@ public class JavadocMethodCheck
             mImports.add(name);
         }
     }
-    
+
     /**
      * Checks Javadoc comments for a method or constructor.
      * @param aAST the tree node for the method or constructor.
      */
-    private void processMethod(DetailAST aAST) {
+    private void processMethod(DetailAST aAST)
+    {
         final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
         final Scope targetScope =
             ScopeUtils.inInterfaceBlock(aAST)
                 ? Scope.PUBLIC
                 : declaredScope;
-                
+
         if (targetScope.isIn(mScope)) {
             final Scope surroundingScope =
                 ScopeUtils.getSurroundingScope(aAST);
-                
+
             if (surroundingScope.isIn(mScope)) {
                 final FileContents contents = getFileContents();
                 final String[] cmt =
                     contents.getJavadocBefore(aAST.getLineNo());
-                
+
                 if (cmt == null) {
                     log(aAST.getLineNo(),
                         aAST.getColumnNo(),
@@ -215,7 +216,12 @@ public class JavadocMethodCheck
             }
         }
     }
-    
+
+    /**
+     * Checks the Javadoc for a method.
+     * @param aAST the token for the method
+     * @param aComment the Javadoc comment
+     */
     private void checkComment(DetailAST aAST, String[] aComment)
     {
         final List tags = getMethodTags(aComment, aAST.getLineNo() - 1);
@@ -309,7 +315,7 @@ public class JavadocMethodCheck
         }
         return retVal;
     }
-    
+
      /**
      * Computes the exception nodes for a method.
      * @param aAST the method node.
@@ -335,14 +341,14 @@ public class JavadocMethodCheck
         return retVal;
     }
 
-        
+
     /**
      * Checks a set of tags for matching parameters.
      * @param aTags the tags to check
-     * @param aAST the method to check
+     * @param aParams the list of parameters to check
      **/
     private void checkParamTags(List aTags, List aParams)
-    {        
+    {
         // Loop over the tags, checking to see they exist in the params.
         final ListIterator tagIt = aTags.listIterator();
         while (tagIt.hasNext()) {
@@ -382,7 +388,7 @@ public class JavadocMethodCheck
         }
     }
 
-    /** 
+    /**
      * Checks whether a method is a function.
      * @param aAST the method node.
      * @return whether the method is a function.
