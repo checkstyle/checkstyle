@@ -229,7 +229,7 @@
 
       <a name="examples"></a> <h2>Examples</h2>
       <p class="body">
-      This section describes two examples based on ANT listeners. The first listener, <span class="code"> 
+      This section describes two examples based on <a href="http://ant.apache.org/">ANT</a> listeners. The first listener, <span class="code"> 
       CommonsLoggingListener</span>, hands off events to the <a href="http://jakarta.apache.org/commons/logging.html">Jakarata 
       Commons Logging</a> fa&ccedil;ade and the second, <span class="code">MailLogger</span>, 
       sends a report of an audit via e-mail. The discussion of these examples and how 
@@ -299,9 +299,30 @@
 
       <a name="MailLogger"></a><h4>MailLogger</h4>
       <p class="body">
-      TODO
+      <span class="code">MailLogger</span> sends an audit report in an email message.
+      The listener uses a <span class="code">DefaultLogger</span> to prepare the text
+      of the message. The listener obtains other message
+      parameters such as <span class="default">to</span> and <span class="default">subject</span>
+      from environment properties that can be read from a properties file.
       </p>
-
+      <p class="body">
+     The source code for <span class="code">CommonsLoggingListener</span> is in 
+      distribution directory <span class="default">contrib/examples/listeners</span>.
+      This implementation uses the <a href="http://java.sun.com/products/javamail">JavaMail API</a>
+      as the mail system, and you must include appropriate jar files in the classpath.
+      </p>
+      <p class="body">
+      As an example of using <span class="code">MailLogger</span>, 
+      set system property <span class="default">-DMailLogger.properties.file=MailLogger.properties</span>,
+      so that <span class="code">MailLogger</span> reads message parameters from file
+      <span class="default">MailLogger.properties</span> of the current directory:
+      </p>
+      <pre>
+      MailLogger.from=user@example.org
+      MailLogger.failure.to=user@example.org
+      MailLogger.success.to=user@example.org
+      MailLogger.mailhost=localhost
+      </pre>
       <a name="huh"></a> <h2>Huh? I can&#39;t figure it out!</h2>
       <p class="body">
       That&#39;s probably our fault, and it means that we have to provide better 
