@@ -241,7 +241,6 @@ class Verifier
             mMessages.add(aSig.getName().getLineNo(),
                           aSig.getName().getColumnNo(),
                           "name.invalidPattern",
-                          "method",
                           aSig.getName().getText(),
                           mConfig.getMethodPat());
         }
@@ -288,7 +287,7 @@ class Verifier
         if (jd == null) {
             mMessages.add(aSig.getFirstLineNo(),
                           aSig.getFirstColNo(),
-                          "javadoc.missing", "method");
+                          "javadoc.missing");
         }
         else {
             final List tags = getMethodTags(jd, aSig.getFirstLineNo() - 1);
@@ -326,7 +325,7 @@ class Verifier
         if (!mConfig.getTypeRegexp().match(aType.getText())) {
             mMessages.add(aType.getLineNo(), aType.getColumnNo(),
                           "name.invalidPattern",
-                          "type", aType.getText(), mConfig.getTypePat());
+                          aType.getText(), mConfig.getTypePat());
         }
 
         // Always check that the order of modifiers follows the JLS suggestion
@@ -348,7 +347,7 @@ class Verifier
 
         final String[] jd = getJavadocBefore(lineNo - 1);
         if (jd == null) {
-            mMessages.add(lineNo, "javadoc.missing", "type");
+            mMessages.add(lineNo, "javadoc.missing");
         }
         else if (mInScope.size() == 0) {
             // don't check author/version for inner classes
@@ -1103,7 +1102,7 @@ class Verifier
         if (!aRegexp.match(aVar.getText())) {
             mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
                           "name.invalidPattern",
-                          "variable", aVar.getText(), aPattern);
+                          aVar.getText(), aPattern);
         }
     }
 
@@ -1117,7 +1116,7 @@ class Verifier
         if (!mConfig.getParamRegexp().match(aParam.getText())) {
             mMessages.add(aParam.getLineNo(), aParam.getColumnNo(),
                           "name.invalidPattern",
-                          "parameter", aParam.getText(), mConfig.getParamPat());
+                          aParam.getText(), mConfig.getParamPat());
         }
     }
 
