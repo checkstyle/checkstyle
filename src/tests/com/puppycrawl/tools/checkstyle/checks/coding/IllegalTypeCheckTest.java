@@ -35,4 +35,16 @@ public class IllegalTypeCheckTest extends BaseCheckTestCase {
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
     }
+
+    public void testFormat() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(IllegalTypeCheck.class);
+        checkConfig.addAttribute("format", "^$");
+
+        String[] expected = {
+            "16:13: Declaring variables, return values or parameters of type 'java.util.Hashtable' is not allowed.",
+            "17:13: Declaring variables, return values or parameters of type 'Hashtable' is not allowed.",
+        };
+
+        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
+    }
 }
