@@ -44,6 +44,7 @@ The command line usage is:
        com.puppycrawl.tools.checkstyle.Main \
        -c &lt;configurationFile&gt; [-n &lt;packageNameFile&gt;] \
        [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
+       [-l &lt;listenerClassnameList&gt;]
        [-r &lt;dir&gt;] [-e &lt;extension&gt;] file...
 </pre>
 
@@ -71,6 +72,10 @@ checks to apply. Command line options are:
   </li>
   <li>
     <span class="default">-o file</span> - specify the file to output to.
+  </li>
+  <li>
+    <span class="default">-l listenerClassnameList</span> - specify a collection of
+    <a href="writinglisteners.html">custom listeners</a> to use. The list is comma-separated.
   </li>
   <li>
     <span class="default">-r dir</span> - specify the directory to traverse for Java
@@ -143,6 +148,16 @@ provide a package names file</b>
   java com.puppycrawl.tools.checkstyle.Main -c docs/checkstyle_checks.xml \
        -n myPackageNames.xml Check.java
 </pre>
+
+<p>
+<b>Run checkstyle with configuration file <code>docs/checkstyle_checks.xml</code> 
+and listener <code>com.mycompany.listeners.VerboseListener</code> on a file</b>
+</p>
+<pre>
+  java com.puppycrawl.tools.checkstyle.Main -c docs/checkstyle_checks.xml \
+       -l com.mycompany.listeners.VerboseListener Check.java
+</pre>
+
 
 <div class="tip">
   <h4 class="tip">Tip</h4>

@@ -27,6 +27,7 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Properties;
 import java.util.LinkedList;
+import java.util.StringTokenizer;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -58,6 +59,7 @@ public final class Main
             "f",
             true,
             "Sets the output format. (plain|xml). Defaults to plain");
+        OPTS.addOption("l", true, "Adds a list of listeners");
     }
 
     /**
@@ -184,6 +186,27 @@ public final class Main
                                + e.getMessage());
             e.printStackTrace(System.out);
             System.exit(1);
+        }
+
+        // add custom listeners
+        if (line.hasOption("l")) {
+            final String listeners = line.getOptionValue("l");
+            final StringTokenizer t = new StringTokenizer(listeners, ",");
+            while (t.hasMoreTokens()) {
+                final String className = t.nextToken();
+                AuditListener customListener = null;
+                try {
+                    customListener =
+                        (AuditListener) Class.forName(className).newInstance();
+                }
+                catch (Exception e) {
+                    System.out.println("Unable to create listener '"
+                        + className + "': " + e);
+                    e.printStackTrace(System.out);
+                    System.exit(1);
+                }
+                c.addListener(customListener);
+            }
         }
 
         final File[] processedFiles = new File[files.size()];
