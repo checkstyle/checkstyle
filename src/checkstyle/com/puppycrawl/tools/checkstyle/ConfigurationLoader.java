@@ -53,7 +53,7 @@ class ConfigurationLoader
         "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd";
 
     /** overriding properties **/
-    private Properties mOverrideProps = new Properties();
+    private final Properties mOverrideProps;
     /** parser to read XML files **/
     private final XMLReader mParser;
     /** the loaded configurations **/
@@ -66,9 +66,10 @@ class ConfigurationLoader
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */
-    private ConfigurationLoader()
+    private ConfigurationLoader(Properties aOverrideProps)
         throws ParserConfigurationException, SAXException
     {
+        mOverrideProps = aOverrideProps; 
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(true);
         mParser = factory.newSAXParser().getXMLReader();
@@ -123,9 +124,6 @@ class ConfigurationLoader
         if (aQName.equals("config")) {
             //create configuration
             final String name = aAtts.getValue("name");
-            if (name == null) {
-                throw new SAXException("missing config name");
-            }
             final DefaultConfiguration conf = new DefaultConfiguration(name);
             if (mConfiguration == null) {
                 mConfiguration = conf;
@@ -133,7 +131,7 @@ class ConfigurationLoader
 
             //add configuration to it's parent
             if (!mConfigStack.isEmpty()) {
-                DefaultConfiguration top =
+                final DefaultConfiguration top =
                         (DefaultConfiguration) mConfigStack.peek();
                 top.addChild(conf);
             }
@@ -141,31 +139,21 @@ class ConfigurationLoader
             mConfigStack.push(conf);
         }
         else if (aQName.equals("property")) {
-
             //extract name and value
             final String name = aAtts.getValue("name");
-            String value = aAtts.getValue("value");
-
-            // expand properties
-            if (mOverrideProps != null) {
-                try {
-                    value = Utils.replaceProperties(value, mOverrideProps);
-                }
-                catch (CheckstyleException ex) {
-                    throw new SAXException(ex.getMessage());
-                }
+            final String value;
+            try {
+                value = Utils.replaceProperties(aAtts.getValue("value"),
+                                                mOverrideProps);
+            }
+            catch (CheckstyleException ex) {
+                throw new SAXException(ex.getMessage());
             }
 
             //add to attributes of configuration
-            if (!mConfigStack.isEmpty()) {
-                final DefaultConfiguration top =
-                        (DefaultConfiguration) mConfigStack.peek();
-                top.addAttribute(name, value);
-            }
-            else {
-                throw new SAXException(
-                            "property " + name + "has no config parent");
-            }
+            final DefaultConfiguration top =
+                (DefaultConfiguration) mConfigStack.peek();
+            top.addAttribute(name, value);
         }
     }
 
@@ -191,8 +179,8 @@ class ConfigurationLoader
         throws CheckstyleException
     {
         try {
-            final ConfigurationLoader loader = new ConfigurationLoader();
-            loader.mOverrideProps = aOverrideProps;
+            final ConfigurationLoader loader =
+                new ConfigurationLoader(aOverrideProps);
             loader.parseFile(aConfigFname);
             return loader.getConfiguration();
         }
