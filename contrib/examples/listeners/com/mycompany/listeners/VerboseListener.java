@@ -2,13 +2,16 @@ package com.mycompany.listeners;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
  * An AuditListener that reports every event to standard output.
  * @author Rick Giles
  */
-public class VerboseListener implements AuditListener
+public class VerboseListener
+    extends AutomaticBean
+    implements AuditListener
 {
     /** total number of errors and exceptions */
     private int mTotalErrors;

@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
@@ -19,7 +20,9 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * <a href="http://ant.apache.org/index.html">org.apache.tools.ant.listener.CommonsLoggingListener>org.apache.tools.ant.listener.CommonsLoggingListener</a>
  * @author Rick Giles
  */
-public class CommonsLoggingListener implements AuditListener
+public class CommonsLoggingListener
+    extends AutomaticBean
+    implements AuditListener
 {
     /** cushion for avoiding StringBuffer.expandCapacity */
     private static final int BUFFER_CUSHION = 30;
