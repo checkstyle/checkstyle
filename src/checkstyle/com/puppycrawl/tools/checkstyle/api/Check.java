@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Map;
-import java.util.Arrays;
 
 /**
  * The base class for checks.
