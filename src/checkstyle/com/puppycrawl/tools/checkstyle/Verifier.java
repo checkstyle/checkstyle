@@ -221,7 +221,7 @@ class Verifier
         }
 
         // Always verify the parameters are ok
-        for (Iterator it = aSig.getParams().iterator(); it.hasNext(); ) {
+        for (Iterator it = aSig.getParams().iterator(); it.hasNext();) {
             checkParameter((LineText) it.next());
         }
 
@@ -541,19 +541,20 @@ class Verifier
      */
     void verifyWSAfter(int aLineNo, int aColNo, MyToken aConstruct)
     {
-        if (mConfig.isIgnoreWhitespace() ||
-            ((MyToken.CAST == aConstruct) && mConfig.isIgnoreCastWhitespace()))
-        {
-            return;
-        }
+        verifyWSAfter(aLineNo, aColNo, aConstruct, "");
+    }
 
-        final String line = mLines[aLineNo - 1];
-        if ((aColNo < line.length()) &&
-            !Character.isWhitespace(line.charAt(aColNo)))
-        {
-            log(aLineNo,
-                aConstruct.getText() + " needs to be followed by whitespace.");
-        }
+    /**
+     * Verify that whitespace IS after a specified column.
+     * @param aLineNo number of line to check
+     * @param aColNo column where the cast ends
+     * @param aConstruct the construct being checked
+     * @param aAllow other character to allow apart from whitespace
+     */
+    void verifyWSAfter(int aLineNo, int aColNo,
+                       MyToken aConstruct, String aAllow)
+    {
+        checkWSAfter(aLineNo, aColNo, aConstruct, aAllow);
     }
 
 
@@ -622,6 +623,46 @@ class Verifier
                    && (aBrace.getLineNo() == aStartLine))
         {
             log(aBrace.getLineNo(), "'}' should be alone on a line.");
+        }
+    }
+
+    /**
+     * Verifies that a left paren conforms to formatting rules.
+     * @param aLineNo number of line to check
+     * @param aColNo column where the cast ends
+     */
+    void verifyLParen(int aLineNo, int aColNo)
+    {
+        if (mConfig.isIgnoreWhitespace()) {
+            return;
+        }
+
+        final String line = mLines[aLineNo - 1];
+        final int after = aColNo - 1;
+        if (after < line.length()) {
+            if (Character.isWhitespace(line.charAt(after))) {
+                log(aLineNo, "'(' is followed by whitespace.");
+            }
+        }
+    }
+
+    /**
+     * Verifies that a right paren conforms to formatting rules.
+     * @param aLineNo number of line to check
+     * @param aColNo column where the cast ends
+     */
+    void verifyRParen(int aLineNo, int aColNo)
+    {
+        if (mConfig.isIgnoreWhitespace()) {
+            return;
+        }
+
+        final String line = mLines[aLineNo - 1];
+        final int before = aColNo - 3;
+        if (before >= 0) {
+            if (Character.isWhitespace(line.charAt(before))) {
+                log(aLineNo, "')' is preceeded by whitespace.");
+            }
         }
     }
 
@@ -1267,6 +1308,32 @@ class Verifier
             else if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
                 log(aBrace.getLineNo(), "'{' should be on a new line.");
             }
+        }
+    }
+
+    /**
+     * Checks that whitespace IS after a specified column.
+     * @param aLineNo number of line to check
+     * @param aColNo column where the cast ends
+     * @param aConstruct the construct being checked
+     * @param aAllow characters to allow as well as whitespace
+     */
+    void checkWSAfter(int aLineNo, int aColNo,
+                      MyToken aConstruct, String aAllow)
+    {
+        if (mConfig.isIgnoreWhitespace() ||
+            ((MyToken.CAST == aConstruct) && mConfig.isIgnoreCastWhitespace()))
+        {
+            return;
+        }
+
+        final String line = mLines[aLineNo - 1];
+        if ((aColNo < line.length())
+            && !Character.isWhitespace(line.charAt(aColNo))
+            && (aAllow.indexOf(line.charAt(aColNo)) == -1))
+        {
+            log(aLineNo,
+                aConstruct.getText() + " needs to be followed by whitespace.");
         }
     }
 

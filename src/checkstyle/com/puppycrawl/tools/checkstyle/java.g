@@ -620,7 +620,7 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
         {
             ver.verifyWSAroundBegin(ff.getLine(), ff.getColumn(), ff.getText());
             ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);
-            ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON);
+            ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON, ")");
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(ff);
             }
@@ -1128,8 +1128,8 @@ options {
 
 // OPERATORS
 QUESTION     : '?' {ver.verifyWSAroundEnd(getLine(), getColumn(), "?");} ;
-LPAREN   : '('  ;
-RPAREN   : ')'  ;
+LPAREN   : '(' { ver.verifyLParen(getLine(), getColumn()); } ;
+RPAREN   : ')' { ver.verifyRParen(getLine(), getColumn()); } ;
 LBRACK   : '['  ;
 RBRACK   : ']'  ;
 LCURLY   : '{'  ;
