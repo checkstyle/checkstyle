@@ -1,4 +1,4 @@
-<project name="test" default="compile.checkstyle" basedir=".">
+<project name="checkstyle" default="compile.checkstyle" basedir=".">
 
   <!-- set global properties for this build -->
   <!-- Give user a chance to override without editing this file -->
