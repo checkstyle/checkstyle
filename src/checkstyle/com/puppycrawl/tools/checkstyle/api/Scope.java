@@ -92,7 +92,7 @@ public final class Scope implements Comparable, Serializable
         NAME_TO_SCOPE.put(SCOPENAME_PACKAGE, PACKAGE);
         NAME_TO_SCOPE.put(SCOPENAME_PRIVATE, PRIVATE);
         NAME_TO_SCOPE.put(SCOPENAME_ANONINNER, ANONINNER);
-    };
+    }
 
     /** the SCOPECODE_XYZ value of this scope. */
     private final int mCode;
