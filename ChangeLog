@@ -1,3 +1,16 @@
+2001-06-29  Oliver Burn  <checkstyle@puppycrawl.com>
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.tree.g: Put call
+	into reportPackageName() method.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/VerifierImpl.java:
+	Implemented logic to detect package imports from the package itself.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/Verifier.java: Added
+	reportPackageName() method.
+
+	* build.xml: Added checkstyle.import target.
+
 2001-06-29  Oliver Burn  <oliver-work@puppycrawl.com>
 
 	* src/tests/com/puppycrawl/tools/checkstyle/CheckerTest.java: 
