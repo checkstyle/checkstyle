@@ -62,16 +62,26 @@ public final class LocalizedMessage
     private final String mBundle;
 
     /** @see Object#equals */
-    public boolean equals(Object o)
+    public boolean equals(Object aObject)
     {
-        if (this == o) return true;
-        if (!(o instanceof LocalizedMessage)) return false;
+        if (this == aObject) {
+            return true;
+        }
+        if (!(aObject instanceof LocalizedMessage)) {
+            return false;
+        }
 
-        final LocalizedMessage localizedMessage = (LocalizedMessage) o;
+        final LocalizedMessage localizedMessage = (LocalizedMessage) aObject;
 
-        if (mColNo != localizedMessage.mColNo) return false;
-        if (mLineNo != localizedMessage.mLineNo) return false;
-        if (!mKey.equals(localizedMessage.mKey)) return false;
+        if (mColNo != localizedMessage.mColNo) {
+            return false;
+        }
+        if (mLineNo != localizedMessage.mLineNo) {
+            return false;
+        }
+        if (!mKey.equals(localizedMessage.mKey)) {
+            return false;
+        }
 
         // ignoring mArgs and mBundle for perf reasons.
 
