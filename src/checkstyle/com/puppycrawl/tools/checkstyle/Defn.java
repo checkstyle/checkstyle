@@ -81,4 +81,6 @@ public interface Defn
 
     /** property name for lcurly placement for methods **/
     String LCURLY_METHOD_PROP = "checkstyle.lcurly.method";
+    /** property name for lcurly placement for types **/
+    String LCURLY_TYPE_PROP = "checkstyle.lcurly.type";
 }

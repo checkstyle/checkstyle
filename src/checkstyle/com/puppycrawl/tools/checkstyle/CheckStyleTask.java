@@ -309,12 +309,13 @@ public class CheckStyleTask
     /** @param aTo the lefy curly placement option for methods **/
     public void setLCurlyMethod(String aTo)
     {
-        final LeftCurlyOption opt = LeftCurlyOption.decode(aTo);
-        if (opt == null) {
-            throw new BuildException("Unable to parse lcurlyMethod parameter,",
-                                     location);
-        }
-        mConfig.setLCurlyMethod(opt);
+        mConfig.setLCurlyMethod(extractLeftCurlyOption(aTo));
+    }
+
+    /** @param aTo the lefy curly placement option for types **/
+    public void setLCurlyType(String aTo)
+    {
+        mConfig.setLCurlyType(extractLeftCurlyOption(aTo));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -521,5 +522,21 @@ public class CheckStyleTask
             }
             return new FileOutputStream(mToFile);
         }
+    }
+
+    /**
+     * @param aFrom String to decode the option from
+     * @return the LeftCurlyOption represented by aFrom
+     * @throws BuildException if unable to decode aFrom
+     */
+    private LeftCurlyOption extractLeftCurlyOption(String aFrom)
+        throws BuildException
+    {
+        final LeftCurlyOption opt = LeftCurlyOption.decode(aFrom);
+        if (opt == null) {
+            throw new BuildException("Unable to parse '" + aFrom + "'.",
+                                     location);
+        }
+        return opt;
     }
 }
