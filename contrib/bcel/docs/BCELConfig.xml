@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.1//EN"
+    "http://www.puppycrawl.com/dtds/configuration_1_1.dtd">
+<module name="Checker">
+    <metadata name="com.atlas-sw.eclipse" value="I like Sydney"/>
+    <property name="severity" value="error"/>
+    
+    <module name="bcel.ClassFileSet">
+        <module name="bcel.checks.UnusedMethod">
+        </module> 
+        <module name="bcel.checks.UnreadPrivateField">
+        </module>
+    </module>
+</module>
