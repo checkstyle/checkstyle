@@ -1,10 +1,6 @@
 <project name="test" default="compile.checkstyle" basedir=".">
 
   <!-- set global properties for this build -->
-
-  <!-- TODO: this property should be removed as soon as possible -->
-  <property name="indent.severity" value="warning"/>
-
   <!-- Give user a chance to override without editing this file -->
   <!-- (and without typing -D each time it compiles it) -->
   <property file="checkstyle.buildproperties" />
@@ -273,6 +269,7 @@
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="docs/checkstyle_checks.xml"/>
+    <property name="translation.severity" value="error"/>
     <checkstyle failonviolation="false" config="${check.config}">
       <fileset dir="src/checkstyle"
                includes="**/*.java,**/*.properties"
@@ -297,7 +294,6 @@
            destdir="target/style/simple"
            includes="cs_errors.xml"
            style="contrib/checkstyle-simple.xsl"/>
-
   </target>
 
   <!-- Targets to verify that JUnit is in the classpath -->

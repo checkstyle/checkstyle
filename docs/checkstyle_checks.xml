@@ -110,9 +110,6 @@
         <module name="MissingSwitchDefault"/>
         <module name="MagicNumber"/>
         <module name="Indentation">
-             <!-- TODO: this property should be removed as soon as possible -->
-             <!-- from here and build.xml -->
-            <property name="severity" value="${indent.severity}"/>
             <property name="basicOffset" value="4"/>
             <property name="braceAdjustment" value="0"/>
             <property name="caseIndent" value="0"/>
@@ -127,7 +124,6 @@
         <module name="NestedIfDepth">
             <property name="max" value="3"/>
         </module>
-
         <module name="NestedTryDepth"/>
     </module>
 </module>
