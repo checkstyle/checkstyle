@@ -121,7 +121,7 @@ class VerifierImpl
     {
         checkImports();
         Collections.sort(mMessages);
-        return (LineText[]) mMessages.toArray(new LineText[] {});
+        return (LineText[]) mMessages.toArray(new LineText[0]);
     }
 
     /** @see Verifier **/
@@ -417,6 +417,21 @@ class VerifierImpl
         if ((before < 0) || Character.isWhitespace(line.charAt(before))) {
             log(aAST.getLineNo(),
                 "'" + aAST.getText() + "' is preceeded with whitespace.");
+        }
+    }
+
+    /** @see Verifier **/
+    public void verifyWSAfterCast(int aLineNo, int aColNo)
+    {
+        if (mConfig.isIgnoreWhitespace()) {
+            return;
+        }
+
+        final String line = mLines[aLineNo - 1];
+        if ((aColNo < line.length()) &&
+            !Character.isWhitespace(line.charAt(aColNo)))
+        {
+            log(aLineNo,"cast needs to be followed by whitespace.");
         }
     }
 

@@ -524,7 +524,7 @@ class Configuration
             }
             lines.add(l);
         }
-        mHeaderLines = (String[]) lines.toArray(new String[] {});
+        mHeaderLines = (String[]) lines.toArray(new String[0]);
     }
 
     /**

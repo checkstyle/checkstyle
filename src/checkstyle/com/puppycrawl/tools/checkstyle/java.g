@@ -60,6 +60,7 @@ tokens {
 }
 	
 {
+   final Verifier ver = VerifierSingleton.getInstance();
    private static String sFirstIdent = "";
 }
 
@@ -165,7 +166,7 @@ builtInType
 // A (possibly-qualified) java identifier.  We start with the first IDENT
 //   and expand its name by adding dots and following IDENTS
 identifier
-	:	i1:IDENT {VerifierSingleton.getInstance().reportReference(i1.getText());}
+	:	i1:IDENT {ver.reportReference(i1.getText());}
                 ( DOT^ IDENT )*
 	;
 
@@ -176,9 +177,9 @@ identifierStar
 		( DOT^ i3:STAR {str += ".*"; star = true;} )?
 {
  if (star) {
-  VerifierSingleton.getInstance().reportStarImport(ln, str);
+  ver.reportStarImport(ln, str);
  } else {
-  VerifierSingleton.getInstance().reportImport(ln, str);
+  ver.reportImport(ln, str);
  }
 }
 	;
@@ -760,14 +761,14 @@ unaryExpressionNotPlusMinus
 			}
 		:	// If typecast is built in type, must be numeric operand
 			// Also, no reason to backtrack if type keyword like int, float...
-			lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] RPAREN!
+			lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] rpb:RPAREN! {ver.verifyWSAfterCast(rpb.getLine(), rpb.getColumn());}
 			unaryExpression
 
 			// Have to backtrack to see if operator follows.  If no operator
 			// follows, it's a typecast.  No semantic checking needed to parse.
 			// if it _looks_ like a cast, it _is_ a cast; else it's a "(expr)"
 		|	(LPAREN classTypeSpec[true] RPAREN unaryExpressionNotPlusMinus)=>
-			lp:LPAREN^ {#lp.setType(TYPECAST);} classTypeSpec[true] RPAREN!
+			lp:LPAREN^ {#lp.setType(TYPECAST);} classTypeSpec[true] rpb2:RPAREN! {ver.verifyWSAfterCast(rpb2.getLine(), rpb2.getColumn());}
 			unaryExpressionNotPlusMinus
 
 		|	postfixExpression
@@ -779,7 +780,7 @@ postfixExpression
 	:	primaryExpression // start with a primary
 
 		(	// qualified id (id.id.id.id...) -- build the name
-			DOT^ ( IDENT {VerifierSingleton.getInstance().reportReference(sFirstIdent);}
+			DOT^ ( IDENT {ver.reportReference(sFirstIdent);}
 				| "this"
 				| "class"
 				| newExpression
@@ -948,7 +949,9 @@ options {
 	codeGenBitsetTestThreshold=20;
 }
 
-
+{
+   final Verifier ver = VerifierSingleton.getInstance();
+}
 
 // OPERATORS
 QUESTION		:	'?'		;
@@ -1016,9 +1019,6 @@ WS	:	(	' '
 
 // Single-line comments
 SL_COMMENT
-{
-   Verifier ver = VerifierSingleton.getInstance();
-}
    :  "//" { ver.reportCppComment(getLine(),getColumn() - 3); }
       (~('\n'|'\r'))* ('\n'|'\r'('\n')?)
       {
@@ -1032,7 +1032,6 @@ ML_COMMENT
 {
    int startLine;
    int startCol;
-   Verifier ver = VerifierSingleton.getInstance();
 }
    :  "/*"  { startLine = getLine(); startCol = getColumn() - 3; }
       (/* '\r' '\n' can be matched in one alternative or by matching

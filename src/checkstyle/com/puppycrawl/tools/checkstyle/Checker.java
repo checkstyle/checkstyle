@@ -193,7 +193,7 @@ class Checker
             lines.add(l);
         }
 
-        return (String[]) lines.toArray(new String[] {});
+        return (String[]) lines.toArray(new String[0]);
     }
 
     /**
