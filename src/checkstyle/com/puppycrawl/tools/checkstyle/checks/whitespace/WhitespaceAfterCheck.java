@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *     &lt;property name="tokens" value="COMMA, SEMI"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @author Rick Giles
  * @version 1.0
  */

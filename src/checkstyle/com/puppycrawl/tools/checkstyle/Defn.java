@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle;
 
 /**
  * Contains constant definitions common to the package.
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  **/
 public final class Defn
 {

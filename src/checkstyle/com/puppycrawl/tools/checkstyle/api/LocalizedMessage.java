@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
  * message.properties files. The underlying implementation uses
  * java.text.MessageFormat.
  *
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @author lkuehne
  * @version 1.0
  */

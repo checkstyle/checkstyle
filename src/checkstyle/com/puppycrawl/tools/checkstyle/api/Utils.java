@@ -33,7 +33,7 @@ import org.apache.regexp.RESyntaxException;
 /**
  * Contains utility methods.
  *
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1.0
  */
 public final class Utils

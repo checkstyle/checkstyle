@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name="illegalPkgs" value="java.io, java.sql"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @author Lars Kühne
  * @version 1.0
  */

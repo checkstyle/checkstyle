@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
  *    &lt;property name="format" value="WARNING"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1.0
  */
 public class TodoCommentCheck

@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  *     &lt;property name="option" value="alone"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @author lkuehne
  * @version 1.0
  */

@@ -75,7 +75,7 @@ import org.apache.regexp.RE;
  * &lt;/module&gt;
  * </pre>
  *
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @author Rick Giles
  * @author o_sukhodoslky
  * @version 1.1

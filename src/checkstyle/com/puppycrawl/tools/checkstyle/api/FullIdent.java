@@ -29,7 +29,7 @@ package com.puppycrawl.tools.checkstyle.api;
  * whitespace), which is often easier to work with in Checks.
  * </p>
  *
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @see TokenTypes#DOT
  * @see TokenTypes#IDENT
  **/

@@ -30,7 +30,7 @@ import org.apache.commons.beanutils.ConversionException;
  * regular expression</a>.  It provides support for setting the regular
  * expression using the property name <code>format</code>.  </p>
  *
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1.0
  */
 public abstract class AbstractFormatCheck

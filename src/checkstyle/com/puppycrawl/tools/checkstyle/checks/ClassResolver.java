@@ -26,7 +26,7 @@ import java.util.Iterator;
  * classes are not initialized.
  * <p>Limitations: this does not handle inner classes very well.</p>
  *
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1.0
  */
 public class ClassResolver

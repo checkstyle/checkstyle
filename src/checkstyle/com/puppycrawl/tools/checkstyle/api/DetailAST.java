@@ -30,7 +30,7 @@ import antlr.collections.AST;
  * href="http://www.jguru.com/jguru/faq/view.jsp?EID=62654">Java Guru
  * FAQ: How can I include line numbers in automatically generated
  * ASTs?</a>.
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @author lkuehne
  * @version 1.0
  * @see <a target="_top" href="http://www.antlr.org/">ANTLR Website</a>
