@@ -60,7 +60,7 @@ public class HeaderCheck
     public void beginTree()
     {
         if (mHeaderLines == null) {
-            log(1, "Unable to check as missing lines to check.");
+            log(1, "header.spec.missing");
             return;
         }
 

@@ -72,8 +72,7 @@ public class SimplifyBooleanExpressionCheck
             case TokenTypes.LOR:
             case TokenTypes.LAND:
                 log(parent.getLineNo(), parent.getColumnNo(),
-                        // TODO: i18n
-                        "Expression can be simplified.");
+                        "simplify.expression");
                 break;
             default:
                 break;
