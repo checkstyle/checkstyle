@@ -164,6 +164,10 @@
        that does not compile on all JDKs -->
   <target name="compile.tests" depends="compile.checkstyle"
           description="Compiles the test code">
+
+    <!-- don't instrument the tests -->
+    <property name="clover.enable" value="false"/>
+
     <mkdir dir="target/tests" />
     <depend srcdir="src/tests" destdir="target/tests" closure="yes"/>
     <javac srcdir="src/tests"
