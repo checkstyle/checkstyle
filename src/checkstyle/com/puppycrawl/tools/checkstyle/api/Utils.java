@@ -19,8 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.File;
 import java.util.ArrayList;
@@ -157,9 +158,27 @@ public final class Utils
     public static String[] getLines(String aFileName)
         throws IOException
     {
+        return getLines(
+            aFileName,
+            System.getProperty("file.encoding", "UTF-8"));
+    }
+
+    /**
+     * Loads the contents of a file in a String array using
+     * the named charset.
+     * @return the lines in the file
+     * @param aFileName the name of the file to load
+     * @param aCharsetName the name of a supported charset
+     * @throws IOException error occurred
+     **/
+    public static String[] getLines(String aFileName, String aCharsetName)
+        throws IOException
+    {
         final ArrayList lines = new ArrayList();
+        final FileInputStream fr = new FileInputStream(aFileName);
         final LineNumberReader lnr =
-            new LineNumberReader(new FileReader(aFileName));
+              new LineNumberReader(new InputStreamReader(fr, aCharsetName));
+
         try {
             while (true) {
                 final String l = lnr.readLine();

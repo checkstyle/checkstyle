@@ -40,9 +40,24 @@ public abstract class AbstractFileSetCheck
     /** collects the error messages */
     private final LocalizedMessages mMessages = new LocalizedMessages();
 
+    /** Name of a charset */
+    private String mCharset = System.getProperty("file.encoding", "UTF-8");
+
     /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
     public void destroy()
     {
+    }
+
+    /** @return the name of the charset */
+    public String getCharset()
+    {
+        return mCharset;
+    }
+
+    /** @param aCharset the name of a charset */
+    public void setCharset(String aCharset)
+    {
+        mCharset = aCharset;
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
