@@ -24,16 +24,12 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Loads a configuration from a configuration XML file.
@@ -42,22 +38,20 @@ import org.xml.sax.helpers.DefaultHandler;
  * @version 1.0
  */
 class ConfigurationLoader
-    extends DefaultHandler
+    extends AbstractLoader
 {
     /** the public ID for the configuration dtd */
-    private static final String CONFIG_DTD_PUBLIC_ID =
+    private static final String DTD_PUBLIC_ID =
         "-//Puppy Crawl//DTD Check Configuration 1.0//EN";
 
     /** the resource for the configuration dtd */
-    private static final String CONFIG_DTD_RESOURCE =
+    private static final String DTD_RESOURCE_NAME =
         "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd";
 
     /** overriding properties **/
     private final Properties mOverrideProps;
-    /** parser to read XML files **/
-    private final XMLReader mParser;
     /** the loaded configurations **/
-    private Stack mConfigStack = new Stack();
+    private final Stack mConfigStack = new Stack();
     /** the Configuration that is being built */
     private Configuration mConfiguration = null;
 
@@ -70,13 +64,8 @@ class ConfigurationLoader
     private ConfigurationLoader(Properties aOverrideProps)
         throws ParserConfigurationException, SAXException
     {
+        super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
         mOverrideProps = aOverrideProps;
-        final SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setValidating(true);
-        mParser = factory.newSAXParser().getXMLReader();
-        mParser.setContentHandler(this);
-        mParser.setEntityResolver(this);
-        mParser.setErrorHandler(HardErrorHandler.INSTANCE);
     }
 
     /**
@@ -89,30 +78,12 @@ class ConfigurationLoader
     void parseFile(String aFilename)
         throws FileNotFoundException, IOException, SAXException
     {
-        mParser.parse(new InputSource(new FileReader(aFilename)));
+        parseInputSource(new InputSource(new FileReader(aFilename)));
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // Document handler methods
     ///////////////////////////////////////////////////////////////////////////
-
-    /** @see org.xml.sax.EntityResolver */
-    public InputSource resolveEntity(String aPublicId, String aSystemId)
-        throws SAXException
-    {
-        if (CONFIG_DTD_PUBLIC_ID.equals(aPublicId)) {
-            final InputStream dtdIS = getClass().getClassLoader()
-                .getResourceAsStream(CONFIG_DTD_RESOURCE);
-            if (dtdIS == null) {
-                throw new SAXException(
-                    "Unable to load internal dtd " + CONFIG_DTD_RESOURCE);
-            }
-            return new InputSource(dtdIS);
-        }
-
-        return super.resolveEntity(aPublicId, aSystemId);
-    }
-
 
     /** @see org.xml.sax.helpers.DefaultHandler **/
     public void startElement(String aNamespaceURI,

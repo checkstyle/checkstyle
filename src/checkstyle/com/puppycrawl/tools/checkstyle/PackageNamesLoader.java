@@ -28,12 +28,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Loads a list of package names from a package name XML file.
@@ -41,14 +38,14 @@ import org.xml.sax.helpers.DefaultHandler;
  * @version 4-Dec-2002
  */
 public class PackageNamesLoader
-    extends DefaultHandler
+    extends AbstractLoader
 {
     /** the public ID for the configuration dtd */
-    private static final String PACKAGE_DTD_PUBLIC_ID =
+    private static final String DTD_PUBLIC_ID =
         "-//Puppy Crawl//DTD Package Names 1.0//EN";
 
     /** the resource for the configuration dtd */
-    private static final String PACKAGE_DTD_RESOURCE =
+    private static final String DTD_RESOURCE_NAME =
         "com/puppycrawl/tools/checkstyle/packages_1_0.dtd";
 
     /** Name of default checkstyle package names resource file.
@@ -62,9 +59,6 @@ public class PackageNamesLoader
     /** The loaded package names */   
     private Stack mPackageStack = new Stack();
     
-    /** parser to read XML files **/
-    private XMLReader mParser;
-    
     /**
      * Creates a new <code>PackageNameLoader</code> instance.
      * @throws ParserConfigurationException if an error occurs
@@ -73,12 +67,7 @@ public class PackageNamesLoader
     private PackageNamesLoader()
         throws ParserConfigurationException, SAXException
     {
-        final SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setValidating(true);
-        mParser = factory.newSAXParser().getXMLReader();
-        mParser.setContentHandler(this);
-        mParser.setEntityResolver(this);
-        mParser.setErrorHandler(HardErrorHandler.INSTANCE);
+        super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
     }
     
     /**
@@ -89,37 +78,6 @@ public class PackageNamesLoader
     {
         return (String[]) mPackageNames.toArray(
             new String[mPackageNames.size()]);
-    }
-
-    /**
-     * Parses the specified source, loading its package names.
-     * @param aInputSource the source to parse
-     * @throws FileNotFoundException if an error occurs
-     * @throws IOException if an error occurs
-     * @throws SAXException if an error occurs
-     */
-    private void parseInputSource(InputSource aInputSource)
-        throws FileNotFoundException, IOException, SAXException
-    {
-        mPackageStack.clear();
-        mParser.parse(aInputSource);
-    }
-        
-    /** @see org.xml.sax.EntityResolver */
-    public InputSource resolveEntity(String aPublicId, String aSystemId)
-        throws SAXException
-    {
-        if (PACKAGE_DTD_PUBLIC_ID.equals(aPublicId)) {
-            final InputStream dtdIS = getClass().getClassLoader()
-                .getResourceAsStream(PACKAGE_DTD_RESOURCE);
-            if (dtdIS == null) {
-                throw new SAXException(
-                    "Unable to load internal dtd " + PACKAGE_DTD_RESOURCE);
-            }
-            return new InputSource(dtdIS);
-        }
-
-        return super.resolveEntity(aPublicId, aSystemId);
     }
 
     /** @see org.xml.sax.helpers.DefaultHandler **/
@@ -217,7 +175,7 @@ public class PackageNamesLoader
      * @throws CheckstyleException if an error occurs.
      */          
     private static String[] loadPackageNames(InputSource aSource,
-            String aSourceName)
+                                             String aSourceName)
         throws CheckstyleException
     {
         try {
