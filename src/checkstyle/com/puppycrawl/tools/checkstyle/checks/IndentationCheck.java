@@ -28,10 +28,10 @@ import org.apache.commons.collections.ArrayStack;
 
 // TODO: allow preset indentation styles (IE... GNU style, Sun style, etc...)?
 
-// TODO: optionally make imports (and other?) statements required to start 
+// TODO: optionally make imports (and other?) statements required to start
 //   line? -- but maybe this should be a different check
 
-// TODO: optionally allow array children, throws clause, etc... 
+// TODO: optionally allow array children, throws clause, etc...
 //   to be of any indentation > required, for emacs-style indentation
 
 // TODO: this is not illegal, but probably should be:
@@ -69,9 +69,9 @@ import org.apache.commons.collections.ArrayStack;
  *
  * <p>
  * Implementation --
- *  Basically, this check requests visitation for all handled token 
+ *  Basically, this check requests visitation for all handled token
  *  types (those tokens registered in the HandlerFactory).  When visitToken
- *  is called, a new ExpressionHandler is created for the AST and pushed 
+ *  is called, a new ExpressionHandler is created for the AST and pushed
  *  onto the mHandlers stack.  The new handler then checks the indentation
  *  for the currently visiting AST.  When leaveToken is called, the
  *  ExpressionHandler is popped from the stack.
@@ -94,23 +94,27 @@ import org.apache.commons.collections.ArrayStack;
  * <pre>
  *   - handler class -to-> ID mapping kept in Map
  *   - parent passed in during construction
- *   - suggest child indent level 
- *   - allows for some tokens to be on same line (ie inner classes OBJBLOCK) 
+ *   - suggest child indent level
+ *   - allows for some tokens to be on same line (ie inner classes OBJBLOCK)
  *     and not increase indentation level
- *   - looked at using double dispatch for suggestedChildLevel(), but it 
+ *   - looked at using double dispatch for suggestedChildLevel(), but it
  *     doesn't seem worthwhile, at least now
- *   - both tabs and spaces are considered whitespace in front of the line... 
- *     tabs are converted to spaces 
- *   - block parents with parens -- for, while, if, etc... -- are checked that 
+ *   - both tabs and spaces are considered whitespace in front of the line...
+ *     tabs are converted to spaces
+ *   - block parents with parens -- for, while, if, etc... -- are checked that
  *     they match the level of the parent
  * </pre>
  *
  * @author jrichard
  */
-public class IndentationCheck extends Check 
+public class IndentationCheck
+    extends Check
 {
+    /** Default indentation amount - based on Sun */
+    private static final int DEFAULT_INDENTATION = 4;
+
     /** how many tabs or spaces to use */
-    private int mIndentationAmount = 4;
+    private int mIndentationAmount = DEFAULT_INDENTATION;
 
     /** how much to indent a case label */
     private int mCaseIndentationAmount = mIndentationAmount;
@@ -125,23 +129,23 @@ public class IndentationCheck extends Check
     private HandlerFactory mHandlerFactory = new HandlerFactory();
 
     /** Creates a new instance of IndentationCheck */
-    public IndentationCheck() 
+    public IndentationCheck()
     {
     }
 
     /**
      * Set the indentation amount.
-     * 
+     *
      * @param aIndentAmount   the number of tabs or spaces to indent
      */
-    public void setIndentationAmount(int aIndentAmount) 
+    public void setIndentationAmount(int aIndentAmount)
     {
         mIndentationAmount = aIndentAmount;
     }
 
     /**
      * Get the indentation amount.
-     * 
+     *
      * @return the number of tabs or spaces to indent
      */
     public int getIndentationAmount()
@@ -151,17 +155,17 @@ public class IndentationCheck extends Check
 
     /**
      * Adjusts brace indentation (positive offset).
-     * 
+     *
      * @param aAdjustmentAmount   the brace offset
      */
-    public void setBraceAdjustment(int aAdjustmentAmount) 
+    public void setBraceAdjustment(int aAdjustmentAmount)
     {
         mBraceAdjustment = aAdjustmentAmount;
     }
 
     /**
      * Get the brace adjustment amount.
-     * 
+     *
      * @return the positive offset to adjust braces
      */
     public int getBraceAdjustement()
@@ -171,7 +175,7 @@ public class IndentationCheck extends Check
 
     /**
      * Set the case indentation level.
-     * 
+     *
      * @param aAmount   the case indentation level
      */
     public void setCaseIndent(int aAmount)
@@ -181,7 +185,7 @@ public class IndentationCheck extends Check
 
     /**
      * Get the case indentation level.
-     * 
+     *
      * @return the case indentation level
      */
     public int getCaseIndent()
@@ -191,7 +195,7 @@ public class IndentationCheck extends Check
 
     /**
      * Log an error message.
-     * 
+     *
      * @param aLine   the line number where the error occured
      * @param aKey    the error message
      */
@@ -202,7 +206,7 @@ public class IndentationCheck extends Check
 
     /**
      * Get the width of a tab.
-     * 
+     *
      * @return the width of a tab
      */
     public int getIndentationTabWidth()
@@ -212,10 +216,10 @@ public class IndentationCheck extends Check
 
     /**
      * Get the tokens that this check will handle.
-     * 
+     *
      * @return the array of tokens that this check handles
      */
-    public int[] getDefaultTokens() 
+    public int[] getDefaultTokens()
     {
         return mHandlerFactory.getHandledTypes();
     }
@@ -223,7 +227,7 @@ public class IndentationCheck extends Check
     /**
      * @see com.puppycrawl.tools.checkstyle.api.Check
      */
-    public void beginTree(DetailAST aAst) 
+    public void beginTree(DetailAST aAst)
     {
         mHandlers.clear();
         mHandlers.push(new PrimordialHandler(this));
@@ -232,9 +236,9 @@ public class IndentationCheck extends Check
     /**
      * @see com.puppycrawl.tools.checkstyle.api.Check
      */
-    public void visitToken(DetailAST aAST) 
+    public void visitToken(DetailAST aAST)
     {
-        ExpressionHandler handler = mHandlerFactory.getHandler(this, aAST, 
+        ExpressionHandler handler = mHandlerFactory.getHandler(this, aAST,
             (ExpressionHandler) mHandlers.peek());
         mHandlers.push(handler);
         handler.checkIndentation();
@@ -243,14 +247,14 @@ public class IndentationCheck extends Check
     /**
      * @see com.puppycrawl.tools.checkstyle.api.Check
      */
-    public void leaveToken(DetailAST aAST) 
+    public void leaveToken(DetailAST aAST)
     {
         mHandlers.pop();
     }
 
     /**
      * Accessor for the handler factory.
-     * 
+     *
      * @return the handler factory
      */
     public HandlerFactory getHandlerFactory()

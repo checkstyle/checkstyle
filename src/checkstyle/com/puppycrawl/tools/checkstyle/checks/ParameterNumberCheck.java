@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  * <pre>
  * &lt;module name="ParameterNumber"/&gt;
- * </pre> 
+ * </pre>
  * <p>
  * An example of how to configure the check to allow 10 parameters is:
  * </p>
@@ -52,7 +52,7 @@ public class ParameterNumberCheck
 {
     /** default maximum number of allowed parameters */
     private static final int DEFAULT_MAX_PARAMETERS = 7;
-    
+
     /** the maximum number of allowed parameters */
     private int mMax = DEFAULT_MAX_PARAMETERS;
 

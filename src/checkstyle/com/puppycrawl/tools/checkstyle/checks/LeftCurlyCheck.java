@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * TokenTypes#LITERAL_TRY LITERAL_TRY},  {@link TokenTypes#LITERAL_WHILE
  * LITERAL_WHILE}.
  * </p>
- * 
+ *
  * <p>
  * The policy to verify is specified using the {@link LeftCurlyOption} class and
  * defaults to {@link LeftCurlyOption#EOL}. Policies {@link LeftCurlyOption#EOL}
@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * </p>
  * <pre>
  * &lt;module name="LeftCurly"/&gt;
- * </pre> 
+ * </pre>
  * <p>
  * An example of how to configure the check with policy
  * {@link LeftCurlyOption#NLOW} and maxLineLength 120 is:
@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  *      &lt;property name="option"
  * value="nlow"/&gt;     &lt;property name="maxLineLength" value="120"/&gt; &lt;
  * /module&gt;
- * </pre> 
+ * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author lkuehne
  * @version 1.0
@@ -67,10 +67,10 @@ public class LeftCurlyCheck
 {
     /** default maximum line length */
     private static final int DEFAULT_MAX_LINE_LENGTH = 80;
-    
+
     /** TODO: replace this ugly hack **/
     private int mMaxLineLength = DEFAULT_MAX_LINE_LENGTH;
-    
+
     /**
      * Creates a default instance and sets the policy to EOL.
      */
@@ -117,7 +117,7 @@ public class LeftCurlyCheck
     {
         final DetailAST startToken;
         final DetailAST brace;
-        
+
         switch (aAST.getType()) {
             case TokenTypes.CTOR_DEF :
             case TokenTypes.METHOD_DEF :
@@ -162,7 +162,7 @@ public class LeftCurlyCheck
                 startToken = null;
                 brace = null;
         }
-        
+
         if ((brace != null) && (startToken != null)) {
             verifyBrace(brace, startToken);
         }

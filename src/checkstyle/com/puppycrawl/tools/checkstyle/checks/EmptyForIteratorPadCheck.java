@@ -34,22 +34,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="EmptyForIteratorPad"/&gt;
- * </pre> 
+ * </pre>
  * <p>
  * @author Rick Giles
  * @version 1.0
  */
 public class EmptyForIteratorPadCheck
     extends AbstractOptionCheck
-{    
+{
     /**
      * Sets the paren pad otion to nospace.
-     */  
+     */
     public EmptyForIteratorPadCheck()
     {
         super(PadOption.NOSPACE);
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {

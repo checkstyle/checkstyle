@@ -41,12 +41,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  {@link TokenTypes#UNARY_MINUS UNARY_MINUS},
  *  {@link TokenTypes#UNARY_PLUS UNARY_PLUS}.
  * </p>
- * <p> 
+ * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>
  * &lt;module name="NoWhitespaceAfter"/&gt;
- * </pre> 
+ * </pre>
  * <p> An example of how to configure the check to forbid linebreaks after
  * a {@link TokenTypes#DOT DOT} token is:
  * <pre>
@@ -79,7 +79,7 @@ public class NoWhitespaceAfterCheck
             TokenTypes.DOT,
         };
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {

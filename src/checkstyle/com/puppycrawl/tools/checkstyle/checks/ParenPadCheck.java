@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * </p>
  * <pre>
  * &lt;module name="ParenPad"/&gt;
- * </pre> 
+ * </pre>
  * <p>
  * An example of how to configure the check to require spaces for the
  * parentheses of constructor, method, and super constructor invocations is:
@@ -66,15 +66,15 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  */
 public class ParenPadCheck
     extends AbstractOptionCheck
-{    
+{
     /**
      * Sets the paren pad otion to nospace.
-     */  
+     */
     public ParenPadCheck()
     {
         super(PadOption.NOSPACE);
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -132,7 +132,7 @@ public class ParenPadCheck
         if (before >= 0) {
             boolean followsEmptyForIterator = false;
             final DetailAST parent = aAST.getParent();
-            if ((parent != null) 
+            if ((parent != null)
                 && (parent.getType() == TokenTypes.LITERAL_FOR))
             {
                 final DetailAST forIterator =

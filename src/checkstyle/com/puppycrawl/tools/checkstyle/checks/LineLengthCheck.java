@@ -47,7 +47,7 @@ import org.apache.commons.beanutils.ConversionException;
  * <p>
  * To ignore lines in the check, set property ignorePattern to a regular
  * expression for the lines to ignore.
- * </p> 
+ * </p>
  * <p>
  * An example of how to configure the check is:
  * </p>
@@ -71,14 +71,14 @@ import org.apache.commons.beanutils.ConversionException;
  *    &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
  * &lt;/module&gt;
  * </pre>
- * 
+ *
  * @author Lars Kühne
  */
 public class LineLengthCheck extends Check
 {
     /** default maximum number of columns in a line */
     private static final int DEFAULT_MAX_COLUMNS = 80;
-    
+
     /** the maximum number of columns in a line */
     private int mMax = DEFAULT_MAX_COLUMNS;
 

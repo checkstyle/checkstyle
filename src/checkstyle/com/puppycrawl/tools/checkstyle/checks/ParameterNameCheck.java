@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="ParameterName"/&gt;
- * </pre> 
+ * </pre>
  * <p>
   * An example of how to configure the check for names that begin with
  * a lower case letter, followed by letters, digits, and underscores is:
@@ -64,7 +64,7 @@ public class ParameterNameCheck
     {
         return new int[] {TokenTypes.PARAMETER_DEF};
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.checks.AbstractNameCheck */
     protected boolean mustCheckName(DetailAST aAST)
     {

@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="PackageName"/&gt;
- * </pre> 
+ * </pre>
  * <p>
  * An example of how to configure the check for package names that begin with
  * <code>com.puppycrawl.tools.checkstyle</code> is:

@@ -31,7 +31,7 @@ import java.util.HashSet;
 
 /**
  * Checks for redundant exceptions declared in throws clause
- * such as duplicates, unchecked exceptions or subclasses of 
+ * such as duplicates, unchecked exceptions or subclasses of
  * another declared exception.
  *
  * <p>
@@ -45,16 +45,16 @@ import java.util.HashSet;
  * </pre>
  * @author o_sukhodolsky
  */
-public class RedundantThrowsCheck 
+public class RedundantThrowsCheck
     extends AbstractImportCheck
 {
-    /** 
+    /**
      * whether unchecked exceptions in throws
-     * are allowed or not 
+     * are allowed or not
      */
     private boolean mAllowUnchecked = false;
 
-    /** 
+    /**
      * whether subclass of another declared
      * exception is allowed in throws clause
      */
@@ -66,12 +66,12 @@ public class RedundantThrowsCheck
     /** imports details **/
     private Set mImports = new HashSet();
 
-    /** 
+    /**
      * Getter for allowUnchecked property
-     * @param aAllowUnchecked whether unchecked excpetions in throws 
+     * @param aAllowUnchecked whether unchecked excpetions in throws
      *                         are allowed or not
      */
-    public void setAllowUnchecked(boolean aAllowUnchecked) 
+    public void setAllowUnchecked(boolean aAllowUnchecked)
     {
         mAllowUnchecked = aAllowUnchecked;
     }
@@ -145,7 +145,7 @@ public class RedundantThrowsCheck
      * Checks exceptions declared in throws for a method or constructor.
      * @param aAST the tree node for the method or constructor.
      */
-    private void processMethod(DetailAST aAST) 
+    private void processMethod(DetailAST aAST)
     {
         final List knownExcs = new LinkedList();
         final DetailAST throwsAST =
@@ -165,12 +165,12 @@ public class RedundantThrowsCheck
     }
 
     /**
-     * Checks if an exception is already know (list of known 
-     * exceptions contains it or its superclass) and it's not 
-     * a superclass for some known exception and it's not 
+     * Checks if an exception is already know (list of known
+     * exceptions contains it or its superclass) and it's not
+     * a superclass for some known exception and it's not
      * an unchecked exception.
      * If it's unknown then it will be added to ist of known exception.
-     * All subclasses of this exception will be deleted from known 
+     * All subclasses of this exception will be deleted from known
      * and the exception  will be added instead.
      *
      * @param aExc <code>FullIdent</code> of exception to check
@@ -179,8 +179,8 @@ public class RedundantThrowsCheck
     private void checkException(FullIdent aExc, List aKnownExcs)
     {
         if (!mAllowUnchecked) {
-            if (isUnchecked(aExc)) { 
-                log(aExc.getLineNo(), aExc.getColumnNo(), 
+            if (isUnchecked(aExc)) {
+                log(aExc.getLineNo(), aExc.getColumnNo(),
                     "redundant.throws.unchecked", aExc.getText());
             }
         }
@@ -192,18 +192,18 @@ public class RedundantThrowsCheck
                 shouldAdd = false;
                 log(aExc.getLineNo(), aExc.getColumnNo(),
                     "redundant.throws.duplicate", aExc.getText());
-            } 
+            }
             else if (!mAllowSubclasses) {
                 if (isSubclass(fi, aExc)) {
                     known.remove();
                     log(fi.getLineNo(), fi.getColumnNo(),
-                        "redundant.throws.subclass", 
+                        "redundant.throws.subclass",
                         fi.getText(), aExc.getText());
-                } 
+                }
                 else if (isSubclass(aExc, fi)) {
                     shouldAdd = false;
                     log(aExc.getLineNo(), aExc.getColumnNo(),
-                        "redundant.throws.subclass", 
+                        "redundant.throws.subclass",
                         aExc.getText(), fi.getText());
                 }
             }
@@ -219,12 +219,12 @@ public class RedundantThrowsCheck
      *
      * @param aChild <code>FullIdent</code> of class
      *               which should be child
-     * @param aParent <code>FullIdent</code> of class 
+     * @param aParent <code>FullIdent</code> of class
      *                which should be parent
      * @return true  if aChild is subclass of aParent
      *         false otherwise
      */
-    private boolean isSubclass(FullIdent aChild, FullIdent aParent) 
+    private boolean isSubclass(FullIdent aChild, FullIdent aParent)
     {
         final ClassResolver cr = getClassResolver();
         try {
@@ -238,7 +238,7 @@ public class RedundantThrowsCheck
                     "redundant.throws.classInfo",
                     aParent.getText());
             }
-        } 
+        }
         catch (ClassNotFoundException e) {
             log(aChild.getLineNo(), aChild.getColumnNo(),
                 "redundant.throws.classInfo",
@@ -256,7 +256,7 @@ public class RedundantThrowsCheck
      * @return true  if exception is unchecked
      *         false if exception is checked
      */
-    private boolean isUnchecked(FullIdent aException) 
+    private boolean isUnchecked(FullIdent aException)
     {
         final ClassResolver cr = getClassResolver();
         try {
@@ -325,7 +325,7 @@ public class RedundantThrowsCheck
     }
 
     /** @return <code>ClassResolver</code> for current tree. */
-    private ClassResolver getClassResolver() 
+    private ClassResolver getClassResolver()
     {
         if (mClassResolver == null) {
             mClassResolver = new ClassResolver(

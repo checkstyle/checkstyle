@@ -33,7 +33,7 @@ import org.apache.commons.beanutils.ConversionException;
  * <p>
  * Checks that there is a newline at the end of each file.
  * </p>
- * <p> 
+ * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>
@@ -53,7 +53,7 @@ import org.apache.commons.beanutils.ConversionException;
  * Valid values for the 'lineSeparator' property are 'system' (system default),
  * 'crlf' (windows), 'cr' (mac) and 'lf' (unix).
  * </p>
- * 
+ *
  * @author Christopher Lenz
  * @author lkuehne
  * @version 1.0
@@ -70,7 +70,7 @@ public class NewlineAtEndOfFileCheck
     {
         return new int[0];
     }
-    
+
     /**
      * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck#process
      */
@@ -106,12 +106,12 @@ public class NewlineAtEndOfFileCheck
             dispatcher.fireFileFinished(path);
         }
     }
-    
+
     /**
      * Sets the line separator to one of 'crlf', 'lf' or 'cr'.
-     * 
+     *
      * @param aLineSeparator The line separator to set
-     * @throws IllegalArgumentException If the specified line separator is not 
+     * @throws IllegalArgumentException If the specified line separator is not
      *         one of 'crlf', 'lf' or 'cr'
      */
     public void setLineSeparator(String aLineSeparator)
@@ -125,7 +125,7 @@ public class NewlineAtEndOfFileCheck
 
         mLineSeparator = (LineSeparatorOption) option;
     }
-    
+
     /**
      * Checks whether the content provided by the Reader ends with the platform
      * specific line separator.
@@ -146,7 +146,7 @@ public class NewlineAtEndOfFileCheck
         aRandomAccessFile.read(lastBytes);
         return mLineSeparator.matches(lastBytes);
     }
-    
+
     /**
      * Helper method to log an IO exception.
      * @param aEx the exception that occured
@@ -168,5 +168,5 @@ public class NewlineAtEndOfFileCheck
                 this.getClass().getName());
         getMessageCollector().add(message);
     }
-    
+
 }

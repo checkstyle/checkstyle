@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
  * &lt;module name="TodoComment"&gt;
  *    &lt;property name="format" value="WARNING"/&gt;
  * &lt;/module&gt;
- * </pre> 
+ * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */

@@ -31,7 +31,7 @@ public class StaticInitHandler extends BlockParentHandler
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
@@ -44,10 +44,10 @@ public class StaticInitHandler extends BlockParentHandler
 
     /**
      * Determines if the top level token must start the line.
-     * 
+     *
      * @return false
      */
-    protected boolean toplevelMustStartLine() 
+    protected boolean toplevelMustStartLine()
     {
         return false;
     }

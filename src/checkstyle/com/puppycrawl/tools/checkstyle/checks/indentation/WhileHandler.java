@@ -32,13 +32,13 @@ public class WhileHandler extends BlockParentHandler
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public WhileHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
         super(aIndentCheck, "while", aAst, aParent);
     }
@@ -46,7 +46,7 @@ public class WhileHandler extends BlockParentHandler
     /**
      * Check the indentation of the conditional expression.
      */
-    private void checkCondExpr() 
+    private void checkCondExpr()
     {
         DetailAST condAst = getMainAst().findFirstToken(TokenTypes.EXPR);
         checkExpressionSubtree(condAst, getLevel()
@@ -56,7 +56,7 @@ public class WhileHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         checkCondExpr();
         super.checkIndentation();

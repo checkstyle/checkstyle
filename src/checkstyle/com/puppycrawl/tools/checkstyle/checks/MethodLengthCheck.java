@@ -56,7 +56,7 @@ public class MethodLengthCheck extends Check
 {
     /** default maximum number of lines */
     private static final int DEFAULT_MAX_LINES = 150;
-        
+
     /** the maximum number of lines */
     private int mMax = DEFAULT_MAX_LINES;
 

@@ -28,7 +28,7 @@ import java.util.Arrays;
  * Checks for magic numbers.
  * </p>
  * <p>
- * An example of how to configure the check to ignore 
+ * An example of how to configure the check to ignore
  * numbers 0, 1, 1.5, 2:
  * </p>
  * <pre>
@@ -42,13 +42,13 @@ public class MagicNumberCheck extends Check
 {
     /** octal radix */
     private static final int BASE_8 = 8;
-    
+
     /** decimal radix */
     private static final int BASE_10 = 10;
-    
+
     /** hex radix */
     private static final int BASE_16 = 16;
-    
+
     /** the numbers to ignore in the check, sorted */
     private float[] mIgnoreNumbers = {-1, 0, 1, 2};
 
@@ -170,7 +170,7 @@ public class MagicNumberCheck extends Check
      * Sets the numbers to ignore in the check.
      * BeanUtils converts numeric token list to float array automatically.
      * @param aList list of numbers to ignore.
-     */    
+     */
     public void setIgnoreNumbers(float[] aList)
     {
         if ((aList == null) || (aList.length == 0)) {

@@ -26,28 +26,28 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class FinallyHandler extends BlockParentHandler 
+public class FinallyHandler extends BlockParentHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public FinallyHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
         super(aIndentCheck, "finally", aAst, aParent);
     }
 
     /**
      * Determines if the top level token must start the line.
-     * 
+     *
      * @return false
      */
-    protected boolean toplevelMustStartLine() 
+    protected boolean toplevelMustStartLine()
     {
         return false;
     }

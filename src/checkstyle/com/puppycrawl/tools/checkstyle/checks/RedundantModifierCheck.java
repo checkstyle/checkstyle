@@ -52,7 +52,7 @@ public class RedundantModifierCheck
         return new int[] {TokenTypes.METHOD_DEF,
                           TokenTypes.VARIABLE_DEF};
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getRequiredTokens()
     {

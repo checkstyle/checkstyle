@@ -26,38 +26,38 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class TryHandler extends BlockParentHandler 
+public class TryHandler extends BlockParentHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public TryHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
         super(aIndentCheck, "try", aAst, aParent);
     }
 
-    /** 
+    /**
      * Indentation level suggested for a child element. Children don't have
      * to respect this, but most do.
      *
      * @param aChild  child AST (so suggestion level can differ based on child
      *                  type)
-     * 
+     *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild) 
+    public int suggestedChildLevel(ExpressionHandler aChild)
     {
-        if (aChild instanceof CatchHandler 
-            || aChild instanceof FinallyHandler) 
+        if (aChild instanceof CatchHandler
+            || aChild instanceof FinallyHandler)
         {
             return getLevel();
-        } 
+        }
         else {
             return super.suggestedChildLevel(aChild);
         }

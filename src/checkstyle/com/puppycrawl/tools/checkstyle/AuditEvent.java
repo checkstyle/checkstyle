@@ -126,7 +126,7 @@ public final class AuditEvent
     {
         return mMessage.getSourceName();
     }
-    
+
     /** @return the localized message **/
     public LocalizedMessage getLocalizedMessage()
     {

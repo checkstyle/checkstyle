@@ -35,9 +35,9 @@ public class LineSet
 
     /**
      * Get the starting column for a given line number.
-     * 
+     *
      * @param aLineNum   the specified line number
-     * 
+     *
      * @return the starting column for the given line number
      */
     public Integer getStartColumn(Integer aLineNum)
@@ -48,9 +48,9 @@ public class LineSet
 
     /**
      * Get the starting column for a given line number.
-     * 
+     *
      * @param aLineNum   the specified line number
-     * 
+     *
      * @return the starting column for the given line number
      */
     public int getStartColumn(int aLineNum)
@@ -61,7 +61,7 @@ public class LineSet
 
     /**
      * Get the starting column for the first line.
-     * 
+     *
      * @return the starting column for the first line.
      */
     public int firstLineCol()
@@ -72,7 +72,7 @@ public class LineSet
 
     /**
      * Get the line number of the first line.
-     * 
+     *
      * @return the line number of the first line
      */
     public int firstLine()
@@ -82,17 +82,17 @@ public class LineSet
 
     /**
      * Get the line number of the last line.
-     * 
+     *
      * @return the line number of the last line
      */
-    public int lastLine() 
+    public int lastLine()
     {
         return ((Integer) mLines.lastKey()).intValue();
     }
 
     /**
      * Add a line to this set of lines.
-     * 
+     *
      * @param aLineNum   the line to add
      * @param aCol       the starting column of the new line
      */
@@ -103,7 +103,7 @@ public class LineSet
 
     /**
      * Determines if this set of lines is empty.
-     * 
+     *
      * @return true if it is empty, false otherwise
      */
     public boolean isEmpty()
@@ -114,7 +114,7 @@ public class LineSet
     /**
      * @return string representation
      */
-    public String toString() 
+    public String toString()
     {
         return "LineSet[ start=" + firstLine() + ", last=" + lastLine() + "]";
     }

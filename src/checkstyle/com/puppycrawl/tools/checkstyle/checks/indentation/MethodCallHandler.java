@@ -27,30 +27,30 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class MethodCallHandler extends ExpressionHandler 
+public class MethodCallHandler extends ExpressionHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public MethodCallHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
         super(aIndentCheck,
-            aAst.getType() == TokenTypes.CTOR_CALL 
-                ? "ctor call" : "method call", 
-            aAst, 
+            aAst.getType() == TokenTypes.CTOR_CALL
+                ? "ctor call" : "method call",
+            aAst,
             aParent);
     }
 
     /**
      * Check the indentation of the left parenthesis.
      */
-    private void checkLParen() 
+    private void checkLParen()
     {
         DetailAST lparen = getMainAst();
         int columnNo = expandedTabsColumnNo(lparen);
@@ -69,9 +69,9 @@ public class MethodCallHandler extends ExpressionHandler
     /**
      * Check the indentation of the right parenthesis.
      */
-    private void checkRParen() 
+    private void checkRParen()
     {
-        // the rparen can either be at the correct indentation, or on 
+        // the rparen can either be at the correct indentation, or on
         // the same line as the lparen
         DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         int columnNo = expandedTabsColumnNo(rparen);
@@ -88,12 +88,12 @@ public class MethodCallHandler extends ExpressionHandler
 
     /**
      * Compute the indentation amount for this handler.
-     * 
+     *
      * @return the expected indentation amount
      */
     public int getLevelImpl()
     {
-        // if inside a method call's params, this could be part of 
+        // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start
 
         if (getParent() instanceof MethodCallHandler) {
@@ -102,15 +102,15 @@ public class MethodCallHandler extends ExpressionHandler
             if (container != null) {
                 if (areOnSameLine(container.getMainAst(), getMainAst())) {
                     return container.getLevel();
-                } 
+                }
                 else {
                     return container.getLevel()
                         + getIndentCheck().getIndentationAmount();
                 }
-            } 
+            }
 
             // if we get here, we are the child of the left hand side (name
-            //  side) of a method call with no "containing" call, use 
+            //  side) of a method call with no "containing" call, use
             //  the first non-method callparent
 
             ExpressionHandler p = getParent();
@@ -136,9 +136,9 @@ public class MethodCallHandler extends ExpressionHandler
 
     /**
      * Get the first AST of the specified method call.
-     * 
+     *
      * @param aAst   the method call
-     * 
+     *
      * @return the first AST of the specified method call
      */
     private DetailAST getFirstAst(DetailAST aAst)
@@ -162,16 +162,16 @@ public class MethodCallHandler extends ExpressionHandler
         return ast;
     }
 
-    /** 
+    /**
      * Indentation level suggested for a child element. Children don't have
      * to respect this, but most do.
      *
      * @param aChild  child AST (so suggestion level can differ based on child
      *                  type)
-     * 
+     *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild) 
+    public int suggestedChildLevel(ExpressionHandler aChild)
     {
         // for whatever reason a method that crosses lines, like asList
         // here:
@@ -182,8 +182,8 @@ public class MethodCallHandler extends ExpressionHandler
         DetailAST first = (DetailAST) getMainAst().getFirstChild();
         int indentLevel = getLineStart(first);
         if (aChild instanceof MethodCallHandler) {
-            if (!areOnSameLine((DetailAST) aChild.getMainAst().getFirstChild(), 
-                (DetailAST) getMainAst().getFirstChild())) 
+            if (!areOnSameLine((DetailAST) aChild.getMainAst().getFirstChild(),
+                (DetailAST) getMainAst().getFirstChild()))
             {
                 indentLevel += getIndentCheck().getIndentationAmount();
             }
@@ -193,9 +193,9 @@ public class MethodCallHandler extends ExpressionHandler
 
     /**
      * Find the handler for the method call that contains the specified child
-     * 
+     *
      * @param aChild   the child
-     * 
+     *
      * @return the handler that contains the specified child
      */
     private MethodCallHandler findContainingMethodCall(
@@ -210,13 +210,13 @@ public class MethodCallHandler extends ExpressionHandler
                 if (getParent() instanceof MethodCallHandler) {
                     return ((MethodCallHandler) getParent())
                         .findContainingMethodCall(this);
-                } 
+                }
                 else {
                     return null;
                 }
-            } 
+            }
             else if (climber == secondChild) {
-                // part of method arguments, this the method the child 
+                // part of method arguments, this the method the child
                 // is contained in
                 return this;
             }
@@ -228,7 +228,7 @@ public class MethodCallHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         DetailAST methodName = (DetailAST) getMainAst().getFirstChild();
         checkExpressionSubtree(methodName, getLevel(), false, false);
@@ -239,18 +239,18 @@ public class MethodCallHandler extends ExpressionHandler
 
         if (rparen.getLineNo() != lparen.getLineNo()) {
 
-            // if this method name is on the same line as a containing 
+            // if this method name is on the same line as a containing
             // method, don't indent, this allows expressions like:
             //    method("my str" + method2(
             //        "my str2"));
             // as well as
-            //    method("my str" + 
+            //    method("my str" +
             //        method2(
             //            "my str2"));
             //
 
             checkExpressionSubtree(
-                getMainAst().findFirstToken(TokenTypes.ELIST), 
+                getMainAst().findFirstToken(TokenTypes.ELIST),
                 getLevel() + getIndentCheck().getIndentationAmount(),
                 false, true);
 

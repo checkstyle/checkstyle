@@ -25,13 +25,11 @@ import org.apache.regexp.RE;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
- * <p>
- * Abstract class for checks that verify strings using a 
- * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
- * regular expression</a>.
- *  It provides support for setting the regular expression using
- * the property name <code>format</code>.
- * </p>
+ * <p> Abstract class for checks that verify strings using a <a
+ * href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
+ * regular expression</a>.  It provides support for setting the regular
+ * expression using the property name <code>format</code>.  </p>
+ *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */

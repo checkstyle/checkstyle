@@ -27,18 +27,18 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class ForHandler extends BlockParentHandler 
+public class ForHandler extends BlockParentHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public ForHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
         super(aIndentCheck, "for", aAst, aParent);
     }
@@ -46,42 +46,42 @@ public class ForHandler extends BlockParentHandler
     /**
      * Check the indentation of the parameters of the 'for' loop.
      */
-    private void checkForParams() 
+    private void checkForParams()
     {
         checkExpressionSubtree(
-            getMainAst().findFirstToken(TokenTypes.FOR_INIT), 
+            getMainAst().findFirstToken(TokenTypes.FOR_INIT),
             getLevel() + getIndentCheck().getIndentationAmount());
         checkExpressionSubtree(
-            getMainAst().findFirstToken(TokenTypes.FOR_CONDITION), 
+            getMainAst().findFirstToken(TokenTypes.FOR_CONDITION),
             getLevel() + getIndentCheck().getIndentationAmount());
         checkExpressionSubtree(
-            getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR), 
+            getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR),
             getLevel() + getIndentCheck().getIndentationAmount());
     }
 
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         checkForParams();
         super.checkIndentation();
     }
 
-    /** 
+    /**
      * Indentation level suggested for a child element. Children don't have
      * to respect this, but most do.
      *
      * @param aChild  child AST (so suggestion level can differ based on child
      *                  type)
-     * 
+     *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild) 
+    public int suggestedChildLevel(ExpressionHandler aChild)
     {
         if (aChild instanceof ElseHandler) {
             return getLevel();
-        } 
+        }
         else {
             return super.suggestedChildLevel(aChild);
         }

@@ -11,11 +11,16 @@
 
     <module name="PackageHtml"/>
 
-    <module name="Translation"/>
+    <!-- HACK HACK HACK - I turned this off for the moment -->
+    <!-- module name="Translation"/ -->
 
     <module name="TreeWalker">
 
         <property name="tabWidth" value="4" />
+
+        <module name="GenericIllegalRegexp">
+            <property name="format" value="\s$"/>
+        </module>
 
         <module name="AvoidStarImport"/>
         <module name="ConstantName"/>
@@ -101,5 +106,6 @@
         <module name="WhitespaceAround"/>
         <module name="FinalClass"/>
         <module name="MissingSwitchDefault"/>
+        <module name="MagicNumber"/>
     </module>
 </module>

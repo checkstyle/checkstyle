@@ -27,28 +27,28 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class CatchHandler extends BlockParentHandler 
+public class CatchHandler extends BlockParentHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public CatchHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
         super(aIndentCheck, "catch", aAst, aParent);
     }
 
     /**
      * Determines if the top level token must start the line.
-     * 
+     *
      * @return false
      */
-    protected boolean toplevelMustStartLine() 
+    protected boolean toplevelMustStartLine()
     {
         return false;
     }
@@ -56,7 +56,7 @@ public class CatchHandler extends BlockParentHandler
     /**
      * Check the indentation level of the conditional expression.
      */
-    private void checkCondExpr() 
+    private void checkCondExpr()
     {
         DetailAST condAst = (DetailAST)
             getMainAst().findFirstToken(TokenTypes.LPAREN).getNextSibling();
@@ -66,7 +66,7 @@ public class CatchHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         super.checkIndentation();
         checkCondExpr();

@@ -32,13 +32,13 @@ public class ImportHandler extends ExpressionHandler
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public ImportHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
         super(aIndentCheck, "import", aAst, aParent);
     }
@@ -46,7 +46,7 @@ public class ImportHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         int lineStart = getMainAst().getLineNo();
         DetailAST semi = getMainAst().findFirstToken(TokenTypes.SEMI);
