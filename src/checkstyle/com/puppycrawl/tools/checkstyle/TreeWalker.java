@@ -119,7 +119,11 @@ public final class TreeWalker
     /** context of child components */
     private Context mChildContext;
     
-    private Map mContext = new HashMap();
+    /** context of visited node */
+    private final Map mTokenContext = new HashMap();
+
+    /** context of tree */
+    private final Map mTreeContext = new HashMap();
 
     /**
      * HACK - a reference to a private "mParent" field in DetailAST.
@@ -384,8 +388,8 @@ public final class TreeWalker
         final Iterator it = mAllChecks.iterator();
         while (it.hasNext()) {
             final Check check = (Check) it.next();
-            final HashMap treeContext = new HashMap();
-            check.setTreeContext(treeContext);
+            mTreeContext.clear();
+            check.setTreeContext(mTreeContext);
             check.setFileContents(aContents);
             check.beginTree();
         }
@@ -441,10 +445,10 @@ public final class TreeWalker
             (ArrayList) mTokenToChecks.get(
                 TokenTypes.getTokenName(aAST.getType()));
         if (visitors != null) {
-            mContext.clear();
+            mTokenContext.clear();
             for (int i = 0; i < visitors.size(); i++) {
                 final Check check = (Check) visitors.get(i);
-                check.setTokenContext(mContext);
+                check.setTokenContext(mTokenContext);
                 check.visitToken(aAST);
             }
         }
