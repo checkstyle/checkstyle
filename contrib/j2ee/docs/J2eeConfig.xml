@@ -10,22 +10,18 @@
     	 <module name="coding.IllegalToken">
     	     <property name="tokens" value="LITERAL_NATIVE"/>
     	 </module>
-         <module name="j2ee.EntityBean"/>
-         <module name="j2ee.EntityBeanEjbCreate"/>
-         <module name="j2ee.EntityBeanEjbHome"/>
-         <module name="j2ee.EntityBeanEjbPostCreate"/>
-         <module name="j2ee.EntityBeanEjbSelect"/>
-         <module name="j2ee.EntityBeanFindByPrimaryKey"/>
-         <module name="j2ee.EntityBeanFinder"/>
-         <module name="j2ee.EntityBeanMatchEjbCreate"/>
+         <module name="j2ee.EntityBean">
+              <property name="persistence" value="bean"/>
+         </module>
          <module name="j2ee.FinalStatic"/>
-         <module name="j2ee.HomeInterface"/>
          <module name="j2ee.LocalHomeInterface"/>
+         <module name="j2ee.LocalInterface"/>
          <module name="j2ee.MessageBean"/>
+         <module name="j2ee.RemoteHomeInterface"/>
          <module name="j2ee.RemoteInterface"/>
          <module name="j2ee.SessionBean"/>
-         <module name="j2ee.SessionBeanEjbCreate"/>
          <module name="j2ee.ThisParameter"/>
          <module name="j2ee.ThisReturn"/>
+         -->
     </module>
 </module>
