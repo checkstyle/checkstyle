@@ -193,11 +193,24 @@ class Verifier
                       MyCommonAST aReturnType,
                       MethodSignature aSig)
     {
+        // Calculate line number. Unfortunately aReturnType does not contain a
+        // valid line number
+        final int lineNo = (aMods.size() > 0)
+            ? aMods.getFirstLineNo()
+            : aSig.getLineNo();
+
+        // no need to check constructor names
+        if (aReturnType != null &&
+            !mConfig.getMethodRegexp().match(aSig.getName())) {
+            log(lineNo,
+                "method name '" + aSig.getName() +
+                "' must match pattern '" + mConfig.getMethodPat() + "'.");
+        }
+
         // Always verify the parameters are ok
         for (Iterator it = aSig.getParams().iterator(); it.hasNext(); ) {
             verifyParameter((LineText) it.next());
         }
-
 
         // now check the javadoc
         final Scope methodScope =
@@ -206,12 +219,6 @@ class Verifier
         if (!inCheckScope(methodScope)) {
             return; // no need to really check anything
         }
-
-        // Calculate line number. Unfortunately aReturnType does not contain a
-        // valid line number
-        final int lineNo = (aMods.size() > 0)
-            ? aMods.getFirstLineNo()
-            : aSig.getLineNo();
 
         final boolean isFunction = (aReturnType == null)
             ? false
@@ -292,12 +299,16 @@ class Verifier
      **/
     void verifyVariable(MyVariable aVar)
     {
-        if (inMethodBlock()) {
+        if (inMethodBlock())
+        {
+            checkVariable(aVar,
+                          mConfig.getLocalVarRegexp(),
+                          mConfig.getLocalVarPat());
             return;
         }
 
-        final Scope declaredScope =
-            aVar.getModifierSet().getVisibilityScope();
+        final MyModifierSet mods = aVar.getModifierSet();
+        final Scope declaredScope = mods.getVisibilityScope();
         final Scope variableScope =
             inInterfaceBlock() ? Scope.PUBLIC : declaredScope;
 
@@ -317,7 +328,6 @@ class Verifier
                           mConfig.getStaticFinalPat());
         }
         else {
-            final MyModifierSet mods = aVar.getModifierSet();
 
             if (mods.containsStatic()) {
                 if (mods.containsFinal()) {
@@ -330,7 +340,7 @@ class Verifier
                     }
                 }
                 else {
-                    if (mods.containsPrivate()) {
+                    if (Scope.PRIVATE.equals(variableScope)) {
                         checkVariable(aVar,
                                       mConfig.getStaticRegexp(),
                                       mConfig.getStaticPat());
@@ -344,8 +354,11 @@ class Verifier
             }
             else {
                 // These are the non-static variables
-                if (mods.containsPrivate() ||
-                    (mConfig.isAllowProtected() && mods.containsProtected()))
+                final boolean isPckg = Scope.PACKAGE.equals(variableScope);
+                final boolean isProt = Scope.PROTECTED.equals(variableScope);
+                if (Scope.PRIVATE.equals(variableScope) ||
+                    (mConfig.isAllowPackage() && isPckg) ||
+                    (mConfig.isAllowProtected() && isProt))
                 {
                     checkVariable(aVar,
                                   mConfig.getMemberRegexp(),

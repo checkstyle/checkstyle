@@ -29,16 +29,20 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.HashSet;
 import org.apache.regexp.RESyntaxException;
 
 /**
- * This class provides the functionality to check a file.
+ * This class provides the functionality to check a set of files.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  */
 public class Checker
     implements Defn
 {
+    /** configuration */
+    private final Configuration mConfig;
+
     /** cache file **/
     private final PropertyCacheFile mCache;
 
@@ -53,6 +57,7 @@ public class Checker
     public Checker(Configuration aConfig)
         throws RESyntaxException
     {
+        mConfig = aConfig;
         mCache = new PropertyCacheFile(aConfig.getCacheFile());
         final Verifier v = new Verifier(aConfig);
         VerifierSingleton.setInstance(v);
@@ -105,7 +110,22 @@ public class Checker
     {
         int total = 0;
         fireAuditStarted();
-        for (int i = 0; i < aFiles.length; i++) {
+
+        /*
+
+          If you move checkPackageHtml() around beware of the caching
+          functionality of checkstyle. Make sure that package.html
+          checks are not skipped because of caching. Otherwise you
+          might e.g. have a package.html file, check all java files
+          without errors, delete package.html and then recheck without
+          errors because the html file is not covered by the cache.
+
+        */
+
+        total += checkPackageHtml(aFiles);
+        
+        for (int i = 0; i < aFiles.length; i++)
+        {
             total += process(aFiles[i]);
         }
         fireAuditFinished();
@@ -168,6 +188,44 @@ public class Checker
         fireFileFinished(aFileName);
         return errors.length;
     }
+
+    /**
+     * Checks for a package.html file for all java files in parameter list.
+     * @param aFiles the filenames of the java files to check
+     * @return the number of errors found
+     */
+    private int checkPackageHtml(String[] aFiles)
+    {
+        int packageHtmlErrors = 0;
+        
+        if (aFiles != null && mConfig.isRequirePackageHtml())
+        {
+            final HashSet checkedPackages = new HashSet();
+            for (int i = 0; i < aFiles.length; i++)
+            {
+                final File file = new File(aFiles[i]);
+                final File packageDir = file.getParentFile();
+                if (!checkedPackages.contains(packageDir))
+                {
+                    final File packageDoc =
+                        new File(packageDir, "package.html");
+                    final String docFile = packageDoc.toString();
+                    fireFileStarted(docFile);
+                    if (!packageDoc.exists())
+                    {
+                        final LineText error = new LineText(0,
+                            "missing package documentation file.");
+                        fireErrors(docFile, new LineText[]{error} );
+                        packageHtmlErrors++;
+                    }
+                    fireFileFinished(docFile);
+                    checkedPackages.add(packageDir);
+                }
+            }
+        }
+        return packageHtmlErrors;
+    }
+
 
     /**
      * Loads the contents of a file in a String array.

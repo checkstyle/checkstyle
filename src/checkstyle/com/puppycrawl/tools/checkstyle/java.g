@@ -340,6 +340,7 @@ field!
 				(tc:throwsClause[exs])?
 
                 {
+                    msig.setName(#IDENT.getText());
                     msig.setThrows(exs);
                     msig.setLineNo(#t.getLineNo());
                     ver.verifyMethod(modSet, #t, msig);
@@ -1307,4 +1308,3 @@ protected
 FLOAT_SUFFIX
 	:	'f'|'F'|'d'|'D'
 	;
-

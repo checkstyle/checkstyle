@@ -102,6 +102,12 @@ public class CheckStyleTask
         mConfig.setAllowProtected(aAllowed);
     }
 
+    /** @param aAllowed whether package visible data is allowed **/
+    public void setAllowPackage(boolean aAllowed)
+    {
+        mConfig.setAllowPackage(aAllowed);
+    }
+
     /** @param aAllowed whether allow having no author **/
     public void setAllowNoAuthor(boolean aAllowed)
     {
@@ -207,6 +213,28 @@ public class CheckStyleTask
         }
     }
 
+    /** @param aPat pattern for local variables **/
+    public void setLocalVarPattern(String aPat)
+    {
+        try {
+            mConfig.setLocalVarPat(aPat);
+        }
+        catch (RESyntaxException ex) {
+            throw new BuildException("Unable to parse localVarPattern - ", ex);
+        }
+    }
+
+    /** @param aPat pattern for method names **/
+    public void setMethodPattern(String aPat)
+    {
+        try {
+            mConfig.setMethodPat(aPat);
+        }
+        catch (RESyntaxException ex) {
+            throw new BuildException("Unable to parse methodPattern - ", ex);
+        }
+    }
+
     /** @param aName header file name **/
     public void setHeaderFile(File aName)
     {
@@ -234,6 +262,12 @@ public class CheckStyleTask
     public void setJavadocScope(String aJavadocScope)
     {
         mConfig.setJavadocScope(Scope.getInstance(aJavadocScope));
+    }
+
+    /** @param aRequirePackageHtml whether package.html is required **/
+    public void setRequirePackageHtml(boolean aRequirePackageHtml)
+    {
+        mConfig.setRequirePackageHtml(aRequirePackageHtml);
     }
 
     /** @param aIgnore whether to ignore import statements **/
