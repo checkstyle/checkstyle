@@ -268,8 +268,7 @@
 
     <property name="todo.pattern" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="docs/checkstyle_checks.xml"/>
-    <checkstyle config="${check.config}"
-                properties="docs/checkstyle.rules">
+    <checkstyle config="${check.config}">
       <fileset dir="src/checkstyle"
                includes="**/*.java"
                excludes="**/Generated*.java,**/gui/*"/>
