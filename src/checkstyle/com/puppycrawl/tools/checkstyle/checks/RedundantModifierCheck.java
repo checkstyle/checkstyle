@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
   * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="RedundantModifierCheck"/&gt;
+ * &lt;module name="RedundantModifier"/&gt;
  * </pre>
  * @author lkuehne
  */

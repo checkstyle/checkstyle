@@ -35,15 +35,15 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="WhitespaceAfterCheck"/&gt;
+ * &lt;module name="WhitespaceAfter"/&gt;
  * </pre> 
  * <p> An example of how to configure the check for whitespace only after
  * {@link TokenTypes#COMMA COMMA} and {@link TokenTypes#SEMI SEMI} tokens is:
  * </p>
  * <pre>
- * &lt;config name="WhitespaceAfterCheck"&gt;
+ * &lt;module name="WhitespaceAfter"&gt;
  *     &lt;property name="tokens" value="COMMA, SEMI"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author Rick Giles

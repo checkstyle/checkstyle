@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="SimplifyBooleanExpressionCheck"/&gt;
+ * &lt;module name="SimplifyBooleanExpression"/&gt;
  * </pre> 
  * @author lkuehne
  */

@@ -63,10 +63,10 @@ import org.apache.commons.beanutils.ConversionException;
  * &quot;java.header&quot; and ignore lines 2, 3, and 4 is:
  * </p>
  * <pre>
- * &lt;config name="HeaderCheck"&gt;
+ * &lt;module name="Header"&gt;
  *    &lt;property name="headerFile" value="java.header"/&gt;
  *    &lt;property name="ignoreLines" value="2, 3, 4"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author Lars Kühne
  */

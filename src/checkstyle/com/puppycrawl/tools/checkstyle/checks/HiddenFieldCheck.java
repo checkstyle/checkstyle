@@ -36,16 +36,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="HiddenFieldCheck"/&gt;
+ * &lt;module name="HiddenField"/&gt;
  * </pre>
  * <p>
  * An example of how to configure the check so that it doesn't check parameters
  * is:
  * </p>
  * <pre>
- * &lt;config name="HiddenFieldCheck"&gt;
+ * &lt;module name="HiddenField"&gt;
  *    &lt;property name="checkParameters" value="false"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author Rick Giles
  * @version 1.0

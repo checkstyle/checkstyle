@@ -39,17 +39,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p> An example of how to configure the check is:
  * <pre>
  * &lt;check
- *    classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck"/&gt;
+ *    classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlock"/&gt;
  * </pre>
  *
  * <p> An example of how to configure the check for the {@link
  * BlockOption#TEXT} policy and only catch blocks is:
  *
  * <pre>
- * &lt;config name="EmptyBlockCheck"&gt;
+ * &lt;module name="EmptyBlock"&gt;
  *    &lt;property name="tokens" value="LITERAL_CATCH"/&gt;
  *    &lt;property name="option" value="text"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  *
  * @author Lars Kühne

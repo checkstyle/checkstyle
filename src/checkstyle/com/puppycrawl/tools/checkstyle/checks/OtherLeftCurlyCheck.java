@@ -49,17 +49,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="OtherLeftCurlyCheck"/&gt;
+ * &lt;module name="OtherLeftCurly"/&gt;
  * </pre> 
  * <p>
  * An example of how to configure the check with policy
  * {@link LeftCurlyOption#NLOW} and maxLineLength 120 is:
  * </p>
  * <pre>
- * &lt;config name="OtherLeftCurlyCheck"&gt;
+ * &lt;module name="OtherLeftCurly"&gt;
  *     &lt;property name="option" value="nlow"/&gt;
  *     &lt;property name="maxLineLength" value="120"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * <p>
  * An example of how to configure the check with policy
@@ -67,10 +67,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *  is:
  * </p>
  * <pre>
- * &lt;config name="OtherLeftCurlyCheck"&gt;
+ * &lt;module name="OtherLeftCurly"&gt;
  *     &lt;property name="option" value="nl"/&gt;
  *     &lt;property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre> 
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>

@@ -43,17 +43,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="PackageNameCheck"/&gt;
+ * &lt;module name="PackageName"/&gt;
  * </pre> 
  * <p>
  * An example of how to configure the check for package names that begin with
  * <code>com.puppycrawl.tools.checkstyle</code> is:
  * </p>
  * <pre>
- * &lt;config name="PackageNameCheck"&gt;
+ * &lt;module name="PackageName"&gt;
  *    &lt;property name="format"
  *              value="^com\.puppycrawl\.tools\.checkstyle(\\.[a-zA-Z_][a-zA-Z_0-9]*)*$"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>

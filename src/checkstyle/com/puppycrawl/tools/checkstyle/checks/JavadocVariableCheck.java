@@ -33,15 +33,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="JavadocVariableCheck"/&gt;
+ * &lt;module name="JavadocVariable"/&gt;
  * </pre>
  * <p> An example of how to configure the check for the 
  * {@link Scope#PUBLIC} scope is:
  *</p>
  * <pre>
- * &lt;config name="JavadocVariableCheck"&gt;
+ * &lt;module name="JavadocVariable"&gt;
  *    &lt;property name="scope" value="public"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0

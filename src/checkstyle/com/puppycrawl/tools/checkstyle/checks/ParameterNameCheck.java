@@ -34,16 +34,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="ParameterNameCheck"/&gt;
+ * &lt;module name="ParameterName"/&gt;
  * </pre> 
  * <p>
   * An example of how to configure the check for names that begin with
  * a lower case letter, followed by letters, digits, and underscores is:
  * </p>
  * <pre>
- * &lt;config name="ParameterNameCheck"&gt;
+ * &lt;module name="ParameterName"&gt;
  *    &lt;property name="format" value="^^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
 
  *
  * @author Oliver Burn

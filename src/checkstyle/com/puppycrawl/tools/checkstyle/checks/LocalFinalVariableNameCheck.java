@@ -34,16 +34,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="LocalFinalVariableNameCheck"/&gt;
+ * &lt;module name="LocalFinalVariableName"/&gt;
  * </pre> 
  * <p>
  * An example of how to configure the check for names that are only upper case
  * letters and digits is:
  * </p>
  * <pre>
- * &lt;config name="LocalFinalVariableNameCheck"&gt;
+ * &lt;module name="LocalFinalVariableName"&gt;
  *    &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  *
  * @author Rick Giles

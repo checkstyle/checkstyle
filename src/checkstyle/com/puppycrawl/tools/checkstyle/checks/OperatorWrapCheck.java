@@ -70,17 +70,17 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="OperatorWrapCheck"/&gt;
+ * &lt;module name="OperatorWrap"/&gt;
  * </pre> 
  * <p> An example of how to configure the check for assignment operators at the
  * end of a line is:
  * </p>
  * <pre>
- * &lt;config name="OperatorWrapCheck"&gt;
+ * &lt;module name="OperatorWrap"&gt;
  *     &lt;property name="tokens"
  *               value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,MOD_ASSIGN,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
  *     &lt;property name="option" value="eol"/&gt;
-  * &lt;/config&gt;
+  * &lt;/module&gt;
  * </pre>
  *
  * @author Rick Giles

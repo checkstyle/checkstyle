@@ -38,16 +38,16 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="FileLengthCheck"/&gt;
+ * &lt;module name="FileLength"/&gt;
  * </pre>
  * <p>
  * An example of how to configure the check so that it accepts files with at
  * most 1500 lines is:
  * </p>
  * <pre>
- * &lt;config name="FileLengthCheck"&gt;
+ * &lt;module name="FileLength"&gt;
  *    &lt;property name="max" value="1500"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author Lars Kühne
  */

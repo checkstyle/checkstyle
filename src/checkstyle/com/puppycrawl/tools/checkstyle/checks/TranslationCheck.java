@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.Defn;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="TranslationCheck"/&gt;
+ * &lt;module name="Translation"/&gt;
  * </pre>  
  * @author Alexandra Bunge
  * @author lkuehne

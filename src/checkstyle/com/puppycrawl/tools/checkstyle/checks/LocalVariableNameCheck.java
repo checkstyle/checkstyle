@@ -35,16 +35,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="LocalVariableNameCheck"/&gt;
+ * &lt;module name="LocalVariableName"/&gt;
  * </pre> 
  * <p>
  * An example of how to configure the check for names that begin with a lower
  * case letter, followed by letters, digits, and underscores is:
  * </p>
  * <pre>
- * &lt;config name="LocalVariableNameCheck"&gt;
+ * &lt;module name="LocalVariableName"&gt;
  *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author Rick Giles
  * @version 1.0

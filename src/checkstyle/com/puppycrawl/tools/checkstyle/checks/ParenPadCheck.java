@@ -43,18 +43,18 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="ParenPadCheck"/&gt;
+ * &lt;module name="ParenPad"/&gt;
  * </pre> 
  * <p>
  * An example of how to configure the check to require spaces for the
  * parentheses of constructor, method, and super constructor invocations is:
  * </p>
  * <pre>
- * &lt;config name="ParenPadCheck"&gt;
+ * &lt;module name="ParenPad"&gt;
  *     &lt;property name="tokens"
  *               value="CTOR_CALL, METHOD_CALL, SUPER_CTOR_CALL"/&gt;
  *     &lt;property name="option" value="space"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0

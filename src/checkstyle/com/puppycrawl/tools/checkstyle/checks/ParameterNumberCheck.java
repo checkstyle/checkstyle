@@ -33,15 +33,15 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="ParameterNumberCheck"/&gt;
+ * &lt;module name="ParameterNumber"/&gt;
  * </pre> 
  * <p>
  * An example of how to configure the check to allow 10 parameters is:
  * </p>
  * <pre>
- * &lt;config name="ParameterNumberCheck"&gt;
+ * &lt;module name="ParameterNumber"&gt;
  *    &lt;property name="max" value="10"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
 
  * @author Oliver Burn

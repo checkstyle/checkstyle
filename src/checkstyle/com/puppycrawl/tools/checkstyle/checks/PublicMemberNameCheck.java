@@ -35,16 +35,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="PublicMemberNameCheck"/&gt;
+ * &lt;module name="PublicMemberName"/&gt;
  * </pre> 
  * <p>
  * An example of how to configure the check for names that begin with
  *lower case letter, followed by letters and digits is:
  * </p>
  * <pre>
- * &lt;config name="PublicMemberNameCheck"&gt;
+ * &lt;module name="PublicMemberName"&gt;
  *    &lt;property name="format" value="^[a-z][a-zA-Z0-9]*$"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  *
  * @author Rick Giles

@@ -46,32 +46,32 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="JavadocTypeCheck"/&gt;
+ * &lt;module name="JavadocType"/&gt;
  * </pre>
  * <p> An example of how to configure the check for the 
  * {@link Scope#PUBLIC} scope is:
  *</p>
  * <pre>
- * &lt;config name="JavadocTypeCheck"&gt;
+ * &lt;module name="JavadocType"&gt;
  *    &lt;property name="scope" value="public"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * <p> An example of how to configure the check for an author tag
  *  and a version tag is:
  *</p>
  * <pre>
- * &lt;config name="JavadocTypeCheck"&gt;
+ * &lt;module name="JavadocType"&gt;
  *    &lt;property name="authorFormat" value="\S"/&gt;
  *    &lt;property name="versionFormat" value="\S"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * <p> An example of how to configure the check for a
  * CVS revision version tag is:
  *</p>
  * <pre>
- * &lt;config name="JavadocTypeCheck"&gt;
+ * &lt;module name="JavadocType"&gt;
  *    &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  *
 
