@@ -75,10 +75,19 @@ public final class DetailAST
     {
         if (aObj instanceof DetailAST) {
             final DetailAST other = (DetailAST) aObj;
+            boolean isTextEquals = true;
+
+            if (getText() != null) {
+                isTextEquals = getText().equals(other.getText());
+            }
+            else if (other.getText() != null) {
+                isTextEquals = false;
+            }
+
             return (other.getType() == getType())
-                && (other.getText().equals(getText()))
-                && (other.mLineNo == mLineNo)
-                && (other.mColumnNo == mColumnNo);
+                && isTextEquals
+                && (other.mLineNo == getLineNo())
+                && (other.mColumnNo == getColumnNo());
         }
         else {
             return false;
@@ -89,10 +98,12 @@ public final class DetailAST
     public int hashCode()
     {
         int result;
+        int textCode = (getText() == null) ? 0 : getText().hashCode();
         result = getType();
-        result = HASH_MULT * result + getText().hashCode();
-        result = HASH_MULT * result + mLineNo;
-        result = HASH_MULT * result + mColumnNo;
+        result = HASH_MULT * result + textCode;
+        result = HASH_MULT * result + getLineNo();
+        result = HASH_MULT * result + getColumnNo();
+
         return result;
     }
 
