@@ -257,7 +257,6 @@ class Verifier
         checkModOrder(aSig.getModSet());
 
         // Check for to many parameters
-        // TODO: Add documentation and a test
         if (aSig.getParams().size() > mConfig.getMaxParameters()) {
             log(aSig.getFirstLineNo(),
                 aSig.getFirstColNo(),
