@@ -20,11 +20,15 @@ td {
   vertical-align:top;
 }
 
-td.required {
-  text-align: center;
+tr.odd {
+  background-color: #EEEEEE;
 }
 
-tr.header {
+tr.even {
+  background-color: #E5E5E5;
+}
+
+th {
   background-color: Silver;
   color:Black;
   font-weight: bolder;
