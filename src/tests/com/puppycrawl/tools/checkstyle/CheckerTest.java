@@ -546,15 +546,15 @@ public class CheckerTest
         final String filepath = getPath("InputSemantic.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":51:65: Must have at least one statement.",
-            filepath + ":53:41: Must have at least one statement.",
-            filepath + ":70:38: Must have at least one statement.",
-            filepath + ":71:52: Must have at least one statement.",
-            filepath + ":72:45: Must have at least one statement.",
-            filepath + ":74:13: Must have at least one statement.",
-            filepath + ":76:17: Must have at least one statement.",
-            filepath + ":78:13: Must have at least one statement.",
-            filepath + ":81:17: Must have at least one statement.",
+            filepath + ":52:65: Must have at least one statement.",
+            filepath + ":54:41: Must have at least one statement.",
+            filepath + ":71:38: Must have at least one statement.",
+            filepath + ":72:52: Must have at least one statement.",
+            filepath + ":73:45: Must have at least one statement.",
+            filepath + ":75:13: Must have at least one statement.",
+            filepath + ":77:17: Must have at least one statement.",
+            filepath + ":79:13: Must have at least one statement.",
+            filepath + ":82:17: Must have at least one statement.",
         };
         verify(c, filepath, expected);
     }
@@ -571,11 +571,11 @@ public class CheckerTest
         final String filepath = getPath("InputSemantic.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":51:65: Empty catch block.",
-            filepath + ":71:52: Empty catch block.",
-            filepath + ":72:45: Empty catch block.",
-            filepath + ":74:13: Empty try block.",
-            filepath + ":76:17: Empty finally block.",
+            filepath + ":52:65: Empty catch block.",
+            filepath + ":72:52: Empty catch block.",
+            filepath + ":73:45: Empty catch block.",
+            filepath + ":75:13: Empty try block.",
+            filepath + ":77:17: Empty finally block.",
         };
         verify(c, filepath, expected);
     }

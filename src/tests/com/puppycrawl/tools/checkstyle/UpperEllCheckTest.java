@@ -18,7 +18,7 @@ extends BaseCheckTestCase
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {
-            "93:43: Should use uppercase 'L'.",
+            "94:43: Should use uppercase 'L'.",
         };
         verify(c, fname, expected);
     }

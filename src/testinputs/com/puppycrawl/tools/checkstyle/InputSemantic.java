@@ -22,6 +22,7 @@ class InputSemantic
     /* Boolean instantiation in a non-static initializer */
     {
         Boolean x = new Boolean(true);
+        Boolean[] y = new Boolean[]{Boolean.TRUE, Boolean.FALSE};
     }
 
     /** fully qualified Boolean instantiation in a method. **/

@@ -17,8 +17,8 @@ public class EqualsHashCodeCheckTest
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {
-            "125:9: Definition of 'equals()' without corresponding defnition of 'hashCode()'.",
-            "162:13: Definition of 'equals()' without corresponding defnition of 'hashCode()'.",
+            "126:9: Definition of 'equals()' without corresponding defnition of 'hashCode()'.",
+            "163:13: Definition of 'equals()' without corresponding defnition of 'hashCode()'.",
         };
         verify(c, fname, expected);
 
