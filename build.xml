@@ -174,7 +174,15 @@
     </checkstyle>
   </target>
 
-  <target name="run.tests" depends="compile.tests">
+  <target name="check.junit">
+    <available property="have.junit" classname="junit.framework.TestListener"/>
+  </target>
+
+  <target name="require.junit" depends="check.junit" unless="have.junit">
+    <fail message="Need to have JUnit in your CLASSPATH to run the tests."/>
+  </target>
+
+  <target name="run.tests" depends="compile.tests,require.junit">
 
     <mkdir dir="${testreport.dir}"/>
 
