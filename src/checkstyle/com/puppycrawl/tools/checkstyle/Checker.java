@@ -97,6 +97,7 @@ public class Checker
     /** vector of listeners */
     private final ArrayList mListeners = new ArrayList();
 
+    /** vector of fileset checks */
     private final ArrayList mFileSetChecks = new ArrayList();
 
     /**
@@ -158,7 +159,8 @@ public class Checker
     }
 
     /**
-     * Adds a FileSetCheck to the list of FileSetChecks that is executed in process().
+     * Adds a FileSetCheck to the list of FileSetChecks
+     * that is executed in process().
      * @param aFileSetCheck the additional FileSetCheck
      */
     public void addFileSetCheck(FileSetCheck aFileSetCheck)
