@@ -55,12 +55,6 @@ public interface Defn
     /** property name for cache file **/
     String CACHE_FILE_PROP = "checkstyle.cache.file";
 
-    /** property name for try block options **/
-    String TRY_BLOCK_PROP = "checkstyle.block.try";
-    /** property name for catch block options **/
-    String CATCH_BLOCK_PROP = "checkstyle.block.catch";
-    /** property name for finally block options **/
-    String FINALLY_BLOCK_PROP = "checkstyle.block.finally";
     /** property name for the base directory **/
     String BASEDIR_PROP = "checkstyle.basedir";
     /** property name for wrapping lines on operators **/
@@ -94,14 +88,6 @@ public interface Defn
     String[] ALL_INT_PROPS = new String[]
         {
             TAB_WIDTH_PROP,
-        };
-
-    /** All the block properties */
-    String[] ALL_BLOCK_PROPS = new String[]
-        {
-            TRY_BLOCK_PROP,
-            CATCH_BLOCK_PROP,
-            FINALLY_BLOCK_PROP,
         };
 
     /** All the String properties */

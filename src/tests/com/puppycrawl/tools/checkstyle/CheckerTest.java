@@ -91,8 +91,6 @@ public class CheckerTest
         mProps.setProperty(Defn.IGNORE_CAST_WHITESPACE_PROP,
                            Boolean.FALSE.toString());
 
-        mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE.toString());
-        mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.IGNORE.toString());
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -115,8 +113,6 @@ public class CheckerTest
         throws Exception
     {
         mProps.setProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, "true");
-        mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE.toString());
-        mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.IGNORE.toString());
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);

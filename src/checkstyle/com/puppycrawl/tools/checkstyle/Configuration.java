@@ -90,14 +90,6 @@ public class Configuration
     /** map of all the corresponding RE objects for pattern properties **/
     private transient Map mRegexps = new HashMap();
 
-    /** map of all the BlockOption properties **/
-    private final Map mBlockProps = new HashMap();
-    {
-        mBlockProps.put(Defn.TRY_BLOCK_PROP, BlockOption.STMT);
-        mBlockProps.put(Defn.CATCH_BLOCK_PROP, BlockOption.TEXT);
-        mBlockProps.put(Defn.FINALLY_BLOCK_PROP, BlockOption.STMT);
-    }
-
     /** map of all String properties - by default are null **/
     private final Map mStringProps = new HashMap();
     {
@@ -143,10 +135,6 @@ public class Configuration
 
         for (int i = 0; i < Defn.ALL_INT_PROPS.length; i++) {
             setIntProperty(aProps, aLog, Defn.ALL_INT_PROPS[i]);
-        }
-
-        for (int i = 0; i < Defn.ALL_BLOCK_PROPS.length; i++) {
-            setBlockOptionProperty(aProps, Defn.ALL_BLOCK_PROPS[i], aLog);
         }
 
         for (int i = 0; i < Defn.ALL_STRING_PROPS.length; i++) {
@@ -251,11 +239,6 @@ public class Configuration
             final String key = Defn.ALL_INT_PROPS[i];
             Utils.addObjectString(retVal, key,
                                   Integer.toString(getIntProperty(key)));
-        }
-
-        for (int i = 0; i < Defn.ALL_BLOCK_PROPS.length; i++) {
-            final String key = Defn.ALL_BLOCK_PROPS[i];
-            Utils.addObjectString(retVal, key, getBlockOptionProperty(key));
         }
 
         for (int i = 0; i < Defn.ALL_STRING_PROPS.length; i++) {
@@ -407,24 +390,6 @@ public class Configuration
         mStringProps.put(aName, aTo);
     }
 
-    /** @return the try block option **/
-    BlockOption getTryBlock()
-    {
-        return getBlockOptionProperty(Defn.TRY_BLOCK_PROP);
-    }
-
-    /** @return the catch block option **/
-    BlockOption getCatchBlock()
-    {
-        return getBlockOptionProperty(Defn.CATCH_BLOCK_PROP);
-    }
-
-    /** @return the finally block option **/
-    BlockOption getFinallyBlock()
-    {
-        return getBlockOptionProperty(Defn.FINALLY_BLOCK_PROP);
-    }
-
     /** @return the wrapping on operator option **/
     WrapOpOption getWrapOpOption()
     {
@@ -467,28 +432,9 @@ public class Configuration
         mPatterns.put(aName, aPat);
     }
 
-    /**
-     * Set an BlockOption property.
-     * @param aName name of the property to set
-     * @param aTo the value to set
-     */
-    private void setBlockOptionProperty(String aName, BlockOption aTo)
-    {
-        mBlockProps.put(aName, aTo);
-    }
-
     ////////////////////////////////////////////////////////////////////////////
     // Private methods
     ////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * @return the BlockOption for a specified property.
-     * @param aName name of the property to get
-     */
-    private BlockOption getBlockOptionProperty(String aName)
-    {
-        return (BlockOption) mBlockProps.get(aName);
-    }
 
     /**
      * Set the value of an pattern property. If the property is not defined
@@ -566,31 +512,6 @@ public class Configuration
                         + ", defaulting to "
                         + getIntProperty(aName)
                         + ".");
-            }
-        }
-    }
-
-    /**
-     * Set the value of a BlockOption property.
-     * @param aProps the properties set to use
-     * @param aLog where to log errors to
-     * @param aName the name of the property to parse
-     */
-    private void setBlockOptionProperty(Properties aProps,
-                                        String aName,
-                                        PrintStream aLog)
-    {
-        final String strRep = aProps.getProperty(aName);
-        if (strRep != null) {
-            final BlockOption opt = BlockOption.decode(strRep);
-            if (opt == null) {
-                aLog.println("Unable to parse " + aName
-                             + " property with value " + strRep
-                             + ", leaving as " + getBlockOptionProperty(aName)
-                             + ".");
-            }
-            else {
-                setBlockOptionProperty(aName, opt);
             }
         }
     }
