@@ -192,9 +192,7 @@ public class JavadocMethodCheck
             }
         }
         else if (aAST.getType() == TokenTypes.IMPORT) {
-            if (mAllowUndeclaredRTE) {
-                processImport(aAST);
-            }
+            processImport(aAST);
         }
         else {
             //TokenTypes.METHOD_DEF or TokenTypes.CTOR_DEF
@@ -435,6 +433,57 @@ public class JavadocMethodCheck
     }
 
     /**
+     * Return if two Strings represent the same type, inspecting the
+     * import statements if necessary
+     *
+     * @param aDeclared type declared in throws clause
+     * @param aDocumented type declared in javadoc throws tag
+     * @return true iff type names represent the same type
+     */
+    private boolean isSameType(String aDeclared, String aDocumented)
+    {
+        return aDeclared.equals(aDocumented)
+                || isShortName(aDeclared, aDocumented)
+                || isShortName(aDocumented, aDeclared);
+    }
+
+    /**
+     * Calculate if one type name is a shortname for another type name.
+     * @param aShortName a shorthand, such as <code>IOException</code>
+     * @param aFullName a full name, such as <code>java.io.IOException</code>
+     * @return true iff aShortName represents the same type as aFullName
+     */
+    private boolean isShortName(String aShortName, String aFullName)
+    {
+        if (aShortName.length() >= aFullName.length()) {
+            return false;
+        }
+
+        final String base = basename(aFullName);
+        if (aShortName.length() >= aFullName.length()
+                || !base.equals(aShortName))
+        {
+            return false;
+        }
+
+        // check fully qualified import
+        if (mImports.contains(aFullName)) {
+            return true;
+        }
+
+        // check .* import
+        final int endIndex = aFullName.length() - base.length() - 1;
+        final String packageName = aFullName.substring(0, endIndex);
+        final String starImport = packageName + ".*";
+        if (mImports.contains(starImport)) {
+            return true;
+        }
+
+        // check fully qualified class from same package
+        return packageName.equals(mPackageFullIdent.getText());
+    }
+
+    /**
      * Checks whether a method is a function.
      * @param aAST the method node.
      * @return whether the method is a function.
@@ -508,7 +557,8 @@ public class JavadocMethodCheck
             final ListIterator throwIt = aThrows.listIterator();
             while (!found && throwIt.hasNext()) {
                 final FullIdent fi = (FullIdent) throwIt.next();
-                if (fi.getText().equals(documentedEx)) {
+                final String declaredEx = fi.getText();
+                if (isSameType(declaredEx, documentedEx)) {
                     found = true;
                     throwIt.remove();
                     foundThrows.add(documentedEx);
@@ -551,4 +601,16 @@ public class JavadocMethodCheck
                 "javadoc.expectedTag", "@throws", fi.getText());
         }
     }
+
+    // TODO: clean up duplicate code in UnusedImports and IllegalInstantiation
+    /**
+     * @return the class name from a fully qualified name
+     * @param aType the fully qualified name
+     */
+    private String basename(String aType)
+    {
+        final int i = aType.lastIndexOf(".");
+        return (i == -1) ? aType : aType.substring(i + 1);
+    }
+
 }

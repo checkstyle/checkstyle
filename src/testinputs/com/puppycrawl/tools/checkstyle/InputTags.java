@@ -3,7 +3,7 @@
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
-
+import java.io.IOException;
 // Tests for Javadoc tags.
 class InputTags
 {
@@ -182,5 +182,26 @@ class InputTags
     void method17()
         throws IllegalMonitorStateException
     {
+    }
+
+    /**
+     * declaring the imported version of an Exception and documenting
+     * the full class name is OK (bug 658805).
+     * @throws java.io.IOException if bad things happen.
+     */
+    void method18()
+        throws IOException
+    {
+        throw new IOException("to make compiler happy");
+    }
+
+    /**
+     * reverse of bug 658805.
+     * @throws IOException if bad things happen.
+     */
+    void method19()
+        throws java.io.IOException
+    {
+        throw new IOException("to make compiler happy");
     }
 }
