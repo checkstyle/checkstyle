@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="UnusedPrivateMethod"/&gt;
+ * &lt;module name="usage.UnusedPrivateMethod"/&gt;
  * </pre>
  * <p>
  * @author Rick Giles
