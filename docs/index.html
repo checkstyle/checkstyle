@@ -75,30 +75,23 @@
       Sun Code Conventions</a>. However, Checkstyle is highly configurable. 
       </p>
       
-      <p class="body">
-      My experience from using a similar proprietary tool at a previous employer
-      was that it increased the productivity of code reviews. This is because it
-      allowed the reviewers to get on with reviewing the code and not get into
-      "style" debates.
-      </p>
-      
       <a name="features"></a>
       <h2>Features</h2>
-      <p class="body">The things that checkstyle checks for are:</p>
+      <p class="body">The things that Checkstyle can check for are:</p>
       <ul>
-	<li class="body">Unused or duplicate <span class="code">import</span> statements. Note: this can be turned off.</li>
+	<li class="body">Unused or duplicate <span class="code">import</span> statements.</li>
 	<li class="body">Javadoc comments are defined for class, interface, variable and method declarations. Note: This can be made to check only <span class="code">public</span> and <span class="code">protected</span> declarations.</li>
 	<li class="body">Javadoc tags for a method match the actual code.</li>
 	<li class="body">The file starts with a specified header. This is useful to ensure that a file has a copyright notice.</li>
-	<li class="body">An <span class="code">@author</span> tag exists for class and interface Javadoc comments. Note: this can be turned off.</li>
+	<li class="body">An <span class="code">@author</span> tag exists for class and interface Javadoc comments.</li>
 	<li class="body">Format of variable names match specified regular expressions. For example, can enforce that all <span class="code">static</span> variables must start with <span class="code">"s"</span>.</li>
 	<li class="body">Format of class and interface names match a specified regular expression.</li>
 	<li class="body">Format of parameter names match a specified regular expression.</li>
 	<li class="body">Variables that are not declared as <span class="code">private</span> or <span class="code">protected</span>.</li>
 	<li class="body">Correct use of white space around binary and unary operators. For example, <span class="code">x -=- 1;</span> is illegal, whereas <span class="code">x -= -1;</span> is not.</li>
-	<li class="body">Ensure white space follows casts and commas. For example both <span class="code">x = (File)obj</span> and <span class="code">run(arg1,arg2)</span> are illegal, whereas <span class="code">x = (File) obj</span> and <span class="code">run(arg1, arg2)</span> are not. Note: these checks can be turned off.</li>
+	<li class="body">Ensure white space follows casts and commas. For example both <span class="code">x = (File)obj</span> and <span class="code">run(arg1,arg2)</span> are illegal, whereas <span class="code">x = (File) obj</span> and <span class="code">run(arg1, arg2)</span> are not.</li>
 	<li class="body">Ensure <span class="code">{}</span>'s are used for <span class="code">if/while/for/do</span> constructs.</li>
-	<li class="body">Lines do not contain tabs. Note: this check can be turned off.</li>
+	<li class="body">Lines do not contain tabs.</li>
 	<li class="body">Lines are not longer than a specified length.</li>
 	<li class="body">Methods/Constructors are not longer than a specified number of lines.</li>
 	<li class="body">Files are not longer than a specified number of lines.</li>
