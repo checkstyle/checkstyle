@@ -22,6 +22,7 @@ public class AllTests {
         suite.addTest(new TestSuite(EmptyStatementCheckTest.class));
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
         suite.addTest(new TestSuite(ExplicitInitializationCheckTest.class));
+        suite.addTest(new TestSuite(FallThroughCheckTest.class));
         suite.addTest(new TestSuite(FinalLocalVariableCheckTest.class));
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
         suite.addTest(new TestSuite(IllegalCatchCheckTest.class));

@@ -50,6 +50,9 @@
           <a href="#ExplicitInitialization">ExplicitInitialization</a>
         </li>
         <li>
+          <a href="#FallThrough">FallThrough</a>
+        </li>
+        <li>
           <a href="#FinalLocalVariable">FinalLocalVariable</a>
         </li>
         <li>
@@ -1439,6 +1442,34 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;MissingCtor&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="FallThrough"></a> <h2>FallThrough</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for fall through in <span class="code">switch</span> statements
+      Finds locations where a <span class="code">case</span> contains<br>
+      Java code - but lacks a <span class="code">break</span>, <span
+      class="code">return</span>, <span class="code">throw</span> or
+      <span class="code">continue</span> statement. 
+      </p>
+      <p class="body">
+      Note: the check works in assumption that there is no unreachable
+      code in the <span class="code">case</span>.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;FallThrough&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
