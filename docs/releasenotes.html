@@ -107,6 +107,9 @@
           (module RequireThis, contributed by Stephen Bloch, requests
           755550, 696295).</li>
 
+          <li class="body">Added multiLines property to regexpCheck
+          (request 597676)</li>
+
         </ul>
 
       <p class="body">
@@ -125,6 +128,15 @@
         line on wrap) option by LeftCurly check. (bug 866501)</li> 
 
       </ul>
+
+      <p class="body">
+      Removed features:
+      </p>
+        <ul>
+          <li class="body">Removed ignoreLines property of
+          RegexpHeader check.  To make some line optional use
+          &quot;^.*$&quot; regexp for this line.</li>
+        </ul>
 
       <a name="release3_3"></a>
       <h2>Release 3.3</h2>
