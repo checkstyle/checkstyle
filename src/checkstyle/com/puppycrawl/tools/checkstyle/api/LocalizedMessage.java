@@ -107,10 +107,9 @@ public final class LocalizedMessage
     public String getMessage()
     {
         try {
-            // PERF: Very simple approach - wait for performance problems.
-            // Important to use the default class loader, and not the one in the
-            // Configuration object. This is because the class loader in the
-            // Configuration is specified by the user for resolving custom
+            // Important to use the default class loader, and not the one in
+            // the Configuration object. This is because the class loader in
+            // the Configuration is specified by the user for resolving custom
             // classes.
             final ResourceBundle bundle = getBundle(mBundle);
             final String pattern = bundle.getString(mKey);
@@ -149,6 +148,17 @@ public final class LocalizedMessage
     public int getColumnNo()
     {
         return mColNo;
+    }
+
+    /**
+     * Returns the message key to locate the translation, can also be used
+     * in IDE plugins to map error messages to corrective actions.
+     *
+     * @return the message key
+     */
+    public String getKey()
+    {
+        return mKey;
     }
 
     /** @param aLocale the locale to use for localization **/
