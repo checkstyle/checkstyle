@@ -2,11 +2,13 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
+
 package com.puppycrawl.tools.checkstyle;
 
 /**
- * Testing that the author and version tags are needed based on the
- * boolean property.
+ * Testing  author and version tag patterns
+ * @author Oliver Burn
+ * @version 1.0
  */
 class InputJavadoc
 {

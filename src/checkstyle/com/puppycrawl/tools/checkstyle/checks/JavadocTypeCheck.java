@@ -29,33 +29,63 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
- * Checks that a type has Javadoc comment
+ * <p>
+ * Checks the Javadoc of a type.
+ * By default, does not check for author or version tags.
+ * The scope to verify is specified using the {@link Scope} class and
+ * defaults to {@link Scope#PRIVATE}. To verify another scope,
+ * set property scope to one of the {@link Scope} constants.
+ * To define the format for an author tag or a version tag
+ * set property authorFormat or versionFormat respectively to a 
+ * regular expression
+ * (http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html). 
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;check name="JavadocTypeCheck"/&gt;
+ * </pre>
+ * <p> An example of how to configure the check for the 
+ * {@link Scope#PUBLIC} scope is:
+ *</p>
+ * <pre>
+ * &lt;check name="JavadocTypeCheck"&gt;
+ *    &lt;property name="scope" value="public"/&gt;
+ * &lt;/check&gt;
+ * </pre>
+ * <p> An example of how to configure the check for an author tag
+ *  and a version tag is:
+ *</p>
+ * <pre>
+ * &lt;check name="JavadocTypeCheck"&gt;
+ *    &lt;property name="authorFormat" value="\S"/&gt;
+ *    &lt;property name="versionFormat" value="\S"/&gt;
+ * &lt;/check&gt;
+ * </pre>
+ * <p> An example of how to configure the check for a
+ * CVS revision version tag is:
+ *</p>
+ * <pre>
+ * &lt;check name="JavadocTypeCheck"&gt;
+ *    &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
+ * &lt;/check&gt;
+ * </pre>
  *
+
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
 public class JavadocTypeCheck
     extends Check
 {
-    /** the pattern to match author tag **/
-    private static final String MATCH_JAVADOC_AUTHOR_PAT = "@author\\s+\\S";
-    /** compiled regexp to match author tag **/
-    private static final RE MATCH_JAVADOC_AUTHOR =
-        Utils.createRE(MATCH_JAVADOC_AUTHOR_PAT);
-
-    /** the pattern to match version tag **/
-    private static final String MATCH_JAVADOC_VERSION_PAT = "@version\\s+\\S";
-    /** compiled regexp to match version tag **/
-    private static final RE MATCH_JAVADOC_VERSION =
-        Utils.createRE(MATCH_JAVADOC_VERSION_PAT);
-
     /** the scope to check for */
     private Scope mScope = Scope.PRIVATE;
-    /** whether to allow no author tag */
-    private boolean mAllowNoAuthor = false;
-    /** whether to require version tag */
-    private boolean mRequireVersion = false;
-
+    /** compiled regexp to match author tag **/ 
+    private RE mAuthorRE = null;
+    /** compiled regexp to match version tag **/
+    private RE mVersionRE = null;
+    
     /**
      * Sets the scope to check.
      * @param aFrom string to set scope from
@@ -65,24 +95,17 @@ public class JavadocTypeCheck
         mScope = Scope.getInstance(aFrom);
     }
 
-    /**
-     * Sets whether to allow no author tag
-     * @param aAllowNoAuthor a <code>boolean</code> value
-     */
-    public void setAllowNoAuthor(boolean aAllowNoAuthor)
+    /** @param aFormat author tag pattern */
+    public void setAuthorFormat(String aFormat)
     {
-        mAllowNoAuthor = aAllowNoAuthor;
+        mAuthorRE = Utils.createRE("@author\\s+" + aFormat);
     }
-
-    /**
-     * Sets whether to require a version tag.
-     * @param aRequireVersion a <code>boolean</code> value
-     */
-    public void setRequireVersion(boolean aRequireVersion)
+    
+    /** @param aFormat version tag pattern */
+    public void setVersionFormat(String aFormat)
     {
-        mRequireVersion = aRequireVersion;
+        mVersionRE = Utils.createRE("@version\\s+" + aFormat);
     }
-
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -108,17 +131,20 @@ public class JavadocTypeCheck
                 }
                 else if (ScopeUtils.isOuterMostType(aAST)) {
                     // don't check author/version for inner classes
-                    if (!mAllowNoAuthor
-                        && (MATCH_JAVADOC_AUTHOR.grep(cmt).length == 0))
+                    if ((mAuthorRE != null)
+                        && (mAuthorRE.grep(cmt).length == 0))
                     {
+                        // TODO: better error message
                         log(aAST.getLineNo(), "type.missingTag", "@author");
                     }
 
-                    if (mRequireVersion
-                        && (MATCH_JAVADOC_VERSION.grep(cmt).length == 0))
+                    if ((mVersionRE != null)
+                        && (mVersionRE.grep(cmt).length == 0))
                     {
+                        // TODO: better error message
                         log(aAST.getLineNo(), "type.missingTag", "@version");
                     }
+
                 }
             }
         }
