@@ -26,7 +26,14 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 /**
  * <p>Checks the padding of an empty for iterator; that is whether a
  * space is required at an empty for iterator, or such spaces are
- * forbidden.
+ * forbidden. No check occurs if there is a line wrap at the iterator, as in
+ * </p>
+ * <pre class="body">
+for (Iterator foo = very.long.line.iterator();
+      foo.hasNext();
+     )
+   </pre>
+ * <p>
  * The policy to verify is specified using the {@link PadOption} class and
  * defaults to {@link PadOption#NOSPACE}.
  * </p>
@@ -62,19 +69,21 @@ public class EmptyForIteratorPadCheck
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getChildCount() == 0) {
-            final String line = getLines()[aAST.getLineNo() - 1];
-            final int after = aAST.getColumnNo() - 1;
+            //empty for iterator. test pad after semi.
+            final DetailAST semi = aAST.getPreviousSibling();
+            final String line = getLines()[semi.getLineNo() - 1];
+            final int after = semi.getColumnNo() + 1;
+            //don't check if at end of line
             if (after < line.length()) {
                 if ((PadOption.NOSPACE == getAbstractOption())
                     && (Character.isWhitespace(line.charAt(after))))
                 {
-                    log(aAST.getLineNo(), after, "ws.followed", ";");
+                    log(semi.getLineNo(), after, "ws.followed", ";");
                 }
                 else if ((PadOption.SPACE == getAbstractOption())
-                         && !Character.isWhitespace(line.charAt(after))
-                         && (line.charAt(after) != ')'))
+                         && !Character.isWhitespace(line.charAt(after)))
                 {
-                    log(aAST.getLineNo(), after, "ws.notFollowed", ";");
+                    log(semi.getLineNo(), after, "ws.notFollowed", ";");
                 }
             }
         }
