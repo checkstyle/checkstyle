@@ -44,14 +44,20 @@ public abstract class BaseCheckTestCase
     protected Checker createChecker(Configuration aCheckConfig)
         throws Exception
     {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
-        dc.addChild(twConf);
-        twConf.addChild(aCheckConfig);
+        DefaultConfiguration dc = createCheckerConfig(aCheckConfig);
         final Checker c = new Checker();
         c.configure(dc);
         c.addListener(new BriefLogger(mStream));
         return c;
+    }
+
+    protected DefaultConfiguration createCheckerConfig(Configuration aCheckConfig)
+    {
+        final DefaultConfiguration dc = new DefaultConfiguration("root");
+        final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
+        dc.addChild(twConf);
+        twConf.addChild(aCheckConfig);
+        return dc;
     }
 
     protected static String getPath(String aFilename)
