@@ -1122,7 +1122,7 @@ WS	:	(	' '
 
 // Single-line comments
 SL_COMMENT
-   :  "//" { ver.reportCppComment(getLine(),getColumn() - 3); }
+   :  "//"
       (~('\n'|'\r'))* ('\n'|'\r'('\n')?)
       {
          $setType(Token.SKIP);
