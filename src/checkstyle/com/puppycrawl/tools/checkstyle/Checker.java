@@ -229,10 +229,10 @@ public class Checker
         try {
             fireFileStarted(aFileName);
             final String[] lines = getLines(aFileName);
+            final Reader sar = new StringArrayReader(lines);
+            VerifierSingleton.getInstance().clearMessages();
+            VerifierSingleton.getInstance().setLines(lines);
             try {
-                VerifierSingleton.getInstance().clearMessages();
-                VerifierSingleton.getInstance().setLines(lines);
-                final Reader sar = new StringArrayReader(lines);
                 final GeneratedJava14Lexer jl = new GeneratedJava14Lexer(sar);
                 jl.setFilename(aFileName);
                 final GeneratedJava14Recognizer jr =
@@ -242,17 +242,12 @@ public class Checker
                 jr.compilationUnit();
             }
             catch (RecognitionException re) {
-
                 // Parsing might have failed because the checked
                 // filecontains "assert" statement. Retry with a
                 // grammar that treats "assert" as an identifier
                 // and not as a keyword
 
                 // Arghh - the pain - duplicate code!
-
-                VerifierSingleton.getInstance().clearMessages();
-                VerifierSingleton.getInstance().setLines(lines);
-                final Reader sar = new StringArrayReader(lines);
                 final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
                 jl.setFilename(aFileName);
                 final GeneratedJavaRecognizer jr =
