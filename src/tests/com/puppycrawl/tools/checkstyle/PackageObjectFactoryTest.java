@@ -13,19 +13,18 @@ import junit.framework.TestCase;
 public class PackageObjectFactoryTest extends TestCase
 {
 
-    private PackageObjectFactory mFactory =
-        new PackageObjectFactory(this.getClass().getClassLoader());
+    private PackageObjectFactory mFactory = new PackageObjectFactory();
 
     public void setUp()
     {
-        mFactory = new PackageObjectFactory(this.getClass().getClassLoader());
+        mFactory = new PackageObjectFactory();
     }
 
     public void testMakeObjectFromName()
         throws CheckstyleException
     {
         final Checker checker =
-            (Checker) mFactory.createModule(//Checker.class.getName());
+            (Checker) mFactory.createModule(
                         "com.puppycrawl.tools.checkstyle.Checker");
         assertNotNull(checker);
     }
