@@ -17,14 +17,21 @@ directory.
 The software uses the ANTLR package (http://www.antlr.org). Its license terms
 are in the file named "RIGHTS.antlr" in this directory.
 
-The software uses the Jakarta Regexp package (http://jakarta.apache.org/regexp).
-Its license terms are in the file named "LICENSE.apache" in this directory.
+The software uses the Jakarta Regexp package
+(http://jakarta.apache.org/regexp) and several packages from the
+Jakarta Commons project (http://jakarta.apache.org/commons).
+The license terms of these packages are in the file named
+"LICENSE.apache" in this directory.
 
 
 Feedback
 ========
 
-Please send any feedback or bugs to checkstyle@puppycrawl.com.
+Please send any feedback to checkstyle-user@lists.sourceforge.net.
+
+Bugs should be reported to the checkstyle bugtracker at
+http://sourceforge.net/tracker/?atid=397078&group_id=29721&func=browse
+
 
 Thanks for trying out checkstyle!
 
