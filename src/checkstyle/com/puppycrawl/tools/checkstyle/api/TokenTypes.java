@@ -388,4 +388,18 @@ public class TokenTypes
         }
         return name;
     }
+
+    /**
+     * Returns the ID of a token for a given name.
+     * @param aName the name of the token ID to get
+     * @return a token ID
+     */
+    public static int getTokenId(String aName)
+    {
+        final Integer id = (Integer) TOKEN_NAME_TO_VALUE.get(aName);
+        if (id == null) {
+            throw new IllegalArgumentException("given name " + aName);
+        }
+        return id.intValue();
+    }
 }
