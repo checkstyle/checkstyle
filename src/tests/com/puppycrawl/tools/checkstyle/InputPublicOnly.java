@@ -10,7 +10,7 @@ public class InputPublicOnly // ignore - need javadoc
     {
         String CONST = "InnerInterface"; // ignore - w.n.r.a.j
         void method(); // ignore - when not relaxed about Javadoc
-        
+
         class InnerInnerClass // ignore - when not relaxed about Javadoc
         {
             private int mData; // ignore - when not relaxed about Javadoc
@@ -21,7 +21,7 @@ public class InputPublicOnly // ignore - need javadoc
                         public void run() {};
                     };
             }
-            
+
             void method2() // ignore - when not relaxed about Javadoc
             {
                 final Runnable r = new Runnable() {
@@ -34,12 +34,12 @@ public class InputPublicOnly // ignore - need javadoc
     private class InnerClass // ignore
     {
         private int mDiff; // ignore - when not relaxed about Javadoc
-        
+
         void method() // ignore - when not relaxed about Javadoc
         {
         }
     }
-    
+
     private int mSize; // ignore - when not relaxed about Javadoc
     int mLen; // ignore - when not relaxed about Javadoc
     protected int mDeer; // ignore
@@ -59,7 +59,7 @@ public class InputPublicOnly // ignore - need javadoc
     protected InputPublicOnly(Object aA)
     {
     }
-    
+
     // ignore - always need javadoc
     public InputPublicOnly(Class aA)
     {
@@ -79,7 +79,7 @@ public class InputPublicOnly // ignore - need javadoc
     protected void method(Class aA)
     {
     }
-    
+
     // ignore - need javadoc
     public void method(StringBuffer aA)
     {
@@ -100,8 +100,8 @@ public class InputPublicOnly // ignore - need javadoc
      */
     public class InnerWithoutAuthor
     {
-        
+
     }
-    
+
 
 }
