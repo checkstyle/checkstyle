@@ -688,7 +688,7 @@ public class Configuration
     /**
      * @param aJavadocScope visibility scope where Javadoc is checked
      */
-    public void setJavadocScope(Scope aJavadocScope)
+    private void setJavadocScope(Scope aJavadocScope)
     {
         mJavadocScope = aJavadocScope;
     }

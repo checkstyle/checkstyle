@@ -1,17 +1,19 @@
 package com.puppycrawl.tools.checkstyle;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.util.Locale;
-
 import junit.framework.TestCase;
 import org.apache.regexp.RESyntaxException;
+
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.ByteArrayInputStream;
+import java.io.LineNumberReader;
+import java.io.InputStreamReader;
+import java.util.Locale;
+import java.util.Properties;
 
 public class CheckerTest
     extends TestCase
@@ -31,7 +33,7 @@ public class CheckerTest
 
     private final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
     private final PrintStream mStream = new PrintStream(mBAOS);
-    private final Configuration mConfig = new Configuration();
+    private final Properties mProps = new Properties();
 
     public CheckerTest(String name)
     {
@@ -41,19 +43,19 @@ public class CheckerTest
     protected void setUp()
         throws Exception
     {
-        mConfig.setHeaderFile(getPath("java.header"));
-        mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP,
-                                           LeftCurlyOption.NL);
-        mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_OTHER_PROP,
-                                           LeftCurlyOption.NLOW);
-        mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_TYPE_PROP,
-                                           LeftCurlyOption.NL);
-        mConfig.setRCurly(RightCurlyOption.ALONE);
-        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, true);
-        mConfig.setStringProperty(Defn.LOCALE_COUNTRY_PROP,
-                                  Locale.ENGLISH.getCountry());
-        mConfig.setStringProperty(Defn.LOCALE_LANGUAGE_PROP,
-                                  Locale.ENGLISH.getLanguage());
+        mProps.setProperty(Defn.HEADER_FILE_PROP, getPath("java.header"));
+        mProps.setProperty(Defn.LCURLY_METHOD_PROP,
+                           LeftCurlyOption.NL.toString());
+        mProps.setProperty(Defn.LCURLY_OTHER_PROP,
+                           LeftCurlyOption.NLOW.toString());
+        mProps.setProperty(Defn.LCURLY_TYPE_PROP,
+                           LeftCurlyOption.NL.toString());
+        mProps.setProperty(Defn.RCURLY_PROP, RightCurlyOption.ALONE.toString());
+        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, Boolean.TRUE.toString());
+        mProps.setProperty(Defn.LOCALE_COUNTRY_PROP,
+                           Locale.ENGLISH.getCountry());
+        mProps.setProperty(Defn.LOCALE_LANGUAGE_PROP,
+                           Locale.ENGLISH.getLanguage());
     }
 
     static String getPath(String aFilename)
@@ -65,10 +67,11 @@ public class CheckerTest
     }
 
     protected Checker createChecker()
-        throws RESyntaxException
+        throws RESyntaxException, FileNotFoundException, IOException
     {
+        final Configuration config = new Configuration(mProps, mStream);
+        final Checker c = new Checker(config);
         final AuditListener listener = new BriefLogger(mStream);
-        final Checker c = new Checker(mConfig);
         c.addListener(listener);
         return c;
     }
@@ -96,12 +99,13 @@ public class CheckerTest
     public void testWhitespace()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, false);
-        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, false);
-        mConfig.setParenPadOption(PadOption.NOSPACE);
-        mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE);
-        mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP,
-                                       BlockOption.IGNORE);
+        mProps.setProperty(Defn.IGNORE_CAST_WHITESPACE_PROP,
+                           Boolean.FALSE.toString());
+        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, Boolean.FALSE.toString());
+        mProps.setProperty(Defn.PAREN_PAD_PROP, PadOption.NOSPACE.toString());
+
+        mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE.toString());
+        mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.IGNORE.toString());
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -173,12 +177,11 @@ public class CheckerTest
     public void testWhitespaceCastParenOff()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, true);
-        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, false);
-        mConfig.setParenPadOption(PadOption.SPACE);
-        mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE);
-        mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP,
-                                       BlockOption.IGNORE);
+        mProps.setProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, "true");
+        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, "false");
+        mProps.setProperty(Defn.PAREN_PAD_PROP, PadOption.SPACE.toString());
+        mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE.toString());
+        mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.IGNORE.toString());
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -268,11 +271,10 @@ public class CheckerTest
     public void testWhitespaceOff()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
-        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, false);
-        mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE);
-        mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP,
-                                       BlockOption.IGNORE);
+        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
+        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, "false");
+        mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE.toString());
+        mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.IGNORE.toString());
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -320,7 +322,7 @@ public class CheckerTest
     public void testBracesOff()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_BRACES_PROP, true);
+        mProps.setProperty(Defn.IGNORE_BRACES_PROP, "true");
         final Checker c = createChecker();
         final String filepath = getPath("InputBraces.java");
         final String[] expected = {
@@ -372,7 +374,7 @@ public class CheckerTest
     public void testTagsWithResolver()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP, true);
+        mProps.setProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP, "true");
         final Checker c = createChecker();
         final String filepath = getPath("InputTags.java");
         assertNotNull(c);
@@ -432,9 +434,9 @@ public class CheckerTest
     public void testIgnoreAccess()
         throws Exception
     {
-        mConfig.setPatternProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP, "^r[A-Z]");
-        mConfig.setBooleanProperty(Defn.ALLOW_PROTECTED_PROP, true);
-        mConfig.setBooleanProperty(Defn.ALLOW_PACKAGE_PROP, true);
+        mProps.setProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP, "^r[A-Z]");
+        mProps.setProperty(Defn.ALLOW_PROTECTED_PROP, "true");
+        mProps.setProperty(Defn.ALLOW_PACKAGE_PROP, "true");
         final Checker c = createChecker();
         final String filepath = getPath("InputInner.java");
         assertNotNull(c);
@@ -454,15 +456,16 @@ public class CheckerTest
     public void testSimple()
         throws Exception
     {
-        mConfig.setIntProperty(Defn.MAX_FILE_LENGTH_PROP, 20) ;
-        mConfig.setIntProperty(Defn.MAX_METHOD_LENGTH_PROP, 19) ;
-        mConfig.setIntProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, 9) ;
-        mConfig.setPatternProperty(Defn.PARAMETER_PATTERN_PROP, "^a[A-Z][a-zA-Z0-9]*$");
-        mConfig.setPatternProperty(Defn.STATIC_PATTERN_PROP, "^s[A-Z][a-zA-Z0-9]*$");
-        mConfig.setPatternProperty(Defn.MEMBER_PATTERN_PROP, "^m[A-Z][a-zA-Z0-9]*$");
-        mConfig.setPatternProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP,"^.*is OK.*regexp.*$");
-        mConfig.setPatternProperty(Defn.TODO_PATTERN_PROP, "FIXME:");
-        mConfig.setPatternProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP, "[A-Z]+");
+        mProps.setProperty(Defn.MAX_FILE_LENGTH_PROP, "20");
+        mProps.setProperty(Defn.MAX_METHOD_LENGTH_PROP, "19");
+        mProps.setProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, "9");
+        mProps.setProperty(Defn.PARAMETER_PATTERN_PROP, "^a[A-Z][a-zA-Z0-9]*$");
+        mProps.setProperty(Defn.STATIC_PATTERN_PROP, "^s[A-Z][a-zA-Z0-9]*$");
+        mProps.setProperty(Defn.MEMBER_PATTERN_PROP, "^m[A-Z][a-zA-Z0-9]*$");
+        mProps.setProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP,
+                           "^.*is OK.*regexp.*$");
+        mProps.setProperty(Defn.TODO_PATTERN_PROP, "FIXME:");
+        mProps.setProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP, "[A-Z]+");
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
@@ -537,7 +540,7 @@ public class CheckerTest
     public void testStrictJavadoc()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
+        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
         final Checker c = createChecker();
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
@@ -576,8 +579,8 @@ public class CheckerTest
     public void testNoJavadoc()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
-        mConfig.setJavadocScope(Scope.NOTHING);
+        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
         final Checker c = createChecker();
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
@@ -593,8 +596,10 @@ public class CheckerTest
     public void testRelaxedJavadoc()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
-        mConfig.setJavadocScope(Scope.PROTECTED);
+        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP,
+                           Scope.PROTECTED.getName());
+
         final Checker c = createChecker();
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
@@ -617,8 +622,8 @@ public class CheckerTest
     public void testScopeInnerInterfacesPublic()
         throws Exception
     {
-        mConfig.setJavadocScope(Scope.PUBLIC);
-        mConfig.setBooleanProperty(Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP, true);
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.PUBLIC.getName());
+        mProps.setProperty(Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP, "true");
         final Checker c = createChecker();
         final String filepath = getPath("InputScopeInnerInterfaces.java");
         assertNotNull(c);
@@ -636,7 +641,8 @@ public class CheckerTest
     public void testScopeInnerClassesPackage()
         throws Exception
     {
-        mConfig.setJavadocScope(Scope.getInstance("package"));
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP,
+                           Scope.getInstance("package").getName());
         final Checker c = createChecker();
         final String filepath = getPath("InputScopeInnerClasses.java");
         assertNotNull(c);
@@ -651,7 +657,7 @@ public class CheckerTest
     public void testScopeInnerClassesPublic()
         throws Exception
     {
-        mConfig.setJavadocScope(Scope.PUBLIC);
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.PUBLIC.getName());
         final Checker c = createChecker();
         final String filepath = getPath("InputScopeInnerClasses.java");
         assertNotNull(c);
@@ -664,7 +670,7 @@ public class CheckerTest
     public void testScopeAnonInnerPrivate()
         throws Exception
     {
-        mConfig.setJavadocScope(Scope.PRIVATE);
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.PRIVATE.getName());
         final Checker c = createChecker();
         final String filepath = getPath("InputScopeAnonInner.java");
         assertNotNull(c);
@@ -684,7 +690,8 @@ public class CheckerTest
     public void testScopeAnonInnerAnonInner()
         throws Exception
     {
-        mConfig.setJavadocScope(Scope.ANONINNER);
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP,
+                           Scope.ANONINNER.getName());
         final Checker c = createChecker();
         final String filepath = getPath("InputScopeAnonInner.java");
         assertNotNull(c);
@@ -707,7 +714,7 @@ public class CheckerTest
     public void testHeader()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
+        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
         final Checker c = createChecker();
         final String filepath = getPath("inputHeader.java");
         assertNotNull(c);
@@ -722,11 +729,11 @@ public class CheckerTest
     public void testRegexpHeader()
         throws Exception
     {
-        final Checker c = createChecker();
-        mConfig.setBooleanProperty(Defn.HEADER_LINES_REGEXP_PROP, true);
-        mConfig.setHeaderFile(getPath("regexp.header"));
-        mConfig.setHeaderIgnoreLines("4,5");
+        mProps.setProperty(Defn.HEADER_LINES_REGEXP_PROP, "true");
+        mProps.setProperty(Defn.HEADER_FILE_PROP, getPath("regexp.header"));
+        mProps.setProperty(Defn.HEADER_IGNORE_LINE_PROP, "4,5");
         final String filepath = getPath("InputScopeAnonInner.java");
+        final Checker c = createChecker();
         assertNotNull(c);
         final String[] expected = {
             filepath + ":3: Line does not match expected header line of '// Created: 2002'.",
@@ -745,7 +752,7 @@ public class CheckerTest
     public void testImport()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_IMPORT_LENGTH_PROP, true);
+        mProps.setProperty(Defn.IGNORE_IMPORT_LENGTH_PROP, "true");
         final Checker c = createChecker();
         final String filepath = getPath("InputImport.java");
         assertNotNull(c);
@@ -768,8 +775,8 @@ public class CheckerTest
     public void testPackageHtml()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.REQUIRE_PACKAGE_HTML_PROP, true);
-        mConfig.setJavadocScope(Scope.PRIVATE);
+        mProps.setProperty(Defn.REQUIRE_PACKAGE_HTML_PROP, "true");
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.PRIVATE.getName());
         final Checker c = createChecker();
         final String packageHtmlPath = getPath("package.html");
         final String filepath = getPath("InputScopeAnonInner.java");
@@ -791,10 +798,10 @@ public class CheckerTest
     public void testLCurlyMethodIgnore()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
-        mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP,
-                                           LeftCurlyOption.IGNORE);
-        mConfig.setJavadocScope(Scope.NOTHING);
+        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
+        mProps.setProperty(Defn.LCURLY_METHOD_PROP,
+                           LeftCurlyOption.IGNORE.toString());
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
         final Checker c = createChecker();
         final String filepath = getPath("InputLeftCurlyMethod.java");
         assertNotNull(c);
@@ -806,11 +813,11 @@ public class CheckerTest
     public void testLCurlyMethodNL()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
-        mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP,
-                                           LeftCurlyOption.NL);
-        mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setBooleanProperty(Defn.ALLOW_TABS_PROP, true);
+        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
+        mProps.setProperty(Defn.LCURLY_METHOD_PROP,
+                           LeftCurlyOption.NL.toString());
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
+        mProps.setProperty(Defn.ALLOW_TABS_PROP, "true");
         final Checker c = createChecker();
         final String filepath = getPath("InputLeftCurlyMethod.java");
         assertNotNull(c);
@@ -825,8 +832,8 @@ public class CheckerTest
     public void testLCurlyOther()
         throws Exception
     {
-        mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setRCurly(RightCurlyOption.SAME);
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
+        mProps.setProperty(Defn.RCURLY_PROP, RightCurlyOption.SAME.toString());
         final Checker c = createChecker();
         final String filepath = getPath("InputLeftCurlyOther.java");
         assertNotNull(c);
@@ -851,7 +858,7 @@ public class CheckerTest
     public void testAssertIdentifier()
         throws Exception
     {
-        mConfig.setJavadocScope(Scope.NOTHING);
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
         final Checker c = createChecker();
         final String filepath = getPath("InputAssertIdentifier.java");
         assertNotNull(c);
@@ -863,19 +870,19 @@ public class CheckerTest
     public void testSemantic()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
-        mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.STMT);
-        mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP, BlockOption.STMT);
-        mConfig.setBlockOptionProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.STMT);
-        mConfig.setBooleanProperty(Defn.IGNORE_IMPORTS_PROP, true);
-        mConfig.setBooleanProperty(Defn.IGNORE_LONG_ELL_PROP, false);
-        mConfig.setStringSetProperty(
-            Defn.ILLEGAL_INSTANTIATIONS_PROP,
-            "java.lang.Boolean,"
-            + "com.puppycrawl.tools.checkstyle.InputModifier,"
-            + "java.io.File,"
-            + "java.awt.Color");
+        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
+        mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.STMT.toString());
+        mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.STMT.toString());
+        mProps.setProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.STMT.toString());
+        mProps.setProperty(Defn.IGNORE_IMPORTS_PROP, "true");
+        mProps.setProperty(Defn.IGNORE_LONG_ELL_PROP, "false");
+        mProps.setProperty(
+                Defn.ILLEGAL_INSTANTIATIONS_PROP,
+                "java.lang.Boolean,"
+                + "com.puppycrawl.tools.checkstyle.InputModifier,"
+                + "java.io.File,"
+                + "java.awt.Color");
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");
         assertNotNull(c);
@@ -904,14 +911,14 @@ public class CheckerTest
     public void testSemantic2()
         throws Exception
     {
-        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
-        mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.TEXT);
-        mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP, BlockOption.TEXT);
-        mConfig.setBlockOptionProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.TEXT);
-        mConfig.setBooleanProperty(Defn.IGNORE_IMPORTS_PROP, true);
-        mConfig.setBooleanProperty(Defn.IGNORE_LONG_ELL_PROP, true);
-        mConfig.setStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP, "");
+        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
+        mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.TEXT.toString());
+        mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.TEXT.toString());
+        mProps.setProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.TEXT.toString());
+        mProps.setProperty(Defn.IGNORE_IMPORTS_PROP, "true");
+        mProps.setProperty(Defn.IGNORE_LONG_ELL_PROP, "true");
+        mProps.setProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP, "");
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");
         assertNotNull(c);
@@ -928,8 +935,8 @@ public class CheckerTest
     public void testOpWrapOn()
         throws Exception
     {
-        mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setWrapOpOption(WrapOpOption.NL);
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
+        mProps.setProperty(Defn.WRAP_OP_PROP, WrapOpOption.NL.toString());
         final Checker c = createChecker();
         final String filepath = getPath("InputOpWrap.java");
         assertNotNull(c);
@@ -944,8 +951,8 @@ public class CheckerTest
     public void testOpWrapOff()
         throws Exception
     {
-        mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setWrapOpOption(WrapOpOption.IGNORE);
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
+        mProps.setProperty(Defn.WRAP_OP_PROP, WrapOpOption.IGNORE.toString());
         final Checker c = createChecker();
         final String filepath = getPath("InputOpWrap.java");
         assertNotNull(c);
@@ -957,8 +964,8 @@ public class CheckerTest
     public void testNoAuthor()
         throws Exception
     {
-        mConfig.setWrapOpOption(WrapOpOption.NL);
-        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, false);
+        mProps.setProperty(Defn.WRAP_OP_PROP, WrapOpOption.NL.toString());
+        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, "false");
         final Checker c = createChecker();
         final String filepath = getPath("InputJavadoc.java");
         assertNotNull(c);
@@ -971,9 +978,9 @@ public class CheckerTest
     public void testNoVersion()
         throws Exception
     {
-        mConfig.setWrapOpOption(WrapOpOption.NL);
-        mConfig.setBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP, true);
-        mConfig.setBooleanProperty(Defn.REQUIRE_VERSION_PROP, true);
+        mProps.setProperty(Defn.WRAP_OP_PROP, WrapOpOption.NL.toString());
+        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, "true");
+        mProps.setProperty(Defn.REQUIRE_VERSION_PROP, "true");
         final Checker c = createChecker();
         final String filepath = getPath("InputJavadoc.java");
         assertNotNull(c);
