@@ -138,8 +138,8 @@ public final class JUnitTestCaseCheck extends Check
             log(aAST, "junit.method.static", aExpectedName);
         }
 
-        checkReturnValue(aAST, TEAR_DOWN_METHOD_NAME);
-        checkParameters(aAST, TEAR_DOWN_METHOD_NAME);
+        checkReturnValue(aAST, aActualName);
+        checkParameters(aAST, aActualName);
     }
 
     /**

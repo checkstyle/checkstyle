@@ -28,4 +28,5 @@ class BadTest3 extends TestCase
     public void setUp(int i) {} // too many args
     public void tear_down() {}  // correct (unchecked)
     public Test suite() { return new TestSuite(""); } // non-static
+    public void tearDown(int i) {} // too many args
 }
