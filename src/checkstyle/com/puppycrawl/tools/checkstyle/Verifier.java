@@ -284,6 +284,7 @@ class Verifier
     {
         if (!mConfig.getTypeRegexp().match(aType.getText())) {
             log(aType.getLineNo(),
+                aType.getColumnNo(),
                 "type name '" + aType.getText() +
                 "' must match pattern '" + mConfig.getTypePat() + "'.");
         }
@@ -633,12 +634,16 @@ class Verifier
         if ((mConfig.getRCurly() == RightCurlyOption.SAME)
             && (aBrace.getLineNo() != aStartLine))
         {
-            log(aBrace.getLineNo(), "'}' should be on the same line.");
+            log(aBrace.getLineNo(),
+                aBrace.getColumnNo(),
+                "'}' should be on the same line.");
         }
         else if ((mConfig.getRCurly() == RightCurlyOption.ALONE)
                    && (aBrace.getLineNo() == aStartLine))
         {
-            log(aBrace.getLineNo(), "'}' should be alone on a line.");
+            log(aBrace.getLineNo(),
+                aBrace.getColumnNo(),
+                "'}' should be alone on a line.");
         }
     }
 
@@ -1336,14 +1341,18 @@ class Verifier
         }
         else if (aOption == LeftCurlyOption.NL) {
             if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                log(aBrace.getLineNo(), "'{' should be on a new line.");
+                log(aBrace.getLineNo(),
+                    aBrace.getColumnNo(),
+                    "'{' should be on a new line.");
             }
         }
         else if (aOption == LeftCurlyOption.EOL) {
             if (Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)
                 && ((prevLineLen + 2) <= mConfig.getMaxLineLength()))
             {
-                log(aBrace.getLineNo(), "'{' should be on the previous line.");
+                log(aBrace.getLineNo(),
+                    aBrace.getColumnNo(),
+                    "'{' should be on the previous line.");
             }
         }
         else if (aOption == LeftCurlyOption.NLOW) {
@@ -1352,15 +1361,20 @@ class Verifier
             }
             else if ((aStartLine + 1) == aBrace.getLineNo()) {
                 if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                    log(aBrace.getLineNo(), "'{' should be on a new line.");
+                    log(aBrace.getLineNo(),
+                        aBrace.getColumnNo(),
+                        "'{' should be on a new line.");
                 }
                 else if ((prevLineLen + 2) <= mConfig.getMaxLineLength()) {
                     log(aBrace.getLineNo(),
+                        aBrace.getColumnNo(),
                         "'{' should be on the previous line.");
                 }
             }
             else if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                log(aBrace.getLineNo(), "'{' should be on a new line.");
+                log(aBrace.getLineNo(),
+                    aBrace.getColumnNo(),
+                    "'{' should be on a new line.");
             }
         }
     }
