@@ -2,6 +2,8 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporterTest;
 import com.puppycrawl.tools.checkstyle.api.DetailASTTest;
+import com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidInlineConditionalsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.ArrayTrailingCommaCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.DoubleCheckedLockingCheckTest;
@@ -87,6 +89,7 @@ public class AllTests {
         //$JUnit-BEGIN$
         suite.addTest(new TestSuite(DetailASTTest.class));
         suite.addTest(new TestSuite(AbstractViolationReporterTest.class));
+        suite.addTest(new TestSuite(AnonInnerLengthCheckTest.class));
         suite.addTest(new TestSuite(ArrayTypeStyleCheckTest.class));
         suite.addTest(new TestSuite(AvoidInlineConditionalsCheckTest.class));
         suite.addTest(new TestSuite(AvoidNestedBlocksCheckTest.class));
