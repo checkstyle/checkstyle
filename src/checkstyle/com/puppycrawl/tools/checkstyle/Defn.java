@@ -19,12 +19,12 @@
 package com.puppycrawl.tools.checkstyle;
 
 /**
- * Contains definitions common to the package.
+ * Contains constant definitions common to the package.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
-public interface Defn
+public final class Defn
 {
-    // TODO: Change to a class - follow the advice of Bloch.
     /** name of resource bundle for Checkstyle */
-    String CHECKSTYLE_BUNDLE = "com.puppycrawl.tools.checkstyle.messages";
+    public static final String CHECKSTYLE_BUNDLE =
+            "com.puppycrawl.tools.checkstyle.messages";
 }
