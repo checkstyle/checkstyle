@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 import java.lang.reflect.Field;
 
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava14TokenTypes;
@@ -2735,5 +2736,22 @@ public final class TokenTypes
             throw new IllegalArgumentException("given name " + aName);
         }
         return id.intValue();
+    }
+
+    /**
+     * Returns the short description of a token for a given name.
+     * @param aName the name of the token ID to get
+     * @return a short description
+     */
+    public static String getShortDescription(String aName)
+    {
+        if (!TOKEN_NAME_TO_VALUE.containsKey(aName)) {
+            throw new IllegalArgumentException("given name " + aName);
+        }
+
+        final String tokentypes =
+            "com.puppycrawl.tools.checkstyle.api.tokentypes";
+        ResourceBundle bundle = ResourceBundle.getBundle(tokentypes);
+        return bundle.getString(aName);
     }
 }

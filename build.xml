@@ -16,6 +16,7 @@
   <property name="cli.jar" value="lib/commons-cli.jar" />
   <property name="logging.jar" value="lib/commons-logging.jar" />
   <property name="clover.lib" location="/apps/clover-1.1.1/lib"/>
+  <property name="tools.jar" value="${java.home}/../lib/tools.jar" />
 
   <property name="checkstyle.dir"
             value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
@@ -34,6 +35,7 @@
     <pathelement location="${beanutils.jar}" />
     <pathelement location="${logging.jar}" />
     <pathelement location="${ant.jar}" />
+    <pathelement location="${tools.jar}" />
   </path>
 
   <path id="run.classpath">
@@ -158,6 +160,14 @@
       <mapper type="glob" from="*messages.properties" to="*messages_en.properties"/>
     </copy>
 
+    <javadoc sourcefiles="src/checkstyle/com/puppycrawl/tools/checkstyle/api/TokenTypes.java"
+             classpathref="javadoc.classpath"
+             failonerror="yes">
+      <doclet name="com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet"
+              path="target/checkstyle">
+        <param name="-destfile" value="${basedir}/target/checkstyle/com/puppycrawl/tools/checkstyle/api/tokentypes.properties"/>
+      </doclet>
+    </javadoc>
   </target>
 
   <target name="compile.testinputs" description="Compile test inputs">
