@@ -28,8 +28,11 @@ public class InputArrayTypeStyle
     public class Test
     {
         public Test[]
+            variable;
+
+        public Test[]
             getTests()
-        {
+        { // we shouldn't check methods because there is no alternatives.
             return null;
         }
     }
