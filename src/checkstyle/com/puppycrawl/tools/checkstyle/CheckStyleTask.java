@@ -276,8 +276,10 @@ public class CheckStyleTask
 
         // Load the properties file if specified
         if (mPropertiesFile != null) {
+            FileInputStream inStream = null;
             try {
-                retVal.load(new FileInputStream(mPropertiesFile));
+                inStream = new FileInputStream(mPropertiesFile);
+                retVal.load(inStream);
             }
             catch (FileNotFoundException e) {
                 throw new BuildException(
@@ -288,6 +290,19 @@ public class CheckStyleTask
                 throw new BuildException(
                     "Error loading Properties file '" + mPropertiesFile + "'",
                     e, getLocation());
+            }
+            finally {
+                try {
+                    if (inStream != null) {
+                        inStream.close();
+                    }
+                }
+                catch (IOException e) {
+                    throw new BuildException(
+                        "Error closing Properties file '"
+                        + mPropertiesFile + "'",
+                        e, getLocation());
+                }
             }
         }
 
