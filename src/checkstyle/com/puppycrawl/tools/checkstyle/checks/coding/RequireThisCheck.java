@@ -28,8 +28,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- * <p>Checks that code doesn't rely on the &quot;this.&quot; default,
- * i.e. references to instance variables and methods of the present
+ * <p>Checks that code doesn't rely on the &quot;this&quot; default.
+ * That is references to instance variables and methods of the present
  * object are explicitly of the form &quot;this.varName&quot; or
  * &quot;this.methodName(args)&quot;.
  *</p>
