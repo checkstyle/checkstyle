@@ -50,6 +50,16 @@ class Verifier
     private static final RE MATCH_JAVADOC_ARG = createRE(MATCH_JAVADOC_ARG_PAT);
 
    /**
+    * the pattern to match a single line comment containing only the comment
+    * itself -- no code.
+    **/
+    private static final String MATCH_SINGLELINE_COMMENT_PAT
+      = "^\\s*//.*$";
+   /** compiled regexp to match a single-line comment line **/
+    private static final RE MATCH_SINGLELINE_COMMENT =
+      createRE(MATCH_SINGLELINE_COMMENT_PAT);
+
+   /**
     * the pattern to match the first line of a multi-line Javadoc
     * tag that takes an argument. Javadoc with no arguments isn't
     * allowed to go over multiple lines.
@@ -1157,7 +1167,7 @@ class Verifier
         int lineNo = aLineNo - 1;
 
         // skip blank lines
-        while ((lineNo > 0) && lineIsBlank(lineNo)) {
+        while ((lineNo > 0) && (lineIsBlank(lineNo) || lineIsComment(lineNo))) {
             lineNo--;
         }
 
@@ -1173,6 +1183,17 @@ class Verifier
     {
         // possible improvement: avoid garbage creation in trim()
         return "".equals(mLines[aLineNo].trim());
+    }
+
+    /**
+     * Checks if the specified line is a single-line comment without code.
+     * @param aLineNo  the line number to check
+     * @return if the specified line consists of only a single line comment
+     *         without code.
+     **/
+    private boolean lineIsComment(int aLineNo)
+    {
+      return MATCH_SINGLELINE_COMMENT.match(mLines[aLineNo]);
     }
 
     /**
