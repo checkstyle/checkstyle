@@ -10,7 +10,7 @@
 <h1><a name="checkstyle">checkstyle Command Line</a></h1>
 <h2>Description</h2>
 
-<p>This document describes how to run checkstyle using the command line tool. The latest version of checkstyle can be found at 
+<p>This document describes how to run checkstyle using the command line tool. The latest version of checkstyle can be found at
 <a href="http://checkstyle.sourceforge.net">http://checkstyle.sourceforge.net</a>.
 This command line tool is included in the checkstyle distribution.</p>
 
@@ -48,27 +48,31 @@ This command line tool is included in the checkstyle distribution.</p>
     <td valign="top"><b>Description</b></td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.lcurly.type</td> 
+    <td valign="top">checkstyle.lcurly.type</td>
     <td valign="top">Specifies the policy of where to put the left brace <span class=code>'{'</span> for type declarations. The legal values are defined <a href="engine.html#lcurlyopt">here</a>. Defaults to <span class="default">&quot;eol&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.lcurly.method</td> 
+    <td valign="top">checkstyle.lcurly.method</td>
     <td valign="top">Specifies the policy of where to put the left brace <span class=code>'{'</span> for method declarations. The legal values are defined <a href="engine.html#lcurlyopt">here</a>. Defaults to <span class="default">&quot;eol&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.lcurly.other</td> 
+    <td valign="top">checkstyle.lcurly.other</td>
     <td valign="top">Specifies the policy of where to put the left brace <span class=code>'{'</span> for other declarations. The keywords covered is defined <a href="engine.html#lcurlyother">here</a>. The legal values are defined <a href="engine.html#lcurlyopt">here</a>. Defaults to <span class="default">&quot;eol&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.rcurly</td> 
+    <td valign="top">checkstyle.rcurly</td>
     <td valign="top">Specifies the policy of where to put the right brace <span class=code>'}'</span>. The keywords covered is defined <a href="engine.html#rcurly">here</a>. The legal values are defined <a href="engine.html#rcurlyopt">here</a>. Defaults to <span class="default">&quot;same&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.allow.protected</td> 
+    <td valign="top">checkstyle.paren.pad</td> 
+    <td valign="top">Specifies the policy of how to pad parenthesises. The legal values are defined <a href="engine.html#parenpad">here</a>. Defaults to <span class="default">&quot;nospace&quot;</span>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.allow.protected</td>
     <td valign="top">Indicates whether to allow protected data. Defaults to <span class="default">&quot;no&quot;</span>.</td>
  </tr>
   <tr>
-    <td valign="top">checkstyle.allow.tabs</td> 
+    <td valign="top">checkstyle.allow.tabs</td>
     <td valign="top">Indicates whether to allow tabs. Defaults to <span class="default">&quot;no&quot;</span>.</td>
  </tr>
   <tr>
@@ -76,55 +80,55 @@ This command line tool is included in the checkstyle distribution.</p>
     <td valign="top">Indicates whether to allow package visible data. Defaults to <span class="default">&quot;no&quot;</span>.</td>
  </tr>
   <tr>
-     <td valign="top">checkstyle.allow.noauthor</td> 
+     <td valign="top">checkstyle.allow.noauthor</td>
     <td valign="top">Indicates whether to allow no <span class="default">@author</span> tag to be defined for class and interface Javadoc comments. Defaults to <span class="default">&quot;no&quot;</span>.</td>
   </tr>
  <tr>
-    <td valign="top">checkstyle.maxlinelen</td> 
+    <td valign="top">checkstyle.maxlinelen</td>
     <td valign="top">Specifies the maximum line length. Default value is defined <a href="engine.html#length">here</a>.</td>
   </tr>
  <tr>
-    <td valign="top">checkstyle.ignore.maxlinelen</td> 
+    <td valign="top">checkstyle.ignore.maxlinelen</td>
     <td valign="top">Specifies a regular expression for lines to ignore in maximum line length checks. Defaults to <span class="default">&quot;^$&quot;</span>.</td>
   </tr>
  <tr>
-    <td valign="top">checkstyle.ignore.importlength</td> 
+    <td valign="top">checkstyle.ignore.importlength</td>
     <td valign="top">Specifies whether to ignore the maximum line length for <span class="code">import</span> statements. Defaults to <span class="default">&quot;no&quot;</span>.</td>
   </tr>
  <tr>
-    <td valign="top">checkstyle.maxmethodlen</td> 
+    <td valign="top">checkstyle.maxmethodlen</td>
     <td valign="top">Specifies the maximum method length. Default value is defined <a href="engine.html#methodLength">here</a>.</td>
   </tr>
  <tr>
-    <td valign="top">checkstyle.maxconstructorlen</td> 
+    <td valign="top">checkstyle.maxconstructorlen</td>
     <td valign="top">Specifies the maximum constructor length. Default value is defined <a href="engine.html#constructorLength">here</a>.</td>
   </tr>
  <tr>
-    <td valign="top">checkstyle.maxfilelen</td> 
+    <td valign="top">checkstyle.maxfilelen</td>
     <td valign="top">Specifies the maximum file length. Default value is defined <a href="engine.html#fileLength">here</a>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.pattern.member</td> 
+    <td valign="top">checkstyle.pattern.member</td>
     <td valign="top">Specifies the regular expression to match against member variables. Default value is defined <a href="engine.html#varformat">here</a>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.pattern.publicmember</td> 
+    <td valign="top">checkstyle.pattern.publicmember</td>
     <td valign="top">Specifies the regular expression to match against public member variables. Default value is defined <a href="engine.html#fieldformat">here</a>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.pattern.parameter</td> 
+    <td valign="top">checkstyle.pattern.parameter</td>
     <td valign="top">Specifies the regular expression to match against parameters. Default value is defined <a href="engine.html#paramformat">here</a>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.pattern.const</td> 
+    <td valign="top">checkstyle.pattern.const</td>
     <td valign="top">Specifies the regular expression to match against static/final variables. Default value is defined <a href="engine.html#varformat">here</a>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.pattern.static</td> 
+    <td valign="top">checkstyle.pattern.static</td>
     <td valign="top">Specifies the regular expression to match against static variables. Default value is defined <a href="engine.html#varformat">here</a>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.pattern.type</td> 
+    <td valign="top">checkstyle.pattern.type</td>
     <td valign="top">Specifies the regular expression to match against type names. Default value is defined <a href="engine.html#typeformat">here</a>.</td>
   </tr>
   <tr>
@@ -136,19 +140,19 @@ This command line tool is included in the checkstyle distribution.</p>
     <td valign="top">Specifies the regular expression to match against local variable names. Default value is defined <a href="engine.html#localvarformat">here</a>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.header.file</td> 
+    <td valign="top">checkstyle.header.file</td>
     <td valign="top">Specifies the file containing the header lines. Default is to not check.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.header.regexp</td> 
+    <td valign="top">checkstyle.header.regexp</td>
     <td valign="top">Specifies whether to interpret each line in the checkstyle.header.file as a regular expression. Default is <span class="default">&quot;no&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.header.ignoreline</td> 
+    <td valign="top">checkstyle.header.ignoreline</td>
     <td valign="top">Specifies a comma separated list of the lines in the header to ignore when comparing. Default is to not ignore any line.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.javadoc.scope</td> 
+    <td valign="top">checkstyle.javadoc.scope</td>
     <td valign="top">Specifies the visibility scope where javadoc comments are checked. Valid values are <span class="default">&quot;nothing&quot;</span>, <span class="default">&quot;public&quot;</span>, <span class="default">&quot;protected&quot;</span>, <span class="default">&quot;package&quot;</span>, <span class="default">&quot;private&quot;</span> and <span class="default">&quot;anoninner&quot;</span>. Defaults to <span class="default">&quot;private&quot;</span>.</td>
   </tr>
   <tr>
@@ -156,35 +160,31 @@ This command line tool is included in the checkstyle distribution.</p>
     <td valign="top">Specifies whether to require that package documentation is available. Defaults to <span class="default">&quot;no&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.ignore.imports</td> 
+    <td valign="top">checkstyle.ignore.imports</td>
     <td valign="top">Specifies whether to ignore checking import statements. Defaults to <span class="default">&quot;no&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.illegal.imports</td> 
+    <td valign="top">checkstyle.illegal.imports</td>
     <td valign="top">Comma separated list of package prefixes that are not allowed in import statements. Defaults to <span class="default">&quot;sun&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.ignore.whitespace</td> 
+    <td valign="top">checkstyle.ignore.whitespace</td>
     <td valign="top">Specifies whether to ignore checking whitespace. Defaults to <span class="default">&quot;no&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.ignore.whitespace.cast</td> 
+    <td valign="top">checkstyle.ignore.whitespace.cast</td>
     <td valign="top">Specifies whether to ignore checking for whitespace after a cast. Defaults to <span class="default">&quot;no&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.ignore.whitespace.paren</td> 
-    <td valign="top">Specifies whether to ignore checking for whitespace padding around parenthesis. Defaults to <span class="default">&quot;no&quot;</span>.</td>
-  </tr>
-  <tr>
-    <td valign="top">checkstyle.ignore.braces</td> 
+    <td valign="top">checkstyle.ignore.braces</td>
     <td valign="top">Specifies whether to ignore checking braces. Defaults to <span class="default">&quot;no&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.ignore.public.in.interface</td> 
+    <td valign="top">checkstyle.ignore.public.in.interface</td>
     <td valign="top">Specifies whether to ignore the public keyword in interface definitions. Defaults to <span class="default">&quot;no&quot;</span>.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.cache.file</td> 
+    <td valign="top">checkstyle.cache.file</td>
     <td valign="top">Specifies the name of a file that can be used to cache details of files that pass checkstyle. This can signicantly increase the speed of checkstyle on successive runs.</td>
   </tr>
 </table>

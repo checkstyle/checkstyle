@@ -627,7 +627,6 @@ class Verifier
      */
     void verifyRCurly(MyCommonAST aBrace, int aStartLine)
     {
-        final RightCurlyOption option = mConfig.getRCurly();
         if ((mConfig.getRCurly() == RightCurlyOption.SAME)
             && (aBrace.getLineNo() != aStartLine))
         {
@@ -647,7 +646,9 @@ class Verifier
      */
     void verifyLParen(int aLineNo, int aColNo)
     {
-        if (mConfig.isIgnoreWhitespace() || mConfig.isIgnoreParenWhitespace()) {
+        if (mConfig.isIgnoreWhitespace()
+            || (PadOption.IGNORE == mConfig.getParenPadOption()))
+        {
             return;
         }
 
@@ -667,7 +668,9 @@ class Verifier
      */
     void verifyRParen(int aLineNo, int aColNo)
     {
-        if (mConfig.isIgnoreWhitespace() || mConfig.isIgnoreParenWhitespace()) {
+        if (mConfig.isIgnoreWhitespace()
+            || (PadOption.IGNORE == mConfig.getParenPadOption()))
+        {
             return;
         }
 

@@ -8,8 +8,6 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.net.URL;
-import java.util.Properties;
 import junit.framework.TestCase;
 import org.apache.regexp.RESyntaxException;
 
@@ -88,7 +86,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setIgnoreCastWhitespace(false);
-        mConfig.setIgnoreParenWhitespace(false);
+        mConfig.setParenPadOption(PadOption.NOSPACE);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -158,7 +156,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setIgnoreCastWhitespace(true);
-        mConfig.setIgnoreParenWhitespace(true);
+        mConfig.setParenPadOption(PadOption.IGNORE);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);

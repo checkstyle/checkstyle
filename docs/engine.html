@@ -284,7 +284,7 @@
 <p>Container Managed Persistence EJBs require (in the EJB 1.1 specification) that managed fields are declared <span class="code">public</span>. This will cause checkstyle to complain that the fields should be declared <span class="code">private</span>. Hence checkstyle supports ignoring <span class="code">public</span> that match a specified regular expression. The default is <span class="code">^f[A-Z][a-zA-Z0-9]*$</span>.</p>
 </div>
 
-<h3>Whitespace</h3>
+<h3>White space</h3>
 <p>Checks for the following use of white space:</p>
 <ul>
   <li>Binary operators are separated from operands by spaces. For example <span class="code">x = y + 1;</span></li>
@@ -292,10 +292,27 @@
   <li>The keywords <span class="code">if/for/while/do/catch/synchronized/return</span> are surrounded by spaces.</li>
   <li>Casts and commas (',') are followed by whitespace.</li>
   <li>Periods ('.') are not surrounded by whitespace.</li>
-  <li>Parenthesis are not padded with whitespace.</li>
+  <li>Correct padding of parenthesises <span class="code">()</span>'s.</li>
 </ul>
 
 <p>This feature can be turned off.</p>
+
+<p>The options for specifying how to pad parenthesises are:</p>
+<a name="parenPad"></a>
+<table border="1" summary="parenthesises padding options">
+  <tr class="header">
+    <td>Option</td>
+    <td>Definition</td>
+  </tr>
+  <tr>
+    <td><span class="code">ignore</span></td>
+    <td>Ignore the padding.</td>
+  </tr>
+  <tr>
+    <td><span class="code">nospace</span></td>
+    <td>Do not pad. For example, <span class="code">method(a, b);</span></td>
+  </tr>
+</table>
 
 
 <h3>Missing Braces</h3>

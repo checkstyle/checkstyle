@@ -147,8 +147,6 @@ public class Configuration
     private boolean mIgnoreWhitespace = false;
     /** whether to ignore cast whitespace **/
     private boolean mIgnoreCastWhitespace = false;
-    /** whether to ignore paren whitespace **/
-    private boolean mIgnoreParenWhitespace = false;
     /** whether to ignore braces **/
     private boolean mIgnoreBraces = false;
     /** whether to ignore 'public' keyword in interface definitions **/
@@ -177,6 +175,10 @@ public class Configuration
     private LeftCurlyOption mLCurlyOther = LeftCurlyOption.EOL;
     /** where to place right curlies  **/
     private RightCurlyOption mRCurly = RightCurlyOption.SAME;
+
+    /** how to pad parenthesis **/
+    private PadOption mParenPadOption = PadOption.NOSPACE;
+
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -241,10 +243,6 @@ public class Configuration
         setIgnoreWhitespace(getBooleanProperty(aProps,
                                                IGNORE_WHITESPACE_PROP,
                                                mIgnoreWhitespace));
-        setIgnoreParenWhitespace(
-            getBooleanProperty(aProps,
-                               IGNORE_PAREN_WHITESPACE_PROP,
-                               mIgnoreParenWhitespace));
         setIgnoreCastWhitespace(getBooleanProperty(aProps,
                                                    IGNORE_CAST_WHITESPACE_PROP,
                                                    mIgnoreCastWhitespace));
@@ -276,6 +274,10 @@ public class Configuration
                            LeftCurlyOption.EOL, aLog));
         setRCurly(getRightCurlyOptionProperty(
                       aProps, RCURLY_PROP, RightCurlyOption.SAME, aLog));
+        setParenPadOption(getPadOptionProperty(aProps,
+                                               PAREN_PAD_PROP,
+                                               PadOption.NOSPACE,
+                                               aLog));
     }
 
     /**
@@ -533,12 +535,6 @@ public class Configuration
     public boolean isIgnoreCastWhitespace()
     {
         return mIgnoreCastWhitespace;
-    }
-
-    /** @return whether to ignore checks for whitespace around parenthesis **/
-    public boolean isIgnoreParenWhitespace()
-    {
-        return mIgnoreParenWhitespace;
     }
 
     /** @return whether to ignore checks for braces **/
@@ -829,12 +825,6 @@ public class Configuration
         mIgnoreCastWhitespace = aTo;
     }
 
-    /** @param aTo whether to ignore whitespace around parenthesis */
-    public void setIgnoreParenWhitespace(boolean aTo)
-    {
-        mIgnoreParenWhitespace = aTo;
-    }
-
     /**
      * @param aTo whether to ignore checks for braces
      */
@@ -965,6 +955,17 @@ public class Configuration
         mRCurly = aTo;
     }
 
+    /** @return the parenthesis padding option **/
+    public PadOption getParenPadOption()
+    {
+        return mParenPadOption;
+    }
+
+    /** @param aTo set the parenthesis option **/
+    public void setParenPadOption(PadOption aTo)
+    {
+        mParenPadOption = aTo;
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     // Private methods
@@ -1065,6 +1066,34 @@ public class Configuration
         final String strRep = aProps.getProperty(aName);
         if (strRep != null) {
             retVal = RightCurlyOption.decode(strRep);
+            if (retVal == null) {
+                aLog.println("Unable to parse " + aName +
+                             " property with value " + strRep +
+                             ", defaulting to " + aDefault + ".");
+            }
+        }
+        return retVal;
+    }
+
+    /**
+     * @param aProps the properties set to use
+     * @param aLog where to log errors to
+     * @param aName the name of the property to parse
+     * @param aDefault the default value to use.
+     *
+     * @return the value of a PadOption property. If the property is not
+     *    defined or cannot be decoded, then a default value is returned.
+     */
+    private static PadOption getPadOptionProperty(
+        Properties aProps,
+        String aName,
+        PadOption aDefault,
+        PrintStream aLog)
+    {
+        PadOption retVal = aDefault;
+        final String strRep = aProps.getProperty(aName);
+        if (strRep != null) {
+            retVal = PadOption.decode(strRep);
             if (retVal == null) {
                 aLog.println("Unable to parse " + aName +
                              " property with value " + strRep +

@@ -181,7 +181,8 @@
                     lcurlyMethod="nl"
                     lcurlyOther="nlow"
                     lcurlyType="nl"
-                    rcurly="alone">
+                    rcurly="alone"
+                    parenPad="nospace">
             <fileset dir="src/checkstyle"
                      includes="**/*.java"
                      excludes="**/Generated*.java"/>
