@@ -49,12 +49,12 @@ public class AbstractMethodCheck
      * Checks method requirements:
      * <ul>
      * <li>The access control modifier must be <code>public</code>.</li>
-     * <li>The method modifier cannot be <code>final</code>
-     * or <code>static</code>.</li>
+     * <li>The method modifier cannot be <code>final</code>.
      * </ul>
      * @param aAST METHOD_DEF node for method definition to check.
+     * @param aAllowFinal if false, the method cannot be final.
      */
-    protected void checkMethod(DetailAST aAST)
+    protected void checkMethod(DetailAST aAST, boolean aAllowFinal)
     {
         final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
         final String nameMessage = "Method " + nameAST.getText();
@@ -62,7 +62,7 @@ public class AbstractMethodCheck
             log(nameAST.getLineNo(), nameAST.getColumnNo(),
                 "nonpublic.bean", nameMessage);
         }
-        if (Utils.isFinal(aAST)) {
+        if (!aAllowFinal && Utils.isFinal(aAST)) {
             log(nameAST.getLineNo(), nameAST.getColumnNo(),
                 "illegalmodifier.bean",
                 new Object[] {nameMessage, "final"});

@@ -29,6 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>The method modifier cannot be <code>final</code>
  * or <code>static</code>.</li>
  * </ul>
+ * Reference: Enterprise JavaBeansTM Specification,Version 2.1, sections 10.6.4
+ * and 12.2.3
  * @author Rick Giles
  */
 public class EntityBeanEjbCreateCheck
@@ -42,7 +44,9 @@ public class EntityBeanEjbCreateCheck
         if (name.startsWith("ejbCreate")
             && Utils.implementsEntityBean(aAST))
         {
-            checkMethod(aAST);
+            // cannot be final
+            checkMethod(aAST, false);
+
             if (Utils.isVoid(aAST)) {
                 log(nameAST.getLineNo(), nameAST.getColumnNo(),
                     "voidmethod.bean", name);

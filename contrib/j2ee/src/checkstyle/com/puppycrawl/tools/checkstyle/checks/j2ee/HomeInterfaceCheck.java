@@ -22,6 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * Checks the create and find methods of a home interface.
+ * Reference: Enterprise JavaBeansTM Specification,Version 2.1, section 9.5.2.
  * @author Rick Giles
  */
 public class HomeInterfaceCheck

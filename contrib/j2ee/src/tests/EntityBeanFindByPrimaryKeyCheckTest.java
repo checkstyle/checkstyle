@@ -12,6 +12,7 @@ public class EntityBeanFindByPrimaryKeyCheckTest
             createCheckConfig(EntityBeanFindByPrimaryKeyCheck.class);
         final String[] expected = {
             "13:14: Entity bean must have method ejbFindByPrimaryKey.",
+            "75:16: Entity bean must have method ejbFindByPrimaryKey.",
             "83:13: Entity bean must have method ejbFindByPrimaryKey.",
         };
         verify(checkConfig, getPath("InputEntityBean.java"), expected);

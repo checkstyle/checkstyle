@@ -11,7 +11,6 @@ public class EntityBeanEjbHomeCheckTest extends BaseCheckTestCase
             createCheckConfig(EntityBeanEjbHomeCheck.class);
         final String[] expected = {
             "104:32: Method ejbHomeMethod must be public.",
-            "104:32: Method ejbHomeMethod must not have modifier final.",
             "104:32: Method ejbHomeMethod must not have modifier static.",
             "104:32: Method ejbHomeMethod must not throw java.rmi.RemoteException.",
         };

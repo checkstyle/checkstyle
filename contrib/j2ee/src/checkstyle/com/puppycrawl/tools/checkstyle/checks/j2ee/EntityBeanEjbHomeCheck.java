@@ -25,10 +25,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that a EntityBean ejbHome method satisfies these requirements:
  * <ul>
  * <li>The access control modifier must be <code>public</code>.</li>
- * <li>The method modifier cannot be <code>final</code>
- * or <code>static</code>.</li>
- * <li>The method must notthrow <code>java.rmi.RemoteException</code>.</li>
+ * <li>The method modifier cannot be <code>static</code>.</li>
+ * <li>The method must not throw <code>java.rmi.RemoteException</code>.</li>
  * </ul>
+ * Reference: Enterprise JavaBeansTM Specification,Version 2.1, sections 10.6.6
+ * and 12.2.6
  * @author Rick Giles
  */
 public class EntityBeanEjbHomeCheck
@@ -42,7 +43,8 @@ public class EntityBeanEjbHomeCheck
         if (name.startsWith("ejbHome")
             && Utils.implementsEntityBean(aAST))
         {
-            checkMethod(aAST);
+            // allow final
+            checkMethod(aAST, true);
             if (Utils.hasThrows(aAST, "java.rmi.RemoteException")) {
                 log(nameAST.getLineNo(), nameAST.getColumnNo(),
                     "illegalthrows.bean",
