@@ -512,20 +512,6 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
-    public void testModifierChecks()
-        throws Exception
-    {
-        final Checker c = createChecker();
-        final String filepath = getPath("InputModifier.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":14:10: 'final' modifier out of order with the JLS suggestions.",
-            filepath + ":18:12: 'private' modifier out of order with the JLS suggestions.",
-            filepath + ":24:14: 'private' modifier out of order with the JLS suggestions.",
-        };
-        verify(c, filepath, expected);
-    }
-
     public void testStrictJavadoc()
         throws Exception
     {

@@ -61,7 +61,8 @@ public class ModifierCheck
         if (!mods.isEmpty()) {
             final DetailAST error = checkOrderSuggestedByJLS(mods);
             if (error != null) {
-                log(error.getLineNo(), "OUT OF ORDER " + error.getText());
+                log(error.getLineNo(), error.getColumnNo(),
+                        "mod.order", error.getText());
             }
         }
     }
