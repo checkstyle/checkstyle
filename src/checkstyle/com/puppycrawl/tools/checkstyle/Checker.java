@@ -224,21 +224,21 @@ public class Checker
         }
         catch (FileNotFoundException fnfe) {
             errors = new LocalizedMessage[] {
-                new LocalizedMessage(0, "general.fileNotFound", null)};
+                new LocalizedMessage(0, "general.fileNotFound", null, null)};
         }
         catch (IOException ioe) {
             errors = new LocalizedMessage[] {
-                new LocalizedMessage(0, "general.exception",
+                new LocalizedMessage(0, "general.exception", null,
                                      new String[] {ioe.getMessage()})};
         }
         catch (RecognitionException re) {
             errors = new LocalizedMessage[] {
-                new LocalizedMessage(0, "general.exception",
+                new LocalizedMessage(0, "general.exception", null,
                                      new String[] {re.getMessage()})};
         }
         catch (TokenStreamException te) {
             errors = new LocalizedMessage[] {
-                new LocalizedMessage(0, "general.exception",
+                new LocalizedMessage(0, "general.exception", null,
                                      new String[] {te.getMessage()})};
         }
 
@@ -276,7 +276,7 @@ public class Checker
                 fireFileStarted(docFile);
                 if (!packageDoc.exists()) {
                     final LocalizedMessage error =
-                        new LocalizedMessage(0, "javadoc.packageHtml", null);
+                        new LocalizedMessage(0, "javadoc.packageHtml", null, null);
                     fireErrors(docFile, new LocalizedMessage[]{error});
                     packageHtmlErrors++;
                 }
