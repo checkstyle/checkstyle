@@ -67,9 +67,6 @@ public class CheckStyleTask
     /** the configuration to pass to the checker **/
     private Configuration mConfig = new Configuration();
 
-    /** the properties **/
-    private Properties mProperties = null;
-
     /**
      * holds Runnables that change mConfig just
      * before the Checker is created.
@@ -171,37 +168,19 @@ public class CheckStyleTask
     /** @param aAllowed whether protected data is allowed **/
     public void setAllowProtected(final boolean aAllowed)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setAllowProtected(aAllowed);
-                }
-            });
+        setBooleanFlag(Defn.ALLOW_PROTECTED_PROP, aAllowed);
     }
 
     /** @param aAllowed whether package visible data is allowed **/
     public void setAllowPackage(final boolean aAllowed)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setAllowPackage(aAllowed);
-                }
-            });
+        setBooleanFlag(Defn.ALLOW_PACKAGE_PROP, aAllowed);
     }
 
     /** @param aAllowed whether allow having no author **/
     public void setAllowNoAuthor(final boolean aAllowed)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setAllowNoAuthor(aAllowed);
-                }
-            });
+        setBooleanFlag(Defn.ALLOW_NO_AUTHOR_PROP, aAllowed);
     }
 
     /** @param aLen max allowed line length **/
@@ -504,25 +483,13 @@ public class CheckStyleTask
     /** @param aRequirePackageHtml whether package.html is required **/
     public void setRequirePackageHtml(final boolean aRequirePackageHtml)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setRequirePackageHtml(aRequirePackageHtml);
-                }
-            });
+        setBooleanFlag(Defn.REQUIRE_PACKAGE_HTML_PROP, aRequirePackageHtml);
     }
 
     /** @param aIgnore whether to ignore import statements **/
     public void setIgnoreImports(final boolean aIgnore)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setIgnoreImports(aIgnore);
-                }
-            });
+        setBooleanFlag(Defn.IGNORE_IMPORTS_PROP, aIgnore);
     }
 
     /** @param aPkgPrefixList comma separated list of package prefixes */
@@ -552,73 +519,37 @@ public class CheckStyleTask
     /** @param aIgnore whether to ignore whitespace **/
     public void setIgnoreWhitespace(final boolean aIgnore)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setIgnoreWhitespace(aIgnore);
-                }
-            });
+        setBooleanFlag(Defn.IGNORE_WHITESPACE_PROP, aIgnore);
     }
 
     /** @param aIgnore whether to ignore whitespace after casts **/
     public void setIgnoreCastWhitespace(final boolean aIgnore)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setIgnoreCastWhitespace(aIgnore);
-                }
-            });
+        setBooleanFlag(Defn.IGNORE_CAST_WHITESPACE_PROP, aIgnore);
     }
 
     /** @param aIgnore whether to ignore operator wrapping **/
     public void setIgnoreOpWrap(final boolean aIgnore)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setIgnoreOpWrap(aIgnore);
-                }
-            });
+        setBooleanFlag(Defn.IGNORE_OP_WRAP_PROP, aIgnore);
     }
 
     /** @param aIgnore whether to ignore braces **/
     public void setIgnoreBraces(final boolean aIgnore)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setIgnoreBraces(aIgnore);
-                }
-            });
+        setBooleanFlag(Defn.IGNORE_BRACES_PROP, aIgnore);
     }
 
     /** @param aIgnore whether to ignore long 'L' **/
     public void setIgnoreLongEll(final boolean aIgnore)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setIgnoreLongEll(aIgnore);
-                }
-            });
+        setBooleanFlag(Defn.IGNORE_LONG_ELL_PROP, aIgnore);
     }
 
     /** @param aIgnore whether to ignore 'public' in interfaces **/
     public void setIgnorePublicInInterface(final boolean aIgnore)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setIgnorePublicInInterface(aIgnore);
-                }
-            });
+        setBooleanFlag(Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP, aIgnore);
     }
 
     /** @param aCacheFile the file to cache which files have been checked **/
@@ -1021,4 +952,19 @@ public class CheckStyleTask
         mOptionMemory.clear();
     }
 
+    /**
+     * Set the specified flag.
+     * @param aName name of flag to set
+     * @param aTo the value of the flag
+     */
+    private void setBooleanFlag(final String aName, final boolean aTo)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setBooleanFlag(aName, aTo);
+                }
+            });
+    }
 }

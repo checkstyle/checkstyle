@@ -142,34 +142,12 @@ public class Configuration
     private boolean mAllowTabs = false;
     /** the distance between tab stops **/
     private int mTabWidth = TAB_WIDTH;
-    /** whether to allow protected data **/
-    private boolean mAllowProtected = false;
-    /** whether to allow protected data **/
-    private boolean mAllowPackage = false;
-    /** whether to allow having no author tag **/
-    private boolean mAllowNoAuthor = false;
     /** visibility scope where Javadoc is checked **/
     private Scope mJavadocScope = Scope.PRIVATE;
-    /** whether javadoc package documentation is required */
-    private boolean mRequirePackageHtml = false;
-    /** whether to ignore imports **/
-    private boolean mIgnoreImports = false;
     /** illegal imports **/
     private final HashSet mIllegalImports = new HashSet();
     /** illegal instantiations **/
     private final HashSet mIllegalInstantiations = new HashSet();
-    /** whether to ignore whitespace **/
-    private boolean mIgnoreWhitespace = false;
-    /** whether to ignore cast whitespace **/
-    private boolean mIgnoreCastWhitespace = false;
-    /** whether to ignore op wrapping **/
-    private boolean mIgnoreOpWrap = false;
-    /** whether to ignore braces **/
-    private boolean mIgnoreBraces = false;
-    /** whether to ignore long 'L' **/
-    private boolean mIgnoreLongEll = false;
-    /** whether to ignore 'public' keyword in interface definitions **/
-    private boolean mIgnorePublicInInterface = false;
     /** name of the cache file **/
     private String mCacheFile = null;
     /** whether to ignore max line length of import statements **/
@@ -203,6 +181,9 @@ public class Configuration
 
     /** how to pad parenthesis **/
     private PadOption mParenPadOption = PadOption.NOSPACE;
+
+    /** set of boolean flags **/
+    private final Set mBooleanFlags = new HashSet();
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -246,41 +227,24 @@ public class Configuration
 
         setAllowTabs(getBooleanProperty(aProps, ALLOW_TABS_PROP, mAllowTabs));
         setTabWidth(getIntProperty(aProps, aLog, TAB_WIDTH_PROP, TAB_WIDTH));
-        setAllowProtected(
-            getBooleanProperty(aProps, ALLOW_PROTECTED_PROP, mAllowProtected));
-        setAllowPackage(
-            getBooleanProperty(aProps, ALLOW_PACKAGE_PROP, mAllowPackage));
-        setAllowNoAuthor(
-            getBooleanProperty(aProps, ALLOW_NO_AUTHOR_PROP, mAllowNoAuthor));
+        setBooleanFlag(aProps, ALLOW_PROTECTED_PROP);
+        setBooleanFlag(aProps, ALLOW_PACKAGE_PROP);
+        setBooleanFlag(aProps, ALLOW_NO_AUTHOR_PROP);
         setJavadocScope(
             Scope.getInstance(aProps.getProperty(JAVADOC_CHECKSCOPE_PROP,
                                                  Scope.PRIVATE.getName())));
-        setRequirePackageHtml(getBooleanProperty(aProps,
-                                                 REQUIRE_PACKAGE_HTML_PROP,
-                                                 mRequirePackageHtml));
-        setIgnoreImports(
-            getBooleanProperty(aProps, IGNORE_IMPORTS_PROP, mIgnoreImports));
+        setBooleanFlag(aProps, REQUIRE_PACKAGE_HTML_PROP);
+        setBooleanFlag(aProps, IGNORE_IMPORTS_PROP);
         setIllegalImports(
             aProps.getProperty(ILLEGAL_IMPORTS_PROP, ILLEGAL_IMPORTS));
         setIllegalInstantiations(aProps.getProperty(ILLEGAL_INSTANTIATIONS_PROP,
                                                    ILLEGAL_INSTANTIATIONS));
-        setIgnoreWhitespace(getBooleanProperty(aProps,
-                                               IGNORE_WHITESPACE_PROP,
-                                               mIgnoreWhitespace));
-        setIgnoreCastWhitespace(getBooleanProperty(aProps,
-                                                   IGNORE_CAST_WHITESPACE_PROP,
-                                                   mIgnoreCastWhitespace));
-        setIgnoreOpWrap(getBooleanProperty(aProps,
-                                           IGNORE_OP_WRAP_PROP,
-                                           mIgnoreOpWrap));
-        setIgnoreBraces(getBooleanProperty(aProps,
-                                           IGNORE_BRACES_PROP,
-                                           mIgnoreBraces));
-        setIgnoreLongEll(getBooleanProperty(aProps,
-                                            IGNORE_LONG_ELL_PROP,
-                                            mIgnoreLongEll));
-        setIgnorePublicInInterface(getBooleanProperty(
-            aProps, IGNORE_PUBLIC_IN_INTERFACE_PROP, mIgnorePublicInInterface));
+        setBooleanFlag(aProps, IGNORE_WHITESPACE_PROP);
+        setBooleanFlag(aProps, IGNORE_CAST_WHITESPACE_PROP);
+        setBooleanFlag(aProps, IGNORE_OP_WRAP_PROP);
+        setBooleanFlag(aProps, IGNORE_BRACES_PROP);
+        setBooleanFlag(aProps, IGNORE_LONG_ELL_PROP);
+        setBooleanFlag(aProps, IGNORE_PUBLIC_IN_INTERFACE_PROP);
         setCacheFile(aProps.getProperty(CACHE_FILE_PROP));
         setIgnoreImportLength(getBooleanProperty(
             aProps, IGNORE_IMPORT_LENGTH_PROP, mIgnoreImportLength));
@@ -534,19 +498,19 @@ public class Configuration
     /** @return whether to allow protected data **/
     public boolean isAllowProtected()
     {
-        return mAllowProtected;
+        return isFlagSet(ALLOW_PROTECTED_PROP);
     }
 
     /** @return whether to allow package data **/
     public boolean isAllowPackage()
     {
-        return mAllowPackage;
+        return isFlagSet(ALLOW_PACKAGE_PROP);
     }
 
     /** @return whether to allow having no author tag **/
     public boolean isAllowNoAuthor()
     {
-        return mAllowNoAuthor;
+        return isFlagSet(ALLOW_NO_AUTHOR_PROP);
     }
 
     /** @return visibility scope where Javadoc is checked **/
@@ -558,13 +522,13 @@ public class Configuration
     /** @return whether javadoc package documentation is required */
     public boolean isRequirePackageHtml()
     {
-        return mRequirePackageHtml;
+        return isFlagSet(REQUIRE_PACKAGE_HTML_PROP);
     }
 
     /** @return whether to process imports **/
     public boolean isIgnoreImports()
     {
-        return mIgnoreImports;
+        return isFlagSet(IGNORE_IMPORTS_PROP);
     }
 
     /** @return Set of pkg prefixes that are illegal in import statements */
@@ -594,37 +558,37 @@ public class Configuration
     /** @return whether to ignore checks for whitespace **/
     public boolean isIgnoreWhitespace()
     {
-        return mIgnoreWhitespace;
+        return isFlagSet(IGNORE_WHITESPACE_PROP);
     }
 
     /** @return whether to ignore checks for whitespace after casts **/
     public boolean isIgnoreCastWhitespace()
     {
-        return mIgnoreCastWhitespace;
+        return isFlagSet(IGNORE_CAST_WHITESPACE_PROP);
     }
 
     /** @return whether to ignore checks for operator wrapping **/
     public boolean isIgnoreOpWrap()
     {
-        return mIgnoreOpWrap;
+        return isFlagSet(IGNORE_OP_WRAP_PROP);
     }
 
     /** @return whether to ignore checks for braces **/
     public boolean isIgnoreBraces()
     {
-        return mIgnoreBraces;
+        return isFlagSet(IGNORE_BRACES_PROP);
     }
 
     /** @return whether to ignore long 'L' **/
     public boolean isIgnoreLongEll()
     {
-        return mIgnoreLongEll;
+        return isFlagSet(IGNORE_LONG_ELL_PROP);
     }
 
     /** @return whether to ignore 'public' keyword in interface definitions **/
     public boolean isIgnorePublicInInterface()
     {
-        return mIgnorePublicInInterface;
+        return isFlagSet(IGNORE_PUBLIC_IN_INTERFACE_PROP);
     }
 
     /** @return whether to ignore max line length for import statements **/
@@ -854,30 +818,6 @@ public class Configuration
     }
 
     /**
-     * @param aAllowProtected whether to allow protected data
-     */
-    public void setAllowProtected(boolean aAllowProtected)
-    {
-        mAllowProtected = aAllowProtected;
-    }
-
-    /**
-     * @param aAllowPackage whether to allow package visible data
-     */
-    public void setAllowPackage(boolean aAllowPackage)
-    {
-        mAllowPackage = aAllowPackage;
-    }
-
-    /**
-     * @param aAllowNoAuthor whether to allow having no author tag
-     */
-    public void setAllowNoAuthor(boolean aAllowNoAuthor)
-    {
-        mAllowNoAuthor = aAllowNoAuthor;
-    }
-
-    /**
      * @param aJavadocScope visibility scope where Javadoc is checked
      */
     public void setJavadocScope(Scope aJavadocScope)
@@ -886,65 +826,18 @@ public class Configuration
     }
 
     /**
-     * @param aRequirePackageHtml whether package.html is required
+     * Set the boolean flag.
+     * @param aName name of the flag. Should be defined in Defn.
+     * @param aTo the value to set
      */
-    public void setRequirePackageHtml(boolean aRequirePackageHtml)
+    public void setBooleanFlag(String aName, boolean aTo)
     {
-        mRequirePackageHtml = aRequirePackageHtml;
-    }
-
-    /**
-     * @param aIgnoreImports whether to process imports
-     */
-    public void setIgnoreImports(boolean aIgnoreImports)
-    {
-        mIgnoreImports = aIgnoreImports;
-    }
-
-    /**
-     * @param aTo whether to ignore checks for whitespace
-     */
-    public void setIgnoreWhitespace(boolean aTo)
-    {
-        mIgnoreWhitespace = aTo;
-    }
-
-    /** @param aTo whether to ignore checks for whitespace after casts */
-    public void setIgnoreCastWhitespace(boolean aTo)
-    {
-        mIgnoreCastWhitespace = aTo;
-    }
-
-    /**
-     * @param aTo whether to ignore operator wrapping
-     */
-    public void setIgnoreOpWrap(boolean aTo)
-    {
-        mIgnoreOpWrap = aTo;
-    }
-
-    /**
-     * @param aTo whether to ignore checks for braces
-     */
-    public void setIgnoreBraces(boolean aTo)
-    {
-        mIgnoreBraces = aTo;
-    }
-
-    /**
-     * @param aTo whether to ignore long 'L'
-     */
-    public void setIgnoreLongEll(boolean aTo)
-    {
-        mIgnoreLongEll = aTo;
-    }
-
-    /**
-     * @param aTo whether to ignore 'public' in interface definitions
-     */
-    public void setIgnorePublicInInterface(boolean aTo)
-    {
-        mIgnorePublicInInterface = aTo;
+        if (aTo) {
+            mBooleanFlags.add(aName);
+        }
+        else {
+            mBooleanFlags.remove(aName);
+        }
     }
 
     /**
@@ -1259,5 +1152,32 @@ public class Configuration
             }
         }
         return retVal;
+    }
+
+    /**
+     * @param aName name of flag to return
+     * @return return whether a specified flag is set
+     */
+    private boolean isFlagSet(String aName)
+    {
+        return mBooleanFlags.contains(aName);
+    }
+
+    /**
+     * Set a boolean flag from a property set.
+     * @param aProps the properties set to extract flag from
+     * @param aName name of the flag to extract
+     */
+    private void setBooleanFlag(Properties aProps, String aName)
+    {
+        String strRep = aProps.getProperty(aName);
+        if (strRep != null) {
+            strRep = strRep.toLowerCase().trim();
+            if (strRep.equals("true") || strRep.equals("yes")
+                || strRep.equals("on"))
+            {
+                setBooleanFlag(aName, true);
+            }
+        }
     }
 }
