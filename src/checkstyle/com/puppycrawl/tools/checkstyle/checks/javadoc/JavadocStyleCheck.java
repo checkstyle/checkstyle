@@ -139,12 +139,10 @@ public class JavadocStyleCheck
         }
 
         final Scope declaredScope;
-        if (aAST.getType() == TokenTypes.ENUM_CONSTANT_DEF)
-        {
+        if (aAST.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
             declaredScope = Scope.PUBLIC;
         }
-        else
-        {
+        else {
             declaredScope = ScopeUtils.getScopeFromMods(
                 aAST.findFirstToken(TokenTypes.MODIFIERS));
         }
