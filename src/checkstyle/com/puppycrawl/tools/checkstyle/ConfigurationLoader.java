@@ -92,12 +92,10 @@ class ConfigurationLoader
     {
         // TODO: debug logging for support puposes
         DefaultConfiguration conf = new DefaultConfiguration(aQName);
-        System.out.println("aQName = " + aQName);
         final int attCount = aAtts.getLength();
         for (int i = 0; i < attCount; i++) {
             String name = aAtts.getQName(i);
             String value = aAtts.getValue(i);
-            System.out.println("  value of " + name + " is " + value);
 
             // expand properties
             if (value.startsWith("${") && value.endsWith("}")) {
@@ -106,8 +104,6 @@ class ConfigurationLoader
                 if (value == null) {
                     throw new SAXException("missing external property " + propName);
                 }
-                System.out.println("  propName = " + propName);
-                System.out.println("  new value = " + value);
             }
 
             conf.addAttribute(name, value);
