@@ -78,23 +78,20 @@ public abstract class AbstractFileSetCheck
         return mDispatcher;
     }
     
-    /** @see com.puppycrawl.tools.checkstyle.api.PackageNamesClient */
+    /** @see com.puppycrawl.tools.checkstyle.api.PackageNamesBean */
     public void setPackageNames(String[] aPackageNames)
-        throws CheckstyleException
     {
-        if (aPackageNames == null) {
-            aPackageNames = PackageNamesLoader.loadPackageNames(
-                this.getClass().getClassLoader());
-        }
         mPackageNames = aPackageNames;
     }
     
-    /**
-     * Returns the list of package names for object instantiation.
-     * @return the list of package names.
-     */
+    /** @see com.puppycrawl.tools.checkstyle.api.PackageNamesBean */
     public String[] getPackageNames()
+        throws CheckstyleException
     {
+        if (mPackageNames == null) {
+            mPackageNames = PackageNamesLoader.loadPackageNames(
+                this.getClass().getClassLoader());
+        }
         return mPackageNames;
     }
         

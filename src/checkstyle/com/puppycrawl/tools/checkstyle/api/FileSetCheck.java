@@ -26,7 +26,7 @@ import java.io.File;
  * @author lkuehne
  */
 public interface FileSetCheck
-    extends Configurable, Contextualizable, PackageNamesClient
+    extends Configurable, Contextualizable, PackageNamesBean
 {
     /**
      * Sets the MessageDispatcher that is used to dispatch error

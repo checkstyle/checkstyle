@@ -23,13 +23,19 @@ package com.puppycrawl.tools.checkstyle.api;
  * @author Rick Giles
  * @version 5-Dec-2002
  */
-public interface PackageNamesClient
+public interface PackageNamesBean
 {
     /**
      * Sets the package names for instantiating objects.
      * @param aPackageNames The list of package names.
-     * @throws CheckstyleException if there is an error.
      */
-     void setPackageNames(String[] aPackageNames)
+     void setPackageNames(String[] aPackageNames);
+
+    /**
+     * Returns the package names for instantiating objects.
+     * @return the list of package names.
+     * @throws CheckstyleException if there is an error.
+     */        
+     String[] getPackageNames()
         throws CheckstyleException;
 }
