@@ -60,7 +60,8 @@ public final class ConfigurationLoader
      * Implements the SAX document handler interfaces, so they do not
      * appear in the public API of the ConfigurationLoader.
      */
-    private class InternalLoader extends AbstractLoader
+    private final class InternalLoader
+        extends AbstractLoader
     {
         /** module elements */
         private static final String MODULE = "module";

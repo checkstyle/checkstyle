@@ -26,7 +26,7 @@ import antlr.collections.AST;
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-public class ScopeUtils
+public final class ScopeUtils
 {
     /** prevent instantiation */
     private ScopeUtils()
