@@ -1,5 +1,6 @@
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
