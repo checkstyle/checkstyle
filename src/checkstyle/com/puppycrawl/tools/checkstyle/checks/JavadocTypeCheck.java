@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import org.apache.commons.beanutils.ConversionException;
 import org.apache.regexp.RE;
+import org.apache.regexp.RESyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -44,32 +46,32 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;check name="JavadocTypeCheck"/&gt;
+ * &lt;config name="JavadocTypeCheck"/&gt;
  * </pre>
  * <p> An example of how to configure the check for the 
  * {@link Scope#PUBLIC} scope is:
  *</p>
  * <pre>
- * &lt;check name="JavadocTypeCheck"&gt;
+ * &lt;config name="JavadocTypeCheck"&gt;
  *    &lt;property name="scope" value="public"/&gt;
- * &lt;/check&gt;
+ * &lt;/config&gt;
  * </pre>
  * <p> An example of how to configure the check for an author tag
  *  and a version tag is:
  *</p>
  * <pre>
- * &lt;check name="JavadocTypeCheck"&gt;
+ * &lt;config name="JavadocTypeCheck"&gt;
  *    &lt;property name="authorFormat" value="\S"/&gt;
  *    &lt;property name="versionFormat" value="\S"/&gt;
- * &lt;/check&gt;
+ * &lt;/config&gt;
  * </pre>
  * <p> An example of how to configure the check for a
  * CVS revision version tag is:
  *</p>
  * <pre>
- * &lt;check name="JavadocTypeCheck"&gt;
+ * &lt;config name="JavadocTypeCheck"&gt;
  *    &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
- * &lt;/check&gt;
+ * &lt;/config&gt;
  * </pre>
  *
 
@@ -95,16 +97,37 @@ public class JavadocTypeCheck
         mScope = Scope.getInstance(aFrom);
     }
 
-    /** @param aFormat author tag pattern */
+    /**
+     * Set the author tag pattern.
+     * @param aFormat a <code>String</code> value
+     * @throws ConversionException unable to parse aFormat
+     */
     public void setAuthorFormat(String aFormat)
-    {
-        mAuthorRE = Utils.createRE("@author\\s+" + aFormat);
+        throws ConversionException
+    {      
+        try {
+            mAuthorRE = Utils.getRE("@author\\s+" + aFormat);
+        }
+        catch (RESyntaxException e) {
+            throw new ConversionException("unable to parse " + aFormat, e);
+        }
     }
     
-    /** @param aFormat version tag pattern */
+    /**
+     * Set the ignore pattern.
+     * @param aFormat a <code>String</code> value
+     * @throws ConversionException unable to parse aFormat
+     */
     public void setVersionFormat(String aFormat)
+        throws ConversionException
     {
-        mVersionRE = Utils.createRE("@version\\s+" + aFormat);
+        try {
+            mVersionRE = Utils.getRE("@version\\s+" + aFormat);
+        }
+        catch (RESyntaxException e) {
+            throw new ConversionException("unable to parse " + aFormat, e);
+        }
+
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
