@@ -29,8 +29,8 @@
     <td class="menu" valign="top">
       <p>Checkstyle 3</p>
       <ul>
+        <li><a href="#release3_1">Release 3.1</a></li>
         <li><a href="#release3_0">Release 3.0</a></li>
-        <li><a href="#release3_0">Release 3.1</a></li>
       </ul>
 
       <p>Checkstyle 2</p>
@@ -52,17 +52,44 @@
         New features:
       </p>
         <ul>
-          <li class="body">Added check to avoid inline conditionals like &quot;b ? x : y&quot; (module AvoidInlineConditionals, request 597790).</li>
-          <li class="body">Added check that blocks are not introduced at arbitrary places but only for if, while, etc. (module AvoidNestedBlocks, request 632442).</li>
-          <li class="body">Added check to enforce that utility classes (classes that have only static methods)
-          cannot be instantiated (module HideUtilityClassConstructor, request 634838).</li>
-          <li class="body">Added check to enforce an Api design that shields classes against bugs in derived classes (module DesignForInheritance, request 659715).</li>
-          <li class="body">Added check to enforce that Interfaces do not contain
-          only constants (module InterfaceIsType, request 659717, see [Bloch, Effective Java], Item 17 &quot;Use interfaces only to define types&quot;).</li>
-          <li class="body">Added check to enforce C style (char c[]) or Java style (char[] c) for array type declaration (module ArrayTypeStyle, request 493380).</li>
-          <li class="body">Added check to enforce that method parameters are final (module FinalParameters, request 528196)
- (request 528196).</li>
-          <li class="body">Documentation improvements, contributed by Peter Dobratz.</li>
+          <li class="body">Patch from David Schneider to have severity levels
+          for each logged message.</li>
+
+          <li class="body">Added check to avoid inline conditionals like
+          &quot;b ? x : y&quot; (module AvoidInlineConditionals, request
+          597790).</li>
+
+          <li class="body">Added check that blocks are not introduced at
+          arbitrary places but only for if, while, etc. (module
+          AvoidNestedBlocks, request 632442).</li>
+
+          <li class="body">Added check to enforce that utility classes
+          (classes that have only static methods) cannot be instantiated
+          (module HideUtilityClassConstructor, request 634838).</li>
+
+          <li class="body">Added check to enforce an Api design that shields
+          classes against bugs in derived classes (module
+          DesignForInheritance, request 659715).</li>
+
+          <li class="body">Added check to enforce that Interfaces do not
+          contain only constants (module InterfaceIsType, request 659717, see
+          [Bloch, Effective Java], Item 17 &quot;Use interfaces only to define
+          types&quot;).</li>
+
+          <li class="body">Added check to enforce C style (char c[]) or Java
+          style (char[] c) for array type declaration (module ArrayTypeStyle,
+          request 493380).</li>
+
+          <li class="body">Added check to enforce that method parameters are
+          final (module FinalParameters, request 528196) (request
+          528196).</li>
+
+          <li class="body">Documentation improvements, contributed by Peter
+          Dobratz.</li>
+
+          <li class="body">Patch from Simon Kitching to allow more
+          configuration control over the JavadocMethodCheck.</li>
+
         </ul>
 
       <p class="body">
