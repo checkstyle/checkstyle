@@ -1,3 +1,21 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2002  Oliver Burn
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -22,13 +40,21 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author Rick Giles
  * @version 4-Dec-2002
  */
-public class PackageNamesLoader extends DefaultHandler
+public class PackageNamesLoader
+    extends DefaultHandler
 {
-    /** Name of default checkstyle package names resource file .
+    /** the public ID for the configuration dtd */
+    private static final String PACKAGE_DTD_PUBLIC_ID =
+        "-//Puppy Crawl//DTD Package Names 1.0//EN";
+
+    /** the resource for the configuration dtd */
+    private static final String PACKAGE_DTD_RESOURCE =
+        "com/puppycrawl/tools/checkstyle/packages_1_0.dtd";
+
+    /** Name of default checkstyle package names resource file.
      * The file must be in the classpath.
      */
-    private static final String DEFAULT_PACKAGES =
-        "checkstyle_packages.xml";
+    private static final String DEFAULT_PACKAGES = "checkstyle_packages.xml";
             
     /** list of class names */
     private final List mPackageNames = new ArrayList();
@@ -48,9 +74,11 @@ public class PackageNamesLoader extends DefaultHandler
         throws ParserConfigurationException, SAXException
     {
         final SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setValidating(false);
+        factory.setValidating(true);
         mParser = factory.newSAXParser().getXMLReader();
         mParser.setContentHandler(this);
+        mParser.setEntityResolver(this);
+        mParser.setErrorHandler(HardErrorHandler.INSTANCE);
     }
     
     /**
@@ -59,8 +87,8 @@ public class PackageNamesLoader extends DefaultHandler
      */
     private String[] getPackageNames()
     {
-        return (String[]) mPackageNames.
-            toArray(new String[mPackageNames.size()]);
+        return (String[]) mPackageNames.toArray(
+            new String[mPackageNames.size()]);
     }
 
     /**
@@ -77,6 +105,23 @@ public class PackageNamesLoader extends DefaultHandler
         mParser.parse(aInputSource);
     }
         
+    /** @see org.xml.sax.EntityResolver */
+    public InputSource resolveEntity(String aPublicId, String aSystemId)
+        throws SAXException
+    {
+        if (PACKAGE_DTD_PUBLIC_ID.equals(aPublicId)) {
+            final InputStream dtdIS = getClass().getClassLoader()
+                .getResourceAsStream(PACKAGE_DTD_RESOURCE);
+            if (dtdIS == null) {
+                throw new SAXException(
+                    "Unable to load internal dtd " + PACKAGE_DTD_RESOURCE);
+            }
+            return new InputSource(dtdIS);
+        }
+
+        return super.resolveEntity(aPublicId, aSystemId);
+    }
+
     /** @see org.xml.sax.helpers.DefaultHandler **/
     public void startElement(String aNamespaceURI,
                              String aLocalName,
