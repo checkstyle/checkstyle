@@ -32,7 +32,7 @@
     <path id="javadoc.classpath">
         <pathelement location="${ant.home}/lib/ant.jar" />
         <pathelement location="${ant.home}/lib/crimson.jar" />
-        <path refid="build.classpath" />
+        <path refid="run.classpath" />
     </path>
 
     <path id="tests.buildpath">
