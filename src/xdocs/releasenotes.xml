@@ -27,6 +27,10 @@
         <li>Some clarifications on  scope property of javadoc checks added
         (rfe 1009201)</li>
 
+        <li>UnusedPrivateMethod check now can be configured to ignore
+        serializaition-related methods (readObject(), writeObject(),
+        readResolve() and writeReplace()) (rfe 1036387)</li>
+
       </ul>
 
 
