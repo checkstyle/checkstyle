@@ -24,9 +24,12 @@ import org.apache.commons.beanutils.ConversionException;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
+ * <p>
  * Checks the header of the source against a header file that contains a
- * regular expression for each line of the source header.
- *
+* <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
+ * regular expression</a>
+ * for each line of the source header.
+ * </p>
  * <p>
  * Rationale: In some projects checking against a fixed header
  * is not sufficient (see {@link HeaderCheck}), e.g.
@@ -34,9 +37,29 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * is not static.
  * </p>
  *
- * <p>
- * TODO: RFE 597676
+ * <p>For example, consider the following header file:</p>
+ *
+ * <pre>
+ * line 1: /{71}
+ * line 2: // checkstyle: Checks Java source code for adherence to a set of rules\.
+ * line 3: // Copyright \(C\) \d\d\d\d  Oliver Burn
+ * line 4: // Last modification by \$Author.*\$
+ * line 5: /{71}
+ * </pre>
+ *
+ * <p>Lines 1 and 5 demonstrate a more compact notation for 71 '/'
+ * characters. Line 3 enforces that the copyright notice includes a four digit
+ * year. Line 4 is an example how to enforce revision control keywords in a file
+ * header.</p>
+ * An example of how to configure the check to use header file
+ * &quot;java.header&quot; and ignore lines 3 and 5 is:
  * </p>
+ * <pre>
+ * &lt;config name="RegexpHeaderCheck"&gt;
+ *    &lt;property name="headerFile" value="java.header"/&gt;
+ *    &lt;property name="ignoreLines" value="3, 5"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  *
  * @author Lars Kühne
  */

@@ -26,7 +26,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks for imports from a set of illegal packages.
- * By default, the check rejects all <code>sun.*</code> packages. 
+ * By default, the check rejects all <code>sun.*</code> packages
+ * since programs that contain direct calls to the <code>sun.*</code> packages
+ * are <a href="http://java.sun.com/products/jdk/faq/faq-sun-packages.html">
+ * not 100% Pure Java</a>.
+ * </p>
  * To reject other packages, set property illegalPkgs to a comma-separated
  * list of the illegal packages.  
  * </p>

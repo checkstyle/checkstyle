@@ -29,10 +29,16 @@ import java.util.HashSet;
 
 /**
  * <p>
- * Checks for imports that are redundant, where a redundant import is
- * from package <code>java.lang</code>, is from the same package as the class,
- * or is a duplicate import.
+ * Checks for imports that are redundant. An import statement is
+ * considered redundant if:
  * </p>
+ *<ul>
+ *  <li>It is a duplicate of another import. This is, when a class is imported
+ *  more than once.</li>
+ *  <li>The class imported is from the <code>java.lang</code> package.
+ *  For example importing <code>java.lang.String</code>.</li>
+ *  <li>The class imported is from the same package.</li>
+ *</ul>
  * <p>
  * An example of how to configure the check is:
  * </p>
