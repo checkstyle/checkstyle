@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -176,9 +177,14 @@ public final class Utils
     {
         final ArrayList lines = new ArrayList();
         final FileInputStream fr = new FileInputStream(aFileName);
-        final LineNumberReader lnr =
-              new LineNumberReader(new InputStreamReader(fr, aCharsetName));
-
+        LineNumberReader lnr = null;
+        try {
+            lnr = new LineNumberReader(new InputStreamReader(fr, aCharsetName));
+        }
+        catch (UnsupportedEncodingException ex) {
+            final String message = "unsupported charset: " + ex.getMessage();
+            throw new UnsupportedEncodingException(message);
+        }
         try {
             while (true) {
                 final String l = lnr.readLine();
