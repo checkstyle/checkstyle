@@ -75,7 +75,8 @@ public class OtherLeftCurlyCheck
                 break;
             case JavaTokenTypes.LITERAL_switch:
             case JavaTokenTypes.LITERAL_if:
-                brace = (DetailAST) aAST.getFirstChild().getNextSibling();
+                brace = (DetailAST) aAST.getFirstChild().getNextSibling()
+                    .getNextSibling().getNextSibling();
                 break;
             default:
                 brace = null;

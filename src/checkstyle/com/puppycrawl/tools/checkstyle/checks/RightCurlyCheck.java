@@ -47,12 +47,12 @@ public class RightCurlyCheck
             nextToken = aAST;
             rcurly = Utils.getLastSibling(
                 aAST.getParent().getFirstChild().getNextSibling()
-                .getFirstChild());
+                .getNextSibling().getNextSibling().getFirstChild());
         }
         else if (aAST.getType() == JavaTokenTypes.LITERAL_catch) {
             nextToken = (DetailAST) aAST.getNextSibling();
             rcurly = Utils.getLastSibling(
-                aAST.getFirstChild().getNextSibling().getFirstChild());
+                Utils.getLastSibling(aAST.getFirstChild()).getFirstChild());
         }
         else if (aAST.getType() == JavaTokenTypes.LITERAL_try) {
             nextToken = (DetailAST) aAST.getFirstChild().getNextSibling();
