@@ -294,6 +294,21 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
+    public void testNoJavadoc()
+        throws Exception
+    {
+        mConfig.setIgnoreJavadoc(true);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputPublicOnly.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":44: variable 'mLen' must be private and have accessor methods.",
+            filepath + ":45: variable 'mDeer' must be private and have accessor methods.",
+            filepath + ":46: variable 'aFreddo' must be private and have accessor methods.",
+        };
+        verify(c, filepath, expected);
+    }
+
     public void testRelaxedJavadoc()
         throws Exception
     {
@@ -338,6 +353,7 @@ public class CheckerTest
     public void testImport()
         throws Exception
     {
+        mConfig.setIgnoreImportLength(true);
         final Checker c = createChecker();
         final String filepath = getPath("InputImport.java");
         assertNotNull(c);

@@ -5,7 +5,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.*;
-import com.puppycrawl.tools.checkstyle.Configuration;
+                                     import com.puppycrawl.tools.checkstyle.Configuration;
 import java.io.*;
 import java.lang.*;
 import java.lang.String;
