@@ -2958,6 +2958,8 @@ public final class TokenTypes
     public static final int ANNOTATION_FIELD_DEF =
         GeneratedJavaTokenTypes.ANNOTATION_FIELD_DEF;
 
+    // note: &#064; is the html escape for '@',
+    // used here to avoid confusing the javadoc tool
     /**
      * A collection of annotations on a package or enum constant.
      * A collections of annotations will only occur on these nodes
@@ -2968,7 +2970,7 @@ public final class TokenTypes
      * <p>For example:</p>
      *
      * <pre>
-     *     @MyAnnotation package blah;
+     *     &#064;MyAnnotation package blah;
      * </pre>
      *
      * <p>parses as:</p>
@@ -2980,7 +2982,7 @@ public final class TokenTypes
      *         |
      *         +--ANNOTATION
      *             |
-     *             +--AT (@)
+     *             +--AT (&#064;)
      *             +--IDENT (MyAnnotation)
      *     +--IDENT (blah)
      *     +--SEMI (;)
@@ -2995,6 +2997,8 @@ public final class TokenTypes
     public static final int ANNOTATIONS =
         GeneratedJavaTokenTypes.ANNOTATIONS;
 
+    // note: &#064; is the html escape for '@',
+    // used here to avoid confusing the javadoc tool
     /**
      * An annotation of a package, type, field, parameter or variable.
      * An annotation may occur anywhere modifiers occur (it is a
@@ -3006,8 +3010,8 @@ public final class TokenTypes
      * <p>For example:</p>
      *
      * <pre>
-     *     @ MyAnnotation(someField1 = "Hello",
-     *                    someField2 = @SomeOtherAnnotation)
+     *     &#064;MyAnnotation(someField1 = "Hello",
+     *                    someField2 = &#064;SomeOtherAnnotation)
      * </pre>
      *
      * <p>parses as:</p>
@@ -3015,7 +3019,7 @@ public final class TokenTypes
      * <pre>
      * +--ANNOTATION
      *     |
-     *     +--AT (@)
+     *     +--AT (&#064;)
      *     +--IDENT (MyAnnotation)
      *     +--LPAREN (()
      *     +--ANNOTATION_MEMBER_VALUE_PAIR
@@ -3024,7 +3028,7 @@ public final class TokenTypes
      *         +--ASSIGN (=)
      *         +--ANNOTATION
      *             |
-     *             +--AT (@)
+     *             +--AT (&#064;)
      *             +--IDENT (SomeOtherAnnotation)
      *     +--ANNOTATION_MEMBER_VALUE_PAIR
      *         |
