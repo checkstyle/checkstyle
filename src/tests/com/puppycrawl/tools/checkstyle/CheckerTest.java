@@ -707,23 +707,10 @@ public class CheckerTest
         mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.STMT.toString());
         mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.STMT.toString());
         mProps.setProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.STMT.toString());
-        mProps.setProperty(
-                Defn.ILLEGAL_INSTANTIATIONS_PROP,
-                "java.lang.Boolean,"
-                + "com.puppycrawl.tools.checkstyle.InputModifier,"
-                + "java.io.File,"
-                + "java.awt.Color");
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":19:21: Avoid instantiation of java.lang.Boolean.",
-            filepath + ":24:21: Avoid instantiation of java.lang.Boolean.",
-            filepath + ":30:16: Avoid instantiation of java.lang.Boolean.",
-            filepath + ":37:21: Avoid instantiation of " +
-                               "com.puppycrawl.tools.checkstyle.InputModifier.",
-            filepath + ":40:18: Avoid instantiation of java.io.File.",
-            filepath + ":43:21: Avoid instantiation of java.awt.Color.",
             filepath + ":51:65: Must have at least one statement.",
             filepath + ":53:41: Must have at least one statement.",
             filepath + ":70:38: Must have at least one statement.",
@@ -745,7 +732,6 @@ public class CheckerTest
         mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.TEXT.toString());
         mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.TEXT.toString());
         mProps.setProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.TEXT.toString());
-        mProps.setProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP, "");
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");
         assertNotNull(c);
