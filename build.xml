@@ -333,23 +333,46 @@
   </target>
 
   <!-- Targets to verify that Xalan is in the classpath -->
-  <target name="check.xalan"
+  <target name="check.xalan" 
           description="Checks whether xalan is in the classpath">
     <condition property="have.xalan">
       <or>
         <!-- jdk 1.3 with modern Xalan -->
-        <available classname="org.apache.xalan.Version"/>
+        <available classname="org.apache.xalan.Version" />
         <!-- Xalan classes in jdk 1.4 (beta 3) are OK for running -->
         <!-- the tests, but there is no Version class in jdk 1.4: -->
         <!-- fallback to stable jaxp implementation class -->
         <available classname="org.apache.xalan.transformer.TransformerImpl"/>
+        <!-- 
+             In JDK 1.5 Sun has decided to repackage Xalan in it's own
+             package com.sun.org.apache..., see Java bug 4740355.
+             Additionally at least Ant 1.6.2 is required to make junitreport
+             work with Xalan XSLTC and/or JDK 1.5 (Ant bug 27541)
+             -->
+        <and>
+          <equals arg1="${ant.java.version}" arg2="1.5" />
+          <!-- TODO: find a more eleagnt way to specify *minimum* version -->
+          <not>
+            <or>
+              <contains string="${ant.version}" substring="version 1.4" />
+              <contains string="${ant.version}" substring="version 1.5" />
+              <contains string="${ant.version}" substring="version 1.6.0" />
+              <contains string="${ant.version}" substring="version 1.6.1" />
+            </or>
+          </not>
+        </and>
       </or>
     </condition>
   </target>
 
   <target name="require.xalan" depends="check.xalan" unless="have.xalan"
           description="Fails if xalan is not present in the classpath">
-    <fail message="Need to have Xalan in your CLASSPATH to run the tests. You can download it from http://xml.apache.org/."/>
+    <fail>
+Need to have Xalan in your CLASSPATH to run the tests.
+You can download it from http://xml.apache.org/.
+Alternatively you can upgrade JDK 1.4 or higher.
+For users of JDK 1.5 at least version 1.6.2 of Ant is required.
+    </fail>
   </target>
 
   <!-- To run the tests need Xalan in the classpath -->
