@@ -80,6 +80,11 @@ class Anonymous
                 return false;
             }
         };
+    
+    public boolean equals(Object aObject)
+    {
+        return false;
+    }
 }
 
 abstract class InputCovariant5
