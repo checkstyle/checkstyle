@@ -22,9 +22,9 @@ import java.io.Serializable;
 
 
 /**
- * A Configuration is used to configure a Configurable component.
- * The general idea of Configuration/Configurable was taken from
- * <a target="_top" href="http://jakarta.apache.org/avalon/">Jakarta's Avalon framework</a>.
+ * A Configuration is used to configure a Configurable component.  The general
+ * idea of Configuration/Configurable was taken from <a target="_top"
+ * href="http://jakarta.apache.org/avalon/">Jakarta's Avalon framework</a>.
  * @author lkuehne
  */
 public interface Configuration extends Serializable
