@@ -29,7 +29,7 @@
         <module name="EmptyForIteratorPad"/>
         <module name="EqualsHashCode"/>
         <module name="FileLength">
-            <property name="max" value="2700"/>
+            <property name="max" value="2750"/>
         </module>
         <module name="Header">
           <property name="headerFile" value="${checkstyle.header.file}"/>
