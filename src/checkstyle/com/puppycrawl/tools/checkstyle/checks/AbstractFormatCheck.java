@@ -46,6 +46,7 @@ public abstract class AbstractFormatCheck
      * @throws ConversionException unable to parse aDefaultFormat
      */
     public AbstractFormatCheck(String aDefaultFormat)
+        throws ConversionException
     {
         setFormat(aDefaultFormat);
     }
@@ -56,6 +57,7 @@ public abstract class AbstractFormatCheck
      * @throws ConversionException unable to parse aFormat
      */
     public void setFormat(String aFormat)
+        throws ConversionException
     {
         try {
             mRegexp = Utils.getRE(aFormat);

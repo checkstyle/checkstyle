@@ -47,6 +47,7 @@ public abstract class AbstractOptionCheck
      * @throws ConversionException if unable to decode
      */
     public void setOption(String aOption)
+        throws ConversionException
     {
         mOption = mOption.decode(aOption);
         if (mOption == null) {

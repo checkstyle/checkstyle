@@ -64,8 +64,8 @@ public class PackageNamesLoader extends DefaultHandler
     }
 
     /**
-     * Parses the specified file, loading its package names.
-     * @param aFilename the file to parse
+     * Parses the specified source, loading its package names.
+     * @param aInputSource the source to parse
      * @throws FileNotFoundException if an error occurs
      * @throws IOException if an error occurs
      * @throws SAXException if an error occurs

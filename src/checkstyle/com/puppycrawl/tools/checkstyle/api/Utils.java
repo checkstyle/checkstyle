@@ -174,6 +174,7 @@ public final class Utils
      * @throws ConversionException if unable to create RE object.
      **/
     public static RE createRE(String aPattern)
+        throws ConversionException
     {
         RE retVal = null;
         try {

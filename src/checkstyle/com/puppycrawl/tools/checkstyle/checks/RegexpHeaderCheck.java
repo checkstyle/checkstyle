@@ -48,10 +48,11 @@ public class RegexpHeaderCheck extends HeaderCheck
     /**
      * Sets the file that contains the header to check against.
      * @param aFileName the file that contains the header to check against.
-     * @throws org.apache.commons.beanutils.ConversionException if
-     * the file cannot be loaded or one line is not a regexp.
+     * @throws ConversionException if the file cannot be loaded or one line
+     * is not a regexp.
      */
     public void setHeaderFile(String aFileName)
+        throws ConversionException
     {
         super.setHeaderFile(aFileName);
         final String[] headerLines = getHeaderLines();
