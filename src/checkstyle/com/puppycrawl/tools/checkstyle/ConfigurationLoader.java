@@ -32,7 +32,6 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -75,7 +74,7 @@ class ConfigurationLoader
         mParser = factory.newSAXParser().getXMLReader();
         mParser.setContentHandler(this);
         mParser.setEntityResolver(this);
-        mParser.setErrorHandler(this);
+        mParser.setErrorHandler(HardErrorHandler.INSTANCE);
     }
 
     /**
@@ -94,27 +93,6 @@ class ConfigurationLoader
     ///////////////////////////////////////////////////////////////////////////
     // Document handler methods
     ///////////////////////////////////////////////////////////////////////////
-
-    /** @see org.xml.sax.ErrorHandler */
-    public void warning(SAXParseException aEx)
-        throws SAXException
-    {
-        throw aEx;
-    }
-
-    /** @see org.xml.sax.ErrorHandler */
-    public void error(SAXParseException aEx)
-        throws SAXException
-    {
-        throw aEx;
-    }
-
-    /** @see org.xml.sax.ErrorHandler */
-    public void fatalError(SAXParseException aEx)
-        throws SAXException
-    {
-        throw aEx;
-    }
 
     /** @see org.xml.sax.EntityResolver */
     public InputSource resolveEntity(String aPublicId, String aSystemId)
