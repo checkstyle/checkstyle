@@ -191,31 +191,32 @@ public class Checker
      */
     private int checkPackageHtml(String[] aFiles)
     {
-        int packageHtmlErrors = 0;
-
-        if (aFiles != null && mConfig.isRequirePackageHtml())
+        if (!mConfig.isRequirePackageHtml())
         {
-            final HashSet checkedPackages = new HashSet();
-            for (int i = 0; i < aFiles.length; i++)
+            return 0;
+        }
+
+        int packageHtmlErrors = 0;
+        final HashSet checkedPackages = new HashSet();
+        for (int i = 0; i < aFiles.length; i++)
+        {
+            final File file = new File(aFiles[i]);
+            final File packageDir = file.getParentFile();
+            if (!checkedPackages.contains(packageDir))
             {
-                final File file = new File(aFiles[i]);
-                final File packageDir = file.getParentFile();
-                if (!checkedPackages.contains(packageDir))
+                final File packageDoc =
+                    new File(packageDir, "package.html");
+                final String docFile = packageDoc.toString();
+                fireFileStarted(docFile);
+                if (!packageDoc.exists())
                 {
-                    final File packageDoc =
-                        new File(packageDir, "package.html");
-                    final String docFile = packageDoc.toString();
-                    fireFileStarted(docFile);
-                    if (!packageDoc.exists())
-                    {
-                        final LineText error = new LineText(0,
-                            "missing package documentation file.");
-                        fireErrors(docFile, new LineText[]{error} );
-                        packageHtmlErrors++;
-                    }
-                    fireFileFinished(docFile);
-                    checkedPackages.add(packageDir);
+                    final LineText error =
+                        new LineText(0, "missing package documentation file.");
+                    fireErrors(docFile, new LineText[]{error} );
+                    packageHtmlErrors++;
                 }
+                fireFileFinished(docFile);
+                checkedPackages.add(packageDir);
             }
         }
         return packageHtmlErrors;
