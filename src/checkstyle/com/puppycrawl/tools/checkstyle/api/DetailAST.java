@@ -62,6 +62,12 @@ public class DetailAST
         mColumnNo = da.getColumnNo();
     }
 
+    public void setFirstChild(AST aAST)
+    {
+        mChildCount = NOT_INITIALIZED;
+        super.setFirstChild(aAST);
+    }
+
     /**
      * Returns the number of child nodes one level below this node. That is is
      * does not recurse down the tree.
@@ -78,7 +84,6 @@ public class DetailAST
                 mChildCount += 1;
                 child = child.getNextSibling();
             }
-
         }
         return mChildCount;
     }
@@ -87,6 +92,7 @@ public class DetailAST
      * Set the parent token.
      * @param aParent the parent token
      */
+    // TODO: Check visibility, could be private if set in setFirstChild() and friends
     public void setParent(DetailAST aParent)
     {
         mParent = aParent;
