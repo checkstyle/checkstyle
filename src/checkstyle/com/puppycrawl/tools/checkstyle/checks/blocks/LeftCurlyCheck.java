@@ -24,91 +24,41 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 
 /**
- *
  * <p>
- * Checks for the placement of left curly braces (
- * <span class="code">'{'</span>) for code blocks.
+ * Checks the placement of left curly braces on types, methods and
+ * other blocks:
+ *  {@link  TokenTypes#LITERAL_CATCH LITERAL_CATCH},  {@link
+ * TokenTypes#LITERAL_DO LITERAL_DO},  {@link TokenTypes#LITERAL_ELSE
+ * LITERAL_ELSE},  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},  {@link
+ * TokenTypes#LITERAL_FOR LITERAL_FOR},  {@link TokenTypes#LITERAL_IF
+ * LITERAL_IF},  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH},  {@link
+ * TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED},  {@link
+ * TokenTypes#LITERAL_TRY LITERAL_TRY},  {@link TokenTypes#LITERAL_WHILE
+ * LITERAL_WHILE}.
  * </p>
  *
- * <subsection name="Properties">
- * <table>
- *   <tr>
- *     <th>name</th>
- *     <th>description</th>
- *     <th>type</th>
- *     <th>default value</th>
- *   </tr>
- *   <tr>
- *     <td>option</td>
- *     <td>
- *       policy on placement of a left curly brace (
- *       <span class="code">'{'</span>)
- *     </td>
- *     <td>
- *       <a href="property_types.html#lcurly">left curly brace policy</a>
- *     </td>
- *     <td><span class="default">eol</span></td>
- *   </tr>
- *   <tr>
- *     <td>maxLineLength</td>
- *     <td>maximum number of characters in a line</td>
- *     <td><a href="property_types.html#integer">integer</a></td>
- *     <td><span class="default">80</span></td>
- *   </tr>
- *   <tr>
- *     <td>tokens</td>
- *     <td>blocks to check</td>
- *
- *     <td>
- *       subset of tokens
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">LITERAL_DO</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">LITERAL_ELSE</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">LITERAL_FINALLY</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">LITERAL_FOR</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">LITERAL_IF</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">LITERAL_SWITCH</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">LITERAL_SYNCHRONIZED</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">LITERAL_TRY</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">LITERAL_WHILE</a>,
- *       <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>
- *     </td>
- *
- *     <td>all tokens</td>
- *   </tr>
- * </table>
- * </subsection>
- *
- * <subsection name="Examples">
- * <p> To configure the check: </p>
- *
- * <source>
- * &lt;module name=&quot;LeftCurly&quot;/&gt;
- * </source>
- *
  * <p>
- * To configure the check to apply the <span class="code">nl</span> policy to
- * type blocks:
+ * The policy to verify is specified using the {@link LeftCurlyOption} class and
+ * defaults to {@link LeftCurlyOption#EOL}. Policies {@link LeftCurlyOption#EOL}
+ * and {@link LeftCurlyOption#NLOW} take into account property maxLineLength.
+ * The default value for maxLineLength is 80.
  * </p>
- *
- * <source>
- * &lt;module name=&quot;LeftCurly&quot;&gt;
- *     &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
- *     &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
- * &lt;/module&gt;
- * </source>
- * </subsection>
- *
- * <subsection name="Package">
- *   <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
- * </subsection>
- *
- * <subsection name="Parent Module">
- *   <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
- * </subsection>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;module name="LeftCurly"/&gt;
+ * </pre>
+ * <p>
+ * An example of how to configure the check with policy
+ * {@link LeftCurlyOption#NLOW} and maxLineLength 120 is:
+ * </p>
+ * <pre>
+ * &lt;module name="LeftCurly"&gt;
+ *      &lt;property name="option"
+ * value="nlow"/&gt;     &lt;property name="maxLineLength" value="120"/&gt; &lt;
+ * /module&gt;
+ * </pre>
  *
  * @author Oliver Burn
  * @author lkuehne

@@ -332,10 +332,13 @@ public final class CheckDocsDoclet
         for (Iterator it = pages.iterator(); it.hasNext();) {
             DocumentationPage page = (DocumentationPage) it.next();
             String pageName = getPageName(page);
-            File outfile = new File(destDir, "config_" + pageName + ".xml");
-            Writer writer = new FileWriter(outfile);
-            page.write(writer);
-            writer.close();
+            // only documentation for duplicates is generated for now
+            if  ("duplicates".equals(pageName)) {
+                File outfile = new File(destDir, "config_" + pageName + ".xml");
+                Writer writer = new FileWriter(outfile);
+                page.write(writer);
+                writer.close();
+            }
         }
 
         final File checksIndexFile = new File(destDir, "availablechecks.xml");

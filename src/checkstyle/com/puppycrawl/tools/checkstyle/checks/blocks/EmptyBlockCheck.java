@@ -23,83 +23,37 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 
 /**
- * <p>
- * Checks for empty blocks.
+ * Checks for empty blocks. The policy to verify is specified using the {@link
+ * BlockOption} class and defaults to {@link BlockOption#STMT}.
+ *
+ * <p> By default the check will check the following blocks:
+ *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE},
+ *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY},
+ *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
+ *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
+ *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
+ *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
+ *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
+ *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
+ *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
  * </p>
  *
- * <subsection name="Properties">
- * <table>
- *   <tr>
- *     <th>name</th>
- *     <th>description</th>
- *     <th>type</th>
- *     <th>default value</th>
- *   </tr>
- *   <tr>
- *     <td>option</td>
- *     <td>policy on block contents</td>
- *     <td><a href="property_types.html#block">block policy</a></td>
- *     <td><span class="default">stmt</span></td>
- *   </tr>
- *   <tr>
- *     <td>tokens</td>
- *     <td>blocks to check</td>
+ * <p> An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;module name="EmptyBlock"/&gt;
+ * </pre>
  *
- *     <td>
- *      subset of tokens <a
- *      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a>,
- *      <a
- *      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">LITERAL_DO</a>,
- *      <a
- *      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">LITERAL_ELSE</a>,
- *      <a
- *      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">LITERAL_FINALLY</a>,
- *      <a
- *      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">LITERAL_IF</a>,
- *      <a
- *      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">LITERAL_FOR</a>,
- *      <a
- *      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">LITERAL_TRY</a>,
- *      <a
- *      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">LITERAL_WHILE</a>,
- *      <a
- *      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">INSTANCE_INIT</a>
- *      <a
- *      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">STATIC_INIT</a>
- *     </td>
- *
- *     <td>all tokens</td>
- *   </tr>
- * </table>
- * </subsection>
- *
- * <subsection name="Examples">
- * <p> To configure the check: </p>
- *
- * <source>
- * &lt;module name=&quot;EmptyBlock&quot;/&gt;
- * </source>
- *
- * <p>
- * To configure the check for the <span class="code">text</span>
- * policy and only <span class="code"> catch</span> blocks:
+ * <p> An example of how to configure the check for the {@link
+ * BlockOption#TEXT} policy and only catch blocks is:
  * </p>
  *
- * <source>
- * &lt;module name=&quot;EmptyBlock&quot;&gt;
- *     &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
- *     &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CATCH&quot;/&gt;
+ * <pre>
+ * &lt;module name="EmptyBlock"&gt;
+ *    &lt;property name="tokens" value="LITERAL_CATCH"/&gt;
+ *    &lt;property name="option" value="text"/&gt;
  * &lt;/module&gt;
- * </source>
- * </subsection>
- *
- * <subsection name="Package">
- *   <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
- * </subsection>
- *
- * <subsection name="Parent Module">
- *   <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
- * </subsection>
+ * </pre>
  *
  * @author Lars Kühne
  */

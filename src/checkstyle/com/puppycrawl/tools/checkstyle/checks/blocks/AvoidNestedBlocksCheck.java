@@ -23,16 +23,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * <p>
- * Finds nested blocks. Rationale, nested blocks are often leftovers from the
- * debugging process, they confuse the reader.
- * </p>
+ * Finds nested blocks.
  *
  * <p>
- * For example this Check finds the obsolete braces in
+ * For example this Check flags confusing code like
  * </p>
- *
- * <source>
+ * <pre>
  * public void guessTheOutput()
  * {
  *     int whichIsWich = 0;
@@ -41,26 +37,26 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *     }
  *     System.out.println("value = " + whichIsWhich);
  * }
- * </source>
+ * </pre>
  *
- * <p> and debugging / refactoring leftovers such as </p>
+ * and debugging / refactoring leftovers such as
  *
- * <source>
- * // if (conditionThatIsNotUsedAnyLonger)
+ * <pre>
+ * // if (someOldCondition)
  * {
  *     System.out.println("unconditional");
  * }
- * </source>
+ * </pre>
  *
  * <p>
- * A case in a switch statement does not implicitly form a block.  Thus to
- * be able to introduce local variables that have case scope it is
- * necessary to open a nested block. This is supported, set the
- * allowInSwitchCase property to true and include all statements of the
- * case in the block.
+ * A case in a switch statement does not implicitly form a block.
+ * Thus to be able to introduce local variables that have case scope
+ * it is necessary to open a nested block. This is supported, set
+ * the allowInSwitchCase property to true and include all statements
+ * of the case in the block.
  * </p>
  *
- * <source>
+ * <pre>
  * switch (a)
  * {
  *     case 0:
@@ -84,39 +80,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *             break;
  *         }
  * }
- * </source>
- *
- * <subsection name="Properties">
- * <table>
- *   <tr>
- *     <th>name</th>
- *     <th>description</th>
- *     <th>type</th>
- *     <th>default value</th>
- *   </tr>
- *   <tr>
- *     <td>allowInSwitchCase</td>
- *     <td>Allow nested blocks in case statements</td>
- *     <td><a href="property_types.html#boolean">boolean</a></td>
- *     <td><span class="default">false</span></td>
- *   </tr>
- * </table>
- * </subsection>
- *
- * <subsection name="Examples">
- * <p> To configure the check: </p>
- * <source>
- * &lt;module name=&quot;AvoidNestedBlocks&quot;/&gt;
- * </source>
- * </subsection>
- *
- * <subsection name="Package">
- * <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
- * </subsection>
- *
- * <subsection name="Parent Module">
- * <p> <a href="config.html#treewalker">TreeWalker</a> </p>
- * </subsection>
+ * </pre>
  *
  * @author lkuehne
  */
