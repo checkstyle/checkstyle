@@ -329,10 +329,10 @@ else
       </pre>
       <p class="body">
       could be written as
+      </p>
       <pre class="body">
 return !valid();
       </pre>
-      </p>
       <p class="body">
       The Idea for this Check has been shamelessly stolen
       from the equivalent <a href="http://pmd.sourceforge.net">PMD</a> rule.
@@ -411,7 +411,7 @@ return !valid();
       </p>
       <p class="body">
       Consider the following properties file in the same directory:
-
+      </p>
       <pre>
       #messages.properties
       hello=Hello
@@ -425,13 +425,13 @@ return !valid();
       The Translation check will find the typo in the german hello key, the
       missing ok key in the default resource file and the missing cancel key
       in the german resource file:
+      </p>
       <pre>
       messages_de.properties: Key 'hello' missing.
       messages_de.properties: Key 'cancel' missing.
       messages.properties: Key 'hell' missing.
       messages.properties: Key 'ok' missing.
       </pre>
-      </p>
       <h4>Properties</h4>
       <table width="100%" border="1" cellpadding="5" class="body">
         <tr class="header">
@@ -632,12 +632,12 @@ public class StringUtils // not final to allow subclassing
 
       <p class="body">
       The exact rule is that nonprivate methods of classes that can be subclassed must either be
+      </p>
       <ul class="body">
       <li>abstract or</li>
       <li>final or</li>
       <li>have an empty implementation</li>
       </ul>
-      </p>
 
       <p class="body">
       Rationale: This API design style protects superclasses against beeing broken by
@@ -791,8 +791,8 @@ public class StringUtils // not final to allow subclassing
   </tr>
 </table>
 <hr />
-<p>
-Copyright &copy; 2002 Oliver Burn. All rights Reserved.
+<p class="copyright">
+Copyright &copy; 2002-2003 Oliver Burn. All rights Reserved.
 </p>
 
 </body>
