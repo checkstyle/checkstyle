@@ -74,7 +74,6 @@
         </module>
         <module name="ParameterNumber"/>
         <module name="ParenPad"/>
-        <module name="PublicMemberName"/>
         <module name="RedundantImport"/>
         <module name="RedundantModifier"/>
         <module name="RightCurly">

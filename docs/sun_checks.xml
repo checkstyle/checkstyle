@@ -79,7 +79,7 @@
     <!-- don't create new instances of Boolean,
          use Boolean.TRUE/FALSE or Boolean.valueOf() instead -->
     <module name="IllegalInstantiation">
-      <property name="" value="java.lang.Boolean"/>
+      <property name="classes" value="java.lang.Boolean"/>
     </module>
 
 
