@@ -273,7 +273,8 @@ public final class TreeWalker
                         0,
                         Defn.CHECKSTYLE_BUNDLE,
                         "general.exception",
-                        new String[] {""},
+                        new String[]
+                            {"TokenStreamRecognitionException occured."},
                         this.getClass()));
             }
         }

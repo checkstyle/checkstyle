@@ -131,7 +131,7 @@ public abstract class ExpressionHandler
                                   int aActualLevel, IndentLevel aExpectedLevel)
     {
         String typeStr =
-            (aSubtypeName.length() == 0 ? "" : (" " + aSubtypeName));
+            ("".equals(aSubtypeName) ? "" : (" " + aSubtypeName));
         Object[] args = new Object[] {
             mTypeName + typeStr,
             new Integer(aActualLevel),
