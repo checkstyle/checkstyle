@@ -46,7 +46,6 @@ public class CheckerTest
     protected void setUp()
         throws Exception
     {
-        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, Boolean.TRUE.toString());
         mProps.setProperty(Defn.LOCALE_COUNTRY_PROP,
                            Locale.ENGLISH.getCountry());
         mProps.setProperty(Defn.LOCALE_LANGUAGE_PROP,
@@ -100,7 +99,6 @@ public class CheckerTest
     {
         mProps.setProperty(Defn.IGNORE_CAST_WHITESPACE_PROP,
                            Boolean.FALSE.toString());
-        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, Boolean.FALSE.toString());
 
         mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE.toString());
         mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.IGNORE.toString());
@@ -110,7 +108,6 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":5:12: '.' is preceeded with whitespace.",
             filepath + ":5:14: '.' is followed by whitespace.",
-            filepath + ":13: Type Javadoc comment is missing an @author tag.",
             filepath + ":29:14: '-' is followed by whitespace.",
             filepath + ":29:21: '+' is followed by whitespace.",
             filepath + ":30:14: '++' is preceeded with whitespace.",
@@ -133,7 +130,6 @@ public class CheckerTest
         throws Exception
     {
         mProps.setProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, "true");
-        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, "false");
         mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE.toString());
         mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.IGNORE.toString());
         final Checker c = createChecker();
@@ -142,7 +138,6 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":5:12: '.' is preceeded with whitespace.",
             filepath + ":5:14: '.' is followed by whitespace.",
-            filepath + ":13: Type Javadoc comment is missing an @author tag.",
             filepath + ":29:14: '-' is followed by whitespace.",
             filepath + ":29:21: '+' is followed by whitespace.",
             filepath + ":30:14: '++' is preceeded with whitespace.",
@@ -155,22 +150,6 @@ public class CheckerTest
             filepath + ":129:24: '.' is followed by whitespace.",
             filepath + ":136:10: '.' is preceeded with whitespace.",
             filepath + ":136:12: '.' is followed by whitespace.",
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testWhitespaceOff()
-        throws Exception
-    {
-        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
-        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, "false");
-        mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE.toString());
-        mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.IGNORE.toString());
-        final Checker c = createChecker();
-        final String filepath = getPath("InputWhitespace.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":13: Type Javadoc comment is missing an @author tag.",
         };
         verify(c, filepath, expected);
     }
@@ -556,35 +535,6 @@ public class CheckerTest
         final String filepath = getPath("InputOpWrap.java");
         assertNotNull(c);
         final String[] expected = {
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testNoAuthor()
-        throws Exception
-    {
-        mProps.setProperty(Defn.WRAP_OP_PROP, WrapOpOption.NL.toString());
-        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, "false");
-        final Checker c = createChecker();
-        final String filepath = getPath("InputJavadoc.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":11: Type Javadoc comment is missing an @author tag."
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testNoVersion()
-        throws Exception
-    {
-        mProps.setProperty(Defn.WRAP_OP_PROP, WrapOpOption.NL.toString());
-        mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, "true");
-        mProps.setProperty(Defn.REQUIRE_VERSION_PROP, "true");
-        final Checker c = createChecker();
-        final String filepath = getPath("InputJavadoc.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":11: Type Javadoc comment is missing an @version tag."
         };
         verify(c, filepath, expected);
     }

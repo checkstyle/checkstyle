@@ -90,18 +90,6 @@ class Verifier
     private static final RE MATCH_JAVADOC_NOARG
         = Utils.createRE(MATCH_JAVADOC_NOARG_PAT);
 
-    /** the pattern to match author tag **/
-    private static final String MATCH_JAVADOC_AUTHOR_PAT = "@author\\s+\\S";
-    /** compiled regexp to match author tag **/
-    private static final RE MATCH_JAVADOC_AUTHOR
-        = Utils.createRE(MATCH_JAVADOC_AUTHOR_PAT);
-
-    /** the pattern to match version tag **/
-    private static final String MATCH_JAVADOC_VERSION_PAT = "@version\\s+\\S";
-    /** compiled regexp to match version tag **/
-    private static final RE MATCH_JAVADOC_VERSION
-        = Utils.createRE(MATCH_JAVADOC_VERSION_PAT);
-
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
     ////////////////////////////////////////////////////////////////////////////
@@ -255,37 +243,6 @@ class Verifier
      **/
     void verifyType(MyModifierSet aMods, MyCommonAST aType)
     {
-        //
-        // Only Javadoc testing below
-        //
-        final Scope typeScope =
-            inInterfaceBlock() ? Scope.PUBLIC : aMods.getVisibilityScope();
-
-        if (!inCheckScope(typeScope)) {
-            return; // no need to really check anything
-        }
-
-        final int lineNo = (aMods.size() > 0)
-            ? aMods.getFirstLineNo()
-            : aType.getLineNo();
-
-        final String[] jd = getJavadocBefore(lineNo - 1);
-        if (jd == null) {
-//            mMessages.add(lineNo, "javadoc.missing");
-        }
-        else if (mInScope.size() == 0) {
-            // don't check author/version for inner classes
-            if (!mConfig.isAllowNoAuthor()
-                && (MATCH_JAVADOC_AUTHOR.grep(jd).length == 0))
-            {
-                mMessages.add(lineNo, "type.missingTag", "@author");
-            }
-            if (mConfig.isRequireVersion()
-                && (MATCH_JAVADOC_VERSION.grep(jd).length == 0))
-            {
-                mMessages.add(lineNo, "type.missingTag", "@version");
-            }
-        }
     }
 
 

@@ -50,11 +50,15 @@ public class LineLengthCheck extends Check
     /** the regexp when long lines are ignored */
     private RE mIgnorePattern;
 
+    /**
+     * Creates a new <code>LineLengthCheck</code> instance.
+     */
     public LineLengthCheck()
     {
         setIgnorePattern("^$");
     }
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[0];

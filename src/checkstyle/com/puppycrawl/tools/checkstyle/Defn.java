@@ -51,8 +51,6 @@ public interface Defn
     String ALLOW_PROTECTED_PROP = "checkstyle.allow.protected";
     /** property name for allowing package data **/
     String ALLOW_PACKAGE_PROP = "checkstyle.allow.package";
-    /** property name for allowing no author **/
-    String ALLOW_NO_AUTHOR_PROP = "checkstyle.allow.noauthor";
     /** property name for visibility scope where Javadoc is checked **/
     String JAVADOC_CHECKSCOPE_PROP = "checkstyle.javadoc.scope";
     /** property name for checking for Runtime @throws in Javadoc **/
@@ -60,8 +58,6 @@ public interface Defn
         "checkstyle.javadoc.checkUnusedThrows";
     /** property name for requiring package documentation */
     String REQUIRE_PACKAGE_HTML_PROP = "checkstyle.require.packagehtml";
-    /** property name for requiring a version tag **/
-    String REQUIRE_VERSION_PROP = "checkstyle.require.version";
     /** property name for ignoring whitespace **/
     String IGNORE_WHITESPACE_PROP = "checkstyle.ignore.whitespace";
     /** property name for ignoring whitespace after casts **/
@@ -90,7 +86,6 @@ public interface Defn
     /** All the properties that are a boolean. They all must default to false */
     String[] ALL_BOOLEAN_PROPS = new String[]
         {
-            ALLOW_NO_AUTHOR_PROP,
             ALLOW_PACKAGE_PROP,
             ALLOW_PROTECTED_PROP,
             IGNORE_BRACES_PROP,
@@ -98,7 +93,6 @@ public interface Defn
             IGNORE_WHITESPACE_PROP,
             JAVADOC_CHECK_UNUSED_THROWS_PROP,
             REQUIRE_PACKAGE_HTML_PROP,
-            REQUIRE_VERSION_PROP,
         };
 
     /** All the properties that are a regulare expression */

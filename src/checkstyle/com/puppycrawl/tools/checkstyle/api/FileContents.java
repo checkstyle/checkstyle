@@ -31,6 +31,12 @@ public class FileContents
     /** map of the C++ comments indexed on the last line of the comment. */
     private final Map mCPlusPlusComments = new HashMap();
 
+    /**
+     * Creates a new <code>FileContents</code> instance.
+     *
+     * @param aFilename name of the file
+     * @param aLines the contents of the file
+     */
     public FileContents(String aFilename, String[] aLines)
     {
         mFilename = aFilename;
@@ -115,11 +121,13 @@ public class FileContents
         return (String[]) mJavadocComments.get(new Integer(lineNo));
     }
 
+    /** @return the lines in the file */
     public String[] getLines()
     {
         return mLines;
     }
 
+    /** @return the name of the file */
     public String getFilename()
     {
         return mFilename;

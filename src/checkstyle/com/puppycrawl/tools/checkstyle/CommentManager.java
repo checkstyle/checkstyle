@@ -54,18 +54,21 @@ public class CommentManager
 
     private static class CommentIterator implements Iterator
     {
+        /** @see Iterator */
         public boolean hasNext()
         {
             // TODO: implement this for real
             return false;
         }
 
+        /** @see Iterator */
         public Object next()
         {
             // TODO: implement this for real
             return null;
         }
 
+        /** @see Iterator */
         public void remove()
         {
             throw new UnsupportedOperationException();

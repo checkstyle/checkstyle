@@ -2,8 +2,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheck;
 
-import junit.framework.TestCase;
-
 /**
  * @author Oliver.Burn
  *
@@ -138,6 +136,51 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final String[] expected =
         {
             "18: Missing a Javadoc comment.",
+        };
+        verify(c, fname, expected);
+    }
+
+    public void testAts() throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(JavadocTypeCheck.class.getName());
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputWhitespace.java");
+        final String[] expected =
+        {
+            "13: Type Javadoc comment is missing an @author tag.",
+        };
+        verify(c, fname, expected);
+    }
+
+    public void testNoAuthor()
+        throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(JavadocTypeCheck.class.getName());
+        checkConfig.addProperty("allowNoAuthor", "false");
+        checkConfig.addProperty("requireVersion", "false");
+
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputJavadoc.java");
+        final String[] expected = {
+            "11: Type Javadoc comment is missing an @author tag."
+        };
+        verify(c, fname, expected);
+    }
+
+    public void testNoVersion()
+        throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(JavadocTypeCheck.class.getName());
+        checkConfig.addProperty("allowNoAuthor", "true");
+        checkConfig.addProperty("requireVersion", "true");
+
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputJavadoc.java");
+        final String[] expected = {
+            "11: Type Javadoc comment is missing an @version tag."
         };
         verify(c, fname, expected);
     }
