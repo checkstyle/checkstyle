@@ -590,9 +590,9 @@ public class JavadocMethodCheck
                         classLoaded = true;
                     }
                     found = isSubclass(documentedClass, ei.getClazz());
-                    if (found) {
-                        ei.setFound();
-                    }
+//                     if (found) {
+//                         ei.setFound();
+//                     }
                 }
             }
 

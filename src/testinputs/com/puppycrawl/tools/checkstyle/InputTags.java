@@ -246,4 +246,14 @@ class InputTags
     void method23() throws WrongException
     {
     }
+
+    /**
+     * Bug 803577, "allowThrowsTagsForSubclasses/allowMissingThrowsTag interfere"
+     *
+     * no exception tag for IOException, but here is a tag for its subclass.
+     * @exception java.io.FileNotFoundException for another reasons
+     */
+    void method24() throws IOException
+    {
+    }
 }
