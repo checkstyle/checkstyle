@@ -109,7 +109,7 @@ public abstract class ExpressionHandler
      */
     public int suggestedChildLevel(ExpressionHandler aChild)
     {
-        return getLevel() + mIndentCheck.getIndentationAmount();
+        return getLevel() + mIndentCheck.getBasicOffset();
     }
 
     /**
@@ -246,7 +246,7 @@ public abstract class ExpressionHandler
         checkSingleLine(aStartLine, aIndentLevel);
 
         // check following lines
-        aIndentLevel += mIndentCheck.getIndentationAmount();
+        aIndentLevel += mIndentCheck.getBasicOffset();
         for (int i = aStartLine + 1; i <= aEndLine; i++) {
             checkSingleLine(i, aIndentLevel);
         }
@@ -393,7 +393,7 @@ public abstract class ExpressionHandler
         }
 
         if (aFirstLineMatches || startLine > mMainAst.getLineNo()) {
-            aIndentLevel += mIndentCheck.getIndentationAmount();
+            aIndentLevel += mIndentCheck.getBasicOffset();
         }
 
         // check following lines
@@ -415,7 +415,7 @@ public abstract class ExpressionHandler
             if (thisLine.matches("^\\s*\\.")
                 || prevLine.matches("\\.\\s*$"))
             {
-                aIndentLevel += mIndentCheck.getIndentationAmount();
+                aIndentLevel += mIndentCheck.getBasicOffset();
             }
 
             if (col != null) {

@@ -29,9 +29,9 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(checkConfig, getPath("indentation/InputInvalidLabelIndent.java"), expected);
     }
-    
-    
-    
+
+
+
     public void testValidLabel()
             throws Exception
     {
@@ -41,7 +41,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         verify(checkConfig, getPath("indentation/InputValidLabelIndent.java"), expected);
     }
 
-    
+
      public void testValidIfWithChecker()
         throws Exception
     {
@@ -51,9 +51,9 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         final String[] expected = {
         };
         verify(c, fname, expected);
-    }    
-    
-    
+    }
+
+
     public void testValidDotWithChecker()
         throws Exception
     {
@@ -64,8 +64,8 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-        
-    
+
+
     public void testValidMethodWithChecker()
         throws Exception
     {
@@ -76,8 +76,8 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-    
-    
+
+
     public void testInvalidMethodWithChecker()
         throws Exception
     {
@@ -116,15 +116,15 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "139: method call child at indentation level 10 not at correct indentation, 12",
             "142: method call child at indentation level 10 not at correct indentation, 12",
             // todo: 152 -- 8 should be 12
-            "152: method call child at indentation level 6 not at correct indentation, 8", 
+            "152: method call child at indentation level 6 not at correct indentation, 8",
             "158: method def throws at indentation level 6 not at correct indentation, 8",
         };
         verify(c, fname, expected);
     }
 
-    
-    
-    
+
+
+
     public void testInvalidSwitchWithChecker()
         throws Exception
     {
@@ -161,7 +161,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-    
+
     public void testValidSwitchWithChecker()
         throws Exception
     {
@@ -172,9 +172,9 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-    
-    
-    
+
+
+
     public void testValidArrayInitWithChecker()
         throws Exception
     {
@@ -226,9 +226,9 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         verify(c, fname, expected);
     }
 
-    
-    
-    
+
+
+
     public void testValidTryWithChecker()
         throws Exception
     {
@@ -276,8 +276,8 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-    
-    
+
+
     // TODO: needs to be finished
     public void testInvalidClassDefWithChecker()
         throws Exception
@@ -330,8 +330,8 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-    
-    
+
+
     public void testInvalidBlockWithChecker()
         throws Exception
     {
@@ -378,7 +378,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-    
+
     public void testInvalidIfWithChecker()
         throws Exception
     {
@@ -532,7 +532,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-    
+
     public void testValidForWithChecker()
         throws Exception
     {
@@ -543,7 +543,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-    
+
     public void testValidDoWhileWithChecker()
         throws Exception
     {
@@ -565,8 +565,8 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-    
-    
+
+
     public void testValidWhileWithChecker()
         throws Exception
     {
@@ -611,24 +611,24 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-    
+
     public void testTabs()
             throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
-        checkConfig.addAttribute("indentationAmount", new Integer(4).toString());
+        checkConfig.addAttribute("basicOffset", new Integer(4).toString());
         checkConfig.addAttribute("tabWidth", new Integer(4).toString());
         final String[] expected = {
             "25: ctor def child at indentation level 9 not at correct indentation, 8",
         };
         verify(checkConfig, getPath("indentation/InputUseTabs.java"), expected);
     }
-    
+
     public void testIndentationLevel()
             throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
-        checkConfig.addAttribute("indentationAmount", new Integer(2).toString());
+        checkConfig.addAttribute("basicOffset", new Integer(2).toString());
         final String[] expected = {
             "25: ctor def child at indentation level 5 not at correct indentation, 4",
         };
@@ -657,5 +657,5 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         verify(checkConfig, getPath("indentation/InputBraceAdjustment.java"), expected);
     }
 
-    
+
 }

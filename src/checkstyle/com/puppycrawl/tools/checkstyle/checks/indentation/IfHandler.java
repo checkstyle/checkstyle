@@ -110,7 +110,7 @@ public class IfHandler extends BlockParentHandler
         DetailAST condAst = (DetailAST)
             getMainAst().findFirstToken(TokenTypes.LPAREN).getNextSibling();
         int expectedLevel =
-            getLevel() + getIndentCheck().getIndentationAmount();
+            getLevel() + getIndentCheck().getBasicOffset();
         checkExpressionSubtree(condAst, expectedLevel, false, false);
     }
 

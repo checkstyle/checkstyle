@@ -230,7 +230,7 @@ public class BlockParentHandler extends ExpressionHandler
         }
 
         checkExpressionSubtree(nonlist, getLevel()
-                + getIndentCheck().getIndentationAmount());
+                + getIndentCheck().getBasicOffset());
     }
 
     /**
@@ -326,8 +326,8 @@ public class BlockParentHandler extends ExpressionHandler
         }
         DetailAST listChild = getListChild();
         if (listChild != null) {
-            final int expectedLevel = 
-                getLevel() + getIndentCheck().getIndentationAmount();
+            final int expectedLevel =
+                getLevel() + getIndentCheck().getBasicOffset();
             // NOTE: switch statements usually don't have curlys
             if (!hasCurlys() || !areOnSameLine(getLCurly(), getRCurly())) {
                 checkChildren(listChild,

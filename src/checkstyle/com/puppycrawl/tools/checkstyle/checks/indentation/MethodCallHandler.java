@@ -105,7 +105,7 @@ public class MethodCallHandler extends ExpressionHandler
                 }
                 else {
                     return container.getLevel()
-                        + getIndentCheck().getIndentationAmount();
+                        + getIndentCheck().getBasicOffset();
                 }
             }
 
@@ -185,7 +185,7 @@ public class MethodCallHandler extends ExpressionHandler
             if (!areOnSameLine((DetailAST) aChild.getMainAst().getFirstChild(),
                 (DetailAST) getMainAst().getFirstChild()))
             {
-                indentLevel += getIndentCheck().getIndentationAmount();
+                indentLevel += getIndentCheck().getBasicOffset();
             }
         }
         return indentLevel;
@@ -251,7 +251,7 @@ public class MethodCallHandler extends ExpressionHandler
 
             checkExpressionSubtree(
                 getMainAst().findFirstToken(TokenTypes.ELIST),
-                getLevel() + getIndentCheck().getIndentationAmount(),
+                getLevel() + getIndentCheck().getBasicOffset(),
                 false, true);
 
             checkRParen();

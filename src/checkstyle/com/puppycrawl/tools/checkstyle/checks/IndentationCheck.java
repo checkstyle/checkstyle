@@ -107,6 +107,7 @@ import org.apache.commons.collections.ArrayStack;
  *
  * @author jrichard
  */
+
 public class IndentationCheck
     extends Check
 {
@@ -114,10 +115,10 @@ public class IndentationCheck
     private static final int DEFAULT_INDENTATION = 4;
 
     /** how many tabs or spaces to use */
-    private int mIndentationAmount = DEFAULT_INDENTATION;
+    private int mBasicOffset = DEFAULT_INDENTATION;
 
     /** how much to indent a case label */
-    private int mCaseIndentationAmount = mIndentationAmount;
+    private int mCaseIndentationAmount = mBasicOffset;
 
     /** how far brace should be indented when on next line */
     private int mBraceAdjustment = 0;
@@ -134,23 +135,23 @@ public class IndentationCheck
     }
 
     /**
-     * Set the indentation amount.
+     * Set the basic offset.
      *
-     * @param aIndentAmount   the number of tabs or spaces to indent
+     * @param aBasicOffset   the number of tabs or spaces to indent
      */
-    public void setIndentationAmount(int aIndentAmount)
+    public void setBasicOffset(int aBasicOffset)
     {
-        mIndentationAmount = aIndentAmount;
+        mBasicOffset = aBasicOffset;
     }
 
     /**
-     * Get the indentation amount.
+     * Get the basic offset.
      *
      * @return the number of tabs or spaces to indent
      */
-    public int getIndentationAmount()
+    public int getBasicOffset()
     {
-        return mIndentationAmount;
+        return mBasicOffset;
     }
 
     /**
