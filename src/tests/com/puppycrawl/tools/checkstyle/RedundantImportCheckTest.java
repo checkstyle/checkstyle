@@ -8,8 +8,8 @@ public class RedundantImportCheckTest
     public void testWithChecker()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(RedundantImportCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RedundantImportCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputImport.java");
         final String[] expected = {

@@ -8,8 +8,8 @@ public class SimplifyBooleanExpressionCheckTest
     public void testIt()
             throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(SimplifyBooleanExpressionCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(SimplifyBooleanExpressionCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimplifyBoolean.java");
         final String[] expected = {

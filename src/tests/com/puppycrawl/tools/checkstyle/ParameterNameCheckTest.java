@@ -8,9 +8,9 @@ public class ParameterNameCheckTest
     public void testCatch()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParameterNameCheck.class.getName());
-        checkConfig.addProperty("format", "^NO_WAY_MATEY$");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParameterNameCheck.class);
+        checkConfig.addAttribute("format", "^NO_WAY_MATEY$");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputLeftCurlyOther.java");
         final String[] expected = {
@@ -21,9 +21,9 @@ public class ParameterNameCheckTest
     public void testSpecified()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParameterNameCheck.class.getName());
-        checkConfig.addProperty("format", "^a[A-Z][a-zA-Z0-9]*$");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParameterNameCheck.class);
+        checkConfig.addAttribute("format", "^a[A-Z][a-zA-Z0-9]*$");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
@@ -37,8 +37,8 @@ public class ParameterNameCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParameterNameCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParameterNameCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
