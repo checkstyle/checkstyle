@@ -29,6 +29,9 @@
           <a href="#AvoidInlineConditionals">AvoidInlineConditionals</a>
         </li>
         <li>
+          <a href="#CovariantEquals">CovariantEquals</a>
+        </li>
+        <li>
           <a href="#DoubleCheckedLocking">DoubleCheckedLocking</a>
         </li>
         <li>
@@ -128,6 +131,36 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
       </p>
       <pre class="body">
 &lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+
+      <!-- --> <a name="CovariantEquals"></a> <h2>CovariantEquals</h2>
+      <h4>Description</h4>
+      <p class="body">
+      Checks that classes that define a covariant <span class="code">equals()</span>
+      method also override method <span class="code">equals(java.lang.Object)</span>.
+      Inspired by <a href="http://www.cs.umd.edu/~pugh/java/bugs/docs/findbugsPaper.pdf">findbugs</a>.
+      </p>
+      <p class="body">
+      Rationale: Mistakenly defining a covariant <span class="code">equals()</span>
+      method without overriding method <span class="code">equals(java.lang.Object)</span>
+      can produce unexpected runtime behaviour.
+      </p>
+
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;CovariantEquals&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
