@@ -36,6 +36,7 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
   <li>Format of parameter names match a specified regular expression.</li>
   <li>Variables that are not declared as <span class="code">private</span> or <span class="code">protected</span>.</li>
   <li>Correct use of white space around binary and unary operators. For example, <span class="code">x -=- 1;</span> is illegal, whereas <span class="code">x -= -1;</span> is not. Note: these checks can be turned off.</li>
+  <li>Ensure white space follows casts and commas. For example both <span class="code">x = (File)obj</span> and <span class="code">run(arg1,arg2)</span> are illegal, whereas <span class="code">x = (File) obj</span> and <span class="code">run(arg1, arg2)</span> are not. Note: these checks can be turned off.</li>
   <li>Ensure <span class="code">{}</span>'s are used for <span class="code">if/while/for/do</span> constructs. Note: this check can be turned off.</li>
   <li>Lines are not longer than a specified length.</li>
   <li>Methods and constructors that are longer than a specified number of lines.</li>
@@ -216,6 +217,7 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
   <li>Binary operators are separated from operands by spaces. For example <span class="code">x = y + 1;</span></li>
   <li>Unary operators are not separated by spaces. For example <span class="code">x = --y + z++;</span></li>
   <li>The keywords <span class="code">if/for/while/do</span> are surrounded by spaces.</li>
+  <li>Casts and commas (',') are followed by white space.
 </ul>
 
 <p>This feature can be turned off.</p>

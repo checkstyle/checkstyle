@@ -428,7 +428,7 @@ class VerifierImpl
     }
 
     /** @see Verifier **/
-    public void verifyWSAfterCast(int aLineNo, int aColNo)
+    public void verifyWSAfter(int aLineNo, int aColNo, String aConstruct)
     {
         if (mConfig.isIgnoreWhitespace()) {
             return;
@@ -438,7 +438,7 @@ class VerifierImpl
         if ((aColNo < line.length()) &&
             !Character.isWhitespace(line.charAt(aColNo)))
         {
-            log(aLineNo, "cast needs to be followed by whitespace.");
+            log(aLineNo, aConstruct + " needs to be followed by whitespace.");
         }
     }
 

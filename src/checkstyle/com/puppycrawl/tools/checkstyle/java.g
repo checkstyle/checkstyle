@@ -768,14 +768,14 @@ unaryExpressionNotPlusMinus
 			}
 		:	// If typecast is built in type, must be numeric operand
 			// Also, no reason to backtrack if type keyword like int, float...
-			lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] rpb:RPAREN! {ver.verifyWSAfterCast(rpb.getLine(), rpb.getColumn());}
+			lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] rpb:RPAREN! {ver.verifyWSAfter(rpb.getLine(), rpb.getColumn(), "cast");}
 			unaryExpression
 
 			// Have to backtrack to see if operator follows.  If no operator
 			// follows, it's a typecast.  No semantic checking needed to parse.
 			// if it _looks_ like a cast, it _is_ a cast; else it's a "(expr)"
 		|	(LPAREN classTypeSpec[true] RPAREN unaryExpressionNotPlusMinus)=>
-			lp:LPAREN^ {#lp.setType(TYPECAST);} classTypeSpec[true] rpb2:RPAREN! {ver.verifyWSAfterCast(rpb2.getLine(), rpb2.getColumn());}
+			lp:LPAREN^ {#lp.setType(TYPECAST);} classTypeSpec[true] rpb2:RPAREN! {ver.verifyWSAfter(rpb2.getLine(), rpb2.getColumn(), "cast");}
 			unaryExpressionNotPlusMinus
 
 		|	postfixExpression
@@ -969,7 +969,7 @@ RBRACK			:	']'		;
 LCURLY			:	'{'		;
 RCURLY			:	'}'		;
 COLON			:	':'		;
-COMMA			:	','		;
+COMMA			:	',' {ver.verifyWSAfter(getLine(), getColumn() - 1, "','");} ;
 //DOT			:	'.'		;
 ASSIGN			:	'='		;
 EQUAL			:	"=="	;
