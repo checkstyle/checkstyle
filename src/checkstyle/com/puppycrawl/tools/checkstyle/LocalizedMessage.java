@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.util.ResourceBundle;
+import java.util.Locale;
 import java.text.MessageFormat;
 
 /**
@@ -36,6 +37,9 @@ class LocalizedMessage
     private static final String MESSAGE_BUNDLE =
         "com.puppycrawl.tools.checkstyle.messages";
 
+    /** the locale to localise messages to **/
+    private static Locale sLocale = Locale.getDefault();
+
     /** the line number **/
     private final int mLineNo;
     /** the column number **/
@@ -46,6 +50,9 @@ class LocalizedMessage
 
     /** arguments for MessageFormat **/
     private final Object[] mArgs;
+
+    /** the class loader to locate resource bundles with **/
+    private static ClassLoader sLoader;
 
     /**
      * Creates a new <code>LocalizedMessage</code> instance.
@@ -80,7 +87,8 @@ class LocalizedMessage
     String getMessage()
     {
         // Very simple approach - wait for performance problems
-        final ResourceBundle bundle = ResourceBundle.getBundle(MESSAGE_BUNDLE);
+        final ResourceBundle bundle =
+            ResourceBundle.getBundle(MESSAGE_BUNDLE, sLocale, sLoader);
         final String pattern = bundle.getString(mKey);
         return MessageFormat.format(pattern, mArgs);
     }
@@ -92,10 +100,23 @@ class LocalizedMessage
     }
 
     /** @return the column number **/
-    public int getColumnNo()
+    int getColumnNo()
     {
         return mColNo;
     }
+
+    /**
+     * Initialise the localization of messages
+     *
+     * @param aLocale the locale to use for localization
+     * @param aLoader the class loader to locate resource bundles with
+     */
+    static void init(Locale aLocale, ClassLoader aLoader)
+    {
+        sLocale = aLocale;
+        sLoader = aLoader;
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Interface Comparable methods
     ////////////////////////////////////////////////////////////////////////////

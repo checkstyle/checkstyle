@@ -205,7 +205,7 @@
                excludes="**/Generated*.java"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="target/cs_errors.xml"/>
-      <classpath refid="build.classpath"/>
+      <classpath refid="run.classpath"/>
     </checkstyle>
   </target>
 
@@ -332,6 +332,19 @@
     <property name="report"
               value="${basedir}/${testreport.dir}/index.html"/>
     <fail message="Unit tests failed - Report is available in ${report}"/>
+  </target>
+
+  <target name="jdepend">
+    <mkdir dir="target/jdep"/>
+    <jdepend format="xml" outputfile="target/jdep/jdepend-report.xml">
+      <sourcespath>
+        <pathelement location="src/checkstyle" />
+      </sourcespath>
+      <classpath location="C:/apps/jdepend-2.2/lib/jdepend.jar" />
+    </jdepend>
+
+    <style basedir="target/jdep" destdir="target/jdep"
+           includes="jdepend-report.xml" style="jdepend.xsl" />
   </target>
 
   <!-- -->
