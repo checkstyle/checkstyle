@@ -83,17 +83,21 @@ public class DefaultLogger
      **/
     public void addError(AuditEvent aEvt)
     {
+        String fileName = aEvt.getFileName();
+        String message = aEvt.getMessage();
+
+        // avoid StringBuffer.expandCapacity
+        int bufLen = fileName.length() + message.length() + 12;
+
+        StringBuffer sb = new StringBuffer(bufLen);
+
+        sb.append(fileName);
+        sb.append(':').append(aEvt.getLine());
         if (aEvt.getColumn() > 0) {
-            mErrorWriter.println(aEvt.getFileName()
-                                 + ":" + aEvt.getLine()
-                                 + ":" + aEvt.getColumn()
-                                 + ": " + aEvt.getMessage());
+            sb.append(':').append(aEvt.getColumn());
         }
-        else {
-            mErrorWriter.println(aEvt.getFileName()
-                                 + ":" + aEvt.getLine()
-                                 + ": " + aEvt.getMessage());
-        }
+        sb.append(": ").append(message);
+        mErrorWriter.println(sb.toString());
     }
 
     /** @see AuditListener **/
