@@ -22,16 +22,12 @@ package com.puppycrawl.tools.checkstyle.doclets;
 import com.sun.javadoc.RootDoc;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.Tag;
-import com.sun.javadoc.SeeTag;
 import com.sun.javadoc.PackageDoc;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.TreeMap;
-import java.util.Set;
 import java.util.Iterator;
-import java.util.Collection;
-import java.io.Writer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.File;
@@ -63,19 +59,6 @@ public final class CheckDocsDoclet
 
         /** maps check names to class doc, sorted. */
         private Map mChecks = new TreeMap();
-
-        /**
-         * The string inside a package doc
-         * to mark the beginning of a page title.
-         */
-        private static final String PAGETITLE =
-                "<span class=\"xdocspagetitle\">";
-
-        /**
-         * The string inside a package doc
-         * to mark the end of a page title.
-         */
-        private static final String PAGETITLE_END = "</span>";
 
         /**
          * Creates a new Documentation page.
@@ -124,56 +107,6 @@ public final class CheckDocsDoclet
         }
 
         /**
-         * Write page.
-         * @param aWriter the target to write to
-         * @throws IOException if there are problems writing output
-         */
-        private void write(Writer aWriter) throws IOException
-        {
-            // TODO: use velocity to implement this method???
-            final String title = getTitle();
-            PrintWriter pw = new PrintWriter(aWriter);
-            writeXdocsHeader(pw, title);
-            final Tag[] packageInlineTags = mPackageDoc.inlineTags();
-            for (int i = 0; i < packageInlineTags.length; i++) {
-                Tag packageInlineTag = packageInlineTags[i];
-                final String text = packageInlineTag.text();
-                aWriter.write(text);
-            }
-
-
-            Set checkNames = mChecks.keySet();
-            for (Iterator it = checkNames.iterator(); it.hasNext();) {
-                String checkName = (String) it.next();
-
-                pw.println("<section name=\"" + checkName + "\">");
-                ClassDoc classDoc = (ClassDoc) mChecks.get(checkName);
-                final Tag[] classInlineTags = classDoc.inlineTags();
-                for (int j = 0; j < classInlineTags.length; j++) {
-                    Tag inlineTag = classInlineTags[j];
-                    if ("@see".equals(inlineTag.kind())) {
-                        // this works fine for TokenType @links
-                        // TODO: check for other link packageInlineTags
-                        SeeTag seeTag = (SeeTag) inlineTag;
-                        String memberName = seeTag.referencedMemberName();
-
-                        aWriter.write(memberName != null
-                                ? memberName
-                                : seeTag.text());
-                    }
-                    else {
-                        aWriter.write(inlineTag.text());
-                    }
-                }
-                pw.println();
-                pw.println("</section>\n");
-
-            }
-
-            writeXdocsFooter(pw);
-        }
-
-        /**
          * Removes an opening p tag from a StringBuffer.
          * @param aText the text to process
          */
@@ -186,47 +119,6 @@ public final class CheckDocsDoclet
             {
                 aText.delete(0, tagLen);
             }
-        }
-
-        /**
-         * Removes a dot from the end of a StringBuffer if there is one.
-         * @param aText the aText to process
-         */
-        private void removeClosingDot(final StringBuffer aText)
-        {
-            final int lastIdx = aText.length() - 1;
-            if (aText.length() > 0 && aText.charAt(lastIdx) == '.') {
-                aText.delete(lastIdx, lastIdx + 1);
-            }
-        }
-
-        /**
-         * Calculates the title of the DocumentationPage using the first
-         * sentence in the package javadoc.
-         * If parts of the first sentence are enclosed between
-         * {@link #PAGETITLE} and {@link #PAGETITLE_END}, only those parts
-         * are returned.
-         *
-         * @return the calculated title
-         */
-        private String getTitle()
-        {
-            final Tag[] tags = mPackageDoc.firstSentenceTags();
-            final String tagText = tags[0].text();
-            final int pagetitleIdx = tagText.indexOf(PAGETITLE);
-            final StringBuffer text;
-            if (pagetitleIdx != -1) {
-                int titleEndIdx = tagText.indexOf(PAGETITLE_END, pagetitleIdx);
-                final int titleStartIdx = pagetitleIdx + PAGETITLE.length();
-                text = new StringBuffer(
-                        tagText.substring(titleStartIdx, titleEndIdx));
-            }
-            else {
-                text = new StringBuffer(tagText);
-            }
-            removeClosingDot(text);
-            removeOpeningParagraphTag(text);
-            return text.toString().trim();
         }
     }
 
@@ -327,19 +219,7 @@ public final class CheckDocsDoclet
 
         // TODO: close files in finally blocks
 
-        final Collection pages = sDocumentationPages.values();
         final File destDir = new File(getDestDir(aRoot.options()));
-        for (Iterator it = pages.iterator(); it.hasNext();) {
-            DocumentationPage page = (DocumentationPage) it.next();
-            String pageName = getPageName(page);
-            // only documentation for duplicates is generated for now
-            if  ("duplicates".equals(pageName)) {
-                File outfile = new File(destDir, "config_" + pageName + ".xml");
-                Writer writer = new FileWriter(outfile);
-                page.write(writer);
-                writer.close();
-            }
-        }
 
         final File checksIndexFile = new File(destDir, "availablechecks.xml");
         PrintWriter fileWriter = new PrintWriter(
