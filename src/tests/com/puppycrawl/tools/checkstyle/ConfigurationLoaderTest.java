@@ -46,8 +46,8 @@ public class ConfigurationLoaderTest extends TestCase
         catch (CheckstyleException ex) {
             assertTrue(
                 ex.getMessage().endsWith(
-                    "Attribute \"name\" is required and must be specified "
-                        + "for element type \"property\"."));
+                    "Attribute \"nam\" is not declared "
+                        + "for element \"property\"."));
         }
     }
 
@@ -60,8 +60,8 @@ public class ConfigurationLoaderTest extends TestCase
         catch (CheckstyleException ex) {
             assertTrue(
                 ex.getMessage().endsWith(
-                    "Attribute \"value\" is required and must be specified "
-                        + "for element type \"property\"."));
+                    "Attribute \"valu\" is not declared "
+                        + "for element \"property\"."));
         }
     }
 
@@ -74,8 +74,8 @@ public class ConfigurationLoaderTest extends TestCase
         catch (CheckstyleException ex) {
             assertTrue(
                 ex.getMessage().endsWith(
-                    "Attribute \"name\" is required and must be specified "
-                        + "for element type \"module\"."));
+                    "Attribute \"nam\" is not declared "
+                        + "for element \"module\"."));
         }
     }
 
@@ -88,8 +88,8 @@ public class ConfigurationLoaderTest extends TestCase
         catch (CheckstyleException ex) {
             assertTrue(
                 ex.getMessage().endsWith(
-                    "Document root element \"property\", must match DOCTYPE "
-                        + "root \"module\"."));
+                    "Root element type is \"property\", but was declared to "
+                        + "be \"module\"."));
         }
     }
 
