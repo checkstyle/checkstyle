@@ -5,13 +5,14 @@
 
 <module name="Checker">
 
-    <property name="tabWidth" value="4" />
-
     <module name="PackageHtml"/>
 
     <module name="Translation"/>
 
     <module name="TreeWalker">
+        
+        <property name="tabWidth" value="4" />
+        
         <module name="AvoidStarImport"/>
         <module name="ConstantName"/>
         <module name="EmptyBlock"/>
