@@ -26,6 +26,7 @@
         <li><a href="#ClassDataAbstractionCoupling">ClassDataAbstractionCoupling</a></li>
         <li><a href="#ClassFanOutComplexity">ClassFanOutComplexity</a></li>
         <li><a href="#CyclomaticComplexity">CyclomaticComplexity</a></li>
+        <li><a href="#JavaNCSS">JavaNCSS</a></li>
         <li><a href="#NPathComplexity">NPathComplexity</a></li>
       </ul>
     </td>
@@ -319,6 +320,95 @@ considered good, 5-7 ok, 8-10 consider re-factoring, and 11+ re-factor now!
       <pre class="body">
 &lt;module name=&quot;NPathComplexity&quot;&gt;
     &lt;property name=&quot;max&quot; value=&quot;20&quot;/&gt;
+&lt;/module&gt;
+      
+      </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.metrics
+      </p>
+
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+      
+      <!-- --><a name="JavaNCSS"></a>
+      <h2>JavaNCSS</h2>
+      <h4>Description</h4>
+
+      <p class="body">
+      Determines complexity of methods, classes and files by counting
+      the Non Commenting Source Statements (NCSS).
+      This check adheres to the <a 
+      href="http://www.kclee.com/clemens/java/javancss/">
+      specification</a> for the JavaNCSS-Tool written by 
+      <b>Chr. Clemens Lee</b> which sadly seems to have been pulled 
+      off the web.<br/>
+      Rougly said the NCSS metric is calculated by counting the source
+      lines which are not comments, (nearly) equivalent to counting
+      the semicolons and opening curly braces.<br/>
+      The NCSS for a class is summarized from the NCSS of all its methods,
+      the NCSS of its nested classes and the number of member variable
+      declarations.<br/>
+      The NCSS for a file is summarized from the ncss of all its top level
+      classes, the number of imports and the package declaration. 
+      </p>
+      <p>
+      Rationale:
+      Too large methods and classes are hard to read and costly to
+      maintain. A large NCSS number often means that a method or 
+      class has too many responsabilities and/or functionalities
+      which should be decomposed into smaller units.
+      </p>
+
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>methodMaximum</td>
+          <td>the maximum allowed number of non commenting lines in
+          a method.</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td><span class="default">50</span></td>    
+        </tr>
+        <tr>
+          <td>classMaximum</td>
+          <td>the maximum allowed number of non commenting lines in
+          a class.</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td><span class="default">1500</span></td>    
+        </tr>
+        <tr>
+          <td>fileMaximum</td>
+          <td>the maximum allowed number of non commenting lines in
+          a file including all top level and nested classes.</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td><span class="default">2000</span></td>    
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;JavaNCSS&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check with 40 allowed non commenting lines
+      for a method:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;JavaNCSS&quot;&gt;
+    &lt;property name=&quot;methodMaximum&quot; value=&quot;40&quot;/&gt;
 &lt;/module&gt;
 
       </pre>

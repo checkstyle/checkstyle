@@ -17,6 +17,7 @@ public class AllTests {
         suite.addTest(new TestSuite(ClassDataAbstractionCouplingCheckTest.class));
         suite.addTest(new TestSuite(CyclomaticComplexityCheckTest.class));
         suite.addTest(new TestSuite(NPathComplexityCheckTest.class));
+        suite.addTest(new TestSuite(JavaNCSSCheckTest.class));
 
         return suite;
     }
