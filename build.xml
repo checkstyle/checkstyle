@@ -549,7 +549,13 @@
   <target name="validate.xml"
           depends="require.xerces"
           description="Validates checkstyle XML file">
-    <xmlvalidate file="docs/checkstyle_checks.xml"/>
+    <xmlvalidate file="docs/checkstyle_checks.xml">
+      <xmlcatalog>
+        <dtd
+          publicId="-//Puppy Crawl//DTD Check Configuration 1.0//EN"
+          location="${checkstyle.dir}/configuration_1_0.dtd"/>
+      </xmlcatalog>
+    </xmlvalidate>
   </target>
 
   <!-- Targets to verify that ANT version if at least 1.5 -->
