@@ -45,6 +45,7 @@ public class CheckerTest
         mConfig.setLCurlyMethod(LeftCurlyOption.NL);
         mConfig.setLCurlyOther(LeftCurlyOption.NLOW);
         mConfig.setLCurlyType(LeftCurlyOption.NL);
+        mConfig.setRCurly(RightCurlyOption.ALONE);
     }
 
     protected String getPath(String aFilename)
@@ -643,6 +644,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setJavadocScope(Scope.NOTHING);
+        mConfig.setRCurly(RightCurlyOption.SAME);
         final Checker c = createChecker();
         final String filepath = getPath("InputLeftCurlyOther.java");
         assertNotNull(c);
@@ -650,9 +652,13 @@ public class CheckerTest
             filepath + ":19: '{' should be on the previous line.",
             filepath + ":21: '{' should be on the previous line.",
             filepath + ":23: '{' should be on the previous line.",
+            filepath + ":25: '}' should be on the same line.",
+            filepath + ":28: '}' should be on the same line.",
             filepath + ":30: '{' should be on the previous line.",
             filepath + ":34: '{' should be on the previous line.",
+            filepath + ":40: '}' should be on the same line.",
             filepath + ":42: '{' should be on the previous line.",
+            filepath + ":44: '}' should be on the same line.",
             filepath + ":46: '{' should be on the previous line.",
             filepath + ":52: '{' should be on the previous line.",
             filepath + ":54: '{' should be on the previous line.",

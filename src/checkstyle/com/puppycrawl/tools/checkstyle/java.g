@@ -582,7 +582,14 @@ statement[int[] aType, MyCommonAST[] aCurlies]
 				warnWhenFollowAmbig = false;
 			}
 		:
-			ee:"else"! {stmtType[0] = STMT_OTHER; } statement[stmtType, stmtBraces]
+			ee:"else"!
+            {
+                if (stmtType[0] == STMT_COMPOUND) {
+                    ver.verifyRCurly(stmtBraces[1], ee.getLine());
+                }
+                stmtType[0] = STMT_OTHER;
+            }
+            statement[stmtType, stmtBraces]
             {
                 ver.verifyWSAroundBegin(ee.getLine(), ee.getColumn(), ee.getText());
                 if (stmtType[0] == STMT_OTHER) {
@@ -723,30 +730,29 @@ forIter
 tryBlock
 {
     final MyCommonAST[] stmtBraces = new MyCommonAST[2];
+    final MethodSignature ignoreMS = new MethodSignature();
 }
 	:	t:"try"^ compoundStatement[stmtBraces]
         {
             ver.verifyWSAroundBegin(t.getLine(), t.getColumn(), t.getText());
             ver.verifyLCurlyOther(t.getLine(), stmtBraces[0]);
         }
-		(handler)*
-		(
-            f:"finally"^ compoundStatement[stmtBraces]
+
+        (
+            c:"catch"^ { ver.verifyRCurly(stmtBraces[1], c.getLine()); }
+            LPAREN! parameterDeclaration[ignoreMS] RPAREN! compoundStatement[stmtBraces]
+            {
+                ver.verifyWSAroundBegin(
+                    c.getLine(), c.getColumn(), c.getText());
+                ver.verifyLCurlyOther(c.getLine(), stmtBraces[0]);
+            }
+        )*
+
+        (
+            f:"finally"^ { ver.verifyRCurly(stmtBraces[1], f.getLine()); }
+            compoundStatement[stmtBraces]
             { ver.verifyLCurlyOther(f.getLine(), stmtBraces[0]); }
         )?
-	;
-
-
-// an exception handler
-handler
-{
-    final MyCommonAST[] stmtBraces = new MyCommonAST[2];
-}
-	:	c:"catch"^ LPAREN! parameterDeclaration[new MethodSignature()] RPAREN! compoundStatement[stmtBraces]
-        {
-            ver.verifyWSAroundBegin(c.getLine(), c.getColumn(), c.getText());
-            ver.verifyLCurlyOther(c.getLine(), stmtBraces[0]);
-        }
 	;
 
 

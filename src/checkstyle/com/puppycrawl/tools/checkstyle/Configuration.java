@@ -156,6 +156,8 @@ public class Configuration
     private LeftCurlyOption mLCurlyType = LeftCurlyOption.EOL;
     /** where to place left curlies on others **/
     private LeftCurlyOption mLCurlyOther = LeftCurlyOption.EOL;
+    /** where to place right curlies  **/
+    private RightCurlyOption mRCurly = RightCurlyOption.SAME;
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -243,6 +245,8 @@ public class Configuration
         setLCurlyOther(getLeftCurlyOptionProperty(
                            aProps, LCURLY_OTHER_PROP,
                            LeftCurlyOption.EOL, aLog));
+        setRCurly(getRightCurlyOptionProperty(
+                      aProps, RCURLY_PROP, RightCurlyOption.SAME, aLog));
     }
 
     /**
@@ -817,6 +821,18 @@ public class Configuration
         mLCurlyOther = aTo;
     }
 
+    /** @return the right curly placement option **/
+    public RightCurlyOption getRCurly()
+    {
+        return mRCurly;
+    }
+
+    /** @param aTo set the right curly placement option **/
+    public void setRCurly(RightCurlyOption aTo)
+    {
+        mRCurly = aTo;
+    }
+
 
     ////////////////////////////////////////////////////////////////////////////
     // Private methods
@@ -889,6 +905,34 @@ public class Configuration
         final String strRep = aProps.getProperty(aName);
         if (strRep != null) {
             retVal = LeftCurlyOption.decode(strRep);
+            if (retVal == null) {
+                aLog.println("Unable to parse " + aName +
+                             " property with value " + strRep +
+                             ", defaulting to " + aDefault + ".");
+            }
+        }
+        return retVal;
+    }
+
+    /**
+     * @param aProps the properties set to use
+     * @param aLog where to log errors to
+     * @param aName the name of the property to parse
+     * @param aDefault the default value to use.
+     *
+     * @return the value of a RightCurlyOption property. If the property is not
+     *    defined or cannot be decoded, then a default value is returned.
+     */
+    private static RightCurlyOption getRightCurlyOptionProperty(
+        Properties aProps,
+        String aName,
+        RightCurlyOption aDefault,
+        PrintStream aLog)
+    {
+        RightCurlyOption retVal = aDefault;
+        final String strRep = aProps.getProperty(aName);
+        if (strRep != null) {
+            retVal = RightCurlyOption.decode(strRep);
             if (retVal == null) {
                 aLog.println("Unable to parse " + aName +
                              " property with value " + strRep +

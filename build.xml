@@ -161,7 +161,8 @@
                     paramPattern="^a[A-Z][a-zA-Z0-9]*$"
                     lcurlyMethod="nl"
                     lcurlyOther="nlow"
-                    lcurlyType="nl">
+                    lcurlyType="nl"
+                    rcurly="alone">
             <fileset dir="src/checkstyle"
                      includes="**/*.java"
                      excludes="**/Generated*.java"/>

@@ -606,6 +606,27 @@ class Verifier
 
 
     /**
+     * Verify the correct placement of the right curly brace.
+     * @param aBrace location of the brace
+     * @param aStartLine line the next statement starts on
+     */
+    void verifyRCurly(MyCommonAST aBrace, int aStartLine)
+    {
+        final RightCurlyOption option = mConfig.getRCurly();
+        if ((mConfig.getRCurly() == RightCurlyOption.SAME)
+            && (aBrace.getLineNo() != aStartLine))
+        {
+            log(aBrace.getLineNo(), "'}' should be on the same line.");
+        }
+        else if ((mConfig.getRCurly() == RightCurlyOption.ALONE)
+                   && (aBrace.getLineNo() == aStartLine))
+        {
+            log(aBrace.getLineNo(), "'}' should be alone on a line.");
+        }
+    }
+
+
+    /**
      * Verify that a constructor length is ok.
      * @param aLineNo line the constructor block starts at
      * @param aLength the length of the constructor block
