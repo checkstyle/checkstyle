@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -51,7 +52,9 @@ public class Checker extends AutomaticBean
         /** @see AuditListener */
         public void addError(AuditEvent aEvt)
         {
-            mCount++;
+            if (SeverityLevel.ERROR.equals(aEvt.getSeverityLevel())) {
+                mCount++;
+            }
         }
 
         /** @see AuditListener */
