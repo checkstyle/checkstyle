@@ -17,10 +17,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ////////////////////////////////////////////////////////////////////////////////
 header {
-package com.puppycrawl.tools.checkstyle;
-
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
+package com.puppycrawl.tools.checkstyle.grammars;
 }
 
 

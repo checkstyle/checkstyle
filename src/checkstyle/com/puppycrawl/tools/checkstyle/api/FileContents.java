@@ -26,13 +26,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
+import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
+
 /**
  * Represents the contents of a file.
  *
  * @author Oliver Burn
  * @version 1.0
  */
-public final class FileContents
+public final class FileContents implements CommentListener
 {
     /**
      * the pattern to match a single line comment containing only the comment
@@ -73,6 +75,21 @@ public final class FileContents
     {
         mFilename = aFilename;
         mLines = aLines;
+    }
+
+    /** {@inheritDoc} */
+    public void reportSingleLineComment(String aType,
+                                        int aStartLineNo, int aStartColNo)
+    {
+        reportCppComment(aStartLineNo, aStartColNo);
+    }
+
+    /** {@inheritDoc} */
+    public void reportBlockComment(String aType,
+                                   int aStartLineNo, int aStartColNo,
+                                   int aEndLineNo, int aEndColNo)
+    {
+        reportCComment(aStartLineNo, aStartColNo, aEndLineNo, aEndColNo);
     }
 
     /**

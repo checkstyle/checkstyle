@@ -42,6 +42,10 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
+import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava14Recognizer;
+import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
+import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava14Lexer;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -470,7 +474,7 @@ public final class TreeWalker
             final Reader sar = new StringArrayReader(aContents.getLines());
             final GeneratedJava14Lexer jl = new GeneratedJava14Lexer(sar);
             jl.setFilename(aContents.getFilename());
-            jl.setFileContents(aContents);
+            jl.setCommentListener(aContents);
 
             final GeneratedJava14Recognizer jr =
                 new SilentJava14Recognizer(jl);
@@ -489,7 +493,7 @@ public final class TreeWalker
             final Reader sar = new StringArrayReader(aContents.getLines());
             final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
             jl.setFilename(aContents.getFilename());
-            jl.setFileContents(aContents);
+            jl.setCommentListener(aContents);
 
             final GeneratedJavaRecognizer jr = new GeneratedJavaRecognizer(jl);
             jr.setFilename(aContents.getFilename());
