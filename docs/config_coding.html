@@ -59,6 +59,9 @@
           <a href="#InnerAssignment">InnerAssignment</a>
         </li>
         <li>
+          <a href="#JUnitTestCase">JUnitTestCase</a>
+        </li>
+        <li>
           <a href="#MagicNumber">MagicNumber</a>
         </li>
         <li>
@@ -1078,6 +1081,35 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;PackageDeclaration&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="JUnitTestCase"></a> <h2>JUnitTestCase</h2> 
+      <h4>Description</h4>
+      <p class="body">
+      Ensures that the setUp(), tearDown()methods are named correctly,
+      have no arguments, return void and are either public or protected.<br>
+      Also ensures that suite() is named correctly, have no arguments, return
+      junit.framewotk.Test, public and static.
+      </p>
+      <p class="body">
+      Rationale: often times developers will misname one or more of these
+       methods and not realise that the method is not being called.
+      </p>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;JUnitTestCase&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
