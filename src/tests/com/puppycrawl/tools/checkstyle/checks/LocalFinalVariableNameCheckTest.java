@@ -28,5 +28,14 @@ public class LocalFinalVariableNameCheckTest
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
+    
+    public void testInnerClass()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(LocalFinalVariableNameCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("InputInner.java"), expected);
+    }
 }
 

@@ -73,6 +73,6 @@ public class MemberNameCheck
             && modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
 
         return (!isStatic && !ScopeUtils.inInterfaceBlock(aAST)
-            && !ScopeUtils.inCodeBlock(aAST));
+            && !ScopeUtils.isLocalVariableDef(aAST));
     }
 }

@@ -25,7 +25,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks that local, non-final variable names conform to a format specified
- * by the format property. The format is a
+ * by the format property. A catch parameter is considered to be
+ * a local variable. The format is a
  * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
  * regular expression</a>
  * and defaults to
@@ -61,7 +62,10 @@ public class LocalVariableNameCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+        return new int[] {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.PARAMETER_DEF,
+        };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.checks.AbstractNameCheck */
@@ -71,7 +75,6 @@ public class LocalVariableNameCheck
             aAST.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isFinal = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.FINAL);
-
-        return (!isFinal && ScopeUtils.inCodeBlock(aAST));
+        return (!isFinal && ScopeUtils.isLocalVariableDef(aAST));
     }
 }

@@ -58,7 +58,8 @@
         </tr>
         <tr>
           <td><span class="code">LocalVariableName</span></td>
-          <td>local, non-<span class="code">final</span> variables</td>
+          <td>local, non-<span class="code">final</span> variables, including
+              <span class="code">catch</span> parameters</td>
           <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
         </tr>
         <tr>
@@ -110,6 +111,22 @@
         &lt;/module&gt;
           </pre>
           </li>
+          <li>
+            Module <span class="code">LocalVariableName</span> also has property <span class="code">tokens</span>
+            which can be used to control whether the check applies to variable declarations or
+            <span class="code">catch</span> clause parameters through
+            tokens
+            <span class="code">VARIABLE_DEF</span> and <span class="code">PARAMETER_DEF</span>. 
+            For example, the following configuration element ensures that
+            <span class="code">catch</span> clause parameters begin with <span class="code">"e"</span>,
+            followed by letters and digits: 
+            <pre class="body">
+        &lt;module name=&quot;LocalVariableName&quot;&gt;
+            &lt;property name=&quot;format&quot; value=&quot;^e[a-zA-Z0-9]*$&quot;/&gt;
+            &lt;property name=&quot;tokens&quot; value=&quot;PARAMETER_DEF&quot;/&gt;
+        &lt;/module&gt;
+            </pre>
+            </li>
           <li>
             Module <span class="code">TypeName</span> also has property <span class="code">tokens</span>
             which can be used to control whether the check applies to classes or interfaces through

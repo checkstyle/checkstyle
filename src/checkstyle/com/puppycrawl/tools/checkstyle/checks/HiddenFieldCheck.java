@@ -134,7 +134,9 @@ public class HiddenFieldCheck
     private void processVariable(DetailAST aAST)
     {
         if (!ScopeUtils.inInterfaceBlock(aAST)) {
-            if (ScopeUtils.inCodeBlock(aAST)) {
+            if (ScopeUtils.isLocalVariableDef(aAST)
+                || (aAST.getType() == TokenTypes.PARAMETER_DEF))
+            {
                 //local variable or parameter. Does it shadow a field?
                 final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
                 final String name = nameAST.getText();
