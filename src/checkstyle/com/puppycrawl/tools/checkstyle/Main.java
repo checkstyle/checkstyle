@@ -154,7 +154,8 @@ public final class Main
         // create the checker
         Checker c = null;
         try {
-            c = new Checker(new Configuration(props, System.out), checkConfigs);
+            c = new Checker(new GlobalProperties(props, System.out),
+                            checkConfigs);
             c.addListener(listener);
         }
         catch (Exception e) {

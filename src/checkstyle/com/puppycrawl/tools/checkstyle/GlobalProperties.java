@@ -35,12 +35,12 @@ import org.apache.regexp.RESyntaxException;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
- * Represents the configuration that checkstyle uses when checking. The
- * configuration is Serializable, however the ClassLoader configuration is
- * lost.
+ * Represents the global properties that checkstyle uses when checking. A
+ * global properties object is Serializable, however the ClassLoader
+ * configuration is lost.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
-public class Configuration
+public class GlobalProperties
     implements Serializable
 {
     ////////////////////////////////////////////////////////////////////////////
@@ -77,7 +77,7 @@ public class Configuration
     ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Creates a new <code>Configuration</code> instance.
+     * Creates a new <code>GlobalProperties</code> instance.
      *
      * @param aProps where to extract configuration parameters from
      * @param aLog where to log errors to
@@ -85,7 +85,7 @@ public class Configuration
      * @throws FileNotFoundException if an error occurs
      * @throws IOException if an error occurs
      */
-    public Configuration(Properties aProps, PrintStream aLog)
+    public GlobalProperties(Properties aProps, PrintStream aLog)
         throws RESyntaxException, FileNotFoundException, IOException
     {
         // Initialise the general properties
@@ -103,10 +103,10 @@ public class Configuration
     }
 
     /**
-     * Creates a new <code>Configuration</code> instance.
+     * Creates a new <code>GlobalProperties</code> instance.
      * @throws IllegalStateException if an error occurs
      */
-    public Configuration()
+    public GlobalProperties()
     {
     }
 

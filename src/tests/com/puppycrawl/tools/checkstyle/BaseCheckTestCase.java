@@ -40,7 +40,7 @@ public abstract class BaseCheckTestCase
     protected Checker createChecker(CheckConfiguration aCheckConfig)
         throws Exception
     {
-        final Checker c = new Checker(new Configuration(mProps, mStream),
+        final Checker c = new Checker(new GlobalProperties(mProps, mStream),
                                       new CheckConfiguration[] {aCheckConfig});
         final AuditListener listener = new BriefLogger(mStream);
         c.addListener(listener);
