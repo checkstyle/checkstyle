@@ -262,7 +262,7 @@ public final class FileContents implements CommentListener
             List row = (List) it.next();
             Iterator rowIterator = row.iterator();
             while (rowIterator.hasNext()) {
-                Comment comment = (Comment) rowIterator.next();
+                TextBlock comment = (TextBlock) rowIterator.next();
                 if (comment.intersects(
                         aStartLineNo, aStartColNo, aEndLineNo, aEndColNo))
                 {
@@ -275,8 +275,8 @@ public final class FileContents implements CommentListener
         for (int lineNumber = aStartLineNo; lineNumber <= aEndLineNo;
             lineNumber++)
         {
-            Comment comment = (Comment) mCPlusPlusComments.get(
-                new Integer(lineNumber));
+            TextBlock comment =
+                (TextBlock) mCPlusPlusComments.get(new Integer(lineNumber));
             if (comment != null && comment.intersects(aStartLineNo, aStartColNo,
                 aEndLineNo, aEndColNo))
             {
