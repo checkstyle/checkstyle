@@ -6,3 +6,6 @@ checkstyle.ipr
 checkstyle.iws
 devnull
 target
+*.vpj
+*.vpw
+*.vtg
