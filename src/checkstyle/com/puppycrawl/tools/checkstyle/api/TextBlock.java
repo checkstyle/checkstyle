@@ -63,4 +63,16 @@ public interface TextBlock
      */
     int getEndColNo();
 
+    /**
+     * Checks if this comment intersects with a specified
+     * part of the file.
+     *
+     * @param aStartLineNo the starting line number in the file
+     * @param aStartColNo the starting column number in the file
+     * @param aEndLineNo the ending line number in the file
+     * @param aEndColNo the ending column number in the file
+     * @return true if the positions intersects with this comment.
+     */
+    boolean intersects(int aStartLineNo, int aStartColNo,
+                       int aEndLineNo, int aEndColNo);
 }
