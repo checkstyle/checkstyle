@@ -39,6 +39,17 @@ p.body {
   margin-right : 3%;
 }
 
+
+pre.body {
+  margin-left : 5%;
+  margin-right : 3%;
+}
+
+table.body {
+  margin-left : 5%;
+  margin-right : 3%;
+}
+
 li.body {
   margin-left : 5%;
   margin-right : 3%;
