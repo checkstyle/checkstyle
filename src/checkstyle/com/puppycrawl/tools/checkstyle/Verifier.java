@@ -973,14 +973,14 @@ class Verifier
 
         // Check if rest of line is whitespace, and not just the operator by
         // itself. This last bit is to handle the example of the check below.:-)
-        if (!aText.equals(mLines[aLineNo - 1].trim())
-            &&
-            (mLines[aLineNo - 1].substring(aColNo + aText.length() - 1)
-             .trim().length() == 0))
-        {
-            log(aLineNo, aColNo - 1,
-                "'" + aText + "' should be on a new line.");
-        }
+//        if (!aText.equals(mLines[aLineNo - 1].trim())
+//            &&
+//            (mLines[aLineNo - 1].substring(aColNo + aText.length() - 1)
+//             .trim().length() == 0))
+//        {
+//            log(aLineNo, aColNo - 1,
+//                "'" + aText + "' should be on a new line.");
+//        }
     }
 
 
