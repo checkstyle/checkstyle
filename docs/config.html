@@ -64,7 +64,7 @@
       </p>
       <p class="body">
       Checkstyle obtains a configuration from an XML document whose elements specify 
-      the configuration&apos;s hierarchy of modules and their properties. You provide 
+      the configuration&#39;s hierarchy of modules and their properties. You provide
       a file that contains the configuration document when you invoke Checkstyle at 
       the <a href="cmdline.html">command line</a>, and when you run a <a href="anttask.html">Checkstyle 
       task</a> in ant. The documentation directory of the Checkstyle distribution contains
@@ -74,7 +74,7 @@
       <a name="modules"></a> <h2>Modules</h2>
       <p class="body">
       A <span class="code">module</span> element in the configuration XML document 
-      specifies a module identified by the element&apos;s <span class="code">name</span> 
+      specifies a module identified by the element&#39;s <span class="code">name</span>
       attribute.
       </p>
       <p class="body">
@@ -157,7 +157,7 @@
       Properties of a module control how the module performs its checks.
        Each module property has a default value, and you are not required to define a property in the
        configuration document if the default value is satisfactory.
-       To assign a non-default value to a module&apos;s property,
+       To assign a non-default value to a module&#39;s property,
       define a child <span class="code">property</span> element of the <span class="code">module</span>
       element in the configuration XML document. Also provide appropriate
       <span class="code">name</span> and
@@ -327,7 +327,7 @@
      a submodule of <span class="code">TreeWalker</span>, then a visit to a node
      with a method or a constructor definition
      token triggers <span class="code">MethodLength</span> to check the number of lines
-     of the node&apos;s code block.
+     of the node&#39;s code block.
      </p>
      <p class="body">
      Some Checks, such as <span class="code">FileLength</span>
@@ -349,7 +349,7 @@
      </p>
      <p class="body">
      You specify the trigger tokens for a Check with property <span class="code">tokens</span>.
-     The value of <span class="code">tokens</span> is a list that denotes a subset of the Check&apos;s
+     The value of <span class="code">tokens</span> is a list that denotes a subset of the Check&#39;s
      tokens, as in the following element that configures Check
      <span class="code">MethodLength</span> to check the number of lines of methods only: 
      </p>
@@ -473,7 +473,7 @@
 
          If you provide a package names XML document for your own modules and still need to use 
          Checkstyle modules, you must include <span class="code">package</span> elements for
-         Checkstyle&apos;s packages.
+         Checkstyle&#39;s packages.
 </div>
       <a name="xml"></a>
       <h2>XML Details</h2>
@@ -507,7 +507,7 @@
     </pre>
       <p class="body">
       Checkstyle also strictly enforces the encoding attribute of an XML declaration.
-      If Checkstyle rejects your configuration document&apos;s encoding,  
+      If Checkstyle rejects your configuration document&#39;s encoding,
       correct the value of the encoding attribute, or remove the encoding attribute entirely.
       </p>
       <p class="body">
