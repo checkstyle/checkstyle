@@ -64,6 +64,7 @@ import com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.HideUtilityClassConstructorCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidNestedBlocksCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.InterfaceIsTypeCheckTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -107,6 +108,7 @@ public class AllTests {
         suite.addTest(new TestSuite(IllegalInstantiationCheckTest.class));
         suite.addTest(new TestSuite(IndentationCheckTest.class));
         suite.addTest(new TestSuite(InnerAssignmentCheckTest.class));
+        suite.addTest(new TestSuite(InterfaceIsTypeCheckTest.class));
         suite.addTest(new TestSuite(JavadocMethodCheckTest.class));
         suite.addTest(new TestSuite(JavadocTypeCheckTest.class));
         suite.addTest(new TestSuite(JavadocVariableCheckTest.class));
