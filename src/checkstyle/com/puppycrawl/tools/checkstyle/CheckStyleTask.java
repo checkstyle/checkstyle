@@ -64,31 +64,31 @@ public class CheckStyleTask
     }
 
     /** @param aAllowed whether tabs are allowed **/
-    public void setAllowtabs(boolean aAllowed)
+    public void setAllowTabs(boolean aAllowed)
     {
         mConfig.setAllowTabs(aAllowed);
     }
 
     /** @param aAllowed whether protected data is allowed **/
-    public void setAllowprotected(boolean aAllowed)
+    public void setAllowProtected(boolean aAllowed)
     {
         mConfig.setAllowProtected(aAllowed);
     }
 
     /** @param aAllowed whether allow having no author **/
-    public void setAllownoauthor(boolean aAllowed)
+    public void setAllowNoAuthor(boolean aAllowed)
     {
         mConfig.setAllowNoAuthor(aAllowed);
     }
 
     /** @param aLen max allowed line length **/
-    public void setMaxlinelen(int aLen)
+    public void setMaxLineLen(int aLen)
     {
         mConfig.setMaxLineLength(aLen);
     }
 
     /** @param aPat pattern for member variables **/
-    public void setMemberpattern(String aPat)
+    public void setMemberPattern(String aPat)
     {
         try {
             mConfig.setMemberPat(aPat);
@@ -100,7 +100,7 @@ public class CheckStyleTask
     }
 
     /** @param aPat pattern for parameters **/
-    public void setParampattern(String aPat)
+    public void setParamPattern(String aPat)
     {
         try {
             mConfig.setParamPat(aPat);
@@ -112,7 +112,7 @@ public class CheckStyleTask
     }
 
     /** @param aPat pattern for constant variables **/
-    public void setConstpattern(String aPat)
+    public void setConstPattern(String aPat)
     {
         try {
             mConfig.setStaticFinalPat(aPat);
@@ -124,7 +124,7 @@ public class CheckStyleTask
     }
 
     /** @param aPat pattern for static variables **/
-    public void setStaticpattern(String aPat)
+    public void setStaticPattern(String aPat)
     {
         try {
             mConfig.setStaticPat(aPat);
@@ -136,7 +136,7 @@ public class CheckStyleTask
     }
 
     /** @param aPat pattern for type names **/
-    public void setTypepattern(String aPat)
+    public void setTypePattern(String aPat)
     {
         try {
             mConfig.setTypePat(aPat);
@@ -148,7 +148,7 @@ public class CheckStyleTask
     }
 
     /** @param aName header file name **/
-    public void setHeaderfile(File aName)
+    public void setHeaderFile(File aName)
     {
         try {
             mConfig.setHeaderFile(aName.getAbsolutePath());
@@ -160,7 +160,7 @@ public class CheckStyleTask
     }
 
     /** @param aNum **/
-    public void setHeaderignoreline(int aNum)
+    public void setHeaderIgnoreLine(int aNum)
     {
         mConfig.setHeaderIgnoreLineNo(aNum);
     }
@@ -181,6 +181,12 @@ public class CheckStyleTask
     public void setIgnoreWhitespace(boolean aIgnore)
     {
         mConfig.setIgnoreWhitespace(aIgnore);
+    }
+
+    /** @param aIgnore whether to ignore braces **/
+    public void setIgnoreBraces(boolean aIgnore)
+    {
+        mConfig.setIgnoreBraces(aIgnore);
     }
 
     ////////////////////////////////////////////////////////////////////////////

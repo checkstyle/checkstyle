@@ -107,7 +107,9 @@
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
-    <checkstyle headerfile="docs/java.header" headerignoreline="3">
+    <checkstyle headerfile="docs/java.header"
+                ignorebraces="false"
+                headerignoreline="3">
       <fileset dir="src/checkstyle"
                includes="**/*.java"
                excludes="**/Generated*.java"/>
