@@ -36,7 +36,8 @@
         <item name="Duplicate Code Detection" href="/config_duplicates.html"/>
         <item name="Metrics"              href="/config_metrics.html"/>
         <item name="Miscellaneous"        href="/config_misc.html"/>
-        <item name="Usage Checks"        href="/config_usage.html"/>
+        <item name="Usage Checks"         href="/config_usage.html"/>
+        <item name="J2EE Checks"          href="/config_j2ee.html"/>
         <!-- TODO: <item name="Optional Checks" href="/optional.html"/> -->
       </item>
 
