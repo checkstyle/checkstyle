@@ -23,7 +23,7 @@ class InputSemantic
     /** fully qualified Boolean instantiation in a method. **/
     Boolean getBoolean()
     {
-        Boolean b = new java.lang.Boolean(true);
+        return new java.lang.Boolean(true);
     }
 
     void exHandlerTest()
@@ -42,13 +42,16 @@ class InputSemantic
             // can never happen, semicolon makes checkstyle happy
             // this is a workaround for above problem
         }
-        catch (ArrayIndexOutOfBoundsException ex) {
+        catch (NegativeArraySizeException ex) {
             {
             }
             // can never happen, empty compound statement is another workaround
         }
-        catch (RuntimeException handledException) {
-            System.out.println(handledException.getMessage);
+        catch (UnsupportedOperationException handledException) {
+            System.out.println(handledException.getMessage());
         }
+        catch (SecurityException ex) { /* hello */ }
+        catch (StringIndexOutOfBoundsException ex) {}
+        catch (IllegalArgumentException ex) { }
     }
 }
