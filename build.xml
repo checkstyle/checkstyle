@@ -29,7 +29,7 @@
   <property name="dist.dir" value="target/dist"/>
 
   <property name="xdocs.src" value="src/xdocs"/>
-  <property name="xdocs.dest" value="target/thedocs"/>
+  <property name="xdocs.dest" value="target/docs"/>
   <property name="version" value="3.5" />
 
   <path id="build.classpath">
@@ -89,9 +89,6 @@
       </fileset>
     </delete>
     <delete dir="target" />
-    <delete includeemptydirs="true">
-      <fileset dir="docs/api" includes="**" excludes=".cvsignore,CVS/**"/>
-    </delete>
     <delete file="velocity.log" />
   </target>
 
@@ -236,7 +233,7 @@
           classpathref="run.classpath">
       <sysproperty key="checkstyle.allow.tabs" value="yes"/>
       <arg value="-c"/>
-      <arg file="docs/checkstyle_checks.xml"/>
+      <arg file="checkstyle_checks.xml"/>
       <arg value="src/testinputs/com/puppycrawl/tools/checkstyle/InputSimple.java"/>
     </java>
     <java classname="com.puppycrawl.tools.checkstyle.Main"
@@ -244,7 +241,7 @@
           dir="."
           classpathref="run.classpath">
       <arg value="-c"/>
-      <arg file="docs/checkstyle_checks.xml"/>
+      <arg file="checkstyle_checks.xml"/>
       <arg value="-r"/>
       <arg file="src/checkstyle/com/puppycrawl/tools/checkstyle/api"/>
     </java>
@@ -263,7 +260,7 @@
     <delete file="target/cachefile" />
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
-    <property name="check.config" location="docs/checkstyle_checks.xml"/>
+    <property name="check.config" location="checkstyle_checks.xml"/>
     <property name="translation.severity" value="error"/>
     <checkstyle config="${check.config}">
       <fileset dir="src/checkstyle"
@@ -273,9 +270,9 @@
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
       <property key="checkstyle.cache.file" file="target/cachefile"/>
-      <property key="checkstyle.header.file" file="docs/java.header"/>
+      <property key="checkstyle.header.file" file="java.header"/>
       <property key="checkstyle.suppressions.file"
-                file="docs/suppressions.xml"/>
+                file="suppressions.xml"/>
     </checkstyle>
   </target>
 
@@ -288,7 +285,7 @@
     <delete file="target/cachefile" />
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
-    <property name="check.config" location="docs/checkstyle_checks.xml"/>
+    <property name="check.config" location="checkstyle_checks.xml"/>
     <property name="translation.severity" value="error"/>
     <checkstyle failonviolation="false" config="${check.config}">
       <fileset dir="src/checkstyle"
@@ -297,9 +294,9 @@
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
       <property key="checkstyle.cache.file" file="target/cachefile"/>
-      <property key="checkstyle.header.file" file="docs/java.header"/>
+      <property key="checkstyle.header.file" file="java.header"/>
       <property key="checkstyle.suppressions.file"
-                file="docs/suppressions.xml"/>
+                file="suppressions.xml"/>
     </checkstyle>
     <mkdir dir="target/style/frames"/>
     <mkdir dir="target/style/noframes"/>
@@ -512,15 +509,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
         <exclude name="docs/*.html"/>
       </fileset>
     </copy>
-    <!-- copy stuff with filtering -->
-    <copy todir="${dist.dir}/checkstyle-${version}">
-      <fileset dir=".">
-        <include name="docs/*.html"/>
-      </fileset>
-      <filterset>
-        <filter token="CHECKSTYLE_VERSION" value="${version}" />
-      </filterset>
-    </copy>
+
     <!-- create the final zip & tar/gzip files -->
     <zip zipfile="${dist.dir}/checkstyle-${version}.zip">
       <fileset dir="${dist.dir}">
@@ -548,7 +537,6 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
         <include name="build.xml"/>
         <include name="config/**"/>
         <include name="contrib/**"/>
-        <include name="docs/*"/>
         <include name="lib/**"/>
         <include name="src/**"/>
       </fileset>
@@ -697,7 +685,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
   <target name="validate.xml"
           depends="require.xerces"
           description="Validates checkstyle XML file">
-    <xmlvalidate file="docs/checkstyle_checks.xml">
+    <xmlvalidate file="checkstyle_checks.xml">
       <xmlcatalog>
         <dtd
           publicId="-//Puppy Crawl//DTD Check Configuration 1.1//EN"
@@ -732,7 +720,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <delete file="target/cachefile" />
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
-    <property name="check.config" location="docs/checkstyle_checks.xml"/>
+    <property name="check.config" location="checkstyle_checks.xml"/>
     <property name="translation.severity" value="error"/>
     <checkstyle config="${custom.config}" file="${file.to.check}">
       <formatter type="plain"/>
