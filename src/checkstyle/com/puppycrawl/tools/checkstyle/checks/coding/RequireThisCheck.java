@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.HashSet;
@@ -205,6 +206,14 @@ public class RequireThisCheck extends Check
             // we shouldn't check fields
             return;
         }
+
+        if (ScopeUtils.getSurroundingScope(aAST) == null) {
+            // it is not a class or inteface it's
+            // either import or package
+            // we shouldn't checks this
+            return;
+        }
+
         if (parentType == TokenTypes.DOT
             && aAST.getPreviousSibling() != null)
         {

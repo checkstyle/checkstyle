@@ -12,9 +12,9 @@ public class RequireThisCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(RequireThisCheck.class);
         final String[] expected = {
-            "4:9: Reference to instance variable 'i' needs \"this.\".",
-            "10:9: Method call to 'method1' needs \"this.\".",
-            "11:9: Unable find where 'j' is declared.",
+            "6:9: Reference to instance variable 'i' needs \"this.\".",
+            "12:9: Method call to 'method1' needs \"this.\".",
+            "13:9: Unable find where 'j' is declared.",
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputRequireThis.java"),
@@ -27,7 +27,7 @@ public class RequireThisCheckTest extends BaseCheckTestCase
             createCheckConfig(RequireThisCheck.class);
         checkConfig.addAttribute("checkFields", "false");
         final String[] expected = {
-            "10:9: Method call to 'method1' needs \"this.\".",
+            "12:9: Method call to 'method1' needs \"this.\".",
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputRequireThis.java"),
@@ -40,8 +40,8 @@ public class RequireThisCheckTest extends BaseCheckTestCase
             createCheckConfig(RequireThisCheck.class);
         checkConfig.addAttribute("checkMethods", "false");
         final String[] expected = {
-            "4:9: Reference to instance variable 'i' needs \"this.\".",
-            "11:9: Unable find where 'j' is declared.",
+            "6:9: Reference to instance variable 'i' needs \"this.\".",
+            "13:9: Unable find where 'j' is declared.",
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputRequireThis.java"),
