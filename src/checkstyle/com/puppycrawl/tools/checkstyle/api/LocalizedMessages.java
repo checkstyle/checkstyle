@@ -34,30 +34,12 @@ public class LocalizedMessages
 {
     /** contains the messages logged **/
     private final ArrayList mMessages = new ArrayList();
-    /** the tabwidth to calculate columns TODO: remove */
-    private final int mTabWidth;
-    /** the lines of the file being checked, TODO: remove */
-    private String[] mLines;
-    /** Name of the exising resource bundle
-     * TODO: remove this
-     */
-    private static final String OLD_BUNDLE =
-            "com.puppycrawl.tools.checkstyle.messages";
 
     /**
      * Creates a new <code>LocalizedMessages</code> instance.
-     *
-     * @param aTabWidth the tab width to calculate columns with
      */
-    public LocalizedMessages(int aTabWidth)
+    public LocalizedMessages()
     {
-        mTabWidth = aTabWidth;
-    }
-
-    /** @param aLines the lines to record messages against **/
-    public void setLines(String[] aLines)
-    {
-        mLines = aLines;
     }
 
     /** @return the logged messages **/
@@ -72,7 +54,6 @@ public class LocalizedMessages
     public void reset()
     {
         mMessages.clear();
-        mLines = null;
     }
 
     /**
@@ -82,37 +63,6 @@ public class LocalizedMessages
     public void add(LocalizedMessage aMsg)
     {
         mMessages.add(aMsg);
-    }
-
-    // TODO: remove the add() methods below and the OLD_BUNDLE constant
-    // this has to wait until they are not referenced by Verifier any more
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArgs arguments for message
-     *
-     * @deprecated replaced by Check.log()
-     */
-    public void add(int aLineNo, String aKey, Object[] aArgs)
-    {
-        add(new LocalizedMessage(aLineNo, 0, OLD_BUNDLE, aKey, aArgs));
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     *
-     * @deprecated replaced by Check.log()
-     */
-    public void add(int aLineNo, String aKey, Object aArg0)
-    {
-        add(aLineNo, aKey, new Object[] {aArg0});
     }
 
     /** @return the number of messages */
