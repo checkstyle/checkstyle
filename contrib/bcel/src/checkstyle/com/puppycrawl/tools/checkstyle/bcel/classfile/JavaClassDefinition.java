@@ -160,7 +160,8 @@ public class JavaClassDefinition
          }       
          return false;
      }
-    /** @see comp.lang.Object#toString() */
+
+    /** @see java.lang.Object#toString() */
     public String toString()
     {
         return getJavaClass().toString();
