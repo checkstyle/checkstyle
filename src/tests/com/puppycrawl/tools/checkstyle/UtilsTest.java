@@ -55,12 +55,11 @@ public class UtilsTest
         final Properties props = initProperties();
         try {
             final String value = Utils.replaceProperties("${a", props);
+            fail("expected to fail, instead got: " + value);
         }
         catch (CheckstyleException ex) {
             assertEquals("Syntax error in property: ${a", ex.getMessage());
-            return;
         }
-        assertTrue(false);
     }
     
     public void testReplacePropertiesMissingProperty()
@@ -68,12 +67,11 @@ public class UtilsTest
         final Properties props = initProperties();
         try {
             final String value = Utils.replaceProperties("${c}", props);
+            fail("expected to fail, instead got: " + value);
         }
         catch (CheckstyleException ex) {
             assertEquals("Property ${c} has not been set", ex.getMessage());
-            return;
         }
-        assertTrue(false);
     }
 
     public void testReplacePropertiesReplace()
