@@ -32,10 +32,16 @@ import org.apache.commons.beanutils.ConversionException;
  * @version 1.0
  */
 public class ParenPadCheck
-    extends Check
+    extends AbstractOptionCheck
 {
-    /** the policy to enforce */
-    private PadOption mOption = PadOption.NOSPACE;
+    /**
+     * Sets the paren pad otion to nospace.
+     */  
+    public ParenPadCheck()
+    {
+        super();
+        mOption = PadOption.NOSPACE;
+    }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -57,19 +63,6 @@ public class ParenPadCheck
         }
         else {
             processLeft(aAST);
-        }
-    }
-
-    /**
-     * Set the option to enforce.
-     * @param aOption string to decode option from
-     * @throws ConversionException if unable to decode
-     */
-    public void setOption(String aOption)
-    {
-        mOption = PadOption.decode(aOption);
-        if (mOption == null) {
-            throw new ConversionException("unable to parse " + aOption);
         }
     }
 

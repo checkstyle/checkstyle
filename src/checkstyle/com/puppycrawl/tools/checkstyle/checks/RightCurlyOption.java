@@ -18,29 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.io.Serializable;
-import java.io.ObjectStreamException;
-import java.util.Map;
-import java.util.HashMap;
-
 /**
  * Represents the options for placing the right curly brace '}'.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: RightCurlyOption.java,v 1.3 2002-10-13 23:40:59 oburn Exp $
+ * @version $Id: RightCurlyOption.java,v 1.4 2002-11-03 17:47:37 rickgiles Exp $
  */
-public final class RightCurlyOption implements Serializable
+public final class RightCurlyOption
+    extends AbstractOption
 {
-    /** maps from a string representation to an option **/
-    private static final Map STR_TO_OPT = new HashMap();
-
     /** represents placing the brace alone on a line **/
     public static final RightCurlyOption ALONE = new RightCurlyOption("alone");
     /** represents placing the brace on the same line **/
     public static final RightCurlyOption SAME = new RightCurlyOption("same");
-
-    /** the string representation of the option **/
-    private final String mStrRep;
 
     /**
      * Creates a new <code>RightCurlyOption</code> instance.
@@ -48,39 +38,6 @@ public final class RightCurlyOption implements Serializable
      */
     private RightCurlyOption(String aStrRep)
     {
-        mStrRep = aStrRep.trim().toLowerCase();
-        STR_TO_OPT.put(mStrRep, this);
-    }
-
-    /**
-     * Returns the RightCurlyOption specified by a string representation. If no
-     * option exists then null is returned.
-     * @param aStrRep the String representation to parse
-     * @return the <code>RightCurlyOption</code> value represented by aStrRep,
-     *         or null if none exists.
-     */
-    public static RightCurlyOption decode(String aStrRep)
-    {
-        return (RightCurlyOption) STR_TO_OPT.get(aStrRep.trim().toLowerCase());
-    }
-
-    /** @see java.lang.Object **/
-    public String toString()
-    {
-        return mStrRep;
-    }
-
-    /**
-     * Ensures that we don't get multiple instances of one RightCurlyOption
-     * during deserialization. See Section 3.6 of the Java Object
-     * Serialization Specification for details.
-     *
-     * @return the serialization replacement object
-     * @throws ObjectStreamException if a deserialization error occurs
-     */
-    private Object readResolve()
-        throws ObjectStreamException
-    {
-        return decode(mStrRep);
+       super(aStrRep);
     }
 }
