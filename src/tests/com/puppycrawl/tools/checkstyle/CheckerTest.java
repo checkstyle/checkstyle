@@ -392,7 +392,7 @@ public class CheckerTest
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":1: file length is 168 lines (max allowed is 20).",
+            filepath + ":1: file length is 190 lines (max allowed is 20).",
             filepath + ":3: Line does not match expected header line of '// Created: 2001'.",
             filepath + ":18: line longer than 80 characters",
             filepath + ":19:25: line contains a tab character",
@@ -453,6 +453,7 @@ public class CheckerTest
             filepath + ":18:12: 'private' modifier out of order with the JLS suggestions.",
             filepath + ":24:14: 'private' modifier out of order with the JLS suggestions.",
             filepath + ":32:9: redundant 'public' modifier.",
+            filepath + ":38:9: redundant 'abstract' modifier.",
         };
         verify(c, filepath, expected);
     }

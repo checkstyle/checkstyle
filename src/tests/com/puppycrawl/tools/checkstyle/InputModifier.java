@@ -33,5 +33,8 @@ strictfp final class InputModifier // illegal order of modifiers for class
 
         /** all OK */
         void b();
+
+        /** redundant abstract modifier */
+        abstract void c();
     }
 }

@@ -247,6 +247,12 @@ class Verifier
                 "redundant 'public' modifier.");
         }
 
+        // Check for redunant abstract
+        if (inInterfaceBlock() && aSig.getModSet().containsAbstract()) {
+            log(aSig.getModSet().getFirstLineNo(),
+                aSig.getModSet().getFirstColNo(),
+                "redundant 'abstract' modifier.");
+        }
         // now check the javadoc
         final Scope methodScope = inInterfaceBlock()
             ? Scope.PUBLIC
