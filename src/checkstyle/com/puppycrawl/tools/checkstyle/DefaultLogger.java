@@ -23,6 +23,7 @@ import java.io.PrintWriter;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
@@ -36,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * @see XMLLogger
  */
 public class DefaultLogger
+    extends AutomaticBean
     implements AuditListener
 {
     /** cushion for avoiding StringBuffer.expandCapacity */
