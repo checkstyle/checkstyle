@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class AttributeAxisIterator
     implements Iterator
 {
-    /** actual iterator */    
+    /** actual iterator */
     private Iterator mIter = (new ArrayList()).iterator();
 
     /**

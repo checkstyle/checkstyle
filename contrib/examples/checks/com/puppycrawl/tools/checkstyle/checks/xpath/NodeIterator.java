@@ -52,9 +52,10 @@ public abstract class NodeIterator
     /** @see java.util.Iterator#next() */
     public Object next()
     {
-        if (mNode == null)
+        if (mNode == null) {
             throw new NoSuchElementException();
-        DetailAST ret = mNode;
+        }
+        final DetailAST ret = mNode;
         mNode = getNextNode(mNode);
         return ret;
     }

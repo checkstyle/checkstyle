@@ -39,9 +39,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class DocumentNavigator
     extends DefaultNavigator
 {
+    /** Iterator for an empty sequence */
+    private static final Iterator EMPTY_ITERATOR = new ArrayList().iterator();
 
-    private final static Iterator EMPTY_ITERATOR = new ArrayList().iterator();
-    
     /**
      * @see org.jaxen.DefaultNavigator#getAttributeName(java.lang.Object)
      */
@@ -51,7 +51,7 @@ public class DocumentNavigator
     }
 
     /**
-     * @see org.jaxen.DefaultNavigator#getAttributeNamespaceUri(java.lang.Object)
+     * @see org.jaxen.DefaultNavigator#getAttributeNamespaceUri
      */
     public String getAttributeNamespaceUri(Object aObject)
     {
@@ -118,7 +118,7 @@ public class DocumentNavigator
     /**
      * @see org.jaxen.DefaultNavigator#getNamespacePrefix(java.lang.Object)
      */
-    public String getNamespacePrefix(Object arg0)
+    public String getNamespacePrefix(Object aObject)
     {
         return null;
     }
@@ -166,7 +166,7 @@ public class DocumentNavigator
         }
         else {
             return false;
-        } 
+        }
     }
 
     /**
@@ -217,7 +217,8 @@ public class DocumentNavigator
     {
         if (aObject instanceof DetailAST) {
             return ((DetailAST) aObject).getParent();
-        } else {
+        }
+        else {
             return ((Attribute) aObject).getParent();
         }
     }
@@ -234,18 +235,20 @@ public class DocumentNavigator
     /**
      * Get an iterator over all of this node's children.
      *
-     * @param contextNode The context node for the child axis.
+     * @param aObject The context node for the child axis.
      * @return A possibly-empty iterator (not null).
      */
     public Iterator getChildAxisIterator(Object aObject)
     {
         return new NodeIterator((DetailAST) aObject)
         {
+            /** @see NodeIterator */
             protected DetailAST getFirstNode(DetailAST aAST)
             {
                 return getFirstChild(aAST);
             }
 
+            /** @see NodeIterator */
             protected DetailAST getNextNode(DetailAST aAST)
             {
                 return getNextSibling(aAST);
@@ -256,14 +259,15 @@ public class DocumentNavigator
     /**
      * Get a (single-member) iterator over this node's parent.
      *
-     * @param contextNode the context node for the parent axis.
+     * @param aObject the context node for the parent axis.
      * @return A possibly-empty iterator (not null).
      */
     public Iterator getParentAxisIterator(Object aObject)
     {
         if (isAttribute(aObject)) {
             return new SingleObjectIterator(((Attribute) aObject).getParent());
-        } else {
+        }
+        else {
             DetailAST parent = ((DetailAST) aObject).getParent();
             if (parent != null) {
                 return new SingleObjectIterator(parent);
@@ -277,18 +281,20 @@ public class DocumentNavigator
     /**
      * Get an iterator over all following siblings.
      *
-     * @param contextNode the context node for the sibling iterator.
+     * @param aObject the context node for the sibling iterator.
      * @return A possibly-empty iterator (not null).
      */
     public Iterator getFollowingSiblingAxisIterator(Object aObject)
     {
         return new NodeIterator((DetailAST) aObject)
         {
+            /** @see NodeIterator */
             protected DetailAST getFirstNode(DetailAST aAST)
             {
                 return getNextNode(aAST);
             }
 
+            /** @see NodeIterator */
             protected DetailAST getNextNode(DetailAST aAST)
             {
                 return getNextSibling(aAST);
@@ -299,17 +305,20 @@ public class DocumentNavigator
     /**
      * Get an iterator over all preceding siblings.
      *
-     * @param contextNode The context node for the preceding sibling axis.
+     * @param aObject The context node for the preceding sibling axis.
      * @return A possibly-empty iterator (not null).
      */
-    public Iterator getPrecedingSiblingAxisIterator(Object aObject) {
+    public Iterator getPrecedingSiblingAxisIterator(Object aObject)
+    {
         return new NodeIterator((DetailAST) aObject)
         {
+            /** @see NodeIterator */
             protected DetailAST getFirstNode(DetailAST aAST)
             {
                 return getNextNode(aAST);
             }
 
+            /** @see NodeIterator */
             protected DetailAST getNextNode(DetailAST aAST)
             {
                 return getPreviousSibling(aAST);
@@ -320,13 +329,14 @@ public class DocumentNavigator
     /**
      * Get an iterator over all following nodes, depth-first.
      *
-     * @param contextNode The context node for the following axis.
+     * @param aObject The context node for the following axis.
      * @return A possibly-empty iterator (not null).
      */
     public Iterator getFollowingAxisIterator(Object aObject)
     {
         return new NodeIterator((DetailAST) aObject)
         {
+            /** @see NodeIterator */
             protected DetailAST getFirstNode(DetailAST aAST)
             {
                 if (aAST == null) {
@@ -343,18 +353,23 @@ public class DocumentNavigator
                 }
             }
 
+            /** @see NodeIterator */
             protected DetailAST getNextNode(DetailAST aAST)
             {
-                if (aAST == null)
+                if (aAST == null) {
                     return null;
+                }
                 else {
                     DetailAST n = getFirstChild(aAST);
-                    if (n == null)
+                    if (n == null) {
                         n = getNextSibling(aAST);
-                    if (n == null)
+                    }
+                    if (n == null) {
                         return getFirstNode(aAST.getParent());
-                    else
+                    }
+                    else {
                         return n;
+                    }
                 }
             }
         };
@@ -363,13 +378,14 @@ public class DocumentNavigator
     /**
      * Get an iterator over all preceding nodes, depth-first.
      *
-     * @param contextNode The context node for the preceding axis.
+     * @param aObject The context node for the preceding axis.
      * @return A possibly-empty iterator (not null).
      */
     public Iterator getPrecedingAxisIterator(Object aObject)
     {
         return new NodeIterator((DetailAST) aObject)
         {
+            /** @see NodeIterator */
             protected DetailAST getFirstNode(DetailAST aAST)
             {
                 if (aAST == null) {
@@ -386,6 +402,7 @@ public class DocumentNavigator
                 }
             }
 
+            /** @see NodeIterator */
             protected DetailAST getNextNode(DetailAST aAST)
             {
                 if (aAST == null) {
@@ -407,9 +424,7 @@ public class DocumentNavigator
         };
     }
 
-    /* (non-Javadoc)
-     * @see org.jaxen.Navigator#getDocumentNode(java.lang.Object)
-     */
+    /** @see org.jaxen.Navigator#getDocumentNode(java.lang.Object) */
     public Object getDocumentNode(Object aObject)
     {
         if (isDocument(aObject)) {
