@@ -1442,12 +1442,16 @@ class Verifier
             return aClassName;
         }
 
+        final int clsNameLen = aClassName.length();
+        final int pkgNameLen = mPkgName.length();
+
         final Iterator illIter = illegalInsts.iterator();
         while (illIter.hasNext()) {
             final String illegal = (String) illIter.next();
+            final int illegalLen = illegal.length();
 
             // class from java.lang
-            if (((illegal.length() - javaLang.length()) == aClassName.length())
+            if (((illegalLen - javaLang.length()) == clsNameLen)
                 && illegal.endsWith(aClassName)
                 && illegal.startsWith(javaLang))
             {
@@ -1455,8 +1459,15 @@ class Verifier
             }
 
             // class from same package
-            if (illegal.length() - mPkgName.length() == aClassName.length() + 1
-                && illegal.charAt(mPkgName.length()) == '.'
+
+            // the toplevel package (mPkgName == null) is covered by the
+            // "illegalInsts.contains(aClassName)" check above
+
+            // the test is the "no garbage" version of
+            // illegal.equals(mPkgName + "." + aClassName)
+            if (mPkgName != null
+                && clsNameLen == illegalLen - pkgNameLen - 1
+                && illegal.charAt(pkgNameLen) == '.'
                 && illegal.endsWith(aClassName)
                 && illegal.startsWith(mPkgName))
             {
