@@ -336,6 +336,12 @@ public class MySingleton
         </tr>
 
         <tr>
+          <td>ignoreConstructorParameter</td>
+          <td>Controls whether to ignore constructor parameters.</td>
+          <td><a href="property_types.html#boolean">Boolean</a></td>
+          <td><span class="default">false</span></td>
+        </tr>
+        <tr>
           <td>ignoreSetter</td>
           <td>Controls whether to ignore the parameter of a property setter method, where
           the property setter method for field &quot;xyz&quot; has name &quot;setXyz&quot;,
@@ -365,6 +371,14 @@ public class MySingleton
       <pre class="body">
 &lt;module name=&quot;HiddenField&quot;&gt;
     &lt;property name=&quot;ignoreFormat&quot; value=&quot;^rcsid$&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <p class="body">
+      To configure the check so that it ignores constructor parameters:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;HiddenField&quot;&gt;
+    &lt;property name=&quot;ignoreConstructorParameter&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
       </pre>
       <p class="body">

@@ -60,6 +60,16 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  *    &lt;property name="ignoreSetter" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * An example of how to configure the check so that it ignores constructor
+ * parameters is:
+ * </p>
+ * <pre>
+ * &lt;module name="HiddenField"&gt;
+ *    &lt;property name="ignoreConstructorParameter" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+
 
  * @author Rick Giles
  * @version 1.0
@@ -76,6 +86,9 @@ public class HiddenFieldCheck
 
     /** controls whether to check the parameter of a property setter method */
     private boolean mIgnoreSetter = false;
+
+    /** controls whether to check the parameter of a constructor */
+    private boolean mIgnoreConstructorParameter = false;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -165,7 +178,8 @@ public class HiddenFieldCheck
                     final HashSet aFieldsSet = (HashSet) it.next();
                     if (aFieldsSet.contains(name)
                         && ((mRegexp == null) || (!getRegexp().match(name)))
-                        && !isIgnoredSetterParam(aAST, name))
+                        && !isIgnoredSetterParam(aAST, name)
+                        && !isIgnoredConstructorParam(aAST))
                     {
                         log(nameAST.getLineNo(), nameAST.getColumnNo(),
                             "hidden.field", name);
@@ -217,6 +231,25 @@ public class HiddenFieldCheck
     }
 
     /**
+     * Decides whether to ignore an AST node that is the parameter of a
+     * constructor.
+     * @param aAST the AST to check.
+     * @return true if aAST should be ignored because check property
+     * ignoreConstructorParameter is true and aAST is a constructor parameter.
+     */
+    private boolean isIgnoredConstructorParam(DetailAST aAST)
+    {
+        if (!(aAST.getType() == TokenTypes.PARAMETER_DEF)
+            || !mIgnoreConstructorParameter)
+        {
+            return false;
+        }
+        final DetailAST parametersAST = aAST.getParent();
+        final DetailAST constructorAST = parametersAST.getParent();
+        return (constructorAST.getType() == TokenTypes.CTOR_DEF);
+    }
+
+    /**
      * Set the ignore format to the specified regular expression.
      * @param aFormat a <code>String</code> value
      * @throws ConversionException unable to parse aFormat
@@ -240,6 +273,17 @@ public class HiddenFieldCheck
     public void setIgnoreSetter(boolean aIgnoreSetter)
     {
         mIgnoreSetter = aIgnoreSetter;
+    }
+
+    /**
+     * Set whether to ignore constructor parameters.
+     * @param aIgnoreConstructorParameter decide whether to ignore
+     * constructor parameters.
+     */
+    public void setIgnoreConstructorParameter(
+        boolean aIgnoreConstructorParameter)
+    {
+        mIgnoreConstructorParameter = aIgnoreConstructorParameter;
     }
 
     /** @return the regexp to match against */
