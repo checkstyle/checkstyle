@@ -32,7 +32,8 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-public abstract class AbstractCheckTestCase extends TestCase
+public class BaseCheckTestCase
+    extends TestCase
 {
     /** a brief logger that only display info about errors */
     protected static class BriefLogger
@@ -50,6 +51,11 @@ public abstract class AbstractCheckTestCase extends TestCase
     private final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
     private final PrintStream mStream = new PrintStream(mBAOS);
     protected final Properties mProps = new Properties();
+
+    public BaseCheckTestCase(String aName)
+    {
+        super(aName);
+    }
 
     protected Checker createChecker(CheckConfiguration aCheckConfig)
         throws RESyntaxException, FileNotFoundException, IOException,
@@ -88,68 +94,5 @@ public abstract class AbstractCheckTestCase extends TestCase
         }
         assertEquals(aExpected.length, errs);
         aC.destroy();
-    }
-
-    public abstract void testIt()
-        throws Exception;
-
-    /**
-     * Loads the contents of a file in a String array.
-     * @return the lines in the file
-     * @param aFileName the name of the file to load
-     * @throws java.io.IOException error occurred
-     **/
-    protected String[] getLines(String aFileName)
-        throws IOException
-    {
-        final LineNumberReader lnr =
-            new LineNumberReader(new FileReader(aFileName));
-        final ArrayList lines = new ArrayList();
-        while (true) {
-            final String l = lnr.readLine();
-            if (l == null) {
-                break;
-            }
-            lines.add(l);
-        }
-
-        return (String[]) lines.toArray(new String[0]);
-    }
-
-    protected static DetailAST getAST(String aFilename, String[] aLines)
-        throws Exception
-    {
-        // TODO: try with JavaLexer/JavaRecognizer if Java14 fails
-        // see c.p.t.c.Checker's respone to initial RecognitionException
-
-        final Reader r = new BufferedReader(new FileReader(aFilename));
-        // Create a scanner that reads from the input stream passed to us
-        Java14Lexer lexer = new Java14Lexer(r);
-        lexer.setFilename(aFilename);
-        lexer.setCommentManager(new CommentManager(aLines));
-
-        // Create a parser that reads from the scanner
-        Java14Recognizer parser = new Java14Recognizer(lexer);
-        parser.setFilename(aFilename);
-        parser.setASTNodeClass(DetailAST.class.getName());
-
-        // start parsing at the compilationUnit rule
-        parser.compilationUnit();
-        return (DetailAST) parser.getAST();
-    }
-
-    protected void verifyMessage(LocalizedMessages aMsgs,
-            int aIdx, int aLine, int aCol, String aExpected)
-    {
-        LocalizedMessage localizedMessage = aMsgs.getMessages()[aIdx];
-        assertEquals(aLine, localizedMessage.getLineNo());
-        assertEquals(aCol, localizedMessage.getColumnNo());
-        assertEquals(aExpected, localizedMessage.getMessage());
-
-    }
-
-    public AbstractCheckTestCase(String aName)
-    {
-        super(aName);
     }
 }
