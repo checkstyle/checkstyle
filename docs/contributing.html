@@ -82,8 +82,9 @@
       </p>
 
       <p class="body">
-      We have the a build target in our Ant buildfile that builds checkstyle
-      from scratch, executes all tests, and runs checkstyle on it's own code.
+      We have the build target <span class="code">gump</span> in our
+      Ant buildfile that builds checkstyle, executes all tests,
+      and runs checkstyle on it's own code.
       That target should pass without errors.
       </p>
 
@@ -101,7 +102,7 @@
 
       <p class="body">
       If you have created new files, put them in a tgz file (or zip if you
-      are on Windows). If you have chaged existing files, create a unified
+      are on Windows). If you have changed existing files, create a unified
       diff using CVS. To do that, open a command line, cd to the home
       directory of checkstyle (where build.xml is located) and execute
       <span class="code">cvs diff -u &gt; mychanges.patch</span>.
@@ -109,7 +110,8 @@
 
       <p class="body">
       Create a new item in our
-      <a href="http://sourceforge.net/tracker/?group_id=29721&amp;atid=397080">patch tracker</a>.
+      <a href="http://sourceforge.net/tracker/?group_id=29721&amp;atid=397080">patch tracker</a>
+      and add the tgz/zip/patch files you created.
       Send an email to the developer mailing list that explains
       the purpose of your contribution. Be prepared to answer
       questions and do some polishing work.
@@ -120,7 +122,7 @@
       This means that you might not always get an immediate answer. You are
       not being ignored, and we value your work - we might just be too busy
       to review your code, especially if it is a bit complex. If you don't
-      get a response for two weeks, feel free to send a reminder email about
+      get a response within two weeks, feel free to send a reminder email about
       your tracker item.
       </p>
 
