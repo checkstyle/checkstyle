@@ -28,11 +28,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class EmptyBlockCheck extends AbstractOptionCheck
 {
+    /**
+     * Creates a new <code>EmptyBlockCheck</code> instance.
+     */
     public EmptyBlockCheck()
     {
         super(BlockOption.STMT);
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
