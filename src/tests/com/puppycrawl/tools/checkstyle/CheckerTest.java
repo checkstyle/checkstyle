@@ -13,7 +13,7 @@ public class CheckerTest
 {
     private final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
     private final PrintStream mStream = new PrintStream(mBAOS);
-    private final Properties mProps = new Properties();
+    private final Configuration mConfig = new Configuration();
 
     public CheckerTest(String name)
     {
@@ -21,8 +21,9 @@ public class CheckerTest
     }
 
     protected void setUp()
+        throws Exception
     {
-        mProps.setProperty(Checker.HEADER_FILE_PROP, "java.header");
+        mConfig.setHeaderFile("java.header");
     }
 
     private void verify(Checker aC, String aFilename, String[] aExpected)
@@ -46,7 +47,7 @@ public class CheckerTest
     public void testWhitespace()
         throws Exception
     {
-        final Checker c = new Checker(mProps, mStream);
+        final Checker c = new Checker(mConfig, mStream);
         assertNotNull(c);
         final String[] expected = {
             "InputWhitespace.java:11: type Javadoc comment is missing an @author tag.",
@@ -66,7 +67,7 @@ public class CheckerTest
     public void testBraces()
         throws Exception
     {
-        final Checker c = new Checker(mProps, mStream);
+        final Checker c = new Checker(mConfig, mStream);
         final String[] expected = {
             "InputBraces.java:29: 'do' construct must use '{}'s.",
             "InputBraces.java:41: 'while' construct must use '{}'s.",
@@ -95,7 +96,7 @@ public class CheckerTest
     public void testTags()
         throws Exception
     {
-        final Checker c = new Checker(mProps, mStream);
+        final Checker c = new Checker(mConfig, mStream);
         assertNotNull(c);
         final String[] expected = {
             "InputTags.java:8: type is missing a Javadoc comment.",
@@ -125,7 +126,7 @@ public class CheckerTest
     public void testInner()
         throws Exception
     {
-        final Checker c = new Checker(mProps, mStream);
+        final Checker c = new Checker(mConfig, mStream);
         assertNotNull(c);
         final String[] expected = {
             "InputInner.java:14: type is missing a Javadoc comment.",
@@ -144,7 +145,7 @@ public class CheckerTest
     public void testSimple()
         throws Exception
     {
-        final Checker c = new Checker(mProps, mStream);
+        final Checker c = new Checker(mConfig, mStream);
         assertNotNull(c);
         final String[] expected = {
             "InputSimple.java:3: Line does not match expected header line of '// Created: 2001'.",
@@ -169,7 +170,7 @@ public class CheckerTest
     public void testStrictJavadoc()
         throws Exception
     {
-        final Checker c = new Checker(mProps, mStream);
+        final Checker c = new Checker(mConfig, mStream);
         assertNotNull(c);
         final String[] expected = {
             "InputPublicOnly.java:7: type is missing a Javadoc comment.",
@@ -205,8 +206,8 @@ public class CheckerTest
     public void testRelaxedJavadoc()
         throws Exception
     {
-        mProps.setProperty(Checker.RELAX_JAVADOC_PROP, "on");
-        final Checker c = new Checker(mProps, mStream);
+        mConfig.setRelaxJavadoc(true);
+        final Checker c = new Checker(mConfig, mStream);
         assertNotNull(c);
         final String[] expected = {
             "InputPublicOnly.java:7: type is missing a Javadoc comment.",
@@ -231,7 +232,7 @@ public class CheckerTest
     public void testHeader()
         throws Exception
     {
-        final Checker c = new Checker(mProps, mStream);
+        final Checker c = new Checker(mConfig, mStream);
         assertNotNull(c);
         final String[] expected = {
             "inputHeader.java:1: Missing a header - not enough lines in file.",
@@ -244,7 +245,7 @@ public class CheckerTest
     public void testImport()
         throws Exception
     {
-        final Checker c = new Checker(mProps, mStream);
+        final Checker c = new Checker(mConfig, mStream);
         assertNotNull(c);
         final String[] expected = {
             "InputImport.java:7: Unused import - java.util.List",

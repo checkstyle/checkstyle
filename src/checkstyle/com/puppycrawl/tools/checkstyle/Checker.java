@@ -37,52 +37,20 @@ import org.apache.regexp.RESyntaxException;
 class Checker
     implements Defn
 {
-    /** the pattern to match against parameter names **/
-    private static final String PARAMETER_PATTERN = "^a[A-Z][a-zA-Z0-9]*$";
-    /** the pattern to match against static names **/
-    private static final String STATIC_PATTERN = "^s[A-Z][a-zA-Z0-9]*$";
-    /** the pattern to match against constant names **/
-    private static final String CONST_PATTERN = "^[A-Z]([A-Z0-9_]*[A-Z0-9])?$";
-    /** the pattern to match against member names **/
-    private static final String MEMBER_PATTERN = "^m[A-Z][a-zA-Z0-9]*$";
-    /** the pattern to match against type names **/
-    private static final String TYPE_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
-    /** The maximum line length **/
-    private static final int MAX_LINE_LENGTH = 80;
-
     /** printstream to log to **/
     private final PrintStream mLog;
 
     /**
      * Constructs the object.
-     * @param aProps contains the properties to define what to do
+     * @param aConfig contains the configuration to check with
      * @param aLog the PrintStream to log messages to
      * @throws RESyntaxException unable to create a regexp object
      **/
-    Checker(Properties aProps, PrintStream aLog)
+    Checker(Configuration aConfig, PrintStream aLog)
         throws RESyntaxException
     {
         mLog = aLog;
-        final Verifier v =
-            new VerifierImpl(
-                aProps.getProperty(PARAMETER_PATTERN_PROP,
-                                   PARAMETER_PATTERN),
-                aProps.getProperty(STATIC_PATTERN_PROP,
-                                   STATIC_PATTERN),
-                aProps.getProperty(CONST_PATTERN_PROP,
-                                   CONST_PATTERN),
-                aProps.getProperty(MEMBER_PATTERN_PROP,
-                                   MEMBER_PATTERN),
-                aProps.getProperty(TYPE_PATTERN_PROP,
-                                   TYPE_PATTERN),
-                getIntProperty(aProps, MAX_LINE_LENGTH_PROP, MAX_LINE_LENGTH),
-                getAllowTabs(aProps),
-                getAllowProtected(aProps),
-                getAllowNoAuthor(aProps),
-                getRelaxJavadoc(aProps),
-                getCheckImports(aProps),
-                getHeaderLines(aProps),
-                getIntProperty(aProps, HEADER_IGNORE_LINE_PROP, -1));
+        final Verifier v = new VerifierImpl(aConfig);
         VerifierSingleton.setInstance(v);
     }
 
@@ -198,51 +166,6 @@ class Checker
     }
 
     /**
-     * @return whether tabs are allowed
-     * @param aProps the property set to test for a value
-     **/
-    private boolean getAllowTabs(Properties aProps)
-    {
-        return (aProps.getProperty(ALLOW_TABS_PROP) != null);
-    }
-
-    /**
-     * @return whether protected data is allowed
-     * @param aProps the property set to test for a value
-     **/
-    private boolean getAllowProtected(Properties aProps)
-    {
-        return (aProps.getProperty(ALLOW_PROTECTED_PROP) != null);
-    }
-
-    /**
-     * @return whether allow no author
-     * @param aProps the property set to test for a value
-     **/
-    private boolean getAllowNoAuthor(Properties aProps)
-    {
-        return (aProps.getProperty(ALLOW_NO_AUTHOR_PROP) != null);
-    }
-
-    /**
-     * @return whether to relax javadoc checking
-     * @param aProps the property set to test for a value
-     **/
-    private boolean getRelaxJavadoc(Properties aProps)
-    {
-        return (aProps.getProperty(RELAX_JAVADOC_PROP) != null);
-    }
-
-    /**
-     * @return whether to check imports
-     * @param aProps the property set to test for a value
-     **/
-    private boolean getCheckImports(Properties aProps)
-    {
-        return (aProps.getProperty(IGNORE_IMPORTS_PROP) == null);
-    }
-
-    /**
      * @return the header lines specified by a file in the supplied properties
      *    set. If no file specified, or unable to read specified file, then an
      *    empty list is returned. Errors are reported.
@@ -265,27 +188,4 @@ class Checker
     }
 
 
-    /**
-     * @return the value of an integer property. If the property is not defined
-     *    or cannot be parsed, then a default value is returned.
-     * @param aProps the properties set to use
-     * @param aName the name of the property to parse
-     * @param aDefault the default value to use.
-     **/
-    private int getIntProperty(Properties aProps, String aName, int aDefault)
-    {
-        int retVal = aDefault;
-        final String strRep = aProps.getProperty(aName);
-        if (strRep != null) {
-            try {
-                retVal = Integer.parseInt(strRep);
-            }
-            catch (NumberFormatException nfe) {
-                mLog.println("Unable to parse " + aName +
-                             " property with value " + strRep +
-                             ", defaulting to " + aDefault + ".");
-            }
-        }
-        return retVal;
-    }
 }

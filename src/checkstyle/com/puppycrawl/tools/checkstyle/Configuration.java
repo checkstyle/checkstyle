@@ -1,8 +1,32 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001  Oliver Burn
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.lang.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.LineNumberReader;
+import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Properties;
 import org.apache.regexp.RE;
+import org.apache.regexp.RESyntaxException;
 
 /**
  * Represents the configuration that checkstyle uses when checking.
@@ -11,6 +35,27 @@ import org.apache.regexp.RE;
 class Configuration
     implements Defn
 {
+    ////////////////////////////////////////////////////////////////////////////
+    // Constants
+    ////////////////////////////////////////////////////////////////////////////
+
+    /** the pattern to match against parameter names **/
+    private static final String PARAMETER_PATTERN = "^a[A-Z][a-zA-Z0-9]*$";
+    /** the pattern to match against static names **/
+    private static final String STATIC_PATTERN = "^s[A-Z][a-zA-Z0-9]*$";
+    /** the pattern to match against constant names **/
+    private static final String CONST_PATTERN = "^[A-Z]([A-Z0-9_]*[A-Z0-9])?$";
+    /** the pattern to match against member names **/
+    private static final String MEMBER_PATTERN = "^m[A-Z][a-zA-Z0-9]*$";
+    /** the pattern to match against type names **/
+    private static final String TYPE_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
+    /** The maximum line length **/
+    private static final int MAX_LINE_LENGTH = 80;
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Member variables
+    ////////////////////////////////////////////////////////////////////////////
+
     /** pattern to match parameters **/
     private String mParamPat;
     /** regexp to match parameters **/
@@ -37,47 +82,92 @@ class Configuration
     private RE mTypeRegexp;
 
     /** the maximum line length **/
-    private int mMaxLineLength;
+    private int mMaxLineLength = MAX_LINE_LENGTH;
     /** whether to allow tabs **/
-    private boolean mAllowTabs;
+    private boolean mAllowTabs = false;
     /** whether to allow protected data **/
-    private boolean mAllowProtected;
+    private boolean mAllowProtected = false;
     /** whether to allow having no author tag **/
-    private boolean mAllowNoAuthor;
+    private boolean mAllowNoAuthor = false;
     /** whether to relax javadoc checking **/
-    private boolean mRelaxJavadoc;
+    private boolean mRelaxJavadoc = false;
     /** whether to process imports **/
-    private boolean mCheckImports;
+    private boolean mIgnoreImports = false;
     /** the header lines to check for **/
-    private String[] mHeaderLines;
+    private String[] mHeaderLines = {};
     /** line number to ignore in header **/
-    private int mHeaderIgnoreLineNo;
+    private int mHeaderIgnoreLineNo = -1;
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
     ////////////////////////////////////////////////////////////////////////////
 
-    Configuration(Properties aProps)
+    /**
+     * Creates a new <code>Configuration</code> instance.
+     *
+     * @param aProps where to extract configuration parameters from
+     * @param aLog where to log errors to
+     * @throws RESyntaxException if an error occurs
+     * @throws FileNotFoundException if an error occurs
+     * @throws IOException if an error occurs
+     */
+    Configuration(Properties aProps, PrintStream aLog)
+        throws RESyntaxException, FileNotFoundException, IOException
     {
-//          aProps.getProperty(PARAMETER_PATTERN_PROP,
-//                             PARAMETER_PATTERN),
-//              aProps.getProperty(STATIC_PATTERN_PROP,
-//                                 STATIC_PATTERN),
-//                  aProps.getProperty(CONST_PATTERN_PROP,
-//                                     CONST_PATTERN),
-//                  aProps.getProperty(MEMBER_PATTERN_PROP,
-//                                     MEMBER_PATTERN),
-//                  aProps.getProperty(TYPE_PATTERN_PROP,
-//                                     TYPE_PATTERN),
-//                  getIntProperty(aProps, MAX_LINE_LENGTH_PROP, MAX_LINE_LENGTH),
-//                  getAllowTabs(aProps),
-//                  getAllowProtected(aProps),
-//                  getAllowNoAuthor(aProps),
-//                  getRelaxJavadoc(aProps),
-//                  getCheckImports(aProps),
-//                  getHeaderLines(aProps),
-//                  getIntProperty(aProps, HEADER_IGNORE_LINE_PROP, -1));
+        setParamPat(aProps.getProperty(PARAMETER_PATTERN_PROP,
+                                       PARAMETER_PATTERN));
+        setStaticPat(aProps.getProperty(STATIC_PATTERN_PROP,
+                                        STATIC_PATTERN));
+        setStaticFinalPat(aProps.getProperty(CONST_PATTERN_PROP,
+                                             CONST_PATTERN));
+        setMemberPat(aProps.getProperty(MEMBER_PATTERN_PROP,
+                                        MEMBER_PATTERN));
+        setTypePat(aProps.getProperty(TYPE_PATTERN_PROP,
+                                      TYPE_PATTERN));
+        setMaxLineLength(getIntProperty(
+            aProps, aLog, MAX_LINE_LENGTH_PROP, MAX_LINE_LENGTH));
+
+        setAllowTabs(getBooleanProperty(aProps, ALLOW_TABS_PROP, mAllowTabs));
+        setAllowProtected(
+            getBooleanProperty(aProps, ALLOW_PROTECTED_PROP, mAllowProtected));
+        setAllowNoAuthor(
+            getBooleanProperty(aProps, ALLOW_NO_AUTHOR_PROP, mAllowNoAuthor));
+        setRelaxJavadoc(
+            getBooleanProperty(aProps, RELAX_JAVADOC_PROP, mRelaxJavadoc));
+        setIgnoreImports(
+            getBooleanProperty(aProps, IGNORE_IMPORTS_PROP, mIgnoreImports));
+        setHeaderIgnoreLineNo(
+            getIntProperty(aProps, aLog, HEADER_IGNORE_LINE_PROP,
+                           mHeaderIgnoreLineNo));
+
+        final String fname = aProps.getProperty(HEADER_FILE_PROP);
+        if (fname != null) {
+            setHeaderFile(fname);
+        }
+
     }
+
+    /**
+     * Creates a new <code>Configuration</code> instance.
+     *
+     * @throws IllegalStateException if an error occurs
+     */
+    Configuration()
+        throws IllegalStateException
+    {
+        try {
+            setParamPat(PARAMETER_PATTERN);
+            setStaticPat(STATIC_PATTERN);
+            setStaticFinalPat(CONST_PATTERN);
+            setMemberPat(MEMBER_PATTERN);
+            setTypePat(TYPE_PATTERN);
+        }
+        catch (RESyntaxException ex) {
+            ex.printStackTrace();
+            throw new IllegalStateException(ex.getMessage());
+        }
+    }
+
 
     ////////////////////////////////////////////////////////////////////////////
     // Getters
@@ -174,9 +264,9 @@ class Configuration
     }
 
     /** @return whether to process imports **/
-    boolean isCheckImports()
+    boolean isIgnoreImports()
     {
-        return mCheckImports;
+        return mIgnoreImports;
     }
 
     /** @return the header lines to check for **/
@@ -195,111 +285,185 @@ class Configuration
     // Getters
     ////////////////////////////////////////////////////////////////////////////
 
-    /** @param aParamPat pattern to match parameters **/
-    String getParamPat(String aParamPat)
+    /**
+     * @param aParamPat pattern to match parameters
+     * @throws RESyntaxException if an error occurs
+     */
+    void setParamPat(String aParamPat)
+        throws RESyntaxException
     {
-        return mParamPat;
+        mParamRegexp = new RE(aParamPat);
+        mParamPat = aParamPat;
     }
 
-    /** @param  regexp to match parameters **/
-    RE getParamRegexp()
+    /**
+     * @param aStaticPat pattern to match static variables
+     * @throws RESyntaxException if an error occurs
+     */
+    void setStaticPat(String aStaticPat)
+        throws RESyntaxException
     {
-        return mParamRegexp;
+        mStaticRegexp = new RE(aStaticPat);
+        mStaticPat = aStaticPat;
     }
 
-    /** @param  pattern to match static variables **/
-    String getStaticPat()
+    /**
+     * @param aStaticFinalPat pattern to match static final variables
+     * @throws RESyntaxException if an error occurs
+     */
+    void setStaticFinalPat(String aStaticFinalPat)
+        throws RESyntaxException
     {
-        return mStaticPat;
+        mStaticFinalRegexp = new RE(aStaticFinalPat);
+        mStaticFinalPat = aStaticFinalPat;
     }
 
-    /** @param  regexp to match static variables **/
-    RE getStaticRegexp()
+    /**
+     * @param aMemberPat pattern to match member variables
+     * @throws RESyntaxException if an error occurs
+     */
+    void setMemberPat(String aMemberPat)
+        throws RESyntaxException
     {
-        return mStaticRegexp;
+        mMemberRegexp = new RE(aMemberPat);
+        mMemberPat = aMemberPat;
     }
 
-    /** @param  pattern to match static final variables **/
-    String getStaticFinalPat()
+    /**
+     * @param aTypePat pattern to match type names
+     * @throws RESyntaxException if an error occurs
+     */
+    void setTypePat(String aTypePat)
+        throws RESyntaxException
     {
-        return mStaticFinalPat;
+        mTypeRegexp = new RE(aTypePat);
+        mTypePat = aTypePat;
     }
 
-    /** @param  regexp to match static final variables **/
-    RE getStaticFinalRegexp()
+    /**
+     * @param aMaxLineLength the maximum line length
+     */
+    void setMaxLineLength(int aMaxLineLength)
     {
-        return mStaticFinalRegexp;
+        mMaxLineLength = aMaxLineLength;
     }
 
-    /** @param  pattern to match member variables **/
-    String getMemberPat()
+    /**
+     * @param aAllowTabs whether to allow tabs
+     */
+    void setAllowTabs(boolean aAllowTabs)
     {
-        return mMemberPat;
+        mAllowTabs = aAllowTabs;
     }
 
-    /** @param  regexp to match member variables **/
-    RE getMemberRegexp()
+    /**
+     * @param aAllowProtected whether to allow protected data
+     */
+    void setAllowProtected(boolean aAllowProtected)
     {
-        return mMemberRegexp;
+        mAllowProtected = aAllowProtected;
     }
 
-    /** @param  pattern to match type names **/
-    String getTypePat()
+    /**
+     * @param aAllowNoAuthor whether to allow having no author tag
+     */
+    void setAllowNoAuthor(boolean aAllowNoAuthor)
     {
-        return mTypePat;
+        mAllowNoAuthor = aAllowNoAuthor;
     }
 
-    /** @param  regexp to match type names **/
-    RE getTypeRegexp()
+    /**
+     * @param aRelaxJavadoc whether to relax javadoc checking
+     */
+    void setRelaxJavadoc(boolean aRelaxJavadoc)
     {
-        return mTypeRegexp;
+        mRelaxJavadoc = aRelaxJavadoc;
     }
 
-    /** @param  the maximum line length **/
-    int getMaxLineLength()
+    /**
+     * @param aIgnoreImports whether to process imports
+     */
+    void setIgnoreImports(boolean aIgnoreImports)
     {
-        return mMaxLineLength;
+        mIgnoreImports = aIgnoreImports;
     }
 
-    /** @param  whether to allow tabs **/
-    boolean isAllowTabs()
+    /**
+     * @param aFileName the header lines to check for
+     * @throws FileNotFoundException if an error occurs
+     * @throws IOException if an error occurs
+     */
+    void setHeaderFile(String aFileName)
+        throws FileNotFoundException, IOException
     {
-        return mAllowTabs;
+        final LineNumberReader lnr =
+            new LineNumberReader(new FileReader(aFileName));
+        final ArrayList lines = new ArrayList();
+        while (true) {
+            final String l = lnr.readLine();
+            if (l == null) {
+                break;
+            }
+            lines.add(l);
+        }
+        mHeaderLines = (String[]) lines.toArray(new String[] {});
     }
 
-    /** @param  whether to allow protected data **/
-    boolean isAllowProtected()
+    /**
+     * @param aHeaderIgnoreLineNo line number to ignore in header
+     */
+    void setHeaderIgnoreLineNo(int aHeaderIgnoreLineNo)
     {
-        return mAllowProtected;
+        mHeaderIgnoreLineNo = aHeaderIgnoreLineNo;
     }
 
-    /** @param  whether to allow having no author tag **/
-    boolean isAllowNoAuthor()
+    ////////////////////////////////////////////////////////////////////////////
+    // Private methods
+    ////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @param aProps the properties set to use
+     * @param aLog where to log errors to
+     * @param aName the name of the property to parse
+     * @param aDefault the default value to use.
+     *
+     * @return the value of an integer property. If the property is not defined
+     *    or cannot be parsed, then a default value is returned.
+     */
+    private static int getIntProperty(Properties aProps, PrintStream aLog,
+                                      String aName, int aDefault)
     {
-        return mAllowNoAuthor;
+        int retVal = aDefault;
+        final String strRep = aProps.getProperty(aName);
+        if (strRep != null) {
+            try {
+                retVal = Integer.parseInt(strRep);
+            }
+            catch (NumberFormatException nfe) {
+                aLog.println("Unable to parse " + aName +
+                             " property with value " + strRep +
+                             ", defaulting to " + aDefault + ".");
+            }
+        }
+        return retVal;
     }
 
-    /** @param  whether to relax javadoc checking **/
-    boolean isRelaxJavadoc()
+    /**
+     * @param aProps the properties set to use
+     * @param aName the name of the property to parse
+     * @param aDefault the default value to use.
+     * @return the value of an boolean property. If the property is not defined
+     *    or cannot be parsed, then a default value is returned.
+     */
+    private static boolean getBooleanProperty(Properties aProps,
+                                              String aName,
+                                              boolean aDefault)
     {
-        return mRelaxJavadoc;
-    }
-
-    /** @param  whether to process imports **/
-    boolean isCheckImports()
-    {
-        return mCheckImports;
-    }
-
-    /** @param  the header lines to check for **/
-    String[] getHeaderLines()
-    {
-        return mHeaderLines;
-    }
-
-    /** @param  line number to ignore in header **/
-    int getHeaderIgnoreLineNo()
-    {
-        return mHeaderIgnoreLineNo;
+        boolean retVal = aDefault;
+        final String strRep = aProps.getProperty(aName);
+        if (strRep != null) {
+            retVal = Boolean.valueOf(strRep).booleanValue();
+        }
+        return retVal;
     }
 }
