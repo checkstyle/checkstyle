@@ -12,10 +12,8 @@
   <check classname="com.puppycrawl.tools.checkstyle.checks.HiddenFieldCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalInstantiationCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.ImportCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocTag"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocVariableCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.LeftCurlyCheck"/>
