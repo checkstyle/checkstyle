@@ -174,15 +174,25 @@
     </checkstyle>
   </target>
 
+  <!-- Targets to verify that JUnit is in the classpath -->
   <target name="check.junit">
     <available property="have.junit" classname="junit.framework.TestListener"/>
   </target>
-
   <target name="require.junit" depends="check.junit" unless="have.junit">
-    <fail message="Need to have JUnit in your CLASSPATH to run the tests."/>
+    <fail message="Need to have JUnit in your CLASSPATH to run the tests. Consider using the one in the lib directory."/>
   </target>
 
-  <target name="run.tests" depends="compile.tests,require.junit">
+  <!-- Targets to verify that Xalan is in the classpath -->
+  <target name="check.xalan">
+    <available property="have.xalan"
+               classname="org.apache.xalan.Version"/>
+  </target>
+  <target name="require.xalan" depends="check.xalan" unless="have.xalan">
+    <fail message="Need to have Xalan in your CLASSPATH to run the tests. You can download it from http://xml.apache.org/."/>
+  </target>
+
+  <!-- To run the tests need Xalan in the classpath -->
+  <target name="run.tests" depends="compile.tests,require.junit,require.xalan">
 
     <mkdir dir="${testreport.dir}"/>
 
