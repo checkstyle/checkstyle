@@ -163,14 +163,13 @@ public class HiddenFieldCheck
                 final Iterator it = mFieldsStack.iterator();
                 while (it.hasNext()) {
                     final HashSet aFieldsSet = (HashSet) it.next();
-                    if (aFieldsSet.contains(name)) {
-                        if ((mRegexp == null) || (!getRegexp().match(name))) {
-                            if (!isIgnoredSetterParam(aAST, name)) {
-                                log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                                    "hidden.field", name);
-                                break;
-                            }
-                        }
+                    if (aFieldsSet.contains(name)
+                        && ((mRegexp == null) || (!getRegexp().match(name)))
+                        && !isIgnoredSetterParam(aAST, name))
+                    {
+                        log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                            "hidden.field", name);
+                        break;
                     }
                 }
             }
@@ -195,8 +194,7 @@ public class HiddenFieldCheck
         }
         //single parameter?
         final DetailAST parametersAST = aAST.getParent();
-        if (parametersAST.getChildCount() != 1)
-        {
+        if (parametersAST.getChildCount() != 1) {
             return false;
         }
         //method parameter, not constructor parameter?
@@ -207,15 +205,14 @@ public class HiddenFieldCheck
         //property setter name?
         final String expectedName =
             "set" + aName.substring(0, 1).toUpperCase() + aName.substring(1);
-        final DetailAST methodNameAST
-            = methodAST.findFirstToken(TokenTypes.IDENT);
+        final DetailAST methodNameAST =
+            methodAST.findFirstToken(TokenTypes.IDENT);
         final String methodName = methodNameAST.getText();
         if (!methodName.equals(expectedName)) {
             return false;
         }
         //void?
-        final DetailAST typeAST
-            = methodAST.findFirstToken(TokenTypes.TYPE);
+        final DetailAST typeAST = methodAST.findFirstToken(TokenTypes.TYPE);
         return typeAST.branchContains(TokenTypes.LITERAL_VOID);
     }
 
