@@ -16,11 +16,11 @@ public class InputUnusedParameter
         Object aUnreadObject)
     {
         int i = aReadObject.length();
-        
+
         int j = aRectangle.x;
-        
+
         try {
-            i++;   
+            i++;
         }
         catch (Exception unreadException) {
         }
@@ -30,6 +30,12 @@ public class InputUnusedParameter
     {
         int i = aArray[0];
         aArray2[0] = 0;
+    }
+
+    private int member = 1;
+    private void methodSameLocalVariable(int member)
+    {
+        int x = member; // refers to the param, not the member
     }
 }
 
