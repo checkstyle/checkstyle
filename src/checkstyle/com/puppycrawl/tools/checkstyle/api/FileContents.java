@@ -17,8 +17,8 @@ public class FileContents
      * the pattern to match a single line comment containing only the comment
      * itself -- no code.
      */
-    private static final String MATCH_SINGLELINE_COMMENT_PAT
-        = "^\\s*//.*$";
+    private static final String MATCH_SINGLELINE_COMMENT_PAT =
+        "^\\s*//.*$";
     /** compiled regexp to match a single-line comment line */
     private static final RE MATCH_SINGLELINE_COMMENT =
         Utils.createRE(MATCH_SINGLELINE_COMMENT_PAT);

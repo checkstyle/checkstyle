@@ -38,9 +38,7 @@ public final class OperatorWrapOption
     }
 
     /** require that the operator is on a new line **/
-    public static final OperatorWrapOption NL
-        = new OperatorWrapOption("nl");
+    public static final OperatorWrapOption NL = new OperatorWrapOption("nl");
     /** require that the operator is at the end of the line **/
-    public static final OperatorWrapOption EOL
-        = new OperatorWrapOption("eol");
+    public static final OperatorWrapOption EOL = new OperatorWrapOption("eol");
 }

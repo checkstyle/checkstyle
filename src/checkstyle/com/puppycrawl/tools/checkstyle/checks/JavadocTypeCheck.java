@@ -28,8 +28,8 @@ public class JavadocTypeCheck
     /** the pattern to match version tag **/
     private static final String MATCH_JAVADOC_VERSION_PAT = "@version\\s+\\S";
     /** compiled regexp to match version tag **/
-    private static final RE MATCH_JAVADOC_VERSION
-        = Utils.createRE(MATCH_JAVADOC_VERSION_PAT);
+    private static final RE MATCH_JAVADOC_VERSION =
+        Utils.createRE(MATCH_JAVADOC_VERSION_PAT);
 
     /** the scope to check for */
     private Scope mScope = Scope.PRIVATE;

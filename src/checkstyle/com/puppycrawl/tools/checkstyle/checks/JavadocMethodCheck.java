@@ -48,8 +48,8 @@ public class JavadocMethodCheck
 
        // {{{ Data declarations
     /** the pattern to match Javadoc tags that take an argument **/
-    private static final String MATCH_JAVADOC_ARG_PAT
-        = "@(throws|exception|param)\\s+(\\S+)\\s+\\S";
+    private static final String MATCH_JAVADOC_ARG_PAT =
+        "@(throws|exception|param)\\s+(\\S+)\\s+\\S";
     /** compiled regexp to match Javadoc tags that take an argument **/
     private static final RE MATCH_JAVADOC_ARG =
         Utils.createRE(MATCH_JAVADOC_ARG_PAT);
@@ -58,8 +58,7 @@ public class JavadocMethodCheck
     * the pattern to match a single line comment containing only the comment
     * itself -- no code.
     **/
-    private static final String MATCH_SINGLELINE_COMMENT_PAT
-      = "^\\s*//.*$";
+    private static final String MATCH_SINGLELINE_COMMENT_PAT = "^\\s*//.*$";
    /** compiled regexp to match a single-line comment line **/
     private static final RE MATCH_SINGLELINE_COMMENT =
       Utils.createRE(MATCH_SINGLELINE_COMMENT_PAT);
@@ -69,29 +68,29 @@ public class JavadocMethodCheck
     * tag that takes an argument. Javadoc with no arguments isn't
     * allowed to go over multiple lines.
     **/
-    private static final String MATCH_JAVADOC_MULTILINE_START_PAT
-        = "@(throws|exception|param)\\s+(\\S+)\\s*$";
+    private static final String MATCH_JAVADOC_MULTILINE_START_PAT =
+        "@(throws|exception|param)\\s+(\\S+)\\s*$";
     /** compiled regexp to match first part of multilineJavadoc tags **/
     private static final RE MATCH_JAVADOC_MULTILINE_START =
-       Utils.createRE(MATCH_JAVADOC_MULTILINE_START_PAT);
+        Utils.createRE(MATCH_JAVADOC_MULTILINE_START_PAT);
 
     /** the pattern that looks for a continuation of the comment **/
-    private static final String MATCH_JAVADOC_MULTILINE_CONT_PAT
-        = "(\\*/|@|[^\\s\\*])";
+    private static final String MATCH_JAVADOC_MULTILINE_CONT_PAT =
+        "(\\*/|@|[^\\s\\*])";
     /** compiled regexp to look for a continuation of the comment **/
     private static final RE MATCH_JAVADOC_MULTILINE_CONT =
-       Utils.createRE(MATCH_JAVADOC_MULTILINE_CONT_PAT);
+        Utils.createRE(MATCH_JAVADOC_MULTILINE_CONT_PAT);
     /** Multiline finished at end of comment **/
     private static final String END_JAVADOC = "*/";
     /** Multiline finished at next Javadoc **/
     private static final String NEXT_TAG = "@";
 
     /** the pattern to match Javadoc tags with no argument **/
-    private static final String MATCH_JAVADOC_NOARG_PAT
-        = "@(return|see|author)\\s+\\S";
+    private static final String MATCH_JAVADOC_NOARG_PAT =
+        "@(return|see|author)\\s+\\S";
     /** compiled regexp to match Javadoc tags with no argument **/
-    private static final RE MATCH_JAVADOC_NOARG
-        = Utils.createRE(MATCH_JAVADOC_NOARG_PAT);
+    private static final RE MATCH_JAVADOC_NOARG =
+        Utils.createRE(MATCH_JAVADOC_NOARG_PAT);
 
     /** full identifier for package of the method **/
     private FullIdent mPackageFullIdent = null;
@@ -307,8 +306,7 @@ public class JavadocMethodCheck
         DetailAST child = (DetailAST) params.getFirstChild();
         while (child != null) {
             if (child.getType() == TokenTypes.PARAMETER_DEF) {
-                final DetailAST ident
-                    = child.findFirstToken(TokenTypes.IDENT);
+                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
                 retVal.add(ident);
             }
             child = (DetailAST) child.getNextSibling();
@@ -324,8 +322,8 @@ public class JavadocMethodCheck
     private List getThrows(DetailAST aAST)
     {
         final List retVal = new ArrayList();
-        final DetailAST throwsAST
-            = aAST.findFirstToken(TokenTypes.LITERAL_THROWS);
+        final DetailAST throwsAST =
+            aAST.findFirstToken(TokenTypes.LITERAL_THROWS);
         if (throwsAST != null) {
             DetailAST child = (DetailAST) throwsAST.getFirstChild();
             while (child != null) {
