@@ -22,20 +22,40 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents the options for placing the right curly brace '}'.
+ * Represents the options for placing the right curly brace <code>'}'</code>.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: RightCurlyOption.java,v 1.5 2002-11-14 15:59:48 rickgiles Exp $
+ * @version 1
  */
 public final class RightCurlyOption
     extends AbstractOption
 {
     /** maps from a string representation to an option */
     private static final Map STR_TO_OPT = new HashMap();
-    
-   /** represents placing the brace alone on a line **/
+
+    /**
+     * Represents the policy that the brace must be alone on the line. For
+     * example:
+     *
+     * <pre>
+     * try {
+     *     ...
+     * }
+     * finally {
+     * </pre>
+     **/
     public static final RightCurlyOption ALONE = new RightCurlyOption("alone");
-    /** represents placing the brace on the same line **/
+
+    /**
+     * Represents the policy that the brace must be on the same line as the
+     * next statement. For example:
+     *
+     * <pre>
+     * try {
+     *     ...
+     * } finally {
+     * </pre>
+     **/
     public static final RightCurlyOption SAME = new RightCurlyOption("same");
 
     /**
@@ -46,7 +66,7 @@ public final class RightCurlyOption
     {
        super(aStrRep);
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
     protected Map getStrToOpt()
     {

@@ -25,7 +25,7 @@ import java.util.Map;
  * Represents the options for placing the left curly brace <code>'{'</code>.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: LeftCurlyOption.java,v 1.5 2002-11-26 06:25:10 oburn Exp $
+ * @version 1
  */
 public final class LeftCurlyOption
     extends AbstractOption
