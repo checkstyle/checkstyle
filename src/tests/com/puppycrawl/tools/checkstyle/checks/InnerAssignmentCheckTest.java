@@ -11,10 +11,10 @@ public class InnerAssignmentCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(InnerAssignmentCheck.class);
         final String[] expected = {
-            "102:15: Avoid inner assignments.",
-            "102:19: Avoid inner assignments.",
-            "104:39: Avoid inner assignments.",
-            "106:35: Avoid inner assignments.",
+            "102:15: Inner assignments should be avoided.",
+            "102:19: Inner assignments should be avoided.",
+            "104:39: Inner assignments should be avoided.",
+            "106:35: Inner assignments should be avoided.",
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }

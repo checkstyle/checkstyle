@@ -12,9 +12,9 @@ public class AvoidStarImportTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStarImportCheck.class);
         final String[] expected = {
-            "7: Avoid using the '.*' form of import - com.puppycrawl.tools.checkstyle.*.",
-            "9: Avoid using the '.*' form of import - java.io.*.",
-            "10: Avoid using the '.*' form of import - java.lang.*.",
+            "7: Using the '.*' form of import should be avoided - com.puppycrawl.tools.checkstyle.*.",
+            "9: Using the '.*' form of import should be avoided - java.io.*.",
+            "10: Using the '.*' form of import should be avoided - java.lang.*.",
         };
         verify(checkConfig, getPath("InputImport.java"), expected);
     }
