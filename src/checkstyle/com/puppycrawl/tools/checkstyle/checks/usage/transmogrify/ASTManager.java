@@ -199,7 +199,7 @@ public final class ASTManager
     /**
      * Removes a check and its check nodes. Clears all managed elements if
      * last check removed.
-     * @param check
+     * @param aCheck the check to remove.
      */
     public void removeCheck(AbstractUsageCheck aCheck)
     {
@@ -209,6 +209,5 @@ public final class ASTManager
             mMap.clear();
             mTrees.clear();
         }
-        
     }
 }
