@@ -230,8 +230,8 @@ class Verifier
         checkModOrder(aSig.getModSet());
 
         // JLS, chapter 9.4 - public in interface is strongly discouraged
-        if (!mConfig.isIgnorePublicInInterface() &&
-            inInterfaceBlock() && aSig.getModSet().containsPublic())
+        if (!mConfig.isIgnorePublicInInterface() && inInterfaceBlock()
+            && aSig.getModSet().containsPublic())
         {
             log(aSig.getLineNo(), "redundant 'public' modifier.");
         }
