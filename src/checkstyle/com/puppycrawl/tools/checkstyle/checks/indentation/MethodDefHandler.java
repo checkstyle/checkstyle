@@ -80,7 +80,7 @@ public class MethodDefHandler extends BlockParentHandler
 
         int columnNo = expandedTabsColumnNo(throwsAst);
         int expectedColumnNo =
-            getLevel() + getIndentCheck().getIndentationAmount();
+            getLevel() + getIndentCheck().getBasicOffset();
 
         if (startsLine(throwsAst)
             && columnNo != expectedColumnNo)
