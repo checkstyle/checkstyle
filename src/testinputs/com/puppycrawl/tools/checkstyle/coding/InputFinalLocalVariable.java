@@ -121,3 +121,8 @@ interface Inter
 {
     void method(int aParam);
 }
+
+abstract class AbstractClass
+{
+    public abstract void abstractMethod(int aParam);
+}

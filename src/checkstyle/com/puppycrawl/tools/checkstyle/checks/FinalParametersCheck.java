@@ -71,13 +71,20 @@ public class FinalParametersCheck extends Check
     }
 
     /**
-     * Checks prarmeters of the method or ctor.
+     * Checks parameters of the method or ctor.
      * @param aMethod method or ctor to check.
      */
     private void visitMethod(final DetailAST aMethod)
     {
         // exit on fast lane if there is nothing to check here
         if (!aMethod.branchContains(TokenTypes.PARAMETER_DEF)) {
+            return;
+        }
+
+        // ignore abstract method
+        final DetailAST modifiers =
+            aMethod.findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers.branchContains(TokenTypes.ABSTRACT)) {
             return;
         }
 
