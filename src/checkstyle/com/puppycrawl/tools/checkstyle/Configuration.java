@@ -51,7 +51,7 @@ class Configuration
     private static final String PUBLIC_MEMBER_PATTERN = "^f[A-Z][a-zA-Z0-9]*$";
     /** the pattern to match against type names **/
     private static final String TYPE_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
-    /** The maximum line length **/
+    /** the maximum line length **/
     private static final int MAX_LINE_LENGTH = 80;
     /** the maximum method length **/
     private static final int MAX_METHOD_LENGTH = 150;
@@ -108,10 +108,8 @@ class Configuration
     private boolean mAllowProtected = false;
     /** whether to allow having no author tag **/
     private boolean mAllowNoAuthor = false;
-    /** whether to relax javadoc checking **/
-    private boolean mRelaxJavadoc = false;
-    /** whether to ignore javadoc checking **/
-    private boolean mIgnoreJavadoc = false;
+    /** visibility scope where Javadoc is checked **/
+    private Scope mJavadocScope = Scope.PRIVATE;
     /** whether to ignore imports **/
     private boolean mIgnoreImports = false;
     /** whether to ignore whitespace **/
@@ -170,10 +168,9 @@ class Configuration
             getBooleanProperty(aProps, ALLOW_PROTECTED_PROP, mAllowProtected));
         setAllowNoAuthor(
             getBooleanProperty(aProps, ALLOW_NO_AUTHOR_PROP, mAllowNoAuthor));
-        setRelaxJavadoc(
-            getBooleanProperty(aProps, RELAX_JAVADOC_PROP, mRelaxJavadoc));
-        setIgnoreJavadoc(
-            getBooleanProperty(aProps, IGNORE_JAVADOC_PROP, mIgnoreJavadoc));
+        setJavadocScope(
+            Scope.getInstance( aProps.getProperty(JAVADOC_CHECKSCOPE_PROP,
+                                                  Scope.PRIVATE.getName())));
         setIgnoreImports(
             getBooleanProperty(aProps, IGNORE_IMPORTS_PROP, mIgnoreImports));
         setIgnoreWhitespace(
@@ -338,18 +335,12 @@ class Configuration
         return mAllowNoAuthor;
     }
 
-    /** @return whether to relax javadoc checking **/
-    public boolean isRelaxJavadoc()
+    /** @return visibility scope where Javadoc is checked **/
+    public Scope getJavadocScope()
     {
-        return mRelaxJavadoc;
+        return mJavadocScope;
     }
-
-    /** @return whether to ignore javadoc checking **/
-    public boolean isIgnoreJavadoc()
-    {
-        return mIgnoreJavadoc;
-    }
-
+    
     /** @return whether to process imports **/
     public boolean isIgnoreImports()
     {
@@ -527,19 +518,11 @@ class Configuration
     }
 
     /**
-     * @param aRelaxJavadoc whether to relax javadoc checking
-     */
-    public void setRelaxJavadoc(boolean aRelaxJavadoc)
+     * @param aJavadocScope visibility scope where Javadoc is checked
+     **/
+    public void setJavadocScope(Scope aJavadocScope)
     {
-        mRelaxJavadoc = aRelaxJavadoc;
-    }
-
-    /**
-     * @param aIgnoreJavadoc whether to ignore javadoc checking
-     */
-    public void setIgnoreJavadoc(boolean aIgnoreJavadoc)
-    {
-        mIgnoreJavadoc = aIgnoreJavadoc;
+        mJavadocScope = aJavadocScope;
     }
 
     /**

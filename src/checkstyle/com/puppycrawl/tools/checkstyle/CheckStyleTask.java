@@ -230,18 +230,10 @@ public class CheckStyleTask
         mConfig.setHeaderIgnoreLineNo(aNum);
     }
 
-    /** @param aRelax whether to be relaxed on Javadoc **/
-    public void setRelaxJavadoc(boolean aRelax)
+    /** @param aJavadocScope visibility scope where Javadoc is checked **/
+    public void setJavadocScope(String aJavadocScope)
     {
-        mConfig.setRelaxJavadoc(aRelax);
-    }
-
-    /** @param aIgnore whether Javadoc comments should be checked.  This
-     *                 takes precedence over the "Relax Javadoc" setting.
-     */
-    public void setIgnoreJavadoc(boolean aIgnore)
-    {
-        mConfig.setIgnoreJavadoc(aIgnore);
+        mConfig.setJavadocScope(Scope.getInstance(aJavadocScope));
     }
 
     /** @param aIgnore whether to ignore import statements **/

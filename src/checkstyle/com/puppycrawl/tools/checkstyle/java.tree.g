@@ -60,11 +60,11 @@ typeDefinition
 {
    MyModifierSet mods;
 }
-   :  #(CLASS_DEF mods=modifiers IDENT extendsClause implementsClause {ver.reportStartTypeBlock(false);} objBlock {ver.reportEndTypeBlock();} )
+   :  #(CLASS_DEF mods=modifiers IDENT extendsClause implementsClause {ver.reportStartTypeBlock(mods.getVisibilityScope(), false);} objBlock {ver.reportEndTypeBlock();} )
       {
          ver.verifyType(mods, #IDENT);
       }
-   |  #(INTERFACE_DEF mods=modifiers IDENT extendsClause {ver.reportStartTypeBlock(true);} interfaceBlock {ver.reportEndTypeBlock();})
+   |  #(INTERFACE_DEF mods=modifiers IDENT extendsClause {ver.reportStartTypeBlock(mods.getVisibilityScope(), true);} interfaceBlock {ver.reportEndTypeBlock();})
       {
          ver.verifyType(mods, #IDENT);
       }
@@ -489,7 +489,7 @@ constant
 newExpression
 	:	#(	"new" type
 			(	newArrayDeclarator (arrayInitializer)?
-			|	elist (objBlock)?
+			|	elist ({ver.reportStartTypeBlock(Scope.ANONINNER, false);} objBlock {ver.reportEndTypeBlock();})?
 			)
 		)
 			

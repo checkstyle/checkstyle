@@ -174,9 +174,10 @@ interface Verifier
      * Report that the parser is entering a block that is associated with a
      * class or interface. Must match up the call to this method with a call
      * to the reportEndBlock().
+     * @param aScope the Scope of the type block
      * @param aIsInterface indicates if the block is for an interface
      */
-    void reportStartTypeBlock(boolean aIsInterface);
+    void reportStartTypeBlock(Scope aScope, boolean aIsInterface);
 
     /** Report that the parser is leaving a type block. **/
     void reportEndTypeBlock();
