@@ -130,17 +130,17 @@ public class Checker extends AutomaticBean
     }
 
     /** @see AutomaticBean */
-    public void configure(Configuration aConfiguration)
+    public void configure(Configuration aConfig)
             throws CheckstyleException
     {
-        super.configure(aConfiguration);
+        super.configure(aConfig);
 
         final Locale locale = new Locale(mLocaleLanguage, mLocaleCountry);
         LocalizedMessage.setLocale(locale);
 
         final DefaultContext context = new DefaultContext();
         context.add("classLoader", mLoader);
-        final Configuration[] fileSetChecks = aConfiguration.getChildren();
+        final Configuration[] fileSetChecks = aConfig.getChildren();
         for (int i = 0; i < fileSetChecks.length; i++) {
             final Configuration fscConf = fileSetChecks[i];
             final String name = fscConf.getName();
