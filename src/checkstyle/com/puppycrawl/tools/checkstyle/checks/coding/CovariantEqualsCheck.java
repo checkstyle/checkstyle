@@ -143,29 +143,25 @@ public class CovariantEqualsCheck
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.METHOD_DEF) {
-            final DetailAST definer = getDefiner(aAST);
-            final int type = definer.getType();
-            if ((type == TokenTypes.CLASS_DEF)
-                || (type == TokenTypes.LITERAL_NEW))
-            {
+            if (isEqualsMethod(aAST) && !ScopeUtils.inInterfaceBlock(aAST)) {
+                final DetailAST definer = getDefiner(aAST);
                 if (mClassStack.isEmpty()) {
                     mClassStack.add(new ClassAttributes(definer));
                 }
-                final ClassAttributes attrs =
-                        (ClassAttributes) mClassStack.getLast();
+                ClassAttributes attrs =
+                    (ClassAttributes) mClassStack.getLast();
                 final DetailAST currentRoot = attrs.getRootAST();
                 if (definer != currentRoot) {
-                    mClassStack.add(new ClassAttributes(definer));
+                    final ClassAttributes definerAttrs =
+                        new ClassAttributes(definer);
+                    mClassStack.add(definerAttrs);
+                    attrs = definerAttrs;
                 }
-                if (!ScopeUtils.inInterfaceBlock(aAST)
-                    && isEqualsMethod(aAST))
-                {
-                    if (hasObjectParameter(aAST)) {
-                        attrs.setHasEqualsObject();
-                    }
-                    else {
-                        attrs.addEqualsNode(aAST);
-                    }
+                if (hasObjectParameter(aAST)) {
+                    attrs.setHasEqualsObject();
+                }
+                else {
+                    attrs.addEqualsNode(aAST);
                 }
             }
         }
