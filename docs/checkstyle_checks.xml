@@ -25,7 +25,11 @@
             <property name="checkUnusedThrows" value="true"/>
         </config>
         <config name="JavadocVariableCheck"/>
-        <config name="LineLengthCheck"/>
+
+        <config name="LineLengthCheck">
+            <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
+        </config>
+
         <config name="LocalFinalVariableNameCheck"/>
         <config name="LocalVariableNameCheck"/>
         <config name="MemberNameCheck">
