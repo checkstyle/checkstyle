@@ -10,6 +10,7 @@ public class HomeInterfaceCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(HomeInterfaceCheck.class);
         final String[] expected = {
+            "14:18: Home interface has no findByPrimaryKey method.",
             "20:19: Method createSomething does not throw java.rmi.RemoteException.",
             "20:19: Method createSomething does not throw javax.ejb.CreateException.",
             "20:19: Method createSomething is not public.",

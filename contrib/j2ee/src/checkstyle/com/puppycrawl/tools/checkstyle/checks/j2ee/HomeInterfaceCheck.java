@@ -47,23 +47,9 @@ public class HomeInterfaceCheck
         super.checkMethods(aAST);
 
         // every method must throw java.rmi.RemoteException
-        final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
-        if (objBlock != null) {
-            DetailAST child = (DetailAST) objBlock.getFirstChild();
-            while (child != null) {
-                if (child.getType() == TokenTypes.METHOD_DEF) {
-                    if (!Utils.hasThrows(child, "java.rmi.RemoteException")) {
-                        final DetailAST nameAST =
-                            child.findFirstToken(TokenTypes.IDENT);
-                        final String name = nameAST.getText();
-                        log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                            "missingthrows.bean",
-                             new Object[] {name, "java.rmi.RemoteException"});
-                    }
-                }
-                child = (DetailAST) child.getNextSibling();
-            }
-        }
+        checkThrows(aAST, "java.rmi.RemoteException");
+        
+        // a home interface must have a findByPrimaryKey method
+        checkFindByPrimaryKey(aAST);
     }
-
 }
