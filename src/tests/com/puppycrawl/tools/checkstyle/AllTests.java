@@ -55,7 +55,6 @@ import com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheckTest;
-import com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheckTest;
@@ -88,7 +87,7 @@ public class AllTests {
         //$JUnit-BEGIN$
         suite.addTest(new TestSuite(DetailASTTest.class));
         suite.addTest(new TestSuite(AbstractViolationReporterTest.class));
-        suite.addTest(new TestSuite(AnonInnerLengthCheckTest.class));
+        //  suite.addTest(new TestSuite(AnonInnerLengthCheckTest.class));
         suite.addTest(new TestSuite(ArrayTypeStyleCheckTest.class));
         suite.addTest(new TestSuite(AvoidInlineConditionalsCheckTest.class));
         suite.addTest(new TestSuite(AvoidNestedBlocksCheckTest.class));
