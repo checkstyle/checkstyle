@@ -110,6 +110,9 @@
           <a href="#ReturnCount">ReturnCount</a>
         </li>
         <li>
+          <a href="#RequireThis">RequireThis</a>
+        </li>
+        <li>
           <a href="#SimplifyBooleanExpression">SimplifyBooleanExpression</a>
         </li>
         <li>
@@ -1501,6 +1504,58 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;MultipleVariableDeclarations&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="RequireThis"></a> <h2>RequireThis</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that code doesn't rely on the &quot;this.&quot; default,
+      i.e. references to instance variables and methods of the present
+      object are explicitly of the form &quot;this.varName&quot; or
+      &quot;this.methodName(args)&quot;.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>checkFields</td>
+          <td>whether we should check fields usage or not</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+        <tr>
+          <td>checkMethods</td>
+          <td>whether we should check methods usage or not</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the default check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;RequireThis&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure to check <code>this</code> qualifier for fields only:
+      </p>
+      <pre class="body">
+&lt;module name="RequireThis"&gt;
+    &lt;property name=&quot;checkMethods&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
