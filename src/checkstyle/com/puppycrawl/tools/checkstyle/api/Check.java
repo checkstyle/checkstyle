@@ -71,9 +71,16 @@ public abstract class Check
     }
 
 
-    // TODO: oburn on checkstyle-dev: another method should be added
+    // oburn on checkstyle-dev: another method should be added
     // to specify the tokens that a check must have. For some checks to
     // work, they must be registered for some tokens.
+    //
+    // The example I could think of is one is a
+    // check that tracked scope information automatically (for performance
+    // reasons). It would need to always be notified about class, interface
+    // definitions.
+    //
+    // Lets worry about it when it becomes a problem.
 
 
     /**
@@ -81,7 +88,7 @@ public abstract class Check
      * the lifetime of the check.
      * @return the context object
      */
-    public Map getGlobalContext()
+    public final Map getGlobalContext()
     {
         return mGlobalContext;
     }
@@ -90,7 +97,7 @@ public abstract class Check
      * Set the global context for the check.
      * @param aContext the context
      */
-    public void setGlobalContext(Map aContext)
+    public final void setGlobalContext(Map aContext)
     {
         mGlobalContext = aContext;
     }
@@ -99,7 +106,7 @@ public abstract class Check
      * Set the global object used to collect messages.
      * @param aMessages the messages to log with
      */
-    public void setMessages(LocalizedMessages aMessages)
+    public final void setMessages(LocalizedMessages aMessages)
     {
         mMessages = aMessages;
     }
@@ -109,7 +116,7 @@ public abstract class Check
      * the lifetime of a abstract syntax tree.
      * @return the context object
      */
-    public Map getTreeContext()
+    public final Map getTreeContext()
     {
         return mTreeContext;
     }
@@ -118,7 +125,7 @@ public abstract class Check
      * Set the tree context for the check.
      * @param aContext the context
      */
-    public void setTreeContext(Map aContext)
+    public final void setTreeContext(Map aContext)
     {
         mTreeContext = aContext;
     }
@@ -128,7 +135,7 @@ public abstract class Check
      * the lifetime of a abstract syntax tree.
      * @return the context object
      */
-    public Map getTokenContext()
+    public final Map getTokenContext()
     {
         return mTokenContext;
     }
@@ -137,7 +144,7 @@ public abstract class Check
      * Set the token context for the check.
      * @param aContext the global context
      */
-    public void setTokenContext(Map aContext)
+    public final void setTokenContext(Map aContext)
     {
         mTokenContext = aContext;
     }
@@ -218,7 +225,7 @@ public abstract class Check
     }
 
     /** @return the tab width to report errors with */
-    public int getTabWidth()
+    protected final int getTabWidth()
     {
         return mTabWidth;
     }
@@ -227,7 +234,7 @@ public abstract class Check
      * Set the tab width to report errors with
      * @param aTabWidth an <code>int</code> value
      */
-    public void setTabWidth(int aTabWidth)
+    public final void setTabWidth(int aTabWidth)
     {
         mTabWidth = aTabWidth;
     }
@@ -238,7 +245,7 @@ public abstract class Check
      * @param aLine the line number where the error was found
      * @param aKey the message that describes the error
      */
-    public final void log(int aLine, String aKey)
+    protected final void log(int aLine, String aKey)
     {
         log(aLine, aKey, EMPTY_OBJECT_ARRAY);
     }
@@ -266,7 +273,7 @@ public abstract class Check
      * @param aKey key to locale message format
      * @param aArg0 first argument
      */
-    public void log(int aLineNo, String aKey, Object aArg0)
+    protected final void log(int aLineNo, String aKey, Object aArg0)
     {
         log(aLineNo, aKey, new Object[] {aArg0});
     }
@@ -279,7 +286,7 @@ public abstract class Check
      * @param aArg0 first argument
      * @param aArg1 second argument
      */
-    public void log(int aLineNo, String aKey, Object aArg0, Object aArg1)
+    protected final void log(int aLineNo, String aKey, Object aArg0, Object aArg1)
     {
         log(aLineNo, aKey, new Object[] {aArg0, aArg1});
     }
@@ -293,7 +300,7 @@ public abstract class Check
      * @param aArg1 second argument
      * @param aArg2 third argument
      */
-    public void log(int aLineNo, String aKey,
+    protected final void log(int aLineNo, String aKey,
              Object aArg0, Object aArg1, Object aArg2)
     {
         log(aLineNo, aKey, new Object[] {aArg0, aArg1, aArg2});
@@ -307,7 +314,7 @@ public abstract class Check
      * @param aColNo column number to associate with the message
      * @param aKey key to locale message format
      */
-    public void log(int aLineNo, int aColNo, String aKey)
+    protected final void log(int aLineNo, int aColNo, String aKey)
     {
         log(aLineNo, aColNo, aKey, EMPTY_OBJECT_ARRAY);
     }
@@ -320,7 +327,7 @@ public abstract class Check
      * @param aKey key to locale message format
      * @param aArg0 an <code>Object</code> value
      */
-    public void log(int aLineNo, int aColNo, String aKey,
+    protected final void log(int aLineNo, int aColNo, String aKey,
                     Object aArg0)
     {
         log(aLineNo, aColNo, aKey, new Object[] {aArg0});
@@ -335,7 +342,7 @@ public abstract class Check
      * @param aArg0 an <code>Object</code> value
      * @param aArg1 an <code>Object</code> value
      */
-    public void log(int aLineNo, int aColNo, String aKey,
+    protected final void log(int aLineNo, int aColNo, String aKey,
                     Object aArg0, Object aArg1)
     {
         log(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1});
@@ -349,7 +356,7 @@ public abstract class Check
      * @param aKey key to locale message format
      * @param aArgs arguments for message
      */
-    public void log(int aLineNo, int aColNo, String aKey, Object[] aArgs)
+    protected final void log(int aLineNo, int aColNo, String aKey, Object[] aArgs)
     {
         final int col = 1 + Utils.lengthExpandedTabs(
             getLines()[aLineNo - 1], aColNo, getTabWidth());
@@ -359,12 +366,8 @@ public abstract class Check
 
 
     /**
-     * TODO: Should this method be protected or should we keep the api simple?
-     * Returns the name of a a resource bundle that contains the messages
-     * used by this check.
-     *
      * The default implementation expects the resource files to be named
-     * messages.properties, messages_de.properties, etc. The file should
+     * messages.properties, messages_de.properties, etc. The file must
      * be placed in the same package as the Check implementation.
      *
      * Example: If you write com/foo/MyCoolCheck, create resource files
