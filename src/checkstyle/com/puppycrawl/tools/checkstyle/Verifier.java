@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import antlr.Token;
+
 /**
  * Interface for a verifier of Java rules. Each rule verifier takes the form of
  * <code>void verifyXXX(args)</code>. The implementation must not throw any
@@ -78,7 +80,7 @@ interface Verifier
      * Report that a statement should be using a compound statement
      * (that is, {}'s).
      */
-    void reportNeedBraces(int aLineNo, String aConstruct);
+    void reportNeedBraces(Token aToken);
 
     /**
      * Verify that whitespace surrounds an AST.

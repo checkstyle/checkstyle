@@ -118,6 +118,7 @@ public class CheckerTest
             filepath + ":102: '*' is not proceeded with whitespace.",
             filepath + ":102: '*' is not preceeded with whitespace.",
             filepath + ":109: '!' is proceeded with whitespace.",
+            filepath + ":110: '~' is proceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }
@@ -160,6 +161,7 @@ public class CheckerTest
             filepath + ":102: '*' is not proceeded with whitespace.",
             filepath + ":102: '*' is not preceeded with whitespace.",
             filepath + ":109: '!' is proceeded with whitespace.",
+            filepath + ":110: '~' is proceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }

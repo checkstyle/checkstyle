@@ -373,8 +373,8 @@ expr
    |  #(DEC expr)
    |  #(POST_INC expr)
    |  #(POST_DEC expr)
-   |  #(BNOT expr) { ver.verifyNoWSAfter(#BNOT); }
-   |  #(LNOT expr) { ver.verifyNoWSAfter(#LNOT); }
+   |  #(BNOT expr)
+   |  #(LNOT expr)
    |  #("instanceof" expr expr) // Java ensures surrounded by WS!
    |  #(UNARY_MINUS expr)
    |  #(UNARY_PLUS expr)
