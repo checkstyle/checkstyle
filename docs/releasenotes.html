@@ -81,6 +81,10 @@
         <li class="body">Nice patch from Matt Quail to DetailAST to replace all the
         repeated int[] array construction with a BitSet.</li>
 
+        <li class="body">Patch from Matt Quail to stop the ugly hack of having hard coded
+        constants in TokenTypes. The big risk was that when the grammar changed, the generated
+        constants could change. (patch 757846)</li>
+
       </ul>
 
       <p class="body">
