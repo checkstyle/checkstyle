@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * digits is:
  * </p>
  * <pre>
- * &lt;config name="MemberNameCheck"/&gt;
+ * &lt;config name="MemberNameCheck"&gt;
  *    &lt;property name="format" value="^m[A-Z][a-zA-Z0-9]*$"/&gt;
  * &lt;/config&gt;
  * </pre>

@@ -24,8 +24,37 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
- * Checks the padding of parenthesis.
- *
+ * <p>Checks the padding of parentheses; that is whether a space is required
+ * after a left parenthesis and before a right parenthesis, or such spaces are
+ * forbidden.
+ * The policy to verify is specified using the {@link PadOption} class and
+ * defaults to {@link PadOption#NOSPACE}.
+ * </p>
+ * <p> By default the check will check parentheses that occur with the following
+ * tokens:
+ *  {@link TokenTypes#CTOR_CALL CTOR_CALL},
+ *  {@link TokenTypes#LPAREN LPAREN},
+ *  {@link TokenTypes#METHOD_CALL METHOD_CALL},
+ *  {@link TokenTypes#RPAREN RPAREN},
+ *  {@link TokenTypes#SUPER_CTOR_CALL SUPER_CTOR_CALL},
+ *  {@link TokenTypes#TYPECAST TYPECAST}.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="ParenPadCheck"/&gt;
+ * </pre> 
+ * <p>
+ * An example of how to configure the check to require spaces for the parentheses of
+ * constructor, method, and super constructor invocations is:
+ * </p>
+ * <pre>
+ * &lt;config name="ParenPadCheck"&gt;
+ * &lt;property name="tokens" value="CTOR_CALL, METHOD_CALL, SUPER_CTOR_CALL"/&gt;
+ *    &lt;property name="option" value="space"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */

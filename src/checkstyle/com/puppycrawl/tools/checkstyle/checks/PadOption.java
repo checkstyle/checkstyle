@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents the options for whitespace around parenthesis.
+ * Represents the options for whitespace around parentheses.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  * @version 1
@@ -33,9 +33,15 @@ public final class PadOption
     /** maps from a string representation to an option */
     private static final Map STR_TO_OPT = new HashMap();
     
-    /** represents no spacing **/
+    /**
+     * Represents no spacing following a left parenthesis
+     * or preceeding a right one. 
+     */
     public static final PadOption NOSPACE = new PadOption("nospace");
-    /** represents mandatory spacing **/
+    /**
+     * Represents mandatory spacing following a left parenthesis
+     * and preceeding a right one.
+     */
     public static final PadOption SPACE = new PadOption("space");
 
     /**
