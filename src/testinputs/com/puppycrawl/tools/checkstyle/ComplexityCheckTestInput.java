@@ -71,4 +71,16 @@ public class ComplexityCheckTestInput {
         } else {
         }
     }
+    
+    /** Inner */
+    public ComplexityCheckTestInput(int aParam)
+    {
+        Runnable runnable = new Runnable() {
+            public void run() {
+                while (true) {
+                }
+            }
+        };
+        new Thread(runnable).start();       
+    }
 }

@@ -101,7 +101,7 @@ public final class ExecutableStatementCountCheck
         case TokenTypes.METHOD_DEF:
         case TokenTypes.INSTANCE_INIT:
         case TokenTypes.STATIC_INIT:
-            visitMethodDef();
+            visitMemberDef(aAST);
             break;
         case TokenTypes.SLIST:
             visitSlist(aAST);
@@ -119,7 +119,7 @@ public final class ExecutableStatementCountCheck
         case TokenTypes.METHOD_DEF:
         case TokenTypes.INSTANCE_INIT:
         case TokenTypes.STATIC_INIT:
-            leaveMethodDef(aAST);
+            leaveMemberDef(aAST);
             break;
         case TokenTypes.SLIST:
             // Do nothing
@@ -129,19 +129,22 @@ public final class ExecutableStatementCountCheck
         }
     }
 
-    /** Process the start of the method definition. */
-    private void visitMethodDef()
+    /**
+     * Process the start of the member definition.
+     * @param aAST the token representing the member definition.
+     */
+    private void visitMemberDef(DetailAST aAST)
     {
         mContextStack.push(mContext);
-        mContext = new Context();
+        mContext = new Context(aAST);
     }
 
     /**
-     * Process the end of a method definition.
+     * Process the end of a member definition.
      *
-     * @param aAST the token representing the method definition.
+     * @param aAST the token representing the member definition.
      */
-    private void leaveMethodDef(DetailAST aAST)
+    private void leaveMemberDef(DetailAST aAST)
     {
         final int count = mContext.getCount();
         if (count > getMax()) {
@@ -163,7 +166,23 @@ public final class ExecutableStatementCountCheck
     private void visitSlist(DetailAST aAST)
     {
         if (mContext != null) {
-            mContext.addCount(aAST.getChildCount() / 2);
+            // find member AST for the statement list
+            final DetailAST contextAST = mContext.getAST();
+            DetailAST parent = aAST.getParent();
+            while (parent != null) {
+                final int type = parent.getType();
+                if ((type == TokenTypes.CTOR_DEF)
+                    || (type == TokenTypes.METHOD_DEF)
+                    || (type == TokenTypes.INSTANCE_INIT)
+                    || (type == TokenTypes.STATIC_INIT))
+                {
+                    if (parent == contextAST) {
+                        mContext.addCount(aAST.getChildCount() / 2);
+                    }
+                    break;
+                }
+                parent = parent.getParent();
+            }
         }
     }
 
@@ -173,14 +192,19 @@ public final class ExecutableStatementCountCheck
      */
     private class Context
     {
+        /** Member AST node. */
+        private DetailAST mAST;
+
         /** Counter for context elements. */
         private int mCount;
 
         /**
-         * Creates new method context.
+         * Creates new member context.
+         * @param aAST member AST node.
          */
-        public Context()
+        public Context(DetailAST aAST)
         {
+            mAST = aAST;
             mCount = 0;
         }
 
@@ -191,6 +215,15 @@ public final class ExecutableStatementCountCheck
         public void addCount(int aCount)
         {
             mCount += aCount;
+        }
+
+        /**
+         * Gets the member AST node.
+         * @return the member AST node.
+         */
+        public DetailAST getAST()
+        {
+            return mAST;
         }
 
         /**

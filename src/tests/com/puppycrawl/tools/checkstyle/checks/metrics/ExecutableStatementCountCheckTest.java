@@ -22,6 +22,8 @@ public class ExecutableStatementCountCheckTest
             "48:5: Executable statement count is 2 (max allowed is 0).",
             "58:5: Executable statement count is 2 (max allowed is 0).",
             "67:5: Executable statement count is 2 (max allowed is 0).",
+            "76:5: Executable statement count is 2 (max allowed is 0).",
+            "79:13: Executable statement count is 1 (max allowed is 0).",
         };
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
@@ -41,6 +43,7 @@ public class ExecutableStatementCountCheckTest
             "17:5: Executable statement count is 2 (max allowed is 0).",
             "27:5: Executable statement count is 1 (max allowed is 0).",
             "34:5: Executable statement count is 3 (max allowed is 0).",
+            "79:13: Executable statement count is 1 (max allowed is 0).",
         };
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
@@ -56,6 +59,7 @@ public class ExecutableStatementCountCheckTest
 
         final String[] expected = {
             "48:5: Executable statement count is 2 (max allowed is 0).",
+            "76:5: Executable statement count is 2 (max allowed is 0).",
         };
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
