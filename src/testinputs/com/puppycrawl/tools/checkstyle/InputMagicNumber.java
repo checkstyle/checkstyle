@@ -89,5 +89,15 @@ class ArrayMagicTest
 class LongHex
 {
     long l = 0xffffffff;
-} 
+}
 
+/** test signed values */
+class Signed
+{
+    public static final int CONST_PLUS_THREE = +3;
+    public static final int CONST_MINUS_TWO = -2;
+    private int mPlusThree = +3;
+    private int mMinusTwo = -2;
+    private double mPlusDecimal = +3.5;
+    private double mMinusDecimal = -2.5; 
+}
