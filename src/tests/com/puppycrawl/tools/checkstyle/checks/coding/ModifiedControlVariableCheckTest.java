@@ -15,6 +15,7 @@ public class ModifiedControlVariableCheckTest
             "20:37: Control variable 'i' is modified.",
             "21:17: Control variable 'i' is modified.",
             "25:14: Control variable 'j' is modified.",
+            "49:15: Control variable 's' is modified.",
         };
         verify(checkConfig, getPath("coding/InputModifiedControl.java"), expected);
     }

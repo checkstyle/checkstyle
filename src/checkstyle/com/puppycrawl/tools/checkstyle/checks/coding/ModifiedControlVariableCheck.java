@@ -43,6 +43,7 @@ public final class ModifiedControlVariableCheck extends Check
             TokenTypes.OBJBLOCK,
             TokenTypes.LITERAL_FOR,
             TokenTypes.FOR_ITERATOR,
+            TokenTypes.FOR_EACH_CLAUSE,
             TokenTypes.ASSIGN,
             TokenTypes.PLUS_ASSIGN,
             TokenTypes.MINUS_ASSIGN,
@@ -85,6 +86,7 @@ public final class ModifiedControlVariableCheck extends Check
             break;
         case TokenTypes.LITERAL_FOR:
         case TokenTypes.FOR_ITERATOR:
+        case TokenTypes.FOR_EACH_CLAUSE:
             break;
         case TokenTypes.ASSIGN:
         case TokenTypes.PLUS_ASSIGN:
@@ -115,7 +117,10 @@ public final class ModifiedControlVariableCheck extends Check
     {
         switch (aAST.getType()) {
         case TokenTypes.FOR_ITERATOR:
-            visitForDef(aAST.getParent());
+            leaveForIter(aAST.getParent());
+            break;
+        case TokenTypes.FOR_EACH_CLAUSE:
+            leaveForEach(aAST);
             break;
         case TokenTypes.LITERAL_FOR:
             leaveForDef(aAST);
@@ -186,7 +191,7 @@ public final class ModifiedControlVariableCheck extends Check
      * Push current variables to the stack.
      * @param aAST a for definition.
      */
-    private void visitForDef(DetailAST aAST)
+    private void leaveForIter(DetailAST aAST)
     {
         final DetailAST forInitAST = aAST.findFirstToken(TokenTypes.FOR_INIT);
         DetailAST parameterDefAST =
@@ -204,21 +209,39 @@ public final class ModifiedControlVariableCheck extends Check
     }
 
     /**
+     * Push current variables to the stack.
+     * @param aForEach a for-each clause
+     */
+    private void leaveForEach(DetailAST aForEach)
+    {
+        final DetailAST paramDef =
+            aForEach.findFirstToken(TokenTypes.PARAMETER_DEF);
+        final DetailAST paramName = paramDef.findFirstToken(TokenTypes.IDENT);
+        mCurrentVariables.push(paramName.getText());
+    }
+
+    /**
      * Pops the variables from the stack.
      * @param aAST a for definition.
      */
     private void leaveForDef(DetailAST aAST)
     {
         final DetailAST forInitAST = aAST.findFirstToken(TokenTypes.FOR_INIT);
-        DetailAST parameterDefAST =
-            forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);
+        if (forInitAST != null) {
+            DetailAST parameterDefAST =
+                forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);
 
-        for (; parameterDefAST != null;
-             parameterDefAST = (DetailAST) parameterDefAST.getNextSibling())
-        {
-            if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {
-                mCurrentVariables.pop();
+            for (; parameterDefAST != null;
+                 parameterDefAST = (DetailAST) parameterDefAST.getNextSibling())
+            {
+                if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {
+                    mCurrentVariables.pop();
+                }
             }
+        }
+        else {
+            // this is for-each loop, just pop veriables
+            mCurrentVariables.pop();
         }
     }
 }

@@ -42,5 +42,11 @@ class InputModifiedControl
         for (int k = 0; k < 1; k++) {
             this.k++;   
         }
+
+        String[] sa = {"a", "b"};
+        for(String s:sa) {}
+        for(String s:sa) {
+            s = "new string";
+        }
     }
 }
