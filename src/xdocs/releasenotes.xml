@@ -19,6 +19,8 @@
         <li>Documentation contains an alphabetically sorted
             list of all available checks.</li>
 
+        <li>Checker.getBasedir() is public now (rfe 1023004)</li>
+
       </ul>
 
 

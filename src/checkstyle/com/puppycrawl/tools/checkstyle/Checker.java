@@ -403,7 +403,7 @@ public class Checker extends AutomaticBean
     }
 
     /** @return the base directory property used in unit-test. */
-    String getBasedir()
+    public final String getBasedir()
     {
         return mBasedir;
     }
