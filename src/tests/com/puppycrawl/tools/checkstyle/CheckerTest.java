@@ -20,7 +20,7 @@ public class CheckerTest
     {
         public BriefLogger(OutputStream out)
         {
-            super(out, false);
+            super(out, true);
         }
         public void auditStarted(AuditEvent evt) {}
         public void fileFinished(AuditEvent evt) {}
