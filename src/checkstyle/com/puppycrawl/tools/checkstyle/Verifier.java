@@ -1221,9 +1221,11 @@ class Verifier
      */
     private void checkModOrder(MyModifierSet aModSet)
     {
-        final String error = aModSet.checkOrderSuggestedByJLS();
+        final MyCommonAST error = aModSet.checkOrderSuggestedByJLS();
         if (error != null) {
-            log(aModSet.getFirstLineNo(), aModSet.getFirstColNo(), error);
+            log(error.getLineNo(), error.getColumnNo(),
+                "'" + error.getText()
+                + "' modifier out of order with the JLS suggestions.");
         }
     }
 

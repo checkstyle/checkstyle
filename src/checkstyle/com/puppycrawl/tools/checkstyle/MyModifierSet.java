@@ -40,6 +40,8 @@ class MyModifierSet
 
     /** contains the modifiers **/
     private final List mModifiers = new ArrayList();
+    /** contains the modifiers as AST **/
+    private final List mModifierASTs = new ArrayList();
     /** the first line of the modifiers **/
     private int mFirstLineNo = Integer.MAX_VALUE;
     /** the first column of the modifiers **/
@@ -57,6 +59,7 @@ class MyModifierSet
         }
 
         mModifiers.add(aMCA.getText());
+        mModifierASTs.add(aMCA);
     }
 
     /** @return the number of modifiers **/
@@ -126,27 +129,28 @@ class MyModifierSet
      * Checks if the modifiers were added in the order suggested
      * in the Java language specification.
      *
-     * @return null if the order is correct, otherwise returns an appropriate
-     *         error message.
+     * @return null if the order is correct, otherwise returns the offending
+     * *       modifier AST.
      */
-    String checkOrderSuggestedByJLS()
+    MyCommonAST checkOrderSuggestedByJLS()
     {
         int i = 0;
-        String modifier;
-        final Iterator it = mModifiers.iterator();
+        MyCommonAST modifier;
+        final Iterator it = mModifierASTs.iterator();
         do {
             if (!it.hasNext()) {
                 return null;
             }
 
-            modifier = (String) it.next();
-            while ((i < JLS_ORDER.length) && !JLS_ORDER[i].equals(modifier)) {
+            modifier = (MyCommonAST) it.next();
+            while ((i < JLS_ORDER.length)
+                   && !JLS_ORDER[i].equals(modifier.getText()))
+            {
                 i++;
             }
         } while (i < JLS_ORDER.length);
 
-        return "'" + modifier
-            + "' modifier out of order with the JLS suggestions.";
+        return modifier;
     }
 
     /** @see Object **/
