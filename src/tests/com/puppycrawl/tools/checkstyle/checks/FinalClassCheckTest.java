@@ -11,8 +11,8 @@ public class FinalClassCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalClassCheck.class);
         final String[] expected = {
-            "7: Class InputFinalClass should be declared as final",
-            "15: Class test4 should be declared as final",
+            "7: Class InputFinalClass should be declared as final.",
+            "15: Class test4 should be declared as final.",
         };
         verify(checkConfig, getPath("InputFinalClass.java"), expected);
     }
