@@ -35,8 +35,6 @@ public interface Defn
     String CONST_PATTERN_PROP = "checkstyle.pattern.const";
     /** property name for the public member variable pattern **/
     String PUBLIC_MEMBER_PATTERN_PROP = "checkstyle.pattern.publicmember";
-    /** property name for length of constructors **/
-    String MAX_CONSTRUCTOR_LENGTH_PROP = "checkstyle.maxconstructorlen";
     /** property name for allowing protected data **/
     String TAB_WIDTH_PROP = "checkstyle.tab.width";
     /** property name for allowing protected data **/
@@ -98,7 +96,6 @@ public interface Defn
     /** All the integer properties */
     String[] ALL_INT_PROPS = new String[]
         {
-            MAX_CONSTRUCTOR_LENGTH_PROP,
             TAB_WIDTH_PROP,
         };
 

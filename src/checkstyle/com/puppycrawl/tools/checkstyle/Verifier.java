@@ -395,11 +395,6 @@ class Verifier
      */
     void verifyConstructorLength(int aLineNo, int aLength)
     {
-        if (aLength > mConfig.getMaxConstructorLength()) {
-            mMessages.add(aLineNo, "maxLen.constructor",
-                          new Integer(aLength),
-                          new Integer(mConfig.getMaxConstructorLength()));
-        }
     }
 
 

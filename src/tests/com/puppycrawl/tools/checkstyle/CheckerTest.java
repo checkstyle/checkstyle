@@ -293,7 +293,6 @@ public class CheckerTest
     public void testSimple()
         throws Exception
     {
-        mProps.setProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, "9");
         mProps.setProperty(Defn.TODO_PATTERN_PROP, "FIXME:");
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
@@ -301,7 +300,6 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":42:40: ',' is not followed by whitespace.",
             filepath + ":71:30: ',' is not followed by whitespace.",
-            filepath + ":103: Constructor length is 10 lines (max allowed is 9).",
             filepath + ":161: Comment matches to-do format 'FIXME:'.",
             filepath + ":162: Comment matches to-do format 'FIXME:'.",
             filepath + ":163: Comment matches to-do format 'FIXME:'.",

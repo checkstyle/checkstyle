@@ -81,7 +81,6 @@ public class Configuration
     /** map of int properties **/
     private final Map mIntProps = new HashMap();
     {
-        mIntProps.put(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, new Integer(150));
         mIntProps.put(Defn.TAB_WIDTH_PROP, new Integer(8));
     }
 
@@ -319,12 +318,6 @@ public class Configuration
     RE getPublicMemberRegexp()
     {
         return getRegexpProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP);
-    }
-
-    /** @return the maximum constructor length **/
-    int getMaxConstructorLength()
-    {
-        return getIntProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP);
     }
 
     /** @return distance between tab stops */
