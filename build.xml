@@ -120,6 +120,19 @@
     <copy todir="target/checkstyle">
       <fileset dir="src/checkstyle" includes="**/*.properties"/>
     </copy>
+
+
+    <!-- fix for bug #594469:
+         create a copy of the english property file, necessary to run
+         the tests in an environment that has a supported language (e.g. de)
+         in the default locale. See algorithm in ResourceBundle.getBundle() -->
+
+    <copy todir="target/checkstyle" >
+      <fileset dir="src/checkstyle" includes="**/messages.properties"/>
+      <mapper type="glob" from="*messages.properties" to="*messages_en.properties"/>
+    </copy>
+
+
   </target>
 
   <!-- Compiles only the test code. Input files are excluded from
