@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * Idea shamelessly stolen from the equivalent PMD rule (pmd.sourceforge.net).
  *
- * @author Lars K?hne
+ * @author Lars Kühne
  */
 public class SimplifyBooleanReturnCheck
     extends Check
@@ -44,11 +44,6 @@ public class SimplifyBooleanReturnCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        // paranoia - what an untrusting sole :-)
-        if (aAST.getType() != TokenTypes.LITERAL_IF) {
-            throw new IllegalArgumentException("not an if");
-        }
-
         // LITERAL_IF has the following four or five children:
         // '('
         // condition
@@ -97,7 +92,7 @@ public class SimplifyBooleanReturnCheck
      * @param aAST the sytax tree to check
      * @return if aAST is a return statment with a boolean literal.
      */
-    private boolean returnsOnlyBooleanLiteral(AST aAST)
+    private static boolean returnsOnlyBooleanLiteral(AST aAST)
     {
         if (isBooleanLiteralReturnStatement(aAST)) {
             return true;
@@ -119,7 +114,7 @@ public class SimplifyBooleanReturnCheck
      * @param aAST the sytax tree to check
      * @return if aAST is a return statment with a boolean literal.
      */
-    private boolean isBooleanLiteralReturnStatement(AST aAST)
+    private static boolean isBooleanLiteralReturnStatement(AST aAST)
     {
         if (aAST == null || aAST.getType() != TokenTypes.LITERAL_RETURN) {
             return false;
@@ -132,9 +127,18 @@ public class SimplifyBooleanReturnCheck
         }
 
         final AST value = expr.getFirstChild();
+        return isBooleanLiteralType(value.getType());
+    }
 
-        final int valueType = value.getType();
-        return ((valueType == TokenTypes.LITERAL_TRUE)
-                || (valueType == TokenTypes.LITERAL_FALSE));
+    /**
+     * Checks if a token type is a literal true or false.
+     * @param aTokenType the TokenType
+     * @return true iff aTokenType is LITERAL_TRUE or LITERAL_FALSE
+     */
+    private static boolean isBooleanLiteralType(final int aTokenType)
+    {
+        final boolean isTrue = (aTokenType == TokenTypes.LITERAL_TRUE);
+        final boolean isFalse = (aTokenType == TokenTypes.LITERAL_FALSE);
+        return isTrue || isFalse;
     }
 }
