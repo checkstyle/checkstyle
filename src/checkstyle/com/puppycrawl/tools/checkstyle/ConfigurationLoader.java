@@ -144,13 +144,7 @@ class ConfigurationLoader
 
             //extract name and value
             final String name = aAtts.getValue("name");
-            if (name == null) {
-                throw new SAXException("missing property name");
-            }
             String value = aAtts.getValue("value");
-            if (value == null) {
-                throw new SAXException("missing value for property " + name);
-            }
 
             // expand properties
             if (mOverrideProps != null) {
@@ -164,7 +158,7 @@ class ConfigurationLoader
 
             //add to attributes of configuration
             if (!mConfigStack.isEmpty()) {
-                DefaultConfiguration top =
+                final DefaultConfiguration top =
                         (DefaultConfiguration) mConfigStack.peek();
                 top.addAttribute(name, value);
             }
