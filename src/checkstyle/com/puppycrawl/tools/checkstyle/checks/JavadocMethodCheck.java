@@ -46,6 +46,17 @@ import org.apache.regexp.RE;
  * set property scope to one of the {@link Scope} constants.
  * </p>
  * <p>
+ * Error messages about parameters for which no param tags are
+ * present can be suppressed by defining property
+ * <code>allowMissingParamTags</code>. 
+ * Error messages about exceptions which are declared to be thrown, 
+ * but for which no throws tag is present can be suppressed by 
+ * defining property <code>allowMissingThrowsTags</code>. 
+ * Error messages about methods which return non-void but for 
+ * which no return tag is present can be suppressed by defining 
+ * property <code>allowMissingReturnTag</code>.
+ * </p>
+ * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>
@@ -53,12 +64,14 @@ import org.apache.regexp.RE;
  * </pre>
  * <p> An example of how to configure the check to check to allow
  * documentation of undeclared RuntimeExceptions
- * and for the {@link Scope#PUBLIC} scope is:
+ * and for the {@link Scope#PUBLIC} scope, while ignoring any missing
+ * param tags is:
  *</p>
  * <pre>
  * &lt;module name="JavadocMethod"&gt;
  *    &lt;property name="scope" value="public"/&gt;
  *    &lt;property name="allowUndeclaredRTE" value="true"/&gt;
+ *    &lt;property name="allowMissingParamTags" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
@@ -139,6 +152,27 @@ public class JavadocMethodCheck
     private boolean mAllowUndeclaredRTE = false;
 
     /**
+     * controls whether to ignore errors when a method has parameters
+     * but does not have matching param tags in the javadoc.
+     * Defaults to false.
+     **/
+    private boolean mAllowMissingParamTags = false;
+
+    /**
+     * controls whether to ignore errors when a method declares that
+     * it throws exceptions but does not have matching throws tags 
+     * in the javadoc. Defaults to false.
+     **/
+    private boolean mAllowMissingThrowsTags = false;
+
+    /**
+     * controls whether to ignore errors when a method returns
+     * non-void type but does not have a return tag in the javadoc.
+     * Defaults to false.
+     **/
+    private boolean mAllowMissingReturnTag = false;
+
+    /**
      * Set the scope.
      * @param aFrom a <code>String</code> value
      */
@@ -156,6 +190,39 @@ public class JavadocMethodCheck
     public void setAllowUndeclaredRTE(boolean aFlag)
     {
         mAllowUndeclaredRTE = aFlag;
+    }
+
+    /**
+     * controls whether to allow a method which has parameters
+     * to omit matching param tags in the javadoc.
+     * Defaults to false.
+     * @param aFlag a <code>Boolean</code> value
+     */
+    public void setAllowMissingParamTags(boolean aFlag)
+    {
+        mAllowMissingParamTags = aFlag;
+    }
+
+    /**
+     * controls whether to allow a method which declares that
+     * it throws exceptions to omit matching throws tags 
+     * in the javadoc. Defaults to false.
+     * @param aFlag a <code>Boolean</code> value
+     */
+    public void setAllowMissingThrowsTags(boolean aFlag)
+    {
+        mAllowMissingThrowsTags = aFlag;
+    }
+
+    /**
+     * controls whether to allow a method which returns
+     * non-void type to omit the return tag in the javadoc.
+     * Defaults to false.
+     * @param aFlag a <code>Boolean</code> value
+     */
+    public void setAllowMissingReturnTag(boolean aFlag)
+    {
+        mAllowMissingReturnTag = aFlag;
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -453,12 +520,15 @@ public class JavadocMethodCheck
             }
         }
 
-        // Now dump out all parameters without tags
-        final Iterator paramIt = aParams.iterator();
-        while (paramIt.hasNext()) {
-            final DetailAST param = (DetailAST) paramIt.next();
-            log(param.getLineNo(), param.getColumnNo(),
-                "javadoc.expectedTag", "@param", param.getText());
+        // Now dump out all parameters without tags :- unless
+        // the user has chosen to suppress these problems
+        if (!mAllowMissingParamTags) {
+            final Iterator paramIt = aParams.iterator();
+            while (paramIt.hasNext()) {
+                final DetailAST param = (DetailAST) paramIt.next();
+                log(param.getLineNo(), param.getColumnNo(),
+                    "javadoc.expectedTag", "@param", param.getText());
+            }
         }
     }
 
@@ -555,8 +625,9 @@ public class JavadocMethodCheck
             }
         }
 
-        // Handle there being no @return tags
-        if (!found) {
+        // Handle there being no @return tags :- unless
+        // the user has chosen to suppress these problems
+        if (!found && !mAllowMissingReturnTag) {
             log(aLineNo, "javadoc.return.expected");
         }
     }
@@ -623,12 +694,15 @@ public class JavadocMethodCheck
             }
         }
 
-        // Now dump out all throws without tags
-        final ListIterator throwIt = aThrows.listIterator();
-        while (throwIt.hasNext()) {
-            final FullIdent fi = (FullIdent) throwIt.next();
-            log(fi.getLineNo(), fi.getColumnNo(),
-                "javadoc.expectedTag", "@throws", fi.getText());
+        // Now dump out all throws without tags :- unless
+        // the user has chosen to suppress these problems
+        if (!mAllowMissingThrowsTags) {
+            final ListIterator throwIt = aThrows.listIterator();
+            while (throwIt.hasNext()) {
+                final FullIdent fi = (FullIdent) throwIt.next();
+                log(fi.getLineNo(), fi.getColumnNo(),
+                    "javadoc.expectedTag", "@throws", fi.getText());
+            }
         }
     }
 
