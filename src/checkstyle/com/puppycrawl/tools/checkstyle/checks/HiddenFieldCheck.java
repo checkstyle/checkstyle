@@ -113,7 +113,7 @@ public class HiddenFieldCheck
                 final String name = nameAST.getText();
                 Iterator it = mFieldsStack.iterator();
                 while (it.hasNext()) {
-                    final HashSet aFieldsSet = (HashSet)it.next();
+                    final HashSet aFieldsSet = (HashSet) it.next();
                     if (aFieldsSet.contains(name)) {
                         log(nameAST.getLineNo(), nameAST.getColumnNo(),
                             "hidden.field", name);
@@ -125,7 +125,7 @@ public class HiddenFieldCheck
                 //field. Add its name to the top stack element
                 final String name =
                     aAST.findFirstToken(TokenTypes.IDENT).getText();
-                ((HashSet)mFieldsStack.getLast()).add(name);
+                ((HashSet) mFieldsStack.getLast()).add(name);
             }
         }
     }
