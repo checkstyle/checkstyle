@@ -579,12 +579,6 @@ class VerifierImpl
         mMethodBlockLevel--;
     }
 
-    /** @see Verifier **/
-    public void reportIdentifier(MyCommonAST aAST)
-    {
-        //System.out.println("Just got reported = " + aAST);
-    }
-
     // }}}
 
     // {{{ Private methods
