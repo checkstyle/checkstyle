@@ -300,7 +300,7 @@
 
   <!-- To run the tests need Xalan in the classpath -->
   <target name="run.tests"
-          depends="compile.tests,require.junit,require.xalan"
+          depends="compile.tests,require.ant15,require.junit,require.xalan"
           description="Runs the tests for checkstyle">
 
     <mkdir dir="${testreport.dir}"/>
@@ -339,7 +339,7 @@
 
   <!-- To run the tests need Xalan in the classpath -->
   <target name="run.test.suite"
-          depends="compile.tests,require.junit,require.xalan"
+          depends="compile.tests,require.ant15,require.junit,require.xalan"
           description="Runs the tests for checkstyle as a test suite">
 
     <mkdir dir="${testreport.dir}"/>
@@ -551,16 +551,33 @@
       <available classname="org.apache.xerces.parsers.SAXParser"/>
     </condition>
   </target>
-  
+
   <target name="require.xerces" depends="check.xerces" unless="have.xerces"
           description="Fails if xerces is not present in the classpath">
     <fail message="Need to have Xerces-J in your CLASSPATH to run the tests. You can download it from http://xml.apache.org/."/>
   </target>
-  
+
   <target name="validate.xml"
           depends="require.xerces"
           description="Validates checkstyle XML file">
     <xmlvalidate file="docs/checkstyle_checks.xml"/>
+  </target>
+
+  <!-- Targets to verify that ANT version if at least 1.5 -->
+  <target name="check.ant15">
+    <echo>version is ${ant.version}</echo>
+    <condition property="have.ant15">
+      <not>
+        <or>
+          <equals arg1="${ant.version}"
+                  arg2="Ant version 1.4.1 compiled on October 11 2001"/>
+        </or>
+      </not>
+    </condition>
+  </target>
+
+  <target name="require.ant15" depends="check.ant15" unless="have.ant15">
+    <fail message="Need at least version 1.5 of ANT - you have ${ant.version}"/>
   </target>
 
 </project>
