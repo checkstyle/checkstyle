@@ -11,6 +11,7 @@
       <package name="imports"/>
       <package name="javadoc"/>
       <package name="naming"/>
+      <package name="sizes"/>
       <package name="whitespace"/>
     </package>
   </package>
