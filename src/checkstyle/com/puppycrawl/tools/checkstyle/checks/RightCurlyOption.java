@@ -27,7 +27,7 @@ import java.util.HashMap;
  * Represents the options for placing the right curly brace '}'.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: RightCurlyOption.java,v 1.2 2002-10-13 12:46:33 oburn Exp $
+ * @version $Id: RightCurlyOption.java,v 1.3 2002-10-13 23:40:59 oburn Exp $
  */
 public final class RightCurlyOption implements Serializable
 {
@@ -76,9 +76,10 @@ public final class RightCurlyOption implements Serializable
      * Serialization Specification for details.
      *
      * @return the serialization replacement object
-     * @throws java.io.ObjectStreamException if a deserialization error occurs
+     * @throws ObjectStreamException if a deserialization error occurs
      */
-    private Object readResolve() throws ObjectStreamException
+    private Object readResolve()
+        throws ObjectStreamException
     {
         return decode(mStrRep);
     }

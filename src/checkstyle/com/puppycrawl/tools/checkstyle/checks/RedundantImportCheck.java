@@ -27,9 +27,16 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.HashSet;
 
+/**
+ * Checks for imports that are redundant.
+ *
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @version 1.0
+ */
 public class RedundantImportCheck
     extends ImportCheck
 {
+    /** name of package in file */
     private String mPkgName;
     /** set of the imports */
     private final Set mImports = new HashSet();

@@ -22,6 +22,12 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 
+/**
+ * Checks the naming of packages.
+ *
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @version 1.0
+ */
 public class PackageNameCheck
     extends AbstractFormatCheck
 {

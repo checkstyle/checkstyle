@@ -24,6 +24,13 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
+/**
+ * Checks the placement of left curly braces on other constructs apart from
+ * methods and types.
+ *
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @version 1.0
+ */
 public class OtherLeftCurlyCheck
     extends LeftCurlyCheck
 {

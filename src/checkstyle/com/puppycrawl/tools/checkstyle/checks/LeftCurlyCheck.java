@@ -11,24 +11,48 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import org.apache.commons.beanutils.ConversionException;
 
-public abstract class LeftCurlyCheck extends Check
+/**
+ * Abstract class for checks for Left Curly placement.
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @version 1.0
+ */
+public abstract class LeftCurlyCheck
+    extends Check
 {
-    protected LeftCurlyOption mOption = LeftCurlyOption.EOL;
-    // TODO: remove hack
-    protected int mMaxLineLength = 80;
+    /** the option for placement */
+    private LeftCurlyOption mOption = LeftCurlyOption.EOL;
+    /** TODO: replace this ugly hack **/
+    private int mMaxLineLength = 80;
 
+    /**
+     * Set the option for placement.
+     * @param aFromStr string to decode option
+     * @throws ConversionException if unable to decode
+     */
     public void setOption(String aFromStr)
     {
         mOption = LeftCurlyOption.decode(aFromStr);
+        if (mOption == null) {
+            throw new ConversionException("unable to decode " + aFromStr);
+        }
     }
 
+    /** @see the hack above */
     public void setMaxLineLength(int aMaxLineLength)
     {
         mMaxLineLength = aMaxLineLength;
     }
 
-    protected void verifyBrace(final DetailAST aBrace, final DetailAST aStartToken)
+    /**
+     * Verifies that a specified left curly brace is placed correctly
+     * according to policy.
+     * @param aBrace token for left curly brace
+     * @param aStartToken token for start of expression
+     */
+    protected void verifyBrace(final DetailAST aBrace,
+                               final DetailAST aStartToken)
     {
         final String braceLine = getLines()[aBrace.getLineNo() - 1];
 

@@ -187,6 +187,11 @@ public final class Utils
         return (String[]) lines.toArray(new String[0]);
     }
 
+    /**
+     * Return the last sibling for an AST.
+     * @param aAST the AST to start navigating from
+     * @return the last sibling
+     */
     public static DetailAST getLastSibling(final AST aAST)
     {
         AST retVal = aAST;

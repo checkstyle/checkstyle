@@ -27,7 +27,7 @@ import java.util.HashMap;
  * Represents the options for placing the left curly brace '{'.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: LeftCurlyOption.java,v 1.1 2002-10-13 12:53:20 oburn Exp $
+ * @version $Id: LeftCurlyOption.java,v 1.2 2002-10-13 23:40:59 oburn Exp $
  */
 public final class LeftCurlyOption
     implements Serializable
@@ -82,9 +82,10 @@ public final class LeftCurlyOption
      * Serialization Specification for details.
      *
      * @return the serialization replacement object
-     * @throws java.io.ObjectStreamException if a deserialization error occurs
+     * @throws ObjectStreamException if a deserialization error occurs
      */
-    private Object readResolve() throws ObjectStreamException
+    private Object readResolve()
+        throws ObjectStreamException
     {
         return decode(mStrRep);
     }

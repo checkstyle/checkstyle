@@ -83,6 +83,7 @@ class TreeWalker
      * Creates a new <code>TreeWalker</code> instance.
      *
      * @param aMessages used to collect messages
+     * @param aTabWidth the tabwidth to use
      */
     public TreeWalker(LocalizedMessages aMessages, int aTabWidth)
     {
