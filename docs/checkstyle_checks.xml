@@ -38,6 +38,7 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.ModifierCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NeedBracesCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhiteSpaceAroundCheck"/>
+    <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck">
         <set-property name="option" value="nlow"/>
     </check>
