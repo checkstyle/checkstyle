@@ -97,7 +97,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
      */
     private void visitClassDef(DetailAST aAST)
     {
-        mCheckingStack.push(Boolean.valueOf(mChecking));
+        mCheckingStack.push(mChecking ? Boolean.TRUE : Boolean.FALSE);
         mChecking =
             isExceptionClass(aAST.findFirstToken(TokenTypes.IDENT).getText());
     }
