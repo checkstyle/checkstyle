@@ -31,6 +31,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * should occur in their own toplevel statement to increase readability.
  * With inner assignments like the above it is difficult to see all places
  * where a variable is set.
+ *
+ * @author lkuehne
  */
 public class InnerAssignmentCheck
         extends Check
@@ -39,7 +41,7 @@ public class InnerAssignmentCheck
      * The default tokens.
      * TODO: this has to be tweaked with |= and friends
      */
-    private final int[] DEFAULT_TOKENS = new int[] {
+    private static final int[] DEFAULT_TOKENS = new int[] {
         TokenTypes.ASSIGN,
         TokenTypes.PLUS_ASSIGN,
         TokenTypes.MINUS_ASSIGN
@@ -54,9 +56,9 @@ public class InnerAssignmentCheck
     /** @see Check */
     public void visitToken(DetailAST aAST)
     {
-        DetailAST parent1 = aAST.getParent();
-        DetailAST parent2 = parent1.getParent();
-        DetailAST parent3 = parent2.getParent();
+        final DetailAST parent1 = aAST.getParent();
+        final DetailAST parent2 = parent1.getParent();
+        final DetailAST parent3 = parent2.getParent();
 
         final boolean assigment = isAssignment(parent1);
         final boolean expr = parent1.getType() == TokenTypes.EXPR;
@@ -80,9 +82,9 @@ public class InnerAssignmentCheck
     private boolean isAssignment(DetailAST aAST)
     {
         // TODO: make actual tokens available to Check and loop over actual tokens here?
-        int[] tokens = getDefaultTokens();
+        final int[] tokens = getDefaultTokens();
 
-        int astType = aAST.getType();
+        final int astType = aAST.getType();
 
         for (int i = 0; i < tokens.length; i++) {
             int tokenType = tokens[i];
