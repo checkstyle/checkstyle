@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
  * </p>
  *
  * <p>
- * The exact rule is that nonprivate methods in
+ * The exact rule is that nonprivate, nonstatic methods in
  * nonfinal classes (or classes that do not
  * only have private constructors) must either be
  * <ul>
@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class DesignForInheritanceCheck extends Check
 {
