@@ -750,7 +750,7 @@ additiveExpression
 
 // multiplication/division/modulo (level 2)
 multiplicativeExpression
-	:	unaryExpression ((s:STAR^ | DIV^ | MOD^ ) {ver.verifyWSAround(s.getLine(), s.getColumn() + 1, s.getText());}  unaryExpression)*
+	:	unaryExpression ((s:STAR^ {ver.verifyWSAround(s.getLine(), s.getColumn() + 1, s.getText());} | DIV^ | MOD^ )  unaryExpression)*
 	;
 
 unaryExpression
