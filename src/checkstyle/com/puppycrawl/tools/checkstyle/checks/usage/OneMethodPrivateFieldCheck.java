@@ -128,7 +128,7 @@ public class OneMethodPrivateFieldCheck
      */
     private Iterator getReferences(DetailAST aAST)
     {
-        final SymTabAST ident = ASTManager.getInstance().get(aAST);
+        final SymTabAST ident = getASTManager().get(aAST);
         final Definition definition =
             (Definition) ident.getDefinition();
         if (definition != null) {
