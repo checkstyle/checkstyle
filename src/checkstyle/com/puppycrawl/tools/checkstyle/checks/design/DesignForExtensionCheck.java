@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2004  Oliver Burn
+// Copyright (C) 2001-2005  Oliver Burn
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class DesignForExtensionCheck extends Check
 {
