@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class HideUtilityClassConstructorCheck extends Check
 {
@@ -76,7 +76,7 @@ public class HideUtilityClassConstructorCheck extends Check
             child = (DetailAST) child.getNextSibling();
         }
 
-        boolean hasAccessibleCtor = (hasDefaultCtor || hasPublicCtor);
+        final boolean hasAccessibleCtor = (hasDefaultCtor || hasPublicCtor);
 
         if (hasMethod && !hasNonStaticMethod && hasAccessibleCtor) {
             log(aAST.getLineNo(), aAST.getColumnNo(),

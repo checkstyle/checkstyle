@@ -175,9 +175,8 @@ public class LeftCurlyCheck
      * @param aBrace token for left curly brace
      * @param aStartToken token for start of expression
      */
-    private void verifyBrace(
-        final DetailAST aBrace,
-        final DetailAST aStartToken)
+    private void verifyBrace(final DetailAST aBrace,
+                             final DetailAST aStartToken)
     {
         final String braceLine = getLines()[aBrace.getLineNo() - 1];
 

@@ -37,7 +37,6 @@ import java.util.Set;
 public abstract class AbstractTypeAwareCheck
     extends Check
 {
-
     /** imports details **/
     private Set mImports = new HashSet();
 
