@@ -229,7 +229,9 @@
 	    <include name="README"/>
 	    <include name="RIGHTS.antlr"/>
 	    <include name="TODO"/>
-	    <include name="docs/*"/>
+	    <include name="docs/**"/>
+	    <include name="**/.cvsignore"/>
+	    <include name="**/CVS"/>
 	</fileset>
     </copy>
     <!-- create the final zip & tar/gzip files -->
@@ -249,7 +251,6 @@
     <mkdir dir="dist/checkstyle-src-${version}" />
     <copy todir="dist/checkstyle-src-${version}">
 	<fileset dir=".">
-	    <include name="ChangeLog"/>
 	    <include name="LICENSE*"/>
 	    <include name="README"/>
 	    <include name="RIGHTS.antlr"/>
