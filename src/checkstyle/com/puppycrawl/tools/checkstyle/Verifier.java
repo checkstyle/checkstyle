@@ -152,7 +152,7 @@ class Verifier
     {
         checkImports();
         Collections.sort(mMessages);
-        return (LineText[]) mMessages.toArray(new LineText[0]);
+        return (LineText[]) mMessages.toArray(new LineText[mMessages.size()]);
     }
 
     /** Clears the list of error messages. Use before processing a file. **/
@@ -222,7 +222,7 @@ class Verifier
 
         // Always verify the parameters are ok
         for (Iterator it = aSig.getParams().iterator(); it.hasNext(); ) {
-            verifyParameter((LineText) it.next());
+            checkParameter((LineText) it.next());
         }
 
         // now check the javadoc
@@ -390,32 +390,16 @@ class Verifier
 
 
     /**
-     * Verify that a parameter conforms to the style.
-     * @param aParam the parameter details
-     **/
-    void verifyParameter(LineText aParam)
-    {
-        if (!mConfig.getParamRegexp().match(aParam.getText())) {
-            log(aParam.getLineNo(),
-                "parameter '" + aParam.getText() +
-                "' must match pattern '" + mConfig.getParamPat() + "'.");
-        }
-    }
-
-
-    /**
      * Report that a statement should be using a compound statement
      * (that is, {}'s).
      * @param aStmt the token for the statement
      */
     void reportNeedBraces(Token aStmt)
     {
-        if (mConfig.isIgnoreBraces()) {
-            return;
+        if (!mConfig.isIgnoreBraces()) {
+            log(aStmt.getLine(),
+                "'" + aStmt.getText() + "' construct must use '{}'s.");
         }
-
-        log(aStmt.getLine(),
-            "'" + aStmt.getText() + "' construct must use '{}'s.");
     }
 
 
@@ -592,17 +576,6 @@ class Verifier
                 "constructor length is " + aLength + " lines (max allowed is " +
                 mConfig.getMaxConstructorLength() + ").");
         }
-    }
-
-
-    /**
-     * Report the location of a C++ comment.
-     * @param aLineNo the line number
-     * @param aColNo the column number
-     **/
-    void reportCppComment(int aLineNo, int aColNo)
-    {
-        // nop
     }
 
 
@@ -813,6 +786,21 @@ class Verifier
                 "' must match pattern '" + aPattern + "'.");
         }
     }
+
+
+    /**
+     * Verify that a parameter conforms to the style.
+     * @param aParam the parameter details
+     **/
+    private void checkParameter(LineText aParam)
+    {
+        if (!mConfig.getParamRegexp().match(aParam.getText())) {
+            log(aParam.getLineNo(),
+                "parameter '" + aParam.getText() +
+                "' must match pattern '" + mConfig.getParamPat() + "'.");
+        }
+    }
+
 
     /**
      * Returns the specified C comment as a String array.
