@@ -3,6 +3,29 @@
 //  margin-right : 5%;
 //}
 
+h1 {
+  font-family : monospace;
+  font-size : 28;
+  font-weight : bold;
+  color : #aaaaaa;
+  text-transform: capitalize;
+}
+
+h2 {
+  text-transform: capitalize;
+}
+
+h4.tip {
+  text-transform: capitalize; 
+  text-align: center;
+}
+
+tr.header {
+  background-color: Silver; 
+  font-weight: bolder; 
+  text-align: center;
+}
+
 p.body {
   margin-left : 5%;
   margin-right : 3%;
@@ -17,4 +40,18 @@ span.code {
   white-space: nowrap;
   font-family: monospace;
   font-weight: bold
+}
+
+span.default {
+  white-space: nowrap;
+  font-family: monospace;
+}
+
+div.tip {
+  margin-left : 5%;
+  margin-right : 5%;
+  padding-left: 2%; 
+  padding-right: 2%; 
+  background-color: Silver; 
+  border: ridge;
 }
