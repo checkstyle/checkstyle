@@ -51,6 +51,8 @@ public class ParenPadCheckTest
             "150:32: ')' is not preceeded with whitespace.",
             "153:16: '(' is not followed by whitespace.",
             "153:20: ')' is not preceeded with whitespace.",
+            "160:21: '(' is not followed by whitespace.",
+            "160:34: ')' is not preceeded with whitespace.",
             "162:20: '(' is not followed by whitespace.",
             "165:10: ')' is not preceeded with whitespace.",
             "178:14: '(' is not followed by whitespace.",
