@@ -276,7 +276,7 @@ field!
 				// declared to throw
 				(tc:throwsClause)?
 
-				( s2:compoundStatement | SEMI )
+				( s2:compoundStatement | s5:SEMI )
 				{#field = #(#[METHOD_DEF,"METHOD_DEF"],
 						     mods,
 							 #(#[TYPE,"TYPE"],rt),
@@ -285,10 +285,14 @@ field!
 							 param,
 							 RPAREN,
 							 tc,
-							 s2);}
-			|	v:variableDefinitions[#mods,#t] SEMI
+							 s2,
+                             s5);}
+			|	v:variableDefinitions[#mods,#t] s6:SEMI
 //				{#field = #(#[VARIABLE_DEF,"VARIABLE_DEF"], v);}
-				{#field = #v;}
+				{
+                    #field = #v;
+                    #v.addChild(#s6);
+                }
 			)
 		)
 
