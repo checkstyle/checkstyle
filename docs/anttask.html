@@ -28,7 +28,18 @@ This task is included in the checkstyle distribution.</p>
   <li>A JAXP compliant XML parser implementation. You already have it on your system if you run ANT or JDK 1.4.</li>
 </ol>
 
-<p>To use the task in a build file, you will need the following <code>taskdef</code> declaration:</p>
+<p>To use the task in a build file, you will need the following
+<code>taskdef</code> declaration:</p>
+
+<pre>
+  &lt;taskdef resource=&quot;checkstyletask.properties&quot;
+           classpath=&quot;/path/to/checkstyle-all-@CHECKSTYLE_VERSION@.jar&quot;/&gt;
+</pre>
+
+
+<p>Or, assuming that Checkstyle is in the global classpath (not recommended),
+then you will need the following <code>taskdef</code> declaration:</p>
+
 <pre>
   &lt;taskdef resource=&quot;checkstyletask.properties&quot;/&gt;
 </pre>
