@@ -74,6 +74,7 @@ public class MethodParamPadCheckTest
             "58:13: '(' should be on the previous line.",
             "60:35: 'parseInt' is not followed by whitespace.",
             "63:13: '(' should be on the previous line.",
+            "66:25: 'newArray' is not followed by whitespace.",
 
         };
         verify(checkConfig, getPath("whitespace/InputMethodParamPad.java"), expected);
