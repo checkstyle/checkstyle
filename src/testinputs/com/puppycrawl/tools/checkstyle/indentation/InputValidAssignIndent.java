@@ -19,7 +19,22 @@ public class InputValidAssignIndent
         brace =
             (candidate == SLIST)
             ? candidate : null;
+
+        AnInterfaceFooWithALongName f =
+            new AnInterfaceFooWithALongName() {
+                public void bar() {
+                }
+            };
+
+        AnInterfaceFooWithALongName f1
+            = new AnInterfaceFooWithALongName() {
+                public void bar() {
+                }
+            };
         // TODO: add more testing
     }
 
+    private interface AnInterfaceFooWithALongName {
+        void bar();
+    }
 }

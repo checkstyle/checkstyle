@@ -55,13 +55,13 @@ names such as <span class="code">UnusedLocalVariable</span>.
 <h2>Usage</h2>
 <p>
 Optional checks are distributed in jar file
-<span class="code">checkstyle-@CHECKSTYLE_VERSION@-optional.jar</span> and,
+<span class="code">checkstyle-optional-@CHECKSTYLE_VERSION@.jar</span> and,
 in order to use an optional check, this jar file must be in the classpath.
 For example, this is a command to run Checkstyle with a configuration 
 that contains optional checks:
 </p>
 <pre>
-java -classpath checkstyle-@CHECKSTYLE_VERSION@-optional.jar:checkstyle-all-@CHECKSTYLE_VERSION@.jar \
+java -classpath checkstyle-optional-@CHECKSTYLE_VERSION@.jar:checkstyle-all-@CHECKSTYLE_VERSION@.jar \
     com.puppycrawl.tools.checkstyle.Main \
     -c config.xml -r .
 </pre>
