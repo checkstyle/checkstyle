@@ -31,7 +31,7 @@ import java.util.HashMap;
 public final class Scope implements Comparable, Serializable
 {
     // Note that although this class might seem to be an
-    // implementation details, this class has to be public because it
+    // implementation detail, this class has to be public because it
     // is used as a parameter in Configuration.setJavadocScope()
 
     /** poor man's enum for nothing scope */
