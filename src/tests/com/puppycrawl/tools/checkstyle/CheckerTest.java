@@ -31,7 +31,7 @@ public class CheckerTest
 
     private final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
     private final PrintStream mStream = new PrintStream(mBAOS);
-    private Configuration mConfig = null;
+    private final Configuration mConfig = new Configuration();
 
     public CheckerTest(String name)
     {
@@ -41,7 +41,6 @@ public class CheckerTest
     protected void setUp()
         throws Exception
     {
-        mConfig = new Configuration();
         mConfig.setHeaderFile(getPath("java.header"));
     }
 
