@@ -226,7 +226,6 @@ public final class TreeWalker
             return;
         }
 
-        getMessageCollector().reset();
         try {
             getMessageDispatcher().fireFileStarted(fileName);
             final String[] lines = Utils.getLines(fileName);
@@ -268,8 +267,7 @@ public final class TreeWalker
             mCache.checkedOk(fileName, timestamp);
         }
         else {
-            getMessageDispatcher().fireErrors(
-                fileName, getMessageCollector().getMessages());
+            fireErrors(fileName);
         }
 
         getMessageDispatcher().fireFileFinished(fileName);

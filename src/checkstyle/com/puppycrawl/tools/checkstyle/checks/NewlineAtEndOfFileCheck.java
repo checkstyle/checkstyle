@@ -27,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.Defn;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -103,9 +102,7 @@ public class NewlineAtEndOfFileCheck
                     }
                 }
             }
-            final LocalizedMessages messageList = getMessageCollector();
-            final LocalizedMessage[] messages = messageList.getMessages();
-            dispatcher.fireErrors(path, messages);
+            fireErrors(path);
             dispatcher.fireFileFinished(path);
         }
     }

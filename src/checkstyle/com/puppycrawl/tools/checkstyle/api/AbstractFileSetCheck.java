@@ -149,7 +149,7 @@ public abstract class AbstractFileSetCheck
      * @see AbstractViolationReporter#log(int, int, String, Object[])
      */
     protected final void log(int aLineNo, int aColNo,
-        String aKey, Object[] aArgs)
+                             String aKey, Object[] aArgs)
     {
         getMessageCollector().add(
             new LocalizedMessage(aLineNo,
@@ -158,5 +158,18 @@ public abstract class AbstractFileSetCheck
                                  aKey,
                                  aArgs,
                                  getSeverityLevel()));
+    }
+
+    /**
+     * Notify all listeners about the errors in a file.
+     * Calls <code>MessageDispatcher.fireErrors()</code> with 
+     * all logged errors and than clears errors' list.
+     * @param aFileName the audited file
+     */
+    protected final void fireErrors(String aFileName)
+    {
+        final LocalizedMessage[] errors = getMessageCollector().getMessages();
+        getMessageCollector().reset();
+        getMessageDispatcher().fireErrors(aFileName, errors);
     }
 }
