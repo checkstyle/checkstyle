@@ -59,7 +59,7 @@ public class HiddenFieldCheck
 {
     /** stack of sets of field names,
      * one for each class of a set of nested classes */
-    private LinkedList mFieldsStack = null;
+    private LinkedList mFieldsStack = new LinkedList();
 
     /** the regexp to match against */
     private RE mRegexp = null;
@@ -94,7 +94,7 @@ public class HiddenFieldCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree(DetailAST aRootAST)
     {
-        mFieldsStack = new LinkedList();
+        mFieldsStack.clear();
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
