@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
+import org.apache.commons.beanutils.ConversionException;
 
 // TODO: tests!
 
@@ -59,9 +60,18 @@ public class FileLengthCheck extends Check
     /**
      * @param aLength the maximum length of a Java source file
      */
-    public void setMax(int aLength)
+    // TODO: Should be an int argument.
+    // It seems like I don't know how to use beanutils, I thought
+    // that parsing this stuff is the core job of beanutils
+    public void setMax(String aLength)
     {
-        mMaxFileLength = aLength;
+        try {
+            mMaxFileLength = Integer.parseInt(aLength);
+        }
+        catch (NumberFormatException ex) {
+            throw new ConversionException("Can't parse '"
+                    + aLength + "' as maximal file length", ex);
+        }
     }
 
 }
