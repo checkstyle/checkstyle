@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -157,9 +158,13 @@ public class CheckStyleTask
             mProperties.load(new FileInputStream(aProps));
             mConfig = new Configuration(mProperties, System.out);
         }
+        catch (FileNotFoundException e) {
+            throw new BuildException(
+                "Could not find Properties file '" + aProps + "'", e, location);
+        }
         catch (Exception e) {
             throw new BuildException(
-                "Could not find Properties file '" + aProps + "'", location);
+                "Error loading Properties file '" + aProps + "'", e, location);
         }
     }
 
