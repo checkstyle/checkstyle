@@ -164,6 +164,7 @@
 
     <javadoc sourcefiles="src/checkstyle/com/puppycrawl/tools/checkstyle/api/TokenTypes.java"
              classpathref="javadoc.classpath"
+             encoding="iso-8859-1"
              failonerror="yes">
       <doclet name="com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet"
               path="target/checkstyle">
@@ -201,6 +202,7 @@
            destdir="target/tests"
            deprecation="on" debug="on"
            classpathref="tests.buildpath"
+           encoding="iso-8859-1"
            includeAntRuntime="false"/>
   </target>
 
@@ -567,6 +569,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
              Use="true"
              Footer="&lt;a target=&quot;_top&quot; href=&quot;./{@docRoot}/../index.html&quot;&gt;Back to the Checkstyle Home Page&lt;/a&gt;"
              useExternalFile="yes"
+             encoding="iso-8859-1"
              failonerror="yes" >
         <fileset dir="src/checkstyle">
           <exclude name="**/Generated*.java" />
