@@ -111,6 +111,13 @@ final class FinalEntityBean
     {
     }
     
+    public Object method()
+    {
+        this.equals("");
+        "".equals((this));
+        return (this);
+    }
+    
     /**
      * @see javax.ejb.EntityBean#setEntityContext(javax.ejb.EntityContext)
      */

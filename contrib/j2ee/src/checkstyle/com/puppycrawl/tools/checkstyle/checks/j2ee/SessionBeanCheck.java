@@ -42,8 +42,7 @@ public class SessionBeanCheck
      */
     public void visitToken(DetailAST aAST)
     {
-        if (Utils.hasImplements(aAST, "javax.ejb.SessionBean"))
-        {
+        if (Utils.hasImplements(aAST, "javax.ejb.SessionBean")) {
             checkBean(aAST, "Session bean");
             if (!Utils.hasPublicMethod(aAST, "ejbCreate", true)) {
                 final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);

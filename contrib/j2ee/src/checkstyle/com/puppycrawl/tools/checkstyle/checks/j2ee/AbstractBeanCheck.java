@@ -80,7 +80,7 @@ public class AbstractBeanCheck
         if (Utils.isAbstract(aAST)) {
             log(nameAST.getLineNo(), nameAST.getColumnNo(),
                 "illegalmodifier.bean",
-            new Object[] {aBeanType, "abstract"});
+                new Object[] {aBeanType, "abstract"});
         }
         if (!Utils.hasPublicConstructor(aAST, 0)) {
             log(nameAST.getLineNo(), nameAST.getColumnNo(),
