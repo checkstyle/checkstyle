@@ -47,6 +47,16 @@ import com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.j2ee.EntityBeanCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.j2ee.FinalStaticCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.j2ee.LocalHomeInterfaceCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.j2ee.LocalInterfaceCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.j2ee.MessageBeanCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.j2ee.RemoteHomeInterfaceCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.j2ee.RemoteInterfaceCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.j2ee.SessionBeanCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.j2ee.ThisParameterCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.j2ee.ThisReturnCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest;
@@ -175,6 +185,19 @@ public class AllTests {
         suite.addTest(new TestSuite(XMLLoggerTest.class));
         suite.addTest(new TestSuite(FinalClassCheckTest.class));
         suite.addTest(new TestSuite(MissingSwitchDefaultCheckTest.class));
+        
+        // j2ee tests-BEGIN
+        suite.addTest(new TestSuite(EntityBeanCheckTest.class));
+        suite.addTest(new TestSuite(FinalStaticCheckTest.class));
+        suite.addTest(new TestSuite(LocalHomeInterfaceCheckTest.class));
+        suite.addTest(new TestSuite(LocalInterfaceCheckTest.class));
+        suite.addTest(new TestSuite(MessageBeanCheckTest.class));
+        suite.addTest(new TestSuite(RemoteHomeInterfaceCheckTest.class));
+        suite.addTest(new TestSuite(RemoteInterfaceCheckTest.class));
+        suite.addTest(new TestSuite(SessionBeanCheckTest.class));
+        suite.addTest(new TestSuite(ThisParameterCheckTest.class));
+        suite.addTest(new TestSuite(ThisReturnCheckTest.class));
+        // j2ee tests-END
         //$JUnit-END$
         return suite;
     }
