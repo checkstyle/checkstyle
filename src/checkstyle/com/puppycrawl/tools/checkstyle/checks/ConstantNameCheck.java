@@ -36,8 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;check
- *    classname="com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck"/&gt;
+ * &lt;config name="ConstantNameCheck"/&gt;
  * </pre>
  * 
  * <p>
@@ -45,10 +44,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * letters and digits is:
  * </p>
  * <pre>
- * &lt;check
- *    classname="com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck"&gt;
+ * &lt;config name="ConstantNameCheck"&gt;
  *    &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
- * &lt;/check&gt;
+ * &lt;/config&gt;
  * </pre>
  *   
  *

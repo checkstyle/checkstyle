@@ -47,20 +47,17 @@ import org.apache.regexp.RE;
  * <p>
  * An example of how to configure the check is:
  * </p>
- * TODO: re-visit after configuration format settled.
  * <pre>
- * &lt;check
- *    classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck"/&gt;
+ * &lt;config name="JavadocMethodCheck"/&gt;
  * </pre>
  * <p> An example of how to configure the check to check for unused imports
  * and for the {@link Scope#PUBLIC} scope is:
  *</p>
  * <pre>
- * &lt;check
- *    classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck"&gt;
+ * &lt;config name="JavadocMethodCheck"&gt;
  *    &lt;property name="scope" value="public"/&gt;
  *    &lt;property name="checkUnusedThrows" value="true"/&gt;
- * &lt;/check&gt;
+ * &lt;/config&gt;
  * </pre>
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>

@@ -31,8 +31,9 @@ import antlr.collections.AST;
 
 // TODO: Clean up potential duplicate code here and in UnusedImportsCheck
 /**
+ * <p>
  * Checks for illegal instantiations where a factory method is preferred.
- *
+ * </p>
  * <p>
  * Rationale: Depending on the project, for some classes it might be
  * preferable to create instances through factory methods rather than
@@ -48,9 +49,15 @@ import antlr.collections.AST;
  * methods for other classes as well, to enforce the usage of number caches or
  * object pools.
  * </p>
- *
+ * <p>
  * Limitations: It is currently not possible to specify array classes.
- *
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="IllegalInstantiationCheck"/&gt;
+ * </pre>
  * @author lkuehne
  */
 public class IllegalInstantiationCheck

@@ -31,14 +31,21 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
+ * <p>
  * Checks that classes that override equals() also override hashCode().
- *
+ * </p>
  * <p>
  * Rationale: The contract of equals() and hashCode() requires that
  * equal objects have the same hashCode. Hence, whenever you override
  * equals() you must override hashCode() to ensure that your class can
  * be used in collections that are hash based.
  * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="EqualsHashCodeCheck"/&gt;
+ * </pre>
  * @author lkuehne
  */
 public class EqualsHashCodeCheck

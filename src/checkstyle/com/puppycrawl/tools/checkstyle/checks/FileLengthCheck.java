@@ -22,8 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.Check;
 
 /**
+ * <p>
  * Checks for long source files.
- *
+ * </p>
  * <p>
  * Rationale: If a source file becomes very long it is hard to understand.
  * Therefore long classes should usually be refactored into several
@@ -37,18 +38,16 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;check
- *    classname="com.puppycrawl.tools.checkstyle.checks.FileLengthCheck"/&gt;
+ * &lt;config name="FileLengthCheck"/&gt;
  * </pre>
  * <p>
  * An example of how to configure the check so that it accepts files with at
  * most 1500 lines is:
  * </p>
  * <pre>
- * &lt;check
- *    classname="com.puppycrawl.tools.checkstyle.checks.FileLengthCheck"&gt;
+ * &lt;config name="FileLengthCheck"&gt;
  *    &lt;property name="max" value="1500"/&gt;
- * &lt;/check&gt;
+ * &lt;/config&gt;
  * </pre>
  * @author Lars Kühne
  */

@@ -24,12 +24,19 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 
 /**
+ * <p>
  * Check that finds import statements that use the * notation.
- *
+ * </p>
  * <p> Rationale: Importing all classes from a package leads to tight coupling
  * between packages and might lead to problems when a new version of a library
  * introduces name clashes.
- *
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="AvoidStarImport"/&gt;
+ * </pre>
  * @author Oliver Burn
  * @version 1.0
  */

@@ -30,14 +30,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
+ * <p>
  * Checks that modifiers are written in the order suggested by
  * the Java Language Specification (JLS). The relevant sections
  * are 8.1.1, 8.3.1 and 8.4.3.
+ * </p>
  * <p>
  * Rationale: Code is easier to read if everybody follows
  * a standard.
  * </p>
- *
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="ModifierCheck"/&gt;
+ * </pre>
  * @author Lars Kühne
  */
 public class ModifierCheck
