@@ -43,6 +43,7 @@ This command line tool is included in the checkstyle distribution.</p>
 
 <p>The default behaviour of checkstyle can be changed either by setting system properties using the <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to java or by specifying a property file using the <code>-p</code> option. If a property file is specified the system properties are ignored. The following table describes what properties can be set:</p>
 
+
 <table border="1" cellpadding="2" cellspacing="0" summary="properties">
   <tr class="header">
     <td valign="top"><b>Property</b></td>
@@ -266,6 +267,15 @@ Older versions of the checkstyle task supported the boolean parameters checkstyl
         -Dcheckstyle.pattern.member=. \
         com.puppycrawl.tools.checkstyle.Main Check.java
 </pre>
+
+<div class="tip">
+<h4 class="tip">Tip</h4>
+<p>It is possible to run Checkstyle directly from the JAR file using the <span class="code">-jar</span> option. Example would be: </p>
+
+<pre>
+  java  -jar checkstyle-@CHECKSTYLE_VERSION@.jar  Check.java
+</pre>
+</div>
 
 <hr>
 <p align="center">Copyright &copy; 2001 Oliver Burn. All rights Reserved.</p>
