@@ -35,8 +35,8 @@ import java.io.UnsupportedEncodingException;
 public class XMLLogger
     implements AuditListener
 {
-    /** the original wrapped stream */
-    private OutputStream mStream;
+    /** close output stream in auditFinished */
+    private boolean mCloseStream;
 
     /** helper writer that allows easy encoding and printing */
     private PrintWriter mWriter;
@@ -45,40 +45,32 @@ public class XMLLogger
     private static final String[] ENTITIES = {"gt", "amp", "lt", "apos",
                                               "quot"};
 
-    /** Creates a new <code>XMLLogger</code> instance. */
-    public XMLLogger()
+    /**
+     * Creates a new <code>XMLLogger</code> instance.
+     * Sets the output to a defined stream.
+     * @param aOS the stream to write logs to.
+     * @param aCloseStream close aOS in auditFinished
+     */
+    public XMLLogger(OutputStream aOS, boolean aCloseStream)
     {
+        setOutputStream(aOS);
+        mCloseStream = aCloseStream;
     }
 
     /**
-     * sets the output to a defined stream
-     * @param aOS the stream to write logs to.
-     */
-    public XMLLogger(OutputStream aOS)
-    {
-        setOutputStream(aOS);
-    }
-
-    /** @see AuditListener **/
-    public void setOutputStream(OutputStream aOS)
+     * sets the OutputStream
+     * @param aOS the OutputStream to use
+     **/
+    private void setOutputStream(OutputStream aOS)
     {
         try {
             final OutputStreamWriter osw = new OutputStreamWriter(aOS, "UTF8");
             mWriter = new PrintWriter(osw);
-            // keep a handle on the original stream
-            // for getoutputstream
-            mStream = aOS;
         }
         catch (UnsupportedEncodingException e) {
             // unlikely to happen...
             throw new ExceptionInInitializerError(e);
         }
-    }
-
-    /** @see AuditListener **/
-    public OutputStream getOutputStream()
-    {
-        return mStream;
     }
 
     /** @see AuditListener **/
@@ -91,7 +83,12 @@ public class XMLLogger
     public void auditFinished(AuditEvent aEvt)
     {
         mWriter.println("</checkstyle>");
-        mWriter.flush();
+        if (mCloseStream) {
+            mWriter.close();
+        }
+        else {
+            mWriter.flush();
+        }
     }
 
     /** @see AuditListener **/

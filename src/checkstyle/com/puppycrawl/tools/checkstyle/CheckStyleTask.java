@@ -575,15 +575,17 @@ public class CheckStyleTask
         throws ClassNotFoundException, InstantiationException,
         IllegalAccessException, IOException
     {
+        final int listenerCount = Math.max(1, mFormatters.size());
+
+        final AuditListener[] listeners = new AuditListener[listenerCount];
+
         if (mFormatters.size() == 0) {
-            final Formatter f = new Formatter();
-            final FormatterType type = new FormatterType();
-            type.setValue(E_PLAIN);
-            f.setType(type);
-            mFormatters.add(f);
+            OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
+            OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
+            listeners[0] = new DefaultLogger(debug, true, err, true);
+            return listeners;
         }
 
-        final AuditListener[] listeners = new AuditListener[mFormatters.size()];
         for (int i = 0; i < listeners.length; i++) {
             final Formatter f = (Formatter) mFormatters.get(i);
             listeners[i] = f.createListener(this);
@@ -647,8 +649,8 @@ public class CheckStyleTask
      */
     public static class Formatter
     {
-        /** class name of formatter **/
-        private String mClassName = null;
+        /** the formatter type **/
+        private FormatterType mFormatterType = null;
         /** the file to output to **/
         private File mToFile = null;
 
@@ -659,24 +661,11 @@ public class CheckStyleTask
         public void setType(FormatterType aType)
         {
             final String val = aType.getValue();
-            if (E_XML.equals(val)) {
-                setClassname(XMLLogger.class.getName());
-            }
-            else if (E_PLAIN.equals(val)) {
-                setClassname(DefaultLogger.class.getName());
-            }
-            else {
+            if (!E_XML.equals(val) && !E_PLAIN.equals(val)) {
                 throw new BuildException("Invalid formatter type: " + val);
             }
-        }
 
-        /**
-         * Set the class name of the formatter.
-         * @param aTo the formatter class name
-         */
-        public void setClassname(String aTo)
-        {
-            mClassName = aTo;
+            mFormatterType = aType;
         }
 
         /**
@@ -692,33 +681,50 @@ public class CheckStyleTask
          * Creates a listener for the formatter.
          * @param aTask the task running
          * @return a listener
-         * @throws ClassNotFoundException if an error occurs
-         * @throws InstantiationException if an error occurs
-         * @throws IllegalAccessException if an error occurs
          * @throws IOException if an error occurs
          */
         public AuditListener createListener(Task aTask)
-            throws ClassNotFoundException, InstantiationException,
-            IllegalAccessException, IOException
+            throws IOException
         {
-            final Class clazz = Class.forName(mClassName);
-            final AuditListener listener = (AuditListener) clazz.newInstance();
-            listener.setOutputStream(createOutputStream(aTask));
-            return listener;
+            if (E_XML.equals(mFormatterType.getValue())) {
+                return createXMLLogger(aTask);
+            }
+            else {
+                return createDefaultLogger(aTask);
+            }
         }
 
         /**
-         * @return an output stream to log with
+         * @return a DefaultLogger instance
          * @param aTask the task to possibly log to
          * @throws IOException if an error occurs
          */
-        protected OutputStream createOutputStream(Task aTask)
+        private AuditListener createDefaultLogger(Task aTask)
             throws IOException
         {
             if (mToFile == null) {
-                return new LogOutputStream(aTask, Project.MSG_INFO);
+                return new DefaultLogger(
+                    new LogOutputStream(aTask, Project.MSG_DEBUG), true,
+                    new LogOutputStream(aTask, Project.MSG_ERR), true);
             }
-            return new FileOutputStream(mToFile);
+            return new DefaultLogger(new FileOutputStream(mToFile), true);
+        }
+
+        /**
+         * @return an XMLLogger instance
+         * @param aTask the task to possibly log to
+         * @throws IOException if an error occurs
+         */
+        private AuditListener createXMLLogger(Task aTask)
+            throws IOException
+        {
+            if (mToFile == null) {
+                return new XMLLogger(
+                    new LogOutputStream(aTask, Project.MSG_INFO), true);
+            }
+            else {
+                return new XMLLogger(new FileOutputStream(mToFile), true);
+            }
         }
     }
 

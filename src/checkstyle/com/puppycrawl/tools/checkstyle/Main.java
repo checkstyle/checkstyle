@@ -71,9 +71,11 @@ public final class Main
 
         // create the appropriate listener
         OutputStream out = System.out;
+        boolean closeOut = false;
         if (output != null) {
             try {
                 out = new FileOutputStream(output);
+                closeOut = true;
             }
             catch (FileNotFoundException e) {
                 System.out.println("Could not find file: '" + output + "'");
@@ -82,10 +84,10 @@ public final class Main
         }
         AuditListener listener = null;
         if ("xml".equals(format)) {
-            listener = new XMLLogger(out);
+            listener = new XMLLogger(out, closeOut);
         }
         else if ("plain".equals(format)) {
-            listener = new DefaultLogger(out);
+            listener = new DefaultLogger(out, closeOut);
         }
         else {
             System.out.println("Invalid format: (" + format
