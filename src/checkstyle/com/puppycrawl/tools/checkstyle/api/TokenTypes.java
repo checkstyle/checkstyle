@@ -178,181 +178,179 @@ public class TokenTypes
     public static final int LITERAL_TRANSIENT = 65;
     /** token representing a LITERAL_native */
     public static final int LITERAL_NATIVE = 66;
-    /** token representing a LITERAL_threadsafe */
-    public static final int LITERAL_THREADSAFE = 67;
     /** token representing a LITERAL_synchronized */
-    public static final int LITERAL_SYNCHRONIZED = 68;
+    public static final int LITERAL_SYNCHRONIZED = 67;
     /** token representing a LITERAL_volatile */
-    public static final int LITERAL_VOLATILE = 69;
+    public static final int LITERAL_VOLATILE = 68;
     /** token representing a LITERAL_class */
-    public static final int LITERAL_CLASS = 70;
+    public static final int LITERAL_CLASS = 69;
     /** token representing a LITERAL_extends */
-    public static final int LITERAL_EXTENDS = 71;
+    public static final int LITERAL_EXTENDS = 70;
     /** token representing a LITERAL_interface */
-    public static final int LITERAL_INTERFACE = 72;
+    public static final int LITERAL_INTERFACE = 71;
     /** token representing a LCURLY */
-    public static final int LCURLY = 73;
+    public static final int LCURLY = 72;
     /** token representing a RCURLY */
-    public static final int RCURLY = 74;
+    public static final int RCURLY = 73;
     /** token representing a COMMA */
-    public static final int COMMA = 75;
+    public static final int COMMA = 74;
     /** token representing a LITERAL_implements */
-    public static final int LITERAL_IMPLEMENTS = 76;
+    public static final int LITERAL_IMPLEMENTS = 75;
     /** token representing a LPAREN */
-    public static final int LPAREN = 77;
+    public static final int LPAREN = 76;
     /** token representing a RPAREN */
-    public static final int RPAREN = 78;
+    public static final int RPAREN = 77;
     /** token representing a LITERAL_this */
-    public static final int LITERAL_THIS = 79;
+    public static final int LITERAL_THIS = 78;
     /** token representing a LITERAL_super */
-    public static final int LITERAL_SUPER = 80;
+    public static final int LITERAL_SUPER = 79;
     /** token representing a ASSIGN */
-    public static final int ASSIGN = 81;
+    public static final int ASSIGN = 80;
     /** token representing a LITERAL_throws */
-    public static final int LITERAL_THROWS = 82;
+    public static final int LITERAL_THROWS = 81;
     /** token representing a COLON */
-    public static final int COLON = 83;
+    public static final int COLON = 82;
     /** token representing a LITERAL_if */
-    public static final int LITERAL_IF = 84;
+    public static final int LITERAL_IF = 83;
     /** token representing a LITERAL_for */
-    public static final int LITERAL_FOR = 85;
+    public static final int LITERAL_FOR = 84;
     /** token representing a LITERAL_while */
-    public static final int LITERAL_WHILE = 86;
+    public static final int LITERAL_WHILE = 85;
     /** token representing a LITERAL_do */
-    public static final int LITERAL_DO = 87;
+    public static final int LITERAL_DO = 86;
     /** token representing a LITERAL_break */
-    public static final int LITERAL_BREAK = 88;
+    public static final int LITERAL_BREAK = 87;
     /** token representing a LITERAL_continue */
-    public static final int LITERAL_CONTINUE = 89;
+    public static final int LITERAL_CONTINUE = 88;
     /** token representing a LITERAL_return */
-    public static final int LITERAL_RETURN = 90;
+    public static final int LITERAL_RETURN = 89;
     /** token representing a LITERAL_switch */
-    public static final int LITERAL_SWITCH = 91;
+    public static final int LITERAL_SWITCH = 90;
     /** token representing a LITERAL_throw */
-    public static final int LITERAL_THROW = 92;
+    public static final int LITERAL_THROW = 91;
     /** token representing a LITERAL_else */
-    public static final int LITERAL_ELSE = 93;
+    public static final int LITERAL_ELSE = 92;
     /** token representing a LITERAL_case */
-    public static final int LITERAL_CASE = 94;
+    public static final int LITERAL_CASE = 93;
     /** token representing a LITERAL_default */
-    public static final int LITERAL_DEFAULT = 95;
+    public static final int LITERAL_DEFAULT = 94;
     /** token representing a LITERAL_try */
-    public static final int LITERAL_TRY = 96;
+    public static final int LITERAL_TRY = 95;
     /** token representing a LITERAL_catch */
-    public static final int LITERAL_CATCH = 97;
+    public static final int LITERAL_CATCH = 96;
     /** token representing a LITERAL_finally */
-    public static final int LITERAL_FINALLY = 98;
+    public static final int LITERAL_FINALLY = 97;
     /** token representing a PLUS_ASSIGN */
-    public static final int PLUS_ASSIGN = 99;
+    public static final int PLUS_ASSIGN = 98;
     /** token representing a MINUS_ASSIGN */
-    public static final int MINUS_ASSIGN = 100;
+    public static final int MINUS_ASSIGN = 99;
     /** token representing a STAR_ASSIGN */
-    public static final int STAR_ASSIGN = 101;
+    public static final int STAR_ASSIGN = 100;
     /** token representing a DIV_ASSIGN */
-    public static final int DIV_ASSIGN = 102;
+    public static final int DIV_ASSIGN = 101;
     /** token representing a MOD_ASSIGN */
-    public static final int MOD_ASSIGN = 103;
+    public static final int MOD_ASSIGN = 102;
     /** token representing a SR_ASSIGN */
-    public static final int SR_ASSIGN = 104;
+    public static final int SR_ASSIGN = 103;
     /** token representing a BSR_ASSIGN */
-    public static final int BSR_ASSIGN = 105;
+    public static final int BSR_ASSIGN = 104;
     /** token representing a SL_ASSIGN */
-    public static final int SL_ASSIGN = 106;
+    public static final int SL_ASSIGN = 105;
     /** token representing a BAND_ASSIGN */
-    public static final int BAND_ASSIGN = 107;
+    public static final int BAND_ASSIGN = 106;
     /** token representing a BXOR_ASSIGN */
-    public static final int BXOR_ASSIGN = 108;
+    public static final int BXOR_ASSIGN = 107;
     /** token representing a BOR_ASSIGN */
-    public static final int BOR_ASSIGN = 109;
+    public static final int BOR_ASSIGN = 108;
     /** token representing a QUESTION */
-    public static final int QUESTION = 110;
+    public static final int QUESTION = 109;
     /** token representing a LOR */
-    public static final int LOR = 111;
+    public static final int LOR = 110;
     /** token representing a LAND */
-    public static final int LAND = 112;
+    public static final int LAND = 111;
     /** token representing a BOR */
-    public static final int BOR = 113;
+    public static final int BOR = 112;
     /** token representing a BXOR */
-    public static final int BXOR = 114;
+    public static final int BXOR = 113;
     /** token representing a BAND */
-    public static final int BAND = 115;
+    public static final int BAND = 114;
     /** token representing a NOT_EQUAL */
-    public static final int NOT_EQUAL = 116;
+    public static final int NOT_EQUAL = 115;
     /** token representing a EQUAL */
-    public static final int EQUAL = 117;
+    public static final int EQUAL = 116;
     /** token representing a LT */
-    public static final int LT = 118;
+    public static final int LT = 117;
     /** token representing a GT */
-    public static final int GT = 119;
+    public static final int GT = 118;
     /** token representing a LE */
-    public static final int LE = 120;
+    public static final int LE = 119;
     /** token representing a GE */
-    public static final int GE = 121;
+    public static final int GE = 120;
     /** token representing a LITERAL_instanceof */
-    public static final int LITERAL_INSTANCEOF = 122;
+    public static final int LITERAL_INSTANCEOF = 121;
     /** token representing a SL */
-    public static final int SL = 123;
+    public static final int SL = 122;
     /** token representing a SR */
-    public static final int SR = 124;
+    public static final int SR = 123;
     /** token representing a BSR */
-    public static final int BSR = 125;
+    public static final int BSR = 124;
     /** token representing a PLUS */
-    public static final int PLUS = 126;
+    public static final int PLUS = 125;
     /** token representing a MINUS */
-    public static final int MINUS = 127;
+    public static final int MINUS = 126;
     /** token representing a DIV */
-    public static final int DIV = 128;
+    public static final int DIV = 127;
     /** token representing a MOD */
-    public static final int MOD = 129;
+    public static final int MOD = 128;
     /** token representing a INC */
-    public static final int INC = 130;
+    public static final int INC = 129;
     /** token representing a DEC */
-    public static final int DEC = 131;
+    public static final int DEC = 130;
     /** token representing a BNOT */
-    public static final int BNOT = 132;
+    public static final int BNOT = 131;
     /** token representing a LNOT */
-    public static final int LNOT = 133;
+    public static final int LNOT = 132;
     /** token representing a LITERAL_true */
-    public static final int LITERAL_TRUE = 134;
+    public static final int LITERAL_TRUE = 133;
     /** token representing a LITERAL_false */
-    public static final int LITERAL_FALSE = 135;
+    public static final int LITERAL_FALSE = 134;
     /** token representing a LITERAL_null */
-    public static final int LITERAL_NULL = 136;
+    public static final int LITERAL_NULL = 135;
     /** token representing a LITERAL_new */
-    public static final int LITERAL_NEW = 137;
+    public static final int LITERAL_NEW = 136;
     /** token representing a NUM_INT */
-    public static final int NUM_INT = 138;
+    public static final int NUM_INT = 137;
     /** token representing a CHAR_LITERAL */
-    public static final int CHAR_LITERAL = 139;
+    public static final int CHAR_LITERAL = 138;
     /** token representing a STRING_LITERAL */
-    public static final int STRING_LITERAL = 140;
+    public static final int STRING_LITERAL = 139;
     /** token representing a NUM_FLOAT */
-    public static final int NUM_FLOAT = 141;
+    public static final int NUM_FLOAT = 140;
     /** token representing a NUM_LONG */
-    public static final int NUM_LONG = 142;
+    public static final int NUM_LONG = 141;
     /** token representing a NUM_DOUBLE */
-    public static final int NUM_DOUBLE = 143;
+    public static final int NUM_DOUBLE = 142;
     /** token representing a WS */
-    public static final int WS = 144;
+    public static final int WS = 143;
     /** token representing a SL_COMMENT */
-    public static final int SL_COMMENT = 145;
+    public static final int SL_COMMENT = 144;
     /** token representing a ML_COMMENT */
-    public static final int ML_COMMENT = 146;
+    public static final int ML_COMMENT = 145;
     /** token representing a ESC */
-    public static final int ESC = 147;
+    public static final int ESC = 146;
     /** token representing a HEX_DIGIT */
-    public static final int HEX_DIGIT = 148;
+    public static final int HEX_DIGIT = 147;
     /** token representing a EXPONENT */
-    public static final int EXPONENT = 150;
+    public static final int EXPONENT = 149;
     /** token representing a FLOAT_SUFFIX */
-    public static final int FLOAT_SUFFIX = 151;
+    public static final int FLOAT_SUFFIX = 150;
     /** token representing a ASSERT */
-    public static final int LITERAL_ASSERT = 152;
+    public static final int LITERAL_ASSERT = 151;
 
     ////////////////////////////////////////////////////////////////////////
     // The interesting code goes here
     ////////////////////////////////////////////////////////////////////////
-    
+
         /** maps from a token name to value */
     private static final Map TOKEN_NAME_TO_VALUE = new HashMap();
     /** maps from a token value to name */
