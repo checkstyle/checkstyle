@@ -23,31 +23,55 @@ import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 
-/**
- * Check that finds import statement that use the * notation.
- *
- * <p> Rationale: Importing all classes from a package leads to tight coupling
- * between packages and might lead to problems when a new version of a library
- * introduces name clashes.
- *
- * @author Oliver Burn
- * @version 1.0
- */
-public class AvoidStarImport
+public class RedundantImportCheck
     extends ImportCheck
 {
+    private String mPkgName;
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.IMPORT};
+        return new int[] {JavaTokenTypes.IMPORT, JavaTokenTypes.PACKAGE_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final FullIdent name = getImportText(aAST);
-        if ((name != null) && name.getText().endsWith(".*")) {
-            log(aAST.getLineNo(), "import.avoidStar");
+        if (aAST.getType() == JavaTokenTypes.PACKAGE_DEF) {
+            final DetailAST nameAST = (DetailAST) aAST.getFirstChild();
+            mPkgName = FullIdent.createFullIdent(nameAST).getText();
         }
+        else {
+            final FullIdent imp = getImportText(aAST);
+            if (fromPackage(imp.getText(), "java.lang")) {
+                log(aAST.getLineNo(), aAST.getColumnNo(), "import.lang");
+            }
+            else if (fromPackage(imp.getText(), mPkgName)) {
+                log(aAST.getLineNo(), aAST.getColumnNo(), "import.same");
+            }
+        }
+    }
+
+    /**
+     * Determines in an import statement is for types from a specified package.
+     * @param aImport the import name
+     * @param aPkg the package name
+     * @return whether from the package
+     */
+    private static boolean fromPackage(String aImport, String aPkg)
+    {
+        boolean retVal = false;
+        if (aPkg == null) {
+            // If not package, then check for no package in the import.
+            retVal = (aImport.indexOf('.') == -1);
+        }
+        else {
+            final int index = aImport.lastIndexOf('.');
+            if (index != -1) {
+                final String front = aImport.substring(0, index);
+                retVal = front.equals(aPkg);
+            }
+        }
+        return retVal;
     }
 }

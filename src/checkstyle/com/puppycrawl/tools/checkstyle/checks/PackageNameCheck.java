@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 
 public class PackageNameCheck
@@ -45,35 +46,13 @@ public class PackageNameCheck
     public void visitToken(DetailAST aAST)
     {
         final DetailAST nameAST = (DetailAST) aAST.getFirstChild();
-        final StringBuffer buf = new StringBuffer();
-        extractIdent(buf, nameAST);
-        final String text = buf.toString();
-
-        if (!getRegexp().match(text)) {
-            log(nameAST.getLineNo(),
+        final FullIdent full = FullIdent.createFullIdent(nameAST);
+        if (!getRegexp().match(full.getText())) {
+            log(full.getLineNo(),
+                full.getColumnNo(),
                 "name.invalidPattern",
-                text,
+                full.getText(),
                 getFormat());
-        }
-    }
-
-    // TODO: refactor to Utils. It should return the text, plus the starting
-    // line and column
-    private static void extractIdent(StringBuffer aBuf, DetailAST aAST)
-    {
-        if (aAST == null) {
-            System.out.println("CALLED WITH NULL");
-            return;
-        }
-
-        if (aAST.getType() == JavaTokenTypes.DOT) {
-            extractIdent(aBuf, (DetailAST) aAST.getFirstChild());
-            aBuf.append(".");
-            extractIdent(aBuf,
-                         (DetailAST) aAST.getFirstChild().getNextSibling());
-        }
-        else {
-            aBuf.append(aAST.getText());
         }
     }
 }
