@@ -84,7 +84,6 @@ class Verifier
     private static final RE MATCH_JAVADOC_AUTHOR
         = createRE(MATCH_JAVADOC_AUTHOR_PAT);
 
-
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
     ////////////////////////////////////////////////////////////////////////////
@@ -809,9 +808,9 @@ class Verifier
                         "Duplicate import to line " + lt.getLineNo() + ".");
                 }
             }
-            // Add to list to check for duplicates and usage
-            mImports.add(new LineText(aLineNo, aType));
         }
+        // Add to list to check for duplicates, usage and instantiation checks
+        mImports.add(new LineText(aLineNo, aType));
     }
 
 
@@ -824,8 +823,8 @@ class Verifier
     {
         if (!mConfig.isIgnoreImports()) {
             log(aLineNo, "Avoid using the '.*' form of import.");
-            mImports.add(new LineText(aLineNo, aPkg));
         }
+        mImports.add(new LineText(aLineNo, aPkg));
     }
 
 
@@ -937,10 +936,9 @@ class Verifier
         final String typeName = aTypeName.getText();
         final int lineNo = aNewAST.getLineNo();
         final int colNo = aNewAST.getColumnNo();
-        if ("java.lang.Boolean".equals(typeName)
-            || "Boolean".equals(typeName))
-        {
-            log(lineNo, colNo, "Avoid instantiation of java.lang.Boolean");
+        final String fqClassName = getIllegalInstantiation(typeName);
+        if (fqClassName != null) {
+            log(lineNo, colNo, "Avoid instantiation of " + fqClassName);
         }
     }
 
@@ -1444,6 +1442,71 @@ class Verifier
             }
         }
         return false;
+    }
+
+    /**
+     * Checks illegal instantiations.
+     * @param aClassName instantiated class, may or may not be qualified
+     * @return the fully qualified class name of aClassName
+     * or null if instantiation of aClassName is OK
+     */
+    private String getIllegalInstantiation(String aClassName)
+    {
+        final Set illegalInsts = mConfig.getIllegalInstantiations();
+        final String javaLang = "java.lang.";
+
+        if (illegalInsts.contains(aClassName)){
+            return aClassName;
+        }
+
+        final Iterator illIter = illegalInsts.iterator();
+        while (illIter.hasNext()) {
+            final String illegal = (String) illIter.next();
+            final String illegalBase = basename(illegal);
+
+            // class from java.lang
+            if (illegal.length() - javaLang.length() == aClassName.length()
+                && illegal.endsWith(aClassName)
+                && illegal.startsWith(javaLang))
+            {
+                return illegal;
+            }
+
+            // class from same package
+            if (illegal.length() - mPkgName.length() == aClassName.length() + 1
+                && illegal.charAt(mPkgName.length()) == '.'
+                && illegal.endsWith(aClassName)
+                && illegal.startsWith(mPkgName))
+            {
+                return illegal;
+            }
+
+            // import statements
+            final Iterator importIter = mImports.iterator();
+            while (importIter.hasNext()) {
+                final LineText importLineText = (LineText) importIter.next();
+                final String importArg = importLineText.getText();
+                if (importArg.endsWith(".*")) {
+                    final String fqClass =
+                        importArg.substring(0, importArg.length() - 1)
+                        + aClassName;
+
+                    // assume that illegalInsts only contain existing classes
+                    // or else we might create a false alarm here
+                    if (illegalInsts.contains(fqClass)) {
+                        return fqClass;
+                    }
+                }
+                else {
+                    if (basename(importArg).equals(aClassName)
+                        && illegalInsts.contains(importArg))
+                    {
+                        return importArg;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     /** @return whether currently in an interface block **/

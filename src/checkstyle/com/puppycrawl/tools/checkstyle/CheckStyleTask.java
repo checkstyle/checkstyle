@@ -537,6 +537,18 @@ public class CheckStyleTask
             });
     }
 
+    /** @param aClassList comma separated list of fully qualified class names */
+    public void setIllegalInstantiations(final String aClassList)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setIllegalInstantiations(aClassList);
+                }
+            });
+    }
+
     /** @param aIgnore whether to ignore whitespace **/
     public void setIgnoreWhitespace(final boolean aIgnore)
     {

@@ -4,6 +4,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.*; // star import for instantiation tests
+import java.awt.Dimension; // explicit import for instantiation tests
+import java.awt.Color;
+
 /**
  * Test case for detecting simple semantic errors.
  * @author Lars Kühne
@@ -24,6 +28,19 @@ class InputSemantic
     Boolean getBoolean()
     {
         return new java.lang.Boolean(true);
+    }
+
+    void otherInstantiations()
+    {
+        // instantiation of classes in the same package
+        Object o1 = new InputBraces();
+        Object o2 = new InputModifier();
+        // classes in another package with .* import
+        ByteArrayOutputStream s = new ByteArrayOutputStream();
+        File f = new File("/tmp");
+        // classes in another package with explicit import
+        Dimension dim = new Dimension();
+        Color col = new Color(0, 0, 0);
     }
 
     void exHandlerTest()
