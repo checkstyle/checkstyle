@@ -79,7 +79,7 @@ public class IllegalInstantiationCheck
         return new int[] {
             TokenTypes.IMPORT,
             TokenTypes.LITERAL_NEW,
-            TokenTypes.PACKAGE_DEF
+            TokenTypes.PACKAGE_DEF,
         };
     }
 
@@ -98,7 +98,7 @@ public class IllegalInstantiationCheck
         return new int[] {
             TokenTypes.IMPORT,
             TokenTypes.LITERAL_NEW,
-            TokenTypes.PACKAGE_DEF
+            TokenTypes.PACKAGE_DEF,
         };
     }
 
