@@ -22,7 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * Checks that a SessionBean implementation satisfies SessionBean
- * requirements:
+ * requirements.  Such as:
  * <ul>
  * <li>The class is defined as <code>public</code>.</li>
  * <li>The class cannot be defined as <code>final</code>.</li>
