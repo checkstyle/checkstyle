@@ -162,7 +162,9 @@ public class CommentManager
     }
 
     /**
-     * Returns the Javadoc comment before the specified line. null is none.
+     * Returns the Javadoc comment before the specified line.
+     * A return value of <code>null</code> means there is no such
+     * comment.
      * @return the Javadoc comment, or <code>null</code> if none
      * @param aLineNo the line number to check before
      **/

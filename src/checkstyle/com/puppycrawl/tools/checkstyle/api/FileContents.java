@@ -97,13 +97,14 @@ public class FileContents
     }
 
     /**
-     * Returns the Javadoc comment before the specified line. null is none.
+     * Returns the Javadoc comment before the specified line.
+     * A return value of <code>null</code> means there is no such comment.
      * @return the Javadoc comment, or <code>null</code> if none
      * @param aLineNo the line number to check before
      **/
     public String[] getJavadocBefore(int aLineNo)
     {
-        // Lines start at 1 to the callers perspective, so nee to take off 2
+        // Lines start at 1 to the callers perspective, so need to take off 2
         int lineNo = aLineNo - 2;
 
         // skip blank lines
