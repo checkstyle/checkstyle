@@ -144,6 +144,36 @@ public final class TreeWalker
         mClassLoader = aClassLoader;
     }
 
+//    public void configure(Configuration aConfiguration)
+//            throws CheckstyleException
+//    {
+//        super.configure(aConfiguration);
+//        mConfig = aConfiguration;
+//
+//        DefaultContext checkContext = new DefaultContext();
+//        checkContext.add("classLoader", mClassLoader);
+//        checkContext.add("messages", mMessages);
+//        // TODO: hmmm.. this looks less than elegant
+//        checkContext.add("tabWidth", String.valueOf(mTabWidth));
+//
+//        // TODO: improve the error handing
+//        Configuration[] checkConfigs = aConfiguration.getChildren();
+//        for (int i = 0; i < checkConfigs.length; i++) {
+//            final Configuration config = checkConfigs[i];
+//            // IMPORTANT! Need to use the same class loader that created this
+//            // class. Otherwise can get ClassCastException problems.
+//            final String className = config.getAttribute("classname");
+//            final Check check = createCheck(
+//                    this.getClass().getClassLoader(), className);
+//
+//            check.contextualize(checkContext);
+//            check.configure(config);
+//
+//            registerCheck(check);
+//        }
+//
+//    }
+
     public void configure(Configuration aConfiguration)
             throws CheckstyleException
     {
@@ -162,9 +192,10 @@ public final class TreeWalker
             final Configuration config = checkConfigs[i];
             // IMPORTANT! Need to use the same class loader that created this
             // class. Otherwise can get ClassCastException problems.
-            final String className = config.getAttribute("classname");
-            final Check check = createCheck(
-                    this.getClass().getClassLoader(), className);
+            final String name = config.getName();
+            final Check check =
+                    (Check) PackageObjectFactory.makeObject(
+                        mPackageNames, this.getClass().getClassLoader(), name);
 
             check.contextualize(checkContext);
             check.configure(config);
@@ -490,7 +521,4 @@ public final class TreeWalker
                 "Unable to instantiate " + aClassName);
         }
     }
-
-
-
 }

@@ -18,9 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 import java.io.File;
+
+import com.puppycrawl.tools.checkstyle.ClassNameMapLoader;
+import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 
 /**
  * Provides common functionality for many FileSetChecks.
@@ -32,6 +36,10 @@ public abstract class AbstractFileSetCheck
 {
     /** The dispatcher errors are fired to. */
     private MessageDispatcher mDispatcher = null;
+    
+    /** List of package names for object instantiation */
+    protected String[] mPackageNames;
+
 
     /**
      * Does nothing.
@@ -69,5 +77,16 @@ public abstract class AbstractFileSetCheck
     protected MessageDispatcher getMessageDispatcher()
     {
         return mDispatcher;
+    }
+    
+    /** @see com.puppycrawl.tools.checkstyle.api.PackageNamesClient */
+    public void setPackageNames(String[] aPackageNames)
+        throws CheckstyleException
+    {
+        if (aPackageNames == null) {
+            aPackageNames = PackageNamesLoader.loadPackageNames(
+                this.getClass().getClassLoader());
+        }
+        mPackageNames = aPackageNames;
     }
 }

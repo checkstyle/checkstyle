@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.PackageNamesClient;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -37,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author lkuehne
  */
 public class Checker extends AutomaticBean
-    implements Defn, MessageDispatcher
+    implements Defn, MessageDispatcher, PackageNamesClient
 {
     /**
      * An AuditListener that maintains the number of errors.
@@ -120,6 +121,9 @@ public class Checker extends AutomaticBean
     /** locale language to report messages  **/
     private String mLocaleLanguage = Locale.getDefault().getLanguage();
 
+    /** List of package names for instatiating objects */
+    private String[] mPackageNames;
+
     /**
      * Creates a new <code>Checker</code> instance.
      * The instance needs to be contextualized and configured.
@@ -141,15 +145,17 @@ public class Checker extends AutomaticBean
         final Locale locale = new Locale(mLocaleLanguage, mLocaleCountry);
         LocalizedMessage.setLocale(locale);
 
-        DefaultContext context = new DefaultContext();
+        final DefaultContext context = new DefaultContext();
         context.add("classLoader", this.getClassLoader());
-        Configuration[] fileSetChecks = aConfiguration.getChildren();
+        final Configuration[] fileSetChecks = aConfiguration.getChildren();
         for (int i = 0; i < fileSetChecks.length; i++) {
-            Configuration fscConf = fileSetChecks[i];
-            String className = fscConf.getAttribute("classname");
+            final Configuration fscConf = fileSetChecks[i];
+            final String name = fscConf.getName();
             try {
-                Class clazz = Class.forName(className);
-                FileSetCheck fsc = (FileSetCheck) clazz.newInstance();
+                FileSetCheck fsc =
+                    (FileSetCheck) PackageObjectFactory.makeObject(
+                        mPackageNames, getClassLoader(), name);
+                fsc.setPackageNames(mPackageNames);
                 fsc.contextualize(context);
                 fsc.configure(fscConf);
                 addFileSetCheck(fsc);
@@ -157,8 +163,8 @@ public class Checker extends AutomaticBean
             catch (Exception ex) {
                 // TODO i18n
                 throw new CheckstyleException(
-                        "cannot initialize filesetcheck of class "
-                        + className + " - " + ex.getMessage());
+                        "cannot initialize filesetcheck with name "
+                        + name + " - " + ex.getMessage());
             }
         }
     }
@@ -309,4 +315,16 @@ public class Checker extends AutomaticBean
             }
         }
     }
+
+    /** @see PackageNamesClient */
+    public void setPackageNames(String[] aPackageNames)
+        throws CheckstyleException
+    {
+        if (aPackageNames == null) {
+           aPackageNames =
+            PackageNamesLoader.loadPackageNames(this.getClassLoader());
+        }
+        mPackageNames = aPackageNames;
+    }
+
 }
