@@ -40,12 +40,7 @@ public class AuditEvent
 {
     /** filename event associated with **/
     private final String mFileName;
-    /** line event associated with **/
-    private final int mLine;
-    /** column event associated with **/
-    private final int mColumn;
-    /** message of event **/
-    private final String mMessage;
+    private final LocalizedMessage mMessage;
 
     /**
      * Creates a new instance.
@@ -63,7 +58,7 @@ public class AuditEvent
      */
     public AuditEvent(Object aSrc, String aFileName)
     {
-        this(aSrc, aFileName, 0, 0, null);
+        this(aSrc, aFileName, null);
     }
 
     /**
@@ -71,20 +66,12 @@ public class AuditEvent
      *
      * @param aSrc source of the event
      * @param aFileName file associated with the event
-     * @param aLine line number of message
-     * @param aColumn column number of message
      * @param aMessage the actual message
      */
-    public AuditEvent(Object aSrc,
-                      String aFileName,
-                      int aLine,
-                      int aColumn,
-                      String aMessage)
+    public AuditEvent(Object aSrc, String aFileName, LocalizedMessage aMessage)
     {
         super(aSrc);
         mFileName = aFileName;
-        mLine = aLine;
-        mColumn = aColumn;
         mMessage = aMessage;
     }
 
@@ -104,7 +91,7 @@ public class AuditEvent
      */
     public int getLine()
     {
-        return mLine;
+        return mMessage.getLineNo();
     }
 
     /**
@@ -113,12 +100,17 @@ public class AuditEvent
      */
     public String getMessage()
     {
-        return mMessage;
+        return mMessage.getMessage();
     }
 
     /** @return the column associated with the message **/
     public int getColumn()
     {
-        return mColumn;
+        return mMessage.getColumnNo();
+    }
+
+    public LocalizedMessage getLocalizedMessage()
+    {
+        return mMessage;
     }
 }
