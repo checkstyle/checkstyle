@@ -44,8 +44,9 @@ public class ConfigurationLoaderTest extends TestCase
         }
         catch (CheckstyleException ex) {
             assertTrue(
-                "exception error",
-                ex.getMessage().indexOf("missing property name") >= 0);
+                ex.getMessage().endsWith(
+                    "Attribute \"name\" is required and must be specified "
+                        + "for element type \"property\"."));
         }
     }
 
@@ -57,8 +58,9 @@ public class ConfigurationLoaderTest extends TestCase
         }
         catch (CheckstyleException ex) {
             assertTrue(
-                "exception error",
-                ex.getMessage().indexOf("missing value for property") >= 0);
+                ex.getMessage().endsWith(
+                    "Attribute \"value\" is required and must be specified "
+                        + "for element type \"property\"."));
         }
     }
 
@@ -70,8 +72,9 @@ public class ConfigurationLoaderTest extends TestCase
         }
         catch (CheckstyleException ex) {
             assertTrue(
-                "exception error",
-                ex.getMessage().indexOf("missing config name") >= 0);
+                ex.getMessage().endsWith(
+                    "Attribute \"name\" is required and must be specified "
+                        + "for element type \"config\"."));
         }
     }
 
@@ -83,8 +86,9 @@ public class ConfigurationLoaderTest extends TestCase
         }
         catch (CheckstyleException ex) {
             assertTrue(
-                "exception error",
-                ex.getMessage().indexOf("has no config parent") >= 0);
+                ex.getMessage().endsWith(
+                    "Document root element \"property\", must match DOCTYPE "
+                        + "root \"config\"."));
         }
     }
 

@@ -5,7 +5,13 @@
     "http://www.puppycrawl.com/dtds/configuration_1_0.dtd">
 
 <config name="configuration">
+
     <property name="tabWidth" value="4" />
+
+    <config name="PackageHtmlCheck"/>
+
+    <config name="TranslationCheck"/>
+
     <config name="TreeWalker">
         <config name="AvoidStarImport"/>
         <config name="ConstantNameCheck"/>
@@ -91,6 +97,4 @@
         <config name="WhitespaceAfterCheck"/>
         <config name="WhitespaceAroundCheck"/>
     </config>
-    <config name="PackageHtmlCheck"/>
-    <config name="TranslationCheck"/>
 </config>
