@@ -25,8 +25,28 @@ import java.util.Map;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 
 /**
- * A check for TODO comments. Actually it is a generic regular expression
- * matcher on Java comments.
+ * <p>
+ * A check for TODO comments.
+ * Actually it is a generic
+ * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
+ * regular expression</a> matcher on Java comments.
+ * To check for other patterns in Java comments, set property format.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="TodoCommentCheck"/&gt;
+ * </pre>
+ * <p>
+ * An example of how to configure the check for comments that contain
+ * <code>WARNING</code> is:
+ * </p>
+ * <pre>
+ * &lt;config name="TodoCommentCheck"&gt;
+ *    &lt;property name="format" value="WARNING"/&gt;
+ * &lt;/config&gt;
+ * </pre> 
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */

@@ -38,11 +38,18 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.Defn;
 
 /**
+ * <p>
  * The TranslationCheck class helps to ensure the correct translation of code by
  * checking property files for consistency regarding their keys.
  * Two property files describing one and the same context are consistent if they
  * contain the same keys.
- *
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="TranslationCheck"/&gt;
+ * </pre>  
  * @author Alexandra Bunge
  * @author lkuehne
  */
