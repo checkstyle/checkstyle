@@ -53,7 +53,7 @@ class InputWhitespace
     private void fastExit()
     {
         boolean complicatedStuffNeeded = true;
-        if ( !complicatedStuffNeeded )
+        if( !complicatedStuffNeeded )
         {
             return; // should not complain about missing WS after return
         }
