@@ -126,7 +126,7 @@ public interface Defn
     /** property name for wrapping lines on operators **/
     String WRAP_OP_PROP = "checkstyle.wrap.operator";
     /** property name for checking for unused fields **/
-    String FIELDS_CHECK_UNUSED_PROP = "checkstyle.fields.checkUnused";
+    String CHECK_UNUSED_FIELDS_PROP = "checkstyle.checkUnused.fields";
 
     /** property name for the locale language for reporting **/
     String LOCALE_LANGUAGE_PROP = "checkstyle.locale.language";
@@ -151,7 +151,7 @@ public interface Defn
             JAVADOC_CHECK_UNUSED_THROWS_PROP,
             REQUIRE_PACKAGE_HTML_PROP,
             REQUIRE_VERSION_PROP,
-            FIELDS_CHECK_UNUSED_PROP,
+            CHECK_UNUSED_FIELDS_PROP,
         };
 
     /** All the properties that are a regulare expression */
