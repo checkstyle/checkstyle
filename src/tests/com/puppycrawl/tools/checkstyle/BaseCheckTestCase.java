@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.Locale;
 import java.util.Properties;
 
 import junit.framework.TestCase;
@@ -43,8 +44,10 @@ public abstract class BaseCheckTestCase
     protected Checker createChecker(Configuration aCheckConfig)
         throws Exception
     {
-        DefaultConfiguration dc = createCheckerConfig(aCheckConfig);
+        final DefaultConfiguration dc = createCheckerConfig(aCheckConfig);
         final Checker c = new Checker();
+        c.setLocaleCountry(Locale.getDefault().getCountry());
+        c.setLocaleLanguage(Locale.getDefault().getLanguage());
         c.configure(dc);
         c.addListener(new BriefLogger(mStream));
         return c;
