@@ -33,7 +33,7 @@ import java.util.EventObject;
  * a web interface in a source repository ;-)
  * </i>
  * @author <a href="stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
- * @see #AuditListener
+ * @see AuditListener
  */
 public class AuditEvent
     extends EventObject
