@@ -836,16 +836,16 @@ multiplicativeExpression
 	;
 
 unaryExpression
-	:	INC^ unaryExpression {ver.verifyNoWSAfter(#INC);}
-	|	DEC^ unaryExpression {ver.verifyNoWSAfter(#DEC);}
-	|	MINUS^ {#MINUS.setType(UNARY_MINUS); ver.verifyNoWSAfter(#MINUS);} unaryExpression
-	|	PLUS^  {#PLUS.setType(UNARY_PLUS); ver.verifyNoWSAfter(#PLUS);} unaryExpression
+	:	INC^ unaryExpression { }
+	|	DEC^ unaryExpression { }
+	|	MINUS^ {#MINUS.setType(UNARY_MINUS); } unaryExpression
+	|	PLUS^  {#PLUS.setType(UNARY_PLUS); } unaryExpression
 	|	unaryExpressionNotPlusMinus
 	;
 
 unaryExpressionNotPlusMinus
-	:	BNOT^ unaryExpression {ver.verifyNoWSAfter(#BNOT);}
-	|	LNOT^ unaryExpression {ver.verifyNoWSAfter(#LNOT);}
+	:	BNOT^ unaryExpression { }
+	|	LNOT^ unaryExpression { }
 
 	|	(	// subrule allows option to shut off warnings
 			options {
@@ -905,8 +905,8 @@ postfixExpression
 
 		// possibly add on a post-increment or post-decrement.
 		// allows INC/DEC on too much, but semantics can check
-		(	in:INC^ {#in.setType(POST_INC); ver.verifyNoWSBefore(#in);}
-	 	|	de:DEC^ {#de.setType(POST_DEC); ver.verifyNoWSBefore(#de);}
+		(	in:INC^ {#in.setType(POST_INC); }
+	 	|	de:DEC^ {#de.setType(POST_DEC); }
 		|	// nothing
 		)
 	;

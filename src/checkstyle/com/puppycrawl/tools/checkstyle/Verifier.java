@@ -97,45 +97,6 @@ class Verifier
     }
 
     /**
-     * Verify that no whitespace after an AST.
-     * @param aAST the AST to check
-     **/
-    void verifyNoWSAfter(MyCommonAST aAST)
-    {
-        if (mConfig.isIgnoreWhitespace()) {
-            return;
-        }
-
-        final String line = mLines[aAST.getLineNo() - 1];
-        final int after = aAST.getColumnNo() + aAST.getText().length();
-        if ((after >= line.length())
-            || Character.isWhitespace(line.charAt(after)))
-        {
-            mMessages.add(aAST.getLineNo(), after,
-                          "ws.followed", aAST.getText());
-        }
-    }
-
-
-    /**
-     * Verify that no whitespace before an AST.
-     * @param aAST the AST to check
-     **/
-    void verifyNoWSBefore(MyCommonAST aAST)
-    {
-        if (mConfig.isIgnoreWhitespace()) {
-            return;
-        }
-
-        final String line = mLines[aAST.getLineNo() - 1];
-        final int before = aAST.getColumnNo() - 1;
-        if ((before < 0) || Character.isWhitespace(line.charAt(before))) {
-            mMessages.add(aAST.getLineNo(), before,
-                          "ws.preceeded", aAST.getText());
-        }
-    }
-
-    /**
      * Verify that whitespace IS after a specified column.
      * @param aLineNo number of line to check
      * @param aColNo column where the cast ends
