@@ -293,7 +293,7 @@
     <checkstyle failonviolation="false" config="${check.config}">
       <fileset dir="src/checkstyle"
                includes="**/*.java,**/*.properties"
-               excludes="**/Generated*.java,**/gui/*"/>
+               excludes="**/Generated*.java,**/gui/*,,**/transmogrify/*"/>
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
       <property key="checkstyle.cache.file" file="target/cachefile"/>
