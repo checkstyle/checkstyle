@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks the create and find methods of a local home interface.
+ * Reference: Enterprise JavaBeansTM Specification,Version 2.1, section 9.6.2.
  * @author Rick Giles
  */
 public class LocalHomeInterfaceCheck

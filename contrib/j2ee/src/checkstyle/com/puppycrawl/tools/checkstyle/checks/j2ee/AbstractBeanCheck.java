@@ -57,15 +57,17 @@ public class AbstractBeanCheck
  * Checks a bean class requirements:
  * <ul>
  * <li>The class is defined as <code>public</code>.</li>
- * <li>The class cannot be defined as <code>abstract</code> or
- * <code>final</code>.</li>
- * <li>It contains a <code>public</code> constructor with no parameters.</li>
+  * <li>It contains a <code>public</code> constructor with no parameters.</li>
  * <li>It must not define the <code>finalize</code> method.</li>
  * </ul>
  * @param aAST CLASS_DEF node for class definition to check.
  * @param aBeanType bean type for error messages.
+ * @param aAllowAbstract if false, the class cannot be abstract.
  */
-    protected void checkBean(DetailAST aAST, String aBeanType)
+    protected void checkBean(
+        DetailAST aAST,
+        String aBeanType,
+        boolean aAllowAbstract)
     {
         final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
         if (!Utils.isPublic(aAST)) {
@@ -77,7 +79,7 @@ public class AbstractBeanCheck
                 "illegalmodifier.bean",
                 new Object[] {aBeanType, "final"});
         }
-        if (Utils.isAbstract(aAST)) {
+        if (!aAllowAbstract && Utils.isAbstract(aAST)) {
             log(nameAST.getLineNo(), nameAST.getColumnNo(),
                 "illegalmodifier.bean",
                 new Object[] {aBeanType, "abstract"});

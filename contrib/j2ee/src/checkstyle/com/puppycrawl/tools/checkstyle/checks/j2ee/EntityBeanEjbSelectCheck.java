@@ -26,10 +26,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>The access control modifier must be <code>public</code>.</li>
  * <li>The method must be <code>abstract</code>.</li>
- * <li>The return type must not be void.</li>
  * <li>The method modifier cannot be <code>final</code>
  * or <code>static</code>.</li>
+ * <li>The <code>throws<code/> clause must define the
+ * <code>javax.ejb.FinderException</code>.</li>
  * </ul>
+ * Reference: Enterprise JavaBeansTM Specification,Version 2.1, section 10.6.7
  * @author Rick Giles
  */
 public class EntityBeanEjbSelectCheck
@@ -40,14 +42,15 @@ public class EntityBeanEjbSelectCheck
     {
         final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
         final String name = nameAST.getText();
+        final String nameMessage = "Method " + name;
         if (name.startsWith("ejbSelect")
             && Utils.implementsEntityBean(aAST))
         {
-            checkMethod(aAST);
-            if (Utils.isVoid(aAST)) {
+            if (!Utils.isPublic(aAST)) {
                 log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                    "voidmethod.bean", name);
+                    "nonpublic.bean", nameMessage);
             }
+
             if (!Utils.isAbstract(aAST)) {
                 log(nameAST.getLineNo(), nameAST.getColumnNo(),
                     "nonabstract.bean", "Method " + name);

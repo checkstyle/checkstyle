@@ -29,6 +29,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>The method modifier cannot be <code>final</code>
  * or <code>static</code>.</li>
  * </ul>
+ * Reference: http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/BMP2.html#62922
+ * Reference: Enterprise JavaBeansTM Specification,Version 2.1, sections 10.7.3
+ * and 12.2.5
  * @author Rick Giles
  */
 public class EntityBeanFinderCheck
@@ -42,7 +45,8 @@ public class EntityBeanFinderCheck
         if (name.startsWith("ejbFind")
             && Utils.implementsEntityBean(aAST))
         {
-            checkMethod(aAST);
+            checkMethod(aAST, false);
+
             if (Utils.isVoid(aAST)) {
                 log(nameAST.getLineNo(), nameAST.getColumnNo(),
                     "voidmethod.bean", name);

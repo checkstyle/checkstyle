@@ -21,9 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.j2ee;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * Describe class RemoteInterfaceCheck
+ * Checks the methods of a remote interface.
+ * Reference: Enterprise JavaBeansTM Specification,Version 2.1, section 12.2.8.
  * @author Rick Giles
- * @version 30-Jun-2003
  */
 public class RemoteInterfaceCheck
     extends AbstractInterfaceCheck

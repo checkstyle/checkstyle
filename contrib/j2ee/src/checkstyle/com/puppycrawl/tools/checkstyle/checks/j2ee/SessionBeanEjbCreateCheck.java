@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>The method modifier cannot be <code>final</code>
  * or <code>static</code>.</li>
  * </ul>
+ * Reference: Enterprise JavaBeansTM Specification,Version 2.1, section 7.11.3
  * @author Rick Giles
  */
 public class SessionBeanEjbCreateCheck
@@ -40,10 +41,12 @@ public class SessionBeanEjbCreateCheck
     public void visitToken(DetailAST aAST)
     {
         final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-        if (nameAST.getText().equals("ejbCreate")
+        if (nameAST.getText().startsWith("ejbCreate")
             && Utils.implementsSessionBean(aAST))
         {
-            checkMethod(aAST);
+            // cannot be final
+            checkMethod(aAST, false);
+
             if (!Utils.isVoid(aAST)) {
                 log(nameAST.getLineNo(), nameAST.getColumnNo(),
                     "nonvoidmethod.bean", "ejbCreate");

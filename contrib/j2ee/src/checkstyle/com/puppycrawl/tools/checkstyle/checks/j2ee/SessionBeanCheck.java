@@ -26,12 +26,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * requirements:
  * <ul>
  * <li>The class is defined as <code>public</code>.</li>
- * <li>The class cannot be defined as <code>abstract</code> or
- * <code>final</code>.</li>
+ * <li>The class cannot be defined as <code>final</code>.</li>
  * <li>It implements one or more <code>ejbCreate</code> methods.</li>
  * <li>It contains a <code>public</code> constructor with no parameters.</li>
  * <li>It must not define the <code>finalize</code> method.</li>
-</ul>
+ * </ul>
+ * Reference: Enterprise JavaBeansTM Specification,Version 2.1, sections 10.6.2
+ * and 7.11.2.
  * @author Rick Giles
  */
 public class SessionBeanCheck
@@ -43,8 +44,8 @@ public class SessionBeanCheck
     public void visitToken(DetailAST aAST)
     {
         if (Utils.hasImplements(aAST, "javax.ejb.SessionBean")) {
-            checkBean(aAST, "Session bean");
-            if (!Utils.hasPublicMethod(aAST, "ejbCreate", true)) {
+            checkBean(aAST, "Session bean", false);
+            if (!Utils.hasPublicMethod(aAST, "ejbCreate")) {
                 final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
                 log(
                     nameAST.getLineNo(),

@@ -31,7 +31,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>It implements one ejbCreate method.</li>
  * <li>It contains a <code>public</code> constructor with no parameters.</li>
  * <li>It must not define the <code>finalize</code> method.</li>
-</ul>
+ * </ul>
+ * Reference: Enterprise JavaBeansTM Specification,Version 2.1, section 15.7.2
+ * http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/MDB4.html#69040
  * @author Rick Giles
  */
 public class MessageBeanCheck
@@ -45,7 +47,7 @@ public class MessageBeanCheck
         if (Utils.hasImplements(aAST, "javax.ejb.MessageDrivenBean")
             && Utils.hasImplements(aAST, "javax.jms.MessageListener"))
         {
-            checkBean(aAST, "Message bean");
+            checkBean(aAST, "Message bean", false);
             if (!hasRequiredEjbCreate(aAST)) {
                 final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
                 log(nameAST.getLineNo(), nameAST.getColumnNo(),

@@ -34,7 +34,6 @@ public class EntityBeanFindByPrimaryKeyCheck
     public void visitToken(DetailAST aAST)
     {
         if (Utils.hasImplements(aAST, "javax.ejb.EntityBean")
-            && !Utils.isAbstract(aAST)
             && !Utils.hasPublicMethod(aAST, "ejbFindByPrimaryKey", false, 1))
         {
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
