@@ -226,4 +226,9 @@ public class InputJavadocStyleCheck
      */
     private static int ASDF = 0;
     // should report empty javdoc
+
+    /** @see java.lang.Object */
+    public void method19()
+    {  // should report empty javadoc (no text before see tag)
+    }
 }
