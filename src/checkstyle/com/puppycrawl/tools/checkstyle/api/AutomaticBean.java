@@ -170,27 +170,27 @@ public class AutomaticBean implements Configurable, Contextualizable
                 throw new CheckstyleException(
                     "Cannot set property '" + key + "' in module "
                     + aConfiguration.getName() + " to '" + value
-                    + "': " + e.getTargetException().getMessage());
+                    + "': " + e.getTargetException().getMessage(), e);
             }
             catch (IllegalAccessException e) {
                 throw new CheckstyleException(
                     "cannot access " + key + " in "
-                    + this.getClass().getName());
+                    + this.getClass().getName(), e);
             }
             catch (NoSuchMethodException e) {
                 throw new CheckstyleException(
                     "cannot access " + key + " in "
-                    + this.getClass().getName());
+                    + this.getClass().getName(), e);
             }
             catch (IllegalArgumentException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
-                    + "' of module " + aConfiguration.getName());
+                    + "' of module " + aConfiguration.getName(), e);
             }
             catch (ConversionException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
-                    + "' of module " + aConfiguration.getName());
+                    + "' of module " + aConfiguration.getName(), e);
             }
 
         }
@@ -226,22 +226,22 @@ public class AutomaticBean implements Configurable, Contextualizable
                 // + " is not interested in " + value)
                 throw new CheckstyleException("cannot set property "
                     + key + " to value " + value + " in bean "
-                    + this.getClass().getName());
+                    + this.getClass().getName(), e);
             }
             catch (IllegalAccessException e) {
                 throw new CheckstyleException(
                     "cannot access " + key + " in "
-                    + this.getClass().getName());
+                    + this.getClass().getName(), e);
             }
             catch (IllegalArgumentException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
-                    + "' of bean " + this.getClass().getName());
+                    + "' of bean " + this.getClass().getName(), e);
             }
             catch (ConversionException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
-                    + "' of bean " + this.getClass().getName());
+                    + "' of bean " + this.getClass().getName(), e);
             }
         }
     }

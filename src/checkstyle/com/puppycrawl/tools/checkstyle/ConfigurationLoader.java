@@ -160,17 +160,19 @@ class ConfigurationLoader
             return loader.getConfiguration();
         }
         catch (FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + aConfigFname);
+            throw new CheckstyleException(
+                "unable to find " + aConfigFname, e);
         }
         catch (ParserConfigurationException e) {
-            throw new CheckstyleException("unable to parse " + aConfigFname);
+            throw new CheckstyleException(
+                "unable to parse " + aConfigFname, e);
         }
         catch (SAXException e) {
             throw new CheckstyleException("unable to parse "
-                    + aConfigFname + " - " + e.getMessage());
+                    + aConfigFname + " - " + e.getMessage(), e);
         }
         catch (IOException e) {
-            throw new CheckstyleException("unable to read " + aConfigFname);
+            throw new CheckstyleException("unable to read " + aConfigFname, e);
         }
     }
 
