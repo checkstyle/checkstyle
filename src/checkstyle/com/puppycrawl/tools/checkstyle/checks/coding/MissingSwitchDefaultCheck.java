@@ -18,9 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
 
 /**
  * <p>
@@ -43,27 +42,28 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * @author o_sukhodolsky
  */
-public class MissingSwitchDefaultCheck
-    extends Check
+public class MissingSwitchDefaultCheck extends DescendantTokenCheck
 {
-    /** @see Check */
+    /** Creates new instance of the check. */
+    public MissingSwitchDefaultCheck()
+    {
+        setLimitedTokens(new String[] {
+            TokenTypes.getTokenName(TokenTypes.LITERAL_DEFAULT),
+        });
+        setMinimumNumber(1);
+        setMaximumDepth(2);
+        setMinimumMessage("missing.switch.default");
+    }
+
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.LITERAL_SWITCH};
     }
 
-    /** @see Check */
-    public void visitToken(DetailAST aAst)
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public int[] getAcceptableTokens()
     {
-        DetailAST child = aAst.findFirstToken(TokenTypes.CASE_GROUP);
-        while (child != null) {
-            if ((child.getType() == TokenTypes.CASE_GROUP)
-                && child.branchContains(TokenTypes.LITERAL_DEFAULT))
-            {
-                return;
-            }
-            child = (DetailAST) child.getNextSibling();
-        }
-        log(aAst.getLineNo(), "missing.switch.default");
+        return getDefaultTokens();
     }
 }
