@@ -26,6 +26,7 @@ import java.io.UnsupportedEncodingException;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
@@ -37,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  */
 public class XMLLogger
+    extends AutomaticBean
     implements AuditListener
 {
     /** decimal radix */
