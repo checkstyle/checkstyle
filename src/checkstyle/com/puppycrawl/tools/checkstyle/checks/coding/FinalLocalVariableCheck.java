@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="FinalLocalVariable"&gt;
  *     &lt;property name="token" value="VARIABLE_DEF"/&gt;
- * &lt/module&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author k_gibbs, r_auckenthaler
  */

@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
  * </p>
  * <pre class="body">
 for (
-      ; i < j; i++, j--)
+      ; i &lt; j; i++, j--)
    </pre>
  * <p>
  * The policy to verify is specified using the {@link PadOption} class and
@@ -44,7 +44,7 @@ for (
  * <pre>
  * &lt;module name="EmptyForInitializerPad"/&gt;
  * </pre>
- * <p>
+ *
  * @author lkuehne
  * @version 1.0
  */
