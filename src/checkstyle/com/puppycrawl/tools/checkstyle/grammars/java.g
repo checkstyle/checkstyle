@@ -245,7 +245,7 @@ classTypeSpec[boolean addImagNode]
 	;
 
 classOrInterfaceType[boolean addImagNode]
-	:   IDENT^ (typeArguments[addImagNode])?
+	:   IDENT (typeArguments[addImagNode])?
         (options{greedy=true;}: // match as many as possible
             DOT^
             IDENT (typeArguments[addImagNode])?
@@ -830,10 +830,10 @@ explicitConstructorInvocation
 
 variableDefinitions[AST mods, AST t]
 	:	variableDeclarator[(AST) getASTFactory().dupTree(mods),
-						   (AST) getASTFactory().dupTree(t)]
+						   (AST) getASTFactory().dupList(t)] //dupList as this also copies siblings (like TYPE_ARGUMENTS)
 		(	COMMA
 			variableDeclarator[(AST) getASTFactory().dupTree(mods),
-							   (AST) getASTFactory().dupTree(t)]
+							   (AST) getASTFactory().dupList(t)] //dupList as this also copies siblings (like TYPE_ARGUMENTS)
 		)*
 	;
 
