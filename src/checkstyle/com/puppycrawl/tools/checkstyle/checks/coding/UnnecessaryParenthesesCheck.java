@@ -25,24 +25,24 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks if unnecessary parentheses are used in a statement or expression.
- * The check will flag the following with warnings.
  * <p>
- * <pre>     return (x);          // parens around identifier
+ * Checks if unnecessary parentheses are used in a statement or expression.
+ * The check will flag the following with warnings:
+ * </p>
+ * <pre>
+ *     return (x);          // parens around identifier
  *     return (x + 1);      // parens around return value
  *     int x = (y / 2 + 1); // parens around assignment rhs
  *     for (int i = (0); i &lt; 10; i++) {  // parens around literal
  *     t -= (z + 1);        // parens around assignment rhs</pre>
- * </p>
  * <p>
  * The check is not "type aware", that is to say, it can't tell if parentheses
  * are unnecessary based on the types in an expression.  It also doesn't know
  * about operator precedence and associatvity; therefore it won't catch
  * something like
  * </p>
- * <p>
- * <pre>     int x = (a + b) + c;</pre>
- * </p>
+ * <pre>
+ *     int x = (a + b) + c;</pre>
  * <p>
  * In the above case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
  * all <code>int</code> variables, the parentheses around <code>a + b</code>
