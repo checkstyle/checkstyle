@@ -53,7 +53,7 @@ public abstract class AbstractUsageCheck
     private String mIgnoreFormat;
 
     /**
-     * Constructs an <code>AAbstractUsageCheck</code>.
+     * Constructs an <code>AbstractUsageCheck</code>.
      */
     public AbstractUsageCheck()
     {
@@ -103,8 +103,7 @@ public abstract class AbstractUsageCheck
     public void visitToken(DetailAST aAST)
     {
         if (mustCheckReferenceCount(aAST)) {
-            final DetailAST nameAST =
-                (DetailAST) aAST.findFirstToken(TokenTypes.IDENT);
+            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
             RE regexp = getRegexp();
             if ((regexp == null) || !regexp.match(nameAST.getText())) {
                 ASTManager.getInstance().registerCheckNode(this, nameAST);
