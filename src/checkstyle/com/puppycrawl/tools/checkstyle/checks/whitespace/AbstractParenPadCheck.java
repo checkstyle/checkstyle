@@ -77,14 +77,14 @@ abstract class AbstractParenPadCheck
                 && Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line))
             {
-                log(aAST.getLineNo(), before, "ws.preceeded", ")");
+                log(aAST.getLineNo(), before, "ws.preceded", ")");
             }
             else if ((PadOption.SPACE == getAbstractOption())
                 && !Character.isWhitespace(line.charAt(before))
                 && (line.charAt(before) != '('))
             {
                 log(aAST.getLineNo(), aAST.getColumnNo(),
-                    "ws.notPreceeded", ")");
+                    "ws.notPreceded", ")");
             }
         }
     }

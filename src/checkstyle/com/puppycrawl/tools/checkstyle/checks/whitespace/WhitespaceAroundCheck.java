@@ -185,7 +185,7 @@ public class WhitespaceAroundCheck
 
         if ((before >= 0) && !Character.isWhitespace(line.charAt(before))) {
             log(aAST.getLineNo(), aAST.getColumnNo(),
-                    "ws.notPreceeded", new Object[]{aAST.getText()});
+                    "ws.notPreceded", new Object[]{aAST.getText()});
         }
 
         if (after >= line.length()) {

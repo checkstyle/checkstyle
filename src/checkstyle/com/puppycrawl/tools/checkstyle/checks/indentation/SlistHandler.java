@@ -60,7 +60,7 @@ public class SlistHandler extends BlockParentHandler
         //     }
         //  }
         //  ... the case SLIST is followed by a user-created SLIST and
-        //  preceeded by a switch
+        //  preceded by a switch
 
         // if our parent is a block handler we want to be transparent
         if ((getParent() instanceof BlockParentHandler

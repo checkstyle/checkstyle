@@ -15,10 +15,10 @@ public class NoWhitespaceBeforeCheckTest
     public void testDefault() throws Exception
     {
         final String[] expected = {
-            "30:14: '++' is preceeded with whitespace.",
-            "30:21: '--' is preceeded with whitespace.",
-            "176:18: ';' is preceeded with whitespace.",
-            "178:23: ';' is preceeded with whitespace.",
+            "30:14: '++' is preceded with whitespace.",
+            "30:21: '--' is preceded with whitespace.",
+            "176:18: ';' is preceded with whitespace.",
+            "178:23: ';' is preceded with whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -27,11 +27,11 @@ public class NoWhitespaceBeforeCheckTest
     {
         checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {
-            "5:12: '.' is preceeded with whitespace.",
-            "6:4: '.' is preceeded with whitespace.",
-            "129:17: '.' is preceeded with whitespace.",
-            "135:12: '.' is preceeded with whitespace.",
-            "136:10: '.' is preceeded with whitespace.",
+            "5:12: '.' is preceded with whitespace.",
+            "6:4: '.' is preceded with whitespace.",
+            "129:17: '.' is preceded with whitespace.",
+            "135:12: '.' is preceded with whitespace.",
+            "136:10: '.' is preceded with whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -42,9 +42,9 @@ public class NoWhitespaceBeforeCheckTest
         checkConfig.addAttribute("tokens", "DOT");
         checkConfig.addAttribute("allowLineBreaks", "yes");
         final String[] expected = {
-            "5:12: '.' is preceeded with whitespace.",
-            "129:17: '.' is preceeded with whitespace.",
-            "136:10: '.' is preceeded with whitespace.",
+            "5:12: '.' is preceded with whitespace.",
+            "129:17: '.' is preceded with whitespace.",
+            "136:10: '.' is preceded with whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }

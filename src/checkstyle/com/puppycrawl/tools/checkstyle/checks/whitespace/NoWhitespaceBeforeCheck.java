@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks that there is no whitespace before a token.
- * More specifically, it checks that it is not preceeded with whitespace,
+ * More specifically, it checks that it is not preceded with whitespace,
  * or (if linebreaks are allowed) all characters on the line before are
  * whitespace. To allow linebreaks before a token, set property
  * allowLineBreaks to true.
@@ -99,7 +99,7 @@ public class NoWhitespaceBeforeCheck
                 }
             }
             if (flag) {
-                log(aAST.getLineNo(), before, "ws.preceeded", aAST.getText());
+                log(aAST.getLineNo(), before, "ws.preceded", aAST.getText());
             }
         }
     }

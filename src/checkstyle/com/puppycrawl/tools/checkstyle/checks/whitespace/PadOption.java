@@ -38,12 +38,12 @@ public final class PadOption
 
     /**
      * Represents no spacing following a left parenthesis
-     * or preceeding a right one.
+     * or preceding a right one.
      */
     public static final PadOption NOSPACE = new PadOption("nospace");
     /**
      * Represents mandatory spacing following a left parenthesis
-     * and preceeding a right one.
+     * and preceeing a right one.
      */
     public static final PadOption SPACE = new PadOption("space");
 
