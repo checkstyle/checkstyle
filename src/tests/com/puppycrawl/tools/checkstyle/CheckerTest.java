@@ -248,11 +248,16 @@ public class CheckerTest
         final Checker c = new Checker(mConfig, mStream);
         assertNotNull(c);
         final String[] expected = {
-            "InputImport.java:7: Unused import - java.util.List",
-            "InputImport.java:8: Duplicate import to line 7.",
-            "InputImport.java:8: Unused import - java.util.List",
+            "InputImport.java:7: Avoid using the '.*' form of import.",
+            "InputImport.java:7: Redundant import from the same package.",
+            "InputImport.java:8: Redundant import from the same package.",
             "InputImport.java:9: Avoid using the '.*' form of import.",
+            "InputImport.java:10: Avoid using the '.*' form of import.",
             "InputImport.java:10: Redundant import from the java.lang package.",
+            "InputImport.java:11: Redundant import from the java.lang package.",
+            "InputImport.java:13: Unused import - java.util.List",
+            "InputImport.java:14: Duplicate import to line 13.",
+            "InputImport.java:14: Unused import - java.util.List",
         };
         verify(c, "InputImport.java", expected);
     }

@@ -122,12 +122,17 @@ interface Verifier
     void reportCComment(int aStartLineNo, int aStartColNo,
                         int aEndLineNo, int aEndColNo);
 
-    
     /**
      * Report a reference to a type.
      * @param aType the type referenced
      */
     void reportReference(String aType);
+
+    /**
+     * Report the name of the package the file is in.
+     * @param aName the name of the package
+     **/
+    void reportPackageName(String aName);
 
     /**
      * Report the location of an import.

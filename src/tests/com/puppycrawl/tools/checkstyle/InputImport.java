@@ -4,11 +4,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.List;
-import java.util.List;
+import com.puppycrawl.tools.checkstyle.*;
+import com.puppycrawl.tools.checkstyle.Configuration;
 import java.io.*;
+import java.lang.*;
 import java.lang.String;
 import java.sql.Connection;
+import java.util.List;
+import java.util.List;
 
 /**
  * Test case for imports

@@ -48,9 +48,9 @@ compilationUnit
 	;
 
 packageDefinition
-{ Object ignore;}
-	:	#( PACKAGE_DEF ignore=identifier )
-	;
+{ LineText nm; }
+   : #( PACKAGE_DEF nm=identifier { ver.reportPackageName(nm.getText()); } )
+   ;
 
 importDefinition
 	:	#( IMPORT identifierStar )

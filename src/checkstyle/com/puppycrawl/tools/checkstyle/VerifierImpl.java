@@ -75,6 +75,9 @@ class VerifierImpl
     /** the lines of the file being checked **/
     private String[] mLines;
 
+    /** name of the package the file is in **/
+    private String mPkgName;
+
     /** map of the Javadoc comments indexed on the last line of the comment.
      * The hack is it assumes that there is only one Javadoc comment per line.
      **/
@@ -117,6 +120,8 @@ class VerifierImpl
     /** @see Verifier **/
     public void clearMessages()
     {
+        mLines = null;
+        mPkgName = null;
         mInInterface.clear();
         mMethodBlockLevel = 0;
         mMessages.clear();
@@ -383,6 +388,12 @@ class VerifierImpl
     }
 
     /** @see Verifier **/
+    public void reportPackageName(String aName)
+    {
+        mPkgName = aName;
+    }
+
+    /** @see Verifier **/
     public void reportImport(int aLineNo, String aType)
     {
         if (!mConfig.isIgnoreImports()) {
@@ -395,15 +406,8 @@ class VerifierImpl
                         "Duplicate import to line " + lt.getLineNo() + ".");
                 }
             }
-
-            // Check for import from java.lang package.
-            if (aType.startsWith("java.lang.")) {
-                log(aLineNo, "Redundant import from the java.lang package.");
-            }
-            else {
-                // Add to list to check for duplicates and usage
-                mImports.add(new LineText(aLineNo, aType));
-            }
+            // Add to list to check for duplicates and usage
+            mImports.add(new LineText(aLineNo, aType));
         }
     }
 
@@ -412,9 +416,7 @@ class VerifierImpl
     {
         if (!mConfig.isIgnoreImports()) {
             log(aLineNo, "Avoid using the '.*' form of import.");
-            if (aPkg.startsWith("java.lang.")) {
-                log(aLineNo, "Redundant import from the java.lang package.");
-            }
+            mImports.add(new LineText(aLineNo, aPkg));
         }
     }
 
@@ -722,11 +724,21 @@ class VerifierImpl
             return;
         }
 
-        // Loop checking for unused imports
+        // Loop checking imports
         final Iterator it = mImports.iterator();
         while (it.hasNext()) {
             final LineText imp = (LineText) it.next();
-            if (!mReferenced.contains(basename(imp.getText()))) {
+
+            if (fromPackage(imp.getText(), "java.lang")) {
+                log(imp.getLineNo(),
+                    "Redundant import from the java.lang package.");
+            }
+            else if (fromPackage(imp.getText(), mPkgName)) {
+                log(imp.getLineNo(), "Redundant import from the same package.");
+            }
+            else if (!imp.getText().endsWith(".*") &&
+                     !mReferenced.contains(basename(imp.getText())))
+            {
                 log(imp.getLineNo(), "Unused import - " + imp.getText());
             }
         }
@@ -742,5 +754,28 @@ class VerifierImpl
     private boolean inMethodBlock()
     {
         return (mMethodBlockLevel > 0);
+    }
+
+    /**
+     * Determines in an import statement is for types from a specified package.
+     * @param aImport the import name
+     * @param aPkg the package name
+     * @return whether from the package
+     */
+    private static boolean fromPackage(String aImport, String aPkg)
+    {
+        boolean retVal = false;
+        if (aPkg == null) {
+            // If not package, then check for no package in the import.
+            retVal = (aImport.indexOf('.') == -1);
+        }
+        else {
+            final int index = aImport.lastIndexOf('.');
+            if (index != -1) {
+                final String front = aImport.substring(0, index);
+                retVal = front.equals(aPkg);
+            }
+        }
+        return retVal;
     }
 }

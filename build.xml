@@ -94,6 +94,14 @@
     <checkstyle file="src/tests/com/puppycrawl/tools/checkstyle/InputSimple.java" />
   </target>
 
+  <target name="checkstyle.import" depends="compile.tests">
+    <taskdef name="checkstyle"
+             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+      <classpath refid="run.classpath"/>
+    </taskdef>
+    <checkstyle file="src/tests/com/puppycrawl/tools/checkstyle/InputImport.java" />
+  </target>
+
   <target name="checkstyle.checkstyle" depends="compile.checkstyle">
     <taskdef name="checkstyle"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
