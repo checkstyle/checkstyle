@@ -138,7 +138,8 @@
     <javac srcdir="src/checkstyle"
            destdir="target/checkstyle"
            deprecation="on" debug="on"
-           classpathref="build.classpath" />
+           classpathref="build.classpath"
+           includeAntRuntime="false"/>
 
     <propertyfile file="target/checkstyle/checkstylecompilation.properties">
        <entry key="checkstyle.compile.version" value="${version}"/>
@@ -179,7 +180,8 @@
     <javac srcdir="src/testinputs"
            destdir="target/testinputs"
            deprecation="on" debug="on"
-           excludes="${testExcludes}"/>
+           excludes="${testExcludes}"
+           includeAntRuntime="false"/>
   </target>
 
   <!-- Compiles only the test code. Input files are excluded from
@@ -196,7 +198,8 @@
     <javac srcdir="src/tests"
            destdir="target/tests"
            deprecation="on" debug="on"
-           classpathref="tests.buildpath" />
+           classpathref="tests.buildpath"
+           includeAntRuntime="false"/>
   </target>
 
   <!-- -->
