@@ -47,7 +47,6 @@ import com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheckTest;
-import com.puppycrawl.tools.checkstyle.checks.design.IllegalAbstractClassNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheckTest;
@@ -72,6 +71,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.PackageHtmlCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheckTest;
@@ -120,6 +120,7 @@ public class AllTests {
         //$JUnit-BEGIN$
         suite.addTest(new TestSuite(CheckerTest.class));
         suite.addTest(new TestSuite(DetailASTTest.class));
+        suite.addTest(new TestSuite(AbstractClassNameCheckTest.class));
         suite.addTest(new TestSuite(AbstractViolationReporterTest.class));
         suite.addTest(new TestSuite(AnonInnerLengthCheckTest.class));
         suite.addTest(new TestSuite(ArrayTypeStyleCheckTest.class));
@@ -145,7 +146,6 @@ public class AllTests {
         suite.addTest(new TestSuite(HeaderCheckTest.class));
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
         suite.addTest(new TestSuite(HideUtilityClassConstructorCheckTest.class));
-        suite.addTest(new TestSuite(IllegalAbstractClassNameCheckTest.class));
         suite.addTest(new TestSuite(IllegalCatchCheckTest.class));
         suite.addTest(new TestSuite(IllegalImportCheckTest.class));
         suite.addTest(new TestSuite(IllegalInstantiationCheckTest.class));
