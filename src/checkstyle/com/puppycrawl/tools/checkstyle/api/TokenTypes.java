@@ -34,12 +34,20 @@ import java.lang.reflect.Field;
  */
 public class TokenTypes
 {
-    /** token representing a EOF */
-    public static final int EOF = 1;
-    /** token representing a NULL_TREE_LOOKAHEAD */
-    public static final int NULL_TREE_LOOKAHEAD = 3;
-    /** token representing a BLOCK */
-    public static final int BLOCK = 4;
+    // The following three types are never part of an AST,
+    // left here as a reminder so nobody will readd them accidentally
+
+    /* * token representing a EOF */
+    // public static final int EOF = 1;
+    /* * token representing a NULL_TREE_LOOKAHEAD */
+    // public static final int NULL_TREE_LOOKAHEAD = 3;
+    /* * token representing a BLOCK */
+    // public static final int BLOCK = 4;
+
+
+    // These are the types that can actually occur in an AST
+    // it makes sense to register CHecks for these types
+
     /** token representing a MODIFIERS */
     public static final int MODIFIERS = 5;
     /** token representing a OBJBLOCK */
