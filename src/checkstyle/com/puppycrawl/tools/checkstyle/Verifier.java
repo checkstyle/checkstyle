@@ -921,7 +921,7 @@ class Verifier
     {
         RE retVal = null;
         try {
-            retVal = new RE(aPattern);
+            retVal = Utils.getRE(aPattern);
         }
         catch (RESyntaxException e) {
             System.out.println("Failed to initialise regexp expression " +
@@ -1232,21 +1232,23 @@ class Verifier
                 }
 
                 final String headerLine = mConfig.getHeaderLines()[i];
-
-                // TODO: RE creation should be cached to avoid
-                // re-compilation when multiple files are checked. Will wait
-                // until this is shown to be a performance problem. Really
-                // should create a factory method for creating RE objects.
-                final boolean match =
-                    mConfig.getHeaderLinesRegexp() ?
-                    createRE(headerLine).match(mLines[i]) :
-                    headerLine.equals(mLines[i]);
-
-                if (!match) {
+                try {
+                    final boolean match =
+                        mConfig.getHeaderLinesRegexp()
+                        ? Utils.getRE(headerLine).match(mLines[i])
+                        : headerLine.equals(mLines[i]);
+    
+                    if (!match) {
+                        log(i + 1,
+                            "Line does not match expected header line of '" +
+                            mConfig.getHeaderLines()[i] + "'.");
+                        break; // stop checking
+                    }
+                }
+                catch (RESyntaxException e) {
                     log(i + 1,
-                        "Line does not match expected header line of '" +
-                        mConfig.getHeaderLines()[i] + "'.");
-                    break; // stop checking
+                        "Unable to parse regular expression '"
+                        + headerLine + "'.");
                 }
             }
         }

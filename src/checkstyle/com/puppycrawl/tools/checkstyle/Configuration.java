@@ -640,7 +640,7 @@ public class Configuration
     public void setTodoPat(String aTodoPat)
         throws RESyntaxException
     {
-        mTodoRegexp = new RE(aTodoPat);
+        mTodoRegexp = Utils.getRE(aTodoPat);
         mTodoPat = aTodoPat;
     }
 
@@ -651,7 +651,7 @@ public class Configuration
     public void setParamPat(String aParamPat)
         throws RESyntaxException
     {
-        mParamRegexp = new RE(aParamPat);
+        mParamRegexp = Utils.getRE(aParamPat);
         mParamPat = aParamPat;
     }
 
@@ -662,7 +662,7 @@ public class Configuration
     public void setStaticPat(String aStaticPat)
         throws RESyntaxException
     {
-        mStaticRegexp = new RE(aStaticPat);
+        mStaticRegexp = Utils.getRE(aStaticPat);
         mStaticPat = aStaticPat;
     }
 
@@ -673,7 +673,7 @@ public class Configuration
     public void setStaticFinalPat(String aStaticFinalPat)
         throws RESyntaxException
     {
-        mStaticFinalRegexp = new RE(aStaticFinalPat);
+        mStaticFinalRegexp = Utils.getRE(aStaticFinalPat);
         mStaticFinalPat = aStaticFinalPat;
     }
 
@@ -684,7 +684,7 @@ public class Configuration
     public void setMemberPat(String aMemberPat)
         throws RESyntaxException
     {
-        mMemberRegexp = new RE(aMemberPat);
+        mMemberRegexp = Utils.getRE(aMemberPat);
         mMemberPat = aMemberPat;
     }
 
@@ -695,7 +695,7 @@ public class Configuration
     public void setPublicMemberPat(String aPublicMemberPat)
         throws RESyntaxException
     {
-        mPublicMemberRegexp = new RE(aPublicMemberPat);
+        mPublicMemberRegexp = Utils.getRE(aPublicMemberPat);
         mPublicMemberPat = aPublicMemberPat;
     }
 
@@ -706,7 +706,7 @@ public class Configuration
     public void setTypePat(String aTypePat)
         throws RESyntaxException
     {
-        mTypeRegexp = new RE(aTypePat);
+        mTypeRegexp = Utils.getRE(aTypePat);
         mTypePat = aTypePat;
     }
 
@@ -717,7 +717,7 @@ public class Configuration
     public void setLocalVarPat(String aLocalVarPat)
         throws RESyntaxException
     {
-        mLocalVarRegexp = new RE(aLocalVarPat);
+        mLocalVarRegexp = Utils.getRE(aLocalVarPat);
         mLocalVarPat = aLocalVarPat;
     }
 
@@ -728,7 +728,7 @@ public class Configuration
     public void setMethodPat(String aMethodPat)
         throws RESyntaxException
     {
-        mMethodRegexp = new RE(aMethodPat);
+        mMethodRegexp = Utils.getRE(aMethodPat);
         mMethodPat = aMethodPat;
     }
 
@@ -739,7 +739,7 @@ public class Configuration
     public void setIgnoreLineLengthPat(String aIgnoreLineLengthPat)
         throws RESyntaxException
     {
-        mIgnoreLineLengthRegexp = new RE(aIgnoreLineLengthPat);
+        mIgnoreLineLengthRegexp = Utils.getRE(aIgnoreLineLengthPat);
         mIgnoreLineLengthPat = aIgnoreLineLengthPat;
     }
 
