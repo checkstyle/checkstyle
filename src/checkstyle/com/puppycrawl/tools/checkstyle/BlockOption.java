@@ -65,6 +65,12 @@ public final class BlockOption implements Serializable
         return (BlockOption) STR_TO_OPT.get(aStrRep.trim().toLowerCase());
     }
 
+    /** @see Object **/
+    public String toString()
+    {
+        return mStrRep;
+    }
+
     /**
      * Ensures that we don't get multiple instances of one BlockOption
      * during deserialization. See Section 3.6 of the Java Object

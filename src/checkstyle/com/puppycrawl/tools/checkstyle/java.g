@@ -1353,7 +1353,7 @@ NUM_INT
 			)?
 		|	('1'..'9') ('0'..'9')*  {isDecimal=true;}		// non-zero decimal
 		)
-		(	('l'|'L') { _ttype = NUM_LONG; }
+		(	('l'|'L') { _ttype = NUM_LONG; ver.verifyLongEll(getLine(), getColumn()-2); }
 
 		// only check to see if it's a float if looks like decimal so far
 		|	{isDecimal}?

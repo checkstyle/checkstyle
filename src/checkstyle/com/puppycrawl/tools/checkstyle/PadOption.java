@@ -65,6 +65,12 @@ public final class PadOption
         return (PadOption) STR_TO_OPT.get(aStrRep.trim().toLowerCase());
     }
 
+    /** @see Object **/
+    public String toString()
+    {
+        return mStrRep;
+    }
+
     /**
      * Ensures that we don't get multiple instances of one PadOption
      * during deserialization. See Section 3.6 of the Java Object

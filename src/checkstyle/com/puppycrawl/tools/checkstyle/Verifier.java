@@ -953,6 +953,19 @@ class Verifier
         }
     }
 
+    /**
+     * Verify that the 'L' on a long is uppercase. E.g. 40L, not 40l.
+     * @param aLineNo number of line to check
+     * @param aColNo column where the 'ell' is
+     */
+    void verifyLongEll(int aLineNo, int aColNo)
+    {
+        if (!mConfig.isIgnoreLongEll()
+            && (mLines[aLineNo - 1].charAt(aColNo) == 'l'))
+        {
+            log(aLineNo, aColNo, "Should use uppercase 'L'.");
+        }
+    }
 
     // }}}
 
@@ -1432,10 +1445,9 @@ class Verifier
         final Iterator illIter = illegalInsts.iterator();
         while (illIter.hasNext()) {
             final String illegal = (String) illIter.next();
-            final String illegalBase = basename(illegal);
 
             // class from java.lang
-            if (illegal.length() - javaLang.length() == aClassName.length()
+            if (((illegal.length() - javaLang.length()) == aClassName.length())
                 && illegal.endsWith(aClassName)
                 && illegal.startsWith(javaLang))
             {

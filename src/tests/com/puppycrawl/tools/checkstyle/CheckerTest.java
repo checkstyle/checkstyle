@@ -772,6 +772,7 @@ public class CheckerTest
         mConfig.setCatchBlock(BlockOption.STMT);
         mConfig.setFinallyBlock(BlockOption.STMT);
         mConfig.setIgnoreImports(true);
+        mConfig.setIgnoreLongEll(false);
         mConfig.setIllegalInstantiations(
             "java.lang.Boolean," +
             "com.puppycrawl.tools.checkstyle.InputModifier," +
@@ -797,6 +798,7 @@ public class CheckerTest
             filepath + ":76:17: Must have at least one statement.",
             filepath + ":78:13: Must have at least one statement.",
             filepath + ":81:17: Must have at least one statement.",
+            filepath + ":93:43: Should use uppercase 'L'.",
         };
         verify(c, filepath, expected);
     }
@@ -809,6 +811,7 @@ public class CheckerTest
         mConfig.setCatchBlock(BlockOption.TEXT);
         mConfig.setFinallyBlock(BlockOption.TEXT);
         mConfig.setIgnoreImports(true);
+        mConfig.setIgnoreLongEll(true);
         mConfig.setIllegalInstantiations("");
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");
