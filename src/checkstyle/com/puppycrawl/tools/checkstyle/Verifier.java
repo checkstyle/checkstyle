@@ -19,6 +19,11 @@
 package com.puppycrawl.tools.checkstyle;
 
 import antlr.Token;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+import com.puppycrawl.tools.checkstyle.api.Utils;
+import org.apache.regexp.RE;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,12 +33,6 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
-
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 /**
  * Verifier of Java rules. Each rule verifier takes the form of
