@@ -183,14 +183,14 @@ identifier
             ver.reportReference(i1.getText());
             sLastIdentifier = new LineText(i1.getLine(), i1.getText());
         }
-        ( DOT^ i2:IDENT {sLastIdentifier.appendText("." + i2.getText());} )*
+        ( DOT^ i2:IDENT {ver.verifyDot(#DOT); sLastIdentifier.appendText("." + i2.getText());} )*
 	;
 
 identifierStar
 { int ln = 0; String str = ""; boolean star = false; }
 	:	i1:IDENT {ln = i1.getLine(); str = i1.getText();}
-		( DOT^ i2:IDENT {str += "." + i2.getText();} )*
-		( DOT^ i3:STAR {str += ".*"; star = true;} )?
+		( DOT^ i2:IDENT {str += "." + i2.getText(); ver.verifyDot(#DOT); } )*
+		( DOT^ i3:STAR {str += ".*"; star = true; ver.verifyDot(#DOT); } )?
 {
  if (star) {
   ver.reportStarImport(ln, str);
@@ -394,7 +394,7 @@ explicitConstructorInvocation
 			{#lp2.setType(SUPER_CTOR_CALL);}
 
 			// (new Outer()).super()  (create enclosing instance)
-		|	primaryExpression DOT! "super"! lp3:LPAREN^ argList RPAREN! SEMI!
+		|	primaryExpression DOT! {ver.verifyDot(#DOT);} "super"! lp3:LPAREN^ argList RPAREN! SEMI!
 			{#lp3.setType(SUPER_CTOR_CALL);}
 		)
     ;
@@ -884,7 +884,7 @@ postfixExpression
 	:	primaryExpression // start with a primary
 
 		(	// qualified id (id.id.id.id...) -- build the name
-			DOT^ ( IDENT {ver.reportReference(sFirstIdent);}
+			DOT^ {ver.verifyDot(#DOT);} ( IDENT {ver.reportReference(sFirstIdent);}
 				| "this"
 				| "class" {ver.reportReference(sFirstIdent);}
 				| newExpression
@@ -895,7 +895,7 @@ postfixExpression
 
 			// allow ClassName[].class
 		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR);} RBRACK! )+
-			DOT^ "class"
+			DOT^ "class" {ver.verifyDot(#DOT);}
 
 			// an array indexing operation
 		|	lb:LBRACK^ {#lb.setType(INDEX_OP);} expression RBRACK!
@@ -935,7 +935,7 @@ primaryExpression
 		// look for int.class and int[].class
 	|	builtInType
 		( lbt:LBRACK^ {#lbt.setType(ARRAY_DECLARATOR);} RBRACK! )*
-		DOT^ "class"
+		DOT^ "class" { ver.verifyDot(#DOT); }
 	;
 
 /** object instantiation.
@@ -1067,7 +1067,6 @@ LCURLY   : '{'  ;
 RCURLY   : '}'  ;
 COLON        : ':' ;
 COMMA        : ',' {ver.verifyWSAfter(getLine(), getColumn() - 1, MyToken.COMMA);} ;
-//DOT   : '.'  ;
 ASSIGN       : '=' {ver.verifyWSAroundEnd(getLine(), getColumn(), "=");} ;
 EQUAL        : "==" {ver.verifyWSAroundEnd(getLine(), getColumn(), "==");} ;
 LNOT         : '!' ; // check above
