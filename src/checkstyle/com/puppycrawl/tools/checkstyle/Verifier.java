@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 import java.util.Stack;
 
 import org.apache.regexp.RE;
@@ -41,51 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 class Verifier
 {
     // {{{ Data declarations
-    /** the pattern to match Javadoc tags that take an argument **/
-    private static final String MATCH_JAVADOC_ARG_PAT
-        = "@(throws|exception|param)\\s+(\\S+)\\s+\\S";
-    /** compiled regexp to match Javadoc tags that take an argument **/
-    private static final RE MATCH_JAVADOC_ARG =
-        Utils.createRE(MATCH_JAVADOC_ARG_PAT);
-
-   /**
-    * the pattern to match a single line comment containing only the comment
-    * itself -- no code.
-    **/
-    private static final String MATCH_SINGLELINE_COMMENT_PAT
-      = "^\\s*//.*$";
-   /** compiled regexp to match a single-line comment line **/
-    private static final RE MATCH_SINGLELINE_COMMENT =
-      Utils.createRE(MATCH_SINGLELINE_COMMENT_PAT);
-
-   /**
-    * the pattern to match the first line of a multi-line Javadoc
-    * tag that takes an argument. Javadoc with no arguments isn't
-    * allowed to go over multiple lines.
-    **/
-    private static final String MATCH_JAVADOC_MULTILINE_START_PAT
-        = "@(throws|exception|param)\\s+(\\S+)\\s*$";
-    /** compiled regexp to match first part of multilineJavadoc tags **/
-    private static final RE MATCH_JAVADOC_MULTILINE_START =
-       Utils.createRE(MATCH_JAVADOC_MULTILINE_START_PAT);
-
-    /** the pattern that looks for a continuation of the comment **/
-    private static final String MATCH_JAVADOC_MULTILINE_CONT_PAT
-        = "(\\*/|@|[^\\s\\*])";
-    /** compiled regexp to look for a continuation of the comment **/
-    private static final RE MATCH_JAVADOC_MULTILINE_CONT =
-       Utils.createRE(MATCH_JAVADOC_MULTILINE_CONT_PAT);
-    /** Multiline finished at end of comment **/
-    private static final String END_JAVADOC = "*/";
-    /** Multiline finished at next Javadoc **/
-    private static final String NEXT_TAG = "@";
-
-    /** the pattern to match Javadoc tags with no argument **/
-    private static final String MATCH_JAVADOC_NOARG_PAT
-        = "@(return|see|author)\\s+\\S";
-    /** compiled regexp to match Javadoc tags with no argument **/
-    private static final RE MATCH_JAVADOC_NOARG
-        = Utils.createRE(MATCH_JAVADOC_NOARG_PAT);
 
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
@@ -93,15 +44,6 @@ class Verifier
 
     /** stack tracking the type of block currently in **/
     private final Stack mInInterface = new Stack();
-
-    /** stack tracking the visibility scope currently in **/
-    private final Stack mInScope = new Stack();
-
-    /** stack for tracking the full class name of current scope */
-    private final Stack mTypeNames = new Stack();
-
-    /** Map of type names to a map of variables that are indexed on name */
-    private final Map mTypeFieldsMap = new HashMap();
 
     /** tracks the level of block definitions for methods **/
     private int mMethodBlockLevel = 0;
@@ -111,17 +53,6 @@ class Verifier
 
     /** the lines of the file being checked **/
     private String[] mLines;
-
-    /** name of the package the file is in **/
-    private String mPkgName;
-
-    /** map of the Javadoc comments indexed on the last line of the comment.
-     * The hack is it assumes that there is only one Javadoc comment per line.
-     **/
-    private final Map mComments = new HashMap();
-
-    /** the set of imports (no line number) **/
-    private final Set mImports = new HashSet();
 
     /** configuration for checking **/
     private final Configuration mConfig;
@@ -163,14 +94,8 @@ class Verifier
     void reset()
     {
         mLines = null;
-        mPkgName = null;
         mInInterface.clear();
-        mInScope.clear();
         mMessages.reset();
-        mComments.clear();
-        mImports.clear();
-        mTypeNames.clear();
-        mTypeFieldsMap.clear();
         mMethodBlockLevel = 0;
     }
 
@@ -295,11 +220,6 @@ class Verifier
         final String[] cc = extractCComment(aStartLineNo, aStartColNo,
                                             aEndLineNo, aEndColNo);
 
-        // Remember if possible Javadoc comment
-        if (mLines[aStartLineNo - 1].indexOf("/**", aStartColNo) != -1) {
-            mComments.put(new Integer(aEndLineNo - 1), cc);
-        }
-
         // Check for to-do comments
         for (int i = 0; i < cc.length; i++) {
             if (mConfig.getTodoRegexp().match(cc[i])) {
@@ -316,7 +236,6 @@ class Verifier
      **/
     void reportPackageName(LineText aName)
     {
-        mPkgName = aName.getText();
     }
 
 
@@ -327,8 +246,6 @@ class Verifier
      **/
     void reportImport(int aLineNo, String aType)
     {
-        // Add to list to check for duplicates, usage and instantiation checks
-        mImports.add(new LineText(aLineNo, aType));
     }
 
 
@@ -339,7 +256,6 @@ class Verifier
      **/
     void reportStarImport(int aLineNo, String aPkg)
     {
-        mImports.add(new LineText(aLineNo, aPkg));
     }
 
 
@@ -355,11 +271,7 @@ class Verifier
                               boolean aIsInterface,
                               MyCommonAST aType)
     {
-        mInScope.push(aScope);
         mInInterface.push(aIsInterface ? Boolean.TRUE : Boolean.FALSE);
-        if (aType != null) {
-            mTypeNames.push(aType.getText());
-        }
     }
 
 
@@ -369,11 +281,7 @@ class Verifier
      */
     void reportEndTypeBlock(boolean aNamed)
     {
-        mInScope.pop();
         mInInterface.pop();
-        if (aNamed) {
-            mTypeNames.pop();
-        }
     }
 
 
@@ -448,9 +356,6 @@ class Verifier
     // Private methods
     ////////////////////////////////////////////////////////////////////////////
 
- 
-
-
     /**
      * Checks that a variable confirms to a specified regular expression. Logs
      * a message if it does not.
@@ -496,29 +401,6 @@ class Verifier
         }
         return retVal;
     }
-
-     /**
-     * Checks if the specified line is blank.
-     * @param aLineNo the line number to check
-     * @return if the specified line consists only of tabs and spaces.
-     **/
-    private boolean lineIsBlank(int aLineNo)
-    {
-        // possible improvement: avoid garbage creation in trim()
-        return "".equals(mLines[aLineNo].trim());
-    }
-
-    /**
-     * Checks if the specified line is a single-line comment without code.
-     * @param aLineNo  the line number to check
-     * @return if the specified line consists of only a single line comment
-     *         without code.
-     **/
-    private boolean lineIsComment(int aLineNo)
-    {
-      return MATCH_SINGLELINE_COMMENT.match(mLines[aLineNo]);
-    }
-
 
     /** @return whether currently in an interface block **/
     private boolean inInterfaceBlock()
