@@ -89,6 +89,9 @@ public class BaseScope extends DefaultScope {
       catch (ClassNotFoundException e) {
         // no-op
       }
+      catch (NoClassDefFoundError e) {
+        // no-op, checkstyle bug 842781
+      }
     }
 
     return result;
