@@ -8,9 +8,9 @@ public class FileLengthCheckTest
 {
     private void runIt(String aMax, String[] aExpected) throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(FileLengthCheck.class.getName());
-        checkConfig.addProperty("max", aMax);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(FileLengthCheck.class);
+        checkConfig.addAttribute("max", aMax);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         verify(c, fname, aExpected);
@@ -33,10 +33,10 @@ public class FileLengthCheckTest
 
     public void testArgs() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(FileLengthCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(FileLengthCheck.class);
         try {
-            checkConfig.addProperty("max", "abc");
+            checkConfig.addAttribute("max", "abc");
             createChecker(checkConfig);
             fail("Should indicate illegal args");
         }

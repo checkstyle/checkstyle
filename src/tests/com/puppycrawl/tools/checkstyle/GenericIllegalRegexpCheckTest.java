@@ -8,10 +8,10 @@ public class GenericIllegalRegexpCheckTest
     public void testIt()
             throws Exception
     {
-        String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(GenericIllegalRegexpCheck.class.getName());
-        checkConfig.addProperty("format", illegal);
+        final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {
