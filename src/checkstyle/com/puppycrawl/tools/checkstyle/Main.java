@@ -24,9 +24,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.LinkedList;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -146,7 +146,7 @@ public final class Main
         }
 
         // Get all the Java files
-        final List files = new ArrayList();
+        final List files = new LinkedList();
         if (line.hasOption("r")) {
             final String[] values = line.getOptionValues("r");
             for (int i = 0; i < values.length; i++) {
@@ -156,7 +156,7 @@ public final class Main
 
         final String[] remainingArgs = line.getArgs();
         for (int i = 0; i < remainingArgs.length; i++) {
-            files.add(remainingArgs[i]);
+            files.add(new File(remainingArgs[i]));
         }
 
         if (files.isEmpty()) {
@@ -191,8 +191,9 @@ public final class Main
             System.exit(1);
         }
 
-        final int numErrs =
-            c.process((String[]) files.toArray(new String[files.size()]));
+        final File[] processedFiles = new File[files.size()];
+        files.toArray(processedFiles);
+        final int numErrs = c.process(processedFiles);
         c.destroy();
         System.exit(numErrs);
     }
@@ -227,7 +228,7 @@ public final class Main
                 }
             }
             else if (aNode.isFile() && aNode.getPath().endsWith(".java")) {
-                aFiles.add(aNode.getPath());
+                aFiles.add(aNode);
             }
         }
     }
