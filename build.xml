@@ -1,377 +1,407 @@
 <project name="test" default="compile.checkstyle" basedir=".">
 
-    <!-- set global properties for this build -->
+  <!-- set global properties for this build -->
 
-    <!-- Give user a chance to override without editing this file -->
-    <!-- (and without typing -D each time it compiles it) -->
-    <property file="checkstyle.buildproperties" />
-    <property file="${user.home}/checkstyle.buildproperties" />
+  <!-- Give user a chance to override without editing this file -->
+  <!-- (and without typing -D each time it compiles it) -->
+  <property file="checkstyle.buildproperties" />
+  <property file="${user.home}/checkstyle.buildproperties" />
 
-    <property name="antlr.jar" value="lib/antlr.jar" />
-    <property name="antlr-tools.jar" value="lib/antlr-tools.jar" />
-    <property name="regexp.jar" value="lib/jakarta-regexp-1.2.jar" />
-    <property name="junit.jar" value="lib/junit.jar" />
+  <property name="antlr.jar" value="lib/antlr.jar" />
+  <property name="antlr-tools.jar" value="lib/antlr-tools.jar" />
+  <property name="regexp.jar" value="lib/jakarta-regexp-1.2.jar" />
+  <property name="junit.jar" value="lib/junit.jar" />
 
-    <property name="checkstyle.dir"
-              value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
-    <property name="testreport.dir" value="testreports"/>
+  <property name="checkstyle.dir"
+            value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
+  <property name="testreport.dir" value="testreports"/>
 
-    <property name="version" value="2.3beta" />
+  <property name="version" value="2.3beta" />
 
-    <path id="build.classpath">
-        <pathelement location="${antlr.jar}" />
-        <pathelement location="${regexp.jar}" />
-    </path>
+  <path id="build.classpath">
+    <pathelement location="${antlr.jar}" />
+    <pathelement location="${regexp.jar}" />
+  </path>
 
-    <path id="run.classpath">
-        <pathelement location="classes/checkstyle" />
-        <path refid="build.classpath" />
-    </path>
+  <path id="run.classpath">
+    <pathelement location="classes/checkstyle" />
+    <path refid="build.classpath" />
+  </path>
 
-    <!-- add classes to generate Javadoc -->
-    <path id="javadoc.classpath">
-        <pathelement location="${ant.home}/lib/ant.jar" />
-        <pathelement location="${ant.home}/lib/crimson.jar" />
-        <path refid="run.classpath" />
-    </path>
+  <!-- add classes to generate Javadoc -->
+  <path id="javadoc.classpath">
+    <pathelement location="${ant.home}/lib/ant.jar" />
+    <pathelement location="${ant.home}/lib/crimson.jar" />
+    <path refid="run.classpath" />
+  </path>
 
-    <path id="tests.buildpath">
-        <pathelement location="${junit.jar}" />
-        <path refid="run.classpath" />
-    </path>
+  <path id="tests.buildpath">
+    <pathelement location="${junit.jar}" />
+    <path refid="run.classpath" />
+  </path>
 
-    <path id="tests.runpath">
-        <pathelement location="classes/tests" />
-        <path refid="tests.buildpath" />
-    </path>
+  <path id="tests.runpath">
+    <pathelement location="classes/tests" />
+    <path refid="tests.buildpath" />
+  </path>
 
-    <target name="display.classpath">
-        <property name="asd" refid="run.classpath" />
-        <echo message="Classpath is ${asd}" />
-    </target>
+  <target name="display.classpath">
+    <property name="asd" refid="run.classpath" />
+    <echo message="Classpath is ${asd}" />
+  </target>
 
-    <!-- -->
-    <!-- Cleanup targets -->
-    <!-- -->
-    <target name="clean">
-        <delete>
-            <fileset dir="src/checkstyle" includes="**/Generated*.java" />
-            <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
-        </delete>
-        <delete dir="classes" />
-        <delete dir="dist" />
-        <delete includeemptydirs="true">
-            <fileset dir="docs/api" includes="**" excludes=".cvsignore,CVS/**"/>
-        </delete>
-        <delete dir="${testreport.dir}" />
-    </target>
+  <!-- -->
+  <!-- Cleanup targets -->
+  <!-- -->
+  <target name="clean">
+    <delete>
+      <fileset dir="src/checkstyle" includes="**/Generated*.java" />
+      <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
+    </delete>
+    <delete dir="classes" />
+    <delete dir="dist" />
+    <delete includeemptydirs="true">
+      <fileset dir="docs/api" includes="**" excludes=".cvsignore,CVS/**"/>
+    </delete>
+    <delete dir="${testreport.dir}" />
+  </target>
 
-    <!-- -->
-    <!-- ANTLR targets -->
-    <!-- -->
+  <!-- -->
+  <!-- ANTLR targets -->
+  <!-- -->
 
-    <!-- Checks whether the grammar file is newer that the generated code -->
-    <target name="check.antlr">
-        <uptodate property="uptodate.antlr"
-                  targetfile="${checkstyle.dir}/GeneratedJava14Lexer.java" >
-            <srcfiles dir= "${checkstyle.dir}" includes="java.g,java14.g"/>
-        </uptodate>
-    </target>
+  <!-- Checks whether the grammar file is newer that the generated code -->
+  <target name="check.antlr">
+    <uptodate property="uptodate.antlr"
+              targetfile="${checkstyle.dir}/GeneratedJava14Lexer.java" >
+      <srcfiles dir= "${checkstyle.dir}" includes="java.g,java14.g"/>
+    </uptodate>
+  </target>
 
-    <!-- Conditionally will compile the grammar. Deliberately do not use the -->
-    <!-- antlr task as it requirs the ANTLR classes to be in the classpath -->
-    <!-- which creates lots of problems. -->
-    <target name="build.antlr" depends="check.antlr" unless="uptodate.antlr">
-        <java classname="antlr.Tool"
-              classpath="${antlr-tools.jar}"
-              fork="yes"
-              dir="${checkstyle.dir}">
-            <arg value="java.g" />
-        </java>
-        <java classname="antlr.Tool"
-              classpath="${antlr-tools.jar}"
-              fork="yes"
-              dir="${checkstyle.dir}">
-            <arg value="-glib" />
-            <arg value="java.g" />
-            <arg value="java14.g" />
-        </java>
-    </target>
+  <!-- Conditionally will compile the grammar. Deliberately do not use the -->
+  <!-- antlr task as it requirs the ANTLR classes to be in the classpath -->
+  <!-- which creates lots of problems. -->
+  <target name="build.antlr" depends="check.antlr" unless="uptodate.antlr">
+    <java classname="antlr.Tool"
+          classpath="${antlr-tools.jar}"
+          fork="yes"
+          dir="${checkstyle.dir}">
+      <arg value="java.g" />
+    </java>
+    <java classname="antlr.Tool"
+          classpath="${antlr-tools.jar}"
+          fork="yes"
+          dir="${checkstyle.dir}">
+      <arg value="-glib" />
+      <arg value="java.g" />
+      <arg value="java14.g" />
+    </java>
+  </target>
 
-    <!-- -->
-    <!-- COMPILE TARGETS -->
-    <!-- -->
-    <target name="compile.checkstyle" depends="build.antlr">
-        <mkdir dir="classes/checkstyle" />
-        <depend srcdir="src/checkstyle"
-                destdir="classes/checkstyle" closure="yes"/>
-        <javac srcdir="src/checkstyle"
-               destdir="classes/checkstyle"
-               deprecation="on" debug="on"
-               classpathref="build.classpath" />
-        <copy file="src/checkstyle/checkstyletask.properties"
-              todir="classes/checkstyle"/>
-    </target>
+  <!-- -->
+  <!-- COMPILE TARGETS -->
+  <!-- -->
+  <target name="compile.checkstyle" depends="build.antlr">
+    <mkdir dir="classes/checkstyle" />
+    <depend srcdir="src/checkstyle"
+            destdir="classes/checkstyle" closure="yes"/>
+    <javac srcdir="src/checkstyle"
+           destdir="classes/checkstyle"
+           deprecation="on" debug="on"
+           classpathref="build.classpath" />
+    <copy file="src/checkstyle/checkstyletask.properties"
+          todir="classes/checkstyle"/>
+  </target>
 
-    <!-- Compiles only the test code. Input files are excluded from
-         compilation, they contain code like assert statements
-         that does not compile on all JDKs -->
-    <target name="compile.tests" depends="compile.checkstyle">
-        <mkdir dir="classes/tests" />
-        <depend srcdir="src/tests" destdir="classes/tests" closure="yes"/>
-        <!-- start of a change to turn on compilation of all input files -->
-        <!-- under JDK1.4. -->
-        <property name="testExcludes"
-                  value="**/InputWhitespace.java,**/InputImport.java"/>
-        <javac srcdir="src/tests"
-               destdir="classes/tests"
-               deprecation="on" debug="on"
-               excludes="${testExcludes}"
-               classpathref="tests.buildpath" />
-    </target>
+  <!-- Compiles only the test code. Input files are excluded from
+       compilation, they contain code like assert statements
+       that does not compile on all JDKs -->
+  <target name="compile.tests" depends="compile.checkstyle">
+    <mkdir dir="classes/tests" />
+    <depend srcdir="src/tests" destdir="classes/tests" closure="yes"/>
+    <!-- start of a change to turn on compilation of all input files -->
+    <!-- under JDK1.4. -->
+    <property name="testExcludes"
+              value="**/InputWhitespace.java,**/InputImport.java"/>
+    <javac srcdir="src/tests"
+           destdir="classes/tests"
+           deprecation="on" debug="on"
+           excludes="${testExcludes}"
+           classpathref="tests.buildpath" />
+  </target>
 
-    <!-- -->
-    <!-- TEST TARGETS -->
-    <!-- -->
+  <!-- -->
+  <!-- TEST TARGETS -->
+  <!-- -->
 
-    <!-- runs the command line version on a file -->
-    <target name="run.checkstyle" depends="compile.tests">
-        <java classname="com.puppycrawl.tools.checkstyle.Main"
-              fork="yes"
-              dir="src/tests/com/puppycrawl/tools/checkstyle"
-              classpathref="run.classpath">
-            <sysproperty key="checkstyle.allow.tabs" value="yes"/>
-            <arg value="InputSimple.java" />
-        </java>
-        <java classname="com.puppycrawl.tools.checkstyle.Main"
-              fork="yes"
-              dir="."
-              classpathref="run.classpath">
-            <arg value="-r"/>
-            <arg value="src"/>
-        </java>
-    </target>
+  <!-- runs the command line version on a file -->
+  <target name="run.checkstyle" depends="compile.tests">
+    <java classname="com.puppycrawl.tools.checkstyle.Main"
+          fork="yes"
+          dir="src/tests/com/puppycrawl/tools/checkstyle"
+          classpathref="run.classpath">
+      <sysproperty key="checkstyle.allow.tabs" value="yes"/>
+      <arg value="InputSimple.java" />
+    </java>
+    <java classname="com.puppycrawl.tools.checkstyle.Main"
+          fork="yes"
+          dir="."
+          classpathref="run.classpath">
+      <arg value="-r"/>
+      <arg value="src"/>
+    </java>
+  </target>
 
-    <target name="checkstyle.simple" depends="compile.tests">
-        <taskdef resource="checkstyletask.properties">
-            <classpath refid="run.classpath"/>
-        </taskdef>
-        <checkstyle file="src/tests/com/puppycrawl/tools/checkstyle/InputWhitespace.java"/>
-    </target>
+  <target name="checkstyle.simple" depends="compile.tests">
+    <taskdef resource="checkstyletask.properties">
+      <classpath refid="run.classpath"/>
+    </taskdef>
+    <checkstyle file="src/tests/com/puppycrawl/tools/checkstyle/InputWhitespace.java"/>
+  </target>
 
-    <target name="checkstyle.import" depends="compile.tests">
-        <taskdef name="checkstyle"
-                 classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
-            <classpath refid="run.classpath"/>
-        </taskdef>
-        <echo message="Expect to get a message after checkstyle"/>
-        <checkstyle failOnViolation="false"
-                    file="src/tests/com/puppycrawl/tools/checkstyle/InputImport.java" />
-        <echo message="THIS IS THE EXPECTED MESSAGE"/>
-    </target>
+  <target name="checkstyle.import" depends="compile.tests">
+    <taskdef name="checkstyle"
+             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+      <classpath refid="run.classpath"/>
+    </taskdef>
+    <echo message="Expect to get a message after checkstyle"/>
+    <checkstyle failOnViolation="false"
+                file="src/tests/com/puppycrawl/tools/checkstyle/InputImport.java" />
+    <echo message="THIS IS THE EXPECTED MESSAGE"/>
+  </target>
 
-    <target name="checkstyle.checkstyle" depends="compile.checkstyle">
-        <taskdef name="checkstyle"
-                 classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
-            <classpath refid="run.classpath"/>
-        </taskdef>
-        <delete file="classes/cachefile" />
-        <checkstyle headerfile="docs/java.header"
-                    ignorebraces="false"
-                    cachefile="classes/cachefile"
-                    memberPattern="^m[A-Z][a-zA-Z0-9]*$"
-                    staticPattern="^s[A-Z][a-zA-Z0-9]*$"
-                    paramPattern="^a[A-Z][a-zA-Z0-9]*$"
-                    lcurlyMethod="nl"
-                    lcurlyOther="nlow"
-                    lcurlyType="nl"
-                    rcurly="alone"
-                    parenPad="nospace"
-                    catchBlock="text"
-                    checkUnusedThrows="true"
-                    todoPattern="TODO:">
-            <fileset dir="src/checkstyle"
-                     includes="**/*.java"
-                     excludes="**/Generated*.java"/>
-            <formatter type="plain"/>
-            <formatter type="xml" toFile="classes/cs_errors.xml"/>
-            <classpath refid="build.classpath"/>
-        </checkstyle>
-    </target>
+  <target name="checkstyle.checkstyle" depends="compile.checkstyle">
+    <taskdef name="checkstyle"
+             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+      <classpath refid="run.classpath"/>
+    </taskdef>
+    <delete file="classes/cachefile" />
+    <checkstyle headerfile="docs/java.header"
+                ignorebraces="false"
+                cachefile="classes/cachefile"
+                memberPattern="^m[A-Z][a-zA-Z0-9]*$"
+                staticPattern="^s[A-Z][a-zA-Z0-9]*$"
+                paramPattern="^a[A-Z][a-zA-Z0-9]*$"
+                lcurlyMethod="nl"
+                lcurlyOther="nlow"
+                lcurlyType="nl"
+                rcurly="alone"
+                parenPad="nospace"
+                catchBlock="text"
+                checkUnusedThrows="true"
+                todoPattern="TODO:">
+      <fileset dir="src/checkstyle"
+               includes="**/*.java"
+               excludes="**/Generated*.java"/>
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="classes/cs_errors.xml"/>
+      <classpath refid="build.classpath"/>
+    </checkstyle>
+  </target>
 
-    <target name="checkstyle.noargs" depends="compile.checkstyle">
-        <taskdef name="checkstyle"
-                 classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
-            <classpath refid="run.classpath"/>
-        </taskdef>
-        <echo message="Calling checkstyle with no arguments" />
-        <checkstyle>
-        </checkstyle>
-    </target>
+  <target name="checkstyle.noargs" depends="compile.checkstyle">
+    <taskdef name="checkstyle"
+             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+      <classpath refid="run.classpath"/>
+    </taskdef>
+    <echo message="Calling checkstyle with no arguments" />
+    <checkstyle/>
+  </target>
 
-    <!-- Targets to verify that JUnit is in the classpath -->
-    <target name="check.junit">
-        <available property="have.junit"
-                   classname="junit.framework.TestListener"/>
-    </target>
-    <target name="require.junit" depends="check.junit" unless="have.junit">
-        <fail message="Need to have JUnit in your CLASSPATH to run the tests. Consider using the one in the lib directory."/>
-    </target>
+  <target name="checkstyle.style" depends="compile.checkstyle">
+    <taskdef name="checkstyle"
+             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+      <classpath refid="run.classpath"/>
+    </taskdef>
+    <mkdir dir="classes/style/frames"/>
+    <mkdir dir="classes/style/noframes"/>
+    <mkdir dir="classes/style/simple"/>
+    <checkstyle failOnViolation="false"
+                basedir=".">
+      <fileset dir="src/checkstyle"
+               includes="**/*.java"
+               excludes="**/Generated*.java"/>
+      <formatter type="xml" toFile="classes/style/cs_errors.xml"/>
+      <classpath refid="build.classpath"/>
+    </checkstyle>
+    <style basedir="classes/style"
+           destdir="classes/style/noframes"
+           includes="cs_errors.xml"
+           style="contrib/checkstyle-noframes.xsl"/>
+    <style basedir="classes/style"
+           destdir="classes/style/frames"
+           includes="cs_errors.xml"
+           style="contrib/checkstyle-frames.xsl"/>
+    <style basedir="classes/style"
+           destdir="classes/style/simple"
+           includes="cs_errors.xml"
+           style="contrib/checkstyle-simple.xsl"/>
 
-    <!-- Targets to verify that Xalan is in the classpath -->
-    <target name="check.xalan">
-        <condition property="have.xalan">
-            <or>
-                <!-- jdk 1.3 with modern Xalan -->
-                <available classname="org.apache.xalan.Version"/>
-                <!-- Xalan classes in jdk 1.4 (beta 3) are OK for running -->
-                <!-- the tests, but there is no Version class in jdk 1.4: -->
-                <!-- fallback to stable jaxp implementation class -->
-                <available classname="org.apache.xalan.transformer.TransformerImpl"/>
-            </or>
-        </condition>
-    </target>
+  </target>
 
-    <target name="require.xalan" depends="check.xalan" unless="have.xalan">
-        <fail message="Need to have Xalan in your CLASSPATH to run the tests. You can download it from http://xml.apache.org/."/>
-    </target>
+  <!-- Targets to verify that JUnit is in the classpath -->
+  <target name="check.junit">
+    <available property="have.junit"
+               classname="junit.framework.TestListener"/>
+  </target>
+  <target name="require.junit" depends="check.junit" unless="have.junit">
+    <fail message="Need to have JUnit in your CLASSPATH to run the tests. Consider using the one in the lib directory."/>
+  </target>
 
-    <!-- To run the tests need Xalan in the classpath -->
-    <target name="run.tests"
-            depends="compile.tests,require.junit,require.xalan">
+  <!-- Targets to verify that Xalan is in the classpath -->
+  <target name="check.xalan">
+    <condition property="have.xalan">
+      <or>
+        <!-- jdk 1.3 with modern Xalan -->
+        <available classname="org.apache.xalan.Version"/>
+        <!-- Xalan classes in jdk 1.4 (beta 3) are OK for running -->
+        <!-- the tests, but there is no Version class in jdk 1.4: -->
+        <!-- fallback to stable jaxp implementation class -->
+        <available classname="org.apache.xalan.transformer.TransformerImpl"/>
+      </or>
+    </condition>
+  </target>
 
-        <mkdir dir="${testreport.dir}"/>
-        <property name="tests.dir"
-                  location="src/tests/com/puppycrawl/tools/checkstyle"/>
+  <target name="require.xalan" depends="check.xalan" unless="have.xalan">
+    <fail message="Need to have Xalan in your CLASSPATH to run the tests. You can download it from http://xml.apache.org/."/>
+  </target>
 
-        <junit printsummary="yes"
-               fork="yes"
-               haltonfailure="no"
-               failureProperty="tests.have.failed">
-            <jvmarg value="-Dtests.dir=${tests.dir}"/>
-            <formatter type="xml" />
-            <classpath refid="tests.runpath"/>
-            <batchtest todir="${testreport.dir}">
-                <fileset dir="src/tests">
-                    <include name="**/*Test.java" />
-                </fileset>
-            </batchtest>
-        </junit>
+  <!-- To run the tests need Xalan in the classpath -->
+  <target name="run.tests"
+          depends="compile.tests,require.junit,require.xalan">
 
-        <junitreport todir="${testreport.dir}">
-            <fileset dir="${testreport.dir}">
-                <include name="TEST-*.xml"/>
-            </fileset>
-            <report todir="${testreport.dir}"/>
-        </junitreport>
+    <mkdir dir="${testreport.dir}"/>
+    <property name="tests.dir"
+              location="src/tests/com/puppycrawl/tools/checkstyle"/>
 
-        <!-- if only fail had an if attribute ... ugly workaround follows -->
-        <antcall target="check.tests.failed"/>
+    <junit printsummary="yes"
+           fork="yes"
+           haltonfailure="no"
+           failureProperty="tests.have.failed">
+      <jvmarg value="-Dtests.dir=${tests.dir}"/>
+      <formatter type="xml" />
+      <classpath refid="tests.runpath"/>
+      <batchtest todir="${testreport.dir}">
+        <fileset dir="src/tests">
+          <include name="**/*Test.java" />
+        </fileset>
+      </batchtest>
+    </junit>
 
-    </target>
+    <junitreport todir="${testreport.dir}">
+      <fileset dir="${testreport.dir}">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <report todir="${testreport.dir}"/>
+    </junitreport>
 
-    <target name="check.tests.failed" if="tests.have.failed">
-        <property name="report"
-                  value="${basedir}/${testreport.dir}/index.html"/>
-        <fail message="Unit tests failed - Report is available in ${report}"/>
-    </target>
+    <!-- if only fail had an if attribute ... ugly workaround follows -->
+    <antcall target="check.tests.failed"/>
 
-    <!-- -->
-    <!-- DIST TARGETS -->
-    <!-- -->
-    <target name="build.bindist" depends="compile.checkstyle, javadoc">
-        <delete dir="dist/checkstyle-${version}" />
-        <mkdir dir="dist/checkstyle-${version}" />
-        <jar jarfile="dist/checkstyle-${version}/checkstyle-${version}.jar"
-             basedir="classes/checkstyle" />
-        <!-- copy the JARS and make a mega JAR out of them -->
-        <copy file="${regexp.jar}" todir="dist/checkstyle-${version}" />
-        <copy file="${antlr.jar}" todir="dist/checkstyle-${version}" />
-        <mkdir dir="dist/checkstyle-${version}/tmp" />
-        <unjar src="dist/checkstyle-${version}/antlr.jar"
-               dest="dist/checkstyle-${version}/tmp" />
-        <unjar src="dist/checkstyle-${version}/jakarta-regexp-1.2.jar"
-               dest="dist/checkstyle-${version}/tmp" />
-        <unjar src="dist/checkstyle-${version}/checkstyle-${version}.jar"
-               dest="dist/checkstyle-${version}/tmp" />
-        <delete dir="dist/checkstyle-${version}/tmp/META-INF" />
-        <jar jarfile="dist/checkstyle-${version}/checkstyle-all-${version}.jar"
-             basedir="dist/checkstyle-${version}/tmp" />
-        <delete dir="dist/checkstyle-${version}/tmp" />
-        <!-- copy documentation -->
-        <copy todir="dist/checkstyle-${version}">
-            <fileset dir=".">
-                <include name="LICENSE*"/>
-                <include name="README"/>
-                <include name="RIGHTS.antlr"/>
-                <include name="TODO"/>
-                <include name="docs/**"/>
-                <include name="contrib/**"/>
-                <include name="**/.cvsignore"/>
-                <include name="**/CVS"/>
-            </fileset>
-            <filterset>
-                <filter token="CHECKSTYLE_VERSION" value="${version}" />
-            </filterset>
-        </copy>
-        <!-- create the final zip & tar/gzip files -->
-        <zip zipfile="dist/checkstyle-${version}.zip">
-            <fileset dir="dist">
-                <include name="checkstyle-${version}/**"/>
-            </fileset>
-        </zip>
-        <tar tarfile="dist/checkstyle-${version}.tar"
-             basedir="dist" includes="checkstyle-${version}/**" />
-        <gzip zipfile="dist/checkstyle-${version}.tar.gz"
-              src="dist/checkstyle-${version}.tar" />
-    </target>
+  </target>
 
-    <target name="build.srcdist" depends="checkstyle.checkstyle">
-        <delete dir="dist/checkstyle-src-${version}" />
-        <mkdir dir="dist/checkstyle-src-${version}" />
-        <copy todir="dist/checkstyle-src-${version}">
-            <fileset dir=".">
-                <include name="LICENSE*"/>
-                <include name="README"/>
-                <include name="RIGHTS.antlr"/>
-                <include name="TODO"/>
-                <include name="build.xml"/>
-                <include name="contrib/**"/>
-                <include name="docs/*"/>
-                <include name="src/**"/>
-                <include name="lib/**"/>
-            </fileset>
-        </copy>
-        <!-- Produce the final distributions -->
-        <zip zipfile="dist/checkstyle-src-${version}.zip">
-            <fileset dir="dist">
-                <include name="checkstyle-src-${version}/**"/>
-            </fileset>
-        </zip>
-        <tar tarfile="dist/checkstyle-src-${version}.tar"
-             basedir="dist" includes="checkstyle-src-${version}/**" />
-        <gzip zipfile="dist/checkstyle-src-${version}.tar.gz"
-              src="dist/checkstyle-src-${version}.tar" />
-    </target>
+  <target name="check.tests.failed" if="tests.have.failed">
+    <property name="report"
+              value="${basedir}/${testreport.dir}/index.html"/>
+    <fail message="Unit tests failed - Report is available in ${report}"/>
+  </target>
 
-    <target name="javadoc" depends="compile.checkstyle">
-        <mkdir dir="docs/api" />
-        <move toDir="src/checkstyle">
-            <fileset dir="src/checkstyle" includes="**/Generated*.java" />
-            <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
-            <fileset dir="src/checkstyle" includes="**/MyCommonAST.java" />
-            <mapper type="glob" from="*" to="*.HIDING"/>
-        </move>
-        <javadoc sourcepath="src/checkstyle" destdir="docs/api"
-                 packagenames="com.puppycrawl.tools.checkstyle"
-                 Windowtitle="Checkstyle API"
-                 classpathref="javadoc.classpath" />
-        <move toDir="src/checkstyle">
-            <fileset dir="src/checkstyle" includes="**/*.HIDING" />
-            <mapper type="glob" from="*.HIDING" to="*"/>
-        </move>
-    </target>
+  <!-- -->
+  <!-- DIST TARGETS -->
+  <!-- -->
+  <target name="build.bindist" depends="compile.checkstyle, javadoc">
+    <delete dir="dist/checkstyle-${version}" />
+    <mkdir dir="dist/checkstyle-${version}" />
+    <jar jarfile="dist/checkstyle-${version}/checkstyle-${version}.jar"
+         basedir="classes/checkstyle" />
+    <!-- copy the JARS and make a mega JAR out of them -->
+    <copy file="${regexp.jar}" todir="dist/checkstyle-${version}" />
+    <copy file="${antlr.jar}" todir="dist/checkstyle-${version}" />
+    <mkdir dir="dist/checkstyle-${version}/tmp" />
+    <unjar src="dist/checkstyle-${version}/antlr.jar"
+           dest="dist/checkstyle-${version}/tmp" />
+    <unjar src="dist/checkstyle-${version}/jakarta-regexp-1.2.jar"
+           dest="dist/checkstyle-${version}/tmp" />
+    <unjar src="dist/checkstyle-${version}/checkstyle-${version}.jar"
+           dest="dist/checkstyle-${version}/tmp" />
+    <delete dir="dist/checkstyle-${version}/tmp/META-INF" />
+    <jar jarfile="dist/checkstyle-${version}/checkstyle-all-${version}.jar"
+         basedir="dist/checkstyle-${version}/tmp" />
+    <delete dir="dist/checkstyle-${version}/tmp" />
+    <!-- copy documentation -->
+    <copy todir="dist/checkstyle-${version}">
+      <fileset dir=".">
+        <include name="LICENSE*"/>
+        <include name="README"/>
+        <include name="RIGHTS.antlr"/>
+        <include name="TODO"/>
+        <include name="docs/**"/>
+        <include name="contrib/**"/>
+        <include name="**/.cvsignore"/>
+        <include name="**/CVS"/>
+      </fileset>
+      <filterset>
+        <filter token="CHECKSTYLE_VERSION" value="${version}" />
+      </filterset>
+    </copy>
+    <!-- create the final zip & tar/gzip files -->
+    <zip zipfile="dist/checkstyle-${version}.zip">
+      <fileset dir="dist">
+        <include name="checkstyle-${version}/**"/>
+      </fileset>
+    </zip>
+    <tar tarfile="dist/checkstyle-${version}.tar"
+         basedir="dist" includes="checkstyle-${version}/**" />
+    <gzip zipfile="dist/checkstyle-${version}.tar.gz"
+          src="dist/checkstyle-${version}.tar" />
+  </target>
 
-    <!-- Added for GUMP testing -->
-    <target name="gump" depends="build.bindist,build.srcdist,run.tests"/>
+  <target name="build.srcdist" depends="checkstyle.checkstyle">
+    <delete dir="dist/checkstyle-src-${version}" />
+    <mkdir dir="dist/checkstyle-src-${version}" />
+    <copy todir="dist/checkstyle-src-${version}">
+      <fileset dir=".">
+        <include name="LICENSE*"/>
+        <include name="README"/>
+        <include name="RIGHTS.antlr"/>
+        <include name="TODO"/>
+        <include name="build.xml"/>
+        <include name="contrib/**"/>
+        <include name="docs/*"/>
+        <include name="src/**"/>
+        <include name="lib/**"/>
+      </fileset>
+    </copy>
+    <!-- Produce the final distributions -->
+    <zip zipfile="dist/checkstyle-src-${version}.zip">
+      <fileset dir="dist">
+        <include name="checkstyle-src-${version}/**"/>
+      </fileset>
+    </zip>
+    <tar tarfile="dist/checkstyle-src-${version}.tar"
+         basedir="dist" includes="checkstyle-src-${version}/**" />
+    <gzip zipfile="dist/checkstyle-src-${version}.tar.gz"
+          src="dist/checkstyle-src-${version}.tar" />
+  </target>
+
+  <target name="javadoc" depends="compile.checkstyle">
+    <mkdir dir="docs/api" />
+    <move toDir="src/checkstyle">
+      <fileset dir="src/checkstyle" includes="**/Generated*.java" />
+      <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
+      <fileset dir="src/checkstyle" includes="**/MyCommonAST.java" />
+      <mapper type="glob" from="*" to="*.HIDING"/>
+    </move>
+    <javadoc sourcepath="src/checkstyle" destdir="docs/api"
+             packagenames="com.puppycrawl.tools.checkstyle"
+             Windowtitle="Checkstyle API"
+             classpathref="javadoc.classpath" />
+    <move toDir="src/checkstyle">
+      <fileset dir="src/checkstyle" includes="**/*.HIDING" />
+      <mapper type="glob" from="*.HIDING" to="*"/>
+    </move>
+  </target>
+
+  <!-- Added for GUMP testing -->
+  <target name="gump" depends="build.bindist,build.srcdist,run.tests"/>
 </project>

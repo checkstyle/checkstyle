@@ -118,6 +118,9 @@ public class Configuration
     /** how to pad parenthesis **/
     private PadOption mParenPadOption = PadOption.NOSPACE;
 
+    /** whether to use basedir **/
+    private String mBasedir;
+
     /** set of boolean properties **/
     private final Set mBooleanProps = new HashSet();
 
@@ -235,6 +238,7 @@ public class Configuration
                                                Defn.PAREN_PAD_PROP,
                                                PadOption.NOSPACE,
                                                aLog));
+        setBasedir(aProps.getProperty(Defn.BASEDIR_PROP));
     }
 
     /**
@@ -754,6 +758,18 @@ public class Configuration
     public void setParenPadOption(PadOption aTo)
     {
         mParenPadOption = aTo;
+    }
+
+    /** @return the base directory **/
+    public String getBasedir()
+    {
+        return mBasedir;
+    }
+
+    /** @param aTo sets the base directory **/
+    public void setBasedir(String aTo)
+    {
+        mBasedir = aTo;
     }
 
     /**

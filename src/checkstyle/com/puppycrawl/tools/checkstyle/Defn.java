@@ -116,4 +116,6 @@ public interface Defn
     String CATCH_BLOCK_PROP = "checkstyle.block.catch";
     /** property name for finally block options **/
     String FINALLY_BLOCK_PROP = "checkstyle.block.finally";
+    /** property name for the base directory **/
+    String BASEDIR_PROP = "checkstyle.basedir";
 }

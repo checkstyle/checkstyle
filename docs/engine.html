@@ -435,6 +435,10 @@ line 5: /{71}
   <li><a href="api/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a> - outputs the messages in an XML format. This is ideal for generating pretty reports, or if you want to parse the output of Checkstyle.</li>
 </ul>
 
+<div class="tip">
+<h4 class="tip">Tip</h4>
+<p>It is possible to specify a base directory which files are then reported relative to. For example, if a base directory is specified as <span class="code">c:\projects\checkstyle</span>, then an error in the file <span class="code">c:\projects\checkstyle\src\dir\subdir\File.java</span> will be reported as <span class="code">src\dir\subdir\File.java</span>.</p>
+</div>
 
 <hr>
 <p align="center">Copyright &copy; 2001 Oliver Burn. All rights Reserved.</p>
