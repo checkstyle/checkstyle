@@ -1,12 +1,13 @@
+*.vpj
+*.vpw
+*.vtg
+.checkclipse
 .checkstyle
 .classpath
 .project
+bin
 checkstyle.buildproperties
 checkstyle.ipr
 checkstyle.iws
 devnull
-bin
 target
-*.vpj
-*.vpw
-*.vtg
