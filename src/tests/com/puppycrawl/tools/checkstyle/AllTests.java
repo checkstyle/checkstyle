@@ -5,7 +5,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailASTTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidInlineConditionalsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidStarImportTest;
 import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheckTest;
-import com.puppycrawl.tools.checkstyle.checks.DesignForInheritanceCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.DesignForExtensionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.DoubleCheckedLockingCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EmptyForIteratorPadCheckTest;
@@ -91,7 +91,7 @@ public class AllTests {
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
-        suite.addTest(new TestSuite(DesignForInheritanceCheckTest.class));
+        suite.addTest(new TestSuite(DesignForExtensionCheckTest.class));
         suite.addTest(new TestSuite(DoubleCheckedLockingCheckTest.class));
         suite.addTest(new TestSuite(EmptyBlockCheckTest.class));
         suite.addTest(new TestSuite(EmptyForIteratorPadCheckTest.class));

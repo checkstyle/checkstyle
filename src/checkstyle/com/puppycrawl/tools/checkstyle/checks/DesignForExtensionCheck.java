@@ -53,9 +53,9 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.1 $
  */
-public class DesignForInheritanceCheck extends Check
+public class DesignForExtensionCheck extends Check
 {
     /** @see Check */
     public int[] getDefaultTokens()
@@ -119,7 +119,7 @@ public class DesignForInheritanceCheck extends Check
         if (hasDefaultConstructor || hasExplNonPrivateCtor) {
             String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
             log(aAST.getLineNo(), aAST.getColumnNo(),
-                "design.forInheritance", name);
+                "design.forExtension", name);
         }
 
 

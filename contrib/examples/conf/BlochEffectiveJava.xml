@@ -47,7 +47,7 @@
          i.e. if you get error messages from this check you should be
          able to name a good reason to implement your code the way you do it,
          especially if you are designing a library and not an application. -->
-    <module name="DesignForInheritance">
+    <module name="DesignForExtension">
       <property name="severity" value="warning"/>
     </module>
 
