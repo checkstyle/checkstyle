@@ -83,13 +83,12 @@ public class DefaultLogger
      **/
     public void addError(AuditEvent aEvt)
     {
-        String fileName = aEvt.getFileName();
-        String message = aEvt.getMessage();
+        final String fileName = aEvt.getFileName();
+        final String message = aEvt.getMessage();
 
         // avoid StringBuffer.expandCapacity
-        int bufLen = fileName.length() + message.length() + 12;
-
-        StringBuffer sb = new StringBuffer(bufLen);
+        final int bufLen = fileName.length() + message.length() + 12;
+        final StringBuffer sb = new StringBuffer(bufLen);
 
         sb.append(fileName);
         sb.append(':').append(aEvt.getLine());

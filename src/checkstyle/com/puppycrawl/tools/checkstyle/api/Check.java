@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.HashSet;
 import java.util.Set;
 
+
 /**
  * The base class for checks.
  *
@@ -45,6 +46,9 @@ public abstract class Check extends AutomaticBean
 
     /** the tab with for column reporting */
     private int mTabWidth = 8; // meaningful default
+
+    /** the severity level of any violations found */
+    private SeverityLevel mSeverityLevel = SeverityLevel.WARNING;
 
     /** current class loader */
     private ClassLoader mLoader =
@@ -224,6 +228,38 @@ public abstract class Check extends AutomaticBean
     }
 
     /**
+     * Returns the severity level of the check.
+     * @return the severity level
+     * @see com.puppycrawl.tools.checkstyle.SeverityLevel
+     */
+    public final SeverityLevel getSeverityLevel()
+    {
+        return mSeverityLevel;
+    }
+
+    /**
+     * Sets the severity level.  The string should be one of the names
+     * defined in the <code>SeverityLevel</code> class.
+     *
+     * @param aSeverity  The new severity level
+     * @see com.puppycrawl.tools.checkstyle.SeverityLevel
+     */
+    public void setSeverity(String aSeverity)
+    {
+        mSeverityLevel = SeverityLevel.getInstance(aSeverity);
+    }
+
+    /**
+     *  Get the severity level's name.
+     *
+     *  @return  the check's severity level name.
+     */
+    public String getSeverity()
+    {
+        return mSeverityLevel.getName();
+    }
+
+    /**
      * Log an error message.
      *
      * @param aLine the line number where the error was found
@@ -246,7 +282,7 @@ public abstract class Check extends AutomaticBean
     protected final void log(int aLine, String aKey, Object aArgs[])
     {
         mMessages.add(new LocalizedMessage(
-                aLine, getResourceBundle(), aKey, aArgs));
+                aLine, getResourceBundle(), aKey, aArgs, mSeverityLevel));
     }
 
 
@@ -347,7 +383,7 @@ public abstract class Check extends AutomaticBean
         final int col = 1 + Utils.lengthExpandedTabs(
             getLines()[aLineNo - 1], aColNo, getTabWidth());
         mMessages.add(new LocalizedMessage(
-            aLineNo, col, getResourceBundle(), aKey, aArgs));
+            aLineNo, col, getResourceBundle(), aKey, aArgs, mSeverityLevel));
     }
 
 

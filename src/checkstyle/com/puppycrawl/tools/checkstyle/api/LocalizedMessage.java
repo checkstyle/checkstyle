@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+
 /**
  * Represents a message that can be localised. The translations come from
  * message.properties files. The underlying implementation uses
@@ -51,6 +52,11 @@ public final class LocalizedMessage
     private final int mLineNo;
     /** the column number **/
     private final int mColNo;
+
+    /** the severity level **/
+    private final SeverityLevel mSeverityLevel;
+    /** the default severity level if one is not specified */
+    private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.WARNING;
 
     /** key for the message format **/
     private final String mKey;
@@ -123,6 +129,32 @@ public final class LocalizedMessage
         mKey = aKey;
         mArgs = aArgs;
         mBundle = aBundle;
+        mSeverityLevel = DEFAULT_SEVERITY;
+    }
+
+    /**
+     * Creates a new <code>LocalizedMessage</code> instance.
+     *
+     * @param aLineNo line number associated with the message
+     * @param aColNo column number associated with the message
+     * @param aBundle resource bundle name
+     * @param aKey the key to locate the translation
+     * @param aArgs arguments for the translation
+     * @param aSeverityLevel severity level for the message
+     */
+    public LocalizedMessage(int aLineNo,
+                            int aColNo,
+                            String aBundle,
+                            String aKey,
+                            Object[] aArgs,
+                            SeverityLevel aSeverityLevel)
+    {
+        mLineNo = aLineNo;
+        mColNo = aColNo;
+        mKey = aKey;
+        mArgs = aArgs;
+        mBundle = aBundle;
+        mSeverityLevel = aSeverityLevel;
     }
 
     /**
@@ -138,6 +170,23 @@ public final class LocalizedMessage
             int aLineNo, String aBundle, String aKey, Object[] aArgs)
     {
         this(aLineNo, 0, aBundle, aKey, aArgs);
+    }
+
+    /**
+     * Creates a new <code>LocalizedMessage</code> instance. The column number
+     * defaults to 0.
+     *
+     * @param aLineNo line number associated with the message
+     * @param aBundle name of a resource bundle that contains error messages
+     * @param aKey the key to locate the translation
+     * @param aArgs arguments for the translation
+     * @param aSeverityLevel severity level for the message
+     */
+    public LocalizedMessage(
+            int aLineNo, String aBundle, String aKey, Object[] aArgs,
+            SeverityLevel aSeverityLevel)
+    {
+        this(aLineNo, 0, aBundle, aKey, aArgs, aSeverityLevel);
     }
 
     /** @return the translated message **/
@@ -185,6 +234,12 @@ public final class LocalizedMessage
     public int getColumnNo()
     {
         return mColNo;
+    }
+
+    /** @return the severity level **/
+    public SeverityLevel getSeverityLevel()
+    {
+        return mSeverityLevel;
     }
 
     /**
