@@ -535,7 +535,15 @@ compoundStatement[MyCommonAST[] aCurlies]
 	;
 
 
+// This production provides a slot for adding additional statement productions.
+// It is used to simplify an inherited grammar that includes assert statements
+// (new Java language feature in JDK 1.4)
 statement[int[] aType, MyCommonAST[] aCurlies]
+	:	traditionalStatement[aType, aCurlies]
+	;
+
+// a traditional (JDK < 1.4) java statement, assert keyword is not allowed
+traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 {
     final MyModifierSet modSet = new MyModifierSet();
     final int[] stmtType = new int[1];
@@ -676,9 +684,6 @@ statement[int[] aType, MyCommonAST[] aCurlies]
 
 	// empty statement
 	|	s:SEMI {#s.setType(EMPTY_STAT);}
-
-	// assert statement
-	// |	"assert"^ expression (COLON^ expression)? SEMI!
 	;
 
 
