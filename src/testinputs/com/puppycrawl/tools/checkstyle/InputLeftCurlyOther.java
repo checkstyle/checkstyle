@@ -77,4 +77,12 @@ class InputLeftCurlyOther
     {
         int x = 1; // should not require any javadoc
     }
+
+
+    public enum GreetingsEnum
+    { 
+        HELLO, 
+        GOODBYE
+    };
+    
 }

@@ -117,6 +117,7 @@ public class LeftCurlyCheckTest
             "52:9: '{' should be on the previous line.",
             "54:13: '{' should be on the previous line.",
             "63:9: '{' should be on the previous line.",
+            "83:5: '{' should be on the previous line.",
         };
         verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
