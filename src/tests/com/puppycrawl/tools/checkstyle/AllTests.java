@@ -56,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.checks.TabCharacterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.TypeNameCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.UnusedImportsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.UpperEllCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheckTest;
@@ -148,6 +149,7 @@ public class AllTests {
         suite.addTest(new TestSuite(TranslationCheckTest.class));
         suite.addTest(new TestSuite(LeftCurlyCheckTest.class));
         suite.addTest(new TestSuite(TypeNameCheckTest.class));
+        suite.addTest(new TestSuite(UncommentedMainCheckTest.class));
         suite.addTest(new TestSuite(UnusedImportsCheckTest.class));
         suite.addTest(new TestSuite(UpperEllCheckTest.class));
         suite.addTest(new TestSuite(UtilsTest.class));

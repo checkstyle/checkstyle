@@ -35,6 +35,9 @@
           <a href="#Translation">Translation</a>
         </li>
         <li>
+          <a href="#UncommentedMain">UncommentedMain</a>
+        </li>
+        <li>
           <a href="#UpperEll">UpperEll</a>
         </li>
         <li>
@@ -283,6 +286,57 @@
       <p class="body">
       <a href="config.html#checker">Checker</a>
       </p>
+      <!-- --> <a name="UncommentedMain"></a> <h2>UncommentedMain</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for uncommented main() methods (debugging leftovers).
+      </p>
+      <p class="body"> Rationale: main() method can be often used for
+      debug puposes.  Thus most of main() method should be
+      removed/commented out of the sources.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>excludedClasses</td>
+          <td>pattern for qualified names of classes which ar allowed
+          to have main method.</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td><span class="default">^$</span></td>
+        </tr>
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;UncommentedMain&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to allow main method for all classes with
+      &quot;Main&quot; name:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;UncommentedMain&quot;&gt;
+    &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      
+      </p>
+
       <!-- --> <a name="UpperEll"></a> <h2>UpperEll</h2> <h4>Description</h4>
       <p class="body">
       Checks that long constants are defined with an upper ell. That is <span class="code">' 
