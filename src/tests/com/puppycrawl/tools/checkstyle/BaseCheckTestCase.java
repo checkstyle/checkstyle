@@ -92,8 +92,19 @@ public abstract class BaseCheckTestCase
                           String[] aExpected)
         throws Exception
     {
+        verify(aC,
+            new File[] {new File(aProcessedFilename)},
+            aMessageFileName, aExpected);
+    }
+
+    protected void verify(Checker aC,
+                          File[] aProcessedFiles,
+                          String aMessageFileName,
+                          String[] aExpected)
+        throws Exception
+    {
         mStream.flush();
-        final int errs = aC.process(new File[] {new File(aProcessedFilename)});
+        final int errs = aC.process(aProcessedFiles);
 
         // process each of the lines
         final ByteArrayInputStream bais =

@@ -1,5 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.io.File;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -21,9 +23,13 @@ public class TranslationCheckTest
         final String[] expected = {
             "0: Key 'only.english' missing."
         };
+        final File[] propertyFiles = new File[] {
+            new File(getPath("messages_de.properties")),
+            new File(getPath("messages.properties"))
+        };
         verify(
             createChecker(checkConfig),
-            getPath("InputScopeAnonInner.java"),
+            propertyFiles,
             getPath("messages_de.properties"),
             expected);
     }

@@ -37,8 +37,15 @@ public interface FileSetCheck
 
     /**
      * Processes a set of files and fires errors to the MessageDispatcher.
-     * Once this is done, it is highly recommended to call for
+     *
+     * The file set to process might contain files that are not
+     * interesting to the FileSetCheck. Such files should be ignored,
+     * no error message should be fired. For example a FileSetCheck
+     * that checks java files should ignore html or properties files.
+     *
+     * Once processiong is done, it is highly recommended to call for
      * the destroy method to close and remove the listeners.
+     *
      * @param aFiles the files to be audited.
      * @see #destroy()
      */

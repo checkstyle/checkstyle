@@ -23,19 +23,18 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.FileFilter;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.Defn;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 
 /**
  * <p>
@@ -56,15 +55,11 @@ import com.puppycrawl.tools.checkstyle.Defn;
 public class TranslationCheck extends AbstractFileSetCheck
 {
     /**
-     * Filter for properties files.
+     * Creates a new <code>TranslationCheck</code> instance.
      */
-    private static class PropertyFileFilter implements FileFilter
+    public TranslationCheck()
     {
-        /** @see FileFilter */
-        public boolean accept(File aPathname)
-        {
-            return aPathname.getPath().endsWith(".properties");
-        }
+        setFileExtensions(new String[]{"properties"});
     }
 
     /**
@@ -93,12 +88,12 @@ public class TranslationCheck extends AbstractFileSetCheck
      * @param aPropFiles the set of property files
      * @return a Map object which holds the arranged property file sets
      */
-    private static Map arrangePropertyFiles(Set aPropFiles)
+    private static Map arrangePropertyFiles(File[] aPropFiles)
     {
         Map propFileMap = new HashMap();
 
-        for (Iterator iterator = aPropFiles.iterator(); iterator.hasNext();) {
-            File file = (File) iterator.next();
+        for (int i = 0; i < aPropFiles.length; i++) {
+            File file = aPropFiles[i];
             String identifier = extractPropertyIdentifier(file);
 
             Set fileSet = (Set) propFileMap.get(identifier);
@@ -111,28 +106,6 @@ public class TranslationCheck extends AbstractFileSetCheck
         return propFileMap;
     }
 
-
-    /**
-     * Searches for all files with suffix ".properties" in the
-     * given set of directories.
-     * @param aDirs the file set to search in
-     * @return the property files
-     */
-    private static Set getPropertyFiles(Set aDirs)
-    {
-        Set propFiles = new HashSet();
-        final PropertyFileFilter filter = new PropertyFileFilter();
-
-        for (Iterator iterator = aDirs.iterator(); iterator.hasNext();) {
-            File dir = (File) iterator.next();
-            File[] propertyFiles = dir.listFiles(filter);
-            for (int j = 0; j < propertyFiles.length; j++) {
-                File propertyFile = propertyFiles[j];
-                propFiles.add(propertyFile);
-            }
-        }
-        return propFiles;
-    }
 
     /**
      * Loads the keys of the specified property file into a set.
@@ -278,8 +251,7 @@ public class TranslationCheck extends AbstractFileSetCheck
      */
     public void process(File[] aFiles)
     {
-        final Set dirs = getParentDirs(aFiles);
-        final Set propertyFiles = getPropertyFiles(dirs);
+        File[] propertyFiles = filter(aFiles);
         final Map propFilesMap = arrangePropertyFiles(propertyFiles);
         checkPropertyFileSets(propFilesMap);
     }

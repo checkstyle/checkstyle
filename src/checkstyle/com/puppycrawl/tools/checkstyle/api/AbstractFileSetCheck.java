@@ -20,8 +20,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 
 import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 /**
  * Provides common functionality for many FileSetChecks.
@@ -33,31 +32,16 @@ public abstract class AbstractFileSetCheck
 {
     /** The dispatcher errors are fired to. */
     private MessageDispatcher mDispatcher = null;
-    
+
+    /** the file extensions that are accepted by this filter */
+    private String[] mFileExtensions = {};
+
     /**
      * Does nothing.
      * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
      */
     public void destroy()
     {
-    }
-
-    /**
-     * Returns the set of directories for a set of files.
-     * @param aFiles s set of files
-     * @return the set of parent directories of the given files
-     */
-    protected final Set getParentDirs(File[] aFiles)
-    {
-        Set directories = new HashSet();
-        for (int i = 0; i < aFiles.length; i++) {
-            File file = aFiles[i].getAbsoluteFile();
-            if (file.getName().endsWith(".java")) {
-                File dir = file.getParentFile();
-                directories.add(dir); // duplicates are handled automatically
-            }
-        }
-        return directories;
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
@@ -71,5 +55,58 @@ public abstract class AbstractFileSetCheck
     {
         return mDispatcher;
     }
-    
+
+    /**
+     * Determines the set of files this FileSetCheck is interested in.
+     * Returns the files that have one of the currently active file extensions.
+     * If no file extensions are active the argument array is returned.
+     *
+     * Determines the set of files this FileSetCheck is interested in. For
+     * example a FileSetCheck that processes java files should return only
+     * the java files in the argument array.
+     *
+     * @param aFiles the candidates for processing
+     * @return the subset of aFiles that this FileSetCheck should process
+     */
+    protected final File[] filter(File[] aFiles)
+    {
+        if (mFileExtensions == null || mFileExtensions.length == 0) {
+            return aFiles;
+        }
+        ArrayList files = new ArrayList(aFiles.length);
+        for (int i = 0; i < aFiles.length; i++) {
+            File file = aFiles[i];
+            for (int j = 0; j < mFileExtensions.length; j++) {
+                String fileExtension = mFileExtensions[j];
+                if (file.getName().endsWith(fileExtension)) {
+                    files.add(file);
+                }
+            }
+        }
+        return (File[]) files.toArray(new File[files.size()]);
+    }
+
+    /**
+     * Sets the file extensions that identify the files that pass the
+     * filter of this FileSetCheck.
+     * @param aExtensions the set of file extensions. A missing
+     * initial '.' character of an extension is automatically added.
+     */
+    public final void setFileExtensions(String[] aExtensions)
+    {
+        if (aExtensions == null) {
+            mFileExtensions = null;
+            return;
+        }
+        mFileExtensions = new String[aExtensions.length];
+        for (int i = 0; i < aExtensions.length; i++) {
+            String extension = aExtensions[i];
+            if (extension.startsWith(".")) {
+                mFileExtensions[i] = extension;
+            }
+            else {
+                mFileExtensions[i] = "." + extension;
+            }
+        }
+    }
 }

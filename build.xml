@@ -223,7 +223,7 @@
     <property name="check.config" location="docs/checkstyle_checks.xml"/>
     <checkstyle config="${check.config}">
       <fileset dir="src/checkstyle"
-               includes="**/*.java"
+               includes="**/*.java,**/*.properties"
                excludes="**/Generated*.java,**/gui/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="target/cs_errors.xml"/>
