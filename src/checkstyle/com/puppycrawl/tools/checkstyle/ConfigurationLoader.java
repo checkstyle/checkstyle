@@ -18,16 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.BufferedReader;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
 import java.util.Properties;
+import java.util.Stack;
+import java.net.MalformedURLException;
+import java.net.URL;
 import javax.xml.parsers.ParserConfigurationException;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -78,20 +80,21 @@ class ConfigurationLoader
     }
 
     /**
-     * Parses the specified file loading the configuration information.
-     * @param aFilename the file to parse
-     * @throws FileNotFoundException if an error occurs
+     * Parses the specified stream loading the configuration information.
+     * The stream is NOT closed after parsing, it is the responsibility of
+     * the caller to close the stream.
+     *
+     * @param aStream the stream that contains the configuration data
      * @throws IOException if an error occurs
      * @throws SAXException if an error occurs
      */
-    void parseFile(String aFilename)
-        throws FileNotFoundException, IOException, SAXException
+    private void parseInputStream(InputStream aStream)
+        throws IOException, SAXException
     {
-        final Reader configReader =
-            new BufferedReader(new FileReader(aFilename), TWO_KB);
-        final InputSource inputSource = new InputSource(configReader);
+        final InputStream configStream =
+            new BufferedInputStream(aStream, TWO_KB);
+        final InputSource inputSource = new InputSource(configStream);
         parseInputSource(inputSource);
-        configReader.close();
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -154,35 +157,47 @@ class ConfigurationLoader
 
     /**
      * Returns the check configurations in a specified file.
-     * @param aConfigFname name of config file
+     * @param aConfig name of config file
      * @param aOverrideProps overriding properties
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
-    public static Configuration loadConfiguration(String aConfigFname,
-                                                  Properties aOverrideProps)
+    public static Configuration loadConfiguration(
+        String aConfig, Properties aOverrideProps)
         throws CheckstyleException
     {
         try {
             final ConfigurationLoader loader =
                 new ConfigurationLoader(aOverrideProps);
-            loader.parseFile(aConfigFname);
+            // figure out if this is a File or a URL
+            InputStream configStream;
+            try {
+                URL url = new URL(aConfig);
+                configStream = url.openStream();
+            }
+            catch (MalformedURLException ex) {
+                configStream = new FileInputStream(aConfig);
+            }
+            final InputStream bufferedStream =
+                new BufferedInputStream(configStream);
+            loader.parseInputStream(bufferedStream);
+            bufferedStream.close();
             return loader.getConfiguration();
         }
         catch (FileNotFoundException e) {
             throw new CheckstyleException(
-                "unable to find " + aConfigFname, e);
+                "unable to find " + aConfig, e);
         }
         catch (ParserConfigurationException e) {
             throw new CheckstyleException(
-                "unable to parse " + aConfigFname, e);
+                "unable to parse " + aConfig, e);
         }
         catch (SAXException e) {
             throw new CheckstyleException("unable to parse "
-                    + aConfigFname + " - " + e.getMessage(), e);
+                    + aConfig + " - " + e.getMessage(), e);
         }
         catch (IOException e) {
-            throw new CheckstyleException("unable to read " + aConfigFname, e);
+            throw new CheckstyleException("unable to read " + aConfig, e);
         }
     }
 
