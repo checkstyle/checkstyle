@@ -168,9 +168,6 @@ public final class Utils
             retVal = getRE(aPattern);
         }
         catch (RESyntaxException e) {
-            System.out.println("Failed to initialise regexp expression "
-                               + aPattern);
-            e.printStackTrace(System.out);
             throw new ConversionException(
                 "Failed to initialise regexp expression " + aPattern, e);
         }
