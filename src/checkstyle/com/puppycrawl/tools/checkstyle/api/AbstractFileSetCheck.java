@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 /**
@@ -54,9 +55,23 @@ public abstract class AbstractFileSetCheck
         return mCharset;
     }
 
-    /** @param aCharset the name of a charset */
+    /**
+     * Sets a named charset.
+     * @param aCharset the name of a charset
+     * @throws UnsupportedEncodingException if aCharset is unsupported.
+     */
     public void setCharset(String aCharset)
+        throws UnsupportedEncodingException
     {
+        // TODO: This is a hack to check that aCharset is supported.
+        // TODO: Find a better way in Java 1.3
+        try {
+            final String hack = new String(new byte[] {}, aCharset);
+        }
+        catch (UnsupportedEncodingException es) {
+            final String message = "unsupported charset: " + es.getMessage();
+            throw new UnsupportedEncodingException(message);
+        }
         mCharset = aCharset;
     }
 
