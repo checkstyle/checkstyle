@@ -43,7 +43,7 @@ import antlr.collections.AST;
  * @author lkuehne
  */
 public class VisibilityModifierCheck
-        extends Check
+    extends Check
 {
     /** whether protected members are allowed */
     private boolean mProtectedAllowed = false;
