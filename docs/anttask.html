@@ -101,6 +101,23 @@ then you will need the following <code>taskdef</code> declaration:</p>
   </tr>
 
   <tr>
+    <td>maxErrors</td>
+    <td>The maximum number of errors that are tolerated before breaking
+    the build or setting the failure property. Defaults to
+    <span class="default">&quot;0&quot;</span>.</td>
+    <td class="required">No</td>
+  </tr>
+
+  <tr>
+    <td>maxWarnings</td>
+    <td>The maximum number of warnings that are tolerated before breaking
+    the build or setting the failure property. Defaults to
+    <span class="default">&quot;2147483647&quot;</span>, i.e.
+    <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Integer.html#MAX_VALUE">Integer.MAX_VALUE</a>.</td>
+    <td class="required">No</td>
+  </tr>
+
+  <tr>
     <td>classpath</td>
     <td>The classpath to use when looking up classes. Defaults to the current classpath.</td>
     <td class="required">No</td>
