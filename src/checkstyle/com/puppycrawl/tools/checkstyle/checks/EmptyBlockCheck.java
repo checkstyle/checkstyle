@@ -38,8 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p> An example of how to configure the check is:
  * <pre>
- * &lt;check
- *    classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlock"/&gt;
+ * &lt;module name="EmptyBlock"/&gt;
  * </pre>
  *
  * <p> An example of how to configure the check for the {@link
