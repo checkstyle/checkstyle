@@ -32,15 +32,15 @@
       <ul>
         <li><a href="#grammar">Java Grammar</a></li>
         <li><a href="#gui">Checkstyle GUI</a></li>
-        <li><a href="#visitor">Vistor Pattern</a></li>
+        <li><a href="#visitor">Visitor Pattern</a></li>
         <li><a href="#regtokens">Visitor in Action</a></li>
         <li><a href="#astnav">Navigating the AST</a></li>
-        <li><a href="#configchecks">Defining Properties</a>
-        <li><a href="#logerrors">Logging Errors</a>
+        <li><a href="#configchecks">Defining Properties</a></li>
+        <li><a href="#logerrors">Logging Errors</a></li>
         <li><a href="#integrate">Integrating Checks</a></li>
         <li><a href="#limitations">Limitations</a></li>
       </ul>
-      <p><a href="#filesetchecks">Writing FileSetChecks</a>
+      <p><a href="#filesetchecks">Writing FileSetChecks</a></p>
       <p><a href="#huh">Huh?</a></p>
       <p><a href="#contributeback">Contribute Back</a></p>
     </td>
@@ -50,10 +50,10 @@
       <a name="overview"></a>
       <h2>Overview</h2>
       <p class="body">
-      OK, so you have finally decided to write your own check.
+      OK, so you have finally decided to write your own Check.
       Welcome aboard, this is really a fun thing to do.  There are
-      actually two kinds of checks, so before you can start, you have
-      to find out which kind of check you want to implement.
+      actually two kinds of Checks, so before you can start, you have
+      to find out which kind of Check you want to implement.
       </p>
 
       <p class="body">
@@ -70,7 +70,7 @@
       Checkstyle provides a few FileSetCheck implementations by
       default and one of them happens to be the TreeWalker. A
       TreeWalker typically has some submodules, called Checks. The
-      TreeWalker operates by seperately transforming each of the java
+      TreeWalker operates by separately transforming each of the Java
       input files into an abstract syntax tree and then handing the
       result over to each of the Check submodules which in turn have a
       look at a certain aspect of the tree.
@@ -83,7 +83,7 @@
       Most of the functionality of Checkstyle is implemented as
       Checks. If you know how to write your own Checks, you can extend
       Checkstyle according to your needs without having to wait for
-      the checkstyle development team. You are about to become a
+      the Checkstyle development team. You are about to become a
       Checkstyle Expert.
       </p>
 
@@ -93,7 +93,7 @@
       sense, a class should only do one thing and do it well. With a
       zillion methods chances are that the class does more than one
       thing. The only problem you have is that your convention is not
-      checked by Checkstyle, so you'll have to write your own check
+      checked by Checkstyle, so you&apos;ll have to write your own Check
       and plug it into the Checkstyle framework.
       </p>
 
@@ -116,19 +116,19 @@
       <p class="body">
       If you have ever read an introductory level Java book you probably
       knew all of the above. And if you have studied computer science,
-      you probably also know that the rules that specify the Java Language
+      you probably also know that the rules that specify the Java language
       can be formally specified using a grammar (statement is simplified
       for didactic purposes).
       </p>
       <p class="body">
       Tools exist which read a grammar definition and produce a parser
       for the language that is specified in the grammar. In other
-      words the output of the tool is a program that can transform a
-      stream of characters (a Java File) into a tree representation
+      words, the output of the tool is a program that can transform a
+      stream of characters (a Java file) into a tree representation
       that reflects the structure of the file. CheckStyle uses the
       parser generator <a href="http://www.antlr.org">ANTLR</a> but
       that is an implementation detail you do not need to worry about
-      when writing checks. Several other parser generators exist and
+      when writing Checks. Several other parser generators exist and
       they all work well.
       </p>
 
@@ -138,15 +138,15 @@
       Still with us? Great, you have mastered the basic theory so here
       is your reward - a gui that displays the structure of a Java
       source file. To run it type
-      <pre>
-      java -classpath checkstyle-all-${version}.jar com.puppycrawl.toos.checkstyle.gui.Main
-      </pre>
       </p>
+      <pre>
+      java -classpath checkstyle-all-${version}.jar com.puppycrawl.tools.checkstyle.gui.Main
+      </pre>
       <p class="body">
-      on the command line. Click the button at the botton of the frame
+      on the command line. Click the button at the bottom of the frame
       and select a syntactically correct Java source file. The frame
       will be populated with a tree that corresponds to the structure
-      of the java source code.
+      of the Java source code.
       </p>
 
       <p class="body">
@@ -158,44 +158,44 @@
       tree, the remaining columns display information about each node
       in the tree.  The second column displays a token type for each
       node. As you navigate from the root of the tree to one of the
-      leafs, you'll notice that the token type denotes smaller and
+      leafs, you&apos;ll notice that the token type denotes smaller and
       smaller units of your source file, i.e. close to the root you
       might see the token type CLASS_DEF (a node that represents a
       class definition) while you will see token types like IDENT (an
-      identifier) near the leafs of the tree.
+      identifier) near the leaves of the tree.
       </p>
 
       <p class="body">
-      We'll get back to the details in the other columns later, they
-      are important for implementing checks but not for understanding
+      We&apos;ll get back to the details in the other columns later, they
+      are important for implementing Checks but not for understanding
       the basic concepts. For now it is sufficient to know that the
-      gui is a tool that lets you look at the structure of a java
-      file, i.e. you can see the java grammar 'in action'.
+      gui is a tool that lets you look at the structure of a Java
+      file, i.e. you can see the Java grammar &apos;in action&apos;.
       </p>
 
       <a name="visitor"></a>
       <h3>Understanding the visitor pattern</h3>
       <p class="body">
       Ready for a bit more theory? The last bit
-      that is missing before you can start writing checks is that you have
-      to understand the Vistor pattern.
+      that is missing before you can start writing Checks is that you have
+      to understand the Visitor pattern.
       </p>
 
       <p class="body">
       When working with ASTs, a simple approach to define check operations
-      on them would be to add a check() method to the Class that defines
+      on them would be to add a <span class="code">check()</span> method to the Class that defines
       the AST nodes. For example, our AST type could have a method
-      checkNumberOfMethods(). Such an approach would suffer from a few
+      <span class="code">checkNumberOfMethods()</span>. Such an approach would suffer from a few
       serious drawbacks. Most importantly, it does not provide an extensible
-      design, i.e. the checks have to be known at compile time, there is no
+      design, i.e. the Checks have to be known at compile time; there is no
       way to write plugins.
       </p>
 
       <p class="body">
-      Hence Checkstyle's AST classes do not have any methods that implement
-      checking functionality. Instead, Checkstyle's TreeWalker takes a set
-      of objects that conform to a Check interface. OK, you're right -
-      actually it's not an interface but an abstract class to provides
+      Hence Checkstyle&apos;s AST classes do not have any methods that implement
+      checking functionality. Instead, Checkstyle&apos;s TreeWalker takes a set
+      of objects that conform to a Check interface. OK, you&apos;re right -
+      actually it&apos;s not an interface but an abstract class to provide
       some helper methods. A Check provides
       methods that take an AST as an argument and perform the checking
       process for that AST, most prominently <span
@@ -212,18 +212,18 @@
 
       <p class="body">
       Before any visitor method is called, the TreeWalker will call
-      beginTree() to give the Check a chance to do some
+      <span class="code">beginTree()</span> to give the Check a chance to do some
       initialization. Then, when performing the recursive descend from the
-      root to the leaf nodes, the visitToken method is called. Unlike the
-      basic examples in the pattern book, there is a visitToken counterpart
-      called leaveToken(). The TreeWalker will call that method to signal
+      root to the leaf nodes, the <span class="code">visitToken()</span> method is called. Unlike the
+      basic examples in the pattern book, there is a <span class="code">visitToken()</span> counterpart
+      called <span class="code">leaveToken()</span>. The TreeWalker will call that method to signal
       that the subtree below the node has been processed and the TreeWalker
       is backtracking from the node. After the root node has been left, the
-      TreeWalker will call finishTree().
+      TreeWalker will call <span class="code">finishTree()</span>.
       </p>
 
       <p class="body">
-      If you'd like to learn more about the Visitor pattern you should
+      If you&apos;d like to learn more about the Visitor pattern you should
       grab a copy of the Gof
       <a href="http://c2.com/cgi/wiki?DesignPatternsBook">Design
       Patterns</a> book.
@@ -232,10 +232,10 @@
       <a name="regtokens"></a>
       <h3>Visitor in action</h3>
       <p class="body">
-      Let's get back to our example and start writing code - that's why
+      Let&apos;s get back to our example and start writing code - that&apos;s why
       you came here, right?
-      When you fire up the checkstyle GUI and look at a few source
-      files you'll figure out pretty quickly that you are mainly
+      When you fire up the Checkstyle GUI and look at a few source
+      files you&apos;ll figure out pretty quickly that you are mainly
       interested in the number of tree nodes of type METHOD_DEF. The
       number of such tokens should be counted separately for each
       CLASS_DEF / INTERFACE_DEF.
@@ -246,8 +246,8 @@
       CLASS_DEF and INTERFACE_DEF. The TreeWalker will only call
       visitToken for these token types. Because the requirements of
       our tasks are so simple, there is no need to implement the other
-      fancy methods, like finishTree(), etc., so here is our first
-      shot at our check implementation:
+      fancy methods, like <span class="code">finishTree()</span>, etc., so here is our first
+      shot at our Check implementation:
       </p>
 
       <pre>
@@ -279,17 +279,17 @@
       <p class="body">
       In the example above you already saw that the DetailsAST class
       provides utility methods to extract information from the tree, like
-      getChildCount(). By now you have probably consulted the api
+      <span class="code">getChildCount()</span>. By now you have probably consulted the api
       documentation and found that DetailsAST additionally provides methods
       for navigating around in the syntax tree, like finding the next
-      sibling of a node, the childs of a node, the parent of a node, etc.
+      sibling of a node, the children of a node, the parent of a node, etc.
       </p>
 
       <p class="body">
       These methods provide great power for developing complex
-      checks. Most of the checks that Checkstyle provides by default
+      Checks. Most of the Checks that Checkstyle provides by default
       use these methods to analyze the environment of the ASTs that
-      are visited by the TreeWalker.  Don't abuse that feature for
+      are visited by the TreeWalker.  Don&apos;t abuse that feature for
       exploring the whole tree, though. Let the TreeWalker drive the
       tree traversal and limit the visitor to the neighbours of a
       single AST.
@@ -299,14 +299,14 @@
       <h3>Defining Check Properties</h3>
       <p class="body">
 
-      Ok Mr. Checkstyle, that's all very nice but in my company we
+      Ok Mr. Checkstyle, that&apos;s all very nice but in my company we
       have several projects, and each has another number of allowed
       methods. I need to control my Check through properties, so where
-      is the Api to do that?
+      is the API to do that?
       </p>
 
       <p class="body">
-      Well, the short answer is, there is no Api. It's magic. Really!
+      Well, the short answer is, there is no API. It&apos;s magic. Really!
       </p>
 
       <p class="body">
@@ -325,15 +325,14 @@
         }
       }
       </pre>
-      </p>
 
       <p class="body">
       With this code added, you can set the property <span
       class="code">max</span> for the MethodLimitCheck module in the
-      config file. It doesn't get any simpler than that. The secret is
+      configuration file. It doesn&apos;t get any simpler than that. The secret is
       that Checkstyle uses JavaBean introspection to set the JavaBean
       properties. That works for all primitive types like boolean,
-      int, long, etc. plus Strings plus arrays of these types.
+      int, long, etc., plus Strings, plus arrays of these types.
       </p>
 
       <a name="logerrors"></a>
@@ -341,36 +340,36 @@
       <p class="body">
       Detecting errors is one thing, presenting them to the user is
       another. To do that, the Check base class provides several log
-      messages, the most simple of them is Check.log(String). In your
-      check you can simply use a verbatim error string like in <span
+      methods, the most simple of them being <span class="code">Check.log(String)</span>. In your
+      Check you can simply use a verbatim error string like in <span
       class="code">log(&quot;Too many methods, only &quot; + mMax +
       &quot; are allowed&quot;);</span> as the argument. That will
-      work, but it's not the best possible solution if your check is
+      work, but it&apos;s not the best possible solution if your Check is
       intended for a wider audience.
       </p>
 
       <p class="body">
-      If you are not living in a country where people speak English
+      If you are not living in a country where people speak English,
       you may have noticed that Checkstyle writes internationalized
       error messages, for example if you live in Germany the error
-      messages are german. The individual checks don't have to do
-      anything fancy to achieve this, it's actually quite easy and the
+      messages are German. The individual Checks don&apos;t have to do
+      anything fancy to achieve this, it&apos;s actually quite easy and the
       Checkstyle framework does most of the work.
       </p>
 
       <p class="body">
       To support internationalized error messages, you need to create
       a message.properties file alongside your Check class, i.e. the
-      java file and the properties files should be in the same
-      directory.  Add a symbolic error code and an english
-      representation to the messages.properties, the file should
+      Java file and the properties files should be in the same
+      directory.  Add a symbolic error code and an English
+      representation to the messages.properties. The file should
       contain the following line: <span
       class="code">too.many.methods=Too many methods, only {0} are
       allowed</span>.  Then replace the verbatim error message with
       the symbolic representation and use one of the log helper
       methods to provide the dynamic part of the message (mMax in this
       case): <span class="code">log(&quot;too.many.methods&quot;,
-      mMax);</span>. Please consult the documentation of Java's <a
+      mMax);</span>. Please consult the documentation of Java&apos;s <a
       href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/MessageFormat.html">MassageFormat</a>
       to learn about the syntax of format strings (especially about
       those funny numbers in the translated text).
@@ -380,7 +379,7 @@
       Supporting a new language is very easy now, simply create a new
       messages file for the language, e.g. messages_fr.properties to
       provide french error messages. The correct file will be chosen
-      automatically, based on the language settings of the user's
+      automatically, based on the language settings of the user&apos;s
       operating system.
       </p>
 
@@ -391,10 +390,9 @@
       Check. To integrate your Check, add a new subentry under the
       TreeWalker module of your configuration file. Use the full
       classname of your Check class as the name of the module.
-      Your config file should look something like this:
+      Your configuration file should look something like this:
       </p>
 
-      <p>
       <pre>
       &lt;module name=&quot;Checker&quot;&gt;
         &lt;module name=&quot;TreeWalker&quot;&gt;
@@ -410,15 +408,14 @@
         &lt;/module&gt;
       &lt;/module&gt;
       </pre>
-      </p>
 
       <p class="body">
-      To run the new Check on the command line compile your check,
+      To run the new Check on the command line compile your Check,
       create a jar that contains the classes and property files,
       e.g. <span class="code">mycompanychecks.jar</span>. Then run:
       </p>
       <pre>
-      java -classpath mycompanychecks.jar -jar checkstyle-all-${version} -c confg.xml -r .
+      java -classpath mycompanychecks.jar -jar checkstyle-all-${version} -c config.xml -r .
       </pre>
 
       <p class="body">
@@ -428,8 +425,8 @@
       </p>
 
       <p class="body">
-      Please consult the <a href="config.html#packagenames">checkstyle
-      configuration manual</a> to learn how to integrate your checks
+      Please consult the <a href="config.html#packagenames">Checkstyle
+      configuration manual</a> to learn how to integrate your Checks
       into the package configuration so that you can use <span
       class="code">MethodLimit</span> instead of the full class name.
       </p>
@@ -441,7 +438,7 @@
       several flaws in many of your programs. You now know that your
       boss does not follow the coding conventions he wrote.  And you
       know that you are the king of the world. To become a programming
-      god, you want to write your second check - now wait, first you
+      god, you want to write your second Check - now wait, first you
       should know what your limits are.
       </p>
 
@@ -465,13 +462,14 @@
       <h2>Writing FileSetChecks</h2>
       <p class="body">
       Writing a FileSetCheck is pretty straightforward: Just inherit
-      from AbstractFileSetCheck and implement the process(File[]
-      files) method and you're done. A very simple example could fire
+      from AbstractFileSetCheck and implement the <span class="code">process(File[]
+      files)</span> method and you&apos;re done. A very simple example could fire
       an error if the number of files that are passed in exceeds a
       certain limit.
       </p>
       <p class="body">
       TODO: Implement that FSC and provide it as an example. Sketch:
+      </p>
       <pre>
       private int max = 100;
 
@@ -482,13 +480,13 @@
 
       public void process(File[] files)
       {
-          if (files != null && files.length &gt max)
+          if (files != null &amp;&amp; files.length &gt; max)
           {
               // build the error list
               Object[] key = new Object[]{it.next()};
               LocalizedMessage[] errors = new LocalizedMessage[1];
               final String className = getClass().getName();
-              final int pkgEndIndex = className.lastIndexOf('.');
+              final int pkgEndIndex = className.lastIndexOf(&apos;.&apos;);
               final String pkgName = className.substring(0, pkgEndIndex);
               final String bundle = pkgName + ".messages";
               errors[0] = new LocalizedMessage(
@@ -499,36 +497,35 @@
           }
       }
       </pre>
-      </p>
       <p class="body">
 
       Note that the configuration via bean introspection also applies
-      here.  By implementing the setMax() method the FileSetCheck
+      here.  By implementing the <span class="code">setMax()</span> method the FileSetCheck
       automatically makes &quot;max&quot; a legal configuration
       parameter that you can use in the Checkstyle configuration file.
 
       </p>
       <p class="body">
       There are virtually no limits what you can do in
-      FileSetChecks. The most crazy ideas we've had so far are
+      FileSetChecks. The most crazy ideas we&apos;ve had so far are:
+      </p>
       <ul>
       <li class="body">to find global code problems like unused public methods.</li>
       <li class="body">to find duplicate code.</li>
       <li class="body">to port the TreeWalker solution to check C#
       instead of Java.</li>
       </ul>
-      </p>
 
       <a name="huh"></a>
-      <h2>Huh? I can't figure it out!</h2>
+      <h2>Huh? I can&apos;t figure it out!</h2>
       <p class="body">
-      That's probably our fault, it means that we have to provide
+      That&apos;s probably our fault, it means that we have to provide
       better documentation. Please do not hesitate to ask questions on
       the user mailing list, this will help us to improve this
       document.  Please ask your questions as precisely as possible,
       we will not be able to answer questions like &quot;I want to
-      write a check but I don't know how, can you help me?&quot;. Tell
-      us what you are trying to do (the purpose of the check), what
+      write a Check but I don&apos;t know how, can you help me?&quot;. Tell
+      us what you are trying to do (the purpose of the Check), what
       you have understood so far, and what exactly is the problem that
       blocks you.
       </p>
