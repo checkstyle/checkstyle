@@ -456,13 +456,15 @@ class Verifier
         final int after = aColNo + aText.length() - 1;
 
         if ((before >= 0) && !Character.isWhitespace(line.charAt(before))) {
-            log(aLineNo, "'" + aText + "' is not preceeded with whitespace.");
+            log(aLineNo, before + 1,
+                "'" + aText + "' is not preceeded with whitespace.");
         }
 
         if ((after < line.length()) &&
             !Character.isWhitespace(line.charAt(after)))
         {
-            log(aLineNo, "'" + aText + "' is not followed by whitespace.");
+            log(aLineNo, after,
+                "'" + aText + "' is not followed by whitespace.");
         }
     }
 
@@ -482,7 +484,7 @@ class Verifier
         if ((after >= line.length()) ||
             Character.isWhitespace(line.charAt(after)))
         {
-            log(aAST.getLineNo(),
+            log(aAST.getLineNo(), after,
                 "'" + aAST.getText() + "' is followed by whitespace.");
         }
     }
@@ -502,6 +504,7 @@ class Verifier
         final int before = aAST.getColumnNo() - 1;
         if ((before < 0) || Character.isWhitespace(line.charAt(before))) {
             log(aAST.getLineNo(),
+                before,
                 "'" + aAST.getText() + "' is preceeded with whitespace.");
         }
     }
@@ -544,7 +547,9 @@ class Verifier
         {
             for (int i = after + 1; i < line.length(); i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
-                    log(aAST.getLineNo(), "'.' is followed by whitespace.");
+                    log(aAST.getLineNo(),
+                        after,
+                        "'.' is followed by whitespace.");
                     break;
                 }
             }
@@ -1401,6 +1406,7 @@ class Verifier
             && (aAllow.indexOf(line.charAt(aColNo)) == -1))
         {
             log(aLineNo,
+                aColNo,
                 aConstruct.getText() + " needs to be followed by whitespace.");
         }
     }
