@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFileSetCheck;
 
 import java.util.ArrayList;
@@ -175,7 +174,8 @@ public final class TreeWalker
             mCache.checkedOk(fileName, timestamp);
         }
         else {
-            getMessageDispatcher().fireErrors(fileName, mMessages.getMessages());
+            getMessageDispatcher().fireErrors(
+                    fileName, mMessages.getMessages());
         }
 
         getMessageDispatcher().fireFileFinished(fileName);
@@ -402,7 +402,7 @@ public final class TreeWalker
         return rootAST;
     }
 
-    /** @see FileSetCheck */
+    /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
     public void process(File[] aFiles)
     {
         for (int i = 0; i < aFiles.length; i++) {
@@ -410,6 +410,9 @@ public final class TreeWalker
         }
     }
 
+    /**
+     * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
+     */
     public void destroy()
     {
         super.destroy();
