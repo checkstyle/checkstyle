@@ -185,6 +185,27 @@ public abstract class AbstractTypeAwareCheck
     }
 
     /**
+     * Tries to load class. Logs error if unable.
+     * @param aIdent name of class which we try to load.
+     * @return <code>Class</code> for a ident.
+     */
+    protected final Class tryLoadClass(FullIdent aIdent)
+    {
+        Class clazz = resolveClass(aIdent.getText());
+        if (clazz == null) {
+            logLoadError(aIdent);
+        }
+        return clazz;
+    }
+
+    /**
+     * Logs error if unable to load class information.
+     * Abstract, should be overrided in subclasses.
+     * @param aIdent class name for which we can no load class.
+     */
+    protected abstract void logLoadError(FullIdent aIdent);
+
+    /**
      * Collects the details of a package.
      * @param aAST node containing the package details
      */
@@ -210,7 +231,7 @@ public abstract class AbstractTypeAwareCheck
      * Contains class's <code>FullIdent</code>
      * and <code>Class</code> object if we can load it.
      */
-    protected static class ClassInfo
+    protected class ClassInfo
     {
         /** <code>FullIdent</code> associated with this class. */
         private FullIdent mName;
@@ -264,6 +285,9 @@ public abstract class AbstractTypeAwareCheck
         /** @return <code>Class</code> associated with an object. */
         public final Class getClazz()
         {
+            if (isLoadable() && mClass == null) {
+                setClazz(AbstractTypeAwareCheck.this.tryLoadClass(getName()));
+            }
             return mClass;
         }
 

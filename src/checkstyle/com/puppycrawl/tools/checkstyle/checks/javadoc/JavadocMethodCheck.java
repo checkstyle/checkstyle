@@ -572,15 +572,7 @@ public class JavadocMethodCheck
             final String documentedEx = tag.getArg1();
             boolean found = foundThrows.contains(documentedEx);
             Class documentedClass = null;
-            if (!found
-                && (mAllowThrowsTagsForSubclasses || mAllowUndeclaredRTE))
-            {
-                documentedClass = resolveClass(documentedEx);
-                if (documentedClass == null) {
-                    log(tag.getLineNo(), "javadoc.classInfo",
-                        "@throws", documentedEx);
-                }
-            }
+            boolean classLoaded = false;
 
             final ListIterator throwIt = aThrows.listIterator();
             while (!found && throwIt.hasNext()) {
@@ -592,19 +584,11 @@ public class JavadocMethodCheck
                     ei.setFound();
                     foundThrows.add(documentedEx);
                 }
-                else if (mAllowThrowsTagsForSubclasses
-                         && documentedClass != null)
-                {
-                    if (ei.isLoadable() && ei.getClazz() == null) {
-                        // if the class is not loaded yet.
-                        // try to load it.
-                        ei.setClazz(resolveClass(declaredEx));
-                        if (!ei.isLoadable()) {
-                            log(fi.getLineNo(), "javadoc.classInfo",
-                                "@throws", declaredEx);
-                        }
+                else if (mAllowThrowsTagsForSubclasses) {
+                    if (!classLoaded) {
+                        documentedClass = loadClassForTag(tag);
+                        classLoaded = true;
                     }
-
                     found = isSubclass(documentedClass, ei.getClazz());
                     if (found) {
                         ei.setFound();
@@ -615,7 +599,11 @@ public class JavadocMethodCheck
             // Handle extra JavadocTag.
             if (!found) {
                 boolean reqd = true;
-                if (mAllowUndeclaredRTE && documentedClass != null) {
+                if (mAllowUndeclaredRTE) {
+                    if (!classLoaded) {
+                        documentedClass = loadClassForTag(tag);
+                        classLoaded = true;
+                    }
                     reqd = !isUnchecked(documentedClass);
                 }
 
@@ -641,8 +629,33 @@ public class JavadocMethodCheck
         }
     }
 
+    /**
+     * Tries to load class for throws tag. Logs error if unable.
+     * @param aTag name of class which we try to load.
+     * @return <code>Class</code> for the tag.
+     */
+    private Class loadClassForTag(JavadocTag aTag)
+    {
+        Class clazz = resolveClass(aTag.getArg1());
+        if (clazz == null) {
+            log(aTag.getLineNo(), "javadoc.classInfo",
+                "@throws", aTag.getArg1());
+        }
+        return clazz;
+    }
+
+    /**
+     * Logs error if unable to load class information.
+     * @param aIdent class name for which we can no load class.
+     */
+    protected final void logLoadError(FullIdent aIdent)
+    {
+        log(aIdent.getLineNo(), "javadoc.classInfo", "@throws",
+            aIdent.getText());
+    }
+
     /** Stores useful information about declared exception. */
-    static class ExceptionInfo extends ClassInfo
+    class ExceptionInfo extends ClassInfo
     {
         /** does the exception have throws tag associated with. */
         private boolean mFound;

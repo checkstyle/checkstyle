@@ -31,7 +31,6 @@ public class RedundantThrowsCheckTest
         final String[] expected = {
             "7:37: Redundant throws: 'java.io.FileNotFoundException' is subclass of 'java.io.IOException'.",
             "19:29: Redundant throws: 'java.io.IOException' listed more then one time.",
-            "25:16: Unable to get class information for WrongException.",
             "35:27: Unable to get class information for WrongException.",
             "39:27: Redundant throws: 'NullPointerException' is subclass of 'RuntimeException'.",
         };
