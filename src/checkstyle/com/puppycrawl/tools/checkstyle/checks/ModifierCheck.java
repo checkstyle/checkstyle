@@ -29,6 +29,17 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
+/**
+ * Checks that modifiers are written in the order suggested by
+ * the Java Language Specification (JLS). The relevant sections
+ * are 8.1.1, 8.3.1 and 8.4.3.
+ * <p>
+ * Rationale: Code is easier to read if everybody follows
+ * a standard.
+ * </p>
+ *
+ * @author Lars Kühne
+ */
 public class ModifierCheck
     extends Check
 {
@@ -72,6 +83,7 @@ public class ModifierCheck
      * Checks if the modifiers were added in the order suggested
      * in the Java language specification.
      *
+     * @param aModifiers list of modifier AST tokens
      * @return null if the order is correct, otherwise returns the offending
      * *       modifier AST.
      */

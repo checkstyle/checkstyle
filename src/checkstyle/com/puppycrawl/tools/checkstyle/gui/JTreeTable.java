@@ -128,8 +128,8 @@ public class JTreeTable extends JTable
      */
     public int getEditingRow()
     {
-        return (getColumnClass(editingColumn) == TreeTableModel.class) ? -1 :
-                editingRow;
+        final Class editingClass = getColumnClass(editingColumn);
+        return (editingClass == TreeTableModel.class) ? -1 : editingRow;
     }
 
     /**
@@ -144,7 +144,7 @@ public class JTreeTable extends JTable
     }
 
     /**
-     * Returns the tree that is being shared between the model.
+     * @return the tree that is being shared between the model.
      */
     public JTree getTree()
     {
@@ -154,12 +154,13 @@ public class JTreeTable extends JTable
     /**
      * A TreeCellRenderer that displays a JTree.
      */
-    public class TreeTableCellRenderer extends JTree implements
+    class TreeTableCellRenderer extends JTree implements
             TableCellRenderer
     {
         /** Last table/tree row asked to renderer. */
         protected int visibleRow;
 
+        /** creates a new instance */
         public TreeTableCellRenderer(TreeModel model)
         {
             super(model);
@@ -223,6 +224,7 @@ public class JTreeTable extends JTable
 
         /**
          * TreeCellRenderer method. Overridden to update the visible row.
+         * @see TableCellRenderer
          */
         public Component getTableCellRendererComponent(JTable table,
                 Object value,
@@ -230,10 +232,11 @@ public class JTreeTable extends JTable
                 boolean hasFocus,
                 int row, int column)
         {
-            if (isSelected)
+            if (isSelected) {
                 setBackground(table.getSelectionBackground());
-            else
+            } else {
                 setBackground(table.getBackground());
+            }
 
             visibleRow = row;
             return this;
@@ -273,6 +276,8 @@ public class JTreeTable extends JTable
          * that wouldn't be the case.
          * <p>By returning false we are also enforcing the policy that
          * the tree will never be editable (at least by a key sequence).
+         *
+         * @see TableCellEditor
          */
         public boolean isCellEditable(EventObject e)
         {
@@ -318,6 +323,8 @@ public class JTreeTable extends JTable
          * Returns the list selection model. ListToTreeSelectionModelWrapper
          * listens for changes to this model and updates the selected paths
          * accordingly.
+         *
+         * @return the list selection model
          */
         ListSelectionModel getListSelectionModel()
         {
@@ -349,7 +356,7 @@ public class JTreeTable extends JTable
         /**
          * Creates and returns an instance of ListSelectionHandler.
          */
-        protected ListSelectionListener createListSelectionListener()
+        private ListSelectionListener createListSelectionListener()
         {
             return new ListSelectionHandler();
         }
