@@ -26,7 +26,8 @@ public class ConfigurationLoaderTest extends TestCase
         final String fName =
             System.getProperty("testinputs.dir") + "/configs/" + aName;
 
-        return ConfigurationLoader.loadConfiguration(fName, aProps);
+        return ConfigurationLoader.loadConfiguration(
+            fName, new PropertiesExpander(aProps));
     }
 
     public void testEmptyConfiguration() throws Exception
@@ -173,7 +174,8 @@ public class ConfigurationLoaderTest extends TestCase
                                        "{a}", "a}", "$a}", "$", "a$b"};
         final Properties props = initProperties();
         for (int i = 0; i < testValues.length; i++) {
-            final String value = ConfigurationLoader.replaceProperties(testValues[i], props);
+            final String value = ConfigurationLoader.replaceProperties(
+                testValues[i], new PropertiesExpander(props));
             assertEquals("\"" + testValues[i] + "\"", value, testValues[i]);
         }
     }
@@ -182,7 +184,8 @@ public class ConfigurationLoaderTest extends TestCase
     {
         final Properties props = initProperties();
         try {
-            final String value = ConfigurationLoader.replaceProperties("${a", props);
+            final String value = ConfigurationLoader.replaceProperties(
+                "${a", new PropertiesExpander(props));
             fail("expected to fail, instead got: " + value);
         }
         catch (CheckstyleException ex) {
@@ -194,7 +197,8 @@ public class ConfigurationLoaderTest extends TestCase
     {
         final Properties props = initProperties();
         try {
-            final String value = ConfigurationLoader.replaceProperties("${c}", props);
+            final String value = ConfigurationLoader.replaceProperties(
+                "${c}", new PropertiesExpander(props));
             fail("expected to fail, instead got: " + value);
         }
         catch (CheckstyleException ex) {
@@ -221,8 +225,8 @@ public class ConfigurationLoaderTest extends TestCase
             };
         final Properties props = initProperties();
         for (int i = 0; i < testValues.length; i++) {
-            final String value =
-                ConfigurationLoader.replaceProperties(testValues[i][0], props);
+            final String value = ConfigurationLoader.replaceProperties(
+                testValues[i][0], new PropertiesExpander(props));
             assertEquals("\"" + testValues[i][0] + "\"",
                 testValues[i][1], value);
         }
