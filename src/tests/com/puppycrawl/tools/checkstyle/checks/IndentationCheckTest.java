@@ -618,6 +618,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("indentationAmount", new Integer(4).toString());
+        checkConfig.addAttribute("tabWidth", new Integer(4).toString());
         final String[] expected = {
             "25: ctor def child at indentation level 9 not at correct indentation, 8",
         };
