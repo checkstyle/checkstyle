@@ -22,8 +22,29 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that the name of a parameter matches a specified format. Defaults to
- * <code>^[a-z][a-zA-Z0-9]*$</code>.
+* <p>
+ * Checks that parameter names conform to a format specified
+ * by the format property. The format is a
+ * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
+ * regular expression</a>
+ * and defaults to
+ * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="ParameterNameCheck"/&gt;
+ * </pre> 
+ * <p>
+  * An example of how to configure the check for names that begin with
+ * a lower case letter, followed by letters, digits, and underscores is:
+ * </p>
+ * <pre>
+ * &lt;config name="ParameterNameCheck"/&gt;
+ *    &lt;property name="format" value="^^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ * &lt;/config&gt;
+
  *
  * @author Oliver Burn
  */

@@ -24,8 +24,26 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * Check the number of parameters a method or constructor has.
- *
+ * <p>
+ * Checks the number of parameters that a method or constructor has.
+ * The default allowable number of parameters is 7.
+ * To change the number of allowable parameters, set property max.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="ParameterNumberCheck"/&gt;
+ * </pre> 
+ * <p>
+ * An example of how to configure the check to allow 10 parameters is:
+ * </p>
+ * <pre>
+ * &lt;config name="ParameterNumberCheck"/&gt;
+ *    &lt;property name="max" value="10"/&gt;
+ * &lt;/config&gt;
+ * </pre>
+
  * @author Oliver Burn
  * @version 1.0
  */

@@ -24,7 +24,63 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
- * Checks wrapping for operators.
+ * <p>
+ * Checks line wrapping for operators.
+ * The policy to verify is specified using the {@link OperatorWrapOption} class
+ * and defaults to {@link OperatorWrapOption#NL}.
+ * </p>
+ * <p> By default the check will check the following operators:
+ *  {@link TokenTypes#BAND BAND},
+ *  {@link TokenTypes#BOR BOR},
+ *  {@link TokenTypes#BSR BSR},
+ *  {@link TokenTypes#BXOR BXOR},
+ *  {@link TokenTypes#COLON COLON},
+ *  {@link TokenTypes#DIV DIV},
+ *  {@link TokenTypes#EQUAL EQUAL},
+ *  {@link TokenTypes#GE GE},
+ *  {@link TokenTypes#GT GT},
+ *  {@link TokenTypes#LAND LAND},
+ *  {@link TokenTypes#LE LE},
+ *  {@link TokenTypes#LITERAL_INSTANCEOF LITERAL_INSTANCEOF},
+ *  {@link TokenTypes#LOR LOR},
+ *  {@link TokenTypes#LT LT},
+ *  {@link TokenTypes#MINUS MINUS},
+ *  {@link TokenTypes#MOD MOD},
+ *  {@link TokenTypes#NOT_EQUAL NOT_EQUAL},
+ *  {@link TokenTypes#PLUS PLUS},
+ *  {@link TokenTypes#QUESTION QUESTION},
+ *  {@link TokenTypes#SL SL},
+ *  {@link TokenTypes#SR SR},
+ *  {@link TokenTypes#STAR STAR}.
+ * Other acceptable tokens are
+ *  {@link TokenTypes#ASSIGN ASSIGN},
+ *  {@link TokenTypes#BAND_ASSIGN BAND_ASSIGN},
+ *  {@link TokenTypes#BOR_ASSIGN BOR_ASSIGN},
+ *  {@link TokenTypes#BSR_ASSIGN BSR_ASSIGN},
+ *  {@link TokenTypes#BXOR_ASSIGN BXOR_ASSIGN},
+ *  {@link TokenTypes#DIV_ASSIGN DIV_ASSIGN},
+ *  {@link TokenTypes#MINUS_ASSIGN MINUS_ASSIGN},
+ *  {@link TokenTypes#MOD_ASSIGN MOD_ASSIGN},
+ *  {@link TokenTypes#PLUS_ASSIGN PLUS_ASSIGN},
+ *  {@link TokenTypes#SL_ASSIGN SL_ASSIGN},
+ *  {@link TokenTypes#SR_ASSIGN SR_ASSIGN},
+ *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN}.
+ * </p>
+ *  <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="OperatorWrapCheck"/&gt;
+ * </pre> 
+ * <p> An example of how to configure the check for assignment operators at the
+ * end of a line is:
+ * </p>
+ * <pre>
+ * &lt;config name="OperatorWrapCheck"&gt;
+ *     &lt;property name="tokens" value="ASSIGN, DIV_ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN, STAR_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN, SL_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, BAND_ASSIGN"/&gt;
+ *     &lt;property name="option" value="eol"/&gt;
+  * &lt;/config&gt;
+ * </pre>
  *
  * @author Rick Giles
  * @version 1.0
@@ -33,7 +89,7 @@ public class OperatorWrapCheck
     extends AbstractOptionCheck
 {
     /**
-     * Sets the operator wrap otion to new line.
+     * Sets the operator wrap option to new line.
      */  
     public OperatorWrapCheck()
     {
