@@ -25,7 +25,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
@@ -169,10 +174,13 @@ public final class ConfigurationLoader
     /** the Configuration that is being built */
     private Configuration mConfiguration;
 
-
+    /**
+     * Creates mapping between local resources and dtd ids.
+     * @return map between local resources and dtd ids.
+     */
     private static Map createIdToResourceNameMap()
     {
-        Map map = new HashMap(3);
+        Map map = new HashMap();
         map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
         map.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
