@@ -25,7 +25,7 @@ public class ExplicitInitializationCheckTest extends BaseCheckTestCase
             "21:17: Variable 'ch2' explicitly initialized to '\\0' (default value for its type).",
         };
         verify(checkConfig, 
-               getPath("coding" + File.separator + "InputExpliciInit.java"),
+               getPath("coding" + File.separator + "InputExplicitInit.java"),
                expected);
     }
 }
