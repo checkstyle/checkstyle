@@ -90,7 +90,7 @@ public abstract class AbstractUsageCheck
         ClassManager.setClassLoader(getClassLoader());
 
         final String fileName = getFileContents().getFilename();
-        ASTManager.getInstance().addTree(fileName, aRootAST);
+        getASTManager().addTree(fileName, aRootAST);
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -100,7 +100,7 @@ public abstract class AbstractUsageCheck
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
             RE regexp = getRegexp();
             if ((regexp == null) || !regexp.match(nameAST.getText())) {
-                ASTManager.getInstance().registerCheckNode(this, nameAST);
+                getASTManager().registerCheckNode(this, nameAST);
             }
         }
     }
@@ -117,7 +117,7 @@ public abstract class AbstractUsageCheck
         catch (SymbolTableException ste) {
             logError(ste);
         }
-        ASTManager.getInstance().removeCheck(this);
+        getASTManager().removeCheck(this);
     }
 
     /**
@@ -137,7 +137,7 @@ public abstract class AbstractUsageCheck
      */
     private int getReferenceCount(DetailAST aAST)
     {
-        final SymTabAST ident = ASTManager.getInstance().get(aAST);
+        final SymTabAST ident = getASTManager().get(aAST);
         if (ident == null) {
             return 0;
         }
