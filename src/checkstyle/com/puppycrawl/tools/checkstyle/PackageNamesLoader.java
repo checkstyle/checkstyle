@@ -144,7 +144,7 @@ public class PackageNamesLoader extends DefaultHandler
         final InputStream stream =
             aClassLoader.getResourceAsStream(DEFAULT_PACKAGES);
         final InputSource source = new InputSource(stream);
-        return loadPackageNames(source, "default map");
+        return loadPackageNames(source, "default package names");
     }
 
     /**
