@@ -472,7 +472,6 @@ public class CheckerTest
                            "^.*is OK.*regexp.*$");
         mProps.setProperty(Defn.TODO_PATTERN_PROP, "FIXME:");
         mProps.setProperty(Defn.MEMBER_PATTERN_PROP, "^m[A-Z][a-zA-Z0-9]*$");
-        mProps.setProperty(Defn.PACKAGE_PATTERN_PROP, "[A-Z]+");
         mProps.setProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP, "[A-Z]+");
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
@@ -480,7 +479,6 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":1: File length is 198 lines (max allowed is 20).",
             filepath + ":3: Line does not match expected header line of '// Created: 2001'.",
-            filepath + ":6:10: Name 'com.puppycrawl.tools.checkstyle' must match pattern '[A-Z]+'.",
             filepath + ":18: Line is longer than 80 characters.",
             filepath + ":19:25: Line contains a tab character.",
             filepath + ":25:29: Name 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
