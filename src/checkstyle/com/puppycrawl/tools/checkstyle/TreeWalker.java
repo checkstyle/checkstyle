@@ -257,6 +257,11 @@ public final class TreeWalker
                                                "general.exception",
                                                new String[] {te.getMessage()}));
         }
+        catch (Throwable err) {
+            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
+                                               "general.exception",
+                                               new String[] {"" + err}));
+        }
 
         if (mMessages.size() == 0) {
             mCache.checkedOk(fileName, timestamp);
