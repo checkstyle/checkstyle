@@ -141,6 +141,9 @@ public class CheckerTest
             filepath + ":129: '.' is followed by whitespace.",
             filepath + ":136: '.' is preceeded with whitespace.",
             filepath + ":136: '.' is followed by whitespace.",
+            filepath + ":153: 'assert' is not followed by whitespace.",
+            filepath + ":156: ':' is not preceeded with whitespace.",
+            filepath + ":156: ':' is not followed by whitespace.",
         };
         verify(c, filepath, expected);
     }
@@ -202,6 +205,9 @@ public class CheckerTest
             filepath + ":129: '.' is followed by whitespace.",
             filepath + ":136: '.' is preceeded with whitespace.",
             filepath + ":136: '.' is followed by whitespace.",
+            filepath + ":153: 'assert' is not followed by whitespace.",
+            filepath + ":156: ':' is not preceeded with whitespace.",
+            filepath + ":156: ':' is not followed by whitespace.",
         };
         verify(c, filepath, expected);
     }

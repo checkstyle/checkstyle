@@ -53,7 +53,13 @@ assertStatement[int[] aType, MyCommonAST[] aCurlies]
     final MyCommonAST[] stmtBraces = new MyCommonAST[2];
     stmtType[0] = STMT_OTHER;
 }
-	:	ASSERT^ expression ( COLON! expression )? SEMI!
+	:	asrt:ASSERT^ expression ( c:COLON! expression )? SEMI!
+        {
+            ver.verifyWSAroundBegin(asrt.getLine(), asrt.getColumn(), asrt.getText());
+            if (c != null) {
+                ver.verifyWSAroundBegin(c.getLine(), c.getColumn(), c.getText());
+            }
+        }
 	;
 
 class GeneratedJava14Lexer extends GeneratedJavaLexer;
