@@ -419,7 +419,7 @@ line 5: /{71}
 </table>
 
 <h3>Instantiations</h3>
-<p>Checks for instantiation of classes that should not be constructed directly. The list of these classes is configurable, the default is that no instantiations are illegal.</p>
+<p>Checks for instantiation of classes that should not be instantiated directly. The list of these classes is configurable, the default is that all instantiations are legal.</p>
 <div class="tip">
 <h4 class="tip">Tip</h4>
 <p>A common mistake is to create new instances of <span class="code">java.lang.Boolean</span> instead of using the constants <span class="code">TRUE</span> and <span class="code">FALSE</span> or the <span class="code">Boolean.valueOf()</span> factory methods. This increases the program's memory requirements and wastes CPU cycles during memory allocation and garbage collection.</p>
