@@ -94,6 +94,13 @@ public class WhitespaceAroundCheck
             return;
         }
 
+        // Check for import pkg.name.*;
+        if ((aAST.getType() == TokenTypes.STAR)
+            && (aAST.getParent().getType() == TokenTypes.DOT))
+        {
+            return;
+        }
+        
         final String[] lines = getLines();
         final String line = lines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
