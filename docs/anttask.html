@@ -49,281 +49,27 @@ This task is included in the checkstyle distribution.</p>
     <td valign="top">Specifies a properties file that contains the configuration options. This is useful for sharing checkstyle configurations across ant build files. The property names to use in the file are the same as on the <a href="cmdline.html">command line</a>. Other parameters to the ANT task override the settings in the properties file.</td>
     <td align="center" valign="top">No</td>
   </tr>
-  <tr>
-    <td valign="top">lcurlyType</td>
-    <td valign="top">Specifies the policy of where to put the left brace <span class=code>'{'</span> for type declarations. The legal values are defined <a href="engine.html#lcurlyopt">here</a>. Defaults to <span class="default">&quot;eol&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">lcurlyMethod</td>
-    <td valign="top">Specifies the policy of where to put the left brace <span class=code>'{'</span> for method declarations. The legal values are defined <a href="engine.html#lcurlyopt">here</a>. Defaults to <span class="default">&quot;eol&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">lcurlyOther</td>
-    <td valign="top">Specifies the policy of where to put the left brace <span class=code>'{'</span> for other declarations. The keywords covered is defined <a href="engine.html#lcurlyother">here</a>. The legal values are defined <a href="engine.html#lcurlyopt">here</a>. Defaults to <span class="default">&quot;eol&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">rcurly</td>
-    <td valign="top">Specifies the policy of where to put the right brace <span class=code>'}'</span>. The keywords covered is defined <a href="engine.html#rcurly">here</a>. The legal values are defined <a href="engine.html#rcurlyopt">here</a>. Defaults to <span class="default">&quot;same&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">parenPad</td>
-    <td valign="top">Specifies the policy of how to pad parenthesises. The legal values are defined <a href="engine.html#parenpad">here</a>. Defaults to <span class="default">&quot;nospace&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">tryBlock</td>
-    <td valign="top">Specifies the policy of how check <span class="code">try</span> blocks. The legal values are defined <a href="engine.html#blockOpt">here</a>. Defaults to <span class="default">&quot;stmt&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">catchBlock</td>
-    <td valign="top">Specifies the policy of how check <span class="code">catch</span> blocks. The legal values are defined <a href="engine.html#blockOpt">here</a>. Defaults to <span class="default">&quot;text&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">finallyBlock</td>
-    <td valign="top">Specifies the policy of how check <span class="code">finally</span> blocks. The legal values are defined <a href="engine.html#blockOpt">here</a>. Defaults to <span class="default">&quot;stmt&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">wrapOp</td>
-    <td valign="top">Specifies the policy of how to wrap on operators. The legal values are defined <a href="engine.html#wrapopopt">here</a>. Defaults to <span class="default">&quot;nl&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">allowTabs</td>
-    <td valign="top">Indicates whether to allow tabs. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">allowProtected</td>
-    <td valign="top">Indicates whether to allow protected data. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">allowPackage</td>
-    <td valign="top">Indicates whether to allow package visible data. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-     <td valign="top">allowNoAuthor</td>
-    <td valign="top">Indicates whether to allow no <span class="default">@author</span> tag to be defined for class and interface Javadoc comments. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">maxLineLen</td>
-    <td valign="top">Specifies the maximum line length. Default value is defined <a href="engine.html#length">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">tabWidth</td>
-    <td valign="top">The distance between tab stops, used in line number and column calculations. Default value is <span class="default">&quot;8&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">ignoreLineLengthPattern</td>
-    <td valign="top">Specifies a regular expression for lines to ignore in maximum line length checks. Defaults to <span class="default">&quot;^$&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">ignoreImportLen</td>
-    <td valign="top">Specifies whether to ignore the maximum line length for <span class="code">import</span> statements. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">maxMethodLen</td>
-    <td valign="top">Specifies the maximum method length. Default value is defined <a href="engine.html#methodLength">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">maxConstructorLen</td>
-    <td valign="top">Specifies the maximum constructor length. Default value is defined <a href="engine.html#constructorLength">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">maxFileLen</td>
-    <td valign="top">Specifies the maximum file length. Default value is defined <a href="engine.html#fileLength">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
 
-  <tr>
-    <td valign="top">maxParameters</td>
-    <td valign="top">Specifies the maximum number of parameters. Default value is defined <a href="engine.html#numParams">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-
-  <tr>
-    <td valign="top">todoPattern</td>
-    <td valign="top">Specifies the regular expression to match for to-do comments. Default value is defined <a href="engine.html#todo">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-
-  <tr>
-    <td valign="top">memberPattern</td>
-    <td valign="top">Specifies the regular expression to match against member variables. Default value is defined <a href="engine.html#varformat">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">publicMemberPattern</td>
-    <td valign="top">Specifies the regular expression to match against public member variables. Default value is defined <a href="engine.html#fieldformat">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">paramPattern</td>
-    <td valign="top">Specifies the regular expression to match against parameters. Default value is defined <a href="engine.html#paramformat">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">constPattern</td>
-    <td valign="top">Specifies the regular expression to match against static/final variables. Default value is defined <a href="engine.html#varformat">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">staticPattern</td>
-    <td valign="top">Specifies the regular expression to match against static variables. Default value is defined <a href="engine.html#varformat">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">typePattern</td>
-    <td valign="top">Specifies the regular expression to match against type names. Default value is defined <a href="engine.html#typeformat">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">methodPattern</td>
-    <td valign="top">Specifies the regular expression to match against method names. Default value is defined <a href="engine.html#methodformat">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">localVarPattern</td>
-    <td valign="top">Specifies the regular expression to match against local variable names. Default value is defined <a href="engine.html#localvarformat">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-
-  <tr>
-    <td valign="top">localFinalVarPattern</td>
-    <td valign="top">Specifies the regular expression to match against local final variable names. Default value is defined <a href="engine.html#localvarformat">here</a>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  
-  <tr>
-    <td valign="top">headerFile</td>
-    <td valign="top">Specifies the file containing the header lines. Default is to not check.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">headerLinesRegexp</td>
-    <td valign="top">Specifies whether to interpret each line in the headerFile as a regular expression. Default is <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">headerIgnoreLine</td>
-    <td valign="top">Specifies a comma separated list of the lines in the header to ignore when comparing. Default is to not ignore any line.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">javadocScope</td>
-    <td valign="top">Specifies the visibility scope where javadoc comments are checked. Valid values are <span class="default">&quot;nothing&quot;</span>, <span class="default">&quot;public&quot;</span>, <span class="default">&quot;protected&quot;</span>, <span class="default">&quot;package&quot;</span>, <span class="default">&quot;private&quot;</span> and <span class="default">&quot;anoninner&quot;</span>. Defaults to <span class="default">&quot;private&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">requirePackageHtml</td>
-    <td valign="top">Specifies whether to require that package documentation is available. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">requireVersion</td>
-    <td valign="top">Specifies whether to require an <span class="default">@version</span> tag to be defined for class and interface Javadoc comments. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">ignoreImports</td>
-    <td valign="top">Specifies whether to ignore checking import statements. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">illegalImports</td>
-    <td valign="top">Comma separated list of package prefixes that are not allowed in import statements. Defaults to <span class="default">&quot;sun&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">illegalInstantiations</td>
-    <td valign="top">Comma separated list of fully qualified class names that are not allowed to be instantiated. Defaults to <span class="default">&quot;&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">ignoreWhitespace</td>
-    <td valign="top">Specifies whether to ignore checking whitespace. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">ignoreCastWhitespace</td>
-    <td valign="top">Specifies whether to ignore checking for whitespace after a cast. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">ignoreBraces</td>
-    <td valign="top">Specifies whether to ignore checking braces. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">ignoreLongEll</td>
-    <td valign="top">Specifies whether to ignore checking the <span class="code">L</span> in long integer literals. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">ignorePublicInInterface</td>
-    <td valign="top">Specifies whether to ignore the public keyword in interface definitions. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
   <tr>
     <td valign="top">failOnViolation</td>
     <td valign="top">Specifies whether the build will continue even if there are violations. Defaults to <span class="default">&quot;true&quot;</span>.</td>
     <td align="center" valign="top">No</td>
   </tr>
+
   <tr>
     <td valign="top">failureProperty</td>
     <td valign="top">The name of a property to set in the event of a violation.</td>
     <td align="center" valign="top">No</td>
   </tr>
-  <tr>
-    <td valign="top">cacheFile</td>
-    <td valign="top">Specifies the name of a file that can be used to cache details of files that pass checkstyle. This can signicantly increase the speed of checkstyle on successive runs.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-  <tr>
-    <td valign="top">checkUnusedThrows</td>
-    <td valign="top">Specifies whether to check if unused <span class="code">@throws</span> tags are subclasses of <span class="code">java.lang.RuntimeException</span>. Defaults to <span class="default">&quot;false&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
+
   <tr>
     <td valign="top">classpath</td>
     <td valign="top">The classpath to use when looking up classes. Defaults to the current classpath.</td>
     <td align="center" valign="top">No</td>
   </tr>
-  <tr>
-    <td valign="top">basedir</td>
-    <td valign="top">Specifies a base directory for reporting file names relative to. Defaults to <span class="default">&quot;&quot;</span>.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
 
-  <tr>
-    <td valign="top">localeLanguage</td>
-    <td valign="top">Specifies language to use in localising the output messages. Defaults to the default system locale language.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
-
-  <tr>
-    <td valign="top">localeCountry</td>
-    <td valign="top">Specifies country to use in localising the output messages. Defaults to the default system locale country.</td>
-    <td align="center" valign="top">No</td>
-  </tr>
 </table>
 
-<p>Older versions of the checkstyle task supported the boolean parameters <span class="default">relaxJavadoc</span> and <span class="default">ignoreJavadoc</span>. These parameters have been removed because they were conflicting and the semantics of <span class="default">relaxJavadoc</span> was not clearly specified. The two parameters have been replaced by the <span class="default">javadocScope</span> parameter. Instead of <span class="default">ignoreJavadoc="true"</span> you can now use <span class="default">javadocScope="nothing"</span>. The behaviour of <span class="default">relaxJavadoc="true"</span> is roughly the same as <span class="default">javadocScope="protected"</span>.</p>
 
 <h3>Nested Elements</h3>
 
@@ -369,30 +115,12 @@ This task is included in the checkstyle distribution.</p>
   &lt;/checkstyle&gt;
 </pre>
 
-<p><b>Run checkstyle on a set of Java files and allow tabs</b></p>
-<pre>
-  &lt;checkstyle allowTabs=&quot;yes&quot;&gt;
-    &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
-  &lt;/checkstyle&gt;
-</pre>
-
 <p><b>Run checkstyle on a set of files and output messages to standard output in plain format, and a file in XML format</b></p>
 <pre>
   &lt;checkstyle&gt;
     &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
     &lt;formatter type=&quot;plain&quot;/&gt;
     &lt;formatter type=&quot;xml&quot; toFile=&quot;build/checkstyle_errors.xml&quot;/&gt;
-  &lt;/checkstyle&gt;
-</pre>
-
-<p><b>Run checkstyle on a set of Java files and disable pattern matching</b></p>
-<pre>
-  &lt;checkstyle allowTabs=&quot;yes&quot;
-              paramPattern=&quot;.&quot;
-              constPattern=&quot;.&quot;
-              staticPattern=&quot;.&quot;
-              memberPattern=&quot;.&quot;&gt;
-    &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
   &lt;/checkstyle&gt;
 </pre>
 
