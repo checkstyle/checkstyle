@@ -195,7 +195,8 @@
           <ul class="sectionquicklink">
           #foreach ( $candidate in $root.getChild("body").getChildren() )
               #if ($candidate.getName().equals("section"))
-                  <li><a href="#$candidate.getAttributeValue("name")">$candidate.getAttributeValue("name")</a></li>
+                  #set ($sectionName = $candidate.getAttributeValue("name"))
+                  <li><a href="#$sectionName">$sectionName</a></li>
               #end
           #end
           </ul>
