@@ -18,18 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 
 import java.util.Stack;
 
 /**
  * <p>
  * Restricts return statements to a specified count (default = 2).
- * Ignores equals methods.
+ * Ignores specified methods (<code>equals()</code> by default).
  * </p>
  * <p>
  * Rationale: Too many return points can be indication that code is
@@ -39,7 +38,7 @@ import java.util.Stack;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * TODO: Test for inside a static block
  */
-public final class ReturnCountCheck extends Check
+public final class ReturnCountCheck extends AbstractFormatCheck
 {
     /** Default allowed number of return statements. */
     private static final int DEFAULT_MAX = 2;
@@ -54,10 +53,11 @@ public final class ReturnCountCheck extends Check
     /** Creates new instance of the checks. */
     public ReturnCountCheck()
     {
+        super("^equals$");
         setMax(DEFAULT_MAX);
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -67,7 +67,7 @@ public final class ReturnCountCheck extends Check
         };
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return new int[]{
@@ -94,14 +94,14 @@ public final class ReturnCountCheck extends Check
         mMax = aMax;
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
         mContext = null;
         mContextStack.clear();
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -117,7 +117,7 @@ public final class ReturnCountCheck extends Check
         }
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -140,7 +140,8 @@ public final class ReturnCountCheck extends Check
     private void visitMethodDef(DetailAST aAST)
     {
         mContextStack.push(mContext);
-        mContext = new Context(!CheckUtils.isEqualsMethod(aAST));
+        DetailAST methodNameAST = aAST.findFirstToken(TokenTypes.IDENT);
+        mContext = new Context(!getRegexp().match(methodNameAST.getText()));
     }
 
     /**
