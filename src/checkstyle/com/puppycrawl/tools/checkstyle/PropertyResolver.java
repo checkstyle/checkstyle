@@ -34,10 +34,10 @@ public interface PropertyResolver
 {
     /**
      * Resolves a property name to it's value.
-     * @param propertyName the name of the property.
+     * @param aName the name of the property.
      * @return the value that is associated with <code>propertyName</code>.
      * @throws CheckstyleException if the propertyName cannot be reolved
      */
-    String resolve(String propertyName)
+    String resolve(String aName)
         throws CheckstyleException;
 }
