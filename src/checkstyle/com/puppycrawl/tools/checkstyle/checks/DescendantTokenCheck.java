@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
  *     &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
  *     &lt;property name="maximumNumber" value="0"/&gt;
+ *     &lt;property name="maximumDepth" value="1"/&dt;
  * &lt;/module&gt;
  *
  * &lt;!-- Switch with no default --&gt;
