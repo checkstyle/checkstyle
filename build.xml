@@ -7,7 +7,7 @@
   <property file="${user.home}/checkstyle.buildproperties" />
 
   <property name="antlr.jar" value="lib/antlr.jar" />
-  <property name="regexp.jar" value="lib/jakarta-regexp-1.2.jar" />
+  <property name="regexp.jar" value="lib/jakarta-regexp-1.3.jar" />
   <property name="junit.jar" value="lib/junit.jar" />
   <property name="beanutils.jar" value="lib/commons-beanutils.jar" />
   <property name="collections.jar" value="lib/commons-collections.jar" />
@@ -435,7 +435,7 @@
     <mkdir dir="${dist.dir}/checkstyle-${version}/tmp" />
     <unjar src="${dist.dir}/checkstyle-${version}/antlr.jar"
            dest="${dist.dir}/checkstyle-${version}/tmp" />
-    <unjar src="${dist.dir}/checkstyle-${version}/jakarta-regexp-1.2.jar"
+    <unjar src="${dist.dir}/checkstyle-${version}/jakarta-regexp-1.3.jar"
            dest="${dist.dir}/checkstyle-${version}/tmp" />
     <unjar src="${dist.dir}/checkstyle-${version}/commons-beanutils.jar"
            dest="${dist.dir}/checkstyle-${version}/tmp" />
