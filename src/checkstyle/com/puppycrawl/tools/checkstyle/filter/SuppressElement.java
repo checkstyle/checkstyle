@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  */
 public class SuppressElement
     extends AutomaticBean
-    implements Filter 
+    implements Filter
 {
     /** hash function multiplicand */
     private static final int HASH_MULT = 29;
