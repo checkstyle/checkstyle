@@ -52,7 +52,8 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
  * @author Alexandra Bunge
  * @author lkuehne
  */
-public class TranslationCheck extends AbstractFileSetCheck
+public class TranslationCheck
+    extends AbstractFileSetCheck
 {
     /**
      * Creates a new <code>TranslationCheck</code> instance.
@@ -90,18 +91,18 @@ public class TranslationCheck extends AbstractFileSetCheck
      */
     private static Map arrangePropertyFiles(File[] aPropFiles)
     {
-        Map propFileMap = new HashMap();
+        final Map propFileMap = new HashMap();
 
         for (int i = 0; i < aPropFiles.length; i++) {
-            File file = aPropFiles[i];
-            String identifier = extractPropertyIdentifier(file);
+            final File f = aPropFiles[i];
+            final String identifier = extractPropertyIdentifier(f);
 
             Set fileSet = (Set) propFileMap.get(identifier);
             if (fileSet == null) {
                 fileSet = new HashSet();
                 propFileMap.put(identifier, fileSet);
             }
-            fileSet.add(file);
+            fileSet.add(f);
         }
         return propFileMap;
     }
@@ -114,17 +115,17 @@ public class TranslationCheck extends AbstractFileSetCheck
      */
     private Set loadKeys(File aFile)
     {
-        InputStream inputStream = null;
-        Set keys = new HashSet();
+        final Set keys = new HashSet();
+        InputStream inStream = null;
 
         try {
             // Load file and properties.
-            inputStream = new FileInputStream(aFile);
-            Properties properties = new Properties();
-            properties.load(inputStream);
+            inStream = new FileInputStream(aFile);
+            Properties props = new Properties();
+            props.load(inStream);
 
             // Gather the keys and put them into a set
-            Enumeration e = properties.propertyNames();
+            final Enumeration e = props.propertyNames();
             while (e.hasMoreElements()) {
                 keys.add(e.nextElement());
             }
@@ -134,7 +135,7 @@ public class TranslationCheck extends AbstractFileSetCheck
         }
         finally {
             try {
-                inputStream.close();
+                inStream.close();
             }
             catch (IOException e) {
                 logIOException(e, aFile);
@@ -171,17 +172,17 @@ public class TranslationCheck extends AbstractFileSetCheck
      */
     private void compareKeySets(Set aKeys, Map aFileMap)
     {
-        Set fls = aFileMap.keySet();
+        final Set fls = aFileMap.keySet();
 
         for (Iterator iter = fls.iterator(); iter.hasNext();) {
-            File currentFile = (File) iter.next();
+            final File currentFile = (File) iter.next();
             final MessageDispatcher dispatcher = getMessageDispatcher();
             final String path = currentFile.getPath();
             dispatcher.fireFileStarted(path);
-            Set currentKeys = (Set) aFileMap.get(currentFile);
+            final Set currentKeys = (Set) aFileMap.get(currentFile);
 
             // Clone the keys so that they are not lost
-            Set keysClone = new HashSet(aKeys);
+            final Set keysClone = new HashSet(aKeys);
             keysClone.removeAll(currentKeys);
 
             // Remaining elements in the key set are missing in the current file
@@ -191,7 +192,8 @@ public class TranslationCheck extends AbstractFileSetCheck
                     log(0, "translation.missingKey", key);
                 }
             }
-            LocalizedMessage[] errors = getMessageCollector().getMessages();
+            final LocalizedMessage[] errors =
+                getMessageCollector().getMessages();
             getMessageDispatcher().fireErrors(path, errors);
             dispatcher.fireFileFinished(path);
         }
@@ -246,7 +248,7 @@ public class TranslationCheck extends AbstractFileSetCheck
      */
     public void process(File[] aFiles)
     {
-        File[] propertyFiles = filter(aFiles);
+        final File[] propertyFiles = filter(aFiles);
         final Map propFilesMap = arrangePropertyFiles(propertyFiles);
         checkPropertyFileSets(propFilesMap);
     }
