@@ -313,7 +313,6 @@ field!
 		(	h:ctorHead[exs, msig]
             {
                 msig.setThrows(exs);
-                ver.verifyMethod(msig);
                 ver.reportStartMethodBlock();
             }
             s:constructorBody[msig.getFirstLineNo()] // constructor
@@ -342,7 +341,6 @@ field!
                     msig.setName(#IDENT);
                     msig.setThrows(exs);
                     msig.setReturnType(#t);
-                    ver.verifyMethod(msig);
                     ver.reportStartMethodBlock();
                 }
 				(
