@@ -97,4 +97,37 @@ public class InputJavadocStyleCheck
    public void method9()
    {
    }
+
+    
+    // Testcases to excercize the Tag parser (bug 841942)
+
+    /**
+     * Real men don't use XHTML.
+     * <br />
+     * <hr/>
+     * < br/>
+     * <img src="schattenparker.jpg"/></img>
+     */
+    //private void method10()
+    //{ // </img> should be the only error
+    //}
+
+    /**
+     * Tag content can be really mean.
+     * <p>
+     * Sometimes a p tag is closed.
+     * </p>
+     * <p>
+     * Sometimes it's not.
+     * 
+     * <span style="font-family:'Times New Roman',Times,serif;font-size:200%">
+     * Attributes can contain spaces and nested quotes.
+     * </span>
+     * <img src="slashesCanOccurWithin/attributes.jpg"/>
+     * <img src="slashesCanOccurWithin/attributes.jpg">
+     * <!-- comments <div> should not be checked. -->
+     */
+    //private void method11()
+    //{ // JavadocStyle should not report any error for this method
+    //}
 }
