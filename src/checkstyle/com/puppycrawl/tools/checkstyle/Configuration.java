@@ -55,7 +55,6 @@ public class Configuration
         PATTERN_DEFAULTS.put(Defn.TODO_PATTERN_PROP, "TODO:");
         PATTERN_DEFAULTS.put(Defn.STATIC_PATTERN_PROP, "^[a-z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.CONST_PATTERN_PROP, "^[A-Z](_?[A-Z0-9]+)*$");
-        PATTERN_DEFAULTS.put(Defn.MEMBER_PATTERN_PROP, "^[a-z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.PUBLIC_MEMBER_PATTERN_PROP,
                              "^f[A-Z][a-zA-Z0-9]*$");
     }
@@ -321,18 +320,6 @@ public class Configuration
     RE getStaticFinalRegexp()
     {
         return getRegexpProperty(Defn.CONST_PATTERN_PROP);
-    }
-
-    /** @return pattern to match member variables **/
-    String getMemberPat()
-    {
-        return getPatternProperty(Defn.MEMBER_PATTERN_PROP);
-    }
-
-    /** @return regexp to match member variables **/
-    RE getMemberRegexp()
-    {
-        return getRegexpProperty(Defn.MEMBER_PATTERN_PROP);
     }
 
     /** @return pattern to match public member variables **/

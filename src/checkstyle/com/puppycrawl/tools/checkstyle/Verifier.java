@@ -302,9 +302,9 @@ class Verifier
                     || (mConfig.isAllowPackage() && isPckg)
                     || (mConfig.isAllowProtected() && isProt))
                 {
-                    checkVariable(aVar,
-                                  mConfig.getMemberRegexp(),
-                                  mConfig.getMemberPat());
+//                    checkVariable(aVar,
+//                                  mConfig.getMemberRegexp(),
+//                                  mConfig.getMemberPat());
                 }
             }
         }
