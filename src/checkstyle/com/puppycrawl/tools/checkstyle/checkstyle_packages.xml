@@ -8,6 +8,7 @@
   <package name="com.puppycrawl.tools.checkstyle">
     <package name="checks">
       <package name="blocks"/>
+      <package name="design"/>
       <package name="imports"/>
       <package name="javadoc"/>
       <package name="naming"/>
