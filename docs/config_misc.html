@@ -487,10 +487,10 @@ like <span class="code">1</span>.
       <p class="body">
       WARNING: This is a very powerful and flexible check, but, at the
       same time, it is low level and very implementation dependent
-      because its results depend on grammar we use to build abstract
-      syntactic tree. Thus we recomend to use other checks in case
-      they provide desired funcionality. All in all, this check just
-      works on level of abstract tree and knows nothing about language
+      because its results depend on the grammar we use to build abstract
+      syntax trees. Thus we recomend using other checks when
+      they provide the desired funcionality. All in all, this check just
+      works on the level of an abstract tree and knows nothing about language
       structures.
       </p>
 
@@ -511,7 +511,7 @@ like <span class="code">1</span>.
         </tr>
         <tr>
           <td>limitedTokens</td>
-          <td>set of tokens which occurance as descendant is limited</td>
+          <td>set of tokens with limited occurances as descendants</td>
           <td>subset of tokens declared in <a
           href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
           <td>empty set</td>
@@ -560,7 +560,7 @@ like <span class="code">1</span>.
             &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
             &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
             &lt;property name="maximumNumber" value="0"/&gt;
-            &lt;property name="maximumDepth" value="1"/&dt;
+            &lt;property name="maximumDepth" value="1"/&gt;
         &lt;/module&gt;
 
         Switch with no default:
@@ -571,7 +571,7 @@ like <span class="code">1</span>.
             &lt;property name="minimumNumber" value="1"/&gt;
         &lt;/module&gt;
 
-        Assert statement may have side effects:
+        Assert statement may have side effects (formatted for browser display):
         &lt;module name="DescendantToken"&gt;
             &lt;property name="tokens" value="LITERAL_ASSERT"/&gt;
             &lt;property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,
