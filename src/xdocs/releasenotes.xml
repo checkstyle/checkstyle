@@ -10,6 +10,19 @@
 
   <body>
 
+    <section name="Release 4.0">
+
+      <p>Fixed Bugs:</p>
+
+      <ul>
+         <li>The Ant task now always prints a summary line like
+         'Running Checkstyle 4.0 on 339 files' (bug 1099573).</li>
+         
+      </ul>
+
+    </section>
+
+
     <section name="Release 4.0 Beta 1">
 
       <p>New features:</p>
@@ -28,7 +41,7 @@
         <li>Checker.getBasedir() is public now (rfe 1023004)</li>
 
         <li>JavadocMethod check now can be configured to skip missed javadoc
-        (ref 1060634)</li>
+        (rfe 1060634)</li>
 
         <li>Some clarifications on  scope property of javadoc checks added
         (rfe 1009201)</li>
