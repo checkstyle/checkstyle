@@ -326,6 +326,12 @@ public class CheckStyleTask
         mConfig.setIgnoreCastWhitespace(aIgnore);
     }
 
+    /** @param aIgnore whether to ignore whitespace around parenthesis **/
+    public void setIgnoreParenWhitespace(boolean aIgnore)
+    {
+        mConfig.setIgnoreParenWhitespace(aIgnore);
+    }
+
     /** @param aIgnore whether to ignore braces **/
     public void setIgnoreBraces(boolean aIgnore)
     {
