@@ -147,7 +147,7 @@
            deprecation="on" debug="on"
            excludes="${testExcludes}"/>
   </target>
-  
+
   <!-- Compiles only the test code. Input files are excluded from
        compilation, they contain code like assert statements
        that does not compile on all JDKs -->

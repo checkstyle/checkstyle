@@ -350,18 +350,6 @@ public class CheckStyleTask
             });
     }
 
-    /** @param aJavadocScope visibility scope where Javadoc is checked **/
-    public void setJavadocScope(final String aJavadocScope)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setJavadocScope(Scope.getInstance(aJavadocScope));
-                }
-            });
-    }
-
     /** @param aRequirePackageHtml whether package.html is required **/
     public void setRequirePackageHtml(final boolean aRequirePackageHtml)
     {
