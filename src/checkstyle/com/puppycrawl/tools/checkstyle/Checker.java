@@ -237,10 +237,20 @@ public class Checker extends AutomaticBean
         mFilters.addFilter(aFilter);
     }
 
+    /**
+     * Removes filter.
+     * @param aFilter filter to remove.
+     */
+    public void removeFilter(Filter aFilter)
+    {
+        mFilters.removeFilter(aFilter);
+    }
+
     /** Cleans up the object. **/
     public void destroy()
     {
         mListeners.clear();
+        mFilters.clear();
     }
 
     /**
@@ -250,6 +260,15 @@ public class Checker extends AutomaticBean
     public void addListener(AuditListener aListener)
     {
         mListeners.add(aListener);
+    }
+
+    /**
+     * Removes a given listener.
+     * @param aListener a listener to remove
+     */
+    public void removeListener(AuditListener aListener)
+    {
+        mListeners.remove(aListener);
     }
 
     /**

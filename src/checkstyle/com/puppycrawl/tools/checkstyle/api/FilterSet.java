@@ -44,6 +44,15 @@ public class FilterSet
     }
 
     /**
+     * Removes filter.
+     * @param aFilter filter to remove.
+     */
+    public void removeFilter(Filter aFilter)
+    {
+        mFilters.remove(aFilter);
+    }
+
+    /**
      * Returns the Filters of the filter set.
      * @return the Filters of the filter set.
      */
@@ -87,5 +96,11 @@ public class FilterSet
             }
         }
         return true;
+    }
+
+    /** Clears the FilterSet. */
+    public void clear()
+    {
+        mFilters.clear();
     }
 }
