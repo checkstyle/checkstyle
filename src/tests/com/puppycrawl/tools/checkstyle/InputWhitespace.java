@@ -39,4 +39,13 @@ class InputWhitespace
         catch(RuntimeException e){
         }
     }
+
+    /**
+       skip blank lines between comment and code,
+       should be ok
+    **/
+    
+    
+    private int mVar4 = 1;
+    
 }
