@@ -881,7 +881,6 @@ public class CheckerTest
         mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.STMT.toString());
         mProps.setProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.STMT.toString());
         mProps.setProperty(Defn.IGNORE_IMPORTS_PROP, "true");
-        mProps.setProperty(Defn.IGNORE_LONG_ELL_PROP, "false");
         mProps.setProperty(
                 Defn.ILLEGAL_INSTANTIATIONS_PROP,
                 "java.lang.Boolean,"
@@ -908,7 +907,6 @@ public class CheckerTest
             filepath + ":76:17: Must have at least one statement.",
             filepath + ":78:13: Must have at least one statement.",
             filepath + ":81:17: Must have at least one statement.",
-            filepath + ":93:43: Should use uppercase 'L'.",
         };
         verify(c, filepath, expected);
     }
@@ -922,7 +920,6 @@ public class CheckerTest
         mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.TEXT.toString());
         mProps.setProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.TEXT.toString());
         mProps.setProperty(Defn.IGNORE_IMPORTS_PROP, "true");
-        mProps.setProperty(Defn.IGNORE_LONG_ELL_PROP, "true");
         mProps.setProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP, "");
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");

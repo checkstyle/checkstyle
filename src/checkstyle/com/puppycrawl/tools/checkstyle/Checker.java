@@ -475,7 +475,6 @@ public class Checker
                                                new String[] {te.getMessage()}));
         }
 
-        System.out.println("mMessages.size() = " + mMessages.size());
         if (mMessages.size() == 0) {
             mCache.checkedOk(aFileName, timestamp);
         }
