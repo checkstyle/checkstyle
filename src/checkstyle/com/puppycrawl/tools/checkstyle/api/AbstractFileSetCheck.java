@@ -61,12 +61,14 @@ public abstract class AbstractFileSetCheck
      * Returns the files that have one of the currently active file extensions.
      * If no file extensions are active the argument array is returned.
      *
-     * Determines the set of files this FileSetCheck is interested in. For
-     * example a FileSetCheck that processes java files should return only
-     * the java files in the argument array.
+     * <p>
+     * This method can be used in the implementation of <code>process()</code>
+     * to filter it's argument list for interesting files.
+     * </p>
      *
      * @param aFiles the candidates for processing
      * @return the subset of aFiles that this FileSetCheck should process
+     * @see FileSetCheck#process
      */
     protected final File[] filter(File[] aFiles)
     {
