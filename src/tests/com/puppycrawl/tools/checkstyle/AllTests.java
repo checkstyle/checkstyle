@@ -78,6 +78,10 @@ import com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.usage.UnusedLocalVariableCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.usage.UnusedParameterCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.usage.UnusedPrivateFieldCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.usage.UnusedPrivateMethodCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheckTest;
@@ -202,6 +206,14 @@ public class AllTests {
         suite.addTest(new TestSuite(ThisParameterCheckTest.class));
         suite.addTest(new TestSuite(ThisReturnCheckTest.class));
         // j2ee tests-END
+        
+        // usage tests-BEGIN
+        suite.addTest(new TestSuite(UnusedLocalVariableCheckTest.class));
+        suite.addTest(new TestSuite(UnusedParameterCheckTest.class));
+        suite.addTest(new TestSuite(UnusedPrivateFieldCheckTest.class));
+        suite.addTest(new TestSuite(UnusedPrivateMethodCheckTest.class));
+        // usage tests-END
+
         //$JUnit-END$
         return suite;
     }
