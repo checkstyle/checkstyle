@@ -15,4 +15,13 @@ public class UnusedPrivateMethodCheckTest
         };
         verify(checkConfig, getPath("usage/InputUnusedMethod.java"), expected);
     }
+
+   public void testInner() throws Exception
+   {
+       final DefaultConfiguration checkConfig =
+           createCheckConfig(UnusedPrivateMethodCheck.class);
+       final String[] expected = {
+       };
+       verify(checkConfig, getPath("usage/InputInnerUsedMethod.java"), expected);
+   }
 }
