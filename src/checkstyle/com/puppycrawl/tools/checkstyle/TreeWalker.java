@@ -193,9 +193,10 @@ public final class TreeWalker
             // IMPORTANT! Need to use the same class loader that created this
             // class. Otherwise can get ClassCastException problems.
             final String name = config.getName();
+            final String[] packageNames = getPackageNames();
             final Check check =
                     (Check) PackageObjectFactory.makeObject(
-                        mPackageNames, this.getClass().getClassLoader(), name);
+                        packageNames, this.getClass().getClassLoader(), name);
 
             check.contextualize(checkContext);
             check.configure(config);
