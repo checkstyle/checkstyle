@@ -75,6 +75,7 @@ public class WhitespaceAroundCheck
             TokenTypes.QUESTION,
             TokenTypes.RCURLY,
             TokenTypes.SL,
+            TokenTypes.SLIST,
             TokenTypes.SL_ASSIGN,
             TokenTypes.SR,
             TokenTypes.SR_ASSIGN,
@@ -102,6 +103,13 @@ public class WhitespaceAroundCheck
             return;
         }
 
+        // Check for an SLIST that has a parent CASE_GROUP. It is not a '{'.
+        if ((aAST.getType() == TokenTypes.SLIST)
+            && (aAST.getParent().getType() == TokenTypes.CASE_GROUP))
+        {
+            return;
+        }
+        
         final String[] lines = getLines();
         final String line = lines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
