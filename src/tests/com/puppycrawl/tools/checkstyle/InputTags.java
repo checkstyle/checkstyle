@@ -172,4 +172,15 @@ class InputTags
     void method16(int aOne)
     {
     }
+
+
+    /**
+     * @throws ThreadDeath although bad practice, should be silently ignored
+     * @throws ArrayStoreException another r/t subclass
+     * @throws IllegalMonitorStateException should be told to remove from throws
+     */
+    void method17()
+        throws IllegalMonitorStateException
+    {
+    }
 }

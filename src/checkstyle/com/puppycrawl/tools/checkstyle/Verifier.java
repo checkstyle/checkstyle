@@ -1359,8 +1359,9 @@ class Verifier
                     final ClassResolver cr = new ClassResolver(
                         mConfig.getClassLoader(), mPkgName, mImports);
                     try {
-                        reqd = !RuntimeException.class.isAssignableFrom(
-                            cr.resolve(tag.getArg1()));
+                        final Class clazz = cr.resolve(tag.getArg1());
+                        reqd = !RuntimeException.class.isAssignableFrom(clazz)
+                            && !Error.class.isAssignableFrom(clazz);
                     }
                     catch (ClassNotFoundException e) {
                         log(tag.getLineNo(),
