@@ -318,6 +318,12 @@ public class CheckStyleTask
         mConfig.setLCurlyType(extractLeftCurlyOption(aTo));
     }
 
+    /** @param aTo the lefy curly placement option for others **/
+    public void setLCurlyOther(String aTo)
+    {
+        mConfig.setLCurlyOther(extractLeftCurlyOption(aTo));
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // The doers
     ////////////////////////////////////////////////////////////////////////////

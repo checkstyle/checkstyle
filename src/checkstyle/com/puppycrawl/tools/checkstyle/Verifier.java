@@ -596,6 +596,17 @@ class Verifier
 
 
     /**
+     * Verify that a other has correct placement of the left curly brace.
+     * @param aOtherLine line the other starts on
+     * @param aBrace location of the brace
+     */
+    void verifyLCurlyOther(int aOtherLine, MyCommonAST aBrace)
+    {
+        checkLCurly(aOtherLine, aBrace, mConfig.getLCurlyOther());
+    }
+
+
+    /**
      * Verify that a constructor length is ok.
      * @param aLineNo line the constructor block starts at
      * @param aLength the length of the constructor block

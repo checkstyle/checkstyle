@@ -154,6 +154,8 @@ public class Configuration
     private LeftCurlyOption mLCurlyMethod = LeftCurlyOption.EOL;
     /** where to place left curlies on types **/
     private LeftCurlyOption mLCurlyType = LeftCurlyOption.EOL;
+    /** where to place left curlies on others **/
+    private LeftCurlyOption mLCurlyOther = LeftCurlyOption.EOL;
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -236,8 +238,11 @@ public class Configuration
                             aProps, LCURLY_METHOD_PROP,
                             LeftCurlyOption.EOL, aLog));
         setLCurlyType(getLeftCurlyOptionProperty(
-                            aProps, LCURLY_TYPE_PROP,
-                            LeftCurlyOption.EOL, aLog));
+                          aProps, LCURLY_TYPE_PROP,
+                          LeftCurlyOption.EOL, aLog));
+        setLCurlyOther(getLeftCurlyOptionProperty(
+                           aProps, LCURLY_OTHER_PROP,
+                           LeftCurlyOption.EOL, aLog));
     }
 
     /**
@@ -802,6 +807,18 @@ public class Configuration
     public void setLCurlyType(LeftCurlyOption aTo)
     {
         mLCurlyType = aTo;
+    }
+
+    /** @return the left curly placement option for others **/
+    public LeftCurlyOption getLCurlyOther()
+    {
+        return mLCurlyOther;
+    }
+
+    /** @param aTo set the left curly placement option for others **/
+    public void setLCurlyOther(LeftCurlyOption aTo)
+    {
+        mLCurlyOther = aTo;
     }
 
 
