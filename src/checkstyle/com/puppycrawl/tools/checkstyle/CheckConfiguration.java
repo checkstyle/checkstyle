@@ -96,11 +96,11 @@ class CheckConfiguration
      * @throws InstantiationException if an error occurs
      * @throws IllegalAccessException if an error occurs
      */
-    Check createInstance()
+    Check createInstance(ClassLoader aLoader)
         throws ClassNotFoundException, InstantiationException,
         IllegalAccessException
     {
-        final Class clazz = Class.forName(mClassname);
+        final Class clazz = Class.forName(mClassname, true, aLoader);
         final Check check = (Check) clazz.newInstance();
         // TODO: need to set the properties
         return check;
