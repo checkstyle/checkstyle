@@ -182,17 +182,22 @@ public class Checker extends AutomaticBean
         final String name = aChildConf.getName();
         try {
             final Object child = mModuleFactory.createModule(name);
+            if (child instanceof AutomaticBean) {
+                final AutomaticBean bean = (AutomaticBean) child;
+                bean.contextualize(mChildContext);
+                bean.configure(aChildConf);
+            }
             if (child instanceof FileSetCheck) {
                 final FileSetCheck fsc = (FileSetCheck) child;
-                fsc.contextualize(mChildContext);
-                fsc.configure(aChildConf);
-                addFileSetCheck(fsc);
+                 addFileSetCheck(fsc);
             }
             else if (child instanceof Filter) {
                 final Filter filter = (Filter) child;
-                filter.contextualize(mChildContext);
-                filter.configure(aChildConf);
                 addFilter(filter);
+            }
+            else if (child instanceof AuditListener) {
+                final AuditListener listener = (AuditListener) child;
+                addListener(listener);
             }
             else {
                 throw new CheckstyleException(name
