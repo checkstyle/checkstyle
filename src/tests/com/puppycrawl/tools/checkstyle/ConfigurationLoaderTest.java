@@ -47,7 +47,7 @@ public class ConfigurationLoaderTest extends TestCase
             assertTrue(
                 ex.getMessage().endsWith(
                     "Attribute \"name\" is required and must be specified "
-                        + "for element type \"property\"."));
+                        + "for element type \"property\".:8:41"));
         }
     }
 
@@ -61,7 +61,7 @@ public class ConfigurationLoaderTest extends TestCase
             assertTrue(
                 ex.getMessage().endsWith(
                     "Attribute \"value\" is required and must be specified "
-                        + "for element type \"property\"."));
+                        + "for element type \"property\".:8:41"));
         }
     }
 
@@ -75,7 +75,7 @@ public class ConfigurationLoaderTest extends TestCase
             assertTrue(
                 ex.getMessage().endsWith(
                     "Attribute \"name\" is required and must be specified "
-                        + "for element type \"module\"."));
+                        + "for element type \"module\".:7:23"));
         }
     }
 
@@ -89,7 +89,7 @@ public class ConfigurationLoaderTest extends TestCase
             assertTrue(
                 ex.getMessage().endsWith(
                     "Document root element \"property\", must match DOCTYPE "
-                        + "root \"module\"."));
+                        + "root \"module\".:7:38"));
         }
     }
 

@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 /**
  * Loads a configuration from a standard configuration XML file.
@@ -220,6 +221,11 @@ public final class ConfigurationLoader
         catch (ParserConfigurationException e) {
             throw new CheckstyleException(
                 "unable to parse " + aConfig, e);
+        }
+        catch (SAXParseException e) {
+            throw new CheckstyleException("unable to parse "
+                    + aConfig + " - " + e.getMessage() + ":" + e.getLineNumber()
+                    + ":" + e.getColumnNumber(), e);
         }
         catch (SAXException e) {
             throw new CheckstyleException("unable to parse "
