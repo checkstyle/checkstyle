@@ -104,7 +104,7 @@ public abstract class Check extends AutomaticBean
      * Returns the tokens registered for the check.
      * @return the set of token names
      */
-    final public Set getTokens()
+    final public Set getTokenNames()
     {
         return mTokens;
     }

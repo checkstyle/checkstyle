@@ -234,7 +234,7 @@ public final class TreeWalker
     void registerCheck(Check aCheck)
            throws CheckstyleException
     {
-        final Set checkTokens = aCheck.getTokens();
+        final Set checkTokens = aCheck.getTokenNames();
         if (!checkTokens.isEmpty()) {
             int acceptableTokens[] = aCheck.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
