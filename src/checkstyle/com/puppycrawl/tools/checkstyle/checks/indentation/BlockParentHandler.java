@@ -328,13 +328,11 @@ public class BlockParentHandler extends ExpressionHandler
         }
         DetailAST listChild = getListChild();
         if (listChild != null) {
-            final int expectedLevel =
-                getLevel() + getIndentCheck().getBasicOffset();
             // NOTE: switch statements usually don't have curlys
             if (!hasCurlys() || !areOnSameLine(getLCurly(), getRCurly())) {
                 checkChildren(listChild,
                               CHECKED_CHILDREN,
-                              expectedLevel,
+                              getChildrenExpectedLevel(),
                               true,
                               childrenMayNest());
             }
@@ -342,5 +340,13 @@ public class BlockParentHandler extends ExpressionHandler
         else {
             checkNonlistChild();
         }
+    }
+
+    /**
+     * @return indentation level expected for children
+     */
+    protected int getChildrenExpectedLevel()
+    {
+        return getLevel() + getIndentCheck().getBasicOffset();
     }
 }

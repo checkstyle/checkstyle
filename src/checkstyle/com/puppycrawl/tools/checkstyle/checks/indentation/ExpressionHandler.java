@@ -467,7 +467,7 @@ public abstract class ExpressionHandler
      *
      * @return the first line of the expression
      */
-    private int getFirstLine(int aStartLine, DetailAST aTree)
+    protected final int getFirstLine(int aStartLine, DetailAST aTree)
     {
         // find line for this node
         // TODO: getLineNo should probably not return < 0, but it is for
