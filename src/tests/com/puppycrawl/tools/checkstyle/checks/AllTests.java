@@ -24,6 +24,7 @@ public class AllTests {
         suite.addTest(new TestSuite(NewlineAtEndOfFileCheckTest.class));
         suite.addTest(new TestSuite(RedundantModifierTest.class));
         suite.addTest(new TestSuite(TodoCommentCheckTest.class));
+        suite.addTest(new TestSuite(TrailingCommentCheckTest.class));
         suite.addTest(new TestSuite(TranslationCheckTest.class));
         suite.addTest(new TestSuite(UncommentedMainCheckTest.class));
         suite.addTest(new TestSuite(UpperEllCheckTest.class));

@@ -45,9 +45,10 @@ class Comment implements TextBlock
      * @param aText the lines that make up the comment.
      * @param aFirstCol number of the first column of the comment.
      * @param aLastLine number of the last line of the comment.
+     * @param aLastCol number of the last column of the comment.
      */
     public Comment(final String[] aText, final int aFirstCol,
-            final int aLastLine)
+            final int aLastLine, final int aLastCol)
     {
         mText = new String[aText.length];
         for (int i = 0; i < mText.length; i++) {
@@ -56,7 +57,7 @@ class Comment implements TextBlock
         mFirstLine = aLastLine - mText.length + 1;
         mLastLine = aLastLine;
         mFirstCol = aFirstCol;
-        mLastCol = mText[mText.length - 1].length() - 1;
+        mLastCol = aLastCol;
     }
 
     /**

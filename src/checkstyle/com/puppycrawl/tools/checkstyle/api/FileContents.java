@@ -99,8 +99,11 @@ public final class FileContents implements CommentListener
      **/
     public void reportCppComment(int aStartLineNo, int aStartColNo)
     {
-        final String cmt = mLines[aStartLineNo - 1].substring(aStartColNo);
-        mCPlusPlusComments.put(new Integer(aStartLineNo), cmt);
+        final String line = mLines[aStartLineNo - 1];
+        final String[] txt = new String[] {line.substring(aStartColNo)};
+        final Comment comment =
+            new Comment(txt, aStartColNo, aStartLineNo, line.length() - 1);
+        mCPlusPlusComments.put(new Integer(aStartLineNo), comment);
     }
 
     /**
@@ -125,23 +128,23 @@ public final class FileContents implements CommentListener
     {
         final String[] cc = extractCComment(aStartLineNo, aStartColNo,
                                             aEndLineNo, aEndColNo);
+        final Comment comment = new Comment(cc, aStartColNo, aEndLineNo,
+                                            aEndColNo);
 
         // save the comment
         final Integer key = new Integer(aStartLineNo);
         if (mCComments.containsKey(key)) {
             final List entries = (List) mCComments.get(key);
-            entries.add(cc);
+            entries.add(comment);
         }
         else {
             final List entries = new ArrayList();
-            entries.add(cc);
+            entries.add(comment);
             mCComments.put(key, entries);
         }
 
         // Remember if possible Javadoc comment
         if (mLines[aStartLineNo - 1].indexOf("/**", aStartColNo) != -1) {
-            Comment comment = new Comment(cc, aStartColNo, aEndLineNo);
-
             mJavadocComments.put(new Integer(aEndLineNo - 1), comment);
         }
     }

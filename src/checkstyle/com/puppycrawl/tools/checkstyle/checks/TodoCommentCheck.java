@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 
@@ -85,7 +86,7 @@ public class TodoCommentCheck
         final Map comments = aContents.getCppComments();
         for (final Iterator it = comments.keySet().iterator(); it.hasNext();) {
             final Integer key = (Integer) it.next();
-            final String cmt = (String) comments.get(key);
+            final String cmt = ((TextBlock) comments.get(key)).getText()[0];
             if (getRegexp().match(cmt)) {
                 log(key.intValue(), "todo.match", getFormat());
             }
@@ -105,7 +106,7 @@ public class TodoCommentCheck
             final List lineComments = (List) allComments.get(key);
             final Iterator lineIter = lineComments.iterator();
             while (lineIter.hasNext()) {
-                final String[] cmt = (String[]) lineIter.next();
+                final String[] cmt = ((TextBlock) lineIter.next()).getText();
                 for (int i = 0; i < cmt.length; i++) {
                     if (getRegexp().match(cmt[i])) {
                         log(key.intValue() + i, "todo.match", getFormat());
