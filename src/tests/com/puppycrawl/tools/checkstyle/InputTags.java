@@ -134,5 +134,9 @@ class InputTags
     {
         int z = 2; // should not require any javadoc
     }
+
+    /** handle where variable declaration over several lines **/
+    private static final int
+        ON_SECOND_LINE = 2;
 }
 
