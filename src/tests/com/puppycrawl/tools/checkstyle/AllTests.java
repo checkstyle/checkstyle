@@ -19,6 +19,7 @@ import com.puppycrawl.tools.checkstyle.checks.HeaderCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.HiddenFieldCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.IllegalImportCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.IllegalInstantiationCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.IndentationCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheckTest;
@@ -96,6 +97,7 @@ public class AllTests {
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
         suite.addTest(new TestSuite(IllegalImportCheckTest.class));
         suite.addTest(new TestSuite(IllegalInstantiationCheckTest.class));
+        suite.addTest(new TestSuite(IndentationCheckTest.class));
         suite.addTest(new TestSuite(InnerAssignmentCheckTest.class));
         suite.addTest(new TestSuite(JavadocMethodCheckTest.class));
         suite.addTest(new TestSuite(JavadocTypeCheckTest.class));
