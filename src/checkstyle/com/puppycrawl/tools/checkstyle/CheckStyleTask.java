@@ -114,6 +114,14 @@ public class CheckStyleTask
         mConfig.setMaxLineLength(aLen);
     }
 
+    /** @param aIgnore whether max line length should be ignored for
+     *                 import statements
+     */
+    public void setIgnoreImportLength(boolean aIgnore)
+    {
+        mConfig.setIgnoreImportLength(aIgnore);
+    }
+
     /** @param aPat pattern for member variables **/
     public void setMemberPattern(String aPat)
     {
@@ -208,6 +216,14 @@ public class CheckStyleTask
     public void setRelaxJavadoc(boolean aRelax)
     {
         mConfig.setRelaxJavadoc(aRelax);
+    }
+
+    /** @param aIgnore whether Javadoc comments should be checked.  This
+     *                 takes precedence over the "Relax Javadoc" setting.
+     */
+    public void setIgnoreJavadoc(boolean aIgnore)
+    {
+        mConfig.setIgnoreJavadoc(aIgnore);
     }
 
     /** @param aIgnore whether to ignore import statements **/

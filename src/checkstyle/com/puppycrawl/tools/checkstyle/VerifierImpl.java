@@ -142,13 +142,18 @@ class VerifierImpl
     {
         mLines = aLines;
 
-        // Iterate over the lines looking for long lines and tabs
+        // Iterate over the lines looking for long lines and tabs.
         for (int i = 0; i < mLines.length; i++) {
-            if (mLines[i].length() > mConfig.getMaxLineLength()) {
+            // check for long line, but possibly allow imports
+            if ((mLines[i].length() > mConfig.getMaxLineLength()) &&
+                !(mConfig.isIgnoreImportLength() &&
+                  mLines[i].trim().startsWith("import")))
+            {
                 log(i + 1,
                     "line longer than " + mConfig.getMaxLineLength() +
                     " characters");
             }
+
             if (!mConfig.isAllowTabs() && (mLines[i].indexOf('\t') != -1)) {
                 log(i + 1, "line contains a tab character");
             }
@@ -163,6 +168,10 @@ class VerifierImpl
                                     MyCommonAST aReturnType,
                                     MethodSignature aSig)
     {
+        if (mConfig.isIgnoreJavadoc()) {
+            return; // no need to really check anything
+        }
+
         // Calculate line number. Unfortunately aReturnType does not contain a
         // valid line number
         final int lineNo = (aMods.size() > 0)
@@ -217,6 +226,19 @@ class VerifierImpl
     /** @see Verifier **/
     public void verifyType(MyModifierSet aMods, MyCommonAST aType)
     {
+        if (!mConfig.getTypeRegexp().match(aType.getText())) {
+            log(aType.getLineNo(),
+                "type name '" + aType.getText() +
+                "' must match pattern '" + mConfig.getTypePat() + "'.");
+        }
+
+        //
+        // Only Javadoc testing below
+        //
+        if (mConfig.isIgnoreJavadoc()) {
+            return;
+        }
+
         final int lineNo = (aMods.size() > 0)
             ? aMods.getFirstLineNo()
             : aType.getLineNo();
@@ -231,25 +253,21 @@ class VerifierImpl
         {
             log(lineNo, "type Javadoc comment is missing an @author tag.");
         }
-
-        if (!mConfig.getTypeRegexp().match(aType.getText())) {
-            log(aType.getLineNo(),
-                "type name '" + aType.getText() +
-                "' must match pattern '" + mConfig.getTypePat() + "'.");
-        }
     }
 
 
     /** @see Verifier **/
     public void verifyVariable(MyVariable aVar, boolean aInInterface)
     {
-        if (getJavadocBefore(aVar.getLineNo() - 1) == null) {
-            if (!mConfig.isRelaxJavadoc() || inInterfaceBlock() ||
-                (aVar.getModifierSet().containsProtected() ||
-                 aVar.getModifierSet().containsPublic()))
-            {
-                log(aVar.getLineNo(),
-                    "variable '" + aVar.getText() + "' missing Javadoc.");
+        if (!mConfig.isIgnoreJavadoc()) {
+            if (getJavadocBefore(aVar.getLineNo() - 1) == null) {
+                if (!mConfig.isRelaxJavadoc() || inInterfaceBlock() ||
+                    (aVar.getModifierSet().containsProtected() ||
+                     aVar.getModifierSet().containsPublic()))
+                {
+                    log(aVar.getLineNo(),
+                        "variable '" + aVar.getText() + "' missing Javadoc.");
+                }
             }
         }
 

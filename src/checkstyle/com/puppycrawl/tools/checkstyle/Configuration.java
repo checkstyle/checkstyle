@@ -98,6 +98,8 @@ class Configuration
     private boolean mAllowNoAuthor = false;
     /** whether to relax javadoc checking **/
     private boolean mRelaxJavadoc = false;
+    /** whether to ignore javadoc checking **/
+    private boolean mIgnoreJavadoc = false;
     /** whether to ignore imports **/
     private boolean mIgnoreImports = false;
     /** whether to ignore whitespace **/
@@ -106,6 +108,8 @@ class Configuration
     private boolean mIgnoreBraces = false;
     /** name of the cache file **/
     private String mCacheFile = null;
+    /** whether to ignore max line length of import statements **/
+    private boolean mIgnoreImportLength = false;
 
     /** the header lines to check for **/
     private String[] mHeaderLines = {};
@@ -150,6 +154,8 @@ class Configuration
             getBooleanProperty(aProps, ALLOW_NO_AUTHOR_PROP, mAllowNoAuthor));
         setRelaxJavadoc(
             getBooleanProperty(aProps, RELAX_JAVADOC_PROP, mRelaxJavadoc));
+        setIgnoreJavadoc(
+            getBooleanProperty(aProps, IGNORE_JAVADOC_PROP, mIgnoreJavadoc));
         setIgnoreImports(
             getBooleanProperty(aProps, IGNORE_IMPORTS_PROP, mIgnoreImports));
         setIgnoreWhitespace(
@@ -160,6 +166,8 @@ class Configuration
                                            IGNORE_BRACES_PROP,
                                            mIgnoreBraces));
         setCacheFile(aProps.getProperty(CACHE_FILE_PROP));
+        setIgnoreImportLength(getBooleanProperty(
+            aProps, IGNORE_IMPORT_LENGTH_PROP, mIgnoreImportLength));
         setHeaderIgnoreLineNo(
             getIntProperty(aProps, aLog, HEADER_IGNORE_LINE_PROP,
                            mHeaderIgnoreLineNo));
@@ -300,6 +308,12 @@ class Configuration
         return mRelaxJavadoc;
     }
 
+    /** @return whether to ignore javadoc checking **/
+    boolean isIgnoreJavadoc()
+    {
+        return mIgnoreJavadoc;
+    }
+
     /** @return whether to process imports **/
     boolean isIgnoreImports()
     {
@@ -316,6 +330,12 @@ class Configuration
     boolean isIgnoreBraces()
     {
         return mIgnoreBraces;
+    }
+
+    /** @return whether to ignore max line length for import statements **/
+    boolean isIgnoreImportLength()
+    {
+        return mIgnoreImportLength;
     }
 
     /** @return the header lines to check for **/
@@ -415,6 +435,14 @@ class Configuration
     }
 
     /**
+     * @param aIgnoreImportLength whether to allow tabs
+     */
+    void setIgnoreImportLength(boolean aIgnoreImportLength)
+    {
+        mIgnoreImportLength = aIgnoreImportLength;
+    }
+
+    /**
      * @param aAllowTabs whether to allow tabs
      */
     void setAllowTabs(boolean aAllowTabs)
@@ -444,6 +472,14 @@ class Configuration
     void setRelaxJavadoc(boolean aRelaxJavadoc)
     {
         mRelaxJavadoc = aRelaxJavadoc;
+    }
+
+    /**
+     * @param aIgnoreJavadoc whether to ignore javadoc checking
+     */
+    void setIgnoreJavadoc(boolean aIgnoreJavadoc)
+    {
+        mIgnoreJavadoc = aIgnoreJavadoc;
     }
 
     /**
