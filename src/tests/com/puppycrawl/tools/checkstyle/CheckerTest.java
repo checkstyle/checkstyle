@@ -374,7 +374,6 @@ public class CheckerTest
             filepath + ":162: Comment matches to-do format 'FIXME:'.",
             filepath + ":163: Comment matches to-do format 'FIXME:'.",
             filepath + ":167: Comment matches to-do format 'FIXME:'.",
-            filepath + ":194:5: More than 7 parameters.",
         };
         verify(c, filepath, expected);
     }

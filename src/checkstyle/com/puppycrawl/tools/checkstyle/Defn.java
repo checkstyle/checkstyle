@@ -49,8 +49,6 @@ public interface Defn
     String MAX_METHOD_LENGTH_PROP = "checkstyle.maxmethodlen";
     /** property name for length of constructors **/
     String MAX_CONSTRUCTOR_LENGTH_PROP = "checkstyle.maxconstructorlen";
-    /** property name for maximum number of parameters **/
-    String MAX_PARAMETERS_PROP = "checkstyle.maxparameters";
     /** property name for allowing protected data **/
     String TAB_WIDTH_PROP = "checkstyle.tab.width";
     /** property name for allowing protected data **/
@@ -131,7 +129,6 @@ public interface Defn
             MAX_CONSTRUCTOR_LENGTH_PROP,
             MAX_LINE_LENGTH_PROP,
             MAX_METHOD_LENGTH_PROP,
-            MAX_PARAMETERS_PROP,
             TAB_WIDTH_PROP,
         };
 
