@@ -25,11 +25,15 @@ import antlr.Token;
 import antlr.collections.AST;
 
 /**
- * An extension of the CommonAST that records the line and column number.
- * The idea was taken from http://www.jguru.com/jguru/faq/view.jsp?EID=62654.
+ * An extension of the CommonAST that records the line and column
+ * number.  The idea was taken from <a target="_top"
+ * href="http://www.jguru.com/jguru/faq/view.jsp?EID=62654">Java Guru
+ * FAQ: How can I include line numbers in automatically generated
+ * ASTs?</a>.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  * @author lkuehne
  * @version 1.0
+ * @see <a target="_top" href="http://www.antlr.org/">ANTLR Website</a>
  */
 public final class DetailAST
     extends CommonAST
