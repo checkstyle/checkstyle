@@ -1,7 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierTest;
-
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -21,9 +19,7 @@ public class AllTests {
         suite.addTest(new TestSuite(FileSetCheckLifecycleTest.class));
         suite.addTest(new TestSuite(FinalParametersCheckTest.class));
         suite.addTest(new TestSuite(GenericIllegalRegexpCheckTest.class));
-        suite.addTest(new TestSuite(ModifierOrderCheckTest.class));
         suite.addTest(new TestSuite(NewlineAtEndOfFileCheckTest.class));
-        suite.addTest(new TestSuite(RedundantModifierTest.class));
         suite.addTest(new TestSuite(RequiredRegexpCheckTest.class));
         suite.addTest(new TestSuite(TodoCommentCheckTest.class));
         suite.addTest(new TestSuite(TrailingCommentCheckTest.class));
