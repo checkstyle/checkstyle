@@ -117,4 +117,36 @@ final class Utils
         }
         return retVal;
     }
+
+    /**
+     * @return whether a specified class is a runtime exception
+     * @param aName name of the class to check. If the class cannot be found
+     *              and is not fully qualified, then "java.lang." is appended.
+     * @param aLoader the loader to load the class with
+     * @throws ClassNotFoundException if unable to load the specified class
+     */
+    public static boolean isRuntimeException(String aName, ClassLoader aLoader)
+        throws ClassNotFoundException
+    {
+        // TODO: Need to remove the hack checking for java.lang. prefix, and
+        // instead use the logic Lars introduced for finding instantiations.
+        // This will also require putting @throws, @see, @link into the logic
+        // for finding unused imports.
+        Class c;
+        try {
+            // The next line will load the class using the specified class
+            // loader. The magic is having the "false" parameter. This means the
+            // class will not be initialised. Very, very important.
+            c = Class.forName(aName, false, aLoader);
+        }
+        catch (ClassNotFoundException e) {
+            if (aName.indexOf('.') == -1) {
+                c = Class.forName("java.lang." + aName, false, aLoader);
+            }
+            else {
+                throw e;
+            }
+        }
+        return RuntimeException.class.isAssignableFrom(c);
+    }
 }

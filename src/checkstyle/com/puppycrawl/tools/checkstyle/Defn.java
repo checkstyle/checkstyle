@@ -68,6 +68,9 @@ public interface Defn
     String HEADER_LINES_REGEXP_PROP = "checkstyle.header.regexp";
     /** property name for visibility scope where Javadoc is checked **/
     String JAVADOC_CHECKSCOPE_PROP = "checkstyle.javadoc.scope";
+    /** property name for checking for Runtime @throws in Javadoc **/
+    String JAVADOC_CHECK_UNUSED_THROWS_PROP =
+        "checkstyle.javadoc.checkUnusedThrows";
     /** property name for requiring package documentation */
     String REQUIRE_PACKAGE_HTML_PROP = "checkstyle.require.packagehtml";
     /** property name for ignoring import statements **/

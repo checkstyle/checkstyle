@@ -188,6 +188,7 @@
                     rcurly="alone"
                     parenPad="nospace"
                     catchBlock="text"
+                    enableCheckUnusedThrows="true"
                     todoPattern="TODO:">
             <fileset dir="src/checkstyle"
                      includes="**/*.java"

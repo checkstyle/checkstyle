@@ -232,11 +232,9 @@ public class Configuration
 
     /**
      * Creates a new <code>Configuration</code> instance.
-     *
      * @throws IllegalStateException if an error occurs
      */
     public Configuration()
-        throws IllegalStateException
     {
         setIllegalImports(ILLEGAL_IMPORTS);
         setIllegalInstantiations(ILLEGAL_INSTANTIATIONS);
@@ -475,6 +473,12 @@ public class Configuration
     public boolean isIgnoreImports()
     {
         return getBooleanProperty(Defn.IGNORE_IMPORTS_PROP);
+    }
+
+    /** @return whether to check unused @throws **/
+    public boolean isEnableCheckUnusedThrows()
+    {
+        return getBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP);
     }
 
     /** @return Set of pkg prefixes that are illegal in import statements */

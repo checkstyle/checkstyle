@@ -386,6 +386,14 @@ public class CheckStyleTask
         setBooleanProperty(Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP, aIgnore);
     }
 
+    /** @param aEnable whether to check if unused @throws are a
+     *                 RuntimeException
+     **/
+    public void setEnableCheckUnusedThrows(final boolean aEnable)
+    {
+        setBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP, aEnable);
+    }
+
     /** @param aCacheFile the file to cache which files have been checked **/
     public void setCacheFile(final File aCacheFile)
     {
