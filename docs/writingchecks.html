@@ -35,6 +35,8 @@
         <li><a href="#visitor">Vistor Pattern</a></li>
         <li><a href="#regtokens">Visitor in Action</a></li>
         <li><a href="#astnav">Navigating the AST</a></li>
+        <li><a href="#configchecks">Defining Properties</a>
+        <li><a href="#logerrors">Logging Errors</a>
         <li><a href="#integrate">Integrating Checks</a></li>
         <li><a href="#limitations">Limitations</a></li>
       </ul>
@@ -173,13 +175,64 @@
       <a name="visitor"></a>
       <h3>Understanding the visitor pattern</h3>
       <p class="body">
-      TODO: A brief explanation of the Visitor pattern, xref to
-      GoF/pattern wiki.
+      Ready for a bit more theory? OK, here it comes: The last bit
+      that is missing before you can start writing checks is that you have
+      to understand the Vistor pattern.
+      </p>
+
+      <p class="body">
+      When working with ASTs, a simple approach to define check operations
+      on them would be to add a check() method to the Class that defines
+      the AST nodes. For example, our AST type could have a method
+      checkNumberOfMethods(). Such an approach would suffer from a few
+      serious drawbacks. Most importantly, it does not provide an extensible
+      design, i.e. the checks have to be known at compile time, there is no
+      way to write plugins.
+      </p>
+
+      <p class="body">
+      Hence Checkstyle's AST classes do not have any methods that implement
+      checking functionality. Instead, Checkstyle's TreeWalker takes a set
+      of objects that conform to a Check interface. OK, you're right -
+      actually it's not an interface but an abstract class to provides
+      some helper methods. A Check provides
+      methods that take an AST as an argument and perform the checking
+      process for that AST, most prominently <span
+      class="code">visitToken()</span>.
+      </p>
+
+      <p class="body">
+
+      It is important to understand that the individual Checks do no
+      drive the AST traversal. Instead, the TreeWalker initiates a recursive
+      descend from the root of the AST to the leaf nodes and calls the Check
+      methods.
+      </p>
+
+      <p class="body">
+      Before any visitor method is called, the TreeWalker will call
+      beginTree() to give the Check a chance to do some
+      initialization. Then, when performing the recursive descend from the
+      root to the leaf nodes, the visitToken method is called. Unlike the
+      basic examples in the pattern book, there is a visitToken counterpart
+      called leaveToken(). The TreeWalker will call that method to signal
+      that the subtree below the node has been processed and the TreeWalker
+      is backtracking from the node. After the root node has been left, the
+      TreeWalker will call finishTree().
+      </p>
+
+      <p class="body">
+      If you'd like to learn more about the Visitor pattern you should
+      grab a copy of the Gof
+      <a href="http://c2.com/cgi/wiki?DesignPatternsBook">Design
+      Patterns</a> book.
       </p>
 
       <a name="regtokens"></a>
       <h3>Visitor in action</h3>
       <p class="body">
+      Let's get back to our example and start writing code - that's why
+      you came here, right?
       When you fire up the checkstyle GUI and look at a few source
       files you'll figure out pretty quickly that you are mainly
       interested in the number of tree nodes of type METHOD_DEF. The
@@ -188,23 +241,98 @@
       </p>
 
       <p class="body">
-      Now you have to decide how constructors are treated. Do they
-      count as a method for the purposes of your Check? Maybe you
-      should make that configurable, and we have good news for you:
-      Checkstyle lets you control the token types for which your
-      visitor methods are called.
+      Hence we need to register the Check for the token types
+      CLASS_DEF and INTERFACE_DEF. The TreeWalker will only call
+      visitToken for these token types. Because the requirements of
+      our tasks are so simple, there is no need to implement the other
+      fancy methods, like finishTree(), etc., so here is our first
+      shot at our check implementation:
       </p>
 
-      <p class="body">
-      TODO: Explain how. Explain the visitor methods
-      (visitToken, leaveToken, beginTree, endTree).
-      </p>
+      <pre>
+      package com.mycompany.checks;
+
+      import com.puppycrawl.tools.checkstyle.api.*;
+
+      public class MethodLimitCheck extends Check
+      {
+        private int max = 30;
+
+        public int[] getDefaultTokens()
+        {
+          return new int[]{TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        }
+
+        public void visitToken(DetailAST ast)
+        {
+          int methodDefs = ast.getChildCount(TokenTypes.METHOD_DEF);
+          if (methodDefs > max) {
+            log(ast.getLineNo(), "too many methods, only " + max + " are allowed");
+          }
+        }
+      }
+      </pre>
 
       <a name="astnav"></a>
       <h3>Navigating the Abstract Syntax Tree (AST)</h3>
       <p class="body">
-      TODO: Explain the navigation methods in DetailAST and how to
-      use them.
+      In the example above you already saw that the DetailsAST class
+      provides utility methods to extract information from the tree, like
+      getChildCount(). By now you have probably consulted the api
+      documentation and found that DetailsAST additionally provides methods
+      for navigating around in the syntax tree, like finding the next
+      sibling of a node, the childs of a node, the parent of a node, etc.
+      </p>
+
+      <p class="body">
+      These methods provide great power for developing complex
+      checks. Most of the checks that Checkstyle provides by default
+      use these methods to analyze the environment of the ASTs that
+      are visited by the TreeWalker.  Don't abuse that feature for
+      exploring the whole tree, though. Let the TreeWalker drive the
+      tree traversal and limit the visitor to the neighbours of a
+      single AST.
+      </p>
+
+      <a name="configchecks"></a>
+      <h3>Defining Check Properties</h3>
+      <p class="body">
+
+      Ok Mr. Checkstyle, that's all very nice but in my company we
+      have several projects, and each has another number of allowed
+      methods. I need to control my Check through properties, so where
+      is the Api to do that?
+      </p>
+
+      <p class="body">
+      Well, the short answer is, there is no Api. It's magic. Really!
+      </p>
+
+      <p class="body">
+      If you need to make something configurable, just add a setter method
+      to the Check:
+      </p>
+
+      <pre>
+      public class MethodLimitCheck extends Check
+      {
+        // code from above omitted for brevity
+
+        public void setMax(int limit)
+        {
+          max = limit;
+        }
+      }
+      </pre>
+      </p>
+
+      <p class="body">
+      With this code added, you can set the property <span
+      class="code">max</span> for the MethodLimitCheck module in the
+      config file. It doesn't get any simpler than that. The secret is
+      that Checkstyle uses JavaBean introspection to set the JavaBean
+      properties. That works for all primitive types like boolean,
+      int, long, etc. plus Strings plus arrays of these types.
       </p>
 
       <a name="logerrors"></a>
@@ -334,17 +462,20 @@
       <li class="body">to find duplicate code.</li>
       <li class="body">to port the TreeWalker solution to check C#
       instead of Java.</li>
+      </ul>
       </p>
 
       <a name="huh"></a>
-      <h2>Huh? I can't figure it out!</h3>
+      <h2>Huh? I can't figure it out!</h2>
       <p class="body">
       That's probably our fault, it means that we have to provide
       better docs. Please do not hesitate to ask questions on the user
       mailing list, this will help us to improve this document.
       Please make your question as precise as possible, we will not
       be able to answer questions like &quot;I want to write a check
-      but I don't know how, can you help me?&quot;.
+      but I don't know how, can you help me?&quot;. Be precise, tell us
+      what you are trying to do (the purpose of the check), what you have
+      understood so far, and what exactly is the problem that blocks you.
       </p>
 
     </td>
