@@ -1,61 +1,171 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>Checks for Headers</title>
-  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <link rel="stylesheet" type="text/css" href="mystyle.css"/>
 </head>
 
 <body>
-<h1>Checks for Headers</h1>
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td><h1>Checks for Headers</h1></td>
+    <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
+  </tr>
+</table>
+<!-- content -->
+<table border="0" width="100%" cellpadding="5" summary="body layout">
+  <tr>
+    <!--Left menu-->
+    <td class="menu" valign="top">
+      <ul>
+        <li>
+          <a href="#Header">Header</a>
+        </li>
+        <li>
+          <a href="#RegexpHeader">RegexpHeader</a>
+        </li>
+      </ul>
+    </td>
+    <!--Content-->
+    <td class="content" valign="top" align="left">
 
-<p>The property <span class="code">checkstyle.header.file</span> controls
-whether to check that each file begins with a specified header. The header
-contents are specified in the file. If no file is specified, checkstyle does
-not check for a header. The property type is
-<a href="property_types.html#string">string</a> and defaults to an empty string
-(which means do not check).</p>
+      <a name="Header"></a> <h2>Header</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that a source file begins with a specified header. Property <span class="code">
+      headerFile</span> specifies a file that contains the required header.
+      </p>
+      <p class="body">
+      Property <span class="code">ignoreLines</span> specifies the line numbers to 
+      ignore when matching lines in a header file. This property is very useful for 
+      supporting headers that contain copyright dates. For example, consider the 
+      following header:
+      </p>
+      <pre class="body">
+line 1: ////////////////////////////////////////////////////////////////////
+line 2: // checkstyle:
+line 3: // Checks Java source code for adherence to a set of rules.
+line 4: // Copyright (C) 2002  Oliver Burn
+line 5: ////////////////////////////////////////////////////////////////////
+      </pre>
+      <p class="body">
+      Since the year information will change over time, you can tell Checkstyle to 
+      ignore line 4 by setting property <span class="code">ignoreLines</span> to <span class="code">
+      4</span>.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>headerFile</td>
+          <td>name of the file containing the required header</td>
+          <td><a href="property_types.html#string">string</a></td>
+          <td><span class="default">null</span></td>
+        </tr>
+        <tr>
+          <td>ignoreLines</td>
+          <td>line numbers to ignore</td>
+          <td><a href="property_types.html#intSet">list of integers</a></td>
+          <td><span class="default">{}</span></td>
+        </tr>
+      </table>
 
-<p>The property <span class="code">checkstyle.header.ignoreline</span>
-specifies the line numbers to ignore when matching lines in a header file. The
-property type is <a href="property_types.html#intSet">integer set</a> and
-defaults to an empty list.</p>
-
-<p>This property is very useful for supporting headers that contain copyright
-dates. For example, consider the following header:</p>
-
-<pre>
-line 1: ///////////////////////////////////////////////////////////////////////
-line 2: // checkstyle: Checks Java source code for adherence to a set of rules.
-line 3: // Copyright (C) 2001  Oliver Burn
-line 4: ///////////////////////////////////////////////////////////////////////
-</pre>
-
-<p>Since the year information will change over time, you can tell checkstyle
-to ignore line 3 by setting the property to <span class="code">3</span>.</p>
-
-<p>The property <span class="code">checkstyle.header.regexp</span> controls
-whether to interpret each header line as a regular expression. The property
-type is <a href="property_types.html#boolean">boolean</a> and defaults to
-<span class="default">false</span>.</p>
-
-<p>For example, consider the following header when regular expression checking
-is turned on:</p>
-
-<pre>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check to use header file <span class="code">&quot;java.header&quot;</span> 
+      and ignore lines <span class="code">2</span>, <span class="code">3</span>, and <span class="code">
+      4</span>:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;Header&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;java.header&quot;/&gt;
+    &lt;property name=&quot;ignoreLines"&quot; value=&quot;2, 3, 4&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <a name="RegexpHeader"></a> <h2>RegexpHeader</h2> <h4>Description</h4>
+      <p class="body">
+      Checks the header of a source file against a header file that contains a <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">regular 
+      expression</a> for each line of the source header.
+      </p>
+      <p class="body">
+      Rationale: In some projects <a href="#Header">checking against a fixed header</a> 
+      is not sufficient, e.g. the header might require a copyright line where the year 
+      information is not static.
+      </p>
+      <p class="body">
+      For example, consider the following header file:
+      </p>
+      <pre class="body">
 line 1: /{71}
-line 2: // checkstyle: Checks Java source code for adherence to a set of rules\.
-line 3: // Copyright \(C\) \d\d\d\d  Oliver Burn
-line 4: // Last modification by \$Author.*\$
-line 5: /{71}
-</pre>
+line 2: // checkstyle:
+line 3: // Checks Java source code for adherence to a set of rules\.
+line 4: // Copyright \(C\) \d\d\d\d  Oliver Burn
+line 5: // Last modification by \$Author.*\$
+line 6: /{71}
+      </pre>
 
-<p>Lines 1 and 5 demonstrate a more compact notation for 71 '/'
-characters. Line 3 enforces that the copyright notice includes a four digit
-year. Line 4 is an example how to enforce revision control keywords in a file
-header.</p>
+      <p class="body">
+      Lines 1 and 6 demonstrate a more compact notation for 71 '/' characters. Line 4 
+      enforces that the copyright notice includes a four digit year. Line 5 is an 
+      example how to enforce revision control keywords in a file header.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>headerFile</td>
+          <td>name of the file containing the required header</td>
+          <td><a href="property_types.html#string">string</a></td>
+          <td><span class="default">null</span></td>
+        </tr>
+        <tr>
+          <td>ignoreLines</td>
+          <td>line numbers to ignore</td>
+          <td><a href="property_types.html#intSet">list of integers</a></td>
+          <td><span class="default">{}</span></td>
+        </tr>
+      </table>
 
-<hr>
-<p align="center">Copyright &copy; 2002 Oliver Burn. All rights Reserved.</p>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check to use header file <span class="code">&quot;java.header&quot;</span> 
+      and ignore lines <span class="code">2</span>, <span class="code">3</span>, and <span class="code">
+      4</span>:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;RegexpHeader&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;java.header&quot;/&gt;
+    &lt;property name=&quot;ignoreLines"&quot; value=&quot;2, 3, 4&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+    </td>
+  </tr>
+</table>
+<hr />
+<p>
+Copyright &copy; 2002 Oliver Burn. All rights Reserved.
+</p>
 
 </body>
 </html>
