@@ -68,7 +68,7 @@
 
       <!-- --> <a name="ArrayTrailingComma"></a> <h2>ArrayTrailingComma</h2> <h4>Description</h4>
       <p class="body">
-      Checks if array initialization contains optional trailing comma.
+      Checks that array initialization contains a trailing comma.
       </p>
       <pre class="body"	>
       int[] a = new int[] 
@@ -79,14 +79,14 @@
       }; 
       </pre>
       <p class="body">
-      But it allows do not add comma if both left and right curlys 
-      on the same line.
+      The check allows to not add a comma if both left and right curlys
+      are on the same line.
       </p>
       <pre class="body">
       return new int[] { 0 };
       </pre>
       <p class="body">
-      Rationale: Putting this comma in make is easier to change the 
+      Rationale: Putting this comma in makes it easier to change the
       order of the elements or add new elements on the end. 
       </p>
       <h4>Examples</h4>
