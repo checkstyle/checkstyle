@@ -29,18 +29,19 @@ This command line tool is included in the checkstyle distribution.</p>
 <pre>
   java -D&lt;property&gt;=&lt;value&gt;  \
        com.puppycrawl.tools.checkstyle.Main \
-       [-f &lt;format&gt;] [-o &lt;toFile&gt;] file...
+       [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] [-r &lt;dir&gt;] file...
 </pre>
 
 <p>Checkstyle will process the specified files and by default report errors to standard out in plain format. The options are:</p>
 
 <ul>
   <li><span class="default">-f format</span> - specify the output format. Options are <span class="default">"plain"</span> for the <a href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a> and <span class="default">"xml"</span> for the <a href="api/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>. Defaults to <span class="default">"plain"</span>.</li>
+  <li><span class="default">-p propertiesFile</span> - specify a properties file to use instead of the system properties.</li>
   <li><span class="default">-o file</span> - specify the file to output to.</li>
   <li><span class="default">-r dir</span> - specify the directory to traverse for Java source files.</li>
 </ul>
 
-<p>The default behaviour of checkstyle can be changed by setting system properties using the <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to java. The following table describes what properties can be set:</p>
+<p>The default behaviour of checkstyle can be changed either by setting system properties using the <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to java or by specifying a property file using the <code>-p</code> option. If a property file is specified the system properties are ignored. The following table describes what properties can be set:</p>
 
 <table border="1" cellpadding="2" cellspacing="0" summary="properties">
   <tr class="header">
