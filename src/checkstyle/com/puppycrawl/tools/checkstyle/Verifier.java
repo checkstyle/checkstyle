@@ -848,7 +848,6 @@ class Verifier
     void reportPackageName(LineText aName)
     {
         mPkgName = aName.getText();
-        checkPackageName(aName);
     }
 
 
@@ -1124,21 +1123,6 @@ class Verifier
             mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
                           "name.invalidPattern",
                           aVar.getText(), aPattern);
-        }
-    }
-
-
-    /**
-     * Verify that a package name conforms to the style.
-     * @param aName the package name
-     **/
-    private void checkPackageName(LineText aName)
-    {
-        RE packageRegexp = mConfig.getPackageRegexp();
-        if (!packageRegexp.match(aName.getText())) {
-            mMessages.add(aName.getLineNo(), aName.getColumnNo(),
-                          "name.invalidPattern",
-                          aName.getText(), mConfig.getPackagePat());
         }
     }
 
