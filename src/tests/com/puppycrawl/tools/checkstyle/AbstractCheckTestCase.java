@@ -80,8 +80,8 @@ public abstract class AbstractCheckTestCase extends TestCase
 
     }
 
-    public AbstractCheckTestCase(String s)
+    public AbstractCheckTestCase(String aName)
     {
-        super(s);
+        super(aName);
     }
 }
