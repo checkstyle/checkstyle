@@ -95,38 +95,10 @@ public class CheckerTest
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":29:14: '-' is followed by whitespace.",
-            filepath + ":29:21: '+' is followed by whitespace.",
-            filepath + ":30:14: '++' is preceeded with whitespace.",
-            filepath + ":30:21: '--' is preceeded with whitespace.",
-            filepath + ":31:15: '++' is followed by whitespace.",
-            filepath + ":31:22: '--' is followed by whitespace.",
             filepath + ":88:21: 'cast' is not followed by whitespace.",
-            filepath + ":111:22: '!' is followed by whitespace.",
-            filepath + ":112:23: '~' is followed by whitespace.",
         };
         verify(c, filepath, expected);
         c.destroy();
-    }
-
-    public void testWhitespaceCastParenOff()
-        throws Exception
-    {
-        mProps.setProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, "true");
-        final Checker c = createChecker();
-        final String filepath = getPath("InputWhitespace.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":29:14: '-' is followed by whitespace.",
-            filepath + ":29:21: '+' is followed by whitespace.",
-            filepath + ":30:14: '++' is preceeded with whitespace.",
-            filepath + ":30:21: '--' is preceeded with whitespace.",
-            filepath + ":31:15: '++' is followed by whitespace.",
-            filepath + ":31:22: '--' is followed by whitespace.",
-            filepath + ":111:22: '!' is followed by whitespace.",
-            filepath + ":112:23: '~' is followed by whitespace.",
-        };
-        verify(c, filepath, expected);
     }
 
     public void testBraces()
