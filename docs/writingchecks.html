@@ -72,10 +72,19 @@
       </p>
 
       <p class="body">
+      Suppose you have a convention that the number of methods in a
+      class should not exceed a certain limit, say 30. This rule makes
+      sense, a class should only do one thing and do it well. With a
+      zillion methods checnces are that the class does more than one
+      thing. The only problem you have is that your convention is not
+      checked by Checkstyle, so you'll have to write your own check
+      and plug it into the Checkstyle framework.
+      </p>
+
+      <p class="body">
       This chapter is organized as a tour that takes you through the
       process step by step and explains both the theoretical
       foundations and the Checkstyle API along the way.
-
       </p>
 
       <a name="grammar"></a>
@@ -98,13 +107,13 @@
       <p class="body">
       Tools exist which read a grammar definition and produce a parser
       for the language that is specified in the grammar. In other
-      words the output of the tool is a program that can
-      transform a stream of characters (a Java File) into a tree
-      representation that reflects the structure of the
-      file. CheckStyle uses the parser generator <a
-      href="http://www.antlr.org">ANTLR</a> but that is an
-      implementation detail you do not need to worry about when
-      writing checks. Several other parser exist and they all work well.
+      words the output of the tool is a program that can transform a
+      stream of characters (a Java File) into a tree representation
+      that reflects the structure of the file. CheckStyle uses the
+      parser generator <a href="http://www.antlr.org">ANTLR</a> but
+      that is an implementation detail you do not need to worry about
+      when writing checks. Several other parser generators exist and
+      they all work well.
       </p>
 
       <a name="gui"></a>
@@ -144,7 +153,7 @@
       We'll get back to the details in the other columns later, they
       are important for implementing checks but not for understanding
       the basic concepts. For now it is sufficient to know that the
-      gui is a tool that let's you look at the structure of a java
+      gui is a tool that lets you look at the structure of a java
       file, i.e. you can see the java grammar 'in action'.
       </p>
 
@@ -158,7 +167,23 @@
       <a name="regtokens"></a>
       <h3>Visitor in action</h3>
       <p class="body">
-      TODO: Explain the registration procedure and the visitor methods
+      When you fire up the checkstyle GUI and look at a few source
+      files you'll figure out pretty quickly that you are mainly
+      interested in the number of tree nodes of type METHOD_DEF. The
+      number of such tokens should be counted sepearately for each
+      CLASS_DEF / INTERFACE_DEF.
+      </p>
+
+      <p class="body">
+      Now you have to decide how constructors are treaded. Do they
+      count as a method for the puposes of your Check? Maybe you
+      should make that configurable, and we have good news for you:
+      Checkstyle lets you control the token types for which your
+      visitor methods are called.
+      </p>
+
+      <p class="body">
+      TODO: Explain how. Explain the visitor methods
       (visitToken, leaveToken, beginTree, endTree).
       </p>
 
