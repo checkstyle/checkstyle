@@ -70,11 +70,6 @@ public class EqualsHashCodeCheck
     /** @see Check */
     public void visitToken(DetailAST aAST)
     {
-        // paranoia
-        if (aAST.getType() != TokenTypes.METHOD_DEF) {
-            return;
-        }
-
         DetailAST modifiers = (DetailAST) aAST.getFirstChild();
 
         AST type = modifiers.getNextSibling();
@@ -106,10 +101,6 @@ public class EqualsHashCodeCheck
      */
     private boolean isObjectParam(AST aFirstChild)
     {
-        if (aFirstChild.getType() != TokenTypes.PARAMETER_DEF) {
-            return false;
-        }
-
         final AST modifiers = aFirstChild.getFirstChild();
         AST type = modifiers.getNextSibling();
         switch (type.getFirstChild().getType()) {
