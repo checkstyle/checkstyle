@@ -182,6 +182,17 @@ public class AutomaticBean implements Configurable, Contextualizable
                     "cannot access " + key + " in "
                     + this.getClass().getName());
             }
+            catch (IllegalArgumentException e) {
+                throw new CheckstyleException(
+                    "illegal value '" + value + "' for property '" + key
+                    + "' of module " + aConfiguration.getName());
+            }
+            catch (ConversionException e) {
+                throw new CheckstyleException(
+                    "illegal value '" + value + "' for property '" + key
+                    + "' of module " + aConfiguration.getName());
+            }
+
         }
 
         finishLocalSetup();
@@ -221,6 +232,16 @@ public class AutomaticBean implements Configurable, Contextualizable
                 throw new CheckstyleException(
                     "cannot access " + key + " in "
                     + this.getClass().getName());
+            }
+            catch (IllegalArgumentException e) {
+                throw new CheckstyleException(
+                    "illegal value '" + value + "' for property '" + key
+                    + "' of bean " + this.getClass().getName());
+            }
+            catch (ConversionException e) {
+                throw new CheckstyleException(
+                    "illegal value '" + value + "' for property '" + key
+                    + "' of bean " + this.getClass().getName());
             }
         }
     }
