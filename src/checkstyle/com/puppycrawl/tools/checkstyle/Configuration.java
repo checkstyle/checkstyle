@@ -138,8 +138,6 @@ public class Configuration
     private int mMaxConstructorLength = MAX_CONSTRUCTOR_LENGTH;
     /** the maximum file length **/
     private int mMaxFileLength = MAX_FILE_LENGTH;
-    /** whether to allow tabs **/
-    private boolean mAllowTabs = false;
     /** the distance between tab stops **/
     private int mTabWidth = TAB_WIDTH;
     /** visibility scope where Javadoc is checked **/
@@ -150,8 +148,6 @@ public class Configuration
     private final HashSet mIllegalInstantiations = new HashSet();
     /** name of the cache file **/
     private String mCacheFile = null;
-    /** whether to ignore max line length of import statements **/
-    private boolean mIgnoreImportLength = false;
     /** pattern to exclude from line lengh checking **/
     private String mIgnoreLineLengthPat;
     /** regexp to exclude from line length checking **/
@@ -159,8 +155,6 @@ public class Configuration
 
     /** the header lines to check for **/
     private String[] mHeaderLines = {};
-    /** interpret the header lines as RE */
-    private boolean mHeaderLinesRegexp = false;
     /** line numbers to ignore in header **/
     private TreeSet mHeaderIgnoreLineNo = new TreeSet();
 
@@ -225,7 +219,7 @@ public class Configuration
         setMaxFileLength(getIntProperty(
             aProps, aLog, MAX_FILE_LENGTH_PROP, MAX_FILE_LENGTH));
 
-        setAllowTabs(getBooleanProperty(aProps, ALLOW_TABS_PROP, mAllowTabs));
+        setBooleanFlag(aProps, ALLOW_TABS_PROP);
         setTabWidth(getIntProperty(aProps, aLog, TAB_WIDTH_PROP, TAB_WIDTH));
         setBooleanFlag(aProps, ALLOW_PROTECTED_PROP);
         setBooleanFlag(aProps, ALLOW_PACKAGE_PROP);
@@ -246,11 +240,9 @@ public class Configuration
         setBooleanFlag(aProps, IGNORE_LONG_ELL_PROP);
         setBooleanFlag(aProps, IGNORE_PUBLIC_IN_INTERFACE_PROP);
         setCacheFile(aProps.getProperty(CACHE_FILE_PROP));
-        setIgnoreImportLength(getBooleanProperty(
-            aProps, IGNORE_IMPORT_LENGTH_PROP, mIgnoreImportLength));
+        setBooleanFlag(aProps, IGNORE_IMPORT_LENGTH_PROP);
         setHeaderIgnoreLines(aProps.getProperty(HEADER_IGNORE_LINE_PROP));
-        setHeaderLinesRegexp(getBooleanProperty(
-            aProps, HEADER_LINES_REGEXP_PROP, mHeaderLinesRegexp));
+        setBooleanFlag(aProps, HEADER_LINES_REGEXP_PROP);
 
         final String fname = aProps.getProperty(HEADER_FILE_PROP);
         if (fname != null) {
@@ -486,7 +478,7 @@ public class Configuration
     /** @return whether to allow tabs **/
     public boolean isAllowTabs()
     {
-        return mAllowTabs;
+        return isFlagSet(ALLOW_TABS_PROP);
     }
 
     /** @return distance between tab stops */
@@ -594,7 +586,7 @@ public class Configuration
     /** @return whether to ignore max line length for import statements **/
     public boolean isIgnoreImportLength()
     {
-        return mIgnoreImportLength;
+        return isFlagSet(IGNORE_IMPORT_LENGTH_PROP);
     }
 
     /** @return the header lines to check for **/
@@ -607,7 +599,7 @@ public class Configuration
     /** @return if lines in header file are regular expressions */
     public boolean getHeaderLinesRegexp()
     {
-        return mHeaderLinesRegexp;
+        return isFlagSet(HEADER_LINES_REGEXP_PROP);
     }
 
     /**
@@ -772,14 +764,6 @@ public class Configuration
     }
 
     /**
-     * @param aIgnoreImportLength whether to allow tabs
-     */
-    public void setIgnoreImportLength(boolean aIgnoreImportLength)
-    {
-        mIgnoreImportLength = aIgnoreImportLength;
-    }
-
-    /**
      * @param aPkgPrefixList comma separated list of package prefixes
      */
     public void setIllegalImports(String aPkgPrefixList)
@@ -801,14 +785,6 @@ public class Configuration
         while (st.hasMoreTokens()) {
             mIllegalInstantiations.add(st.nextToken());
         }
-    }
-
-    /**
-     * @param aAllowTabs whether to allow tabs
-     */
-    public void setAllowTabs(boolean aAllowTabs)
-    {
-        mAllowTabs = aAllowTabs;
     }
 
     /** @param aTabWidth distance between tab stops */
@@ -859,14 +835,6 @@ public class Configuration
             lines.add(l);
         }
         mHeaderLines = (String[]) lines.toArray(new String[0]);
-    }
-
-    /**
-     * @param aHeaderLinesRegexp lines in header file are regular expressions
-     */
-    public void setHeaderLinesRegexp(boolean aHeaderLinesRegexp)
-    {
-        mHeaderLinesRegexp = aHeaderLinesRegexp;
     }
 
     /**
@@ -1018,27 +986,6 @@ public class Configuration
                              + " property with value " + strRep
                              + ", defaulting to " + aDefault + ".");
             }
-        }
-        return retVal;
-    }
-
-    /**
-     * @param aProps the properties set to use
-     * @param aName the name of the property to parse
-     * @param aDefault the default value to use.
-     * @return the value of an boolean property. If the property is not defined
-     *    or cannot be parsed, then a default value is returned.
-     */
-    private static boolean getBooleanProperty(Properties aProps,
-                                              String aName,
-                                              boolean aDefault)
-    {
-        boolean retVal = aDefault;
-        String strRep = aProps.getProperty(aName);
-        if (strRep != null) {
-            strRep = strRep.toLowerCase().trim();
-            retVal = strRep.equals("true") || strRep.equals("yes")
-                || strRep.equals("on");
         }
         return retVal;
     }

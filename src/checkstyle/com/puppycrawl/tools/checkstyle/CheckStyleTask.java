@@ -144,13 +144,7 @@ public class CheckStyleTask
     /** @param aAllowed whether tabs are allowed **/
     public void setAllowTabs(final boolean aAllowed)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setAllowTabs(aAllowed);
-                }
-            });
+        setBooleanFlag(Defn.ALLOW_TABS_PROP, aAllowed);
     }
 
     /** @param aTabWidth number of spaces that are represented by one tab **/
@@ -254,13 +248,7 @@ public class CheckStyleTask
      */
     public void setIgnoreImportLen(final boolean aIgnore)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setIgnoreImportLength(aIgnore);
-                }
-            });
+        setBooleanFlag(Defn.IGNORE_IMPORT_LENGTH_PROP, aIgnore);
     }
 
     /** @param aPat pattern for member variables **/
@@ -447,13 +435,7 @@ public class CheckStyleTask
     /** @param aIsRegexp whether to interpret header lines as regexp */
     public void setHeaderLinesRegexp(final boolean aIsRegexp)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setHeaderLinesRegexp(aIsRegexp);
-                }
-            });
+        setBooleanFlag(Defn.HEADER_LINES_REGEXP_PROP, aIsRegexp);
     }
 
     /** @param aList Comma separated list of line numbers **/
