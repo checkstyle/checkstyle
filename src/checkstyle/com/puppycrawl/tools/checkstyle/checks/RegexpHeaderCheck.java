@@ -158,7 +158,8 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
                 }
                 catch (RESyntaxException ex) {
                     throw new ConversionException(
-                            "line " + i + " in header specification is not a regular expression");
+                            "line " + i + " in header specification"
+                            + " is not a regular expression");
                 }
             }
         }
