@@ -103,6 +103,10 @@ public class Configuration
     /** line numbers to ignore in header **/
     private TreeSet mHeaderIgnoreLineNo = new TreeSet();
 
+    /** class loader to resolve classes with **/
+    private ClassLoader mLoader =
+        Thread.currentThread().getContextClassLoader();
+
     /** where to place right curlies  **/
     private RightCurlyOption mRCurly = RightCurlyOption.SAME;
 
@@ -143,8 +147,6 @@ public class Configuration
         mLCurliesProps.put(Defn.LCURLY_TYPE_PROP, LeftCurlyOption.EOL);
         mLCurliesProps.put(Defn.LCURLY_OTHER_PROP, LeftCurlyOption.EOL);
     }
-
-
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -294,6 +296,12 @@ public class Configuration
     ////////////////////////////////////////////////////////////////////////////
     // Getters
     ////////////////////////////////////////////////////////////////////////////
+
+    /** @return the class loader **/
+    public ClassLoader getClassLoader()
+    {
+        return mLoader;
+    }
 
     /** @return pattern to match todo lines **/
     public String getTodoPat()
@@ -578,6 +586,15 @@ public class Configuration
     ////////////////////////////////////////////////////////////////////////////
     // Setters
     ////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Set the class loader for locating classes.
+     * @param aLoader the class loader
+     */
+    public void setClassLoader(ClassLoader aLoader)
+    {
+        mLoader = aLoader;
+    }
 
     /**
      * @param aPkgPrefixList comma separated list of package prefixes
