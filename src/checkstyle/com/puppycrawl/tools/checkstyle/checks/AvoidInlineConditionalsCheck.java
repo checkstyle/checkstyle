@@ -28,14 +28,14 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * An example inline conditional is this:
  * <pre>
  * String a = getParameter("a");
- * String b = (a==null || a.length<1) ? null : a.substring(1);
+ * String b = (a==null || a.length&lt;1) ? null : a.substring(1);
  * </pre>
  *
  * Rationale: Some developers find inline conditionals hard to read,
  * so their company's coding standards forbids them.
  *
  * @author lkuehne
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class AvoidInlineConditionalsCheck extends Check
 {
