@@ -511,6 +511,11 @@
                   // figure out the file that contains the error
                   final String path = files[max].getPath();
 
+                  // message collector is used to collect error messages,
+                  // needs to be reset before starting to collect error messages
+                  // for a file.
+                  getMessageCollector().reset();
+
                   // message dispatcher is used to fire AuditEvents
                   MessageDispatcher dispatcher = getMessageDispatcher();
 
