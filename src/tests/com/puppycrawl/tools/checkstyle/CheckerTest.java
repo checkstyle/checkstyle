@@ -14,13 +14,13 @@ public class CheckerTest
     private final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
     private final PrintStream mStream = new PrintStream(mBAOS);
     private final Properties mProps = new Properties();
-    
+
     public CheckerTest(String name)
     {
         super(name);
     }
 
-    protected void setUp() 
+    protected void setUp()
     {
         mProps.setProperty(Checker.HEADER_FILE_PROP, "java.header");
     }
@@ -42,7 +42,7 @@ public class CheckerTest
         assertEquals(aExpected.length, errs);
     }
 
-    
+
     public void testWhitespace()
         throws Exception
     {
@@ -68,34 +68,30 @@ public class CheckerTest
     {
         final Checker c = new Checker(mProps, mStream);
         final String[] expected = {
-            "InputBraces.java:7: Unused import - java.lang.Class",
-            "InputBraces.java:8: Duplicate import to line 7.",
-            "InputBraces.java:8: Unused import - java.lang.Class",
-            "InputBraces.java:9: Avoid using the '.*' form of import.",
-            "InputBraces.java:33: 'do' construct must use '{}'s.",
-            "InputBraces.java:45: 'while' construct must use '{}'s.",
-            "InputBraces.java:45: ';' is not preceeded with whitespace.",
-            "InputBraces.java:46: 'while' construct must use '{}'s.",
-            "InputBraces.java:48: 'while' construct must use '{}'s.",
-            "InputBraces.java:49: 'if' construct must use '{}'s.",
-            "InputBraces.java:62: 'for' construct must use '{}'s.",
-            "InputBraces.java:62: ';' is not preceeded with whitespace.",
-            "InputBraces.java:63: 'for' construct must use '{}'s.",
-            "InputBraces.java:65: 'for' construct must use '{}'s.",
-            "InputBraces.java:66: 'if' construct must use '{}'s.",
-            "InputBraces.java:85: 'if' construct must use '{}'s.",
-            "InputBraces.java:85: ';' is not preceeded with whitespace.",
-            "InputBraces.java:86: 'if' construct must use '{}'s.",
+            "InputBraces.java:29: 'do' construct must use '{}'s.",
+            "InputBraces.java:41: 'while' construct must use '{}'s.",
+            "InputBraces.java:41: ';' is not preceeded with whitespace.",
+            "InputBraces.java:42: 'while' construct must use '{}'s.",
+            "InputBraces.java:44: 'while' construct must use '{}'s.",
+            "InputBraces.java:45: 'if' construct must use '{}'s.",
+            "InputBraces.java:58: 'for' construct must use '{}'s.",
+            "InputBraces.java:58: ';' is not preceeded with whitespace.",
+            "InputBraces.java:59: 'for' construct must use '{}'s.",
+            "InputBraces.java:61: 'for' construct must use '{}'s.",
+            "InputBraces.java:62: 'if' construct must use '{}'s.",
+            "InputBraces.java:81: 'if' construct must use '{}'s.",
+            "InputBraces.java:81: ';' is not preceeded with whitespace.",
+            "InputBraces.java:82: 'if' construct must use '{}'s.",
+            "InputBraces.java:84: 'if' construct must use '{}'s.",
+            "InputBraces.java:84: 'else' construct must use '{}'s.",
             "InputBraces.java:88: 'if' construct must use '{}'s.",
-            "InputBraces.java:88: 'else' construct must use '{}'s.",
-            "InputBraces.java:92: 'if' construct must use '{}'s.",
-            "InputBraces.java:97: 'else' construct must use '{}'s.",
-            "InputBraces.java:102: 'if' construct must use '{}'s.",
-            "InputBraces.java:103: 'if' construct must use '{}'s."
+            "InputBraces.java:93: 'else' construct must use '{}'s.",
+            "InputBraces.java:98: 'if' construct must use '{}'s.",
+            "InputBraces.java:99: 'if' construct must use '{}'s."
         };
         verify(c, "InputBraces.java", expected);
     }
-    
+
     public void testTags()
         throws Exception
     {
@@ -125,7 +121,7 @@ public class CheckerTest
 
         verify(c, "InputTags.java", expected);
     }
-    
+
     public void testInner()
         throws Exception
     {
@@ -205,7 +201,7 @@ public class CheckerTest
         };
         verify(c, "InputPublicOnly.java", expected);
     }
-    
+
     public void testRelaxedJavadoc()
         throws Exception
     {
@@ -230,7 +226,7 @@ public class CheckerTest
             "InputPublicOnly.java:84: method is missing a Javadoc comment."
         };
         verify(c, "InputPublicOnly.java", expected);
-    }    
+    }
 
     public void testHeader()
         throws Exception
@@ -243,5 +239,20 @@ public class CheckerTest
             "inputHeader.java:1: type name 'inputHeader' must match pattern '^[A-Z][a-zA-Z0-9]*$'."
         };
         verify(c, "inputHeader.java", expected);
+    }
+
+    public void testImport()
+        throws Exception
+    {
+        final Checker c = new Checker(mProps, mStream);
+        assertNotNull(c);
+        final String[] expected = {
+            "InputImport.java:7: Unused import - java.util.List",
+            "InputImport.java:8: Duplicate import to line 7.",
+            "InputImport.java:8: Unused import - java.util.List",
+            "InputImport.java:9: Avoid using the '.*' form of import.",
+            "InputImport.java:10: Redundant import from the java.lang package.",
+        };
+        verify(c, "InputImport.java", expected);
     }
 }

@@ -68,7 +68,7 @@ class VerifierImpl
 
     /** tracks the level of block definitions for methods **/
     private int mMethodBlockLevel = 0;
-    
+
     /** the messages being logged **/
     private final List mMessages = new ArrayList();
 
@@ -123,7 +123,7 @@ class VerifierImpl
     private final boolean mRelaxJavadoc;
     /** whether to process imports **/
     private final boolean mCheckImports;
-    
+
     /** the header lines to check for **/
     private final String[] mHeaderLines;
     /** line number to ignore in header **/
@@ -459,7 +459,7 @@ class VerifierImpl
     {
         mReferenced.add(aType);
     }
-    
+
     /** @see Verifier **/
     public void reportImport(int aLineNo, String aType)
     {
@@ -473,11 +473,18 @@ class VerifierImpl
                         "Duplicate import to line " + lt.getLineNo() + ".");
                 }
             }
-        }
 
-        mImports.add(new LineText(aLineNo, aType));
+            // Check for import from java.lang package.
+            if (aType.startsWith("java.lang.")) {
+                log(aLineNo, "Redundant import from the java.lang package.");
+            }
+            else {
+                // Add to list to check for duplicates and usage
+                mImports.add(new LineText(aLineNo, aType));
+            }
+        }
     }
-    
+
     /** @see Verifier **/
     public void reportStarImport(int aLineNo, String aPkg)
     {
@@ -485,31 +492,31 @@ class VerifierImpl
             log(aLineNo, "Avoid using the '.*' form of import.");
         }
     }
-    
+
     /** @see Verifier **/
     public void reportStartTypeBlock(boolean aIsInterface)
     {
         mInInterface.push(new Boolean(aIsInterface));
     }
-    
+
     /** @see Verifier **/
     public void reportEndTypeBlock()
     {
         mInInterface.pop();
     }
-    
+
     /** @see Verifier **/
     public void reportStartMethodBlock()
     {
         mMethodBlockLevel++;
     }
-    
+
     /** @see Verifier **/
     public void reportEndMethodBlock()
     {
         mMethodBlockLevel--;
     }
-    
+
 
     ////////////////////////////////////////////////////////////////////////////
     // Private methods
@@ -528,9 +535,9 @@ class VerifierImpl
             retVal = new RE(aPattern);
         }
         catch (RESyntaxException e) {
-            System.err.println("Failed to initialise regexp expression " +
+            System.out.println("Failed to initialise regexp expression " +
                                aPattern);
-            e.printStackTrace(System.err);
+            e.printStackTrace(System.out);
             System.exit(1);
         }
         return retVal;
@@ -783,13 +790,14 @@ class VerifierImpl
         return (i == -1) ? aType : aType.substring(i + 1);
     }
 
-    /** Check for imports that are unused. **/
+    /** Check the imports that are unused or unrequired. **/
     private void checkImports()
     {
         if (!mCheckImports) {
             return;
         }
 
+        // Loop checking for unused imports
         final Iterator it = mImports.iterator();
         while (it.hasNext()) {
             final LineText imp = (LineText) it.next();

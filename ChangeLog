@@ -1,0 +1,24 @@
+2001-06-28  Oliver Burn  <checkstyle@puppycrawl.com>
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.tree.g: Now report
+	references associated with "<Type>.class" declarations. Bug reported by
+	Brendan Humphreys.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/VerifierImpl.java:
+	Changed package checking to handle "java.lang." imports.
+
+	* build.xml: Updated version to 1.2
+
+	* src/tests/com/puppycrawl/tools/checkstyle/InputImport.java: Created.
+
+	* src/tests/com/puppycrawl/tools/checkstyle/CheckerTest.java: Added test
+	for imports.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/VerifierImpl.java:
+	Now checks for imports from java.lang package.
+
+	* ChangeLog: Introduced its use.
+
+	* Main.java, VerifierImpl.java, CheckStyleTask.java: Now output
+	messages to standard out, instead of standard error. Makes piping the
+	output of checkstyle a lot easier.
