@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -42,7 +43,7 @@ public class HiddenFieldCheck
     private LinkedList mFieldsStack = null;
     
     /** check for shadowing parameters **/
-    private boolean mCheckParameters = false;
+    private boolean mCheckParameters = true;
 
     /**
      * Set whether to check for shadowing parameters.
@@ -85,8 +86,6 @@ public class HiddenFieldCheck
                 //push
                 mFieldsStack.addLast(new HashSet());
                 break;
-            default:
-                break;
         }
     }
 
@@ -112,10 +111,14 @@ public class HiddenFieldCheck
                 //local variable or parameter. Does it shadow a field?
                 final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
                 final String name = nameAST.getText();
-                final HashSet currentFieldsSet = (HashSet)mFieldsStack.getLast();
-                if (currentFieldsSet.contains(name)) {
-                    log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                        "hidden.field", name);
+                Iterator it = mFieldsStack.iterator();
+                while (it.hasNext()) {
+                    final HashSet aFieldsSet = (HashSet)it.next();
+                    if (aFieldsSet.contains(name)) {
+                        log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                            "hidden.field", name);
+                        break;
+                    }
                 }
             }
             else {
