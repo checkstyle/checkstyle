@@ -26,6 +26,7 @@ import java.util.Iterator;
 import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
