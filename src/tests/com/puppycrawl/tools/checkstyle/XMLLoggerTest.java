@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 import junit.framework.TestCase;
+import org.apache.regexp.RE;
 
 /**
  * Enter a description of class XMLLoggerTest.java.
@@ -186,8 +188,7 @@ public class XMLLoggerTest extends TestCase
     /**
      * Verify output lines from auditStart to auditEnd.
      * Take into consideration checkstyle element (first and last lines).
-     * @param strings
-     * @param lines
+     * @param aExpectedLines expected error report lines
      */
     private void verifyLines(String[] aExpectedLines)
         throws IOException
@@ -197,7 +198,8 @@ public class XMLLoggerTest extends TestCase
         assertEquals("first line.",
                      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                      lines[0]);
-        assertEquals("second line.", "<checkstyle>", lines[1]);
+        RE checkstyleOpenTag = Utils.getRE("^<checkstyle version=\".*\">$");
+        assertTrue("second line.", checkstyleOpenTag.match(lines[1]));
         for (int i = 0; i < aExpectedLines.length; i++) {
             assertEquals("line " + i + ".", aExpectedLines[i], lines[i + 2]);
         }
