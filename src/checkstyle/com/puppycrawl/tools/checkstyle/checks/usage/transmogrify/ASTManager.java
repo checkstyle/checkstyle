@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.usage;
+package com.puppycrawl.tools.checkstyle.checks.usage.transmogrify;
 
 import java.io.File;
 import java.util.HashMap;
@@ -28,12 +28,7 @@ import java.util.Set;
 
 import antlr.collections.AST;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.SymTabAST;
-import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.SymTabASTFactory;
-import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.SymbolTable;
-import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.SymbolTableException;
-import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.TableMaker;
+import com.puppycrawl.tools.checkstyle.checks.usage.AbstractUsageCheck;
 
 /**
  * Manages AST trees and nodes. Capable of managing multiple parse trees, which
@@ -165,21 +160,21 @@ public final class ASTManager
     }
 
     /**
-     * Maps a DetailAST to its associated SymTabAST.
-     * @param aDetailAST the DetailAST.
-     * @param aSymTabAST the SymTabAST associated with aDetailAST.
+     * Maps a AST to its associated SymTabAST.
+     * @param aAST the AST.
+     * @param aSymTabAST the SymTabAST associated with aAST.
      */
-    public void put(DetailAST aDetailAST, SymTabAST aSymTabAST)
+    public void put(AST aAST, SymTabAST aSymTabAST)
     {
-        mMap.put(aDetailAST, aSymTabAST);
+        mMap.put(aAST, aSymTabAST);
     }
 
     /**
-     * Gets the SymTabAST associated with a DetailAST.
-     * @param aAST the DetailAST.
+     * Gets the SymTabAST associated with a AST.
+     * @param aAST the AST.
      * @return the the SymTabAST associated with aAST.
      */
-    public SymTabAST get(DetailAST aAST)
+    public SymTabAST get(AST aAST)
     {
         return (SymTabAST) mMap.get(aAST);
     }
