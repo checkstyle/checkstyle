@@ -227,7 +227,7 @@ class Verifier
         {
             log(aSig.getName().getLineNo(),
                 aSig.getName().getColumnNo(),
-                "method name '" + aSig.getName() +
+                "method name '" + aSig.getName().getText() +
                 "' must match pattern '" + mConfig.getMethodPat() + "'.");
         }
 
@@ -869,15 +869,59 @@ class Verifier
     }
 
     /**
-     * Report that the parser has found a (potentially empty) catch block.
-     * @param aLineNo the line number of the catch keyword
-     * @param aColNo the column number of the catch keyword
-     * @param aIsEmpty whether the block contains any statement
+     * Report that the parser has found a catch block.
+     * @param aBraces the start and end braces from the catch block
+     * @param aNoStmt whether there are any statements in the block
      */
-    void reportCatchBlock(int aLineNo, int aColNo, boolean aIsEmpty)
+    void reportCatchBlock(MyCommonAST[] aBraces, boolean aNoStmt)
     {
-        if (aIsEmpty && !mConfig.isAllowEmptyCatch()) {
-            log(aLineNo, aColNo - 1, "Empty catch block.");
+        if (aNoStmt && (mConfig.getCatchBlock() == CatchBlockOption.STMT)) {
+            log(aBraces[0].getLineNo(),
+                aBraces[0].getColumnNo(),
+                "Must have at least one statement.");
+        }
+        else if (mConfig.getCatchBlock() == CatchBlockOption.TEXT) {
+            if (aBraces[0].getLineNo() == aBraces[1].getLineNo()) {
+                // Handle braces on the same line
+                final String txt = mLines[aBraces[0].getLineNo() - 1]
+                    .substring(aBraces[0].getColumnNo() + 1,
+                               aBraces[1].getColumnNo());
+                if (txt.trim().length() == 0) {
+                    log(aBraces[0].getLineNo(),
+                        aBraces[0].getColumnNo(),
+                        "Empty catch block.");
+                }
+            }
+            else {
+                // check only whitespace of first & last lines
+                if ((mLines[aBraces[0].getLineNo() - 1]
+                     .substring(aBraces[0].getColumnNo() + 1).trim().length()
+                     == 0)
+                    &&
+                    (mLines[aBraces[1].getLineNo() - 1]
+                     .substring(0, aBraces[1].getColumnNo()).trim().length()
+                     == 0))
+                {
+
+                    // Need to check if all lines are also only whitespace
+                    boolean isBlank = true;
+                    for (int i = aBraces[0].getLineNo();
+                         i < (aBraces[1].getLineNo() - 1);
+                         i++)
+                    {
+                        if (mLines[i].trim().length() > 0) {
+                            isBlank = false;
+                            break;
+                        }
+                    }
+
+                    if (isBlank) {
+                        log(aBraces[0].getLineNo(),
+                            aBraces[0].getColumnNo(),
+                            "Empty catch block.");
+                    }
+                }
+            }
         }
     }
 

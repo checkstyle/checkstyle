@@ -754,7 +754,7 @@ tryBlock
             {
                 ver.verifyWSAroundBegin(
                     c.getLine(), c.getColumn(), c.getText());
-                ver.reportCatchBlock(c.getLine(), c.getColumn(), isEmpty[0]);
+                ver.reportCatchBlock(stmtBraces, isEmpty[0]);
                 ver.verifyLCurlyOther(c.getLine(), stmtBraces[0]);
             }
         )*

@@ -645,6 +645,18 @@ public class CheckStyleTask
             });
     }
 
+    /** @param aTo the catch block option **/
+    public void setCatchBlock(final String aTo)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setCatchBlock(extractCatchBlockOption(aTo));
+                }
+            });
+    }
+
     /** @param aTo the parenthesis padding option **/
     public void setParenPad(final String aTo)
     {
@@ -653,18 +665,6 @@ public class CheckStyleTask
                 public void run()
                 {
                     mConfig.setParenPadOption(extractPadOption(aTo));
-                }
-            });
-    }
-
-    /** @param aAllowed whether empty catch blocks are allowed **/
-    public void setAllowEmptyCatch(final boolean aAllowed)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setAllowEmptyCatch(aAllowed);
                 }
             });
     }
@@ -907,6 +907,22 @@ public class CheckStyleTask
         throws BuildException
     {
         final RightCurlyOption opt = RightCurlyOption.decode(aFrom);
+        if (opt == null) {
+            throw new BuildException("Unable to parse '" + aFrom + "'.",
+                                     location);
+        }
+        return opt;
+    }
+
+    /**
+     * @param aFrom String to decode the option from
+     * @return the CatchBlockOption represented by aFrom
+     * @throws BuildException if unable to decode aFrom
+     */
+    private CatchBlockOption extractCatchBlockOption(String aFrom)
+        throws BuildException
+    {
+        final CatchBlockOption opt = CatchBlockOption.decode(aFrom);
         if (opt == null) {
             throw new BuildException("Unable to parse '" + aFrom + "'.",
                                      location);
