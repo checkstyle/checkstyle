@@ -26,7 +26,7 @@
           <a href="#overview">Overview</a>
         </li>
         <li>
-          <a href="#<modules">Modules</a>
+          <a href="#modules">Modules</a>
         </li>
         <li>
           <a href="#properties">Properties</a>
@@ -35,7 +35,7 @@
           <a href="#treewalker">TreeWalker Checks</a>
         </li>
         <li>
-          <a href="#xml">XML</a>
+          <a href="#xml">XML Details</a>
         </li>
       </ul>
     </td>
@@ -106,6 +106,7 @@
       For each configuration module, Checkstyle loads a class identified by the 
       <span class="code">name</span> attribute of the <span class="code">module</span>. 
       There are several rules for loading a module's class:
+      </p>
       <ol class="body">
         <li>
           Load a class directly according to a package-qualified <span class="code">name</span>,
@@ -192,6 +193,7 @@
       For example, the following configuration document element gives property
       <span class="code">headerFile</span> the value
      of command line property <span class="code">checkstyle.header.file</span>:
+     </p>
       <pre class="body">
       &lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
       </pre>
@@ -239,7 +241,7 @@
      </p>
       <pre class="body">
         &lt;module name=&quot;MethodLength&quot;&gt;
-            &lt;property name=&quot;tokens&quot; value=&quot;{METHOD_DEF}&quot;/&gt;
+            &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
         &lt;/module&gt;
     </pre>
     <p class="body">
@@ -251,11 +253,11 @@
     </p>
       <pre class="body">
         &lt;module name=&quot;MethodLength&quot;&gt;
-            &lt;property name=&quot;tokens&quot; value=&quot;{METHOD_DEF}&quot;/&gt;
+            &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
         &lt;/module&gt;
 
         &lt;module name=&quot;MethodLength&quot;&gt;
-            &lt;property name=&quot;tokens&quot; value=&quot;{CTOR_DEF}&quot;/&gt;
+            &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
             &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
         &lt;/module&gt;
     </pre>
@@ -292,9 +294,43 @@
           <a href="config_misc.html">Miscellaneous Checks</a>
         </li>
       </ul>
-      <a name="xml"></a> <h2>XML</h2>
+      <a name="xml"></a>
+      <h2>XML Details</h2>
       <p class="body">
-      DTD. DOCTYPE.
+      The following is a DTD for a configuration XML document specifies the hierarchy of modules 
+      and their properties:
+      </p>
+      <pre class="body">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;!ELEMENT module (module|property)*&gt;
+&lt;!ATTLIST module name NMTOKEN #REQUIRED&gt;
+
+&lt;!ELEMENT property EMPTY&gt;
+&lt;!ATTLIST property
+	name NMTOKEN #REQUIRED
+	value CDATA #REQUIRED
+&gt;
+      </pre>
+      <p class="body">
+      Checkstyle validates a configuration XML document when it loads the document.
+      To validate against the above configuration DTD,
+      include the following document type declaration in
+      your configuration XML document:
+      </p>
+      <pre class="body">
+    &lt;!DOCTYPE module PUBLIC
+    &quot;-//Puppy Crawl//DTD Check Configuration 1.0//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/configuration_1_0.dtd&quot;&gt;
+    </pre>
+      <p class="body">
+      Checkstyle also strictly enforces the encoding attribute of an XML declaration.
+      If Checkstyle rejects your configuration document&apos;s encoding,  
+      correct the value of the encoding attribute, or remove the ecoding attribute entirely.
+      </p>
+      <p class="body">
+      For a complete example of a configuration XML document, examine file <span class="code">docs/checkstyle_checks.xml</span>
+      that the Checkstyle team uses to validate the Checkstyle source code.
       </p>
     </td>
   </tr>
