@@ -90,27 +90,23 @@ public class ExplicitInitializationCheck extends Check
         if (isObjectType(type)
             && exprStart.getType() == TokenTypes.LITERAL_NULL)
         {
-            log(ident.getLineNo(), ident.getColumnNo(),
-                "explicit.init", ident.getText(), "null");
+            log(ident, "explicit.init", ident.getText(), "null");
         }
         int primitiveType = type.getFirstChild().getType();
         if (primitiveType == TokenTypes.LITERAL_BOOLEAN
             && exprStart.getType() == TokenTypes.LITERAL_FALSE)
         {
-            log(ident.getLineNo(), ident.getColumnNo(),
-                "explicit.init", ident.getText(), "false");
+            log(ident, "explicit.init", ident.getText(), "false");
         }
         if (isNumericType(primitiveType) && isZero(exprStart)) {
-            log(ident.getLineNo(), ident.getColumnNo(),
-                "explicit.init", ident.getText(), "0");
+            log(ident, "explicit.init", ident.getText(), "0");
         }
         if (primitiveType == TokenTypes.LITERAL_CHAR
             && (isZero(exprStart)
                 || exprStart.getType() == TokenTypes.CHAR_LITERAL
                 && "'\\0'".equals(exprStart.getText())))
         {
-            log(ident.getLineNo(), ident.getColumnNo(),
-                "explicit.init", ident.getText(), "\\0");
+            log(ident, "explicit.init", ident.getText(), "\\0");
         }
     }
 

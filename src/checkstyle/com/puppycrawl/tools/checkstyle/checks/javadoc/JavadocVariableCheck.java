@@ -91,9 +91,7 @@ public class JavadocVariableCheck
                         contents.getJavadocBefore(aAST.getLineNo());
 
                     if (cmt == null) {
-                        log(aAST.getLineNo(),
-                            aAST.getColumnNo(),
-                            "javadoc.missing");
+                        log(aAST, "javadoc.missing");
                     }
                 }
             }

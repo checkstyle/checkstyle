@@ -71,9 +71,7 @@ public final class IllegalCatchCheck extends Check
         FullIdent ident = CheckUtils.createFullType(excType);
 
         if (isIllegalClassName(ident.getText())) {
-            log(aDetailAST.getLineNo(),
-                aDetailAST.getColumnNo(),
-                "illegal.catch", ident.getText());
+            log(aDetailAST, "illegal.catch", ident.getText());
         }
     }
 
