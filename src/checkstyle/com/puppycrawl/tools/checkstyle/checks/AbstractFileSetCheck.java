@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.io.File;
 
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 
 /**
  * Provides common functionality for many FileSetChecks.
@@ -32,6 +33,9 @@ import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
  */
 public abstract class AbstractFileSetCheck implements FileSetCheck
 {
+    /** The dispatcher errors are fired to. */
+    private MessageDispatcher mDispatcher = null;
+
     /**
      * Does nothing.
      * @see FileSetCheck
@@ -58,5 +62,15 @@ public abstract class AbstractFileSetCheck implements FileSetCheck
         return directories;
     }
 
+    /** @see FileSetCheck */
+    public void setMessageDispatcher(MessageDispatcher aDispatcher)
+    {
+        mDispatcher = aDispatcher;
+    }
 
+    /** @return the current MessageDispatcher. */
+    protected MessageDispatcher getMessageDispatcher()
+    {
+        return mDispatcher;
+    }
 }

@@ -18,31 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.io.File;
-
 /**
- * Interface for Checking a set of files for some criteria.
- *
+ * Used by FileSetChecks to distribute AuditEvents to AuditListeners.
  * @author lkuehne
  */
-public interface FileSetCheck
+public interface MessageDispatcher
 {
     /**
-     * Sets the MessageDispatcher that is used to dispatch error
-     * messages to AuditListeners during processing.
-     * @param aDispatcher the dispatcher
+     * Notify all listeners about the beginning of a file audit
+     * @param aFileName the file to be audited
      */
-    void setMessageDispatcher(MessageDispatcher aDispatcher);
+    void fireFileStarted(String aFileName);
 
     /**
-     * Processes a set of files and fires errors to the MessageDispatcher.
-     * Once this is done, it is highly recommended to call for
-     * the destroy method to close and remove the listeners.
-     * @param aFiles the files to be audited.
-     * @see #destroy()
+     * Notify all listeners about the end of a file audit
+     * @param aFileName the audited file
      */
-    void process(File[] aFiles);
+    void fireFileFinished(String aFileName);
 
-    /** Cleans up the object **/
-    void destroy();
+    /**
+     * Notify all listeners about the errors in a file.
+     * @param aFileName the audited file
+     * @param aErrors the audit errors from the file
+     */
+    void fireErrors(String aFileName, LocalizedMessage[] aErrors);
 }

@@ -32,15 +32,69 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 
 /**
  * This class provides the functionality to check a set of files.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
+ * @author lkuehne
  */
 public class Checker
-    implements Defn
+    implements Defn, MessageDispatcher
 {
+    /**
+     * An AuditListener that maintains the number of errors.
+     */
+    private class ErrorCounter implements AuditListener
+    {
+        /** keeps track of the number of errors */
+        private int mCount = 0;
+
+        /** @see AuditListener */
+        public void addError(AuditEvent aEvt)
+        {
+            mCount++;
+        }
+
+        /** @see AuditListener */
+        public void addException(AuditEvent aEvt, Throwable aThrowable)
+        {
+            mCount++;
+        }
+
+        /** @see AuditListener */
+        public void auditStarted(AuditEvent aEvt)
+        {
+            mCount = 0;
+        }
+
+        /** @see AuditListener */
+        public void fileStarted(AuditEvent aEvt)
+        {
+        }
+
+        /** @see AuditListener */
+        public void auditFinished(AuditEvent aEvt)
+        {
+        }
+
+        /** @see AuditListener */
+        public void fileFinished(AuditEvent aEvt)
+        {
+        }
+
+        /**
+         * @return the number of errors since audit started.
+         */
+        private int getCount()
+        {
+            return mCount;
+        }
+    }
+
+    /** maintains error count */
+    private final ErrorCounter mCounter = new ErrorCounter();
 
     /** configuration */
     private final GlobalProperties mConfig;
@@ -93,6 +147,7 @@ public class Checker
                 config.createInstance(this.getClass().getClassLoader()),
                 config);
         }
+        this.addListener(mCounter);
     }
 
     /** Cleans up the object **/
@@ -121,27 +176,26 @@ public class Checker
      */
     public int process(File[] aFiles)
     {
-        int total = 0;
         fireAuditStarted();
         for (int i = 0; i < aFiles.length; i++) {
-            total += process(aFiles[i]);
+            process(aFiles[i]);
         }
+        int errorCount = mCounter.getCount();
         fireAuditFinished();
-        return total;
+        return errorCount;
     }
 
     /**
-     * Processes a specified file and prints out all errors found.
-     * @return the number of errors found
+     * Processes a specified file and reports all errors found.
      * @param aFile the file to process
      **/
-    private int process(File aFile)
+    private void process(File aFile)
     {
         // check if already checked and passed the file
         final String fileName = aFile.getPath();
         final long timestamp = aFile.lastModified();
         if (mCache.alreadyChecked(fileName, timestamp)) {
-            return 0;
+            return;
         }
 
         mMessages.reset();
@@ -181,7 +235,6 @@ public class Checker
         }
 
         fireFileFinished(fileName);
-        return mMessages.size();
     }
 
     /**
@@ -231,7 +284,7 @@ public class Checker
      * notify all listeners about the beginning of a file audit
      * @param aFileName the file to be audited
      */
-    protected void fireFileStarted(String aFileName)
+    public void fireFileStarted(String aFileName)
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
@@ -246,7 +299,7 @@ public class Checker
      * notify all listeners about the end of a file audit
      * @param aFileName the audited file
      */
-    protected void fireFileFinished(String aFileName)
+    public void fireFileFinished(String aFileName)
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
@@ -262,7 +315,7 @@ public class Checker
      * @param aFileName the audited file
      * @param aErrors the audit errors from the file
      */
-    protected void fireErrors(String aFileName, LocalizedMessage[] aErrors)
+    public void fireErrors(String aFileName, LocalizedMessage[] aErrors)
     {
         final String stripped = getStrippedFileName(aFileName);
         for (int i = 0; i < aErrors.length; i++) {

@@ -22,6 +22,9 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+
 /**
  * Checks that all packages have a package documentation.
  * @author lkuehne
@@ -29,25 +32,27 @@ import java.util.Set;
 public class PackageHtmlCheck extends AbstractFileSetCheck
 {
     /**
-     * Checks that each java file in the fileset has a package.html sibling.
+     * Checks that each java file in the fileset has a package.html sibling
+     * and fires errors for the missing files.
      * @param aFiles a set of files
-     * @return the number of missing package.html files
      */
-    public int process(File[] aFiles)
+    public void process(File[] aFiles)
     {
-        int missing = 0;
         Set directories = getParentDirs(aFiles);
         for (Iterator it = directories.iterator(); it.hasNext();) {
             File dir = (File) it.next();
             File packageHtml = new File(dir, "package.html");
-            // TODO: fireFileStarted
+            MessageDispatcher dispatcher = getMessageDispatcher();
+            final String path = packageHtml.getPath();
+            dispatcher.fireFileStarted(path);
             if (!packageHtml.exists()) {
-                // TODO: log error
-                System.out.println("package.html missing");
-                missing += 1;
+                LocalizedMessage[] errors = new LocalizedMessage[1];
+                final String bundle = this.getClass().getName() + ".messages";
+                errors[0] = new LocalizedMessage(
+                        0, bundle, "javadoc.packageHtml", null);
+                getMessageDispatcher().fireErrors(path, errors);
             }
-            // TODO: fireFileFinished
+            dispatcher.fireFileFinished(path);
         }
-        return missing;
     }
 }
