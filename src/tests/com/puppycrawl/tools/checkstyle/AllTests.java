@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.checks.LeftCurlyCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.LineLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.LocalFinalVariableNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.LocalVariableNameCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.MagicNumberCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.MemberNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.MethodLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.MethodNameCheckTest;
@@ -101,6 +102,7 @@ public class AllTests {
         suite.addTest(new TestSuite(LineLengthCheckTest.class));
         suite.addTest(new TestSuite(LocalFinalVariableNameCheckTest.class));
         suite.addTest(new TestSuite(LocalVariableNameCheckTest.class));
+        suite.addTest(new TestSuite(MagicNumberCheckTest.class));
         suite.addTest(new TestSuite(MemberNameCheckTest.class));
         suite.addTest(new TestSuite(MethodLengthCheckTest.class));
         suite.addTest(new TestSuite(MethodNameCheckTest.class));
