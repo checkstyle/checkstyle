@@ -23,23 +23,23 @@
     <td class="menu" valign="top">
       <ul>
         <li>
-          <a href="#FileLengthCheck">FileLengthCheck</a>
+          <a href="#FileLength">FileLength</a>
         </li>
         <li>
-          <a href="#LineLengthCheck">LineLengthCheck</a>
+          <a href="#LineLength">LineLength</a>
         </li>
         <li>
-          <a href="#MethodLengthCheck">MethodLengthCheck</a>
+          <a href="#MethodLength">MethodLength</a>
         </li>
         <li>
-          <a href="#ParameterNumberCheck">ParameterNumberCheck</a>
+          <a href="#ParameterNumber">ParameterNumber</a>
         </li>
       </ul>
     </td>
     <!--Content-->
     <td class="content" valign="top" align="left">
 
-      <a name="FileLengthCheck"></a> <h2>FileLengthCheck</h2> <h4>Description</h4>
+      <a name="FileLength"></a> <h2>FileLength</h2> <h4>Description</h4>
       <p class="body">
       Checks for long source files.
       </p>
@@ -71,9 +71,9 @@
       To configure the check to accept files with up to 1500 lines:
       </p>
       <pre class="body">
-&lt;config name="FileLength"&gt;
+&lt;module name="FileLength"&gt;
       &lt;property name="max" value="1500"/&gt;
-&lt;/config&gt;
+&lt;/module&gt;
         </pre>
 
       <h4>Package</h4>
@@ -85,7 +85,7 @@
       <a href="TreeWalker">TreeWalker</a>
       </p>
 
-      <a name="LineLengthCheck"></a> <h2>LineLengthCheck</h2> <h4>Description</h4>
+      <a name="LineLength"></a> <h2>LineLength</h2> <h4>Description</h4>
       <p class="body">
       Checks for long lines.
       </p>
@@ -129,18 +129,18 @@
       To configure the check to accept lines up to 120 characters long:
       </p>
       <pre class="body">
-&lt;config name="LineLength"&gt;
+&lt;module name="LineLength"&gt;
       &lt;property name="max" value="120"/&gt;
-&lt;/config&gt;
+&lt;/module&gt;
         </pre>
       <p class="body">
       To configure the check to ignore lines that begin with &quot; * &quot;, followed 
       by just one word, such as within a Javadoc comment:
       </p>
       <pre class="body">
-&lt;config name="LineLength"&gt;
+&lt;module name="LineLength"&gt;
    &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
-&lt;/config&gt;
+&lt;/module&gt;
         </pre>
 
       <h4>Notes</h4>
@@ -159,7 +159,7 @@
       <a href="TreeWalker">TreeWalker</a>
       </p>
 
-      <a name="MethodLengthCheck"></a> <h2>MethodLengthCheck</h2> <h4>Description</h4>
+      <a name="MethodLength"></a> <h2>MethodLength</h2> <h4>Description</h4>
       <p class="body">
       Checks for long methods and constructors.
       </p>
@@ -197,16 +197,16 @@
       To configure the check:
       </p>
       <pre class="body">
-&lt;config name="MethodLength"/&gt;
+&lt;module name="MethodLength"/&gt;
         </pre>
       <p class="body">
       To configure the check so that it accepts methods with at most 60 lines:
       </p>
       <pre class="body">
-&lt;config name="MethodLength"&gt;
+&lt;module name="MethodLength"&gt;
    &lt;property name="tokens" value="METHOD_DEF"/&gt;
    &lt;property name="max" value="60"/&gt;
-&lt;/config&gt;
+&lt;/module&gt;
         </pre>
 
       <h4>Package</h4>
@@ -219,7 +219,7 @@
       </p>
 
 
-      <a name="ParameterNumberCheck"></a> <h2>ParameterNumberCheck</h2> <h4>Description</h4>
+      <a name="ParameterNumber"></a> <h2>ParameterNumber</h2> <h4>Description</h4>
       <p class="body">
       Checks the number of parameters of a method or constructor.
       </p>
@@ -252,16 +252,16 @@
       To configure the check:
       </p>
       <pre class="body">
-&lt;config name="ParameterNumber"/&gt;
+&lt;module name="ParameterNumber"/&gt;
       </pre>
       <p class="body">
       To configure the check to allow 10 parameters for a method:
       </p>
       <pre class="body">
-&lt;config name="ParameterNumber"&gt;
+&lt;module name="ParameterNumber"&gt;
    &lt;property name="max" value="10"/&gt;
    &lt;property name="tokens" value="METHOD_DEF"/&gt;
-&lt;/config&gt;
+&lt;/module&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
