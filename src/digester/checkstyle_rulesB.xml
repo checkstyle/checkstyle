@@ -16,6 +16,14 @@
         <config
             name="AvoidStarImport"
             classname="com.puppycrawl.tools.checkstyle.AvoidStarImport" />
+
+        <config
+            name="NoWhitespaceAfterCheck"
+            classname="com.puppycrawl.tools.checkstyle.NoWhitespaceAfterCheck" />
+
+        <config
+            name="GenericIllegalRegexpCheck"
+            classname="com.puppycrawl.tools.checkstyle.GenericIllegalRegexpCheck" />
    
    		<!--  Example of a configuration that has a single property of type String. -->
         <config

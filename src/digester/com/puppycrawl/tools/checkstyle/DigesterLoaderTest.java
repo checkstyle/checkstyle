@@ -1,5 +1,6 @@
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 
@@ -14,7 +15,7 @@ public class DigesterLoaderTest
             final Configuration config =
                 ConfigurationDigesterLoader.loadConfiguration(
                     rulesFname, inputFname, null);
-            System.out.println(config);
+            dump(config, 0);
 
         }
         catch (Exception exc) {
@@ -28,12 +29,49 @@ public class DigesterLoaderTest
             final Configuration config =
                 ConfigurationDigesterLoader.loadConfiguration(
                     rulesFname, inputFname, null);
-            System.out.println(config);
+            dump(config, 0);
 
         }
         catch (Exception exc) {
             exc.printStackTrace();
         }
-
     }
+
+    /**
+     * Method dump.
+     * @param config
+     */
+    private static void dump(Configuration aConfig, int aLevel)
+    {
+        for (int i = 0; i < aLevel; i++) {
+            System.out.print("  ");
+        }
+        dumpDetails(aConfig);
+        final Configuration[] children = aConfig.getChildren();
+        for (int i = 0; i < children.length; i++) {
+            dump(children[i], aLevel + 1);
+        }          
+    }
+
+    /**
+     * Method dumpDetails.
+     * @param config
+     */
+    private static void dumpDetails(Configuration aConfig)
+    {
+        System.out.print(aConfig.getName() + "[");
+        final String[] attNames = aConfig.getAttributeNames();
+        for (int i = 0; i < attNames.length; i++) {
+            try {
+                System.out.print(attNames[i] + "="
+                    + aConfig.getAttribute(attNames[i]) + ",");
+            }
+            catch (CheckstyleException ex) {
+                ex.printStackTrace();
+            }
+        }
+        System.out.println("]");
+    }
+
+
 }
