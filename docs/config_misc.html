@@ -70,6 +70,9 @@
         <li>
           <a href="#FinalParameters">FinalParameters</a>
         </li>
+        <li>
+          <a href="#DoubleCheckedLocking">DoubleCheckedLocking</a>
+        </li>
       </ul>
     </td>
     <!--Content-->
@@ -777,6 +780,52 @@ public class StringUtils // not final to allow subclassing
 &lt;module name=&quot;FinalParameters&quot;&gt;
     &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
 &lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="DoubleCheckedLocking"></a> <h2>DoubleCheckedLocking</h2> <h4>Description</h4>
+      <p class="body">
+      The &quot;double-checked locking&quot; idiom (DCL) tries to avoid the runtime cost
+      of synchronization. An example that uses the DCL idiom is this:
+      </p>
+      <pre class="body">
+public class MySingleton
+{
+    private theInstance = null;
+
+    private MySingleton() {}
+
+    public MySingleton getInstance() {
+        if ( theInstance == null ) { // synchronize only if necessary
+            synchronized( MySingleton.class ) {
+                if ( s_singleton == null ) {
+                    theInstance = new MySingleton();
+                }
+            }
+        }
+    }
+}
+      </pre>
+      <p class="body">
+      The problem with the DCL idiom in Java is that it just does not work correctly.
+      Using it introduces bugs that are extremely hard to track down and reproduce.
+      The <a href="http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html">
+      &quot;Double-Checked Locking is Broken&quot; Declaration</a> has an in depth explanation
+      of the exact problem which has to do with the semantics of the Java memory model.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;DoubleCheckedLocking&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
