@@ -47,11 +47,11 @@ public final class ConfigurationLoader
 {
     /** the public ID for the configuration dtd */
     private static final String DTD_PUBLIC_ID =
-        "-//Puppy Crawl//DTD Check Configuration 1.0//EN";
+        "-//Puppy Crawl//DTD Check Configuration 1.1//EN";
 
     /** the resource for the configuration dtd */
     private static final String DTD_RESOURCE_NAME =
-        "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd";
+        "com/puppycrawl/tools/checkstyle/configuration_1_1.dtd";
 
     /** constant to specify two kilobyte of data */
     private static final int TWO_KB = 2048;

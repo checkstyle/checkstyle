@@ -66,7 +66,7 @@ public class CheckStyleTask
 
     /** contains package names */
     private File mPackageNamesFile = null;
-    
+
     /** whether to fail build on violations */
     private boolean mFailOnViolation = true;
 
@@ -235,25 +235,25 @@ public class CheckStyleTask
                     ConfigurationLoader.loadConfiguration(
                         mConfigLocation, new PropertiesExpander(props));
 
-                DefaultContext context = new DefaultContext();
-                ClassLoader loader =
+                final DefaultContext context = new DefaultContext();
+                final ClassLoader loader =
                     new AntClassLoader(getProject(), mClasspath);
                 context.add("classloader", loader);
 
                 c = new Checker();
-                
+
                 //load the set of package names
                 if (mPackageNamesFile != null) {
-                    ModuleFactory moduleFactory =
+                    final ModuleFactory moduleFactory =
                         PackageNamesLoader.loadModuleFactory(
-                        mPackageNamesFile.getAbsolutePath());
+                            mPackageNamesFile.getAbsolutePath());
                     c.setModuleFactory(moduleFactory);
                 }
                 c.contextualize(context);
                 c.configure(config);
 
                 // setup the listeners
-                AuditListener[] listeners = getListeners();
+                final AuditListener[] listeners = getListeners();
                 for (int i = 0; i < listeners.length; i++) {
                     c.addListener(listeners[i]);
                 }
