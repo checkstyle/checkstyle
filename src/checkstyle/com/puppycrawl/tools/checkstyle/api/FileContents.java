@@ -76,7 +76,7 @@ public final class FileContents
     }
 
     /**
-     * Report the location of a C-style comment.
+     * Report the location of a C++ style comment.
      * @param aStartLineNo the starting line number
      * @param aStartColNo the starting column number
      **/
