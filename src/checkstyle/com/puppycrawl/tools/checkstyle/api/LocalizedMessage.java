@@ -96,6 +96,7 @@ public class LocalizedMessage
     /** @return the translated message **/
     public String getMessage()
     {
+        System.err.println("LocalizedMessage.getMessage");
         try {
             // PERF: Very simple approach - wait for performance problems.
             // Important to use the default class loader, and not the one in the
@@ -108,6 +109,7 @@ public class LocalizedMessage
             return MessageFormat.format(pattern, mArgs);
         }
         catch (MissingResourceException ex) {
+            ex.printStackTrace();
             // If the Check author didn't provide i18n resource bundles
             // and logs error messages directly, this will return
             // the author's original message

@@ -104,6 +104,7 @@ class TreeWalker
      */
     void registerCheck(Check aCheck, CheckConfiguration aConfig)
     {
+        aCheck.setMessages(mMessages);
         if (!aConfig.getTokens().isEmpty()) {
             final Iterator it = aConfig.getTokens().iterator();
             while (it.hasNext()) {
@@ -151,14 +152,13 @@ class TreeWalker
      * @param aLines the lines of the file the AST was generated from
      * @param aFilename the file name of the file the AST was generated from
      */
-    LocalizedMessages walk(DetailAST aAST, String[] aLines, String aFilename)
+    void walk(DetailAST aAST, String[] aLines, String aFilename)
     {
         mMessages.reset();
         notifyBegin(aLines, aFilename);
         aAST.setParent(null);
         process(aAST);
         notifyEnd();
-        return mMessages;
     }
 
     /**
@@ -173,8 +173,8 @@ class TreeWalker
         while (it.hasNext()) {
             final Check check = (Check) it.next();
             final HashMap treeContext = new HashMap();
-            check.setFilename(aFilename);
             check.setTreeContext(treeContext);
+            check.setFilename(aFilename);
             check.setLines(aLines);
             check.beginTree();
         }
