@@ -41,4 +41,16 @@ public class OtherLeftCurlyCheckTest
         };
         verify(c, fname, expected);
     }
+
+    public void testMissingBraces()
+        throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(OtherLeftCurlyCheck.class.getName());
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputBraces.java");
+        final String[] expected = {
+        };
+        verify(c, fname, expected);
+    }
 }

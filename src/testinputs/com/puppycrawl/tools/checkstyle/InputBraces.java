@@ -100,7 +100,7 @@ class InputBraces
             if (condition())
                 testIf();
     }
-    
+
     void whitespaceAfterSemi()
     {
         //reject
