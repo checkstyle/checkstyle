@@ -216,8 +216,7 @@ public class DescendantTokenCheck extends Check
             if (tokenCount < mMinimumNumber) {
                 final String descendantName =
                     TokenTypes.getTokenName(mLimitedTokens[i]);
-                log(
-                    aAST.getLineNo(),
+                log(aAST.getLineNo(),
                     aAST.getColumnNo(),
                     mMinimumMessage,
                     new String[] {
@@ -230,8 +229,7 @@ public class DescendantTokenCheck extends Check
             if (tokenCount > mMaximumNumber) {
                 final String descendantName =
                     TokenTypes.getTokenName(mLimitedTokens[i]);
-                log(
-                    aAST.getLineNo(),
+                log(aAST.getLineNo(),
                     aAST.getColumnNo(),
                     mMaximumMessage,
                     new String[] {
