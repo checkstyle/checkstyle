@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.usage.transmogrify;
 import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -40,8 +39,13 @@ public final class ASTManager
     /** singleton */
     private static final ASTManager INSTANCE = new ASTManager();
 
-    /** maps DetailASTs to SymTabASTs. */
-    private Map mMap = new IdentityHashMap();
+    /**
+     * Maps DetailASTs to SymTabASTs.
+     * A HashMap is acceptable provided DetailAST method hashCode() returns
+     * distinct integers for distinct objects.
+     * If not, a structure such as IdentityHashMap must be employed.
+     */
+    private Map mMap = new HashMap();
 
     /** root with subtrees for a set of files */
     private SymTabAST mCompleteTree = null;
