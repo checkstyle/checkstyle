@@ -46,7 +46,7 @@ public class JavadocMethodCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("checkUnusedThrows", "true");
+        checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {
             "14:5: Missing a Javadoc comment.",
             "18: Unused @param tag for 'unused'.",
@@ -168,7 +168,7 @@ public class JavadocMethodCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("checkUnusedThrows", "true");
+        checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {
         };
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);

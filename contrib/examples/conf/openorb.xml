@@ -6,7 +6,9 @@
 <!--
 
   A Checkstyle configuration that checks the coding conventions of
-  the Community OpenORB project. Many Apache Jakarta projects like
+  the Community OpenORB project (openorb.sourceforge.net)
+
+  Many Apache Jakarta projects like
   Avalon or Turbine use very similar conventions.
 
   Interesting techniques in this configuration:

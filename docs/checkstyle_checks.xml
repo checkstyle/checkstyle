@@ -10,9 +10,9 @@
     <module name="Translation"/>
 
     <module name="TreeWalker">
-        
+
         <property name="tabWidth" value="4" />
-        
+
         <module name="AvoidStarImport"/>
         <module name="ConstantName"/>
         <module name="EmptyBlock"/>
@@ -29,10 +29,10 @@
             <property name="authorFormat" value="\S"/>
         </module>
         <module name="JavadocMethod">
-            <property name="checkUnusedThrows" value="true"/>
+            <property name="allowUndeclaredRTE" value="true"/>
         </module>
         <module name="JavadocVariable"/>
-        
+
         <module name="LeftCurly">
             <property name="tokens" value="CLASS_DEF,INTERFACE_DEF,METHOD_DEF,CTOR_DEF"/>
             <property name="option" value="nl"/>
@@ -56,13 +56,13 @@
         <module name="Modifier"/>
         <module name="NeedBraces"/>
         <module name="NoWhitespaceAfter"/>
-        
+
         <module name="NoWhitespaceBefore"/>
         <module name="NoWhitespaceBefore">
             <property name="tokens" value="DOT"/>
             <property name="allowLineBreaks" value="true"/>
         </module>
-        
+
         <module name="OperatorWrap"/>
         <module name="OperatorWrap">
             <property name="tokens" value="ASSIGN, DIV_ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN, STAR_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN, SL_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, BAND_ASSIGN"/>

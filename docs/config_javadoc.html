@@ -200,9 +200,10 @@
             <td><span class="default">private</span></td>
           </tr>
           <tr>
-            <td>checkUnusedImports</td>
-            <td>whether to check if an undocumented exception is a subclass of <span class="code">
-        java.lang.RuntimeException</span></td>
+            <td>allowUndeclaredRTE</td>
+            <td>whether to allow documented exceptions that
+            are not declared if they are a subclass of <span
+            class="code">java.lang.RuntimeException</span></td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>
@@ -222,13 +223,13 @@
 &lt;module name="JavadocMethod"/&gt;
         </pre>
         <p class="body">
-        To configure the check for <span class="default">public</span> scope and to 
-        check for unused imports:
+        To configure the check for <span class="default">public</span>
+        scope and to allow documentation of undeclared RuntimeExceptions:
         </p>
         <pre class="body">
 &lt;module name="JavadocMethod"&gt;
    &lt;property name="scope" value="public"/&gt;
-   &lt;property name="checkUnusedThrows" value="true"/&gt;
+   &lt;property name="allowUndeclaredRTE" value="true"/&gt;
 &lt;/module&gt;
         </pre>
         <h4>Notes</h4>
