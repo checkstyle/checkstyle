@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import org.apache.regexp.RE;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
@@ -39,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * &lt;/module&gt;
  * </pre>
  * @author lkuehne
+ * @author <a href="mailto:bschneider@vecna.com">Bill Schneider</a>
  */
 public class GenericIllegalRegexpCheck extends AbstractFormatCheck
 {
@@ -47,6 +50,9 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
      * ignored if empty.
      */
     private String mMessage = "";
+
+    /** case insensitive? **/
+    private boolean mIgnoreCase = false;
 
     /**
      * Setter for message property
@@ -60,6 +66,15 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
             aMessage = "";
         }
         mMessage = aMessage;
+    }
+
+    /**
+     * Set whether or not the match is case sensitive.
+     * @param aCaseInsensitive true if the match is case insensitive.
+     */
+    public void setIgnoreCase(boolean aCaseInsensitive)
+    {
+        mIgnoreCase = aCaseInsensitive;
     }
 
     /**
@@ -93,4 +108,26 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
             }
         }
     }
+
+    /** @return the regexp to match against */
+    public RE getRegexp()
+    {
+        final RE regexp = super.getRegexp();
+        if (mIgnoreCase) {
+            regexp.setMatchFlags(RE.MATCH_CASEINDEPENDENT);
+        }
+        // Without the else, in a sequence of GenericIllegalRegexpCheck's,
+        // the first with mIgnoreCase true, the second with mIgnoreCase
+        // false, the second still has match behaviour flags as
+        // RE.MATCH_CASEINDEPENDENT.
+        // This happens with GenericIllegalRegexpCheckTest method
+        // testIgnoreCaseFalse(), for example.
+        // TODO: Check whether this a bug or known feature of
+        // org.apache.regexp.RE.
+        else {
+            regexp.setMatchFlags(RE.MATCH_NORMAL);
+        }
+        return regexp;
+    }
+
 }

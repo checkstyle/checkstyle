@@ -73,9 +73,15 @@
           <td><span class="default">^$</span> (empty)</td>
         </tr>
         <tr>
+          <td>ignoreCase</td>
+          <td>Controls whether to ignore case when searching.</td>
+          <td><a href="property_types.html#boolean">Boolean</a></td>
+          <td><span class="default">false</span></td>
+        </tr>
+        <tr>
           <td>message</td>
           <td>message which is used to notify about violations, 
-          if empty then default(hard-codded) message is used.</td>
+          if empty then default(hard-coded) message is used.</td>
           <td><a href="property_types.html#String">String</a></td>
           <td><span class="default">&quot;&quot;</span>(empty)</td>
         </tr>
@@ -98,6 +104,15 @@
 &lt;module name=&quot;GenericIllegalRegexp&quot;&gt;
     &lt;!-- \s matches whitespace character, $ matches end of line. --&gt;
     &lt;property name=&quot;format&quot; value=&quot;\s$&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <p class="body">
+      To configure the check to find case-insensitive occurrences of &quot;debug&quot;:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;GenericIllegalRegexp&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
+    &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
       </pre>
       <h4>Package</h4>
@@ -349,7 +364,7 @@ like <span class="code">1</span>.
       <!-- --> <a name="FinalParameters"></a> <h2>FinalParameters</h2> <h4>Description</h4>
       <p class="body">
       Check that method/constructor parameters are final. Interface methods are not checked -
-      the final keyword does not make sense for interface mathod parameters as there is no code
+      the final keyword does not make sense for interface method parameters as there is no code
       that could modify the parameter.
       </p>
       <p class="body">
