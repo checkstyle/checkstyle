@@ -7,7 +7,9 @@
   <check classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.FileLengthCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck">
+    <property name="format" value="System.out.println"/>
+  </check>
   <check classname="com.puppycrawl.tools.checkstyle.checks.HeaderCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.HiddenFieldCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck"/>
@@ -16,7 +18,6 @@
   <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocVariableCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.LeftCurlyCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.LineLengthCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.LocalFinalVariableNameCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.LocalVariableNameCheck"/>
@@ -30,7 +31,6 @@
   <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.PackageHtmlCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.PackageNameCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNumberCheck"/>
@@ -45,7 +45,6 @@
   <check classname="com.puppycrawl.tools.checkstyle.checks.StaticVariableNameCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.TabCharacterCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.TypeLeftCurlyCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.TypeNameCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.UnusedImportsCheck"/>
