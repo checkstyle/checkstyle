@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @version 1.0
  */
 public class TypeLeftCurlyCheck
-    extends LeftCurlyCheck
+    extends AbstractLeftCurlyCheck
 {
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()

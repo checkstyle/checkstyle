@@ -16,7 +16,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-public abstract class LeftCurlyCheck
+public abstract class AbstractLeftCurlyCheck
     extends AbstractOptionCheck
 {
     /** TODO: replace this ugly hack **/
@@ -25,7 +25,7 @@ public abstract class LeftCurlyCheck
     /**
      * Sets the left curly otion to eol.
      */
-    public LeftCurlyCheck()
+    public AbstractLeftCurlyCheck()
     {
         super(LeftCurlyOption.EOL);
     }
