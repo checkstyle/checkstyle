@@ -1,39 +1,23 @@
-/*
- * Created by IntelliJ IDEA.
- * User: lk
- * Date: Sep 22, 2002
- * Time: 8:06:12 AM
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
 package com.puppycrawl.tools.checkstyle;
 
-import java.io.IOException;
-import java.io.LineNumberReader;
-import java.io.FileReader;
-import java.io.Reader;
-import java.io.BufferedReader;
-import java.io.OutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Properties;
+import java.io.LineNumberReader;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Properties;
+import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.TestCase;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import org.apache.regexp.RESyntaxException;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-public class BaseCheckTestCase
+public abstract class BaseCheckTestCase
     extends TestCase
 {
     /** a brief logger that only display info about errors */
