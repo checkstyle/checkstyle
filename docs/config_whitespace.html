@@ -26,6 +26,9 @@
           <a href="#EmptyForIteratorPad">EmptyForIteratorPad</a>
         </li>
         <li>
+          <a href="#MethodParamPad">MethodParamPad</a>
+        </li>
+        <li>
           <a href="#NoWhitespaceAfter">NoWhitespaceAfter</a>
         </li>
         <li>
@@ -103,6 +106,95 @@ for (Iterator foo = very.long.line.iterator();
       com.puppycrawl.tools.checkstyle.checks.whitespace
       </p>
 
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <a name="MethodParamPad"></a> <h2>MethodParamPad</h2>
+      <h4>Description</h4>
+
+      <p class="body">
+      Checks the padding between the identifier of a method definition,
+      constructor definition, method call, or constructor invocation;
+      and the left parenthesis of the parameter list.
+      That is, if the identifier and left parenthesis are on the same line,
+      checks whether a space is required immediately after the identifier or
+      such a space is forbidden.
+      If they are not on the same line, reports an error, unless configured to allow line breaks. 
+      To allow linebreaks after the identifier, 
+      set property <span class="code">allowLineBreaks</span> to <span class="code">
+      true</span>.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>allowLineBreaks</td>
+          <td>whether a line break between the identifier and left parenthesis
+              is allowed</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">false</span></td>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+
+          <td>subset of tokens <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">LITERAL_NEW</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">METHOD_CALL</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">SUPER_CTOR_CALL</a>
+          </td>
+
+          <td><a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">LITERAL_NEW</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">METHOD_CALL</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">SUPER_CTOR_CALL</a>
+          </td>
+
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;MethodParamPad&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to require a space
+      after the identifier of a method definition, except if the left
+      parenthesis occurs on a new line:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;MethodParamPad&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+    &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.whitespace
+      </p>
       <h4>Parent Module</h4>
       <p class="body">
       <a href="config.html#treewalker">TreeWalker</a>

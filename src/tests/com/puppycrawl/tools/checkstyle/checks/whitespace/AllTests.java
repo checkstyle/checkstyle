@@ -14,6 +14,7 @@ public class AllTests {
             new TestSuite("Test for com.puppycrawl.tools.checkstyle.checks.whitespace");
 
         suite.addTest(new TestSuite(EmptyForIteratorPadCheckTest.class));
+        suite.addTest(new TestSuite(MethodParamPadCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceBeforeCheckTest.class));
         suite.addTest(new TestSuite(OperatorWrapCheckTest.class));
