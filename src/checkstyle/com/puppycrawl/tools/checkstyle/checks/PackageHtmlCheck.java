@@ -26,6 +26,7 @@ import java.util.HashSet;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 
 /**
  * <p>
@@ -67,11 +68,10 @@ public class PackageHtmlCheck extends AbstractFileSetCheck
             final String path = packageHtml.getPath();
             dispatcher.fireFileStarted(path);
             if (!packageHtml.exists()) {
-                LocalizedMessage[] errors = new LocalizedMessage[1];
-                String bundle = getMessageBundle();
-                errors[0] = new LocalizedMessage(
-                        0, bundle, "javadoc.packageHtml", null);
-                getMessageDispatcher().fireErrors(path, errors);
+                log(0, "javadoc.packageHtml");
+                final LocalizedMessages messageList = getMessageCollector();
+                final LocalizedMessage[] messages = messageList.getMessages();
+                getMessageDispatcher().fireErrors(path, messages);
             }
             dispatcher.fireFileFinished(path);
         }

@@ -187,14 +187,12 @@ public class TranslationCheck extends AbstractFileSetCheck
             // Remaining elements in the key set are missing in the current file
             if (!keysClone.isEmpty()) {
                 for (Iterator it = keysClone.iterator(); it.hasNext();) {
-                    Object[] key = new Object[]{it.next()};
-                    LocalizedMessage[] errors = new LocalizedMessage[1];
-                    final String bundle = getMessageBundle();
-                    errors[0] = new LocalizedMessage(
-                            0, bundle, "translation.missingKey", key);
-                    getMessageDispatcher().fireErrors(path, errors);
+                    Object key = it.next();
+                    log(0, "translation.missingKey", key);
                 }
             }
+            LocalizedMessage[] errors = getMessageCollector().getMessages();
+            getMessageDispatcher().fireErrors(path, errors);
             dispatcher.fireFileFinished(path);
         }
     }
