@@ -78,6 +78,7 @@ import com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.usage.OneMethodPrivateFieldCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.usage.UnusedLocalVariableCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.usage.UnusedParameterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.usage.UnusedPrivateFieldCheckTest;
@@ -208,6 +209,7 @@ public class AllTests {
         // j2ee tests-END
         
         // usage tests-BEGIN
+        suite.addTest(new TestSuite(OneMethodPrivateFieldCheckTest.class));
         suite.addTest(new TestSuite(UnusedLocalVariableCheckTest.class));
         suite.addTest(new TestSuite(UnusedParameterCheckTest.class));
         suite.addTest(new TestSuite(UnusedPrivateFieldCheckTest.class));

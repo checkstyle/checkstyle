@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.usage;
 
-/** Test input for unread parameter check */
+/** Test input for unread method check */
 public class InputUnusedMethod
 {
 
