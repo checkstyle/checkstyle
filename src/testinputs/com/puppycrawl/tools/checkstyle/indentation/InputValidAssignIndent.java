@@ -31,6 +31,11 @@ public class InputValidAssignIndent
                 public void bar() {
                 }
             };
+
+        function.lastArgument() = parameters;
+        function.lastArgument()
+            =
+            parameters;
         // TODO: add more testing
     }
 
