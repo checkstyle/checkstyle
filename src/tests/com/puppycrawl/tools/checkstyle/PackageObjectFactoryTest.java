@@ -12,35 +12,35 @@ import junit.framework.TestCase;
 public class PackageObjectFactoryTest extends TestCase
 {
 
-    public void testMakeObectFromName()
+    public void testMakeObjectFromName()
         throws CheckstyleException
     {
-        PackageObjectFactory factory =
+        final PackageObjectFactory factory =
             (PackageObjectFactory) PackageObjectFactory.makeObject(
-                new String [] {},
-                this.getClass().getClassLoader(),
+                new String[] {},
+                getClass().getClassLoader(),
                 "com.puppycrawl.tools.checkstyle.PackageObjectFactory");
+        assertNotNull(factory);
     }
     
     public void testMakeObectFromList()
         throws CheckstyleException
     {    
-        PackageObjectFactory factory =
+        final PackageObjectFactory factory =
             (PackageObjectFactory) PackageObjectFactory.makeObject(
                 new String [] {"com."},
                 this.getClass().getClassLoader(),
                 "puppycrawl.tools.checkstyle.PackageObjectFactory");
+        assertNotNull(factory);
     }
     
     public void testMakeObectNoClass()
         throws CheckstyleException
     {
         try {
-            PackageObjectFactory factory =
-                (PackageObjectFactory) PackageObjectFactory.makeObject(
-                    new String [] {},
-                    this.getClass().getClassLoader(),
-                    "NoClass");
+            PackageObjectFactory.makeObject(new String[] {},
+                                            getClass().getClassLoader(),
+                                            "NoClass");
             fail("Instantiated non-existant class");
         }
         catch (CheckstyleException ex) {
