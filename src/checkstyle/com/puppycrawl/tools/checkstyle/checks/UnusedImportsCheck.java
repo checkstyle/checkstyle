@@ -27,7 +27,15 @@ import java.util.Set;
 import java.util.Iterator;
 
 /**
+ * <p>
  * Checks for unused import statements.
+ * </p>
+ *  <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="UnusedImportsCheck"/&gt;
+ * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */

@@ -23,11 +23,18 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Check;
 
 /**
+ * <p>
  * Checks that long constants are defined with an uppper ell. That is 'L' and
  * not 'l'.
- *
+ * </p>
  * <p> Rationale: The letter l looks a lot like 1.
- *
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="UpperEllCheck"/&gt;
+ * </pre>
  * @author Oliver Burn
  * @version 1.0
  */

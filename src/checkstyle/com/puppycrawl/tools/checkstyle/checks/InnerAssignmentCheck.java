@@ -50,20 +50,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN}.
  * </p>
  * <p> An example of how to configure the check is:
- *  * TODO: re-visit, and correct, after configuration format settled.
  * <pre>
- * &lt;check
- *    classname="com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheck"/&gt;
+ * &lt;config name="InnerAssignmentCheck"/&gt;
  * </pre>
  *
  * <p> An example of how to configure the check for only <code>+</code>,
  * <code>+=</code>, and <code>-=</code> operators is:
- *
+ * </p>
  * <pre>
- * &lt;check
- *    classname="com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheck"&gt;
+ * &lt;config name="InnerAssignmentCheck"&gt;
  *    &lt;tokens&gt;ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN&lt;/tokens&gt;
- * &lt;/check&gt;
+ * &lt;/config&gt;
  * </pre>
 
  * @author lkuehne

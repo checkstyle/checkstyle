@@ -19,13 +19,23 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 /**
+ * <p>
  * A generic check for code problems, the user can search for any pattern.
  * This is similar to a recursive grep, only that it's integrated in checkstyle.
- *
+ * </p>
+ * <p>
  * Rationale: This Check can be used to prototype checks and to find common
  * bad pratice such as calling
  * ex.printStacktrace(), System.out.println(), System.exit(), etc.
- *
+ * </p>
+ * An example of how to configure the check for calls to
+ * <code>System.out.println</code> is:
+ * </p>
+ * <pre>
+ * &lt;config name="GenericIllegalRegexpCheck"&gt;
+ *    &lt;property name="format" value="System\.out\.println"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  * @author lkuehne
  */
 public class GenericIllegalRegexpCheck extends AbstractFormatCheck

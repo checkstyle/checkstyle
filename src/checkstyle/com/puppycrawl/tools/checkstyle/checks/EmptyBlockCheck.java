@@ -46,12 +46,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * BlockOption#TEXT} policy and only catch blocks is:
  *
  * <pre>
- * &lt;check
- *    classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck"&gt;
- *
- *    &lt;tokens&gt;LITERAL_CATCH&lt;/tokens&gt;
+ * &lt;config name="EmptyBlockCheck"&gt;
+ *    &lt;property name="tokens" value="LITERAL_CATCH"/&gt;
  *    &lt;property name="option" value="text"/&gt;
- * &lt;/check&gt;
+ * &lt;/config&gt;
  * </pre>
  *
  * @author Lars Kühne

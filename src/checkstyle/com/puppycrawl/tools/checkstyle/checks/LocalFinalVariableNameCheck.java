@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * letters and digits is:
  * </p>
  * <pre>
- * &lt;config name="LocalFinalVariableNameCheck"/&gt;
+ * &lt;config name="LocalFinalVariableNameCheck"&gt;
  *    &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
  * &lt;/config&gt;
  * </pre>

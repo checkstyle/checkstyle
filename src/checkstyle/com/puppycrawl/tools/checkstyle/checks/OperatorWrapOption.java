@@ -25,7 +25,7 @@ import java.util.Map;
  * Represents the options for wrapping on an operator.
  *
  * @author Rick Giles
- *  * @version 1.0
+ * @version 1.0
  */
 public final class OperatorWrapOption
     extends AbstractOption
