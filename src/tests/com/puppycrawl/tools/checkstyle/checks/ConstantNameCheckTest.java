@@ -1,7 +1,8 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck;
 
 public class ConstantNameCheckTest
     extends BaseCheckTestCase
@@ -26,13 +27,11 @@ public class ConstantNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
         final String[] expected = {
             "25:29: Name 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             "142:30: Name 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
     public void testInterface()
@@ -40,11 +39,9 @@ public class ConstantNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputInner.java");
         final String[] expected = {
             "24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputInner.java"), expected);
     }
 }

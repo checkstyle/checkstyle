@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class EqualsHashCodeCheckTest
     extends BaseCheckTestCase
@@ -9,14 +10,10 @@ public class EqualsHashCodeCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsHashCodeCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSemantic.java");
         final String[] expected = {
             "126:9: Definition of 'equals()' without corresponding defnition of 'hashCode()'.",
             "163:13: Definition of 'equals()' without corresponding defnition of 'hashCode()'.",
         };
-        verify(c, fname, expected);
-
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
-
 }
