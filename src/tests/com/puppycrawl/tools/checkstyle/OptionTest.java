@@ -17,10 +17,10 @@ public class OptionTest extends TestCase {
     public void testBlockOption()
     {
         BlockOption stmtOpt = BlockOption.STMT;
-        assertEquals("STMT", "statement", stmtOpt.toString());
+        assertEquals("STMT", "stmt", stmtOpt.toString());
         BlockOption textOpt = BlockOption.TEXT;
         assertEquals("TEXT", "text", textOpt.toString());
-        BlockOption stmtDecode = (BlockOption)(stmtOpt.decode("statement"));
+        BlockOption stmtDecode = (BlockOption)(stmtOpt.decode("stmt"));
         assertTrue("STMT decode", stmtOpt == stmtDecode);
         BlockOption textDecode = (BlockOption)(stmtOpt.decode("text"));
         assertTrue("TEXT decode", textOpt == textDecode);        
