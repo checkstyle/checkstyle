@@ -269,12 +269,6 @@ public class Configuration
         return getBooleanProperty(Defn.REQUIRE_PACKAGE_HTML_PROP);
     }
 
-    /** @return whether to check unused @throws **/
-    boolean isCheckUnusedThrows()
-    {
-        return getBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP);
-    }
-
     /** @return whether to ignore checks for whitespace **/
     boolean isIgnoreWhitespace()
     {

@@ -11,8 +11,6 @@ import java.io.PrintStream;
 import java.util.Locale;
 import java.util.Properties;
 
-import com.puppycrawl.tools.checkstyle.api.Scope;
-
 import junit.framework.TestCase;
 
 public class CheckerTest
@@ -167,7 +165,6 @@ public class CheckerTest
         throws Exception
     {
         mProps.setProperty(Defn.REQUIRE_PACKAGE_HTML_PROP, "true");
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.PRIVATE.getName());
         final Checker c = createChecker();
         final String packageHtmlPath = getPath("package.html");
         final String filepath = getPath("InputScopeAnonInner.java");
@@ -181,7 +178,6 @@ public class CheckerTest
     public void testAssertIdentifier()
         throws Exception
     {
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
         final Checker c = createChecker();
         final String filepath = getPath("InputAssertIdentifier.java");
         assertNotNull(c);

@@ -33,9 +33,6 @@ public interface Defn
     String TODO_PATTERN_PROP = "checkstyle.pattern.todo";
     /** property name for allowing protected data **/
     String TAB_WIDTH_PROP = "checkstyle.tab.width";
-    /** property name for checking for Runtime @throws in Javadoc **/
-    String JAVADOC_CHECK_UNUSED_THROWS_PROP =
-        "checkstyle.javadoc.checkUnusedThrows";
     /** property name for requiring package documentation */
     String REQUIRE_PACKAGE_HTML_PROP = "checkstyle.require.packagehtml";
     /** property name for ignoring whitespace **/
@@ -58,7 +55,6 @@ public interface Defn
         {
             IGNORE_CAST_WHITESPACE_PROP,
             IGNORE_WHITESPACE_PROP,
-            JAVADOC_CHECK_UNUSED_THROWS_PROP,
             REQUIRE_PACKAGE_HTML_PROP,
         };
 
