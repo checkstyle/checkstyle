@@ -17,7 +17,10 @@
   <check classname="com.puppycrawl.tools.checkstyle.checks.FileLengthCheck"/>
 
 
-  <check classname="com.puppycrawl.tools.checkstyle.checks.HeaderCheck"/>
+  <check classname="com.puppycrawl.tools.checkstyle.checks.HeaderCheck">
+    <property name="headerFile" value="docs/java.header"/>
+  </check>
+
   <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalInstantiationCheck"/>
 
@@ -89,7 +92,6 @@
   <check classname="com.puppycrawl.tools.checkstyle.checks.PublicMemberNameCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.RedundantImportCheck"/>
   <check classname="com.puppycrawl.tools.checkstyle.checks.RedundantModifierCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.RegexpHeaderCheck"/>
 
   <check classname="com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck">
     <property name="option" value="alone"/>
