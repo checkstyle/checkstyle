@@ -8,4 +8,7 @@
     <suppress checks="FileLength"
               files="TokenTypes.java"
               lines="1"/>
+    <suppress checks="MagicNumber"
+              files="UnusedPrivateMethodCheck.java"
+              lines="176"/>
 </suppressions>

@@ -60,3 +60,93 @@ class Ternary
         int j = (i == 0) ? (i) : m();
     }
 }
+
+class SerializableTest implements java.io.Serializable
+{
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException
+    {
+        // it's ok to have this method in serializable class
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException
+    {
+        // it's ok to have this method in serializable class
+    }
+
+    private Object writeReplace() throws java.io.ObjectStreamException
+    {
+        // it's ok to have this method in serializable class
+        return new SerializableTest();
+    }
+
+    private Object readResolve() throws java.io.ObjectStreamException
+    {
+        // it's ok to have this method in serializable class
+        return new SerializableTest();
+    }
+}
+
+class BadSerializableTest implements java.io.Serializable
+{
+    private void writeObject(Object out) throws java.io.IOException
+    {
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out, int i) throws java.io.IOException
+    {
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out)
+    {
+    }
+
+    private int writeObject(java.io.ObjectOutputStream out) throws java.io.IOException
+    {
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException
+    {
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws ClassNotFoundException
+    {
+    }
+
+    private void readObject(Object in) throws java.io.IOException, ClassNotFoundException
+    {
+    }
+
+    private int readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException
+    {
+    }
+
+    private int writeReplace() throws java.io.ObjectStreamException
+    {
+        return 1;
+    }
+
+    private java.lang.Object writeReplace()
+    {
+        return new SerializableTest();
+    }
+
+    private Object writeReplace(int i) throws java.io.ObjectStreamException
+    {
+        return new SerializableTest();
+    }
+
+    private int readResolve() throws java.io.ObjectStreamException
+    {
+        return 1;
+    }
+
+    private Object readResolve()
+    {
+        return new SerializableTest();
+    }
+
+    private Object readResolve(int i) throws java.io.ObjectStreamException
+    {
+        return new SerializableTest();
+    }
+}

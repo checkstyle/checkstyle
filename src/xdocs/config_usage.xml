@@ -299,6 +299,18 @@
               </td>
               <td><span class="default">^$</span> (empty)</td>
             </tr>
+            <tr>
+              <td>allowSerializationMethods</td>
+              <td>whether the check should allow serialization-related methods
+              (<span class="code">readObject()</span>, <span
+              class="code">writeObject()</span>, <span
+              class="code">readResolve()</span> and <span
+              class="code">writeReplace()</span></td>
+              <td>
+                <a href="property_types.html#boolean">boolean</a>
+              </td>
+              <td><span class="default">false</span></td>
+            </tr>
           </table>
         </subsection>
 
