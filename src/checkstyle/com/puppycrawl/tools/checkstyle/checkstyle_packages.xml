@@ -10,6 +10,7 @@
       <package name="blocks"/>
       <package name="design"/>
       <package name="imports"/>
+      <package name="indentation"/>
       <package name="javadoc"/>
       <package name="naming"/>
       <package name="sizes"/>

@@ -27,7 +27,6 @@ import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
 
 /**
  * Factory for handlers. Looks up constructor via reflection.

@@ -23,7 +23,6 @@ import java.util.Arrays;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
 
 /**
  * Abstract base class for all handlers.
