@@ -170,4 +170,10 @@ interface Verifier
      * constructor.
      **/
     void reportEndMethodBlock();
+
+    /**
+     * Report the location of a reference to an identifier
+     * @param aAST details of the identifier
+     */
+    void reportIdentifier(MyCommonAST aAST);
 }

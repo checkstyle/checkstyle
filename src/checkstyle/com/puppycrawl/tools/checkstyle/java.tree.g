@@ -420,7 +420,7 @@ expr
    ;
 
 primaryExpression
-    :   i1:IDENT { firstExprIdent = i1;}
+    :   IDENT { firstExprIdent = #IDENT; ver.reportIdentifier(#IDENT); }
     |   #( DOT
             (expr
                 (i2:IDENT { firstExprIdent = null;}
