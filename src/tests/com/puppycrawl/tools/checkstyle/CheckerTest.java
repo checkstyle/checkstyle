@@ -119,6 +119,14 @@ public class CheckerTest
             filepath + ":102: '*' is not preceeded with whitespace.",
             filepath + ":109: '!' is proceeded with whitespace.",
             filepath + ":110: '~' is proceeded with whitespace.",
+            filepath + ":117: '%' is not preceeded with whitespace.",
+            filepath + ":118: '%' is not proceeded with whitespace.",
+            filepath + ":119: '%' is not preceeded with whitespace.",
+            filepath + ":119: '%' is not proceeded with whitespace.",
+            filepath + ":121: '/' is not preceeded with whitespace.",
+            filepath + ":122: '/' is not proceeded with whitespace.",
+            filepath + ":123: '/' is not preceeded with whitespace.",
+            filepath + ":123: '/' is not proceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }
@@ -162,6 +170,14 @@ public class CheckerTest
             filepath + ":102: '*' is not preceeded with whitespace.",
             filepath + ":109: '!' is proceeded with whitespace.",
             filepath + ":110: '~' is proceeded with whitespace.",
+            filepath + ":117: '%' is not preceeded with whitespace.",
+            filepath + ":118: '%' is not proceeded with whitespace.",
+            filepath + ":119: '%' is not preceeded with whitespace.",
+            filepath + ":119: '%' is not proceeded with whitespace.",
+            filepath + ":121: '/' is not preceeded with whitespace.",
+            filepath + ":122: '/' is not proceeded with whitespace.",
+            filepath + ":123: '/' is not preceeded with whitespace.",
+            filepath + ":123: '/' is not proceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }
