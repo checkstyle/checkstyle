@@ -151,7 +151,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "ABC");
         final String[] expected = {
-            "13: Type Javadoc comment is missing an @author tag.",
+            "13: Type Javadoc tag @author must match pattern 'ABC'.",
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
@@ -186,7 +186,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\$Revision.*\\$");
         final String[] expected = {
-            "13: Type Javadoc comment is missing an @version tag."
+            "13: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'."
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
