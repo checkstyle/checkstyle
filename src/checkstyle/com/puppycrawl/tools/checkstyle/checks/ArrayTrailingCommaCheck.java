@@ -49,17 +49,17 @@ public class ArrayTrailingCommaCheck extends Check
     /** @see Check */
     public void visitToken(DetailAST aArrayInit)
     {
-        DetailAST rcurly = aArrayInit.findFirstToken(TokenTypes.RCURLY);
+        final DetailAST rcurly = aArrayInit.findFirstToken(TokenTypes.RCURLY);
 
         // if curlys are on the same line
         // or array is empty then check nothing
-        if (aArrayInit.getLineNo() == rcurly.getLineNo()
-            || aArrayInit.getChildCount() == 1)
+        if ((aArrayInit.getLineNo() == rcurly.getLineNo())
+            || (aArrayInit.getChildCount() == 1))
         {
             return;
         }
 
-        DetailAST prev = rcurly.getPreviousSibling();
+        final DetailAST prev = rcurly.getPreviousSibling();
         if (prev.getType() != TokenTypes.COMMA) {
             log(rcurly.getLineNo(), "array.trailing.comma");
         }
