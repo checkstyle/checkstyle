@@ -81,7 +81,30 @@
       <a name="grammar"></a>
       <h3>Java Grammar</h3>
       <p class="body">
-      TODO: Explain that a Java file is structured according to a grammar.
+      Every Java Program is structured into files, and each of these
+      files has a certain structure. For example, if there is a
+      package statement then it is the first line of the file that is
+      not comment or whitespace. After the package statement comes a
+      list of import statements, which is followed by a class or
+      interface definition, and so on.
+      </p>
+      <p class="body">
+      If you have ever read an introductory level Java book you probably
+      knew all of the above. And if you have studied computer science,
+      you probably also know that the rules that specify the Java Language
+      can be formally specified using a Grammar (statement is simplified
+      for didactic purposes).
+      </p>
+      <p class="body">
+      Tools exist which read a grammar definition and produce a parser
+      for the language that is specified in the grammar. In other
+      words the output of the tool is a program that can
+      transform a stream of characters (a Java File) into a tree
+      representation that reflects the structure of the
+      file. CheckStyle uses the parser generator <a
+      href="http://www.antlr.org">ANTLR</a> but that is an
+      implementation detail you do not need to worry about when
+      writing checks. Several other parser exist and they all work well.
       </p>
 
       <a name="gui"></a>
