@@ -1,10 +1,12 @@
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.DetailASTTest;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporterTest;
+import com.puppycrawl.tools.checkstyle.api.DetailASTTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidInlineConditionalsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidStarImportTest;
 import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.DesignForInheritanceCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.DoubleCheckedLockingCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EmptyForIteratorPadCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheckTest;
@@ -28,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.MethodLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.MethodNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.ModifierOrderCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.NeedBracesCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheckTest;
@@ -39,12 +42,7 @@ import com.puppycrawl.tools.checkstyle.checks.ParenPadCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.RedundantImportCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.RedundantModifierTest;
 import com.puppycrawl.tools.checkstyle.checks.RightCurlyCheckTest;
-import com
-    .puppycrawl
-    .tools
-    .checkstyle
-    .checks
-    .SimplifyBooleanExpressionCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanExpressionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanReturnCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.StaticVariableNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.TabCharacterCheckTest;
@@ -56,8 +54,6 @@ import com.puppycrawl.tools.checkstyle.checks.UpperEllCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundTest;
-import com.puppycrawl.tools.checkstyle.checks.DoubleCheckedLockingCheckTest;
-import com.puppycrawl.tools.checkstyle.checks.DesignForInheritanceCheckTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -106,6 +102,7 @@ public class AllTests {
         suite.addTest(new TestSuite(MethodNameCheckTest.class));
         suite.addTest(new TestSuite(ModifierOrderCheckTest.class));
         suite.addTest(new TestSuite(NeedBracesCheckTest.class));
+        suite.addTest(new TestSuite(NewlineAtEndOfFileCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceBeforeCheckTest.class));
         suite.addTest(new TestSuite(OperatorWrapCheckTest.class));
