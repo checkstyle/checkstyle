@@ -68,10 +68,12 @@ public class SimplifyBooleanReturnCheck
         AST elseStatement = thenStatement.getNextSibling().getFirstChild();
 
         if (returnsOnlyBooleanLiteral(thenStatement)
-                && returnsOnlyBooleanLiteral(elseStatement))
+            && returnsOnlyBooleanLiteral(elseStatement))
         {
             // TODO: i18n
-            log(aAST.getLineNo(), aAST.getColumnNo(), "Remove conditional logic.");
+            log(aAST.getLineNo(),
+                aAST.getColumnNo(),
+                "Remove conditional logic.");
         }
     }
 
