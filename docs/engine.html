@@ -318,6 +318,21 @@
 </table>
 
 
+<h3>Line wrapping on operators</h3>
+<p>Checks for wrapping lines before operators. Examples of legal and illegal wrapping are:</p>
+
+<pre>
+    // Valid
+    someVariable = aBigVariableNameToMakeThings + "this may work"
+                   + lookVeryInteresting;
+    // Invalid
+    anotherVariable = anotherBigVariableNameToMakeThings + "this may work" +
+                      lookVeryInteresting;
+</pre>
+
+<p>This feature can be turned off.</p>
+
+
 <h3>Missing Braces</h3>
 <p>Checks for missing braces <span class="code">{}</span>'s for the following constructs:</p>
 <ul>
