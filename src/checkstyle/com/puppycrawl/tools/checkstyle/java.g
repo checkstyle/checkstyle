@@ -239,13 +239,13 @@ classDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 		// now parse the body of the class
         {
             ver.verifyType(modSet, #IDENT);
-            ver.reportStartTypeBlock(modSet.getVisibilityScope(), false);
+            ver.reportStartTypeBlock(modSet.getVisibilityScope(), false, #IDENT);
         }
 		cb:classBlock[(modSet.size() == 0) ? #cc.getLineNo() : modSet.getFirstLineNo()]
 		{#classDefinition = #(#[CLASS_DEF,"CLASS_DEF"],
 							   modifiers,IDENT,sc,ic,cb);}
         {
-            ver.reportEndTypeBlock();
+            ver.reportEndTypeBlock(true);
         }
 	;
 
@@ -262,13 +262,13 @@ interfaceDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 		// now parse the body of the interface (looks like a class...)
         {
             ver.verifyType(modSet, #IDENT);
-            ver.reportStartTypeBlock(modSet.getVisibilityScope(), true);
+            ver.reportStartTypeBlock(modSet.getVisibilityScope(), true, #IDENT);
         }
 		cb:classBlock[(modSet.size() == 0) ? #ii.getLineNo() : modSet.getFirstLineNo()]
 		{#interfaceDefinition = #(#[INTERFACE_DEF,"INTERFACE_DEF"],
 									modifiers,IDENT,ie,cb);}
         {
-            ver.reportEndTypeBlock();
+            ver.reportEndTypeBlock(true);
         }
 	;
 
@@ -1067,7 +1067,7 @@ primaryExpression
  */
 newExpression
 	:	n:"new"^ t:type {ver.reportInstantiation(#n, sLastIdentifier);}
-		(	LPAREN! argList RPAREN! ({ver.reportStartTypeBlock(Scope.ANONINNER, false);}  classBlock[-1]  {ver.reportEndTypeBlock();})?
+		(	LPAREN! argList RPAREN! ({ver.reportStartTypeBlock(Scope.ANONINNER, false, null);}  classBlock[-1]  {ver.reportEndTypeBlock(false);})?
 
 			//java 1.1
 			// Note: This will allow bad constructs like

@@ -28,8 +28,14 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
+import java.io.InputStream;
+import java.io.IOException;
+
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
+import org.apache.bcel.classfile.JavaClass;
+import org.apache.bcel.classfile.DescendingVisitor;
+import org.apache.bcel.classfile.ClassParser;
 
 /**
  * Verifier of Java rules. Each rule verifier takes the form of
@@ -109,6 +115,14 @@ class Verifier
     /** stack tracking the visibility scope currently in **/
     private final Stack mInScope = new Stack();
 
+    /** stack for tracking the full class name of current scope */
+    private final Stack mTypeNames = new Stack();
+    /** represents the current type name */
+    private String mCurrentTypeName;
+
+    /** Map of type names to a map of variables that are indexed on name */
+    private final Map mTypeFieldsMap = new HashMap();
+
     /** tracks the level of block definitions for methods **/
     private int mMethodBlockLevel = 0;
 
@@ -165,6 +179,7 @@ class Verifier
      **/
     LocalizedMessage[] getMessages()
     {
+        checkUnused();
         checkImports();
         return mMessages.getMessages();
     }
@@ -180,6 +195,8 @@ class Verifier
         mComments.clear();
         mImports.clear();
         mReferenced.clear();
+        mTypeNames.clear();
+        mTypeFieldsMap.clear();
         mMethodBlockLevel = 0;
     }
 
@@ -409,6 +426,14 @@ class Verifier
                           mConfig.getStaticFinalPat());
         }
         else {
+            // Record the name of the variable for detection of unused
+            Map typeVars = (Map) mTypeFieldsMap.get(mCurrentTypeName);
+            if (typeVars == null) {
+                typeVars = new HashMap();
+                mTypeFieldsMap.put(mCurrentTypeName, typeVars);
+            }
+            typeVars.put(aVar.getText(), aVar);
+
             ///////////////////////////////////////////////////////////////////
             // THIS BLOCK NEEDS REFACTORING!!
             ///////////////////////////////////////////////////////////////////
@@ -894,19 +919,33 @@ class Verifier
      * to the reportEndBlock().
      * @param aScope the Scope of the type block
      * @param aIsInterface indicates if the block is for an interface
+     * @param aType the name of the type
      */
-    void reportStartTypeBlock(Scope aScope, boolean aIsInterface)
+    void reportStartTypeBlock(Scope aScope,
+                              boolean aIsInterface,
+                              MyCommonAST aType)
     {
         mInScope.push(aScope);
         mInInterface.push(aIsInterface ? Boolean.TRUE : Boolean.FALSE);
+        if (aType != null) {
+            mTypeNames.push(aType.getText());
+            calculateTypeName();
+        }
     }
 
 
-    /** Report that the parser is leaving a type block. **/
-    void reportEndTypeBlock()
+    /**
+     * Report that the parser is leaving a type block.
+     * @param aNamed is this a named type block
+     */
+    void reportEndTypeBlock(boolean aNamed)
     {
         mInScope.pop();
         mInInterface.pop();
+        if (aNamed) {
+            mTypeNames.pop();
+            calculateTypeName();
+        }
     }
 
 
@@ -1437,6 +1476,59 @@ class Verifier
         return (i == -1) ? aType : aType.substring(i + 1);
     }
 
+    /**
+     * Checks for unused variables using BCEL.
+     */
+    private void checkUnused()
+    {
+        if (!mConfig.isCheckUnusedFields()) {
+            return;
+        }
+
+        final Iterator typeNames = mTypeFieldsMap.keySet().iterator();
+        while (typeNames.hasNext()) {
+            final String type = (String) typeNames.next();
+            String cname = type.replace('.', '$');
+            if (mPkgName != null) {
+                cname = mPkgName + "." + cname;
+            }
+            final String fname = cname.replace('.', '/') + ".class";
+            final InputStream is =
+                mConfig.getClassLoader().getResourceAsStream(fname);
+
+            final ClassParser parser = new ClassParser(is, cname);
+            JavaClass jc = null;
+            try {
+                jc = parser.parse();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+            catch (ClassFormatError e) {
+                e.printStackTrace();
+                return;
+            }
+
+            // Visit the code using BCEL
+            final UnusedDetector ud = new UnusedDetector(jc);
+            final DescendingVisitor dv = new DescendingVisitor(jc, ud);
+            dv.visit();
+
+            // Report all unused fields
+            final Map typeVars = (Map) mTypeFieldsMap.get(type);
+            final String[] unusedFields = ud.getUnusedFields();
+            for (int i = 0; i < unusedFields.length; i++) {
+                final MyVariable var =
+                    (MyVariable) typeVars.get(unusedFields[i]);
+                mMessages.add(var.getLineNo(),
+                              var.getColumnNo() - 1,
+                              "field.unused",
+                              var.getText());
+            }
+        }
+    }
+
     /** Check the imports that are unused or unrequired. **/
     private void checkImports()
     {
@@ -1757,6 +1849,20 @@ class Verifier
                     }
                 }
             }
+        }
+    }
+
+    /** Calcuates the current type name */
+    private void calculateTypeName()
+    {
+        mCurrentTypeName = "";
+        final Iterator it = mTypeNames.iterator();
+        if (it.hasNext()) {
+            mCurrentTypeName = (String) it.next();
+        }
+
+        while (it.hasNext()) {
+            mCurrentTypeName += "." + (String) it.next();
         }
     }
     // }}}

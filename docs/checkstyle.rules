@@ -1,4 +1,5 @@
 checkstyle.block.catch=text
+checkstyle.fields.checkUnused=true
 checkstyle.javadoc.checkUnusedThrows=true
 checkstyle.lcurly.method=nl
 checkstyle.lcurly.other=nlow

@@ -10,6 +10,7 @@
   <property name="antlr.jar" value="lib/antlr.jar" />
   <property name="antlr-tools.jar" value="lib/antlr-tools.jar" />
   <property name="regexp.jar" value="lib/jakarta-regexp-1.2.jar" />
+  <property name="bcel.jar" value="lib/bcel.jar" />
   <property name="junit.jar" value="lib/junit.jar" />
 
   <property name="checkstyle.dir"
@@ -22,6 +23,7 @@
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
     <pathelement location="${regexp.jar}" />
+    <pathelement location="${bcel.jar}" />
     <pathelement location="${ant.home}/lib/ant.jar" />
   </path>
 
@@ -217,7 +219,7 @@
                excludes="**/Generated*.java"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="target/cs_errors.xml"/>
-      <classpath refid="build.classpath"/>
+      <classpath refid="run.classpath"/>
       <property key="checkstyle.cache.file" file="target/cachefile"/>
       <property key="checkstyle.header.file" file="docs/java.header"/>
     </checkstyle>
