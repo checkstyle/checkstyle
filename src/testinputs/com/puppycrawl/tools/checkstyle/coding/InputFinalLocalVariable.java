@@ -126,3 +126,14 @@ abstract class AbstractClass
 {
     public abstract void abstractMethod(int aParam);
 }
+
+class Blah
+{
+    static
+    {
+        for(int a : some.getInts())
+        {
+
+        }
+    }
+}
