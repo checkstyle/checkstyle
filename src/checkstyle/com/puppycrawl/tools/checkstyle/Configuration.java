@@ -302,7 +302,7 @@ public class Configuration
 
         for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
             final String key = Defn.ALL_BOOLEAN_PROPS[i];
-            retVal.put(key, Boolean.toString(getBooleanProperty(key)));
+            retVal.put(key, String.valueOf(getBooleanProperty(key)));
         }
 
         for (int i = 0; i < Defn.ALL_PATTERN_PROPS.length; i++) {
