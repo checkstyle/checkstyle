@@ -127,6 +127,7 @@ public abstract class AbstractUsageCheck
     public void logError(Exception aException)
     {
         log(0, "general.exception", new String[] {aException.getMessage()});
+        Utils.getExceptionLogger().debug("An exception occured.", aException);
     }
 
     /**

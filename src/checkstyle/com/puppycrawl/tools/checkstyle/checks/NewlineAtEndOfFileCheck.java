@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.Defn;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -166,6 +167,7 @@ public class NewlineAtEndOfFileCheck
                 args,
                 this.getClass());
         getMessageCollector().add(message);
+        Utils.getExceptionLogger().debug("IOException occured.", aEx);
     }
     ///CLOVER:ON
 }
