@@ -21,10 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 
-// TODO: tests!
-
 /**
+ * <p>
  * Reports tab characters ('\t') in the source code.
+ * </p>
  *
  * <p>
  * Rationale:
@@ -37,7 +37,12 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * impossible to read if you use tabs.</li>
  * </ul>
  * </p>
- *
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="TabCharacterCheck"/&gt;
+ * </pre> 
  * @author Lars Kühne
  */
 public class TabCharacterCheck
