@@ -342,7 +342,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             dispatcher.fireFileStarted(path);
 
             mLoc += mLineChecksums[i].length;
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; j <= i; j++) {
                 findDuplicatesInFiles(i, j);
             }
 
@@ -410,6 +410,11 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         final int jFileLength = mLineChecksums[aJ].length;
 
         for (int jLine = 0; jLine < jFileLength - mMin; jLine++) {
+
+            if (aI == aJ && aILine == jLine) {
+                continue;
+            }
+
             int equivalent = 0;
             while (aILine + equivalent < iFileLength
                     && jLine + equivalent < jFileLength
@@ -419,9 +424,9 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             {
                 equivalent += 1;
             }
-            if ((aI != aJ || aILine != jLine) && equivalent >= mMin) {
-                reportDuplicate(
-                        equivalent, aILine, mFiles[aJ], jLine);
+
+            if ((aI != aJ || aILine < jLine) && equivalent >= mMin) {
+                reportDuplicate(equivalent, aILine, mFiles[aJ], jLine);
                 aILine += equivalent; // skip to end of equivalent section
             }
         }

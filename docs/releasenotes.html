@@ -68,7 +68,7 @@
 
           <li class="body">Added check for the ncss metric. (module JavaNCSS,
           patch 920820)</li>
-          
+
           <li class="body">Added check that checks for multiple string literals,
           contributed by Daniel Grenner
           (module MultipleStringLiterals, patch 929882).</li>
@@ -76,7 +76,7 @@
           <li class="body">Added check that checks for a modified control variable in a for loop,
           contributed by Daniel Grenner
           (module ModifiedControlVariable, patch 927680).</li>
-          
+
           <li class="body">Added example of how to configure the XML parser factory
           for Checkstyle, and how to support XInclude processing
           (contrib/examples/XInclude, request 905169).</li>
@@ -100,12 +100,15 @@ checkstyle-user</a>).</li>
 
          <li class="body">Fixed bug in handling imports in
          RequireThis(bug 952508)</li>
-         
+
          <li class="body">JUnitTestCaseCheck erroneously mentions tearDown
          instead of setUp. (bug 955925, patch by Paul Guyot)</li>
 
          <li class="body">JavadocTypeCheck does not find a tag on the
          first comment line. (patch 959995, patch by Michael Tamm)</li>
+
+         <li class="body">StrictDuplicateCodeCheck did not find duplicates
+         within the same file.</li>
       </ul>
 
       <p class="body">
