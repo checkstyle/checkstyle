@@ -22,8 +22,7 @@ package com.puppycrawl.tools.checkstyle.api;
 // as soon as architecture has settled. At the time of writing
 // this class is not necessary as a part of the public api
 
-import java.util.Collections;
-import java.util.ArrayList;
+import java.util.TreeSet;
 
 /**
  * Collection of messages.
@@ -33,12 +32,11 @@ import java.util.ArrayList;
 public final class LocalizedMessages
 {
     /** contains the messages logged **/
-    private final ArrayList mMessages = new ArrayList();
+    private final TreeSet mMessages = new TreeSet();
 
     /** @return the logged messages **/
     public LocalizedMessage[] getMessages()
     {
-        Collections.sort(mMessages);
         return (LocalizedMessage[])
             mMessages.toArray(new LocalizedMessage[mMessages.size()]);
     }
@@ -55,9 +53,7 @@ public final class LocalizedMessages
      **/
     public void add(LocalizedMessage aMsg)
     {
-        if (!mMessages.contains(aMsg)) {
-            mMessages.add(aMsg);
-        }
+        mMessages.add(aMsg);
     }
 
     /** @return the number of messages */
