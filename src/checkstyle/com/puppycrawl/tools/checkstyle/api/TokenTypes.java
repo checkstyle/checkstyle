@@ -340,15 +340,16 @@ public class TokenTypes
     ////////////////////////////////////////////////////////////////////////
     // The interesting code goes here
     ////////////////////////////////////////////////////////////////////////
-
-    /** maps from a token name to value */
+    
+        /** maps from a token name to value */
     private static final Map TOKEN_NAME_TO_VALUE = new HashMap();
     /** maps from a token value to name */
-    private static final Map TOKEN_VALUE_TO_NAME = new HashMap();
+    private static final String[] TOKEN_VALUE_TO_NAME;
 
     // initialise the constants
     static {
         final Field[] fields = TokenTypes.class.getDeclaredFields();
+        String[] tempTokenValueToName = new String[0];
         for (int i = 0; i < fields.length; i++) {
             final Field f = fields[i];
 
@@ -362,7 +363,14 @@ public class TokenTypes
                 // this should NEVER fail (famous last words)
                 final Integer value = new Integer(f.getInt(name));
                 TOKEN_NAME_TO_VALUE.put(name, value);
-                TOKEN_VALUE_TO_NAME.put(value, name);
+                final int tokenValue = value.intValue();
+                if (tokenValue > tempTokenValueToName.length - 1) {
+                    final String[] temp = new String[tokenValue + 1];
+                    System.arraycopy(tempTokenValueToName, 0,
+                                     temp, 0, tempTokenValueToName.length);
+                    tempTokenValueToName = temp;
+                }
+                tempTokenValueToName[tokenValue] = name;
             }
             catch (IllegalArgumentException e) {
                 e.printStackTrace();
@@ -373,6 +381,7 @@ public class TokenTypes
                 System.exit(1);
             }
         }
+        TOKEN_VALUE_TO_NAME = tempTokenValueToName;
     }
 
     /**
@@ -382,7 +391,10 @@ public class TokenTypes
      */
     public static String getTokenName(int aID)
     {
-        final String name = (String) TOKEN_VALUE_TO_NAME.get(new Integer(aID));
+        if (aID > TOKEN_VALUE_TO_NAME.length - 1) {
+            throw new IllegalArgumentException("given id " + aID);
+        }
+        final String name = TOKEN_VALUE_TO_NAME[aID];
         if (name == null) {
             throw new IllegalArgumentException("given id " + aID);
         }
