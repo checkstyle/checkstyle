@@ -28,8 +28,8 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * regular expression.
  * </p>
  * <p>
- * Rationale: Abtsract classes are conevnience base class
- * implementations of interfaces not types as such. As such
+ * Rationale: Abstract classes are convenience base class
+ * implementations of interfaces, not types as such. As such
  * they should be named to indicate this.
  * </p>
  *
