@@ -52,15 +52,17 @@ public class SimplifyBooleanReturnCheck
         // [ LITERAL_ELSE (with the elseStatement as a child) ]
 
         // don't bother if this is not if then else
-        if (aAST.getChildCount() != 5) {
+        final AST elseLiteral =
+            aAST.findFirstToken(TokenTypes.LITERAL_ELSE);
+        if (elseLiteral == null) {
             return;
         }
+        final AST elseStatement = elseLiteral.getFirstChild();
 
         // skip '(' and ')'
         // TODO: Introduce helpers in DetailAST
         AST condition = aAST.getFirstChild().getNextSibling();
         AST thenStatement = condition.getNextSibling().getNextSibling();
-        AST elseStatement = thenStatement.getNextSibling().getFirstChild();
 
         if (returnsOnlyBooleanLiteral(thenStatement)
             && returnsOnlyBooleanLiteral(elseStatement))
@@ -122,7 +124,7 @@ public class SimplifyBooleanReturnCheck
 
         final AST expr = aAST.getFirstChild();
 
-        if (expr == null) {
+        if ((expr == null) || (expr.getType() == TokenTypes.SEMI)) {
             return false;
         }
 
