@@ -191,7 +191,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         long start = System.currentTimeMillis();
         mLoc = 0;
         mDuplicates = 0;
-        mFiles = aFiles;
+        mFiles = filter(aFiles);
         mLineChecksums = new long[mFiles.length][];
         mSortedRelevantChecksums = new long[mFiles.length][];
 
@@ -199,7 +199,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             LOG.debug("Reading input files");
         }
 
-        for (int i = 0; i < aFiles.length; i++) {
+        for (int i = 0; i < mFiles.length; i++) {
             try {
                 File file = mFiles[i];
                 String[] lines = Utils.getLines(file.getPath());

@@ -55,6 +55,7 @@ public class PackageNamesLoaderTest extends TestCase
             "com.puppycrawl.tools.checkstyle.checks.blocks.",
             "com.puppycrawl.tools.checkstyle.checks.coding.",
             "com.puppycrawl.tools.checkstyle.checks.design.",
+            "com.puppycrawl.tools.checkstyle.checks.duplicates.",
             "com.puppycrawl.tools.checkstyle.checks.imports.",
             "com.puppycrawl.tools.checkstyle.checks.indentation.",
             "com.puppycrawl.tools.checkstyle.checks.j2ee.",
