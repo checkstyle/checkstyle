@@ -44,7 +44,7 @@ abstract class AbstractMessageBean
 }
 
 final class FinalMessageBean
-    implements MessageDrivenBean, MessageListener 
+    implements javax.ejb.MessageDrivenBean, javax.jms.MessageListener 
 {
     public FinalMessageBean()
     {

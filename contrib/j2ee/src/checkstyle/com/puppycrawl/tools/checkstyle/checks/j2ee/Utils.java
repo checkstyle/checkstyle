@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.j2ee;
 
-import antlr.collections.AST;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -269,17 +267,86 @@ public class Utils
         final DetailAST implementsAST =
             aAST.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE);
         if (implementsAST != null) {
-            AST child = implementsAST.getFirstChild();
+            DetailAST child = (DetailAST) implementsAST.getFirstChild();
             while (child != null) {
-                if (child.getType() == TokenTypes.IDENT) {
-                    final String name = child.getText();
+                if ((child.getType() == TokenTypes.IDENT)
+                    || (child.getType() == TokenTypes.DOT))
+                {
+                    final String name = Utils.constructDottedName(child);
                     if (name.equals(aInterface)
                         || name.equals(shortName))
                     {
                         return true;
                     }
                 }
-                child = child.getNextSibling();
+                child = (DetailAST) child.getNextSibling();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Determines whether an AST node declares an extension of a class or
+     * interface.
+     * @param aAST the AST to check.
+     * @param aClassOrInterface the class or interface to check.
+     * @return if the class defined by aAST implements declares an
+     * extension of aClassOrInterface.
+     */
+    public static boolean hasExtends(DetailAST aAST, String aClassOrInterface)
+    {
+        final String shortName =
+            com.puppycrawl.tools.checkstyle.api.Utils.baseClassname(
+                aClassOrInterface);
+        final DetailAST extendsAST =
+            aAST.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
+        if (extendsAST != null) {
+            DetailAST child = (DetailAST) extendsAST.getFirstChild();
+            while (child != null) {
+                if ((child.getType() == TokenTypes.IDENT)
+                    || (child.getType() == TokenTypes.DOT))
+                {
+                    final String name = Utils.constructDottedName(child);
+                    if (name.equals(aClassOrInterface)
+                        || name.equals(shortName))
+                    {
+                        return true;
+                    }
+                }
+                child = (DetailAST) child.getNextSibling();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Determines whether an AST node declares a throw of an Exception.
+     * @param aAST the AST to check.
+     * @param aException the name of the Exception to check.
+     * @return if the class defined by aAST implements declares a throw
+     * of aException.
+     */
+    public static boolean hasThrows(DetailAST aAST, String aException)
+    {
+        final String shortName =
+            com.puppycrawl.tools.checkstyle.api.Utils.baseClassname(
+                aException);
+        final DetailAST throwsAST =
+            aAST.findFirstToken(TokenTypes.LITERAL_THROWS);
+        if (throwsAST != null) {
+            DetailAST child = (DetailAST) throwsAST.getFirstChild();
+            while (child != null) {
+                if ((child.getType() == TokenTypes.IDENT)
+                    || (child.getType() == TokenTypes.DOT))
+                {
+                    final String name = Utils.constructDottedName(child);
+                    if (name.equals(aException)
+                        || name.equals(shortName))
+                    {
+                        return true;
+                    }
+                }
+                child = (DetailAST) child.getNextSibling();
             }
         }
         return false;
@@ -360,5 +427,31 @@ public class Utils
             }
         }
         return false;
+    }
+
+    /**
+     * Builds the dotted name String representation of the object contained
+     * within an AST.
+     *
+     * @param aAST the AST containing the entire hierarcy of the object
+     * @return the dotted name String representation of the object contained
+     * within aAST.
+     */
+    public static String constructDottedName(DetailAST aAST)
+    {
+        String result;
+
+        if (aAST.getType() == TokenTypes.DOT) {
+            final DetailAST left = (DetailAST) aAST.getFirstChild();
+            final DetailAST right = (DetailAST) left.getNextSibling();
+
+            result =
+                constructDottedName(left) + "." + constructDottedName(right);
+        }
+        else {
+            result = aAST.getText();
+        }
+
+        return result;
     }
 }

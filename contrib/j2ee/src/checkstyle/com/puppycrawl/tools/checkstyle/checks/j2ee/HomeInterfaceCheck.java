@@ -22,27 +22,48 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that an EntityBean defines method ejbFindByPrimaryKey.
+ * Checks the create and find methods of a home interface.
  * @author Rick Giles
  */
-public class EntityBeanFindByPrimaryKeyCheck
-    extends AbstractBeanCheck
+public class HomeInterfaceCheck
+    extends AbstractInterfaceCheck
 {
     /**
      * @see com.puppycrawl.tools.checkstyle.api.Check
      */
     public void visitToken(DetailAST aAST)
     {
-        if (Utils.hasImplements(aAST, "javax.ejb.EntityBean")
-            && !Utils.isAbstract(aAST)
-            && !Utils.hasPublicMethod(aAST, "ejbFindByPrimaryKey", false, 1))
-        {
-            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-            log(
-                aAST.getLineNo(),
-                nameAST.getColumnNo(),
-                "missingmethod.bean",
-                new Object[] {"Entity bean", "ejbFindByPrimaryKey"});
+        if (Utils.hasExtends(aAST, "javax.ejb.EJBHome")) {
+            checkMethods(aAST);
         }
     }
+
+    /**
+     *
+     * @see com.puppycrawl.tools.checkstyle.checks.j2ee.AbstractInterfaceCheck
+     */
+    protected void checkMethods(DetailAST aAST)
+    {
+        super.checkMethods(aAST);
+
+        // every method must throw java.rmi.RemoteException
+        final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
+        if (objBlock != null) {
+            DetailAST child = (DetailAST) objBlock.getFirstChild();
+            while (child != null) {
+                if (child.getType() == TokenTypes.METHOD_DEF) {
+                    if (!Utils.hasThrows(child, "java.rmi.RemoteException")) {
+                        final DetailAST nameAST =
+                            child.findFirstToken(TokenTypes.IDENT);
+                        final String name = nameAST.getText();
+                        log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                            "missingthrows.bean",
+                             new Object[] {name, "java.rmi.RemoteException"});
+                    }
+                }
+                child = (DetailAST) child.getNextSibling();
+            }
+        }
+    }
+
 }

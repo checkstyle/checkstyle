@@ -20,7 +20,10 @@ public class AllTests {
         suite.addTest(new TestSuite(EntityBeanEjbCreateCheckTest.class));
         suite.addTest(new TestSuite(EntityBeanFindByPrimaryKeyCheckTest.class));
         suite.addTest(new TestSuite(EntityBeanFinderCheckTest.class));
+        suite.addTest(new TestSuite(HomeInterfaceCheckTest.class));
+        suite.addTest(new TestSuite(LocalHomeInterfaceCheckTest.class));
         suite.addTest(new TestSuite(MessageBeanCheckTest.class));
+        suite.addTest(new TestSuite(RemoteInterfaceCheckTest.class));
         suite.addTest(new TestSuite(SessionBeanCheckTest.class));
         suite.addTest(new TestSuite(SessionBeanEjbCreateCheckTest.class));
         //$JUnit-END$
