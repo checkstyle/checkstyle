@@ -372,11 +372,12 @@ public class CheckerTest
         mConfig.setParamPat("^a[A-Z][a-zA-Z0-9]*$");
         mConfig.setStaticPat("^s[A-Z][a-zA-Z0-9]*$");
         mConfig.setMemberPat("^m[A-Z][a-zA-Z0-9]*$");
+        mConfig.setIgnoreLineLengthPat("^.*is OK.*regexp.*$");
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":1: file length is 154 lines (max allowed is 20).",
+            filepath + ":1: file length is 156 lines (max allowed is 20).",
             filepath + ":3: Line does not match expected header line of '// Created: 2001'.",
             filepath + ":16: 'final' modifier out of order with the JLS suggestions.",
             filepath + ":18: line longer than 80 characters",
