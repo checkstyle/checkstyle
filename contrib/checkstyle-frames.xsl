@@ -207,6 +207,7 @@
             </head>
             <body>
                 <h2>Files</h2>
+                <p><a href="overview-frame.html" target="fileFrame">Summary</a></p>
                 <p>
                     <table width="100%">
                         <!-- For each file create its part -->
