@@ -29,8 +29,6 @@ public interface Defn
     /** name of resource bundle for Checkstyle */
     String CHECKSTYLE_BUNDLE = "com.puppycrawl.tools.checkstyle.messages";
 
-    /** property name for the to-do pattern **/
-    String TODO_PATTERN_PROP = "checkstyle.pattern.todo";
     /** property name for allowing protected data **/
     String TAB_WIDTH_PROP = "checkstyle.tab.width";
     /** property name for requiring package documentation */
@@ -50,12 +48,6 @@ public interface Defn
     String[] ALL_BOOLEAN_PROPS = new String[]
         {
             REQUIRE_PACKAGE_HTML_PROP,
-        };
-
-    /** All the properties that are a regulare expression */
-    String[] ALL_PATTERN_PROPS = new String[]
-        {
-            TODO_PATTERN_PROP,
         };
 
     /** All the integer properties */

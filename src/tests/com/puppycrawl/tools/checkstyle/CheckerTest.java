@@ -87,15 +87,10 @@ public class CheckerTest
     public void testSimple()
         throws Exception
     {
-        mProps.setProperty(Defn.TODO_PATTERN_PROP, "FIXME:");
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":161: Comment matches to-do format 'FIXME:'.",
-            filepath + ":162: Comment matches to-do format 'FIXME:'.",
-            filepath + ":163: Comment matches to-do format 'FIXME:'.",
-            filepath + ":167: Comment matches to-do format 'FIXME:'.",
         };
         verify(c, filepath, expected);
     }

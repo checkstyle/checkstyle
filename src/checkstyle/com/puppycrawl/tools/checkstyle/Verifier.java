@@ -103,10 +103,6 @@ class Verifier
      **/
     void reportCPPComment(int aStartLineNo, int aStartColNo)
     {
-        final String cmt = mLines[aStartLineNo - 1].substring(aStartColNo);
-        if (mConfig.getTodoRegexp().match(cmt)) {
-            mMessages.add(aStartLineNo, "todo.match", mConfig.getTodoPat());
-        }
     }
 
     /**
@@ -119,16 +115,6 @@ class Verifier
     void reportCComment(int aStartLineNo, int aStartColNo,
                         int aEndLineNo, int aEndColNo)
     {
-        final String[] cc = extractCComment(aStartLineNo, aStartColNo,
-                                            aEndLineNo, aEndColNo);
-
-        // Check for to-do comments
-        for (int i = 0; i < cc.length; i++) {
-            if (mConfig.getTodoRegexp().match(cc[i])) {
-                mMessages.add(aStartLineNo + i, "todo.match",
-                              mConfig.getTodoPat());
-            }
-        }
     }
 
 
