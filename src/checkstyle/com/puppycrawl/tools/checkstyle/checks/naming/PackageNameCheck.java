@@ -84,7 +84,8 @@ public class PackageNameCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST nameAST = (DetailAST) aAST.getFirstChild();
+        final DetailAST nameAST =
+            (DetailAST) aAST.getLastChild().getPreviousSibling();
         final FullIdent full = FullIdent.createFullIdent(nameAST);
         if (!getRegexp().match(full.getText())) {
             log(full.getLineNo(),

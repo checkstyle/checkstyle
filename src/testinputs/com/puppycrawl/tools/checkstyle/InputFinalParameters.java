@@ -28,6 +28,16 @@ class InputFinalParameters
     {
     }
 
+    /** final param constructor with annotation */
+    InputFinalParameters(final @MyAnnotation Class i)
+    {
+    }
+
+    /** non-final param constructor with annotation*/
+    InputFinalParameters(@MyAnnotation Boolean i)
+    {
+    }
+
     /** mixed */
     InputFinalParameters(String s, final Integer i)
     {
@@ -43,9 +53,21 @@ class InputFinalParameters
     {
     }
 
-    /** non final param method */
+    /** final param method */
     void method(final Integer i)
     {
+    }
+
+    /** final param method with annotation **/
+    void method(@MyAnnotation final Object s)
+    {
+
+    }
+
+    /** non-final param method with annotation **/
+    void method(@MyAnnotation Class s)
+    {
+
     }
 
     /** mixed */
@@ -67,11 +89,17 @@ class InputFinalParameters
                 void actionPerformed(ActionEvent e)
                 {
                 }
+                void somethingElse(@MyAnnotation ActionEvent e)
+                {
+                }
             };
 
         Action b = new AbstractAction()
             {
                 void actionPerformed(final ActionEvent e)
+                {
+                }
+                void somethingElse(@MyAnnotation final ActionEvent e)
                 {
                 }
             };
@@ -99,10 +127,40 @@ class InputFinalParameters
         catch (java.lang.NullPointerException npe) {
             npe.printStackTrace();
         }
+        catch (@MyAnnotation NoClassDefFoundError e) {
+            e.printStackTrace();
+        }
+        catch (@MyAnnotation final ClassCastException e) {
+            e.printStackTrace();
+        }
     }
 }
 
 abstract class AbstractClass
 {
     public abstract void abstractMethod(int aParam);
+}
+
+class Foo
+{
+    /* Some for-each clauses */
+    public void Bar()
+    {
+        for(String s : someExpression())
+        {
+
+        }
+        for(final String s : someExpression())
+        {
+
+        }
+        for(@MyAnnotation String s : someExpression())
+        {
+
+        }
+        for(@MyAnnotation final String s : someExpression())
+        {
+
+        }
+    }
 }

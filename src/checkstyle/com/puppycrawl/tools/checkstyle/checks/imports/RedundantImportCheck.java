@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -35,9 +36,10 @@ import java.util.Set;
  *<ul>
  *  <li>It is a duplicate of another import. This is, when a class is imported
  *  more than once.</li>
- *  <li>The class imported is from the <code>java.lang</code> package.
- *  For example importing <code>java.lang.String</code>.</li>
- *  <li>The class imported is from the same package.</li>
+ *  <li>The class non-statically imported is from the <code>java.lang</code>
+ *  package. For example importing <code>java.lang.String</code>.</li>
+ *  <li>The class non-statically imported is from the same package as the
+ *  current package.</li>
  *</ul>
  * <p>
  * An example of how to configure the check is:
@@ -45,6 +47,9 @@ import java.util.Set;
  * <pre>
  * &lt;module name="RedundantImport"/&gt;
  * </pre>
+ *
+ * Compatible with Java 1.5 source.
+ *
  * @author Oliver Burn
  * @version 1.0
  */
@@ -55,28 +60,36 @@ public class RedundantImportCheck
     private String mPkgName;
     /** set of the imports */
     private final Set mImports = new HashSet();
+    /** set of static imports */
+    private final Set mStaticImports = new HashSet();
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree(DetailAST aRootAST)
     {
         mPkgName = null;
         mImports.clear();
+        mStaticImports.clear();
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.IMPORT, TokenTypes.PACKAGE_DEF};
+        return new int[]
+        {TokenTypes.IMPORT,
+         TokenTypes.STATIC_IMPORT,
+         TokenTypes.PACKAGE_DEF, };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
-            final DetailAST nameAST = (DetailAST) aAST.getFirstChild();
-            mPkgName = FullIdent.createFullIdent(nameAST).getText();
+            mPkgName =
+                FullIdent.createFullIdent(
+                    (DetailAST) aAST.getLastChild()
+                        .getPreviousSibling()).getText();
         }
-        else {
+        else if (aAST.getType() == TokenTypes.IMPORT) {
             final FullIdent imp = FullIdent.createFullIdentBelow(aAST);
             if (fromPackage(imp.getText(), "java.lang")) {
                 log(aAST.getLineNo(), aAST.getColumnNo(), "import.lang",
@@ -100,6 +113,25 @@ public class RedundantImportCheck
             }
 
             mImports.add(imp);
+        }
+        else {
+            // Check for a duplicate static import
+            final FullIdent imp =
+                FullIdent.createFullIdent(
+                    aAST.getLastChild().getPreviousSibling());
+            final Iterator it = mStaticImports.iterator();
+            while (it.hasNext()) {
+                final FullIdent full = (FullIdent) it.next();
+                if (imp.getText().equals(full.getText())) {
+                    log(aAST.getLineNo(),
+                        aAST.getColumnNo(),
+                        "import.duplicate",
+                        new Integer(full.getLineNo()),
+                        imp.getText());
+                }
+            }
+
+            mStaticImports.add(imp);
         }
     }
 

@@ -46,6 +46,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * property is not recursive, subpackages of excluded packages are not
  * automatically excluded.
  *
+ * Compatible with Java 1.5 source.
+ *
  * @author Oliver Burn
  * @author <a href="bschneider@vecna.com">Bill Schneider</a>
  * @version 1.0
@@ -53,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AvoidStarImportCheck
     extends Check
 {
-    /** the packages to exempt from this check */
+    /** the packages to exempt from this check. */
     private String[] mExcludes = new String[0];
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */

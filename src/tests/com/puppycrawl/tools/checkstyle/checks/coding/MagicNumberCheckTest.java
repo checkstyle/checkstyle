@@ -43,6 +43,8 @@ public class MagicNumberCheckTest
             "115:37: '020000000000' is a magic number.",
             "116:38: '01000000000000000000000L' is a magic number.",          
             "131:20: '378' is a magic number.",
+            "148:7: '3' is a magic number.",
+            "149:7: '54' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -82,6 +84,7 @@ public class MagicNumberCheckTest
             "115:37: '020000000000' is a magic number.",
             "116:38: '01000000000000000000000L' is a magic number.",
             "131:20: '378' is a magic number.",
+            "149:7: '54' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -149,6 +152,8 @@ public class MagicNumberCheckTest
             "115:37: '020000000000' is a magic number.",
             "116:38: '01000000000000000000000L' is a magic number.",
             "131:20: '378' is a magic number.",
+            "148:7: '3' is a magic number.",
+            "149:7: '54' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -187,6 +192,8 @@ public class MagicNumberCheckTest
             "115:37: '020000000000' is a magic number.",
             "116:38: '01000000000000000000000L' is a magic number.",
             "131:20: '378' is a magic number.",
+            "148:7: '3' is a magic number.",
+            "149:7: '54' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -222,6 +229,8 @@ public class MagicNumberCheckTest
               "100:30: '+3' is a magic number.",
               "101:29: '-2' is a magic number.",
               "131:20: '378' is a magic number.",
+              "148:7: '3' is a magic number.",
+              "149:7: '54' is a magic number.",
          };
          verify(checkConfig, getPath("InputMagicNumber.java"), expected);
      }

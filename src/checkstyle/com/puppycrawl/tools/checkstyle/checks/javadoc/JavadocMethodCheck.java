@@ -256,6 +256,7 @@ public class JavadocMethodCheck
             TokenTypes.IMPORT,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
         };
     }
 
@@ -265,6 +266,7 @@ public class JavadocMethodCheck
         return new int[] {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
         };
     }
 
@@ -305,8 +307,8 @@ public class JavadocMethodCheck
     {
         final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
-        final Scope scope =
-            ScopeUtils.inInterfaceBlock(aAST) ? Scope.PUBLIC : declaredScope;
+        final Scope scope = ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
+                ? Scope.PUBLIC : declaredScope;
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
 
         return scope.isIn(mScope) && surroundingScope.isIn(mScope)
@@ -331,18 +333,20 @@ public class JavadocMethodCheck
             return;
         }
 
-        // Check for inheritDoc
-        boolean hasInheritDocTag = false;
         Iterator it = tags.iterator();
-        while (it.hasNext() && !hasInheritDocTag) {
-            hasInheritDocTag |=
-                ((JavadocTag) it.next()).isInheritDocTag();
-        }
+        if (aAST.getType() != TokenTypes.ANNOTATION_FIELD_DEF) {
+            // Check for inheritDoc
+            boolean hasInheritDocTag = false;
+            while (it.hasNext() && !hasInheritDocTag) {
+                hasInheritDocTag |=
+                    ((JavadocTag) it.next()).isInheritDocTag();
+            }
 
-        checkParamTags(tags, getParameters(aAST), !hasInheritDocTag);
-        checkThrowsTags(tags, getThrows(aAST), !hasInheritDocTag);
-        if (isFunction(aAST)) {
-            checkReturnTag(tags, aAST.getLineNo(), !hasInheritDocTag);
+            checkParamTags(tags, getParameters(aAST), !hasInheritDocTag);
+            checkThrowsTags(tags, getThrows(aAST), !hasInheritDocTag);
+            if (isFunction(aAST)) {
+                checkReturnTag(tags, aAST.getLineNo(), !hasInheritDocTag);
+            }
         }
 
         // Dump out all unused tags

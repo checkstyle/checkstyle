@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
+
 import java.util.Stack;
 
 /**
@@ -60,7 +62,7 @@ public class FinalClassCheck
                     && modifiers.branchContains(TokenTypes.ABSTRACT);
             mClasses.push(new ClassDesc(isFinal, isAbstract));
         }
-        else {
+        else if (!ScopeUtils.inEnumBlock(aAST)) { //ctors in enums don't matter
             final ClassDesc desc = (ClassDesc) mClasses.peek();
             if ((modifiers != null)
                 && modifiers.branchContains(TokenTypes.LITERAL_PRIVATE))

@@ -66,9 +66,9 @@ public class ExplicitInitializationCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         // do not check local variables and
-        // fields declared in interface
+        // fields declared in interface/annotations
         if (ScopeUtils.isLocalVariableDef(aAST)
-            || ScopeUtils.inInterfaceBlock(aAST))
+            || ScopeUtils.inInterfaceOrAnnotationBlock(aAST))
         {
             return;
         }

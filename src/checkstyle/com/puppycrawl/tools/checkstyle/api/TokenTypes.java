@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.lang.reflect.Field;
 
-import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava14TokenTypes;
+import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava15TokenTypes;
 
 /**
  * Contains the constants for all the tokens contained in the Abstract
@@ -69,7 +69,7 @@ public final class TokenTypes
      * @see #CLASS_DEF
      * @see #INTERFACE_DEF
      **/
-    public static final int EOF = GeneratedJava14TokenTypes.EOF;
+    public static final int EOF = GeneratedJava15TokenTypes.EOF;
     /**
      * Modifiers for type, method, and field declarations.  The
      * modifiers element is always present even though it may have no
@@ -89,12 +89,14 @@ public final class TokenTypes
      * @see #LITERAL_SYNCHRONIZED
      * @see #LITERAL_NATIVE
      * @see #STRICTFP
+     * @see #ANNOTATION
      **/
-    public static final int MODIFIERS = GeneratedJava14TokenTypes.MODIFIERS;
+    public static final int MODIFIERS = GeneratedJava15TokenTypes.MODIFIERS;
     /**
-     * An object block.  These are children of class and interface
-     * declarations.  Also, object blocks are children of the new
-     * keyword when defining anonymous inner classes.
+     * An object block.  These are children of class, interface, enum,
+     * annotation and enum constant declarations.
+     * Also, object blocks are children of the new keyword when defining
+     * anonymous inner types.
      *
      * @see #LCURLY
      * @see #INSTANCE_INIT
@@ -106,8 +108,11 @@ public final class TokenTypes
      * @see #RCURLY
      * @see #INTERFACE_DEF
      * @see #LITERAL_NEW
+     * @see #ENUM_DEF
+     * @see #ENUM_CONSTANT_DEF
+     * @see #ANNOTATION_DEF
      **/
-    public static final int OBJBLOCK = GeneratedJava14TokenTypes.OBJBLOCK;
+    public static final int OBJBLOCK = GeneratedJava15TokenTypes.OBJBLOCK;
     /**
      * A list of statements.
      *
@@ -125,7 +130,7 @@ public final class TokenTypes
      * @see #LITERAL_ELSE
      * @see #CASE_GROUP
      **/
-    public static final int SLIST = GeneratedJava14TokenTypes.SLIST;
+    public static final int SLIST = GeneratedJava15TokenTypes.SLIST;
     /**
      * A constructor declaration.
      *
@@ -192,15 +197,15 @@ public final class TokenTypes
      * @see #OBJBLOCK
      * @see #CLASS_DEF
      **/
-    public static final int CTOR_DEF = GeneratedJava14TokenTypes.CTOR_DEF;
+    public static final int CTOR_DEF = GeneratedJava15TokenTypes.CTOR_DEF;
     /**
-     * A method declaration.  The children are modifiers, return type,
-     * method name, parameter list, an optional throws list, and
+     * A method declaration.  The children are modifiers, type parameters,
+     * return type, method name, parameter list, an optional throws list, and
      * statement list.  The statement list is omitted if the method
      * declaration appears in an interface declaration.  Method
      * declarations may appear inside object blocks of class
-     * declarations, interface declarations, or anonymous inner-class
-     * declarations.
+     * declarations, interface declarations, enum declarations,
+     * enum constant declarations or anonymous inner-class declarations.
      *
      * <p>For example:</p>
      *
@@ -248,6 +253,7 @@ public final class TokenTypes
      * </pre>
      *
      * @see #MODIFIERS
+     * @see #TYPE_PARAMETERS
      * @see #TYPE
      * @see #IDENT
      * @see #PARAMETERS
@@ -255,7 +261,7 @@ public final class TokenTypes
      * @see #SLIST
      * @see #OBJBLOCK
      **/
-    public static final int METHOD_DEF = GeneratedJava14TokenTypes.METHOD_DEF;
+    public static final int METHOD_DEF = GeneratedJava15TokenTypes.METHOD_DEF;
     /**
      * A field or local variable declaration.  The children are
      * modifiers, type, the identifier name, and an optional
@@ -267,12 +273,12 @@ public final class TokenTypes
      * @see #ASSIGN
      **/
     public static final int VARIABLE_DEF =
-        GeneratedJava14TokenTypes.VARIABLE_DEF;
+        GeneratedJava15TokenTypes.VARIABLE_DEF;
 
     /**
      * An instance initializer.  Zero or more instance initializers
-     * may appear in class definitions.  This token will be a child of
-     * the object block in either a normal or anonymous inner class.
+     * may appear in class and enum definitions.  This token will be a child
+     * of the object block of the declaring type.
      *
      * @see <a target="_top"
      * href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#246032">Java
@@ -281,12 +287,12 @@ public final class TokenTypes
      * @see #OBJBLOCK
      **/
     public static final int INSTANCE_INIT =
-        GeneratedJava14TokenTypes.INSTANCE_INIT;
+        GeneratedJava15TokenTypes.INSTANCE_INIT;
 
     /**
      * A static initialization block.  Zero or more static
      * initializers may be children of the object block of a class
-     * declaration (interfaces cannot have static initializers).  The
+     * or enum declaration (interfaces cannot have static initializers).  The
      * first and only child is a statement list.
      *
      * @see <a target="_top"
@@ -296,14 +302,14 @@ public final class TokenTypes
      * @see #OBJBLOCK
      **/
     public static final int STATIC_INIT =
-        GeneratedJava14TokenTypes.STATIC_INIT;
+        GeneratedJava15TokenTypes.STATIC_INIT;
 
     /**
      * A type.  This is either a return type of a method or a type of
      * a variable or field.  The first child of this element is the
      * actual type.  This may be a primitive type, an identifier, a
      * dot which is the root of a fully qualified type, or an array of
-     * any of these.
+     * any of these. The second child may be type arguments to the type.
      *
      * @see #VARIABLE_DEF
      * @see #METHOD_DEF
@@ -320,8 +326,9 @@ public final class TokenTypes
      * @see #LITERAL_LONG
      * @see #LITERAL_DOUBLE
      * @see #ARRAY_DECLARATOR
+     * @see #TYPE_ARGUMENTS
      **/
-    public static final int TYPE = GeneratedJava14TokenTypes.TYPE;
+    public static final int TYPE = GeneratedJava15TokenTypes.TYPE;
     /**
      * A class declaration.
      *
@@ -361,7 +368,7 @@ public final class TokenTypes
      * @see #OBJBLOCK
      * @see #LITERAL_NEW
      **/
-    public static final int CLASS_DEF = GeneratedJava14TokenTypes.CLASS_DEF;
+    public static final int CLASS_DEF = GeneratedJava15TokenTypes.CLASS_DEF;
     /**
      * An interface declaration.
      *
@@ -400,12 +407,15 @@ public final class TokenTypes
      * @see #OBJBLOCK
      **/
     public static final int INTERFACE_DEF =
-        GeneratedJava14TokenTypes.INTERFACE_DEF;
+        GeneratedJava15TokenTypes.INTERFACE_DEF;
 
     /**
      * The package declaration.  This is optional, but if it is
      * included, then there is only one package declaration per source
-     * file and it must be the first non-comment in the file.
+     * file and it must be the first non-comment in the file. A package
+     * declaration may be annotated in which case the annotations comes
+     * before the rest of the declaration (and are the first children).
+     *
      * <p>For example:</p>
      *
      * <pre>
@@ -417,6 +427,7 @@ public final class TokenTypes
      * <pre>
      * +--PACKAGE_DEF (package)
      *     |
+     *     +--ANNOTATIONS
      *     +--DOT (.)
      *         |
      *         +--DOT (.)
@@ -439,9 +450,10 @@ public final class TokenTypes
      * @see #DOT
      * @see #IDENT
      * @see #SEMI
+     * @see #ANNOTATIONS
      * @see FullIdent
      **/
-    public static final int PACKAGE_DEF = GeneratedJava14TokenTypes.PACKAGE_DEF;
+    public static final int PACKAGE_DEF = GeneratedJava15TokenTypes.PACKAGE_DEF;
     /**
      * An array declaration.
      *
@@ -481,7 +493,7 @@ public final class TokenTypes
      * @see #ARRAY_INIT
      **/
     public static final int ARRAY_DECLARATOR =
-        GeneratedJava14TokenTypes.ARRAY_DECLARATOR;
+        GeneratedJava15TokenTypes.ARRAY_DECLARATOR;
 
     /**
      * An extends clause.  This appear as part of class and interface
@@ -512,10 +524,10 @@ public final class TokenTypes
      * @see FullIdent
      **/
     public static final int EXTENDS_CLAUSE =
-        GeneratedJava14TokenTypes.EXTENDS_CLAUSE;
+        GeneratedJava15TokenTypes.EXTENDS_CLAUSE;
 
     /**
-     * An implements clause.  This always appears in a class
+     * An implements clause.  This always appears in a class or enum
      * declaration, even if there are no implemented interfaces.  The
      * children are a comma separated list of zero or more
      * identifiers.
@@ -537,9 +549,10 @@ public final class TokenTypes
      * @see #DOT
      * @see #COMMA
      * @see #CLASS_DEF
+     * @see #ENUM_DEF
      **/
     public static final int IMPLEMENTS_CLAUSE =
-        GeneratedJava14TokenTypes.IMPLEMENTS_CLAUSE;
+        GeneratedJava15TokenTypes.IMPLEMENTS_CLAUSE;
 
     /**
      * A list of parameters to a method or constructor.  The children
@@ -575,17 +588,20 @@ public final class TokenTypes
      * @see #METHOD_DEF
      * @see #CTOR_DEF
      **/
-    public static final int PARAMETERS = GeneratedJava14TokenTypes.PARAMETERS;
+    public static final int PARAMETERS = GeneratedJava15TokenTypes.PARAMETERS;
     /**
-     * A parameter declaration.
+     * A parameter declaration. The last parameter in a list of parameters may
+     * be variable length (indicated by the TRIPLE_DOT child node immediately
+     * after the TYPE child).
      *
      * @see #MODIFIERS
      * @see #TYPE
      * @see #IDENT
      * @see #PARAMETERS
+     * @see #TRIPLE_DOT
      **/
     public static final int PARAMETER_DEF =
-        GeneratedJava14TokenTypes.PARAMETER_DEF;
+        GeneratedJava15TokenTypes.PARAMETER_DEF;
 
     /**
      * A labeled statement.
@@ -608,7 +624,7 @@ public final class TokenTypes
      * @see #SLIST
      **/
     public static final int LABELED_STAT =
-        GeneratedJava14TokenTypes.LABELED_STAT;
+        GeneratedJava15TokenTypes.LABELED_STAT;
 
     /**
      * A type-cast.
@@ -639,9 +655,10 @@ public final class TokenTypes
      * Language Specification, &sect;15.16</a>
      * @see #EXPR
      * @see #TYPE
+     * @see #TYPE_ARGUMENTS
      * @see #RPAREN
      **/
-    public static final int TYPECAST = GeneratedJava14TokenTypes.TYPECAST;
+    public static final int TYPECAST = GeneratedJava15TokenTypes.TYPECAST;
     /**
      * The array index operator.
      *
@@ -667,7 +684,7 @@ public final class TokenTypes
      *
      * @see #EXPR
      **/
-    public static final int INDEX_OP = GeneratedJava14TokenTypes.INDEX_OP;
+    public static final int INDEX_OP = GeneratedJava15TokenTypes.INDEX_OP;
     /**
      * The <code>++</code> (postfix increment) operator.
      *
@@ -677,7 +694,7 @@ public final class TokenTypes
      * @see #EXPR
      * @see #INC
      **/
-    public static final int POST_INC = GeneratedJava14TokenTypes.POST_INC;
+    public static final int POST_INC = GeneratedJava15TokenTypes.POST_INC;
     /**
      * The <code>--</code> (postfix decrement) operator.
      *
@@ -687,9 +704,10 @@ public final class TokenTypes
      * @see #EXPR
      * @see #DEC
      **/
-    public static final int POST_DEC = GeneratedJava14TokenTypes.POST_DEC;
+    public static final int POST_DEC = GeneratedJava15TokenTypes.POST_DEC;
     /**
-     * A method call.
+     * A method call. A method call may have type arguments however these
+     * are attached to the appropriate node in the qualified method name.
      *
      * <p>For example:</p>
      * <pre>
@@ -708,12 +726,13 @@ public final class TokenTypes
      * </pre>
      *
      * @see #IDENT
+     * @see #TYPE_ARGUMENTS
      * @see #DOT
      * @see #ELIST
      * @see #RPAREN
      * @see FullIdent
      **/
-    public static final int METHOD_CALL = GeneratedJava14TokenTypes.METHOD_CALL;
+    public static final int METHOD_CALL = GeneratedJava15TokenTypes.METHOD_CALL;
     /**
      * An expression.  Operators with lower precedence appear at a
      * higher level in the tree than operators with higher precedence.
@@ -770,7 +789,7 @@ public final class TokenTypes
      * @see #LPAREN
      * @see #RPAREN
      **/
-    public static final int EXPR = GeneratedJava14TokenTypes.EXPR;
+    public static final int EXPR = GeneratedJava15TokenTypes.EXPR;
     /**
      * An array initialization.  This may occur as part of an array
      * declaration or inline with <code>new</code>.
@@ -855,10 +874,10 @@ public final class TokenTypes
      * @see #LITERAL_NEW
      * @see #COMMA
      **/
-    public static final int ARRAY_INIT = GeneratedJava14TokenTypes.ARRAY_INIT;
+    public static final int ARRAY_INIT = GeneratedJava15TokenTypes.ARRAY_INIT;
     /**
      * An import declaration.  Import declarations are option, but
-     * must appear after the package declaration and before the type
+     * must appear after the package declaration and before the first type
      * declaration.
      *
      * <p>For example:</p>
@@ -891,7 +910,7 @@ public final class TokenTypes
      * @see #SEMI
      * @see FullIdent
      **/
-    public static final int IMPORT = GeneratedJava14TokenTypes.IMPORT;
+    public static final int IMPORT = GeneratedJava15TokenTypes.IMPORT;
     /**
      * The <code>+</code> (unary plus) operator.
      *
@@ -900,7 +919,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.15.3</a>
      * @see #EXPR
      **/
-    public static final int UNARY_MINUS = GeneratedJava14TokenTypes.UNARY_MINUS;
+    public static final int UNARY_MINUS = GeneratedJava15TokenTypes.UNARY_MINUS;
     /**
      * The <code>-</code> (unary minus) operator.
      *
@@ -909,7 +928,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.15.4</a>
      * @see #EXPR
      **/
-    public static final int UNARY_PLUS = GeneratedJava14TokenTypes.UNARY_PLUS;
+    public static final int UNARY_PLUS = GeneratedJava15TokenTypes.UNARY_PLUS;
     /**
      * A group of case clauses.  Case clauses with no associated
      * statements are grouped together into a case group.  The last
@@ -961,7 +980,7 @@ public final class TokenTypes
      * @see #LITERAL_DEFAULT
      * @see #LITERAL_SWITCH
      **/
-    public static final int CASE_GROUP = GeneratedJava14TokenTypes.CASE_GROUP;
+    public static final int CASE_GROUP = GeneratedJava15TokenTypes.CASE_GROUP;
     /**
      * An expression list.  The children are a comma separated list of
      * expressions.
@@ -974,7 +993,7 @@ public final class TokenTypes
      * @see #CTOR_CALL
      * @see #SUPER_CTOR_CALL
      **/
-    public static final int ELIST = GeneratedJava14TokenTypes.ELIST;
+    public static final int ELIST = GeneratedJava15TokenTypes.ELIST;
     /**
      * A for loop initializer.  This is a child of
      * <code>LITERAL_FOR</code>.  The children of this element may be
@@ -985,7 +1004,7 @@ public final class TokenTypes
      * @see #ELIST
      * @see #LITERAL_FOR
      **/
-    public static final int FOR_INIT = GeneratedJava14TokenTypes.FOR_INIT;
+    public static final int FOR_INIT = GeneratedJava15TokenTypes.FOR_INIT;
     /**
      * A for loop condition.  This is a child of
      * <code>LITERAL_FOR</code>.  The child of this element is an
@@ -995,7 +1014,7 @@ public final class TokenTypes
      * @see #LITERAL_FOR
      **/
     public static final int FOR_CONDITION =
-        GeneratedJava14TokenTypes.FOR_CONDITION;
+        GeneratedJava15TokenTypes.FOR_CONDITION;
 
     /**
      * A for loop iterator.  This is a child of
@@ -1006,7 +1025,7 @@ public final class TokenTypes
      * @see #LITERAL_FOR
      **/
     public static final int FOR_ITERATOR =
-        GeneratedJava14TokenTypes.FOR_ITERATOR;
+        GeneratedJava15TokenTypes.FOR_ITERATOR;
 
     /**
      * The empty statement.  This goes in place of an
@@ -1019,25 +1038,25 @@ public final class TokenTypes
      * @see #LITERAL_FOR
      * @see #LITERAL_WHILE
      **/
-    public static final int EMPTY_STAT = GeneratedJava14TokenTypes.EMPTY_STAT;
+    public static final int EMPTY_STAT = GeneratedJava15TokenTypes.EMPTY_STAT;
     /**
      * The <code>final</code> keyword.
      *
      * @see #MODIFIERS
      **/
-    public static final int FINAL = GeneratedJava14TokenTypes.FINAL;
+    public static final int FINAL = GeneratedJava15TokenTypes.FINAL;
     /**
      * The <code>abstract</code> keyword.
      *
      * @see #MODIFIERS
      **/
-    public static final int ABSTRACT = GeneratedJava14TokenTypes.ABSTRACT;
+    public static final int ABSTRACT = GeneratedJava15TokenTypes.ABSTRACT;
     /**
      * The <code>strictfp</code> keyword.
      *
      * @see #MODIFIERS
      **/
-    public static final int STRICTFP = GeneratedJava14TokenTypes.STRICTFP;
+    public static final int STRICTFP = GeneratedJava15TokenTypes.STRICTFP;
     /**
      * A super constructor call.
      *
@@ -1047,7 +1066,7 @@ public final class TokenTypes
      * @see #CTOR_CALL
      **/
     public static final int SUPER_CTOR_CALL =
-        GeneratedJava14TokenTypes.SUPER_CTOR_CALL;
+        GeneratedJava15TokenTypes.SUPER_CTOR_CALL;
 
     /**
      * A constructor call.
@@ -1074,14 +1093,14 @@ public final class TokenTypes
      * @see #SEMI
      * @see #SUPER_CTOR_CALL
      **/
-    public static final int CTOR_CALL = GeneratedJava14TokenTypes.CTOR_CALL;
+    public static final int CTOR_CALL = GeneratedJava15TokenTypes.CTOR_CALL;
     /* *
      * This token does not appear in the tree.
      *
      * @see #PACKAGE_DEF
      **/
     //public static final int LITERAL_PACKAGE =
-    //    GeneratedJava14TokenTypes.LITERAL_package;
+    //    GeneratedJava15TokenTypes.LITERAL_package;
 
     /**
      * The statement terminator (<code>;</code>).  Depending on the
@@ -1093,14 +1112,14 @@ public final class TokenTypes
      * @see #ARRAY_INIT
      * @see #LITERAL_FOR
      **/
-    public static final int SEMI = GeneratedJava14TokenTypes.SEMI;
+    public static final int SEMI = GeneratedJava15TokenTypes.SEMI;
     /* *
      * This token does not appear in the tree.
      *
      * @see #IMPORT
      **/
     // public static final int LITERAL_IMPORT =
-    //     GeneratedJava14TokenTypes.LITERAL_import;
+    //     GeneratedJava15TokenTypes.LITERAL_import;
 
     /* *
      * This token does not appear in the tree.
@@ -1108,21 +1127,21 @@ public final class TokenTypes
      * @see #INDEX_OP
      * @see #ARRAY_DECLARATOR
      **/
-    //public static final int LBRACK = GeneratedJava14TokenTypes.LBRACK;
+    //public static final int LBRACK = GeneratedJava15TokenTypes.LBRACK;
     /* *
      * This token does not appear in the tree.
      *
      * @see #INDEX_OP
      * @see #ARRAY_DECLARATOR
      **/
-    //public static final int RBRACK = GeneratedJava14TokenTypes.RBRACK;
+    //public static final int RBRACK = GeneratedJava15TokenTypes.RBRACK;
     /**
      * The <code>void</code> keyword.
      *
      * @see #TYPE
      **/
     public static final int LITERAL_VOID =
-        GeneratedJava14TokenTypes.LITERAL_void;
+        GeneratedJava15TokenTypes.LITERAL_void;
 
     /**
      * The <code>boolean</code> keyword.
@@ -1130,7 +1149,7 @@ public final class TokenTypes
      * @see #TYPE
      **/
     public static final int LITERAL_BOOLEAN =
-        GeneratedJava14TokenTypes.LITERAL_boolean;
+        GeneratedJava15TokenTypes.LITERAL_boolean;
 
     /**
      * The <code>byte</code> keyword.
@@ -1138,7 +1157,7 @@ public final class TokenTypes
      * @see #TYPE
      **/
     public static final int LITERAL_BYTE =
-        GeneratedJava14TokenTypes.LITERAL_byte;
+        GeneratedJava15TokenTypes.LITERAL_byte;
 
     /**
      * The <code>char</code> keyword.
@@ -1146,7 +1165,7 @@ public final class TokenTypes
      * @see #TYPE
      **/
     public static final int LITERAL_CHAR =
-        GeneratedJava14TokenTypes.LITERAL_char;
+        GeneratedJava15TokenTypes.LITERAL_char;
 
     /**
      * The <code>short</code> keyword.
@@ -1154,21 +1173,21 @@ public final class TokenTypes
      * @see #TYPE
      **/
     public static final int LITERAL_SHORT =
-        GeneratedJava14TokenTypes.LITERAL_short;
+        GeneratedJava15TokenTypes.LITERAL_short;
 
     /**
      * The <code>int</code> keyword.
      *
      * @see #TYPE
      **/
-    public static final int LITERAL_INT = GeneratedJava14TokenTypes.LITERAL_int;
+    public static final int LITERAL_INT = GeneratedJava15TokenTypes.LITERAL_int;
     /**
      * The <code>float</code> keyword.
      *
      * @see #TYPE
      **/
     public static final int LITERAL_FLOAT =
-        GeneratedJava14TokenTypes.LITERAL_float;
+        GeneratedJava15TokenTypes.LITERAL_float;
 
     /**
      * The <code>long</code> keyword.
@@ -1176,7 +1195,7 @@ public final class TokenTypes
      * @see #TYPE
      **/
     public static final int LITERAL_LONG =
-        GeneratedJava14TokenTypes.LITERAL_long;
+        GeneratedJava15TokenTypes.LITERAL_long;
 
     /**
      * The <code>double</code> keyword.
@@ -1184,19 +1203,19 @@ public final class TokenTypes
      * @see #TYPE
      **/
     public static final int LITERAL_DOUBLE =
-        GeneratedJava14TokenTypes.LITERAL_double;
+        GeneratedJava15TokenTypes.LITERAL_double;
 
     /**
      * An identifier.  These can be names of types, subpackages,
      * fields, methods, parameters, and local variables.
      **/
-    public static final int IDENT = GeneratedJava14TokenTypes.IDENT;
+    public static final int IDENT = GeneratedJava15TokenTypes.IDENT;
     /**
      * The <code>&#46;</code> (dot) operator.
      *
      * @see FullIdent
      **/
-    public static final int DOT = GeneratedJava14TokenTypes.DOT;
+    public static final int DOT = GeneratedJava15TokenTypes.DOT;
     /**
      * The <code>*</code> (multiplication or wildcard) operator.
      *
@@ -1209,14 +1228,14 @@ public final class TokenTypes
      * @see #EXPR
      * @see #IMPORT
      **/
-    public static final int STAR = GeneratedJava14TokenTypes.STAR;
+    public static final int STAR = GeneratedJava15TokenTypes.STAR;
     /**
      * The <code>private</code> keyword.
      *
      * @see #MODIFIERS
      **/
     public static final int LITERAL_PRIVATE =
-        GeneratedJava14TokenTypes.LITERAL_private;
+        GeneratedJava15TokenTypes.LITERAL_private;
 
     /**
      * The <code>public</code> keyword.
@@ -1224,7 +1243,7 @@ public final class TokenTypes
      * @see #MODIFIERS
      **/
     public static final int LITERAL_PUBLIC =
-        GeneratedJava14TokenTypes.LITERAL_public;
+        GeneratedJava15TokenTypes.LITERAL_public;
 
     /**
      * The <code>protected</code> keyword.
@@ -1232,7 +1251,7 @@ public final class TokenTypes
      * @see #MODIFIERS
      **/
     public static final int LITERAL_PROTECTED =
-        GeneratedJava14TokenTypes.LITERAL_protected;
+        GeneratedJava15TokenTypes.LITERAL_protected;
 
     /**
      * The <code>static</code> keyword.
@@ -1240,7 +1259,7 @@ public final class TokenTypes
      * @see #MODIFIERS
      **/
     public static final int LITERAL_STATIC =
-        GeneratedJava14TokenTypes.LITERAL_static;
+        GeneratedJava15TokenTypes.LITERAL_static;
 
     /**
      * The <code>transient</code> keyword.
@@ -1248,7 +1267,7 @@ public final class TokenTypes
      * @see #MODIFIERS
      **/
     public static final int LITERAL_TRANSIENT =
-        GeneratedJava14TokenTypes.LITERAL_transient;
+        GeneratedJava15TokenTypes.LITERAL_transient;
 
     /**
      * The <code>native</code> keyword.
@@ -1256,7 +1275,7 @@ public final class TokenTypes
      * @see #MODIFIERS
      **/
     public static final int LITERAL_NATIVE =
-        GeneratedJava14TokenTypes.LITERAL_native;
+        GeneratedJava15TokenTypes.LITERAL_native;
 
     /**
      * The <code>synchronized</code> keyword.  This may be used as a
@@ -1302,7 +1321,7 @@ public final class TokenTypes
      * @see #RCURLY
      **/
     public static final int LITERAL_SYNCHRONIZED =
-        GeneratedJava14TokenTypes.LITERAL_synchronized;
+        GeneratedJava15TokenTypes.LITERAL_synchronized;
 
     /**
      * The <code>volatile</code> keyword.
@@ -1310,7 +1329,7 @@ public final class TokenTypes
      * @see #MODIFIERS
      **/
     public static final int LITERAL_VOLATILE =
-        GeneratedJava14TokenTypes.LITERAL_volatile;
+        GeneratedJava15TokenTypes.LITERAL_volatile;
 
     /**
      * The <code>class</code> keyword.  This element appears both
@@ -1338,7 +1357,7 @@ public final class TokenTypes
      * @see FullIdent
      **/
     public static final int LITERAL_CLASS =
-        GeneratedJava14TokenTypes.LITERAL_class;
+        GeneratedJava15TokenTypes.LITERAL_class;
 
     /* *
      * This token does not appear in the tree.
@@ -1346,7 +1365,7 @@ public final class TokenTypes
      * @see #EXTENDS_CLAUSE
      **/
     //public static final int LITERAL_EXTENDS =
-    //    GeneratedJava14TokenTypes.LITERAL_extends;
+    //    GeneratedJava15TokenTypes.LITERAL_extends;
 
     /**
      * The <code>interface</code> keyword. This token appears in
@@ -1355,7 +1374,7 @@ public final class TokenTypes
      * @see #INTERFACE_DEF
      **/
     public static final int LITERAL_INTERFACE =
-        GeneratedJava14TokenTypes.LITERAL_interface;
+        GeneratedJava15TokenTypes.LITERAL_interface;
 
     /**
      * A left (curly) brace (<code>{</code>).
@@ -1364,7 +1383,7 @@ public final class TokenTypes
      * @see #ARRAY_INIT
      * @see #SLIST
      **/
-    public static final int LCURLY = GeneratedJava14TokenTypes.LCURLY;
+    public static final int LCURLY = GeneratedJava15TokenTypes.LCURLY;
     /**
      * A right (curly) brace (<code>}</code>).
      *
@@ -1372,7 +1391,7 @@ public final class TokenTypes
      * @see #ARRAY_INIT
      * @see #SLIST
      **/
-    public static final int RCURLY = GeneratedJava14TokenTypes.RCURLY;
+    public static final int RCURLY = GeneratedJava15TokenTypes.RCURLY;
     /**
      * The <code>,</code> (comma) operator.
      *
@@ -1382,14 +1401,14 @@ public final class TokenTypes
      * @see #LITERAL_THROWS
      * @see #IMPLEMENTS_CLAUSE
      **/
-    public static final int COMMA = GeneratedJava14TokenTypes.COMMA;
+    public static final int COMMA = GeneratedJava15TokenTypes.COMMA;
     /* *
      * This token does not appear in the tree.
      *
      * @see #IMPLEMENTS_CLAUSE
      **/
     // public static final int LITERAL_IMPLEMENTS =
-    //     GeneratedJava14TokenTypes.LITERAL_implements;
+    //     GeneratedJava15TokenTypes.LITERAL_implements;
 
     /**
      * A left parenthesis (<code>(</code>).
@@ -1400,7 +1419,7 @@ public final class TokenTypes
      * @see #LITERAL_SWITCH
      * @see #LITERAL_CATCH
      **/
-    public static final int LPAREN = GeneratedJava14TokenTypes.LPAREN;
+    public static final int LPAREN = GeneratedJava15TokenTypes.LPAREN;
     /**
      * A right parenthesis (<code>)</code>).
      *
@@ -1412,7 +1431,7 @@ public final class TokenTypes
      * @see #LITERAL_SWITCH
      * @see #LITERAL_CATCH
      **/
-    public static final int RPAREN = GeneratedJava14TokenTypes.RPAREN;
+    public static final int RPAREN = GeneratedJava15TokenTypes.RPAREN;
     /**
      * The <code>this</code> keyword.
      *
@@ -1420,7 +1439,7 @@ public final class TokenTypes
      * @see #CTOR_CALL
      **/
     public static final int LITERAL_THIS =
-        GeneratedJava14TokenTypes.LITERAL_this;
+        GeneratedJava15TokenTypes.LITERAL_this;
 
     /**
      * The <code>super</code> keyword.
@@ -1429,7 +1448,7 @@ public final class TokenTypes
      * @see #SUPER_CTOR_CALL
      **/
     public static final int LITERAL_SUPER =
-        GeneratedJava14TokenTypes.LITERAL_super;
+        GeneratedJava15TokenTypes.LITERAL_super;
 
     /**
      * The <code>=</code> (assignment) operator.
@@ -1439,7 +1458,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.26.1</a>
      * @see #EXPR
      **/
-    public static final int ASSIGN = GeneratedJava14TokenTypes.ASSIGN;
+    public static final int ASSIGN = GeneratedJava15TokenTypes.ASSIGN;
     /**
      * The <code>throws</code> keyword.  The children are a number of
      * one or more identifiers separated by commas.
@@ -1455,7 +1474,7 @@ public final class TokenTypes
      * @see FullIdent
      **/
     public static final int LITERAL_THROWS =
-        GeneratedJava14TokenTypes.LITERAL_throws;
+        GeneratedJava15TokenTypes.LITERAL_throws;
 
     /**
      * The <code>:</code> (colon) operator.  This will appear as part
@@ -1465,7 +1484,7 @@ public final class TokenTypes
      * @see #LABELED_STAT
      * @see #CASE_GROUP
      **/
-    public static final int COLON = GeneratedJava14TokenTypes.COLON;
+    public static final int COLON = GeneratedJava15TokenTypes.COLON;
     /**
      * The <code>if</code> keyword.
      *
@@ -1520,7 +1539,7 @@ public final class TokenTypes
      * @see #EMPTY_STAT
      * @see #LITERAL_ELSE
      **/
-    public static final int LITERAL_IF = GeneratedJava14TokenTypes.LITERAL_if;
+    public static final int LITERAL_IF = GeneratedJava15TokenTypes.LITERAL_if;
     /**
      * The <code>for</code> keyword.  The children are <code>(</code>,
      * an initializer, a condition, an iterator, a <code>)</code> and
@@ -1604,7 +1623,7 @@ public final class TokenTypes
      * @see #EMPTY_STAT
      * @see #EXPR
      **/
-    public static final int LITERAL_FOR = GeneratedJava14TokenTypes.LITERAL_for;
+    public static final int LITERAL_FOR = GeneratedJava15TokenTypes.LITERAL_for;
     /**
      * The <code>while</code> keyword.
      *
@@ -1660,7 +1679,7 @@ public final class TokenTypes
      * </pre>
      **/
     public static final int LITERAL_WHILE =
-        GeneratedJava14TokenTypes.LITERAL_while;
+        GeneratedJava15TokenTypes.LITERAL_while;
 
     /**
      * The <code>do</code> keyword.  Note the the while token does not
@@ -1717,7 +1736,7 @@ public final class TokenTypes
      * @see #RPAREN
      * @see #SEMI
      **/
-    public static final int LITERAL_DO = GeneratedJava14TokenTypes.LITERAL_do;
+    public static final int LITERAL_DO = GeneratedJava15TokenTypes.LITERAL_do;
     /**
      * The <code>break</code> keyword.  The first child is an optional
      * identifier and the last child is a semicolon.
@@ -1727,7 +1746,7 @@ public final class TokenTypes
      * @see #SLIST
      **/
     public static final int LITERAL_BREAK =
-        GeneratedJava14TokenTypes.LITERAL_break;
+        GeneratedJava15TokenTypes.LITERAL_break;
 
     /**
      * The <code>continue</code> keyword.  The first child is an
@@ -1738,7 +1757,7 @@ public final class TokenTypes
      * @see #SLIST
      **/
     public static final int LITERAL_CONTINUE =
-        GeneratedJava14TokenTypes.LITERAL_continue;
+        GeneratedJava15TokenTypes.LITERAL_continue;
 
     /**
      * The <code>return</code> keyword.  The first child is an
@@ -1750,7 +1769,7 @@ public final class TokenTypes
      * @see #SLIST
      **/
     public static final int LITERAL_RETURN =
-        GeneratedJava14TokenTypes.LITERAL_return;
+        GeneratedJava15TokenTypes.LITERAL_return;
 
     /**
      * The <code>switch</code> keyword.
@@ -1857,7 +1876,7 @@ public final class TokenTypes
      * @see #SLIST
      **/
     public static final int LITERAL_SWITCH =
-        GeneratedJava14TokenTypes.LITERAL_switch;
+        GeneratedJava15TokenTypes.LITERAL_switch;
 
     /**
      * The <code>throw</code> keyword.  The first child is an
@@ -1870,7 +1889,7 @@ public final class TokenTypes
      * @see #EXPR
      **/
     public static final int LITERAL_THROW =
-        GeneratedJava14TokenTypes.LITERAL_throw;
+        GeneratedJava15TokenTypes.LITERAL_throw;
 
     /**
      * The <code>else</code> keyword.  This appears as a child of an
@@ -1882,7 +1901,7 @@ public final class TokenTypes
      * @see #LITERAL_IF
      **/
     public static final int LITERAL_ELSE =
-        GeneratedJava14TokenTypes.LITERAL_else;
+        GeneratedJava15TokenTypes.LITERAL_else;
 
     /**
      * The <code>case</code> keyword.  The first child is a constant
@@ -1892,7 +1911,7 @@ public final class TokenTypes
      * @see #EXPR
      **/
     public static final int LITERAL_CASE =
-        GeneratedJava14TokenTypes.LITERAL_case;
+        GeneratedJava15TokenTypes.LITERAL_case;
 
     /**
      * The <code>default</code> keyword.  This element has no
@@ -1901,7 +1920,7 @@ public final class TokenTypes
      * @see #CASE_GROUP
      **/
     public static final int LITERAL_DEFAULT =
-        GeneratedJava14TokenTypes.LITERAL_default;
+        GeneratedJava15TokenTypes.LITERAL_default;
 
     /**
      * The <code>try</code> keyword.  The children are a statement
@@ -1979,7 +1998,7 @@ public final class TokenTypes
      * @see #LITERAL_CATCH
      * @see #LITERAL_FINALLY
      **/
-    public static final int LITERAL_TRY = GeneratedJava14TokenTypes.LITERAL_try;
+    public static final int LITERAL_TRY = GeneratedJava15TokenTypes.LITERAL_try;
     /**
      * The <code>catch</code> keyword.
      *
@@ -1990,7 +2009,7 @@ public final class TokenTypes
      * @see #LITERAL_TRY
      **/
     public static final int LITERAL_CATCH =
-        GeneratedJava14TokenTypes.LITERAL_catch;
+        GeneratedJava15TokenTypes.LITERAL_catch;
 
     /**
      * The <code>finally</code> keyword.
@@ -1999,7 +2018,7 @@ public final class TokenTypes
      * @see #LITERAL_TRY
      **/
     public static final int LITERAL_FINALLY =
-        GeneratedJava14TokenTypes.LITERAL_finally;
+        GeneratedJava15TokenTypes.LITERAL_finally;
 
     /**
      * The <code>+=</code> (addition assignment) operator.
@@ -2009,7 +2028,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int PLUS_ASSIGN = GeneratedJava14TokenTypes.PLUS_ASSIGN;
+    public static final int PLUS_ASSIGN = GeneratedJava15TokenTypes.PLUS_ASSIGN;
     /**
      * The <code>-=</code> (subtraction assignment) operator.
      *
@@ -2019,7 +2038,7 @@ public final class TokenTypes
      * @see #EXPR
      **/
     public static final int MINUS_ASSIGN =
-        GeneratedJava14TokenTypes.MINUS_ASSIGN;
+        GeneratedJava15TokenTypes.MINUS_ASSIGN;
 
     /**
      * The <code>*=</code> (multiplication assignment) operator.
@@ -2029,7 +2048,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int STAR_ASSIGN = GeneratedJava14TokenTypes.STAR_ASSIGN;
+    public static final int STAR_ASSIGN = GeneratedJava15TokenTypes.STAR_ASSIGN;
     /**
      * The <code>/=</code> (division assignment) operator.
      *
@@ -2038,7 +2057,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int DIV_ASSIGN = GeneratedJava14TokenTypes.DIV_ASSIGN;
+    public static final int DIV_ASSIGN = GeneratedJava15TokenTypes.DIV_ASSIGN;
     /**
      * The <code>%=</code> (remainder assignment) operator.
      *
@@ -2047,7 +2066,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int MOD_ASSIGN = GeneratedJava14TokenTypes.MOD_ASSIGN;
+    public static final int MOD_ASSIGN = GeneratedJava15TokenTypes.MOD_ASSIGN;
     /**
      * The <code>&gt;&gt;=</code> (signed right shift assignment)
      * operator.
@@ -2057,7 +2076,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int SR_ASSIGN = GeneratedJava14TokenTypes.SR_ASSIGN;
+    public static final int SR_ASSIGN = GeneratedJava15TokenTypes.SR_ASSIGN;
     /**
      * The <code>&gt;&gt;&gt;=</code> (unsigned right shift assignment)
      * operator.
@@ -2067,7 +2086,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int BSR_ASSIGN = GeneratedJava14TokenTypes.BSR_ASSIGN;
+    public static final int BSR_ASSIGN = GeneratedJava15TokenTypes.BSR_ASSIGN;
     /**
      * The <code>&lt;&lt;=</code> (left shift assignment) operator.
      *
@@ -2076,7 +2095,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int SL_ASSIGN = GeneratedJava14TokenTypes.SL_ASSIGN;
+    public static final int SL_ASSIGN = GeneratedJava15TokenTypes.SL_ASSIGN;
     /**
      * The <code>&amp;=</code> (bitwise AND assignment) operator.
      *
@@ -2085,7 +2104,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int BAND_ASSIGN = GeneratedJava14TokenTypes.BAND_ASSIGN;
+    public static final int BAND_ASSIGN = GeneratedJava15TokenTypes.BAND_ASSIGN;
     /**
      * The <code>^=</code> (bitwise exclusive OR assignment) operator.
      *
@@ -2094,7 +2113,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int BXOR_ASSIGN = GeneratedJava14TokenTypes.BXOR_ASSIGN;
+    public static final int BXOR_ASSIGN = GeneratedJava15TokenTypes.BXOR_ASSIGN;
     /**
      * The <code>|=</code> (bitwise OR assignment) operator.
      *
@@ -2103,7 +2122,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int BOR_ASSIGN = GeneratedJava14TokenTypes.BOR_ASSIGN;
+    public static final int BOR_ASSIGN = GeneratedJava15TokenTypes.BOR_ASSIGN;
     /**
      * The <code>&#63;</code> (conditional) operator.  Technically,
      * the colon is also part of this operator, but it appears as a
@@ -2136,7 +2155,7 @@ public final class TokenTypes
      * @see #EXPR
      * @see #COLON
      **/
-    public static final int QUESTION = GeneratedJava14TokenTypes.QUESTION;
+    public static final int QUESTION = GeneratedJava15TokenTypes.QUESTION;
     /**
      * The <code>||</code> (conditional OR) operator.
      *
@@ -2145,7 +2164,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.24</a>
      * @see #EXPR
      **/
-    public static final int LOR = GeneratedJava14TokenTypes.LOR;
+    public static final int LOR = GeneratedJava15TokenTypes.LOR;
     /**
      * The <code>&&</code> (conditional AND) operator.
      *
@@ -2154,7 +2173,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.23</a>
      * @see #EXPR
      **/
-    public static final int LAND = GeneratedJava14TokenTypes.LAND;
+    public static final int LAND = GeneratedJava15TokenTypes.LAND;
     /**
      * The <code>|</code> (bitwise OR) operator.
      *
@@ -2163,7 +2182,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      **/
-    public static final int BOR = GeneratedJava14TokenTypes.BOR;
+    public static final int BOR = GeneratedJava15TokenTypes.BOR;
     /**
      * The <code>^</code> (bitwise exclusive OR) operator.
      *
@@ -2172,7 +2191,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      **/
-    public static final int BXOR = GeneratedJava14TokenTypes.BXOR;
+    public static final int BXOR = GeneratedJava15TokenTypes.BXOR;
     /**
      * The <code>&</code> (bitwise AND) operator.
      *
@@ -2181,43 +2200,43 @@ public final class TokenTypes
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      **/
-    public static final int BAND = GeneratedJava14TokenTypes.BAND;
+    public static final int BAND = GeneratedJava15TokenTypes.BAND;
     /**
      * The <code>&#33;=</code> (not equal) operator.
      *
      * @see #EXPR
      **/
-    public static final int NOT_EQUAL = GeneratedJava14TokenTypes.NOT_EQUAL;
+    public static final int NOT_EQUAL = GeneratedJava15TokenTypes.NOT_EQUAL;
     /**
      * The <code>==</code> (equal) operator.
      *
      * @see #EXPR
      **/
-    public static final int EQUAL = GeneratedJava14TokenTypes.EQUAL;
+    public static final int EQUAL = GeneratedJava15TokenTypes.EQUAL;
     /**
      * The <code>&lt;</code> (less than) operator.
      *
      * @see #EXPR
      **/
-    public static final int LT = GeneratedJava14TokenTypes.LT;
+    public static final int LT = GeneratedJava15TokenTypes.LT;
     /**
      * The <code>&gt;</code> (greater than) operator.
      *
      * @see #EXPR
      **/
-    public static final int GT = GeneratedJava14TokenTypes.GT;
+    public static final int GT = GeneratedJava15TokenTypes.GT;
     /**
      * The <code>&lt;=</code> (less than or equal) operator.
      *
      * @see #EXPR
      **/
-    public static final int LE = GeneratedJava14TokenTypes.LE;
+    public static final int LE = GeneratedJava15TokenTypes.LE;
     /**
      * The <code>&gt;=</code> (greater than or equal) operator.
      *
      * @see #EXPR
      **/
-    public static final int GE = GeneratedJava14TokenTypes.GE;
+    public static final int GE = GeneratedJava15TokenTypes.GE;
     /**
      * The <code>instanceof</code> operator.  The first child is an
      * object reference or something that evaluates to an object
@@ -2234,7 +2253,7 @@ public final class TokenTypes
      * @see FullIdent
      **/
     public static final int LITERAL_INSTANCEOF =
-        GeneratedJava14TokenTypes.LITERAL_instanceof;
+        GeneratedJava15TokenTypes.LITERAL_instanceof;
 
     /**
      * The <code>&lt;&lt;</code> (shift left) operator.
@@ -2244,7 +2263,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
      **/
-    public static final int SL = GeneratedJava14TokenTypes.SL;
+    public static final int SL = GeneratedJava15TokenTypes.SL;
     /**
      * The <code>&gt;&gt;</code> (signed shift right) operator.
      *
@@ -2253,7 +2272,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
      **/
-    public static final int SR = GeneratedJava14TokenTypes.SR;
+    public static final int SR = GeneratedJava15TokenTypes.SR;
     /**
      * The <code>&gt;&gt;&gt;</code> (unsigned shift right) operator.
      *
@@ -2262,7 +2281,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
      **/
-    public static final int BSR = GeneratedJava14TokenTypes.BSR;
+    public static final int BSR = GeneratedJava15TokenTypes.BSR;
     /**
      * The <code>+</code> (addition) operator.
      *
@@ -2271,7 +2290,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.18</a>
      * @see #EXPR
      **/
-    public static final int PLUS = GeneratedJava14TokenTypes.PLUS;
+    public static final int PLUS = GeneratedJava15TokenTypes.PLUS;
     /**
      * The <code>-</code> (subtraction) operator.
      *
@@ -2280,7 +2299,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.18</a>
      * @see #EXPR
      **/
-    public static final int MINUS = GeneratedJava14TokenTypes.MINUS;
+    public static final int MINUS = GeneratedJava15TokenTypes.MINUS;
     /**
      * The <code>/</code> (division) operator.
      *
@@ -2289,7 +2308,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.17.2</a>
      * @see #EXPR
      **/
-    public static final int DIV = GeneratedJava14TokenTypes.DIV;
+    public static final int DIV = GeneratedJava15TokenTypes.DIV;
     /**
      * The <code>%</code> (remainder) operator.
      *
@@ -2298,7 +2317,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.17.3</a>
      * @see #EXPR
      **/
-    public static final int MOD = GeneratedJava14TokenTypes.MOD;
+    public static final int MOD = GeneratedJava15TokenTypes.MOD;
     /**
      * The <code>++</code> (prefix increment) operator.
      *
@@ -2308,7 +2327,7 @@ public final class TokenTypes
      * @see #EXPR
      * @see #POST_INC
      **/
-    public static final int INC = GeneratedJava14TokenTypes.INC;
+    public static final int INC = GeneratedJava15TokenTypes.INC;
     /**
      * The <code>--</code> (prefix decrement) operator.
      *
@@ -2318,7 +2337,7 @@ public final class TokenTypes
      * @see #EXPR
      * @see #POST_DEC
      **/
-    public static final int DEC = GeneratedJava14TokenTypes.DEC;
+    public static final int DEC = GeneratedJava15TokenTypes.DEC;
     /**
      * The <code>~</code> (bitwise complement) operator.
      *
@@ -2327,7 +2346,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.15.5</a>
      * @see #EXPR
      **/
-    public static final int BNOT = GeneratedJava14TokenTypes.BNOT;
+    public static final int BNOT = GeneratedJava15TokenTypes.BNOT;
     /**
      * The <code>&#33;</code> (logical complement) operator.
      *
@@ -2336,7 +2355,7 @@ public final class TokenTypes
      * Language Specification, &sect;15.15.6</a>
      * @see #EXPR
      **/
-    public static final int LNOT = GeneratedJava14TokenTypes.LNOT;
+    public static final int LNOT = GeneratedJava15TokenTypes.LNOT;
     /**
      * The <code>true</code> keyword.
      *
@@ -2347,7 +2366,7 @@ public final class TokenTypes
      * @see #LITERAL_FALSE
      **/
     public static final int LITERAL_TRUE =
-        GeneratedJava14TokenTypes.LITERAL_true;
+        GeneratedJava15TokenTypes.LITERAL_true;
 
     /**
      * The <code>false</code> keyword.
@@ -2359,7 +2378,7 @@ public final class TokenTypes
      * @see #LITERAL_TRUE
      **/
     public static final int LITERAL_FALSE =
-        GeneratedJava14TokenTypes.LITERAL_false;
+        GeneratedJava15TokenTypes.LITERAL_false;
 
     /**
      * The <code>null</code> keyword.
@@ -2370,7 +2389,7 @@ public final class TokenTypes
      * @see #EXPR
      **/
     public static final int LITERAL_NULL =
-        GeneratedJava14TokenTypes.LITERAL_null;
+        GeneratedJava15TokenTypes.LITERAL_null;
 
     /**
      * The <code>new</code> keyword.  This element is used to define
@@ -2504,7 +2523,7 @@ public final class TokenTypes
      * @see #ARRAY_INIT
      * @see FullIdent
      **/
-    public static final int LITERAL_NEW = GeneratedJava14TokenTypes.LITERAL_new;
+    public static final int LITERAL_NEW = GeneratedJava15TokenTypes.LITERAL_new;
     /**
      * An integer literal.  These may be specified in decimal,
      * hexadecimal, or octal form.
@@ -2515,7 +2534,7 @@ public final class TokenTypes
      * @see #EXPR
      * @see #NUM_LONG
      **/
-    public static final int NUM_INT = GeneratedJava14TokenTypes.NUM_INT;
+    public static final int NUM_INT = GeneratedJava15TokenTypes.NUM_INT;
     /**
      * A character literal.  This is a (possibly escaped) character
      * enclosed in single quotes.
@@ -2526,7 +2545,7 @@ public final class TokenTypes
      * @see #EXPR
      **/
     public static final int CHAR_LITERAL =
-        GeneratedJava14TokenTypes.CHAR_LITERAL;
+        GeneratedJava15TokenTypes.CHAR_LITERAL;
 
     /**
      * A string literal.  This is a sequence of (possibly escaped)
@@ -2538,7 +2557,7 @@ public final class TokenTypes
      * @see #EXPR
      **/
     public static final int STRING_LITERAL =
-        GeneratedJava14TokenTypes.STRING_LITERAL;
+        GeneratedJava15TokenTypes.STRING_LITERAL;
 
     /**
      * A single precision floating point literal.  This is a floating
@@ -2550,7 +2569,7 @@ public final class TokenTypes
      * @see #EXPR
      * @see #NUM_DOUBLE
      **/
-    public static final int NUM_FLOAT = GeneratedJava14TokenTypes.NUM_FLOAT;
+    public static final int NUM_FLOAT = GeneratedJava15TokenTypes.NUM_FLOAT;
     /**
      * A long integer literal.  These are almost the same as integer
      * literals, but they have an <code>L</code> or <code>l</code>
@@ -2562,7 +2581,7 @@ public final class TokenTypes
      * @see #EXPR
      * @see #NUM_INT
      **/
-    public static final int NUM_LONG = GeneratedJava14TokenTypes.NUM_LONG;
+    public static final int NUM_LONG = GeneratedJava15TokenTypes.NUM_LONG;
     /**
      * A double precision floating point literal.  This is a floating
      * point number with an optional <code>D</code> or <code>d</code>
@@ -2574,7 +2593,7 @@ public final class TokenTypes
      * @see #EXPR
      * @see #NUM_FLOAT
      **/
-    public static final int NUM_DOUBLE = GeneratedJava14TokenTypes.NUM_DOUBLE;
+    public static final int NUM_DOUBLE = GeneratedJava15TokenTypes.NUM_DOUBLE;
     /* *
      * This token does not appear in the tree.
      *
@@ -2583,7 +2602,7 @@ public final class TokenTypes
      * Language Specification, &sect;3.6</a>
      * @see FileContents
      **/
-    //public static final int WS = GeneratedJava14TokenTypes.WS;
+    //public static final int WS = GeneratedJava15TokenTypes.WS;
     /* *
      * This token does not appear in the tree.
      *
@@ -2592,7 +2611,7 @@ public final class TokenTypes
      * Language Specification, &sect;3.7</a>
      * @see FileContents
      **/
-    //public static final int SL_COMMENT = GeneratedJava14TokenTypes.SL_COMMENT;
+    //public static final int SL_COMMENT = GeneratedJava15TokenTypes.SL_COMMENT;
     /* *
      * This token does not appear in the tree.
      *
@@ -2601,7 +2620,7 @@ public final class TokenTypes
      * Language Specification, &sect;3.7</a>
      * @see FileContents
      **/
-    //public static final int ML_COMMENT = GeneratedJava14TokenTypes.ML_COMMENT;
+    //public static final int ML_COMMENT = GeneratedJava15TokenTypes.ML_COMMENT;
     /* *
      * This token does not appear in the tree.
      *
@@ -2611,21 +2630,21 @@ public final class TokenTypes
      * @see #CHAR_LITERAL
      * @see #STRING_LITERAL
      **/
-    //public static final int ESC = GeneratedJava14TokenTypes.ESC;
+    //public static final int ESC = GeneratedJava15TokenTypes.ESC;
     /* *
      * This token does not appear in the tree.
      *
      * @see #NUM_INT
      * @see #NUM_LONG
      **/
-    //public static final int HEX_DIGIT = GeneratedJava14TokenTypes.HEX_DIGIT;
+    //public static final int HEX_DIGIT = GeneratedJava15TokenTypes.HEX_DIGIT;
     /* *
      * This token does not appear in the tree.
      *
      * @see #NUM_FLOAT
      * @see #NUM_DOUBLE
      **/
-    //public static final int EXPONENT = GeneratedJava14TokenTypes.EXPONENT;
+    //public static final int EXPONENT = GeneratedJava15TokenTypes.EXPONENT;
     /* *
      * This token does not appear in the tree.
      *
@@ -2633,7 +2652,7 @@ public final class TokenTypes
      * @see #NUM_DOUBLE
      **/
     // public static final int FLOAT_SUFFIX =
-    //     GeneratedJava14TokenTypes.FLOAT_SUFFIX;
+    //     GeneratedJava15TokenTypes.FLOAT_SUFFIX;
 
     /**
      * The <code>assert</code> keyword.  This is only for Java 1.4 and
@@ -2658,7 +2677,634 @@ public final class TokenTypes
      *     +--SEMI (;)
      * </pre>
      **/
-    public static final int LITERAL_ASSERT = GeneratedJava14TokenTypes.ASSERT;
+    public static final int LITERAL_ASSERT = GeneratedJava15TokenTypes.ASSERT;
+
+    /**
+     * A static import declaration.  Static import declarations are optional,
+     * but must appear after the package declaration and before the type
+     * declaration.
+     *
+     * <p>For example:</p>
+     *
+     * <pre>
+     *   import static java.io.IOException;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * +--STATIC_IMPORT (import)
+     *     |
+     *     +--LITERAL_STATIC
+     *     +--DOT (.)
+     *         |
+     *         +--DOT (.)
+     *             |
+     *             +--IDENT (java)
+     *             +--IDENT (io)
+     *         +--IDENT (IOException)
+     *     +--SEMI (;)
+     * </pre>
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     * @see #LITERAL_STATIC
+     * @see #DOT
+     * @see #IDENT
+     * @see #STAR
+     * @see #SEMI
+     * @see FullIdent
+     **/
+    public static final int STATIC_IMPORT =
+        GeneratedJava15TokenTypes.STATIC_IMPORT;
+
+    /**
+     * An enum declaration. Its notable children are
+     * enum constant declarations followed by
+     * any construct that may be expected in a class body.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public enum MyEnum
+     *   implements Serializable
+     * {
+     *     FIRST_CONSTANT,
+     *     SECOND_CONSTANT;
+     *
+     *     public void someMethod()
+     *     {
+     *     }
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * +--ENUM_DEF
+     *     |
+     *     +--MODIFIERS
+     *         |
+     *         +--LITERAL_PUBLIC (public)
+     *     +--LITERAL_ENUM (enum)
+     *     +--IDENT (MyEnum)
+     *     +--EXTENDS_CLAUSE
+     *     +--IMPLEMENTS_CLAUSE
+     *         |
+     *         +--IDENT (Serializable)
+     *     +--OBJBLOCK
+     *         |
+     *         +--LCURLY ({)
+     *         +--ENUM_CONSTANT_DEF
+     *             |
+     *             +--IDENT (FIRST_CONSTANT)
+     *         +--COMMA (,)
+     *         +--ENUM_CONSTANT_DEF
+     *             |
+     *             +--IDENT (SECOND_CONSTANT)
+     *         +--SEMI (;)
+     *         +--METHOD_DEF
+     *             |
+     *             +--MODIFIERS
+     *                 |
+     *                 +--LITERAL_PUBLIC (public)
+     *             +--TYPE
+     *                 |
+     *                 +--LITERAL_void (void)
+     *             +--IDENT (someMethod)
+     *             +--LPAREN (()
+     *             +--PARAMETERS
+     *             +--RPAREN ())
+     *             +--SLIST ({)
+     *                 |
+     *                 +--RCURLY (})
+     *         +--RCURLY (})
+     * </pre>
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     * @see #MODIFIERS
+     * @see #LITERAL_ENUM
+     * @see #IDENT
+     * @see #EXTENDS_CLAUSE
+     * @see #IMPLEMENTS_CLAUSE
+     * @see #OBJBLOCK
+     * @see #LITERAL_NEW
+     * @see #ENUM_CONSTANT_DEF
+     **/
+    public static final int ENUM_DEF =
+        GeneratedJava15TokenTypes.ENUM_DEF;
+
+    /**
+     * The <code>enum</code> keyword.  This element appears
+     * as part of an enum declaration.
+     **/
+    public static final int LITERAL_ENUM =
+        GeneratedJava15TokenTypes.LITERAL_enum;
+
+    /**
+     * An enum constant declaration. Its notable children are annotations,
+     * arguments and object block akin to an annonymous
+     * inner class' body.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * SOME_CONSTANT(1)
+     * {
+     *     public void someMethodOverridenFromMainBody()
+     *     {
+     *     }
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * +--ENUM_CONSTANT_DEF
+     *     |
+     *     +--ANNOTATIONS
+     *     +--IDENT (SOME_CONSTANT)
+     *     +--LPAREN (()
+     *     +--ELIST
+     *         |
+     *         +--EXPR
+     *             |
+     *             +--NUM_INT (1)
+     *     +--RPAREN ())
+     *     +--OBJBLOCK
+     *         |
+     *         +--LCURLY ({)
+     *         |
+     *         +--METHOD_DEF
+     *             |
+     *             +--MODIFIERS
+     *                 |
+     *                 +--LITERAL_PUBLIC (public)
+     *             +--TYPE
+     *                 |
+     *                 +--LITERAL_void (void)
+     *             +--IDENT (someMethodOverridenFromMainBody)
+     *             +--LPAREN (()
+     *             +--PARAMETERS
+     *             +--RPAREN ())
+     *             +--SLIST ({)
+     *                 |
+     *                 +--RCURLY (})
+     *         +--RCURLY (})
+     * </pre>
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     * @see #ANNOTATIONS
+     * @see #MODIFIERS
+     * @see #IDENT
+     * @see #ELIST
+     * @see #OBJBLOCK
+     **/
+    public static final int ENUM_CONSTANT_DEF =
+        GeneratedJava15TokenTypes.ENUM_CONSTANT_DEF;
+
+    /**
+     * A for-each clause.  This is a child of
+     * <code>LITERAL_FOR</code>.  The children of this element may be
+     * a parameter definition, the colon literal and an expression.
+     *
+     * @see #VARIABLE_DEF
+     * @see #ELIST
+     * @see #LITERAL_FOR
+     **/
+    public static final int FOR_EACH_CLAUSE =
+        GeneratedJava15TokenTypes.FOR_EACH_CLAUSE;
+
+    /**
+     * An annotation declaration. The notable children are the name of the
+     * annotation type, annotation field declarations and (constant) fields.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public @interface MyAnnotation
+     * {
+     *     int someValue();
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * +--ANNOTATION_DEF
+     *     |
+     *     +--MODIFIERS
+     *         |
+     *         +--LITERAL_PUBLIC (public)
+     *     +--AT (@)
+     *     +--LITERAL_INTERFACE (interface)
+     *     +--IDENT (MyAnnotation)
+     *     +--OBJBLOCK
+     *         |
+     *         +--LCURLY ({)
+     *         +--ANNOTATION_FIELD_DEF
+     *             |
+     *             +--MODIFIERS
+     *             +--TYPE
+     *                 |
+     *                 +--LITERAL_INT (int)
+     *             +--IDENT (someValue)
+     *             +--LPAREN (()
+     *             +--RPAREN ())
+     *             +--SEMI (;)
+     *         +--RCURLY (})
+     * </pre>
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     * @see #MODIFIERS
+     * @see #LITERAL_INTERFACE
+     * @see #IDENT
+     * @see #OBJBLOCK
+     * @see #ANNOTATION_FIELD_DEF
+     **/
+    public static final int ANNOTATION_DEF =
+        GeneratedJava15TokenTypes.ANNOTATION_DEF;
+
+
+    /**
+     * An annotation field declaration.  The notable children are modifiers,
+     * field type, field name and an optional default value (a conditional
+     * compile-time constant expression). Default values may also by
+     * annotations.
+     *
+     * <p>For example:</p>
+     *
+     * <pre>
+     *     String someField() default "Hello world";
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * +--ANNOTATION_FIELD_DEF
+     *     |
+     *     +--MODIFIERS
+     *     +--TYPE
+     *         |
+     *         +--IDENT (String)
+     *     +--IDENT (someField)
+     *     +--LPAREN (()
+     *     +--RPAREN ())
+     *     +--LITERAL_DEFAULT (default)
+     *     +--STRING_LITERAL ("Hello world")
+     *     +--SEMI (;)
+     * </pre>
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     * @see #MODIFIERS
+     * @see #TYPE
+     * @see #LITERAL_DEFAULT
+     */
+    public static final int ANNOTATION_FIELD_DEF =
+        GeneratedJava15TokenTypes.ANNOTATION_FIELD_DEF;
+
+    /**
+     * A collection of annotations on a package or enum constant.
+     * A collections of annotations will only occur on these nodes
+     * as all other nodes that may be qualified with an annotation can
+     * be qualified with any other modifier and hence these annotations
+     * would be contained in a {@link #MODIFIERS} node.
+     *
+     * <p>For example:</p>
+     *
+     * <pre>
+     *     @MyAnnotation package blah;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * +--PACKAGE_DEF (package)
+     *     |
+     *     +--ANNOTATIONS
+     *         |
+     *         +--ANNOTATION
+     *             |
+     *             +--AT (@)
+     *             +--IDENT (MyAnnotation)
+     *     +--IDENT (blah)
+     *     +--SEMI (;)
+     * </pre>
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     * @see #ANNOTATION
+     * @see #AT
+     * @see #IDENT
+     */
+    public static final int ANNOTATIONS =
+        GeneratedJava15TokenTypes.ANNOTATIONS;
+
+    /**
+     * An annotation of a package, type, field, parameter or variable.
+     * An annotation may occur anywhere modifiers occur (it is a
+     * type of modifier) and may also occur prior to a package definition.
+     * The notable children are: The annotation name and either a single
+     * default annotation value or a sequence of name value pairs.
+     * Annotation values may also be annotations themselves.
+     *
+     * <p>For example:</p>
+     *
+     * <pre>
+     *     @ MyAnnotation(someField1 = "Hello",
+     *                    someField2 = @SomeOtherAnnotation)
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * +--ANNOTATION
+     *     |
+     *     +--AT (@)
+     *     +--IDENT (MyAnnotation)
+     *     +--LPAREN (()
+     *     +--ANNOTATION_MEMBER_VALUE_PAIR
+     *         |
+     *         +--IDENT (someField1)
+     *         +--ASSIGN (=)
+     *         +--ANNOTATION
+     *             |
+     *             +--AT (@)
+     *             +--IDENT (SomeOtherAnnotation)
+     *     +--ANNOTATION_MEMBER_VALUE_PAIR
+     *         |
+     *         +--IDENT (someField2)
+     *         +--ASSIGN (=)
+     *         +--STRING_LITERAL ("Hello")
+     *     +--RPAREN ())
+     * </pre>
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     * @see #MODIFIERS
+     * @see #IDENT
+     * @see #ANNOTATION_MEMBER_VALUE_PAIR
+     */
+    public static final int ANNOTATION =
+        GeneratedJava15TokenTypes.ANNOTATION;
+
+    /**
+     * An initialisation of an annotation member with a value.
+     * Its children are the name of the member, the assignment literal
+     * and the (compile-time constant conditional expression) value.
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     * @see #ANNOTATION
+     * @see #IDENT
+     */
+    public static final int ANNOTATION_MEMBER_VALUE_PAIR =
+        GeneratedJava15TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR;
+
+    /**
+     * An annotation array member initialisation.
+     * Initializers can not be nested.
+     * Am initializer may be present as a default to a annotation
+     * member, as the single default value to an annotation
+     * (e.g. @Annotation({1,2})) or as the value of an annotation
+     * member value pair.
+     *
+     * <p>For example:</p>
+     *
+     * <pre>
+     *     { 1, 2 }
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * +--ANNOTATION_ARRAY_INIT ({)
+     *     |
+     *     +--NUM_INT (1)
+     *     +--COMMA (,)
+     *     +--NUM_INT (2)
+     *     +--RCURLY (})
+     * </pre>
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     * @see #ANNOTATION
+     * @see #IDENT
+     * @see #ANNOTATION_MEMBER_VALUE_PAIR
+     */
+    public static final int ANNOTATION_ARRAY_INIT =
+        GeneratedJava15TokenTypes.ANNOTATION_ARRAY_INIT;
+
+    /**
+     * A list of type parameters to a class, interface or
+     * method definition. Children are LT, at least one
+     * TYPE_PARAMETER, zero or more of: a COMMAs followed by a single
+     * TYPE_PARAMETER and a final GT.
+     *
+     * <p>For example:</p>
+     *
+     * <pre>
+     *     public class Blah&lt;A, B&gt;
+     *     {
+     *     }
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * +--CLASS_DEF ({)
+     *     |
+     *     +--MODIFIERS
+     *         |
+     *         +--LITERAL_PUBLIC (public)
+     *     +--LITERAL_CLASS (class)
+     *     +--IDENT (Blah)
+     *     +--TYPE_PARAMETERS
+     *         |
+     *         +--LT (<)
+     *         +--TYPE_PARAMETER
+     *             |
+     *             +--IDENT (A)
+     *         +--COMMA (,)
+     *         +--TYPE_PARAMETER
+     *             |
+     *             +--IDENT (B)
+     *         +--GT (>)
+     *     +--OBJBLOCK
+     *         |
+     *         +--LCURLY ({)
+     *     +--NUM_INT (1)
+     *     +--COMMA (,)
+     *     +--NUM_INT (2)
+     *     +--RCURLY (})
+     * </pre>
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * JSR14</a>
+     * @see #LT
+     * @see #GT
+     * @see #TYPE_PARAMETER
+     * @see #COMMA
+     */
+    public static final int TYPE_PARAMETERS =
+        GeneratedJava15TokenTypes.TYPE_PARAMETERS;
+
+    /**
+     * A type parameter to a class, interface or method definition.
+     * Children are the type name and an optional TYPE_UPPER_BOUNDS.
+     *
+     * <p>For example:</p>
+     *
+     * <pre>
+     *     A extends Collection
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * +--TYPE_PARAMETER
+     *     |
+     *     +--IDENT (A)
+     *     +--TYPE_UPPER_BOUNDS
+     *         |
+     *         +--IDENT (Collection)
+     * </pre>
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * JSR14</a>
+     * @see #IDENT
+     * @see #WILDCARD_TYPE
+     * @see #TYPE_UPPER_BOUNDS
+     */
+    public static final int TYPE_PARAMETER =
+        GeneratedJava15TokenTypes.TYPE_PARAMETER;
+
+    /**
+     * A list of type arguments to a type reference or
+     * a method/ctor invocation. Children are LT, at least one
+     * TYPE_ARGUMENT, zero or more of a COMMAs followed by a single
+     * TYPE_ARGUMENT, and a final GT.
+     *
+     * <p>For example:</p>
+     *
+     * <pre>
+     *     public Collection<?> a;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * +--VARIABLE_DEF
+     *     |
+     *     +--MODIFIERS
+     *         |
+     *         +--LITERAL_PUBLIC (public)
+     *     +--TYPE
+     *         |
+     *         +--IDENT (Collection)
+     *             |
+     *             +--TYPE_ARGUMENTS
+     *                 |
+     *                 +--LT (<)
+     *                 +--TYPE_ARGUMENT
+     *                     |
+     *                     +--WILDCARD_TYPE (?)
+     *                 +--GT (>)
+     *     +--IDENT (a)
+     *     +--SEMI (;)
+     * </pre>
+     *
+     * @see #LT
+     * @see #GT
+     * @see #TYPE_ARGUMENT
+     * @see #COMMA
+     */
+    public static final int TYPE_ARGUMENTS =
+        GeneratedJava15TokenTypes.TYPE_ARGUMENTS;
+
+    /**
+     * A type arguments to a type reference or a method/ctor invocation.
+     * Children are either: type name or wildcard type with possible type
+     * upper or lower bounds.
+     *
+     * <p>For example:</p>
+     *
+     * <pre>
+     *     ? super List
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * +--TYPE_ARGUMENT
+     *     |
+     *     +--WILDCARD_TYPE (?)
+     *     +--TYPE_LOWER_BOUNDS
+     *         |
+     *         +--IDENT (List)
+     * </pre>
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * JSR14</a>
+     * @see #WILDCARD_TYPE
+     * @see #TYPE_UPPER_BOUNDS
+     * @see #TYPE_LOWER_BOUNDS
+     */
+    public static final int TYPE_ARGUMENT =
+        GeneratedJava15TokenTypes.TYPE_ARGUMENT;
+
+    /**
+     * The type that refers to all types. This node has no children.
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * JSR14</a>
+     * @see #TYPE_ARGUMENT
+     * @see #TYPE_UPPER_BOUNDS
+     * @see #TYPE_LOWER_BOUNDS
+     */
+    public static final int WILDCARD_TYPE =
+        GeneratedJava15TokenTypes.WILDCARD_TYPE;
+
+    /**
+     * An upper bounds on a wildcard type argument or type parameter.
+     * This node has one child - the type that is being used for
+     * the bounding.
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * JSR14</a>
+     * @see #TYPE_PARAMETER
+     * @see #TYPE_ARGUMENT
+     * @see #WILDCARD_TYPE
+     */
+    public static final int TYPE_UPPER_BOUNDS =
+        GeneratedJava15TokenTypes.TYPE_UPPER_BOUNDS;
+
+    /**
+     * A lower bounds on a wildcard type argument. This node has one child
+     *  - the type that is being used for the bounding.
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * JSR14</a>
+     * @see #TYPE_ARGUMENT
+     * @see #WILDCARD_TYPE
+     */
+    public static final int TYPE_LOWER_BOUNDS =
+        GeneratedJava15TokenTypes.TYPE_LOWER_BOUNDS;
+
+    /**
+     * An 'at' symbol - signifying an annotation instance or the prefix
+     * to the interface literal signifying the definition of an annotation
+     * declaration.
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     */
+    public static final int AT = GeneratedJava15TokenTypes.AT;
+
+    /**
+     * A triple dot for variable-length parameters. This token only ever occurs
+     * in a parameter declaration immediately after the type of the parameter.
+     *
+     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     */
+    public static final int TRIPLE_DOT = GeneratedJava15TokenTypes.TRIPLE_DOT;
+
 
     ////////////////////////////////////////////////////////////////////////
     // The interesting code goes here

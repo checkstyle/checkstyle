@@ -13,6 +13,7 @@ public class FinalClassCheckTest
         final String[] expected = {
             "7: Class InputFinalClass should be declared as final.",
             "15: Class test4 should be declared as final.",
+            "109: Class someinnerClass should be declared as final.",
         };
         verify(checkConfig, getPath("InputFinalClass.java"), expected);
     }

@@ -61,4 +61,14 @@ public class InputScopeInnerInterfaces
     interface
     MyInterface2 {
     }
+
+    protected
+    enum
+    MyEnum {
+    }
+    
+    private
+    @interface
+    MyAnnotation {
+    }
 }

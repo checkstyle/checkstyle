@@ -50,6 +50,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name="IllegalImport"&gt;
  *    &lt;property name="illegalPkgs" value="java.io, java.sql"/&gt;
  * &lt;/module&gt;
+ *
+ * Compatible with Java 1.5 source.
+ *
  * </pre>
  * @author Oliver Burn
  * @author Lars Kühne
@@ -81,13 +84,20 @@ public class IllegalImportCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.IMPORT};
+        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final FullIdent imp = FullIdent.createFullIdentBelow(aAST);
+        final FullIdent imp;
+        if (aAST.getType() == TokenTypes.IMPORT) {
+            imp = FullIdent.createFullIdentBelow(aAST);
+        }
+        else {
+            imp = FullIdent.createFullIdent(
+                (DetailAST) aAST.getFirstChild().getNextSibling());
+        }
         if (isIllegalImport(imp.getText())) {
             log(aAST.getLineNo(),
                 aAST.getColumnNo(),

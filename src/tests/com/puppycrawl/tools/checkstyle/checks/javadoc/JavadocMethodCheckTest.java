@@ -41,6 +41,9 @@ public class JavadocMethodCheckTest
             "254: Unused @throws tag for 'java.io.FileNotFoundException'.",
             "256:28: Expected @throws tag for 'IOException'.",
             "262: Unused @param tag for 'aParam'.",
+            "320:9: Missing a Javadoc comment.",
+            "329:5: Missing a Javadoc comment.",
+            "333: Unused Javadoc tag.",
         };
 
         verify(checkConfig, getPath("InputTags.java"), expected);
@@ -78,6 +81,9 @@ public class JavadocMethodCheckTest
             "254: Unused @throws tag for 'java.io.FileNotFoundException'.",
             "256:28: Expected @throws tag for 'IOException'.",
             "262: Unused @param tag for 'aParam'.",
+            "320:9: Missing a Javadoc comment.",
+            "329:5: Missing a Javadoc comment.",
+            "333: Unused Javadoc tag.",
         };
         verify(checkConfig, getPath("InputTags.java"), expected);
     }
@@ -215,6 +221,9 @@ public class JavadocMethodCheckTest
             "179: Unused @throws tag for 'ArrayStoreException'.",
             "256:28: Expected @throws tag for 'IOException'.",
             "262: Unused @param tag for 'aParam'.",
+            "320:9: Missing a Javadoc comment.",
+            "329:5: Missing a Javadoc comment.",
+            "333: Unused Javadoc tag.",
         };
         verify(checkConfig, getPath("InputTags.java"), expected);
     }

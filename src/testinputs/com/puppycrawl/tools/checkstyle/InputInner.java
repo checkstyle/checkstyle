@@ -56,4 +56,24 @@ class InputInner
             private int ABC;
         };
      }
+
+    /** annotation field incorrectly named. */
+    @interface InnerAnnotation
+    {
+        /** Ignore - should be all upper case. */
+        String data = "zxzc";
+    }
+
+    /** enum with public member variable */
+    enum InnerEnum
+    {
+        /** First constant */
+        A,
+
+        /** Second constant */
+        B;
+
+        /** Should be private */
+        public int someValue;
+    }
 }

@@ -9,7 +9,8 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 public class TranslationCheckTest
     extends BaseCheckTestCase
 {
-    protected DefaultConfiguration createCheckerConfig(Configuration aCheckConfig)
+    protected DefaultConfiguration createCheckerConfig(
+        Configuration aCheckConfig)
     {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
         dc.addChild(aCheckConfig);

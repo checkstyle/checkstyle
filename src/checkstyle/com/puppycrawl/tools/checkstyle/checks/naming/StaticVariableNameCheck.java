@@ -73,6 +73,8 @@ public class StaticVariableNameCheck
         final boolean isFinal = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.FINAL);
 
-        return (isStatic && !isFinal && !ScopeUtils.inInterfaceBlock(aAST));
+        return (isStatic
+                && !isFinal
+                && !ScopeUtils.inInterfaceOrAnnotationBlock(aAST));
     }
 }

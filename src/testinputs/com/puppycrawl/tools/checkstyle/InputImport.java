@@ -20,11 +20,18 @@ import javax.swing.JToolBar;
 import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
+import static java.io.File.listRoots;
+
+import static javax.swing.WindowConstants.*;
+import static javax.swing.WindowConstants.*;
+import static java.io.File.createTempFile;
+import static sun.net.ftpclient.FtpClient.*;
 
 /**
  * Test case for imports
  * @author Oliver Burn
  * @author lkuehne
+ * @author Michael Studman
  **/
 class InputImport
 {
@@ -44,6 +51,7 @@ class InputImport
         int[] x = {};
         Arrays.sort(x);
         Object obj = javax.swing.BorderFactory.createEmptyBorder();
+        File[] files = listRoots();
     }
 
     /** usage of inner class as type */

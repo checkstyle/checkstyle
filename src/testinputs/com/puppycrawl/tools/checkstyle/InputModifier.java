@@ -25,6 +25,31 @@ strictfp final class InputModifier // illegal order of modifiers for class
     {
     }
 
+    /** Single annotation without other modifiers */
+    @MyAnnotation void someMethod()
+    {
+    }
+
+    /** Illegal order of annotation - must come first */
+    private @MyAnnotation void someMethod2()
+    {
+    }
+
+    /** Annotation in middle of other modifiers otherwise in correct order */
+    private @MyAnnotation strictfp void someMethod3()
+    {
+    }
+
+    /** Correct order */
+    @MyAnnotation private strictfp void someMethod4()
+    {
+    }
+
+    /** Annotation in middle of other modifiers otherwise in correct order */
+    @MyAnnotation private static @MyAnnotation2 strictfp void someMethod5()
+    {
+    }
+
     /** holder for redundant 'public' modifier check. */
     public interface InputRedundantPublicModifier
     {
@@ -83,4 +108,15 @@ interface InnerImplementation
         };
     
     void method();
+}
+
+/** Holder for redundant modifiers of annotation fields/variables */
+@interface Annotation
+{
+    public String s1 = "";
+    final String s2 = "";
+    static String s3 = "";
+    String s4 = "";
+    public String blah();
+    abstract String blah2();
 }

@@ -24,7 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 
 /**
- * Checks for redundant modifiers in interface definitions.
+ * Checks for redundant modifiers in interface and annotation definitions.
+ * Also checks for redundant final modifiers on methods of final classes.
  *
  * <p>
  * Rationale: The Java Language Specification strongly discourages the usage
@@ -32,8 +33,17 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
  * as a matter of style.
  * </p>
  * <p>
- * Variables in interfaces are automatically public, static and final, so these
- * modifiers are redundant as well.
+ * Variables in interfaces and annotations are automatically public, static and
+ * final, so these modifiers are redundant as well.
+ * </p>
+ * <p>
+ * As annotations are a form of interface, their fields are also automatically
+ * public, static and final just as their annotation fields are automatically
+ * public and abstract.
+ * </p>
+ * <p>
+ * Final classes by definition can not be extended so the final modifier on the
+ * method of a final class is redundant.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -52,6 +62,7 @@ public class RedundantModifierCheck
         return new int[] {
             TokenTypes.METHOD_DEF,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
         };
     }
 
@@ -64,7 +75,7 @@ public class RedundantModifierCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        if (ScopeUtils.inInterfaceBlock(aAST)) {
+        if (ScopeUtils.inInterfaceOrAnnotationBlock(aAST)) {
             final DetailAST modifiers =
                 aAST.findFirstToken(TokenTypes.MODIFIERS);
 
@@ -72,7 +83,8 @@ public class RedundantModifierCheck
             while (modifier != null) {
 
                 // javac does not allow final or static in interface methods
-                // hence no need to check that this is not a method
+                // order annotation fields hence no need to check that this
+                // is not a method or annotation field
 
                 final int type = modifier.getType();
                 if (type == TokenTypes.LITERAL_PUBLIC
@@ -124,5 +136,4 @@ public class RedundantModifierCheck
             }
         }
     }
-
 }

@@ -35,3 +35,56 @@ class InputLeftCurlyMethod
     }
 }
 
+enum InputLeftCurlyMethodEnum
+{
+    CONSTANT1("hello")
+    {
+        void method1() {}
+        void method2() {
+        }
+        void method3()
+        {
+        }
+        void                                                               method4()
+        {
+        }
+        void method5(String aOne,
+                     String aTwo)
+        {
+        }
+        void method6(String aOne,
+                     String aTwo) {
+        }
+    },
+
+    CONSTANT2("hello") {
+
+    },
+    
+    CONSTANT3("hellohellohellohellohellohellohellohellohellohellohellohellohellohello")
+    {
+    };
+
+    private InputLeftCurlyMethodEnum(String value)
+    {
+
+    }
+
+    void method1() {}
+    void method2() {
+    }
+    void method3()
+    {
+    }
+    void                                                               method4()
+    {
+    }
+    void method5(String aOne,
+                 String aTwo)
+    {
+    }
+    void method6(String aOne,
+                 String aTwo) {
+    }
+}
+

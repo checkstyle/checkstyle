@@ -165,7 +165,8 @@ public abstract class AbstractClassCouplingCheck extends Check
     private void visitPackageDef(DetailAST aPkg)
     {
         final FullIdent ident =
-            FullIdent.createFullIdent((DetailAST) aPkg.getFirstChild());
+            FullIdent.createFullIdent(
+                (DetailAST) aPkg.getLastChild().getPreviousSibling());
         mPackageName = ident.getText();
     }
 

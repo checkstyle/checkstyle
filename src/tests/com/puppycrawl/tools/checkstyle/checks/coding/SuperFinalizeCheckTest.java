@@ -13,6 +13,7 @@ public class SuperFinalizeCheckTest
         final String[] expected = {
             "27:17: Method 'finalize' should call 'super.finalize'.",
             "34:17: Method 'finalize' should call 'super.finalize'.",
+            "58:17: Method 'finalize' should call 'super.finalize'.",
         };
         verify(checkConfig, getPath("coding/InputFinalize.java"), expected);
     }

@@ -127,7 +127,7 @@ public class MagicNumberCheck extends Check
         }
 
         // implicit constant?
-        if (ScopeUtils.inInterfaceBlock(varDefAST)) {
+        if (ScopeUtils.inInterfaceOrAnnotationBlock(varDefAST)) {
             return varDefAST;
         }
 

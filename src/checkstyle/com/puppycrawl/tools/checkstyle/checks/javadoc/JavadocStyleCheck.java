@@ -102,9 +102,13 @@ public class JavadocStyleCheck
         return new int[] {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ENUM_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
         };
     }
 
@@ -137,7 +141,8 @@ public class JavadocStyleCheck
         final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
         final Scope scope =
-            ScopeUtils.inInterfaceBlock(aAST) ? Scope.PUBLIC : declaredScope;
+            ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
+            ? Scope.PUBLIC : declaredScope;
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
 
         return scope.isIn(mScope)

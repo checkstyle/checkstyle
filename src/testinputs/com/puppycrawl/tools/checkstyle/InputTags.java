@@ -298,3 +298,38 @@ class InputTags
         return 1;
     }
 }
+
+enum InputTagsEnum
+{
+    CONSTANT_A,
+
+    /**
+     *
+     */
+    CONSTANT_B,
+
+    CONSTANT_C
+    {
+        /**
+         *
+         */
+        public void someMethod()
+        {
+        }
+
+        public void someOtherMethod()
+        {
+
+        }
+    }
+}
+
+@interface InputTagsAnnotation
+{
+    String someField();
+    int A_CONSTANT = 0;
+    /** Some javadoc. */
+    int B_CONSTANT = 1;
+    /** @return This tag is not valid here */
+    String someField2();
+}

@@ -78,7 +78,9 @@ public final class ScopeUtils
         {
             final int type = token.getType();
             if ((type == TokenTypes.CLASS_DEF)
-                || (type == TokenTypes.INTERFACE_DEF))
+                || (type == TokenTypes.INTERFACE_DEF)
+                || (type == TokenTypes.ANNOTATION_DEF)
+                || (type == TokenTypes.ENUM_DEF))
             {
                 final DetailAST mods =
                     token.findFirstToken(TokenTypes.MODIFIERS);
@@ -120,6 +122,86 @@ public final class ScopeUtils
                 break; // inner implementation
             }
             else if (type == TokenTypes.INTERFACE_DEF) {
+                retVal = true;
+                break;
+            }
+        }
+
+        return retVal;
+    }
+
+    /**
+     * Returns whether a node is directly contained within an annotation block.
+     *
+     * @param aAST the node to check if directly contained within an annotation
+     * block
+     * @return a <code>boolean</code> value
+     */
+    public static boolean inAnnotationBlock(DetailAST aAST)
+    {
+        boolean retVal = false;
+
+        // Loop up looking for a containing interface block
+        for (DetailAST token = aAST.getParent();
+             token != null;
+             token = token.getParent())
+        {
+            final int type = token.getType();
+            if (type == TokenTypes.CLASS_DEF) {
+                break; // in a class
+            }
+            else if (type == TokenTypes.LITERAL_NEW) {
+                break; // inner implementation
+            }
+            else if (type == TokenTypes.ANNOTATION_DEF) {
+                retVal = true;
+                break;
+            }
+        }
+
+        return retVal;
+    }
+
+    /**
+     * Returns whether a node is directly contained within an interface or
+     * annotation block.
+     *
+     * @param aAST the node to check if directly contained within an interface
+     * or annotation block
+     * @return a <code>boolean</code> value
+     */
+    public static boolean inInterfaceOrAnnotationBlock(DetailAST aAST)
+    {
+        return inInterfaceBlock(aAST) || inAnnotationBlock(aAST);
+    }
+
+    /**
+     * Returns whether a node is directly contained within an enum block.
+     *
+     * @param aAST the node to check if directly contained within an enum
+     * block
+     * @return a <code>boolean</code> value
+     */
+    public static boolean inEnumBlock(DetailAST aAST)
+    {
+        boolean retVal = false;
+
+        // Loop up looking for a containing interface block
+        for (DetailAST token = aAST.getParent();
+             token != null;
+             token = token.getParent())
+        {
+            final int type = token.getType();
+            if (type == TokenTypes.INTERFACE_DEF
+                || type == TokenTypes.ANNOTATION_DEF
+                || type == TokenTypes.CLASS_DEF)
+            {
+                break; // in an interface, annotation or class
+            }
+            else if (type == TokenTypes.LITERAL_NEW) {
+                break; // inner implementation, enums can't be inner classes
+            }
+            else if (type == TokenTypes.ENUM_DEF) {
                 retVal = true;
                 break;
             }
@@ -172,7 +254,9 @@ public final class ScopeUtils
              parent = parent.getParent())
         {
             if ((parent.getType() == TokenTypes.CLASS_DEF)
-                || (parent.getType() == TokenTypes.INTERFACE_DEF))
+                || (parent.getType() == TokenTypes.INTERFACE_DEF)
+                || (parent.getType() == TokenTypes.ANNOTATION_DEF)
+                || (parent.getType() == TokenTypes.ENUM_DEF))
             {
                 retVal = false;
                 break;
@@ -197,7 +281,8 @@ public final class ScopeUtils
             if (parent != null) {
                 final int type = parent.getType();
                 return (type == TokenTypes.SLIST)
-                    || (type == TokenTypes.FOR_INIT);
+                    || (type == TokenTypes.FOR_INIT)
+                    || (type == TokenTypes.FOR_EACH_CLAUSE);
             }
         }
         // catch parameter?

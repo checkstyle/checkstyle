@@ -79,7 +79,10 @@ public class JavadocVariableCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+        return new int[] {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+        };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -107,10 +110,18 @@ public class JavadocVariableCheck
             return false;
         }
 
-        final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
-        final Scope scope =
-            ScopeUtils.inInterfaceBlock(aAST) ? Scope.PUBLIC : declaredScope;
+        final Scope scope;
+        if (aAST.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+            scope = Scope.PUBLIC;
+        }
+        else {
+            final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
+            final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
+            scope =
+                ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
+                    ? Scope.PUBLIC : declaredScope;
+        }
+
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
 
         return scope.isIn(mScope) && surroundingScope.isIn(mScope)

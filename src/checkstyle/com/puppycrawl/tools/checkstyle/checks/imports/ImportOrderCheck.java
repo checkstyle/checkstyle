@@ -27,8 +27,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Class to check the ordering/grouping of imports.  Ensures that
  * groups of imports come in a specific order (e.g., java. comes
- * first, javax. comes first, then everything else) and imports
- * within each group are in lexicographic order.
+ * first, javax. comes second, then everything else) and imports
+ * within each group are in lexicographic order. Static imports must
+ * be at the end of a group and in lexicographic order amongst themselves.
  *
  * <p>
  * Example:
@@ -52,6 +53,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * separated defaults to false.
  * </p>
  *
+ * Compatible with Java 1.5 source.
+ *
  * @author Bill Schneider
  * @author o_sukhodolsky
  */
@@ -65,7 +68,7 @@ public class ImportOrderCheck extends Check
 
     /** Require imports in group be separated. */
     private boolean mSeparated;
-    /** Should comprision be case sensitive. */
+    /** Should comparison be case sensitive. */
     private boolean mCaseSensitive = true;
 
     /** Last imported group. */
@@ -74,6 +77,8 @@ public class ImportOrderCheck extends Check
     private int mLastImportLine;
     /** Name of last import. */
     private String mLastImport;
+    /** If last import was static. */
+    private boolean mLastImportStatic;
     /** Whether there was any imports. */
     private boolean mBeforeFirstImport;
 
@@ -142,7 +147,7 @@ public class ImportOrderCheck extends Check
     /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
-        return new int[]{TokenTypes.IMPORT};
+        return new int[]{TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     /** {@inheritDoc} */
@@ -176,13 +181,24 @@ public class ImportOrderCheck extends Check
         mLastGroup = Integer.MIN_VALUE;
         mLastImportLine = Integer.MIN_VALUE;
         mLastImport = "";
+        mLastImportStatic = false;
         mBeforeFirstImport = true;
     }
 
     /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
-        final FullIdent ident = FullIdent.createFullIdentBelow(aAST);
+        final FullIdent ident;
+        boolean isStatic;
+        if (aAST.getType() == TokenTypes.IMPORT) {
+            ident = FullIdent.createFullIdentBelow(aAST);
+            isStatic = false;
+        }
+        else {
+            ident = FullIdent.createFullIdent(
+                (DetailAST) aAST.getFirstChild().getNextSibling());
+            isStatic = true;
+        }
 
         if (ident != null) {
             String name = ident.getText();
@@ -202,11 +218,28 @@ public class ImportOrderCheck extends Check
                 if (mOrdered) {
                     boolean shouldFireError = false;
                     if (mCaseSensitive) {
-                        shouldFireError = (mLastImport.compareTo(name) >= 0);
+                        shouldFireError =
+                            //current and previous static or current and
+                            //previous non-static
+                            (!(mLastImportStatic ^ isStatic)
+                            &&
+                            //and out of lexicographic order
+                            (mLastImport.compareTo(name) >= 0))
+                            ||
+                            //previous static but current is non-static
+                            (mLastImportStatic && !isStatic);
                     }
                     else {
                         shouldFireError =
-                            (mLastImport.compareToIgnoreCase(name) >= 0);
+                                //current and previous static or current and
+                                //previous non-static
+                                (!(mLastImportStatic ^ isStatic)
+                                &&
+                                //and out of lexicographic order
+                                (mLastImport.compareToIgnoreCase(name) >= 0))
+                                ||
+                                //previous static but current is non-static
+                                (mLastImportStatic && !isStatic);
                     }
                     if (shouldFireError) {
                         log(line, "import.ordering", name);
@@ -220,6 +253,7 @@ public class ImportOrderCheck extends Check
             mLastGroup = groupIdx;
             mLastImport = name;
             mLastImportLine = aAST.findFirstToken(TokenTypes.SEMI).getLineNo();
+            mLastImportStatic = isStatic;
             mBeforeFirstImport = false;
         }
     }

@@ -152,7 +152,12 @@ public class JavadocTypeCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.INTERFACE_DEF, TokenTypes.CLASS_DEF};
+        return new int[] {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+        };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -186,7 +191,8 @@ public class JavadocTypeCheck
         final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
         final Scope scope =
-            ScopeUtils.inInterfaceBlock(aAST) ? Scope.PUBLIC : declaredScope;
+            ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
+                ? Scope.PUBLIC : declaredScope;
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
 
         return scope.isIn(mScope)

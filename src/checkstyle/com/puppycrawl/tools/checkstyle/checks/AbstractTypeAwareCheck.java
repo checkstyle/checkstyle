@@ -211,7 +211,8 @@ public abstract class AbstractTypeAwareCheck
      */
     private void processPackage(DetailAST aAST)
     {
-        final DetailAST nameAST = (DetailAST) aAST.getFirstChild();
+        final DetailAST nameAST =
+            (DetailAST) aAST.getLastChild().getPreviousSibling();
         mPackageFullIdent = FullIdent.createFullIdent(nameAST);
     }
 

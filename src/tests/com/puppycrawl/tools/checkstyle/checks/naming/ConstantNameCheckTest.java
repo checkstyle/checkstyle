@@ -34,13 +34,14 @@ public class ConstantNameCheckTest
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
-    public void testInterface()
+    public void testInterfaceAndAnnotation()
         throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
         final String[] expected = {
-            "24:16: Name 'data' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'."
+            "24:16: Name 'data' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "64:16: Name 'data' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'."
         };
         verify(checkConfig, getPath("InputInner.java"), expected);
     }

@@ -23,14 +23,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * Check that method/constructor/catch parameters are final.
+ * Check that method/constructor/catch/foreach parameters are final.
  * The user can set the token set to METHOD_DEF, CONSTRUCTOR_DEF,
- * LITERAL_CATCH or any combination of these token types, to control
- * the scope of this check.
+ * LITERAL_CATCH, FOR_EACH_CLAUSE or any combination of these token
+ * types, to control the scope of this check.
  * Default scope is both METHOD_DEF and CONSTRUCTOR_DEF.
  *
  * @author lkuehne
  * @author o_sukhodolsky
+ * @author Michael Studman
  */
 public class FinalParametersCheck extends Check
 {
@@ -50,6 +51,7 @@ public class FinalParametersCheck extends Check
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.LITERAL_CATCH,
+            TokenTypes.FOR_EACH_CLAUSE,
         };
     }
 
@@ -64,6 +66,9 @@ public class FinalParametersCheck extends Check
 
         if (aAST.getType() == TokenTypes.LITERAL_CATCH) {
             visitCatch(aAST);
+        }
+        else if (aAST.getType() == TokenTypes.FOR_EACH_CLAUSE) {
+            visitForEachClause(aAST);
         }
         else {
             visitMethod(aAST);
@@ -108,6 +113,15 @@ public class FinalParametersCheck extends Check
     private void visitCatch(final DetailAST aCatch)
     {
         checkParam(aCatch.findFirstToken(TokenTypes.PARAMETER_DEF));
+    }
+
+    /**
+     * Checks parameter of the for each clause.
+     * @param aForEachClause for each clause to check.
+     */
+    private void visitForEachClause(final DetailAST aForEachClause)
+    {
+        checkParam(aForEachClause.findFirstToken(TokenTypes.PARAMETER_DEF));
     }
 
     /**

@@ -29,10 +29,13 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.lang.reflect.InvocationTargetException;
 
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 import antlr.TokenStreamRecognitionException;
+import antlr.TokenStream;
+import antlr.LLkParser;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -45,9 +48,10 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
-import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava14Recognizer;
+import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava15Recognizer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
-import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava14Lexer;
+import com.puppycrawl.tools.checkstyle.grammars.GeneratedJava15Lexer;
+import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -67,15 +71,15 @@ public final class TreeWalker
      * parsing fails because with the next grammar it might succeed
      * and the user will be confused.
      */
-    private static final class SilentJava14Recognizer
-        extends GeneratedJava14Recognizer
+    private static final class SilentJava15Recognizer
+        extends GeneratedJava15Recognizer
     {
         /**
          * Creates a new <code>SilentJava14Recognizer</code> instance.
          *
          * @param aLexer the tokenstream the recognizer operates on.
          */
-        private SilentJava14Recognizer(GeneratedJava14Lexer aLexer)
+        public SilentJava15Recognizer(TokenStream aLexer)
         {
             super(aLexer);
         }
@@ -217,7 +221,8 @@ public final class TreeWalker
             getMessageDispatcher().fireFileStarted(fileName);
             final String[] lines = Utils.getLines(fileName, getCharset());
             final FileContents contents = new FileContents(fileName, lines);
-            final DetailAST rootAST = TreeWalker.parse(contents);
+            final DetailAST rootAST =
+                TreeWalker.parse(contents);
             walk(rootAST, contents);
         }
         catch (FileNotFoundException fnfe) {
@@ -487,49 +492,99 @@ public final class TreeWalker
     /**
      * Static helper method to parses a Java source file.
      * @param aContents contains the contents of the file
-     * @throws RecognitionException if parsing failed
      * @throws TokenStreamException if lexing failed
+     * @throws RecognitionException if parsing failed
      * @return the root of the AST
      */
-    public static DetailAST parse(FileContents aContents)
+    public static DetailAST parse(
+        FileContents aContents)
         throws RecognitionException, TokenStreamException
     {
         DetailAST rootAST;
+
         try {
-            // try the 1.4 grammar first, this will succeed for
-            // all code that compiles without any warnings in JDK 1.4,
-            // that should cover most cases
-            final Reader sar = new StringArrayReader(aContents.getLines());
-            final GeneratedJava14Lexer jl = new GeneratedJava14Lexer(sar);
-            jl.setFilename(aContents.getFilename());
-            jl.setCommentListener(aContents);
-
-            final GeneratedJava14Recognizer jr =
-                new SilentJava14Recognizer(jl);
-            jr.setFilename(aContents.getFilename());
-            jr.setASTNodeClass(DetailAST.class.getName());
-            jr.compilationUnit();
-            rootAST = (DetailAST) jr.getAST();
+            rootAST = parse(
+                GeneratedJava15Lexer.class, SilentJava15Recognizer.class,
+                aContents);
         }
-        catch (RecognitionException re) {
-            // Parsing might have failed because the checked
-            // file contains "assert" as an identifier. Retry with a
-            // grammar that treats "assert" as an identifier
-            // and not as a keyword
-
-            // Arghh - the pain - duplicate code!
-            final Reader sar = new StringArrayReader(aContents.getLines());
-            final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
-            jl.setFilename(aContents.getFilename());
-            jl.setCommentListener(aContents);
-
-            final GeneratedJavaRecognizer jr = new GeneratedJavaRecognizer(jl);
-            jr.setFilename(aContents.getFilename());
-            jr.setASTNodeClass(DetailAST.class.getName());
-            jr.compilationUnit();
-            rootAST = (DetailAST) jr.getAST();
+        catch (RecognitionException exception) {
+            rootAST = parse(
+                GeneratedJavaLexer.class, GeneratedJavaRecognizer.class,
+                aContents);
         }
         return rootAST;
+    }
+
+    /**
+     * Static helper method to parses a Java source file with a given
+     * lexer class and parser class.
+     * @param aLexerClass class to use for lexing
+     * @param aParserClass class to use for parsing
+     * @param aContents contains the contents of the file
+     * @throws TokenStreamException if lexing failed
+     * @throws RecognitionException if parsing failed
+     * @return the root of the AST
+     */
+    private static DetailAST parse(
+        Class aLexerClass,
+        Class aParserClass,
+        FileContents aContents)
+        throws RecognitionException, TokenStreamException
+    {
+        try {
+            final Reader sar = new StringArrayReader(aContents.getLines());
+            final TokenStream lexer = (TokenStream)
+                aLexerClass.getConstructor(new Class[] {Reader.class})
+                    .newInstance(new Object[] {sar});
+            aLexerClass.getMethod(
+                "setFilename",
+                new Class[] {String.class}).invoke(
+                    lexer, new Object[] {aContents.getFilename()});
+            aLexerClass.getMethod(
+                "setCommentListener", new Class[] {CommentListener.class})
+                    .invoke(lexer, new Object[] {aContents});
+
+            final LLkParser parser = (LLkParser)
+                aParserClass.getConstructor(new Class[] {TokenStream.class})
+                    .newInstance(new Object[] {lexer});
+
+            parser.setFilename(aContents.getFilename());
+            parser.setASTNodeClass(DetailAST.class.getName());
+            aParserClass.getMethod(
+                "compilationUnit", new Class[] {}).invoke(
+                    parser, new Object[] {});
+            return (DetailAST) parser.getAST();
+        }
+        catch (InvocationTargetException exception) {
+            //Re-throw antlr exceptions, pass on runtime exceptions
+            //and convert any other exception to a runtime exception
+            if (RecognitionException.class.isAssignableFrom(
+                exception.getCause().getClass()))
+            {
+                throw (RecognitionException) exception.getCause();
+            }
+            else if (TokenStreamException.class.isAssignableFrom(
+                exception.getCause().getClass()))
+            {
+                throw (TokenStreamException) exception.getCause();
+            }
+            else if (RuntimeException.class.isAssignableFrom(
+                exception.getCause().getClass()))
+            {
+                throw (RuntimeException) exception.getCause();
+            }
+            else {
+                throw new RuntimeException(exception.getCause());
+            }
+        }
+        catch (RuntimeException exception) {
+            //Pass on runtime exceptions
+            throw exception;
+        }
+        catch (Exception exception) {
+            //Convert any reflection exceptions to runtime exceptions
+            throw new RuntimeException(exception);
+        }
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */

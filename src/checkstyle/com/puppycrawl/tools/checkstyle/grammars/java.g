@@ -492,13 +492,7 @@ traditionalStatement
 		)?
 
 	// For statement
-	|	"for"^
-			LPAREN
-				forInit SEMI   // initializer
-				forCond	SEMI   // condition test
-				forIter         // updater
-			RPAREN
-			statement                     // statement to loop over
+	|	forStatement
 
 	// While statement
 	|	"while"^ LPAREN expression RPAREN statement
@@ -533,6 +527,17 @@ traditionalStatement
 	|	s:SEMI {#s.setType(EMPTY_STAT);}
 	;
 
+forStatement
+    :
+    "for"^
+			LPAREN
+				forInit SEMI   // initializer
+				forCond	SEMI   // condition test
+				forIter         // updater
+			RPAREN
+			statement                     // statement to loop over
+	;
+	
 elseStatement
     : "else"^ statement
     ;
@@ -1049,8 +1054,8 @@ SL_COMMENT
 // multiple-line comments
 ML_COMMENT
 {
-   int startLine;
-   int startCol;
+   int startLine = -1;
+   int startCol = -1;
 }
 	:	"/*"  { startLine = getLine(); startCol = getColumn() - 3; }
 		(	/*	'\r' '\n' can be matched in one alternative or by matching
@@ -1187,6 +1192,9 @@ NUM_INT
 					}
 				:	HEX_DIGIT
 				)+
+			|	//float or double with leading zero
+				(('0'..'9')+ ('.'|EXPONENT|FLOAT_SUFFIX)) => ('0'..'9')+
+				
 			|	('0'..'7')+									// octal
 			)?
 		|	('1'..'9') ('0'..'9')*  {isDecimal=true;}		// non-zero decimal

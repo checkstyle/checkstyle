@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class DesignForExtensionCheck extends Check
 {
@@ -68,7 +68,7 @@ public class DesignForExtensionCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         // nothing to do for Interfaces
-        if (ScopeUtils.inInterfaceBlock(aAST)) {
+        if (ScopeUtils.inInterfaceOrAnnotationBlock(aAST)) {
             return;
         }
 

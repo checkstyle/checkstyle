@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 
 /**
  * <p>
- * Checks the placement of left curly braces on types, methods and other the
+ * Checks the placement of left curly braces on types, methods and
  * other blocks:
  *  {@link  TokenTypes#LITERAL_CATCH LITERAL_CATCH},  {@link
  * TokenTypes#LITERAL_DO LITERAL_DO},  {@link TokenTypes#LITERAL_ELSE
@@ -96,8 +96,11 @@ public class LeftCurlyCheck
         return new int[] {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ENUM_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.LITERAL_WHILE,
             TokenTypes.LITERAL_TRY,
             TokenTypes.LITERAL_CATCH,
@@ -128,8 +131,12 @@ public class LeftCurlyCheck
 
         case TokenTypes.INTERFACE_DEF :
         case TokenTypes.CLASS_DEF :
+        case TokenTypes.ANNOTATION_DEF :
+        case TokenTypes.ENUM_DEF :
+        case TokenTypes.ENUM_CONSTANT_DEF :
             startToken = (DetailAST) aAST.getFirstChild();
-            brace = (DetailAST) aAST.getLastChild().getFirstChild();
+            brace = (DetailAST) aAST.findFirstToken(TokenTypes.OBJBLOCK)
+                .getFirstChild();
             break;
 
         case TokenTypes.LITERAL_WHILE:

@@ -13,7 +13,9 @@ public class ImportOrderCheckTest extends BaseCheckTestCase
             createCheckConfig(ImportOrderCheck.class);
         final String[] expected = {
             "3: Wrong order for 'java.awt.Dialog' import.",
-            "8: Wrong order for 'java.io.File' import.",
+            "7: Wrong order for 'javax.swing.JComponent' import.",
+            "9: Wrong order for 'java.io.File' import.",
+            "11: Wrong order for 'java.io.IOException' import."
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
@@ -25,6 +27,8 @@ public class ImportOrderCheckTest extends BaseCheckTestCase
         checkConfig.addAttribute("groups", "java.awt, javax.swing, java.io");
         final String[] expected = {
             "3: Wrong order for 'java.awt.Dialog' import.",
+            "11: Wrong order for 'java.io.IOException' import.",
+            "14: Wrong order for 'javax.swing.WindowConstants.*' import."
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
@@ -37,8 +41,9 @@ public class ImportOrderCheckTest extends BaseCheckTestCase
         checkConfig.addAttribute("separated", "true");
         checkConfig.addAttribute("ordered", "false");
         final String[] expected = {
-            "6: 'javax.swing.JComponent' should be separated from previous imports.",
-            "8: 'java.io.File' should be separated from previous imports.",
+            "7: 'javax.swing.JComponent' should be separated from previous imports.",
+            "9: 'java.io.File' should be separated from previous imports.",
+            "14: Wrong order for 'javax.swing.WindowConstants.*' import."
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);

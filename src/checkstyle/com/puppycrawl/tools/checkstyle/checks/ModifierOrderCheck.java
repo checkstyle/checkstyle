@@ -52,6 +52,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
   <li><span class="code">native</span></li>
   <li><span class="code">strictfp</span></li>
 </ol>
+ * In additional, modifiers are checked to ensure all annotations
+ * are declared before all other modifiers.
  * <p>
  * Rationale: Code is easier to read if everybody follows
  * a standard.
@@ -96,8 +98,17 @@ public class ModifierOrderCheck
         if (!mods.isEmpty()) {
             final DetailAST error = checkOrderSuggestedByJLS(mods);
             if (error != null) {
-                log(error.getLineNo(), error.getColumnNo(),
-                        "mod.order", error.getText());
+                if (error.getType() == TokenTypes.ANNOTATION) {
+                    log(error.getLineNo(), error.getColumnNo(),
+                            "annotation.order",
+                             error.getFirstChild().getText()
+                             + error.getFirstChild().getNextSibling()
+                                .getText());
+                }
+                else {
+                    log(error.getLineNo(), error.getColumnNo(),
+                            "mod.order", error.getText());
+                }
             }
         }
     }
@@ -116,18 +127,46 @@ public class ModifierOrderCheck
         int i = 0;
         DetailAST modifier;
         final Iterator it = aModifiers.iterator();
+        //No modifiers, no problems
+        if (!it.hasNext()) {
+            return null;
+        }
+
+        //Speed past all initial annotations
         do {
-            if (!it.hasNext()) {
-                return null;
+            modifier = (DetailAST) it.next();
+        }
+        while (it.hasNext() && (modifier.getType() == TokenTypes.ANNOTATION));
+
+        //All modifiers are annotations, no problem
+        if (modifier.getType() == TokenTypes.ANNOTATION) {
+            return null;
+        }
+
+        while (i < JLS_ORDER.length) {
+            if (modifier.getType() == TokenTypes.ANNOTATION) {
+                //Annotation not at start of modifiers, bad
+                return modifier;
             }
 
-            modifier = (DetailAST) it.next();
             while ((i < JLS_ORDER.length)
                    && !JLS_ORDER[i].equals(modifier.getText()))
             {
                 i++;
             }
-        } while (i < JLS_ORDER.length);
+
+            if (i == JLS_ORDER.length) {
+                //Current modifier is out of JLS order
+                return modifier;
+            }
+            else if (!it.hasNext()) {
+                //Reached end of modifiers without problem
+                return null;
+            }
+            else {
+                modifier = (DetailAST) it.next();
+            }
+        }
 
         return modifier;
     }

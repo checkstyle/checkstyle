@@ -14,6 +14,8 @@ extends BaseCheckTestCase
         checkConfig.addAttribute("illegalPkgs", "java.io");
         final String[] expected = {
             "9:1: Import from illegal package - java.io.*.",
+            "23:1: Import from illegal package - java.io.File.listRoots.",
+            "27:1: Import from illegal package - java.io.File.createTempFile.",
         };
         verify(checkConfig, getPath("InputImport.java"), expected);
     }
@@ -25,6 +27,7 @@ extends BaseCheckTestCase
             createCheckConfig(IllegalImportCheck.class);
         final String[] expected = {
             "15:1: Import from illegal package - sun.net.ftpclient.FtpClient.",
+            "28:1: Import from illegal package - sun.net.ftpclient.FtpClient.*.",
         };
         verify(checkConfig, getPath("InputImport.java"), expected);
     }

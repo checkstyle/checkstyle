@@ -28,9 +28,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that constant names conform to a format specified
  * by the format property.
  * A <em>constant</em> is a <strong>static</strong> and <strong>final</strong>
- * field or an interface field, except <strong>serialVersionUID</strong>.
- * The format is a regular expression and defaults to
- * <strong>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</strong>.
+ * field or an interface/annotation field, except
+ * <strong>serialVersionUID</strong>. The format is a regular expression
+ * and defaults to <strong>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</strong>.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -79,7 +79,9 @@ public class ConstantNameCheck
         final boolean isFinal = modifiersAST != null
             && modifiersAST.branchContains(TokenTypes.FINAL);
 
-        if ((isStatic  && isFinal) || ScopeUtils.inInterfaceBlock(aAST)) {
+        if ((isStatic  && isFinal)
+            || ScopeUtils.inInterfaceOrAnnotationBlock(aAST))
+        {
             // Handle the serialVersionUID constant which is used for
             // Serialization. Cannot enforce rules on it. :-)
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);

@@ -13,7 +13,7 @@ public class PackageNameCheckTest
             createCheckConfig(PackageNameCheck.class);
         checkConfig.addAttribute("format", "[A-Z]+");
         final String[] expected = {
-            "6:9: Name 'com.puppycrawl.tools.checkstyle' must match pattern '[A-Z]+'.",
+            "6:42: Name 'com.puppycrawl.tools.checkstyle' must match pattern '[A-Z]+'.",
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

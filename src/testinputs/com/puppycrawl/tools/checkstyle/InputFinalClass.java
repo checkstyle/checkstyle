@@ -95,3 +95,19 @@ abstract class Operation2 implements Evaluatable
 	this._name = name;
     }
 }
+
+enum testenum1
+{
+    A, B;
+    testenum1() {}
+}
+
+enum testenum2
+{
+    A, B;
+
+    public static class someinnerClass
+    {
+        private someinnerClass() {}
+    }
+}

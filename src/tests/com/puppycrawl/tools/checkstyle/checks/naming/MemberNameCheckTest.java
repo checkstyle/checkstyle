@@ -16,6 +16,7 @@ public class MemberNameCheckTest
         checkConfig.addAttribute("format", "^m[A-Z][a-zA-Z0-9]*$");
         final String[] expected = {
             "35:17: Name 'badMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
+            "224:17: Name 'someMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

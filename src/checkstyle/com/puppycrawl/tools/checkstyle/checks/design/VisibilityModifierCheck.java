@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
@@ -139,14 +140,15 @@ public class VisibilityModifierCheck
 
         final DetailAST varNameAST = getVarNameAST(aAST);
         final String varName = varNameAST.getText();
-        final boolean inInterfaceBlock = inInterfaceBlock(aAST);
+        final boolean inInterfaceOrAnnotationBlock =
+            ScopeUtils.inInterfaceOrAnnotationBlock(aAST);
         final Set mods = getModifiers(aAST);
         final String declaredScope = getVisibilityScope(mods);
         final String variableScope =
-             inInterfaceBlock ? "public" : declaredScope;
+             inInterfaceOrAnnotationBlock ? "public" : declaredScope;
 
         if (!("private".equals(variableScope)
-                || inInterfaceBlock // implicitly static and final
+                || inInterfaceOrAnnotationBlock // implicitly static and final
                 || mods.contains("static") && mods.contains("final")
                 || "package".equals(variableScope) && isPackageAllowed()
                 || "protected".equals(variableScope) && isProtectedAllowed()
@@ -174,27 +176,6 @@ public class VisibilityModifierCheck
             ast = nextSibling;
         }
         return null;
-    }
-
-    /**
-     * Returns whether an AST is in an interface block.
-     * @param aAST the AST to check for
-     * @return true iff aAST is in an interface def with no class def in between
-     */
-    private boolean inInterfaceBlock(DetailAST aAST)
-    {
-        DetailAST ast = aAST.getParent();
-        while (ast != null) {
-            switch (ast.getType()) {
-            case TokenTypes.INTERFACE_DEF:
-                return true;
-            case TokenTypes.CLASS_DEF:
-                return false;
-            default:
-                ast = ast.getParent();
-            }
-        }
-        return false;
     }
 
     /**

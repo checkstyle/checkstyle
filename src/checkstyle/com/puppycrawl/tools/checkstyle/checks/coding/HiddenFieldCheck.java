@@ -70,8 +70,6 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  *    &lt;property name="ignoreConstructorParameter" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
-
-
  * @author Rick Giles
  * @version 1.0
  */
@@ -98,6 +96,8 @@ public class HiddenFieldCheck
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
         };
     }
 
@@ -115,6 +115,8 @@ public class HiddenFieldCheck
     {
         return new int[] {
             TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
         };
     }
 
@@ -127,31 +129,44 @@ public class HiddenFieldCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() == TokenTypes.CLASS_DEF) {
-            //find and push fields
-            final DetailAST classMods =
+        //A more thorough check of enum constant class bodies is
+        //possible (checking for hidden fields against the enum
+        //class body in addition to enum constant class bodies)
+        //but not attempted as it seems out of the scope of this
+        //check.
+        if ((aAST.getType() == TokenTypes.CLASS_DEF)
+            || (aAST.getType() == TokenTypes.ENUM_DEF)
+            || (aAST.getType() == TokenTypes.ENUM_CONSTANT_DEF))
+        {
+            final DetailAST typeMods =
                 aAST.findFirstToken(TokenTypes.MODIFIERS);
-            final boolean isStaticInnerClass =
-                classMods.branchContains(TokenTypes.LITERAL_STATIC);
-            final FieldFrame frame = new FieldFrame(isStaticInnerClass);
+            final boolean isStaticInnerType =
+                (typeMods == null)
+                    ? false
+                    : typeMods.branchContains(TokenTypes.LITERAL_STATIC);
+            final FieldFrame frame = new FieldFrame(isStaticInnerType);
+
             //add fields to container
             final DetailAST objBlock =
                 aAST.findFirstToken(TokenTypes.OBJBLOCK);
-            DetailAST child = (DetailAST) objBlock.getFirstChild();
-            while (child != null) {
-                if (child.getType() == TokenTypes.VARIABLE_DEF) {
-                    final String name =
-                        child.findFirstToken(TokenTypes.IDENT).getText();
-                    final DetailAST mods =
-                        child.findFirstToken(TokenTypes.MODIFIERS);
-                    if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
-                        frame.addStaticField(name);
+            // enum constants may not have bodies
+            if (objBlock != null) {
+                DetailAST child = (DetailAST) objBlock.getFirstChild();
+                while (child != null) {
+                    if (child.getType() == TokenTypes.VARIABLE_DEF) {
+                        final String name =
+                            child.findFirstToken(TokenTypes.IDENT).getText();
+                        final DetailAST mods =
+                            child.findFirstToken(TokenTypes.MODIFIERS);
+                        if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
+                            frame.addStaticField(name);
+                        }
+                        else {
+                            frame.addInstanceField(name);
+                        }
                     }
-                    else {
-                        frame.addInstanceField(name);
-                    }
+                    child = (DetailAST) child.getNextSibling();
                 }
-                child = (DetailAST) child.getNextSibling();
             }
             mFieldsStack.addLast(frame); //push container
         }
@@ -164,7 +179,10 @@ public class HiddenFieldCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void leaveToken(DetailAST aAST)
     {
-        if (aAST.getType() == TokenTypes.CLASS_DEF) {
+        if ((aAST.getType() == TokenTypes.CLASS_DEF)
+            || (aAST.getType() == TokenTypes.ENUM_DEF)
+            || (aAST.getType() == TokenTypes.ENUM_CONSTANT_DEF))
+        {
             //pop
             mFieldsStack.removeLast();
         }
@@ -178,7 +196,7 @@ public class HiddenFieldCheck
      */
     private void processVariable(DetailAST aAST)
     {
-        if (!ScopeUtils.inInterfaceBlock(aAST)) {
+        if (!ScopeUtils.inInterfaceOrAnnotationBlock(aAST)) {
             if (ScopeUtils.isLocalVariableDef(aAST)
                 || (aAST.getType() == TokenTypes.PARAMETER_DEF))
             {
@@ -190,7 +208,7 @@ public class HiddenFieldCheck
                     mFieldsStack.listIterator(mFieldsStack.size());
                 while (it.hasPrevious()) {
                     final FieldFrame frame = (FieldFrame) it.previous();
-                    inStatic |= frame.isStaticClass();
+                    inStatic |= frame.isStaticType();
                     if ((frame.containsStaticField(name)
                         || (!inStatic && frame.containsInstanceField(name)))
                         && ((mRegexp == null) || (!getRegexp().match(name)))
@@ -333,7 +351,7 @@ public class HiddenFieldCheck
     }
 
     /**
-     * Holds the names of static and instance fields of a class.
+     * Holds the names of static and instance fields of a type.
      * @author Rick Giles
      * Describe class FieldFrame
      * @author Rick Giles
@@ -341,8 +359,8 @@ public class HiddenFieldCheck
      */
     private static class FieldFrame
     {
-        /** is this a static inner class */
-        private boolean mStaticClass;
+        /** is this a static inner type */
+        private boolean mStaticType;
 
         /** set of instance field names */
         private Set mInstanceFields = new HashSet();
@@ -351,19 +369,19 @@ public class HiddenFieldCheck
         private Set mStaticFields = new HashSet();
 
         /** Creates new frame.
-         * @param aStaticClass is this a static inner class.
+         * @param aStaticType is this a static inner type (class or enum).
          */
-        public FieldFrame(boolean aStaticClass)
+        public FieldFrame(boolean aStaticType)
         {
-            mStaticClass = aStaticClass;
+            mStaticType = aStaticType;
         }
 
-        /** Is this frame for static inner class.
-         * @return is this field frame for static inner class.
+        /** Is this frame for static inner type.
+         * @return is this field frame for static inner type.
          */
-        boolean isStaticClass()
+        boolean isStaticType()
         {
-            return mStaticClass;
+            return mStaticType;
         }
 
         /**

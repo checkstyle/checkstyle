@@ -182,3 +182,45 @@ class StaticMethods
     }
 }
 
+enum HiddenEnum
+{
+    A(129),
+    B(283),
+    C(1212)
+    {
+        /**
+         * Should not be flagged as error as we don't check
+         * hidden class level fields
+         */
+        int hidden;
+
+        public void doSomething()
+        {
+            //Should be flagged as hiding enum constant member
+            int hidden = 0;
+        }
+    };
+
+    int hidden;
+    static int hiddenStatic;
+
+    /**
+     * ctor parameter hides member
+     */
+    HiddenEnum(int hidden)
+    {
+    }
+
+    public void doSomething()
+    {
+        //Should be flagged as hiding static member
+        int hidden = 0;
+    }
+
+    public static void doSomethingStatic()
+    {
+        //Should be flagged as hiding static member
+        int hiddenStatic = 0;
+    }
+}
+

@@ -28,6 +28,9 @@ public class HiddenFieldCheckTest
             "143:13: 'hidden' hides a field.",
             "148:13: 'hidden' hides a field.",
             "152:13: 'hidden' hides a field.",
+            "200:17: 'hidden' hides a field.",
+            "217:13: 'hidden' hides a field.",
+            "223:13: 'hiddenStatic' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -63,6 +66,10 @@ public class HiddenFieldCheckTest
             "148:13: 'hidden' hides a field.",
             "152:13: 'hidden' hides a field.",
             "179:23: 'y' hides a field.",
+            "200:17: 'hidden' hides a field.",
+            "210:20: 'hidden' hides a field.",
+            "217:13: 'hidden' hides a field.",
+            "223:13: 'hiddenStatic' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -94,6 +101,10 @@ public class HiddenFieldCheckTest
             "148:13: 'hidden' hides a field.",
             "152:13: 'hidden' hides a field.",
             "179:23: 'y' hides a field.",
+            "200:17: 'hidden' hides a field.",
+            "210:20: 'hidden' hides a field.",
+            "217:13: 'hidden' hides a field.",
+            "223:13: 'hiddenStatic' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -130,6 +141,10 @@ public class HiddenFieldCheckTest
             "148:13: 'hidden' hides a field.",
             "152:13: 'hidden' hides a field.",
             "179:23: 'y' hides a field.",
+            "200:17: 'hidden' hides a field.",
+            "210:20: 'hidden' hides a field.",
+            "217:13: 'hidden' hides a field.",
+            "223:13: 'hiddenStatic' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -165,6 +180,9 @@ public class HiddenFieldCheckTest
             "148:13: 'hidden' hides a field.",
             "152:13: 'hidden' hides a field.",
             "179:23: 'y' hides a field.",
+            "200:17: 'hidden' hides a field.",
+            "217:13: 'hidden' hides a field.",
+            "223:13: 'hiddenStatic' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -192,8 +210,11 @@ public class HiddenFieldCheckTest
             "76:17: 'innerHidden' hides a field.",
             "77:17: 'hidden' hides a field.",
             "83:13: 'hidden' hides a field.",
+            "105:17: 'hidden' hides a field.",
+            "118:20: 'hidden' hides a field.",
+            "125:13: 'hidden' hides a field.",
+            "131:13: 'hiddenStatic' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenFieldReorder.java"), expected);
     }
 }
-

@@ -23,7 +23,8 @@ public class VisibilityModifierCheckTest
             "33:27: Variable 'protectedVariable' must be private and have accessor methods.",
             "36:17: Variable 'packageVariable' must be private and have accessor methods.",
             "41:29: Variable 'sWeird' must be private and have accessor methods.",
-            "43:19: Variable 'sWeird2' must be private and have accessor methods."
+            "43:19: Variable 'sWeird2' must be private and have accessor methods.",
+            "77:20: Variable 'someValue' must be private and have accessor methods.",
         };
         verify(getChecker(), getPath("InputInner.java"), expected);
     }
@@ -38,6 +39,7 @@ public class VisibilityModifierCheckTest
         checkConfig.addAttribute("packageAllowed", "true");
         final String[] expected = {
             "17:20: Variable 'fData' must be private and have accessor methods.",
+            "77:20: Variable 'someValue' must be private and have accessor methods.",
         };
         verify(checkConfig, getPath("InputInner.java"), expected);
     }

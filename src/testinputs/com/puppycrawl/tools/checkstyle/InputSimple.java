@@ -3,7 +3,7 @@
 // Created: Feb-2001
 // Ignore error
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+@java.lang.annotation.Documented package com.puppycrawl.tools.checkstyle;
 import java.io.*;
 /**
  * Contains simple mistakes:
@@ -195,4 +195,31 @@ final class InputSimple
                     int aArg6, int aArg7, int aArg8, int aArg9)
     {
     }
+}
+
+/** Test class for variable naming in for each clauses. */
+class InputSimple2
+{
+    /** Some more Javadoc. */
+    public void doSomething()
+    {
+        //"O" should be named "o"
+        for (Object O : new java.util.ArrayList())
+        {
+
+        }
+    }
+}
+
+/** Test enum for member naming check */
+enum MyEnum
+{
+    /** ABC constant */
+    ABC,
+
+    /** XYZ constant */
+    XYZ;
+
+    /** Should be mSomeMemeber */
+    private int someMember;
 }

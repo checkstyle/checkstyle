@@ -17,6 +17,7 @@ public class RedundantImportCheckTest
             "10:1: Redundant import from the java.lang package - java.lang.*.",
             "11:1: Redundant import from the java.lang package - java.lang.String.",
             "14:1: Duplicate import to line 13 - java.util.List.",
+            "26:1: Duplicate import to line 25 - javax.swing.WindowConstants.*."
         };
         verify(checkConfig, getPath("InputImport.java"), expected);
     }

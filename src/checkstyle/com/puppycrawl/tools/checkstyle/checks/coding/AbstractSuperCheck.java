@@ -213,7 +213,7 @@ public abstract class AbstractSuperCheck
     private boolean isOverridingMethod(DetailAST aAST)
     {
         if ((aAST.getType() != TokenTypes.METHOD_DEF)
-            || ScopeUtils.inInterfaceBlock(aAST))
+            || ScopeUtils.inInterfaceOrAnnotationBlock(aAST))
         {
             return false;
         }

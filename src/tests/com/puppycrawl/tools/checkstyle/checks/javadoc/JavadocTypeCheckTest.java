@@ -23,6 +23,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final String[] expected =
         {
             "8: Missing a Javadoc comment.",
+            "302: Missing a Javadoc comment.",
+            "327: Missing a Javadoc comment.",
         };
         verify(checkConfig, getPath("InputTags.java"), expected);
     }
@@ -89,6 +91,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
             "7: Missing a Javadoc comment.",
             "29: Missing a Javadoc comment.",
             "38: Missing a Javadoc comment.",
+            "65: Missing a Javadoc comment.",
         };
         verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }

@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -37,6 +38,9 @@ import java.util.Set;
  * <pre>
  * &lt;module name="UnusedImports"/&gt;
  * </pre>
+ *
+ * Compatible with Java 1.5 source.
+ *
  * @author Oliver Burn
  * @version 1.0
  */
@@ -49,6 +53,11 @@ public class UnusedImportsCheck
     private final Set mImports = new HashSet();
     /** set of references - possibly to imports or other things */
     private final Set mReferenced = new HashSet();
+
+    /** Default constructor. */
+    public UnusedImportsCheck()
+    {
+    }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree(DetailAST aRootAST)
@@ -79,6 +88,7 @@ public class UnusedImportsCheck
     {
         return new int[] {
             TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.IDENT,
@@ -95,6 +105,9 @@ public class UnusedImportsCheck
         }
         else if (aAST.getType() == TokenTypes.IMPORT) {
             processImport(aAST);
+        }
+        else if (aAST.getType() == TokenTypes.STATIC_IMPORT) {
+            processStaticImport(aAST);
         }
         else if ((aAST.getType() == TokenTypes.CLASS_DEF)
             || (aAST.getType() == TokenTypes.INTERFACE_DEF))
@@ -129,6 +142,20 @@ public class UnusedImportsCheck
     private void processImport(DetailAST aAST)
     {
         final FullIdent name = FullIdent.createFullIdentBelow(aAST);
+        if ((name != null) && !name.getText().endsWith(".*")) {
+            mImports.add(name);
+        }
+    }
+
+    /**
+     * Collects the details of static imports.
+     * @param aAST node containing the static import details
+     */
+    private void processStaticImport(DetailAST aAST)
+    {
+        final FullIdent name =
+            FullIdent.createFullIdent(
+                (DetailAST) aAST.getFirstChild().getNextSibling());
         if ((name != null) && !name.getText().endsWith(".*")) {
             mImports.add(name);
         }

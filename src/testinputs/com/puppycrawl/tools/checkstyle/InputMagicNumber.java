@@ -142,3 +142,14 @@ class ComplexButNotFlagged
     public static final javax.swing.Border STD_BORDER = 
         javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3);
 }
+
+enum MyEnum
+{
+    A(3),
+    B(54);
+
+    private MyEnum(int value)
+    {
+        
+    }
+}
