@@ -20,12 +20,9 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.util.Stack;
 
-import org.apache.regexp.RE;
-
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Verifier of Java rules. Each rule verifier takes the form of
