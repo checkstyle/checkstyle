@@ -588,7 +588,6 @@ class Verifier
      */
     void verifyLCurlyMethod(int aMethodLine, MyCommonAST aBrace)
     {
-        checkLCurly(aMethodLine, aBrace, mConfig.getLCurlyMethod());
     }
 
 
