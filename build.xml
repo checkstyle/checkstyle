@@ -1,3 +1,7 @@
+<!-- ----------------------------------------------------------------- -->
+<!-- You will need ANT 1.4Beta1 or greater to be able to run the tests -->
+<!-- ----------------------------------------------------------------- -->
+
 <project name="test" default="compile.checkstyle" basedir=".">
 
   <!-- set global properties for this build -->
@@ -26,6 +30,8 @@
   </path>
 
   <path id="tests.classpath">
+    <!-- first entry needed to locate source files -->
+    <pathelement location="src/tests" />
     <pathelement location="classes/tests" />
     <path refid="run.classpath" />
   </path>
