@@ -23,8 +23,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
-import java.util.TreeSet;
+import java.util.Arrays;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import org.apache.commons.beanutils.ConversionException;
@@ -41,11 +40,13 @@ import org.apache.commons.beanutils.ConversionException;
  */
 public class HeaderCheck extends Check
 {
+    private static int[] EMPTY_INT_ARRAY = new int[0];
+
     /** the lines of the header file */
     private String[] mHeaderLines = null;
 
-    /** the header lines to ignore in the check */
-    private TreeSet mIgnoreLines = new TreeSet();
+    /** the header lines to ignore in the check, sorted */
+    private int[] mIgnoreLines = EMPTY_INT_ARRAY;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -85,14 +86,13 @@ public class HeaderCheck extends Check
      */
     private boolean isIgnoreLine(int aLineNo)
     {
-        return mIgnoreLines.contains(new Integer(aLineNo));
+        return (Arrays.binarySearch(mIgnoreLines, aLineNo) >= 0);
     }
 
     /**
      * Checks if a code line matches the required header line.
      * @param lineNumber the linenumber to check against the header
      * @return true if and only if the line matches the required header line
-     * TODO: override this in RegexpHeaderCheck
      */
     protected boolean isMatch(int lineNumber)
     {
@@ -136,19 +136,17 @@ public class HeaderCheck extends Check
     /**
      * Set the lines numbers to ignore in the header check.
      * @param aList comma separated list of line numbers to ignore in header.
-     * TODO: This should really be of type int[]
-     * and beanutils should do the parsing for us!
      */
-    public void setIgnoreLines(String aList)
+    public void setIgnoreLines(int[] aList)
     {
-        mIgnoreLines.clear();
-        if (aList != null) {
-            final StringTokenizer tokens = new StringTokenizer(aList, ",");
-            while (tokens.hasMoreTokens()) {
-                final String ignoreLine = tokens.nextToken();
-                mIgnoreLines.add(new Integer(ignoreLine));
-            }
+        if (aList == null || aList.length == 0) {
+            mIgnoreLines = EMPTY_INT_ARRAY;
+            return;
         }
+
+        mIgnoreLines = new int[aList.length];
+        System.arraycopy(aList, 0, mIgnoreLines, 0, aList.length);
+        Arrays.sort(mIgnoreLines);
     }
 
     protected String[] getHeaderLines()

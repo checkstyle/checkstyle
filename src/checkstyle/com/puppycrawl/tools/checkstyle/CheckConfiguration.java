@@ -18,17 +18,34 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
-
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.StringTokenizer;
-import java.util.Iterator;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.StringTokenizer;
 
-import org.apache.commons.beanutils.PropertyUtils;
+import com.puppycrawl.tools.checkstyle.api.Check;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.converters.BooleanConverter;
+import org.apache.commons.beanutils.converters.BooleanArrayConverter;
+import org.apache.commons.beanutils.converters.ByteConverter;
+import org.apache.commons.beanutils.converters.ByteArrayConverter;
+import org.apache.commons.beanutils.converters.CharacterConverter;
+import org.apache.commons.beanutils.converters.CharacterArrayConverter;
+import org.apache.commons.beanutils.converters.DoubleConverter;
+import org.apache.commons.beanutils.converters.DoubleArrayConverter;
+import org.apache.commons.beanutils.converters.FloatConverter;
+import org.apache.commons.beanutils.converters.FloatArrayConverter;
+import org.apache.commons.beanutils.converters.IntegerConverter;
+import org.apache.commons.beanutils.converters.IntegerArrayConverter;
+import org.apache.commons.beanutils.converters.LongConverter;
+import org.apache.commons.beanutils.converters.LongArrayConverter;
+import org.apache.commons.beanutils.converters.ShortConverter;
+import org.apache.commons.beanutils.converters.ShortArrayConverter;
+import org.apache.commons.beanutils.converters.StringArrayConverter;
 
 /**
  * Represents the configuration for a check.
@@ -38,6 +55,69 @@ import org.apache.commons.beanutils.PropertyUtils;
  */
 class CheckConfiguration
 {
+    static
+    {
+        initConverters();
+    }
+
+    /**
+     * Setup the jakarta-commons-beanutils type converters so they throw
+     * a ConversionException instead of using the default value.
+     */
+    private static void initConverters()
+    {
+        // TODO: is there a smarter way to tell beanutils not to use defaults?
+
+        boolean booleanArray[] = new boolean[0];
+        byte byteArray[] = new byte[0];
+        char charArray[] = new char[0];
+        double doubleArray[] = new double[0];
+        float floatArray[] = new float[0];
+        int intArray[] = new int[0];
+        long longArray[] = new long[0];
+        short shortArray[] = new short[0];
+
+        ConvertUtils.register(new BooleanConverter(), Boolean.TYPE);
+        ConvertUtils.register(new BooleanConverter(), Boolean.class);
+        ConvertUtils.register(new BooleanArrayConverter(),
+                booleanArray.getClass());
+        ConvertUtils.register(new ByteConverter(), Byte.TYPE);
+        ConvertUtils.register(new ByteConverter(), Byte.class);
+        ConvertUtils.register(new ByteArrayConverter(byteArray),
+                byteArray.getClass());
+        ConvertUtils.register(new CharacterConverter(), Character.TYPE);
+        ConvertUtils.register(new CharacterConverter(), Character.class);
+        ConvertUtils.register(new CharacterArrayConverter(),
+                charArray.getClass());
+        ConvertUtils.register(new DoubleConverter(), Double.TYPE);
+        ConvertUtils.register(new DoubleConverter(), Double.class);
+        ConvertUtils.register(new DoubleArrayConverter(doubleArray),
+                doubleArray.getClass());
+        ConvertUtils.register(new FloatConverter(), Float.TYPE);
+        ConvertUtils.register(new FloatConverter(), Float.class);
+        ConvertUtils.register(new FloatArrayConverter(),
+                floatArray.getClass());
+        ConvertUtils.register(new IntegerConverter(), Integer.TYPE);
+        ConvertUtils.register(new IntegerConverter(), Integer.class);
+        ConvertUtils.register(new IntegerArrayConverter(),
+                intArray.getClass());
+        ConvertUtils.register(new LongConverter(), Long.TYPE);
+        ConvertUtils.register(new LongConverter(), Long.class);
+        ConvertUtils.register(new LongArrayConverter(), longArray.getClass());
+        ConvertUtils.register(new ShortConverter(), Short.TYPE);
+        ConvertUtils.register(new ShortConverter(), Short.class);
+        ConvertUtils.register(new ShortArrayConverter(),
+                shortArray.getClass());
+        ConvertUtils.register(new StringArrayConverter(),
+                        String[].class );
+        ConvertUtils.register(new IntegerArrayConverter(),
+                        Integer[].class );
+
+        // BigDecimal, BigInteger, Class, Date, String, Time, TimeStamp
+        // do not use defaults in the default configuration of ConvertUtils
+
+    }
+
     /** the classname for the check */
     private String mClassname;
     /** the tokens the check is interested in */
@@ -116,7 +196,7 @@ class CheckConfiguration
         while (keyIt.hasNext()) {
             final String key = (String) keyIt.next();
             final String value = (String) mProperties.get(key);
-            PropertyUtils.setSimpleProperty(check, key, value);
+            BeanUtils.copyProperty(check, key, value);
         }
         return check;
     }
