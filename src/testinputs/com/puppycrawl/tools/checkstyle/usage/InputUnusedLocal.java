@@ -38,4 +38,13 @@ public class InputUnusedLocal
         array2[0] = 0;
         i++;
     }
+    
+    /** tests that neither type nor typecast are considered to be a reference */
+    public void method2()
+    {
+        int java;
+        java.io.File file = (java.io.File) null;
+        if (file != null) {
+        }       
+    }
 }
