@@ -38,9 +38,9 @@ import java.io.OutputStream;
  * right ?)
  *
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
- * @see #AuditListener
- * @see #CheckStyleTask
- * @see #Checker
+ * @see AuditListener
+ * @see CheckStyleTask
+ * @see Checker
  */
 public interface Streamable
 {

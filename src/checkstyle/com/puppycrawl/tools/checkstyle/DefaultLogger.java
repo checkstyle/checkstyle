@@ -29,7 +29,7 @@ import java.io.PrintWriter;
  * It gives structure.
  *
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
- * @see #XMLLogger
+ * @see XMLLogger
  */
 public class DefaultLogger
     implements AuditListener, Streamable
