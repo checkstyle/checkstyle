@@ -84,6 +84,8 @@ public interface Defn
     String IGNORE_CAST_WHITESPACE_PROP = "checkstyle.ignore.whitespace.cast";
     /** property name for ignoring braces **/
     String IGNORE_BRACES_PROP = "checkstyle.ignore.braces";
+    /** property name for ignoring wrapping lines on operators **/
+    String IGNORE_OP_WRAP_PROP = "checkstyle.ignore.opwrap";
     /** property name for ignoring 'public' in interface definitions **/
     String IGNORE_PUBLIC_IN_INTERFACE_PROP =
         "checkstyle.ignore.public.in.interface";
