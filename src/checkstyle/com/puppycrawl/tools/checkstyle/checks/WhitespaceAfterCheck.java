@@ -43,15 +43,6 @@ public class WhitespaceAfterCheck
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public int[] getAcceptableTokens()
-    {
-        return new int[] {
-            TokenTypes.COMMA,            // ','
-            TokenTypes.SEMI,             // ';'
-        };
-    }
-
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         final String[] lines = getLines();
