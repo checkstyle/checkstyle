@@ -6,18 +6,18 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
  * Test fixture for the UnnecessaryParenthesesCheck.
- * 
+ *
  * @author  Eric K. Roe
  */
 public class UnnecessaryParenthesesCheckTest extends BaseCheckTestCase {
     private static final String TEST_FILE = "coding" + File.separator +
         "InputUnnecessaryParentheses.java";
-        
+
     public void testDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(UnnecessaryParenthesesCheck.class);
-            
+
         final String[] expected = {
             "4:22: Unnecessary parentheses around assignment right-hand side.",
             "4:29: Unnecessary parentheses around expression.",
@@ -65,5 +65,12 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestCase {
         };
 
         verify(checkConfig, getPath(TEST_FILE), expected);
+    }
+
+    public void test15Extensions() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(UnnecessaryParenthesesCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }
 }

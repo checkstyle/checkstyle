@@ -2,9 +2,10 @@
 
 @interface MyAnnotation {
     String name();
+    int version();
 }
 
-@MyAnnotation(name = "ABC")
+@MyAnnotation(name = "ABC", version = 1)
 public class Input15Extensions
 {
 

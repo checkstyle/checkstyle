@@ -62,11 +62,16 @@ public class AssignHandler extends BlockParentHandler
 
         // if this is assign in expression then skip first child,
         // because it's lvalue.
-        if (assign.getParent() != null
-            && assign.getParent().getType() == TokenTypes.EXPR)
-        {
+        final DetailAST parent = assign.getParent();
+        if (parent != null && parent.getType() == TokenTypes.EXPR) {
             child = (DetailAST) child.getNextSibling();
         }
+        if (parent != null
+            && parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
+        {
+            child = (DetailAST) assign.getNextSibling();
+        }
+
         checkExpressionSubtree(child, expectedLevel, false, true);
     }
 

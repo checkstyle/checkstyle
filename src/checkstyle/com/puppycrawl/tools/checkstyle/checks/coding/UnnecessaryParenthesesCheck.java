@@ -128,6 +128,14 @@ public class UnnecessaryParenthesesCheck extends Check
     {
         final int type = aAST.getType();
         final boolean surrounded = isSurrounded(aAST);
+        final DetailAST parent = aAST.getParent();
+
+        if (type == TokenTypes.ASSIGN
+            && parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
+        {
+            // shouldn't process assign in annotation pairs
+            return;
+        }
 
         // An identifier surrounded by parentheses.
         if (surrounded && type == TokenTypes.IDENT) {
@@ -163,6 +171,14 @@ public class UnnecessaryParenthesesCheck extends Check
     public void leaveToken(DetailAST aAST)
     {
         final int type = aAST.getType();
+        final DetailAST parent = aAST.getParent();
+
+        if (type == TokenTypes.ASSIGN
+            && parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
+        {
+            // shouldn't process assign in annotation pairs
+            return;
+        }
 
         // An expression is surrounded by parentheses.
         if (type == TokenTypes.EXPR) {

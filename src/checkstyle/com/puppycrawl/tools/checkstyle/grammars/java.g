@@ -453,7 +453,7 @@ annotationMemberValuePair!
 
 annotationMemberValueInitializer
     :
-        conditionalExpression | annotation | annotationMemberArrayInitializer
+        annotationExpression | annotation | annotationMemberArrayInitializer
     ;
 
 // This is an initializer used to set up an annotation member array.
@@ -479,9 +479,14 @@ annotationMemberArrayInitializer
 // The two things that can initialize an annotation array element are a conditional expression
 //   and an annotation (nested annotation array initialisers are not valid)
 annotationMemberArrayValueInitializer
-	:	conditionalExpression
+	:	annotationExpression
 	|   annotation
 	;
+
+annotationExpression
+    :   conditionalExpression
+        {#annotationExpression = #(#[EXPR,"EXPR"],#annotationExpression);}
+    ;
 
 // Definition of a Java class
 classDefinition![AST modifiers]

@@ -72,6 +72,9 @@
         <li>Annotations and enums are classes too and should be treated so by
         ClassFanOutComplexity checks (bug 1109205)</li>
 
+        <li>Two more annotation-related problems (module Indentation, bug
+        1109214 and module UnnecessaryParentheses, bug 1109238)</li> 
+
       </ul>
 
 

@@ -9,8 +9,6 @@ import com.puppycrawl.tools.checkstyle.Checker;
  * @author  jrichard
  */
 public class IndentationCheckTest extends BaseCheckTestCase {
-
-
     public void testInvalidLabel()
             throws Exception
     {
@@ -29,8 +27,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         verify(checkConfig, getPath("indentation/InputInvalidLabelIndent.java"), expected);
     }
 
-
-
     public void testValidLabel()
             throws Exception
     {
@@ -39,7 +35,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(checkConfig, getPath("indentation/InputValidLabelIndent.java"), expected);
     }
-
 
      public void testValidIfWithChecker()
         throws Exception
@@ -52,7 +47,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         verify(c, fname, expected);
     }
 
-
     public void testValidDotWithChecker()
         throws Exception
     {
@@ -64,7 +58,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         verify(c, fname, expected);
     }
 
-
     public void testValidMethodWithChecker()
         throws Exception
     {
@@ -75,7 +68,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-
 
     public void testInvalidMethodWithChecker()
         throws Exception
@@ -121,9 +113,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-
-
-
 
     public void testInvalidSwitchWithChecker()
         throws Exception
@@ -172,8 +161,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-
-
 
     public void testValidArrayInitWithChecker()
         throws Exception
@@ -228,9 +215,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         verify(c, fname, expected);
     }
 
-
-
-
     public void testValidTryWithChecker()
         throws Exception
     {
@@ -278,7 +262,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-
 
     // TODO: needs to be finished
     public void testInvalidClassDefWithChecker()
@@ -332,7 +315,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         };
         verify(c, fname, expected);
     }
-
 
     public void testInvalidBlockWithChecker()
         throws Exception
@@ -693,5 +675,12 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         final String[] expected = {};
         verify(checkConfig, getPath("indentation/InputValidAssignIndent.java"), expected);
+    }
+
+    public void test15Extensions() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }
 }
