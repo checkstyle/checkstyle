@@ -79,6 +79,8 @@
       </p>
       <pre class="body">
 &lt;module name=&quot;GenericIllegalRegexp&quot;&gt;
+    &lt;!-- . matches any character, so we need to
+         escape it and use \. to match dots. --&gt;
     &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
 &lt;/module&gt;
       </pre>
@@ -87,6 +89,7 @@
       </p>
       <pre class="body">
 &lt;module name=&quot;GenericIllegalRegexp&quot;&gt;
+    &lt;!-- \s matches whitespace character, $ matches end of line. --&gt;
     &lt;property name=&quot;format&quot; value=&quot;\s$&quot;/&gt;
 &lt;/module&gt;
       </pre>
