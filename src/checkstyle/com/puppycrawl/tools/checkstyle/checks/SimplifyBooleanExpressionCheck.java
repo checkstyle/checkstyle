@@ -48,7 +48,22 @@ public class SimplifyBooleanExpressionCheck
         return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
     }
 
-    /** @see Check */
+    /**
+     * Prevent user from changing tokens in the configuration.
+     * @see com.puppycrawl.tools.checkstyle.api.Check
+     */
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {};
+    }
+    
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public int[] getRequiredTokens()
+    {
+        return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
+    }
+
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST parent = aAST.getParent();
