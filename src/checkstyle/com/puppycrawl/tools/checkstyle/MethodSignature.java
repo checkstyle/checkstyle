@@ -23,8 +23,9 @@ import java.util.List;
 
 /**
  * Represents the signature for a method. Actually this is a lie as it only
- * represents the parameters, exceptions and line number of the name.
- * It does not have the method name, return type or modifiers.
+ * represents the method name, parameters, exceptions and line number of
+ * the name.
+ * It does not have the return type or modifiers.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
 class MethodSignature
@@ -35,6 +36,8 @@ class MethodSignature
     private List mThrows = new ArrayList();
     /** the line number **/
     private int mLineNo = 0;
+    /** the name **/
+    private String mName = null;
 
     /**
      * Adds a parameter.
@@ -79,5 +82,19 @@ class MethodSignature
     int getLineNo()
     {
         return mLineNo;
+    }
+
+    /**
+     * @param aName method name
+     */
+    void setName(String aName)
+    {
+        mName = aName;
+    }
+
+    /** @return method name **/
+    String getName()
+    {
+        return mName;
     }
 }

@@ -36,6 +36,10 @@ interface Defn
     String PUBLIC_MEMBER_PATTERN_PROP = "checkstyle.pattern.publicmember";
     /** property name for the type pattern **/
     String TYPE_PATTERN_PROP = "checkstyle.pattern.type";
+    /** property name for the method local variable pattern **/
+    String LOCAL_VAR_PATTERN_PROP = "checkstyle.pattern.localvar";
+    /** property name for the method local variable pattern **/
+    String METHOD_PATTERN_PROP = "checkstyle.pattern.method";
     /** property name for the maximum line length **/
     String MAX_LINE_LENGTH_PROP = "checkstyle.maxlinelen";
     /** property name for length of methods **/
@@ -48,6 +52,8 @@ interface Defn
     String ALLOW_TABS_PROP = "checkstyle.allow.tabs";
     /** property name for allowing protected data **/
     String ALLOW_PROTECTED_PROP = "checkstyle.allow.protected";
+    /** property name for allowing package data **/
+    String ALLOW_PACKAGE_PROP = "checkstyle.allow.package";
     /** property name for allowing no author **/
     String ALLOW_NO_AUTHOR_PROP = "checkstyle.allow.noauthor";
     /** property name for header file **/
@@ -56,6 +62,8 @@ interface Defn
     String HEADER_IGNORE_LINE_PROP = "checkstyle.header.ignoreline";
     /** property name for visibility scope where Javadoc is checked **/
     String JAVADOC_CHECKSCOPE_PROP = "checkstyle.javadoc.scope";
+    /** property name for requiring package documentation */
+    String REQUIRE_PACKAGE_HTML_PROP = "checkstyle.require.packagehtml";
     /** property name for ignoring import statements **/
     String IGNORE_IMPORTS_PROP = "checkstyle.ignore.imports";
     /** property name for ignoring whitespace **/

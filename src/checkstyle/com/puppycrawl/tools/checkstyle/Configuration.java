@@ -51,6 +51,10 @@ public class Configuration
     private static final String PUBLIC_MEMBER_PATTERN = "^f[A-Z][a-zA-Z0-9]*$";
     /** the pattern to match against type names **/
     private static final String TYPE_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
+    /** the pattern to match against method local variables **/
+    private static final String LOCAL_VAR_PATTERN = "^[a-z][a-zA-Z0-9]*$";
+    /** the pattern to match against method names **/
+    private static final String METHOD_PATTERN = "^[a-z][a-zA-Z0-9]*$";
     /** the maximum line length **/
     private static final int MAX_LINE_LENGTH = 80;
     /** the maximum method length **/
@@ -94,6 +98,16 @@ public class Configuration
     /** regexp to match type names **/
     private RE mTypeRegexp;
 
+    /** pattern to match local variables **/
+    private String mLocalVarPat;
+    /** regexp to match local variables **/
+    private RE mLocalVarRegexp;
+
+    /** pattern to match method names **/
+    private String mMethodPat;
+    /** regexp to match method names **/
+    private RE mMethodRegexp;
+
     /** the maximum line length **/
     private int mMaxLineLength = MAX_LINE_LENGTH;
     /** the maximum method length **/
@@ -106,10 +120,14 @@ public class Configuration
     private boolean mAllowTabs = false;
     /** whether to allow protected data **/
     private boolean mAllowProtected = false;
+    /** whether to allow protected data **/
+    private boolean mAllowPackage = false;
     /** whether to allow having no author tag **/
     private boolean mAllowNoAuthor = false;
     /** visibility scope where Javadoc is checked **/
     private Scope mJavadocScope = Scope.PRIVATE;
+    /** whether javadoc package documentation is required */
+    private boolean mRequirePackageHtml = false;
     /** whether to ignore imports **/
     private boolean mIgnoreImports = false;
     /** whether to ignore whitespace **/
@@ -156,6 +174,10 @@ public class Configuration
                                               PUBLIC_MEMBER_PATTERN));
         setTypePat(aProps.getProperty(TYPE_PATTERN_PROP,
                                       TYPE_PATTERN));
+        setLocalVarPat(aProps.getProperty(LOCAL_VAR_PATTERN_PROP,
+                                          LOCAL_VAR_PATTERN));
+        setMethodPat(aProps.getProperty(METHOD_PATTERN_PROP,
+                                        METHOD_PATTERN));
         setMaxLineLength(getIntProperty(
             aProps, aLog, MAX_LINE_LENGTH_PROP, MAX_LINE_LENGTH));
         setMaxMethodLength(getIntProperty(
@@ -168,11 +190,16 @@ public class Configuration
         setAllowTabs(getBooleanProperty(aProps, ALLOW_TABS_PROP, mAllowTabs));
         setAllowProtected(
             getBooleanProperty(aProps, ALLOW_PROTECTED_PROP, mAllowProtected));
+        setAllowPackage(
+            getBooleanProperty(aProps, ALLOW_PACKAGE_PROP, mAllowPackage));
         setAllowNoAuthor(
             getBooleanProperty(aProps, ALLOW_NO_AUTHOR_PROP, mAllowNoAuthor));
         setJavadocScope(
             Scope.getInstance( aProps.getProperty(JAVADOC_CHECKSCOPE_PROP,
                                                   Scope.PRIVATE.getName())));
+        setRequirePackageHtml(getBooleanProperty(aProps,
+                                                 REQUIRE_PACKAGE_HTML_PROP,
+                                                 mRequirePackageHtml));
         setIgnoreImports(
             getBooleanProperty(aProps, IGNORE_IMPORTS_PROP, mIgnoreImports));
         setIgnoreWhitespace(getBooleanProperty(aProps,
@@ -213,6 +240,8 @@ public class Configuration
             setMemberPat(MEMBER_PATTERN);
             setPublicMemberPat(PUBLIC_MEMBER_PATTERN);
             setTypePat(TYPE_PATTERN);
+            setLocalVarPat(LOCAL_VAR_PATTERN);
+            setMethodPat(METHOD_PATTERN);
         }
         catch (RESyntaxException ex) {
             ex.printStackTrace();
@@ -297,6 +326,30 @@ public class Configuration
         return mTypeRegexp;
     }
 
+    /** @return pattern to match local variables **/
+    public String getLocalVarPat()
+    {
+        return mLocalVarPat;
+    }
+
+    /** @return regexp to match local variables **/
+    public RE getLocalVarRegexp()
+    {
+        return mLocalVarRegexp;
+    }
+
+    /** @return pattern to match method names **/
+    public String getMethodPat()
+    {
+        return mMethodPat;
+    }
+
+    /** @return regexp to match method names **/
+    public RE getMethodRegexp()
+    {
+        return mMethodRegexp;
+    }
+
     /** @return the maximum line length **/
     public int getMaxLineLength()
     {
@@ -333,6 +386,12 @@ public class Configuration
         return mAllowProtected;
     }
 
+    /** @return whether to allow package data **/
+    public boolean isAllowPackage()
+    {
+        return mAllowPackage;
+    }
+
     /** @return whether to allow having no author tag **/
     public boolean isAllowNoAuthor()
     {
@@ -343,6 +402,12 @@ public class Configuration
     public Scope getJavadocScope()
     {
         return mJavadocScope;
+    }
+
+    /** @return whether javadoc package documentation is required */
+    public boolean isRequirePackageHtml()
+    {
+        return mRequirePackageHtml;
     }
 
     /** @return whether to process imports **/
@@ -464,6 +529,28 @@ public class Configuration
     }
 
     /**
+     * @param aLocalVarPat pattern to match member variables
+     * @throws RESyntaxException if an error occurs
+     */
+    public void setLocalVarPat(String aLocalVarPat)
+        throws RESyntaxException
+    {
+        mLocalVarRegexp = new RE(aLocalVarPat);
+        mLocalVarPat = aLocalVarPat;
+    }
+
+    /**
+     * @param aMethodPat pattern to match method names
+     * @throws RESyntaxException if an error occurs
+     */
+    public void setMethodPat(String aMethodPat)
+        throws RESyntaxException
+    {
+        mMethodRegexp = new RE(aMethodPat);
+        mMethodPat = aMethodPat;
+    }
+
+    /**
      * @param aMaxLineLength the maximum line length
      */
     public void setMaxLineLength(int aMaxLineLength)
@@ -520,6 +607,14 @@ public class Configuration
     }
 
     /**
+     * @param aAllowProtected whether to allow package visible data
+     */
+    public void setAllowPackage(boolean aAllowPackage)
+    {
+        mAllowPackage = aAllowPackage;
+    }
+
+    /**
      * @param aAllowNoAuthor whether to allow having no author tag
      */
     public void setAllowNoAuthor(boolean aAllowNoAuthor)
@@ -529,10 +624,18 @@ public class Configuration
 
     /**
      * @param aJavadocScope visibility scope where Javadoc is checked
-     **/
+     */
     public void setJavadocScope(Scope aJavadocScope)
     {
         mJavadocScope = aJavadocScope;
+    }
+
+    /**
+     * @param aRequirePackageHtml whether package.html is required
+     */
+    public void setRequirePackageHtml(boolean aRequirePackageHtml)
+    {
+        mRequirePackageHtml = aRequirePackageHtml;
     }
 
     /**
