@@ -86,7 +86,7 @@ class InputWhitespace
     {
         Object o = (Object) new Object(); // ok
         o = (Object)o; // error
-        o = (Object) o; // ok
+        o = ( Object ) o; // ok
         o = (Object)
             o; // ok
     }

@@ -38,6 +38,9 @@
           <a href="#ParenPad">ParenPad</a>
         </li>
         <li>
+          <a href="#TypecastParenPad">TypecastParenPad</a>
+        </li>
+        <li>
           <a href="#TabCharacter">TabCharacter</a>
         </li>
         <li>
@@ -427,6 +430,8 @@
       <p class="body">
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
+
+
       <a name="ParenPad"></a> <h2>ParenPad</h2> <h4>Description</h4>
 
       <p class="body">
@@ -504,6 +509,73 @@
       <p class="body">
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
+
+      <a name="TypecastParenPad"></a>
+      <h2>TypecastParenPad</h2>
+
+      <h4>Description</h4>
+
+      <p class="body"> Checks the policy on the padding of parentheses for
+      typecasts. That is, whether a space is required after a left parenthesis
+      and before a right parenthesis, or such spaces are forbidden.  </p>
+      
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>option</td>
+          <td>policy on how to pad parentheses</td>
+          <td><a href="property_types.html#parenPad">pad policy</a></td>
+          <td><span class="default">nospace</span></td>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+
+          <td>Must have tokens
+	    <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">TYPECAST</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RPAREN">RPAREN</a>
+
+          <td><a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">TYPECAST</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RPAREN">RPAREN</a>
+
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;TypecastParenPad&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to require spaces:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;TypecastParenPad&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.whitespace
+      </p>
+
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
 
       <a name="TabCharacter"></a> <h2>TabCharacter</h2> <h4>Description</h4>
 

@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 
 /**
  * <p>Checks the padding of parentheses; that is whether a space is required
@@ -65,16 +63,8 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @version 1.0
  */
 public class ParenPadCheck
-    extends AbstractOptionCheck
+    extends AbstractParenPadCheck
 {
-    /**
-     * Sets the paren pad otion to nospace.
-     */
-    public ParenPadCheck()
-    {
-        super(PadOption.NOSPACE);
-    }
-
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -97,68 +87,28 @@ public class ParenPadCheck
         else if ((aAST.getParent() == null)
                  || (aAST.getParent().getType() != TokenTypes.TYPECAST))
         {
-            processRight(aAST);
-        }
-    }
-
-    /**
-     * Process a token representing a left parentheses.
-     * @param aAST the token representing a left parentheses
-     */
-    private void processLeft(DetailAST aAST)
-    {
-        final String line = getLines()[aAST.getLineNo() - 1];
-        final int after = aAST.getColumnNo() + 1;
-        if (after < line.length()) {
-            if ((PadOption.NOSPACE == getAbstractOption())
-                && (Character.isWhitespace(line.charAt(after))))
-            {
-                log(aAST.getLineNo(), after, "ws.followed", "(");
-            }
-            else if ((PadOption.SPACE == getAbstractOption())
-                     && !Character.isWhitespace(line.charAt(after))
-                     && (line.charAt(after) != ')'))
-            {
-                log(aAST.getLineNo(), after, "ws.notFollowed", "(");
+            if (!isFollowsEmptyForIterator(aAST)) {
+                processRight(aAST);
             }
         }
     }
 
     /**
-     * Process a token representing a right parentheses.
-     * @param aAST the token representing a right parentheses
+     * @param aAST the token to check
+     * @return whether a token follows an empty for iterator
      */
-    private void processRight(DetailAST aAST)
+    private boolean isFollowsEmptyForIterator(DetailAST aAST)
     {
-        final String line = getLines()[aAST.getLineNo() - 1];
-        final int before = aAST.getColumnNo() - 1;
-        if (before >= 0) {
-            boolean followsEmptyForIterator = false;
-            final DetailAST parent = aAST.getParent();
-            if ((parent != null)
-                && (parent.getType() == TokenTypes.LITERAL_FOR))
-            {
-                final DetailAST forIterator =
-                    parent.findFirstToken(TokenTypes.FOR_ITERATOR);
-                followsEmptyForIterator = (forIterator.getChildCount() == 0)
-                    && (aAST == forIterator.getNextSibling());
-            }
-            if (followsEmptyForIterator) {
-                return;
-            }
-            else if ((PadOption.NOSPACE == getAbstractOption())
-                && Character.isWhitespace(line.charAt(before))
-                && !Utils.whitespaceBefore(before, line))
-            {
-                log(aAST.getLineNo(), before, "ws.preceeded", ")");
-            }
-            else if ((PadOption.SPACE == getAbstractOption())
-                && !Character.isWhitespace(line.charAt(before))
-                && (line.charAt(before) != '('))
-            {
-                log(aAST.getLineNo(), aAST.getColumnNo(),
-                    "ws.notPreceeded", ")");
-            }
+        boolean followsEmptyForIterator = false;
+        final DetailAST parent = aAST.getParent();
+        if ((parent != null)
+            && (parent.getType() == TokenTypes.LITERAL_FOR))
+        {
+            final DetailAST forIterator =
+                parent.findFirstToken(TokenTypes.FOR_ITERATOR);
+            followsEmptyForIterator = (forIterator.getChildCount() == 0)
+                && (aAST == forIterator.getNextSibling());
         }
+        return followsEmptyForIterator;
     }
 }
