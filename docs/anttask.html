@@ -286,6 +286,40 @@ This task is included in the checkstyle distribution.</p>
   &lt;/checkstyle&gt;
 </pre>
 
+<p><b>Run checkstyle in an automated build and send an email report if style violations are detected</b></p>
+<pre>
+  &lt;target name=&quot;checkstyle&quot;
+          description=&quot;Generates a report of code convention violations.&quot;>
+
+    &lt;checkstyle failureProperty=&quot;checkstyle.failure&quot;
+                failOnViolation=&quot;false&quot;&gt;
+      &lt;formatter type=&quot;xml&quot; tofile=&quot;checkstyle_report.xml&quot;/&gt;
+      &lt;fileset dir=&quot;src&quot; includes=&quot;**/*.java&quot;/&gt;
+    &lt;/checkstyle&gt;
+
+    &lt;style in=&quot;checkstyle_report.xml&quot; out=&quot;checkstyle_report.html&quot; style=&quot;checkstyle.xsl&quot;/&gt;
+
+  &lt;/target&gt;
+
+  &lt;!-- run this target as part of automated build --&gt;
+  &lt;target name=&quot;checkstyle-nightly&quot;
+          depends=&quot;checkstyle&quot; 
+          if=&quot;checkstyle.failure&quot;
+          description=&quot;Sends email if checkstyle detected code conventions violations.&quot;&gt;
+
+    &lt;!-- use your own server and email addresses below. See Ant documentation for details --&gt;
+
+    &lt;mail from=&quot;qa@some.domain&quot;
+          tolist=&quot;someone@some.domain,someoneelse@some.domain&quot;
+          mailhost=&quot;mailbox.some.domain&quot;
+          subject=&quot;Checkstyle violation(s) in project ${ant.project.name}&quot;
+          files=&quot;checkstyle_report.html&quot;/&gt;
+
+  &lt;/target&gt;
+
+
+</pre>
+
 <hr>
 <p align="center">Copyright &copy; 2001 Oliver Burn. All rights Reserved.</p>
 </body>
