@@ -30,7 +30,7 @@ import java.security.MessageDigest;
 /**
  * This class maintains a persistent store of the files that have
  * checked ok and their associated timestamp. It uses a property file
- * for storage.  A hashcode of the Configuration is stored in the
+ * for storage.  A hashcode of the GlobalProperties is stored in the
  * cache file to ensure the cache is invalidated when the
  * configuration has changed.
  *
@@ -56,7 +56,7 @@ class PropertyCacheFile
      *
      * @param aCurrentConfig the current configuration, not null
      */
-    PropertyCacheFile(Configuration aCurrentConfig)
+    PropertyCacheFile(GlobalProperties aCurrentConfig)
     {
         boolean setInActive = true;
         final String fileName = aCurrentConfig.getCacheFile();
@@ -123,15 +123,15 @@ class PropertyCacheFile
     }
 
     /**
-     * Calculates the hashcode for a Configuration.
+     * Calculates the hashcode for a GlobalProperties.
      *
-     * @param aConfiguration the Configuration
+     * @param aConfiguration the GlobalProperties
      * @return the hashcode for <code>aConfiguration</code>
      */
-    private String getConfigHashCode(Configuration aConfiguration)
+    private String getConfigHashCode(GlobalProperties aConfiguration)
     {
         try {
-            // im-memory serialization of Configuration
+            // im-memory serialization of GlobalProperties
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);

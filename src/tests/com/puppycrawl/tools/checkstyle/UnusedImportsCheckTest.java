@@ -18,7 +18,7 @@ public class UnusedImportsCheckTest
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputImport.java");
         final String[] expected = {
-            "8:45: Unused import - com.puppycrawl.tools.checkstyle.Configuration.",
+            "8:45: Unused import - com.puppycrawl.tools.checkstyle.GlobalProperties.",
             "11:8: Unused import - java.lang.String.",
             "13:8: Unused import - java.util.List.",
             "14:8: Unused import - java.util.List.",

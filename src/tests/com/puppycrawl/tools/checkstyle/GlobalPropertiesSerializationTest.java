@@ -10,10 +10,10 @@ import java.lang.reflect.Method;
 import junit.framework.TestCase;
 import org.apache.regexp.RE;
 
-public class ConfigSerializationTest
+public class GlobalPropertiesSerializationTest
     extends TestCase
 {
-    public ConfigSerializationTest(String name)
+    public GlobalPropertiesSerializationTest(String name)
     {
         super(name);
     }
@@ -23,7 +23,7 @@ public class ConfigSerializationTest
      * @param aConfig the original
      * @return a copy of aConfig obtained by in-memory serialization
      */
-    private Configuration copyBySerialization(Configuration aConfig)
+    private GlobalProperties copyBySerialization(GlobalProperties aConfig)
         throws IOException, ClassNotFoundException
     {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -34,7 +34,7 @@ public class ConfigSerializationTest
 
         ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
         ObjectInputStream ois = new ObjectInputStream(bais);
-        Configuration configCopy = (Configuration) ois.readObject();
+        GlobalProperties configCopy = (GlobalProperties) ois.readObject();
         ois.close();
         return configCopy;
     }
@@ -42,20 +42,20 @@ public class ConfigSerializationTest
     /**
      * Tests that all RE fields are restored during deserialization.
      * This test is designed to prevent addition of transient RE
-     * fields to Configuration without modification of
-     * Configuration.readObject().
+     * fields to GlobalProperties without modification of
+     * GlobalProperties.readObject().
      */
     public void testAllRegexpsNotNull()
         throws Exception
     {
-        Configuration configOrig = new Configuration();
-        Configuration configCopy = copyBySerialization(configOrig);
+        GlobalProperties configOrig = new GlobalProperties();
+        GlobalProperties configCopy = copyBySerialization(configOrig);
         assertNotNull(configCopy);
 
         // ensure that none of the getSomeRE() methods (even the ones
         // we don't know yet) of the configCopy returns null
 
-        Method[] configMethods = Configuration.class.getMethods();
+        Method[] configMethods = GlobalProperties.class.getMethods();
         for (int i = 0; i < configMethods.length; i++)
         {
             Method method = configMethods[i];

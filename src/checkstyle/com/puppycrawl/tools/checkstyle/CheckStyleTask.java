@@ -199,7 +199,7 @@ public class CheckStyleTask
         Checker c = null;
         try {
             try {
-                final Configuration config = createConfiguration();
+                final GlobalProperties config = createGlobalProperties();
                 final CheckConfiguration[] checkConfigs =
                     ConfigurationLoader.loadConfigs(
                         mConfigFile.getAbsolutePath());
@@ -237,12 +237,12 @@ public class CheckStyleTask
     }
 
     /**
-     * Create the Configuration object based on the arguments specified to the
-     * ANT task.
-     * @return a brand spanking new Configuration object
+     * Create the GlobalProperties object based on the arguments specified
+     * to the ANT task.
+     * @return a brand spanking new GlobalProperties object
      * @throws BuildException if an error occurs
      */
-    private Configuration createConfiguration()
+    private GlobalProperties createGlobalProperties()
     {
         final Properties props = new Properties();
 
@@ -270,9 +270,9 @@ public class CheckStyleTask
         }
 
         // Create the configuration
-        final Configuration retVal;
+        final GlobalProperties retVal;
         try {
-            retVal = new Configuration(props, System.out);
+            retVal = new GlobalProperties(props, System.out);
         }
         catch (RESyntaxException e) {
             throw new BuildException("An regular expression error exists.",

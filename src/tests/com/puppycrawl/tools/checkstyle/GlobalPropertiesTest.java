@@ -4,10 +4,10 @@ import junit.framework.TestCase;
 
 import java.util.Properties;
 
-public class ConfigurationTest
+public class GlobalPropertiesTest
     extends TestCase
 {
-    public ConfigurationTest(String name)
+    public GlobalPropertiesTest(String name)
     {
         super(name);
     }
@@ -15,14 +15,14 @@ public class ConfigurationTest
     public void test1() throws Exception
     {
         final Properties p = new Properties();
-        final Configuration c = new Configuration(p, System.out);
+        final GlobalProperties c = new GlobalProperties(p, System.out);
         assertNotNull(c);
     }
 
     public void test2() throws Exception
     {
         final Properties p = new Properties();
-        final Configuration c = new Configuration(p, System.out);
+        final GlobalProperties c = new GlobalProperties(p, System.out);
         assertNotNull(c);
     }
 }

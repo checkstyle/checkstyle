@@ -90,7 +90,7 @@ public class Checker
     }
 
     /** configuration */
-    private final Configuration mConfig;
+    private final GlobalProperties mConfig;
 
     /** cache file **/
     private final PropertyCacheFile mCache;
@@ -111,7 +111,7 @@ public class Checker
      * @param aConfigs the configuation of the checks to use
      * @throws CheckstyleException if an error occurs
      */
-    public Checker(Configuration aConfig, CheckConfiguration[] aConfigs)
+    public Checker(GlobalProperties aConfig, CheckConfiguration[] aConfigs)
         throws CheckstyleException
     {
         mConfig = aConfig;

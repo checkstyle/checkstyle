@@ -69,8 +69,8 @@ public class AllTests {
         suite.addTest(new TestSuite(VisibilityModifierCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAroundTest.class));
-        suite.addTest(new TestSuite(ConfigSerializationTest.class));
-        suite.addTest(new TestSuite(ConfigurationTest.class));
+        suite.addTest(new TestSuite(GlobalPropertiesSerializationTest.class));
+        suite.addTest(new TestSuite(GlobalPropertiesTest.class));
         //$JUnit-END$
         return suite;
     }
