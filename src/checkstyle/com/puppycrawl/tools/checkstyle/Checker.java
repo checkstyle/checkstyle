@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.PackageNamesClient;
+import com.puppycrawl.tools.checkstyle.api.PackageNamesBean;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.PackageNamesClient;
  * @author lkuehne
  */
 public class Checker extends AutomaticBean
-    implements Defn, MessageDispatcher, PackageNamesClient
+    implements Defn, MessageDispatcher, PackageNamesBean
 {
     /**
      * An AuditListener that maintains the number of errors.
@@ -307,19 +307,14 @@ public class Checker extends AutomaticBean
         }
     }
 
-    /** @see PackageNamesClient */
+    /** @see PackageNamesBean */
     public void setPackageNames(String[] aPackageNames)
-        throws CheckstyleException
     {
         mPackageNames = aPackageNames;
     }
 
-    /**
-     * Gets the package names to use for instantiating object.
-     * @return the package names.
-     * @throws CheckstyleException if there is an error.
-     */
-    private String[] getPackageNames()
+    /** @see com.puppycrawl.tools.checkstyle.api.PackageNamesBean */
+    public String[] getPackageNames()
         throws CheckstyleException
     {
         if (mPackageNames == null) {
