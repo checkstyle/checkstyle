@@ -267,7 +267,7 @@ field!
 			(	IDENT  // the name of the method
 
 				// parse the formal parameter declarations.
-				LPAREN! param:parameterDeclarationList RPAREN!
+				LPAREN param:parameterDeclarationList RPAREN
 
 				rt:declaratorBrackets[#t]
 
@@ -318,14 +318,14 @@ explicitConstructorInvocation
 				// it sees this( or super(
 				generateAmbigWarnings=false;
 			}
-		:	"this"! lp1:LPAREN^ argList RPAREN! SEMI!
+		:	"this"! lp1:LPAREN^ argList RPAREN SEMI!
 			{#lp1.setType(CTOR_CALL);}
 
-	    |   "super"! lp2:LPAREN^ argList RPAREN! SEMI!
+	    |   "super"! lp2:LPAREN^ argList RPAREN SEMI!
 			{#lp2.setType(SUPER_CTOR_CALL);}
 
 			// (new Outer()).super()  (create enclosing instance)
-		|	primaryExpression DOT! "super"! lp3:LPAREN^ argList RPAREN! SEMI!
+		|	primaryExpression DOT! "super"! lp3:LPAREN^ argList RPAREN SEMI!
 			{#lp3.setType(SUPER_CTOR_CALL);}
 		)
     ;
@@ -392,7 +392,7 @@ ctorHead
 	:	IDENT  // the name of the method
 
 		// parse the formal parameter declarations.
-		LPAREN! parameterDeclarationList RPAREN!
+		LPAREN parameterDeclarationList RPAREN
 
 		// get the list of exceptions that this method is declared to throw
 		(throwsClause)?
@@ -470,7 +470,7 @@ traditionalStatement
 	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement
 
 	// If-else statement
-	|	"if"^ LPAREN! expression RPAREN! statement
+	|	"if"^ LPAREN expression RPAREN statement
 		(
 			// CONFLICT: the old "dangling-else" problem...
 			//           ANTLR generates proper code matching
@@ -484,18 +484,18 @@ traditionalStatement
 
 	// For statement
 	|	"for"^
-			LPAREN!
+			LPAREN
 				forInit SEMI!   // initializer
 				forCond	SEMI!   // condition test
 				forIter         // updater
-			RPAREN!
+			RPAREN
 			statement                     // statement to loop over
 
 	// While statement
-	|	"while"^ LPAREN! expression RPAREN! statement
+	|	"while"^ LPAREN expression RPAREN statement
 
 	// do-while statement
-	|	"do"^ statement "while"! LPAREN! expression RPAREN! SEMI!
+	|	"do"^ statement "while"! LPAREN expression RPAREN SEMI!
 
 	// get out of a loop (or switch)
 	|	"break"^ (IDENT)? SEMI!
@@ -507,7 +507,7 @@ traditionalStatement
 	|	"return"^ (expression)? SEMI!
 
 	// switch/case statement
-	|	"switch"^ LPAREN! expression RPAREN! LCURLY
+	|	"switch"^ LPAREN expression RPAREN LCURLY
 			( casesGroup )*
 		RCURLY
 
@@ -518,7 +518,7 @@ traditionalStatement
 	|	"throw"^ expression SEMI!
 
 	// synchronize a statement
-	|	"synchronized"^ LPAREN! expression RPAREN! compoundStatement
+	|	"synchronized"^ LPAREN expression RPAREN compoundStatement
 
 	// empty statement
 	|	s:SEMI {#s.setType(EMPTY_STAT);}
@@ -582,7 +582,7 @@ tryBlock
 
 // an exception handler
 handler
-	:	"catch"^ LPAREN! parameterDeclaration RPAREN! compoundStatement
+	:	"catch"^ LPAREN parameterDeclaration RPAREN compoundStatement
 	;
 
 finallyHandler
@@ -754,14 +754,14 @@ unaryExpressionNotPlusMinus
 			}
 		:	// If typecast is built in type, must be numeric operand
 			// Also, no reason to backtrack if type keyword like int, float...
-			lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] RPAREN!
+			lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] RPAREN
 			unaryExpression
 
 			// Have to backtrack to see if operator follows.  If no operator
 			// follows, it's a typecast.  No semantic checking needed to parse.
 			// if it _looks_ like a cast, it _is_ a cast; else it's a "(expr)"
 		|	(LPAREN classTypeSpec[true] RPAREN unaryExpressionNotPlusMinus)=>
-			lp:LPAREN^ {#lp.setType(TYPECAST);} classTypeSpec[true] RPAREN!
+			lp:LPAREN^ {#lp.setType(TYPECAST);} classTypeSpec[true] RPAREN
 			unaryExpressionNotPlusMinus
 
 		|	postfixExpression
@@ -799,7 +799,7 @@ postfixExpression
 			// be hard to syntactically prevent ctor calls here
 		|	lp:LPAREN^ {#lp.setType(METHOD_CALL);}
 				argList
-			RPAREN!
+			RPAREN
 		)*
 
 		// possibly add on a post-increment or post-decrement.
@@ -819,7 +819,7 @@ primaryExpression
 	|	"this"
 	|	"null"
 	|	newExpression
-	|	LPAREN! assignmentExpression RPAREN!
+	|	LPAREN assignmentExpression RPAREN
 	|	"super"
 		// look for int.class and int[].class
 	|	builtInType
@@ -878,7 +878,7 @@ primaryExpression
  */
 newExpression
 	:	"new"^ type
-		(	LPAREN! argList RPAREN! (classBlock)?
+		(	LPAREN argList RPAREN (classBlock)?
 
 			//java 1.1
 			// Note: This will allow bad constructs like
