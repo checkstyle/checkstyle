@@ -202,7 +202,7 @@ public final class FileContents
      * @param aLineNo the line number to check
      * @return if the specified line consists only of tabs and spaces.
      **/
-    private boolean lineIsBlank(int aLineNo)
+    public boolean lineIsBlank(int aLineNo)
     {
         // possible improvement: avoid garbage creation in trim()
         return "".equals(mLines[aLineNo].trim());
@@ -214,7 +214,7 @@ public final class FileContents
      * @return if the specified line consists of only a single line comment
      *         without code.
      **/
-    private boolean lineIsComment(int aLineNo)
+    public boolean lineIsComment(int aLineNo)
     {
       return MATCH_SINGLELINE_COMMENT.match(mLines[aLineNo]);
     }

@@ -195,6 +195,12 @@
           <td>150</td>
         </tr>
         <tr>
+          <td>countEmpty</td>
+          <td>whether to count empty lines and single line comments of the form <span class="code">//</span></td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+        <tr>
           <td>tokens</td>
           <td>blocks to check</td>
 
@@ -228,6 +234,18 @@
 &lt;/module&gt;
         </pre>
 
+
+      <p class="body">
+      To configure the check so that it accepts methods with at most 60 lines, not counting
+      empty lines and single line comments:
+      </p>
+      <pre class="body">
+&lt;module name="MethodLength"&gt;
+   &lt;property name="tokens" value="METHOD_DEF"/&gt;
+   &lt;property name="max" value="60"/&gt;
+   &lt;property name="countEmpty" value="false"/&gt;
+&lt;/module&gt;
+        </pre>
       <h4>Package</h4>
       <p class="body">
       com.puppycrawl.tools.checkstyle.checks.sizes
