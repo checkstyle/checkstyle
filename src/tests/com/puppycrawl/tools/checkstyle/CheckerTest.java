@@ -297,6 +297,7 @@ public class CheckerTest
             filepath + ":109: Expected @param tag for 'aOne'.",
             filepath + ":109: Expected @param tag for 'aFour'.",
             filepath + ":109: Expected @param tag for 'aFive'.",
+            filepath + ":129: '{' should be on the previous line.",
         };
 
         verify(c, filepath, expected);
@@ -647,11 +648,14 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":19: '{' should be on the previous line.",
-            filepath + ":22: '{' should be on the previous line.",
-            filepath + ":29: '{' should be on the previous line.",
-            filepath + ":33: '{' should be on the previous line.",
-            filepath + ":51: '{' should be on the previous line.",
-            filepath + ":53: '{' should be on the previous line.",
+            filepath + ":21: '{' should be on the previous line.",
+            filepath + ":23: '{' should be on the previous line.",
+            filepath + ":30: '{' should be on the previous line.",
+            filepath + ":34: '{' should be on the previous line.",
+            filepath + ":42: '{' should be on the previous line.",
+            filepath + ":46: '{' should be on the previous line.",
+            filepath + ":52: '{' should be on the previous line.",
+            filepath + ":54: '{' should be on the previous line.",
         };
         verify(c, filepath, expected);
     }

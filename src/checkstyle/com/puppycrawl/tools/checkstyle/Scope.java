@@ -84,8 +84,7 @@ public final class Scope implements Comparable
 
     /** map from scope names to the respective Scope */
     private static final Map NAME_TO_SCOPE = new HashMap();
-    static
-    {
+    static {
         NAME_TO_SCOPE.put(SCOPENAME_NOTHING, NOTHING);
         NAME_TO_SCOPE.put(SCOPENAME_PUBLIC, PUBLIC);
         NAME_TO_SCOPE.put(SCOPENAME_PROTECTED, PROTECTED);

@@ -17,7 +17,8 @@ class InputLeftCurlyOther
         int a = 2;
         while (true)
         {
-            try {
+            try
+            {
                 if (x > 0)
                 {
                     break;
