@@ -44,7 +44,7 @@ import org.xml.sax.SAXException;
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-class ConfigurationLoader
+public class ConfigurationLoader
     extends AbstractLoader
 {
     /** the public ID for the configuration dtd */
