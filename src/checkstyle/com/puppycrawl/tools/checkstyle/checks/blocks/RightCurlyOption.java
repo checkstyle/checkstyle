@@ -16,75 +16,56 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents the options for placing the left curly brace <code>'{'</code>.
+ * Represents the options for placing the right curly brace <code>'}'</code>.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  * @version 1
  */
-public final class LeftCurlyOption
+public final class RightCurlyOption
     extends AbstractOption
 {
     /** maps from a string representation to an option */
     private static final Map STR_TO_OPT = new HashMap();
 
     /**
-     * Represents the policy for placing the brace at the end of line. For
+     * Represents the policy that the brace must be alone on the line. For
      * example:
+     *
      * <pre>
-     * if (condition) {
+     * try {
      *     ...
+     * }
+     * finally {
      * </pre>
      **/
-    public static final LeftCurlyOption EOL = new LeftCurlyOption("eol");
+    public static final RightCurlyOption ALONE = new RightCurlyOption("alone");
 
     /**
-     * Represents the policy that if the brace will fit on the first line of
-     * the statement, taking into account maximum line length, then apply
-     * <code>EOL</code> rule. Otherwise apply the <code>NL</code>
-     * rule. <code>NLOW</code> is a mnemonic for "new line on wrap".
-     *
-     * <p> For the example above Checkstyle will enforce:
+     * Represents the policy that the brace must be on the same line as the
+     * next statement. For example:
      *
      * <pre>
-     * if (condition) {
+     * try {
      *     ...
-     * </pre>
-     *
-     * But for a statement spanning multiple lines, Checkstyle will enforce:
-     *
-     * <pre>
-     * if (condition1 && condition2 &&
-     *     condition3 && condition4)
-     * {
-     *     ...
+     * } finally {
      * </pre>
      **/
-    public static final LeftCurlyOption NLOW = new LeftCurlyOption("nlow");
+    public static final RightCurlyOption SAME = new RightCurlyOption("same");
 
     /**
-     * Represents the policy that the brace must always be on a new line. For
-     * example:
-     * <pre>
-     * if (condition)
-     * {
-     *     ...
-     * </pre>
-     */
-    public static final LeftCurlyOption NL = new LeftCurlyOption("nl");
-
-    /**
-     * Creates a new <code>LeftCurlyOption</code> instance.
+     * Creates a new <code>RightCurlyOption</code> instance.
      * @param aStrRep the string representation
      */
-    private LeftCurlyOption(String aStrRep)
+    private RightCurlyOption(String aStrRep)
     {
-        super(aStrRep);
+       super(aStrRep);
     }
 
     /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
