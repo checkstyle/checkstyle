@@ -44,6 +44,24 @@ public class DetailAST
     /** the parent token */
     private DetailAST mParent;
 
+    /** @see antlr.CommonAST **/
+    public void initialize(Token aTok)
+    {
+        super.initialize(aTok);
+        mLineNo = aTok.getLine();
+        mColumnNo = aTok.getColumn() - 1; // expect columns to start @ 0
+    }
+
+    /** @see antlr.CommonAST **/
+    public void initialize(AST aAST)
+    {
+        final DetailAST da = (DetailAST) aAST;
+        setText(da.getText());
+        setType(da.getType());
+        mLineNo = da.getLineNo();
+        mColumnNo = da.getColumnNo();
+    }
+
     /**
      * Returns the number of child nodes one level below this node. That is is
      * does not recurse down the tree.
@@ -81,14 +99,6 @@ public class DetailAST
     public DetailAST getParent()
     {
         return mParent;
-    }
-
-    /** @see antlr.CommonAST **/
-    public void initialize(Token aTok)
-    {
-        super.initialize(aTok);
-        mLineNo = aTok.getLine();
-        mColumnNo = aTok.getColumn() - 1; // expect columns to start @ 0
     }
 
     /** @return the line number **/
