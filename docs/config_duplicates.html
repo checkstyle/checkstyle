@@ -122,16 +122,8 @@ Checkstyle plugins for duplicate code detection:
       To configure the check so that it allows larger equivalent blocks:
       </p>
       <pre class="body">
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
+&lt;module name=&quot;StrictDuplicateCode&quot;&gt;
     &lt;property name=&quot;min&quot; value=&quot;15&quot;/&gt;
-&lt;/module&gt;
-      </pre>
-      <p class="body">
-      To configure the check so that it allows no public members:
-      </p>
-      <pre class="body">
-&lt;module name=&quot;VisibilityModifier&quot;&gt;
-    &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
 &lt;/module&gt;
       </pre>
       <h4>Package</h4>
