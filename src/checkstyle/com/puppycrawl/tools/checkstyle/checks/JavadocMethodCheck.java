@@ -559,7 +559,7 @@ public class JavadocMethodCheck
             return false;
         }
 
-        final String base = basename(aFullName);
+        final String base = Utils.baseClassname(aFullName);
         if (aShortName.length() >= aFullName.length()
                 || !base.equals(aShortName))
         {
@@ -705,16 +705,4 @@ public class JavadocMethodCheck
             }
         }
     }
-
-    // TODO: clean up duplicate code in UnusedImports and IllegalInstantiation
-    /**
-     * @return the class name from a fully qualified name
-     * @param aType the fully qualified name
-     */
-    private String basename(String aType)
-    {
-        final int i = aType.lastIndexOf(".");
-        return (i == -1) ? aType : aType.substring(i + 1);
-    }
-
 }

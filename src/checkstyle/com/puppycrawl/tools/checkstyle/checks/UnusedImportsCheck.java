@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -65,7 +66,7 @@ public class UnusedImportsCheck
         while (it.hasNext()) {
             final FullIdent imp = (FullIdent) it.next();
 
-            if (!mReferenced.contains(basename(imp.getText()))) {
+            if (!mReferenced.contains(Utils.baseClassname(imp.getText()))) {
                 log(imp.getLineNo(),
                     imp.getColumnNo(),
                     "import.unused", imp.getText());
@@ -130,15 +131,4 @@ public class UnusedImportsCheck
             mImports.add(name);
         }
     }
-
-    /**
-     * @return the class name from a fully qualified name
-     * @param aType the fully qualified name
-     */
-    private String basename(String aType)
-    {
-        final int i = aType.lastIndexOf(".");
-        return (i == -1) ? aType : aType.substring(i + 1);
-    }
-
 }

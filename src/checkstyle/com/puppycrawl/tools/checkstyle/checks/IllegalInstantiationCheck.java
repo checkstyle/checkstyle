@@ -27,6 +27,7 @@ import java.util.StringTokenizer;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import antlr.collections.AST;
 
 // TODO: Clean up potential duplicate code here and in UnusedImportsCheck
@@ -61,7 +62,7 @@ import antlr.collections.AST;
  * @author lkuehne
  */
 public class IllegalInstantiationCheck
-        extends AbstractImportCheck
+    extends AbstractImportCheck
 {
     /** Set of fully qualified classnames. E.g. "java.lang.Boolean" */
     private final Set mIllegalClasses = new HashSet();
@@ -238,7 +239,7 @@ public class IllegalInstantiationCheck
                     }
                 }
                 else {
-                    if (basename(importArg).equals(aClassName)
+                    if (Utils.baseClassname(importArg).equals(aClassName)
                         && mIllegalClasses.contains(importArg))
                     {
                         return importArg;
@@ -247,16 +248,6 @@ public class IllegalInstantiationCheck
             }
         }
         return null;
-    }
-
-    /**
-     * @return the class name from a fully qualified name
-     * @param aType the fully qualified name
-     */
-    private static String basename(String aType)
-    {
-        final int i = aType.lastIndexOf(".");
-        return (i == -1) ? aType : aType.substring(i + 1);
     }
 
     /**
