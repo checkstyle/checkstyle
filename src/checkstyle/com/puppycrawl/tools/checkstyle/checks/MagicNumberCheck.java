@@ -88,11 +88,12 @@ public class MagicNumberCheck extends Check
      */
     private float parseFloat(String aText, int aType)
     {
+        float result = 0;
         if (aType == TokenTypes.NUM_FLOAT) {
-            return Float.parseFloat(aText);
+            result = Float.parseFloat(aText);
         }
         if (aType == TokenTypes.NUM_DOUBLE) {
-            return (float) Double.parseDouble(aText);
+            result = (float) Double.parseDouble(aText);
         }
         else {
             int radix = 10;
@@ -106,10 +107,7 @@ public class MagicNumberCheck extends Check
             }
             if (aType == TokenTypes.NUM_INT) {
                 if (aText.length() > 0) {
-                    return (float) Integer.parseInt(aText, radix);
-                }
-                else {
-                    return 0;
+                    result = (float) Integer.parseInt(aText, radix);
                 }
             }
             else if (aType == TokenTypes.NUM_LONG) {
@@ -119,16 +117,11 @@ public class MagicNumberCheck extends Check
                     aText = aText.substring(0, aText.length() - 1);
                 }
                 if (aText.length() > 0) {
-                    return (float) Long.parseLong(aText, radix);
+                    result = (float) Long.parseLong(aText, radix);
                 }
-                else {
-                    return 0;
-                } 
-            }
-            else {
-                return 0;
             }
         }
+        return result;
     }
 
     /**
