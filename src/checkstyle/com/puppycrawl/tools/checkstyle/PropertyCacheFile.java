@@ -135,7 +135,7 @@ class PropertyCacheFile
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);
-            oos.writeObject( aConfiguration );
+            oos.writeObject(aConfiguration);
             oos.flush();
             oos.close();
 
@@ -171,8 +171,8 @@ class PropertyCacheFile
             final int b = aByteArray[i];
             final int low = b & 0x0F;
             final int high = (b >> 4) & 0x0F;
-            buf.append( sHexChars[high] );
-            buf.append( sHexChars[low] );
+            buf.append(sHexChars[high]);
+            buf.append(sHexChars[low]);
         }
         return buf.toString();
     }

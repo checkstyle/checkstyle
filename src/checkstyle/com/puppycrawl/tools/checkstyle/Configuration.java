@@ -211,8 +211,8 @@ public class Configuration
         setAllowNoAuthor(
             getBooleanProperty(aProps, ALLOW_NO_AUTHOR_PROP, mAllowNoAuthor));
         setJavadocScope(
-            Scope.getInstance( aProps.getProperty(JAVADOC_CHECKSCOPE_PROP,
-                                                  Scope.PRIVATE.getName())));
+            Scope.getInstance(aProps.getProperty(JAVADOC_CHECKSCOPE_PROP,
+                                                 Scope.PRIVATE.getName())));
         setRequirePackageHtml(getBooleanProperty(aProps,
                                                  REQUIRE_PACKAGE_HTML_PROP,
                                                  mRequirePackageHtml));

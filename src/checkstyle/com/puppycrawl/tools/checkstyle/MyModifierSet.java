@@ -144,7 +144,7 @@ class MyModifierSet
     public String toString()
     {
         final StringBuffer buf = new StringBuffer("MyModifierSet [ ");
-        for (Iterator it = mModifiers.iterator(); it.hasNext(); ) {
+        for (Iterator it = mModifiers.iterator(); it.hasNext();) {
             buf.append((String) it.next());
             buf.append(" ");
         }
