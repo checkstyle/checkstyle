@@ -112,4 +112,19 @@ public abstract class AbstractFileSetCheck
             }
         }
     }
+
+    /**
+     * Returns the Message bundle name to use for this FileSetCheck.
+     * The default implementation uses the <code>messages</code> bundle
+     * in the same package as this FileSetCeck.
+     * @return the message bundle name
+     */
+    protected String getMessageBundle()
+    {
+        final String className = getClass().getName();
+        final int pkgEndIndex = className.lastIndexOf('.');
+        final String pkgName = className.substring(0, pkgEndIndex);
+        final String bundle = pkgName + ".messages";
+        return bundle;
+    }
 }
