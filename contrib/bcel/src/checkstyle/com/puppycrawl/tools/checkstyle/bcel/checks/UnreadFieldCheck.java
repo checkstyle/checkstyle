@@ -46,9 +46,10 @@ public class UnreadFieldCheck
                         )
                     {
                         log(
+                            javaClass,
                             0,
                             "unread.field",
-                            new Object[] {className, fieldDefs[i]});
+                            new Object[] {fieldDefs[i]});
                     }
                 }
             }

@@ -40,13 +40,13 @@ public class UnusedMethodCheck
             final MethodDefinition[] methodDefs = classDef.getMethodDefs();
             for (int i = 0; i < methodDefs.length; i++) {
                 if (!classDef.hasReference(methodDefs[i], getReferenceDAO())) {
-                    final String methodName = methodDefs[i].getName();
                     final Method method = methodDefs[i].getMethod();
                     if (!ignore(className, method)) {
                         log(
+                            javaClass,
                             0,
                             "unused.method",
-                            new Object[] {className, methodDefs[i]});
+                            new Object[] {methodDefs[i]});
                     }
                 }
             }

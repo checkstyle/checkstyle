@@ -8,6 +8,8 @@ import java.util.Set;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+import java.util.HashMap;
+import org.apache.bcel.classfile.JavaClass;
 
 /**
  * Abstract class for checks with visitors.
@@ -16,19 +18,22 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 //TODO: Refactor with class Check
 public abstract class AbstractCheckVisitor
     extends AbstractViolationReporter
-    implements IObjectSetVisitor
+    implements IObjectSetVisitor,
+    IDeepVisitor
 {
     /** the object for collecting messages. */
-    private LocalizedMessages mMessages;
+    private HashMap mMessageMap; // <String fileName, LocalizedMessages msg>
+    /** Filename for when no file can be found */
+    private String NO_FILE = "File not available";
 
-    /** @see com.puppycrawl.tools.checkstyle.bcel.IParserCheck */
+    /** @see com.puppycrawl.tools.checkstyle.bcel.IDeepVisitor */
     public org.apache.bcel.classfile.Visitor getClassFileVisitor()
     {
         return new EmptyClassFileVisitor();
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.bcel.IParserCheck
+     * @see com.puppycrawl.tools.checkstyle.bcel.IDeepVisitor
      */
     public org.apache.bcel.generic.Visitor getGenericVisitor()
     {
@@ -54,9 +59,51 @@ public abstract class AbstractCheckVisitor
      * Set the global object used to collect messages.
      * @param aMessages the messages to log with
      */
-    public final void setMessages(LocalizedMessages aMessages)
+    public final void setMessageMap(HashMap aMessageMap)
     {
-        mMessages = aMessages;
+        mMessageMap = aMessageMap;
+    }
+
+    /**
+     * Log an error message.
+     *
+     * @param aLine the line number where the error was found
+     * @param aKey the message that describes the error
+     * @param aArgs the details of the message
+     *
+     * @see java.text.MessageFormat
+     */
+    protected final void log(JavaClass javaClass, int aLine, String aKey, Object aArgs[])
+    {
+        // Should this be on the .java file instead of the .class file?
+        final String file = javaClass.getFileName();
+        log(file, aLine, aKey, aArgs);
+    }
+
+    /**
+     * Log an error message.
+     *
+     * @param aLine the line number where the error was found
+     * @param aKey the message that describes the error
+     * @param aArgs the details of the message
+     *
+     * @see java.text.MessageFormat
+     */
+    private final void log(String fileName, int aLine, String aKey, Object aArgs[])
+    {
+        LocalizedMessages localizedMessages = (LocalizedMessages) mMessageMap.get(fileName);
+        if (localizedMessages == null) {
+            localizedMessages = new LocalizedMessages();
+            mMessageMap.put(fileName, localizedMessages);
+        }
+        localizedMessages.add(
+            new LocalizedMessage(
+                aLine,
+                getMessageBundle(),
+                aKey,
+                aArgs,
+                getSeverityLevel(),
+                this.getClass()));
     }
 
     /**
@@ -70,14 +117,7 @@ public abstract class AbstractCheckVisitor
      */
     protected final void log(int aLine, String aKey, Object aArgs[])
     {
-        mMessages.add(
-            new LocalizedMessage(
-                aLine,
-                getMessageBundle(),
-                aKey,
-                aArgs,
-                getSeverityLevel(),
-                this.getClass()));
+        log(NO_FILE, aLine, aKey, aArgs);
     }
 
     /**
@@ -85,6 +125,8 @@ public abstract class AbstractCheckVisitor
      */
     protected void log(int aLine, int aCol, String aKey, Object[] aArgs)
     {
+          // Ignore the column, it is not relevant for .class files
+          log(aLine, aKey, aArgs);
     }
 
     /** @see com.puppycrawl.tools.checkstyle.bcel.IObjectSetVisitor */

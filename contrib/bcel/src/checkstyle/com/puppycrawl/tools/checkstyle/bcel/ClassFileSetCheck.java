@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -18,7 +19,6 @@ import org.apache.bcel.classfile.ClassParser;
 import org.apache.bcel.classfile.JavaClass;
 import org.apache.bcel.classfile.Visitor;
 import org.apache.bcel.util.ClassLoaderRepository;
-
 import com.puppycrawl.tools.checkstyle.DefaultContext;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 
 /**
  * Checks a set of class files using BCEL
@@ -53,6 +54,9 @@ public class ClassFileSetCheck
 
     /** a factory for creating submodules (i.e. the Checks) */
     private ModuleFactory mModuleFactory;
+
+    /** Error messages */
+    HashMap mMessageMap = new HashMap();
 
     /**
      * Creates a new <code>ClassFileSetCheck</code> instance.
@@ -110,7 +114,7 @@ public class ClassFileSetCheck
     {
         DefaultContext checkContext = new DefaultContext();
         checkContext.add("classLoader", mClassLoader);
-        checkContext.add("messages", getMessageCollector());
+        checkContext.add("messageMap", mMessageMap);
         checkContext.add("severity", getSeverity());
 
         mChildContext = checkContext;
@@ -297,8 +301,17 @@ public class ClassFileSetCheck
      */
     private void fireErrors()
     {
-        final LocalizedMessage[] errors = getMessageCollector().getMessages();
-        getMessageCollector().reset();
-        getMessageDispatcher().fireErrors("", errors);
+        Set keys = mMessageMap.keySet();
+        Iterator iter = keys.iterator();
+        while (iter.hasNext()) {
+            String key = (String) iter.next();
+            getMessageDispatcher().fireFileStarted(key);
+            LocalizedMessages localizedMessages = (LocalizedMessages) mMessageMap.get(key);
+            final LocalizedMessage[] errors = localizedMessages.getMessages();
+            localizedMessages.reset();
+            getMessageDispatcher().fireErrors(key, errors);
+            getMessageDispatcher().fireFileFinished(key);
+        }
     }
+
 }
