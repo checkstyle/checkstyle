@@ -72,6 +72,12 @@ public class IllegalInstantiationCheck
     /** the imports for the file */
     private final Set mImports = new HashSet();
 
+    /** the class names defined in the file */
+    private final Set mClassNames = new HashSet();
+
+    /** the instantiations in the file */
+    private final Set mInstantiations = new HashSet();
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -79,6 +85,7 @@ public class IllegalInstantiationCheck
             TokenTypes.IMPORT,
             TokenTypes.LITERAL_NEW,
             TokenTypes.PACKAGE_DEF,
+            TokenTypes.CLASS_DEF,
         };
     }
 
@@ -107,6 +114,8 @@ public class IllegalInstantiationCheck
         super.beginTree(aRootAST);
         mPkgName = null;
         mImports.clear();
+        mInstantiations.clear();
+        mClassNames.clear();
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -122,9 +131,36 @@ public class IllegalInstantiationCheck
         case TokenTypes.IMPORT:
             processImport(aAST);
             break;
+        case TokenTypes.CLASS_DEF:
+            processClassDef(aAST);
+            break;
         default:
             throw new IllegalArgumentException("Unknown type " + aAST);
         }
+    }
+
+    /**
+     * @see com.puppycrawl.tools.checkstyle.api.Check#finishTree
+     */
+    public void finishTree(DetailAST aRootAST)
+    {
+        for (Iterator it = mInstantiations.iterator(); it.hasNext();) {
+            DetailAST literalNewAST = (DetailAST) it.next();
+            postprocessLiteralNew(literalNewAST);
+        }
+    }
+
+    /**
+     * Collects classes defined in the source file. Required
+     * to avoid false alarms for local vs. java.lang classes.
+     *
+     * @param aAST the classdef token.
+     */
+    private void processClassDef(DetailAST aAST)
+    {
+        final DetailAST identToken = aAST.findFirstToken(TokenTypes.IDENT);
+        String className = identToken.getText();
+        mClassNames.add(className);
     }
 
     /**
@@ -154,13 +190,22 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * Perform processing for an "new" token
+     * Collects a "new" token.
      * @param aAST the "new" token
      */
     private void processLiteralNew(DetailAST aAST)
     {
-        final DetailAST typeNameAST = (DetailAST) aAST.getFirstChild();
+        mInstantiations.add(aAST);
+    }
 
+    /**
+     * Processes one of the collected "new" tokens when treewalking
+     * has finished.
+     * @param aAST the "new" token.
+     */
+    private void postprocessLiteralNew(DetailAST aAST)
+    {
+        final DetailAST typeNameAST = (DetailAST) aAST.getFirstChild();
         final AST nameSibling = typeNameAST.getNextSibling();
         if (nameSibling != null
                 && nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR)
@@ -206,7 +251,32 @@ public class IllegalInstantiationCheck
                 && illegal.endsWith(aClassName)
                 && illegal.startsWith(javaLang))
             {
-                return illegal;
+                // java.lang needs no import, but a class without import might
+                // also come from the same file or be in the same package.
+                // E.g. if a class defines an inner class "Boolean",
+                // the expression "new Boolean()" refers to that class,
+                // not to java.lang.Boolean
+
+                boolean isSameFile = mClassNames.contains(aClassName);
+
+                boolean isSamePackage = false;
+                try {
+                    final ClassLoader classLoader = getClassLoader();
+                    if (classLoader != null) {
+                        final String fqName = mPkgName + "." + aClassName;
+                        classLoader.loadClass(fqName);
+                        // no ClassNotFoundException, fqName is a known class
+                        isSamePackage = true;
+                    }
+                }
+                catch (ClassNotFoundException ex) {
+                    // not a class from the same package
+                    isSamePackage = false;
+                }
+
+                if (!(isSameFile || isSamePackage)) {
+                    return illegal;
+                }
             }
 
             // class from same package
