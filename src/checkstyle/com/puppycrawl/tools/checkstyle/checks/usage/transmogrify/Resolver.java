@@ -1312,9 +1312,10 @@ public class Resolver extends DefinitionTraverser {
             leftBranch = (SymTabAST) leftBranch.getNextSibling();
         }
         SymTabAST rightBranch = (SymTabAST) leftBranch.getNextSibling();
-        if (rightBranch.getType() == TokenTypes.COLON) {
+        while (rightBranch.getType() != TokenTypes.COLON) {
             rightBranch = (SymTabAST) rightBranch.getNextSibling();
         }
+        rightBranch = (SymTabAST) rightBranch.getNextSibling();
 
         resolveExpression(test, location, context, referencePhase);
         IClass leftClass =

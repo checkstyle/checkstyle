@@ -43,3 +43,20 @@ abstract class AbstractClassMethod
 {
     public abstract void method(int aParam);
 }
+
+/** Test for bug 880954: false positive when parentheses around second term
+ * of ternary operator.
+ */
+class Ternary
+{
+    private int m()
+    {
+        return 1;
+    }
+    
+    public void m1()
+    {
+        int i = 0;
+        int j = (i == 0) ? (i) : m();
+    }
+}
