@@ -201,4 +201,29 @@ public class InputJavadocStyleCheck
 
     /** Description of field: {@value}. */
     public static final int dummy = 4911;
+
+    /**
+     */
+    public void method16()
+    { // should report empty javadoc
+    }
+
+    /**
+     * @param a A parameter
+     */
+    protected void method17(String a)
+    { // should report empty javadoc (no text before parameter)
+    }
+
+    /**
+     * @exception RuntimeException shoul be thrown
+     */
+    void method18(String a)
+    { // should report empty javadoc (no text before exception)
+    }
+
+    /** 
+     */
+    private static int ASDF = 0;
+    // should report empty javdoc
 }

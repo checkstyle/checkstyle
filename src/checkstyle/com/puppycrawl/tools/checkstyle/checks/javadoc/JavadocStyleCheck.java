@@ -38,6 +38,9 @@ import org.apache.regexp.RESyntaxException;
  * a period, question mark, or exclaimation mark).  Javadoc  automatically
  * places the first sentence in the method summary table and index.  With out
  * proper punctuation the Javadoc may be malformed.
+ * <li> Check text for Javadoc statements that do not have any description.
+ * This includes both completely empty Javadoc, and Javadoc with only
+ * tags such as @param and @return.
  * <li>Check text for incomplete html tags.  Verifies that HTML tags have
  * corresponding end tags and issues an UNCLOSED_HTML error if not.
  * An EXTRA_HTML error is issued if an end tag is found without a previous
@@ -47,7 +50,8 @@ import org.apache.regexp.RESyntaxException;
  * <code>com.sun.tools.doclets.doccheck.DocCheck</code>
  *
  * @author Chris Stillwell
- * @version 1.1
+ * @author Daniel Grenner
+ * @version 1.2
  */
 public class JavadocStyleCheck
     extends Check
@@ -78,6 +82,11 @@ public class JavadocStyleCheck
      * Indicates if the HTML within the comment should be checked.
      */
     private boolean mCheckHtml = true;
+
+    /**
+     * Indicates if empty javadoc statements should be checked.
+     */
+    private boolean mCheckEmptyJavadoc;
 
     /**
      * The default tokens this Check is used for.
@@ -147,6 +156,10 @@ public class JavadocStyleCheck
         if (mCheckHtml) {
             checkHtml(aComment);
         }
+
+        if (mCheckEmptyJavadoc) {
+            checkEmptyJavadoc(aComment);
+        }
     }
 
     /**
@@ -167,6 +180,20 @@ public class JavadocStyleCheck
             && !"{@inheritDoc}".equals(commentText))
         {
             log(aComment.getStartLineNo(), "javadoc.noperiod");
+        }
+    }
+
+    /**
+     * Checks that the Javadoc is not empty.
+     *
+     * @param aComment the source lines that make up the Javadoc comment.
+     */
+    private void checkEmptyJavadoc(TextBlock aComment)
+    {
+        final String commentText = getCommentText(aComment.getText());
+
+        if (commentText.length() == 0) {
+            log(aComment.getStartLineNo(), "javadoc.empty");
         }
     }
 
@@ -456,4 +483,12 @@ public class JavadocStyleCheck
         mCheckHtml = aFlag;
     }
 
+    /**
+     * Sets the flag that determines if empty JavaDoc checking should be done.
+     * @param aFlag <code>true</code> if empty JavaDoc checking should be done.
+     */
+    public void setCheckEmptyJavadoc(boolean aFlag)
+    {
+        mCheckEmptyJavadoc = aFlag;
+    }
 }
