@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import antlr.Token;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -103,8 +102,6 @@ class Verifier
 
     /** stack for tracking the full class name of current scope */
     private final Stack mTypeNames = new Stack();
-    /** represents the current type name */
-    private String mCurrentTypeName;
 
     /** Map of type names to a map of variables that are indexed on name */
     private final Map mTypeFieldsMap = new HashMap();
@@ -238,16 +235,6 @@ class Verifier
 
 
     /**
-     * Verify that a type conforms to the style.
-     * @param aMods the set of modifiers for the type
-     * @param aType the type details
-     **/
-    void verifyType(MyModifierSet aMods, MyCommonAST aType)
-    {
-    }
-
-
-    /**
      * Verify that a variable conforms to the style.
      * @param aVar the variable details
      **/
@@ -308,19 +295,6 @@ class Verifier
     }
 
     /**
-     * Verifies that the '.' as the location specified by aAST follows the
-     * following rules:
-     * 1. It is not preceeded with whitespace, or all characters on the line
-     *    before are whitespace;
-     * 2. It is not followed by whitespace, or all characters on the line
-     *    after are whitespace;
-     * @param aAST specified the location of the dot.
-     **/
-    void verifyDot(MyCommonAST aAST)
-    {
-    }
-
-    /**
      * Verify that whitespace IS after a specified column.
      * @param aLineNo number of line to check
      * @param aColNo column where the cast ends
@@ -342,16 +316,6 @@ class Verifier
                        MyToken aConstruct, String aAllow)
     {
         checkWSAfter(aLineNo, aColNo, aConstruct, aAllow);
-    }
-
-
-    /**
-     * Verify that a constructor length is ok.
-     * @param aLineNo line the constructor block starts at
-     * @param aLength the length of the constructor block
-     */
-    void verifyConstructorLength(int aLineNo, int aLength)
-    {
     }
 
 
@@ -445,7 +409,6 @@ class Verifier
         mInInterface.push(aIsInterface ? Boolean.TRUE : Boolean.FALSE);
         if (aType != null) {
             mTypeNames.push(aType.getText());
-            calculateTypeName();
         }
     }
 
@@ -460,7 +423,6 @@ class Verifier
         mInInterface.pop();
         if (aNamed) {
             mTypeNames.pop();
-            calculateTypeName();
         }
     }
 
@@ -971,20 +933,6 @@ class Verifier
                     }
                 }
             }
-        }
-    }
-
-    /** Calcuates the current type name */
-    private void calculateTypeName()
-    {
-        mCurrentTypeName = "";
-        final Iterator it = mTypeNames.iterator();
-        if (it.hasNext()) {
-            mCurrentTypeName = (String) it.next();
-        }
-
-        while (it.hasNext()) {
-            mCurrentTypeName += "." + (String) it.next();
         }
     }
 }
