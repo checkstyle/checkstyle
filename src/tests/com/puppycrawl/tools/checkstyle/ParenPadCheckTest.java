@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.checks.ParenPadCheck;
+import com.puppycrawl.tools.checkstyle.checks.PadOption;
 
 public class ParenPadCheckTest
     extends BaseCheckTestCase
