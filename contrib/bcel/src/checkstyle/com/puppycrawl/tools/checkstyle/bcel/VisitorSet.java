@@ -13,6 +13,7 @@ import org.apache.bcel.classfile.EmptyVisitor;
 import org.apache.bcel.classfile.Field;
 import org.apache.bcel.classfile.JavaClass;
 import org.apache.bcel.classfile.LocalVariable;
+import org.apache.bcel.classfile.LocalVariableTable;
 import org.apache.bcel.classfile.Method;
 import org.apache.bcel.classfile.Visitor;
 import org.apache.bcel.generic.InstructionHandle;
@@ -43,7 +44,13 @@ public class VisitorSet
      * @see org.apache.bcel.classfile.Visitor#visitCode
      */
     public void visitCode(Code aCode)
-    {
+    {   
+        for (Iterator iter = mVisitors.iterator(); iter.hasNext();) {
+            IDeepVisitor visitor = (IDeepVisitor) iter.next();
+            Visitor v = visitor.getClassFileVisitor();
+            aCode.accept(v);
+        }
+        
         // perform a deep visit
         final byte[] code = aCode.getCode();
         final InstructionList list = new InstructionList(code);
@@ -104,15 +111,27 @@ public class VisitorSet
         }
     }
 
+//    /**
+//     * @see org.apache.bcel.classfile.Visitor
+//     */
+//    public void visitLocalVariable(LocalVariable aLocalVariable)
+//    {
+//        for (Iterator iter = mVisitors.iterator(); iter.hasNext();) {
+//            IDeepVisitor visitor = (IDeepVisitor) iter.next();
+//            Visitor v = visitor.getClassFileVisitor();
+//            aLocalVariable.accept(v);
+//        }
+//    }
+//
     /**
      * @see org.apache.bcel.classfile.Visitor
      */
-    public void visitLocalVariable(LocalVariable aLocalVariable)
+    public void visitLocalVariableTable(LocalVariableTable aTable)
     {
         for (Iterator iter = mVisitors.iterator(); iter.hasNext();) {
             IDeepVisitor visitor = (IDeepVisitor) iter.next();
             Visitor v = visitor.getClassFileVisitor();
-            aLocalVariable.accept(v);
+            aTable.accept(v);
         }
     }
 
