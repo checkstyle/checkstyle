@@ -61,7 +61,6 @@
         <li>
           <a href="#HideUtilityClassConstructor">HideUtilityClassConstructor</a>
         </li>
-        <hr/><font color="red">docs missing for:</font>
         <li>
           <a href="#DesignForInheritance">DesignForInheritance</a>
         </li>
@@ -613,6 +612,171 @@ public class StringUtils // not final to allow subclassing
       </p>
       <pre class="body">
 &lt;module name=&quot;HideUtilityClassConstructor&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="DesignForInheritance"></a> <h2>DesignForInheritance</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that classes are designed for inheritance.
+      More specifically, it enforces a programming style
+      where superclasses provide empty "hooks" that can be
+      implemented by subclasses.
+      </p>
+
+      <p class="body">
+      The exact rule is that nonprivate methods of classes that can be subclassed must either be
+      <ul class="body">
+      <li>abstract or</li>
+      <li>final or</li>
+      <li>have an empty implementation</li>
+      </ul>
+      </p>
+
+      <p class="body">
+      Rationale: This API design style protects superclasses against beeing broken by
+      subclasses. The downside is that subclasses are limited in their flexibility,
+      in particular they cannot prevent execution of code in the superclass, but that also
+      means that subclasses cannot corrupt the state of the superclass by forgetting to
+      call the super method.
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>javaStyle</td>
+          <td>Controls whether to enforce Java style (true) or C style (false).</td>
+          <td><a href="property_types.html#boolean">Boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check to enforce Java style:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ArrayTypeStyle&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to enforce C style:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ArrayTypeStyle&quot;&gt;
+    &lt;property name=&quot;javaStyle&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="ArrayTypeStyle"></a> <h2>ArrayTypeStyle</h2> <h4>Description</h4>
+      <p class="body">
+      Checks the style of array type definitions.
+      Some like Java-style: <code>public static void main(String[] args)</code>
+      and some like C-style: public static void main(String args[])
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>javaStyle</td>
+          <td>Controls whether to enforce Java style (true) or C style (false).</td>
+          <td><a href="property_types.html#boolean">Boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check to enforce Java style:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ArrayTypeStyle&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to enforce C style:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ArrayTypeStyle&quot;&gt;
+    &lt;property name=&quot;javaStyle&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="FinalParameters"></a> <h2>FinalParameters</h2> <h4>Description</h4>
+      <p class="body">
+      Check that method/constructor parameters are final. Interface methods are not checked -
+      the final keyword does not make sense for interface mathod parameters as there is no code
+      that could modify the parameter.
+      </p>
+      <p class="body">
+      Rationale: Changing the value of parameters during the execution of the
+      method's algorithm can be confusing and should be avoided. A great way to
+      let the Java compiler prevent this coding style is to declare parameters
+      final.
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>blocks to check</td>
+          <td>subset of tokens METHOD_DEF, CTOR_DEF</td>
+          <td>METHOD_DEF, CTOR_DEF</td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check to enforce final parameters for methods and constructors:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;FinalParameters&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to enforce final parameters only for constructors:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;FinalParameters&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+&lt;/module&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
