@@ -56,7 +56,7 @@ public class RightCurlyCheck
     extends AbstractOptionCheck
 {
     /**
-     * Sets the right curly otion to same.
+     * Sets the right curly option to same.
      */  
     public RightCurlyCheck()
     {

@@ -1,89 +1,275 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Checks for Blocks</title>
-  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <title>Checks for blocks</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css"/>
 </head>
 
 <body>
-<h1>Checks for Blocks</h1>
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td><h1>Checks for blocks</h1></td>
+    <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
+  </tr>
+</table>
+<!-- content -->
+<table border="0" width="100%" cellpadding="5" summary="body layout">
+  <tr>
+    <!--Left menu-->
+    <td class="menu" valign="top">
+      <ul>
+        <li>
+          <a href="#EmptyBlock">EmptyBlock</a>
+        </li>
+        <li>
+          <a href="#LeftCurly">LeftCurly Checks</a>
+        </li>
+        <li>
+          <a href="#NeedBraces">NeedBraces</a>
+        </li>
+        <li>
+          <a href="#RightCurly">RightCurly</a>
+        </li>
+      </ul>
+    </td>
+    <!--Content-->
+    <td class="content" valign="top" align="left"><a name="EmptyBlock"></a> <h2>EmptyBlock</h2>
+      <h4>Description</h4>
+      <p class="body">
+      Checks for empty blocks.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>option</td>
+          <td>policy on block contents</td>
+          <td><a href="property_types.html#block">block policy</a></td>
+          <td><span class="default">stmt</span></td>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>blocks to check</td>
+          <td>subset of tokens LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE,  LITERAL_FINALLY, 
+          LITERAL_IF, LITERAL_FOR, LITERAL_TRY, LITERAL_WHILE, STATIC_INIT</td>
+          <td>all tokens</td>
+        </tr>
+      </table>
 
-<h2>Missing Braces</h2>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;EmptyBlock&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check for the <span class="code">text</span> policy and only <span class="code">
+      catch</span> blocks:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;EmptyBlock&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CATCH&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <a name="LeftCurly"></a> <h2>LeftCurly Checks</h2> <h4>Description</h4>
+      <p class="body">
+      There are three checks for the placement of left curly braces (<span class="code">' 
+      {'</span>) for code blocks:
+      </p>
+      <ul class="body">
+        <li>
+          <span class="code">MethodLeftCurly</span> checks for methods and constructors. 
+          It&apos;s token set is METHOD_DEF and CTOR_DEF.
+        </li>
+        <li>
+          <span class="code">TypeLeftCurly</span> checks for classes and interfaces. It&apos;s 
+          token set is CLASS_DEF and INTERFACE_DEF.
+        </li>
+        <li>
+          <span class="code">OtherLeftCurly</span> checks for blocks other than methods, 
+          constructors, and types. It&apos;s token set is LITERAL_CATCH, LITERAL_DO, 
+          LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, 
+          LITERAL_SYNCHRONIZED, LITERAL_TRY, and LITERAL_WHILE.
+        </li>
+      </ul>
+      <p class="body">
+      All left curly brace checks have a policy to verify that is specified using 
+      property <span class="code">option</span>. Policies <span class="code">eol</span> and <span class="code">
+      nlow</span> take into account property <span class="code">maxLineLength</span>.
+      </p>
+      <h4>Properties other than <span class="code">tokens</span></h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>option</td>
+          <td>policy on placement of a left curly brace (<span class="code">'{'</span>)</td>
+          <td><a href="property_types.html#lcurly">left curly brace policy</a></td>
+          <td><span class="default">eol</span></td>
+        </tr>
+        <tr>
+          <td>maxLineLength</td>
+          <td>maximum number of characters in a line</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td><span class="default">80</span></td>
+        </tr>
+      </table>
 
-<p>The property <span class="code">checkstyle.ignore.braces</span> controls
-whether to ignore checking for missing braces <span class="code">{}</span>'s
-for the following constructs:</p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the <span class="code">OtherLeftCurly</span> check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;OtherLeftCurly&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the <span class="code">MethodLeftCurly</span> check for the <span class="code">nl</span> policy and maximum 
+      line length <span class="code">120</span>:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;MethodLeftCurly&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
+    &lt;property name=&quot;maxLineLength&quot; value=&quot;120&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <a name="NeedBraces"></a> <h2>NeedBraces</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for braces around code blocks.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>blocks to check</td>
+          <td>subset of tokens LITERAL_DO, LITERAL_ELSE, LITERAL_IF, LITERAL_FOR, 
+          LITERAL_WHILE</td>
+          <td>all tokens</td>
+        </tr>
+      </table>
 
-<ul>
-  <li><span class="code">if/else</span></li>
-  <li><span class="code">while</span></li>
-  <li><span class="code">for</span></li>
-  <li><span class="code">do/while</span></li>
-</ul>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NeedBraces&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check for <span class="code">if</span> and <span class="code">
+      else</span> blocks:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NeedBraces&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+       <a name="RightCurly"></a> <h2>RightCurly</h2> <h4>Description</h4>
+      <p class="body">
+      Checks the placement of right curly braces (<span class="code">'}'</span>) for <span class="code">
+      else</span>, <span class="code">try</span>, and <span class="code">catch</span> 
+      tokens. The policy to verify is specified using property <span class="code">
+      option</span>.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>option</td>
+          <td>policy on placement of a right curly brace (<span class="code">'}'</span>)</td>
+          <td><a href="property_types.html#rcurly">right curly brace policy</a></td>
+          <td><span class="default">same</span></td>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>blocks to check</td>
+          <td>subset of tokens LITERAL_CATCH, LITERAL_ELSE, LITERAL_TRY</td>
+          <td>LITERAL_CATCH, LITERAL_ELSE, LITERAL_TRY</td>
+        </tr>
+      </table>
 
-<p> The property type is <a href="property_types.html#boolean">boolean</a> and
-defaults to <span class="default">false</span>.</p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;RightCurly&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check with policy <span class="code">alone</span> for <span class="code">
+      else</span> tokens:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;RightCurly&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+    </td>
+  </tr>
+</table>
 
-<h2>Empty Blocks</h2>
-
-<p>The property <span class="code">checkstyle.block.try</span> specifies the
-policy on how to check <span class="code">try</span> blocks. The property type
-is <a href="property_types.html#block">block policy</a> and defaults to
-<span class="default">stmt</span>.</p>
-
-<p>The property <span class="code">checkstyle.block.catch</span> specifies the
-policy on how to check <span class="code">catch</span> blocks. The property type
-is <a href="property_types.html#block">block policy</a> and defaults to
-<span class="default">text</span>.</p>
-
-<p>The property <span class="code">checkstyle.block.finally</span> specifies the
-policy on how to check <span class="code">finally</span> blocks. The property
-type is <a href="property_types.html#block">block policy</a> and defaults to
-<span class="default">stmt</span>.</p>
-
-
-<h2>left curly brace placement</h2>
-
-<p>Checkstyle enforces the correct placement of left curly braces
-<span class="code">'{'</span>.</p>
-
-<p>The property <span class="code">checkstyle.lcurly.type</span> specifies the
-policy to check the placement of the left curly brace for
-<span class="code">class</span> and <span class="code">interface</span> blocks.
-The property type is
-<a href="property_types.html#lcurly">left curly brace policy</a> and defaults
-to <span class="default">eol</span>.</p>
-
-<p>The property <span class="code">checkstyle.lcurly.method</span> specifies the
-policy to check the placement of the left curly brace for method blocks.
-The property type is
-<a href="property_types.html#lcurly">left curly brace policy</a> and defaults
-to <span class="default">eol</span>.</p>
-
-<p>The property <span class="code">checkstyle.lcurly.other</span> specifies
-the policy to check the placement of the left curly brace for all other
-blocks.  This includes <span class="code">switch</span>,
-<span class="code">while</span>, <span class="code">for</span>,
-<span class="code">do</span>, <span class="code">if</span>,
-<span class="code">else</span>, <span class="code">synchronized</span>,
-<span class="code">try</span>, <span class="code">catch</span>,
-<span class="code">finally</span> and <span class="code">static</span> blocks.
-The property type is
-<a href="property_types.html#lcurly">left curly brace policy</a> and defaults
-to <span class="default">eol</span>.</p>
-
-
-<h2>right curly brace placement</h2>
-
-<p>The property <span class="code">checkstyle.rcurly</span> specifies the
-policy to check the placement of the right curly braces
-<span class="code">'}'</span> for blocks.
-The property type is
-<a href="property_types.html#rcurly">right curly brace policy</a> and defaults
-to <span class="default">same</span>.</p>
-
-<hr>
-<p align="center">Copyright &copy; 2002 Oliver Burn. All rights Reserved.</p>
+<hr />
+<p>
+Copyright &copy; 2002 Oliver Burn. All rights Reserved.
+</p>
 
 </body>
 </html>
