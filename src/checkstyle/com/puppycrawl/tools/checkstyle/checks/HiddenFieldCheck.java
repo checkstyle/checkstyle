@@ -41,7 +41,7 @@ public class HiddenFieldCheck
     /** stack of sets of field names,
      * one for each class of a set of nested classes */
     private LinkedList mFieldsStack = null;
-    
+
     /** check for shadowing parameters **/
     private boolean mCheckParameters = true;
 
@@ -53,7 +53,7 @@ public class HiddenFieldCheck
     {
         mCheckParameters = aFlag;
     }
-   
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -63,7 +63,7 @@ public class HiddenFieldCheck
             TokenTypes.CLASS_DEF,
         };
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree()
     {
@@ -74,11 +74,11 @@ public class HiddenFieldCheck
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
-            case TokenTypes.VARIABLE_DEF:               
+            case TokenTypes.VARIABLE_DEF:
                 processVariable(aAST);
                 break;
             case TokenTypes.PARAMETER_DEF:
-                if (mCheckParameters) {               
+                if (mCheckParameters) {
                     processVariable(aAST);
                 }
                 break;
@@ -89,12 +89,12 @@ public class HiddenFieldCheck
         }
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */    
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void leaveToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.CLASS_DEF) {
             //pop
-            mFieldsStack.removeLast();         
+            mFieldsStack.removeLast();
         }
     }
 
