@@ -25,7 +25,8 @@ package com.puppycrawl.tools.checkstyle.api;
  * <p>
  * Identifiers such as <code>java.util.HashMap</code> are spread across
  * multiple AST nodes in the syntax tree (three IDENT nodes, two DOT nodes).
- * This class
+ * A FullIdent represents the whole String (excluding any intermediate
+ * whitespace), which is often easier to work with in Checks.
  * </p>
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
