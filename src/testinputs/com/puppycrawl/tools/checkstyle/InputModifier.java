@@ -49,4 +49,23 @@ strictfp final class InputModifier // illegal order of modifiers for class
         /** all OK */
         float PI_OK = 3.14;
     }
+    
+    /** redundant 'final' modifier */
+    private final void method()
+    {
+    }
+}
+
+/** Holder for redundant 'final' check. */
+final class FinalClass
+{
+    /** redundant 'final' modifier */
+    public final void finalMethod()
+    {
+    }
+
+    /** OK */
+    public void method()
+    {
+    }
 }
