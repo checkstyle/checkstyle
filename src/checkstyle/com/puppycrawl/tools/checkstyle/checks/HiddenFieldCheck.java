@@ -123,8 +123,8 @@ public class HiddenFieldCheck
             }
             else {
                 //field. Add its name to the top stack element
-                final String name
-                    = aAST.findFirstToken(TokenTypes.IDENT).getText();
+                final String name =
+                    aAST.findFirstToken(TokenTypes.IDENT).getText();
                 ((HashSet)mFieldsStack.getLast()).add(name);
             }
         }

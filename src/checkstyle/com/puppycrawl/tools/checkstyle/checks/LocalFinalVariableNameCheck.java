@@ -46,8 +46,8 @@ public class LocalFinalVariableNameCheck
     /** @see com.puppycrawl.tools.checkstyle.check.AbstractNameCheck */
     protected final boolean mustCheckName(DetailAST aAST)
     {
-        final DetailAST modifiersAST
-            = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiersAST =
+            aAST.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isFinal = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.FINAL);
 
