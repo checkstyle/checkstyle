@@ -26,3 +26,9 @@ public class InputExplicitInit {
         Strign s = null;
     }
 }
+
+interface interface1{
+    int TOKEN_first = 0x00;
+    int TOKEN_second = 0x01;
+    int TOKEN_third = 0x02;
+}
