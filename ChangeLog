@@ -1,3 +1,8 @@
+2001-08-05  Oliver Burn  <oliver-work@puppycrawl.com>
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/VerifierImpl.java, src/checkstyle/com/puppycrawl/tools/checkstyle/Defn.java, src/checkstyle/com/puppycrawl/tools/checkstyle/Configuration.java:
+	Added support for public member patterns.
+
 2001-07-02  Oliver Burn  <oliver-work@puppycrawl.com>
 
 	* docs/index.html: Added that can ignore checking braces.

@@ -32,6 +32,8 @@ interface Defn
     String CONST_PATTERN_PROP = "checkstyle.pattern.const";
     /** property name for the member variable pattern **/
     String MEMBER_PATTERN_PROP = "checkstyle.pattern.member";
+    /** property name for the public member variable pattern **/
+    String PUBLIC_MEMBER_PATTERN_PROP = "checkstyle.pattern.publicmember";
     /** property name for the type pattern **/
     String TYPE_PATTERN_PROP = "checkstyle.pattern.type";
     /** property name for the maximum line length **/
