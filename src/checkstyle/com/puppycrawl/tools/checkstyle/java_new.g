@@ -507,7 +507,7 @@ traditionalStatement
 	|	"return"^ (expression)? SEMI!
 
 	// switch/case statement
-	|	"switch"^ LPAREN! expression RPAREN! LCURLY!
+	|	"switch"^ LPAREN! expression RPAREN! LCURLY
 			( casesGroup )*
 		RCURLY
 
