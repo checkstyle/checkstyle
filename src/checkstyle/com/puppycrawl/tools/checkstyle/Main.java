@@ -47,6 +47,10 @@ public final class Main
     /** the options to the command line */
     private static final Options OPTS = new Options();
     static {
+        OPTS.addOption(
+            "e",
+            true,
+            "File extension to identify Java source files. Defaults to java.");
         OPTS.addOption("c", true, "The check configuration file to use.");
         OPTS.addOption("r", true, "Traverse the directory for source files");
         OPTS.addOption("o", true, "Sets the output file. Defaults to stdout");
@@ -133,6 +137,10 @@ public final class Main
             closeOut = false;
         }
 
+        // Get the file extension
+        final String javaExtn =
+            "." + (line.hasOption("e") ? line.getOptionValue("e") : "java");
+        
         // create the appropriate listener
         final String format =
             line.hasOption("f") ? line.getOptionValue("f") : "plain";
@@ -155,7 +163,7 @@ public final class Main
         if (line.hasOption("r")) {
             final String[] values = line.getOptionValues("r");
             for (int i = 0; i < values.length; i++) {
-                traverse(new File(values[i]), files);
+                traverse(new File(values[i]), files, javaExtn);
             }
         }
 
@@ -211,16 +219,16 @@ public final class Main
      * @param aNode the node to process
      * @param aFiles list to add found files to
      */
-    private static void traverse(File aNode, List aFiles)
+    private static void traverse(File aNode, List aFiles, String aExtension)
     {
         if (aNode.canRead()) {
             if (aNode.isDirectory()) {
                 final File[] nodes = aNode.listFiles();
                 for (int i = 0; i < nodes.length; i++) {
-                    traverse(nodes[i], aFiles);
+                    traverse(nodes[i], aFiles, aExtension);
                 }
             }
-            else if (aNode.isFile() && aNode.getPath().endsWith(".java")) {
+            else if (aNode.isFile() && aNode.getPath().endsWith(aExtension)) {
                 aFiles.add(aNode);
             }
         }

@@ -43,7 +43,8 @@ The command line usage is:
   java -D&lt;property&gt;=&lt;value&gt;  \
        com.puppycrawl.tools.checkstyle.Main \
        -c &lt;configurationFile&gt; [-n &lt;packageNameFile&gt;] \
-       [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] [-r &lt;dir&gt;] file...
+       [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
+       [-r &lt;dir&gt;] [-e &lt;extension&gt;] file...
 </pre>
 
 <p>
@@ -74,6 +75,10 @@ checks to apply. Command line options are:
   <li>
     <span class="default">-r dir</span> - specify the directory to traverse for Java
     source files.
+  </li>
+  <li>
+    <span class="default">-e extension</span> - specify the file extension for
+    Java source files. Defaults to <span class="default">"java"</span>.
   </li>
 </ul>
 
