@@ -220,6 +220,7 @@ public class Configuration
         setBooleanProperty(aProps, Defn.IGNORE_IMPORT_LENGTH_PROP);
         setHeaderIgnoreLines(aProps.getProperty(Defn.HEADER_IGNORE_LINE_PROP));
         setBooleanProperty(aProps, Defn.HEADER_LINES_REGEXP_PROP);
+        setBooleanProperty(aProps, Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP);
 
         final String fname = aProps.getProperty(Defn.HEADER_FILE_PROP);
         if (fname != null) {
