@@ -18,4 +18,19 @@ public class GenericIllegalRegexpCheckTest
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
+
+    public void testMessageProperty()
+        throws Exception
+    {
+        final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
+        final String message = "Bad line :(";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("message", message);
+        final String[] expected = {
+            "69: " + message,
+        };
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
 }

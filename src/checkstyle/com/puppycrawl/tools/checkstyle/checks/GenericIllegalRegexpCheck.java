@@ -43,6 +43,26 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class GenericIllegalRegexpCheck extends AbstractFormatCheck
 {
     /**
+     * Custom message for report if illegal regexp found
+     * ignored if empty.
+     */
+    private String mMessage = "";
+
+    /**
+     * Setter for message property
+     * @param aMessage custom message which should be used
+     *                 to report about violations.
+     */
+
+    public void setMessage(String aMessage)
+    {
+        if (aMessage == null) {
+            aMessage = "";
+        }
+        mMessage = aMessage;
+    }
+
+    /**
      * Instantiates an new GenericIllegalRegexpCheck.
      */
     public GenericIllegalRegexpCheck()
@@ -64,7 +84,12 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
 
             final String line = lines[i];
             if (getRegexp().match(line)) {
-                log(i + 1, "illegal.regexp", getFormat());
+                if ("".equals(mMessage)) {
+                    log(i + 1, "illegal.regexp", getFormat());
+                }
+                else {
+                    log(i + 1, mMessage);
+                }
             }
         }
     }
