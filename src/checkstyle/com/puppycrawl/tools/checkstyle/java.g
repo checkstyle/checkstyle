@@ -360,11 +360,11 @@ field!
 		)
 
     // "static { ... }" class initializer
-	|	"static" s3:compoundStatement
+	|	"static" {ver.reportStartMethodBlock();} s3:compoundStatement {ver.reportEndMethodBlock();}
 		{#field = #(#[STATIC_INIT,"STATIC_INIT"], s3);}
 
     // "{ ... }" instance initializer
-	|	s4:compoundStatement
+	|	{ver.reportStartMethodBlock();} s4:compoundStatement {ver.reportEndMethodBlock();}
 		{#field = #(#[INSTANCE_INIT,"INSTANCE_INIT"], s4);}
 	;
 
