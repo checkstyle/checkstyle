@@ -211,7 +211,7 @@
 
       <p class="body"> Before any visitor method is called, the TreeWalker
       will call <a
-      href="api/com/puppycrawl/tools/checkstyle/api/Check.html#beginTree()"><span
+      href="api/com/puppycrawl/tools/checkstyle/api/Check.html#beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
       class="code">beginTree()</span></a> to give the Check a chance to do
       some initialization. Then, when performing the recursive descend from
       the root to the leaf nodes, the <span class="code">visitToken()</span>
@@ -222,7 +222,7 @@
       method to signal that the subtree below the node has been processed and
       the TreeWalker is backtracking from the node. After the root node has
       been left, the TreeWalker will call <a
-      href="api/com/puppycrawl/tools/checkstyle/api/Check.html#finishTree()"><span
+      href="api/com/puppycrawl/tools/checkstyle/api/Check.html#finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
       class="code">finishTree()</span></a>.  </p>
 
       <p class="body">
@@ -465,7 +465,7 @@
       <p class="body">
       This means that you cannot implement some of the code inspection
       features that are available in advanced IDEs like <a
-      href="http://www.intellij.com/idea">IntelliJ IDEA</a>. For
+      href="http://www.intellij.com/idea/">IntelliJ IDEA</a>. For
       example you will not be able to implement a Check that finds
       redundant type casts or unused public methods.
       </p>
@@ -501,7 +501,7 @@
 
           public void process(File[] files)
           {
-              if (files != null && files.length > max) {
+              if (files != null &amp;&amp; files.length > max) {
 
                   // Build the error list. Here we fire only one error
                   LocalizedMessage[] errors = new LocalizedMessage[1];
@@ -573,5 +573,5 @@
   </tr>
 </table>
 <hr/>
-<p align="center">Copyright &copy; 2002 Oliver Burn. All rights Reserved.</p>
+<p class="copyright">Copyright &copy; 2002-2003 Oliver Burn. All rights Reserved.</p>
 </body> </html>
