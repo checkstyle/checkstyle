@@ -112,16 +112,20 @@ public class WhitespaceAroundCheck
         }
 
         if ((after < line.length())
-            && !Character.isWhitespace(line.charAt(after))
-            // Check for "return;"
+            && !Character.isWhitespace(
+                line.charAt(after)) // Check for "return;"
             && !((aAST.getType() == TokenTypes.LITERAL_RETURN)
                 && (aAST.getFirstChild().getType() == TokenTypes.SEMI))
-            // Check for "})". Happens with anon-inners
+            // Check for "})" or "};". Happens with anon-inners
             && !((aAST.getType() == TokenTypes.RCURLY)
-                && (line.charAt(after) == ')')))
+                && ((line.charAt(after) == ')')
+                    || (line.charAt(after) == ';'))))
         {
-            log(aAST.getLineNo(), aAST.getColumnNo() + aAST.getText().length(),
-                    "ws.notFollowed", new Object[]{aAST.getText()});
+            log(
+                aAST.getLineNo(),
+                aAST.getColumnNo() + aAST.getText().length(),
+                "ws.notFollowed",
+                new Object[] { aAST.getText()});
         }
     }
 }

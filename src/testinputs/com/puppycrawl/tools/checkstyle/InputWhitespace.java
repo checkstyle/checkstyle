@@ -163,5 +163,10 @@ class InputWhitespace
             public void run() {
             }
         });
+
+        final Runnable r = new Runnable() {
+            public void run() {
+            }
+        };
     }
 }
