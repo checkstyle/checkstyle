@@ -26,6 +26,8 @@ import java.util.Set;
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
+ * @see <a href="./{@docRoot}/../writingchecks.html" target="_top">Writing
+ * your own checks</a>
  */
 public abstract class Check extends AutomaticBean
 {
