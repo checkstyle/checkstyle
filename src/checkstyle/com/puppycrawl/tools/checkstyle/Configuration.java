@@ -141,7 +141,7 @@ class Configuration
      * @throws FileNotFoundException if an error occurs
      * @throws IOException if an error occurs
      */
-    Configuration(Properties aProps, PrintStream aLog)
+    public Configuration(Properties aProps, PrintStream aLog)
         throws RESyntaxException, FileNotFoundException, IOException
     {
         setParamPat(aProps.getProperty(PARAMETER_PATTERN_PROP,
@@ -202,7 +202,7 @@ class Configuration
      *
      * @throws IllegalStateException if an error occurs
      */
-    Configuration()
+    public Configuration()
         throws IllegalStateException
     {
         try {
@@ -225,169 +225,169 @@ class Configuration
     ////////////////////////////////////////////////////////////////////////////
 
     /** @return pattern to match parameters **/
-    String getParamPat()
+    public String getParamPat()
     {
         return mParamPat;
     }
 
     /** @return regexp to match parameters **/
-    RE getParamRegexp()
+    public RE getParamRegexp()
     {
         return mParamRegexp;
     }
 
     /** @return pattern to match static variables **/
-    String getStaticPat()
+    public String getStaticPat()
     {
         return mStaticPat;
     }
 
     /** @return regexp to match static variables **/
-    RE getStaticRegexp()
+    public RE getStaticRegexp()
     {
         return mStaticRegexp;
     }
 
     /** @return pattern to match static final variables **/
-    String getStaticFinalPat()
+    public String getStaticFinalPat()
     {
         return mStaticFinalPat;
     }
 
     /** @return regexp to match static final variables **/
-    RE getStaticFinalRegexp()
+    public RE getStaticFinalRegexp()
     {
         return mStaticFinalRegexp;
     }
 
     /** @return pattern to match member variables **/
-    String getMemberPat()
+    public String getMemberPat()
     {
         return mMemberPat;
     }
 
     /** @return regexp to match member variables **/
-    RE getMemberRegexp()
+    public RE getMemberRegexp()
     {
         return mMemberRegexp;
     }
 
     /** @return pattern to match public member variables **/
-    String getPublicMemberPat()
+    public String getPublicMemberPat()
     {
         return mPublicMemberPat;
     }
 
     /** @return regexp to match public member variables **/
-    RE getPublicMemberRegexp()
+    public RE getPublicMemberRegexp()
     {
         return mPublicMemberRegexp;
     }
 
     /** @return pattern to match type names **/
-    String getTypePat()
+    public String getTypePat()
     {
         return mTypePat;
     }
 
     /** @return regexp to match type names **/
-    RE getTypeRegexp()
+    public RE getTypeRegexp()
     {
         return mTypeRegexp;
     }
 
     /** @return the maximum line length **/
-    int getMaxLineLength()
+    public int getMaxLineLength()
     {
         return mMaxLineLength;
     }
 
     /** @return the maximum method length **/
-    int getMaxMethodLength()
+    public int getMaxMethodLength()
     {
         return mMaxMethodLength;
     }
 
     /** @return the maximum constructor length **/
-    int getMaxConstructorLength()
+    public int getMaxConstructorLength()
     {
         return mMaxConstructorLength;
     }
 
     /** @return the maximum file length **/
-    int getMaxFileLength()
+    public int getMaxFileLength()
     {
         return mMaxFileLength;
     }
 
     /** @return whether to allow tabs **/
-    boolean isAllowTabs()
+    public boolean isAllowTabs()
     {
         return mAllowTabs;
     }
 
     /** @return whether to allow protected data **/
-    boolean isAllowProtected()
+    public boolean isAllowProtected()
     {
         return mAllowProtected;
     }
 
     /** @return whether to allow having no author tag **/
-    boolean isAllowNoAuthor()
+    public boolean isAllowNoAuthor()
     {
         return mAllowNoAuthor;
     }
 
     /** @return whether to relax javadoc checking **/
-    boolean isRelaxJavadoc()
+    public boolean isRelaxJavadoc()
     {
         return mRelaxJavadoc;
     }
 
     /** @return whether to ignore javadoc checking **/
-    boolean isIgnoreJavadoc()
+    public boolean isIgnoreJavadoc()
     {
         return mIgnoreJavadoc;
     }
 
     /** @return whether to process imports **/
-    boolean isIgnoreImports()
+    public boolean isIgnoreImports()
     {
         return mIgnoreImports;
     }
 
     /** @return whether to ignore checks for whitespace **/
-    boolean isIgnoreWhitespace()
+    public boolean isIgnoreWhitespace()
     {
         return mIgnoreWhitespace;
     }
 
     /** @return whether to ignore checks for braces **/
-    boolean isIgnoreBraces()
+    public boolean isIgnoreBraces()
     {
         return mIgnoreBraces;
     }
 
     /** @return whether to ignore max line length for import statements **/
-    boolean isIgnoreImportLength()
+    public boolean isIgnoreImportLength()
     {
         return mIgnoreImportLength;
     }
 
     /** @return the header lines to check for **/
-    String[] getHeaderLines()
+    public String[] getHeaderLines()
     {
         return mHeaderLines;
     }
 
     /** @return line number to ignore in header **/
-    int getHeaderIgnoreLineNo()
+    public int getHeaderIgnoreLineNo()
     {
         return mHeaderIgnoreLineNo;
     }
 
     /** @return the name of the cache file **/
-    String getCacheFile()
+    public String getCacheFile()
     {
         return mCacheFile;
     }
@@ -400,7 +400,7 @@ class Configuration
      * @param aParamPat pattern to match parameters
      * @throws RESyntaxException if an error occurs
      */
-    void setParamPat(String aParamPat)
+    public void setParamPat(String aParamPat)
         throws RESyntaxException
     {
         mParamRegexp = new RE(aParamPat);
@@ -411,7 +411,7 @@ class Configuration
      * @param aStaticPat pattern to match static variables
      * @throws RESyntaxException if an error occurs
      */
-    void setStaticPat(String aStaticPat)
+    public void setStaticPat(String aStaticPat)
         throws RESyntaxException
     {
         mStaticRegexp = new RE(aStaticPat);
@@ -422,7 +422,7 @@ class Configuration
      * @param aStaticFinalPat pattern to match static final variables
      * @throws RESyntaxException if an error occurs
      */
-    void setStaticFinalPat(String aStaticFinalPat)
+    public void setStaticFinalPat(String aStaticFinalPat)
         throws RESyntaxException
     {
         mStaticFinalRegexp = new RE(aStaticFinalPat);
@@ -433,7 +433,7 @@ class Configuration
      * @param aMemberPat pattern to match member variables
      * @throws RESyntaxException if an error occurs
      */
-    void setMemberPat(String aMemberPat)
+    public void setMemberPat(String aMemberPat)
         throws RESyntaxException
     {
         mMemberRegexp = new RE(aMemberPat);
@@ -444,7 +444,7 @@ class Configuration
      * @param aPublicMemberPat pattern to match public member variables
      * @throws RESyntaxException if an error occurs
      */
-    void setPublicMemberPat(String aPublicMemberPat)
+    public void setPublicMemberPat(String aPublicMemberPat)
         throws RESyntaxException
     {
         mPublicMemberRegexp = new RE(aPublicMemberPat);
@@ -455,7 +455,7 @@ class Configuration
      * @param aTypePat pattern to match type names
      * @throws RESyntaxException if an error occurs
      */
-    void setTypePat(String aTypePat)
+    public void setTypePat(String aTypePat)
         throws RESyntaxException
     {
         mTypeRegexp = new RE(aTypePat);
@@ -465,7 +465,7 @@ class Configuration
     /**
      * @param aMaxLineLength the maximum line length
      */
-    void setMaxLineLength(int aMaxLineLength)
+    public void setMaxLineLength(int aMaxLineLength)
     {
         mMaxLineLength = aMaxLineLength;
     }
@@ -473,7 +473,7 @@ class Configuration
     /**
      * @param aMaxMethodLength the maximum method length
      */
-    void setMaxMethodLength(int aMaxMethodLength)
+    public void setMaxMethodLength(int aMaxMethodLength)
     {
         mMaxMethodLength = aMaxMethodLength;
     }
@@ -481,7 +481,7 @@ class Configuration
     /**
      * @param aMaxConstructorLength the maximum constructor length
      */
-    void setMaxConstructorLength(int aMaxConstructorLength)
+    public void setMaxConstructorLength(int aMaxConstructorLength)
     {
         mMaxConstructorLength = aMaxConstructorLength;
     }
@@ -489,7 +489,7 @@ class Configuration
     /**
      * @param aMaxFileLength the maximum file length
      */
-    void setMaxFileLength(int aMaxFileLength)
+    public void setMaxFileLength(int aMaxFileLength)
     {
         mMaxFileLength = aMaxFileLength;
     }
@@ -497,7 +497,7 @@ class Configuration
     /**
      * @param aIgnoreImportLength whether to allow tabs
      */
-    void setIgnoreImportLength(boolean aIgnoreImportLength)
+    public void setIgnoreImportLength(boolean aIgnoreImportLength)
     {
         mIgnoreImportLength = aIgnoreImportLength;
     }
@@ -505,7 +505,7 @@ class Configuration
     /**
      * @param aAllowTabs whether to allow tabs
      */
-    void setAllowTabs(boolean aAllowTabs)
+    public void setAllowTabs(boolean aAllowTabs)
     {
         mAllowTabs = aAllowTabs;
     }
@@ -513,7 +513,7 @@ class Configuration
     /**
      * @param aAllowProtected whether to allow protected data
      */
-    void setAllowProtected(boolean aAllowProtected)
+    public void setAllowProtected(boolean aAllowProtected)
     {
         mAllowProtected = aAllowProtected;
     }
@@ -521,7 +521,7 @@ class Configuration
     /**
      * @param aAllowNoAuthor whether to allow having no author tag
      */
-    void setAllowNoAuthor(boolean aAllowNoAuthor)
+    public void setAllowNoAuthor(boolean aAllowNoAuthor)
     {
         mAllowNoAuthor = aAllowNoAuthor;
     }
@@ -529,7 +529,7 @@ class Configuration
     /**
      * @param aRelaxJavadoc whether to relax javadoc checking
      */
-    void setRelaxJavadoc(boolean aRelaxJavadoc)
+    public void setRelaxJavadoc(boolean aRelaxJavadoc)
     {
         mRelaxJavadoc = aRelaxJavadoc;
     }
@@ -537,7 +537,7 @@ class Configuration
     /**
      * @param aIgnoreJavadoc whether to ignore javadoc checking
      */
-    void setIgnoreJavadoc(boolean aIgnoreJavadoc)
+    public void setIgnoreJavadoc(boolean aIgnoreJavadoc)
     {
         mIgnoreJavadoc = aIgnoreJavadoc;
     }
@@ -545,7 +545,7 @@ class Configuration
     /**
      * @param aIgnoreImports whether to process imports
      */
-    void setIgnoreImports(boolean aIgnoreImports)
+    public void setIgnoreImports(boolean aIgnoreImports)
     {
         mIgnoreImports = aIgnoreImports;
     }
@@ -553,7 +553,7 @@ class Configuration
     /**
      * @param aTo whether to ignore checks for whitespace
      */
-    void setIgnoreWhitespace(boolean aTo)
+    public void setIgnoreWhitespace(boolean aTo)
     {
         mIgnoreWhitespace = aTo;
     }
@@ -561,7 +561,7 @@ class Configuration
     /**
      * @param aTo whether to ignore checks for braces
      */
-    void setIgnoreBraces(boolean aTo)
+    public void setIgnoreBraces(boolean aTo)
     {
         mIgnoreBraces = aTo;
     }
@@ -571,7 +571,7 @@ class Configuration
      * @throws FileNotFoundException if an error occurs
      * @throws IOException if an error occurs
      */
-    void setHeaderFile(String aFileName)
+    public void setHeaderFile(String aFileName)
         throws FileNotFoundException, IOException
     {
         final LineNumberReader lnr =
@@ -590,7 +590,7 @@ class Configuration
     /**
      * @param aHeaderIgnoreLineNo line number to ignore in header
      */
-    void setHeaderIgnoreLineNo(int aHeaderIgnoreLineNo)
+    public void setHeaderIgnoreLineNo(int aHeaderIgnoreLineNo)
     {
         mHeaderIgnoreLineNo = aHeaderIgnoreLineNo;
     }
@@ -598,7 +598,7 @@ class Configuration
     /**
      * @param aCacheFile name of cache file
      */
-    void setCacheFile(String aCacheFile)
+    public void setCacheFile(String aCacheFile)
     {
         mCacheFile = aCacheFile;
     }

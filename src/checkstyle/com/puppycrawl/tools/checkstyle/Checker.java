@@ -31,7 +31,6 @@ import java.io.PrintStream;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Properties;
 import org.apache.regexp.RESyntaxException;
 
 /**
@@ -39,12 +38,9 @@ import org.apache.regexp.RESyntaxException;
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  */
-class Checker
+public class Checker
     implements Defn
 {
-    /** printstream to log to **/
-    private final PrintStream mLog;
-
     /** cache file **/
     private final PropertyCacheFile mCache;
 
@@ -57,17 +53,16 @@ class Checker
      * @param aLog the PrintStream to log messages to
      * @throws RESyntaxException unable to create a regexp object
      **/
-    Checker(Configuration aConfig, PrintStream aLog)
+    public Checker(Configuration aConfig, PrintStream aLog)
         throws RESyntaxException
     {
-        mLog = aLog;
         mCache = new PropertyCacheFile(aConfig.getCacheFile(), aLog);
         final Verifier v = new VerifierImpl(aConfig);
         VerifierSingleton.setInstance(v);
     }
 
     /** Cleans up the object **/
-    void destroy()
+    public void destroy()
     {
         mCache.destroy();
 
@@ -96,7 +91,7 @@ class Checker
      * Add the listener that will be used to receive events from the audit
      * @param aListener the nosy thing
      */
-    void addListener(AuditListener aListener)
+    public void addListener(AuditListener aListener)
     {
         mListeners.add(aListener);
     }
@@ -109,7 +104,7 @@ class Checker
      * @return the total number of errors found
      * @see destroy()
      */
-    int process(String[] aFiles)
+    public int process(String[] aFiles)
     {
         int total = 0;
         fireAuditStarted();
@@ -231,28 +226,6 @@ class Checker
     {
         final GeneratedJavaTreeParser jtp = new GeneratedJavaTreeParser();
         jtp.compilationUnit(aAST);
-    }
-
-    /**
-     * @return the header lines specified by a file in the supplied properties
-     *    set. If no file specified, or unable to read specified file, then an
-     *    empty list is returned. Errors are reported.
-     * @param aProps the property set to get the file name from
-     **/
-    private String[] getHeaderLines(Properties aProps)
-    {
-        String[] retVal = new String[] {};
-        final String fname = aProps.getProperty(HEADER_FILE_PROP);
-        if (fname != null) {
-            try {
-                retVal = getLines(fname);
-            }
-            catch (IOException ioe) {
-                mLog.println("Unable to read '" + fname + "', got '" +
-                             ioe.getMessage() + "'. Ignoring.");
-            }
-        }
-        return retVal;
     }
 
     /** notify all listeners about the audit start */
