@@ -30,6 +30,8 @@ package com.puppycrawl.tools.checkstyle.api;
  * </p>
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @see TokenTypes#DOT
+ * @see TokenTypes#IDENT
  **/
 public final class FullIdent
 {
