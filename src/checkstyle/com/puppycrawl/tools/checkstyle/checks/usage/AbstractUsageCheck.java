@@ -18,24 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.usage;
 
-import java.io.File;
-import java.util.Iterator;
-import java.util.Set;
-
-import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.*;
+import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.ASTManager;
 import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.ClassManager;
 import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.Definition;
 import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.SymTabAST;
-import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.SymTabASTFactory;
-import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.SymbolTableException;
+import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.
+    SymbolTableException;
+import java.util.Iterator;
+import java.util.Set;
+import org.apache.commons.beanutils.ConversionException;
+import org.apache.regexp.RE;
+import org.apache.regexp.RESyntaxException;
 
 /**
  * Performs a usage check for fields, methods, parameters, variables.
@@ -44,9 +41,6 @@ import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.SymbolTableExce
 public abstract class AbstractUsageCheck
     extends Check
 {
-    /** determines whether all checks are single, intra-file checks */
-    private static boolean sIsSingleFileCheckSet = true;
-
     /** the regexp to match against */
     private RE mRegexp = null;
     /** the format string of the regexp */
@@ -133,30 +127,6 @@ public abstract class AbstractUsageCheck
     public void logError(Exception aException)
     {
         log(0, "general.exception", new String[] {aException.getMessage()});
-    }
-
-    /**
-     * Adds a file and a DetailAST to a SymTabAST tree. Normally, the
-     * DetailAST will be the parse tree for the file.
-     * @param aRoot the tree added to.
-     * @param aFile the file to add.
-     * @param aAST the DetailAST to add.
-    */
-    private void addToTree(SymTabAST aRoot, File aFile, DetailAST aAST)
-    {
-        // add aFile to aRoot
-        final SymTabAST fileNode =
-            SymTabASTFactory.create(0, aFile.getAbsolutePath());
-        fileNode.setFile(aFile);
-        aRoot.addChild(fileNode);
-        fileNode.setParent(aRoot);
-
-        // add aAST to aFile
-        final SymTabAST child = SymTabASTFactory.create(aAST);
-        child.setFile(aFile);
-        fileNode.addChild(child);
-        child.setParent(fileNode);
-        fileNode.finishDefinition(aFile, aRoot);
     }
 
     /**

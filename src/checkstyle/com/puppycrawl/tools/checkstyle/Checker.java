@@ -189,7 +189,7 @@ public class Checker extends AutomaticBean
             }
             if (child instanceof FileSetCheck) {
                 final FileSetCheck fsc = (FileSetCheck) child;
-                 addFileSetCheck(fsc);
+                addFileSetCheck(fsc);
             }
             else if (child instanceof Filter) {
                 final Filter filter = (Filter) child;
