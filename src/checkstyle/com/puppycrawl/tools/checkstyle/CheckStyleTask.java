@@ -47,7 +47,7 @@ import org.apache.tools.ant.types.Path;
 /**
  * An implementation of a ANT task for calling checkstyle. See the documentation
  * of the task for usage.
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  */
 public class CheckStyleTask
     extends Task
@@ -467,7 +467,7 @@ public class CheckStyleTask
 
     /**
      * Poor mans enumeration for the formatter types.
-     * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+     * @author Oliver Burn
      */
     public static class FormatterType
         extends EnumeratedAttribute
@@ -484,7 +484,7 @@ public class CheckStyleTask
 
     /**
      * Details about a formatter to be used.
-     * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+     * @author Oliver Burn
      */
     public static class Formatter
     {

@@ -29,7 +29,7 @@ import java.util.HashMap;
 /**
  * Represents the contents of a file.
  *
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1.0
  */
 public final class FileContents

@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 /**
  * Represents an error condition within Checkstyle.
  *
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1.0
  */
 public class CheckstyleException extends Exception

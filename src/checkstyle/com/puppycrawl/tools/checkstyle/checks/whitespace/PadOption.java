@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * Represents the options for whitespace around parentheses.
  *
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1
  * @see EmptyForIteratorPadCheck
  * @see ParenPadCheck

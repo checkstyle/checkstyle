@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * Abstract class that represents options.
  *
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @author Rick Giles
 
  */

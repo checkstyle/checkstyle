@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * Represents the options for placing the right curly brace <code>'}'</code>.
  *
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1
  */
 public final class RightCurlyOption

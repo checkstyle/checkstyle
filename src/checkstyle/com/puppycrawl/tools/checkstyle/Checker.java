@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
  * This class provides the functionality to check a set of files.
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @author lkuehne
  */

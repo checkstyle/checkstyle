@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * Responsible for walking an abstract syntax tree and notifying interested
  * checks at each each node.
  *
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1.0
  */
 public final class TreeWalker

@@ -41,7 +41,7 @@ import org.xml.sax.SAXParseException;
 /**
  * Loads a configuration from a standard configuration XML file.
  *
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1.0
  */
 public final class ConfigurationLoader

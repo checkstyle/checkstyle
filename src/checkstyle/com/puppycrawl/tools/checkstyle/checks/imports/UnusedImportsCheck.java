@@ -37,7 +37,7 @@ import java.util.Set;
  * <pre>
  * &lt;module name="UnusedImports"/&gt;
  * </pre>
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1.0
  */
 public class UnusedImportsCheck

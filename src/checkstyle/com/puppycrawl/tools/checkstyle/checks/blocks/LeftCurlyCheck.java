@@ -59,7 +59,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * value="nlow"/&gt;     &lt;property name="maxLineLength" value="120"/&gt; &lt;
  * /module&gt;
  * </pre>
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @author lkuehne
  * @version 1.0
  */

@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 /**
  * Represents a Javadoc tag. Provides methods to query what type of tag it is.
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  **/
 class JavadocTag
 {

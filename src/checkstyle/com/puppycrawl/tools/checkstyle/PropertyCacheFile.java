@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  * cache file to ensure the cache is invalidated when the
  * configuration has changed.
  *
- * @author <a href="mailto:oliver-work@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  */
 final class PropertyCacheFile
 {

@@ -39,7 +39,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * scrupulous, set, severe, square, stern, stickler, straight, strait-laced,
  * stringent, stuffy, stuffy, tough, unpermissive, unsparing and uptight.
  *
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  */
 public abstract class AbstractLoader
     extends DefaultHandler

@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name="scope" value="public"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1.0
  */
 public class JavadocVariableCheck

@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Wrapper command line program for the Checker.
- * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  **/
 public final class Main
 {

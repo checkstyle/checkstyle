@@ -29,7 +29,7 @@ import java.lang.reflect.Field;
  * <p>Implementation detail: This class has been introduced to break
  * the circular dependency between packages.<p>
  *
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @author <a href="mailto:dobratzp@ele.uri.edu">Peter Dobratz</a>
  * @version 1.0
  */

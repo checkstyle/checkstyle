@@ -25,7 +25,7 @@ import java.util.Set;
 /**
  * The base class for checks.
  *
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Oliver Burn
  * @version 1.0
  * @see <a href="./{@docRoot}/../writingchecks.html" target="_top">Writing
  * your own checks</a>
