@@ -128,8 +128,7 @@ public class LeftCurlyCheck
 
         case TokenTypes.INTERFACE_DEF :
         case TokenTypes.CLASS_DEF :
-            // TODO: should check for modifiers
-            startToken = (DetailAST) aAST.getFirstChild().getNextSibling();
+            startToken = (DetailAST) aAST.getFirstChild();
             brace = (DetailAST) aAST.getLastChild().getFirstChild();
             break;
 

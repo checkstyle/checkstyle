@@ -28,6 +28,10 @@ public class LeftCurlyCheckTest
             createCheckConfig(LeftCurlyCheck.class);
         checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
+            "49:14: '{' should be on a new line.",
+            "53:14: '{' should be on a new line.",
+            "58:18: '{' should be on a new line.",
+            "62:18: '{' should be on a new line.",
         };
         verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
@@ -44,6 +48,10 @@ public class LeftCurlyCheckTest
             "21:5: '{' should be on the previous line.",
             "30:5: '{' should be on the previous line.",
             "39:5: '{' should be on the previous line.",
+            "49:14: '{' should be on a new line.",
+            "53:14: '{' should be on a new line.",
+            "58:18: '{' should be on a new line.",
+            "62:18: '{' should be on a new line.",
         };
         verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
