@@ -32,11 +32,15 @@ public abstract class AbstractOptionCheck
     /** the policy to enforce */
     private AbstractOption mOption;
 
+    /**
+     * Creates a new <code>AbstractOptionCheck</code> instance.
+     * @param aDefault the default option.
+     */
     public AbstractOptionCheck(AbstractOption aDefault)
     {
         mOption = aDefault;
     }
-    
+
     /**
      * Set the option to enforce.
      * @param aOption string to decode option from

@@ -24,12 +24,12 @@ public abstract class LeftCurlyCheck
 
     /**
      * Sets the left curly otion to eol.
-     */  
+     */
     public LeftCurlyCheck()
     {
         super(LeftCurlyOption.EOL);
     }
-    
+
     /** @see the hack above */
     public void setMaxLineLength(int aMaxLineLength)
     {
@@ -59,7 +59,7 @@ public abstract class LeftCurlyCheck
         if ((braceLine.length() > (aBrace.getColumnNo() + 1))
             && (braceLine.charAt(aBrace.getColumnNo() + 1) == '}'))
         {
-            // ignore
+            ; // ignore
         }
         else if (getAbstractOption() == LeftCurlyOption.NL) {
             if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
@@ -77,7 +77,7 @@ public abstract class LeftCurlyCheck
         }
         else if (getAbstractOption() == LeftCurlyOption.NLOW) {
             if (aStartToken.getLineNo() == aBrace.getLineNo()) {
-                // all ok as on the same line
+                ; // all ok as on the same line
             }
             else if ((aStartToken.getLineNo() + 1) == aBrace.getLineNo()) {
                 if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
