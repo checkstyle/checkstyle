@@ -41,7 +41,6 @@ import org.apache.regexp.RESyntaxException;
 public class Checker
     implements Defn
 {
-
     /**
      * Overrides ANTLR error reporting so we completely control
      * checkstyle's output during parsing. This is important because
@@ -191,7 +190,7 @@ public class Checker
                 // try the 1.4 grammar first, this will succeed for
                 // all code that compiles without any warnings in JDK 1.4,
                 // that should cover most cases
-                VerifierSingleton.getInstance().clearMessages();
+                VerifierSingleton.getInstance().reset();
                 VerifierSingleton.getInstance().setLines(lines);
                 final Reader sar = new StringArrayReader(lines);
                 final GeneratedJava14Lexer jl = new GeneratedJava14Lexer(sar);
@@ -209,7 +208,7 @@ public class Checker
                 // and not as a keyword
 
                 // Arghh - the pain - duplicate code!
-                VerifierSingleton.getInstance().clearMessages();
+                VerifierSingleton.getInstance().reset();
                 VerifierSingleton.getInstance().setLines(lines);
                 final Reader sar = new StringArrayReader(lines);
                 final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
