@@ -36,7 +36,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
@@ -73,12 +72,6 @@ public class CheckStyleTask
 
     /** the configuration to pass to the checker **/
     private Configuration mConfig = new Configuration();
-
-    /**
-     * holds Runnables that change mConfig just
-     * before the Checker is created.
-     */
-    private final ArrayList mOptionMemory = new ArrayList();
 
     ////////////////////////////////////////////////////////////////////////////
     // Setters for ANT specific attributes
@@ -208,11 +201,14 @@ public class CheckStyleTask
             mConfig.setClassLoader(
                 new AntClassLoader(getProject(), mClasspath));
         }
+
+        // set the root directory location
+        mConfig.setRootDir(getProject().getBaseDir());
+
         // Create the checker
         Checker c = null;
         try {
             try {
-                applyExplicitOptions();
                 c = new Checker(mConfig);
                 // setup the listeners
                 AuditListener[] listeners = getListeners();
@@ -408,18 +404,5 @@ public class CheckStyleTask
                 return new XMLLogger(new FileOutputStream(mToFile), true);
             }
         }
-    }
-
-    /**
-     * Applies the options that have been saved in the mOptionMemory.
-     */
-    private void applyExplicitOptions()
-    {
-        final Iterator it = mOptionMemory.iterator();
-        while (it.hasNext()) {
-            final Runnable runnable = (Runnable) it.next();
-            runnable.run();
-        }
-        mOptionMemory.clear();
     }
 }

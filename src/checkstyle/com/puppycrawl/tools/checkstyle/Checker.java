@@ -98,11 +98,13 @@ public class Checker
      * Constructs the object.
      * @param aConfig contains the configuration to check with
      * @throws RESyntaxException unable to create a regexp object
-     **/
+     * @throws IOException if an error occurs
+     */
     public Checker(Configuration aConfig)
-        throws RESyntaxException
+        throws RESyntaxException, IOException
     {
         mConfig = aConfig;
+        mConfig.loadFiles();
         mCache = new PropertyCacheFile(aConfig);
         final Verifier v = new Verifier(aConfig);
         VerifierSingleton.setInstance(v);
