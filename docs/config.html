@@ -129,7 +129,7 @@
           </pre>
           Checkstyle applies packages <span class="code">
         com.puppycrawl.tools.checkstyle</span> and <span class="code">
-        com.puppycrawl.tools.checkstyle.checks</span> by default. You can also specify other 
+        com.puppycrawl.tools.checkstyle.checks</span> by default. You can specify other 
         packages in a <a href="#packagenames"><em>package names XML document</em></a>
           when you invoke Checkstyle at the <a href="cmdline.html">command line</a>, 
         and when you run a <a href="anttask.html">Checkstyle task</a> in ant.
@@ -309,7 +309,8 @@
         com.puppycrawl.tools.checkstyle.checks</span>. To specify other packages to apply, 
         create a <em>package names XML document</em> in a file, and provide that file as a
         <a href="cmdline.html">command line</a> option or as a
-         property of an <a href="anttask.html">ant Checkstyle task</a>.
+         attribute of an <a href="anttask.html">ant Checkstyle task</a>.
+         This is useful for integrating other modules in your configuration.
         </p>
          <p class="body">
          A <em>package names XML document</em> specifies a list of package names. Here is the root of the
@@ -329,6 +330,34 @@
          <span class="code">package</span> element is
          a subpackage of its parent <span class="code">package</span> element.   
          </p>
+         <p class="body">
+         For example, to incorporate modules from package <span class="code">com.mycompany.checks</span>
+         with Checkstyle modules, create the XML file below and specify that file as a
+        <a href="cmdline.html">command line</a> option or as a
+         attribute of an <a href="anttask.html">ant Checkstyle task</a>.:
+         </p>
+    <pre class="body">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+    &lt;!DOCTYPE checkstyle-packages PUBLIC
+    &quot;-//Puppy Crawl//DTD Package Names 1.0//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/packages_1_0.dtd&quot;&gt;
+
+&lt;checkstyle-packages&gt;
+  &lt;package name=&quot;com.mycompany.checks&quot;&gt;
+  &lt;package name=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+    &lt;package name=&quot;checks&quot;/&gt;
+  &lt;/package&gt;
+&lt;/checkstyle-packages&gt;
+    </pre>
+    <p class="body">
+    Now you can configure a module of package <span class="code">com.mycompany.checks</span>, 
+    say <span class="code">com.mycompany.checks.MethodLimitCheck</span>, with a shortened
+    <span class="code">module</span> element in the configuration document:
+    </p>
+    <pre class="body">
+    &lt;module name=&quot;MethodLimit&quot;/&gt;
+    </pre>
 <div class="tip">
   <h4 class="tip">Important</h4>
 
