@@ -20,7 +20,7 @@ public class GenericIllegalRegexpCheckTest
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {
-            "68: Line matches the illegal pattern '" + illegal + "'."
+            "69: Line matches the illegal pattern '" + illegal + "'."
         };
         verify(c, fname, expected);
     }

@@ -24,11 +24,11 @@ public class IllegalInstantiationCheckTest
         final String[] expected = {
             "19:21: Avoid instantiation of java.lang.Boolean.",
             "24:21: Avoid instantiation of java.lang.Boolean.",
-            "30:16: Avoid instantiation of java.lang.Boolean.",
-            "37:21: Avoid instantiation of " +
+            "31:16: Avoid instantiation of java.lang.Boolean.",
+            "38:21: Avoid instantiation of " +
                 "com.puppycrawl.tools.checkstyle.InputModifier.",
-            "40:18: Avoid instantiation of java.io.File.",
-            "43:21: Avoid instantiation of java.awt.Color."
+            "41:18: Avoid instantiation of java.io.File.",
+            "44:21: Avoid instantiation of java.awt.Color."
         };
         verify(c, fname, expected);
     }

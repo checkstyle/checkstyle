@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import antlr.collections.AST;
 
 // TODO: Clean up potential duplicate code here and in UnusedImportsCheck
 /**
@@ -47,8 +48,10 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
  * Some extremely performance sensitive projects may require the use of factory
  * methods for other classes as well, to enforce the usage of number caches or
  * object pools.
- *
  * </p>
+ *
+ * Limitations: It is currently not possible to specify array classes.
+ *
  * @author Lars Kühne
  */
 public class IllegalInstantiationCheck
@@ -129,6 +132,15 @@ public class IllegalInstantiationCheck
     private void processLiteralNew(DetailAST aAST)
     {
         DetailAST typeNameAST = (DetailAST) aAST.getFirstChild();
+
+        AST nameSibling = typeNameAST.getNextSibling();
+        if (nameSibling != null
+                && nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR)
+        {
+            // aAST == "new Boolean[]"
+            return;
+        }
+
         FullIdent typeIdent = FullIdent.createFullIdent(typeNameAST);
         final String typeName = typeIdent.getText();
         final int lineNo = aAST.getLineNo();
