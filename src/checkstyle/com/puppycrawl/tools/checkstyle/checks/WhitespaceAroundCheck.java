@@ -23,8 +23,11 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.Java14TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
-public class WhitespaceAroundCheck extends Check implements Java14TokenTypes
+public class WhitespaceAroundCheck
+    extends Check
+    implements Java14TokenTypes
 {
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -75,6 +78,7 @@ public class WhitespaceAroundCheck extends Check implements Java14TokenTypes
         };
     }
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         final String[] lines = getLines();
@@ -89,7 +93,8 @@ public class WhitespaceAroundCheck extends Check implements Java14TokenTypes
 
         if ((after < line.length())
             && !Character.isWhitespace(line.charAt(after))
-            && !(aAST.getType() == LITERAL_return && aAST.getFirstChild() == null))
+            && !((aAST.getType() == LITERAL_return)
+                 && (aAST.getFirstChild() == null)))
         {
             log(aAST.getLineNo(), aAST.getColumnNo() + aAST.getText().length(),
                     "ws.notFollowed", new Object[]{aAST.getText()});

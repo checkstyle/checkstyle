@@ -95,10 +95,13 @@ class CheckConfiguration
     /**
      * Create an instance of the check that is properly initialised.
      *
+     * @param aLoader the <code>ClassLoader</code> to create the instance with
      * @return the created check
      * @throws ClassNotFoundException if an error occurs
      * @throws InstantiationException if an error occurs
      * @throws IllegalAccessException if an error occurs
+     * @throws InvocationTargetException if an error occurs
+     * @throws NoSuchMethodException if an error occurs
      */
     Check createInstance(ClassLoader aLoader)
         throws ClassNotFoundException, InstantiationException,

@@ -2,11 +2,14 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.checks.AvoidStarImport;
 import com.puppycrawl.tools.checkstyle.checks.ParameterFormatCheck;
+import com.puppycrawl.tools.checkstyle.checks.TypeNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.MethodNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.PackageNameCheck;
 
-public class ParameterFormatCheckTest
+public class PackageNameCheckTest
     extends BaseCheckTestCase
 {
-    public ParameterFormatCheckTest(String aName)
+    public PackageNameCheckTest(String aName)
     {
         super(aName);
     }
@@ -15,14 +18,12 @@ public class ParameterFormatCheckTest
         throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParameterFormatCheck.class.getName());
-        checkConfig.addProperty("format", "^a[A-Z][a-zA-Z0-9]*$");
+        checkConfig.setClassname(PackageNameCheck.class.getName());
+        checkConfig.addProperty("format", "[A-Z]+");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
-            "71:19: Name 'badFormat1' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
-            "71:34: Name 'badFormat2' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
-            "72:25: Name 'badFormat3' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
+            "6:1: Name 'com.puppycrawl.tools.checkstyle' must match pattern '[A-Z]+'.",
         };
         verify(c, fname, expected);
     }
@@ -31,7 +32,7 @@ public class ParameterFormatCheckTest
         throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParameterFormatCheck.class.getName());
+        checkConfig.setClassname(PackageNameCheck.class.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {

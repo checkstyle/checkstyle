@@ -77,6 +77,11 @@ class TreeWalker
 
     }
 
+    /**
+     * Creates a new <code>TreeWalker</code> instance.
+     *
+     * @param aMessages used to collect messages
+     */
     public TreeWalker(LocalizedMessages aMessages)
     {
         mMessages = aMessages;

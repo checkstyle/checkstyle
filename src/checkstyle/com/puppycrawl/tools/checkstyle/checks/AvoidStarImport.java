@@ -35,12 +35,14 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class AvoidStarImport
     extends ImportCheck
 {
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {JavaTokenTypes.IMPORT};
     }
 
-    public void visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST aAST)
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public void visitToken(DetailAST aAST)
     {
         final String name = getImportText(aAST);
         if ((name != null) && name.endsWith(".*")) {

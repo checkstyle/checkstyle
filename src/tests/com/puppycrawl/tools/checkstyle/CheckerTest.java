@@ -502,7 +502,6 @@ public class CheckerTest
             filepath + ":130:18: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":131:9: '{' should be on the previous line.",
             filepath + ":132:20: Name 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            filepath + ":137:10: Name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":142:30: Name 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":145: Line is longer than 80 characters.",
             filepath + ":145:35: Line contains a tab character.",
@@ -727,7 +726,6 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":1: Missing a header - not enough lines in file.",
             filepath + ":1: Missing a Javadoc comment.",
-            filepath + ":1:48: Name 'inputHeader' must match pattern '^[A-Z][a-zA-Z0-9]*$'.",
         };
         verify(c, filepath, expected);
     }

@@ -35,11 +35,13 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 public class UpperEllCheck
     extends Check
 {
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {JavaTokenTypes.NUM_LONG};
     }
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getText().endsWith("l")) {

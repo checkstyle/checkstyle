@@ -29,7 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
-public class ModifierCheck extends Check
+public class ModifierCheck
+    extends Check
 {
     /**
      * The order of modifiers as suggested in sections 8.1.1,
@@ -41,11 +42,13 @@ public class ModifierCheck extends Check
         "transient", "volatile", "synchronized", "native", "strictfp"
     };
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {JavaTokenTypes.MODIFIERS};
     }
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         final List mods = new ArrayList();

@@ -38,6 +38,9 @@ public class LocalizedMessages
     private final int mTabWidth;
     /** the lines of the file being checked **/
     private String[] mLines;
+    /** Name of the exising resource bundle
+     * TODO: remove this
+     */
     private static final String OLD_BUNDLE =
             "com.puppycrawl.tools.checkstyle.messages";
 
@@ -239,6 +242,7 @@ public class LocalizedMessages
         add(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1, aArg2});
     }
 
+    /** @return the number of messages */
     public int size()
     {
         return mMessages.size();

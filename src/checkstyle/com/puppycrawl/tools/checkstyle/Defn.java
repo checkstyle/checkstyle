@@ -39,14 +39,10 @@ public interface Defn
     String MEMBER_PATTERN_PROP = "checkstyle.pattern.member";
     /** property name for the public member variable pattern **/
     String PUBLIC_MEMBER_PATTERN_PROP = "checkstyle.pattern.publicmember";
-    /** property name for the type pattern **/
-    String TYPE_PATTERN_PROP = "checkstyle.pattern.type";
     /** property name for the method local variable pattern **/
     String LOCAL_VAR_PATTERN_PROP = "checkstyle.pattern.localvar";
     /** property name for the method local final variable pattern **/
     String LOCAL_FINAL_VAR_PATTERN_PROP = "checkstyle.pattern.localfinalvar";
-    /** property name for the method local variable pattern **/
-    String METHOD_PATTERN_PROP = "checkstyle.pattern.method";
     /** property name for the package name pattern **/
     String PACKAGE_PATTERN_PROP = "checkstyle.pattern.package";
     /** property name for the maximum line length **/
@@ -161,10 +157,8 @@ public interface Defn
             MEMBER_PATTERN_PROP,
             PUBLIC_MEMBER_PATTERN_PROP,
             PACKAGE_PATTERN_PROP,
-            TYPE_PATTERN_PROP,
             LOCAL_VAR_PATTERN_PROP,
             LOCAL_FINAL_VAR_PATTERN_PROP,
-            METHOD_PATTERN_PROP,
             IGNORE_LINE_LENGTH_PATTERN_PROP,
         };
 

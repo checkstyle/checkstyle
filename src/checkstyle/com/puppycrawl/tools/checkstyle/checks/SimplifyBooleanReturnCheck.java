@@ -32,11 +32,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class SimplifyBooleanReturnCheck extends Check
 {
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {JavaTokenTypes.LITERAL_if};
     }
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         // paranoia - what an untrusting sole :-)
@@ -72,14 +74,15 @@ public class SimplifyBooleanReturnCheck extends Check
 
     private boolean isBooleanLiteralReturnStatement(AST aAST)
     {
-        if (aAST.getType() != JavaTokenTypes.LITERAL_return)
+        if (aAST.getType() != JavaTokenTypes.LITERAL_return) {
             return false;
+        }
 
-        AST expr = aAST.getFirstChild();
-        AST value = expr.getFirstChild();
+        final AST expr = aAST.getFirstChild();
+        final AST value = expr.getFirstChild();
 
-        int valueType = value.getType();
-        return ( valueType == JavaTokenTypes.LITERAL_true
-                || valueType == JavaTokenTypes.LITERAL_false );
+        final int valueType = value.getType();
+        return ((valueType == JavaTokenTypes.LITERAL_true)
+                || (valueType == JavaTokenTypes.LITERAL_false));
     }
 }
