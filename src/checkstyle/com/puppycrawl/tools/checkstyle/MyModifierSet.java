@@ -117,13 +117,13 @@ class MyModifierSet
     }
 
     /**
-       Checks if the modifiers were added in the order suggested
-       in the Java language specification.
-
-       @return if the modifiers are a subsequence of "public protected
-       private abstract static final transient volatile synchronized
-       native strictfp".
-    */
+     * Checks if the modifiers were added in the order suggested
+     * in the Java language specification.
+     *
+     * @return if the modifiers are a subsequence of "public protected
+     * private abstract static final transient volatile synchronized
+     * native strictfp".
+     */
     boolean hasOrderSuggestedByJLS()
     {
         int i = 0;
