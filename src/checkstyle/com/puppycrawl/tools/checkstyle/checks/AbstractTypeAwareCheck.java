@@ -305,24 +305,24 @@ public abstract class AbstractTypeAwareCheck
         private FullIdent mName;
         /** <code>Class</code> object of this class if it's loadable. */
         private Class mClass;
-        /** name of surrundeing class. */
-        private String mCurrentClass;
+        /** name of surrounding class. */
+        private String mSurroundingClass;
         /** is class loadable. */
         private boolean mIsLoadable;
 
         /**
          * Creates new instance of of class information object.
          * @param aName <code>FullIdent</code> associated with new object.
-         * @param aCurrentClass name of current surrounding class.
+         * @param aSurroundingClass name of current surrounding class.
          */
-        public ClassInfo(FullIdent aName, String aCurrentClass)
+        public ClassInfo(final FullIdent aName, final String aSurroundingClass)
         {
             if (aName == null) {
                 throw new NullPointerException(
                     "ClassInfo's name should be non-null");
             }
             mName = aName;
-            mCurrentClass = aCurrentClass;
+            mSurroundingClass = aSurroundingClass;
             mIsLoadable = true;
         }
 
@@ -343,7 +343,7 @@ public abstract class AbstractTypeAwareCheck
         {
             if (isLoadable() && mClass == null) {
                 setClazz(AbstractTypeAwareCheck.this.
-                         tryLoadClass(getName(), mCurrentClass));
+                         tryLoadClass(getName(), mSurroundingClass));
             }
             return mClass;
         }

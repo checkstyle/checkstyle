@@ -156,10 +156,10 @@ public class JTreeTable extends JTable
     /**
      * Overridden to pass the new rowHeight to the tree.
      */
-    public void setRowHeight(int rowHeight)
+    public void setRowHeight(int newRowHeight)
     {
-        super.setRowHeight(rowHeight);
-        if (tree != null && tree.getRowHeight() != rowHeight) {
+        super.setRowHeight(newRowHeight);
+        if (tree != null && tree.getRowHeight() != newRowHeight) {
             tree.setRowHeight(getRowHeight());
         }
     }
@@ -214,12 +214,12 @@ public class JTreeTable extends JTable
          * Sets the row height of the tree, and forwards the row height to
          * the table.
          */
-        public void setRowHeight(int rowHeight)
+        public void setRowHeight(int newRowHeight)
         {
-            if (rowHeight > 0) {
-                super.setRowHeight(rowHeight);
+            if (newRowHeight > 0) {
+                super.setRowHeight(newRowHeight);
                 if (JTreeTable.this != null &&
-                        JTreeTable.this.getRowHeight() != rowHeight) {
+                        JTreeTable.this.getRowHeight() != newRowHeight) {
                     JTreeTable.this.setRowHeight(getRowHeight());
                 }
             }
