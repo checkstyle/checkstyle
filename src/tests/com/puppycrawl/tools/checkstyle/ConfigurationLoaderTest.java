@@ -39,13 +39,12 @@ public class ConfigurationLoaderTest extends TestCase
     public void testMissingPropertyName()
     {
         try {
-            final DefaultConfiguration config =
-                (DefaultConfiguration) loadConfiguration(
-                    "missing_property_name.xml");
+            loadConfiguration("missing_property_name.xml");
             fail("missing property name");
         }
         catch (CheckstyleException ex) {
-            assertTrue("exception error",
+            assertTrue(
+                "exception error",
                 ex.getMessage().indexOf("missing property name") >= 0);
         }
     }
@@ -53,13 +52,12 @@ public class ConfigurationLoaderTest extends TestCase
     public void testMissingPropertyValue()
     {
         try {
-            final DefaultConfiguration config =
-                (DefaultConfiguration) loadConfiguration(
-                    "missing_property_value.xml");
+            loadConfiguration("missing_property_value.xml");
             fail("missing property value");
         }
         catch (CheckstyleException ex) {
-            assertTrue("exception error",
+            assertTrue(
+                "exception error",
                 ex.getMessage().indexOf("missing value for property") >= 0);
         }
     }
@@ -67,13 +65,12 @@ public class ConfigurationLoaderTest extends TestCase
     public void testMissingConfigName()
     {
         try {
-            final DefaultConfiguration config =
-                (DefaultConfiguration) loadConfiguration(
-                    "missing_config_name.xml");
+            loadConfiguration("missing_config_name.xml");
             fail("missing config name");
         }
         catch (CheckstyleException ex) {
-            assertTrue("exception error",
+            assertTrue(
+                "exception error",
                 ex.getMessage().indexOf("missing config name") >= 0);
         }
     }
@@ -81,13 +78,12 @@ public class ConfigurationLoaderTest extends TestCase
     public void testMissingConfigParent()
     {
         try {
-            final DefaultConfiguration config =
-                (DefaultConfiguration) loadConfiguration(
-                    "missing_config_parent.xml");
+            loadConfiguration("missing_config_parent.xml");
             fail("missing config parent");
         }
         catch (CheckstyleException ex) {
-            assertTrue("exception error",
+            assertTrue(
+                "exception error",
                 ex.getMessage().indexOf("has no config parent") >= 0);
         }
     }
@@ -116,24 +112,33 @@ public class ConfigurationLoaderTest extends TestCase
             (DefaultConfiguration) children[2], "TranslationCheck", 0, atts);
         atts.put("testName", "testValue");
         verifyConfigNode(
-            (DefaultConfiguration) children[0], "TreeWalker", 8, atts);
+            (DefaultConfiguration) children[0],
+            "TreeWalker",
+            8,
+            atts);
 
         //verify TreeWalker's first, last, NoWhitespaceAfterCheck
         final Configuration[] grandchildren = children[0].getChildren();
         atts.clear();
         verifyConfigNode(
             (DefaultConfiguration) grandchildren[0],
-            "AvoidStarImport", 0, atts);
+            "AvoidStarImport",
+            0,
+            atts);
         atts.put("format", "System.out.println");
         verifyConfigNode(
             (DefaultConfiguration) grandchildren[grandchildren.length - 1],
-            "GenericIllegalRegexpCheck", 0, atts);
+            "GenericIllegalRegexpCheck",
+            0,
+            atts);
         atts.clear();
         atts.put("tokens", "DOT");
         atts.put("allowLineBreaks", "true");
         verifyConfigNode(
             (DefaultConfiguration) grandchildren[6],
-            "NoWhitespaceAfterCheck", 0, atts);
+            "NoWhitespaceAfterCheck",
+            0,
+            atts);
     }
 
     private void verifyConfigNode(
@@ -142,14 +147,17 @@ public class ConfigurationLoaderTest extends TestCase
     {
         assertEquals("name.", aName, aConfig.getName());
         assertEquals(
-            "children.length.", aChildrenLength, aConfig.getChildren().length);
+            "children.length.",
+            aChildrenLength,
+            aConfig.getChildren().length);
 
         final String[] attNames = aConfig.getAttributeNames();
         assertEquals("attributes.length", atts.size(), attNames.length);
 
         for (int i = 0; i < attNames.length; i++) {
             assertEquals(
-                "attribute[" + attNames[i] + "]", atts.get(attNames[i]),
+                "attribute[" + attNames[i] + "]",
+                atts.get(attNames[i]),
                 aConfig.getAttribute(attNames[i]));
         }
     }

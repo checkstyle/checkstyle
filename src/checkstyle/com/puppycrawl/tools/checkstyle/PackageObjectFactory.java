@@ -28,18 +28,19 @@ public class PackageObjectFactory
      * @return the <code>Object</code> created by aLoader.
      * @throws CheckstyleException if an error occurs.
      */            
-    private Object doMakeObject(String[] aPackages, ClassLoader aLoader,
-            String aName)
+    private Object doMakeObject(String[] aPackages,
+                                ClassLoader aLoader,
+                                String aName)
         throws CheckstyleException
     {
-        Object retVal = null;
         //try aName first
         try {
             return createObject(aLoader, aName);
         }
         catch (CheckstyleException ex) {
-            retVal = null;
+            // keep looking
         }
+        
         //now try packages
         for (int i = 0; i < aPackages.length; i++) {
             final String className = aPackages[i] + aName;
@@ -47,11 +48,11 @@ public class PackageObjectFactory
                 return createObject(aLoader, className);
             }
             catch (CheckstyleException ex) {
-                retVal = null;
+                // keep looking
             }
-        }   
-        throw new CheckstyleException(
-            "Unable to instantiate " + aName);
+        }
+
+        throw new CheckstyleException("Unable to instantiate " + aName);
     }
 
     /**
