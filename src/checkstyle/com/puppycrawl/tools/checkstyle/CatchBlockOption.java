@@ -54,12 +54,6 @@ public final class CatchBlockOption implements Serializable
         STR_TO_OPT.put(mStrRep, this);
     }
 
-    /** @see Object **/
-    public String toString()
-    {
-        return mStrRep;
-    }
-
     /**
      * Returns the CatchBlockOption specified by a string representation. If no
      * option exists then null is returned.

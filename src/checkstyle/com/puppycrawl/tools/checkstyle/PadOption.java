@@ -53,12 +53,6 @@ public final class PadOption
         STR_TO_OPT.put(mStrRep, this);
     }
 
-    /** @see Object **/
-    public String toString()
-    {
-        return mStrRep;
-    }
-
     /**
      * Returns the option specified by a string representation. If no
      * option exists then null is returned.
