@@ -127,7 +127,7 @@ public class DeclarationOrderCheck extends Check
             }
 
             if (state.mScopeState > STATE_METHOD_DEF) {
-                log(aAST, "declarationorder.method");
+                log(aAST, "declaration.order.method");
             }
             else {
                 state.mScopeState = STATE_METHOD_DEF;
