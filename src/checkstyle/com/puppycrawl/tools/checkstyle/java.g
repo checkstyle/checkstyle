@@ -50,16 +50,16 @@ options {
 }
 
 tokens {
-	BLOCK; MODIFIERS; OBJBLOCK; SLIST; CTOR_DEF; METHOD_DEF; VARIABLE_DEF; 
-	INSTANCE_INIT; STATIC_INIT; TYPE; CLASS_DEF; INTERFACE_DEF; 
+	BLOCK; MODIFIERS; OBJBLOCK; SLIST; CTOR_DEF; METHOD_DEF; VARIABLE_DEF;
+	INSTANCE_INIT; STATIC_INIT; TYPE; CLASS_DEF; INTERFACE_DEF;
 	PACKAGE_DEF; ARRAY_DECLARATOR; EXTENDS_CLAUSE; IMPLEMENTS_CLAUSE;
-	PARAMETERS; PARAMETER_DEF; LABELED_STAT; TYPECAST; INDEX_OP; 
-	POST_INC; POST_DEC; METHOD_CALL; EXPR; ARRAY_INIT; 
-	IMPORT; UNARY_MINUS; UNARY_PLUS; CASE_GROUP; ELIST; FOR_INIT; FOR_CONDITION; 
+	PARAMETERS; PARAMETER_DEF; LABELED_STAT; TYPECAST; INDEX_OP;
+	POST_INC; POST_DEC; METHOD_CALL; EXPR; ARRAY_INIT;
+	IMPORT; UNARY_MINUS; UNARY_PLUS; CASE_GROUP; ELIST; FOR_INIT; FOR_CONDITION;
 	FOR_ITERATOR; EMPTY_STAT; FINAL="final"; ABSTRACT="abstract";
 	STRICTFP="strictfp"; SUPER_CTOR_CALL; CTOR_CALL;
 }
-	
+
 {
     final Verifier ver = VerifierSingleton.getInstance();
     private static String sFirstIdent = "";
@@ -287,7 +287,7 @@ field!
 
 		|	cd:classDefinition[#mods]       // inner class
 			{#field = #cd;}
-			
+
 		|	id:interfaceDefinition[#mods]   // inner interface
 			{#field = #id;}
 
@@ -506,8 +506,8 @@ statement
 	// For statement
 	|	"for"^
 			LPAREN!
-				forInit s1:SEMI! {ver.verifyWSAfter(s1.getLine(), s1.getColumn(), "';'");} // initializer
-				forCond	s2:SEMI! {ver.verifyWSAfter(s2.getLine(), s2.getColumn(), "';'");} // condition test
+				forInit s1:SEMI! {ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);} // initializer
+				forCond	s2:SEMI! {ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON);} // condition test
 				forIter         // updater
 			RPAREN!
 			statement                     // statement to loop over
@@ -631,7 +631,7 @@ handler
 // to point out that new has a higher precedence than '.', so you
 // can validy use
 //     new Frame().show()
-// 
+//
 // Note that the above precedence levels map to the rules below...
 // Once you have a precedence chart, writing the appropriate rules as below
 //   is usually very straightfoward
@@ -768,14 +768,14 @@ unaryExpressionNotPlusMinus
 			}
 		:	// If typecast is built in type, must be numeric operand
 			// Also, no reason to backtrack if type keyword like int, float...
-			lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] rpb:RPAREN! {ver.verifyWSAfter(rpb.getLine(), rpb.getColumn(), "cast");}
+			lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] rpb:RPAREN! {ver.verifyWSAfter(rpb.getLine(), rpb.getColumn(), MyToken.CAST);}
 			unaryExpression
 
 			// Have to backtrack to see if operator follows.  If no operator
 			// follows, it's a typecast.  No semantic checking needed to parse.
 			// if it _looks_ like a cast, it _is_ a cast; else it's a "(expr)"
 		|	(LPAREN classTypeSpec[true] RPAREN unaryExpressionNotPlusMinus)=>
-			lp:LPAREN^ {#lp.setType(TYPECAST);} classTypeSpec[true] rpb2:RPAREN! {ver.verifyWSAfter(rpb2.getLine(), rpb2.getColumn(), "cast");}
+			lp:LPAREN^ {#lp.setType(TYPECAST);} classTypeSpec[true] rpb2:RPAREN! {ver.verifyWSAfter(rpb2.getLine(), rpb2.getColumn(), MyToken.CAST);}
 			unaryExpressionNotPlusMinus
 
 		|	postfixExpression
@@ -836,28 +836,28 @@ primaryExpression
 	|	LPAREN! assignmentExpression RPAREN!
 	|	"super"
 		// look for int.class and int[].class
-	|	builtInType 
+	|	builtInType
 		( lbt:LBRACK^ {#lbt.setType(ARRAY_DECLARATOR);} RBRACK! )*
 		DOT^ "class"
 	;
 
 /** object instantiation.
  *  Trees are built as illustrated by the following input/tree pairs:
- *  
+ *
  *  new T()
- *  
+ *
  *  new
  *   |
  *   T --  ELIST
  *           |
  *          arg1 -- arg2 -- .. -- argn
- *  
+ *
  *  new int[]
  *
  *  new
  *   |
  *  int -- ARRAY_DECLARATOR
- *  
+ *
  *  new int[] {1,2}
  *
  *  new
@@ -867,7 +867,7 @@ primaryExpression
  *                                EXPR -- EXPR
  *                                  |      |
  *                                  1      2
- *  
+ *
  *  new int[3]
  *  new
  *   |
@@ -876,9 +876,9 @@ primaryExpression
  *              EXPR
  *                |
  *                3
- *  
+ *
  *  new int[1][2]
- *  
+ *
  *  new
  *   |
  *  int -- ARRAY_DECLARATOR
@@ -888,7 +888,7 @@ primaryExpression
  *             EXPR             1
  *               |
  *               2
- *  
+ *
  */
 newExpression
 	:	"new"^ type
@@ -969,7 +969,7 @@ RBRACK			:	']'		;
 LCURLY			:	'{'		;
 RCURLY			:	'}'		;
 COLON			:	':'		;
-COMMA			:	',' {ver.verifyWSAfter(getLine(), getColumn() - 1, "','");} ;
+COMMA			:	',' {ver.verifyWSAfter(getLine(), getColumn() - 1, MyToken.COMMA);} ;
 //DOT			:	'.'		;
 ASSIGN			:	'='		;
 EQUAL			:	"=="	;
@@ -1097,14 +1097,14 @@ ESC
 		|	'"'
 		|	'\''
 		|	'\\'
-		|	('u')+ HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT 
+		|	('u')+ HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
 		|	('0'..'3')
 			(
 				options {
 					warnWhenFollowAmbig = false;
 				}
 			:	('0'..'7')
-				(	
+				(
 					options {
 						warnWhenFollowAmbig = false;
 					}
@@ -1179,7 +1179,7 @@ NUM_INT
 		|	('1'..'9') ('0'..'9')*  {isDecimal=true;}		// non-zero decimal
 		)
 		(	('l'|'L') { _ttype = NUM_LONG; }
-		
+
 		// only check to see if it's a float if looks like decimal so far
 		|	{isDecimal}?
             (   '.' ('0'..'9')* (EXPONENT)? (f2:FLOAT_SUFFIX {t=f2;})?

@@ -248,6 +248,12 @@ public class CheckStyleTask
         mConfig.setIgnoreWhitespace(aIgnore);
     }
 
+    /** @param aIgnore whether to ignore whitespace after casts **/
+    public void setIgnoreCastWhitespace(boolean aIgnore)
+    {
+        mConfig.setIgnoreCastWhitespace(aIgnore);
+    }
+
     /** @param aIgnore whether to ignore braces **/
     public void setIgnoreBraces(boolean aIgnore)
     {

@@ -27,10 +27,6 @@ public class CheckerTest
         public void auditStarted(AuditEvent evt) {}
         public void fileFinished(AuditEvent evt) {}
         public void fileStarted(AuditEvent evt) {}
-        //public void auditFinished(AuditEvent evt) {
-
-            //writer.flush();
-        //}
     }
 
     private final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
@@ -86,6 +82,7 @@ public class CheckerTest
     public void testWhitespace()
         throws Exception
     {
+        mConfig.setIgnoreCastWhitespace(false);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -104,6 +101,31 @@ public class CheckerTest
             filepath + ":39: 'catch' is not proceeded with whitespace.",
             filepath + ":74: 'return' is not proceeded with whitespace.",
             filepath + ":86: cast needs to be followed by whitespace.",
+        };
+        verify(c, filepath, expected);
+    }
+
+    public void testWhitespaceCastOff()
+        throws Exception
+    {
+        mConfig.setIgnoreCastWhitespace(true);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputWhitespace.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":11: type Javadoc comment is missing an @author tag.",
+            filepath + ":14: '=' is not preceeded with whitespace.",
+            filepath + ":16: '=' is not proceeded with whitespace.",
+            filepath + ":24: '=' is not preceeded with whitespace.",
+            filepath + ":25: '=' is not preceeded with whitespace.",
+            filepath + ":26: '+=' is not preceeded with whitespace.",
+            filepath + ":27: '-' is proceeded with whitespace.",
+            filepath + ":27: '-=' is not proceeded with whitespace.",
+            filepath + ":28: '++' is preceeded with whitespace.",
+            filepath + ":29: '++' is proceeded with whitespace.",
+            filepath + ":35: 'synchronized' is not proceeded with whitespace.",
+            filepath + ":39: 'catch' is not proceeded with whitespace.",
+            filepath + ":74: 'return' is not proceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }
@@ -349,7 +371,7 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
-    
+
     public void testScopeInnerInterfacesPublic()
         throws Exception
     {
@@ -395,7 +417,7 @@ public class CheckerTest
         };
         verify(c, filepath, expected);
     }
-    
+
     public void testScopeAnonInnerPrivate()
         throws Exception
     {

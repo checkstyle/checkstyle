@@ -114,6 +114,8 @@ class Configuration
     private boolean mIgnoreImports = false;
     /** whether to ignore whitespace **/
     private boolean mIgnoreWhitespace = false;
+    /** whether to ignore cast whitespace **/
+    private boolean mIgnoreCastWhitespace = false;
     /** whether to ignore braces **/
     private boolean mIgnoreBraces = false;
     /** name of the cache file **/
@@ -173,10 +175,12 @@ class Configuration
                                                   Scope.PRIVATE.getName())));
         setIgnoreImports(
             getBooleanProperty(aProps, IGNORE_IMPORTS_PROP, mIgnoreImports));
-        setIgnoreWhitespace(
-            getBooleanProperty(aProps,
-                               IGNORE_WHITESPACE_PROP,
-                               mIgnoreWhitespace));
+        setIgnoreWhitespace(getBooleanProperty(aProps,
+                                               IGNORE_WHITESPACE_PROP,
+                                               mIgnoreWhitespace));
+        setIgnoreCastWhitespace(getBooleanProperty(aProps,
+                                                   IGNORE_CAST_WHITESPACE_PROP,
+                                                   mIgnoreCastWhitespace));
         setIgnoreBraces(getBooleanProperty(aProps,
                                            IGNORE_BRACES_PROP,
                                            mIgnoreBraces));
@@ -340,7 +344,7 @@ class Configuration
     {
         return mJavadocScope;
     }
-    
+
     /** @return whether to process imports **/
     public boolean isIgnoreImports()
     {
@@ -351,6 +355,12 @@ class Configuration
     public boolean isIgnoreWhitespace()
     {
         return mIgnoreWhitespace;
+    }
+
+    /** @return whether to ignore checks for whitespace after casts **/
+    public boolean isIgnoreCastWhitespace()
+    {
+        return mIgnoreCastWhitespace;
     }
 
     /** @return whether to ignore checks for braces **/
@@ -539,6 +549,12 @@ class Configuration
     public void setIgnoreWhitespace(boolean aTo)
     {
         mIgnoreWhitespace = aTo;
+    }
+
+    /** @param aTo whether to ignore checks for whitespace after casts */
+    public void setIgnoreCastWhitespace(boolean aTo)
+    {
+        mIgnoreCastWhitespace = aTo;
     }
 
     /**

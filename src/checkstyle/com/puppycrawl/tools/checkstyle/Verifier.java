@@ -109,9 +109,9 @@ interface Verifier
      * Verify that whitespace IS after a specified column.
      * @param aLineNo number of line to check
      * @param aColNo column where the cast ends
-     * @param aConstruct the construct being checked (e.g. "cast" or "','")
+     * @param aToken the token being checked
      */
-    void verifyWSAfter(int aLineNo, int aColNo, String aConstruct);
+    void verifyWSAfter(int aLineNo, int aColNo, MyToken aToken);
 
     /**
      * Verify that a method length is ok.
