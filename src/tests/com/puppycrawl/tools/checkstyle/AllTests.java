@@ -6,7 +6,7 @@ import junit.framework.TestSuite;
 /**
  * Enter a description of class AllTests1.java.
  * @author Rick Giles
- * @version 14-Nov-2002
+ * @version 15-Nov-2002
  */
 public class AllTests {
 
@@ -19,6 +19,9 @@ public class AllTests {
             new TestSuite("Test for com.puppycrawl.tools.checkstyle");
         //$JUnit-BEGIN$
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
+        suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
+        suite.addTest(new TestSuite(ConfigurationSerializationTest.class));
+        suite.addTest(new TestSuite(ConfigurationTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
         suite.addTest(new TestSuite(EmptyBlockCheckTest.class));
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
@@ -47,6 +50,7 @@ public class AllTests {
         suite.addTest(new TestSuite(NoWhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceBeforeCheckTest.class));
         suite.addTest(new TestSuite(OperatorWrapCheckTest.class));
+        suite.addTest(new TestSuite(OptionTest.class));
         suite.addTest(new TestSuite(OtherLeftCurlyCheckTest.class));
         suite.addTest(new TestSuite(PackageHtmlCheckTest.class));
         suite.addTest(new TestSuite(PackageNameCheckTest.class));
@@ -72,7 +76,6 @@ public class AllTests {
         suite.addTest(new TestSuite(VisibilityModifierCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAroundTest.class));
-        suite.addTest(new TestSuite(OptionTest.class));
         //$JUnit-END$
         return suite;
     }

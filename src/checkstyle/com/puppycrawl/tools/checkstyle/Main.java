@@ -85,10 +85,22 @@ public final class Main
         }
 
         // Load the config file
-        CheckConfiguration[] checkConfigs = null;
+//        CheckConfiguration[] checkConfigs = null;
+//        try {
+//            checkConfigs =
+//                ConfigurationLoader.loadConfigs(line.getOptionValue("c"));
+//        }
+//        catch (CheckstyleException e) {
+//            System.out.println("Error loading configuration file");
+//            e.printStackTrace(System.out);
+//            System.exit(1);
+//        }
+
+        // Load the config file
+        Configuration config = null;
         try {
-            checkConfigs =
-                ConfigurationLoader.loadConfigs(line.getOptionValue("c"));
+            config =
+                ConfigurationLoader.loadConfiguration(line.getOptionValue("c"));
         }
         catch (CheckstyleException e) {
             System.out.println("Error loading configuration file");
@@ -151,11 +163,24 @@ public final class Main
             usage();
         }
 
+//        // create the checker
+//        Checker c = null;
+//        try {
+//            c = new Checker(new GlobalProperties(props, System.out),
+//                            checkConfigs);
+//            c.addListener(listener);
+//        }
+//        catch (Exception e) {
+//            System.out.println("Unable to create Checker: "
+//                               + e.getMessage());
+//            e.printStackTrace(System.out);
+//            System.exit(1);
+//        }
+
         // create the checker
         Checker c = null;
         try {
-            c = new Checker(new GlobalProperties(props, System.out),
-                            checkConfigs);
+            c = new Checker(config);
             c.addListener(listener);
         }
         catch (Exception e) {

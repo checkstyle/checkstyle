@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<!-- TODO: fix the loader to not validate the file 
+<!-- TODO: fix the loader to not validate the file
 <!DOCTYPE configuration SYSTEM "configuration.dtd">
- -->
+-->
 <configuration>
-
-    <global-property name="tabWidth" value="4"/>
-
-    <check classname="com.puppycrawl.tools.checkstyle.checks.AvoidStarImport"/>
+    <global>
+ <set-property name="tabWidth" value="4"/>
+    </global>
+ <check classname="com.puppycrawl.tools.checkstyle.checks.AvoidStarImport"/>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck"/>
 

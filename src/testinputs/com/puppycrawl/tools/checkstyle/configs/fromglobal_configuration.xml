@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<configuration>
+    <global>
+        <set-property name="rightcurlycheck.option" value="alone"/>
+    </global>
+    <check classname="com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck">
+        <set-property name="option" from-global="rightcurlycheck.option"/>
+        <set-property name="option" value="alone"/>
+    </check>
+</configuration>
