@@ -1,50 +1,139 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>Checks for imports</title>
-  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <link rel="stylesheet" type="text/css" href="mystyle.css"/>
 </head>
 
 <body>
-<h1>Checks for imports</h1>
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td><h1>Checks for imports</h1></td>
+    <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
+  </tr>
+</table>
+<!-- content -->
+<table border="0" width="100%" cellpadding="5" summary="body layout">
+  <tr>
+    <!--Left menu-->
+    <td class="menu" valign="top">
+      <ul>
+        <li>
+          <a href="#IllegalImport">IllegalImport</a>
+        </li>
+        <li>
+          <a href="#UnusedImports">UnusedImports</a>
+        </li>
+      </ul>
+    </td>
+    <!--Content-->
+    <td class="content" valign="top" align="left"><a name="IllegalImport"></a> <h2>IllegalImport</h2>
+      <h4>Description</h4>
 
-<p>The property <span class="code">checkstyle.ignore.imports</span> controls
-whether to check import statements. The property type is <a
-href="property_types.html#boolean">boolean</a> and defaults to <span
-class="default">false</span>.</p>
+      <p class="body">
+      Checks for imports from a set of illegal packages. By default, the check rejects 
+      all <span class="code">sun.*</span> packages since programs that contain direct 
+      calls to the <span class="code">sun.*</span> packages are <a href="http://java.sun.com/products/jdk/faq/faq-sun-packages.html">not 
+      100% Pure Java</a>. To reject other packages, set property <span class="code">
+      illegalPkgs</span> to a list of the illegal packages.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>illegalPkgs</td>
+          <td>packages to reject</td>
+          <td><a href="property_types.html#stringSet">list of strings</a></td>
+          <td><span class="default">sun</span></td>
+        </tr>
+      </table>
 
-<h2>Unused imports</h2>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;IllegalImport&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check so that it rejects packages <span class="code">java.io.*</span> 
+      and <span class="code">java.sql.*</span>:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;IllegalImport&quot;&gt;
+    &lt;property name=&quot;illegalPkgs&quot; value=&quot;java.io, java.sql&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
 
-<p>Checkstyle uses a simple but very reliable algorithm to report on unused import statements. An import statement is considered unused if:</p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <a name="UnusedImports"></a> <h2>UnusedImports</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for unused import statements. Checkstyle uses a simple but very reliable 
+      algorithm to report on unused import statements. An import statement is 
+      considered unused if:
+      </p>
 
-<ul>
-  <li>It is not referenced in the file. The algorithm does not support
-  wild-card imports like <span class="code">import java.io.*;</span>. Most
-  IDE's provide very sophisticated checks for imports that handle wild-card
-  imports.</li>
+      <ul  class="body">
+        <li>
+          It is not referenced in the file. The algorithm does not support wild-card 
+          imports like <span class="code">import java.io.*;</span>. Most IDE's provide 
+          very sophisticated checks for imports that handle wild-card imports.
+        </li>
 
-  <li>It is a duplicate of another import. This is when a class is imported
-  more than once.</li>
+        <li>
+          It is a duplicate of another import. This is when a class is imported more than 
+          once.
+        </li>
 
-  <li>The class imported is from the <span class="code">java.lang</span>
-  package. For example importing <span
-  class="code">java.lang.String</span>.</li>
+        <li>
+          The class imported is from the <span class="code">java.lang</span> package. For 
+          example importing <span
+  class="code">java.lang.String</span>.
+        </li>
 
-  <li>The class imported is from the same package.</li>
-</ul>
+        <li>
+          The class imported is from the same package.
+        </li>
+      </ul>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;UnusedImports&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
 
-<h2>Illegal imports</h2>
-
-<p>The property <span class="code">checkstyle.illegal.imports</span> contains
-the set of import illegal package prefixes for import statements. The property
-type is <a href="property_types.html#stringSet">string set</a> and defaults to
-<span class="code">sun</span> since programs that contain direct calls to the
-<span class="code">sun.*</span> packages are <a
-href="http://java.sun.com/products/jdk/faq/faq-sun-packages.html">not 100%
-Pure Java</a>.</p>
-
-<hr>
-<p align="center">Copyright &copy; 2002 Oliver Burn. All rights Reserved.</p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+    </td>
+  </tr>
+</table>
+<hr />
+<p>
+Copyright &copy; 2002 Oliver Burn. All rights Reserved.
+</p>
 
 </body>
 </html>
