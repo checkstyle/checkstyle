@@ -14,25 +14,8 @@ import org.apache.bcel.classfile.Visitor;
  */
 public final class JavaClassWalker
 {
-    /** singleton */
-    private static JavaClassWalker sInstance = new JavaClassWalker();
-
     /** visitor to be accepted during a traversal */
     private Visitor mVisitor = new EmptyClassFileVisitor();
-
-    /** prevent client creation */
-    private JavaClassWalker()
-    {
-    }
-
-    /**
-     * Accesses the singleton JavaClassWalker.
-     * @return the singleton  JavaClassWalker.
-     */
-    public static JavaClassWalker getInstance()
-    {
-        return sInstance;
-    }
 
     /**
      * Sets a visitor to be accepted during a traversal.

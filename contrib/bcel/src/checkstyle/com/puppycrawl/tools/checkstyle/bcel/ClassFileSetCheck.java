@@ -138,7 +138,7 @@ public class ClassFileSetCheck
         visitSet(javaClasses);
 
         // walk each Java class parse tree
-        final JavaClassWalker walker = JavaClassWalker.getInstance();
+        final JavaClassWalker walker = new JavaClassWalker();
         walker.setVisitor(getTreeVisitor());
         final Iterator it = javaClasses.iterator();
         while (it.hasNext()) {
