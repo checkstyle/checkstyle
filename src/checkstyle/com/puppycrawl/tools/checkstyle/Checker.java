@@ -24,13 +24,12 @@ import java.util.Iterator;
 import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.PackageNamesBean;
-import com.puppycrawl.tools.checkstyle.api.Context;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -39,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
  * @author lkuehne
  */
 public class Checker extends AutomaticBean
-    implements Defn, MessageDispatcher, PackageNamesBean
+    implements Defn, MessageDispatcher
 {
     /**
      * An AuditListener that maintains the number of errors.
@@ -112,11 +111,8 @@ public class Checker extends AutomaticBean
     /** locale language to report messages  **/
     private String mLocaleLanguage = Locale.getDefault().getLanguage();
 
-    /**
-     * List of package names for instatiating objects. Do not access directly,
-     * but instead use the getter
-     */
-    private String[] mPackageNames;
+    /** The factory for instantiating submodules */
+    private ModuleFactory mModuleFactory;
 
     /** the context of all child components */
     private Context mChildContext;
@@ -140,8 +136,14 @@ public class Checker extends AutomaticBean
         final Locale locale = new Locale(mLocaleLanguage, mLocaleCountry);
         LocalizedMessage.setLocale(locale);
 
+        if (mModuleFactory == null) {
+            mModuleFactory = PackageNamesLoader.loadModuleFactory(
+                    this.getClass().getClassLoader());
+        }
+
         final DefaultContext context = new DefaultContext();
         context.add("classLoader", mLoader);
+        context.add("moduleFactory", mModuleFactory);
         mChildContext = context;
     }
 
@@ -155,13 +157,8 @@ public class Checker extends AutomaticBean
     {
         final String name = aChildConf.getName();
         try {
-            final String[] packageNames = getPackageNames();
             final FileSetCheck fsc =
-                    (FileSetCheck) PackageObjectFactory.makeObject(
-                            packageNames,
-                            getClass().getClassLoader(),
-                            name);
-            fsc.setPackageNames(packageNames);
+            (FileSetCheck) mModuleFactory.createModule(name);
             fsc.contextualize(mChildContext);
             fsc.configure(aChildConf);
             addFileSetCheck(fsc);
@@ -317,22 +314,14 @@ public class Checker extends AutomaticBean
         }
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.PackageNamesBean */
-    public void setPackageNames(String[] aPackageNames)
+    /**
+     * Sets the factory for creating submodules.
+     *
+     * @param aModuleFactory the factory for creating FileSetChecks
+     */
+    public void setModuleFactory(ModuleFactory aModuleFactory)
     {
-        mPackageNames = aPackageNames;
-    }
-
-    /** @see com.puppycrawl.tools.checkstyle.api.PackageNamesBean */
-    public String[] getPackageNames()
-        throws CheckstyleException
-    {
-        if (mPackageNames == null) {
-            mPackageNames =
-                PackageNamesLoader.loadPackageNames(
-                    getClass().getClassLoader());
-        }
-        return mPackageNames;
+        mModuleFactory = aModuleFactory;
     }
 
     /** @param aLocaleCountry the country to report messages  **/

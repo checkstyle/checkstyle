@@ -29,13 +29,13 @@ public interface PackageNamesBean
      * Sets the package names for instantiating objects.
      * @param aPackageNames The list of package names.
      */
-     void setPackageNames(String[] aPackageNames);
+     void setModuleFactory(String[] aPackageNames);
 
     /**
      * Returns the package names for instantiating objects.
      * @return the list of package names.
      * @throws CheckstyleException if there is an error.
      */        
-     String[] getPackageNames()
+     String[] getModuleFactory()
         throws CheckstyleException;
 }

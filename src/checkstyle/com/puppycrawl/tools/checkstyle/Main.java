@@ -101,10 +101,10 @@ public final class Main
         }
         
         //Load the set of package names
-        String[] packageNames = null;
+        ModuleFactory moduleFactory = null;
         if (line.hasOption("n")) {
             try {
-                packageNames = PackageNamesLoader.loadPackageNames(
+                moduleFactory = PackageNamesLoader.loadModuleFactory(
                     line.getOptionValue("n"));
             }
             catch (CheckstyleException e) {
@@ -173,7 +173,7 @@ public final class Main
         Checker c = null;
         try {
             c = new Checker();
-            c.setPackageNames(packageNames);
+            c.setModuleFactory(moduleFactory);
             c.configure(config);
             c.addListener(listener);
         }

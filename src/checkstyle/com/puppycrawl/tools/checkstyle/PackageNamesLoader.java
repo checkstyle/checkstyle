@@ -18,16 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
+
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -53,8 +52,12 @@ public class PackageNamesLoader
      */
     private static final String DEFAULT_PACKAGES = "checkstyle_packages.xml";
             
-    /** list of class names */
-    private final List mPackageNames = new ArrayList();
+    /**
+     * the factory to return in getModuleFactory(),
+     * configured during parsing
+     */
+    private final PackageObjectFactory mModuleFactory =
+            new PackageObjectFactory();
     
     /** The loaded package names */   
     private Stack mPackageStack = new Stack();
@@ -70,16 +73,6 @@ public class PackageNamesLoader
         super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
     }
     
-    /**
-     * Returns the list of package names in the last file parsed.
-     * @return the list of package names.
-     */
-    private String[] getPackageNames()
-    {
-        return (String[]) mPackageNames.toArray(
-            new String[mPackageNames.size()]);
-    }
-
     /** @see org.xml.sax.helpers.DefaultHandler **/
     public void startElement(String aNamespaceURI,
                              String aLocalName,
@@ -117,14 +110,23 @@ public class PackageNamesLoader
         }
         return buf.toString();
     }
-    
+
+    /**
+     * Returns the module factory that has just been configured.
+     * @return the module factory, never null
+     */
+    private ModuleFactory getModuleFactory()
+    {
+        return mModuleFactory;
+    }
+
     /** @see org.xml.sax.helpers.DefaultHandler **/
     public void endElement(String aNamespaceURI,
                            String aLocalName,
                            String aQName)
     {
         if (aQName.equals("package")) {
-            mPackageNames.add(getPackageName());
+            mModuleFactory.addPackage(getPackageName());
             mPackageStack.pop();
         }
     }
@@ -136,14 +138,14 @@ public class PackageNamesLoader
      * @return the default list of package names.
      * @throws CheckstyleException if an error occurs.
      */
-    public static String[] loadPackageNames(ClassLoader aClassLoader)
+    public static ModuleFactory loadModuleFactory(ClassLoader aClassLoader)
         throws CheckstyleException
     {
 
         final InputStream stream =
             aClassLoader.getResourceAsStream(DEFAULT_PACKAGES);
         final InputSource source = new InputSource(stream);
-        return loadPackageNames(source, "default package names");
+        return loadModuleFactory(source, "default package names");
     }
 
     /**
@@ -153,7 +155,7 @@ public class PackageNamesLoader
      *  package file. 
      * @throws CheckstyleException if an error occurs.
      */      
-    public static String[] loadPackageNames(String aFilename)
+    public static ModuleFactory loadModuleFactory(String aFilename)
         throws CheckstyleException
     {
         FileReader reader = null;
@@ -164,7 +166,7 @@ public class PackageNamesLoader
             throw new CheckstyleException("unable to find " + aFilename);
         }
         final InputSource source = new InputSource(reader);
-        return loadPackageNames(source, aFilename);
+        return loadModuleFactory(source, aFilename);
     }
     
     /**
@@ -174,14 +176,14 @@ public class PackageNamesLoader
      * @return the list ofpackage names stored in aSource. 
      * @throws CheckstyleException if an error occurs.
      */          
-    private static String[] loadPackageNames(InputSource aSource,
-                                             String aSourceName)
+    private static ModuleFactory loadModuleFactory(
+            InputSource aSource, String aSourceName)
         throws CheckstyleException
     {
         try {
             final PackageNamesLoader nameLoader = new PackageNamesLoader();
             nameLoader.parseInputSource(aSource);
-            return nameLoader.getPackageNames();
+            return nameLoader.getModuleFactory();
         }
         catch (FileNotFoundException e) {
             throw new CheckstyleException("unable to find " + aSourceName);
