@@ -71,8 +71,8 @@ public abstract class Check extends AutomaticBean
      */
     public int[] getAcceptableTokens()
     {
-        int[] defaultTokens = getDefaultTokens();
-        int[] copy = new int[defaultTokens.length];
+        final int[] defaultTokens = getDefaultTokens();
+        final int[] copy = new int[defaultTokens.length];
         System.arraycopy(defaultTokens, 0, copy, 0, defaultTokens.length);
         return copy;
     }
