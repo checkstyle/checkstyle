@@ -108,6 +108,13 @@ public class JavadocMethodCheck
     private static final RE MATCH_JAVADOC_NOARG =
         Utils.createRE(MATCH_JAVADOC_NOARG_PAT);
 
+    /** the pattern to match Javadoc tags with no argument and {} **/
+    private static final String MATCH_JAVADOC_NOARG_CURLY_PAT =
+        "\\{\\s*@(inheritDoc)\\s*\\}";
+    /** compiled regexp to match Javadoc tags with no argument and {} **/
+    private static final RE MATCH_JAVADOC_NOARG_CURLY =
+        Utils.createRE(MATCH_JAVADOC_NOARG_CURLY_PAT);
+
     /** full identifier for package of the method **/
     private FullIdent mPackageFullIdent = null;
 
@@ -242,7 +249,7 @@ public class JavadocMethodCheck
         final List tags = getMethodTags(aComment, aAST.getLineNo() - 1);
         // Check for only one @see tag
         if ((tags.size() != 1)
-            || !((JavadocTag) tags.get(0)).isSeeTag())
+            || !((JavadocTag) tags.get(0)).isSeeOrInheritDocTag())
         {
             checkParamTags(tags, getParameters(aAST));
             checkThrowsTags(tags, getThrows(aAST));
@@ -254,7 +261,7 @@ public class JavadocMethodCheck
             final Iterator it = tags.iterator();
             while (it.hasNext()) {
                 final JavadocTag jt = (JavadocTag) it.next();
-                if (!jt.isSeeTag()) {
+                if (!jt.isSeeOrInheritDocTag()) {
                     log(jt.getLineNo(), "javadoc.unusedTagGeneral");
                 }
             }
@@ -282,6 +289,10 @@ public class JavadocMethodCheck
             else if (MATCH_JAVADOC_NOARG.match(aLines[i])) {
                 tags.add(new JavadocTag(currentLine,
                                         MATCH_JAVADOC_NOARG.getParen(1)));
+            }
+            else if (MATCH_JAVADOC_NOARG_CURLY.match(aLines[i])) {
+                tags.add(new JavadocTag(currentLine,
+                                        MATCH_JAVADOC_NOARG_CURLY.getParen(1)));
             }
             else if (MATCH_JAVADOC_MULTILINE_START.match(aLines[i])) {
                 final String p1 = MATCH_JAVADOC_MULTILINE_START.getParen(1);

@@ -103,5 +103,9 @@ public class InputPublicOnly // ignore - need javadoc
 
     }
 
-
+    /** {@inheritDoc} */
+    public String toString()
+    {
+        return super.toString();
+    }
 }
