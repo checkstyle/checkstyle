@@ -132,6 +132,7 @@ public final class TreeWalker
      */
     public TreeWalker()
     {
+        setFileExtensions(new String[]{"java"});
         mMessages = new LocalizedMessages();
 
         // TODO: I (lkuehne) can't believe I wrote this! HACK HACK HACK!
@@ -512,8 +513,10 @@ public final class TreeWalker
     /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
     public void process(File[] aFiles)
     {
-        for (int i = 0; i < aFiles.length; i++) {
-            process(aFiles[i]);
+        File[] javaFiles = filter(aFiles);
+
+        for (int i = 0; i < javaFiles.length; i++) {
+            process(javaFiles[i]);
         }
     }
 
