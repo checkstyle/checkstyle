@@ -10,6 +10,7 @@ public class LocalHomeInterfaceCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalHomeInterfaceCheck.class);
         final String[] expected = {
+            "12:18: Home interface has no findByPrimaryKey method.",
             "18:19: Method createSomething does not throw javax.ejb.CreateException.",
             "18:19: Method createSomething is not public.",
             "18:19: Void createSomething method.",

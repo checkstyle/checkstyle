@@ -92,4 +92,49 @@ public class AbstractInterfaceCheck
             }
         }
     }
+
+    /**
+     * Checks that every method of an AST has a throws clause for a given
+     * Exception.
+     * @param aAST the AST to check.
+     * @param aException the name of the Exception class.
+     */
+    protected void checkThrows(DetailAST aAST, String aException)
+    {
+        final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
+        if (objBlock != null) {
+            DetailAST child = (DetailAST) objBlock.getFirstChild();
+            while (child != null) {
+                if (child.getType() == TokenTypes.METHOD_DEF) {
+                    if (!Utils.hasThrows(child, aException)) {
+                        final DetailAST nameAST =
+                            child.findFirstToken(TokenTypes.IDENT);
+                        final String name = nameAST.getText();
+                        log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                            "missingthrows.bean",
+                             new Object[] {name, aException});
+                    }
+                }
+                child = (DetailAST) child.getNextSibling();
+            }
+        }
+    }
+    
+    /**
+     * Checks that an AST contains the definition of a findByPrimaryKey
+     * method.
+     * @param aAST the AST to check.
+     */
+    protected void checkFindByPrimaryKey(DetailAST aAST)
+    {
+        if (!Utils.hasPublicMethod(aAST, "findByPrimaryKey", false, 1))
+        {
+            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+            log(
+                aAST.getLineNo(),
+                nameAST.getColumnNo(),
+                "missingmethod.bean",
+                new Object[] {"Home interface", "findByPrimaryKey"});
+        }
+    }
 }

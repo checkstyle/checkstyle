@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @version 30-Jun-2003
  */
 public class RemoteInterfaceCheck
-    extends HomeInterfaceCheck
+    extends AbstractInterfaceCheck
 {
     /**
      * @see com.puppycrawl.tools.checkstyle.api.Check
@@ -36,5 +36,17 @@ public class RemoteInterfaceCheck
         if (Utils.hasExtends(aAST, "javax.ejb.EJBObject")) {
             checkMethods(aAST);
         }
+    }
+    
+    /**
+     *
+     * @see com.puppycrawl.tools.checkstyle.checks.j2ee.AbstractInterfaceCheck
+     */
+    protected void checkMethods(DetailAST aAST)
+    {
+        super.checkMethods(aAST);
+
+        // every method must throw java.rmi.RemoteException
+        checkThrows(aAST, "java.rmi.RemoteException");
     }
 }
