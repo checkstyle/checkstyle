@@ -70,6 +70,47 @@ public class OperatorWrapCheck
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.QUESTION,          // '?'
+            TokenTypes.COLON,             // ':' (not reported for a case)
+            TokenTypes.EQUAL,             // "=="
+            TokenTypes.NOT_EQUAL,         // "!="
+            TokenTypes.DIV,               // '/'
+            TokenTypes.PLUS,              //' +' (unary plus is UNARY_PLUS)
+            TokenTypes.MINUS,             // '-' (unary minus is UNARY_MINUS)
+            TokenTypes.STAR,              // '*'
+            TokenTypes.MOD,               // '%'
+            TokenTypes.SR,                // ">>"
+            TokenTypes.BSR,               // ">>>"
+            TokenTypes.GE,                // ">="
+            TokenTypes.GT,                // ">"
+            TokenTypes.SL,                // "<<"
+            TokenTypes.LE,                // "<="
+            TokenTypes.LT,                // '<'
+            TokenTypes.BXOR,              // '^'
+            TokenTypes.BOR,               // '|'
+            TokenTypes.LOR,               // "||"
+            TokenTypes.BAND,              // '&'
+            TokenTypes.LAND,              // "&&"
+            TokenTypes.LITERAL_INSTANCEOF,
+            TokenTypes.ASSIGN,            // '='
+            TokenTypes.DIV_ASSIGN,        // "/="
+            TokenTypes.PLUS_ASSIGN,       // "+="
+            TokenTypes.MINUS_ASSIGN,      //"-="
+            TokenTypes.STAR_ASSIGN,       // "*="
+            TokenTypes.MOD_ASSIGN,        // "%="
+            TokenTypes.SR_ASSIGN,         // ">>="
+            TokenTypes.BSR_ASSIGN,        // ">>>="
+            TokenTypes.SL_ASSIGN,         // "<<="
+            TokenTypes.BXOR_ASSIGN,       // "^="
+            TokenTypes.BOR_ASSIGN,        // "|="
+            TokenTypes.BAND_ASSIGN,       // "&="
+
+        };
+    }
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         final AbstractOption wOp = getAbstractOption();
