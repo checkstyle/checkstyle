@@ -79,6 +79,9 @@
         <li>
           <a href="#SuperClone">SuperClone</a>
         </li>
+        <li>
+          <a href="#SuperFinalize">SuperFinalize</a>
+        </li>
       </ul>
     </td>
     <!--Content-->
@@ -860,6 +863,31 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;SuperClone&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+
+      <!-- --> <a name="SuperFinalize"></a> <h2>SuperFinalize</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that an overriding <span class="code">finalize()</span> method invokes <span class="code">super.finalize()</span>.
+      </p>
+      <p class="body">
+      Reference: <a href="http://java.sun.com/docs/books/tutorial/java/data/garbagecollection.html">Cleaning
+      Up Unused Objects</a>. 
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;SuperFinalize&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
