@@ -47,4 +47,14 @@ public class InputUnusedLocal
         if (file != null) {
         }       
     }
+    
+    /** tests array index references */
+    public void testArrayIndex()
+    {
+        int [][][] a = new int[1][1][1];
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        a[i][j][k]++;
+    }
 }
