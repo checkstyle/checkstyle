@@ -65,8 +65,10 @@ class PropertyCacheFile
         boolean setInActive = true;
         final String fileName = aFileName;
         if (fileName != null) {
+            FileInputStream inStream = null;
             try {
-                mDetails.load(new FileInputStream(fileName));
+                inStream = new FileInputStream(fileName);
+                mDetails.load(inStream);
                 String cachedConfigHash = mDetails.getProperty(CONFIG_HASH_KEY);
                 String currentConfigHash = getConfigHashCode(aCurrentConfig);
                 setInActive = false;
@@ -87,6 +89,18 @@ class PropertyCacheFile
                 System.out.println("Unable to open cache file, ignoring.");
                 e.printStackTrace(System.out);
             }
+            finally {
+                if (inStream != null) {
+                    try {
+                        inStream.close();
+                    }
+                    catch (IOException ex) {
+                        // TODO: use logger
+                        System.out.println("Unable to close cache file.");
+                        ex.printStackTrace(System.out);
+                    }
+                }
+            }
         }
         mDetailsFile = (setInActive) ? null : fileName;
     }
@@ -95,12 +109,26 @@ class PropertyCacheFile
     void destroy()
     {
         if (mDetailsFile != null) {
+            FileOutputStream out = null;
             try {
-                mDetails.store(new FileOutputStream(mDetailsFile), null);
+                out = new FileOutputStream(mDetailsFile);
+                mDetails.store(out, null);
             }
             catch (IOException e) {
                 System.out.println("Unable to save cache file");
                 e.printStackTrace(System.out);
+            }
+            finally {
+                if (out != null) {
+                    try {
+                        out.flush();
+                        out.close();
+                    }
+                    catch (IOException ex) {
+                        System.out.println("Unable to close cache file");
+                        ex.printStackTrace(System.out);
+                    }
+                }
             }
         }
     }
