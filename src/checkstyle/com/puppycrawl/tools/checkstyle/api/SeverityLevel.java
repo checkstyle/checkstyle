@@ -67,9 +67,6 @@ public final class SeverityLevel implements Comparable, Serializable
     public static final SeverityLevel ERROR =
         new SeverityLevel(SEVERITYCODE_ERROR, SEVERITYNAME_ERROR);
 
-    /** the default severity */
-    public static final SeverityLevel DEFAULT_LEVEL = ERROR;
-    
     /** map from level names to the respective level */
     private static final Map NAME_TO_LEVEL = new HashMap();
     static {

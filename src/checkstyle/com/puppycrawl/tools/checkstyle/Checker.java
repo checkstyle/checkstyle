@@ -121,6 +121,18 @@ public class Checker extends AutomaticBean
     private Context mChildContext;
 
     /**
+     * The severity level of any violations found by submodules.
+     * The value of this property is passed to submodules via
+     * contextualize().
+     *
+     * Note: Since the Checker is merely a container for modules
+     * it does not make sense to implement logging functionality
+     * here. Consequently Checker does not extend AbstractViolationReporter,
+     * leading to a bit of duplicated code for severity level setting.
+     */
+    private SeverityLevel mSeverityLevel = SeverityLevel.ERROR;
+
+    /**
      * Creates a new <code>Checker</code> instance.
      * The instance needs to be contextualized and configured.
      *
@@ -147,6 +159,7 @@ public class Checker extends AutomaticBean
         final DefaultContext context = new DefaultContext();
         context.add("classLoader", mLoader);
         context.add("moduleFactory", mModuleFactory);
+        context.add("severity", mSeverityLevel.getName());
         mChildContext = context;
     }
 
@@ -342,4 +355,17 @@ public class Checker extends AutomaticBean
     {
         mLocaleLanguage = aLocaleLanguage;
     }
+
+    /**
+     * Sets the severity level.  The string should be one of the names
+     * defined in the <code>SeverityLevel</code> class.
+     *
+     * @param aSeverity  The new severity level
+     * @see SeverityLevel
+     */
+    public final void setSeverity(String aSeverity)
+    {
+        mSeverityLevel = SeverityLevel.getInstance(aSeverity);
+    }
+
 }

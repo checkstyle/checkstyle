@@ -56,6 +56,9 @@ public final class LocalizedMessage
     /** the severity level **/
     private final SeverityLevel mSeverityLevel;
 
+    /** the default severity level if one is not specified */
+    private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
+
     /** key for the message format **/
     private final String mKey;
 
@@ -127,7 +130,7 @@ public final class LocalizedMessage
         mKey = aKey;
         mArgs = aArgs;
         mBundle = aBundle;
-        mSeverityLevel = SeverityLevel.DEFAULT_LEVEL;
+        mSeverityLevel = DEFAULT_SEVERITY;
     }
 
     /**

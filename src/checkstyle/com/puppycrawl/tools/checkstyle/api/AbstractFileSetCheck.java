@@ -28,13 +28,24 @@ import java.util.ArrayList;
  * @author lkuehne
  */
 public abstract class AbstractFileSetCheck
-        extends AutomaticBean implements FileSetCheck
+        extends AbstractViolationReporter implements FileSetCheck
 {
     /** The dispatcher errors are fired to. */
     private MessageDispatcher mDispatcher = null;
 
     /** the file extensions that are accepted by this filter */
     private String[] mFileExtensions = {};
+
+    /** collects the error messages */
+    private final LocalizedMessages mMessages;
+
+    /**
+     * initializes the AbstractFileSetCheck properties.
+     */
+    protected AbstractFileSetCheck()
+    {
+        mMessages = new LocalizedMessages();
+    }
 
     /**
      * Does nothing.
@@ -50,7 +61,12 @@ public abstract class AbstractFileSetCheck
         mDispatcher = aDispatcher;
     }
 
-    /** @return the current MessageDispatcher. */
+    /**
+     * A message dispatcher is used to fire violation messages to
+     * interested audit listeners.
+     *
+     * @return the current MessageDispatcher.
+     */
     protected final MessageDispatcher getMessageDispatcher()
     {
         return mDispatcher;
@@ -114,17 +130,39 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Returns the Message bundle name to use for this FileSetCheck.
-     * The default implementation uses the <code>messages</code> bundle
-     * in the same package as this FileSetCeck.
-     * @return the message bundle name
+     * Returns the collector for violation messages.
+     * Subclasses can use the collector to find out the violation
+     * messages to fire via the message dispatcher.
+     *
+     * @return the collector for localized messages.
      */
-    protected String getMessageBundle()
+    protected final LocalizedMessages getMessageCollector()
     {
-        final String className = getClass().getName();
-        final int pkgEndIndex = className.lastIndexOf('.');
-        final String pkgName = className.substring(0, pkgEndIndex);
-        final String bundle = pkgName + ".messages";
-        return bundle;
+        return mMessages;
     }
+
+    /**
+     * Adds a violation message to the
+     * {@link #getMessageCollector message collector}.
+     * @see AbstractViolationReporter#log(int, String, Object[])
+     */
+    protected final void log(int aLine, String aKey, Object aArgs[])
+    {
+        log(aLine, 0, aKey, aArgs);
+    }
+
+    /**
+     * Adds a violation message to the
+     * {@link #getMessageCollector message collector}.
+     * @see AbstractViolationReporter#log(int, int, String, Object[])
+     */
+    protected final void log(int aLineNo, int aColNo,
+        String aKey, Object[] aArgs)
+    {
+        getMessageCollector().add(new LocalizedMessage(
+            aLineNo, aColNo, getMessageBundle(),
+            aKey, aArgs, getSeverityLevel()));
+    }
+
+
 }

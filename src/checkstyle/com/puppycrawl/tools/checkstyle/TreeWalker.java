@@ -41,7 +41,6 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
@@ -105,8 +104,6 @@ public final class TreeWalker
     private final Map mTokenToChecks = new HashMap();
     /** all the registered checks */
     private final Set mAllChecks = new HashSet();
-    /** collects the error messages */
-    private final LocalizedMessages mMessages;
     /** the distance between tab stops */
     private int mTabWidth = 8;
     /** cache file **/
@@ -133,7 +130,6 @@ public final class TreeWalker
     public TreeWalker()
     {
         setFileExtensions(new String[]{"java"});
-        mMessages = new LocalizedMessages();
 
         // TODO: I (lkuehne) can't believe I wrote this! HACK HACK HACK!
 
@@ -184,7 +180,8 @@ public final class TreeWalker
     {
         DefaultContext checkContext = new DefaultContext();
         checkContext.add("classLoader", mClassLoader);
-        checkContext.add("messages", mMessages);
+        checkContext.add("messages", getMessageCollector());
+        checkContext.add("severity", getSeverity());
         // TODO: hmmm.. this looks less than elegant
         // we have just parsed the string,
         // now we're recreating it only to parse it again a few moments later
@@ -229,7 +226,7 @@ public final class TreeWalker
             return;
         }
 
-        mMessages.reset();
+        getMessageCollector().reset();
         try {
             getMessageDispatcher().fireFileStarted(fileName);
             final String[] lines = Utils.getLines(fileName);
@@ -238,37 +235,41 @@ public final class TreeWalker
             walk(rootAST, contents);
         }
         catch (FileNotFoundException fnfe) {
-            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                               "general.fileNotFound", null));
+            getMessageCollector().add(new LocalizedMessage(
+                0, Defn.CHECKSTYLE_BUNDLE,
+                "general.fileNotFound", null));
         }
         catch (IOException ioe) {
-            mMessages.add(new LocalizedMessage(
-                              0, Defn.CHECKSTYLE_BUNDLE,
-                              "general.exception",
-                              new String[] {ioe.getMessage()}));
+            getMessageCollector().add(new LocalizedMessage(
+                0, Defn.CHECKSTYLE_BUNDLE,
+                "general.exception",
+                new String[] {ioe.getMessage()}));
         }
         catch (RecognitionException re) {
-            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                               "general.exception",
-                                               new String[] {re.getMessage()}));
+            getMessageCollector().add(new LocalizedMessage(
+                0, Defn.CHECKSTYLE_BUNDLE,
+                "general.exception",
+                new String[] {re.getMessage()}));
         }
         catch (TokenStreamException te) {
-            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                               "general.exception",
-                                               new String[] {te.getMessage()}));
+            getMessageCollector().add(new LocalizedMessage(
+                0, Defn.CHECKSTYLE_BUNDLE,
+                "general.exception",
+                new String[] {te.getMessage()}));
         }
         catch (Throwable err) {
-            mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                               "general.exception",
-                                               new String[] {"" + err}));
+            getMessageCollector().add(new LocalizedMessage(
+                0, Defn.CHECKSTYLE_BUNDLE,
+                "general.exception",
+                new String[] {"" + err}));
         }
 
-        if (mMessages.size() == 0) {
+        if (getMessageCollector().size() == 0) {
             mCache.checkedOk(fileName, timestamp);
         }
         else {
             getMessageDispatcher().fireErrors(
-                fileName, mMessages.getMessages());
+                fileName, getMessageCollector().getMessages());
         }
 
         getMessageDispatcher().fireFileFinished(fileName);
@@ -348,7 +349,7 @@ public final class TreeWalker
      */
     private void walk(DetailAST aAST, FileContents aContents)
     {
-        mMessages.reset();
+        getMessageCollector().reset();
         notifyBegin(aAST, aContents);
 
          // empty files are not flagged by javac, will yield aAST == null
@@ -539,4 +540,5 @@ public final class TreeWalker
         mCache.destroy();
         super.destroy();
     }
+
 }

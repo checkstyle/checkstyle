@@ -30,10 +30,8 @@ import java.util.Set;
  * @see <a href="./{@docRoot}/../writingchecks.html" target="_top">Writing
  * your own checks</a>
  */
-public abstract class Check extends AutomaticBean
+public abstract class Check extends AbstractViolationReporter
 {
-    /** resuable constant for message formating */
-    private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
 
     /** the current file contents */
     private FileContents mFileContents = null;
@@ -46,9 +44,6 @@ public abstract class Check extends AutomaticBean
 
     /** the tab with for column reporting */
     private int mTabWidth = 8; // meaningful default
-
-    /** the severity level of any violations found */
-    private SeverityLevel mSeverityLevel = SeverityLevel.DEFAULT_LEVEL;
 
     /** current class loader */
     private ClassLoader mLoader =
@@ -228,49 +223,6 @@ public abstract class Check extends AutomaticBean
     }
 
     /**
-     * Returns the severity level of the check.
-     * @return the severity level
-     * @see com.puppycrawl.tools.checkstyle.api.SeverityLevel
-     */
-    public final SeverityLevel getSeverityLevel()
-    {
-        return mSeverityLevel;
-    }
-
-    /**
-     * Sets the severity level.  The string should be one of the names
-     * defined in the <code>SeverityLevel</code> class.
-     *
-     * @param aSeverity  The new severity level
-     * @see com.puppycrawl.tools.checkstyle.api.SeverityLevel
-     */
-    public void setSeverity(String aSeverity)
-    {
-        mSeverityLevel = SeverityLevel.getInstance(aSeverity);
-    }
-
-    /**
-     *  Get the severity level's name.
-     *
-     *  @return  the check's severity level name.
-     */
-    public String getSeverity()
-    {
-        return mSeverityLevel.getName();
-    }
-
-    /**
-     * Log an error message.
-     *
-     * @param aLine the line number where the error was found
-     * @param aKey the message that describes the error
-     */
-    protected final void log(int aLine, String aKey)
-    {
-        log(aLine, aKey, EMPTY_OBJECT_ARRAY);
-    }
-
-    /**
      * Log an error message.
      *
      * @param aLine the line number where the error was found
@@ -282,92 +234,9 @@ public abstract class Check extends AutomaticBean
     protected final void log(int aLine, String aKey, Object aArgs[])
     {
         mMessages.add(new LocalizedMessage(
-                aLine, getResourceBundle(), aKey, aArgs, mSeverityLevel));
+                aLine, getMessageBundle(), aKey, aArgs, getSeverityLevel()));
     }
 
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     */
-    protected final void log(int aLineNo, String aKey, Object aArg0)
-    {
-        log(aLineNo, aKey, new Object[] {aArg0});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     * @param aArg1 second argument
-     */
-    protected final void log(int aLineNo, String aKey,
-                             Object aArg0, Object aArg1)
-    {
-        log(aLineNo, aKey, new Object[] {aArg0, aArg1});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     * @param aArg1 second argument
-     * @param aArg2 third argument
-     */
-    protected final void log(int aLineNo, String aKey,
-             Object aArg0, Object aArg1, Object aArg2)
-    {
-        log(aLineNo, aKey, new Object[] {aArg0, aArg1, aArg2});
-    }
-
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     */
-    protected final void log(int aLineNo, int aColNo, String aKey)
-    {
-        log(aLineNo, aColNo, aKey, EMPTY_OBJECT_ARRAY);
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 an <code>Object</code> value
-     */
-    protected final void log(int aLineNo, int aColNo, String aKey,
-                    Object aArg0)
-    {
-        log(aLineNo, aColNo, aKey, new Object[] {aArg0});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 an <code>Object</code> value
-     * @param aArg1 an <code>Object</code> value
-     */
-    protected final void log(int aLineNo, int aColNo, String aKey,
-                    Object aArg0, Object aArg1)
-    {
-        log(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1});
-    }
 
     /**
      * Helper method to log a LocalizedMessage.
@@ -383,27 +252,8 @@ public abstract class Check extends AutomaticBean
         final int col = 1 + Utils.lengthExpandedTabs(
             getLines()[aLineNo - 1], aColNo, getTabWidth());
         mMessages.add(new LocalizedMessage(
-            aLineNo, col, getResourceBundle(), aKey, aArgs, mSeverityLevel));
+            aLineNo, col, getMessageBundle(), aKey, aArgs, getSeverityLevel()));
     }
 
 
-    /**
-     * The default implementation expects the resource files to be named
-     * messages.properties, messages_de.properties, etc. The file must
-     * be placed in the same package as the Check implementation.
-     *
-     * Example: If you write com/foo/MyCoolCheck, create resource files
-     * com/foo/messages.properties, com/foo/messages_de.properties, etc.
-     *
-     * @return name of a resource bundle that contains the messages
-     * used by this check
-     */
-    private String getResourceBundle()
-    {
-        // PERF: check perf impact, maybe cache result
-        final String className = this.getClass().getName();
-        final String packageName =
-                className.substring(0, className.lastIndexOf('.'));
-        return packageName + "." + "messages";
-    }
 }
