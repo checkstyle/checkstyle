@@ -92,7 +92,7 @@ public final class Main
         Configuration config = null;
         try {
             config = ConfigurationLoader.loadConfiguration(
-                    line.getOptionValue("c"), props);
+                    line.getOptionValue("c"), new PropertiesExpander(props));
         }
         catch (CheckstyleException e) {
             System.out.println("Error loading configuration file");

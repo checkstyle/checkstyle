@@ -23,13 +23,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 import java.util.Stack;
-import java.net.MalformedURLException;
-import java.net.URL;
 import javax.xml.parsers.ParserConfigurationException;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -63,6 +62,15 @@ public final class ConfigurationLoader
      */
     private class InternalLoader extends AbstractLoader
     {
+        /** module elements */
+        private static final String MODULE = "module";
+        /** name attribute */
+        private static final String NAME = "name";
+        /** property element */
+        private static final String PROPERTY = "property";
+        /** value attribute */
+        private static final String VALUE = "value";
+
         /**
          * Creates a new InternalLoader.
          * @throws SAXException if an error occurs
@@ -82,9 +90,9 @@ public final class ConfigurationLoader
                 throws SAXException
         {
             // TODO: debug logging for support puposes
-            if (aQName.equals("module")) {
+            if (aQName.equals(MODULE)) {
                 //create configuration
-                final String name = aAtts.getValue("name");
+                final String name = aAtts.getValue(NAME);
                 DefaultConfiguration conf = new DefaultConfiguration(name);
                 if (mConfiguration == null) {
                     mConfiguration = conf;
@@ -99,13 +107,13 @@ public final class ConfigurationLoader
 
                 mConfigStack.push(conf);
             }
-            else if (aQName.equals("property")) {
+            else if (aQName.equals(PROPERTY)) {
                 //extract name and value
-                final String name = aAtts.getValue("name");
+                final String name = aAtts.getValue(NAME);
                 final String value;
                 try {
-                    value = replaceProperties(aAtts.getValue("value"),
-                        mOverrideProps);
+                    value = replaceProperties(aAtts.getValue(VALUE),
+                        mOverridePropsResolver);
                 }
                 catch (CheckstyleException ex) {
                     throw new SAXException(ex.getMessage());
@@ -123,7 +131,7 @@ public final class ConfigurationLoader
                                String aLocalName,
                                String aQName)
         {
-            if (aQName.equals("module")) {
+            if (aQName.equals(MODULE)) {
                 mConfigStack.pop();
             }
         }
@@ -133,8 +141,8 @@ public final class ConfigurationLoader
     /** the SAX document handler */
     private InternalLoader mSaxHandler = null;
 
-    /** overriding properties **/
-    private final Properties mOverrideProps;
+    /** property resolver **/
+    private final PropertyResolver mOverridePropsResolver;
     /** the loaded configurations **/
     private final Stack mConfigStack = new Stack();
     /** the Configuration that is being built */
@@ -143,15 +151,15 @@ public final class ConfigurationLoader
 
     /**
      * Creates a new <code>ConfigurationLoader</code> instance.
-     * @param aOverrideProps overriding properties
+     * @param aOverrideProps resolver for overriding properties
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */
-    private ConfigurationLoader(Properties aOverrideProps)
+    private ConfigurationLoader(PropertyResolver aOverrideProps)
         throws ParserConfigurationException, SAXException
     {
         mSaxHandler = new InternalLoader();
-        mOverrideProps = aOverrideProps;
+        mOverridePropsResolver = aOverrideProps;
     }
 
     /**
@@ -176,17 +184,17 @@ public final class ConfigurationLoader
     /**
      * Returns the module configurations in a specified file.
      * @param aConfig location of config file, can be either a URL or a filename
-     * @param aOverrideProps overriding properties
+     * @param aOverridePropsResolver overriding properties
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
     public static Configuration loadConfiguration(
-        String aConfig, Properties aOverrideProps)
+        String aConfig, PropertyResolver aOverridePropsResolver)
         throws CheckstyleException
     {
         try {
             final ConfigurationLoader loader =
-                new ConfigurationLoader(aOverrideProps);
+                new ConfigurationLoader(aOverridePropsResolver);
             // figure out if this is a File or a URL
             InputStream configStream;
             try {
@@ -250,7 +258,7 @@ public final class ConfigurationLoader
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      */
     static String replaceProperties(
-        String aValue, Properties aProps)
+        String aValue, PropertyResolver aProps)
             throws CheckstyleException
     {
         if (aValue == null) {
@@ -268,11 +276,7 @@ public final class ConfigurationLoader
             String fragment = (String) i.next();
             if (fragment == null) {
                 final String propertyName = (String) j.next();
-                if (!aProps.containsKey(propertyName)) {
-                    throw new CheckstyleException("Property ${"
-                        + propertyName + "} has not been set");
-                }
-                fragment = aProps.getProperty(propertyName);
+                fragment = aProps.resolve(propertyName);
             }
             sb.append(fragment);
         }
