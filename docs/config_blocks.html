@@ -325,22 +325,13 @@
       <!-- --> <a name="AvoidNestedBlocks"></a> <h2>AvoidNestedBlocks</h2> <h4>Description</h4>
       <p class="body">
       Finds nested blocks, i.e. blocks that are used freely in the code.
-      For example this Check finds the obsolete braces in
-      </p>
-      <pre class="body">
- switch (a)
- {
-     case 0:
-         {
-             x = 1;
-         }
-         break;
-     default:
-         break;
- }
-      </pre>
       <p class="body">
-      and flags confusing code like
+	  Rationale: Nested blocks are often leftovers from the debugging process,
+	  they confuse the reader.
+      </p>
+
+      <p>
+      For example this Check finds the obsolete braces in
       </p>
       <pre class="body">
  public void guessTheOutput()
@@ -353,9 +344,67 @@
  }
  </pre>
       <p class="body">
-	  Rationale: Nested blocks are often leftovers from the debugging process, they confuse
-	  the reader.
+      and debugging / refactoring leftovers such as
       </p>
+
+      <pre class="body">
+// if (conditionThatIsNotUsedAnyLonger)
+{
+    System.out.println("unconditional");
+}
+</pre>
+
+      <p class="body">
+      A case in a switch statement does not implicitly form a block.
+      Thus to be able to introduce local variables that have case scope
+      it is necessary to open a nested block. This is supported, set
+      the allowInSwitchCase property to true and include all statements
+      of the case in the block.
+      </p>
+
+  <pre class="body">
+switch (a)
+{
+    case 0:
+        // Never OK, break outside block
+        {
+            x = 1;
+        }
+        break;
+    case 1:
+        // Never OK, statement outside block
+        System.out.println("Hello");
+        {
+            x = 2;
+            break;
+        }
+    case 1:
+        // OK if allowInSwitchCase is true
+        {
+            System.out.println("Hello");
+            x = 2;
+            break;
+        }
+}
+</pre>
+
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>allowInSwitchCase</td>
+          <td>Allow nested blocks in case statements</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">false</span></td>
+        </tr>
+      </table>
+
       <h4>Examples</h4>
       <p class="body">
       To configure the check:

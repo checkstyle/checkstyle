@@ -87,14 +87,14 @@
 
         <li class="body">Added excludes property to AvoidStarImport, contributed
         by Bill Schneider (request 744955).</li>
-        
+
         <li class="body">Added CyclomaticComplexityCheck from Simon Harris.</li>
 
         <li class="body">Added check to catch equality comparison with string literals
         using the == operator (module StringLiteralEquality, request 754835).</li>
-        
+
         <li class="body">Added check for definition of covariant equals() method
-           without overriding method equals(comp.lang.Object) 
+           without overriding method equals(comp.lang.Object)
            (module coding.CovariantEquals).</li>
 
         <li class="body">Added NestedTryDepthCheck and
@@ -103,6 +103,9 @@
 
         <li class="body">Added IllegalTokenCheck from Simon Harris
           (request 750755).</li>
+
+        <li class="body">Added allowInSwitchCase property to AvoidNestedBlocksCheck
+        to allow limiting the scope of variables to one case of a switch statement.</li>
 
       </ul>
 
