@@ -80,6 +80,7 @@ public class ParenPadCheckTest
             "20:14: '(' is not followed by whitespace.",
             "23:14: '(' is not followed by whitespace.",
             "27:14: '(' is not followed by whitespace.",
+            "32:14: '(' is not followed by whitespace.",
         };
         verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }

@@ -26,7 +26,12 @@ class InputForWhitespace
 
         for (int i = 0; i < 1; ) {
             i++;
-        } 
+        }
+        
+        // test eol, there is no space after second SEMI
+        for (int i = 0; i < 1;
+            ) {
+            i++;
+        }
     }
-
 }

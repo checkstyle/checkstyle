@@ -25,7 +25,7 @@ public class EmptyForIteratorPadCheckTest
     {
         mCheckConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
-            "23:30: ';' is not followed by whitespace.",
+            "23:31: ';' is not followed by whitespace.",
         };
         verify(mCheckConfig, getPath("InputForWhitespace.java"), expected);
     }
