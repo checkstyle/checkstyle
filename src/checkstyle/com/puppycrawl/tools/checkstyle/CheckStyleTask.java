@@ -437,6 +437,12 @@ public class CheckStyleTask
         setStringProperty(Defn.LOCALE_LANGUAGE_PROP, aLang);
     }
 
+    /** @param aLang the country to localise messages to **/
+    public void setLocaleCountry(String aLang)
+    {
+        setStringProperty(Defn.LOCALE_COUNTRY_PROP, aLang);
+    }
+
     /** @param aCacheFile the file to cache which files have been checked **/
     public void setCacheFile(final File aCacheFile)
     {

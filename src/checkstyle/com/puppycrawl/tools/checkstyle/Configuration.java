@@ -161,6 +161,8 @@ public class Configuration
     {
         mStringProps.put(Defn.LOCALE_LANGUAGE_PROP,
                          Locale.getDefault().getLanguage());
+        mStringProps.put(Defn.LOCALE_COUNTRY_PROP,
+                         Locale.getDefault().getCountry());
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -224,6 +226,7 @@ public class Configuration
         setBooleanProperty(aProps, Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP);
         setStringProperty(aProps, Defn.CACHE_FILE_PROP);
         setStringProperty(aProps, Defn.LOCALE_LANGUAGE_PROP);
+        setStringProperty(aProps, Defn.LOCALE_COUNTRY_PROP);
         setBooleanProperty(aProps, Defn.IGNORE_IMPORT_LENGTH_PROP);
         setHeaderIgnoreLines(aProps.getProperty(Defn.HEADER_IGNORE_LINE_PROP));
         setBooleanProperty(aProps, Defn.HEADER_LINES_REGEXP_PROP);
@@ -329,6 +332,12 @@ public class Configuration
     public String getLocaleLanguage()
     {
         return getStringProperty(Defn.LOCALE_LANGUAGE_PROP);
+    }
+
+    /** @return locale country to report messages  **/
+    public String getLocaleCountry()
+    {
+        return getStringProperty(Defn.LOCALE_COUNTRY_PROP);
     }
 
     /** @return pattern to match to-do lines **/
