@@ -166,4 +166,11 @@ class InputSemantic
             }
         };
     }
+
+    public void triggerEmptyBlockWithoutBlock()
+    {
+        // an if statement without a block to increase test coverage
+        if (true)
+            return;
+    }
 }
