@@ -46,8 +46,6 @@ public class CheckerTest
     protected void setUp()
         throws Exception
     {
-        mProps.setProperty(Defn.LCURLY_OTHER_PROP,
-                           LeftCurlyOption.NLOW.toString());
         mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, Boolean.TRUE.toString());
         mProps.setProperty(Defn.LOCALE_COUNTRY_PROP,
                            Locale.ENGLISH.getCountry());
@@ -122,12 +120,8 @@ public class CheckerTest
             filepath + ":31:22: '--' is followed by whitespace.",
             filepath + ":58:12: '(' is followed by whitespace.",
             filepath + ":58:36: ')' is preceeded with whitespace.",
-            filepath + ":59:9: '{' should be on the previous line.",
-            filepath + ":63:9: '{' should be on the previous line.",
             filepath + ":74:13: '(' is followed by whitespace.",
             filepath + ":74:18: ')' is preceeded with whitespace.",
-            filepath + ":75:9: '{' should be on the previous line.",
-            filepath + ":79:9: '{' should be on the previous line.",
             filepath + ":88:21: 'cast' is not followed by whitespace.",
             filepath + ":111:22: '!' is followed by whitespace.",
             filepath + ":112:23: '~' is followed by whitespace.",
@@ -167,12 +161,8 @@ public class CheckerTest
             filepath + ":37:25: ')' is not preceeded with whitespace.",
             filepath + ":41:15: '(' is not followed by whitespace.",
             filepath + ":41:32: ')' is not preceeded with whitespace.",
-            filepath + ":59:9: '{' should be on the previous line.",
-            filepath + ":63:9: '{' should be on the previous line.",
-            filepath + ":75:9: '{' should be on the previous line.",
             filepath + ":76:20: '(' is not followed by whitespace.",
             filepath + ":76:20: ')' is not preceeded with whitespace.",
-            filepath + ":79:9: '{' should be on the previous line.",
             filepath + ":87:21: '(' is not followed by whitespace.",
             filepath + ":87:26: ')' is not preceeded with whitespace.",
             filepath + ":88:14: '(' is not followed by whitespace.",
@@ -211,10 +201,6 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":13: Type Javadoc comment is missing an @author tag.",
-            filepath + ":59:9: '{' should be on the previous line.",
-            filepath + ":63:9: '{' should be on the previous line.",
-            filepath + ":75:9: '{' should be on the previous line.",
-            filepath + ":79:9: '{' should be on the previous line.",
         };
         verify(c, filepath, expected);
     }
@@ -290,7 +276,6 @@ public class CheckerTest
             filepath + ":109:23: Expected @param tag for 'aOne'.",
             filepath + ":109:55: Expected @param tag for 'aFour'.",
             filepath + ":109:66: Expected @param tag for 'aFive'.",
-            filepath + ":129:5: '{' should be on the previous line.",
             filepath + ":178: Unused @throws tag for 'ThreadDeath'.",
             filepath + ":179: Unused @throws tag for 'ArrayStoreException'.",
         };
@@ -329,7 +314,6 @@ public class CheckerTest
             filepath + ":109:23: Expected @param tag for 'aOne'.",
             filepath + ":109:55: Expected @param tag for 'aFour'.",
             filepath + ":109:66: Expected @param tag for 'aFive'.",
-            filepath + ":129:5: '{' should be on the previous line.",
         };
 
         verify(c, filepath, expected);
@@ -412,9 +396,7 @@ public class CheckerTest
             filepath + ":103: Constructor length is 10 lines (max allowed is 9).",
             filepath + ":119:13: Name 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":122:19: Name 'cde' must match pattern '[A-Z]+'.",
-            filepath + ":127:9: '{' should be on the previous line.",
             filepath + ":130:18: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            filepath + ":131:9: '{' should be on the previous line.",
             filepath + ":132:20: Name 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":142:30: Name 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":145: Line is longer than 80 characters.",
@@ -619,27 +601,6 @@ public class CheckerTest
             filepath + ":53:42: '(' is followed by whitespace.",
             filepath + ":53:57: ')' is preceeded with whitespace.",
             filepath + ":57:14: ')' is preceeded with whitespace.",
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testLCurlyOther()
-        throws Exception
-    {
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
-        final Checker c = createChecker();
-        final String filepath = getPath("InputLeftCurlyOther.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":19:9: '{' should be on the previous line.",
-            filepath + ":21:13: '{' should be on the previous line.",
-            filepath + ":23:17: '{' should be on the previous line.",
-            filepath + ":30:17: '{' should be on the previous line.",
-            filepath + ":34:17: '{' should be on the previous line.",
-            filepath + ":42:13: '{' should be on the previous line.",
-            filepath + ":46:13: '{' should be on the previous line.",
-            filepath + ":52:9: '{' should be on the previous line.",
-            filepath + ":54:13: '{' should be on the previous line.",
         };
         verify(c, filepath, expected);
     }

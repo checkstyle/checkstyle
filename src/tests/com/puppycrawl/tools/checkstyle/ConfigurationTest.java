@@ -16,7 +16,6 @@ public class ConfigurationTest
     {
         final Properties p = new Properties();
         p.setProperty(Defn.MAX_LINE_LENGTH_PROP, "66");
-        p.setProperty(Defn.LCURLY_OTHER_PROP, "claiea");
         p.setProperty(Defn.CATCH_BLOCK_PROP, "text");
         p.setProperty(Defn.PAREN_PAD_PROP, "ignore");
         final Configuration c = new Configuration(p, System.out);

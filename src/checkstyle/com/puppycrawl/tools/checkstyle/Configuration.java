@@ -111,13 +111,6 @@ public class Configuration
         mBlockProps.put(Defn.FINALLY_BLOCK_PROP, BlockOption.STMT);
     }
 
-    /** map of all the LeftCurlyOption properties **/
-    private final Map mLCurliesProps = new HashMap();
-    {
-
-        mLCurliesProps.put(Defn.LCURLY_OTHER_PROP, LeftCurlyOption.EOL);
-    }
-
     /** map of all String properties - by default are null **/
     private final Map mStringProps = new HashMap();
     {
@@ -176,11 +169,6 @@ public class Configuration
         for (int i = 0; i < Defn.ALL_STRING_PROPS.length; i++) {
             setStringProperty(aProps, Defn.ALL_STRING_PROPS[i]);
         }
-
-        for (int i = 0; i < Defn.ALL_LCURLY_PROPS.length; i++) {
-            setLeftCurlyOptionProperty(aProps, Defn.ALL_LCURLY_PROPS[i], aLog);
-        }
-
     }
 
     /**
@@ -292,11 +280,6 @@ public class Configuration
         for (int i = 0; i < Defn.ALL_STRING_PROPS.length; i++) {
             final String key = Defn.ALL_STRING_PROPS[i];
             Utils.addObjectString(retVal, key, getStringProperty(key));
-        }
-
-        for (int i = 0; i < Defn.ALL_LCURLY_PROPS.length; i++) {
-            final String key = Defn.ALL_LCURLY_PROPS[i];
-            Utils.addObjectString(retVal, key, getLeftCurlyOptionProperty(key));
         }
 
         return retVal;
@@ -551,12 +534,6 @@ public class Configuration
         mStringProps.put(aName, aTo);
     }
 
-    /** @return the left curly placement option for others **/
-    LeftCurlyOption getLCurlyOther()
-    {
-        return getLeftCurlyOptionProperty(Defn.LCURLY_OTHER_PROP);
-    }
-
     /** @return the try block option **/
     BlockOption getTryBlock()
     {
@@ -639,28 +616,9 @@ public class Configuration
         mBlockProps.put(aName, aTo);
     }
 
-    /**
-     * Set an LeftCurlyOption property.
-     * @param aName name of the property to set
-     * @param aTo the value to set
-     */
-    private void setLeftCurlyOptionProperty(String aName, LeftCurlyOption aTo)
-    {
-        mLCurliesProps.put(aName, aTo);
-    }
-
     ////////////////////////////////////////////////////////////////////////////
     // Private methods
     ////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * @return the BlockOption for a specified property.
-     * @param aName name of the property to get
-     */
-    private LeftCurlyOption getLeftCurlyOptionProperty(String aName)
-    {
-        return (LeftCurlyOption) mLCurliesProps.get(aName);
-    }
 
     /**
      * @return the BlockOption for a specified property.
@@ -747,31 +705,6 @@ public class Configuration
                         + ", defaulting to "
                         + getIntProperty(aName)
                         + ".");
-            }
-        }
-    }
-
-    /**
-     * Set the value of a LeftCurlyOption property.
-     * @param aProps the properties set to use
-     * @param aLog where to log errors to
-     * @param aName the name of the property to parse
-     */
-    private void setLeftCurlyOptionProperty(Properties aProps,
-                                            String aName,
-                                            PrintStream aLog)
-    {
-        final String strRep = aProps.getProperty(aName);
-        if (strRep != null) {
-            final LeftCurlyOption opt = LeftCurlyOption.decode(strRep);
-            if (opt == null) {
-                aLog.println("Unable to parse " + aName
-                             + " property with value " + strRep
-                             + ", leaving as "
-                             + getLeftCurlyOptionProperty(aName) + ".");
-            }
-            else {
-                setLeftCurlyOptionProperty(aName, opt);
             }
         }
     }
