@@ -96,8 +96,19 @@ public abstract class AbstractLoader
             }
             return new InputSource(dtdIS);
         }
-
-        return super.resolveEntity(aPublicId, aSystemId);
+        // This is a hack to workaround problem with SAX
+        // DefaultHeader.resolveEntity():
+        // sometimes it throws SAX- and IO- exceptions
+        // sometime SAX only :(
+        try {
+            if (false) {
+                throw new IOException("");
+            }
+            return super.resolveEntity(aPublicId, aSystemId);
+        }
+        catch (IOException e) {
+            throw new SAXException("" + e, e);
+        }
     }
 
     /** @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException) */
