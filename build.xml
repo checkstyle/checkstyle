@@ -609,6 +609,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
       </filterset>
     </copy>
 
+    <!--
     <javadoc sourcepath="src/checkstyle" destdir="target/xdocs"
              classpathref="javadoc.classpath"
              failonerror="yes">
@@ -620,6 +621,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
         <include name="**/checks" />
       </packageset>
     </javadoc>
+    -->
 
     <taskdef name="anakia" classname="org.apache.velocity.anakia.AnakiaTask">
       <classpath refid="velocity.classpath"/>
