@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,17 +29,12 @@ import java.util.Properties;
 import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
-
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
-
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Loads a configuration from a configuration XML file.
@@ -77,6 +75,7 @@ class ConfigurationLoader
         mParser = factory.newSAXParser().getXMLReader();
         mParser.setContentHandler(this);
         mParser.setEntityResolver(this);
+        mParser.setErrorHandler(this);
     }
 
     /**
@@ -95,6 +94,27 @@ class ConfigurationLoader
     ///////////////////////////////////////////////////////////////////////////
     // Document handler methods
     ///////////////////////////////////////////////////////////////////////////
+
+    /** @see org.xml.sax.ErrorHandler */
+    public void warning(SAXParseException aEx)
+        throws SAXException
+    {
+        throw aEx;
+    }
+
+    /** @see org.xml.sax.ErrorHandler */
+    public void error(SAXParseException aEx)
+        throws SAXException
+    {
+        throw aEx;
+    }
+
+    /** @see org.xml.sax.ErrorHandler */
+    public void fatalError(SAXParseException aEx)
+        throws SAXException
+    {
+        throw aEx;
+    }
 
     /** @see org.xml.sax.EntityResolver */
     public InputSource resolveEntity(String aPublicId, String aSystemId)
