@@ -1478,17 +1478,9 @@ public class Resolver extends DefinitionTraverser {
         boolean referencePhase) {
         IClass result = null;
 
-        SymTabAST leftChild = (SymTabAST) (expression.getFirstChild());
-        // handle Checkstyle grammar
-        while (leftChild.getType() == TokenTypes.LPAREN) {
-            leftChild = (SymTabAST) leftChild.getNextSibling();
-        }
+        SymTabAST leftChild = findLeftChild(expression);
         resolveExpression(leftChild, location, context, referencePhase);
-        SymTabAST rightChild = (SymTabAST) (leftChild.getNextSibling());
-        // handle Checkstyle grammar
-        while (rightChild.getType() == TokenTypes.RPAREN) {
-            rightChild = (SymTabAST) rightChild.getNextSibling();
-        }
+        SymTabAST rightChild = findRightSibling(leftChild);
 
         resolveExpression(rightChild, location, context, referencePhase);
 
@@ -1561,23 +1553,56 @@ public class Resolver extends DefinitionTraverser {
         boolean referencePhase) {
         IClass result = null;
 
-        SymTabAST leftChild = (SymTabAST) (expression.getFirstChild());
-        SymTabAST rightChild = (SymTabAST) (leftChild.getNextSibling());
-
+        SymTabAST leftChild = findLeftChild(expression);
+        
         IClass leftType =
             (IClass) (resolveExpression(leftChild,
                 location,
                 context,
                 referencePhase));
+                
+        SymTabAST rightChild = findRightSibling(leftChild);
+
         IClass rightType =
-            (IClass) (resolveExpression(rightChild,
-                location,
-                context,
-                referencePhase));
+                    (IClass) (resolveExpression(rightChild,
+                        location,
+                        context,
+                        referencePhase));
 
         result = binaryResultType(leftType, rightType);
 
         return result;
+    }
+
+    /**
+     * Finds the left child of a binary operator, skipping parentheses.
+     * @param aExpression the node for the binary operator.
+     * @return the node for the left child.
+     */  
+    private SymTabAST findLeftChild(SymTabAST aExpression) {
+        SymTabAST leftChild = (SymTabAST) (aExpression.getFirstChild());
+        // handle Checkstyle grammar
+        while (leftChild.getType() == TokenTypes.LPAREN) {
+            leftChild = (SymTabAST) leftChild.getNextSibling();
+        }
+        return leftChild;
+    }
+
+    /**
+     * Finds the right sibling of the left child of a binary operator,
+     * skipping parentheses.
+     * @param aLeftChild the left child of a binary operator.
+     * @return the node of the right sibling.
+     */   
+    private SymTabAST findRightSibling(SymTabAST aLeftChild) {
+        SymTabAST rightChild = (SymTabAST) (aLeftChild.getNextSibling());
+        // handle Checkstyle grammar
+        while ((rightChild != null)
+            && (rightChild.getType() == TokenTypes.RPAREN))
+        {
+            rightChild = (SymTabAST) rightChild.getNextSibling();
+        }
+        return rightChild;
     }
 
     /**
@@ -1828,8 +1853,8 @@ public class Resolver extends DefinitionTraverser {
         boolean referencePhase) {
         IClass result = null;
 
-        SymTabAST leftChild = (SymTabAST) expression.getFirstChild();
-        SymTabAST rightChild = (SymTabAST) leftChild.getNextSibling();
+        SymTabAST leftChild = findLeftChild(expression);
+        SymTabAST rightChild = findRightSibling(leftChild);
 
         result =
             resolveExpression(leftChild, location, context, referencePhase);
