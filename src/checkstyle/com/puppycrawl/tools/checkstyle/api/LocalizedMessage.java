@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.ResourceBundle;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.Map;
-import java.util.HashMap;
 import java.text.MessageFormat;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 /**
  * Represents a message that can be localised. The translations come from
@@ -43,7 +43,7 @@ public final class LocalizedMessage
     /**
      * A cache that maps bundle names to RessourceBundles.
      * Avoids repetitive calls to ResourceBundle.getBundle().
-     * TODO: Clear before method termination.
+     * TODO: The cache should be cleared at some point.
      */
     private static Map sBundleCache = new HashMap();
 
@@ -61,6 +61,37 @@ public final class LocalizedMessage
     /** name of the resource bundle to get messages from **/
     private final String mBundle;
 
+    /** @see Object#equals */
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (!(o instanceof LocalizedMessage)) return false;
+
+        final LocalizedMessage localizedMessage = (LocalizedMessage) o;
+
+        if (mColNo != localizedMessage.mColNo) return false;
+        if (mLineNo != localizedMessage.mLineNo) return false;
+        if (!mKey.equals(localizedMessage.mKey)) return false;
+
+        // ignoring mArgs and mBundle for perf reasons.
+
+        // we currently never load the same error from different bundles or
+        // fire the same error for the same location with different arguments.
+
+        return true;
+    }
+
+    /**
+     * @see Object#hashCode
+     */
+    public int hashCode()
+    {
+        int result;
+        result = mLineNo;
+        result = 29 * result + mColNo;
+        result = 29 * result + mKey.hashCode();
+        return result;
+    }
 
     /**
      * Creates a new <code>LocalizedMessage</code> instance.
@@ -173,7 +204,7 @@ public final class LocalizedMessage
         final LocalizedMessage lt = (LocalizedMessage) aOther;
         if (getLineNo() == lt.getLineNo()) {
             if (getColumnNo() == lt.getColumnNo()) {
-                return 0;
+                return mKey.compareTo(lt.mKey);
             }
             return (getColumnNo() < lt.getColumnNo()) ? -1 : 1;
         }
