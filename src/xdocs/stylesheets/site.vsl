@@ -305,6 +305,20 @@
                     <!-- LEFT SIDE NAVIGATION -->
                     <td id="navbar" valign="top">
                     #makeNavigationBar()
+
+  <div align="center">
+    <p><a href="http://www.cenqua.com/clover?ref=checkstyle">
+      <img src="http://www.cenqua.com/clover/images/clovered1.gif?ref=checkstyle" alt="Clover Logo"/></a>
+    </p>
+  </div>
+
+  <p>Hosted by:</p>
+  <div align="center">
+    <p><a href="http://sourceforge.net">
+      <img src="http://sourceforge.net/sflogo.php?group_id=29721&amp;type=1" width="88" height="31" alt="SourceForge Logo"/></a>
+    </p>
+  </div>
+
                     </td>
                     <td id="mainContents" align="left" valign="top">
 	               #foreach ( $item in $root.getChild("body").getChildren() )
