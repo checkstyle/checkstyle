@@ -142,9 +142,6 @@ public class MagicNumberCheck extends Check
      */
     private boolean isConstantDefinition(DetailAST aAST)
     {
-        if (ScopeUtils.inInterfaceBlock(aAST)) {
-            return true;
-        }
         DetailAST parent = aAST.getParent();
 
         //expression?
@@ -169,10 +166,11 @@ public class MagicNumberCheck extends Check
             return false;
         }
 
-        //final?
+        //final or interface constant
         final DetailAST modifiersAST =
             parent.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiersAST.branchContains(TokenTypes.FINAL);
+        return modifiersAST.branchContains(TokenTypes.FINAL)
+            || ScopeUtils.inInterfaceBlock(parent);
     }
 
     /**
