@@ -17,8 +17,8 @@ strictfp final class InputSimple // illegal order of modifiers for class
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->	<-
+    // Contains trailing whitespace -> 
 
-    //
     // Name format tests
     //
     /** Invalid format **/
