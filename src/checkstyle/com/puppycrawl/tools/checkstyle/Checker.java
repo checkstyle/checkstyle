@@ -168,14 +168,14 @@ public class Checker
 
         // Create a stripped down version
         final String stripped;
-        if ((mConfig.getBasedir() == null)
-            || !aFileName.startsWith(mConfig.getBasedir()))
-        {
+        final String basedir = mConfig.getBasedir();
+        if ((basedir == null) || !aFileName.startsWith(basedir)) {
             stripped = aFileName;
         }
         else {
             // making the assumption that there is text after basedir
-            stripped = aFileName.substring(mConfig.getBasedir().length() + 1);
+            final int skipSep = basedir.endsWith(File.separator) ? 0 : 1;
+            stripped = aFileName.substring(basedir.length() + skipSep);
         }
 
         LineText[] errors;
