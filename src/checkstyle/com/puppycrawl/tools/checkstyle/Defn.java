@@ -68,6 +68,8 @@ public interface Defn
     String REQUIRE_PACKAGE_HTML_PROP = "checkstyle.require.packagehtml";
     /** property name for ignoring import statements **/
     String IGNORE_IMPORTS_PROP = "checkstyle.ignore.imports";
+    /** property name for the line length check exclusion pattern **/
+    String IGNORE_LINE_LENGTH_PATTERN_PROP = "checkstyle.ignore.maxlinelen";
     /** property name for ignoring whitespace **/
     String IGNORE_WHITESPACE_PROP = "checkstyle.ignore.whitespace";
     /** property name for ignoring whitespace after casts **/

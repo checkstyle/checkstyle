@@ -60,6 +60,8 @@ public class Configuration
     private static final String LOCAL_VAR_PATTERN = "^[a-z][a-zA-Z0-9]*$";
     /** the pattern to match against method names **/
     private static final String METHOD_PATTERN = "^[a-z][a-zA-Z0-9]*$";
+    /** the pattern to exclude from line length checks **/
+    private static final String IGNORE_LINE_LENGTH_PATTERN = "^$";
     /** the maximum line length **/
     private static final int MAX_LINE_LENGTH = 80;
     /** the maximum method length **/
@@ -145,6 +147,10 @@ public class Configuration
     private String mCacheFile = null;
     /** whether to ignore max line length of import statements **/
     private boolean mIgnoreImportLength = false;
+    /** pattern to exclude from line lengh checking **/
+    private String mIgnoreLineLengthPat;
+    /** regexp to exclude from line length checking **/
+    private transient RE mIgnoreLineLengthRegexp;
 
     /** the header lines to check for **/
     private String[] mHeaderLines = {};
@@ -194,6 +200,8 @@ public class Configuration
                                           LOCAL_VAR_PATTERN));
         setMethodPat(aProps.getProperty(METHOD_PATTERN_PROP,
                                         METHOD_PATTERN));
+        setIgnoreLineLengthPat(aProps.getProperty(
+            IGNORE_LINE_LENGTH_PATTERN_PROP, IGNORE_LINE_LENGTH_PATTERN));
         setMaxLineLength(getIntProperty(
             aProps, aLog, MAX_LINE_LENGTH_PROP, MAX_LINE_LENGTH));
         setMaxMethodLength(getIntProperty(
@@ -269,6 +277,7 @@ public class Configuration
             setTypePat(TYPE_PATTERN);
             setLocalVarPat(LOCAL_VAR_PATTERN);
             setMethodPat(METHOD_PATTERN);
+            setIgnoreLineLengthPat(IGNORE_LINE_LENGTH_PATTERN);
         }
         catch (RESyntaxException ex) {
             ex.printStackTrace();
@@ -300,6 +309,7 @@ public class Configuration
             setTypePat(getTypePat());
             setLocalVarPat(getLocalVarPat());
             setMethodPat(getMethodPat());
+            setIgnoreLineLengthPat(getIgnoreLineLengthPat());
         }
         catch (RESyntaxException ex) {
             // This should never happen, as the serialized regexp patterns
@@ -476,6 +486,18 @@ public class Configuration
         return mIgnoreImports;
     }
 
+    /** @return pattern to exclude from line lengh checking **/
+    public String getIgnoreLineLengthPat()
+    {
+        return mIgnoreLineLengthPat;
+    }
+
+    /** @return regexp to exclude from line lengh checking **/
+    public RE getIgnoreLineLengthRegexp()
+    {
+        return mIgnoreLineLengthRegexp;
+    }
+
     /** @return whether to ignore checks for whitespace **/
     public boolean isIgnoreWhitespace()
     {
@@ -635,6 +657,17 @@ public class Configuration
     {
         mMethodRegexp = new RE(aMethodPat);
         mMethodPat = aMethodPat;
+    }
+
+    /**
+     * @param aIgnoreLineLengthPat pattern to exclude from line legth checking
+     * @throws RESyntaxException if an error occurs
+     */
+    public void setIgnoreLineLengthPat(String aIgnoreLineLengthPat)
+        throws RESyntaxException
+    {
+        mIgnoreLineLengthRegexp = new RE(aIgnoreLineLengthPat);
+        mIgnoreLineLengthPat = aIgnoreLineLengthPat;
     }
 
     /**
