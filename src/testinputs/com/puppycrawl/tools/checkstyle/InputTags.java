@@ -204,4 +204,17 @@ class InputTags
     {
         throw new IOException("to make compiler happy");
     }
+    
+    /**
+     * Bug 579190, "expected return tag when one is there".
+     *
+     * Linebreaks after return tag should be legal.
+     *
+     * @return
+     *   the bug that states that linebreak should be legal
+     */
+    int method20()
+    {
+        return 579190;
+    }
 }
