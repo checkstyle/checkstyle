@@ -853,7 +853,7 @@ postfixExpression
 		(	// qualified id (id.id.id.id...) -- build the name
 			DOT^ ( IDENT {ver.reportReference(sFirstIdent);}
 				| "this"
-				| "class"
+				| "class" {ver.reportReference(sFirstIdent);}
 				| newExpression
 				| "super" // ClassName.super.field
 				)
