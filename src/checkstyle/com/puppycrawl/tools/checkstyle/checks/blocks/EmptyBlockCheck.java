@@ -77,6 +77,7 @@ public class EmptyBlockCheck
             TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_ELSE,
             TokenTypes.LITERAL_FOR,
+            TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
             // TODO: need to handle....
             //TokenTypes.LITERAL_SWITCH,
