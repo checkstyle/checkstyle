@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import org.apache.regexp.RE;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 
 /**
  * <p>
@@ -43,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </pre>
  * @author lkuehne
  * @author <a href="mailto:bschneider@vecna.com">Bill Schneider</a>
+ * @author Daniel Grenner
  */
 public class GenericIllegalRegexpCheck extends AbstractFormatCheck
 {
@@ -54,6 +56,9 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
 
     /** case insensitive? **/
     private boolean mIgnoreCase;
+
+    /** Ignore comments in code? **/
+    private boolean mIgnoreComments;
 
     /**
      * Setter for message property.
@@ -89,6 +94,15 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
     }
 
     /**
+     * Sets if comments should be ignored.
+     * @param aIgnoreComments True if comments should be ignored.
+     */
+    public void setIgnoreComments(boolean aIgnoreComments)
+    {
+        mIgnoreComments = aIgnoreComments;
+    }
+
+    /**
      * Instantiates an new GenericIllegalRegexpCheck.
      */
     public GenericIllegalRegexpCheck()
@@ -106,10 +120,18 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
     public void beginTree(DetailAST aRootAST)
     {
         final String[] lines = getLines();
+
         for (int i = 0; i < lines.length; i++) {
 
             final String line = lines[i];
-            if (getRegexp().match(line)) {
+            final boolean foundMatch;
+            if (mIgnoreComments) {
+                foundMatch = findNonCommentMatch(line, i + 1, 0);
+            }
+            else {
+                foundMatch = getRegexp().match(line);
+            }
+            if (foundMatch) {
                 if ("".equals(mMessage)) {
                     log(i + 1, "illegal.regexp", getFormat());
                 }
@@ -117,6 +139,47 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
                     log(i + 1, mMessage);
                 }
             }
+        }
+    }
+
+    /**
+     * Finds matches that are not inside comments.
+     * @param aLine The text that should be matched.
+     * @param aLineNumber The current line number.
+     * @param aStartPosition The position to start searching from.
+     * @return true if a match is done where there is no comment.
+     */
+    private boolean findNonCommentMatch(
+            String aLine, int aLineNumber, int aStartPosition)
+    {
+        final RE regexp = getRegexp();
+        final boolean foundMatch = regexp.match(aLine, aStartPosition);
+        if (foundMatch) {
+            // match is found, check for intersection with comment
+            int startCol = regexp.getParenStart(0);
+            int endCol = regexp.getParenEnd(0);
+            final FileContents fileContents = getFileContents();
+            if (fileContents.hasIntersectionWithComment(aLineNumber,
+                startCol, aLineNumber, endCol))
+            {
+                // was part of comment
+                if (endCol < aLine.length()) {
+                    // check if the expression is on the rest of the line
+                    return findNonCommentMatch(aLine, aLineNumber, endCol);
+                }
+                else {
+                    // end of line reached
+                    return false;
+                }
+            }
+            else {
+                // not intersecting with comment
+                return true;
+            }
+        }
+        else {
+            // no match is found
+            return false;
         }
     }
 

@@ -25,6 +25,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Collection;
+import java.util.Iterator;
 
 import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
 
@@ -239,6 +241,49 @@ public final class FileContents implements CommentListener
     public boolean lineIsComment(int aLineNo)
     {
       return MATCH_SINGLELINE_COMMENT.match(mLines[aLineNo]);
+    }
+
+    /**
+     * Checks if the specified position intersects with a comment.
+     * @param aStartLineNo the starting line number
+     * @param aStartColNo the starting column number
+     * @param aEndLineNo the ending line number
+     * @param aEndColNo the ending column number
+     * @return true if the positions intersects with a comment.
+     **/
+    public boolean hasIntersectionWithComment(
+            int aStartLineNo, int aStartColNo, int aEndLineNo, int aEndColNo)
+    {
+        // Check C comments (all comments should be checked)
+        Collection values = mCComments.values();
+
+        Iterator it = values.iterator();
+        while (it.hasNext()) {
+            List row = (List) it.next();
+            Iterator rowIterator = row.iterator();
+            while (rowIterator.hasNext()) {
+                Comment comment = (Comment) rowIterator.next();
+                if (comment.intersects(
+                        aStartLineNo, aStartColNo, aEndLineNo, aEndColNo))
+                {
+                    return true;
+                }
+            }
+        }
+
+        // Check CPP comments (line searching is possible)
+        for (int lineNumber = aStartLineNo; lineNumber <= aEndLineNo;
+            lineNumber++)
+        {
+            Comment comment = (Comment) mCPlusPlusComments.get(
+                new Integer(lineNumber));
+            if (comment != null && comment.intersects(aStartLineNo, aStartColNo,
+                aEndLineNo, aEndColNo))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
