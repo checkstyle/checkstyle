@@ -91,56 +91,56 @@ If a property file is specified, the system properties are ignored.
 </p>
 <h2>Examples</h2>
 <p>
-<b>Run checkstyle with configuration file <code>docs/checkstyle_checks.xml</code> on a file</b>
+<b>Run checkstyle with configuration file <code>docs/sun_checks.xml</code> on a file</b>
 </p>
 <pre>
-  java com.puppycrawl.tools.checkstyle.Main -c docs/checkstyle_checks.xml \
+  java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
        Check.java
 </pre>
 
 <p>
-<b>Run checkstyle with configuration file <code>docs/checkstyle_checks.xml</code>
+<b>Run checkstyle with configuration file <code>docs/sun_checks.xml</code>
 on all java files in a directory</b>
 </p>
 <pre>
-  java com.puppycrawl.tools.checkstyle.Main -c docs/checkstyle_checks.xml \
+  java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
        -r src/
 </pre>
 
 <p>
-<b>Run checkstyle with configuration file <code>docs/checkstyle_checks.xml</code>
+<b>Run checkstyle with configuration file <code>docs/sun_checks.xml</code>
 on a file and provide a system property</b>
 </p>
 <pre>
-  java -Dcheckstyle.header.file=docs/java.header \
-       com.puppycrawl.tools.checkstyle.Main -c docs/checkstyle_checks.xml \
+  java -Dcheckstyle.cache.file=target/cachefile \
+       com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
        Check.java
 </pre>
 
 <p>
-<b>Run checkstyle with configuration file <code>docs/checkstyle_checks.xml</code>
+<b>Run checkstyle with configuration file <code>docs/sun_checks.xml</code>
 on a file and use properties in a file</b>
 </p>
 <pre>
-  java com.puppycrawl.tools.checkstyle.Main -c docs/checkstyle_checks.xml \
+  java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
   -p myCheckstyle.properties Check.java
 </pre>
 
 <p>
-<b>Run checkstyle with configuration file <code>docs/checkstyle_checks.xml</code>
+<b>Run checkstyle with configuration file <code>docs/sun_checks.xml</code>
 on a file and output to a file in XML format </b>
 </p>
 <pre>
-  java com.puppycrawl.tools.checkstyle.Main -c docs/checkstyle_checks.xml \
+  java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
        -f xml -o build/checkstyle_errors.xml Check.java
 </pre>
 
 <p>
-<b>Run checkstyle  with configuration file <code>docs/checkstyle_checks.xml</code> on a file and
+<b>Run checkstyle  with configuration file <code>docs/sun_checks.xml</code> on a file and
 provide a package names file</b>
 </p>
 <pre>
-  java com.puppycrawl.tools.checkstyle.Main -c docs/checkstyle_checks.xml \
+  java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
        -n myPackageNames.xml Check.java
 </pre>
 
@@ -154,7 +154,7 @@ provide a package names file</b>
 
   <pre>
   java -jar checkstyle-all-@CHECKSTYLE_VERSION@.jar \
-       -c docs/checkstyle_checks.xml Check.java
+       -c docs/sun_checks.xml Check.java
   </pre>
 </div>
 
