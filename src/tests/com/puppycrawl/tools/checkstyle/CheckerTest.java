@@ -522,8 +522,6 @@ public class CheckerTest
             filepath + ":14:10: 'final' modifier out of order with the JLS suggestions.",
             filepath + ":18:12: 'private' modifier out of order with the JLS suggestions.",
             filepath + ":24:14: 'private' modifier out of order with the JLS suggestions.",
-            filepath + ":32:9: Redundant 'public' modifier.",
-            filepath + ":38:9: Redundant 'abstract' modifier.",
         };
         verify(c, filepath, expected);
     }
@@ -614,7 +612,6 @@ public class CheckerTest
         throws Exception
     {
         mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.PUBLIC.getName());
-        mProps.setProperty(Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP, "true");
         final Checker c = createChecker();
         final String filepath = getPath("InputScopeInnerInterfaces.java");
         assertNotNull(c);

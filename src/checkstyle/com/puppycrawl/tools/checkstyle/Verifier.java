@@ -238,21 +238,7 @@ class Verifier
                           aSig.getFirstColNo(),
                           "maxParam", new Integer(mConfig.getMaxParameters()));
         }
-        // JLS, chapter 9.4 - public in interface is strongly discouraged
-        if (!mConfig.isIgnorePublicInInterface() && inInterfaceBlock()
-            && aSig.getModSet().containsPublic())
-        {
-            mMessages.add(aSig.getModSet().getFirstLineNo(),
-                          aSig.getModSet().getFirstColNo(),
-                          "redundantModifier", "public");
-        }
 
-        // Check for redunant abstract
-        if (inInterfaceBlock() && aSig.getModSet().containsAbstract()) {
-            mMessages.add(aSig.getModSet().getFirstLineNo(),
-                          aSig.getModSet().getFirstColNo(),
-                          "redundantModifier", "abstract");
-        }
         // now check the javadoc
         final Scope methodScope = inInterfaceBlock()
             ? Scope.PUBLIC
