@@ -183,13 +183,13 @@
       When you fire up the checkstyle GUI and look at a few source
       files you'll figure out pretty quickly that you are mainly
       interested in the number of tree nodes of type METHOD_DEF. The
-      number of such tokens should be counted sepearately for each
+      number of such tokens should be counted separately for each
       CLASS_DEF / INTERFACE_DEF.
       </p>
 
       <p class="body">
-      Now you have to decide how constructors are treaded. Do they
-      count as a method for the puposes of your Check? Maybe you
+      Now you have to decide how constructors are treated. Do they
+      count as a method for the purposes of your Check? Maybe you
       should make that configurable, and we have good news for you:
       Checkstyle lets you control the token types for which your
       visitor methods are called.
