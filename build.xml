@@ -188,13 +188,14 @@
                     rcurly="alone"
                     parenPad="nospace"
                     catchBlock="text"
-                    enableCheckUnusedThrows="true"
+                    checkUnusedThrows="true"
                     todoPattern="TODO:">
             <fileset dir="src/checkstyle"
                      includes="**/*.java"
                      excludes="**/Generated*.java"/>
             <formatter type="plain"/>
             <formatter type="xml" toFile="classes/cs_errors.xml"/>
+            <classpath refid="build.classpath"/>
         </checkstyle>
     </target>
 

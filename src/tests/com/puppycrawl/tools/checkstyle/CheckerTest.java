@@ -117,7 +117,9 @@ public class CheckerTest
             filepath + ":31:22: '--' is followed by whitespace.",
             filepath + ":37:21: 'synchronized' is not followed by whitespace.",
             filepath + ":39:12: 'try' is not followed by whitespace.",
+            filepath + ":39:12: '{' is not preceeded with whitespace.",
             filepath + ":41:14: 'catch' is not followed by whitespace.",
+            filepath + ":41:34: '{' is not preceeded with whitespace.",
             filepath + ":58:11: 'if' is not followed by whitespace.",
             filepath + ":58:12: '(' is followed by whitespace.",
             filepath + ":58:36: ')' is preceeded by whitespace.",
@@ -191,7 +193,9 @@ public class CheckerTest
             filepath + ":31:22: '--' is followed by whitespace.",
             filepath + ":37:21: 'synchronized' is not followed by whitespace.",
             filepath + ":39:12: 'try' is not followed by whitespace.",
+            filepath + ":39:12: '{' is not preceeded with whitespace.",
             filepath + ":41:14: 'catch' is not followed by whitespace.",
+            filepath + ":41:34: '{' is not preceeded with whitespace.",
             filepath + ":58:11: 'if' is not followed by whitespace.",
             filepath + ":59:9: '{' should be on the previous line.",
             filepath + ":63:9: '{' should be on the previous line.",
@@ -456,6 +460,7 @@ public class CheckerTest
     public void testStrictJavadoc()
         throws Exception
     {
+        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
         final Checker c = createChecker();
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
@@ -494,6 +499,7 @@ public class CheckerTest
     public void testNoJavadoc()
         throws Exception
     {
+        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
         mConfig.setJavadocScope(Scope.NOTHING);
         final Checker c = createChecker();
         final String filepath = getPath("InputPublicOnly.java");
@@ -510,6 +516,7 @@ public class CheckerTest
     public void testRelaxedJavadoc()
         throws Exception
     {
+        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
         mConfig.setJavadocScope(Scope.PROTECTED);
         final Checker c = createChecker();
         final String filepath = getPath("InputPublicOnly.java");
@@ -623,6 +630,7 @@ public class CheckerTest
     public void testHeader()
         throws Exception
     {
+        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
         final Checker c = createChecker();
         final String filepath = getPath("inputHeader.java");
         assertNotNull(c);
@@ -706,6 +714,7 @@ public class CheckerTest
     public void testLCurlyMethodIgnore()
         throws Exception
     {
+        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
         mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP,
                                            LeftCurlyOption.IGNORE);
         mConfig.setJavadocScope(Scope.NOTHING);
@@ -720,6 +729,7 @@ public class CheckerTest
     public void testLCurlyMethodNL()
         throws Exception
     {
+        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
         mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP,
                                            LeftCurlyOption.NL);
         mConfig.setJavadocScope(Scope.NOTHING);
@@ -776,6 +786,7 @@ public class CheckerTest
     public void testSemantic()
         throws Exception
     {
+        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
         mConfig.setJavadocScope(Scope.NOTHING);
         mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.STMT);
         mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP, BlockOption.STMT);
@@ -815,6 +826,7 @@ public class CheckerTest
     public void testSemantic2()
         throws Exception
     {
+        mConfig.setBooleanProperty(Defn.IGNORE_WHITESPACE_PROP, true);
         mConfig.setJavadocScope(Scope.NOTHING);
         mConfig.setBlockOptionProperty(Defn.TRY_BLOCK_PROP, BlockOption.TEXT);
         mConfig.setBlockOptionProperty(Defn.CATCH_BLOCK_PROP, BlockOption.TEXT);

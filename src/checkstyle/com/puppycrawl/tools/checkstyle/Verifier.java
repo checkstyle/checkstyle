@@ -650,6 +650,12 @@ class Verifier
      */
     void verifyRCurly(MyCommonAST aBrace, int aStartLine)
     {
+        // check surrounded by whitespace
+        verifyWSAroundBegin(aBrace.getLineNo(),
+                            aBrace.getColumnNo() + 1,
+                            aBrace.getText());
+
+        // Check the actual brace
         if ((mConfig.getRCurly() == RightCurlyOption.SAME)
             && (aBrace.getLineNo() != aStartLine))
         {
@@ -1455,7 +1461,7 @@ class Verifier
         final Set illegalInsts = mConfig.getIllegalInstantiations();
         final String javaLang = "java.lang.";
 
-        if (illegalInsts.contains(aClassName)){
+        if (illegalInsts.contains(aClassName)) {
             return aClassName;
         }
 
@@ -1565,6 +1571,9 @@ class Verifier
                              MyCommonAST aBrace,
                              LeftCurlyOption aOption)
     {
+        verifyWSAroundBegin(aBrace.getLineNo(),
+                            aBrace.getColumnNo() + 1,
+                            aBrace.getText());
         final String braceLine = mLines[aBrace.getLineNo() - 1];
 
         // calculate the previous line length without trailing whitespace. Need
