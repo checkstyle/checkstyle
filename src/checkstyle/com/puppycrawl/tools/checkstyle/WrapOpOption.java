@@ -37,6 +37,8 @@ public final class WrapOpOption
 
     /** represents operator on a new line **/
     public static final WrapOpOption NL = new WrapOpOption("nl");
+    /** represents operator at end of line **/
+    public static final WrapOpOption EOL = new WrapOpOption("eol");
     /** represents ignoring the wrapping **/
     public static final WrapOpOption IGNORE = new WrapOpOption("ignore");
 

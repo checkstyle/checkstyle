@@ -935,7 +935,7 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
-    public void testOpWrapOn()
+    public void testOpWrapNL()
         throws Exception
     {
         mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
@@ -951,7 +951,23 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
-    public void testOpWrapOff()
+    public void testOpWrapEOL()
+        throws Exception
+    {
+        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
+        mProps.setProperty(Defn.WRAP_OP_PROP, WrapOpOption.EOL.toString());
+        final Checker c = createChecker();
+        final String filepath = getPath("InputOpWrap.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":18:13: '-' should be on the previous line.",
+            filepath + ":22:13: '&&' should be on the previous line.",
+            filepath + ":27:13: '&&' should be on the previous line.",
+        };
+        verify(c, filepath, expected);
+    }
+
+    public void testOpWrapIgnore()
         throws Exception
     {
         mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
