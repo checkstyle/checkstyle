@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.checks.FileLengthCheck;
-import org.apache.commons.beanutils.ConversionException;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class FileLengthCheckTest
     extends BaseCheckTestCase
@@ -40,7 +40,7 @@ public class FileLengthCheckTest
             createChecker(checkConfig);
             fail("Should indicate illegal args");
         }
-        catch (ConversionException ex)
+        catch (CheckstyleException ex)
         {
             // Expected Exception because of illegal argument for "max"
         }
