@@ -34,9 +34,20 @@
         <li>Fixed typo in SuppressionCommentFilter which caused bug 1084654</li>
 
         <li>Fixed 1048226 (Runtime problems of Checks are logged to checkstyle
-        audit), nowcheckstyle will fail if it can not load class for exception
+        audit), now checkstyle will fail if it can not load class for exception
         from throws clause of javadoc (modules RedundantThrows and
         JavadocMethod)</li>
+
+        <li>Fixed French translation, patch from Paul Guyot (bugs 1090381 and
+        1100946)</li>
+
+        <li>Fixed problem with exception's javadoc checks(bug 1100193, module
+        JavadocMethod)</li>
+
+        <li>Fixed two more problems in Indentation check (bug 1089128)</li>
+
+        <li>ConstantName check now exclude serialPersistentFields from the
+        check (bug 1097285)</li>
 
       </ul>
 
