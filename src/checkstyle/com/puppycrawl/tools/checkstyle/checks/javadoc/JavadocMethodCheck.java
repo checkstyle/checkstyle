@@ -255,8 +255,9 @@ public class JavadocMethodCheck
     }
 
     /**
-     * Controls whether to ignoreerrors when there is no javadoc.
+     * Controls whether to ignore errors when there is no javadoc.
      * Defaults to false.
+     * @param aFlag a <code>Boolean</code> value
      */
     public void setAllowMissingJavadoc(boolean aFlag)
     {
