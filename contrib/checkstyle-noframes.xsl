@@ -84,7 +84,7 @@
 		</style>
 		</head>
 		<body>
-			<a name="#top"></a>
+			<a name="top"></a>
       <!-- jakarta logo -->
       <table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr>
@@ -137,7 +137,7 @@
 				<xsl:variable name="errorCount" select="count(error)"/>				
 				<tr>
           <xsl:call-template name="alternated-row"/>
-					<td><a href="#{@name}"><xsl:value-of select="@name"/></a></td>
+					<td><a href="#f-{@name}"><xsl:value-of select="@name"/></a></td>
 					<td><xsl:value-of select="$errorCount"/></td>
 				</tr>
 			</xsl:for-each>
@@ -146,7 +146,7 @@
 	
 	
 	<xsl:template match="file">
-    <a name="#{@name}"></a>
+    <a name="f-{@name}"></a>
     <h3>File <xsl:value-of select="@name"/></h3>
     
     <table class="log" border="0" cellpadding="5" cellspacing="2" width="100%">
