@@ -53,6 +53,14 @@ public abstract class AbstractUsageCheck
     private String mIgnoreFormat;
 
     /**
+     * Constructs an <code>AAbstractUsageCheck</code>.
+     */
+    public AbstractUsageCheck()
+    {
+        setIgnoreFormat("^$");
+    }
+
+    /**
      * Set the ignore format to the specified regular expression.
      * @param aFormat a <code>String</code> value
      * @throws ConversionException unable to parse aFormat
