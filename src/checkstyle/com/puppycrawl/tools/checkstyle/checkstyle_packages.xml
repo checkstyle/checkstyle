@@ -12,11 +12,13 @@
       <package name="design"/>
       <package name="imports"/>
       <package name="indentation"/>
+      <package name="j2ee"/>
       <package name="javadoc"/>
       <package name="metrics"/>
       <package name="naming"/>
       <package name="sizes"/>
       <package name="whitespace"/>
     </package>
+    <package name="filters"/>
   </package>
 </checkstyle-packages>

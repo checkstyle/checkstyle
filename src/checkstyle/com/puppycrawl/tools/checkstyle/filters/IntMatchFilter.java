@@ -16,45 +16,34 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.filter;
+package com.puppycrawl.tools.checkstyle.filters;
 
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
 /**
- * This filter accepts an Integer in a range and is neutral
+ * This filter accepts a matching Integer and is neutral
  * on other Objects.
  * @author Rick Giles
  */
-public class IntRangeFilter
+public class IntMatchFilter
     implements Filter
 {
-    /** hash function multiplicand */
-    private static final int HASH_MULT = 29;
-
-    /** lower bound of the range */
-    private Integer mLowerBound;
-
-    /** upper bound of the range */
-    private Integer mUpperBound;
+    /** the matching Integer */
+    private Integer mMatchValue;
 
     /**
-     * Constructs a <code>IntRangeFilter</code> with a
-     * lower bound and an upper bound for the range.
-     * @param aLowerBound the lower bound of the range.
-     * @param aUpperBound the upper bound of the range.
+     * Constructs a MatchFilter for an int.
+     * @param aMatchValue the matching int.
      */
-    public IntRangeFilter(int aLowerBound, int aUpperBound)
+    public IntMatchFilter(int aMatchValue)
     {
-        mLowerBound = new Integer(aLowerBound);
-        mUpperBound = new Integer(aUpperBound);
+        mMatchValue = new Integer(aMatchValue);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Filter#decide */
+    /** @see com.puppycrawl.tools.checkstyle.api.Filter */
     public int decide(Object aObject)
     {
-        if ((mLowerBound.compareTo(aObject) <= 0)
-            && (mUpperBound.compareTo(aObject) >= 0))
-        {
+        if ((mMatchValue.equals(aObject))) {
             return Filter.ACCEPT;
         }
         else {
@@ -62,28 +51,27 @@ public class IntRangeFilter
         }
     }
 
+    /** @see java.lang.Object#toString() */
+    public String toString()
+    {
+        return "IntMatchFilter[" + mMatchValue + "]";
+    }
+
     /** @see java.lang.Object#hashCode() */
     public int hashCode()
     {
-        return HASH_MULT * mLowerBound.intValue() + mUpperBound.intValue();
+        return mMatchValue.hashCode();
     }
 
     /** @see java.lang.Object#equals(java.lang.Object) */
     public boolean equals(Object aObject)
     {
-        if (aObject instanceof IntRangeFilter) {
-            final IntRangeFilter other = (IntRangeFilter) aObject;
-            return (this.mLowerBound.equals(other.mLowerBound)
-                && this.mUpperBound.equals(other.mUpperBound));
+        if (aObject instanceof IntMatchFilter) {
+            final IntMatchFilter other = (IntMatchFilter) aObject;
+            return (this.mMatchValue).equals(other.mMatchValue);
         }
         else {
             return false;
         }
     }
-    /** @see java.lang.Object#toString() */
-    public String toString()
-    {
-        return "IntRangeFilter[" + mLowerBound + "," + mUpperBound + "]";
-    }
-
 }

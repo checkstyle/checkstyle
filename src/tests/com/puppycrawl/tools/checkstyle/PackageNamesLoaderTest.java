@@ -57,11 +57,14 @@ public class PackageNamesLoaderTest extends TestCase
             "com.puppycrawl.tools.checkstyle.checks.design.",
             "com.puppycrawl.tools.checkstyle.checks.imports.",
             "com.puppycrawl.tools.checkstyle.checks.indentation.",
+            "com.puppycrawl.tools.checkstyle.checks.j2ee.",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.",
             "com.puppycrawl.tools.checkstyle.checks.metrics.",
             "com.puppycrawl.tools.checkstyle.checks.naming.",
             "com.puppycrawl.tools.checkstyle.checks.sizes.",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace."
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.",
+            "com.puppycrawl.tools.checkstyle.filters.",
+            
         };
 
         PackageObjectFactory factory = (PackageObjectFactory) aModuleFactory;
