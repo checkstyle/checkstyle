@@ -37,7 +37,7 @@ public class RemoteInterfaceCheck
             checkMethods(aAST);
         }
     }
-    
+
     /**
      *
      * @see com.puppycrawl.tools.checkstyle.checks.j2ee.AbstractInterfaceCheck

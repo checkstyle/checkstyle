@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle.checks.j2ee;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks the create and find methods of a home interface.
@@ -48,7 +47,7 @@ public class HomeInterfaceCheck
 
         // every method must throw java.rmi.RemoteException
         checkThrows(aAST, "java.rmi.RemoteException");
-        
+
         // a home interface must have a findByPrimaryKey method
         checkFindByPrimaryKey(aAST);
     }

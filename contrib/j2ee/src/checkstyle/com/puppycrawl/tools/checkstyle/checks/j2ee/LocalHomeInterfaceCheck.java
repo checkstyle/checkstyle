@@ -48,7 +48,7 @@ public class LocalHomeInterfaceCheck
 
         // a home interface must have a findByPrimaryKey method
         checkFindByPrimaryKey(aAST);
-             
+
         // every method must not throw java.rmi.RemoteException
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
         if (objBlock != null) {
