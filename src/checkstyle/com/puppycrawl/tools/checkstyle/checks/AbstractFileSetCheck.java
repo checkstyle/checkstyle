@@ -24,6 +24,7 @@ import java.io.File;
 
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 
 /**
  * Provides common functionality for many FileSetChecks.
@@ -34,7 +35,8 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
  * 
  * @author lkuehne
  */
-public abstract class AbstractFileSetCheck implements FileSetCheck
+public abstract class AbstractFileSetCheck
+        extends AutomaticBean implements FileSetCheck
 {
     /** The dispatcher errors are fired to. */
     private MessageDispatcher mDispatcher = null;

@@ -28,32 +28,4 @@ public interface Defn
     // TODO: Change to a class - follow the advice of Bloch.
     /** name of resource bundle for Checkstyle */
     String CHECKSTYLE_BUNDLE = "com.puppycrawl.tools.checkstyle.messages";
-
-    /** property name for allowing protected data **/
-    String TAB_WIDTH_PROP = "checkstyle.tab.width";
-    /** property name for cache file **/
-    String CACHE_FILE_PROP = "checkstyle.cache.file";
-
-    /** property name for the base directory **/
-    String BASEDIR_PROP = "checkstyle.basedir";
-
-    /** property name for the locale language for reporting **/
-    String LOCALE_LANGUAGE_PROP = "checkstyle.locale.language";
-    /** property name for the locale country for reporting **/
-    String LOCALE_COUNTRY_PROP = "checkstyle.locale.country";
-
-    /** All the integer properties */
-    String[] ALL_INT_PROPS = new String[]
-        {
-            TAB_WIDTH_PROP,
-        };
-
-    /** All the String properties */
-    String[] ALL_STRING_PROPS = new String[]
-        {
-            BASEDIR_PROP,
-            CACHE_FILE_PROP,
-            LOCALE_COUNTRY_PROP,
-            LOCALE_LANGUAGE_PROP,
-        };
 }

@@ -24,13 +24,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Properties;
 import java.security.MessageDigest;
+
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 /**
  * This class maintains a persistent store of the files that have
  * checked ok and their associated timestamp. It uses a property file
- * for storage.  A hashcode of the GlobalProperties is stored in the
+ * for storage.  A hashcode of the Configuration is stored in the
  * cache file to ensure the cache is invalidated when the
  * configuration has changed.
  *
@@ -56,10 +59,10 @@ class PropertyCacheFile
      *
      * @param aCurrentConfig the current configuration, not null
      */
-    PropertyCacheFile(GlobalProperties aCurrentConfig)
+    PropertyCacheFile(Configuration aCurrentConfig, String aFileName)
     {
         boolean setInActive = true;
-        final String fileName = aCurrentConfig.getCacheFile();
+        final String fileName = aFileName;
         if (fileName != null) {
             try {
                 mDetails.load(new FileInputStream(fileName));
@@ -79,6 +82,7 @@ class PropertyCacheFile
                 setInActive = false;
             }
             catch (IOException e) {
+                // TODO: use logger
                 System.out.println("Unable to open cache file, ignoring.");
                 e.printStackTrace(System.out);
             }
@@ -128,10 +132,10 @@ class PropertyCacheFile
      * @param aConfiguration the GlobalProperties
      * @return the hashcode for <code>aConfiguration</code>
      */
-    private String getConfigHashCode(GlobalProperties aConfiguration)
+    private String getConfigHashCode(Serializable aConfiguration)
     {
         try {
-            // im-memory serialization of GlobalProperties
+            // im-memory serialization of Configuration
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);

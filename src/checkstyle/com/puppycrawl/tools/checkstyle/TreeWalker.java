@@ -18,29 +18,30 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.checks.AbstractFileSetCheck;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.Arrays;
-import java.io.Reader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.checks.AbstractFileSetCheck;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -105,27 +106,72 @@ public final class TreeWalker
     private final Set mAllChecks = new HashSet();
     /** collects the error messages */
     private final LocalizedMessages mMessages;
-    /** the tab width for error reporting */
-    private final int mTabWidth;
+    /** the distance between tab stops */
+    private int mTabWidth = 8;
     /** cache file **/
-    private final PropertyCacheFile mCache;
+    private PropertyCacheFile mCache = new PropertyCacheFile(null, null);
+
     /**
      * the global configuration.
      * TODO: should only know the treewalker part of the config
      */
-    private final GlobalProperties mConfig;
+    private Configuration mConfig;
+
+    private ClassLoader mClassLoader;
 
     /**
      * Creates a new <code>TreeWalker</code> instance.
-     *
-     * @param aConfig the configuration to use
      */
-    public TreeWalker(GlobalProperties aConfig)
+    public TreeWalker()
     {
         mMessages = new LocalizedMessages();
-        mConfig = aConfig;
-        mTabWidth = aConfig.getTabWidth();
-        mCache = new PropertyCacheFile(aConfig);
+    }
+
+    /** sets the distance between tab stops */
+    public void setTabWidth(int aTabWidth)
+    {
+        mTabWidth = aTabWidth;
+    }
+
+    public void setCacheFile(String aFileName)
+    {
+        mCache = new PropertyCacheFile(mConfig, aFileName);
+    }
+
+    // TODO: Call from contextualize
+    public void setClassLoader(ClassLoader aClassLoader)
+    {
+        mClassLoader = aClassLoader;
+    }
+
+    public void configure(Configuration aConfiguration)
+            throws CheckstyleException
+    {
+        super.configure(aConfiguration);
+        mConfig = aConfiguration;
+
+        DefaultContext checkContext = new DefaultContext();
+        checkContext.add("classLoader", mClassLoader);
+        checkContext.add("messages", mMessages);
+        // TODO: hmmm.. this looks less than elegant
+        checkContext.add("tabWidth", String.valueOf(mTabWidth));
+
+        // TODO: improve the error handing
+        Configuration[] checkConfigs = aConfiguration.getChildren();
+        for (int i = 0; i < checkConfigs.length; i++) {
+            final Configuration config = checkConfigs[i];
+            // IMPORTANT! Need to use the same class loader that created this
+            // class. Otherwise can get ClassCastException problems.
+            final String className = config.getAttribute("classname");
+            final Check check = createCheck(
+                    this.getClass().getClassLoader(), className);
+
+            check.contextualize(checkContext);
+            check.configure(config);
+
+            registerCheck(check);
+        }
+
     }
 
     /**
@@ -147,7 +193,7 @@ public final class TreeWalker
             final String[] lines = Utils.getLines(fileName);
             final FileContents contents = new FileContents(fileName, lines);
             final DetailAST rootAST = TreeWalker.parse(contents);
-            walk(rootAST, contents, mConfig.getClassLoader());
+            walk(rootAST, contents);
         }
         catch (FileNotFoundException fnfe) {
             mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
@@ -184,16 +230,15 @@ public final class TreeWalker
     /**
      * Register a check for a given configuration.
      * @param aCheck the check to register
-     * @param aConfig the configuration to use
      */
-    void registerCheck(Check aCheck, CheckConfiguration aConfig)
+    void registerCheck(Check aCheck)
+           throws CheckstyleException
     {
-        aCheck.setMessages(mMessages);
-        aCheck.setTabWidth(mTabWidth);
-        if (!aConfig.getTokens().isEmpty()) {
+        final Set checkTokens = aCheck.getTokens();
+        if (!checkTokens.isEmpty()) {
             int acceptableTokens[] = aCheck.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
-            final Iterator it = aConfig.getTokens().iterator();
+            final Iterator it = checkTokens.iterator();
             while (it.hasNext()) {
                 String token = (String) it.next();
                 int tokenId = TokenTypes.getTokenId(token);
@@ -242,12 +287,11 @@ public final class TreeWalker
      * Initiates the walk of an AST.
      * @param aAST the root AST
      * @param aContents the contents of the file the AST was generated from
-     * @param aLoader the class loader for resolving classes
      */
-    void walk(DetailAST aAST, FileContents aContents, ClassLoader aLoader)
+    private void walk(DetailAST aAST, FileContents aContents)
     {
         mMessages.reset();
-        notifyBegin(aContents, aLoader);
+        notifyBegin(aContents);
 
          // empty files are not flagged by javac, will yield aAST == null
         if (aAST != null) {
@@ -261,9 +305,8 @@ public final class TreeWalker
     /**
      * Notify interested checks that about to begin walking a tree.
      * @param aContents the contents of the file the AST was generated from
-     * @param aLoader the class loader for resolving classes
      */
-    private void notifyBegin(FileContents aContents, ClassLoader aLoader)
+    private void notifyBegin(FileContents aContents)
     {
         // TODO: do not track Context properly for token
         final Iterator it = mAllChecks.iterator();
@@ -272,7 +315,6 @@ public final class TreeWalker
             final HashMap treeContext = new HashMap();
             check.setTreeContext(treeContext);
             check.setFileContents(aContents);
-            check.setClassLoader(aLoader);
             check.beginTree();
         }
     }
@@ -355,7 +397,7 @@ public final class TreeWalker
     }
 
     /**
-     *
+     * Static helper method to parses a Java source file.
      * @param aContents contains the contents of the file
      * @return the root of the AST
      * @throws TokenStreamException if lexing failed
@@ -418,4 +460,37 @@ public final class TreeWalker
         super.destroy();
         mCache.destroy();
     }
+
+    /**
+     * Create an instance of the check that is properly initialised.
+     *
+     * @param aLoader the <code>ClassLoader</code> to create the instance with
+     * @return the created check
+     * @throws CheckstyleException if an error occurs
+     */
+    private Check createCheck(
+            ClassLoader aLoader, String aClassName)
+        throws CheckstyleException
+    {
+        try {
+            final Class clazz = Class.forName(aClassName, true, aLoader);
+            final Check check = (Check) clazz.newInstance();
+            return check;
+        }
+        catch (ClassNotFoundException e) {
+            throw new CheckstyleException(
+                "Unable to find class for " + aClassName);
+        }
+        catch (InstantiationException e) {
+            throw new CheckstyleException(
+                "Unable to instantiate " + aClassName);
+        }
+        catch (IllegalAccessException e) {
+            throw new CheckstyleException(
+                "Unable to instantiate " + aClassName);
+        }
+    }
+
+
+
 }
