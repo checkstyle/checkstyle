@@ -51,6 +51,12 @@ This task is included in the checkstyle distribution.</p>
     <td align="center" valign="top">No</td>
   </tr>
   <tr>
+    <td valign="top">allowPackage</td>
+    <td valign="top">Indicates whether to allow package visible data. Defaults to <span class="default">&quot;false&quot;</span>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+  <tr>
      <td valign="top">allowNoAuthor</td> 
     <td valign="top">Indicates whether to allow no <span class="default">@author</span> tag to be defined for class and interface Javadoc comments. Defaults to <span class="default">&quot;false&quot;</span>.</td>
     <td align="center" valign="top">No</td>
@@ -113,6 +119,16 @@ This task is included in the checkstyle distribution.</p>
     <td align="center" valign="top">No</td>
   </tr>
   <tr>
+    <td valign="top">methodPattern</td>
+    <td valign="top">Specifies the regular expression to match against method names. Default value is defined <a href="engine.html#methodformat">here</a>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">localVarPattern</td>
+    <td valign="top">Specifies the regular expression to match against local variable names. Default value is defined <a href="engine.html#localvarformat">here</a>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
     <td valign="top">headerFile</td> 
     <td valign="top">Specifies the file containing the header lines. Default is to not check.</td>
     <td align="center" valign="top">No</td>
@@ -125,6 +141,11 @@ This task is included in the checkstyle distribution.</p>
   <tr>
     <td valign="top">javadocScope</td> 
     <td valign="top">Specifies the visibility scope where javadoc comments are checked. Valid values are <span class="default">&quot;nothing&quot;</span>, <span class="default">&quot;public&quot;</span>, <span class="default">&quot;protected&quot;</span>, <span class="default">&quot;package&quot;</span>, <span class="default">&quot;private&quot;</span> and <span class="default">&quot;anoninner&quot;</span>. Defaults to <span class="default">&quot;private&quot;</span>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">requirePackageHtml</td>
+    <td valign="top">Specifies whether to require that package documentation is available. Defaults to <span class="default">&quot;false&quot;</span>.</td>
     <td align="center" valign="top">No</td>
   </tr>
   <tr>
