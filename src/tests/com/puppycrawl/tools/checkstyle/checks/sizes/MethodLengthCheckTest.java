@@ -33,6 +33,17 @@ public class MethodLengthCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
+    
+    public void testcountEmpty() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MethodLengthCheck.class);
+        checkConfig.addAttribute("max", "19");
+        checkConfig.addAttribute("countEmpty", "false");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputSimple.java"), expected);
+    }
 
     public void testAbstract() throws Exception
     {

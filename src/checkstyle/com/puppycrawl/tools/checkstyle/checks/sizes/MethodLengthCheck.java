@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -54,6 +55,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class MethodLengthCheck extends Check
 {
+    /** whether to ignore empty lines and single line comments */
+    private boolean mCountEmpty = true;
+
     /** default maximum number of lines */
     private static final int DEFAULT_MAX_LINES = 150;
 
@@ -73,8 +77,18 @@ public class MethodLengthCheck extends Check
         if (openingBrace != null) {
             final DetailAST closingBrace =
                 openingBrace.findFirstToken(TokenTypes.RCURLY);
-            final int length =
+            int length =
                 closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
+
+            if (!mCountEmpty) {
+                final FileContents contents = getFileContents();
+                final int lastLine = closingBrace.getLineNo();
+                for (int i = openingBrace.getLineNo() - 1; i < lastLine; i++) {
+                    if (contents.lineIsBlank(i) || contents.lineIsComment(i)) {
+                        length--;
+                    }
+                }
+            }
             if (length > mMax) {
                 log(aAST.getLineNo(),
                     aAST.getColumnNo(),
@@ -93,4 +107,12 @@ public class MethodLengthCheck extends Check
         mMax = aLength;
     }
 
+    /**
+     * @param aCountEmpty whether to count empty and single line comments
+     * of the form //.
+     */
+    public void setCountEmpty(boolean aCountEmpty)
+    {
+        mCountEmpty = aCountEmpty;
+    }
 }
