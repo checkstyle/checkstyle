@@ -136,10 +136,11 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(c, fname, expected);
     }
 
-    public void testAts() throws Exception
+    public void testAuthorRequired() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("authorFormat", "\\S");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputWhitespace.java");
         final String[] expected =
@@ -148,35 +149,76 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         };
         verify(c, fname, expected);
     }
-
-    public void testNoAuthor()
+    
+    public void testAuthorRegularEx()
         throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("allowNoAuthor", "false");
-        checkConfig.addAttribute("requireVersion", "false");
+        checkConfig.addAttribute("authorFormat", "0*");
 
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputJavadoc.java");
         final String[] expected = {
-            "11: Type Javadoc comment is missing an @author tag."
         };
         verify(c, fname, expected);
     }
 
-    public void testNoVersion()
+    public void testAuthorRegularExError()
         throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("allowNoAuthor", "true");
-        checkConfig.addAttribute("requireVersion", "true");
+        checkConfig.addAttribute("authorFormat", "ABC");
 
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputJavadoc.java");
         final String[] expected = {
-            "11: Type Javadoc comment is missing an @version tag."
+            "13: Type Javadoc comment is missing an @author tag.",
+        };
+        verify(c, fname, expected);
+    }
+
+    public void testVersionRequired()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("versionFormat", "\\S");
+
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputWhitespace.java");
+        final String[] expected = {
+            "13: Type Javadoc comment is missing an @version tag."
+        };
+        verify(c, fname, expected);
+    }
+    
+    public void testVersionRegularEx()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("versionFormat", "[:digit:].*");
+
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputJavadoc.java");
+        final String[] expected = {
+        };
+        verify(c, fname, expected);
+    }
+    
+    public void testVersionRegularExError()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("versionFormat", "\\$Revision.*\\$");
+
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputJavadoc.java");
+        final String[] expected = {
+            "13: Type Javadoc comment is missing an @version tag."
         };
         verify(c, fname, expected);
     }

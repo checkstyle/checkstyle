@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE config PUBLIC
     "-//Puppy Crawl//DTD Check Configuration 1.0//EN"
     "http://www.puppycrawl.com/dtds/configuration_1_0.dtd">
@@ -27,7 +26,9 @@
         <config name="IllegalImportCheck"/>
         <config name="IllegalInstantiationCheck"/>
         <config name="InnerAssignmentCheck"/>
-        <config name="JavadocTypeCheck"/>
+        <config name="JavadocTypeCheck">
+        	<property name="authorFormat" value="\S"/>
+        </config>
         <config name="JavadocMethodCheck">
             <property name="checkUnusedThrows" value="true"/>
         </config>
