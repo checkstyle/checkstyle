@@ -229,10 +229,14 @@ public class Checker
         try {
             fireFileStarted(aFileName);
             final String[] lines = getLines(aFileName);
-            final Reader sar = new StringArrayReader(lines);
             VerifierSingleton.getInstance().clearMessages();
             VerifierSingleton.getInstance().setLines(lines);
             try {
+                // try the 1.4 grammar first, this will succeed for
+                // all code that compiles without any warnings in JDK 1.4,
+                // that should cover most cases
+
+                final Reader sar = new StringArrayReader(lines);
                 final GeneratedJava14Lexer jl = new GeneratedJava14Lexer(sar);
                 jl.setFilename(aFileName);
                 final GeneratedJava14Recognizer jr =
@@ -243,11 +247,12 @@ public class Checker
             }
             catch (RecognitionException re) {
                 // Parsing might have failed because the checked
-                // filecontains "assert" statement. Retry with a
+                // file contains "assert" as an identifier. Retry with a
                 // grammar that treats "assert" as an identifier
                 // and not as a keyword
 
                 // Arghh - the pain - duplicate code!
+                final Reader sar = new StringArrayReader(lines);
                 final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
                 jl.setFilename(aFileName);
                 final GeneratedJavaRecognizer jr =
