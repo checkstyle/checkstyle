@@ -40,6 +40,8 @@ public interface Defn
     String TYPE_PATTERN_PROP = "checkstyle.pattern.type";
     /** property name for the method local variable pattern **/
     String LOCAL_VAR_PATTERN_PROP = "checkstyle.pattern.localvar";
+    /** property name for the method local final variable pattern **/
+    String LOCAL_FINAL_VAR_PATTERN_PROP = "checkstyle.pattern.localfinalvar";
     /** property name for the method local variable pattern **/
     String METHOD_PATTERN_PROP = "checkstyle.pattern.method";
     /** property name for the maximum line length **/

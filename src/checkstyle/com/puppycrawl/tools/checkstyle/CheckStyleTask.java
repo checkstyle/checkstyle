@@ -301,6 +301,13 @@ public class CheckStyleTask
                            "localVarPattern");
     }
 
+    /** @param aPat pattern for local final variables **/
+    public void setLocalFinalVarPattern(final String aPat)
+    {
+        setPatternProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP, aPat,
+                           "localFinalVarPattern");
+    }
+
     /** @param aPat pattern for method names **/
     public void setMethodPattern(final String aPat)
     {

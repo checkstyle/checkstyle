@@ -69,6 +69,8 @@ public class Configuration
     private static final String TYPE_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
     /** the pattern to match against method local variables **/
     private static final String LOCAL_VAR_PATTERN = "^[a-z][a-zA-Z0-9]*$";
+    /** the pattern to match against method local final variables **/
+    private static final String LOCAL_FINAL_VAR_PATTERN = "^[a-z][a-zA-Z0-9]*$";
     /** the pattern to match against method names **/
     private static final String METHOD_PATTERN = "^[a-z][a-zA-Z0-9]*$";
     /** the pattern to exclude from line length checks **/
@@ -192,6 +194,8 @@ public class Configuration
         setPatternProperty(aProps, Defn.TYPE_PATTERN_PROP, TYPE_PATTERN);
         setPatternProperty(aProps, Defn.LOCAL_VAR_PATTERN_PROP,
                            LOCAL_VAR_PATTERN);
+        setPatternProperty(aProps, Defn.LOCAL_FINAL_VAR_PATTERN_PROP,
+                           LOCAL_FINAL_VAR_PATTERN);
         setPatternProperty(aProps, Defn.METHOD_PATTERN_PROP, METHOD_PATTERN);
         setPatternProperty(aProps, Defn.IGNORE_LINE_LENGTH_PATTERN_PROP,
                            IGNORE_LINE_LENGTH_PATTERN);
@@ -275,6 +279,8 @@ public class Configuration
                                PUBLIC_MEMBER_PATTERN);
             setPatternProperty(Defn.TYPE_PATTERN_PROP, TYPE_PATTERN);
             setPatternProperty(Defn.LOCAL_VAR_PATTERN_PROP, LOCAL_VAR_PATTERN);
+            setPatternProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP,
+                               LOCAL_FINAL_VAR_PATTERN);
             setPatternProperty(Defn.METHOD_PATTERN_PROP, METHOD_PATTERN);
             setPatternProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP,
                                IGNORE_LINE_LENGTH_PATTERN);
@@ -435,6 +441,18 @@ public class Configuration
     public RE getLocalVarRegexp()
     {
         return getRegexpProperty(Defn.LOCAL_VAR_PATTERN_PROP);
+    }
+
+    /** @return pattern to match local final variables **/
+    public String getLocalFinalVarPat()
+    {
+        return getPatternProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP);
+    }
+
+    /** @return regexp to match local final variables **/
+    public RE getLocalFinalVarRegexp()
+    {
+        return getRegexpProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP);
     }
 
     /** @return pattern to match method names **/
