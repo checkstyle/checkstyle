@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.1//EN"
+    "http://www.puppycrawl.com/dtds/configuration_1_1.dtd">
+<module name="Checker">
+    <metadata name="com.atlas-sw.eclipse" value="I like Sydney"/>
+    <property name="severity" value="error"/>
+    <module name="TreeWalker">
+        <!-- empty if statement -->
+        <module name="xpath.XPath">
+            <property name="XPath" value="//LITERAL_IF/SLIST[count(*) = 1]"/>
+            <property name="message" value="block.empty"/>
+         </module>
+
+        <!-- if statement must use braces-->
+        <module name="xpath.XPath">
+            <property name="XPath" value="//LITERAL_IF[not(SLIST)]"/>
+            <property name="message" value="needBraces"/>
+         </module>
+
+        <!-- String conditional -->
+        <module name="xpath.XPath">
+            <property name="XPath" value="//EQUAL/STRING_LITERAL"/>
+            <property name="message" value="string.conditional"/>
+         </module>
+        <module name="xpath.XPath">
+            <property name="XPath" value="//NOT_EQUAL/STRING_LITERAL"/>
+            <property name="message" value="string.conditional"/>
+         </module>
+
+        <!-- Short variable name -->
+        <module name="xpath.XPath">
+            <property name="XPath" value="//VARIABLE_DEF/IDENT[string-length(@text) &lt; 3][not(ancestor::FOR_INIT)]"/>
+            <property name="message" value="short.variable.name"/>
+        </module>
+
+        <!-- Hex case constant -->
+        <module name="xpath.XPath">
+            <property name="XPath" value="//LITERAL_CASE/EXPR/*[starts-with(@text,&quot;0x&quot;) or starts-with(@text,&quot;0X&quot;)]"/>
+            <property name="message" value="hex.case.constant"/>
+        </module>
+     </module>
+</module>
+
