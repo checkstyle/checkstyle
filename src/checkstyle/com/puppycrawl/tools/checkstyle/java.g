@@ -632,7 +632,8 @@ statement[int[] aType, MyCommonAST[] aCurlies]
 	|	rr:"return"^ (expression {ver.verifyWSAroundBegin(rr.getLine(), rr.getColumn(), rr.getText());} )? SEMI!
 
 	// switch/case statement
-	|	"switch"^ LPAREN! expression RPAREN! LCURLY!
+	|	ss2:"switch"^ LPAREN! expression RPAREN! lc:LCURLY!
+        { ver.verifyLCurlyOther(ss2.getLine(), #lc); }
 			( casesGroup )*
 		RCURLY!
 

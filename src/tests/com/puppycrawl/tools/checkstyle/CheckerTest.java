@@ -43,6 +43,7 @@ public class CheckerTest
     {
         mConfig.setHeaderFile(getPath("java.header"));
         mConfig.setLCurlyMethod(LeftCurlyOption.NL);
+        mConfig.setLCurlyOther(LeftCurlyOption.NLOW);
         mConfig.setLCurlyType(LeftCurlyOption.NL);
     }
 
@@ -619,6 +620,19 @@ public class CheckerTest
             filepath + ":14: '{' should be on a new line.",
             filepath + ":21: '{' should be on a new line.",
             filepath + ":34: '{' should be on a new line.",
+        };
+        verify(c, filepath, expected);
+    }
+
+    public void testLCurlyOther()
+        throws Exception
+    {
+        mConfig.setJavadocScope(Scope.NOTHING);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputLeftCurlyOther.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":33: '{' should be on the previous line.",
         };
         verify(c, filepath, expected);
     }
