@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.Scope;
 import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.Scope;
 
 /**
  * Checks that a variable has Javadoc comment
@@ -52,9 +51,7 @@ public class JavadocVariableCheck
     public void visitToken(DetailAST aAST)
     {
         if (!ScopeUtils.inCodeBlock(aAST)) {
-            final DetailAST mods =
-                Utils.findFirstToken(aAST.getFirstChild(),
-                                     TokenTypes.MODIFIERS);
+            final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
             final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
             final Scope variableScope =
                 ScopeUtils.inInterfaceBlock(aAST) ? Scope.PUBLIC : declaredScope;

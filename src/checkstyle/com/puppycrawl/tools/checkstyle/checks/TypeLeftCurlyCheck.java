@@ -18,14 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks the placement of left curly braces on types.
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author lkuehne
  * @version 1.0
  */
 public class TypeLeftCurlyCheck
@@ -41,9 +42,8 @@ public class TypeLeftCurlyCheck
     /** @see Check */
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST brace = (DetailAST)
-            Utils.getLastSibling(aAST.getFirstChild())
-            .getFirstChild();
+        final DetailAST brace =
+                (DetailAST) aAST.getLastChild().getFirstChild();
         // TODO: should check for modifiers
         final DetailAST startToken =
             (DetailAST) aAST.getFirstChild().getNextSibling();

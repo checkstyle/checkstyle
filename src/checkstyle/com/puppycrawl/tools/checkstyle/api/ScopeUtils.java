@@ -44,8 +44,7 @@ public class ScopeUtils {
                 || (type == TokenTypes.INTERFACE_DEF))
             {
                 final DetailAST mods =
-                    Utils.findFirstToken(token.getFirstChild(),
-                                         TokenTypes.MODIFIERS);
+                    token.findFirstToken(TokenTypes.MODIFIERS);
                 final Scope modScope = ScopeUtils.getScopeFromMods(mods);
                 if ((retVal == null) || (retVal.isIn(modScope))) {
                     retVal = modScope;

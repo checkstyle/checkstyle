@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Check the number of parameters a method or constructor has.
@@ -54,14 +53,10 @@ public class ParameterNumberCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST params =
-            Utils.findFirstToken(aAST.getFirstChild(),
-                                 TokenTypes.PARAMETERS);
-        final int count = Utils.countTokens(params.getFirstChild(),
-                                            TokenTypes.PARAMETER_DEF);
+        final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
+        final int count = params.getChildCount(TokenTypes.PARAMETER_DEF);
         if (count > mMax) {
-            final DetailAST name = Utils.findFirstToken(aAST.getFirstChild(),
-                                                        TokenTypes.IDENT);
+            final DetailAST name = aAST.findFirstToken(TokenTypes.IDENT);
             log(name.getLineNo(), name.getColumnNo(),
                 "maxParam", new Integer(mMax));
         }
