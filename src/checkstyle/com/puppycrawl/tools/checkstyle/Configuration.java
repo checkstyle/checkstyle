@@ -81,7 +81,7 @@ public class Configuration
     /** the maximum file length **/
     private static final int MAX_FILE_LENGTH = 2000;
     /** the maximum number parameters **/
-    private static final int MAX_PARAMETERS = 5;
+    private static final int MAX_PARAMETERS = 7;
     /** the set of illegal imports (comma separated package prefixes) **/
     private static final String ILLEGAL_IMPORTS = "sun";
     /** the set of illegal instantiations (comma separated class names) **/
