@@ -35,6 +35,7 @@ public class AllTests {
         suite.addTest(new TestSuite(MagicNumberCheckTest.class));
         suite.addTest(new TestSuite(MissingCtorCheckTest.class));
         suite.addTest(new TestSuite(MissingSwitchDefaultCheckTest.class));
+        suite.addTest(new TestSuite(ModifiedControlVariableCheckTest.class));
         suite.addTest(new TestSuite(MultipleStringLiteralsCheckTest.class));
         suite.addTest(new TestSuite(MultipleVariableDeclarationsCheckTest.class));
         suite.addTest(new TestSuite(NestedIfDepthCheckTest.class));
