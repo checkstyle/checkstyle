@@ -239,6 +239,13 @@ public class SuppressionCommentFilter
             }
             return result;
         }
+
+        /** {@inheritDoc} */
+        public final String toString()
+        {
+            return "Tag[line=" + getLine() + "; col=" + getColumn()
+                + "; on=" + isOn() + "; text='" + getText() + "']";
+        }
     }
 
     /** Turns checkstyle reporting off. */
@@ -432,7 +439,7 @@ public class SuppressionCommentFilter
         for (Iterator iter = mTags.iterator(); iter.hasNext();) {
             final Tag tag = (Tag) iter.next();
             if ((tag.getLine() > aEvent.getLine())
-                || ((tag.getLine() == tag.getLine())
+                || ((tag.getLine() == aEvent.getLine())
                     && (tag.getColumn() > aEvent.getColumn())))
             {
                 break;

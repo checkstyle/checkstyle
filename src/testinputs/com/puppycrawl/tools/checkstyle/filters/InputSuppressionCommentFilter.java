@@ -51,4 +51,25 @@ class InputSuppressionCommentFilter
     public static void doit2(int aInt)
     {
     }
+
+    public void doit3()
+    {
+        try {
+            // lots of code omitted
+            for(int i = 0; i < 10; i++) {
+                // more code omitted
+                while(true) {
+                    try {
+                        //CHECKSTYLE:OFF
+                    } catch(Exception e) {
+                       //CHECKSTYLE:ON
+                    }
+                }
+                // code omitted
+            }
+            //CHECKSTYLE:OFF
+        } catch(Exception ex) {
+            //CHECKSTYLE:ON
+        }
+    }
 }

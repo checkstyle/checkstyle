@@ -16,6 +16,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.usage.UnusedParameterCheck;
@@ -38,6 +39,8 @@ public class SuppressionCommentFilterTest
         "43:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "47:34: Unused parameter 'aInt'.",
         "51:34: Unused parameter 'aInt'.",
+        "64:23: Catching 'Exception' is not allowed.",
+        "71:11: Catching 'Exception' is not allowed.",
     };
 
     public void testNone()
@@ -57,6 +60,8 @@ public class SuppressionCommentFilterTest
         final String[] suppressed = {
             "16:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "43:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "64:23: Catching 'Exception' is not allowed.",
+            "71:11: Catching 'Exception' is not allowed.",
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -68,6 +73,8 @@ public class SuppressionCommentFilterTest
         filterConfig.addAttribute("checkC", "false");
         final String[] suppressed = {
             "43:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "64:23: Catching 'Exception' is not allowed.",
+            "71:11: Catching 'Exception' is not allowed.",
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -82,7 +89,7 @@ public class SuppressionCommentFilterTest
         };
         verifySuppressed(filterConfig, suppressed);
     }
- 
+
     //Supress all checks between CS_OFF and CS_ON
     public void testOffFormat() throws Exception
     {
@@ -195,6 +202,7 @@ public class SuppressionCommentFilterTest
         checksConfig.addChild(createCheckConfig(MemberNameCheck.class));
         checksConfig.addChild(createCheckConfig(ConstantNameCheck.class));
         checksConfig.addChild(createCheckConfig(UnusedParameterCheck.class));
+        checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
         if (aFilterConfig != null) {
             checkerConfig.addChild(aFilterConfig);
