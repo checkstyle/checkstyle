@@ -19,7 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks that the header of the source file is correct.
@@ -45,7 +45,7 @@ public class ParameterFormatCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.PARAMETER_DEF};
+        return new int[] {TokenTypes.PARAMETER_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */

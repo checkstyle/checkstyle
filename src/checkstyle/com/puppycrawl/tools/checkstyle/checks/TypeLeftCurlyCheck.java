@@ -16,10 +16,9 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -36,8 +35,8 @@ public class TypeLeftCurlyCheck
     /** @see Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.INTERFACE_DEF,
-                          JavaTokenTypes.CLASS_DEF};
+        return new int[] {TokenTypes.INTERFACE_DEF,
+                          TokenTypes.CLASS_DEF};
     }
 
     /** @see Check */

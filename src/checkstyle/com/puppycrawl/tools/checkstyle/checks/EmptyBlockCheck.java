@@ -24,7 +24,7 @@ import java.util.HashSet;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Check that reports empty if/try/catch/finally blocks.
@@ -52,14 +52,14 @@ public class EmptyBlockCheck extends Check
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.SLIST};
+        return new int[] {TokenTypes.SLIST};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         // defend against users that change the token set in the config file.
-        if (aAST.getType() != JavaTokenTypes.SLIST) {
+        if (aAST.getType() != TokenTypes.SLIST) {
             return;
         }
 

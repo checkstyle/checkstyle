@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks the naming of packages.
@@ -45,7 +45,7 @@ public class PackageNameCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.PACKAGE_DEF};
+        return new int[] {TokenTypes.PACKAGE_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */

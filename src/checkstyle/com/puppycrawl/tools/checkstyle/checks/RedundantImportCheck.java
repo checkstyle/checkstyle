@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 
@@ -51,13 +51,13 @@ public class RedundantImportCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.IMPORT, JavaTokenTypes.PACKAGE_DEF};
+        return new int[] {TokenTypes.IMPORT, TokenTypes.PACKAGE_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() == JavaTokenTypes.PACKAGE_DEF) {
+        if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
             final DetailAST nameAST = (DetailAST) aAST.getFirstChild();
             mPkgName = FullIdent.createFullIdent(nameAST).getText();
         }

@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 
@@ -39,7 +39,7 @@ public class AvoidStarImport
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.IMPORT};
+        return new int[] {TokenTypes.IMPORT};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */

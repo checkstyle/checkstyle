@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -64,7 +64,7 @@ public class IllegalImportCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.IMPORT};
+        return new int[] {TokenTypes.IMPORT};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */

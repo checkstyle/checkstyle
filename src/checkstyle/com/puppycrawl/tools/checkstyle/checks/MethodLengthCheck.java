@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks for long methods.
@@ -23,13 +23,13 @@ public class MethodLengthCheck extends Check
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.METHOD_DEF};
+        return new int[] {TokenTypes.METHOD_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() != JavaTokenTypes.METHOD_DEF) {
+        if (aAST.getType() != TokenTypes.METHOD_DEF) {
             return;
         }
 

@@ -24,7 +24,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -67,9 +67,9 @@ public class IllegalInstantiationCheck
     public int[] getDefaultTokens()
     {
         return new int[] {
-            JavaTokenTypes.IMPORT,
-            JavaTokenTypes.LITERAL_new,
-            JavaTokenTypes.PACKAGE_DEF
+            TokenTypes.IMPORT,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.PACKAGE_DEF
         };
     }
 
@@ -85,13 +85,13 @@ public class IllegalInstantiationCheck
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
-            case JavaTokenTypes.LITERAL_new:
+            case TokenTypes.LITERAL_NEW:
                 processLiteralNew(aAST);
                 break;
-            case JavaTokenTypes.PACKAGE_DEF:
+            case TokenTypes.PACKAGE_DEF:
                 processPackageDef(aAST);
                 break;
-            case JavaTokenTypes.IMPORT:
+            case TokenTypes.IMPORT:
                 processImport(aAST);
                 break;
         }
