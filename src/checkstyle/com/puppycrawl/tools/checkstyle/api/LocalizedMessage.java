@@ -108,9 +108,9 @@ public final class LocalizedMessage
     {
         try {
             // Important to use the default class loader, and not the one in
-            // the Configuration object. This is because the class loader in
-            // the Configuration is specified by the user for resolving custom
-            // classes.
+            // the GlobalProperties object. This is because the class loader in
+            // the GlobalProperties is specified by the user for resolving
+            // custom classes.
             final ResourceBundle bundle = getBundle(mBundle);
             final String pattern = bundle.getString(mKey);
             return MessageFormat.format(pattern, mArgs);
