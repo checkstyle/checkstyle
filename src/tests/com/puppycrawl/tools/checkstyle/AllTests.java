@@ -62,6 +62,7 @@ import com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundTest;
 import com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.HideUtilityClassConstructorCheckTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -99,6 +100,7 @@ public class AllTests {
         suite.addTest(new TestSuite(GenericIllegalRegexpCheckTest.class));
         suite.addTest(new TestSuite(HeaderCheckTest.class));
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
+        suite.addTest(new TestSuite(HideUtilityClassConstructorCheckTest.class));
         suite.addTest(new TestSuite(IllegalImportCheckTest.class));
         suite.addTest(new TestSuite(IllegalInstantiationCheckTest.class));
         suite.addTest(new TestSuite(IndentationCheckTest.class));
