@@ -38,6 +38,9 @@ import antlr.collections.AST;
 public final class DetailAST
     extends CommonAST
 {
+    /** hash function multiplicand */
+    private static final int HASH_MULT = 29;
+
     /** constant to indicate if not calculated the child count */
     private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
 
@@ -65,6 +68,32 @@ public final class DetailAST
         super.initialize(aTok);
         mLineNo = aTok.getLine();
         mColumnNo = aTok.getColumn() - 1; // expect columns to start @ 0
+    }
+
+    /** @see java.lang.Object#equals(java.lang.Object) */
+    public boolean equals(Object aObj)
+    {
+        if (aObj instanceof DetailAST) {
+            final DetailAST other = (DetailAST) aObj;
+            return (other.getType() == getType())
+                && (other.getText().equals(getText()))
+                && (other.mLineNo == mLineNo)
+                && (other.mColumnNo == mColumnNo);
+        }
+        else {
+            return false;
+        }
+    }
+
+    /** @see java.lang.Object#hashCode() */
+    public int hashCode()
+    {
+        int result;
+        result = getType();
+        result = HASH_MULT * result + getText().hashCode();
+        result = HASH_MULT * result + mLineNo;
+        result = HASH_MULT * result + mColumnNo;
+        return result;
     }
 
     /** @see antlr.CommonAST **/
