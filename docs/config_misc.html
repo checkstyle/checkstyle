@@ -41,6 +41,9 @@
           <a href="#NewlineAtEndOfFile">NewlineAtEndOfFile</a>
         </li>
         <li>
+          <a href="#RequiredRegexp">RequiredRegexp</a>
+        </li>
+        <li>
           <a href="#TodoComment">TodoComment</a>
         </li>
         <li>
@@ -868,6 +871,46 @@ like <span class="code">1</span>.
       <h4>Package</h4>
       <p class="body">
       com.puppycrawl.tools.checkstyle.checks.indentation
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="RequiredRegexp"></a> <h2>RequiredRegexp</h2> <h4>Description</h4>
+      <p class="body">
+      A check that makes sure that a specified pattern exists in the code, e.g. a required
+      legal text. It does not care about where in the file the pattern is.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>format</td>
+          <td>required pattern</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td><span class="default">^$</span> (empty)</td>
+        </tr>
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      An example of how to configure the check to make sure a copyright statement
+      is included in the file:
+      </p>
+      <pre class="body">
+      &lt;module name="RequiredRegexp"&gt;
+         &lt;property name="format" value="This code is copyrighted"/&gt;
+      &lt;/module&gt;
+      </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
       </p>
       <h4>Parent Module</h4>
       <p class="body">
