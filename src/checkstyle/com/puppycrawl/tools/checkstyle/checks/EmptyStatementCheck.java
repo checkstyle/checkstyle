@@ -41,7 +41,7 @@ public class EmptyStatementCheck extends Check
    /** @see com.puppycrawl.tools.checkstyle.api.Check */
    public int[] getDefaultTokens()
    {
-      return new int[] { TokenTypes.EMPTY_STAT };
+      return new int[] {TokenTypes.EMPTY_STAT};
    }
 
    /** @see com.puppycrawl.tools.checkstyle.api.Check */
