@@ -77,7 +77,8 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  *&lt;/module&gt;
  *     </pre>
  * <p><u>Note</u>: ignoreLines property has been removed from this check to
- * simplify it. The regular expression &quot;^.*$&quot; can be used to ignore a line.
+ * simplify it. The regular expression &quot;^.*$&quot; can be used to ignore a
+ * line.
  * </p>
  *
  * @author Lars Kühne
