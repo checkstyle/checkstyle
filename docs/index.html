@@ -70,7 +70,7 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
   <li>JDK 1.2 or later</li>
   <li><a href="http://www.antlr.org">ANTLR 2.7.1</a></li>
   <li><a href="http://jakarta.apache.org/regexp">Regexp 1.2</a></li>
-  <li><a href="http://jakarta.apache.org/ant">ANT 1.3</a></li>
+  <li><a href="http://jakarta.apache.org/ant">ANT 1.4.1</a></li>
 </ul>
 
 <h2>Installing and Running Checkstyle</h2>
@@ -104,7 +104,7 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
 
 <p>Javadoc comments for class and interface declarations are checked to ensure that the <span class="code">@author</span> tag exists. This can be turned off.</p>
 
-<p>You can make checkstyle relax the checking for Javadoc comments. When relaxed, checkstyle requires a Javadoc comment for <span class="code">public</span> and <span class="code">protected</span> variables and methods, and for interface and class definitions.</p>
+<p>You can make checkstyle relax the checking for Javadoc comments. When relaxed, checkstyle requires a Javadoc comment for <span class="code">public</span> and <span class="code">protected</span> variables and methods, and for interface and class definitions.  You can also completely turn off all checking for Javadoc comments.</p>
 
 <p>Javadoc comments for methods are checked to ensure that the following tags exist (if required):</p>
 <ul>
@@ -141,7 +141,7 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
 </div>
 
 <h3><a name="length">Long Lines</a></h3>
-<p>Checks for lines that are longer that a specified length. The default is <span class="default">&quot;80&quot;</span>.</p>
+<p>Checks for lines that are longer that a specified length. The default is <span class="default">&quot;80&quot;</span>. This can be turned off for <code>import</code> statements.</p>
 
 <h3>Tab characters</h3>
 <p>Checks for lines that contain tab (<code>'\t'</code>) characters. This can be turned off.</p>
@@ -183,6 +183,10 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
 
 <h3><a name="typeformat">Format of type names</a></h3>
 <p>Verifies that the format of class and interface names conform to a specified regular expression. The default is <span class="code">^[A-Z][a-zA-Z0-9]*$</span>.</p>
+
+
+<h3><a name="fieldformat">Format of public member names</a></h3>
+<p>Verifies that the format of public member names conform to a specified regular expression. The default is <span class="code">^f[A-Z][a-zA-Z0-9]*$</span>. This is useful for the fields required for Container Managed Persistence (CMP) Enterprise JavaBeans 1.1.</p>
 
 
 <h3>Access Permissions</h3>
