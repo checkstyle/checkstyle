@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<document>
+
+  <properties>
+    <title>Miscellaneous</title>
+    <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
+  </properties>
+
+  <body>
+    <section name="GenericIllegalRegexp">
+      <subsection name="Description">
+        <p>
+          A generic check for code problems - the user can search for
+          any pattern. This is similar to a recursive grep, only that
+          it's integrated in checkstyle.
+        </p>
+        
+        <p>
+          Rationale: This check can be used to prototype checks and to
+          find common bad practice such as calling <span
+          class="code">ex.printStacktrace()</span>, <span class="code">
+          System.out.println()</span>, <span
+          class="code">System.exit()</span>, etc.
+        </p>
+      </subsection>
+      
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>illegal pattern</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">^$</span> (empty)</td>
+          </tr>
+          <tr>
+            <td>ignoreCase</td>
+            <td>Controls whether to ignore case when searching.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>ignoreComments</td>
+            <td>Controls whether to ignore text in comments when searching.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>message</td>
+            <td>message which is used to notify about violations,
+            if empty then default(hard-coded) message is used.</td>
+            <td><a href="property_types.html#String">String</a></td>
+            <td><span class="default">&quot;&quot;</span>(empty)</td>
+          </tr>
+        </table>
+      </subsection>
+      
+      <subsection name="Examples">
+        <p>
+          To configure the check for calls to <span
+          class="code">System.out.println</span>:
+        </p>
+        <source>
+&lt;module name=&quot;GenericIllegalRegexp&quot;&gt;
+    &lt;!-- . matches any character, so we need to
+         escape it and use \. to match dots. --&gt;
+    &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        
+        <p>
+          To configure the check to find trailing whitespace at the end
+          of a line:
+        </p>
+        <source>
+&lt;module name=&quot;GenericIllegalRegexp&quot;&gt;
+    &lt;!-- \s matches whitespace character, $ matches end of line. --&gt;
+    &lt;property name=&quot;format&quot; value=&quot;\s$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check to find case-insensitive occurrences of
+          &quot;debug&quot;:
+        </p>
+        <source>
+&lt;module name=&quot;GenericIllegalRegexp&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
+    &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="NewlineAtEndOfFile">
+      <subsection name="Description">
+        <p>
+          Checks whether files end with a new line.
+        </p>
+        
+        <p>
+          Rationale: Any source files and text files in general should
+          end with a newline character, especially when using SCM
+          systems such as CVS. CVS will even print a warning when it
+          encounters a file that doesn't end with a newline.
+        </p>
+      </subsection>
+      
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>lineSeparator</td>
+            <td>type of line separator</td>
+            <td>
+              One of &quot;system&quot; (system default),
+              &quot;crlf&quot; (Windows-style), &quot;cr&quot;
+              (Mac-style) and &quot;lf&quot; (Unix-style)
+            </td>
+            <td>system default</td>
+          </tr>
+        </table>
+      </subsection>
+      
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;NewlineAtEndOfFile&quot;/&gt;
+        </source>
+        
+        <p>
+          To configure the check to always use Unix-style line separators:
+        </p>
+        <source>
+&lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
+    &lt;property name=&quot;lineSeparator&quot; value=&quot;lf&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="TodoComment">
+      <subsection name="Description">
+        <p>
+          A check for <span class="code">TODO:</span> comments. Actually
+          it is a generic <a
+          href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">regular
+          expression</a> matcher on Java comments. To check for other
+          patterns in Java comments, set property format.
+        </p>
+      </subsection>
+      
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>pattern to check</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">TODO:</span></td>
+          </tr>
+        </table>
+      </subsection>
+      
+      <subsection name="Notes">
+        <p>
+          Using <span class="code">TODO:</span> comments is a great way
+          to keep track of tasks that need to be done. Having them
+          reported by Checkstyle makes it very hard to forget about
+          them.
+        </p>
+      </subsection>
+      
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;TodoComment&quot;/&gt;
+        </source>
+        
+        <p>
+          To configure the check for comments that contain <span
+          class="code">WARNING</span>:
+        </p>
+        <source>
+&lt;module name=&quot;TodoComment&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;WARNING&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="Translation">
+      <subsection name="Description">
+        <p>
+          A <a href="config.html#overview">FileSetCheck</a> that ensures
+          the correct translation of code by checking property files for
+          consistency regarding their keys. Two property files
+          describing one and the same context are consistent if they
+          contain the same keys.
+        </p>
+        
+        <p>
+          Consider the following properties file in the same directory:
+        </p>
+        <source>
+#messages.properties
+hello=Hello
+cancel=Cancel
+
+#messages_de.properties
+hell=Hallo
+ok=OK
+        </source>
+        
+        <p>
+          The Translation check will find the typo in the german hello
+          key, the missing ok key in the default resource file and the
+          missing cancel key in the german resource file:
+        </p>
+        <source>
+messages_de.properties: Key 'hello' missing.
+messages_de.properties: Key 'cancel' missing.
+messages.properties: Key 'hell' missing.
+messages.properties: Key 'ok' missing.
+        </source>
+      </subsection>
+      
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>
+              file type extension to identify translation files. Setting
+              this property is typically only required if your
+              translation files are preprocessed and the original files
+              do not have the extension <span
+              class="code">.properties</span>
+            </td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><span class="default">properties</span></td>
+          </tr>
+        </table>
+      </subsection>
+      
+      <subsection name="Example">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Translation&quot;/&gt;
+        </source>
+      </subsection>
+      
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="UncommentedMain">
+      <subsection name="Description">
+        <p>
+          Checks for uncommented main() methods (debugging leftovers).
+        </p>
+        
+        <p>
+          Rationale: A main() method is often used for debug
+          puposes. When debugging is finished, developers often forget
+          to remove the method, which changes the API and increases the
+          size of the resulting class/jar file. With the exception of
+          the real program entry points, all main() methods should be
+          removed/commented out of the sources.
+        </p>
+      </subsection>
+      
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>excludedClasses</td>
+            <td>pattern for qualified names of classes which are allowed
+            to have a main method.</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">^$</span></td>
+          </tr>
+        </table>
+      </subsection>
+      
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;UncommentedMain&quot;/&gt;
+        </source>
+        
+        <p>
+          To configure the check to allow main method for all classes
+          with &quot;Main&quot; name:
+        </p>
+        <source>
+&lt;module name=&quot;UncommentedMain&quot;&gt;
+    &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="UpperEll">
+      <subsection name="Description">
+        <p>
+          Checks that long constants are defined with an upper ell. That
+          is <span class="code">' L'</span> and not <span
+          class="code">'l'</span>. This is in accordance to the Java
+          Language Specification, <a
+          href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">
+          Section 3.10.1</a>.
+        </p>
+        
+        <p>
+          looks a lot like <span class="code">1</span>.
+        </p>
+      </subsection>
+      
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;UpperEll&quot;/&gt;
+        </source>
+      </subsection>
+      
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="ArrayTypeStyle">
+      <subsection name="Description">
+        <p>
+          Checks the style of array type definitions.  Some like Java-style:
+          <code>public static void main(String[] args)</code> and some like
+          C-style: public static void main(String args[])
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>javaStyle</td>
+            <td>
+              Controls whether to enforce Java style (true) or C style (false).
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><span class="default">true</span></td>
+          </tr>
+        </table>
+      </subsection>
+      
+      <subsection name="Examples">
+        <p>
+          To configure the check to enforce Java style:
+        </p>
+        <source>
+&lt;module name=&quot;ArrayTypeStyle&quot;/&gt;
+        </source>
+        
+        <p>
+          To configure the check to enforce C style:
+        </p>
+        <source>
+&lt;module name=&quot;ArrayTypeStyle&quot;&gt;
+    &lt;property name=&quot;javaStyle&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="FinalParameters">
+      <subsection name="Description">
+        <p>
+          Check that method/constructor/catch block parameters are
+          final. Interface and abstract methods are not checked - the final
+          keyword does not make sense for interface and abstract method
+          parameters as there is no code that could modify the parameter.
+        </p>
+        
+        <p>
+          Rationale: Changing the value of parameters during the execution of
+          the method's algorithm can be confusing and should be avoided. A
+          great way to let the Java compiler prevent this coding style is to
+          declare parameters final.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>blocks to check</td>
+
+            <td>subset of tokens <a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a
+             href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+             <a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a></td>
+
+            <td><a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+
+          </tr>
+        </table>
+      </subsection>
+      
+      <subsection name="Examples">
+        <p>
+          To configure the check to enforce final parameters for methods and
+          constructors:
+        </p>
+        <source>
+&lt;module name=&quot;FinalParameters&quot;/&gt;
+        </source>
+        
+        <p>
+          To configure the check to enforce final parameters only for
+          constructors:
+        </p>
+        <source>
+&lt;module name=&quot;FinalParameters&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="DescendantToken">
+      <subsection name="Description">
+        <p>
+          Checks for restricted tokens beneath other tokens.
+        </p>
+        
+        <p>
+          WARNING: This is a very powerful and flexible check, but, at the
+          same time, it is low level and very implementation dependent because
+          its results depend on the grammar we use to build abstract syntax
+          trees. Thus we recomend using other checks when they provide the
+          desired funcionality. All in all, this check just works on the level
+          of an abstract tree and knows nothing about language structures.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>token types to check</td>
+            <td>subset of tokens declared in <a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+            <td>empty set</td>
+          </tr>
+          <tr>
+            <td>limitedTokens</td>
+            <td>set of tokens with limited occurances as descendants</td>
+            <td>subset of tokens declared in <a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+            <td>empty set</td>
+          </tr>
+          <tr>
+            <td>minimumDepth</td>
+            <td>the mimimum depth for descendant counts</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>maximumDepth</td>
+            <td>the maximum depth for descendant counts</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td>java.lang.Integer.MAX_VALUE</td>
+          </tr>
+          <tr>
+            <td>minimumNumber</td>
+            <td>a minimum count for descendants</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>maximumNumber</td>
+            <td>a maximum count for descendants</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td>java.lang.Integer.MAX_VALUE</td>
+          </tr>
+          <tr>
+            <td>minimumMessage</td>
+            <td>error message when minimum count not reached</td>
+            <td><a href="property_types.html#String">String</a></td>
+            <td>&quot;descendant.token.min&quot;</td>
+          </tr>
+          <tr>
+            <td>maximumMessage</td>
+            <td>error message when maximum count exceeded</td>
+            <td><a href="property_types.html#String">String</a></td>
+            <td>&quot;descendant.token.max&quot;</td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <source>
+String literal equality check:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
+    &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
+    &lt;property name="maximumNumber" value="0"/&gt;
+    &lt;property name="maximumDepth" value="1"/&gt;
+&lt;/module&gt;
+
+Switch with no default:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+    &lt;property name="maximumDepth" value="2"/&gt;
+    &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
+    &lt;property name="minimumNumber" value="1"/&gt;
+&lt;/module&gt;
+
+Assert statement may have side effects (formatted for browser display):
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="LITERAL_ASSERT"/&gt;
+    &lt;property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,
+        POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
+        BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
+        METHOD_CALL"/&gt;
+    &lt;property name="maximumNumber" value="0"/&gt;
+&lt;/module&gt;
+
+Initialiser in for performs no setup (use while instead?):
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="FOR_INIT"/&gt;
+    &lt;property name="limitedTokens" value="EXPR"/&gt;
+    &lt;property name="minimumNumber" value="1"/&gt;
+&lt;/module&gt;
+
+Condition in for performs no check:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="FOR_CONDITION"/&gt;
+    &lt;property name="limitedTokens" value="EXPR"/&gt;
+    &lt;property name="minimumNumber" value="1"/&gt;
+&lt;/module&gt;
+
+Switch within switch:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+    &lt;property name="limitedTokens" value="LITERAL_SWITCH"/&gt;
+    &lt;property name="maximumNumber" value="0"/&gt;
+    &lt;property name="minimumDepth" value="1"/&gt;
+&lt;/module&gt;
+
+Return from within a catch or finally block:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="LITERAL_FINALLY,LITERAL_CATCH"/&gt;
+    &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
+    &lt;property name="maximumNumber" value="0"/&gt;
+&lt;/module&gt;
+
+Try within catch or finally block:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY"/&gt;
+    &lt;property name="limitedTokens" value="LITERAL_TRY"/&gt;
+    &lt;property name="maximumNumber" value="0"/&gt;
+&lt;/module&gt;
+
+Too many cases within a switch:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+    &lt;property name="limitedTokens" value="LITERAL_CASE"/&gt;
+    &lt;property name="maximumDepth" value="2"/&gt;
+    &lt;property name="maximumNumber" value="10"/&gt;
+&lt;/module&gt;
+
+Too many local variables within a method:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="METHOD_DEF"/&gt;
+    &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+    &lt;property name="maximumDepth" value="2"/&gt;
+    &lt;property name="maximumNumber" value="10"/&gt;
+&lt;/module&gt;
+
+Too many returns from within a method:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="METHOD_DEF"/&gt;
+    &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
+    &lt;property name="maximumNumber" value="3"/&gt;
+&lt;/module&gt;
+
+Too many fields within an interface:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="INTERFACE_DEF"/&gt;
+    &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+    &lt;property name="maximumDepth" value="2"/&gt;
+    &lt;property name="maximumNumber" value="0"/&gt;
+&lt;/module&gt;
+
+Limit the number of exceptions a method can throw:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="LITERAL_THROWS"/&gt;
+    &lt;property name="limitedTokens" value="IDENT"/&gt;
+    &lt;property name="maximumNumber" value="1"/&gt;
+&lt;/module&gt;
+
+Limit the number of expressions in a method:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="METHOD_DEF"/&gt;
+    &lt;property name="limitedTokens" value="EXPR"/&gt;
+    &lt;property name="maximumNumber" value="200"/&gt;
+&lt;/module&gt;
+
+Disallow empty statements:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="EMPTY_STAT"/&gt;
+    &lt;property name="limitedTokens" value="EMPTY_STAT"/&gt;
+    &lt;property name="maximumNumber" value="0"/&gt;
+    &lt;property name="maximumDepth" value="0"/&gt;
+    &lt;property name="maximumMessage"
+        value="Empty statement is not allowed."/&gt;
+&lt;/module&gt;
+
+Too many fields within a class:
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="CLASS_DEF"/&gt;
+    &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+    &lt;property name="maximumDepth" value="2"/&gt;
+    &lt;property name="maximumNumber" value="10"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="Indentation">
+      <subsection name="Description">
+        <p>
+          Checks correct indentation of Java Code.
+        </p>
+        
+        <p>
+          The basic idea behind this is that while pretty printers are
+          sometimes convienent for bulk reformats of legacy code, they often
+          either aren't configurable enough or just can't anticipate how
+          format should be done.  Sometimes this is personal preference, other
+          times it is practical experience.  In any case, this check should
+          just ensure that a minimal set of indentation rules are followed.
+        </p>
+      </subsection>
+      
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>basicOffset</td>
+            <td>how many spaces to use for new indentation level</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>braceAdjustment</td>
+            <td>how far brace should be indented when on next line</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>caseIndent</td>
+            <td>how much to indent a case label</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td>4</td>
+          </tr>
+        </table>
+      </subsection>
+      
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Indentation&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check to enforce indentation style recommended by
+          Sun:
+        </p>
+        
+        <source>
+&lt;module name=&quot;Indentation&quot;&gt;
+    &lt;property name=&quot;caseIndent&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.indentation
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="TrailingComment">
+      <subsection name="Description">
+        <p>
+          The check to ensure that requires that comments be the only thing on
+          a line.  For the case of // comments that means that the only thing
+          that should precede it is whitespace.  It doesn't check comments if
+          they do not end line, i.e. it accept the following:
+          <code>Thread.sleep( 10 &lt;some comment here&gt; );</code> Format
+          property is intended to deal with the "} // while" example.
+        </p>
+        
+        <p>
+          Rationale: Steve McConnel in &quot;Code Complete&quot; suggests that
+          endline comments are a bad practice. An end line comment would be
+          one that is on the same line as actual code. For example:
+        </p>
+        
+        <source>
+a = b + c;      // Some insightful comment
+d = e / f;        // Another comment for this line
+        </source>
+
+        <p>
+          Quoting &quot;Code Complete&quot; for the justfication:
+        </p>
+        
+        <ul>
+          <li> &quot;The comments have to be aligned so that they do not
+          interfere with the visual structure of the code. If you don't align
+          them neatly, they'll make your listing look like it's been through a
+          washing machine.&quot;
+          </li>
+          <li> &quot;Endline comments tend to be hard to format...It takes
+          time to align them. Such time is not spent learning more about the
+          code; it's dedicated solely to the tedious task of pressing the
+          spacebar or tab key.&quot;
+          </li>
+          <li> &quot;Endline comments are also hard to maintain. If the code
+          on any line containing an endline comment grows, it bumps the
+          comment farther out, and all the other endline comments will have to
+          bumped out to match. Styles that are hard to maintain aren't
+          maintained....&quot;
+          </li>
+          <li> &quot;Endline comments also tend to be cryptic. The right side
+          of the line doesn't offer much room and the desire to keep the
+          comment on one line means the comment must be short.  Work then goes
+          into making the line as short as possible instead of as clear as
+          possible. The comment usually ends up as cryptic as
+          possible....&quot;
+          </li>
+          <li> &quot;A systemic problem with endline comments is that it's
+          hard to write a meaningful comment for one line of code. Most
+          endline comments just repeat the line of code, which hurts more than
+          it helps.&quot;
+          </li>
+        </ul>
+
+        <p>
+          His comments on being hard to maintain when the size of the line
+          changes are even more important in the age of automated
+          refactorings.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>pattern for string allowed before comment.</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">^[\\s\\}\\);]*$</span></td>
+          </tr>
+        </table>
+      </subsection>
+      
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;TrailingComment&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check so it enforces only comment on a line:
+        </p>
+        <source>
+&lt;module name=&quot;TrailingComment&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
+ &lt;/module&gt;
+        </source>
+      </subsection>
+      
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.indentation
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="RequiredRegexp">
+      <subsection name="Description">
+        <p>
+          A check that makes sure that a specified pattern exists in the code,
+          e.g. a required legal text. It does not care about where in the file
+          the pattern is.
+        </p>
+      </subsection>
+      
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>required pattern</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">^$</span> (empty)</td>
+          </tr>
+        </table>
+      </subsection>
+      
+      <subsection name="Examples">
+        <p>
+          An example of how to configure the check to make sure a copyright
+          statement is included in the file:
+        </p>
+        <source>
+&lt;module name="RequiredRegexp"&gt;
+   &lt;property name="format" value="This code is copyrighted"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+      
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
