@@ -187,6 +187,7 @@
                      includes="**/*.java"
                      excludes="**/Generated*.java"/>
             <formatter type="plain"/>
+            <formatter type="xml" toFile="classes/cs_errors.xml"/>
         </checkstyle>
     </target>
 
