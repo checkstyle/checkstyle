@@ -23,6 +23,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ResourceBundle;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -89,7 +90,13 @@ public class XMLLogger
     public void auditStarted(AuditEvent aEvt)
     {
         mWriter.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-        mWriter.println("<checkstyle>");
+
+        final ResourceBundle compilationProperties =
+            ResourceBundle.getBundle("checkstylecompilation");
+        final String version =
+            compilationProperties.getString("checkstyle.compile.version");
+
+        mWriter.println("<checkstyle version=\"" + version + "\">");
     }
 
     /** @see AuditListener **/

@@ -2,6 +2,7 @@
 <!-- DTD for XMLLogger output -->
 
 <!ELEMENT checkstyle (file)*>
+<!ATTLIST checkstyle version CDATA #REQUIRED>
 
 <!ELEMENT file (error)*>
 <!ATTLIST file name CDATA #REQUIRED>
