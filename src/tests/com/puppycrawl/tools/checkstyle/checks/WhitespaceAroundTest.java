@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class WhitespaceAroundTest
     extends BaseCheckTestCase
@@ -10,8 +11,6 @@ public class WhitespaceAroundTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(WhitespaceAroundCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
             "16:22: '=' is not preceeded with whitespace.",
             "16:23: '=' is not followed by whitespace.",
@@ -49,7 +48,7 @@ public class WhitespaceAroundTest
             "156:20: ':' is not preceeded with whitespace.",
             "156:21: ':' is not followed by whitespace.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
     public void testIt2()
@@ -57,8 +56,6 @@ public class WhitespaceAroundTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(WhitespaceAroundCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
         final String[] expected = {
             "153:27: '=' is not followed by whitespace.",
             "154:27: '=' is not followed by whitespace.",
@@ -67,7 +64,7 @@ public class WhitespaceAroundTest
             "157:27: '=' is not followed by whitespace.",
             "158:27: '=' is not followed by whitespace.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
     public void testIt3()
@@ -75,14 +72,12 @@ public class WhitespaceAroundTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(WhitespaceAroundCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputBraces.java");
         final String[] expected = {
             "41:14: 'while' is not followed by whitespace.",
             "58:12: 'for' is not followed by whitespace.",
             // + ":58:23: ';' is not followed by whitespace.",
             //  + ":58:29: ';' is not followed by whitespace.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputBraces.java"), expected);
     }
 }
