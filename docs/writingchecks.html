@@ -150,7 +150,7 @@
       </p>
 
       <p class="body">
-      TODO: screenshot
+      <img alt="screenshot" src="gui_screenshot.png"/>
       </p>
 
       <p class="body"> In the leftmost column you can open and close branches
@@ -269,7 +269,14 @@
 
         public void visitToken(DetailAST ast)
         {
-          int methodDefs = ast.getChildCount(TokenTypes.METHOD_DEF);
+          // find the OBJBLOCK node below the CLASS_DEF/INTERFACE_DEF
+          DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
+
+          // count the number of direct children of the OBJBLOCK
+          // that are METHOD_DEFS
+          int methodDefs = objBlock.getChildCount(TokenTypes.METHOD_DEF);
+
+          // report error if limit is reached
           if (methodDefs > max) {
             log(ast.getLineNo(),
                 "too many methods, only " + max + " are allowed");
@@ -456,7 +463,7 @@
       <li class="body">You cannot see the content of other files.</li>
       </ul>
       <p class="body">
-      This means that you cannot implement most of the code inspection
+      This means that you cannot implement some of the code inspection
       features that are available in advanced IDEs like <a
       href="http://www.intellij.com/idea">IntelliJ IDEA</a>. For
       example you will not be able to implement a Check that finds
@@ -474,31 +481,48 @@
       href="api/com/puppycrawl/tools/checkstyle/api/FileSetCheck.html#process(java.io.File[])"><span
       class="code">process(File[] files)</span></a> method and you&apos;re
       done. A very simple example could fire an error if the number of files
-      that are passed in exceeds a certain limit.  </p> <p class="body"> TODO:
-      Implement that FSC and provide it as an example. Sketch: </p> <pre>
-      private int max = 100;
+      that are passed in exceeds a certain limit. Here is a FileSetCheck that does just that:</p>
 
-      public void setMax(int aMax)
-      {
-          max = aMax;
-      }
+      <pre>
+      package com.mycompany.checks;
 
-      public void process(File[] files)
+      import java.io.File;
+      import com.puppycrawl.tools.checkstyle.api.*;
+
+      public class LimitImplementationFiles
+          extends AbstractFileSetCheck
       {
-          if (files != null &amp;&amp; files.length &gt; max)
+          private int max = 100;
+
+          public void setMax(int aMax)
           {
-              // build the error list
-              Object[] key = new Object[]{it.next()};
-              LocalizedMessage[] errors = new LocalizedMessage[1];
-              final String className = getClass().getName();
-              final int pkgEndIndex = className.lastIndexOf(&apos;.&apos;);
-              final String pkgName = className.substring(0, pkgEndIndex);
-              final String bundle = pkgName + ".messages";
-              errors[0] = new LocalizedMessage(
-                      0, bundle, "max.files.exceeded", key);
+              max = aMax;
+          }
 
-              // fire the errors to the AuditListeners
-              getMessageDispatcher().fireErrors(path, errors);
+          public void process(File[] files)
+          {
+              if (files != null && files.length > max) {
+
+                  // Build the error list. Here we fire only one error
+                  LocalizedMessage[] errors = new LocalizedMessage[1];
+
+                  // get the resource bundle to use for the message
+                  final String className = getClass().getName();
+                  final int pkgEndIndex = className.lastIndexOf('.');
+                  final String pkgName = className.substring(0, pkgEndIndex);
+                  final String bundle = pkgName + ".messages";
+
+                  // create the message arguments
+                  Object[] msgArgs = new Object[]{new Integer(max)};
+
+                  // create the actual message
+                  errors[0] = new LocalizedMessage(
+                      0, bundle, "max.files.exceeded", msgArgs);
+
+                  // fire the errors to the AuditListeners
+                  final String path = files[max].getPath();
+                  getMessageDispatcher().fireErrors(path, errors);
+              }
           }
       }
       </pre>
@@ -551,4 +575,5 @@
   </tr>
 </table>
 <hr/>
+<p align="center">Copyright &copy; 2002 Oliver Burn. All rights Reserved.</p>
 </body> </html>
