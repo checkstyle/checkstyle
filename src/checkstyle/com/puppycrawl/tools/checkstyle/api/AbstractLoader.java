@@ -77,6 +77,7 @@ public abstract class AbstractLoader
         mPublicIdToResourceNameMap = new HashMap(aPublicIdToResourceNameMap);
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(true);
+        factory.setNamespaceAware(true);
         mParser = factory.newSAXParser().getXMLReader();
         mParser.setContentHandler(this);
         mParser.setEntityResolver(this);
