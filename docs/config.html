@@ -219,24 +219,24 @@
      Some Checks, such as <span class="code">FileLength</span>
      and <span class="code">LineLength</span>, apply directly to the source file and do not involve tokens
      of the syntax tree.
-     Other Checks are associated with configurable sets of trigger tokens.
-     By default, each such Check has a set of <em>default tokens</em> that trigger the Check.
+     Other Checks are associated with configurable sets of <em>acceptable tokens</em> that
+     trigger the Checks.
      For example, this element configures Check <span class="code">MethodLength</span>:
      </p>
       <pre class="body">
     &lt;module name=&quot;MethodLength&quot;/&gt;
     </pre>
     <p class="body">
-    The default token set for <span class="code">MethodLength</span> is
+    The default acceptable token set for <span class="code">MethodLength</span> is
      <span class="code">{METHOD_DEF, CTOR_DEF}</span>, method definition and constructor definition
      tokens, so <span class="code">TreeWalker</span> invokes
      <span class="code">MethodLength</span> whenever it visits a node with a
      <span class="code">METHOD_DEF</span> or a <span class="code">CTOR_DEF</span> token.
      </p>
      <p class="body">
-     You can specify the trigger tokens for a Check with property <span class="code">tokens</span>.
+     You specify the trigger tokens for a Check with property <span class="code">tokens</span>.
      The value of <span class="code">tokens</span> is a list that denotes a subset of the Check&apos;s
-     <em>acceptable tokens</em>, as in the following element that configures Check
+     acceptable tokens, as in the following element that configures Check
      <span class="code">MethodLength</span> to check the number of lines of methods only: 
      </p>
       <pre class="body">
