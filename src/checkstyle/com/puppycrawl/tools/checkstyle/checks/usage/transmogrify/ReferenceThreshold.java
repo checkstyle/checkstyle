@@ -29,8 +29,6 @@
 package com.puppycrawl.tools.checkstyle.checks.usage.transmogrify;
 
 
-import java.io.File;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
