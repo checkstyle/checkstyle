@@ -189,7 +189,7 @@ public final class FileContents implements CommentListener
      * @return the Javadoc comment, or <code>null</code> if none
      * @param aLineNo the line number to check before
      **/
-    public String[] getJavadocBefore(int aLineNo)
+    public Comment getJavadocBefore(int aLineNo)
     {
         // Lines start at 1 to the callers perspective, so need to take off 2
         int lineNo = aLineNo - 2;
@@ -199,7 +199,10 @@ public final class FileContents implements CommentListener
             lineNo--;
         }
 
-        return (String[]) mJavadocComments.get(new Integer(lineNo));
+        final String[] text =
+            (String[]) mJavadocComments.get(new Integer(lineNo));
+
+        return (text == null ? null : new Comment(text, lineNo + 1));
     }
 
     /** @return the lines in the file */

@@ -23,6 +23,7 @@ import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -160,16 +161,16 @@ public class JavadocTypeCheck
             if ((surroundingScope == null) || surroundingScope.isIn(mScope)) {
                 final FileContents contents = getFileContents();
                 final int lineNo = aAST.getLineNo();
-                final String[] cmt =
+                final Comment cmt =
                     contents.getJavadocBefore(lineNo);
                 if (cmt == null) {
                     log(lineNo, "javadoc.missing");
                 }
                 else if (ScopeUtils.isOuterMostType(aAST)) {
                     // don't check author/version for inner classes
-                    checkTag(lineNo, cmt, "@author",
+                    checkTag(lineNo, cmt.getText(), "@author",
                             mAuthorTagRE, mAuthorFormatRE, mAuthorFormat);
-                    checkTag(lineNo, cmt, "@version",
+                    checkTag(lineNo, cmt.getText(), "@version",
                             mVersionTagRE, mVersionFormatRE, mVersionFormat);
                 }
             }

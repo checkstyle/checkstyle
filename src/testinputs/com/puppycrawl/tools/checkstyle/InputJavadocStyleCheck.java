@@ -181,4 +181,21 @@ public class InputJavadocStyleCheck
     {// JavadocStyle should not report any error for this method
     }
 
+    /**
+     * Some problematic javadoc. Sample usage:
+     * <blockquote>
+     */
+
+    private void method14()
+    { // empty line between javadoc and method is critical (bug 841942)
+    }
+
+    /**
+     * Empty line between javadoc and method declaration cause wrong
+     * line number for reporting error (bug 841942)
+     */
+
+    private void method15()
+    { // should report unended first sentance (check line number of the error)
+    }
 }

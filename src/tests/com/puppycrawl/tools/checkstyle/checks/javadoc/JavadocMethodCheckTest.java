@@ -39,6 +39,7 @@ public class JavadocMethodCheckTest
             "236: Unused @throws tag for 'java.io.FileNotFoundException'.",
             "254: Unused @throws tag for 'java.io.FileNotFoundException'.",
             "256:28: Expected @throws tag for 'IOException'.",
+            "262: Unused @param tag for 'aParam'.",
         };
 
         verify(checkConfig, getPath("InputTags.java"), expected);
@@ -75,6 +76,7 @@ public class JavadocMethodCheckTest
             "236: Unused @throws tag for 'java.io.FileNotFoundException'.",
             "254: Unused @throws tag for 'java.io.FileNotFoundException'.",
             "256:28: Expected @throws tag for 'IOException'.",
+            "262: Unused @param tag for 'aParam'.",
         };
         verify(checkConfig, getPath("InputTags.java"), expected);
     }
@@ -211,6 +213,7 @@ public class JavadocMethodCheckTest
             "178: Unused @throws tag for 'ThreadDeath'.",
             "179: Unused @throws tag for 'ArrayStoreException'.",
             "256:28: Expected @throws tag for 'IOException'.",
+            "262: Unused @param tag for 'aParam'.",
         };
         verify(checkConfig, getPath("InputTags.java"), expected);
     }

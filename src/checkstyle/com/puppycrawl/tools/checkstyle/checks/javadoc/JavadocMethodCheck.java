@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -284,7 +285,7 @@ public class JavadocMethodCheck
 
             if (surroundingScope.isIn(mScope)) {
                 final FileContents contents = getFileContents();
-                final String[] cmt =
+                final Comment cmt =
                     contents.getJavadocBefore(aAST.getLineNo());
 
                 if (cmt == null) {
@@ -304,9 +305,9 @@ public class JavadocMethodCheck
      * @param aAST the token for the method
      * @param aComment the Javadoc comment
      */
-    private void checkComment(DetailAST aAST, String[] aComment)
+    private void checkComment(DetailAST aAST, Comment aComment)
     {
-        final List tags = getMethodTags(aComment, aAST.getLineNo() - 1);
+        final List tags = getMethodTags(aComment);
         // Check for only one @see tag
         if ((tags.size() != 1)
             || !((JavadocTag) tags.get(0)).isSeeOrInheritDocTag())
@@ -327,34 +328,35 @@ public class JavadocMethodCheck
             }
         }
     }
+
     /**
      * Returns the tags in a javadoc comment. Only finds throws, exception,
      * param, return and see tags.
      * @return the tags found
-     * @param aLines the Javadoc comment
-     * @param aLastLineNo the line number of the last line in the Javadoc
-     *                    comment
-     **/
-    private List getMethodTags(String[] aLines, int aLastLineNo)
+     * @param aComment the Javadoc comment
+     */
+    private List getMethodTags(Comment aComment)
     {
+        final String[] lines = aComment.getText();
         final List tags = new ArrayList();
-        int currentLine = aLastLineNo - aLines.length;
-        for (int i = 0; i < aLines.length; i++) {
+        int currentLine = aComment.getFirstLineNo() - 1;
+
+        for (int i = 0; i < lines.length; i++) {
             currentLine++;
-            if (MATCH_JAVADOC_ARG.match(aLines[i])) {
+            if (MATCH_JAVADOC_ARG.match(lines[i])) {
                 tags.add(new JavadocTag(currentLine,
                                         MATCH_JAVADOC_ARG.getParen(1),
                                         MATCH_JAVADOC_ARG.getParen(2)));
             }
-            else if (MATCH_JAVADOC_NOARG.match(aLines[i])) {
+            else if (MATCH_JAVADOC_NOARG.match(lines[i])) {
                 tags.add(new JavadocTag(currentLine,
                                         MATCH_JAVADOC_NOARG.getParen(1)));
             }
-            else if (MATCH_JAVADOC_NOARG_CURLY.match(aLines[i])) {
+            else if (MATCH_JAVADOC_NOARG_CURLY.match(lines[i])) {
                 tags.add(new JavadocTag(currentLine,
                                         MATCH_JAVADOC_NOARG_CURLY.getParen(1)));
             }
-            else if (MATCH_JAVADOC_ARG_MULTILINE_START.match(aLines[i])) {
+            else if (MATCH_JAVADOC_ARG_MULTILINE_START.match(lines[i])) {
                 final String p1 = MATCH_JAVADOC_ARG_MULTILINE_START.getParen(1);
                 final String p2 = MATCH_JAVADOC_ARG_MULTILINE_START.getParen(2);
 
@@ -363,9 +365,9 @@ public class JavadocMethodCheck
                 // Javadoc, '@' (start of next tag), or anything that's
                 // not whitespace or '*' characters.
                 int remIndex = i + 1;
-                while (remIndex < aLines.length) {
-                    if (MATCH_JAVADOC_MULTILINE_CONT.match(aLines[remIndex])) {
-                        remIndex = aLines.length;
+                while (remIndex < lines.length) {
+                    if (MATCH_JAVADOC_MULTILINE_CONT.match(lines[remIndex])) {
+                        remIndex = lines.length;
                         String lFin = MATCH_JAVADOC_MULTILINE_CONT.getParen(1);
                         if (!lFin.equals(NEXT_TAG)
                             && !lFin.equals(END_JAVADOC))
@@ -376,7 +378,7 @@ public class JavadocMethodCheck
                     remIndex++;
                 }
             }
-            else if (MATCH_JAVADOC_NOARG_MULTILINE_START.match(aLines[i])) {
+            else if (MATCH_JAVADOC_NOARG_MULTILINE_START.match(lines[i])) {
                 final String p1 =
                     MATCH_JAVADOC_NOARG_MULTILINE_START.getParen(1);
 
@@ -385,9 +387,9 @@ public class JavadocMethodCheck
                 // Javadoc, '@' (start of next tag), or anything that's
                 // not whitespace or '*' characters.
                 int remIndex = i + 1;
-                while (remIndex < aLines.length) {
-                    if (MATCH_JAVADOC_MULTILINE_CONT.match(aLines[remIndex])) {
-                        remIndex = aLines.length;
+                while (remIndex < lines.length) {
+                    if (MATCH_JAVADOC_MULTILINE_CONT.match(lines[remIndex])) {
+                        remIndex = lines.length;
                         String lFin = MATCH_JAVADOC_MULTILINE_CONT.getParen(1);
                         if (!lFin.equals(NEXT_TAG)
                             && !lFin.equals(END_JAVADOC))

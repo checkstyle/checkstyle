@@ -256,4 +256,14 @@ class InputTags
     void method24() throws IOException
     {
     }
+
+    /**
+     * Bug 841942, "ArrayIndexOutOfBounds in JavadocStyle".
+     * @param aParam there is no such param in the method.
+     * The problem should be reported with correct line number.
+     */
+
+    void method25()
+    {
+    }
 }

@@ -19,13 +19,13 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import java.util.NoSuchElementException;
 import java.util.Stack;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
@@ -117,10 +117,10 @@ public class JavadocStyleCheck
                     || surroundingScope.isIn(mScope))
                 {
                     final FileContents contents = getFileContents();
-                    final String[] cmt =
+                    final Comment cmt =
                         contents.getJavadocBefore(aAST.getLineNo());
 
-                    checkComment(aAST, cmt);
+                    checkComment(cmt);
                 }
             }
         }
@@ -129,23 +129,23 @@ public class JavadocStyleCheck
     /**
      * Performs the various checks agains the Javadoc comment.
      *
-     * @param aAST (Abstract Syntax Tree) the token to process.
      * @param aComment the source lines that make up the Javadoc comment.
      *
-     * @see #checkFirstSentence(DetailAST, String[])
+     * @see #checkFirstSentence(Comment)
+     * @see #checkHtml(Comment)
      */
-    private void checkComment(DetailAST aAST, String[] aComment)
+    private void checkComment(Comment aComment)
     {
         if (aComment == null) {
             return;
         }
 
         if (mCheckFirstSentence) {
-            checkFirstSentence(aAST, aComment);
+            checkFirstSentence(aComment);
         }
 
         if (mCheckHtml) {
-            checkHtml(aAST, aComment);
+            checkHtml(aComment);
         }
     }
 
@@ -156,18 +156,17 @@ public class JavadocStyleCheck
      * HTML element, or the end of string. This method ignores {@inheritDoc}
      * comments.
      *
-     * @param aAST (Abstract Syntax Tree) the token to process.
      * @param aComment the source lines that make up the Javadoc comment.
      */
-    private void checkFirstSentence(DetailAST aAST, String[] aComment)
+    private void checkFirstSentence(Comment aComment)
     {
-        final String commentText = getCommentText(aComment);
+        final String commentText = getCommentText(aComment.getText());
 
         if ((commentText.length() != 0)
             && !getEndOfSentenceRE().match(commentText)
             && !"{@inheritDoc}".equals(commentText))
         {
-            log(aAST.getLineNo() - aComment.length, "javadoc.noperiod");
+            log(aComment.getFirstLineNo(), "javadoc.noperiod");
         }
     }
 
@@ -228,7 +227,7 @@ public class JavadocStyleCheck
         int textStart = -1;
         for (int i = 0; i < aLine.length(); i++) {
             if (!Character.isWhitespace(aLine.charAt(i))) {
-                if (aLine.regionMatches(i, "/**", 0, 3)) {
+                if (aLine.regionMatches(i, "/**", 0, "/**".length())) {
                     i += 2;
                 }
                 else if (aLine.regionMatches(i, "*/", 0, 2)) {
@@ -272,31 +271,24 @@ public class JavadocStyleCheck
      * tag or a close tage that has no previous open tag.  This code was
      * primarily copied from the DocCheck checkHtml method.
      *
-     * @param aAST (Abstract Syntax Tree) the token to process.
-     * @param aComment the source lines that make up the Javadoc comment.
+     * @param aComment the <code>Comment</code> which represents
+     *                 the Javadoc comment.
      */
-    private void checkHtml(DetailAST aAST, String[] aComment)
+    private void checkHtml(Comment aComment)
     {
-        final int lineno = aAST.getLineNo() - aComment.length;
+        final int lineno = aComment.getFirstLineNo();
         final Stack htmlStack = new Stack();
+        final String[] text = aComment.getText();
 
         TagParser parser = null;
-        try {
-            // Can throw NoSuchElementException when tokenizing encounters
-            // "<" at end of aComment[i].
-            parser = new TagParser(aComment, lineno);
-        }
-        catch (NoSuchElementException e) {
-            log(lineno, "javadoc.incompleteTag", new Object[] {aComment[0]});
-            return;
-        }
+        parser = new TagParser(text, lineno);
 
         while (parser.hasNextTag()) {
             final HtmlTag tag = parser.nextTag();
 
             if (tag.isIncompleteTag()) {
                 log(tag.getLineno(), "javadoc.incompleteTag",
-                    new Object[] {aComment[tag.getLineno() - lineno]});
+                    new Object[] {text[tag.getLineno() - lineno]});
                 return;
             }
             if (tag.isClosedTag()) {

@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -85,7 +86,7 @@ public class JavadocVariableCheck
 
                 if (surroundingScope.isIn(mScope)) {
                     final FileContents contents = getFileContents();
-                    final String[] cmt =
+                    final Comment cmt =
                         contents.getJavadocBefore(aAST.getLineNo());
 
                     if (cmt == null) {
