@@ -27,7 +27,7 @@ public class PackageNamesLoaderTest extends TestCase
         throws CheckstyleException
     {
         try {
-            String[] pkgNames = PackageNamesLoader.loadPackageNames("NoFile");
+            PackageNamesLoader.loadPackageNames("NoFile");
             fail("Loaded non-existant file.");
         }
         catch (CheckstyleException ex) {
