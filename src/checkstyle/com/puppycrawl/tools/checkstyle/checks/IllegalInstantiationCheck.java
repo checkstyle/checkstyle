@@ -57,10 +57,13 @@ public class IllegalInstantiationCheck
     /** Set of fully qualified classnames. E.g. "java.lang.Boolean" */
     private final Set mIllegalClasses = new HashSet();
 
+    /** name of the package */
     private String mPkgName = null;
+
+    /** the imports for the file */
     private final Set mImports = new HashSet();
 
-    /** @see Check */
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -70,6 +73,7 @@ public class IllegalInstantiationCheck
         };
     }
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree()
     {
         super.beginTree();
@@ -77,7 +81,7 @@ public class IllegalInstantiationCheck
         mImports.clear();
     }
 
-    /** @see Check */
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -93,6 +97,10 @@ public class IllegalInstantiationCheck
         }
     }
 
+    /**
+     * Perform processing for an import token
+     * @param aAST the import token
+     */
     private void processImport(DetailAST aAST)
     {
         final FullIdent name = getImportText(aAST);
@@ -103,6 +111,10 @@ public class IllegalInstantiationCheck
         }
     }
 
+    /**
+     * Perform processing for an package token
+     * @param aAST the package token
+     */
     private void processPackageDef(DetailAST aAST)
     {
         DetailAST packageNameAST = (DetailAST) aAST.getFirstChild();
@@ -110,6 +122,10 @@ public class IllegalInstantiationCheck
         mPkgName = packageIdent.getText();
     }
 
+    /**
+     * Perform processing for an "new" token
+     * @param aAST the "new" token
+     */
     private void processLiteralNew(DetailAST aAST)
     {
         DetailAST typeNameAST = (DetailAST) aAST.getFirstChild();
@@ -205,6 +221,10 @@ public class IllegalInstantiationCheck
         return (i == -1) ? aType : aType.substring(i + 1);
     }
 
+    /**
+     * Sets the classes that are illegal to instantiate.
+     * @param aClassNames a comma seperate list of class names
+     */
     public void setClasses(String aClassNames)
     {
         mIllegalClasses.clear();

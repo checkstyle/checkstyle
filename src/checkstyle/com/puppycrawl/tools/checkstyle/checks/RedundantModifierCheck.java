@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 // Needed to break circular dependencies
 public class RedundantModifierCheck extends Check implements JavaTokenTypes
 {
+    /** tracks if in an interface */
     private final Stack mInInterface = new Stack();
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */

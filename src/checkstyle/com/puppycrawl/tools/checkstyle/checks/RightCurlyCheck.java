@@ -16,17 +16,24 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import org.apache.commons.beanutils.ConversionException;
 
+/**
+ * Checks the placement of right curly braces.
+ *
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @version 1.0
+ */
 public class RightCurlyCheck
     extends Check
 {
+    /** the policy to enforce */
     private RightCurlyOption mOption = RightCurlyOption.SAME;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -76,8 +83,17 @@ public class RightCurlyCheck
         }
     }
 
+    /**
+     * Describe <code>setOption</code> method here.
+     *
+     * @param aFromStr a <code>String</code> value
+     * @throws ConversionException if unable to decode
+     */
     public void setOption(String aFromStr)
     {
         mOption = RightCurlyOption.decode(aFromStr);
+        if (mOption == null) {
+            throw new ConversionException("unable to decode " + aFromStr);
+        }
     }
 }

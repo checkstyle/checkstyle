@@ -141,9 +141,6 @@ class Verifier
     /** the set of imports (no line number) **/
     private final Set mImports = new HashSet();
 
-    /** the identifiers used **/
-    private final Set mReferenced = new HashSet();
-
     /** configuration for checking **/
     private final Configuration mConfig;
 
@@ -190,7 +187,6 @@ class Verifier
         mMessages.reset();
         mComments.clear();
         mImports.clear();
-        mReferenced.clear();
         mTypeNames.clear();
         mTypeFieldsMap.clear();
         mMethodBlockLevel = 0;
@@ -701,19 +697,6 @@ class Verifier
      */
     void reportReference(String aType)
     {
-        mReferenced.add(aType);
-
-        // we might have multiple levels of inner classes,
-        // all of them have to be marked as referenced
-
-        // as an unwanted side effect we also add package names like
-        // "com", "java", etc., but that probably doesn't hurt
-        // and could be fixed by getting more info using the classloader
-        int lastDot = aType.lastIndexOf('.');
-        while (lastDot != -1) {
-            mReferenced.add(aType.substring(0, lastDot));
-            lastDot = aType.lastIndexOf('.', lastDot - 1);
-        }
     }
 
 

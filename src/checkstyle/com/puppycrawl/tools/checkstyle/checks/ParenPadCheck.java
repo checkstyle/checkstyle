@@ -25,9 +25,16 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import org.apache.commons.beanutils.ConversionException;
 
+/**
+ * Checks the padding of parenthesis.
+ *
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @version 1.0
+ */
 public class ParenPadCheck
     extends Check
 {
+    /** the policy to enforce */
     private PadOption mOption = PadOption.NOSPACE;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -53,6 +60,11 @@ public class ParenPadCheck
         }
     }
 
+    /**
+     * Set the option to enforce.
+     * @param aOption string to decode option from
+     * @throws ConversionException if unable to decode
+     */
     public void setOption(String aOption)
     {
         mOption = PadOption.decode(aOption);
@@ -61,6 +73,10 @@ public class ParenPadCheck
         }
     }
 
+    /**
+     * Process a token representing a left parentheses.
+     * @param aAST the token representing a left parentheses
+     */
     private void processLeft(DetailAST aAST)
     {
         final String line = getLines()[aAST.getLineNo() - 1];
@@ -80,6 +96,10 @@ public class ParenPadCheck
         }
     }
 
+    /**
+     * Process a token representing a right parentheses.
+     * @param aAST the token representing a right parentheses
+     */
     private void processRight(DetailAST aAST)
     {
         final String line = getLines()[aAST.getLineNo() - 1];

@@ -28,16 +28,30 @@ import java.util.TreeSet;
 import java.util.StringTokenizer;
 import java.util.Iterator;
 
+/**
+ * Checks for imports from illegal packages.
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Lars Kühne
+ * @version 1.0
+ */
 public class IllegalImportCheck
     extends ImportCheck
 {
+    /** list of illegal packages */
     private final Set mIllegalPkgs = new TreeSet();
 
+    /**
+     * Creates a new <code>IllegalImportCheck</code> instance.
+     */
     public IllegalImportCheck()
     {
         setIllegalPkgs("sun");
     }
 
+    /**
+     * Set the list of illegal packages.
+     * @param aFrom comma seperated list of illegal packages
+     */
     public void setIllegalPkgs(String aFrom)
     {
         mIllegalPkgs.clear();

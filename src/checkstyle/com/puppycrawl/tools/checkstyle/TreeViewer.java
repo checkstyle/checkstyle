@@ -19,9 +19,20 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.Reader;
 
+/**
+ * A simple viewer of the AST tree. Will be replaced by something from Lars.
+ *
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @version 1.0
+ */
 public class TreeViewer
 {
-    public static void main(String[] args) {
+    /**
+     * Wrapper to call the GUI.
+     * @param args a <code>String[]</code> value
+     */
+    public static void main(String[] args)
+    {
         // Use a try/catch block for parser exceptions
         try {
             // if we have at least one command-line argument
@@ -29,13 +40,13 @@ public class TreeViewer
                 System.err.println("Parsing...");
 
                 // for each directory/file specified on the command line
-                for(int i=0; i< args.length;i++) {
+                for(int i=0; i< args.length; i++) {
                     parseFile(args[i]); // parse it
                 }
             }
             else {
-                System.err.println("Usage: java Main [-showtree] "+
-                                   "<directory or file name>");
+                System.err.println("Usage: java Main [-showtree] "
+                                   + "<directory or file name>");
             }
         }
         catch(Exception e) {
@@ -45,7 +56,11 @@ public class TreeViewer
     }
 
 
-    // Here's where we do the real work...
+    /**
+     * Display AST for a specified file.
+     * @param aFilename a <code>String</code> value
+     * @throws Exception if an error occurs
+     */
     public static void parseFile(String aFilename)
         throws Exception {
         try {
@@ -70,13 +85,20 @@ public class TreeViewer
         }
     }
 
+    /**
+     * Display the tree for a specified node.
+     * @param t an <code>AST</code> value
+     * @param tokenNames a <code>String[]</code> value
+     */
     public static void doTreeAction(AST t, String[] tokenNames)
     {
-        if ( t==null ) return;
+        if (t == null) {
+            return;
+        }
 
-        ((CommonAST)t).setVerboseStringConversion(true, tokenNames);
+        ((CommonAST) t).setVerboseStringConversion(true, tokenNames);
         ASTFactory factory = new ASTFactory();
-        AST r = factory.create(0,"AST ROOT");
+        AST r = factory.create(0, "AST ROOT");
         r.setFirstChild(t);
         final ASTFrame frame = new ASTFrame("Java AST", r);
         frame.setSize(400, 600);

@@ -79,9 +79,10 @@ public final class PadOption
      * Serialization Specification for details.
      *
      * @return the serialization replacement object
-     * @throws java.io.ObjectStreamException if a deserialization error occurs
+     * @throws ObjectStreamException if a deserialization error occurs
      */
-    private Object readResolve() throws ObjectStreamException
+    private Object readResolve()
+        throws ObjectStreamException
     {
         return decode(mStrRep);
     }
