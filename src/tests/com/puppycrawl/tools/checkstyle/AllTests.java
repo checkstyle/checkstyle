@@ -73,6 +73,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.PackageHtmlCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.metrics.ExecutableStatementCountCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheckTest;
@@ -196,6 +197,7 @@ public class AllTests {
         suite.addTest(new TestSuite(RightCurlyCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanExpressionCheckTest.class));
         suite.addTest(new TestSuite(SimplifyBooleanReturnCheckTest.class));
+        suite.addTest(new TestSuite(ExecutableStatementCountCheckTest.class));
         suite.addTest(new TestSuite(StaticVariableNameCheckTest.class));
         suite.addTest(new TestSuite(StringArrayReaderTest.class));
         suite.addTest(new TestSuite(StringLiteralEqualityCheckTest.class));
