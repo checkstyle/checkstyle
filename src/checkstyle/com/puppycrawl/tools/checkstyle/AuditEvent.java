@@ -121,6 +121,12 @@ public final class AuditEvent
             : mMessage.getSeverityLevel();
     }
 
+    /** @return the name of the source for the message **/
+    public String getSourceName()
+    {
+        return mMessage.getSourceName();
+    }
+    
     /** @return the localized message **/
     public LocalizedMessage getLocalizedMessage()
     {

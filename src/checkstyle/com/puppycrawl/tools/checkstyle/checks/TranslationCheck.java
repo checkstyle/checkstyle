@@ -158,8 +158,13 @@ public class TranslationCheck
             key = "general.exception";
         }
         final LocalizedMessage message =
-                new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE, key, args);
-        final LocalizedMessage[] messages = new LocalizedMessage[]{message};
+            new LocalizedMessage(
+                0,
+                Defn.CHECKSTYLE_BUNDLE,
+                key,
+                args,
+                this.getClass().getName());
+        final LocalizedMessage[] messages = new LocalizedMessage[] {message};
         getMessageDispatcher().fireErrors(aFile.getPath(), messages);
     }
 
