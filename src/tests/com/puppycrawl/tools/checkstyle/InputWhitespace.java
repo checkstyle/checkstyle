@@ -2,7 +2,9 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com . puppycrawl
+    .tools.
+    checkstyle;
 
 /**
  * Class for testing whitespace issues.
@@ -121,5 +123,17 @@ class InputWhitespace
         int f = 4/ 2;
         int g = 4 /2;
         int h = 4/2;
+    }
+
+    /** @return dot test **/
+    private java .lang. String dotTest()
+    {
+        Object o = new java.lang.Object();
+        o.
+            toString();
+        o
+            .toString();
+        o . toString();
+        return o.toString();
     }
 }
