@@ -172,14 +172,16 @@ public final class TreeWalker
         // class. Otherwise can get ClassCastException problems.
         final String name = aChildConf.getName();
         final String[] packageNames = getPackageNames();
-        final Check check =
-                (Check) PackageObjectFactory.makeObject(
-                        packageNames, this.getClass().getClassLoader(), name);
+        final Check c =
+            (Check) PackageObjectFactory.makeObject(
+                packageNames,
+                getClass().getClassLoader(),
+                name);
+        c.contextualize(mChildContext);
+        c.configure(aChildConf);
+        c.init();
 
-        check.contextualize(mChildContext);
-        check.configure(aChildConf);
-
-        registerCheck(check);
+        registerCheck(c);
     }
 
     /**
@@ -242,8 +244,8 @@ public final class TreeWalker
      * @param aCheck the check to register
      * @throws CheckstyleException if an error occurs
      */
-    void registerCheck(Check aCheck)
-           throws CheckstyleException
+    private void registerCheck(Check aCheck)
+        throws CheckstyleException
     {
         final Set checkTokens = aCheck.getTokenNames();
         if (!checkTokens.isEmpty()) {
@@ -474,7 +476,11 @@ public final class TreeWalker
      */
     public void destroy()
     {
-        super.destroy();
+        for (Iterator it = mAllChecks.iterator(); it.hasNext();) {
+            final Check c = (Check) it.next();
+            c.destroy();
+        }
         mCache.destroy();
+        super.destroy();
     }
 }
