@@ -29,7 +29,7 @@
   <property name="dist.dir" value="target/dist"/>
 
   <property name="xdocs.src" value="src/xdocs"/>
-  <property name="xdocs.dest" value="target/thedocs"/>
+  <property name="xdocs.dest" value="target/docs"/>
   <property name="version" value="3.5" />
 
   <path id="build.classpath">
@@ -89,9 +89,6 @@
       </fileset>
     </delete>
     <delete dir="target" />
-    <delete includeemptydirs="true">
-      <fileset dir="docs/api" includes="**" excludes=".cvsignore,CVS/**"/>
-    </delete>
     <delete file="velocity.log" />
   </target>
 
@@ -103,7 +100,7 @@
   <target name="check.antlr"
           description="Checks whether the grammar file is newer that the generated code">
     <uptodate property="uptodate.antlr"
-              targetfile="${checkstyle.grammar.dir}/GeneratedJava14Lexer.java" >
+              targetfile="${checkstyle.grammar.dir}/GeneratedJavaLexer.java" >
       <srcfiles dir= "${checkstyle.grammar.dir}" includes="java.g"/>
     </uptodate>
   </target>
@@ -227,7 +224,7 @@
           classpathref="run.classpath">
       <sysproperty key="checkstyle.allow.tabs" value="yes"/>
       <arg value="-c"/>
-      <arg file="docs/checkstyle_checks.xml"/>
+      <arg file="checkstyle_checks.xml"/>
       <arg value="src/testinputs/com/puppycrawl/tools/checkstyle/InputSimple.java"/>
     </java>
     <java classname="com.puppycrawl.tools.checkstyle.Main"
@@ -235,7 +232,7 @@
           dir="."
           classpathref="run.classpath">
       <arg value="-c"/>
-      <arg file="docs/checkstyle_checks.xml"/>
+      <arg file="checkstyle_checks.xml"/>
       <arg value="-r"/>
       <arg file="src/checkstyle/com/puppycrawl/tools/checkstyle/api"/>
     </java>
@@ -254,7 +251,7 @@
     <delete file="target/cachefile" />
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
-    <property name="check.config" location="docs/checkstyle_checks.xml"/>
+    <property name="check.config" location="checkstyle_checks.xml"/>
     <property name="translation.severity" value="error"/>
     <checkstyle config="${check.config}">
       <fileset dir="src/checkstyle"
@@ -264,9 +261,9 @@
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
       <property key="checkstyle.cache.file" file="target/cachefile"/>
-      <property key="checkstyle.header.file" file="docs/java.header"/>
+      <property key="checkstyle.header.file" file="java.header"/>
       <property key="checkstyle.suppressions.file"
-                file="docs/suppressions.xml"/>
+                file="suppressions.xml"/>
     </checkstyle>
   </target>
 
@@ -279,7 +276,7 @@
     <delete file="target/cachefile" />
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
-    <property name="check.config" location="docs/checkstyle_checks.xml"/>
+    <property name="check.config" location="checkstyle_checks.xml"/>
     <property name="translation.severity" value="error"/>
     <checkstyle failonviolation="false" config="${check.config}">
       <fileset dir="src/checkstyle"
@@ -288,9 +285,9 @@
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
       <property key="checkstyle.cache.file" file="target/cachefile"/>
-      <property key="checkstyle.header.file" file="docs/java.header"/>
+      <property key="checkstyle.header.file" file="java.header"/>
       <property key="checkstyle.suppressions.file"
-                file="docs/suppressions.xml"/>
+                file="suppressions.xml"/>
     </checkstyle>
     <mkdir dir="target/style/frames"/>
     <mkdir dir="target/style/noframes"/>
@@ -326,7 +323,7 @@
   </target>
 
   <!-- Targets to verify that Xalan is in the classpath -->
-  <target name="check.xalan" 
+  <target name="check.xalan"
           description="Checks whether xalan is in the classpath">
     <condition property="have.xalan">
       <or>
@@ -336,7 +333,7 @@
         <!-- the tests, but there is no Version class in jdk 1.4: -->
         <!-- fallback to stable jaxp implementation class -->
         <available classname="org.apache.xalan.transformer.TransformerImpl"/>
-        <!-- 
+        <!--
              In JDK 1.5 Sun has decided to repackage Xalan in it's own
              package com.sun.org.apache..., see Java bug 4740355.
              Additionally at least Ant 1.6.2 is required to make junitreport
@@ -492,26 +489,24 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <!-- copy stuff without filtering -->
     <copy todir="${dist.dir}/checkstyle-${version}">
       <fileset dir=".">
+        <include name="**/.cvsignore"/>
+        <include name="**/CVS"/>
+        <include name="*.xml"/>
         <include name="LICENSE*"/>
         <include name="README"/>
         <include name="RIGHTS.antlr"/>
         <include name="TODO"/>
         <include name="contrib/**"/>
-        <include name="**/.cvsignore"/>
-        <include name="**/CVS"/>
-        <include name="docs/**"/>
-        <exclude name="docs/*.html"/>
+        <include name="java.header"/>
       </fileset>
     </copy>
-    <!-- copy stuff with filtering -->
-    <copy todir="${dist.dir}/checkstyle-${version}">
-      <fileset dir=".">
-        <include name="docs/*.html"/>
-      </fileset>
-      <filterset>
-        <filter token="CHECKSTYLE_VERSION" value="${version}" />
-      </filterset>
+
+    <!-- Make the docs directory -->
+    <mkdir dir="${dist.dir}/checkstyle-${version}/docs" />
+    <copy todir="${dist.dir}/checkstyle-${version}/docs">
+      <fileset dir="${xdocs.dest}"/>
     </copy>
+
     <!-- create the final zip & tar/gzip files -->
     <zip zipfile="${dist.dir}/checkstyle-${version}.zip">
       <fileset dir="${dist.dir}">
@@ -532,6 +527,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
       <fileset dir=".">
         <exclude name="src/checkstyle/**/Generated*.java"/>
         <exclude name="src/checkstyle/**/Generated*.txt"/>
+        <include name="*.xml"/>
         <include name="LICENSE*"/>
         <include name="README"/>
         <include name="RIGHTS.antlr"/>
@@ -539,11 +535,12 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
         <include name="build.xml"/>
         <include name="config/**"/>
         <include name="contrib/**"/>
-        <include name="docs/*"/>
+        <include name="java.header"/>
         <include name="lib/**"/>
         <include name="src/**"/>
       </fileset>
     </copy>
+
     <!-- Produce the final distributions -->
     <zip zipfile="${dist.dir}/checkstyle-src-${version}.zip">
       <fileset dir="${dist.dir}">
@@ -583,53 +580,61 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     </javadoc>
   </target>
 
-  <target name="xdocs" depends="compile.checkstyle" description="generate documentation">
-    
+  <target name="xdocs" depends="compile.checkstyle"
+          description="generate documentation">
+
     <mkdir dir="${xdocs.dest}"/>
 
     <mkdir dir="target/xdocs"/>
 
     <copy todir="target/xdocs">
       <fileset dir="${xdocs.src}">
-	<exclude name="**/*.png"/>
 	<exclude name="**/*.css"/>
+	<exclude name="**/*.gif"/>
+	<exclude name="**/*.png"/>
       </fileset>
+      <filterset>
+        <filter token="CHECKSTYLE_VERSION" value="${version}" />
+      </filterset>
     </copy>
 
-    <javadoc
-      sourcepath="src/checkstyle" destdir="target/xdocs"
-      classpathref="javadoc.classpath"
-      failonerror="yes">
+    <!--
+    <javadoc sourcepath="src/checkstyle" destdir="target/xdocs"
+             classpathref="javadoc.classpath"
+             failonerror="yes">
       <doclet name="com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet"
-	path="target/checkstyle">
+              path="target/checkstyle">
       </doclet>
       <packageset dir="src/checkstyle">
-	<include name="**/checks/**" />
-	<include name="**/checks" />
+        <include name="**/checks/**" />
+        <include name="**/checks" />
       </packageset>
     </javadoc>
-    
+    -->
+
     <taskdef name="anakia" classname="org.apache.velocity.anakia.AnakiaTask">
       <classpath refid="velocity.classpath"/>
     </taskdef>
-    
+
     <copy todir="${xdocs.dest}">
       <fileset dir="${xdocs.src}">
-	<include name="**/*.png"/>
 	<include name="**/*.css"/>
+	<include name="**/*.gif"/>
+	<include name="**/*.png"/>
       </fileset>
     </copy>
-    
-    <anakia basedir="target/xdocs" destdir="${xdocs.dest}/"
-      extension=".html"
-      style="site.vsl"
-      projectFile="stylesheets/project.xml"
-      excludes="**/stylesheets/**"
-      includes="**/*.xml"
-      lastModifiedCheck="true"
-      templatePath="src/xdocs/stylesheets">
+
+    <anakia basedir="target/xdocs"
+            destdir="${xdocs.dest}/"
+            extension=".html"
+            style="site.vsl"
+            projectFile="stylesheets/project.xml"
+            excludes="**/stylesheets/**"
+            includes="**/*.xml"
+            lastModifiedCheck="true"
+            templatePath="src/xdocs/stylesheets">
     </anakia>
-    
+
   </target>
 
   <!-- Added for GUMP testing -->
@@ -681,7 +686,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
   <target name="validate.xml"
           depends="require.xerces"
           description="Validates checkstyle XML file">
-    <xmlvalidate file="docs/checkstyle_checks.xml">
+    <xmlvalidate file="checkstyle_checks.xml">
       <xmlcatalog>
         <dtd
           publicId="-//Puppy Crawl//DTD Check Configuration 1.1//EN"
@@ -716,7 +721,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <delete file="target/cachefile" />
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
-    <property name="check.config" location="docs/checkstyle_checks.xml"/>
+    <property name="check.config" location="checkstyle_checks.xml"/>
     <property name="translation.severity" value="error"/>
     <checkstyle config="${custom.config}" file="${file.to.check}">
       <formatter type="plain"/>
