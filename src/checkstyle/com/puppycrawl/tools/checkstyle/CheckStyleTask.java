@@ -525,7 +525,7 @@ public class CheckStyleTask
         public AuditListener createListener(Task aTask)
             throws IOException
         {
-            if (mFormatterType != null
+            if ((mFormatterType != null)
                 && E_XML.equals(mFormatterType.getValue()))
             {
                 return createXMLLogger(aTask);
