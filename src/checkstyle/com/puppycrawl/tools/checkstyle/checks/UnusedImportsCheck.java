@@ -50,7 +50,7 @@ public class UnusedImportsCheck
     private final Set mReferenced = new HashSet();
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void beginTree()
+    public void beginTree(DetailAST aRootAST)
     {
         mCollect = false;
         mImports.clear();
@@ -58,7 +58,7 @@ public class UnusedImportsCheck
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void finishTree()
+    public void finishTree(DetailAST aRootAST)
     {
         // loop over all the imports to see if referenced.
         final Iterator it = mImports.iterator();

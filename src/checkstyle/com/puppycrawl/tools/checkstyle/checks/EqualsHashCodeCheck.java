@@ -68,7 +68,7 @@ public class EqualsHashCodeCheck
     }
 
     /** @see Check */
-    public void beginTree()
+    public void beginTree(DetailAST aRootAST)
     {
         mObjBlockEquals.clear();
         mObjBlockWithHashCode.clear();
@@ -128,7 +128,7 @@ public class EqualsHashCodeCheck
     /**
      * @see Check
      */
-    public void finishTree()
+    public void finishTree(DetailAST aRootAST)
     {
         final Set equalsDefs = mObjBlockEquals.keySet();
         for (Iterator it = equalsDefs.iterator(); it.hasNext();) {

@@ -185,7 +185,7 @@ public class JavadocMethodCheck
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void beginTree()
+    public void beginTree(DetailAST aRootAST)
     {
         mPackageFullIdent = FullIdent.createFullIdent(null);
         mImports.clear();

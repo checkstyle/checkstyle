@@ -27,6 +27,8 @@ import java.util.Arrays;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -103,7 +105,7 @@ public class HeaderCheck
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void beginTree()
+    public void beginTree(DetailAST aRootAST)
     {
 
         final String[] lines = getLines();

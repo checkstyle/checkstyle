@@ -127,16 +127,18 @@ public abstract class Check extends AutomaticBean
     /**
      * Called before the starting to process a tree. Ideal place to initialise
      * information that is to be collected whilst processing a tree.
+     * @param aRootAST the root of the tree
      */
-    public void beginTree()
+    public void beginTree(DetailAST aRootAST)
     {
     }
 
     /**
      * Called after finished processing a tree. Ideal place to report on
      * information collected whilst processing a tree.
+     * @param aRootAST the root of the tree
      */
-    public void finishTree()
+    public void finishTree(DetailAST aRootAST)
     {
     }
 
