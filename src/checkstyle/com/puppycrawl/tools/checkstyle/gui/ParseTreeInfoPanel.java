@@ -23,6 +23,7 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.TooManyListenersException;
@@ -34,6 +35,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
 
@@ -79,6 +81,7 @@ public class ParseTreeInfoPanel extends JPanel
         public FileSelectionAction()
         {
             super("Select Java File");
+            putValue(Action.MNEMONIC_KEY, new Integer(KeyEvent.VK_S));
         }
 
         public void actionPerformed(ActionEvent e)
@@ -99,6 +102,7 @@ public class ParseTreeInfoPanel extends JPanel
         public ReloadAction()
         {
             super("Reload Java File");
+            putValue(Action.MNEMONIC_KEY, new Integer(KeyEvent.VK_R));
         }
         
         public void actionPerformed(ActionEvent e)

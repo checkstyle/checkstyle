@@ -36,10 +36,14 @@ package com.puppycrawl.tools.checkstyle.gui;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.EventObject;
+import javax.swing.Action;
+import javax.swing.AbstractAction;
 import javax.swing.JTable;
 import javax.swing.JTree;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
@@ -101,6 +105,23 @@ public class JTreeTable extends JTable
             // Metal looks better like this.
             setRowHeight(getRowHeight());
         }
+
+        Action expand = new AbstractAction() {
+                public void actionPerformed(ActionEvent e) {
+                    TreePath selected = tree.getSelectionPath();
+                    if (tree.isExpanded(selected)) {
+                        tree.collapsePath(selected);
+                    }
+                    else {
+                        tree.expandPath(selected);
+                    }
+                    tree.setSelectionPath(selected);
+                }
+            };
+        KeyStroke stroke = KeyStroke.getKeyStroke("ENTER");
+        String command = "expand/collapse";
+        getInputMap().put(stroke, command);
+        getActionMap().put(command, expand);
     }
 
     /**
@@ -296,6 +317,7 @@ public class JTreeTable extends JTable
                     }
                 }
             }
+
             return false;
         }
     }
