@@ -82,7 +82,9 @@ public class ParenPadCheck
         // Strange logic in this method to guard against checking RPAREN tokens
         // that are associated with a TYPECAST token.
         if (aAST.getType() != TokenTypes.RPAREN) {
-            processLeft(aAST);
+            if (!isPreceedsEmptyForInit(aAST)) {
+                processLeft(aAST);
+            }
         }
         else if ((aAST.getParent() == null)
                  || (aAST.getParent().getType() != TokenTypes.TYPECAST))
@@ -110,5 +112,24 @@ public class ParenPadCheck
                 && (aAST == forIterator.getNextSibling());
         }
         return followsEmptyForIterator;
+    }
+
+    /**
+     * @param aAST the token to check
+     * @return whether a token preceeds an empty for initializer
+     */
+    private boolean isPreceedsEmptyForInit(DetailAST aAST)
+    {
+        boolean preceedsEmptyForInintializer = false;
+        final DetailAST parent = aAST.getParent();
+        if ((parent != null)
+                && (parent.getType() == TokenTypes.LITERAL_FOR))
+        {
+            final DetailAST forIterator =
+                    parent.findFirstToken(TokenTypes.FOR_INIT);
+            preceedsEmptyForInintializer = (forIterator.getChildCount() == 0)
+                    && (aAST == forIterator.getPreviousSibling());
+        }
+        return preceedsEmptyForInintializer;
     }
 }

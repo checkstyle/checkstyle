@@ -208,3 +208,26 @@ interface IFoo
     void foo() ;
     //        ^ whitespace
 }
+
+/**
+ * Avoid Whitespace errors in for loop.
+ * @author lkuehne
+ * @version 1.0
+ */
+class SpecialCasesInForLoop
+{
+    void forIterator()
+    {
+        // avoid conflict between WhiteSpaceAfter ';' and ParenPad(nospace)
+        for (int i = 0; i++ < 5;) {
+	    //                  ^ no whitespace
+	}
+
+        // bug 895072
+	// avoid confilct between ParenPad(space) and NoWhiteSpace before ';'
+	int i = 0;
+	for ( ; i < 5; i++ ) {
+	//   ^ whitespace
+	}
+    }
+}

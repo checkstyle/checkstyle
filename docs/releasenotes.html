@@ -120,10 +120,13 @@
           (request 885993).</li>
 
           <li class="body">Added check to forbid endline
-          comments. (module TrailingComment, reuest 744970)</li>
+          comments. (module TrailingComment, request 744970)</li>
 
           <li class="body">Added applyTo(Public|Protected|Package|Private)
-           properties to check MemberName(request 695935)</li>
+           properties to check MemberName. (request 695935)</li>
+
+          <li class="body">Added check to verify padding in empty for loop initializers.
+          (module EmptyForInitializerPad, part of fix for bug 895072)</li>
 
         </ul>
 
@@ -161,6 +164,10 @@
         <li class="body">Cast causes MagicNumberCheck error.
         (bug 890706)</li>
 
+        <li class="body">Conflict between ParenPad and
+        NoWhiteSpaceBefore when code uses empty for loop initializers. (bug 895072)
+        </li>
+
       </ul>
 
       <p class="body">
@@ -170,6 +177,16 @@
           <li class="body">Removed ignoreLines property of
           RegexpHeader check.  To make some line optional use
           &quot;^.*$&quot; regexp for this line.</li>
+
+          <li class="body">Fixing bug 895072 required changing the logic of
+          the NoWhiteSpaceBefore and ParenPad checks. 
+          When a for loop has an empty initializer
+          (like <span class="code">for (; i < j; i++)</span>) 
+          both checks will not check whitespace between the opening parenthesis
+          and the first semicolon any more. 
+          To enforce your coding rules for such code, you have to use
+          the EmptyForInitializerPad check (not available yet).</li>
+
         </ul>
 
       <a name="release3_3"></a>
