@@ -127,3 +127,47 @@ class PropertySetter2
         return 0;
     }
 }
+
+/** tests for static fields */
+class StaticFields
+{
+    private static int hidden;
+    
+    public static void staticMethod()
+    {
+        int hidden;
+    }
+    
+    public void method()
+    {
+        int hidden;
+    }
+    
+    static
+    {
+        int hidden;
+    }
+    
+    {
+        int hidden;
+    }
+}
+
+/** tests static methods & initializers */
+class StaticMethods
+{
+    private int notHidden;
+    
+    public static void method()
+    {
+        // local variables of static methods don't hide instance fields.
+        int notHidden;
+    }
+    
+    static
+    {
+        // local variables of static initializers don't hide instance fields.
+        int notHidden;
+    }
+}
+
