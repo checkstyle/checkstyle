@@ -79,10 +79,9 @@ public class EqualsHashCodeCheck
     {
         DetailAST modifiers = (DetailAST) aAST.getFirstChild();
 
-        AST type = modifiers.getNextSibling();
-        AST methodName = type.getNextSibling();
-        DetailAST parameters =
-            (DetailAST) aAST.findFirstToken(TokenTypes.PARAMETERS);
+        final AST type = modifiers.getNextSibling();
+        final AST methodName = type.getNextSibling();
+        final DetailAST parameters = aAST.findFirstToken(TokenTypes.PARAMETERS);
 
         if (type.getFirstChild().getType() == TokenTypes.LITERAL_BOOLEAN
                 && "equals".equals(methodName.getText())

@@ -41,13 +41,8 @@ public abstract class AbstractJ2eeCheck
      */
     protected void log(DetailAST aAST, String aKey, Object[] aArgs)
     {
-        final DetailAST nameAST =
-            (DetailAST) aAST.findFirstToken(TokenTypes.IDENT);
-        log(
-            nameAST.getLineNo(),
-            nameAST.getColumnNo(),
-            aKey,
-            aArgs);
+        final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+        log(nameAST.getLineNo(), nameAST.getColumnNo(), aKey, aArgs);
     }
 
     /**
@@ -60,8 +55,7 @@ public abstract class AbstractJ2eeCheck
      */
     protected void logName(DetailAST aAST, String aKey, Object[] aArgs)
     {
-        final DetailAST nameAST =
-            (DetailAST) aAST.findFirstToken(TokenTypes.IDENT);
+        final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
         final String name = nameAST.getText();
         final Object[] fullArgs = new Object[aArgs.length + 1];
         System.arraycopy(aArgs, 0, fullArgs, 1, aArgs.length);
