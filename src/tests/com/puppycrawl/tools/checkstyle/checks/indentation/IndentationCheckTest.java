@@ -115,8 +115,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "125: method call rparen at indentation level 6 not at correct indentation, 8",
             "139: method call child at indentation level 10 not at correct indentation, 12",
             "142: method call child at indentation level 10 not at correct indentation, 12",
-            // todo: 152 -- 8 should be 12
-            "152: method call child at indentation level 6 not at correct indentation, 8",
+            "152: method call child at indentation level 6 not at correct indentation, 12",
             "158: method def throws at indentation level 6 not at correct indentation, 8",
         };
         verify(c, fname, expected);
@@ -320,10 +319,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "121: class def rcurly at indentation level 10 not at correct indentation, 8",
             "124: class def child at indentation level 10 not at correct indentation, 12",
             "129: method def child at indentation level 10 not at correct indentation, 8",
-            "130: object def lcurly at indentation level 8 not at correct indentation, 10",
-            "131: method def modifier at indentation level 12 not at correct indentation, 14",
-            "133: method def rcurly at indentation level 12 not at correct indentation, 14",
-            "134: object def rcurly at indentation level 8 not at correct indentation, 10",
             "138: object def lcurly at indentation level 6 not at correct indentation, 8",
             "142: object def rcurly at indentation level 6 not at correct indentation, 8",
             "147: method def modifier at indentation level 10 not at correct indentation, 12",
@@ -438,6 +433,13 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "126: if lcurly at indentation level 10 not at correct indentation, 8",
             "127: if child at indentation level 10 not at correct indentation, 12",
             "127: method call child at indentation level 10 not at correct indentation, 12",
+            "132: if child at indentation level 14 not at correct indentation, 12",
+            // TODO: should be 16, not 12
+            "133: method call child at indentation level 10 not at correct indentation, 12",
+            "135: else child at indentation level 10 not at correct indentation, 12",
+            // TODO: why we get this message (it's duplicate of previous.
+            "135: method call child at indentation level 10 not at correct indentation, 12",
+            "136: method call child at indentation level 8 not at correct indentation, 12",
             "143: if child at indentation level 16 not at correct indentation, 12",
             "144: if rcurly at indentation level 9 not at correct indentation, 8",
             "147: else child at indentation level 16 not at correct indentation, 12",
@@ -670,5 +672,23 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         verify(checkConfig, getPath("indentation/InputBraceAdjustment.java"), expected);
     }
 
+    public void testInvalidAssignWithChecker() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        final String[] expected = {
+            "6: method call child at indentation level 10 not at correct indentation, 12",
+            "8: method call child at indentation level 10 not at correct indentation, 12",
+            "10: method call child at indentation level 10 not at correct indentation, 12",
+            "12: assign at indentation level 9 not at correct indentation, 12",
+            "13: assign child at indentation level 10 not at correct indentation, 12",
+        };
+        verify(checkConfig, getPath("indentation/InputInvalidAssignIndent.java"), expected);
+    }
 
+    public void testValidAssignWithChecker() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("indentation/InputValidAssignIndent.java"), expected);
+    }
 }

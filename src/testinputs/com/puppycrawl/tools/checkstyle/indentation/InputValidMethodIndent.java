@@ -176,7 +176,7 @@ public class InputValidMethodIndent extends java.awt.event.MouseAdapter implemen
                 + method1());
 
         System.out.toString()
-          .equals("blah");
+            .equals("blah");
 
 
         if (!areOnSameLine((DetailAST)aChild.expr.getFirstChild(), 

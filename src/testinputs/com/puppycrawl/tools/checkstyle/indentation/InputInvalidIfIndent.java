@@ -128,12 +128,12 @@ public class InputInvalidIfIndent {
         }
         // lcurly for if and else on same line
         if (test) {
-                // TODO: broken
-//                System.
-//            getProperty("blah");
+
+              System.
+          getProperty("blah");
         } else {
-//            System.                         // TODO: broken
-//          getProperty("blah");
+          System.
+        getProperty("blah");
         }
         
         // lcurly for if and else on same line

@@ -94,10 +94,8 @@ public class MethodCallHandler extends ExpressionHandler
     {
         // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start
-
         if (getParent() instanceof MethodCallHandler) {
-            MethodCallHandler container = ((MethodCallHandler) getParent())
-                .findContainingMethodCall(this);
+            MethodCallHandler container = ((MethodCallHandler) getParent());
             if (container != null) {
                 if (areOnSameLine(container.getMainAst(), getMainAst())) {
                     return container.getLevel();
@@ -110,7 +108,7 @@ public class MethodCallHandler extends ExpressionHandler
 
             // if we get here, we are the child of the left hand side (name
             //  side) of a method call with no "containing" call, use
-            //  the first non-method callparent
+            //  the first non-method call parent
 
             ExpressionHandler p = getParent();
             while (p instanceof MethodCallHandler) {
@@ -144,10 +142,6 @@ public class MethodCallHandler extends ExpressionHandler
     {
         // walk down the first child part of the dots that make up a method
         // call name
-
-        // TODO: I'm not convinced this will work yet, what will happen
-        // when there is a method call in the dots? -- we would have to go
-        // down that call?
 
         DetailAST ast = (DetailAST) aAst.getFirstChild();
         while (ast != null && ast.getType() == TokenTypes.DOT) {
@@ -191,40 +185,6 @@ public class MethodCallHandler extends ExpressionHandler
     }
 
     /**
-     * Find the handler for the method call that contains the specified child
-     *
-     * @param aChild   the child
-     *
-     * @return the handler that contains the specified child
-     */
-    private MethodCallHandler findContainingMethodCall(
-        ExpressionHandler aChild)
-    {
-        DetailAST firstChild = (DetailAST) getMainAst().getFirstChild();
-        DetailAST secondChild = (DetailAST) firstChild.getNextSibling();
-        DetailAST climber = aChild.getMainAst().getParent();
-        while (climber != null) {
-            if (climber == firstChild) {
-                // part of method name
-                if (getParent() instanceof MethodCallHandler) {
-                    return ((MethodCallHandler) getParent())
-                        .findContainingMethodCall(this);
-                }
-                else {
-                    return null;
-                }
-            }
-            else if (climber == secondChild) {
-                // part of method arguments, this the method the child
-                // is contained in
-                return this;
-            }
-            climber = climber.getParent();
-        }
-        return null;
-    }
-
-    /**
      * Check the indentation of the expression we are handling.
      */
     public void checkIndentation()
@@ -262,7 +222,7 @@ public class MethodCallHandler extends ExpressionHandler
      *              fisrt line in checkLinesIndent()
      *         false otherwise
      */
-    protected boolean shouldIncraeseIndent()
+    protected boolean shouldIncreaseIndent()
     {
         return false;
     }

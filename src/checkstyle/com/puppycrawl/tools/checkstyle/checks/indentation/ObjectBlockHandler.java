@@ -89,13 +89,7 @@ public class ObjectBlockHandler extends BlockParentHandler
      */
     public int getLevelImpl()
     {
-        DetailAST parentAST = getMainAst().getParent();
-        if (parentAST.getType() != TokenTypes.LITERAL_NEW) {
-            return getParent().getLevel();
-        }
-        else {
-            return getLineStart(parentAST);
-        }
+        return getParent().getLevel();
     }
 
     /**
