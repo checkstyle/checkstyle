@@ -15,15 +15,6 @@ public final class InputInnerUsedMethod
                doSomething();
          }
       });
-      
-      AbstractAction aa = new AbstractAction()
-      {
-         public void actionPerformed(ActionEvent e)
-         {
-               doSomething();
-         }
-      }; 
-      //doSomething();
    }
 
    private static void doSomething()
