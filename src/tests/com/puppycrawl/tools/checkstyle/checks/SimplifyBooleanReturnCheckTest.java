@@ -19,8 +19,8 @@ public class SimplifyBooleanReturnCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(SimplifyBooleanReturnCheck.class);
         final String[] expected = {
-            "20:9: Remove conditional logic.",
-            "33:9: Remove conditional logic.",
+            "20:9: Conditional logic can be removed.",
+            "33:9: Conditional logic can be removed.",
         };
         verify(checkConfig, getPath("InputSimplifyBoolean.java"), expected);
     }

@@ -17,13 +17,14 @@ public class IllegalInstantiationCheckTest
                 + "java.io.File,"
                 + "java.awt.Color");
         final String[] expected = {
-            "19:21: Avoid instantiation of java.lang.Boolean.",
-            "24:21: Avoid instantiation of java.lang.Boolean.",
-            "31:16: Avoid instantiation of java.lang.Boolean.",
-            "38:21: Avoid instantiation of " +
-                "com.puppycrawl.tools.checkstyle.InputModifier.",
-            "41:18: Avoid instantiation of java.io.File.",
-            "44:21: Avoid instantiation of java.awt.Color."
+            "19:21: Instantiation of java.lang.Boolean should be avoided.",
+            "24:21: Instantiation of java.lang.Boolean should be avoided.",
+            "31:16: Instantiation of java.lang.Boolean should be avoided.",
+            "38:21: Instantiation of " +
+                "com.puppycrawl.tools.checkstyle.InputModifier " +
+                "should be avoided.",
+            "41:18: Instantiation of java.io.File should be avoided.",
+            "44:21: Instantiation of java.awt.Color should be avoided."
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
