@@ -49,5 +49,18 @@ public interface TextBlock
      */
     int getEndLineNo();
 
-    // TODO: add column information
+    /**
+     * The column in the inputfile where the text block starts.
+     * Counting starts from 0.
+     * @return first line of the text block
+     */
+    int getStartColNo();
+
+    /**
+     * The column in the inputfile where the text block ends.
+     * Counting starts from 0.
+     * @return last line of the text block
+     */
+    int getEndColNo();
+
 }

@@ -140,7 +140,9 @@ public final class FileContents implements CommentListener
 
         // Remember if possible Javadoc comment
         if (mLines[aStartLineNo - 1].indexOf("/**", aStartColNo) != -1) {
-            mJavadocComments.put(new Integer(aEndLineNo - 1), cc);
+            Comment comment = new Comment(cc, aStartColNo, aEndLineNo);
+
+            mJavadocComments.put(new Integer(aEndLineNo - 1), comment);
         }
     }
 
@@ -199,10 +201,7 @@ public final class FileContents implements CommentListener
             lineNo--;
         }
 
-        final String[] text =
-            (String[]) mJavadocComments.get(new Integer(lineNo));
-
-        return (text == null ? null : new Comment(text, lineNo + 1));
+        return (TextBlock) mJavadocComments.get(new Integer(lineNo));
     }
 
     /** @return the lines in the file */
