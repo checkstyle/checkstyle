@@ -49,9 +49,10 @@ public class PackageNamesLoaderTest extends TestCase
     
     private void validateFactory(ModuleFactory aModuleFactory)
     {
-        String[] checkstylePackages = {
+        final String[] checkstylePackages = {
             "com.puppycrawl.tools.checkstyle.",
-            "com.puppycrawl.tools.checkstyle.checks."
+            "com.puppycrawl.tools.checkstyle.checks.",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc."
         };
 
         PackageObjectFactory factory = (PackageObjectFactory) aModuleFactory;

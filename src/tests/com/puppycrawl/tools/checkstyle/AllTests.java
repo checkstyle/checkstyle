@@ -24,7 +24,6 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheckTest;
-import com.puppycrawl.tools.checkstyle.checks.JavadocVariableCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.LeftCurlyCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.LineLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.LocalFinalVariableNameCheckTest;
@@ -67,6 +66,7 @@ import com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.HideUtilityClassConstructorCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidNestedBlocksCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.InterfaceIsTypeCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 

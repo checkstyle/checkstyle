@@ -6,6 +6,8 @@
 
 <checkstyle-packages>
   <package name="com.puppycrawl.tools.checkstyle">
-    <package name="checks"/>
+    <package name="checks">
+      <package name="javadoc"/>
+    </package>
   </package>
 </checkstyle-packages>
