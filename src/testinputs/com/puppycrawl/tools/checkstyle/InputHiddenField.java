@@ -79,3 +79,11 @@ class InputHiddenField
         int hidden = 0;
     }       
 }
+    
+interface NothingHidden
+{
+    public static int notHidden = 0;
+    
+    // not an error
+    public void noShadow(int notHidden);
+}
