@@ -280,40 +280,45 @@ public class JavadocStyleCheck
         final int lineno = aAST.getLineNo() - aComment.length;
         final Stack htmlStack = new Stack();
 
-        for (int i = 0; i < aComment.length; i++) {
-            TagParser parser = null;
-            try {
-                // Can throw NoSuchElementException when tokenizing encounters
-                // "<" at end of aComment[i].
-                parser = new TagParser(aComment[i], lineno + i);
-            }
-            catch (NoSuchElementException e) {
-                log(
-                    lineno + i,
-                    "javadoc.incompleteTag",
-                    new Object[] {aComment[i]});
+        TagParser parser = null;
+        try {
+            // Can throw NoSuchElementException when tokenizing encounters
+            // "<" at end of aComment[i].
+            parser = new TagParser(aComment, lineno);
+        }
+        catch (NoSuchElementException e) {
+            log(lineno, "javadoc.incompleteTag", new Object[] {aComment[0]});
+            return;
+        }
+
+        while (parser.hasNextTag()) {
+            final HtmlTag tag = parser.nextTag();
+
+            if (tag.isIncompleteTag()) {
+                log(tag.getLineno(), "javadoc.incompleteTag",
+                    new Object[] {aComment[tag.getLineno() - lineno]});
                 return;
             }
-            while (parser.hasNextTag()) {
-                final HtmlTag tag = parser.nextTag();
-
-                if (!tag.isCloseTag()) {
-                    htmlStack.push(tag);
+            if (tag.isClosedTag()) {
+                //do nothing
+                continue;
+            }
+            if (!tag.isCloseTag()) {
+                htmlStack.push(tag);
+            }
+            else {
+                // We have found a close tag.
+                if (isExtraHtml(tag.getId(), htmlStack)) {
+                    // No corresponding open tag was found on the stack.
+                    log(tag.getLineno(),
+                        tag.getPosition(),
+                        EXTRA_HTML,
+                        tag);
                 }
                 else {
-                    // We have found a close tag.
-                    if (isExtraHtml(tag.getId(), htmlStack)) {
-                        // No corresponding open tag was found on the stack.
-                        log(tag.getLineno(),
-                            tag.getPosition(),
-                            EXTRA_HTML,
-                            tag);
-                    }
-                    else {
-                        // See if there are any unclosed tags that were opened
-                        // after this one.
-                        checkUnclosedTags(htmlStack, tag.getId());
-                    }
+                    // See if there are any unclosed tags that were opened
+                    // after this one.
+                    checkUnclosedTags(htmlStack, tag.getId());
                 }
             }
         }

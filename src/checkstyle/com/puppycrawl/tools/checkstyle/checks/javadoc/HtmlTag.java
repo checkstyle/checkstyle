@@ -40,19 +40,31 @@ class HtmlTag
     /** The comment line of text where this tag appears. */
     private final String mText;
 
+    /** if this tag is self-closed. */
+    private final boolean mClosedTag;
+
+    /** if the tag is inomplete. */
+    private final boolean mIncomplete;
+
     /**
      * Construct the HtmlTag.
      * @param aId the HTML tag name.
      * @param aLineNo the source line number of this tag.
      * @param aPosition the position within the text of this tag.
+     * @param aClosedTag if this tag is self-closed (XHTML style)
+     * @param aIncomplete is the tag is incomplete.
      * @param aText the line of comment text for this tag.
      */
-    HtmlTag(String aId, int aLineNo, int aPosition, String aText)
+    HtmlTag(String aId, int aLineNo, int aPosition, boolean aClosedTag,
+            boolean aIncomplete, String aText)
     {
-        mId = (aId.charAt(0) == '/') ? aId.substring(1) : aId;
+        mId = (!"".equals(aId) && aId.charAt(0) == '/')
+            ? aId.substring(1) : aId;
         mLineNo = aLineNo;
         mPosition = aPosition;
         mText = aText;
+        mClosedTag = aClosedTag;
+        mIncomplete = aIncomplete;
     }
 
     /**
@@ -71,6 +83,24 @@ class HtmlTag
     public boolean isCloseTag()
     {
         return (mText.charAt(mPosition + 1) == '/');
+    }
+
+    /**
+     * Indicates if this tag is a self-closed XHTML style.
+     * @return <code>true</code> is this is a self-closed tag.
+     */
+    public boolean isClosedTag()
+    {
+        return mClosedTag;
+    }
+
+    /**
+     * Indicates if this tag is incomplete (has no close &gt;).
+     * @return <code>true</code> if the tag is incomplete.
+     */
+    public boolean isIncompleteTag()
+    {
+        return mIncomplete;
     }
 
     /**
