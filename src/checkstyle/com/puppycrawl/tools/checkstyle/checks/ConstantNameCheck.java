@@ -60,7 +60,8 @@ public class ConstantNameCheck
             // Serialization. Cannot enforce rules on it. :-)
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
             if ((nameAST != null)
-                    && !("serialVersionUID".equals(nameAST.getText()))) {
+                && !("serialVersionUID".equals(nameAST.getText())))
+            {
                 retVal = true;
             }
         }
