@@ -67,10 +67,7 @@ public class SimplifyBooleanReturnCheck
         if (returnsOnlyBooleanLiteral(thenStatement)
             && returnsOnlyBooleanLiteral(elseStatement))
         {
-            // TODO: i18n
-            log(aAST.getLineNo(),
-                aAST.getColumnNo(),
-                "Remove conditional logic.");
+            log(aAST.getLineNo(), aAST.getColumnNo(), "simplify.boolreturn");
         }
     }
 
