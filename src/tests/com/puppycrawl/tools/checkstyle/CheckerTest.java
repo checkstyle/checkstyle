@@ -106,8 +106,6 @@ public class CheckerTest
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":5:12: '.' is preceeded with whitespace.",
-            filepath + ":5:14: '.' is followed by whitespace.",
             filepath + ":29:14: '-' is followed by whitespace.",
             filepath + ":29:21: '+' is followed by whitespace.",
             filepath + ":30:14: '++' is preceeded with whitespace.",
@@ -117,10 +115,6 @@ public class CheckerTest
             filepath + ":88:21: 'cast' is not followed by whitespace.",
             filepath + ":111:22: '!' is followed by whitespace.",
             filepath + ":112:23: '~' is followed by whitespace.",
-            filepath + ":129:17: '.' is preceeded with whitespace.",
-            filepath + ":129:24: '.' is followed by whitespace.",
-            filepath + ":136:10: '.' is preceeded with whitespace.",
-            filepath + ":136:12: '.' is followed by whitespace.",
         };
         verify(c, filepath, expected);
         c.destroy();
@@ -136,8 +130,6 @@ public class CheckerTest
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":5:12: '.' is preceeded with whitespace.",
-            filepath + ":5:14: '.' is followed by whitespace.",
             filepath + ":29:14: '-' is followed by whitespace.",
             filepath + ":29:21: '+' is followed by whitespace.",
             filepath + ":30:14: '++' is preceeded with whitespace.",
@@ -146,10 +138,6 @@ public class CheckerTest
             filepath + ":31:22: '--' is followed by whitespace.",
             filepath + ":111:22: '!' is followed by whitespace.",
             filepath + ":112:23: '~' is followed by whitespace.",
-            filepath + ":129:17: '.' is preceeded with whitespace.",
-            filepath + ":129:24: '.' is followed by whitespace.",
-            filepath + ":136:10: '.' is preceeded with whitespace.",
-            filepath + ":136:12: '.' is followed by whitespace.",
         };
         verify(c, filepath, expected);
     }

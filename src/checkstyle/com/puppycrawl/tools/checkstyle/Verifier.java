@@ -331,37 +331,6 @@ class Verifier
      **/
     void verifyDot(MyCommonAST aAST)
     {
-        if (mConfig.isIgnoreWhitespace()) {
-            return;
-        }
-
-        final String line = mLines[aAST.getLineNo() - 1];
-
-        // check before
-        final int before = aAST.getColumnNo() - 1;
-        if ((before >= 0) && Character.isWhitespace(line.charAt(before))) {
-            // verify all characters before '.' are whitespace
-            for (int i = 0; i < before; i++) {
-                if (!Character.isWhitespace(line.charAt(i))) {
-                    mMessages.add(aAST.getLineNo(), aAST.getColumnNo() - 1,
-                                  "ws.preceeded", ".");
-                    break;
-                }
-            }
-        }
-
-        // check after
-        final int after = aAST.getColumnNo() + 1;
-        if ((after < line.length())
-            && Character.isWhitespace(line.charAt(after)))
-        {
-            for (int i = after + 1; i < line.length(); i++) {
-                if (!Character.isWhitespace(line.charAt(i))) {
-                    mMessages.add(aAST.getLineNo(), after, "ws.followed", ".");
-                    break;
-                }
-            }
-        }
     }
 
     /**
