@@ -25,11 +25,11 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.LocalVariableNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.MemberNameCheck"/>
 
-    <!--
-    <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLeftCurlyCheck"/>
-         -->
-    <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLengthCheck"/>
+    <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLeftCurlyCheck">
+        <set-property name="option" value="nl"/>
+    </check>
 
+    <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLengthCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.MethodNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.ModifierCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NeedBracesCheck"/>
