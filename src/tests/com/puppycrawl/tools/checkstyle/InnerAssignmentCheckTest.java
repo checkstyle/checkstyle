@@ -7,8 +7,8 @@ public class InnerAssignmentCheckTest
 {
     public void testIt() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(InnerAssignmentCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(InnerAssignmentCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {
