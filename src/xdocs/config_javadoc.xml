@@ -283,6 +283,12 @@ public int checkReturnTag(final int aTagIndex,
             <td><span class="default">false</span></td>
           </tr>
           <tr>
+            <td>allowMissingJavadoc</td>
+            <td>whether to ignore errors when a method javadoc is missed.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
             <td>tokens</td>
             <td>definitions to check</td>
 

@@ -21,6 +21,9 @@
 
         <li>Checker.getBasedir() is public now (rfe 1023004)</li>
 
+        <li>JavadocMethod check now can be configured to skip missed javadoc
+        (ref 1060634)</li>
+
       </ul>
 
 

@@ -335,4 +335,16 @@ public class JavadocMethodCheckTest
                getPath("javadoc" + File.separator +"InputNoJavadoc.java"),
                expected);
     }
+
+    public void testAllowMissingJavadoc() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("allowMissingJavadoc", "true");
+        final String[] expected = {
+        };
+        verify(checkConfig,
+               getPath("javadoc" + File.separator +"InputNoJavadoc.java"),
+               expected);
+    }
 }

@@ -177,6 +177,12 @@ public class JavadocMethodCheck
     private boolean mAllowMissingReturnTag;
 
     /**
+     * Controls whether to ignoreerrors when there is no javadoc.
+     * Defaults to false.
+     */
+    private boolean mAllowMissingJavadoc;
+
+    /**
      * Set the scope.
      * @param aFrom a <code>String</code> value
      */
@@ -248,6 +254,15 @@ public class JavadocMethodCheck
         mAllowMissingReturnTag = aFlag;
     }
 
+    /**
+     * Controls whether to ignoreerrors when there is no javadoc.
+     * Defaults to false.
+     */
+    public void setAllowMissingJavadoc(boolean aFlag)
+    {
+        mAllowMissingJavadoc = aFlag;
+    }
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -292,7 +307,9 @@ public class JavadocMethodCheck
             final TextBlock cmt = contents.getJavadocBefore(aAST.getLineNo());
 
             if (cmt == null) {
-                log(aAST, "javadoc.missing");
+                if (!mAllowMissingJavadoc) {
+                    log(aAST, "javadoc.missing");
+                }
             }
             else {
                 checkComment(aAST, cmt);
