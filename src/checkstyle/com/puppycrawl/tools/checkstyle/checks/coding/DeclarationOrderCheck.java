@@ -113,7 +113,7 @@ public class DeclarationOrderCheck extends Check
 
             state = (ScopeState) mScopeStates.peek();
             if (state.mScopeState > STATE_CTOR_DEF) {
-                log(aAST, "Constructor");
+                log(aAST, "declaration.order.constructor");
             }
             else {
                 state.mScopeState = STATE_CTOR_DEF;
@@ -127,7 +127,7 @@ public class DeclarationOrderCheck extends Check
             }
 
             if (state.mScopeState > STATE_METHOD_DEF) {
-                log(aAST, "Method");
+                log(aAST, "declarationorder.method");
             }
             else {
                 state.mScopeState = STATE_METHOD_DEF;
@@ -145,7 +145,7 @@ public class DeclarationOrderCheck extends Check
             state = (ScopeState) mScopeStates.peek();
             if (aAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 if (state.mScopeState > STATE_STATIC_VARIABLE_DEF) {
-                    log(aAST, "Static variable");
+                    log(aAST, "declaration.order.static");
                 }
                 else {
                     state.mScopeState = STATE_STATIC_VARIABLE_DEF;
@@ -153,7 +153,7 @@ public class DeclarationOrderCheck extends Check
             }
             else {
                 if (state.mScopeState > STATE_INSTANCE_VARIABLE_DEF) {
-                    log(aAST, "Instance variable");
+                    log(aAST, "declaration.order.instance");
                 }
                 else if (state.mScopeState == STATE_STATIC_VARIABLE_DEF) {
                     state.mDeclarationAccess = Scope.PUBLIC;
@@ -163,7 +163,7 @@ public class DeclarationOrderCheck extends Check
 
             final Scope access = ScopeUtils.getScopeFromMods(aAST);
             if (state.mDeclarationAccess.compareTo(access) > 0) {
-                log(aAST, "Variable access");
+                log(aAST, "declaration.order.access");
             }
             else {
                 state.mDeclarationAccess = access;
@@ -193,6 +193,6 @@ public class DeclarationOrderCheck extends Check
      */
     private void log(DetailAST aAST, String aError)
     {
-        log(aAST.getLineNo(), aAST.getColumnNo(), "declaration.order", aError);
+        log(aAST.getLineNo(), aAST.getColumnNo(), aError);
     }
 }
