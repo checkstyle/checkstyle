@@ -80,3 +80,18 @@ class Outer
         }
     }
 }
+
+class ParenthesizedExpression
+{
+    private int mUsed1 = 1;
+    private int mUsed2 = 1;
+    private boolean mUsed3 = true;
+    
+    public void testParentheses()
+    {
+        int x = 0;
+        int a = (x++) / mUsed1;
+        int b = (a - 1) << mUsed2;
+        boolean c = (a == b) || mUsed3;
+    }
+}
