@@ -143,17 +143,17 @@ public class Checker
         FileSetCheck packageHtmlCheck = new PackageHtmlCheck();
         // addFileSetCheck(packageHtmlCheck);
 
-        TreeWalker mWalker = new TreeWalker(mConfig);
+        final TreeWalker walker = new TreeWalker(mConfig);
         // TODO: improve the error handing
         for (int i = 0; i < aConfigs.length; i++) {
             final CheckConfiguration config = aConfigs[i];
             // IMPORTANT! Need to use the same class loader that created this
             // class. Otherwise can get ClassCastException problems.
-            mWalker.registerCheck(
+            walker.registerCheck(
                 config.createInstance(this.getClass().getClassLoader()),
                 config);
         }
-        addFileSetCheck(mWalker);
+        addFileSetCheck(walker);
 
         this.addListener(mCounter);
     }
