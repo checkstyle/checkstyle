@@ -40,7 +40,9 @@ import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
 /**
- * Represents the configuration that checkstyle uses when checking.
+ * Represents the configuration that checkstyle uses when checking. The
+ * configuration is Serializable, however the ClassLoader configuration is
+ * lost.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
 public class Configuration
@@ -103,8 +105,11 @@ public class Configuration
     /** line numbers to ignore in header **/
     private TreeSet mHeaderIgnoreLineNo = new TreeSet();
 
-    /** class loader to resolve classes with **/
-    private ClassLoader mLoader =
+    /**
+     * class loader to resolve classes with. Needs to be transient as unable
+     * to persist.
+     **/
+    private transient ClassLoader mLoader =
         Thread.currentThread().getContextClassLoader();
 
     /** where to place right curlies  **/
@@ -275,6 +280,7 @@ public class Configuration
         aStream.defaultReadObject();
 
         // initialize the transient fields
+        mLoader = Thread.currentThread().getContextClassLoader();
         mRegexps = new HashMap();
         try {
             // Loop on the patterns creating the RE's
