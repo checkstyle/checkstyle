@@ -184,7 +184,6 @@ modifier
 	|	"final"
 	|	"abstract"
 	|	"native"
-	|	"threadsafe"
 	|	"synchronized"
 //	|	"const"			// reserved word, but not valid
 	|	"volatile"
