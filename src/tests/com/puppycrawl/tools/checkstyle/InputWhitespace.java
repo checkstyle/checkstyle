@@ -88,4 +88,17 @@ class InputWhitespace
         o = (Object)
             o; // ok
     }
+
+    /** test questions **/
+    private void testQuestions()
+    {
+        boolean b = (1 == 2)?true:false;
+        b = (1==2) ? false : true;
+    }
+
+    /** star test **/
+    private void starTest()
+    {
+        int x = 2 *3* 4;
+    }
 }

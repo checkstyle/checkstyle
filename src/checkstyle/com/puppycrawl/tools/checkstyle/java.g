@@ -676,7 +676,7 @@ assignmentExpression
 // conditional test (level 12)
 conditionalExpression
 	:	logicalOrExpression
-		( QUESTION^ assignmentExpression COLON conditionalExpression )?
+		( QUESTION^ assignmentExpression c:COLON {ver.verifyWSAround(c.getLine(), c.getColumn() + 1, c.getText());} conditionalExpression )?
 	;
 
 
@@ -739,13 +739,15 @@ shiftExpression
 
 // binary addition/subtraction (level 3)
 additiveExpression
-	:	multiplicativeExpression ((PLUS^ | MINUS^) multiplicativeExpression)*
+	:	multiplicativeExpression
+        ((p:PLUS^ {ver.verifyWSAround(p.getLine(), p.getColumn() + 1, p.getText());}| m:MINUS^ {ver.verifyWSAround(m.getLine(), m.getColumn() + 1, m.getText());} )
+            multiplicativeExpression)*
 	;
 
 
 // multiplication/division/modulo (level 2)
 multiplicativeExpression
-	:	unaryExpression ((STAR^ | DIV^ | MOD^ ) unaryExpression)*
+	:	unaryExpression ((s:STAR^ | DIV^ | MOD^ ) {ver.verifyWSAround(s.getLine(), s.getColumn() + 1, s.getText());}  unaryExpression)*
 	;
 
 unaryExpression
@@ -961,52 +963,52 @@ options {
 }
 
 // OPERATORS
-QUESTION		:	'?'		;
-LPAREN			:	'('		;
-RPAREN			:	')'		;
-LBRACK			:	'['		;
-RBRACK			:	']'		;
-LCURLY			:	'{'		;
-RCURLY			:	'}'		;
-COLON			:	':'		;
-COMMA			:	',' {ver.verifyWSAfter(getLine(), getColumn() - 1, MyToken.COMMA);} ;
-//DOT			:	'.'		;
-ASSIGN			:	'='		;
-EQUAL			:	"=="	;
-LNOT			:	'!'		;
-BNOT			:	'~'		;
-NOT_EQUAL		:	"!="	;
-DIV				:	'/'		;
-DIV_ASSIGN		:	"/="	;
-PLUS			:	'+'		;
-PLUS_ASSIGN		:	"+="	;
-INC				:	"++"	;
-MINUS			:	'-'		;
-MINUS_ASSIGN	:	"-="	;
-DEC				:	"--"	;
-STAR			:	'*'		;
-STAR_ASSIGN		:	"*="	;
-MOD				:	'%'		;
-MOD_ASSIGN		:	"%="	;
-SR				:	">>"	;
-SR_ASSIGN		:	">>="	;
-BSR				:	">>>"	;
-BSR_ASSIGN		:	">>>="	;
-GE				:	">="	;
-GT				:	">"		;
-SL				:	"<<"	;
-SL_ASSIGN		:	"<<="	;
-LE				:	"<="	;
-LT				:	'<'		;
-BXOR			:	'^'		;
-BXOR_ASSIGN		:	"^="	;
-BOR				:	'|'		;
-BOR_ASSIGN		:	"|="	;
-LOR				:	"||"	;
-BAND			:	'&'		;
-BAND_ASSIGN		:	"&="	;
-LAND			:	"&&"	;
-SEMI			:	';'		;
+QUESTION     : '?' {ver.verifyWSAround(getLine(), getColumn(), "?");} ;
+LPAREN   : '('  ;
+RPAREN   : ')'  ;
+LBRACK   : '['  ;
+RBRACK   : ']'  ;
+LCURLY   : '{'  ;
+RCURLY   : '}'  ;
+COLON        : ':' ;
+COMMA        : ',' {ver.verifyWSAfter(getLine(), getColumn() - 1, MyToken.COMMA);} ;
+//DOT   : '.'  ;
+ASSIGN       : '=' {ver.verifyWSAround(getLine(), getColumn(), "=");} ;
+EQUAL        : "==" {ver.verifyWSAround(getLine(), getColumn(), "==");} ;
+LNOT   : '!'  ;
+BNOT   : '~'  ;
+NOT_EQUAL    : "!=" {ver.verifyWSAround(getLine(), getColumn(), "!=");};
+DIV          : '/' {ver.verifyWSAround(getLine(), getColumn(), "/");} ;
+DIV_ASSIGN   : "/=" {ver.verifyWSAround(getLine(), getColumn(), "/=");};
+PLUS         : '+'; // must handle the UNARY_PLUS
+PLUS_ASSIGN  : "+=" {ver.verifyWSAround(getLine(), getColumn(), "+=");};
+INC          : "++" ;
+MINUS        : '-' ; // must handle the UNARY_MINUS
+MINUS_ASSIGN : "-=" {ver.verifyWSAround(getLine(), getColumn(), "-=");};
+DEC    : "--" ;
+STAR         : '*' ; // star is special cause it can be used in imports.
+STAR_ASSIGN  : "*=" {ver.verifyWSAround(getLine(), getColumn(), "*=");};
+MOD          : '%' {ver.verifyWSAround(getLine(), getColumn(), "%");} ;
+MOD_ASSIGN   : "%=" {ver.verifyWSAround(getLine(), getColumn(), "%=");};
+SR           : ">>" {ver.verifyWSAround(getLine(), getColumn(), ">>");};
+SR_ASSIGN    : ">>=" {ver.verifyWSAround(getLine(), getColumn(), ">>=");};
+BSR          : ">>>" {ver.verifyWSAround(getLine(), getColumn(), ">>>");};
+BSR_ASSIGN   : ">>>=" {ver.verifyWSAround(getLine(), getColumn(), ">>>=");};
+GE           : ">=" {ver.verifyWSAround(getLine(), getColumn(), ">=");};
+GT           : ">" {ver.verifyWSAround(getLine(), getColumn(), ">");};
+SL           : "<<" {ver.verifyWSAround(getLine(), getColumn(), "<<");};
+SL_ASSIGN    : "<<=" {ver.verifyWSAround(getLine(), getColumn(), "<<=");};
+LE           : "<=" {ver.verifyWSAround(getLine(), getColumn(), "<=");};
+LT           : '<' {ver.verifyWSAround(getLine(), getColumn(), "<");};
+BXOR         : '^' {ver.verifyWSAround(getLine(), getColumn(), "^");};
+BXOR_ASSIGN  : "^=" {ver.verifyWSAround(getLine(), getColumn(), "^=");};
+BOR          : '|' {ver.verifyWSAround(getLine(), getColumn(), "|" );};
+BOR_ASSIGN   : "|=" {ver.verifyWSAround(getLine(), getColumn(), "|=");};
+LOR          : "||" {ver.verifyWSAround(getLine(), getColumn(), "||");};
+BAND         : '&' {ver.verifyWSAround(getLine(), getColumn(), "&");};
+BAND_ASSIGN  : "&=" {ver.verifyWSAround(getLine(), getColumn(), "&=");};
+LAND         : "&&" {ver.verifyWSAround(getLine(), getColumn(), "&&");};
+SEMI   : ';'  ;
 
 
 // Whitespace -- ignored
