@@ -2,6 +2,8 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck;
+import com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class HeaderCheckTest extends BaseCheckTestCase

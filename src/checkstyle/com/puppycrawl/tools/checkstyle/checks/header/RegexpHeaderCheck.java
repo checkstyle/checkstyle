@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.header;
 
 import java.util.Arrays;
 
@@ -26,60 +26,13 @@ import org.apache.commons.beanutils.ConversionException;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.checks.AbstractHeaderCheck;
 
 /**
- * <p>
  * Checks the header of the source against a header file that contains a
 * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
  * regular expression</a>
  * for each line of the source header.
- * </p>
- * <p>
- * Rationale: In some projects checking against a fixed header
- * is not sufficient (see {@link HeaderCheck}), e.g.
- * the header might require a copyright line where the year information
- * is not static.
- * </p>
- *
- * <p>For example, consider the following header file:</p>
- *
- * <pre>
- * line 1: ^/{71}$
- * line 2: ^// checkstyle:$
- * line 3: ^// Checks Java source code for adherence to a set of rules\.$
- * line 4: ^// Copyright \(C\) \d\d\d\d  Oliver Burn$
- * line 5: ^// Last modification by \$Author.*\$$
- * line 6: ^/{71}$
- * </pre>
- *
- * <p>Lines 1 and 6 demonstrate a more compact notation for 71 '/'
- * characters. Line 4 enforces that the copyright notice includes a four digit
- * year. Line 5 is an example how to enforce revision control keywords in a file
- * header. All lines start from ^ (line start symbol) and end with $ (line end)
- * to force matching regexp with complete line in the source file.</p>
- * <p>An example of how to configure the check to use header file
- * &quot;java.header&quot; is:
- * </p>
- * <pre>
- * &lt;module name="RegexpHeader"&gt;
- *    &lt;property name="headerFile" value="java.header"/&gt;
- * &lt;/module&gt;
- * </pre>
- *    <p class="body">
- *    To configure the check to use header file <code
- *    >&quot;java.header&quot;</code> and <code
- *    >10</code> and  <code>13</code> muli-lines:
- *    </p>
- *    <pre class="body">
- * &lt;module name=&quot;RegexpHeader&quot;&gt;
- *   &lt;property name=&quot;headerFile&quot; value=&quot;java.header&quot;/&gt;
- *   &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
- *&lt;/module&gt;
- *     </pre>
- * <p><u>Note</u>: ignoreLines property has been removed from this check to
- * simplify it. The regular expression &quot;^.*$&quot; can be used to ignore a
- * line.
- * </p>
  *
  * @author Lars Kühne
  * @author o_sukhodolsky
@@ -123,7 +76,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     /**
      * Sets the file that contains the header to check against.
      * @param aFileName the file that contains the header to check against.
-     * @throws ConversionException if the file cannot be loaded or one line
+     * @throws org.apache.commons.beanutils.ConversionException if the file cannot be loaded or one line
      * is not a regexp.
      */
     public void setHeaderFile(String aFileName)
@@ -137,7 +90,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      * Set the header to check against. Individual lines in the header
      * must be separated by '\n' characters.
      * @param aHeader header content to check against.
-     * @throws ConversionException if the header cannot be loaded or one line
+     * @throws org.apache.commons.beanutils.ConversionException if the header cannot be loaded or one line
      * is not a regexp.
      */
     public void setHeader(String aHeader)

@@ -67,6 +67,16 @@
 
       </ul>
 
+
+      <p>Other changes:</p>
+
+      <ul>
+
+        <li>Added new check packages and moved check implementations.
+            Users who maintain their own packagelist must adapt to these changes.</li>
+
+      </ul>
+
     </section>
 
     <section name="Release 3.5">

@@ -11,6 +11,7 @@
       <package name="coding"/>
       <package name="design"/>
       <package name="duplicates"/>
+      <package name="header"/>
       <package name="imports"/>
       <package name="indentation"/>
       <package name="javadoc"/>
