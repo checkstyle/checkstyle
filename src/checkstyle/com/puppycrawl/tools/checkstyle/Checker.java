@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -170,6 +171,7 @@ public class Checker extends AutomaticBean
         context.add("classLoader", mLoader);
         context.add("moduleFactory", mModuleFactory);
         context.add("severity", mSeverityLevel.getName());
+        context.add("basedir", mBasedir);
         mChildContext = context;
     }
 
@@ -279,16 +281,7 @@ public class Checker extends AutomaticBean
      */
     private String getStrippedFileName(final String aFileName)
     {
-        final String stripped;
-        if ((mBasedir == null) || !aFileName.startsWith(mBasedir)) {
-            stripped = aFileName;
-        }
-        else {
-            // making the assumption that there is text after basedir
-            final int skipSep = mBasedir.endsWith(File.separator) ? 0 : 1;
-            stripped = aFileName.substring(mBasedir.length() + skipSep);
-        }
-        return stripped;
+        return Utils.getStrippedFileName(mBasedir, aFileName);
     }
 
     /** @param aBasedir the base directory to strip off in filenames */

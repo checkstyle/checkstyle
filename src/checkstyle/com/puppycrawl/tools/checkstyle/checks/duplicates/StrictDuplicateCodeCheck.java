@@ -157,6 +157,9 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     /** number of lines that have to be idential for reporting duplicates */
     private int mMin = DEFAULT_MIN_DUPLICATE_LINES;
 
+    /** the basedir to strip off in filenames */
+    private String mBasedir;
+
     /** the checksums of all files that are currently checked */
     private long[][] mLineChecksums;
 
@@ -195,6 +198,12 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     public void setMin(int aMin)
     {
         mMin = aMin;
+    }
+
+    /** @param aBasedir the base directory to strip off in filenames */
+    public void setBasedir(String aBasedir)
+    {
+        mBasedir = aBasedir;
     }
 
     /**
@@ -432,8 +441,10 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     {
         final Integer dupLines = new Integer(aEquivalent);
         final Integer startLine = new Integer(aJLine + 1);
+        final String fileName =
+                Utils.getStrippedFileName(mBasedir, aJFile.getPath());
         log(aILine + 1, "duplicates.lines",
-                new Object[]{dupLines, aJFile, startLine});
+                new Object[]{dupLines, fileName, startLine});
         mDuplicates += 1;
     }
 
