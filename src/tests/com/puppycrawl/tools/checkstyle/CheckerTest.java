@@ -84,23 +84,6 @@ public class CheckerTest
         aC.destroy();
     }
 
-
-    public void testWhitespace()
-        throws Exception
-    {
-        mProps.setProperty(Defn.IGNORE_CAST_WHITESPACE_PROP,
-                           Boolean.FALSE.toString());
-
-        final Checker c = createChecker();
-        final String filepath = getPath("InputWhitespace.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":88:21: 'cast' is not followed by whitespace.",
-        };
-        verify(c, filepath, expected);
-        c.destroy();
-    }
-
     public void testBraces()
         throws Exception
     {
@@ -121,8 +104,6 @@ public class CheckerTest
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":42:40: ',' is not followed by whitespace.",
-            filepath + ":71:30: ',' is not followed by whitespace.",
             filepath + ":161: Comment matches to-do format 'FIXME:'.",
             filepath + ":162: Comment matches to-do format 'FIXME:'.",
             filepath + ":163: Comment matches to-do format 'FIXME:'.",
