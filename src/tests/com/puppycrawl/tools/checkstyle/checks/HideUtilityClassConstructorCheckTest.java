@@ -24,7 +24,7 @@ public class HideUtilityClassConstructorCheckTest
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
         };
-        verify(checkConfig, getPath("InputDesignForInheritance.java"), expected);
+        verify(checkConfig, getPath("InputDesignForExtension.java"), expected);
     }
 
 }

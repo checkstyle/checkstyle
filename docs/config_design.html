@@ -35,7 +35,7 @@
           <a href="#HideUtilityClassConstructor">HideUtilityClassConstructor</a>
         </li>
         <li>
-          <a href="#DesignForInheritance">DesignForInheritance</a>
+          <a href="#DesignForExtension">DesignForExtension</a>
         </li>
       </ul>
     </td>
@@ -239,9 +239,9 @@ public class StringUtils // not final to allow subclassing
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
 
-      <!-- --> <a name="DesignForInheritance"></a> <h2>DesignForInheritance</h2> <h4>Description</h4>
+      <!-- --> <a name="DesignForExtension"></a> <h2>DesignForExtension</h2> <h4>Description</h4>
       <p class="body">
-      Checks that classes are designed for inheritance.
+      Checks that classes are designed for extension.
       More specifically, it enforces a programming style
       where superclasses provide empty "hooks" that can be
       implemented by subclasses.
@@ -273,7 +273,7 @@ public class StringUtils // not final to allow subclassing
       To configure the check:
       </p>
       <pre class="body">
-&lt;module name=&quot;DesignForInheritance&quot;/&gt;
+&lt;module name=&quot;DesignForExtension&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
