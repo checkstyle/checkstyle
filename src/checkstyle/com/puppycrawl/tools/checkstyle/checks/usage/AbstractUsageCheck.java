@@ -138,6 +138,9 @@ public abstract class AbstractUsageCheck
     private int getReferenceCount(DetailAST aAST)
     {
         final SymTabAST ident = ASTManager.getInstance().get(aAST);
+        if (ident == null) {
+            return 0;
+        }
         final Definition definition =
             (Definition) ident.getDefinition();
         if (definition != null) {
