@@ -39,6 +39,7 @@ import org.apache.regexp.RESyntaxException;
 class VerifierImpl
     implements Verifier
 {
+    // {{{ Data declarations
     /** the pattern to match Javadoc tags that take an argument **/
     private static final String MATCH_JAVADOC_ARG_PAT
         = "@(throws|exception|param)\\s+(\\S+)\\s+\\S";
@@ -92,6 +93,9 @@ class VerifierImpl
     /** configuration for checking **/
     private final Configuration mConfig;
 
+    // }}}
+
+    // {{{ Constructors
     ////////////////////////////////////////////////////////////////////////////
     // Constructor methods
     ////////////////////////////////////////////////////////////////////////////
@@ -105,6 +109,9 @@ class VerifierImpl
         mConfig = aConfig;
     }
 
+    // }}}
+
+    // {{{ Interface verifier methods
     ////////////////////////////////////////////////////////////////////////////
     // Interface Verifier methods
     ////////////////////////////////////////////////////////////////////////////
@@ -256,6 +263,12 @@ class VerifierImpl
         }
         else {
             final MyModifierSet mods = aVar.getModifierSet();
+
+            if (mods.containsPrivate()) {
+                System.out.println("Need to check for " + aVar.getText());
+            }
+
+            // Checks for Javadoc
             if (mods.containsStatic()) {
                 if (mods.containsFinal()) {
                     // Handle the serialVersionUID constant which is used for
@@ -464,7 +477,15 @@ class VerifierImpl
         mMethodBlockLevel--;
     }
 
+    /** @see Verifier **/
+    public void reportIdentifier(MyCommonAST aAST)
+    {
+        //System.out.println("Just got reported = " + aAST);
+    }
 
+    // }}}
+
+    // {{{ Private methods
     ////////////////////////////////////////////////////////////////////////////
     // Private methods
     ////////////////////////////////////////////////////////////////////////////
@@ -798,4 +819,6 @@ class VerifierImpl
         }
         return retVal;
     }
+
+    // }}}
 }
