@@ -1486,9 +1486,7 @@ public class Resolver extends DefinitionTraverser {
 
         resolveExpression(rightChild, location, context, referencePhase);
 
-        result =
-            LiteralResolver.getResolver().getDefinition(
-                TokenTypes.LITERAL_BOOLEAN);
+        result = LiteralResolver.getDefinition(TokenTypes.LITERAL_BOOLEAN);
 
         return result;
     }
@@ -1664,8 +1662,7 @@ public class Resolver extends DefinitionTraverser {
         SymTabAST classNameNode = (SymTabAST) (rightNode.getFirstChild());
         resolveClass(classNameNode, location, context, referencePhase);
 
-        LiteralResolver literalResolver = LiteralResolver.getResolver();
-        return literalResolver.getDefinition(TokenTypes.LITERAL_BOOLEAN);
+        return LiteralResolver.getDefinition(TokenTypes.LITERAL_BOOLEAN);
     }
 
     /**
@@ -1701,7 +1698,7 @@ public class Resolver extends DefinitionTraverser {
         IClass context,
         boolean referencePhase) {
         IClass result =
-            LiteralResolver.getResolver().getDefinition(primitive.getType());
+            LiteralResolver.getDefinition(primitive.getType());
 
         primitive.setDefinition(result, location, referencePhase);
         return result;
@@ -1760,7 +1757,7 @@ public class Resolver extends DefinitionTraverser {
         SymTabAST expression,
         Scope location,
         IClass context) {
-        return LiteralResolver.getResolver().getDefinition(
+        return LiteralResolver.getDefinition(
             TokenTypes.STRING_LITERAL);
     }
 
@@ -1778,7 +1775,7 @@ public class Resolver extends DefinitionTraverser {
         SymTabAST expression,
         Scope location,
         IClass context) {
-        return LiteralResolver.getResolver().getDefinition(
+        return LiteralResolver.getDefinition(
             TokenTypes.LITERAL_CHAR);
     }
 
