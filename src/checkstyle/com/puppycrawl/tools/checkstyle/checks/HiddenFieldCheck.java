@@ -22,10 +22,15 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.apache.commons.beanutils.ConversionException;
+import org.apache.regexp.RE;
+import org.apache.regexp.RESyntaxException;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * <p>Checks that a local variable or a parameter does not shadow
@@ -52,10 +57,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class HiddenFieldCheck
     extends Check
 {
-
     /** stack of sets of field names,
      * one for each class of a set of nested classes */
     private LinkedList mFieldsStack = null;
+
+    /** the regexp to match against */
+    private RE mRegexp = null;
+    /** the format string of the regexp */
+    private String mIgnoreFormat;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -144,12 +153,37 @@ public class HiddenFieldCheck
                 while (it.hasNext()) {
                     final HashSet aFieldsSet = (HashSet) it.next();
                     if (aFieldsSet.contains(name)) {
-                        log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                            "hidden.field", name);
-                        break;
+                        if ((mRegexp == null) || (!getRegexp().match(name))) {
+                            log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                                "hidden.field", name);
+                            break;
+                        }
                     }
                 }
             }
         }
+    }
+
+    /**
+     * Set the ignore format to the specified regular expression.
+     * @param aFormat a <code>String</code> value
+     * @throws ConversionException unable to parse aFormat
+     */
+    public void setIgnoreFormat(String aFormat)
+        throws ConversionException
+    {
+        try {
+            mRegexp = Utils.getRE(aFormat);
+            mIgnoreFormat = aFormat;
+        }
+        catch (RESyntaxException e) {
+            throw new ConversionException("unable to parse " + aFormat, e);
+        }
+    }
+
+    /** @return the regexp to match against */
+    public RE getRegexp()
+    {
+        return mRegexp;
     }
 }

@@ -54,6 +54,28 @@ public class HiddenFieldCheckTest
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
     
+    /** tests ignoreFormat property */
+    public void testIgnoreFormat()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HiddenFieldCheck.class);
+        checkConfig.addAttribute("ignoreFormat", "^i.*$");
+        final String[] expected = {
+            "18:13: 'hidden' hides a field.",
+            "21:33: 'hidden' hides a field.",
+            "27:13: 'hidden' hides a field.",
+            "32:18: 'hidden' hides a field.",
+            "36:33: 'hidden' hides a field.",
+            "56:17: 'hidden' hides a field.",
+            "64:22: 'hidden' hides a field.",
+            "70:17: 'hidden' hides a field.",
+            "77:17: 'hidden' hides a field.",
+            "82:13: 'hidden' hides a field.",
+        };
+        verify(checkConfig, getPath("InputHiddenField.java"), expected);
+    }
+    
     /** Test against a class with field declarations in different order */
     public void testReordered()
         throws Exception

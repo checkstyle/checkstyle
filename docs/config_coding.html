@@ -261,6 +261,13 @@ public class MySingleton
           <a
           href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a></td>
         </tr>
+
+        <tr>
+          <td>ignoreFormat</td>
+          <td>pattern for names to ignore</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td>(not applied)</td>
+        </tr>
       </table>
       <h4>Examples</h4>
       <p class="body">
@@ -275,6 +282,14 @@ public class MySingleton
       <pre class="body">
 &lt;module name=&quot;HiddenField&quot;&gt;
     &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <p class="body">
+      To configure the check so that it ignores the name &quot;rcsid&quot;:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;HiddenField&quot;&gt;
+    &lt;property name=&quot;ignoreFormat&quot; value=&quot;^rcsid$&quot;/&gt;
 &lt;/module&gt;
       </pre>
       <h4>Package</h4>
