@@ -292,12 +292,12 @@
         <!-- copy documentation -->
         <copy todir="dist/checkstyle-${version}">
             <fileset dir=".">
-                <include name="ChangeLog"/>
                 <include name="LICENSE*"/>
                 <include name="README"/>
                 <include name="RIGHTS.antlr"/>
                 <include name="TODO"/>
                 <include name="docs/**"/>
+                <include name="contrib/**"/>
                 <include name="**/.cvsignore"/>
                 <include name="**/CVS"/>
             </fileset>
@@ -324,6 +324,7 @@
                 <include name="RIGHTS.antlr"/>
                 <include name="TODO"/>
                 <include name="build.xml"/>
+                <include name="contrib/**"/>
                 <include name="docs/*"/>
                 <include name="src/**"/>
                 <include name="lib/**"/>
