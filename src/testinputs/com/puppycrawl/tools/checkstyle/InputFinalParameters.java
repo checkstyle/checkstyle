@@ -76,4 +76,28 @@ class InputFinalParameters
                 }
             };
     }
+
+    /** methods with complicated types of the parameters. */
+    void methodA(java.lang.String aParam) {
+    }
+
+    void methodB(String[] args) {
+    }
+
+    void methodC(java.lang.String[] args) {
+    }
+
+    /** some catch blocks */
+    void method1()
+    {
+        try {
+            System.err.println("");
+        }
+        catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+        catch (java.lang.NullPointerException npe) {
+            npe.printStackTrace();
+        }
+    }
 }
