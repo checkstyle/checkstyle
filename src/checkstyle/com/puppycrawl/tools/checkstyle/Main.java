@@ -28,12 +28,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.PosixParser;
+
 /**
  * Wrapper command line program for the Checker.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
 public final class Main
 {
+    /** the options to the command line */
+    private static final Options OPTS = new Options();
+    static {
+        OPTS.addOption("c", true, "The check configuration file to use.");
+        OPTS.addOption("r", true, "Traverse the directory for source files");
+        OPTS.addOption("o", true, "Sets the output file. Defaults to stdout");
+        OPTS.addOption("p", true, "Loads the properties file");
+        OPTS.addOption(
+            "f",
+            true,
+            "Sets the output format. (plain|xml). Defaults to plain");
+    }
+    
     /**
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.
@@ -41,47 +61,64 @@ public final class Main
      **/
     public static void main(String[] aArgs)
     {
-        if (aArgs.length == 0) {
+        // parse the parameters
+        final CommandLineParser clp = new PosixParser();
+        CommandLine line = null;
+        try {
+            line = clp.parse(OPTS, aArgs);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
             usage();
         }
+        
+        // setup the properties
+        final Properties props =
+            line.hasOption("p")
+                ? loadProperties(new File(line.getOptionValue("p")))
+                : System.getProperties();
 
-        // be brain dead about arguments parsing
-        String format = "plain";
-        String output = null;
-        Properties props = System.getProperties();
-        final List foundFiles = new ArrayList();
-        final ArrayList files = new ArrayList();
-        for (int i = 0; i < aArgs.length; i++) {
-            if ("-f".equals(aArgs[i])) {
-                format = aArgs[++i];
-            }
-            else if ("-o".equals(aArgs[i])) {
-                output = aArgs[++i];
-            }
-            else if ("-r".equals(aArgs[i])) {
-                traverse(new File(aArgs[++i]), foundFiles);
-            }
-            else if ("-p".equals(aArgs[i])) {
-                props = loadProperties(new File(aArgs[++i]));
-            }
-            else {
-                files.add(aArgs[i]);
-            }
+        // ensure a config file is specified
+        if (!line.hasOption("c")) {
+            System.out.println("Must specify a config XML file.");
+            usage();
+        }
+        
+        // Load the config file
+        CheckConfiguration[] checkConfigs = null;
+        try {
+            checkConfigs =
+                ConfigurationLoader.loadConfigs(line.getOptionValue("c"));
+        }
+        catch (CheckstyleException e) {
+            System.out.println("Error loading configuration file");
+            e.printStackTrace(System.out);
+            System.exit(1);
         }
 
-        // create the appropriate listener
-        OutputStream out = System.out;
+        // setup the output stream
+        OutputStream out = null;
         boolean closeOut = false;
-        if (output != null) {
+        if (line.hasOption("o")) {
+            final String fname = line.getOptionValue("o"); 
             try {
-                out = new FileOutputStream(output);
+                out = new FileOutputStream(fname);
                 closeOut = true;
             }
             catch (FileNotFoundException e) {
-                System.out.println("Could not find file: '" + output + "'");
+                System.out.println("Could not find file: '" + fname + "'");
                 System.exit(1);
             }
         }
+        else {
+            out = System.out;
+            closeOut = false;
+        }
+        
+        // create the appropriate listener
+        final String format =
+            line.hasOption("f") ? line.getOptionValue("f") : "plain";
+        
         AuditListener listener = null;
         if ("xml".equals(format)) {
             listener = new XMLLogger(out, closeOut);
@@ -95,24 +132,26 @@ public final class Main
             usage();
         }
 
-        // Check that I have a config file
+        // Get all the Java files
+        final List files = new ArrayList();
+        if (line.hasOption("r")) {
+            final String[] values = line.getOptionValues("r");
+            for (int i = 0; i < values.length; i++) {
+                traverse(new File(values[i]), files);
+            }
+        }
+ 
+        final String[] remainingArgs = line.getArgs();
+        for (int i = 0; i < remainingArgs.length; i++) {
+            files.add(remainingArgs[i]);
+        } 
+
         if (files.isEmpty()) {
-            System.out.println("Need to specify a config file");
+            System.out.println("Must specify files to process");
             usage();
-        }
+        }         
 
-        // Load the config file
-        final String configFname = (String) files.remove(0);
-        CheckConfiguration[] checkConfigs = null;
-        try {
-            checkConfigs = ConfigurationLoader.loadConfigs(configFname);
-        }
-        catch (CheckstyleException e) {
-            System.out.println("Error loading configuration file");
-            e.printStackTrace(System.out);
-            System.exit(1);
-        }
-
+        // create the checker
         Checker c = null;
         try {
             c = new Checker(new Configuration(props, System.out), checkConfigs);
@@ -125,7 +164,6 @@ public final class Main
             System.exit(1);
         }
 
-        files.addAll(foundFiles);
         final int numErrs =
             c.processNEW((String[]) files.toArray(new String[files.size()]));
         c.destroy();
@@ -135,19 +173,12 @@ public final class Main
     /** Prints the usage information. **/
     private static void usage()
     {
-        System.out.println(
-            "Usage: java " + Main.class.getName()
-            + " <options> config <file>......");
-        System.out.println("Options");
-        System.out.println(
-            "\t-f <format>\tsets output format. (plain|xml). "
-            + "Default to plain.");
-        System.out.println("\t-o <file>\tsets output file name. "
-                           + "Defaults to stdout");
-        System.out.println("\t-r <dir>\ttraverses the directory for Java"
-                           + " source files.");
-        System.out.println("\t-p <file>\tuses a properties file"
-                           + " instead of the system properties.");
+        HelpFormatter hf = new HelpFormatter();
+        hf.printHelp(
+            "java "
+                + Main.class.getName()
+                + " [options] -c <config.xml> file...",
+            OPTS);
         System.exit(1);
     }
 
