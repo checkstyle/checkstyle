@@ -23,7 +23,7 @@ import java.util.EventListener;
 
 /**
  * Listener in charge of receiving events from the Checker.
- * Typical events sequence is :
+ * Typical events sequence is:
  * <pre>
  * auditStarted
  *   (fileStarted
@@ -33,7 +33,7 @@ import java.util.EventListener;
  *   (addException)*
  * auditFinished
  * </pre>
- * @author <a href="stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
+ * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  */
 public interface AuditListener
     extends EventListener

@@ -32,7 +32,7 @@ import java.util.EventObject;
  * in an interface or a servlet (yep, that's cool to run a check via
  * a web interface in a source repository ;-)
  * </i>
- * @author <a href="stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
+ * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @see AuditListener
  */
 public class AuditEvent
