@@ -284,7 +284,7 @@ public class DescendantTokenCheck extends Check
     }
 
     /**
-     * Sets the tokens to ignore in the check.
+     * Sets the tokens which occurance as descendant is limited.
      * @param aLimitedTokens - list of tokens to ignore.
      */
     public void setLimitedTokens(String[] aLimitedTokens)

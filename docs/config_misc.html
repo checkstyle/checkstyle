@@ -23,6 +23,15 @@
     <td class="menu" valign="top">
       <ul>
         <li>
+          <a href="#ArrayTypeStyle">ArrayTypeStyle</a>
+        </li>
+        <li>
+          <a href="#DescendantToken">DescendantToken</a>
+        </li>
+        <li>
+          <a href="#FinalParameters">FinalParameters</a>
+        </li>
+        <li>
           <a href="#GenericIllegalRegexp">GenericIllegalRegexp</a>
         </li>
         <li>
@@ -39,12 +48,6 @@
         </li>
         <li>
           <a href="#UpperEll">UpperEll</a>
-        </li>
-        <li>
-          <a href="#ArrayTypeStyle">ArrayTypeStyle</a>
-        </li>
-        <li>
-          <a href="#FinalParameters">FinalParameters</a>
         </li>
       </ul>
     </td>
@@ -477,6 +480,213 @@ like <span class="code">1</span>.
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
 
+      <!-- --> <a name="DescendantToken"></a> <h2>DescendantToken</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for restricted tokens beneath other tokens.
+      </p>
+      <p class="body">
+      WARNING: This is a very powerful and flexible check, but, at the
+      same time, it is low level and very implementation dependent
+      because its results depend on grammar we use to build abstract
+      syntactic tree. Thus we recomend to use other checks in case
+      they provide desired funcionality. All in all, this check just
+      works on level of abstract tree and knows nothing about language
+      structures.
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>token types to check</td>
+          <td>subset of tokens declared in <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+          <td>empty set</td>
+        </tr>
+        <tr>
+          <td>limitedTokens</td>
+          <td>set of tokens which occurance as descendant is limited</td>
+          <td>subset of tokens declared in <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+          <td>empty set</td>
+        <tr>
+          <td>minimumDepth</td>
+          <td>the mimimum depth for descendant counts</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>maximumDepth</td>
+          <td>the maximum depth for descendant counts</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td>java.lang.Integer.MAX_VALUE</td>
+        </tr>
+        <tr>
+          <td>minimumNumber</td>
+          <td>a minimum count for descendants</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>maximumNumber</td>
+          <td>a maximum count for descendants</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td>java.lang.Integer.MAX_VALUE</td>
+        </tr>
+        <tr>
+          <td>minimumMessage</td>
+          <td>error message when minimum count not reached</td>
+          <td><a href="property_types.html#String">String</a></td>
+          <td>&quot;descendant.token.min&quot;</td>
+        </tr>
+        <tr>
+          <td>maximumMessage</td>
+          <td>error message when maximum count exceeded</td>
+          <td><a href="property_types.html#String">String</a></td>
+          <td>&quot;descendant.token.max&quot;</td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <pre>
+        String literal equality check:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
+            &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
+            &lt;property name="maximumNumber" value="0"/&gt;
+            &lt;property name="maximumDepth" value="1"/&dt;
+        &lt;/module&gt;
+
+        Switch with no default:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+            &lt;property name="maximumDepth" value="2"/&gt;
+            &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
+            &lt;property name="minimumNumber" value="1"/&gt;
+        &lt;/module&gt;
+
+        Assert statement may have side effects:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="LITERAL_ASSERT"/&gt;
+            &lt;property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,
+                POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
+                BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
+                METHOD_CALL"/&gt;
+            &lt;property name="maximumNumber" value="0"/&gt;
+        &lt;/module&gt;
+
+        Initialiser in for performs no setup (use while instead?):
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="FOR_INIT"/&gt;
+            &lt;property name="limitedTokens" value="EXPR"/&gt;
+            &lt;property name="minimumNumber" value="1"/&gt;
+        &lt;/module&gt;
+
+        Condition in for performs no check:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="FOR_CONDITION"/&gt;
+            &lt;property name="limitedTokens" value="EXPR"/&gt;
+            &lt;property name="minimumNumber" value="1"/&gt;
+        &lt;/module&gt;
+
+        Switch within switch:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+            &lt;property name="limitedTokens" value="LITERAL_SWITCH"/&gt;
+            &lt;property name="maximumNumber" value="0"/&gt;
+            &lt;property name="minimumDepth" value="1"/&gt;
+        &lt;/module&gt;
+
+        Return from within a catch or finally block:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="LITERAL_FINALLY,LITERAL_CATCH"/&gt;
+            &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
+            &lt;property name="maximumNumber" value="0"/&gt;
+        &lt;/module&gt;
+
+        Try within catch or finally block:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY"/&gt;
+            &lt;property name="limitedTokens" value="LITERAL_TRY"/&gt;
+            &lt;property name="maximumNumber" value="0"/&gt;
+        &lt;/module&gt;
+
+        Too many cases within a switch:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+            &lt;property name="limitedTokens" value="LITERAL_CASE"/&gt;
+            &lt;property name="maximumDepth" value="2"/&gt;
+            &lt;property name="maximumNumber" value="10"/&gt;
+        &lt;/module&gt;
+
+        Too many local variables within a method:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="METHOD_DEF"/&gt;
+            &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+            &lt;property name="maximumDepth" value="2"/&gt;
+            &lt;property name="maximumNumber" value="10"/&gt;
+        &lt;/module&gt;
+
+        Too many returns from within a method:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="METHOD_DEF"/&gt;
+            &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
+            &lt;property name="maximumNumber" value="3"/&gt;
+        &lt;/module&gt;
+
+        Too many fields within an interface:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="INTERFACE_DEF"/&gt;
+            &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+            &lt;property name="maximumDepth" value="2"/&gt;
+            &lt;property name="maximumNumber" value="0"/&gt;
+        &lt;/module&gt;
+
+        Limit the number of exceptions a method can throw:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="LITERAL_THROWS"/&gt;
+            &lt;property name="limitedTokens" value="IDENT"/&gt;
+            &lt;property name="maximumNumber" value="1"/&gt;
+        &lt;/module&gt;
+
+        Limit the number of expressions in a method:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="METHOD_DEF"/&gt;
+            &lt;property name="limitedTokens" value="EXPR"/&gt;
+            &lt;property name="maximumNumber" value="200"/&gt;
+        &lt;/module&gt;
+
+        Disallow empty statements:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="EMPTY_STAT"/&gt;
+            &lt;property name="limitedTokens" value="EMPTY_STAT"/&gt;
+            &lt;property name="maximumNumber" value="0"/&gt;
+            &lt;property name="maximumDepth" value="0"/&gt;
+            &lt;property name="maximumMessage"
+                value="Empty statement is not allowed."/&gt;
+        &lt;/module&gt;
+
+        Too many fields within a class:
+        &lt;module name="DescendantToken"&gt;
+            &lt;property name="tokens" value="CLASS_DEF"/&gt;
+            &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+            &lt;property name="maximumDepth" value="2"/&gt;
+            &lt;property name="maximumNumber" value="10"/&gt;
+        &lt;/module&gt;
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
 
       </td>
   </tr>
