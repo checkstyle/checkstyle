@@ -42,6 +42,7 @@
       </ul>
       <p><a href="#filesetchecks">Writing FileSetChecks</a>
       <p><a href="#huh">Huh?</a></p>
+      <p><a href="#contributeback">Contribute Back</a></p>
     </td>
 
     <!--Content-->
@@ -116,7 +117,7 @@
       If you have ever read an introductory level Java book you probably
       knew all of the above. And if you have studied computer science,
       you probably also know that the rules that specify the Java Language
-      can be formally specified using a Grammar (statement is simplified
+      can be formally specified using a grammar (statement is simplified
       for didactic purposes).
       </p>
       <p class="body">
@@ -175,7 +176,7 @@
       <a name="visitor"></a>
       <h3>Understanding the visitor pattern</h3>
       <p class="body">
-      Ready for a bit more theory? OK, here it comes: The last bit
+      Ready for a bit more theory? The last bit
       that is missing before you can start writing checks is that you have
       to understand the Vistor pattern.
       </p>
@@ -386,7 +387,49 @@
       <a name="integrate"></a>
       <h3>Integrate your Check</h3>
       <p class="body">
-      TODO: Explain the config system and how to integrate a user check.
+      The great final moment has arrived, you are about to run your
+      Check. To integrate your Check, add a new subentry under the
+      TreeWalker module of your configuration file. Use the full
+      classname of your Check class as the name of the module.
+      Your config file should look something like this:
+      </p>
+
+      <p>
+      <pre>
+      &lt;module name=&quot;Checker&quot;&gt;
+        &lt;module name=&quot;TreeWalker&quot;&gt;
+
+	  &lt;!-- your standard Checks that come with Checkstyle --&gt;
+          &lt;module name=&quot;UpperEll&quot;/&gt;
+          &lt;module name=&quot;MethodLength&quot;/&gt;
+
+	  &lt;!-- your Check goes here --&gt;
+          &lt;module name=&quot;com.mycompany.checks.MethodLimitCheck&quot;&gt;
+            &lt;property name=&quot;max&quot; value=&quot;45&quot;/&gt;
+          &lt;/module&gt;
+        &lt;/module&gt;
+      &lt;/module&gt;
+      </pre>
+      </p>
+
+      <p class="body">
+      TODO: Explain how to integrate a user check into the package
+      config file.
+      </p>
+
+      <p class="body">
+      To run the new Check on the command line compile your check,
+      create a jar that contains the classes and property files,
+      e.g. <span class="code">mycompanychecks.jar</span>. Then run:
+      </p>
+      <pre>
+      java -classpath mycompanychecks.jar -jar checkstyle-all-${version} -c confg.xml -r .
+      </pre>
+
+      <p class="body">
+      Did you see all those errors about &quot;too many methods&quot;
+      flying over your screen? Congratulations. You can now consider
+      youself a Checkstyle expert. Go to your fridge. Have a beer.
       </p>
 
       <a name="limitations"></a>
@@ -402,11 +445,17 @@
 
       <p class="body">
       There are basically only two of them:
+      </p>
       <ul>
-      <li>You cannot determine the type of an expression.</li>
-      <li>You cannot see the content of other files.</li>
+      <li class="body">You cannot determine the type of an expression.</li>
+      <li class="body">You cannot see the content of other files.</li>
       </ul>
-      TODO: Explain the practical consequences of these limitations.
+      <p class="body">
+      This means that you cannot implement most of the code inspection
+      features that are available in advanced IDEs like <a
+      href="http://www.intellij.com/idea">IntelliJ IDEA</a>. For
+      example you will not be able to implement a Check that finds
+      redundant type casts or unused public methods.
       </p>
 
 
@@ -450,9 +499,12 @@
       </pre>
       </p>
       <p class="body">
-      Note that by implementing the setMax() method the FileSetCheck
+
+      Note that the configuration via bean introspection also applies
+      here.  By implementing the setMax() method the FileSetCheck
       automatically makes &quot;max&quot; a legal configuration
       parameter that you can use in the Checkstyle configuration file.
+
       </p>
       <p class="body">
       There are virtually no limits what you can do in
@@ -469,17 +521,30 @@
       <h2>Huh? I can't figure it out!</h2>
       <p class="body">
       That's probably our fault, it means that we have to provide
-      better docs. Please do not hesitate to ask questions on the user
-      mailing list, this will help us to improve this document.
-      Please make your question as precise as possible, we will not
-      be able to answer questions like &quot;I want to write a check
-      but I don't know how, can you help me?&quot;. Be precise, tell us
-      what you are trying to do (the purpose of the check), what you have
-      understood so far, and what exactly is the problem that blocks you.
+      better documentation. Please do not hesitate to ask questions on
+      the user mailing list, this will help us to improve this
+      document.  Please ask your questions as precisely as possible,
+      we will not be able to answer questions like &quot;I want to
+      write a check but I don't know how, can you help me?&quot;. Tell
+      us what you are trying to do (the purpose of the check), what
+      you have understood so far, and what exactly is the problem that
+      blocks you.
+      </p>
+
+      <a name="contributeback"></a>
+      <h2>Contribute Back</h2>
+      <p class="body">
+      We need <em>your</em> help to keep improving Checkstyle.
+
+      Whenever you write a Check or FileSetCheck that you think is
+      generally useful, please consider contributing it to the
+      Checkstyle community and submit it for inclusion in the next
+      release of Checkstyle.
+
       </p>
 
     </td>
   </tr>
 </table>
-<hr />
+<hr/>
 </body> </html>
