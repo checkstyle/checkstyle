@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.checks.LocalVariableNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.MemberNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.MethodLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.MethodNameCheckTest;
-import com.puppycrawl.tools.checkstyle.checks.ModifierCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.ModifierOrderCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.NeedBracesCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheckTest;
@@ -95,7 +95,7 @@ public class AllTests {
         suite.addTest(new TestSuite(MemberNameCheckTest.class));
         suite.addTest(new TestSuite(MethodLengthCheckTest.class));
         suite.addTest(new TestSuite(MethodNameCheckTest.class));
-        suite.addTest(new TestSuite(ModifierCheckTest.class));
+        suite.addTest(new TestSuite(ModifierOrderCheckTest.class));
         suite.addTest(new TestSuite(NeedBracesCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceBeforeCheckTest.class));

@@ -60,11 +60,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="Modifier"/&gt;
+ * &lt;module name="ModifierOrder"/&gt;
  * </pre>
  * @author Lars Kühne
  */
-public class ModifierCheck
+public class ModifierOrderCheck
     extends Check
 {
     /**
