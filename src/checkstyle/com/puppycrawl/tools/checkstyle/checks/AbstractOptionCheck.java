@@ -44,4 +44,14 @@ public abstract class AbstractOptionCheck
             throw new ConversionException("unable to parse " + aOption);
         }
     }
+
+    /**
+     * @return the <code>AbstractOption</code> set
+     */
+    public AbstractOption getAbstractOption()
+    {
+        // WARNING!! Do not rename this method to getOption(). It breaks
+        // BeanUtils, which will silently not call setOption. Very annoying!
+        return mOption;
+    }
 }
