@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.Serializable;
 import java.io.ObjectStreamException;
@@ -67,7 +67,7 @@ public final class PadOption
         return (PadOption) STR_TO_OPT.get(aStrRep.trim().toLowerCase());
     }
 
-    /** @see Object **/
+    /** @see java.lang.Object **/
     public String toString()
     {
         return mStrRep;
@@ -79,7 +79,7 @@ public final class PadOption
      * Serialization Specification for details.
      *
      * @return the serialization replacement object
-     * @throws ObjectStreamException if a deserialization error occurs
+     * @throws java.io.ObjectStreamException if a deserialization error occurs
      */
     private Object readResolve() throws ObjectStreamException
     {

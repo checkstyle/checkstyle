@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
-import com.puppycrawl.tools.checkstyle.PadOption;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.Utils;
