@@ -1,0 +1,21 @@
+//p {
+//  margin-left : 5%;
+//  margin-right : 5%;
+//}
+
+p.body {
+  margin-left : 5%;
+  margin-right : 3%;
+}
+
+li.body {
+  margin-left : 5%;
+  margin-right : 3%;
+}
+
+span.code {
+  white-space: nowrap;
+  font-family: monospace;
+  font-size: x-small;
+  font-weight: bold
+}
