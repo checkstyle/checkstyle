@@ -51,9 +51,6 @@ public class LocalizedMessage
     /** arguments for MessageFormat **/
     private final Object[] mArgs;
 
-    /** the class loader to locate resource bundles with **/
-    private static ClassLoader sLoader;
-
     /**
      * Creates a new <code>LocalizedMessage</code> instance.
      *
@@ -86,9 +83,12 @@ public class LocalizedMessage
     /** @return the translated message **/
     public String getMessage()
     {
-        // Very simple approach - wait for performance problems
+        // Very simple approach - wait for performance problems.
+        // Important to use the default class loader, and not the one in the
+        // Configuration object. This is because the class loader in the
+        // Configuration is specified by the user for resolving custom classes.
         final ResourceBundle bundle =
-            ResourceBundle.getBundle(MESSAGE_BUNDLE, sLocale, sLoader);
+            ResourceBundle.getBundle(MESSAGE_BUNDLE, sLocale);
         final String pattern = bundle.getString(mKey);
         return MessageFormat.format(pattern, mArgs);
     }
@@ -105,16 +105,10 @@ public class LocalizedMessage
         return mColNo;
     }
 
-    /**
-     * Initialise the localization of messages
-     *
-     * @param aLocale the locale to use for localization
-     * @param aLoader the class loader to locate resource bundles with
-     */
-    static void init(Locale aLocale, ClassLoader aLoader)
+    /** @param aLocale the locale to use for localization **/
+    static void setLocale(Locale aLocale)
     {
         sLocale = aLocale;
-        sLoader = aLoader;
     }
 
     ////////////////////////////////////////////////////////////////////////////

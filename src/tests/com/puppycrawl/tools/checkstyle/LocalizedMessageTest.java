@@ -12,10 +12,13 @@ public class LocalizedMessageTest
         super(name);
     }
 
+    protected void setUp() throws Exception
+    {
+        LocalizedMessage.setLocale(Locale.ENGLISH);
+    }
+
     public void testMisc()
     {
-        LocalizedMessage.init(Locale.getDefault(),
-                              Thread.currentThread().getContextClassLoader());
         LocalizedMessage lm =
             new LocalizedMessage(0, "DefaultLogger.auditFinished", null);
         assertNotNull(lm);

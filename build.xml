@@ -205,7 +205,7 @@
                excludes="**/Generated*.java"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="target/cs_errors.xml"/>
-      <classpath refid="run.classpath"/>
+      <classpath refid="build.classpath"/>
     </checkstyle>
   </target>
 
