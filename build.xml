@@ -73,8 +73,8 @@
     <!-- Checks whether the grammar file is newer that the generated code -->
     <target name="check.antlr">
         <uptodate property="uptodate.antlr"
-                  targetfile="${checkstyle.dir}/GeneratedJavaLexer.java" >
-            <srcfiles dir= "${checkstyle.dir}" includes="java.g"/>
+                  targetfile="${checkstyle.dir}/GeneratedJava14Lexer.java" >
+            <srcfiles dir= "${checkstyle.dir}" includes="java.g,java14.g"/>
         </uptodate>
     </target>
 
@@ -87,6 +87,14 @@
               fork="yes"
               dir="${checkstyle.dir}">
             <arg value="java.g" />
+        </java>
+        <java classname="antlr.Tool"
+              classpath="${antlr-tools.jar}"
+              fork="yes"
+              dir="${checkstyle.dir}">
+            <arg value="-glib" />
+            <arg value="java.g" />
+            <arg value="java14.g" />
         </java>
     </target>
 
@@ -105,12 +113,16 @@
               todir="classes/checkstyle"/>
     </target>
 
+    <!-- Compiles only the test code. Input files are excluded from
+         compilation, they contain code like assert statements
+         that does not compile on all JDKs -->
     <target name="compile.tests" depends="compile.checkstyle">
         <mkdir dir="classes/tests" />
         <depend srcdir="src/tests" destdir="classes/tests" closure="yes"/>
         <javac srcdir="src/tests"
                destdir="classes/tests"
                deprecation="on" debug="on"
+               excludes="**/*nput*.java"
                classpathref="tests.buildpath" />
     </target>
 

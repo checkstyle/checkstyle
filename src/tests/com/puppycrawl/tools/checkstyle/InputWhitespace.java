@@ -136,4 +136,25 @@ class InputWhitespace
         o . toString();
         return o.toString();
     }
+
+    /** assert statement test */
+    public void assertTest()
+    {
+        // OK
+        assert true;
+
+        // OK
+        assert true : "Whups";
+
+        // evil colons, should be OK
+        assert "OK".equals(null) ? false : true : "Whups";
+
+        // WS tests for assert not implemented yet
+
+        // missing WS around assert
+        // assert(true);
+
+        // missing WS around colon
+        // assert true:"Whups";
+    }
 }

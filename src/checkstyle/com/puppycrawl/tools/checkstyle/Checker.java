@@ -40,6 +40,95 @@ import org.apache.regexp.RESyntaxException;
 public class Checker
     implements Defn
 {
+
+    /**
+     * Overrides ANTLR error reporting so we completely control
+     * checkstyle's output during parsing. This is important because
+     * we try parsing with several grammers (with/without support for
+     * <code>assert</code>). We must not write any error messages when
+     * parsing fails because with the next grammar it might succeed
+     * and the user will be confused.
+     */
+    private class SilentJava14Recognizer extends GeneratedJava14Recognizer
+    {
+        /**
+         * Creates a new <code>SilentJava14Recognizer</code> instance.
+         *
+         * @param aLexer the tokenstream the recognizer operates on.
+         */
+        private SilentJava14Recognizer(GeneratedJava14Lexer aLexer)
+        {
+            super(aLexer);
+        }
+
+        /**
+         * Parser error-reporting function, does nothing.
+         * @param aRex the exception to be reported
+         */
+        public void reportError(RecognitionException aRex)
+        {
+        }
+
+        /**
+         * Parser error-reporting function, does nothing.
+         * @param aMsg the error message
+         */
+        public void reportError(String aMsg)
+        {
+        }
+
+        /**
+         * Parser warning-reporting function, does nothing.
+         * @param aMsg the error message
+         */
+        public void reportWarning(String aMsg)
+        {
+        }
+    }
+
+    /**
+     * Overrides ANTLR error reporting so we completely control
+     * checkstyle's output during parsing.
+     *
+     * @see SilentJava14Recognizer
+     */
+    private class SilentJavaRecognizer extends GeneratedJavaRecognizer
+    {
+        /**
+         * Creates a new <code>SilentJavaRecognizer</code> instance.
+         *
+         * @param aLexer the tokenstream the recognizer operates on.
+         */
+        private SilentJavaRecognizer(GeneratedJavaLexer aLexer)
+        {
+            super(aLexer);
+        }
+
+        /**
+         * Parser error-reporting function, does nothing.
+         * @param aRex the exception to be reported
+         */
+        public void reportError(RecognitionException aRex)
+        {
+        }
+
+        /**
+         * Parser error-reporting function, does nothing.
+         * @param aMsg the error message
+         */
+        public void reportError(String aMsg)
+        {
+        }
+
+        /**
+         * Parser warning-reporting function, does nothing.
+         * @param aMsg the error message
+         */
+        public void reportWarning(String aMsg)
+        {
+        }
+    }
+
     /** configuration */
     private final Configuration mConfig;
 
@@ -140,15 +229,38 @@ public class Checker
         try {
             fireFileStarted(aFileName);
             final String[] lines = getLines(aFileName);
-            VerifierSingleton.getInstance().clearMessages();
-            VerifierSingleton.getInstance().setLines(lines);
-            final Reader sar = new StringArrayReader(lines);
-            final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
-            jl.setFilename(aFileName);
-            final GeneratedJavaRecognizer jr = new GeneratedJavaRecognizer(jl);
-            jr.setFilename(aFileName);
-            jr.setASTNodeClass(MyCommonAST.class.getName());
-            jr.compilationUnit();
+            try {
+                VerifierSingleton.getInstance().clearMessages();
+                VerifierSingleton.getInstance().setLines(lines);
+                final Reader sar = new StringArrayReader(lines);
+                final GeneratedJava14Lexer jl = new GeneratedJava14Lexer(sar);
+                jl.setFilename(aFileName);
+                final GeneratedJava14Recognizer jr =
+                    new SilentJava14Recognizer(jl);
+                jr.setFilename(aFileName);
+                jr.setASTNodeClass(MyCommonAST.class.getName());
+                jr.compilationUnit();
+            }
+            catch (RecognitionException re) {
+
+                // Parsing might have failed because the checked
+                // filecontains "assert" statement. Retry with a
+                // grammar that treats "assert" as an identifier
+                // and not as a keyword
+
+                // Arghh - the pain - duplicate code!
+
+                VerifierSingleton.getInstance().clearMessages();
+                VerifierSingleton.getInstance().setLines(lines);
+                final Reader sar = new StringArrayReader(lines);
+                final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
+                jl.setFilename(aFileName);
+                final GeneratedJavaRecognizer jr =
+                    new GeneratedJavaRecognizer(jl);
+                jr.setFilename(aFileName);
+                jr.setASTNodeClass(MyCommonAST.class.getName());
+                jr.compilationUnit();
+            }
             errors = VerifierSingleton.getInstance().getMessages();
         }
         catch (FileNotFoundException fnfe) {
