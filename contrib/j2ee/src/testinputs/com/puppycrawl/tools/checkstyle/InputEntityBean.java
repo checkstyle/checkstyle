@@ -91,6 +91,10 @@ final class FinalEntityBean
     protected static final void ejbCreate(int i)
     {
     }
+    
+    protected static final void ejbFindSomething()
+    {
+    }
 
     /**
      * @see javax.ejb.EntityBean#setEntityContext(javax.ejb.EntityContext)
