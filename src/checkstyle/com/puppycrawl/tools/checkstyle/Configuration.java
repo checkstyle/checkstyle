@@ -539,12 +539,6 @@ public class Configuration
         return getBooleanProperty(Defn.IGNORE_BRACES_PROP);
     }
 
-    /** @return whether to ignore 'public' keyword in interface definitions **/
-    boolean isIgnorePublicInInterface()
-    {
-        return getBooleanProperty(Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP);
-    }
-
     /** @return whether to ignore max line length for import statements **/
     boolean isIgnoreImportLength()
     {
