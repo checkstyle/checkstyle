@@ -425,9 +425,11 @@ class VerifierImpl
     }
 
     /** @see Verifier **/
-    public void verifyWSAfter(int aLineNo, int aColNo, String aConstruct)
+    public void verifyWSAfter(int aLineNo, int aColNo, MyToken aConstruct)
     {
-        if (mConfig.isIgnoreWhitespace()) {
+        if (mConfig.isIgnoreWhitespace() ||
+            ((MyToken.CAST == aConstruct) && mConfig.isIgnoreCastWhitespace()))
+        {
             return;
         }
 
@@ -435,7 +437,8 @@ class VerifierImpl
         if ((aColNo < line.length()) &&
             !Character.isWhitespace(line.charAt(aColNo)))
         {
-            log(aLineNo, aConstruct + " needs to be followed by whitespace.");
+            log(aLineNo,
+                aConstruct.getText() + " needs to be followed by whitespace.");
         }
     }
 
@@ -588,8 +591,8 @@ class VerifierImpl
         }
         return retVal;
     }
-    
-    
+
+
 
     /**
      * Helper method to create a regular expression. Will exit if unable to
