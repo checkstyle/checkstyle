@@ -65,6 +65,12 @@ tokens {
     private static String sFirstIdent = "";
     private static int sCompoundLength = -1;
     private static LineText sLastIdentifier;
+    private static final int[] sIgnoreType = new int[1];
+
+    // Constants to indicate statement type. Numbers are delibrately weird
+    private static int STMT_OTHER = 0;
+    private static int STMT_COMPOUND = 6;
+    private static int STMT_IF = 8;
 }
 
 // Compilation Unit: In Java, this is a single file.  This is the start
@@ -369,7 +375,7 @@ constructorBody
 		(	(explicitConstructorInvocation) => explicitConstructorInvocation
 		|
 		)
-        (statement)*
+        (statement[sIgnoreType])*
         rc:RCURLY! {ver.verifyConstructorLength(#lc.getLineNo(), #rc.getLineNo() - #lc.getLineNo() + 1);}
     ;
 
@@ -509,15 +515,19 @@ parameterModifier
 compoundStatement
 	:	lc:LCURLY^ {#lc.setType(SLIST);}
 			// include the (possibly-empty) list of statements
-			(statement)*
+			(statement[sIgnoreType])*
 		rc:RCURLY! { sCompoundLength = rc.getLine() - lc.getLine() + 1; }
 	;
 
 
-statement
-{ MyModifierSet modSet = new MyModifierSet(); }
+statement[int[] aType]
+{
+    final MyModifierSet modSet = new MyModifierSet();
+    final int[] stmtType = new int[1];
+    stmtType[0] = STMT_OTHER;
+}
 	// A list of statements in curly braces -- start a new scope!
-	:	compoundStatement
+	:	compoundStatement { aType[0] = STMT_COMPOUND; }
 
 	// declarations are ambiguous with "ID DOT" relative to expression
 	// statements.  Must backtrack to be sure.  Could use a semantic
@@ -534,12 +544,16 @@ statement
 	|	m:modifiers[modSet]! classDefinition[#m, modSet]
 
 	// Attach a label to the front of a statement
-	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement
+	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement[sIgnoreType]
 
 	// If-else statement
-	|	ii:"if"^ LPAREN! expression RPAREN! statement
+	|	ii:"if"^ LPAREN! expression RPAREN! statement[stmtType]
         {
+            aType[0] = STMT_IF;
             ver.verifyWSAroundBegin(ii.getLine(), ii.getColumn(), ii.getText());
+            if (stmtType[0] != STMT_COMPOUND) {
+                ver.reportNeedBraces(ii.getLine(), ii.getText());
+            }
         }
 		(
 			// CONFLICT: the old "dangling-else" problem...
@@ -549,29 +563,49 @@ statement
 				warnWhenFollowAmbig = false;
 			}
 		:
-			"else"! statement
+			ee:"else"! {stmtType[0] = STMT_OTHER; } statement[stmtType]
+            {
+                ver.verifyWSAroundBegin(ee.getLine(), ee.getColumn(), ee.getText());
+                if (stmtType[0] == STMT_OTHER) {
+                    ver.reportNeedBraces(ee.getLine(), ee.getText());
+                }
+            }
 		)?
 
 	// For statement
-	|	ff:"for"^ {ver.verifyWSAroundBegin(ff.getLine(), ff.getColumn(), ff.getText());}
-			LPAREN!
-				forInit s1:SEMI! {ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);} // initializer
-				forCond	s2:SEMI! {ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON);} // condition test
-				forIter         // updater
-			RPAREN!
-			statement                     // statement to loop over
+	|	ff:"for"^
+        LPAREN!
+        forInit s1:SEMI! // initializer
+        forCond	s2:SEMI! // condition test
+        forIter         // updater
+        RPAREN!
+        statement[stmtType] // statement to loop over
+        {
+            ver.verifyWSAroundBegin(ff.getLine(), ff.getColumn(), ff.getText());
+            ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);
+            ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON);
+            if (stmtType[0] != STMT_COMPOUND) {
+                ver.reportNeedBraces(ff.getLine(), ff.getText());
+            }
+        }
 
 	// While statement
-	|	ww:"while"^ LPAREN! expression RPAREN! statement
+	|	ww:"while"^ LPAREN! expression RPAREN! statement[stmtType]
         {
             ver.verifyWSAroundBegin(ww.getLine(), ww.getColumn(), ww.getText());
+            if (stmtType[0] != STMT_COMPOUND) {
+                ver.reportNeedBraces(ww.getLine(), ww.getText());
+            }
         }
 
 	// do-while statement
-	|	dd:"do"^ statement dw:"while"! LPAREN! expression RPAREN! SEMI!
+	|	dd:"do"^ statement[stmtType] dw:"while"! LPAREN! expression RPAREN! SEMI!
         {
             ver.verifyWSAroundBegin(dd.getLine(), dd.getColumn(), dd.getText());
             ver.verifyWSAroundBegin(dw.getLine(), dw.getColumn(), dw.getText());
+            if (stmtType[0] != STMT_COMPOUND) {
+                ver.reportNeedBraces(dd.getLine(), dd.getText());
+            }
         }
 
 	// get out of a loop (or switch)
@@ -626,7 +660,7 @@ aCase
 	;
 
 caseSList
-	:	(statement)*
+	:	(statement[sIgnoreType])*
 		{#caseSList = #(#[SLIST,"SLIST"],#caseSList);}
 	;
 
