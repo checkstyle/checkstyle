@@ -179,22 +179,25 @@ class Verifier
 
         checkHeader();
 
-        // Iterate over the lines looking for long lines and tabs.
+        // Iterate over the lines looking for:
+        //    - long lines
+        //    - tabs
         for (int i = 0; i < mLines.length; i++) {
             // check for long line, but possibly allow imports
-            String line = mLines[i];
-            int realLength = Utils.lengthExpandedTabs(
+            final String line = mLines[i];
+            final int realLength = Utils.lengthExpandedTabs(
                 line, line.length(), mConfig.getTabWidth());
-            if ((realLength > mConfig.getMaxLineLength()) &&
-                !(mConfig.getIgnoreLineLengthRegexp().match(line)) &&
-                !(mConfig.isIgnoreImportLength() &&
-                  line.trim().startsWith("import")))
+            if ((realLength > mConfig.getMaxLineLength())
+                && !(mConfig.getIgnoreLineLengthRegexp().match(line))
+                && !(mConfig.isIgnoreImportLength()
+                     && line.trim().startsWith("import")))
             {
                 log(i + 1,
                     "line longer than " + mConfig.getMaxLineLength() +
                     " characters");
             }
 
+            // Check for tabs
             if (!mConfig.isAllowTabs()) {
                 final int tabPosition = mLines[i].indexOf('\t');
                 if (tabPosition != -1) {
@@ -728,17 +731,41 @@ class Verifier
      * Report the location of a C-style comment.
      * @param aStartLineNo the starting line number
      * @param aStartColNo the starting column number
+     **/
+    void reportCPPComment(int aStartLineNo, int aStartColNo)
+    {
+        final String cmt = mLines[aStartLineNo - 1].substring(aStartColNo);
+        if (mConfig.getTodoRegexp().match(cmt)) {
+            log(aStartLineNo,
+                "Comment matches to-do format '" + mConfig.getTodoPat() + "'.");
+        }
+    }
+
+    /**
+     * Report the location of a C-style comment.
+     * @param aStartLineNo the starting line number
+     * @param aStartColNo the starting column number
      * @param aEndLineNo the ending line number
      * @param aEndColNo the ending column number
      **/
     void reportCComment(int aStartLineNo, int aStartColNo,
-                               int aEndLineNo, int aEndColNo)
+                        int aEndLineNo, int aEndColNo)
     {
+        final String[] cc = extractCComment(aStartLineNo, aStartColNo,
+                                            aEndLineNo, aEndColNo);
+
+        // Remember if possible Javadoc comment
         if (mLines[aStartLineNo - 1].indexOf("/**", aStartColNo) != -1) {
-            final String[] cc =
-                extractCComment(aStartLineNo, aStartColNo,
-                                aEndLineNo, aEndColNo);
             mComments.put(new Integer(aEndLineNo - 1), cc);
+        }
+
+        // Check for to-do comments
+        for (int i = 0; i < cc.length; i++) {
+            if (mConfig.getTodoRegexp().match(cc[i])) {
+                log(aStartLineNo + i,
+                    "Comment matches to-do format '" + mConfig.getTodoPat()
+                    + "'.");
+            }
         }
     }
 
@@ -1208,7 +1235,8 @@ class Verifier
 
                 // TODO: RE creation should be cached to avoid
                 // re-compilation when multiple files are checked. Will wait
-                // until this is shown to be a performance problem.
+                // until this is shown to be a performance problem. Really
+                // should create a factory method for creating RE objects.
                 final boolean match =
                     mConfig.getHeaderLinesRegexp() ?
                     createRE(headerLine).match(mLines[i]) :

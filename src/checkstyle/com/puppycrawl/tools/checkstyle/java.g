@@ -1191,7 +1191,7 @@ WS	:	(	' '
 
 // Single-line comments
 SL_COMMENT
-   :  "//"
+   :  "//" { ver.reportCPPComment(getLine(), getColumn() - 3); }
       (~('\n'|'\r'))* ('\n'|'\r'('\n')?)
       {
          $setType(Token.SKIP);

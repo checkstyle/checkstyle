@@ -46,6 +46,8 @@ public class Configuration
     // Constants
     ////////////////////////////////////////////////////////////////////////////
 
+    /** the pattern to match against todo lines **/
+    private static final String TODO_PATTERN = "TODO:";
     /** the pattern to match against parameter names **/
     private static final String PARAMETER_PATTERN = "^[a-z][a-zA-Z0-9]*$";
     /** the pattern to match against static names **/
@@ -80,6 +82,11 @@ public class Configuration
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
     ////////////////////////////////////////////////////////////////////////////
+
+    /** pattern to match todo lines **/
+    private String mTodoPat;
+    /** regexp to match todo lines **/
+    private transient RE mTodoRegexp;
 
     /** pattern to match parameters **/
     private String mParamPat;
@@ -200,22 +207,19 @@ public class Configuration
     public Configuration(Properties aProps, PrintStream aLog)
         throws RESyntaxException, FileNotFoundException, IOException
     {
+        setTodoPat(aProps.getProperty(TODO_PATTERN_PROP, TODO_PATTERN));
         setParamPat(aProps.getProperty(PARAMETER_PATTERN_PROP,
                                        PARAMETER_PATTERN));
-        setStaticPat(aProps.getProperty(STATIC_PATTERN_PROP,
-                                        STATIC_PATTERN));
+        setStaticPat(aProps.getProperty(STATIC_PATTERN_PROP, STATIC_PATTERN));
         setStaticFinalPat(aProps.getProperty(CONST_PATTERN_PROP,
                                              CONST_PATTERN));
-        setMemberPat(aProps.getProperty(MEMBER_PATTERN_PROP,
-                                        MEMBER_PATTERN));
+        setMemberPat(aProps.getProperty(MEMBER_PATTERN_PROP, MEMBER_PATTERN));
         setPublicMemberPat(aProps.getProperty(PUBLIC_MEMBER_PATTERN_PROP,
                                               PUBLIC_MEMBER_PATTERN));
-        setTypePat(aProps.getProperty(TYPE_PATTERN_PROP,
-                                      TYPE_PATTERN));
+        setTypePat(aProps.getProperty(TYPE_PATTERN_PROP, TYPE_PATTERN));
         setLocalVarPat(aProps.getProperty(LOCAL_VAR_PATTERN_PROP,
                                           LOCAL_VAR_PATTERN));
-        setMethodPat(aProps.getProperty(METHOD_PATTERN_PROP,
-                                        METHOD_PATTERN));
+        setMethodPat(aProps.getProperty(METHOD_PATTERN_PROP, METHOD_PATTERN));
         setIgnoreLineLengthPat(aProps.getProperty(
             IGNORE_LINE_LENGTH_PATTERN_PROP, IGNORE_LINE_LENGTH_PATTERN));
         setMaxLineLength(getIntProperty(
@@ -295,6 +299,7 @@ public class Configuration
     {
         setIllegalImports(ILLEGAL_IMPORTS);
         try {
+            setTodoPat(TODO_PATTERN);
             setParamPat(PARAMETER_PATTERN);
             setStaticPat(STATIC_PATTERN);
             setStaticFinalPat(CONST_PATTERN);
@@ -327,6 +332,7 @@ public class Configuration
 
         // initialize the transient fields
         try {
+            setTodoPat(getTodoPat());
             setParamPat(getParamPat());
             setStaticPat(getStaticPat());
             setStaticFinalPat(getStaticFinalPat());
@@ -349,6 +355,18 @@ public class Configuration
     ////////////////////////////////////////////////////////////////////////////
     // Getters
     ////////////////////////////////////////////////////////////////////////////
+
+    /** @return pattern to match todo lines **/
+    public String getTodoPat()
+    {
+        return mTodoPat;
+    }
+
+    /** @return regexp to match todo lines **/
+    public RE getTodoRegexp()
+    {
+        return mTodoRegexp;
+    }
 
     /** @return pattern to match parameters **/
     public String getParamPat()
@@ -614,6 +632,17 @@ public class Configuration
     ////////////////////////////////////////////////////////////////////////////
     // Setters
     ////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @param aTodoPat pattern to match todos
+     * @throws RESyntaxException if an error occurs
+     */
+    public void setTodoPat(String aTodoPat)
+        throws RESyntaxException
+    {
+        mTodoRegexp = new RE(aTodoPat);
+        mTodoPat = aTodoPat;
+    }
 
     /**
      * @param aParamPat pattern to match parameters
