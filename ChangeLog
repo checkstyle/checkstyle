@@ -1,5 +1,14 @@
 2001-07-02  Oliver Burn  <oliver-work@puppycrawl.com>
 
+	* docs/index.html: Added that can ignore checking braces.
+
+	* docs/cmdline.html: Added docs for IgnoreBraces property.
+
+	* docs/anttask.html: Added docs for IgnoreBraces property.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java:
+	Added support for the IgnoreBraces property.
+
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/VerifierImpl.java:
 	Added support for the IgnoreBraces property.
 
