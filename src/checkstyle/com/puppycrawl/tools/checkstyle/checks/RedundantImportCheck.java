@@ -64,10 +64,12 @@ public class RedundantImportCheck
         else {
             final FullIdent imp = getImportText(aAST);
             if (fromPackage(imp.getText(), "java.lang")) {
-                log(aAST.getLineNo(), aAST.getColumnNo(), "import.lang");
+                log(aAST.getLineNo(), aAST.getColumnNo(), "import.lang",
+                    imp.getText());
             }
             else if (fromPackage(imp.getText(), mPkgName)) {
-                log(aAST.getLineNo(), aAST.getColumnNo(), "import.same");
+                log(aAST.getLineNo(), aAST.getColumnNo(), "import.same",
+                    imp.getText());
             }
             // Check for a duplicate import
             final Iterator it = mImports.iterator();
@@ -77,7 +79,8 @@ public class RedundantImportCheck
                     log(aAST.getLineNo(),
                         aAST.getColumnNo(),
                         "import.duplicate",
-                        new Integer(full.getLineNo()));
+                        new Integer(full.getLineNo()),
+                        imp.getText());
                 }
             }
 
