@@ -49,6 +49,28 @@ class Verifier
     /** compiled regexp to match Javadoc tags that take an argument **/
     private static final RE MATCH_JAVADOC_ARG = createRE(MATCH_JAVADOC_ARG_PAT);
 
+   /**
+    * the pattern to match the first line of a multi-line Javadoc
+    * tag that takes an argument. Javadoc with no arguments isn't
+    * allowed to go over multiple lines.
+    **/
+    private static final String MATCH_JAVADOC_MULTILINE_START_PAT
+        = "@(throws|exception|param)\\s+(\\S+)\\s*$";
+    /** compiled regexp to match first part of multilineJavadoc tags **/
+    private static final RE MATCH_JAVADOC_MULTILINE_START =
+       createRE(MATCH_JAVADOC_MULTILINE_START_PAT);
+
+    /** the pattern that looks for a continuation of the comment **/
+    private static final String MATCH_JAVADOC_MULTILINE_CONT_PAT
+        = "(\\*/|@|[^\\s\\*])";
+    /** compiled regexp to look for a continuation of the comment **/
+    private static final RE MATCH_JAVADOC_MULTILINE_CONT =
+       createRE(MATCH_JAVADOC_MULTILINE_CONT_PAT);
+    /** Multiline finished at end of comment **/
+    private static final String END_JAVADOC = "*/";
+    /** Multiline finished at next Javadoc **/
+    private static final String NEXT_TAG = "@";
+
     /** the pattern to match Javadoc tags with no argument **/
     private static final String MATCH_JAVADOC_NOARG_PAT
         = "@(return|see|author)\\s+\\S";
@@ -432,7 +454,7 @@ class Verifier
         if ((after < line.length()) &&
             !Character.isWhitespace(line.charAt(after)))
         {
-            log(aLineNo, "'" + aText + "' is not proceeded with whitespace.");
+            log(aLineNo, "'" + aText + "' is not followed by whitespace.");
         }
     }
 
@@ -453,7 +475,7 @@ class Verifier
             Character.isWhitespace(line.charAt(after)))
         {
             log(aAST.getLineNo(),
-                "'" + aAST.getText() + "' is proceeded with whitespace.");
+                "'" + aAST.getText() + "' is followed by whitespace.");
         }
     }
 
@@ -829,6 +851,27 @@ class Verifier
             else if (MATCH_JAVADOC_NOARG.match(aLines[i])) {
                 tags.add(new JavadocTag(currentLine,
                                         MATCH_JAVADOC_NOARG.getParen(1)));
+            }
+            else if (MATCH_JAVADOC_MULTILINE_START.match(aLines[i])) {
+                final String p1 = MATCH_JAVADOC_MULTILINE_START.getParen(1);
+                final String p2 = MATCH_JAVADOC_MULTILINE_START.getParen(2);
+
+                // Look for the rest of the comment if all we saw was
+                // the tag and the name. Stop when we see '*/' (end of
+                // Javadoc, '@' (start of next tag), or anything that's
+                // not whitespace or '*' characters.
+                int remIndex = i + 1;
+                while (remIndex < aLines.length) {
+                    if (MATCH_JAVADOC_MULTILINE_CONT.match(aLines[remIndex])) {
+                        remIndex = aLines.length;
+                        String lFin = MATCH_JAVADOC_MULTILINE_CONT.getParen(1);
+                        if (!lFin.equals(NEXT_TAG) && !lFin.equals(END_JAVADOC))
+                        {
+                            tags.add(new JavadocTag(currentLine, p1, p2));
+                        }
+                    }
+                    remIndex++;
+                }
             }
         }
         return tags;
