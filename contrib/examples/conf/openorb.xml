@@ -80,7 +80,7 @@
 
     <!-- JLS -->
     <module name="RedundantModifier"/>
-    <module name="Modifier"/>
+    <module name="ModifierOrder"/>
     <module name="UpperEll"/>
 
 

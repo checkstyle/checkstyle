@@ -53,7 +53,7 @@
         </module>
         <module name="MethodLength"/>
         <module name="MethodName"/>
-        <module name="Modifier"/>
+        <module name="ModifierOrder"/>
         <module name="NeedBraces"/>
         <module name="NoWhitespaceAfter"/>
 
