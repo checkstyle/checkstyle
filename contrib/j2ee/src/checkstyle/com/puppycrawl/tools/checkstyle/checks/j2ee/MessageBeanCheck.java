@@ -46,12 +46,12 @@ public class MessageBeanCheck
             && Utils.hasImplements(aAST, "javax.jms.MessageListener")
             && !Utils.isAbstract(aAST))
         {
-            checkBean(aAST, "Message");
+            checkBean(aAST, "Message bean");
             if (!hasRequiredEjbCreate(aAST)) {
                 final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
                 log(nameAST.getLineNo(), nameAST.getColumnNo(),
                     "missingmethod.bean",
-                    new Object[] {"Message", "ejbCreate"});
+                    new Object[] {"Message bean", "ejbCreate"});
             }
         }
     }

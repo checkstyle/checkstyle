@@ -150,6 +150,51 @@ public class Utils
     }
 
     /**
+     * Determines whether an AST node is in the definition of a
+     * class that implements javax.ejb.EntityBean.
+     * @param aAST the AST to check.
+     * @return true if aAST is in the definition of a
+     * class that implements javax.ejb.SessionBean.
+     */
+    public static boolean implementsEntityBean(DetailAST aAST)
+    {
+        DetailAST definer = getDefiner(aAST);
+        return ((definer != null)
+            && Utils.hasImplements(definer, "javax.ejb.EntityBean"));
+    }
+
+    /**
+     * Determines whether an AST node is in the definition of a
+     * class that implements javax.ejb.SessionBean.
+     * @param aAST the AST to check.
+     * @return true if aAST is in the definition of a
+     * class that implements javax.ejb.SessionBean.
+     */
+    public static boolean implementsSessionBean(DetailAST aAST)
+    {
+        DetailAST definer = getDefiner(aAST);
+        return ((definer != null)
+            && Utils.hasImplements(definer, "javax.ejb.SessionBean"));
+    }
+
+    /**
+     * Finds the DetailAST for the class definition of an AST.
+     * @param aAST the AST for the search.
+     * @return the class definition AST for aAST.
+     */
+    private static DetailAST getDefiner(DetailAST aAST)
+    {
+        DetailAST definer = aAST.getParent();
+        while ((definer != null)) {
+            if (definer.getType() == TokenTypes.CLASS_DEF) {
+                break;
+            }
+            definer = definer.getParent();
+        }
+        return definer;
+    }
+
+    /**
      * Determines whether an AST defines an abstract element.
      * @param aAST the AST to check.
      * @return true if aAST defines an abstract element.

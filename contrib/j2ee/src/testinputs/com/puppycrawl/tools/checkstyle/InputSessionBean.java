@@ -66,7 +66,7 @@ final class FinalSessionBean
     {
     }
 
-    public int ejbCreate(double x)
+    protected static final int ejbCreate(double x)
     {
         return 1;   
     }
