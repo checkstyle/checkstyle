@@ -6,7 +6,7 @@
   <!-- (and without typing -D each time it compiles it) -->
   <property file="checkstyle.buildproperties" />
   <property file="${user.home}/checkstyle.buildproperties" />
-  
+
   <!-- Note: to compile successfully, the classpath must point to the home -->
   <!-- of ANTLR. This is because not all ANTLR classes are part of the ANTLR -->
   <!-- distributed jar file. -->
@@ -42,7 +42,7 @@
     <property name="asd" refid="run.classpath" />
     <echo message="Classpath is ${asd}" />
   </target>
-    
+
   <!-- -->
   <!-- Cleanup targets -->
   <!-- -->
@@ -96,7 +96,7 @@
           fork="yes"
 	  dir="src/tests/com/puppycrawl/tools/checkstyle"
           classpathref="run.classpath">
-      <sysproperty key="checkstyle.allow.tabs" value="yes"/> 
+      <sysproperty key="checkstyle.allow.tabs" value="yes"/>
       <arg value="InputSimple.java" />
     </java>
   </target>
@@ -129,7 +129,10 @@
     <checkstyle headerfile="docs/java.header"
                 ignorebraces="false"
 		cachefile="classes/cachefile"
-                headerignoreline="3">
+                headerignoreline="3"
+                memberPattern="^m[A-Z][a-zA-Z0-9]*$"
+                staticPattern="^s[A-Z][a-zA-Z0-9]*$"
+                paramPattern="^a[A-Z][a-zA-Z0-9]*$">
       <fileset dir="src/checkstyle"
                includes="**/*.java"
                excludes="**/Generated*.java"/>
@@ -153,9 +156,9 @@
     <property name="tests.dir"
               location="src/tests/com/puppycrawl/tools/checkstyle"/>
 
-    <junit printsummary="yes" 
-           fork="yes" 
-           haltonfailure="no" 
+    <junit printsummary="yes"
+           fork="yes"
+           haltonfailure="no"
            failureProperty="tests.have.failed">
       <jvmarg value="-Dtests.dir=${tests.dir}"/>
       <formatter type="xml" />
@@ -175,7 +178,7 @@
     </junitreport>
 
     <!-- if only fail had an if attribute ... ugly workaround follows -->
-    <antcall target="tests.failed"/> 
+    <antcall target="tests.failed"/>
 
   </target>
 
