@@ -1,0 +1,788 @@
+<?xml version="1.0"?>
+<!--
+    CheckStyle 3.4 template configuration file
+    @author Oleg Estehin
+-->
+
+<!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.1//EN"
+        "http://www.puppycrawl.com/dtds/configuration_1_1.dtd">
+
+<module name="Checker">
+
+    <!-- See http://checkstyle.sf.net/config_javadoc.html#PackageHtml -->
+    <!-- Checks that a package.html file exists for each package.     -->
+        <!-- <property name="fileExtensions" value="java"/> -->
+    <module name="PackageHtml">
+    </module>
+
+    <module name="TreeWalker">
+
+        <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocType -->
+        <!-- Checks Javadoc comments for class and interface definitions. -->
+            <!-- <property name="scope" value="private"/> -->
+            <!-- <property name="excludeScope" value=""/> -->
+            <!-- <property name="authorFormat" value=""/> -->
+            <!-- <property name="versionFormat" value=""/> -->
+            <!-- <property name="tokens" value="INTERFACE_DEF, CLASS_DEF"/> -->
+        <module name="JavadocType">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocMethod -->
+        <!-- Checks to ensure that the javadoc tags exist (if required) -->
+            <!-- <property name="scope" value="private"/> -->
+            <!-- <property name="excludeScope" value=""/> -->
+            <!-- <property name="allowUndeclaredRTE" value="false"/> -->
+            <!-- <property name="allowThrowsTagsForSubclasses" value="false"/> -->
+            <!-- <property name="allowMissingParamTags" value="false"/> -->
+            <!-- <property name="allowMissingThrowsTags" value="false"/> -->
+            <!-- <property name="allowMissingReturnTag" value="false"/> -->
+            <!-- <property name="tokens" value="METHOD_DEF, CTOR_DEF"/> -->
+        <module name="JavadocMethod">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocVariable -->
+        <!-- Checks that variables have Javadoc comments. -->
+            <!-- <property name="scope" value="private"/> -->
+            <!-- <property name="excludeScope" value=""/> -->
+        <module name="JavadocVariable">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocStyle -->
+        <!-- Validates Javadoc comments to help ensure they are well formed. -->
+            <!-- <property name="scope" value="private"/> -->
+            <!-- <property name="excludeScope" value=""/> -->
+            <!-- <property name="checkFirstSentence" value="true"/> -->
+            <!-- <property name="checkEmptyJavadoc" value="false"/> -->
+            <!-- <property name="checkHtml" value="true"/> -->
+            <!-- <property name="tokens" value="INTERFACE_DEF, CLASS_DEF,
+                    METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/> -->
+        <module name="JavadocStyle">
+        </module>
+
+
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <!-- Checks for Naming Conventions.                  -->
+            <!-- <property name="format" value="^Abstract.*$|^.*Factory$"/> -->
+        <module name="AbstractClassName">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <!-- Checks for Naming Conventions.                  -->
+            <!-- <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/> -->
+        <module name="ConstantName">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <!-- Checks for Naming Conventions.                  -->
+            <!-- <property name="format" value="^[a-z][a-zA-Z0-9]*$"/> -->
+            <!-- <property name="tokens" value="VARIABLE_DEF, PARAMETER_DEF"/> -->
+        <module name="LocalFinalVariableName">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <!-- Checks for Naming Conventions.                  -->
+            <!-- <property name="format" value="^[a-z][a-zA-Z0-9]*$"/> -->
+        <module name="LocalVariableName">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <!-- Checks for Naming Conventions.                  -->
+        <module name="MemberName">
+            <!-- <property name="format" value="^[a-z][a-zA-Z0-9]*$"/> -->
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <!-- Checks for Naming Conventions.                  -->
+            <!-- <property name="format" value="^[a-z][a-zA-Z0-9]*$"/> -->
+        <module name="MethodName">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <!-- Checks for Naming Conventions.                  -->
+            <!-- <property name="format" value="^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$"/> -->
+        <module name="PackageName">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <!-- Checks for Naming Conventions.                  -->
+            <!-- <property name="format" value="^[a-z][a-zA-Z0-9]*$"/> -->
+        <module name="ParameterName">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <!-- Checks for Naming Conventions.                  -->
+            <!-- <property name="format" value="^[a-z][a-zA-Z0-9]*$"/> -->
+        <module name="StaticVariableName">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <!-- Checks for Naming Conventions.                  -->
+            <!-- <property name="format" value="^[a-z][a-zA-Z0-9]*$"/> -->
+            <!-- <property name="tokens" value="CLASS_DEF, INTERFACE_DEF"/> -->
+            <!-- <property name="applyToPublic" value="true"/> -->
+            <!-- <property name="applyToProtected" value="true"/> -->
+            <!-- <property name="applyToPackage" value="true"/> -->
+            <!-- <property name="applyToPrivate" value="true"/> -->
+        <module name="TypeName">
+        </module>
+        
+        
+        <!-- See http://checkstyle.sf.net/config_header.html   -->
+        <!-- Checks that a source file begins with a specified header. -->
+            <!-- <property name="headerFile" value=""/> -->
+            <!-- <property name="ignoreLines" value=""/> -->
+<!--
+        <module name="Header">
+        </module>
+-->
+        
+        <!-- See http://checkstyle.sf.net/config_header.html   -->
+        <!-- Checks the header of a source file against a header file that 
+            contains a regular expression for each line of the source header. -->
+            <!-- <property name="headerFile" value=""/> -->
+            <!-- <property name="multiLines" value=""/> -->
+<!--
+        <module name="RegexpHeader">
+        </module>
+-->
+        
+        
+        <!-- See http://checkstyle.sf.net/config_import.html -->
+        <!-- Checks that there are no import statements that use the * notation. -->
+            <!-- <property name="excludes" value=""/> -->
+        <module name="AvoidStarImport">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_import.html -->
+        <!-- Checks for imports from a set of illegal packages. -->
+            <!-- <property name="illegalPkgs" value="sun"/> -->
+        <module name="IllegalImport">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_import.html -->
+        <!-- Checks for redundant import statements. -->
+        <module name="RedundantImport">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_import.html -->
+        <!-- Checks for unused import statements. -->
+        <module name="UnusedImports">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_import.html -->
+        <!-- Checks the ordering/grouping of imports. -->
+            <!-- <property name="groups" value=""/> -->
+            <!-- <property name="ordered" value="true"/> -->
+            <!-- <property name="separated" value="false"/> -->
+            <!-- <property name="caseSensitive" value="true"/> -->
+        <module name="ImportOrder">
+        </module>
+
+
+        <!-- See http://checkstyle.sf.net/config_sizes.html -->
+        <!-- Restricts the number of executable statements to a specified 
+            limit. -->
+            <!-- <property name="max" value="30"/> -->
+            <!-- <property name="tokens" value="CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT"/> -->
+        <module name="ExecutableStatementCount">
+        </module>
+
+        <!-- See http://checkstyle.sf.net/config_sizes.html -->
+        <!-- Checks for long source files. -->
+            <!-- <property name="max" value="2000"/> -->
+        <module name="FileLength">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_sizes.html -->
+        <!-- Checks for long lines. -->
+            <!-- <property name="ignorePattern" value="^$"/> -->
+            <!-- <property name="max" value="80"/> -->
+        <module name="LineLength">
+        </module>
+
+        <!-- See http://checkstyle.sf.net/config_sizes.html -->
+        <!-- Checks for long methods and constructors. -->
+            <!-- <property name="max" value="150"/> -->
+            <!-- <property name="countEmpty" value="true"/> -->
+            <!-- <property name="tokens" value="METHOD_DEF, CTOR_DEF"/> -->
+        <module name="MethodLength">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_sizes.html -->
+        <!-- Checks for long anonymous inner classes. -->
+            <!-- <property name="max" value="20"/> -->
+        <module name="AnonInnerLength">
+        </module>
+
+        <!-- See http://checkstyle.sf.net/config_sizes.html -->
+        <!-- Checks the number of parameters of a method or constructor. -->
+            <!-- <property name="max" value="7"/> -->
+            <!-- <property name="tokens" value="METHOD_DEF, CTOR_DEF"/> -->
+        <module name="ParameterNumber">
+        </module>
+
+
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <!-- Checks the padding of an empty for initializer. -->
+            <!-- <property name="option" value="nospace"/> -->
+        <module name="EmptyForInitializerPad">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <!-- Checks the padding of an empty for iterator. -->
+            <!-- <property name="option" value="nospace"/> -->
+        <module name="EmptyForIteratorPad">
+        </module>
+
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <!-- Checks the padding between the identifier of a method definition,
+            constructor definition, method call, or constructor invocation; and
+            the left parenthesis of the parameter list. -->
+            <!-- <property name="allowLineBreaks" value="true"/> -->
+            <!-- <property name="tokens" value="CTOR_DEF, LITERAL_NEW,
+                    METHOD_CALL, METHOD_DEF, SUPER_CTOR_CALL "/> -->
+        <module name="MethodParamPad">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <!-- Checks that there is no whitespace after a token. -->
+            <!-- <property name="allowLineBreaks" value="true"/> -->
+            <!-- <property name="tokens" value="ARRAY_INIT, BNOT, DEC, DOT, INC,
+                    LNOT, UNARY_MINUS, UNARY_PLUS"/> -->
+        <module name="NoWhitespaceAfter">
+        </module>
+                
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <!-- Checks that there is no whitespace before a token. -->
+            <!-- <property name="allowLineBreaks" value="false"/> -->
+            <!-- <property name="tokens" value="SEMI, DOT, POST_DEC, POST_INC"/> -->
+        <module name="NoWhitespaceBefore">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <!-- Checks the policy on how to wrap lines on operators. -->
+            <!-- <property name="option" value="nl"/> -->
+            <!-- <property name="tokens" value="ASSIGN, BAND, BAND_ASSIGN, BOR,
+                    BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, BXOR_ASSIGN, COLON, DIV,
+                    DIV_ASSIGN, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF,
+                    LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL,
+                    PLUS, PLUS_ASSIGN, QUESTION, SL, SL_ASSIGN, SR, SR_ASSIGN,
+                    STAR, STAR_ASSIGN"/> -->
+        <module name="OperatorWrap">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <!-- Checks the policy on the padding of parentheses. -->
+            <!-- <property name="option" value="nospace"/> -->
+            <!-- <property name="tokens" value="CTOR_CALL, LPAREN, METHOD_CALL,
+                    RPAREN, SUPER_CTOR_CALL"/> -->
+        <module name="ParenPad">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <!-- Checks the policy on the padding of parentheses for typecasts. -->
+            <!-- <property name="option" value="nospace"/> -->
+            <!-- <property name="tokens" value="TYPECAST, RPAREN"/> -->
+        <module name="TypecastParenPad">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <!-- Checks that there are no tab characters ('\t') in the source 
+            code. -->
+        <module name="TabCharacter">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <!-- Checks that a token is followed by whitespace. -->
+            <!-- <property name="tokens" value="COMMA, SEMI, TYPECAST"/> -->
+        <module name="WhitespaceAfter">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+        <!-- Checks that a token is surrounded by whitespace. -->
+            <!-- <property name="tokens" value="ASSIGN, BAND, BAND_ASSIGN, BOR,
+                    BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, BXOR_ASSIGN, COLON, DIV,
+                    DIV_ASSIGN, EQUAL, GE, GT, LAND, LCURLY, LE, LITERAL_ASSERT,
+                    LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY,
+                    LITERAL_FOR, LITERAL_IF, LITERAL_RETURN,
+                    LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, LOR, LT,
+                    MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, PLUS,
+                    PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR,
+                    SR_ASSIGN, STAR, STAR_ASSIGN"/> -->
+        <module name="WhitespaceAround">
+        </module>
+
+
+        <!-- See http://checkstyle.sf.net/config_modifiers.html -->
+        <!-- Checks that the order of modifiers conforms to the suggestions 
+            in the Java Language specification, sections 8.1.1, 8.3.1 and 8.4.3. -->
+        <module name="ModifierOrder">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_modifiers.html -->
+        <!-- Checks that there is no redundant modifiers. -->
+            <!-- <property name="tokens" value="METHOD_DEF, VARIABLE_DEF"/> -->
+        <module name="RedundantModifier">
+        </module>
+
+
+        <!-- See http://checkstyle.sf.net/config_blocks.html -->
+        <!-- Checks for empty blocks. -->
+            <!-- <property name="option" value="stmt"/> -->
+            <!-- <property name="tokens" value="LITERAL_CATCH, LITERAL_DO,
+                    LITERAL_ELSE, LITERAL_FINALLY, LITERAL_IF, LITERAL_FOR,
+                    LITERAL_TRY, LITERAL_WHILE, INSTANCE_INIT STATIC_INIT"/> -->
+        <module name="EmptyBlock">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_blocks.html -->
+        <!-- Checks for the placement of left curly braces ('{') for code 
+            blocks. -->
+            <!-- <property name="option" value="eol"/> -->
+            <!-- <property name="maxLineLength" value="80"/> -->
+            <!-- <property name="tokens" value="CLASS_DEF, CTOR_DEF,
+                    INTERFACE_DEF, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE,
+                    LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH,
+                    LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE,
+                    METHOD_DEF"/> -->
+        <module name="LeftCurly">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_blocks.html -->
+        <!-- Checks for braces around code blocks. -->
+            <!-- <property name="tokens" value="LITERAL_DO, LITERAL_ELSE,
+                    LITERAL_IF, LITERAL_FOR, LITERAL_WHILE"/> -->
+        <module name="NeedBraces">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_blocks.html -->
+        <!-- Checks the placement of right curly braces ('}') for else, 
+            try, and catch tokens. -->
+            <!-- <property name="option" value="same"/> -->
+            <!-- <property name="tokens" value="LITERAL_CATCH, LITERAL_ELSE,
+                    LITERAL_TRY"/> -->
+        <module name="RightCurly">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_blocks.html -->
+        <!-- Finds nested blocks, i.e. blocks that are used freely in the 
+            code. -->
+            <!-- <property name="allowInSwitchCase" value="false"/> -->
+        <module name="AvoidNestedBlocks">
+        </module>
+        
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that array initialization contains a trailing comma. -->
+        <module name="ArrayTrailingComma">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Detects inline conditionals. -->
+        <module name="AvoidInlineConditionals">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that classes that define a covariant equals() method 
+            also override method equals(java.lang.Object). -->
+        <module name="CovariantEquals">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- The "double-checked locking" idiom (DCL) tries to avoid the runtime
+                cost of synchronization. -->
+        <module name="DoubleCheckedLocking">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Detects empty statements (standalone ;). -->
+        <module name="EmptyStatement">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that classes that override equals() also override 
+            hashCode(). -->
+        <module name="EqualsHashCode">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that local variables that never have their values 
+            changed are declared final. -->
+            <!-- <property name="tokens" value="PARAMETER_DEF, VARIABLE_DEF"/> -->
+        <module name="FinalLocalVariable">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that a local variable or a parameter does not shadow a field
+            that is defined in the same class. -->
+            <!-- <property name="tokens" value="PARAMETER_DEF, VARIABLE_DEF"/> -->
+            <!-- <property name="ignoreFormat" value=""/> -->
+            <!-- <property name="ignoreConstructorParameter" value="false"/> -->
+            <!-- <property name="ignoreSetter" value="false"/> -->
+        <module name="HiddenField">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks for illegal instantiations where a factory method is 
+            preferred. -->
+            <!-- <property name="classes" value="java.lang.Boolean"/> -->
+        <module name="IllegalInstantiation">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks for illegal tokens. -->
+            <!-- <property name="tokens" value="LITERAL_SWITCH, POST_INC, POST_DEC"/> -->
+        <module name="IllegalToken">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks for illegal token text. -->
+            <!-- <property name="tokens" value=""/> -->
+            <!-- <property name="format" value=""/> -->
+            <!-- <property name="ignoreCase" value="false"/> -->
+            <!-- <property name="message" value=""/> -->
+<!--    
+        <module name="IllegalTokenText">
+        </module>
+-->
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks for assignments in subexpressions, such as in 
+            String s = Integer.toString(i = 2);. -->
+            <!-- <property name="tokens" value="ASSIGN, BAND_ASSIGN, BOR_ASSIGN,
+                    BSR_ASSIGN, BXOR_ASSIGN, DIV_ASSIGN, MINUS_ASSIGN,
+                    MOD_ASSIGN, PLUS_ASSIGN, SL_ASSIGN, SR_ASSIGN,
+                    STAR_ASSIGN"/> -->
+        <module name="InnerAssignment">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that there are no "magic numbers", where a magic number 
+            is a numeric literal that is not defined as a constant. -->
+            <!-- <property name="tokens" value="NUM_DOUBLE, NUM_FLOAT, NUM_INT,
+                    NUM_LONG"/> -->
+            <!-- <property name="ignoreNumbers" value="-1, 0, 1, 2"/> -->
+        <module name="MagicNumber">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that switch statement has "default" clause. -->
+        <module name="MissingSwitchDefault">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks for redundant exceptions declared in throws clause such 
+            as duplicates, unchecked exceptions or subclasses of another declared exception. -->
+            <!-- <property name="allowUnchecked" value="false"/> -->
+            <!-- <property name="allowSubclasses" value="false"/> -->
+        <module name="RedundantThrows">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks for overly complicated boolean expressions. -->
+        <module name="SimplifyBooleanExpression">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks for overly complicated boolean return statements. -->
+        <module name="SimplifyBooleanReturn">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that string literals are not used with == or !=. -->
+        <module name="StringLiteralEquality">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Restricts nested if-else blocks to a specified depth (default = 1). -->
+            <!-- <property name="max" value="1"/> -->
+        <module name="NestedIfDepth">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Restricts nested try-catch blocks to a specified depth (default = 1). -->
+            <!-- <property name="max" value="1"/> -->
+        <module name="NestedTryDepth">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that an overriding clone() method invokes super.clone(). -->
+        <module name="SuperClone">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that an overriding finalize() method invokes super.finalize(). -->
+        <module name="SuperFinalize">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Catching java.lang.Exception, java.lang.Error or 
+            java.lang.RuntimeException is almost never acceptable. -->
+            <!-- <property name="illegalClassNames" value="java.lang.Exception,
+                    java.lang.Throwable, java.lang.RuntimeException"/> -->
+        <module name="IllegalCatch">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Ensure a class is has a package declaration. -->
+        <module name="PackageDeclaration">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Ensures that the setUp(), tearDown()methods are named correctly, 
+            have no arguments, return void and are either public or protected. -->
+        <module name="JUnitTestCase">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Restrict the number of return statements. Default = 2. -->
+            <!-- <property name="max" value="2"/> -->
+        <module name="ReturnCount">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that particular class are never used as types in variable 
+            declarations, return values or parameters. -->
+            <!-- <property name="tokens" value="PARAMETER_DEF,
+                    VARIABLE_DEF METHOD_DEF"/> -->
+            <!-- <property name="illegalClassNames" value="
+                    java.util.GregorianCalendar, java.util.Hashtable,
+                    java.util.HashSet, java.util.HashMap, java.util.ArrayList,
+                    java.util.LinkedList, java.util.LinkedHashMap,
+                    java.util.LinkedHashSet, java.util.TreeSet,
+                    java.util.TreeMap, java.util.Vector"/> -->
+            <!-- <property name="ignoredMethodNames" value="getInitialContext,
+                    getEnvironment"/> -->
+        <module name="IllegalType">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks declaration order according to Code Conventions for 
+            the Java Programming Language. -->
+        <module name="DeclarationOrder">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Disallow assignment of parameters. -->
+        <module name="ParameterAssignment">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks if any class or object member explicitly initialized to 
+            default for its type value. -->
+        <module name="ExplicitInitialization">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Check that the default is after all the cases in a switch statement. -->
+        <module name="DefaultComesLast">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that classes (except abtract one) define a ctor and don't
+            rely on the default one. -->
+        <module name="MissingCtor">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks for fall through in switch statements Finds locations where
+            a case contains Java code - but lacks a break, return, throw or
+            continue statement. -->
+        <module name="FallThrough">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that each variable declaration is in its own statement and
+            on its own line. -->
+        <module name="MultipleVariableDeclarations">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks that code doesn't rely on the "this." default. -->
+            <!-- <property name="checkFields" value="true"/> -->
+            <!-- <property name="checkMethods" value="true"/> -->
+        <module name="RequireThis">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_coding.html -->
+        <!-- Checks for the use of unnecessary parentheses. -->
+        <module name="UnnecessaryParentheses">
+        </module>
+        
+        
+        <!-- See http://checkstyle.sf.net/config_design.html -->
+        <!-- Checks visibility of class members. -->
+            <!-- <property name="packageAllowed" value="false"/> -->
+            <!-- <property name="protectedAllowed" value="false"/> -->
+            <!-- <property name="publicMemberPattern" value="^serialVersionUID"/> -->
+        <module name="VisibilityModifier">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_design.html -->
+        <!-- Checks that a class which has only private constructors is 
+            declared as final. -->
+        <module name="FinalClass">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_design.html -->
+        <!-- Implements Bloch, Effective Java, Item 17 - Use Interfaces only to define types. -->
+            <!-- <property name="allowMarkerInterfaces" value="true"/> -->
+        <module name="InterfaceIsType">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_design.html -->
+        <!-- Make sure that utility classes (classes that contain only 
+            static methods) do not have a public constructor. -->
+        <module name="HideUtilityClassConstructor">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_design.html -->
+        <!-- Checks that classes are designed for extension. -->
+        <module name="DesignForExtension">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_design.html -->
+        <!-- Ensures that exceptions (defined as any class name conforming 
+            to some regular expression) are immutable. That is, have only final fields. -->
+            <!-- <property name="format" value="^.*Exception$|^.*Error$"/> -->
+        <module name="MutableException">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_design.html -->
+        <!-- Restricts throws statements to a specified count (default = 1). -->
+            <!-- <property name="max" value="1"/> -->
+        <module name="ThrowsCount">
+        </module>
+        
+        
+        <!-- See http://checkstyle.sf.net/config_metrics.html -->
+        <!-- Restrict the number of number of &&, || and ^ in an expression. -->
+            <!-- <property name="max" value="3"/> -->
+        <module name="BooleanExpressionComplexity">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_metrics.html -->
+        <!-- This metric measures the number of instantiations of other
+            classes within the given class. -->
+            <!-- <property name="max" value="7"/> -->
+        <module name="ClassDataAbstractionCoupling">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_metrics.html -->
+        <!-- The number of other classes a given class relies on. -->
+            <!-- <property name="max" value="20"/> -->
+        <module name="ClassFanOutComplexity">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_metrics.html -->
+        <!-- Checks cyclomatic complexity against a specified limit. -->
+            <!-- <property name="max" value="10"/> -->
+        <module name="CyclomaticComplexity">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_metrics.html -->
+        <!-- The NPATH metric computes the number of possible execution paths
+            through a function. -->
+            <!-- <property name="max" value="200"/> -->
+        <module name="NPathComplexity">
+        </module>
+        
+        
+        <!-- See http://checkstyle.sf.net/config_misc.html -->
+        <!-- A generic check for code problems - the user can search for any pattern. -->
+            <!-- <property name="format" value="^$"/> -->
+            <!-- <property name="ignoreCase" value="false"/> -->
+            <!-- <property name="ignoreComments" value="false"/> -->
+            <!-- <property name="message" value=""/> -->
+        <module name="GenericIllegalRegexp">
+            <property name="format" value="\S\s+$"/>
+            <property name="message" value="Line has trailing spaces."/>
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_misc.html -->
+        <!-- A check for TODO: comments. Actually it is a generic regular 
+            expression matcher on Java comments. To check for other patterns in 
+            Java comments, set property format. -->
+            <!-- <property name="format" value="TODO:"/> -->
+        <module name="TodoComment">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_misc.html -->
+        <!-- Checks for uncommented main() methods (debugging leftovers). -->
+            <!-- <property name="excludedClasses" value=""/> -->
+        <module name="UncommentedMain">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_misc.html -->
+        <!-- Checks that long constants are defined with an upper ell.
+            That is 'L' and not 'l'. -->
+        <module name="UpperEll">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_misc.html -->
+        <!-- Checks the style of array type definitions. -->
+            <!-- <property name="javaStyle" value="true"/> -->
+        <module name="ArrayTypeStyle">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_misc.html -->
+        <!-- Check that method/constructor parameters are final. -->
+            <!-- <property name="tokens" value="METHOD_DEF, CTOR_DEF"/> -->
+        <module name="FinalParameters">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_misc.html -->
+        <!-- Checks for restricted tokens beneath other tokens. -->
+            <!-- <property name="tokens" value=""/> -->
+            <!-- <property name="limitedTokens" value=""/> -->
+            <!-- <property name="minimumDepth" value="0"/> -->
+            <!-- <property name="maximumDepth" value="java.lang.Integer.MAX_VALUE"/> -->
+            <!-- <property name="minimumNumber" value="0"/> -->
+            <!-- <property name="maximumNumber" value="java.lang.Integer.MAX_VALUE"/> -->
+            <!-- <property name="minimumMessage" value="descendant.token.min"/> -->
+            <!-- <property name="maximumMessage" value="descendant.token.max"/> -->
+<!--
+        <module name="DescendantToken">
+        </module>
+-->
+        
+        <!-- See http://checkstyle.sf.net/config_misc.html -->
+        <!-- Checks correct indentation of Java Code. -->
+            <!-- <property name="basicOffset" value="4"/> -->
+            <!-- <property name="braceAdjustment" value="0"/> -->
+            <!-- <property name="caseIndent" value="4"/> -->
+        <module name="Indentation">
+        </module>
+        
+        <!-- See http://checkstyle.sf.net/config_misc.html -->
+        <!-- The check to ensure that requires that comments be the only thing
+            on a line. -->
+            <!-- <property name="format" value="^[\\s\\}\\);]*$"/> -->
+        <module name="TrailingComment">
+        </module>
+        
+    </module>
+    
+    
+    <!-- See http://checkstyle.sf.net/config_duplicates.html -->
+    <!-- Performs a line-by-line comparison of all code lines and 
+        reports duplicate code. -->
+        <!-- <property name="min" value="12"/> -->
+    <module name="StrictDuplicateCode">
+    </module>
+    
+    
+    <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
+    <!-- Checks whether files end with a new line.                        -->
+        <!-- <property name="lineSeparator" value="system"/> -->
+    <module name="NewlineAtEndOfFile">
+    </module>
+
+    <!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
+    <!-- Checks that property files contain the same keys.         -->
+        <!-- <property name="fileExtensions" value="properties"/> -->
+    <module name="Translation">
+    </module>
+    
+</module>
