@@ -498,16 +498,22 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <!-- copy stuff without filtering -->
     <copy todir="${dist.dir}/checkstyle-${version}">
       <fileset dir=".">
+        <include name="**/.cvsignore"/>
+        <include name="**/CVS"/>
+        <include name="*.xml"/>
         <include name="LICENSE*"/>
         <include name="README"/>
         <include name="RIGHTS.antlr"/>
         <include name="TODO"/>
         <include name="contrib/**"/>
-        <include name="**/.cvsignore"/>
-        <include name="**/CVS"/>
-        <include name="docs/**"/>
-        <exclude name="docs/*.html"/>
+        <include name="java.header"/>
       </fileset>
+    </copy>
+
+    <!-- Make the docs directory -->
+    <mkdir dir="${dist.dir}/checkstyle-${version}/docs" />
+    <copy todir="${dist.dir}/checkstyle-${version}/docs">
+      <fileset dir="${xdocs.dest}"/>
     </copy>
 
     <!-- create the final zip & tar/gzip files -->
@@ -530,6 +536,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
       <fileset dir=".">
         <exclude name="src/checkstyle/**/Generated*.java"/>
         <exclude name="src/checkstyle/**/Generated*.txt"/>
+        <include name="*.xml"/>
         <include name="LICENSE*"/>
         <include name="README"/>
         <include name="RIGHTS.antlr"/>
@@ -537,10 +544,12 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
         <include name="build.xml"/>
         <include name="config/**"/>
         <include name="contrib/**"/>
+        <include name="java.header"/>
         <include name="lib/**"/>
         <include name="src/**"/>
       </fileset>
     </copy>
+
     <!-- Produce the final distributions -->
     <zip zipfile="${dist.dir}/checkstyle-src-${version}.zip">
       <fileset dir="${dist.dir}">
