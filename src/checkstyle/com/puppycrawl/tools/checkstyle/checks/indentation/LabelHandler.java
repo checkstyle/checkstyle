@@ -58,7 +58,7 @@ public class LabelHandler extends ExpressionHandler
     public int getLevelImpl()
     {
         return super.getLevelImpl()
-            - getIndentCheck().getIndentationAmount();
+            - getIndentCheck().getBasicOffset();
     }
 
     /**
@@ -79,6 +79,6 @@ public class LabelHandler extends ExpressionHandler
         DetailAST parent = (DetailAST)
             getMainAst().getFirstChild().getNextSibling();
         checkExpressionSubtree(parent, getLevel()
-            + getIndentCheck().getIndentationAmount(), true, false);
+            + getIndentCheck().getBasicOffset(), true, false);
     }
 }
