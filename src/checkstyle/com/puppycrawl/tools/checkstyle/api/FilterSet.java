@@ -18,72 +18,74 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Set;
 
 /**
- * A filter chain applies filters to Objects in chain order.
- * If the decision of a filter in the chain is ACCEPT, then
- * the chain accepts the Object immediately, without consulting
- * the remaining filters.
- * If the decision of a filter in the chain is DENY, then
- * the chain rejects the Object immediately, without consulting
- * the remaining filters.
- * If the decision of a filter in the chain is NEUTRAL, then
- * the mext filter in the chain, if any, is consulted.
+ * A filter set applies filters to Objects.
+ * If a filter in the set rejects an Object, then the
+ * Object is rejected. Otherwise, the Object is accepted.
  * @author Rick Giles
  */
-public class FilterChain
+public class FilterSet
     implements Filter
 {
-    /** filter chain */
-    private List mFilterChain = new ArrayList();
+    /** filter set */
+    private Set mFilters = new HashSet();
 
     /**
-     * Adds a Filter as the last filter in the chain.
+     * Adds a Filter to the set.
      * @param aFilter the Filter to add.
      */
     public void addFilter(Filter aFilter)
     {
-        mFilterChain.add(aFilter);
+        mFilters.add(aFilter);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Filter#decide */
-    public int decide(Object aObject)
+    /**
+     * Returns the Filters of the filter set.
+     * @return the Filters of the filter set.
+     */
+    protected Set getFilters()
     {
-        final Iterator it = mFilterChain.iterator();
-        while (it.hasNext()) {
-            final Filter filter = (Filter) it.next();
-            final int decision = filter.decide(aObject);
-            if (decision != Filter.NEUTRAL) {
-                return decision;
-            }
-        }
-        return Filter.NEUTRAL;
+        return mFilters;
     }
 
     /** @see java.lang.Object#toString() */
     public String toString()
     {
-        return mFilterChain.toString();
+        return mFilters.toString();
     }
 
     /** @see java.lang.Object#hashCode() */
     public int hashCode()
     {
-        return mFilterChain.hashCode();
+        return mFilters.hashCode();
     }
 
     /** @see java.lang.Object#equals(java.lang.Object) */
     public boolean equals (Object aObject)
     {
-        if (aObject instanceof FilterChain) {
-            final FilterChain other = (FilterChain) aObject;
-            return this.mFilterChain.equals(other.mFilterChain);
+        if (aObject instanceof FilterSet) {
+            final FilterSet other = (FilterSet) aObject;
+            return this.mFilters.equals(other.mFilters);
         }
         else {
             return false;
         }
+    }
+
+    /** @see com.puppycrawl.tools.checkstyle.api.Filter */
+    public boolean accept(Object aObject)
+    {
+        final Iterator it = mFilters.iterator();
+        while (it.hasNext()) {
+            final Filter filter = (Filter) it.next();
+            if (!filter.accept(aObject)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

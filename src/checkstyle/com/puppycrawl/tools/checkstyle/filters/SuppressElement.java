@@ -111,10 +111,10 @@ public class SuppressElement
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Filter */
-    public int decide(Object aObject)
+    public boolean accept(Object aObject)
     {
         if (!(aObject instanceof AuditEvent)) {
-            return Filter.NEUTRAL;
+            return true;
         }
 
         final AuditEvent event = (AuditEvent) aObject;
@@ -125,30 +125,30 @@ public class SuppressElement
             || (event.getLocalizedMessage() == null)
             || !mCheckRegexp.match(event.getSourceName()))
         {
-            return Filter.NEUTRAL;
+            return true;
         }
 
-        // deny if no line/column matching
+        // reject if no line/column matching
         if ((mLineFilter == null) && (mColumnFilter == null)) {
-            return Filter.DENY;
+            return false;
         }
 
-        // deny line if it is accepted by the line CSV filter
+        // reject line if it is accepted by the line CSV filter
         if (mLineFilter != null) {
             final Integer line = new Integer(event.getLine());
-            if (mLineFilter.decide(line) == Filter.ACCEPT) {
-                return Filter.DENY;
+            if (mLineFilter.accept(line)) {
+                return false;
             }
         }
 
-        // deny if column accepted by the column CSV filter
+        // reject if column accepted by the column CSV filter
         if (mColumnFilter != null) {
             final Integer column = new Integer(event.getColumn());
-            if (mColumnFilter.decide(column) == Filter.ACCEPT) {
-                return Filter.DENY;
+            if (mColumnFilter.accept(column)) {
+                return false;
             }
         }
-        return Filter.NEUTRAL;
+        return true;
     }
 
     /** @see java.lang.Object#toString() */

@@ -40,9 +40,9 @@ public class DenyAllFilter
 {
 
     /** @see com.puppycrawl.tools.checkstyle.filter.Filter */
-    public int decide(Object aObject)
+    public boolean accept(Object aObject)
     {
-        return Filter.DENY;
+        return false;
     }
 
 }

@@ -5,7 +5,7 @@ import org.apache.regexp.RESyntaxException;
 import junit.framework.TestCase;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.FilterChain;
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.filters.SuppressElement;
 
 /**
@@ -17,20 +17,20 @@ public class SuppressionsLoaderTest extends TestCase
     public void testNoSuppressions()
         throws CheckstyleException
     {
-        final FilterChain fc =
+        final FilterSet fc =
             SuppressionsLoader.loadSuppressions(
                 "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_none.xml");
-        final FilterChain fc2 = new FilterChain();
+        final FilterSet fc2 = new FilterSet();
         assertEquals(fc, fc2);
     }
     
     public void testMultipleSuppression()
         throws CheckstyleException, RESyntaxException
     {
-        final FilterChain fc =
+        final FilterSet fc =
             SuppressionsLoader.loadSuppressions(
                 "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_multiple.xml");
-        final FilterChain fc2 = new FilterChain();
+        final FilterSet fc2 = new FilterSet();
         SuppressElement se0 = new SuppressElement("file0", "check0");
         fc2.addFilter(se0);
         SuppressElement se1 = new SuppressElement("file1", "check1");

@@ -49,17 +49,14 @@ public class IntRangeFilter
         mUpperBound = new Integer(aUpperBound);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Filter#decide */
-    public int decide(Object aObject)
+    /** @see com.puppycrawl.tools.checkstyle.api.Filter */
+    public boolean accept(Object aObject)
     {
-        if ((mLowerBound.compareTo(aObject) <= 0)
-            && (mUpperBound.compareTo(aObject) >= 0))
-        {
-            return Filter.ACCEPT;
+        if (!(aObject instanceof Integer)) {
+            return false;
         }
-        else {
-            return Filter.NEUTRAL;
-        }
+        return ((mLowerBound.compareTo(aObject) <= 0)
+            && (mUpperBound.compareTo(aObject) >= 0));
     }
 
     /** @see java.lang.Object#hashCode() */

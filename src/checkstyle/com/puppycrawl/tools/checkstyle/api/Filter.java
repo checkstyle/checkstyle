@@ -19,30 +19,16 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 /**
- * Users should extend this class to implement customized
- * Object filtering.
+ * An interface for filtering objects.
  * @author Rick Giles
  */
 public interface Filter
 
 {
-    /** The object is acceptable to this filter. */
-    int ACCEPT = -1;
-
-    /** The object is rejected by this filter. */
-    int DENY = 0;
-
-    /** This filter is neutral with respect to the object. */
-    int NEUTRAL = 1;
-
     /**
-     * Determines the filtering of an Object.
-     * If the decision is <code>DENY</code>, then the Object is rejected.
-     * If the decision is <code>NEUTRAL</code>, then the filter is neutral
-     * with respect to the Object.
-     * If the decision is <code>ACCEPT</code> then the object will be accepted.
-     * @param aObject the object to decide on.
-     * @return the decision of the filter.
+     * Determines whether or not a filtered Object is accepted.
+     * @param aObject the Object to filter.
+     * @return true if the aObject is accepted.
      */
-    int decide(Object aObject);
+    boolean accept(Object aObject);
 }

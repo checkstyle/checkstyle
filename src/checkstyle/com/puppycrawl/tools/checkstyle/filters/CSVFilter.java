@@ -18,22 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.filters;
 
+import java.util.Iterator;
 import java.util.StringTokenizer;
 
-import com.puppycrawl.tools.checkstyle.api.FilterChain;
+import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
 
 /**
  * <p>
- * This filter accepts an integer that matches a CSV value, or
- * is in a CSV range. It is neutral on other Objects.
+ * This filter accepts an integer that matches a CSV value, where
+ * each value is an integer or a range of integers.
  * </p>
  * @author Rick Giles
  */
 public class CSVFilter
-    extends FilterChain
+    extends FilterSet
 {
     /**
-     * Contructs a <code>CSVFilter</code> from a CSV, Comma-Separated Values,
+     * Constructs a <code>CSVFilter</code> from a CSV, Comma-Separated Values,
      * string. Each value is an integer, or a range of integers. A range of
      * integers is of the form integer-integer, such as 1-10.
      * @param aPattern the CSV string.
@@ -59,5 +61,25 @@ public class CSVFilter
                 addFilter(new IntRangeFilter(lowerBound, upperBound));
             }
         }
+    }
+
+    /**
+     * Determines whether an Object matches a CSV integer value.
+     * @param aObject the Object to check.
+     * @return true if aObject is an Integer that matches a CSV value.
+     */
+    public boolean accept(Object aObject)
+    {
+        if (!(aObject instanceof Integer)) {
+            return false;
+        }
+        final Iterator it = getFilters().iterator();
+        while (it.hasNext()) {
+            final Filter filter = (Filter) it.next();
+            if (filter.accept(aObject)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -22,7 +22,7 @@ import com.puppycrawl.tools.checkstyle.SuppressionsLoader;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.FilterChain;
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
 
 /**
  * <p>
@@ -37,7 +37,7 @@ public class SuppressionFilter
     implements Filter
 {
     /** chain of individual suppresses */
-    private FilterChain mFilterChain = new FilterChain();
+    private FilterSet mFilterChain = new FilterSet();
 
     /**
      * Loads the suppressions for a file.
@@ -51,9 +51,9 @@ public class SuppressionFilter
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Filter */
-    public int decide(Object aObject)
+    public boolean accept(Object aObject)
     {
-        return mFilterChain.decide(aObject);
+        return mFilterChain.accept(aObject);
     }
 
     /** @see java.lang.Object#toString() */
