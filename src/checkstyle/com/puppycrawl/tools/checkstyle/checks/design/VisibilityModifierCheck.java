@@ -131,8 +131,8 @@ public class VisibilityModifierCheck
     /** @see Check */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() != TokenTypes.VARIABLE_DEF
-                || aAST.getParent().getType() != TokenTypes.OBJBLOCK)
+        if ((aAST.getType() != TokenTypes.VARIABLE_DEF)
+            || (aAST.getParent().getType() != TokenTypes.OBJBLOCK))
         {
             return;
         }

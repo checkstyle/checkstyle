@@ -118,5 +118,8 @@
             <property name="caseIndent" value="0"/>
         </module>
         <module name="ArrayTrailingComma"/>
+
+        <!-- Generates quite a few errors -->
+        <!-- module name="CyclomaticComplexity"/ -->
     </module>
 </module>

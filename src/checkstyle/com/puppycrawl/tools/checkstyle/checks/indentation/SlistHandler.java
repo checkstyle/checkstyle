@@ -147,18 +147,18 @@ public class SlistHandler extends BlockParentHandler
      */
     private boolean hasBlockParent()
     {
-        int parentType = getMainAst().getParent().getType();
-        return parentType == TokenTypes.LITERAL_IF
-            || parentType == TokenTypes.LITERAL_FOR
-            || parentType == TokenTypes.LITERAL_WHILE
-            || parentType == TokenTypes.LITERAL_DO
-            || parentType == TokenTypes.LITERAL_ELSE
-            || parentType == TokenTypes.LITERAL_TRY
-            || parentType == TokenTypes.LITERAL_CATCH
-            || parentType == TokenTypes.LITERAL_FINALLY
-            || parentType == TokenTypes.CTOR_DEF
-            || parentType == TokenTypes.METHOD_DEF
-            || parentType == TokenTypes.STATIC_INIT;
+        final int parentType = getMainAst().getParent().getType();
+        return (parentType == TokenTypes.LITERAL_IF)
+            || (parentType == TokenTypes.LITERAL_FOR)
+            || (parentType == TokenTypes.LITERAL_WHILE)
+            || (parentType == TokenTypes.LITERAL_DO)
+            || (parentType == TokenTypes.LITERAL_ELSE)
+            || (parentType == TokenTypes.LITERAL_TRY)
+            || (parentType == TokenTypes.LITERAL_CATCH)
+            || (parentType == TokenTypes.LITERAL_FINALLY)
+            || (parentType == TokenTypes.CTOR_DEF)
+            || (parentType == TokenTypes.METHOD_DEF)
+            || (parentType == TokenTypes.STATIC_INIT);
     }
 
     /**
