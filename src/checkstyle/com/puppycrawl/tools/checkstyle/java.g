@@ -98,7 +98,6 @@ compilationUnit
 packageDefinition
 	options {defaultErrorHandler = true;} // let ANTLR handle errors
 	:	p:"package"^ {#p.setType(PACKAGE_DEF);} identifier SEMI!
-        { ver.reportPackageName(sLastIdentifier); }
 	;
 
 
@@ -195,11 +194,6 @@ identifierStar
 		( DOT^ i2:IDENT {str += "." + i2.getText(); } )*
 		( DOT^ i3:STAR {str += ".*"; star = true; } )?
 {
- if (star) {
-  ver.reportStarImport(ln, str);
- } else {
-  ver.reportImport(ln, str);
- }
 }
 	;
 
@@ -784,7 +778,7 @@ assignmentExpression
 // conditional test (level 12)
 conditionalExpression
 	:	logicalOrExpression
-		( QUESTION^ assignmentExpression c:COLON {ver.verifyOpBegin(c.getLine(), c.getColumn(), c.getText());} conditionalExpression )?
+		( QUESTION^ assignmentExpression c:COLON conditionalExpression )?
 	;
 
 
@@ -848,14 +842,14 @@ shiftExpression
 // binary addition/subtraction (level 3)
 additiveExpression
 	:	multiplicativeExpression
-        ((p:PLUS^ {ver.verifyOpBegin(p.getLine(), p.getColumn(), p.getText());}| m:MINUS^ {ver.verifyOpBegin(m.getLine(), m.getColumn(), m.getText());} )
+        ((p:PLUS^ | m:MINUS^ )
             multiplicativeExpression)*
 	;
 
 
 // multiplication/division/modulo (level 2)
 multiplicativeExpression
-	:	unaryExpression ((s:STAR^ {ver.verifyOpBegin(s.getLine(), s.getColumn(), s.getText());} | DIV^ | MOD^ )  unaryExpression)*
+	:	unaryExpression ((s:STAR^ | DIV^ | MOD^ )  unaryExpression)*
 	;
 
 unaryExpression
@@ -1082,7 +1076,7 @@ options {
 }
 
 // OPERATORS
-QUESTION     : '?' {ver.verifyOpEnd(getLine(), getColumn(), "?");} ;
+QUESTION     : '?';
 LPAREN   : '(';
 RPAREN   : ')';
 LBRACK   : '['  ;
@@ -1092,11 +1086,11 @@ RCURLY   : '}'  ;
 COLON        : ':' ;
 COMMA        : ',' {ver.verifyWSAfter(getLine(), getColumn() - 1, MyToken.COMMA);} ;
 ASSIGN       : '=';
-EQUAL        : "==" {ver.verifyOpEnd(getLine(), getColumn(), "==");} ;
+EQUAL        : "==";
 LNOT         : '!' ; // check above
 BNOT         : '~' ; // check above
-NOT_EQUAL    : "!=" {ver.verifyOpEnd(getLine(), getColumn(), "!=");};
-DIV          : '/' {ver.verifyOpEnd(getLine(), getColumn(), "/");} ;
+NOT_EQUAL    : "!=";
+DIV          : '/';
 DIV_ASSIGN   : "/=";
 PLUS         : '+'; // must handle the UNARY_PLUS
 PLUS_ASSIGN  : "+=";
@@ -1106,26 +1100,26 @@ MINUS_ASSIGN : "-=";
 DEC          : "--" ; // must handle POST_DEC
 STAR         : '*' ; // star is special cause it can be used in imports.
 STAR_ASSIGN  : "*=";
-MOD          : '%' {ver.verifyOpEnd(getLine(), getColumn(), "%");} ;
+MOD          : '%';
 MOD_ASSIGN   : "%=";
-SR           : ">>" {ver.verifyOpEnd(getLine(), getColumn(), ">>");};
+SR           : ">>";
 SR_ASSIGN    : ">>=";
-BSR          : ">>>" {ver.verifyOpEnd(getLine(), getColumn(), ">>>");};
+BSR          : ">>>";
 BSR_ASSIGN   : ">>>=";
-GE           : ">=" {ver.verifyOpEnd(getLine(), getColumn(), ">=");};
-GT           : ">" {ver.verifyOpEnd(getLine(), getColumn(), ">");};
-SL           : "<<" {ver.verifyOpEnd(getLine(), getColumn(), "<<");};
+GE           : ">=";
+GT           : ">";
+SL           : "<<";
 SL_ASSIGN    : "<<=";
-LE           : "<=" {ver.verifyOpEnd(getLine(), getColumn(), "<=");};
-LT           : '<' {ver.verifyOpEnd(getLine(), getColumn(), "<");};
-BXOR         : '^' {ver.verifyOpEnd(getLine(), getColumn(), "^");};
+LE           : "<=";
+LT           : '<';
+BXOR         : '^';
 BXOR_ASSIGN  : "^=";
-BOR          : '|' {ver.verifyOpEnd(getLine(), getColumn(), "|" );};
+BOR          : '|';
 BOR_ASSIGN   : "|=";
-LOR          : "||" {ver.verifyOpEnd(getLine(), getColumn(), "||");};
-BAND         : '&' {ver.verifyOpEnd(getLine(), getColumn(), "&");};
+LOR          : "||";
+BAND         : '&';
 BAND_ASSIGN  : "&=";
-LAND         : "&&" {ver.verifyOpEnd(getLine(), getColumn(), "&&");};
+LAND         : "&&";
 SEMI   : ';'  ;
 
 

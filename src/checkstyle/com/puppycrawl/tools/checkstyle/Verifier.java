@@ -208,35 +208,6 @@ class Verifier
 
 
     /**
-     * Report the name of the package the file is in.
-     * @param aName the name of the package
-     **/
-    void reportPackageName(LineText aName)
-    {
-    }
-
-
-    /**
-     * Report the location of an import.
-     * @param aLineNo the line number
-     * @param aType the type imported
-     **/
-    void reportImport(int aLineNo, String aType)
-    {
-    }
-
-
-    /**
-     * Report the location of an import using a ".*".
-     * @param aLineNo the line number
-     * @param aPkg the package imported
-     **/
-    void reportStarImport(int aLineNo, String aPkg)
-    {
-    }
-
-
-    /**
      * Report that the parser is entering a block that is associated with a
      * class or interface. Must match up the call to this method with a call
      * to the reportEndBlock().
@@ -279,30 +250,6 @@ class Verifier
     void reportEndMethodBlock()
     {
         mMethodBlockLevel--;
-    }
-
-    /**
-     * Verify an operator. Checks include that the operator is surrounded by
-     * whitespace, and that the operator follows the rules about whether to
-     * be at the end of a line.
-     * @param aLineNo number of line to check
-     * @param aColNo column where the text ends
-     * @param aText the text to check
-     */
-    void verifyOpEnd(int aLineNo, int aColNo, String aText)
-    {
-    }
-
-    /**
-     * Verify an operator. Checks include that the operator is surrounded by
-     * whitespace, and that the operator follows the rules about whether to
-     * be at the end of a line.
-     * @param aLineNo number of line to check
-     * @param aColNo column where the text starts
-     * @param aText the text to check
-     */
-    void verifyOpBegin(int aLineNo, int aColNo, String aText)
-    {
     }
 
     // }}}
