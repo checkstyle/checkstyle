@@ -30,6 +30,7 @@
 
   <property name="xdocs.src" value="src/xdocs"/>
   <property name="xdocs.dest" value="target/docs"/>
+  <property name="checkstyle.minimum.javaversion" value="1.3" />
   <property name="version" value="4.0-beta1" />
 
   <path id="build.classpath">
@@ -131,6 +132,8 @@
            destdir="target/checkstyle"
            includes="**/*.java"
            deprecation="on" debug="on"
+           source="${checkstyle.minimum.javaversion}"
+           target="${checkstyle.minimum.javaversion}"
            classpathref="build.classpath"
            encoding="iso-8859-1"
            includeAntRuntime="false"/>
@@ -203,6 +206,8 @@
            deprecation="on" debug="on"
            classpathref="tests.buildpath"
            encoding="iso-8859-1"
+           source="${checkstyle.minimum.javaversion}"
+           target="${checkstyle.minimum.javaversion}"
            includeAntRuntime="false"/>
   </target>
 
