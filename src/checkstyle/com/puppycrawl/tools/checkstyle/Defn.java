@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle;
 
 /**
  * Contains definitions common to the package.
- * Very important that all boolean properties default to false.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
 public interface Defn
