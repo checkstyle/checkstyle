@@ -32,7 +32,13 @@
           <a href="#properties">Properties</a>
         </li>
         <li>
-          <a href="#treewalker">TreeWalker Checks</a>
+          <a href="#checker">Checker</a>
+        </li>
+        <li>
+          <a href="#treewalker">TreeWalker</a>
+        </li>
+        <li>
+          <a href="#treewalkerchecks">TreeWalker Checks</a>
         </li>
         <li>
           <a href="#packagenames">Packages</a>
@@ -177,14 +183,14 @@
       module. Also, properties are inherited in the
       module hierarchy. These features make it easy to define one property value that applies to
       many modules. For example, the following configuration fragment specifies that a 
-      <span class="code">tabWidth</span> of <span class="code">4</span> applies to all
-      FileSetCheck<em></em>s and their submodules:
+      <span class="code">tabWidth</span> of <span class="code">4</span> applies to
+      <span class="code">TreeWalker</span> and its submodules:
       </p>
       <pre class="body">
 &lt;module name=&quot;Checker&quot;&gt;
-    &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
     &lt;module name=&quot;PackageHtml&quot;/&gt;
     &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
         &lt;module name=&quot;AvoidStarImport&quot;/&gt;
         &lt;module name=&quot;ConstantName&quot;/&gt;
         ...
@@ -207,8 +213,101 @@
       You can use property expansion to re-specify a module property value
       without changing the configuration document.
       </p>
-      
-      <a name="treewalker"></a> <h2>TreeWalker Checks</h2>
+      <a name="checker"></a> <h2>Checker</h2>
+      <p class="body">
+      All configurations have root module <span class="code">Checker</span>.
+      <span class="code">Checker</span> contains <em>FileSetCheck</em> children: modules that
+      check sets of files. 
+      <span class="code">Checker</span> also defines properties that are
+      inherited by all other modules of a configuration.
+      </p>
+      <h4 class="body">Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>basedir</td>
+          <td>base directory name; stripped off in messages about files</td>
+          <td><a href="property_types.html#string">string</a></td>
+          <td><span class="default">null</span></td>
+        </tr>
+        <tr>
+          <td>localeCountry</td>
+          <td>locale country for messages</td>
+          <td><a href="property_types.html#string">string</a>: either the empty string or an uppercase ISO 3166 2-letter code</td>
+          <td>default locale country for the Java Virtual Machine</td>
+        </tr>
+        <tr>
+          <td>localeLanguage</td>
+          <td>locale language for messages</td>
+          <td><a href="property_types.html#string">string</a>: either the empty string or a lowercase ISO 639 code</td>
+          <td>default locale language for the Java Virtual Machine</td>
+        </tr>
+      </table>
+      <p class="body">
+      For example, the following configuration fragment specifies base directory
+      <span class="code">src/checkstyle</span> and German locale for all modules:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;property name=&quot;basedir&quot; value=&quot;src/checkstyle&quot;/&gt;
+    &lt;property name=&quot;localeCountry&quot; value=&quot;DE&quot;/&gt;
+    &lt;property name=&quot;localeLanguage&quot; value=&quot;de&quot;/&gt;
+    &lt;module name=&quot;PackageHtml&quot;/&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        ...
+    &lt;/module&gt;
+&lt;/module&gt;
+    </pre>
+      <a name="treewalker"></a> <h2>TreeWalker</h2>
+      <p class="body">
+      FileSetCheck <span class="code">TreeWalker</span> checks individual Java source files
+      and defines properties that are applicable to checking such files.
+      </p>
+      <h4 class="body">Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>cacheFile</td>
+          <td>caches information about files that have checked ok; used to avoid
+              repeated checks of the same files</td>
+          <td><a href="property_types.html#string">string</a></td>
+          <td><span class="default">null</span> (no cache file)</td>
+        </tr>
+        <tr>
+          <td>tabWidth</td>
+          <td>number of expanded spaces for a tab character (<span class="code">'\t'</span>);
+          used in messages and Checks that require a tab width, such as
+          <a href="config_sizes.html#LineLength"><span class="code">LineLength</span></a></td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td><span class="default">8</span></td>
+        </tr>
+      </table>
+
+      <p class="body">
+      For example, the following configuration fragment specifies <span class="code">TreeWalker</span>
+      cache file <span class="code">target/cachefile</span>, and a <span class="code">tabWidth</span>
+      of <span class="code">4</span>:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;property name=&quot;cacheFile&quot; value=&quot;target/cachefile&quot;/&gt;
+        &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
+        ...
+    &lt;/module&gt;
+&lt;/module&gt;
+    </pre>
+      <a name="treewalkerchecks"></a> <h2>TreeWalker Checks</h2>
       <p class="body">
      The <span class="code">TreeWalker</span> module creates a syntax tree for a Java source file
      and invokes its submodules, called <em>Checks</em>, during a walk, or traversal, of the nodes
