@@ -155,4 +155,13 @@ class InputWhitespace
         // missing WS around colon
         assert true:"Whups";
     }
+
+    /** another check */
+    void donBradman(Runnable aRun)
+    {
+        donBradman(new Runnable() {
+            public void run() {
+            }
+        });
+    }
 }
