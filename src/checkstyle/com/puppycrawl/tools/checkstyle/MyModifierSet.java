@@ -110,6 +110,12 @@ class MyModifierSet
         return mModifiers.contains("public");
     }
 
+    /** @return whether the set contains a "abstract". **/
+    boolean containsAbstract()
+    {
+        return mModifiers.contains("abstract");
+    }
+
     /** @return the visibility scope of the modifiers. */
     Scope getVisibilityScope()
     {
@@ -164,4 +170,5 @@ class MyModifierSet
         buf.append("]");
         return buf.toString();
     }
+
 }

@@ -165,4 +165,26 @@ final class InputSimple
      */
     /* NOTHING */
     /* YES */ /* FIXME: x */ /* YES!! */
+
+    /** test long comments **/
+    void veryLong()
+    {
+        /*
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          blah blah blah blah
+          enough talk */
+    }
 }
