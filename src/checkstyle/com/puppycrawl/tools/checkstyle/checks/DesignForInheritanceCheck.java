@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class DesignForInheritanceCheck extends Check
 {
@@ -117,10 +117,8 @@ public class DesignForInheritanceCheck extends Check
 
         if (hasDefaultConstructor || hasExplNonPrivateCtor) {
             String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
-            // TODO: i18n
             log(aAST.getLineNo(), aAST.getColumnNo(),
-                "Method '" + name + "' is not designed for inheritance "
-                + "- needs to be abstract, final or empty.");
+                "design.forInheritance", name);
         }
 
 
