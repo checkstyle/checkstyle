@@ -106,11 +106,11 @@ public class CovariantEqualsCheck
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public int[] getAcceptableTokens()
+    public int[] getRequiredTokens()
     {
-        return new int[] {};
+        return getDefaultTokens();
     }
-
+    
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree(DetailAST aRootAST)
     {
