@@ -136,6 +136,7 @@
       <fileset dir="src/checkstyle"
                includes="**/*.java"
                excludes="**/Generated*.java"/>
+      <formatter type="plain"/>
     </checkstyle>
   </target>
 
