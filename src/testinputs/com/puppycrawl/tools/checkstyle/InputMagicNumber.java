@@ -72,3 +72,16 @@ public class InputMagicNumber {
         long longHexVar17 = 0X11l;       
     }
 }
+
+interface Blah
+{
+  int LOW = 5;
+  int HIGH = 78;
+}
+
+class ArrayMagicTest
+{
+    private static final int[] NONMAGIC = {3};
+    private int[] magic = {3};
+}
+

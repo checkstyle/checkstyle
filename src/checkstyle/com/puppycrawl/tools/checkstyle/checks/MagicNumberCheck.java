@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.Arrays;
 
@@ -141,6 +142,9 @@ public class MagicNumberCheck extends Check
      */
     private boolean isConstantDefinition(DetailAST aAST)
     {
+        if (ScopeUtils.inInterfaceBlock(aAST)) {
+            return true;
+        }
         DetailAST parent = aAST.getParent();
 
         //expression?
@@ -148,8 +152,13 @@ public class MagicNumberCheck extends Check
             return false;
         }
 
-        //assignment?
+        //array init?
         parent = parent.getParent();
+        if ((parent != null) && (parent.getType() == TokenTypes.ARRAY_INIT)) {
+            parent = parent.getParent();
+        }
+
+        //assignment?
         if ((parent == null) || (parent.getType() != TokenTypes.ASSIGN)) {
             return false;
         }
