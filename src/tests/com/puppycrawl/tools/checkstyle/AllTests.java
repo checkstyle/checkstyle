@@ -48,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheckTest
 import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportTest;
 import com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheckTest;
@@ -164,6 +165,7 @@ public class AllTests {
         suite.addTest(new TestSuite(MethodLengthCheckTest.class));
         suite.addTest(new TestSuite(MethodNameCheckTest.class));
         suite.addTest(new TestSuite(ModifierOrderCheckTest.class));
+        suite.addTest(new TestSuite(MutableExceptionCheckTest.class));
         suite.addTest(new TestSuite(NeedBracesCheckTest.class));
         suite.addTest(new TestSuite(NestedIfDepthCheckTest.class));
         suite.addTest(new TestSuite(NestedTryDepthCheckTest.class));

@@ -23,19 +23,22 @@
     <td class="menu" valign="top">
       <ul>
         <li>
-          <a href="#VisibilityModifier">VisibilityModifier</a>
+          <a href="#DesignForExtension">DesignForExtension</a>
         </li>
         <li>
           <a href="#FinalClass">FinalClass</a>
         </li>
         <li>
-          <a href="#InterfaceIsType">InterfaceIsType</a>
-        </li>
-        <li>
           <a href="#HideUtilityClassConstructor">HideUtilityClassConstructor</a>
         </li>
         <li>
-          <a href="#DesignForExtension">DesignForExtension</a>
+          <a href="#InterfaceIsType">InterfaceIsType</a>
+        </li>
+        <li>
+          <a href="#MutableException">MutableException</a>
+        </li>
+        <li>
+          <a href="#VisibilityModifier">VisibilityModifier</a>
         </li>
       </ul>
     </td>
@@ -284,6 +287,64 @@ public class StringUtils // not final to allow subclassing
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
 
+      <!-- --> <a name="MutableException"></a> <h2>MutableException</h2> <h4>Description</h4>
+      <p class="body">
+      Ensures that exceptions (defined as any class name conforming
+      to some regular expression) are immutable. That is, have only
+      final fields.
+      </p>
+
+      <p class="body">
+      The current algorithm is very simple it checks that all
+      members of exception are final.  User can still mutates an
+      exception's instance (e.g. Throwable has
+      setStackTrace(StackTraceElement[] stackTrace) method which
+      changes stack trace).  But, at least, all information provided
+      by this exception type is unchangable.
+      </p>
+
+      <p class="body">
+      Rationale:
+      Exception instances should represent an error
+      condition. Having non final fields not only allows the
+      state to be modified by accident and therefore mask the
+      original condition but also allows developers to
+      accidentally forget to initialise state thereby leading
+      to code catching the exception to draw incorrect
+      conclusions based on the state.
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>format</td>
+          <td>pattern for name of exception class.</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td><span class="default">^.*Exception$|^.*Error$</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;MutableException&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.design
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
 
     </td>
   </tr>
