@@ -144,8 +144,6 @@
       <fileset dir="src/checkstyle" includes="**/messages.properties"/>
       <mapper type="glob" from="*messages.properties" to="*messages_en.properties"/>
     </copy>
-
-
   </target>
 
   <target name="compile.testinputs" description="Compile test inputs">
@@ -187,20 +185,6 @@
   </target>
 
   <!-- runs the command line version on a file -->
-  <target name="run.simple" depends="compile.tests"
-          description="Runs the command line version on a file">
-    <java classname="com.puppycrawl.tools.checkstyle.Main"
-          fork="yes"
-          dir="."
-          classpathref="run.classpath">
-      <sysproperty key="checkstyle.allow.tabs" value="yes"/>
-      <arg value="docs/checkstyle_checks.xml" />
-      <arg value="src/checkstyle/com/puppycrawl/tools/checkstyle/checks/JavadocVariableCheck.java" />
-      <arg value="src/testinputs/com/puppycrawl/tools/checkstyle/InputSimple.java" />
-    </java>
-  </target>
-
-  <!-- runs the command line version on a file -->
   <target name="run.checkstyle" depends="compile.tests"
           description="Runs the command line version on a file">
     <java classname="com.puppycrawl.tools.checkstyle.Main"
@@ -223,27 +207,7 @@
     </java>
   </target>
 
-  <target name="checkstyle.simple" depends="compile.tests"
-          description="Runs checkstyle on a file to test white spaces">
-    <taskdef resource="checkstyletask.properties">
-      <classpath refid="run.classpath"/>
-    </taskdef>
-    <checkstyle file="src/tests/com/puppycrawl/tools/checkstyle/InputWhitespace.java"/>
-  </target>
-
-  <target name="checkstyle.import" depends="compile.tests"
-          description="Runs checkstyle on a file to test imports">
-    <taskdef name="checkstyle"
-             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
-      <classpath refid="run.classpath"/>
-    </taskdef>
-    <echo message="Expect to get a message after checkstyle"/>
-    <checkstyle failOnViolation="false"
-                file="src/tests/com/puppycrawl/tools/checkstyle/InputImport.java" />
-    <echo message="THIS IS THE EXPECTED MESSAGE"/>
-  </target>
-
-  <target name="enable.todo">
+  <target name="enable.todo" description="Will enable checking for TODO's">
     <property name="todo.pattern" value="TODO:"/>
   </target>
 
@@ -268,26 +232,6 @@
       <property key="checkstyle.cache.file" file="target/cachefile"/>
       <property key="checkstyle.header.file" file="docs/java.header"/>
     </checkstyle>
-  </target>
-
-  <target name="checkstyle.noargs" depends="compile.checkstyle"
-          description="Runs checkstyle with no arguments">
-    <taskdef name="checkstyle"
-             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
-      <classpath refid="run.classpath"/>
-    </taskdef>
-    <echo message="Calling checkstyle with no arguments" />
-    <checkstyle/>
-  </target>
-
-  <target name="checkstyle.another" depends="compile.checkstyle"
-          description="Runs checkstyle with missing properties file">
-    <taskdef name="checkstyle"
-             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
-      <classpath refid="run.classpath"/>
-    </taskdef>
-    <echo message="Calling checkstyle with missing properties file" />
-    <checkstyle properties="xzzaaqqwet3ad"/>
   </target>
 
   <target name="checkstyle.style" depends="compile.checkstyle"
@@ -328,6 +272,7 @@
     <available property="have.junit"
                classname="junit.framework.TestListener"/>
   </target>
+
   <target name="require.junit" depends="check.junit" unless="have.junit"
           description="Fails if JUnit is not present in the classpath">
     <fail message="Need to have JUnit in your CLASSPATH to run the tests. Consider using the one in the lib directory."/>
@@ -430,19 +375,6 @@
     <fail if="tests.have.failed"
           message="Unit tests failed - Report is available in ${report}"/>
 
-  </target>
-
-  <target name="jdepend">
-    <mkdir dir="target/jdep"/>
-    <jdepend format="xml" outputfile="target/jdep/jdepend-report.xml">
-      <sourcespath>
-        <pathelement location="src/checkstyle" />
-      </sourcespath>
-      <classpath location="C:/apps/jdepend-2.2/lib/jdepend.jar" />
-    </jdepend>
-
-    <style basedir="target/jdep" destdir="target/jdep"
-           includes="jdepend-report.xml" style="jdepend.xsl" />
   </target>
 
   <!-- -->
@@ -573,63 +505,62 @@
           description="Runs the test for GUMP testing"/>
 
   <!-- Added for Clover testing -->
-    <property name="clover.excludes" value="**/CheckStyleTas*,**/Generated*.java,**/Java*Recognizer.java,**/Java*Lexer.java,**/Java*TokenTypes.java,**/gui/*"/>
+  <property name="clover.excludes"
+            value="**/CheckStyleTas*,**/Generated*.java,**/Java*Recognizer.java,**/Java*Lexer.java,**/Java*TokenTypes.java,**/gui/*"/>
 
-    <target name="with.clover">
-        <mkdir dir="target/clover/db"/>
-        <mkdir dir="target/clover/html"/>
-        <property name="clover.initstring" location="target/clover/db/csdb"/>
-        <property name="clover.html.dir" location="target/clover/html"/>
-        <property name="build.compiler"
-                  value="org.apache.tools.ant.taskdefs.CloverCompilerAdapter"/>
-    </target>
+  <target name="with.clover">
+    <mkdir dir="target/clover/db"/>
+    <mkdir dir="target/clover/html"/>
+    <property name="clover.initstring" location="target/clover/db/csdb"/>
+    <property name="clover.html.dir" location="target/clover/html"/>
+    <property name="build.compiler"
+              value="org.apache.tools.ant.taskdefs.CloverCompilerAdapter"/>
+  </target>
 
-    <path id="clover.classpath">
-        <pathelement path="${clover.lib}/clover.jar"/>
-        <pathelement path="${clover.lib}/velocity.jar"/>
-    </path>
+  <path id="clover.classpath">
+    <pathelement path="${clover.lib}/clover.jar"/>
+    <pathelement path="${clover.lib}/velocity.jar"/>
+  </path>
 
-    <target name="clover.viewer">
-        <java classname="com.cortexeb.tools.clover.reporters.jfc.Viewer"
-              fork="yes">
-            <arg line="${clover.initstring}"/>
-            <classpath refid="clover.classpath"/>
-        </java>
-    </target>
+  <target name="clover.viewer">
+    <java classname="com.cortexeb.tools.clover.reporters.jfc.Viewer" fork="yes">
+      <arg line="${clover.initstring}"/>
+      <classpath refid="clover.classpath"/>
+    </java>
+  </target>
 
-    <target name="clover.report">
-        <echo>Need to customise report location</echo>
-        <java classname="com.cortexeb.tools.clover.reporters.html.HtmlReporter"
-              fork="true">
-            <arg value="--outputdir"/>
-            <arg value="${clover.html.dir}"/>
-            <arg value="--showSrc"/>
-            <arg value="--initstring"/>
-            <arg value="${clover.initstring}"/>
-            <arg value="--title"/>
-            <arg value="'Checkstyle Project'"/>
-            <classpath refid="clover.classpath"/>
-        </java>
-    </target>
+  <target name="clover.report">
+    <echo>Need to customise report location</echo>
+    <java classname="com.cortexeb.tools.clover.reporters.html.HtmlReporter"
+          fork="true">
+      <arg value="--outputdir"/>
+      <arg value="${clover.html.dir}"/>
+      <arg value="--showSrc"/>
+      <arg value="--initstring"/>
+      <arg value="${clover.initstring}"/>
+      <arg value="--title"/>
+      <arg value="'Checkstyle Project'"/>
+      <classpath refid="clover.classpath"/>
+    </java>
+  </target>
 
-    <!-- Targets to verify that Xerces is in the classpath -->
-    <target name="check.xerces"
-            description="Checks whether xerces is in the classpath">
-      <condition property="have.xerces">
-          <available classname="org.apache.xerces.parsers.SAXParser"/>
-      </condition>
-    </target>
-
-    <target name="require.xerces" depends="check.xerces" unless="have.xerces"
-            description="Fails if xerces is not present in the classpath">
-      <fail message="Need to have Xerces-J in your CLASSPATH to run the tests. You can download it from http://xml.apache.org/."/>
-    </target>
-
-    <target name="validate.xml"
-            depends="require.xerces"
-            description="Validates checkstyle XML file">
-        <xmlvalidate file="docs/checkstyle_checks.xml">
-        </xmlvalidate>
-    </target>
+  <!-- Targets to verify that Xerces is in the classpath -->
+  <target name="check.xerces"
+          description="Checks whether xerces is in the classpath">
+    <condition property="have.xerces">
+      <available classname="org.apache.xerces.parsers.SAXParser"/>
+    </condition>
+  </target>
+  
+  <target name="require.xerces" depends="check.xerces" unless="have.xerces"
+          description="Fails if xerces is not present in the classpath">
+    <fail message="Need to have Xerces-J in your CLASSPATH to run the tests. You can download it from http://xml.apache.org/."/>
+  </target>
+  
+  <target name="validate.xml"
+          depends="require.xerces"
+          description="Validates checkstyle XML file">
+    <xmlvalidate file="docs/checkstyle_checks.xml"/>
+  </target>
 
 </project>
