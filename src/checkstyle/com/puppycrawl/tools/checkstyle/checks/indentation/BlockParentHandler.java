@@ -345,8 +345,8 @@ public class BlockParentHandler extends ExpressionHandler
     /**
      * @return indentation level expected for children
      */
-    protected int getChildrenExpectedLevel()
+    protected IndentLevel getChildrenExpectedLevel()
     {
-        return getLevel() + getIndentCheck().getBasicOffset();
+        return new IndentLevel(getLevel() + getIndentCheck().getBasicOffset());
     }
 }

@@ -206,6 +206,8 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "36: array initialization lcurly at indentation level 2 not at correct indentation, 4",
             "40: array initialization rcurly at indentation level 6 not at correct indentation, 4",
             "44: array initialization lcurly at indentation level 2 not at correct indentation, 4",
+            "48: array initialization child at indentation level 20 not at correct indentation, [8, 31]",
+            "49: array initialization child at indentation level 4 not at correct indentation, [8, 31]",
             "54: array initialization child at indentation level 6 not at correct indentation, 8",
             "59: class def child at indentation level 2 not at correct indentation, 4",
             "61: class def child at indentation level 6 not at correct indentation, 4",

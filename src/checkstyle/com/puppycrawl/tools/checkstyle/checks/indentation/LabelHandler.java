@@ -66,7 +66,8 @@ public class LabelHandler extends ExpressionHandler
      */
     private void checkLabel()
     {
-        checkChildren(getMainAst(), mLabelChildren, getLevel(), true, false);
+        checkChildren(getMainAst(), mLabelChildren,
+                      new IndentLevel(getLevel()), true, false);
     }
 
     /**

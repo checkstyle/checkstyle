@@ -66,7 +66,8 @@ public class CaseHandler extends ExpressionHandler
      */
     private void checkCase()
     {
-        checkChildren(getMainAst(), mCaseChildren, getLevel(), true, false);
+        checkChildren(getMainAst(), mCaseChildren, new IndentLevel(getLevel()),
+                      true, false);
     }
 
     /**

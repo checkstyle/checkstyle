@@ -122,14 +122,16 @@ public class ArrayInitHandler extends BlockParentHandler
     }
 
     /** @see BlockParentHandler */
-    protected int getChildrenExpectedLevel()
+    protected IndentLevel getChildrenExpectedLevel()
     {
-        // now we accept "new int[] {1,
-        //                           2};"
-        // TODO: should be accepted
+        // now we accept
+        // new int[] {1,
+        //            2};
+        // and
         // new int[] {1, 2,
         //     3};
-        // see InputValidArrayIndent.java (array6)
+
+        IndentLevel expectedIndent = super.getChildrenExpectedLevel();
 
         final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
         if (hasCurlys() && firstLine == getLCurly().getLineNo()) {
@@ -137,11 +139,10 @@ public class ArrayInitHandler extends BlockParentHandler
             int firstChildPos =
                 getNextFirstNonblankOnLineAfter(firstLine, lcurlyPos);
             if (firstChildPos >= 0) {
-                return firstChildPos;
+                expectedIndent.addAcceptedIndent(firstChildPos);
             }
         }
-
-        return super.getChildrenExpectedLevel();
+        return expectedIndent;
     }
 
     /**
