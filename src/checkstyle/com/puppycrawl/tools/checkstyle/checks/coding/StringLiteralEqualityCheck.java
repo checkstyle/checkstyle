@@ -25,7 +25,7 @@ import antlr.collections.AST;
 
 /**
  * Checks that string literals are not used with
- * <code>==</code> or <code>!=</code>.
+ * <code>==</code> or <code>&#33;=</code>.
  *
  * <p>
  * Rationale: Novice Java programmers often use code like
