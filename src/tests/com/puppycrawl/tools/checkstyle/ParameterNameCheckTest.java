@@ -1,11 +1,11 @@
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.checks.ParameterFormatCheck;
+import com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck;
 
-public class ParameterFormatCheckTest
+public class ParameterNameCheckTest
     extends BaseCheckTestCase
 {
-    public ParameterFormatCheckTest(String aName)
+    public ParameterNameCheckTest(String aName)
     {
         super(aName);
     }
@@ -14,7 +14,7 @@ public class ParameterFormatCheckTest
         throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParameterFormatCheck.class.getName());
+        checkConfig.setClassname(ParameterNameCheck.class.getName());
         checkConfig.addProperty("format", "^a[A-Z][a-zA-Z0-9]*$");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
@@ -30,7 +30,7 @@ public class ParameterFormatCheckTest
         throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ParameterFormatCheck.class.getName());
+        checkConfig.setClassname(ParameterNameCheck.class.getName());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {

@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -31,13 +30,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Oliver Burn
  */
-public class ParameterFormatCheck
+public class ParameterNameCheck
     extends AbstractNameCheck
 {
     /**
-     * Creates a new <code>ParameterFormatCheck</code> instance.
+     * Creates a new <code>ParameterNameCheck</code> instance.
      */
-    public ParameterFormatCheck()
+    public ParameterNameCheck()
     {
         super("^[a-z][a-zA-Z0-9]*$");
     }
