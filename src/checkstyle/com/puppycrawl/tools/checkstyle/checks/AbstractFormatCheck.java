@@ -25,8 +25,9 @@ import org.apache.regexp.RE;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
- * Abstract class for checks that verify a name matches a specified regular
- * expression. Provides support for setting the format of the name.
+ * Abstract class for checks that verify strings using a regular
+ * expression. It provides support for setting the regular expression using
+ * the property name <code>format</code>.
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
@@ -50,7 +51,7 @@ public abstract class AbstractFormatCheck
     }
 
     /**
-     * Set the format.
+     * Set the format to the specified regular expression.
      * @param aFormat a <code>String</code> value
      * @throws ConversionException unable to parse aFormat
      */
