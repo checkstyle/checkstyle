@@ -346,6 +346,11 @@ class Verifier
                           mConfig.getStaticFinalPat());
         }
         else {
+            ///////////////////////////////////////////////////////////////////
+            // THIS BLOCK NEEDS REFACTORING!!
+            ///////////////////////////////////////////////////////////////////
+            final boolean isPckg = Scope.PACKAGE.equals(variableScope);
+            final boolean isProt = Scope.PROTECTED.equals(variableScope);
 
             if (mods.containsStatic()) {
                 if (mods.containsFinal()) {
@@ -358,11 +363,14 @@ class Verifier
                     }
                 }
                 else {
-                    if (Scope.PRIVATE.equals(variableScope)) {
+                    if (Scope.PRIVATE.equals(variableScope) ||
+                        (mConfig.isAllowPackage() && isPckg) ||
+                        (mConfig.isAllowProtected() && isProt))
+                    {
                         checkVariable(aVar,
                                       mConfig.getStaticRegexp(),
                                       mConfig.getStaticPat());
-                }
+                    }
                     else {
                         log(aVar.getLineNo(),
                             "variable '" + aVar.getText() +
@@ -372,8 +380,6 @@ class Verifier
             }
             else {
                 // These are the non-static variables
-                final boolean isPckg = Scope.PACKAGE.equals(variableScope);
-                final boolean isProt = Scope.PROTECTED.equals(variableScope);
                 if (Scope.PRIVATE.equals(variableScope) ||
                     (mConfig.isAllowPackage() && isPckg) ||
                     (mConfig.isAllowProtected() && isProt))
