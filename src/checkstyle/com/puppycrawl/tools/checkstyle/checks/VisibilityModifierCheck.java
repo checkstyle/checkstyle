@@ -195,12 +195,12 @@ public class VisibilityModifierCheck
 
     /**
      * Returns the set of modifier Strings for a VARIABLE_DEF AST.
-     * @param variableDefAST AST for a vraiable definition
+     * @param aVariableDefAST AST for a vraiable definition
      * @return the set of modifier Strings for variableDefAST
      */
-    private Set getModifiers(DetailAST variableDefAST)
+    private Set getModifiers(DetailAST aVariableDefAST)
     {
-        final AST modifiersAST = variableDefAST.getFirstChild();
+        final AST modifiersAST = aVariableDefAST.getFirstChild();
         if (modifiersAST.getType() != TokenTypes.MODIFIERS) {
             throw new IllegalStateException("Strange parse tree");
         }
