@@ -1,6 +1,15 @@
 <project name="test" default="compile.checkstyle" basedir=".">
 
   <!-- set global properties for this build -->
+
+  <!-- Give user a chance to override without editing this file -->
+  <!-- (and without typing -D each time it compiles it) -->
+  <property file="checkstyle.buildproperties" />
+  <property file="${user.home}/checkstyle.buildproperties" />
+  
+  <!-- Note: to compile successfully, the classpath must point to the home -->
+  <!-- of ANTLR. This is because not all ANTLR classes are part of the ANTLR -->
+  <!-- distributed jar file. -->
   <property name="antlr.home" value="c:/apps/antlr-2.7.1" />
   <property name="regexp.jar" value="c:/apps/jakarta-regexp-1.2/jakarta-regexp-1.2.jar" />
   <property name="checkstyle.dir" value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
@@ -36,6 +45,7 @@
     <delete>
       <fileset dir="src/checkstyle" includes="**/Generated*.java" />
       <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
+      <fileset dir="." includes="**/TEST-*" />
     </delete>
   </target>
 
