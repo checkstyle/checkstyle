@@ -139,36 +139,6 @@ public class CheckerTest
         final Checker c = createChecker();
         final String filepath = getPath("InputBraces.java");
         final String[] expected = {
-            filepath + ":29: 'do' construct must use '{}'s.",
-            filepath + ":41: 'while' construct must use '{}'s.",
-            filepath + ":42: 'while' construct must use '{}'s.",
-            filepath + ":44: 'while' construct must use '{}'s.",
-            filepath + ":45: 'if' construct must use '{}'s.",
-            filepath + ":58: 'for' construct must use '{}'s.",
-            filepath + ":58:23: ';' is not followed by whitespace.",
-            filepath + ":58:29: ';' is not followed by whitespace.",
-            filepath + ":59: 'for' construct must use '{}'s.",
-            filepath + ":61: 'for' construct must use '{}'s.",
-            filepath + ":63: 'if' construct must use '{}'s.",
-            filepath + ":82: 'if' construct must use '{}'s.",
-            filepath + ":83: 'if' construct must use '{}'s.",
-            filepath + ":85: 'if' construct must use '{}'s.",
-            filepath + ":87: 'else' construct must use '{}'s.",
-            filepath + ":89: 'if' construct must use '{}'s.",
-            filepath + ":97: 'else' construct must use '{}'s.",
-            filepath + ":99: 'if' construct must use '{}'s.",
-            filepath + ":100: 'if' construct must use '{}'s."
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testBracesOff()
-        throws Exception
-    {
-        mProps.setProperty(Defn.IGNORE_BRACES_PROP, "true");
-        final Checker c = createChecker();
-        final String filepath = getPath("InputBraces.java");
-        final String[] expected = {
             filepath + ":58:23: ';' is not followed by whitespace.",
             filepath + ":58:29: ';' is not followed by whitespace.",
         };
