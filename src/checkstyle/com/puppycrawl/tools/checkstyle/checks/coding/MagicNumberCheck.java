@@ -114,9 +114,10 @@ public class MagicNumberCheck extends Check
             return false;
         }
 
-        //UNARY_MINUS or UNARY_PLUS should be ignored
-        if ((parent.getType() == TokenTypes.UNARY_MINUS)
-            || (parent.getType() == TokenTypes.UNARY_PLUS))
+        //skip TYPECAST, UNARY_MINUS, UNARY_PLUS
+        while ((parent.getType() == TokenTypes.UNARY_MINUS)
+            || (parent.getType() == TokenTypes.UNARY_PLUS)
+            || (parent.getType() == TokenTypes.TYPECAST))
         {
             parent = parent.getParent();
         }
