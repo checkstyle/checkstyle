@@ -130,8 +130,13 @@ class TreeWalker
     {
         mMessages.reset();
         notifyBegin(aContents);
-        aAST.setParent(null);
-        process(aAST);
+
+         // empty files are not flagged by javac, will yield aAST == null
+        if (aAST != null) {
+            aAST.setParent(null);
+            process(aAST);
+        }
+
         notifyEnd();
     }
 
