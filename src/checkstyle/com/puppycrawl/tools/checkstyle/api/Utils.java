@@ -202,4 +202,39 @@ public final class Utils
         }
         return (DetailAST) retVal;
     }
+
+    /**
+     * Returns the first sibling token that makes a specified type.
+     * @param aFrom the token to search from
+     * @param aType the token type to match
+     * @return the matching token, or null if no match
+     */
+    public static DetailAST findFirstToken(AST aFrom, int aType)
+    {
+        DetailAST retVal = null;
+        for (AST i = aFrom; i != null; i = i.getNextSibling()) {
+            if (i.getType() == aType) {
+                retVal = (DetailAST) i;
+                break;
+            }
+        }
+        return retVal;
+    }
+
+    /**
+     * Returns the number of sibling tokens that are of a specified type.
+     * @param aFrom the token to search from
+     * @param aType the token type to match
+     * @return the number of matching token
+     */
+    public static int countTokens(AST aFrom, int aType)
+    {
+        int count = 0;
+        for (AST i = aFrom; i != null; i = i.getNextSibling()) {
+            if (i.getType() == aType) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

@@ -16,13 +16,18 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.Java14TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
+/**
+ * Checks for whitespace around a token.
+ *
+ * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @version 1.0
+ */
 public class WhitespaceAroundCheck
     extends Check
     implements Java14TokenTypes
