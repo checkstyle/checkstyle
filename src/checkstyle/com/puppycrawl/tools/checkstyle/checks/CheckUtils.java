@@ -143,7 +143,7 @@ public final class CheckUtils
         return FullIdent.createFullIdent((DetailAST) aTypeAST.getFirstChild());
     }
 
-    // constants for parseFloat()
+    // constants for parseDouble()
     /** octal radix */
     private static final int BASE_8 = 8;
 
@@ -159,15 +159,15 @@ public final class CheckUtils
      * @param aText the string to be parsed.
      * @param aType the token type of the text. Should be a constant of
      * {@link com.puppycrawl.tools.checkstyle.api.TokenTypes}.
-     * @return the float value represented by the string argument.
+     * @return the double value represented by the string argument.
      */
-    public static float parseFloat(String aText, int aType)
+    public static double parseDouble(String aText, int aType)
     {
-        float result = 0;
+        double result = 0;
         switch (aType) {
         case TokenTypes.NUM_FLOAT:
         case TokenTypes.NUM_DOUBLE:
-            result = (float) Double.parseDouble(aText);
+            result = (double) Double.parseDouble(aText);
             break;
         case TokenTypes.NUM_INT:
         case TokenTypes.NUM_LONG:
@@ -180,13 +180,16 @@ public final class CheckUtils
                 radix = BASE_8;
                 aText = aText.substring(1);
             }
-            // Long.parseLong requires that the text ends with neither 'L'
-            // nor 'l'.
             if ((aText.endsWith("L")) || (aText.endsWith("l"))) {
                 aText = aText.substring(0, aText.length() - 1);
             }
             if (aText.length() > 0) {
-                result = (float) Long.parseLong(aText, radix);
+                if (aType == TokenTypes.NUM_INT) {
+                    result = parseInt(aText, radix);
+                }
+                else {
+                    result = parseLong(aText, radix);
+                }
             }
             break;
         default:
@@ -195,6 +198,64 @@ public final class CheckUtils
         return result;
     }
 
+    /**
+     * Parses the string argument as a signed integer in the radix specified by
+     * the second argument. The characters in the string must all be digits of
+     * the specified radix. Handles negative values, which method
+     * java.lang.Integer.parseInt(String, int) does not.
+     * @param aText the String containing the integer representation to be
+     * parsed. Precondition: aText contains a parsable int.
+     * @param aRadix the radix to be used while parsing aText.
+     * @return the integer represented by the string argument in the specified
+     * radix.
+     */
+    public static int parseInt(String aText, int aRadix)
+    {
+        int result = 0;
+        final int max = aText.length();
+        for (int i = 0; i < max; i++) {
+            final int digit = Character.digit(aText.charAt(i), aRadix);
+            result *= aRadix;
+            result += digit;
+        }
+        return result;
+    }
+
+    /**
+     * Parses the string argument as a signed long in the radix specified by
+     * the second argument. The characters in the string must all be digits of
+     * the specified radix. Handles negative values, which method
+     * java.lang.Integer.parseInt(String, int) does not.
+     * @param aText the String containing the integer representation to be
+     * parsed. Precondition: aText contains a parsable int.
+     * @param aRadix the radix to be used while parsing aText.
+     * @return the long represented by the string argument in the specified
+     * radix.
+     */
+    public static long parseLong(String aText, int aRadix)
+    {
+        long result = 0;
+        final int max = aText.length();
+        for (int i = 0; i < max; i++) {
+            final int digit = Character.digit(aText.charAt(i), aRadix);
+            result *= aRadix;
+            result += digit;
+        }
+        return result;
+    }
+
+    /**
+     * Returns the value represented by the specified string of the specified
+     * type. Returns 0 for types other than float, double, int, and long.
+     * @param aText the string to be parsed.
+     * @param aType the token type of the text. Should be a constant of
+     * {@link com.puppycrawl.tools.checkstyle.api.TokenTypes}.
+     * @return the float value represented by the string argument.
+     */
+    public static double parseFloat(String aText, int aType)
+    {
+        return (float) parseDouble(aText, aType);
+    }
 
     /**
      * Finds sub-node for given node minimal (line, column) pair.

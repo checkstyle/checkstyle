@@ -33,11 +33,15 @@ public class MagicNumberCheckTest
             "71:29: '0x10L' is a magic number.",
             "72:29: '0X11l' is a magic number.",
             "85:28: '3' is a magic number.",
-            "91:14: '0xffffffff' is a magic number.",
+            "91:14: '0xffffffffL' is a magic number.",
             "99:30: '+3' is a magic number.",
             "100:29: '-2' is a magic number.",
             "101:35: '+3.5' is a magic number.",
-            "102:36: '-2.5' is a magic number.",          
+            "102:36: '-2.5' is a magic number.",
+            "110:35: '0x80000000' is a magic number.",
+            "111:36: '0x8000000000000000L' is a magic number.",
+            "114:37: '020000000000' is a magic number.",
+            "115:38: '01000000000000000000000L' is a magic number.",          
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -64,10 +68,18 @@ public class MagicNumberCheckTest
             "64:30: '011l' is a magic number.",
             "69:24: '0X011' is a magic number.",
             "72:29: '0X11l' is a magic number.",
-            "91:14: '0xffffffff' is a magic number.",
+            "91:14: '0xffffffffL' is a magic number.",
             "100:29: '-2' is a magic number.",
             "101:35: '+3.5' is a magic number.",
             "102:36: '-2.5' is a magic number.",
+            "108:34: '0xffffffff' is a magic number.",
+            "109:36: '0xffffffffffffffffL' is a magic number.",
+            "110:35: '0x80000000' is a magic number.",
+            "111:36: '0x8000000000000000L' is a magic number.",
+            "112:36: '037777777777' is a magic number.",
+            "113:38: '01777777777777777777777L' is a magic number.",
+            "114:37: '020000000000' is a magic number.",
+            "115:38: '01000000000000000000000L' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -121,11 +133,19 @@ public class MagicNumberCheckTest
             "71:29: '0x10L' is a magic number.",
             "72:29: '0X11l' is a magic number.",
             "85:28: '3' is a magic number.",
-            "91:14: '0xffffffff' is a magic number.",
+            "91:14: '0xffffffffL' is a magic number.",
             "99:30: '+3' is a magic number.",
             "100:29: '-2' is a magic number.",
             "101:35: '+3.5' is a magic number.",
             "102:36: '-2.5' is a magic number.",
+            "108:34: '0xffffffff' is a magic number.",
+            "109:36: '0xffffffffffffffffL' is a magic number.",
+            "110:35: '0x80000000' is a magic number.",
+            "111:36: '0x8000000000000000L' is a magic number.",
+            "112:36: '037777777777' is a magic number.",
+            "113:38: '01777777777777777777777L' is a magic number.",
+            "114:37: '020000000000' is a magic number.",
+            "115:38: '01000000000000000000000L' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -156,11 +176,49 @@ public class MagicNumberCheckTest
             "71:29: '0x10L' is a magic number.",
             "72:29: '0X11l' is a magic number.",
             "85:28: '3' is a magic number.",
-            "91:14: '0xffffffff' is a magic number.",
+            "91:14: '0xffffffffL' is a magic number.",
             "99:30: '+3' is a magic number.",
             "100:29: '-2' is a magic number.",
+            "110:35: '0x80000000' is a magic number.",
+            "111:36: '0x8000000000000000L' is a magic number.",
+            "114:37: '020000000000' is a magic number.",
+            "115:38: '01000000000000000000000L' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
+    
+    public void testIgnoreNegativeOctalHex()
+         throws Exception
+     {
+         final DefaultConfiguration checkConfig =
+             createCheckConfig(MagicNumberCheck.class);
+         checkConfig.addAttribute("ignoreNumbers", "-9223372036854775808, -2147483648, -1, 0, 1, 2");
+         checkConfig.addAttribute("tokens", "NUM_INT, NUM_LONG");
+         final String[] expected = {
+             "41:26: '3' is a magic number.",
+              "43:27: '3' is a magic number.",
+              "43:31: '4' is a magic number.",
+              "45:29: '3' is a magic number.",
+              "47:23: '3' is a magic number.",
+              "50:22: '3' is a magic number.",
+              "50:29: '5' is a magic number.",
+              "50:37: '3' is a magic number.",
+              "54:26: '3' is a magic number.",
+              "55:39: '3' is a magic number.",
+              "60:25: '010' is a magic number.",
+              "61:25: '011' is a magic number.",
+              "63:30: '010L' is a magic number.",
+              "64:30: '011l' is a magic number.",
+              "68:24: '0x10' is a magic number.",
+              "69:24: '0X011' is a magic number.",
+              "71:29: '0x10L' is a magic number.",
+              "72:29: '0X11l' is a magic number.",
+              "85:28: '3' is a magic number.",
+              "91:14: '0xffffffffL' is a magic number.",
+              "99:30: '+3' is a magic number.",
+              "100:29: '-2' is a magic number.",
+         };
+         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
+     }
 }
 
