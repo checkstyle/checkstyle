@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.DetailASTTest;
+import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporterTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidInlineConditionalsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidStarImportTest;
 import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheckTest;
@@ -76,6 +77,7 @@ public class AllTests {
             new TestSuite("Test for com.puppycrawl.tools.checkstyle");
         //$JUnit-BEGIN$
         suite.addTest(new TestSuite(DetailASTTest.class));
+        suite.addTest(new TestSuite(AbstractViolationReporterTest.class));
         suite.addTest(new TestSuite(AvoidInlineConditionalsCheckTest.class));
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
