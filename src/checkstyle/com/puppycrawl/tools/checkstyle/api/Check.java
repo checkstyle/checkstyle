@@ -52,6 +52,7 @@ public abstract class Check extends AutomaticBean
      * Returns the default token a check is interested in. Only used if the
      * configuration for a check does not define the tokens.
      * @return the default tokens
+     * @see TokenTypes
      */
     public abstract int[] getDefaultTokens();
 
@@ -61,6 +62,7 @@ public abstract class Check extends AutomaticBean
      * unacceptable token set in the configuration file.
      * The default implementation returns the check's default tokens.
      * @return the token set this check is designed for.
+     * @see TokenTypes
      */
     public int[] getAcceptableTokens()
     {
@@ -73,6 +75,7 @@ public abstract class Check extends AutomaticBean
     /**
      * The tokens that this check must be registered for.
      * @return the token set this must be registered for.
+     * @see TokenTypes
      */
     public int[] getRequiredTokens()
     {
