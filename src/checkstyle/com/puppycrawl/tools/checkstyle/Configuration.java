@@ -607,7 +607,7 @@ public class Configuration
     }
 
     /**
-     * @param aAllowProtected whether to allow package visible data
+     * @param aAllowPackage whether to allow package visible data
      */
     public void setAllowPackage(boolean aAllowPackage)
     {
