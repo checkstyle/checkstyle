@@ -22,8 +22,12 @@ import antlr.CommonAST;
 import antlr.Token;
 
 /**
- * An extension of the CommonAST that records the line number. The idea was
- * taken from http://www.jguru.com/jguru/faq/view.jsp?EID=62654.
+ * <B>WARNING: This class is not part of the official Checkstyle API and should
+ * not be used! It is declared <code>public</code> because it must be created by
+ * the ANTLR classes.</b>
+ * <p>
+ * An extension of the CommonAST that records the line and column number.
+ * The idea was taken from http://www.jguru.com/jguru/faq/view.jsp?EID=62654.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
 public class MyCommonAST
