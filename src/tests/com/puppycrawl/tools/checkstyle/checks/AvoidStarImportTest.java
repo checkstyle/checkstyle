@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.AvoidStarImport;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class AvoidStarImportTest
     extends BaseCheckTestCase
@@ -10,13 +11,11 @@ public class AvoidStarImportTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStarImport.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputImport.java");
         final String[] expected = {
             "7: Avoid using the '.*' form of import - com.puppycrawl.tools.checkstyle.*.",
             "9: Avoid using the '.*' form of import - java.io.*.",
             "10: Avoid using the '.*' form of import - java.lang.*.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputImport.java"), expected);
     }
 }
