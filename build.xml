@@ -583,7 +583,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     </javadoc>
   </target>
 
-  <target name="xdocs" depends="compile.checkstyle">
+  <target name="xdocs" depends="compile.checkstyle" description="generate documentation">
     
     <mkdir dir="${xdocs.dest}"/>
 
