@@ -109,13 +109,4 @@ public class AuditEvent
         return mMessage;
     }
 
-    /**
-     * return an Emacs compliant line with the following pattern:
-     * &lt;file&gt;:&lt;line&gt;: &lt;message&gt;
-     * @return informative line representing the event.
-     */
-    public String toString()
-    {
-        return mFileName + ":" + getLine() + ": " + getMessage();
-    }
 }

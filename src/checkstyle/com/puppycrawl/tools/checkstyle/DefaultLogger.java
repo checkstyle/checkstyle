@@ -71,7 +71,9 @@ public class DefaultLogger
     /** @see AuditListener **/
     public void addError(AuditEvent aEvt)
     {
-        mWriter.println(aEvt);
+        // Print an Emacs compliant line.
+        mWriter.println(aEvt.getFileName() + ":" + aEvt.getLine()
+                        + ": " + aEvt.getMessage());
     }
 
     /** @see AuditListener **/
