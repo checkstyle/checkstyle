@@ -121,8 +121,8 @@
             <property name="caseIndent" value="0"/>
         </module>
         <module name="ArrayTrailingComma"/>
-        <module name="FinalLocalVariable"/>
-        
+        <!-- module name="FinalLocalVariable"/ -->
+
         <!-- Generates quite a few errors -->
         <module name="CyclomaticComplexity">
             <property name="severity" value="ignore"/>
