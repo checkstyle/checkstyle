@@ -38,7 +38,8 @@ import org.apache.commons.beanutils.ConversionException;
  *
  * @author Lars Kühne
  */
-public class HeaderCheck extends Check
+public class HeaderCheck
+    extends Check
 {
     /** empty array to avoid instantiations */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
@@ -58,24 +59,26 @@ public class HeaderCheck extends Check
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree()
     {
-        if (mHeaderLines != null) {
+        if (mHeaderLines == null) {
+            log(1, "Unable to check as missing lines to check.");
+            return;
+        }
 
-            final String[] lines = getLines();
+        final String[] lines = getLines();
 
-            if (mHeaderLines.length > lines.length) {
-                log(1, "header.missing");
-            }
-            else {
-                for (int i = 0; i < mHeaderLines.length; i++) {
-                    // skip lines we are meant to ignore
-                    if (isIgnoreLine(i + 1)) {
-                        continue;
-                    }
+        if (mHeaderLines.length > lines.length) {
+            log(1, "header.missing");
+        }
+        else {
+            for (int i = 0; i < mHeaderLines.length; i++) {
+                // skip lines we are meant to ignore
+                if (isIgnoreLine(i + 1)) {
+                    continue;
+                }
 
-                    if (!isMatch(i)) {
-                        log(i + 1, "header.mismatch", mHeaderLines[i]);
-                        break; // stop checking
-                    }
+                if (!isMatch(i)) {
+                    log(i + 1, "header.mismatch", mHeaderLines[i]);
+                    break; // stop checking
                 }
             }
         }
@@ -159,5 +162,4 @@ public class HeaderCheck extends Check
     {
         return mHeaderLines;
     }
-
 }
