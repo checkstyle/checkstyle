@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- TODO: fix the loader to not validate the file
-<!DOCTYPE configuration SYSTEM "configuration.dtd">
+<!-- TODO: enable DOCTYPE in distribution
+<!--
+<!DOCTYPE config SYSTEM "docs/configuration.dtd">
 -->
 <config name="configuration">
     <property name="tabWidth" value="4" />
