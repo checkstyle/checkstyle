@@ -22,6 +22,7 @@ import java.util.Stack;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -58,6 +59,23 @@ public class RedundantModifierCheck
                           TokenTypes.INTERFACE_DEF,
                           TokenTypes.CLASS_DEF};
     }
+    
+    /**
+     * Prevents user from specifying tokens in a configuration file.
+     * @see com.puppycrawl.tools.checkstyle.api.Check
+     */
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {};
+    }
+    
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public int[] getRequiredTokens()
+    {
+        return new int[] {TokenTypes.MODIFIERS,
+                          TokenTypes.INTERFACE_DEF,
+                          TokenTypes.CLASS_DEF};
+    }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
@@ -77,7 +95,7 @@ public class RedundantModifierCheck
             // public interface X {void y();}
 
             // INTERFACE_DEF
-            // + MODUFIERS
+            // + MODIFIERS
             //   + public
             // + OBJ_BLOCK
             //   + ...
