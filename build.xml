@@ -53,15 +53,18 @@
   <!-- -->
   <!-- Cleanup targets -->
   <!-- -->
-  <target name="clean">
-    <delete dir="classes" />
-    <delete dir="dist" />
-    <delete dir="docs/api" />
-    <delete dir="${testreport.dir}" />
+  <target name="clean.antlr">
     <delete>
       <fileset dir="src/checkstyle" includes="**/Generated*.java" />
       <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
     </delete>
+  </target>
+
+  <target name="clean" depends="clean.antlr">
+    <delete dir="classes" />
+    <delete dir="dist" />
+    <delete dir="docs/api" />
+    <delete dir="${testreport.dir}" />
   </target>
 
   <!-- -->
@@ -198,7 +201,7 @@
   <!-- -->
   <!-- DIST TARGETS -->
   <!-- -->
-  <target name="build.bindist" depends="compile.checkstyle">
+  <target name="build.bindist" depends="compile.checkstyle, javadoc">
     <delete dir="dist/checkstyle-${version}" />
     <mkdir dir="dist/checkstyle-${version}" />
     <jar jarfile="dist/checkstyle-${version}/checkstyle-${version}.jar"
@@ -270,7 +273,7 @@
   </target>
 
 
-  <target name="javadoc" depends="compile.checkstyle">
+  <target name="javadoc" depends="compile.checkstyle, clean.antlr">
     <mkdir dir="docs/api" />
     <javadoc sourcepath="src/checkstyle" destdir="docs/api"
              packagenames="com.puppycrawl.tools.checkstyle"
