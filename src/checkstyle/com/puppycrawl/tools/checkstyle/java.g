@@ -293,8 +293,10 @@ field!
 		)
 
     // "static { ... }" class initializer
-	|	"static" s3:compoundStatement
-		{#field = #(#[STATIC_INIT,"STATIC_INIT"], s3);}
+	|	si:"static" s3:compoundStatement
+		{#si.setType(STATIC_INIT);
+		 #si.setText("STATIC_INIT");
+		 #field = #(#si, s3);}
 
     // "{ ... }" instance initializer
 	|	s4:compoundStatement
