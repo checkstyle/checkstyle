@@ -24,7 +24,7 @@ package com.puppycrawl.tools.checkstyle;
  **/
 public interface Defn
 {
-    /** property name for the todo pattern **/
+    /** property name for the to-do pattern **/
     String TODO_PATTERN_PROP = "checkstyle.pattern.todo";
     /** property name for the parameter pattern **/
     String PARAMETER_PATTERN_PROP = "checkstyle.pattern.parameter";
@@ -120,4 +120,7 @@ public interface Defn
     String BASEDIR_PROP = "checkstyle.basedir";
     /** property name for wrapping lines on operators **/
     String WRAP_OP_PROP = "checkstyle.wrap.operator";
+
+    /** property name for the locale language for reporting **/
+    String LOCALE_LANGUAGE_PROP = "checkstyle.locale.language";
 }

@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 import java.io.File;
@@ -27,8 +28,9 @@ import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Locale;
 import org.apache.regexp.RESyntaxException;
 
 /**
@@ -106,6 +108,8 @@ public class Checker
         mCache = new PropertyCacheFile(aConfig);
         final Verifier v = new Verifier(aConfig);
         VerifierSingleton.setInstance(v);
+        LocalizedMessage.init(new Locale(mConfig.getLocaleLanguage()),
+                              mConfig.getClassLoader());
     }
 
     /** Cleans up the object **/
@@ -365,10 +369,7 @@ public class Checker
     {
         for (int i = 0; i < aErrors.length; i++) {
             final AuditEvent evt =
-                new AuditEvent(this, aFileName,
-                               aErrors[i].getLineNo(),
-                               aErrors[i].getColumnNo(),
-                               aErrors[i].getMessage());
+                new AuditEvent(this, aFileName, aErrors[i]);
             final Iterator it = mListeners.iterator();
             while (it.hasNext()) {
                 final AuditListener listener = (AuditListener) it.next();

@@ -256,7 +256,7 @@ public class CheckStyleTask
                            "publicMemberPattern");
     }
 
-    /** @param aPat pattern for todo lines **/
+    /** @param aPat pattern for to-do lines **/
     public void setTodoPattern(final String aPat)
     {
         setPatternProperty(Defn.TODO_PATTERN_PROP, aPat, "todoPattern");
@@ -428,19 +428,20 @@ public class CheckStyleTask
             throw new BuildException("basedir must specify a directory.",
                                      location);
         }
-        mConfig.setBasedir(aBasedir.getAbsolutePath());
+        setStringProperty(Defn.BASEDIR_PROP, aBasedir.getAbsolutePath());
+    }
+
+    /** @param aLang the language to localise messages to **/
+    public void setLocaleLanguage(String aLang)
+    {
+        // TODO:  in Config and also document this
+        setStringProperty(Defn.LOCALE_LANGUAGE_PROP, aLang);
     }
 
     /** @param aCacheFile the file to cache which files have been checked **/
     public void setCacheFile(final File aCacheFile)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setCacheFile(aCacheFile.getAbsolutePath());
-                }
-            });
+        setStringProperty(Defn.CACHE_FILE_PROP, aCacheFile.getAbsolutePath());
     }
 
     /** @param aTo the left curly placement option for methods **/
@@ -829,6 +830,22 @@ public class CheckStyleTask
                 public void run()
                 {
                     mConfig.setIntProperty(aName, aTo);
+                }
+            });
+    }
+
+    /**
+     * Set the specified String property.
+     * @param aName name of property to set
+     * @param aTo the value of the property
+     */
+    private void setStringProperty(final String aName, final String aTo)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setStringProperty(aName, aTo);
                 }
             });
     }

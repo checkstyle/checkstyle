@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import junit.framework.TestCase;
 
-import java.text.MessageFormat;
+import java.util.Locale;
 
 public class LocalizedMessageTest
     extends TestCase
@@ -14,6 +14,8 @@ public class LocalizedMessageTest
 
     public void testMisc()
     {
+        LocalizedMessage.init(Locale.getDefault(),
+                              Thread.currentThread().getContextClassLoader());
         LocalizedMessage lm =
             new LocalizedMessage(0, "DefaultLogger.auditFinished", null);
         assertNotNull(lm);

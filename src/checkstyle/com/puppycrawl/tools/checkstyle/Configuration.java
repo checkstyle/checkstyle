@@ -18,24 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.io.Serializable;
-import java.io.ObjectInputStream;
-import java.io.InvalidObjectException;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InvalidObjectException;
 import java.io.LineNumberReader;
+import java.io.ObjectInputStream;
 import java.io.PrintStream;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Properties;
-import java.util.StringTokenizer;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.TreeSet;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
-
+import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.TreeSet;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
@@ -52,7 +53,7 @@ public class Configuration
     // Constants
     ////////////////////////////////////////////////////////////////////////////
 
-    /** the pattern to match against todo lines **/
+    /** the pattern to match against to-do lines **/
     private static final String TODO_PATTERN = "TODO:";
     /** the pattern to match against parameter names **/
     private static final String PARAMETER_PATTERN = "^[a-z][a-zA-Z0-9]*$";
@@ -99,8 +100,6 @@ public class Configuration
     private final HashSet mIllegalImports = new HashSet();
     /** illegal instantiations **/
     private final HashSet mIllegalInstantiations = new HashSet();
-    /** name of the cache file **/
-    private String mCacheFile = null;
 
     /** the header lines to check for **/
     private String[] mHeaderLines = {};
@@ -120,9 +119,6 @@ public class Configuration
     private PadOption mParenPadOption = PadOption.NOSPACE;
     /** how to wrap operators **/
     private WrapOpOption mWrapOpOption = WrapOpOption.NL;
-
-    /** whether to use basedir **/
-    private String mBasedir;
 
     /** set of boolean properties **/
     private final Set mBooleanProps = new HashSet();
@@ -158,6 +154,13 @@ public class Configuration
         mLCurliesProps.put(Defn.LCURLY_METHOD_PROP, LeftCurlyOption.EOL);
         mLCurliesProps.put(Defn.LCURLY_TYPE_PROP, LeftCurlyOption.EOL);
         mLCurliesProps.put(Defn.LCURLY_OTHER_PROP, LeftCurlyOption.EOL);
+    }
+
+    /** map of all String properties - by default are null **/
+    private final Map mStringProps = new HashMap();
+    {
+        mStringProps.put(Defn.LOCALE_LANGUAGE_PROP,
+                         Locale.getDefault().getLanguage());
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -219,7 +222,8 @@ public class Configuration
         setBooleanProperty(aProps, Defn.IGNORE_BRACES_PROP);
         setBooleanProperty(aProps, Defn.IGNORE_LONG_ELL_PROP);
         setBooleanProperty(aProps, Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP);
-        setCacheFile(aProps.getProperty(Defn.CACHE_FILE_PROP));
+        setStringProperty(aProps, Defn.CACHE_FILE_PROP);
+        setStringProperty(aProps, Defn.LOCALE_LANGUAGE_PROP);
         setBooleanProperty(aProps, Defn.IGNORE_IMPORT_LENGTH_PROP);
         setHeaderIgnoreLines(aProps.getProperty(Defn.HEADER_IGNORE_LINE_PROP));
         setBooleanProperty(aProps, Defn.HEADER_LINES_REGEXP_PROP);
@@ -242,7 +246,7 @@ public class Configuration
                                                Defn.PAREN_PAD_PROP,
                                                PadOption.NOSPACE,
                                                aLog));
-        setBasedir(aProps.getProperty(Defn.BASEDIR_PROP));
+        setStringProperty(aProps, Defn.BASEDIR_PROP);
         setWrapOpOption(getWrapOpOptionProperty(aProps,
                                                 Defn.WRAP_OP_PROP,
                                                 WrapOpOption.NL,
@@ -321,13 +325,19 @@ public class Configuration
         return mLoader;
     }
 
-    /** @return pattern to match todo lines **/
+    /** @return locale language to report messages  **/
+    public String getLocaleLanguage()
+    {
+        return getStringProperty(Defn.LOCALE_LANGUAGE_PROP);
+    }
+
+    /** @return pattern to match to-do lines **/
     public String getTodoPat()
     {
         return getPatternProperty(Defn.TODO_PATTERN_PROP);
     }
 
-    /** @return regexp to match todo lines **/
+    /** @return regexp to match to-do lines **/
     public RE getTodoRegexp()
     {
         return getRegexpProperty(Defn.TODO_PATTERN_PROP);
@@ -598,7 +608,7 @@ public class Configuration
     /** @return the name of the cache file **/
     public String getCacheFile()
     {
-        return mCacheFile;
+        return getStringProperty(Defn.CACHE_FILE_PROP);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -662,6 +672,16 @@ public class Configuration
     }
 
     /**
+     * Set the String property.
+     * @param aName name of the property. Should be defined in Defn.
+     * @param aTo the value to set
+     */
+    public void setStringProperty(String aName, String aTo)
+    {
+        mStringProps.put(aName, aTo);
+    }
+
+    /**
      * @param aFileName the header lines to check for
      * @throws FileNotFoundException if an error occurs
      * @throws IOException if an error occurs
@@ -698,14 +718,6 @@ public class Configuration
             final String ignoreLine = tokens.nextToken();
             mHeaderIgnoreLineNo.add(new Integer(ignoreLine));
         }
-    }
-
-    /**
-     * @param aCacheFile name of cache file
-     */
-    public void setCacheFile(String aCacheFile)
-    {
-        mCacheFile = aCacheFile;
     }
 
     /** @return the left curly placement option for methods **/
@@ -783,13 +795,7 @@ public class Configuration
     /** @return the base directory **/
     public String getBasedir()
     {
-        return mBasedir;
-    }
-
-    /** @param aTo sets the base directory **/
-    public void setBasedir(String aTo)
-    {
-        mBasedir = aTo;
+        return getStringProperty(Defn.BASEDIR_PROP);
     }
 
     /**
@@ -901,6 +907,14 @@ public class Configuration
         return ((Integer) mIntProps.get(aName)).intValue();
     }
 
+    /**
+     * @return an String property
+     * @param aName the name of the String property to get
+     */
+    private String getStringProperty(String aName)
+    {
+        return (String) mStringProps.get(aName);
+    }
     /**
      * Set the value of an integer property. If the property is not defined
      *    or cannot be parsed, then a default value is used.
@@ -1085,6 +1099,19 @@ public class Configuration
             {
                 setBooleanProperty(aName, true);
             }
+        }
+    }
+
+    /**
+     * Set a string property from a property set.
+     * @param aProps the properties set to extract property from
+     * @param aName name of the property to extract
+     */
+    private void setStringProperty(Properties aProps, String aName)
+    {
+        final String str = aProps.getProperty(aName);
+        if (str != null) {
+            setStringProperty(aName, aProps.getProperty(aName));
         }
     }
 }
