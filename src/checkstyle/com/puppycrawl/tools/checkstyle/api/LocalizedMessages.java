@@ -62,7 +62,9 @@ public class LocalizedMessages
      **/
     public void add(LocalizedMessage aMsg)
     {
-        mMessages.add(aMsg);
+        if (!mMessages.contains(aMsg)) {
+            mMessages.add(aMsg);
+        }
     }
 
     /** @return the number of messages */

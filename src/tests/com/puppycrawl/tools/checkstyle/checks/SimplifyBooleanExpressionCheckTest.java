@@ -17,8 +17,6 @@ public class SimplifyBooleanExpressionCheckTest
             "42:36: Expression can be simplified.",
             "43:16: Expression can be simplified.",
             "43:32: Expression can be simplified.",
-            // TODO: Change Check.log to avoid duplicate messages
-            "43:32: Expression can be simplified.",
         };
         verify(checkConfig, getPath("InputSimplifyBoolean.java"), expected);
     }
