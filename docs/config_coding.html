@@ -71,6 +71,9 @@
           <a href="#NestedTryDepth">NestedTryDepth</a>
         </li>
         <li>
+          <a href="#PackageDeclaration">PackageDeclaration</a>
+        </li>
+        <li>
           <a href="#RedundantThrows">RedundantThrows</a>
         </li>
         <li>
@@ -1015,7 +1018,6 @@ return !valid();
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
 
-
       <!-- --> <a name="IllegalCatch"></a> <h2>IllegalCatch</h2> <h4>Description</h4>
       <p class="body">
       Catching java.lang.Exception, java.lang.Error or java.lang.RuntimeException
@@ -1050,6 +1052,32 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;IllegalCatch&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="PackageDeclaration"></a> <h2>PackageDeclaration</h2> 
+      <h4>Description</h4>
+      <p class="body">
+      Ensure a class is has a package declaration.
+      </p>
+      <p class="body">
+      Rationale: Classes that live in the null package cannot be
+      imported. Many novice developers are not aware of this.
+      </p>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;PackageDeclaration&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
