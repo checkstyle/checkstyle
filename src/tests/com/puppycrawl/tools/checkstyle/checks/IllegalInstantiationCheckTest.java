@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.IllegalInstantiationCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class IllegalInstantiationCheckTest
     extends BaseCheckTestCase
@@ -15,8 +16,6 @@ public class IllegalInstantiationCheckTest
                 + "com.puppycrawl.tools.checkstyle.InputModifier,"
                 + "java.io.File,"
                 + "java.awt.Color");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSemantic.java");
         final String[] expected = {
             "19:21: Avoid instantiation of java.lang.Boolean.",
             "24:21: Avoid instantiation of java.lang.Boolean.",
@@ -26,6 +25,6 @@ public class IllegalInstantiationCheckTest
             "41:18: Avoid instantiation of java.io.File.",
             "44:21: Avoid instantiation of java.awt.Color."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 }

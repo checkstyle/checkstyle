@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.HiddenFieldCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class HiddenFieldCheckTest
     extends BaseCheckTestCase
@@ -11,8 +12,6 @@ public class HiddenFieldCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("checkParameters", "false");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputHiddenField.java");
         final String[] expected = {
             "18:13: 'hidden' hides a field.",
             "27:13: 'hidden' hides a field.",
@@ -26,7 +25,7 @@ public class HiddenFieldCheckTest
             "77:17: 'hidden' hides a field.",
             "82:13: 'hidden' hides a field.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
 
     public void testDefault()
@@ -34,8 +33,6 @@ public class HiddenFieldCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputHiddenField.java");
         final String[] expected = {
             "18:13: 'hidden' hides a field.",
             "21:33: 'hidden' hides a field.",
@@ -54,7 +51,7 @@ public class HiddenFieldCheckTest
             "77:17: 'hidden' hides a field.",
             "82:13: 'hidden' hides a field.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
     
     /** Test against a class with field declarations in different order */
@@ -63,8 +60,6 @@ public class HiddenFieldCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputHiddenFieldReorder.java");
         final String[] expected = {
             "18:13: 'hidden' hides a field.",
             "21:40: 'hidden' hides a field.",
@@ -83,7 +78,7 @@ public class HiddenFieldCheckTest
             "77:17: 'hidden' hides a field.",
             "83:13: 'hidden' hides a field.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputHiddenFieldReorder.java"), expected);
     }
 }
 

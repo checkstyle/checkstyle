@@ -1,7 +1,9 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.File;
 
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -36,13 +38,11 @@ public class FileSetCheckLifecycleTest     extends BaseCheckTestCase
     public void testTranslation()
          throws Exception
     {
-        Configuration checkConfig = createCheckConfig(TestFileSetCheck.class);
-        Checker c = createChecker(checkConfig);
-        final String filepath = getPath("InputScopeAnonInner.java");
-
+        final Configuration checkConfig =
+            createCheckConfig(TestFileSetCheck.class);
         final String[] expected = {
         };
-        verify(c, filepath, filepath, expected);
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
 
         assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
     }

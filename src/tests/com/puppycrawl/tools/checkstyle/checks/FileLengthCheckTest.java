@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.FileLengthCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class FileLengthCheckTest
@@ -11,9 +12,7 @@ public class FileLengthCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(FileLengthCheck.class);
         checkConfig.addAttribute("max", aMax);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
-        verify(c, fname, aExpected);
+        verify(checkConfig, getPath("InputSimple.java"), aExpected);
     }
 
     public void testAlarm() throws Exception
