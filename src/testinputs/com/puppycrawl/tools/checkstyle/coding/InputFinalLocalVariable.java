@@ -116,3 +116,8 @@ public class InputFinalLocalVariable
         public int mInner2 = 0;
     }
 }
+
+interface Inter
+{
+    void method(int aParam);
+}
