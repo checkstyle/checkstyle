@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -51,12 +53,16 @@ class ConfigurationLoader
     private static final String DTD_RESOURCE_NAME =
         "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd";
 
+    /** constant to specify two kilobyte of data */
+    private static final int TWO_KB = 2048;
+
     /** overriding properties **/
     private final Properties mOverrideProps;
     /** the loaded configurations **/
     private final Stack mConfigStack = new Stack();
     /** the Configuration that is being built */
     private Configuration mConfiguration = null;
+
 
     /**
      * Creates a new <code>ConfigurationLoader</code> instance.
@@ -81,7 +87,11 @@ class ConfigurationLoader
     void parseFile(String aFilename)
         throws FileNotFoundException, IOException, SAXException
     {
-        parseInputSource(new InputSource(new FileReader(aFilename)));
+        final Reader configReader =
+            new BufferedReader(new FileReader(aFilename), TWO_KB);
+        final InputSource inputSource = new InputSource(configReader);
+        parseInputSource(inputSource);
+        configReader.close();
     }
 
     ///////////////////////////////////////////////////////////////////////////
