@@ -181,10 +181,12 @@ builtInType
 identifier
 	:	i1:IDENT
         {
-            ver.reportReference(i1.getText());
             sLastIdentifier = new LineText(i1.getLine(), i1.getColumn(), i1.getText());
         }
         ( DOT^ i2:IDENT {ver.verifyDot(#DOT); sLastIdentifier.appendText("." + i2.getText());} )*
+        {
+            ver.reportReference(sLastIdentifier.getText());
+        }
 	;
 
 identifierStar
@@ -956,9 +958,9 @@ postfixExpression
 	:	primaryExpression // start with a primary
 
 		(	// qualified id (id.id.id.id...) -- build the name
-			DOT^ {ver.verifyDot(#DOT);} ( IDENT {ver.reportReference(sFirstIdent);}
+			DOT^ {ver.verifyDot(#DOT);} ( i1:IDENT {sLastIdentifier.appendText("." + i1.getText()); ver.reportReference(sLastIdentifier.getText());}
 				| "this"
-				| "class" {ver.reportReference(sFirstIdent);}
+				| "class" {ver.reportReference(sLastIdentifier.getText());}
 				| newExpression
 				| "super" // ClassName.super.field
 				)
@@ -966,7 +968,7 @@ postfixExpression
 			// is the _last_ qualifier.
 
 			// allow ClassName[].class
-		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR);} RBRACK! )+
+		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR); ver.reportReference(sLastIdentifier.getText());} RBRACK! )+
 			DOT^ "class" {ver.verifyDot(#DOT);}
 
 			// an array indexing operation
@@ -995,7 +997,11 @@ postfixExpression
 
 // the basic element of an expression
 primaryExpression
-	:	i1:IDENT {sFirstIdent = i1.getText();}
+	:	i1:IDENT
+        {
+            sFirstIdent = i1.getText();
+            sLastIdentifier = new LineText(i1.getLine(), i1.getColumn(), i1.getText());
+        }
 	|	constant
 	|	"true"
 	|	"false"
