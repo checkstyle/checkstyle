@@ -1,5 +1,10 @@
 2001-11-26  Oliver Burn  <oliver@cortexebusiness.com.au>
 
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.g
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.tree.g:
+	Incorporate changes made to the ANTLR Java grammar that checkstyle is
+	based off.
+
 	* src/tests/com/puppycrawl/tools/checkstyle/CheckerTest.java
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.g: Included patch
 	to check whitespace after synchronized and catch keywords. From Lars

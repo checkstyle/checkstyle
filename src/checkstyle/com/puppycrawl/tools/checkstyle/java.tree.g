@@ -117,6 +117,7 @@ modifier
     |   "synchronized"
     |   "const"
     |   "volatile"
+	|	"strictfp"
     ;
 
 extendsClause
@@ -163,7 +164,7 @@ ctorDef
    MyModifierSet mods;
    MethodSignature ms;
 }
-   :  #(CTOR_DEF mods=modifiers ms=methodHead {ver.reportStartMethodBlock();} slist {ver.reportEndMethodBlock();})
+   :  #(CTOR_DEF mods=modifiers ms=methodHead {ver.reportStartMethodBlock();} ctorSList {ver.reportEndMethodBlock();})
       {
          ver.verifyMethodJavadoc(mods, null, ms);
       }
@@ -292,6 +293,10 @@ identifierStar
    :  IDENT
    |  #( DOT ignore=identifier (STAR|IDENT) )
    ;
+
+ctorSList
+	:	#( SLIST (ctorCall)? (stat)* )
+	;
 
 slist
 	:	#( SLIST (stat)* )
@@ -434,8 +439,9 @@ primaryExpression
                 | "this"
                 | "class" { if (firstExprIdent != null) { ver.reportReference(firstExprIdent.getText()); } }
                 |  #( "new" IDENT elist )
+				|   "super"
                 )
-            | #(ARRAY_DECLARATOR type)
+            | #(ARRAY_DECLARATOR typeSpecArray)
             | builtInType ("class")?
             )
         )
@@ -452,6 +458,15 @@ primaryExpression
     | typeSpec // type name used with instanceof
     ;
 
+ctorCall
+	:	#( CTOR_CALL elist )
+	|	#( SUPER_CTOR_CALL
+			(	elist
+			|	primaryExpression elist
+			)
+		 )
+	;
+
 arrayIndex
 	:	#(INDEX_OP primaryExpression expression)
 	;
@@ -461,6 +476,8 @@ constant
     |   CHAR_LITERAL
     |   STRING_LITERAL
     |   NUM_FLOAT
+    |   NUM_DOUBLE
+    |   NUM_LONG
     ;
 
 newExpression

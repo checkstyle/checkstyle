@@ -56,6 +56,7 @@ tokens {
 	POST_INC; POST_DEC; METHOD_CALL; EXPR; ARRAY_INIT; 
 	IMPORT; UNARY_MINUS; UNARY_PLUS; CASE_GROUP; ELIST; FOR_INIT; FOR_CONDITION; 
 	FOR_ITERATOR; EMPTY_STAT; FINAL="final"; ABSTRACT="abstract";
+	STRICTFP="strictfp"; SUPER_CTOR_CALL; CTOR_CALL;
 }
 	
 {
@@ -111,16 +112,6 @@ declaration!
 	:	m:modifiers t:typeSpec[false] v:variableDefinitions[#m,#t]
 		{#declaration = #v;}
 	;
-
-// A list of zero or more modifiers.  We could have used (modifier)* in
-//   place of a call to modifiers, but I thought it was a good idea to keep
-//   this rule separate so they can easily be collected in a Vector if
-//   someone so desires
-modifiers
-	:	( modifier )*
-		{#modifiers = #([MODIFIERS, "MODIFIERS"], #modifiers);}
-	;
-
 
 // A type specification is a type name with possible brackets afterwards
 //   (which would make it an array type).
@@ -192,6 +183,14 @@ identifierStar
 }
 	;
 
+// A list of zero or more modifiers.  We could have used (modifier)* in
+//   place of a call to modifiers, but I thought it was a good idea to keep
+//   this rule separate so they can easily be collected in a Vector if
+//   someone so desires
+modifiers
+	:	( modifier )*
+		{#modifiers = #([MODIFIERS, "MODIFIERS"], #modifiers);}
+	;
 
 // modifiers for Java classes, interfaces, class/instance vars and methods
 modifier
@@ -205,10 +204,10 @@ modifier
 	|	"native"
 	|	"threadsafe"
 	|	"synchronized"
-//	|	"const"			// reserved word; leave out
+//	|	"const"			// reserved word, but not valid
 	|	"volatile"
+	|	"strictfp"
 	;
-
 
 // Definition of a Java class
 classDefinition![AST modifiers]
@@ -275,7 +274,7 @@ implementsClause
 field!
 	:	// method, constructor, or variable declaration
 		mods:modifiers
-		(	h:ctorHead s:compoundStatement // constructor
+		(	h:ctorHead s:constructorBody // constructor
 			{#field = #(#[CTOR_DEF,"CTOR_DEF"], mods, h, s);}
 
 		|	cd:classDefinition[#mods]       // inner class
@@ -290,9 +289,10 @@ field!
 				// parse the formal parameter declarations.
 				LPAREN! param:parameterDeclarationList RPAREN!
 
-				rt:returnTypeBrackersOnEndOfMethodHead[#t]
+				rt:declaratorBrackets[#t]
 
-				// get the list of exceptions that this method is declared to throw
+				// get the list of exceptions that this method is
+				// declared to throw
 				(tc:throwsClause)?
 
 				( s2:compoundStatement | SEMI )
@@ -317,6 +317,38 @@ field!
 	|	s4:compoundStatement
 		{#field = #(#[INSTANCE_INIT,"INSTANCE_INIT"], s4);}
 	;
+
+constructorBody
+    :   lc:LCURLY^ {#lc.setType(SLIST);}
+		// Predicate might be slow but only checked once per constructor def
+		// not for general methods.
+		(	(explicitConstructorInvocation) => explicitConstructorInvocation
+		|
+		)
+        (statement)*
+        RCURLY!
+    ;
+
+explicitConstructorInvocation
+    :   (	options {
+				// this/super can begin a primaryExpression too; with finite
+				// lookahead ANTLR will think the 3rd alternative conflicts
+				// with 1, 2.  I am shutting off warning since ANTLR resolves
+				// the nondeterminism by correctly matching alts 1 or 2 when
+				// it sees this( or super(
+				generateAmbigWarnings=false;
+			}
+		:	"this"! lp1:LPAREN^ argList RPAREN! SEMI!
+			{#lp1.setType(CTOR_CALL);}
+
+	    |   "super"! lp2:LPAREN^ argList RPAREN! SEMI!
+			{#lp2.setType(SUPER_CTOR_CALL);}
+
+			// (new Outer()).super()  (create enclosing instance)
+		|	primaryExpression DOT! "super"! lp3:LPAREN^ argList RPAREN! SEMI!
+			{#lp3.setType(SUPER_CTOR_CALL);}
+		)
+    ;
 
 variableDefinitions[AST mods, AST t]
 	:	variableDeclarator[getASTFactory().dupTree(mods),
@@ -392,11 +424,6 @@ throwsClause
 	;
 
 
-returnTypeBrackersOnEndOfMethodHead[AST typ]
-	:	{#returnTypeBrackersOnEndOfMethodHead = typ;}
-		(lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK!)*
-	;
-
 // A list of formal parameters
 parameterDeclarationList
 	:	( parameterDeclaration ( COMMA! parameterDeclaration )* )?
@@ -407,14 +434,9 @@ parameterDeclarationList
 // A formal parameter.
 parameterDeclaration!
 	:	pm:parameterModifier t:typeSpec[false] id:IDENT
-		pd:parameterDeclaratorBrackets[#t]
+		pd:declaratorBrackets[#t]
 		{#parameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
 									pm, #([TYPE,"TYPE"],pd), id);}
-	;
-
-parameterDeclaratorBrackets[AST t]
-	:	{#parameterDeclaratorBrackets = t;}
-		(lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK!)*
 	;
 
 parameterModifier
@@ -443,15 +465,6 @@ statement
 	// A list of statements in curly braces -- start a new scope!
 	:	compoundStatement
 
-	// class definition
-	|	classDefinition[#[MODIFIERS, "MODIFIERS"]]
-
-	// final class definition
-	|	"final"! classDefinition[#(#[MODIFIERS, "MODIFIERS"],#[FINAL,"final"])]
-
-	// abstract class definition
-	|	"abstract"! classDefinition[#(#[MODIFIERS, "MODIFIERS"],#[ABSTRACT,"abstract"])]
-
 	// declarations are ambiguous with "ID DOT" relative to expression
 	// statements.  Must backtrack to be sure.  Could use a semantic
 	// predicate to test symbol table to see what the type was coming
@@ -462,6 +475,9 @@ statement
 	// assignment statement, or any other expression evaluated for
 	// side-effects.
 	|	expression SEMI!
+
+	// class definition
+	|	m:modifiers! classDefinition[#m]
 
 	// Attach a label to the front of a statement
 	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement
@@ -651,9 +667,9 @@ assignmentExpression
 
 // conditional test (level 12)
 conditionalExpression
-   :  logicalOrExpression
-      ( QUESTION^ assignmentExpression COLON conditionalExpression )?
-   ;
+	:	logicalOrExpression
+		( QUESTION^ assignmentExpression COLON! conditionalExpression )?
+	;
 
 
 // logical or (||)  (level 11)
@@ -767,10 +783,10 @@ postfixExpression
 				| "this"
 				| "class"
 				| newExpression
-				| "super" LPAREN ( expressionList )? RPAREN
+				| "super" // ClassName.super.field
 				)
 			// the above line needs a semantic check to make sure "class"
-			//   is the _last_ qualifier.
+			// is the _last_ qualifier.
 
 			// allow ClassName[].class
 		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR);} RBRACK! )+
@@ -784,6 +800,9 @@ postfixExpression
 			//  x[2](4) which are not valid in Java.  If this grammar were used
 			//  to validate a Java program a semantic check would be needed, or
 			//   this rule would get really ugly...
+			// It also allows ctor invocation like super(3) which is now
+			// handled by the explicit constructor rule, but it would
+			// be hard to syntactically prevent ctor calls here
 		|	lp:LPAREN^ {#lp.setType(METHOD_CALL);}
 				argList
 			RPAREN!
@@ -795,24 +814,23 @@ postfixExpression
 	 	|	de:DEC^ {#de.setType(POST_DEC);}
 		|	// nothing
 		)
-
-		// look for int.class and int[].class
-	|	builtInType 
-		( lbt:LBRACK^ {#lbt.setType(ARRAY_DECLARATOR);} RBRACK! )*
-		DOT^ "class"
 	;
 
 // the basic element of an expression
 primaryExpression
 	:	i1:IDENT {sFirstIdent = i1.getText();}
-	|	newExpression
 	|	constant
-	|	"super"
 	|	"true"
 	|	"false"
 	|	"this"
 	|	"null"
+	|	newExpression
 	|	LPAREN! assignmentExpression RPAREN!
+	|	"super"
+		// look for int.class and int[].class
+	|	builtInType 
+		( lbt:LBRACK^ {#lbt.setType(ARRAY_DECLARATOR);} RBRACK! )*
+		DOT^ "class"
 	;
 
 /** object instantiation.
@@ -909,6 +927,8 @@ constant
 	|	CHAR_LITERAL
 	|	STRING_LITERAL
 	|	NUM_FLOAT
+	|	NUM_LONG
+	|	NUM_DOUBLE
 	;
 
 
@@ -921,7 +941,11 @@ options {
 	exportVocab=GeneratedJava; // call the vocabulary "GeneratedJava"
 	testLiterals=false;    // don't automatically test for literals
 	k=4;                   // four characters of lookahead
-//	charVocabulary='\u0003'..'\uFFFF';
+	charVocabulary='\u0003'..'\uFFFF';
+	// without inlining some bitset tests, couldn't do unicode;
+	// I need to make ANTLR generate smaller bitsets; see
+	// bottom of JavaLexer.java
+	codeGenBitsetTestThreshold=20;
 }
 
 
@@ -979,13 +1003,14 @@ SEMI			:	';'		;
 WS	:	(	' '
 		|	'\t'
 		|	'\f'
-		// handle newlines
-		|	(	"\r\n"  // Evil DOS
+			// handle newlines
+		|	(	options {generateAmbigWarnings=false;}
+			:	"\r\n"  // Evil DOS
 			|	'\r'    // Macintosh
 			|	'\n'    // Unix (the right way)
 			)
 			{ newline(); }
-		)
+		)+
 		{ _ttype = Token.SKIP; }
 	;
 
@@ -1117,9 +1142,19 @@ IDENT
 
 // a numeric literal
 NUM_INT
-	{boolean isDecimal=false;}
-	:	'.' {_ttype = DOT;}
-			(('0'..'9')+ (EXPONENT)? (FLOAT_SUFFIX)? { _ttype = NUM_FLOAT; })?
+	{boolean isDecimal=false; Token t=null;}
+    :   '.' {_ttype = DOT;}
+            (	('0'..'9')+ (EXPONENT)? (f1:FLOAT_SUFFIX {t=f1;})?
+                {
+				if (t != null && t.getText().toUpperCase().indexOf('D')>=0) {
+                	_ttype = NUM_DOUBLE;
+				}
+				else {
+                	_ttype = NUM_FLOAT;
+				}
+				}
+            )?
+
 	|	(	'0' {isDecimal = true;} // special case for just '0'
 			(	('x'|'X')
 				(											// hex
@@ -1137,16 +1172,23 @@ NUM_INT
 			)?
 		|	('1'..'9') ('0'..'9')*  {isDecimal=true;}		// non-zero decimal
 		)
-		(	('l'|'L')
+		(	('l'|'L') { _ttype = NUM_LONG; }
 		
 		// only check to see if it's a float if looks like decimal so far
 		|	{isDecimal}?
-			(	'.' ('0'..'9')* (EXPONENT)? (FLOAT_SUFFIX)?
-			|	EXPONENT (FLOAT_SUFFIX)?
-			|	FLOAT_SUFFIX
-			)
-			{ _ttype = NUM_FLOAT; }
-		)?
+            (   '.' ('0'..'9')* (EXPONENT)? (f2:FLOAT_SUFFIX {t=f2;})?
+            |   EXPONENT (f3:FLOAT_SUFFIX {t=f3;})?
+            |   f4:FLOAT_SUFFIX {t=f4;}
+            )
+            {
+			if (t != null && t.getText().toUpperCase() .indexOf('D') >= 0) {
+                _ttype = NUM_DOUBLE;
+			}
+            else {
+                _ttype = NUM_FLOAT;
+			}
+			}
+        )?
 	;
 
 
