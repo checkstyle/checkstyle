@@ -43,4 +43,14 @@ public class ImportOrderCheckTest extends BaseCheckTestCase
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
     }
+
+    public void testCaseInsensitive() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("caseSensitive", "false");
+        final String[] expected = {
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrderCaseInsensitive.java"), expected);
+    }
 }

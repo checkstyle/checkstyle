@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  &lt;module name=&quot;ImportOrder&quot;>
  *    &lt;property name=&quot;groups&quot; value=&quot;java,javax&quot;/>
  *    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/>
+ *    &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/>
  *  &lt;/module>
  * </pre>
  *
@@ -64,6 +65,8 @@ public class ImportOrderCheck extends Check
 
     /** Require imports in group be separated. */
     private boolean mSeparated;
+    /** Should comprision be case sensitive. */
+    private boolean mCaseSensitive = true;
 
     /** Last imported group. */
     private int mLastGroup;
@@ -123,6 +126,17 @@ public class ImportOrderCheck extends Check
     public void setSeparated(boolean aSeparated)
     {
         mSeparated = aSeparated;
+    }
+
+    /**
+     * Sets whether strings comprision should be case sensitive
+     * or not.
+     * @param aCaseSensitive whether string comprition should be
+     *                       case sensitive.
+     */
+    public void setCaseSensitive(boolean aCaseSensitive)
+    {
+        mCaseSensitive = aCaseSensitive;
     }
 
     /** {@inheritDoc} */
@@ -186,7 +200,15 @@ public class ImportOrderCheck extends Check
             }
             else if (groupIdx == mLastGroup) {
                 if (mOrdered) {
-                    if (mLastImport.compareTo(name) >= 0) {
+                    boolean shouldFireError = false;
+                    if (mCaseSensitive) {
+                        shouldFireError = (mLastImport.compareTo(name) >= 0);
+                    }
+                    else {
+                        shouldFireError =
+                            (mLastImport.compareToIgnoreCase(name) >= 0);
+                    }
+                    if (shouldFireError) {
                         log(line, "import.ordering", name);
                     }
                 }
