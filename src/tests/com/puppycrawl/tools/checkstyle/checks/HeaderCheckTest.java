@@ -51,7 +51,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
             createCheckConfig(HeaderCheck.class);
         // No header file specified
         final String[] expected = {
-            "1: Unable to check as missing lines to check."
+            "1: Unable to check header as missing lines to check."
         };
 
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
