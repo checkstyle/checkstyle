@@ -364,22 +364,38 @@ line 5: /{71}
 </div>
 
 <h3>Exception handling</h3>
-<p>Checks for empty catch blocks</p>
+<p>Checks for empty <span class="code">catch</span> blocks. The check can be configured with the following options:</p>
 
-<div class="tip">
-<h4 class="tip">Tip</h4>
-<p>In some (rare!) situations an empty catch block might be OK. You can turn off the warning for that particular exception by placing an empty statement (a semicolon) inside the catch block. A comment should explain why it's OK to ignore the exception:</p>
-
+<a name="catchBlockOpt"></a>
+<table border="1" summary="catch block options">
+  <tr class="header">
+    <td>Option</td>
+    <td>Definition</td>
+  </tr>
+  <tr>
+    <td><span class="code">ignore</span></td>
+    <td>Ignore empty <span class="code">catch</span> blocks.</td>
+  </tr>
+  <tr>
+    <td><span class="code">text</span></td>
+    <td>Require that there is some text in the <span class="code">catch</span> block. For example:
 <pre>
-try {
-  // paint
-} catch (SomeException ex) {
-  ; // it's OK to ignore ex here because we'll repaint in 2 nanoseconds
-}
+    catch (Exception ex) {
+        // This is a bad coding practice
+    }
 </pre>
-
-<p>Currently the comment is not enforced but that might change in future versions.</p>
-</div>
+      This is the default value.
+  </tr>
+  <tr>
+    <td><span class="code">stmt</span></td>
+    <td>Require that there is a statement in the <span class="code">catch</span> block. For example:
+<pre>
+    catch (Exception ex) {
+        log.warn("Caught exception.", ex);
+    }
+</pre>
+  </tr>
+</table>
 
 
 <!-- formatters -->
