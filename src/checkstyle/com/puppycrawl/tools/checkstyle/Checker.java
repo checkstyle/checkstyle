@@ -375,7 +375,7 @@ public class Checker extends AutomaticBean
      * reflection.
      * @param aLoader the new classloader
      */
-    public final void setClassLoader(ClassLoader aLoader)
+    public final void setClassloader(ClassLoader aLoader)
     {
         mLoader = aLoader;
     }
