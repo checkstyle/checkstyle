@@ -51,7 +51,7 @@ public class SlistHandler extends BlockParentHandler
      *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         // this is:
         //  switch (var) {
@@ -127,17 +127,6 @@ public class SlistHandler extends BlockParentHandler
     protected DetailAST getToplevelAST()
     {
         return null;
-
-        //            // TODO: STATIC_INIT has column num of lcurly... need
-        //            //   to ask about this
-        //            DetailAST mParent = mMainAst.getParent();
-        //            if (mParent.getType() == TokenTypes.STATIC_INIT) {
-        //                if (mParent.getColumnNo() == getLevel()) {
-        //                    return;
-        //                }
-        //                logError(mParent, "static",
-        //                    mParent.getColumnNo());
-        //            }
     }
 
     /**

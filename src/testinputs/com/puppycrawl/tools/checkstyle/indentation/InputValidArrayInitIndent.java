@@ -54,6 +54,14 @@ public class InputValidArrayInitIndent {
         3
     };
 
+    String[][] mStuff = new String[][] {
+        { "key", "value" }
+    };
+    
+    String[][] mStuff = new String[][]
+    {
+        { "key", "value" }
+    };
     
     int[] array8 = new int[] { };
 

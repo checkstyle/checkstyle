@@ -47,13 +47,16 @@ public class ArrayInitHandler extends BlockParentHandler
      *
      * @return the expected indentation amount
      */
-    public int getLevelImpl()
+    public IndentLevel getLevelImpl()
     {
         DetailAST parentAST = getMainAst().getParent();
         int type = parentAST.getType();
         if (type == TokenTypes.LITERAL_NEW || type == TokenTypes.ASSIGN) {
             // note: assumes new or assignment is line to align with
-            return getLineStart(parentAST);
+            return new IndentLevel(getLineStart(parentAST));
+        }
+        else if (getParent() instanceof ArrayInitHandler) {
+            return ((ArrayInitHandler) getParent()).getChildrenExpectedLevel();
         }
         else {
             return getParent().getLevel();

@@ -101,7 +101,7 @@ public class ClassDefHandler extends BlockParentHandler
         //  indented at least one level
         DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
         int lineStart = getLineStart(ident);
-        if (lineStart != getLevel()) {
+        if (!getLevel().accept(lineStart)) {
             logError(ident, "ident", lineStart);
         }
 

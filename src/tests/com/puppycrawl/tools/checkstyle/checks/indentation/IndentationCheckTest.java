@@ -1,6 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -402,7 +401,6 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "60: if lcurly at indentation level 5 not at correct indentation, 8",
             "61: if rcurly at indentation level 5 not at correct indentation, 8",
             "65: if rcurly at indentation level 10 not at correct indentation, 8",
-//TODO: add this back? -- } else is already checked by if            "65: else at indentation level 10 not at correct indentation, 8",
             "66: else rcurly at indentation level 7 not at correct indentation, 8",
             "69: if at indentation level 9 not at correct indentation, 8",
             "70: if lcurly at indentation level 7 not at correct indentation, 8",
@@ -416,13 +414,11 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "85: if at indentation level 9 not at correct indentation, 8",
             "86: if lcurly at indentation level 9 not at correct indentation, 8",
             "87: if rcurly at indentation level 9 not at correct indentation, 8",
-//TODO: same here            "87: else at indentation level 9 not at correct indentation, 8",
             "88: else lcurly at indentation level 7 not at correct indentation, 8",
             "89: else rcurly at indentation level 10 not at correct indentation, 8",
             "92: if at indentation level 6 not at correct indentation, 8",
             "93: if lcurly at indentation level 10 not at correct indentation, 8",
             "94: if rcurly at indentation level 10 not at correct indentation, 8",
-//TODO: same here            "94: else at indentation level 10 not at correct indentation, 8",
             "95: else rcurly at indentation level 7 not at correct indentation, 8",
             "98: if at indentation level 5 not at correct indentation, 8",
             "99: if rcurly at indentation level 11 not at correct indentation, 8",
@@ -437,7 +433,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             // TODO: should be 16, not 12
             "133: method call child at indentation level 10 not at correct indentation, 12",
             "135: else child at indentation level 10 not at correct indentation, 12",
-            // TODO: why we get this message (it's duplicate of previous.
+            // TODO: why we get this message (it's duplicate of previous).
             "135: method call child at indentation level 10 not at correct indentation, 12",
             "136: method call child at indentation level 8 not at correct indentation, 12",
             "143: if child at indentation level 16 not at correct indentation, 12",

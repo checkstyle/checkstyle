@@ -54,7 +54,7 @@ public class MethodCallHandler extends ExpressionHandler
         DetailAST lparen = getMainAst();
         int columnNo = expandedTabsColumnNo(lparen);
 
-        if (columnNo == getLevel()) {
+        if (getLevel().accept(columnNo)) {
             return;
         }
 
@@ -75,7 +75,7 @@ public class MethodCallHandler extends ExpressionHandler
         DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         int columnNo = expandedTabsColumnNo(rparen);
 
-        if (columnNo == getLevel()) {
+        if (getLevel().accept(columnNo)) {
             return;
         }
 
@@ -90,7 +90,7 @@ public class MethodCallHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
-    public int getLevelImpl()
+    public IndentLevel getLevelImpl()
     {
         // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start
@@ -101,8 +101,8 @@ public class MethodCallHandler extends ExpressionHandler
                     return container.getLevel();
                 }
                 else {
-                    return container.getLevel()
-                        + getIndentCheck().getBasicOffset();
+                    return new IndentLevel(container.getLevel(),
+                                           getBasicOffset());
                 }
             }
 
@@ -124,7 +124,7 @@ public class MethodCallHandler extends ExpressionHandler
         int firstCol = lines.firstLineCol();
         int lineStart = getLineStart(getFirstAst(getMainAst()));
         if (lineStart != firstCol) {
-            return lineStart;
+            return new IndentLevel(lineStart);
         }
         else {
             return super.getLevelImpl();
@@ -164,7 +164,7 @@ public class MethodCallHandler extends ExpressionHandler
      *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         // for whatever reason a method that crosses lines, like asList
         // here:
@@ -178,10 +178,10 @@ public class MethodCallHandler extends ExpressionHandler
             if (!areOnSameLine((DetailAST) aChild.getMainAst().getFirstChild(),
                 (DetailAST) getMainAst().getFirstChild()))
             {
-                indentLevel += getIndentCheck().getBasicOffset();
+                indentLevel += getBasicOffset();
             }
         }
-        return indentLevel;
+        return new IndentLevel(indentLevel);
     }
 
     /**
@@ -210,7 +210,7 @@ public class MethodCallHandler extends ExpressionHandler
 
             checkExpressionSubtree(
                 getMainAst().findFirstToken(TokenTypes.ELIST),
-                getLevel() + getIndentCheck().getBasicOffset(),
+                new IndentLevel(getLevel(), getBasicOffset()),
                 false, true);
 
             checkRParen();

@@ -47,21 +47,16 @@ public class ForHandler extends BlockParentHandler
      */
     private void checkForParams()
     {
-        checkExpressionSubtree(
-            getMainAst().findFirstToken(TokenTypes.FOR_INIT),
-            getLevel() + getIndentCheck().getBasicOffset(),
-            false,
-            false);
-        checkExpressionSubtree(
-            getMainAst().findFirstToken(TokenTypes.FOR_CONDITION),
-            getLevel() + getIndentCheck().getBasicOffset(),
-            false,
-            false);
-        checkExpressionSubtree(
-            getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR),
-            getLevel() + getIndentCheck().getBasicOffset(),
-            false,
-            false);
+        IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
+
+        DetailAST init = getMainAst().findFirstToken(TokenTypes.FOR_INIT);
+        checkExpressionSubtree(init, expected, false, false);
+
+        DetailAST cond = getMainAst().findFirstToken(TokenTypes.FOR_CONDITION);
+        checkExpressionSubtree(cond, expected, false, false);
+
+        DetailAST iter = getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR);
+        checkExpressionSubtree(iter, expected, false, false);
     }
 
     /**
@@ -82,7 +77,7 @@ public class ForHandler extends BlockParentHandler
      *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild)
+    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         if (aChild instanceof ElseHandler) {
             return getLevel();
