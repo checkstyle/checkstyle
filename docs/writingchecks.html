@@ -202,13 +202,12 @@
       href="api/com/puppycrawl/tools/checkstyle/api/Check.html#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
       class="code">visitToken()</span></a>.  </p>
 
-      <p class="body">
-
-      It is important to understand that the individual Checks do no
-      drive the AST traversal. Instead, the TreeWalker initiates a recursive
-      descend from the root of the AST to the leaf nodes and calls the Check
-      methods.
-      </p>
+      <p class="body"> It is important to understand that the individual
+      Checks do no drive the AST traversal. Instead, the TreeWalker initiates
+      a recursive descend from the root of the AST to the leaf nodes and calls
+      the Check methods. The traversal is done using a <a
+      href="http://mathworld.wolfram.com/Depth-FirstTraversal.html">depth-first</a>
+      algorithm.  </p>
 
       <p class="body"> Before any visitor method is called, the TreeWalker
       will call <a
@@ -467,17 +466,16 @@
 
       <a name="filesetchecks"></a>
       <h2>Writing FileSetChecks</h2>
-      <p class="body">
-      Writing a FileSetCheck is pretty straightforward: Just inherit
-      from AbstractFileSetCheck and implement the <span class="code">process(File[]
-      files)</span> method and you&apos;re done. A very simple example could fire
-      an error if the number of files that are passed in exceeds a
-      certain limit.
-      </p>
-      <p class="body">
-      TODO: Implement that FSC and provide it as an example. Sketch:
-      </p>
-      <pre>
+
+      <p class="body"> Writing a FileSetCheck is pretty straightforward: Just
+      inherit from <a
+      href="api/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">AbstractFileSetCheck</a>
+      and implement the <a
+      href="api/com/puppycrawl/tools/checkstyle/api/FileSetCheck.html#process(java.io.File[])"><span
+      class="code">process(File[] files)</span></a> method and you&apos;re
+      done. A very simple example could fire an error if the number of files
+      that are passed in exceeds a certain limit.  </p> <p class="body"> TODO:
+      Implement that FSC and provide it as an example. Sketch: </p> <pre>
       private int max = 100;
 
       public void setMax(int aMax)
