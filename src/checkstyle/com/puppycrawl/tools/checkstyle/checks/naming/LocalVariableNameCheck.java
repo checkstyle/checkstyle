@@ -16,14 +16,17 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that method names conform to a format specified
- * by the format property. The format is a
+ * Checks that local, non-final variable names conform to a format specified
+ * by the format property. A catch parameter is considered to be
+ * a local variable. The format is a
  * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
  * regular expression</a>
  * and defaults to
@@ -33,25 +36,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="MethodName"/&gt;
+ * &lt;module name="LocalVariableName"/&gt;
  * </pre>
  * <p>
- * An example of how to configure the check for names that begin with
- * a lower case letter, followed by letters, digits, and underscores is:
+ * An example of how to configure the check for names that begin with a lower
+ * case letter, followed by letters, digits, and underscores is:
  * </p>
  * <pre>
- * &lt;module name="MethodName"&gt;
+ * &lt;module name="LocalVariableName"&gt;
  *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
- * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author Rick Giles
  * @version 1.0
  */
-public class MethodNameCheck
+public class LocalVariableNameCheck
     extends AbstractNameCheck
 {
-    /** Creates a new <code>MethodNameCheck</code> instance. */
-    public MethodNameCheck()
+    /** Creates a new <code>LocalVariableNameCheck</code> instance. */
+    public LocalVariableNameCheck()
     {
         super("^[a-z][a-zA-Z0-9]*$");
     }
@@ -59,6 +62,19 @@ public class MethodNameCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.METHOD_DEF};
+        return new int[] {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.PARAMETER_DEF,
+        };
+    }
+
+    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractNameCheck */
+    protected final boolean mustCheckName(DetailAST aAST)
+    {
+        final DetailAST modifiersAST =
+            aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final boolean isFinal = (modifiersAST != null)
+            && modifiersAST.branchContains(TokenTypes.FINAL);
+        return (!isFinal && ScopeUtils.isLocalVariableDef(aAST));
     }
 }

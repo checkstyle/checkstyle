@@ -16,7 +16,8 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+
+package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
@@ -24,57 +25,71 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that local, non-final variable names conform to a format specified
- * by the format property. A catch parameter is considered to be
- * a local variable. The format is a
- * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
- * regular expression</a>
- * and defaults to
- * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
+ * Checks that constant names conform to a format specified
+ * by the format property.
+ * A <em>constant</em> is a <strong>static</strong> and <strong>final</strong>
+ * field or an interface field, except <strong>serialVersionUID</strong>.
+ * The format is a regular expression and defaults to
+ * <strong>^[A-Z](_?[A-Z0-9]+)*$</strong>.
  * </p>
  * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="LocalVariableName"/&gt;
+ * &lt;module name="ConstantName"/&gt;
  * </pre>
+ *
  * <p>
- * An example of how to configure the check for names that begin with a lower
- * case letter, followed by letters, digits, and underscores is:
+ * An example of how to configure the check for names that are only upper case
+ * letters and digits is:
  * </p>
  * <pre>
- * &lt;module name="LocalVariableName"&gt;
- *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ * &lt;module name="ConstantName"&gt;
+ *    &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ *
  * @author Rick Giles
  * @version 1.0
  */
-public class LocalVariableNameCheck
+public class ConstantNameCheck
     extends AbstractNameCheck
 {
-    /** Creates a new <code>LocalVariableNameCheck</code> instance. */
-    public LocalVariableNameCheck()
+    /** Creates a new <code>ConstantNameCheck</code> instance. */
+    public ConstantNameCheck()
     {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[A-Z](_?[A-Z0-9]+)*$");
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.PARAMETER_DEF,
-        };
+        return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.checks.AbstractNameCheck */
     protected final boolean mustCheckName(DetailAST aAST)
     {
-        final DetailAST modifiersAST =
-            aAST.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isFinal = (modifiersAST != null)
+        boolean retVal = false;
+
+        DetailAST modifiersAST = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final boolean isStatic = modifiersAST != null
+            && modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
+        final boolean isFinal = modifiersAST != null
             && modifiersAST.branchContains(TokenTypes.FINAL);
-        return (!isFinal && ScopeUtils.isLocalVariableDef(aAST));
+
+        if ((isStatic  && isFinal) || ScopeUtils.inInterfaceBlock(aAST)) {
+            // Handle the serialVersionUID constant which is used for
+            // Serialization. Cannot enforce rules on it. :-)
+            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+            if ((nameAST != null)
+                && !("serialVersionUID".equals(nameAST.getText())))
+            {
+                retVal = true;
+            }
+        }
+
+        return retVal;
     }
 }

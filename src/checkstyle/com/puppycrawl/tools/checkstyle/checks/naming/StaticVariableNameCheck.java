@@ -16,14 +16,15 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
-* <p>
- * Checks that parameter names conform to a format specified
+ * <p>
+ * Checks that static, non-final variable names conform to a format specified
  * by the format property. The format is a
  * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
  * regular expression</a>
@@ -34,27 +35,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="ParameterName"/&gt;
+ * &lt;module name="StaticVariableName"/&gt;
  * </pre>
  * <p>
-  * An example of how to configure the check for names that begin with
+ * An example of how to configure the check for names that begin with
  * a lower case letter, followed by letters, digits, and underscores is:
  * </p>
  * <pre>
- * &lt;module name="ParameterName"&gt;
- *    &lt;property name="format" value="^^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ * &lt;module name="StaticVariableName"&gt;
+ *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/module&gt;
-
- *
- * @author Oliver Burn
+ * </pre>
+ * @author Rick Giles
+ * @version 1.0
  */
-public class ParameterNameCheck
+public class StaticVariableNameCheck
     extends AbstractNameCheck
 {
-    /**
-     * Creates a new <code>ParameterNameCheck</code> instance.
-     */
-    public ParameterNameCheck()
+    /** Creates a new <code>StaticVariableNameCheck</code> instance. */
+    public StaticVariableNameCheck()
     {
         super("^[a-z][a-zA-Z0-9]*$");
     }
@@ -62,14 +61,18 @@ public class ParameterNameCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.PARAMETER_DEF};
+        return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.checks.AbstractNameCheck */
-    protected boolean mustCheckName(DetailAST aAST)
+    protected final boolean mustCheckName(DetailAST aAST)
     {
-        return !(
-            (aAST.getParent() != null)
-                && (aAST.getParent().getType() == TokenTypes.LITERAL_CATCH));
+        DetailAST modifiersAST = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final boolean isStatic = (modifiersAST != null)
+            && modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
+        final boolean isFinal = (modifiersAST != null)
+            && modifiersAST.branchContains(TokenTypes.FINAL);
+
+        return (isStatic && !isFinal && !ScopeUtils.inInterfaceBlock(aAST));
     }
 }
