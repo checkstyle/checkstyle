@@ -46,7 +46,6 @@ public class CheckerTest
     protected void setUp()
         throws Exception
     {
-        mProps.setProperty(Defn.HEADER_FILE_PROP, getPath("java.header"));
         mProps.setProperty(Defn.LCURLY_METHOD_PROP,
                            LeftCurlyOption.NL.toString());
         mProps.setProperty(Defn.LCURLY_OTHER_PROP,
@@ -478,7 +477,6 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":1: File length is 198 lines (max allowed is 20).",
-            filepath + ":3: Line does not match expected header line of '// Created: 2001'.",
             filepath + ":18: Line is longer than 80 characters.",
             filepath + ":19:25: Line contains a tab character.",
             filepath + ":25:29: Name 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
@@ -707,43 +705,6 @@ public class CheckerTest
             filepath + ":43:14: ')' is preceeded with whitespace.",
             filepath + ":51:34: '(' is followed by whitespace.",
             filepath + ":53:17: Missing a Javadoc comment.",
-            filepath + ":53:42: '(' is followed by whitespace.",
-            filepath + ":53:57: ')' is preceeded with whitespace.",
-            filepath + ":57:14: ')' is preceeded with whitespace.",
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testHeader()
-        throws Exception
-    {
-        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
-        final Checker c = createChecker();
-        final String filepath = getPath("inputHeader.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":1: Missing a header - not enough lines in file.",
-            filepath + ":1: Missing a Javadoc comment.",
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testRegexpHeader()
-        throws Exception
-    {
-        mProps.setProperty(Defn.HEADER_LINES_REGEXP_PROP, "true");
-        mProps.setProperty(Defn.HEADER_FILE_PROP, getPath("regexp.header"));
-        mProps.setProperty(Defn.HEADER_IGNORE_LINE_PROP, "4,5");
-        final String filepath = getPath("InputScopeAnonInner.java");
-        final Checker c = createChecker();
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":3: Line does not match expected header line of '// Created: 2002'.",
-            filepath + ":37:34: '(' is followed by whitespace.",
-            filepath + ":39:42: '(' is followed by whitespace.",
-            filepath + ":39:57: ')' is preceeded with whitespace.",
-            filepath + ":43:14: ')' is preceeded with whitespace.",
-            filepath + ":51:34: '(' is followed by whitespace.",
             filepath + ":53:42: '(' is followed by whitespace.",
             filepath + ":53:57: ')' is preceeded with whitespace.",
             filepath + ":57:14: ')' is preceeded with whitespace.",

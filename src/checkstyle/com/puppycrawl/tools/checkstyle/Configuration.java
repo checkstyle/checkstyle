@@ -19,14 +19,11 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InvalidObjectException;
-import java.io.LineNumberReader;
 import java.io.ObjectInputStream;
 import java.io.PrintStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -37,9 +34,9 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
 
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Represents the configuration that checkstyle uses when checking. The
@@ -82,18 +79,12 @@ public class Configuration
     /** visibility scope where Javadoc is checked **/
     private Scope mJavadocScope = Scope.PRIVATE;
 
-    /** the header lines to check for **/
-    private transient String[] mHeaderLines = {};
-
     /**
      * class loader to resolve classes with. Needs to be transient as unable
      * to persist.
      **/
     private transient ClassLoader mLoader =
         Thread.currentThread().getContextClassLoader();
-
-    /** the lines in the header to ignore */
-    private TreeSet mHeaderIgnoreLineNo = new TreeSet();
 
     /** where to place right curlies  **/
     private RightCurlyOption mRCurly = RightCurlyOption.SAME;
@@ -173,7 +164,6 @@ public class Configuration
         throws RESyntaxException, FileNotFoundException, IOException
     {
         // Init the special properties
-        setHeaderIgnoreLines(aProps.getProperty(Defn.HEADER_IGNORE_LINE_PROP));
         setRCurly(getRightCurlyOptionProperty(
                       aProps, Defn.RCURLY_PROP, RightCurlyOption.SAME, aLog));
         setJavadocScope(
@@ -255,9 +245,6 @@ public class Configuration
         mLoader = Thread.currentThread().getContextClassLoader();
         mRegexps = new HashMap();
 
-        // load the file to re-read the lines
-        loadFiles();
-
         try {
             // Loop on the patterns creating the RE's
             final Iterator keys = mPatterns.keySet().iterator();
@@ -272,16 +259,6 @@ public class Configuration
             throw new InvalidObjectException(
                 "invalid regular expression syntax");
         }
-    }
-
-    /**
-     * Loads the files specified by properties.
-     * @throws IOException if an error occurs
-     */
-    void loadFiles()
-        throws IOException
-    {
-        loadHeaderFile();
     }
 
 
@@ -309,8 +286,6 @@ public class Configuration
     {
         final Properties retVal = new Properties();
 
-        Utils.addSetString(retVal, Defn.HEADER_IGNORE_LINE_PROP,
-                           mHeaderIgnoreLineNo);
         Utils.addObjectString(retVal, Defn.RCURLY_PROP, mRCurly.toString());
         Utils.addObjectString(retVal, Defn.JAVADOC_CHECKSCOPE_PROP,
                               mJavadocScope.getName());
@@ -604,28 +579,6 @@ public class Configuration
         return getBooleanProperty(Defn.IGNORE_IMPORT_LENGTH_PROP);
     }
 
-    /** @return the header lines to check for **/
-    String[] getHeaderLines()
-    {
-        return mHeaderLines;
-    }
-
-
-    /** @return if lines in header file are regular expressions */
-    boolean getHeaderLinesRegexp()
-    {
-        return getBooleanProperty(Defn.HEADER_LINES_REGEXP_PROP);
-    }
-
-    /**
-     * @param aLineNo a line number
-     * @return if <code>aLineNo</code> is one of the ignored header lines.
-     */
-    boolean isHeaderIgnoreLineNo(int aLineNo)
-    {
-        return mHeaderIgnoreLineNo.contains(new Integer(aLineNo));
-    }
-
     /** @return the File of the cache file **/
     String getCacheFile()
     {
@@ -680,52 +633,6 @@ public class Configuration
     private void setStringProperty(String aName, String aTo)
     {
         mStringProps.put(aName, aTo);
-    }
-
-    /**
-     * Attempts to load the contents of a header file
-     * @throws FileNotFoundException if an error occurs
-     * @throws IOException if an error occurs
-     */
-    private void loadHeaderFile()
-        throws FileNotFoundException, IOException
-    {
-        final String fname = getStringProperty(Defn.HEADER_FILE_PROP);
-        // Handle a missing property, or an empty one
-        if ((fname == null) || (fname.trim().length() == 0)) {
-            return;
-        }
-
-        // load the file
-        final LineNumberReader lnr =
-            new LineNumberReader(new FileReader(fname));
-        final ArrayList lines = new ArrayList();
-        while (true) {
-            final String l = lnr.readLine();
-            if (l == null) {
-                break;
-            }
-            lines.add(l);
-        }
-        mHeaderLines = (String[]) lines.toArray(new String[0]);
-    }
-
-    /**
-     * @param aList comma separated list of line numbers to ignore in header.
-     */
-    private void setHeaderIgnoreLines(String aList)
-    {
-        mHeaderIgnoreLineNo.clear();
-
-        if (aList == null) {
-            return;
-        }
-
-        final StringTokenizer tokens = new StringTokenizer(aList, ",");
-        while (tokens.hasMoreTokens()) {
-            final String ignoreLine = tokens.nextToken();
-            mHeaderIgnoreLineNo.add(new Integer(ignoreLine));
-        }
     }
 
     /** @return the left curly placement option for methods **/
