@@ -72,6 +72,7 @@
       <fileset dir="src/checkstyle">
         <include name="**/Generated*.java"/>
         <include name="**/Generated*.txt"/>
+        <include name="**/expandedjava14.g"/>
       </fileset>
     </delete>
     <delete dir="target" />

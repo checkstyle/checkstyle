@@ -84,8 +84,8 @@ public class InputInvalidBlockIndent {
     
     }
 
-/*
-  static init at beginning of line is broken for now
+
+//  static init at beginning of line is broken for now
  
     
   static { int var = 4; }
@@ -93,7 +93,7 @@ public class InputInvalidBlockIndent {
 
     
     static {
-        int var = 4; 
+       int var = 4; 
     }
 
       static {
@@ -112,7 +112,7 @@ public class InputInvalidBlockIndent {
   {
       int var = 4; 
       }
- */
+
 
     static 
     {
