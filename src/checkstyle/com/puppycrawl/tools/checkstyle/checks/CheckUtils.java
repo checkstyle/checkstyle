@@ -286,7 +286,7 @@ public final class CheckUtils
      * {@link TokenTypes.QUESTION QUESTION} or {@link TokenTypes.BAND BAND}
      * token types are part of a generic declaration or not (in which case they
      * are operators).
-     * @param aNode
+     * @param aNode the token node 
      * @return true if {@link TokenTypes.LT LT}, {@link TokenTypes.GT GT},
      *         {@link TokenTypes.QUESTION QUESTION} or {@link TokenTypes.BAND BAND}
      *         tokens and is part of a generic declaration, false otherwise
