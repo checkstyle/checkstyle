@@ -14,7 +14,7 @@
   <property name="collections.jar" value="lib/commons-collections.jar" />
   <property name="cli.jar" value="lib/commons-cli.jar" />
   <property name="logging.jar" value="lib/commons-logging.jar" />
-  <property name="clover.lib" location="/apps/clover-1.0/lib"/>
+  <property name="clover.lib" location="/apps/clover-1.1.1/lib"/>
 
   <property name="checkstyle.dir"
             value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
@@ -523,10 +523,10 @@
   <target name="with.clover">
     <mkdir dir="target/clover/db"/>
     <mkdir dir="target/clover/html"/>
-    <property name="clover.initstring" location="target/clover/db/csdb"/>
+    <clover-setup initString="target/clover/db/csdb"/>
     <property name="clover.html.dir" location="target/clover/html"/>
-    <property name="build.compiler"
-              value="org.apache.tools.ant.taskdefs.CloverCompilerAdapter"/>
+<!--    <property name="build.compiler"
+              value="org.apache.tools.ant.taskdefs.CloverCompilerAdapter"/> -->
   </target>
 
   <path id="clover.classpath">
@@ -534,27 +534,20 @@
     <pathelement path="${clover.lib}/velocity.jar"/>
   </path>
 
-  <target name="clover.viewer">
-    <java classname="com.cortexeb.tools.clover.reporters.jfc.Viewer" fork="yes">
-      <arg line="${clover.initstring}"/>
-      <classpath refid="clover.classpath"/>
-    </java>
+  <taskdef resource="clovertasks"/>
+
+  <target name="clover.report" depends="with.clover">
+    <clover-report>
+      <current outfile="${clover.html.dir}" title="Checkstyle Project">
+          <format type="html"/>
+      </current>
+    </clover-report>
   </target>
 
-  <target name="clover.report">
-    <echo>Need to customise report location</echo>
-    <java classname="com.cortexeb.tools.clover.reporters.html.HtmlReporter"
-          fork="true">
-      <arg value="--outputdir"/>
-      <arg value="${clover.html.dir}"/>
-      <arg value="--showSrc"/>
-      <arg value="--initstring"/>
-      <arg value="${clover.initstring}"/>
-      <arg value="--title"/>
-      <arg value="'Checkstyle Project'"/>
-      <classpath refid="clover.classpath"/>
-    </java>
+  <target name="clover.viewer" depends="with.clover">
+    <clover-view/>
   </target>
+
 
   <!-- Targets to verify that Xerces is in the classpath -->
   <target name="check.xerces"
