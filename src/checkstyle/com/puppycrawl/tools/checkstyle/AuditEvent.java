@@ -18,9 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-
 import java.util.EventObject;
+
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
  * Raw event for audit.
@@ -110,6 +111,14 @@ public final class AuditEvent
     public int getColumn()
     {
         return mMessage.getColumnNo();
+    }
+
+    /** @return the audit event severity level **/
+    public SeverityLevel getSeverityLevel()
+    {
+        return (mMessage == null)
+            ? SeverityLevel.WARNING
+            : mMessage.getSeverityLevel();
     }
 
     /** @return the localized message **/

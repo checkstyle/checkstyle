@@ -111,6 +111,9 @@ public class XMLLogger
         if (aEvt.getColumn() > 0) {
             mWriter.print(" column=\"" + aEvt.getColumn() + "\"");
         }
+        mWriter.print(" severity=\""
+                      + aEvt.getSeverityLevel().getName()
+                      + "\"");
         mWriter.println(" message=\"" + encode(aEvt.getMessage()) + "\"/>");
     }
 

@@ -20,13 +20,13 @@ import junit.framework.TestCase;
 public class XMLLoggerTest extends TestCase
 {
     private ByteArrayOutputStream outStream;
-    
+
     public void setUp()
         throws Exception
     {
         outStream = new ByteArrayOutputStream();
     }
-    
+
     public void testEncode()
         throws IOException
     {
@@ -43,10 +43,10 @@ public class XMLLoggerTest extends TestCase
         for (int i = 0; i < encodings.length; i++) {
             final String encoded = logger.encode(encodings[i][0]);
             assertEquals("\"" + encodings[i][0] + "\"", encodings[i][1], encoded);
-        } 
+        }
         outStream.close();
     }
-    
+
     public void testIsReference()
         throws IOException
     {
@@ -71,36 +71,36 @@ public class XMLLoggerTest extends TestCase
         for (int i = 0; i < noReference.length; i++) {
             assertFalse("no reference: " + noReference[i],
                        logger.isReference(noReference[i]));
-        } 
- 
+        }
+
         outStream.close();
-    }  
-        
+    }
+
      public void testCloseStream()
         throws IOException
     {
-        final XMLLogger logger = new XMLLogger(outStream, true); 
+        final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         logger.auditFinished(null);
         final String[] expectedLines = {};
         verifyLines(expectedLines);
     }
-             
+
     public void testNoCloseStream()
         throws IOException
     {
-        final XMLLogger logger = new XMLLogger(outStream, false); 
+        final XMLLogger logger = new XMLLogger(outStream, false);
         logger.auditStarted(null);
         logger.auditFinished(null);
         outStream.close();
         final String[] expectedLines = {};
         verifyLines(expectedLines);
     }
-    
+
     public void testFileStarted()
         throws IOException
     {
-        final XMLLogger logger = new XMLLogger(outStream, true); 
+        final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         logger.fileStarted(ev);
@@ -108,11 +108,11 @@ public class XMLLoggerTest extends TestCase
         final String[] expectedLines = {"<file name=\"Test.java\">"};
         verifyLines(expectedLines);
     }
-    
+
     public void testFileFinished()
         throws IOException
     {
-        final XMLLogger logger = new XMLLogger(outStream, true); 
+        final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         logger.fileFinished(ev);
@@ -124,7 +124,7 @@ public class XMLLoggerTest extends TestCase
     public void testAddError()
         throws IOException
     {
-        final XMLLogger logger = new XMLLogger(outStream, true); 
+        final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         final LocalizedMessage message =
             new LocalizedMessage( 1, 1, "messages.properties", "key", null);
@@ -132,14 +132,14 @@ public class XMLLoggerTest extends TestCase
         logger.addError(ev);
         logger.auditFinished(null);
         final String[] expectedLines =
-            {"<error line=\"1\" column=\"1\" message=\"key\"/>"};
+            {"<error line=\"1\" column=\"1\" severity=\"warning\" message=\"key\"/>"};
         verifyLines(expectedLines);
     }
-    
+
     public void testAddException()
         throws IOException
     {
-        final XMLLogger logger = new XMLLogger(outStream, true); 
+        final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         final LocalizedMessage message =
             new LocalizedMessage( 1, 1, "messages.properties", null, null);
@@ -155,7 +155,7 @@ public class XMLLoggerTest extends TestCase
         };
         verifyLines(expectedLines);
     }
-    
+
     private String[] getOutStreamLines()
         throws IOException
     {
@@ -175,7 +175,7 @@ public class XMLLoggerTest extends TestCase
         reader.close();
         return (String[])lineList.toArray(new String[lineList.size()]);
     }
-    
+
     /**
      * Verify output lines from auditStart to auditEnd.
      * Take into consideration checkstyle element (first and last lines).
@@ -196,12 +196,12 @@ public class XMLLoggerTest extends TestCase
         }
         assertEquals("last line.", "</checkstyle>", lines[lines.length - 1]);
     }
- 
+
     private class TestThrowable extends Exception
     {
         public void printStackTrace(PrintWriter s)
         {
             s.print("stackTrace");
         }
-    }      
+    }
 }
