@@ -566,7 +566,7 @@
     <move toDir="src/checkstyle">
       <fileset dir="src/checkstyle" includes="**/Generated*.java" />
       <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
-      <fileset dir="src/checkstyle" includes="**/gui/" />
+      <fileset dir="src/checkstyle" includes="**/gui/*.java" />
       <mapper type="glob" from="*" to="*.HIDING"/>
     </move>
     <javadoc sourcepath="src/checkstyle" destdir="docs/api"
