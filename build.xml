@@ -14,7 +14,7 @@
   <property name="jdom.jar" value="lib/jdom-b9.jar" />
   <property name="regexp.jar" value="lib/jakarta-regexp-1.3.jar" />
   <property name="junit.jar" value="lib/junit.jar" />
-  <property name="beanutils.jar" value="lib/commons-beanutils.jar" />
+  <property name="beanutils.jar" value="lib/commons-beanutils-core.jar" />
   <property name="collections.jar" value="lib/commons-collections.jar" />
   <property name="cli.jar" value="lib/commons-cli.jar" />
   <property name="logging.jar" value="lib/commons-logging.jar" />
@@ -473,7 +473,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
            dest="${dist.dir}/checkstyle-${version}/tmp" />
     <unjar src="${dist.dir}/checkstyle-${version}/jakarta-regexp-1.3.jar"
            dest="${dist.dir}/checkstyle-${version}/tmp" />
-    <unjar src="${dist.dir}/checkstyle-${version}/commons-beanutils.jar"
+    <unjar src="${dist.dir}/checkstyle-${version}/commons-beanutils-core.jar"
            dest="${dist.dir}/checkstyle-${version}/tmp" />
     <unjar src="${dist.dir}/checkstyle-${version}/commons-collections.jar"
            dest="${dist.dir}/checkstyle-${version}/tmp" />

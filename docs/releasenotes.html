@@ -28,9 +28,13 @@
   <tr>
     <!--Left menu-->
     <td class="menu" valign="top">
+      <p>Checkstyle 4</p>
+      <ul>
+        <li><a href="#release4_0">Release 4.0</a></li>
+      </ul>
+
       <p>Checkstyle 3</p>
       <ul>
-        <li><a href="#release3_5">Release 3.5</a></li>
         <li><a href="#release3_4">Release 3.4</a></li>
         <li><a href="#release3_3">Release 3.3</a></li>
         <li><a href="#release3_2">Release 3.2</a></li>
@@ -51,8 +55,18 @@
     <!--Content-->
     <td class="content" valign="top" align="left">
 
-      <a name="release3_5"></a>
-      <h2>Release 3.5</h2>
+      <a name="release4_0"></a>
+      <h2>Release 4.0</h2>
+
+      <p class="body">
+        Updated Dependencies:
+      </p>
+        <ul>
+          <li class="body">
+          Updated commons-beanutils to version 1.7. Only the beanutils
+          core classes (commons-beanutils-core.jar) are required.
+          </li>
+        </ul>
 
       <p class="body">
         New features:
@@ -152,7 +166,7 @@ checkstyle-user</a>).</li>
          <li class="body">Bug in ClassResolver where it was
          mismatching imports - example would match
          SecurityDataException when looking for DataException. Bug was
-         visible in RedundantThrows check (no known bug).</li> 
+         visible in RedundantThrows check (no known bug).</li>
 
          <li class="body">Fixed HiddenFieldCheck to correctly handle
          static inner classes (bug 1032426).</li>

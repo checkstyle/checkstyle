@@ -18,10 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.apache.commons.beanutils.converters.AbstractArrayConverter;
 import org.apache.commons.beanutils.converters.BooleanArrayConverter;
 import org.apache.commons.beanutils.converters.BooleanConverter;
@@ -40,12 +41,11 @@ import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortArrayConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
 
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.beans.PropertyDescriptor;
 
 
 /**
@@ -56,22 +56,24 @@ import java.beans.PropertyDescriptor;
 public class AutomaticBean
     implements Configurable, Contextualizable
 {
-    static {
-        initConverters();
-    }
+    /** the configuration of this bean */
+    private Configuration mConfiguration;
+
 
     /**
-     * Setup the jakarta-commons-beanutils type converters so they throw
-     * a ConversionException instead of using the default value.
+     * Creates a BeanUtilsBean that is configured to use
+     * type converters that throw a ConversionException
+     * instead of using the default value when something
+     * goes wrong.
+     *
+     * @return a configured BeanUtilsBean
      */
-    private static void initConverters()
+    private static BeanUtilsBean createBeanUtilsBean()
     {
+        ConvertUtilsBean cub = new ConvertUtilsBean();
+
         // TODO: is there a smarter way to tell beanutils not to use defaults?
 
-        // If any runtime environment like ANT or an IDE would use beanutils
-        // with different converters we would really be stuck here.
-        // Having to configure a static utility class in this way is really
-        // strange, it seems like a design problem in BeanUtils
         final boolean[] booleanArray = new boolean[0];
         final byte[] byteArray = new byte[0];
         final char[] charArray = new char[0];
@@ -81,49 +83,49 @@ public class AutomaticBean
         final long[] longArray = new long[0];
         final short[] shortArray = new short[0];
 
-        ConvertUtils.register(new BooleanConverter(), Boolean.TYPE);
-        ConvertUtils.register(new BooleanConverter(), Boolean.class);
-        ConvertUtils.register(
+
+        cub.register(new BooleanConverter(), Boolean.TYPE);
+        cub.register(new BooleanConverter(), Boolean.class);
+        cub.register(
             new BooleanArrayConverter(), booleanArray.getClass());
-        ConvertUtils.register(new ByteConverter(), Byte.TYPE);
-        ConvertUtils.register(new ByteConverter(), Byte.class);
-        ConvertUtils.register(
+        cub.register(new ByteConverter(), Byte.TYPE);
+        cub.register(new ByteConverter(), Byte.class);
+        cub.register(
             new ByteArrayConverter(byteArray), byteArray.getClass());
-        ConvertUtils.register(new CharacterConverter(), Character.TYPE);
-        ConvertUtils.register(new CharacterConverter(), Character.class);
-        ConvertUtils.register(
+        cub.register(new CharacterConverter(), Character.TYPE);
+        cub.register(new CharacterConverter(), Character.class);
+        cub.register(
             new CharacterArrayConverter(), charArray.getClass());
-        ConvertUtils.register(new DoubleConverter(), Double.TYPE);
-        ConvertUtils.register(new DoubleConverter(), Double.class);
-        ConvertUtils.register(
+        cub.register(new DoubleConverter(), Double.TYPE);
+        cub.register(new DoubleConverter(), Double.class);
+        cub.register(
             new DoubleArrayConverter(doubleArray), doubleArray.getClass());
-        ConvertUtils.register(new FloatConverter(), Float.TYPE);
-        ConvertUtils.register(new FloatConverter(), Float.class);
-        ConvertUtils.register(new FloatArrayConverter(), floatArray.getClass());
-        ConvertUtils.register(new IntegerConverter(), Integer.TYPE);
-        ConvertUtils.register(new IntegerConverter(), Integer.class);
-        ConvertUtils.register(new IntegerArrayConverter(), intArray.getClass());
-        ConvertUtils.register(new LongConverter(), Long.TYPE);
-        ConvertUtils.register(new LongConverter(), Long.class);
-        ConvertUtils.register(new LongArrayConverter(), longArray.getClass());
-        ConvertUtils.register(new ShortConverter(), Short.TYPE);
-        ConvertUtils.register(new ShortConverter(), Short.class);
-        ConvertUtils.register(new ShortArrayConverter(), shortArray.getClass());
+        cub.register(new FloatConverter(), Float.TYPE);
+        cub.register(new FloatConverter(), Float.class);
+        cub.register(new FloatArrayConverter(), floatArray.getClass());
+        cub.register(new IntegerConverter(), Integer.TYPE);
+        cub.register(new IntegerConverter(), Integer.class);
+        cub.register(new IntegerArrayConverter(), intArray.getClass());
+        cub.register(new LongConverter(), Long.TYPE);
+        cub.register(new LongConverter(), Long.class);
+        cub.register(new LongArrayConverter(), longArray.getClass());
+        cub.register(new ShortConverter(), Short.TYPE);
+        cub.register(new ShortConverter(), Short.class);
+        cub.register(new ShortArrayConverter(), shortArray.getClass());
         // TODO: investigate:
         // StringArrayConverter doesn't properly convert an array of tokens with
         // elements containing an underscore, "_".
         // Hacked a replacement class :(
-        //        ConvertUtils.register(new StringArrayConverter(),
+        //        cub.register(new StringArrayConverter(),
         //                        String[].class);
-        ConvertUtils.register(new StrArrayConverter(), String[].class);
-        ConvertUtils.register(new IntegerArrayConverter(), Integer[].class);
+        cub.register(new StrArrayConverter(), String[].class);
+        cub.register(new IntegerArrayConverter(), Integer[].class);
 
         // BigDecimal, BigInteger, Class, Date, String, Time, TimeStamp
-        // do not use defaults in the default configuration of ConvertUtils
-    }
+        // do not use defaults in the default configuration of ConvertUtilsBean
 
-    /** the configuration of this bean */
-    private Configuration mConfiguration;
+        return new BeanUtilsBean(cub, new PropertyUtilsBean());
+    }
 
     /**
      * Implements the Configurable interface using bean introspection.
@@ -143,6 +145,8 @@ public class AutomaticBean
     {
         mConfiguration = aConfiguration;
 
+        BeanUtilsBean beanUtils = createBeanUtilsBean();
+
         // TODO: debug log messages
         final String[] attributes = aConfiguration.getAttributeNames();
 
@@ -151,7 +155,7 @@ public class AutomaticBean
             final String value = aConfiguration.getAttribute(key);
 
             try {
-                // BeanUtils.copyProperties silently ignores missing setters
+                // BeanUtilsBean.copyProperties silently ignores missing setters
                 // for key, so we have to go through great lengths here to
                 // figure out if the bean property really exists.
                 final PropertyDescriptor pd =
@@ -164,7 +168,7 @@ public class AutomaticBean
                 }
 
                 // finally we can set the bean property
-                BeanUtils.copyProperty(this, key, value);
+                beanUtils.copyProperty(this, key, value);
             }
             catch (InvocationTargetException e) {
                 throw new CheckstyleException(
@@ -211,6 +215,8 @@ public class AutomaticBean
     public final void contextualize(Context aContext)
         throws CheckstyleException
     {
+        BeanUtilsBean beanUtils = createBeanUtilsBean();
+
         // TODO: debug log messages
         final String[] attributes = aContext.getAttributeNames();
 
@@ -219,7 +225,7 @@ public class AutomaticBean
             final Object value = aContext.get(key);
 
             try {
-                BeanUtils.copyProperty(this, key, value);
+                beanUtils.copyProperty(this, key, value);
             }
             catch (InvocationTargetException e) {
                 // TODO: log.debug("The bean " + this.getClass()
