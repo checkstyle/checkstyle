@@ -51,12 +51,12 @@ public abstract class AbstractReferenceCheck
     {
         mScope = Scope.getInstance(aScopeName);
     }
-    
+
     /**
-     * Determines whether a class name and field or method should be ignored.
-     * @param aClassName the class name.
-     * @param aName the name.
-     * @return true if aClassName and aName should be ignored.
+     * Determines whether a class name, and field or method should be ignored.
+     * @param aClassName the class name to consider.
+     * @param aFieldOrMethod  the field or method to consider.
+     * @return true if aClassName, and field or method should be ignored.
      */
     protected boolean ignore(String aClassName, FieldOrMethod aFieldOrMethod)
     {
@@ -65,7 +65,7 @@ public abstract class AbstractReferenceCheck
             || mIgnoreClassNameRegexp.match(aClassName)
             || mIgnoreNameRegexp.match(fieldOrMethodName));
     }
- 
+
     /**
      * Tests whether the scope of a field or method is compatible
      * with the scope of this check. References for compatible

@@ -9,6 +9,8 @@ import java.util.Set;
 import org.apache.bcel.classfile.Field;
 import org.apache.bcel.classfile.JavaClass;
 
+import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.bcel.ReferenceVisitor;
 import com.puppycrawl.tools.checkstyle.bcel.classfile.FieldDefinition;
 import com.puppycrawl.tools.checkstyle.bcel.classfile.JavaClassDefinition;
 
@@ -19,6 +21,14 @@ import com.puppycrawl.tools.checkstyle.bcel.classfile.JavaClassDefinition;
 public class UnreadFieldCheck
     extends AbstractReferenceCheck
 {
+    /** @see AbstractReferenceCheck */
+    public void setScope(String aFrom)
+    {
+        super.setScope(aFrom);
+        ((ReferenceVisitor) getVisitor()).addFieldScope(
+            Scope.getInstance(aFrom));
+    }
+
     /** @see com.puppycrawl.tools.checkstyle.bcel.IObjectSetVisitor */
     public void leaveSet(Set aJavaClasses)
     {

@@ -9,6 +9,8 @@ import java.util.Set;
 import org.apache.bcel.classfile.JavaClass;
 import org.apache.bcel.classfile.Method;
 
+import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.bcel.ReferenceVisitor;
 import com.puppycrawl.tools.checkstyle.bcel.classfile.JavaClassDefinition;
 import com.puppycrawl.tools.checkstyle.bcel.classfile.MethodDefinition;
 
@@ -19,6 +21,14 @@ import com.puppycrawl.tools.checkstyle.bcel.classfile.MethodDefinition;
 public class UnusedMethodCheck
     extends AbstractReferenceCheck
 {
+    /** @see AbstractReferenceCheck */
+    public void setScope(String aScopeName)
+    {
+        super.setScope(aScopeName);
+        ((ReferenceVisitor) getVisitor()).addMethodScope(
+            Scope.getInstance(aScopeName));
+    }
+
     /** @see com.puppycrawl.tools.checkstyle.bcel.IObjectSetVisitor */
     public void leaveSet(Set aJavaClasses)
     {
@@ -32,8 +42,7 @@ public class UnusedMethodCheck
                 if (!classDef.hasReference(methodDefs[i], getReferenceDAO())) {
                     final String methodName = methodDefs[i].getName();
                     final Method method = methodDefs[i].getMethod();
-                    if (!ignore(className, method))
-                    {
+                    if (!ignore(className, method)) {
                         log(
                             0,
                             "unused.method",
