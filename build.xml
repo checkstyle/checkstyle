@@ -265,7 +265,8 @@
     <delete file="target/cachefile" />
 
     <property name="todo.pattern" value="NOTHingWillMatCH_-"/>
-    <checkstyle config="docs/checkstyle_checks.xml"
+    <property name="check.config" location="docs/checkstyle_checks.xml"/>
+    <checkstyle config="${check.config}"
                 properties="docs/checkstyle.rules">
       <fileset dir="src/checkstyle"
                includes="**/*.java"
