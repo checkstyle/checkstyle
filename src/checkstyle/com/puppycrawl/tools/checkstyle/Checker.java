@@ -106,22 +106,15 @@ public class Checker extends AutomaticBean
     /** the basedir to strip off in filenames */
     private String mBasedir;
 
-    public void setLocaleCountry(String aLocaleCountry)
-    {
-        mLocaleCountry = aLocaleCountry;
-    }
-
-    public void setLocaleLanguage(String aLocaleLanguage)
-    {
-        mLocaleLanguage = aLocaleLanguage;
-    }
-
     /** locale country to report messages  **/
     private String mLocaleCountry = Locale.getDefault().getCountry();
     /** locale language to report messages  **/
     private String mLocaleLanguage = Locale.getDefault().getLanguage();
 
-    /** List of package names for instatiating objects */
+    /**
+     * List of package names for instatiating objects. Do not access directly,
+     * but instead use the getter
+     */
     private String[] mPackageNames;
 
     /**
@@ -133,7 +126,7 @@ public class Checker extends AutomaticBean
     public Checker()
         throws CheckstyleException
     {
-        this.addListener(mCounter);
+        addListener(mCounter);
     }
 
     /** @see AutomaticBean */
@@ -146,16 +139,18 @@ public class Checker extends AutomaticBean
         LocalizedMessage.setLocale(locale);
 
         final DefaultContext context = new DefaultContext();
-        context.add("classLoader", this.getClassLoader());
+        context.add("classLoader", mLoader);
         final Configuration[] fileSetChecks = aConfiguration.getChildren();
         for (int i = 0; i < fileSetChecks.length; i++) {
             final Configuration fscConf = fileSetChecks[i];
             final String name = fscConf.getName();
             try {
-                FileSetCheck fsc =
+                final FileSetCheck fsc =
                     (FileSetCheck) PackageObjectFactory.makeObject(
-                        mPackageNames, getClassLoader(), name);
-                fsc.setPackageNames(mPackageNames);
+                        getPackageNames(),
+                        getClass().getClassLoader(),
+                        name);
+                fsc.setPackageNames(getPackageNames());
                 fsc.contextualize(context);
                 fsc.configure(fscConf);
                 addFileSetCheck(fsc);
@@ -167,11 +162,6 @@ public class Checker extends AutomaticBean
                         + name + " - " + ex.getMessage());
             }
         }
-    }
-
-    private ClassLoader getClassLoader()
-    {
-        return mLoader;
     }
 
     /**
@@ -320,11 +310,27 @@ public class Checker extends AutomaticBean
     public void setPackageNames(String[] aPackageNames)
         throws CheckstyleException
     {
-        if (aPackageNames == null) {
-           aPackageNames =
-            PackageNamesLoader.loadPackageNames(this.getClassLoader());
-        }
         mPackageNames = aPackageNames;
     }
 
+    private String[] getPackageNames()
+        throws CheckstyleException
+    {
+        if (mPackageNames == null) {
+            mPackageNames =
+                PackageNamesLoader.loadPackageNames(
+                    getClass().getClassLoader());
+        }
+        return mPackageNames;
+    }
+
+    public void setLocaleCountry(String aLocaleCountry)
+    {
+        mLocaleCountry = aLocaleCountry;
+    }
+
+    public void setLocaleLanguage(String aLocaleLanguage)
+    {
+        mLocaleLanguage = aLocaleLanguage;
+    }
 }
