@@ -389,15 +389,15 @@ expr
    |  #(DIV expr expr)
    |  #(MOD expr expr)
    |  #(STAR expr expr)
-   |  #(INC expr) { ver.verifyNoWSAfter(#INC); }
-   |  #(DEC expr) { ver.verifyNoWSAfter(#DEC); }
-   |  #(POST_INC expr) { ver.verifyNoWSBefore(#POST_INC); }
-   |  #(POST_DEC expr) { ver.verifyNoWSBefore(#POST_DEC); }
+   |  #(INC expr)
+   |  #(DEC expr)
+   |  #(POST_INC expr)
+   |  #(POST_DEC expr)
    |  #(BNOT expr) { ver.verifyNoWSAfter(#BNOT); }
    |  #(LNOT expr) { ver.verifyNoWSAfter(#LNOT); }
    |  #("instanceof" expr expr) // Java ensures surrounded by WS!
-   |  #(UNARY_MINUS expr) { ver.verifyNoWSAfter(#UNARY_MINUS); }
-   |  #(UNARY_PLUS expr) { ver.verifyNoWSAfter(#UNARY_PLUS); }
+   |  #(UNARY_MINUS expr)
+   |  #(UNARY_PLUS expr)
    |  primaryExpression
    ;
 
@@ -454,7 +454,7 @@ constant
 newExpression
 	:	#(	"new" type
 			(	newArrayDeclarator (arrayInitializer)?
-			|	elist ({ver.reportStartTypeBlock(Scope.ANONINNER, false);} objBlock {ver.reportEndTypeBlock();})?
+			|	elist ( objBlock )?
 			)
 		)
 			

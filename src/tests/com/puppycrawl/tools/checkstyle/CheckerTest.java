@@ -98,8 +98,11 @@ public class CheckerTest
             filepath + ":26: '+=' is not proceeded with whitespace.",
             filepath + ":27: '-=' is not proceeded with whitespace.",
             filepath + ":27: '-' is proceeded with whitespace.",
+            filepath + ":27: '+' is proceeded with whitespace.",
             filepath + ":28: '++' is preceeded with whitespace.",
+            filepath + ":28: '--' is preceeded with whitespace.",
             filepath + ":29: '++' is proceeded with whitespace.",
+            filepath + ":29: '--' is proceeded with whitespace.",
             filepath + ":35: 'synchronized' is not proceeded with whitespace.",
             filepath + ":37: 'try' is not proceeded with whitespace.",
             filepath + ":39: 'catch' is not proceeded with whitespace.",
@@ -114,6 +117,7 @@ public class CheckerTest
             filepath + ":96: '==' is not proceeded with whitespace.",
             filepath + ":102: '*' is not proceeded with whitespace.",
             filepath + ":102: '*' is not preceeded with whitespace.",
+            filepath + ":109: '!' is proceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }
@@ -137,8 +141,11 @@ public class CheckerTest
             filepath + ":26: '+=' is not proceeded with whitespace.",
             filepath + ":27: '-=' is not proceeded with whitespace.",
             filepath + ":27: '-' is proceeded with whitespace.",
+            filepath + ":27: '+' is proceeded with whitespace.",
             filepath + ":28: '++' is preceeded with whitespace.",
+            filepath + ":28: '--' is preceeded with whitespace.",
             filepath + ":29: '++' is proceeded with whitespace.",
+            filepath + ":29: '--' is proceeded with whitespace.",
             filepath + ":35: 'synchronized' is not proceeded with whitespace.",
             filepath + ":37: 'try' is not proceeded with whitespace.",
             filepath + ":39: 'catch' is not proceeded with whitespace.",
@@ -152,6 +159,7 @@ public class CheckerTest
             filepath + ":96: '==' is not proceeded with whitespace.",
             filepath + ":102: '*' is not proceeded with whitespace.",
             filepath + ":102: '*' is not preceeded with whitespace.",
+            filepath + ":109: '!' is proceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }

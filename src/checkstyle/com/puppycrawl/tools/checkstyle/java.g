@@ -813,10 +813,10 @@ multiplicativeExpression
 	;
 
 unaryExpression
-	:	INC^ unaryExpression
-	|	DEC^ unaryExpression
-	|	MINUS^ {#MINUS.setType(UNARY_MINUS);} unaryExpression
-	|	PLUS^  {#PLUS.setType(UNARY_PLUS);} unaryExpression
+	:	INC^ unaryExpression {ver.verifyNoWSAfter(#INC);}
+	|	DEC^ unaryExpression {ver.verifyNoWSAfter(#DEC);}
+	|	MINUS^ {#MINUS.setType(UNARY_MINUS); ver.verifyNoWSAfter(#MINUS);} unaryExpression
+	|	PLUS^  {#PLUS.setType(UNARY_PLUS); ver.verifyNoWSAfter(#PLUS);} unaryExpression
 	|	unaryExpressionNotPlusMinus
 	;
 
@@ -882,8 +882,8 @@ postfixExpression
 
 		// possibly add on a post-increment or post-decrement.
 		// allows INC/DEC on too much, but semantics can check
-		(	in:INC^ {#in.setType(POST_INC);}
-	 	|	de:DEC^ {#de.setType(POST_DEC);}
+		(	in:INC^ {#in.setType(POST_INC); ver.verifyNoWSBefore(#in);}
+	 	|	de:DEC^ {#de.setType(POST_DEC); ver.verifyNoWSBefore(#de);}
 		|	// nothing
 		)
 	;
@@ -1044,10 +1044,10 @@ DIV          : '/' {ver.verifyWSAroundEnd(getLine(), getColumn(), "/");} ;
 DIV_ASSIGN   : "/=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "/=");};
 PLUS         : '+'; // must handle the UNARY_PLUS
 PLUS_ASSIGN  : "+=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "+=");};
-INC          : "++" ;
+INC          : "++" ; // must handle POST_INC
 MINUS        : '-' ; // must handle the UNARY_MINUS
 MINUS_ASSIGN : "-=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "-=");};
-DEC    : "--" ;
+DEC          : "--" ; // must handle POST_DEC
 STAR         : '*' ; // star is special cause it can be used in imports.
 STAR_ASSIGN  : "*=" {ver.verifyWSAroundEnd(getLine(), getColumn(), "*=");};
 MOD          : '%' {ver.verifyWSAroundEnd(getLine(), getColumn(), "%");} ;

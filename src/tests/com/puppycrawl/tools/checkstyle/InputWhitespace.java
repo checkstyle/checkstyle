@@ -24,9 +24,9 @@ class InputWhitespace
         int b= 1; // Ignore 1
         b=1; // Ignore 1
         b+=1; // Ignore 1
-        b -=- 1; // Ignore 2
-        b = b ++; // Ignore 1
-        b = ++ b; // Ignore 1
+        b -=- 1 + (+ b); // Ignore 2
+        b = b ++ + b --; // Ignore 1
+        b = ++ b - -- b; // Ignore 1
     }
 
     /** method **/
@@ -100,5 +100,12 @@ class InputWhitespace
     private void starTest()
     {
         int x = 2 *3* 4;
+    }
+
+    /** boolean test **/
+    private void boolTest()
+    {
+        boolean a = true;
+        boolean x = ! a;
     }
 }
