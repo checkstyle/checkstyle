@@ -195,7 +195,7 @@ public class CheckStyleTask
     /** @param aFail whether to fail if a violation is found **/
     public void setFailOnViolation(boolean aFail)
     {
-	mFailOnViolation = aFail;
+        mFailOnViolation = aFail;
     }
 
     /** @param aNum **/
