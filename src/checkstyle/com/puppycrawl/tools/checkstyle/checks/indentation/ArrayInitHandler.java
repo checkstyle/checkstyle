@@ -126,7 +126,7 @@ public class ArrayInitHandler extends BlockParentHandler
     {
         // now we accept "new int[] {1,
         //                           2};"
-        // TODO: should be accepted 
+        // TODO: should be accepted
         // new int[] {1, 2,
         //     3};
         // see InputValidArrayIndent.java (array6)
