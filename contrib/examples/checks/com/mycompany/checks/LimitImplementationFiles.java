@@ -60,7 +60,7 @@ public class LimitImplementationFiles
             // errors in the same file
 
             // fire the errors for this file to the AuditListeners
-            dispatcher.fireErrors(path, getMessageCollector().getMessages());
+            fireErrors(path);
 
             // signal end of file to AuditListeners
             dispatcher.fireFileFinished(path);
