@@ -21,13 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Checks the placement of left curly braces on other constructs apart from
  * methods and types.
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author lkuehne
  * @version 1.0
  */
 public class OtherLeftCurlyCheck
@@ -62,7 +62,7 @@ public class OtherLeftCurlyCheck
             case TokenTypes.LITERAL_CATCH:
             case TokenTypes.LITERAL_SYNCHRONIZED:
             case TokenTypes.LITERAL_FOR:
-                brace = Utils.getLastSibling(aAST.getFirstChild());
+                brace = aAST.getLastChild();
                 break;
             case TokenTypes.LITERAL_TRY:
             case TokenTypes.LITERAL_FINALLY:

@@ -6,7 +6,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 
 public class JavadocTypeCheck
     extends Check
@@ -27,8 +26,7 @@ public class JavadocTypeCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST mods =
-            Utils.findFirstToken(aAST.getFirstChild(), TokenTypes.MODIFIERS);
+        final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
         final Scope typeScope =
             ScopeUtils.inInterfaceBlock(aAST) ? Scope.PUBLIC : declaredScope;

@@ -18,16 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
  * Checks the placement of right curly braces.
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author lkuehne
  * @version 1.0
  */
 public class RightCurlyCheck
@@ -52,18 +52,17 @@ public class RightCurlyCheck
         DetailAST nextToken = null;
         if (aAST.getType() == TokenTypes.LITERAL_ELSE) {
             nextToken = aAST;
-            rcurly = Utils.getLastSibling(
-                aAST.getParent().getFirstChild().getNextSibling()
-                .getNextSibling().getNextSibling().getFirstChild());
+            DetailAST thenAST = aAST.getPreviousSibling();
+            rcurly = thenAST.getLastChild();
         }
         else if (aAST.getType() == TokenTypes.LITERAL_CATCH) {
             nextToken = (DetailAST) aAST.getNextSibling();
-            rcurly = Utils.getLastSibling(
-                Utils.getLastSibling(aAST.getFirstChild()).getFirstChild());
+            rcurly = aAST.getLastChild().getLastChild();
         }
         else if (aAST.getType() == TokenTypes.LITERAL_TRY) {
-            nextToken = (DetailAST) aAST.getFirstChild().getNextSibling();
-            rcurly = Utils.getLastSibling(aAST.getFirstChild().getFirstChild());
+            DetailAST firstChild = (DetailAST) aAST.getFirstChild();
+            nextToken = (DetailAST) firstChild.getNextSibling();
+            rcurly = firstChild.getLastChild();
         }
 
         // If have both tokens, perform the check

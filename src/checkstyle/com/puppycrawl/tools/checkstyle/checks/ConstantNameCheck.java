@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Checks that constant names conform to a specified format.
@@ -51,15 +50,14 @@ public class ConstantNameCheck
         
         //constant?
         final DetailAST modifiers =
-                    Utils.findFirstToken(aAST.getFirstChild(),
-                                         TokenTypes.MODIFIERS);
+                    aAST.findFirstToken(TokenTypes.MODIFIERS);
         if ((modifiers != null)
             && modifiers.branchContains(TokenTypes.LITERAL_STATIC)
             && modifiers.branchContains(TokenTypes.FINAL))
         {
             //name check
             final DetailAST name =
-                Utils.findFirstToken(aAST.getFirstChild(), TokenTypes.IDENT);
+                aAST.findFirstToken(TokenTypes.IDENT);
 
             // Handle the serialVersionUID constant which is used for
             // Serialization. Cannot enforce rules on it. :-)

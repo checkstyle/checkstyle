@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Checks the placement of left curly braces on methods.
@@ -41,7 +40,7 @@ public class MethodLeftCurlyCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST brace = Utils.getLastSibling(aAST.getFirstChild());
+        final DetailAST brace = aAST.getLastChild();
         // TODO: should check for modifiers
         final DetailAST startToken;
         if (aAST.getType() == TokenTypes.CTOR_DEF) {

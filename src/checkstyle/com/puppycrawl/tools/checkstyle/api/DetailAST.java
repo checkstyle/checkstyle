@@ -28,6 +28,7 @@ import antlr.collections.AST;
  * An extension of the CommonAST that records the line and column number.
  * The idea was taken from http://www.jguru.com/jguru/faq/view.jsp?EID=62654.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
+ * @author Lars K?hne
  * @version 1.0
  */
 public class DetailAST
@@ -161,6 +162,7 @@ public class DetailAST
             + getColumnNo() + "}";
     }
 
+    /** @return the last child node */
     public DetailAST getLastChild()
     {
         AST ast = getFirstChild();
@@ -209,5 +211,60 @@ public class DetailAST
     public boolean branchContains(int aType)
     {
         return Arrays.binarySearch(getBranchTokenTypes(), aType) >= 0;
+    }
+
+    /**
+     * Returns the number of direct child tokens that have the specified type.
+     * @param aType the token type to match
+     * @return the number of matching token
+     */
+    public int getChildCount(int aType)
+    {
+        int count = 0;
+        for (AST i = getFirstChild(); i != null; i = i.getNextSibling()) {
+            if (i.getType() == aType) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Returns the previous sibling or null if no such sibling exists.
+     * @return the previous sibling or null if no such sibling exists.
+     */
+    public DetailAST getPreviousSibling()
+    {
+        DetailAST parent = getParent();
+        if (parent == null) {
+            return null;
+        }
+
+        AST ast = parent.getFirstChild();
+        while (ast != null) {
+            AST nextSibling = ast.getNextSibling();
+            if (this == nextSibling) {
+                return (DetailAST) ast;
+            }
+            ast = nextSibling;
+        }
+        return null;
+    }
+
+    /**
+     * Returns the first child token that makes a specified type.
+     * @param aType the token type to match
+     * @return the matching token, or null if no match
+     */
+    public DetailAST findFirstToken(int aType)
+    {
+        DetailAST retVal = null;
+        for (AST i = getFirstChild(); i != null; i = i.getNextSibling()) {
+            if (i.getType() == aType) {
+                retVal = (DetailAST) i;
+                break;
+            }
+        }
+        return retVal;
     }
 }
