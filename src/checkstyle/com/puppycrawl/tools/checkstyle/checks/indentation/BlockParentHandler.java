@@ -203,7 +203,8 @@ public class BlockParentHandler extends ExpressionHandler
         {
             return;
         }
-        logError(rcurly, "rcurly", expandedTabsColumnNo(rcurly), curlyLevel());
+        logError(rcurly, "rcurly", expandedTabsColumnNo(rcurly),
+                 new IndentLevel(curlyLevel()));
     }
 
     /**

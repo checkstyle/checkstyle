@@ -56,6 +56,7 @@ public class HandlerFactory
             });
             mTypeHandlers.put(new Integer(aType), ctor);
         }
+        ///CLOVER:OFF
         catch (NoSuchMethodException e) {
             throw new RuntimeException("couldn't find ctor for "
                                        + aHandlerClass);
@@ -65,6 +66,7 @@ public class HandlerFactory
                                        + aHandlerClass,
                                        e);
         }
+        ///CLOVER:ON
     }
 
     /** creates a HandlerFactory */
@@ -92,8 +94,19 @@ public class HandlerFactory
         register(TokenTypes.METHOD_CALL, MethodCallHandler.class);
         register(TokenTypes.CTOR_CALL, MethodCallHandler.class);
         register(TokenTypes.LABELED_STAT, LabelHandler.class);
-        register(TokenTypes.LABELED_STAT, LabelHandler.class);
         register(TokenTypes.STATIC_INIT, StaticInitHandler.class);
+        register(TokenTypes.ASSIGN, AssignHandler.class);
+        register(TokenTypes.PLUS_ASSIGN, AssignHandler.class);
+        register(TokenTypes.MINUS_ASSIGN, AssignHandler.class);
+        register(TokenTypes.STAR_ASSIGN, AssignHandler.class);
+        register(TokenTypes.DIV_ASSIGN, AssignHandler.class);
+        register(TokenTypes.MOD_ASSIGN, AssignHandler.class);
+        register(TokenTypes.SR_ASSIGN, AssignHandler.class);
+        register(TokenTypes.BSR_ASSIGN, AssignHandler.class);
+        register(TokenTypes.SL_ASSIGN, AssignHandler.class);
+        register(TokenTypes.BAND_ASSIGN, AssignHandler.class);
+        register(TokenTypes.BXOR_ASSIGN, AssignHandler.class);
+        register(TokenTypes.BOR_ASSIGN, AssignHandler.class);
     }
 
     /**
@@ -137,12 +150,15 @@ public class HandlerFactory
     public ExpressionHandler getHandler(IndentationCheck aIndentCheck,
         DetailAST aAst, ExpressionHandler aParent)
     {
-        int type = aAst.getType();
+        if (aAst.getType() == TokenTypes.METHOD_CALL) {
+            return createMethodCallHandler(aIndentCheck, aAst, aParent);
+        }
+
+        Integer type = new Integer(aAst.getType());
 
         ExpressionHandler expHandler = null;
         try {
-            Constructor handlerCtor = (Constructor) mTypeHandlers.get(
-                new Integer(type));
+            Constructor handlerCtor = (Constructor) mTypeHandlers.get(type);
             if (handlerCtor != null) {
                 expHandler = (ExpressionHandler) handlerCtor.newInstance(
                     new Object[] {
@@ -153,6 +169,7 @@ public class HandlerFactory
                 );
             }
         }
+        ///CLOVER:OFF
         catch (InstantiationException e) {
             throw new RuntimeException("couldn't instantiate constructor for "
                                        + aAst, e);
@@ -169,6 +186,39 @@ public class HandlerFactory
         if (expHandler == null) {
             throw new RuntimeException("no handler for type " + type);
         }
+        ///CLOVER:ON
         return expHandler;
     }
+
+    /**
+     * Create new instance of handler for METHOD_CALL.
+     *
+     * @param aIndentCheck   the indentation check
+     * @param aAst           ast to handle
+     * @param aParent        the handler parent of this AST
+     *
+     * @return new instance.
+     */
+    ExpressionHandler createMethodCallHandler(IndentationCheck aIndentCheck,
+        DetailAST aAst, ExpressionHandler aParent)
+    {
+        ExpressionHandler handler =
+            (ExpressionHandler) mCreatedHandlers.get(aAst);
+        if (handler != null) {
+            return handler;
+        }
+
+        DetailAST ast = (DetailAST) aAst.getFirstChild();
+        while (ast != null && ast.getType() == TokenTypes.DOT) {
+            ast = (DetailAST) ast.getFirstChild();
+        }
+        if (ast != null && ast.getType() == TokenTypes.METHOD_CALL) {
+            aParent = createMethodCallHandler(aIndentCheck, ast, aParent);
+            mCreatedHandlers.put(ast, aParent);
+        }
+        return new MethodCallHandler(aIndentCheck, aAst, aParent);
+    }
+
+    /** cache for created method call handlers */
+    private Map mCreatedHandlers = new HashMap();
 }

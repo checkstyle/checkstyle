@@ -46,9 +46,9 @@ public class InputValidDotIndent {
         border = new javax.swing.border.
             BevelBorder(BevelBorder.LOWERED);
         
-        // TODO: enable this when function parameter handling is turned on
-//        border = new javax.swing.border.BevelBorder(
-//            BevelBorder.LOWERED);
+
+        border = new javax.swing.border.BevelBorder(
+            BevelBorder.LOWERED);
         border = new javax.
             swing.
                 border.

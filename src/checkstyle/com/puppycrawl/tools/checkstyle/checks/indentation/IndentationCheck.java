@@ -258,7 +258,7 @@ public class IndentationCheck
      *
      * @return the handler factory
      */
-    public HandlerFactory getHandlerFactory()
+    final HandlerFactory getHandlerFactory()
     {
         return mHandlerFactory;
     }

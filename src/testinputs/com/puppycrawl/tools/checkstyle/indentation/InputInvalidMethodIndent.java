@@ -147,7 +147,7 @@ public class InputInvalidMethodIndent {
 //            getInteger("mytest").intValue(),
 //            11);
 
-        // TODO: should complain about indentation
+
         System.out.toString()
       .equals("blah");
         

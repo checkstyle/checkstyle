@@ -78,11 +78,11 @@ public class MethodDefHandler extends BlockParentHandler
         }
 
         int columnNo = expandedTabsColumnNo(throwsAst);
-        int expectedColumnNo =
-            getLevel() + getIndentCheck().getBasicOffset();
+        IndentLevel expectedColumnNo =
+            new IndentLevel(getLevel() + getIndentCheck().getBasicOffset());
 
         if (startsLine(throwsAst)
-            && columnNo != expectedColumnNo)
+            && !expectedColumnNo.accept(columnNo))
         {
             logError(throwsAst, "throws", columnNo, expectedColumnNo);
         }

@@ -121,7 +121,8 @@ public abstract class ExpressionHandler
     protected final void logError(DetailAST aAst, String aSubtypeName,
                                   int aActualLevel)
     {
-        logError(aAst, aSubtypeName, aActualLevel, getLevel());
+        logError(aAst, aSubtypeName, aActualLevel,
+                 new IndentLevel(getLevel()));
     }
 
     /**
@@ -133,13 +134,13 @@ public abstract class ExpressionHandler
      * @param aExpectedLevel the expected indent level of the expression
      */
     protected final void logError(DetailAST aAst, String aSubtypeName,
-                                  int aActualLevel, int aExpectedLevel)
+                                  int aActualLevel, IndentLevel aExpectedLevel)
     {
         String typeStr = (aSubtypeName == "" ? "" : (" " + aSubtypeName));
         Object[] args = new Object[] {
             mTypeName + typeStr,
             new Integer(aActualLevel),
-            new Integer(aExpectedLevel),
+            aExpectedLevel,
         };
         mIndentCheck.indentationLog(aAst.getLineNo(),
                                     "indentation.error",
@@ -226,9 +227,7 @@ public abstract class ExpressionHandler
      */
     protected final int getLineStart(DetailAST aAst)
     {
-        // TODO: this breaks indentation -- add to tests
-        String line = mIndentCheck.getLines()[
-          aAst.getLineNo() - 1];
+        String line = mIndentCheck.getLines()[aAst.getLineNo() - 1];
         return getLineStart(line);
     }
 
@@ -263,7 +262,7 @@ public abstract class ExpressionHandler
      *              fisrt line in checkLinesIndent()
      *         false otherwise
      */
-    protected boolean shouldIncraeseIndent()
+    protected boolean shouldIncreaseIndent()
     {
         return true;
     }
@@ -303,11 +302,11 @@ public abstract class ExpressionHandler
         // doesn't start the line) then don't indent more, the first
         // indentation is absorbed by the nesting
 
-        // TODO: shouldIncreseIndent() is a hack, should be removed
+        // TODO: shouldIncreaseIndent() is a hack, should be removed
         //       after complete rewriting of checkExpressionSubtree()
 
         if (aFirstLineMatches
-            || (aFirstLine > mMainAst.getLineNo() && shouldIncraeseIndent()))
+            || (aFirstLine > mMainAst.getLineNo() && shouldIncreaseIndent()))
         {
             aIndentLevel = new IndentLevel(aIndentLevel,
                                            mIndentCheck.getBasicOffset());
