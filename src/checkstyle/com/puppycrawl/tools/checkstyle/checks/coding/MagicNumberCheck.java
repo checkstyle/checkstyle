@@ -63,18 +63,18 @@ public class MagicNumberCheck extends Check
     {
         if (!inIgnoreList(aAST) && !isConstantDefinition(aAST)) {
             String text = aAST.getText();
-            int columnNo = aAST.getColumnNo();
             final DetailAST parent = aAST.getParent();
+            DetailAST reportAST = aAST;
             if (parent.getType() == TokenTypes.UNARY_MINUS) {
-                columnNo--;
+                reportAST = parent;
                 text = "-" + text;
             }
             else if (parent.getType() == TokenTypes.UNARY_PLUS) {
-                columnNo--;
+                reportAST = parent;
                 text = "+" + text;
             }
-            log(aAST.getLineNo(),
-                columnNo,
+            log(reportAST.getLineNo(),
+                reportAST.getColumnNo(),
                 "magic.number",
                 text);
         }
