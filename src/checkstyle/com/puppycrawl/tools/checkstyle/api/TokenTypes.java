@@ -1044,12 +1044,12 @@ public final class TokenTypes
      * @see #SUPER_CTOR_CALL
      **/
     public static final int CTOR_CALL = 43;
-    /**
+    /* *
      * This token does not appear in the tree.
      *
      * @see #PACKAGE_DEF
      **/
-    public static final int LITERAL_PACKAGE = 44;
+    //public static final int LITERAL_PACKAGE = 44;
     /**
      * The statement terminator (<code>;</code>).  Depending on the
      * context, this make occur as a sibling, a child, or not at all.
@@ -1061,26 +1061,26 @@ public final class TokenTypes
      * @see #LITERAL_FOR
      **/
     public static final int SEMI = 45;
-    /**
+    /* *
      * This token does not appear in the tree.
      *
      * @see #IMPORT
      **/
-    public static final int LITERAL_IMPORT = 46;
-    /**
+    // public static final int LITERAL_IMPORT = 46;
+    /* *
      * This token does not appear in the tree.
      *
      * @see #INDEX_OP
      * @see #ARRAY_DECLARATOR
      **/
-    public static final int LBRACK = 47;
-    /**
+    //public static final int LBRACK = 47;
+    /* *
      * This token does not appear in the tree.
      *
      * @see #INDEX_OP
      * @see #ARRAY_DECLARATOR
      **/
-    public static final int RBRACK = 48;
+    //public static final int RBRACK = 48;
     /**
      * The <code>void</code> keyword.
      *
@@ -1233,18 +1233,18 @@ public final class TokenTypes
      * @see FullIdent
      **/
     public static final int LITERAL_CLASS = 69;
-    /**
+    /* *
      * This token does not appear in the tree.
      *
      * @see #EXTENDS_CLAUSE
      **/
-    public static final int LITERAL_EXTENDS = 70;
-    /**
+    //public static final int LITERAL_EXTENDS = 70;
+    /* *
      * This token does not appear in the tree.
      *
      * @see #INTERFACE_DEF
      **/
-    public static final int LITERAL_INTERFACE = 71;
+    //public static final int LITERAL_INTERFACE = 71;
     /**
      * A left (curly) brace (<code>{</code>).
      *
@@ -1271,12 +1271,12 @@ public final class TokenTypes
      * @see #IMPLEMENTS_CLAUSE
      **/
     public static final int COMMA = 74;
-    /**
+    /* *
      * This token does not appear in the tree.
      *
      * @see #IMPLEMENTS_CLAUSE
      **/
-    public static final int LITERAL_IMPLEMENTS = 75;
+    //public static final int LITERAL_IMPLEMENTS = 75;
     /**
      * A left parenthesis (<code>(</code>).
      *
@@ -2419,7 +2419,7 @@ public final class TokenTypes
      * @see #NUM_FLOAT
      **/
     public static final int NUM_DOUBLE = 142;
-    /**
+    /* *
      * This token does not appear in the tree.
      *
      * @see <a target="_top"
@@ -2427,8 +2427,8 @@ public final class TokenTypes
      * Language Specification, &sect;3.6</a>
      * @see FileContents
      **/
-    public static final int WS = 143;
-    /**
+    //public static final int WS = 143;
+    /* *
      * This token does not appear in the tree.
      *
      * @see <a target="_top"
@@ -2436,8 +2436,8 @@ public final class TokenTypes
      * Language Specification, &sect;3.7</a>
      * @see FileContents
      **/
-    public static final int SL_COMMENT = 144;
-    /**
+    //public static final int SL_COMMENT = 144;
+    /* *
      * This token does not appear in the tree.
      *
      * @see <a target="_top"
@@ -2445,8 +2445,8 @@ public final class TokenTypes
      * Language Specification, &sect;3.7</a>
      * @see FileContents
      **/
-    public static final int ML_COMMENT = 145;
-    /**
+    //public static final int ML_COMMENT = 145;
+    /* *
      * This token does not appear in the tree.
      *
      * @see <a target="_top"
@@ -2455,28 +2455,28 @@ public final class TokenTypes
      * @see #CHAR_LITERAL
      * @see #STRING_LITERAL
      **/
-    public static final int ESC = 146;
-    /**
+    //public static final int ESC = 146;
+    /* *
      * This token does not appear in the tree.
      *
      * @see #NUM_INT
      * @see #NUM_LONG
      **/
-    public static final int HEX_DIGIT = 147;
-    /**
+    //public static final int HEX_DIGIT = 147;
+    /* *
      * This token does not appear in the tree.
      *
      * @see #NUM_FLOAT
      * @see #NUM_DOUBLE
      **/
-    public static final int EXPONENT = 149;
-    /**
+    //public static final int EXPONENT = 149;
+    /* *
      * This token does not appear in the tree.
      *
      * @see #NUM_FLOAT
      * @see #NUM_DOUBLE
      **/
-    public static final int FLOAT_SUFFIX = 150;
+    //public static final int FLOAT_SUFFIX = 150;
     /**
      * The <code>assert</code> keyword.  This is only for Java 1.4 and
      * later.
@@ -2506,7 +2506,7 @@ public final class TokenTypes
     // The interesting code goes here
     ////////////////////////////////////////////////////////////////////////
 
-        /** maps from a token name to value */
+    /** maps from a token name to value */
     private static final Map TOKEN_NAME_TO_VALUE = new HashMap();
     /** maps from a token value to name */
     private static final String[] TOKEN_VALUE_TO_NAME;
