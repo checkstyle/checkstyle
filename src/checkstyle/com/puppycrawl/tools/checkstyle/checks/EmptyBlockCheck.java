@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class EmptyBlockCheck extends Check
 {
+    /** constructs to check for */
     private final Set mCheckFor = new HashSet();
 
     /**

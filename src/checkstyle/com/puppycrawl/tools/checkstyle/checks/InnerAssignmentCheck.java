@@ -81,7 +81,8 @@ public class InnerAssignmentCheck
      */
     private boolean isAssignment(DetailAST aAST)
     {
-        // TODO: make actual tokens available to Check and loop over actual tokens here?
+        // TODO: make actual tokens available to Check and loop over actual
+        // tokens here?
         final int[] tokens = getDefaultTokens();
 
         final int astType = aAST.getType();

@@ -59,6 +59,9 @@ public class CheckStyleTask
     /** name of file to check */
     private String mFileName;
 
+    /** config file containing configuration */
+    private File mConfigFile;
+
     /** whether to fail build on violations */
     private boolean mFailOnViolation = true;
 
@@ -149,6 +152,11 @@ public class CheckStyleTask
         mFileName = aFile.getAbsolutePath();
     }
 
+    public void setConfig(File aFile)
+    {
+        mConfigFile = aFile;
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Setters for Checker configuration attributes
     ////////////////////////////////////////////////////////////////////////////
@@ -182,13 +190,19 @@ public class CheckStyleTask
                 getLocation());
         }
 
-        final Configuration config = createConfiguration();
+        if (mConfigFile == null) {
+            throw new BuildException("Must specify 'config'.", getLocation());
+        }
 
         // Create the checker
         Checker c = null;
         try {
             try {
-                c = new Checker(config);
+                final Configuration config = createConfiguration();
+                final CheckConfiguration[] checkConfigs =
+                    ConfigurationLoader.loadConfigs(
+                        mConfigFile.getAbsolutePath());
+                c = new Checker(config, checkConfigs);
                 // setup the listeners
                 AuditListener[] listeners = getListeners();
                 for (int i = 0; i < listeners.length; i++) {
@@ -196,12 +210,13 @@ public class CheckStyleTask
                 }
             }
             catch (Exception e) {
-                throw new BuildException("Unable to create a Checker", e);
+                throw new BuildException(
+                    "Unable to create a Checker: " + e.getMessage(), e);
             }
 
             // Process the files
             final String[] files = scanFileSets();
-            final int numErrs = c.process(files);
+            final int numErrs = c.processNEW(files);
 
             // Handle the return status
             if ((numErrs > 0) && mFailureProperty != null) {

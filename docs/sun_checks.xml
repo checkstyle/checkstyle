@@ -1,17 +1,22 @@
 <?xml version="1.0"?>
 
 <configuration>
+    <!--
+    <check classname="visitor.checks.ModifierCheck">
+        <set-property name="order" value="public,private,minus,negative"/>
+        <set-property name="level" value="doggy"/>
+        <tokens>MODIFIERS</tokens>
+    </check>
+    -->
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.AvoidStarImport"/>
-
     <check classname="com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.ConstructorLengthCheck"/>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.FileLengthCheck"/>
-
-
+    <check classname="com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.HeaderCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalInstantiationCheck"/>
@@ -25,17 +30,12 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.LocalFinalVariableNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.LocalVariableNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.MemberNameCheck"/>
-
-    <!--
     <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLeftCurlyCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLengthCheck"/>
-         -->
     <check classname="com.puppycrawl.tools.checkstyle.checks.MethodNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.ModifierCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhiteSpaceAroundCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck">
-        <set-property name="option" value="nlow"/>
-    </check>
+    <check classname="com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.PackageNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNumberCheck"/>
@@ -44,30 +44,19 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.RedundantImportCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.RedundantModifierCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.RegexpHeaderCheck"/>
-
-    <check classname="com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck">
-        <set-property name="option" value="alone"/>
-    </check>
-
+    <check classname="com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanExpressionCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanReturnCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.StaticVariableNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.TabCharacterCheck"/>
-
-    <check classname="com.puppycrawl.tools.checkstyle.checks.TypeLeftCurlyCheck">
-        <set-property name="option" value="nl"/>
-    </check>
-
+    <check classname="com.puppycrawl.tools.checkstyle.checks.TypeLeftCurlyCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.TypeNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.UnusedImportsCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.UpperEllCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundCheck"/>
 
-    <!--
-    <check classname="com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck">
-        <set-property name="format" value="System.out.println"/>
-    </check>
-    -->
 
+
+    
 </configuration>
