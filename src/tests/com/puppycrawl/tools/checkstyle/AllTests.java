@@ -111,6 +111,7 @@ public class AllTests {
         TestSuite suite =
             new TestSuite("Test for com.puppycrawl.tools.checkstyle");
         //$JUnit-BEGIN$
+        suite.addTest(new TestSuite(CheckerTest.class));
         suite.addTest(new TestSuite(DetailASTTest.class));
         suite.addTest(new TestSuite(AbstractViolationReporterTest.class));
         suite.addTest(new TestSuite(AnonInnerLengthCheckTest.class));
