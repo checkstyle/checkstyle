@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.DoubleCheckedLockingCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheckTest;
@@ -138,6 +139,7 @@ public class AllTests {
         suite.addTest(new TestSuite(DescendantTokenCheckTest.class));
         suite.addTest(new TestSuite(DesignForExtensionCheckTest.class));
         suite.addTest(new TestSuite(DetailASTTest.class));
+        suite.addTest(new TestSuite(DeclarationOrderCheckTest.class));
         suite.addTest(new TestSuite(DoubleCheckedLockingCheckTest.class));
         suite.addTest(new TestSuite(EmptyBlockCheckTest.class));
         suite.addTest(new TestSuite(EmptyForIteratorPadCheckTest.class));
