@@ -46,7 +46,8 @@ public final class CheckUtils
     public static boolean isEqualsMethod(DetailAST aAST)
     {
         if (aAST.getType() != TokenTypes.METHOD_DEF) {
-            throw new IllegalArgumentException("A node must be method def");
+            // A node must be method def
+            return false;
         }
 
         // non-static, non-abstract?
