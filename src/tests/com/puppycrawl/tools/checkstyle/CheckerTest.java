@@ -59,7 +59,8 @@ public class CheckerTest
     static String getPath(String aFilename)
         throws IOException
     {
-        final File f = new File(System.getProperty("tests.dir"), aFilename);
+        final File f = new File(System.getProperty("testinputs.dir"),
+                                aFilename);
         return f.getCanonicalPath();
     }
 
