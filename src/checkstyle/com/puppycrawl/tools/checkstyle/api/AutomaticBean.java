@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.converters.AbstractArrayConverter;
 import org.apache.commons.beanutils.converters.BooleanArrayConverter;
 import org.apache.commons.beanutils.converters.BooleanConverter;
@@ -44,6 +45,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.beans.PropertyDescriptor;
 
 
 /**
@@ -149,14 +151,33 @@ public class AutomaticBean implements Configurable, Contextualizable
             final String value = aConfiguration.getAttribute(key);
 
             try {
+                // BeanUtils.copyProperties silently ignores missing setters
+                // for key, so we have to go through great lengths here to
+                // figure out if the bean property really exists.
+                PropertyDescriptor pd =
+                        PropertyUtils.getPropertyDescriptor(this, key);
+                if (pd == null || pd.getWriteMethod() == null) {
+                    throw new CheckstyleException(
+                        "Property '" + key + "' in module "
+                        + aConfiguration.getName()
+                        + " does not exist, please check the documentation");
+                }
+
+                // finally we can set the bean property
                 BeanUtils.copyProperty(this, key, value);
             }
             catch (InvocationTargetException e) {
                 throw new CheckstyleException(
-                    "for " + aConfiguration.getName() + " unable to set " + key
-                    + " with " + value);
+                    "Cannot set property '" + key + "' in module"
+                    + aConfiguration.getName() + " to '" + value
+                    + "': " + e.getTargetException().getMessage());
             }
             catch (IllegalAccessException e) {
+                throw new CheckstyleException(
+                    "cannot access " + key + " in "
+                    + this.getClass().getName());
+            }
+            catch (NoSuchMethodException e) {
                 throw new CheckstyleException(
                     "cannot access " + key + " in "
                     + this.getClass().getName());
