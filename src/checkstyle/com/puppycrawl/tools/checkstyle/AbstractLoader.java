@@ -83,7 +83,7 @@ abstract class AbstractLoader
         mParser.parse(aInputSource);
     }
 
-    /** Jibber inheritDoc */
+    /** {@inheritDoc} */
     public InputSource resolveEntity(String aPublicId, String aSystemId)
         throws SAXException, IOException
     {

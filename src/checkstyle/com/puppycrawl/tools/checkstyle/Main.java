@@ -103,7 +103,7 @@ public final class Main
             e.printStackTrace(System.out);
             System.exit(1);
         }
-        
+
         //Load the set of package names
         ModuleFactory moduleFactory = null;
         if (line.hasOption("n")) {
@@ -140,7 +140,7 @@ public final class Main
         // Get the file extension
         final String javaExtn =
             "." + (line.hasOption("e") ? line.getOptionValue("e") : "java");
-        
+
         // create the appropriate listener
         final String format =
             line.hasOption("f") ? line.getOptionValue("f") : "plain";
@@ -218,6 +218,7 @@ public final class Main
      *
      * @param aNode the node to process
      * @param aFiles list to add found files to
+     * @param aExtension specifies the extension for Java source files
      */
     private static void traverse(File aNode, List aFiles, String aExtension)
     {
