@@ -238,12 +238,14 @@ public class CheckerTest
     public void testSimple()
         throws Exception
     {
+        mConfig.setMaxFileLength(20);
         mConfig.setMaxMethodLength(19);
         mConfig.setMaxConstructorLength(9);
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
+            filepath + ":1: file length is 110 lines (max allowed is 20).",
             filepath + ":3: Line does not match expected header line of '// Created: 2001'.",
             filepath + ":18: line longer than 80 characters",
             filepath + ":19: line contains a tab character",
