@@ -30,8 +30,13 @@ public abstract class AbstractOptionCheck
     extends Check
 {
     /** the policy to enforce */
-    protected AbstractOption mOption = null;
+    private AbstractOption mOption;
 
+    public AbstractOptionCheck(AbstractOption aDefault)
+    {
+        mOption = aDefault;
+    }
+    
     /**
      * Set the option to enforce.
      * @param aOption string to decode option from

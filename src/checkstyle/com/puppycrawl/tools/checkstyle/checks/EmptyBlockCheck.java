@@ -28,6 +28,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class EmptyBlockCheck extends AbstractOptionCheck
 {
+    public EmptyBlockCheck()
+    {
+        super(BlockOption.STMT);
+    }
+    
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -52,7 +57,7 @@ public class EmptyBlockCheck extends AbstractOptionCheck
     {
         final DetailAST slistAST = aAST.findFirstToken(TokenTypes.SLIST);
         if (slistAST != null) {
-            if (mOption == BlockOption.STMT) {
+            if (getAbstractOption() == BlockOption.STMT) {
                 if (slistAST.getChildCount() <= 1) {
                     log(slistAST.getLineNo(),
                         slistAST.getColumnNo(),
@@ -60,7 +65,7 @@ public class EmptyBlockCheck extends AbstractOptionCheck
                         aAST.getText());
                 }
             }
-            else if (mOption == BlockOption.TEXT) {
+            else if (getAbstractOption() == BlockOption.TEXT) {
                 if (!hasText(slistAST)) {
                     log(slistAST.getLineNo(),
                         slistAST.getColumnNo(),
@@ -71,6 +76,10 @@ public class EmptyBlockCheck extends AbstractOptionCheck
         }
     }
 
+    /**
+     * @param slistAST a <code>DetailAST</code> value
+     * @return whether the SLIST token contains any text.
+     */
     private boolean hasText(final DetailAST slistAST)
     {
         boolean retVal = false;

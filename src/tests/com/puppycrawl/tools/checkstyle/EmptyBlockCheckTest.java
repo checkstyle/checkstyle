@@ -19,7 +19,16 @@ public class EmptyBlockCheckTest
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {
-         };
+            "52:65: Must have at least one statement.",
+            "54:41: Must have at least one statement.",
+            "71:38: Must have at least one statement.",
+            "72:52: Must have at least one statement.",
+            "73:45: Must have at least one statement.",
+            "75:13: Must have at least one statement.",
+            "77:17: Must have at least one statement.",
+            "79:13: Must have at least one statement.",
+            "82:17: Must have at least one statement.",
+        };
         verify(c, fname, expected);
     }
 
@@ -40,7 +49,7 @@ public class EmptyBlockCheckTest
         };
         verify(c, fname, expected);
     }
-    
+
     public void testStatement()
         throws Exception
     {
