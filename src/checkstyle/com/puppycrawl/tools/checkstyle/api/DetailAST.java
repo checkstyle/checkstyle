@@ -294,4 +294,10 @@ public final class DetailAST
         }
         return retVal;
     }
+
+    /** {@inheritDoc} */
+    public String toString()
+    {
+        return super.toString() + "[" + getLineNo() + "x" + getColumnNo() + "]";
+    }
 }
