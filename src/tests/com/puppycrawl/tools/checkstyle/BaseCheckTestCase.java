@@ -22,6 +22,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.lang.reflect.InvocationTargetException;
 
 import junit.framework.TestCase;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -60,7 +61,7 @@ public class BaseCheckTestCase
     protected Checker createChecker(CheckConfiguration aCheckConfig)
         throws RESyntaxException, FileNotFoundException, IOException,
         ParserConfigurationException, SAXException, ClassNotFoundException,
-        InstantiationException, IllegalAccessException
+        InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException
     {
         final Checker c = new Checker(new Configuration(mProps, mStream),
                                       new CheckConfiguration[] {aCheckConfig});

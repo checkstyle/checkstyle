@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
-import java.util.Set;
+import java.lang.reflect.InvocationTargetException;
 
 import org.apache.regexp.RESyntaxException;
 import org.xml.sax.SAXException;
@@ -155,9 +155,9 @@ public class Checker
 
     public Checker(Configuration aConfig, CheckConfiguration[] aConfigs)
         throws ClassNotFoundException, InstantiationException,
-               IllegalAccessException
+               IllegalAccessException, InvocationTargetException,
+               NoSuchMethodException
     {
-        // TODO: document to make testing easier
         mConfig = aConfig;
         mCache = new PropertyCacheFile(aConfig);
         LocalizedMessage.setLocale(new Locale(mConfig.getLocaleLanguage(),
@@ -180,35 +180,16 @@ public class Checker
      */
     public Checker(Configuration aConfig)
         throws RESyntaxException, IOException,
-        ParserConfigurationException, SAXException, ClassNotFoundException, InstantiationException, IllegalAccessException
+        ParserConfigurationException, SAXException,
+        ClassNotFoundException, InstantiationException,
+        IllegalAccessException, InvocationTargetException,
+        NoSuchMethodException
     {
-        // TODO: remove the dead code and make use the other constuctor
-        mConfig = aConfig;
+        // TODO: delete this method eventually
+        this(aConfig, new CheckConfiguration[0]);
         mConfig.loadFiles();
-        mCache = new PropertyCacheFile(aConfig);
         final Verifier v = new Verifier(aConfig);
         VerifierSingleton.setInstance(v);
-        LocalizedMessage.setLocale(new Locale(mConfig.getLocaleLanguage(),
-                                              mConfig.getLocaleCountry()));
-        mMessages = new LocalizedMessages(mConfig.getTabWidth());
-        // Load the check configurations
-        final ConfigurationLoader loader = new ConfigurationLoader();
-        final Set configFiles = mConfig.getCheckConfigFiles();
-        // TODO: check for null
-        for (Iterator it = configFiles.iterator(); it.hasNext();) {
-            final String fname = (String) it.next();
-            loader.parseFile(fname);
-        }
-
-        // Initialise the treewalker
-        // TODO: improve the error handing
-        mWalker = new TreeWalker(mMessages);
-        final CheckConfiguration[] configs = loader.getConfigs();
-        for (int i = 0; i < configs.length; i++) {
-            final CheckConfiguration config = configs[i];
-            mWalker.registerCheck(
-                config.createInstance(mConfig.getClassLoader()), config);
-        }
     }
 
     /** Cleans up the object **/

@@ -118,8 +118,6 @@ public class Configuration
     /** map of Set properties **/
     private final Map mStringSetProps = new HashMap();
     {
-        // TODO: need to remove this next line
-        setStringSetProperty(Defn.CHECK_CONFIG_FILES_PROP, "");
         setStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP, ILLEGAL_IMPORTS);
         setStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP,
                              ILLEGAL_INSTANTIATIONS);
@@ -620,12 +618,6 @@ public class Configuration
     Set getIllegalInstantiations()
     {
         return getStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP);
-    }
-
-    /** @return Set of check configuration files */
-    Set getCheckConfigFiles()
-    {
-        return getStringSetProperty(Defn.CHECK_CONFIG_FILES_PROP);
     }
 
     /** @return pattern to exclude from line lengh checking **/

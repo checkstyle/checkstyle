@@ -25,6 +25,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.StringTokenizer;
+import java.util.Iterator;
+import java.lang.reflect.InvocationTargetException;
+
+import org.apache.commons.beanutils.PropertyUtils;
 
 /**
  * Represents the configuration for a check.
@@ -98,11 +102,19 @@ class CheckConfiguration
      */
     Check createInstance(ClassLoader aLoader)
         throws ClassNotFoundException, InstantiationException,
-        IllegalAccessException
+        IllegalAccessException, InvocationTargetException,
+        NoSuchMethodException
     {
         final Class clazz = Class.forName(mClassname, true, aLoader);
         final Check check = (Check) clazz.newInstance();
         // TODO: need to set the properties
+        // Loop setting the properties
+        final Iterator keyIt = mProperties.keySet().iterator();
+        while (keyIt.hasNext()) {
+            final String key = (String) keyIt.next();
+            final String value = (String) mProperties.get(key);
+            PropertyUtils.setSimpleProperty(check, key, value);
+        }
         return check;
     }
 }
