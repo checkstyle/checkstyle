@@ -35,8 +35,6 @@ public interface Defn
     String STATIC_PATTERN_PROP = "checkstyle.pattern.static";
     /** property name for the static final variable pattern **/
     String CONST_PATTERN_PROP = "checkstyle.pattern.const";
-    /** property name for the member variable pattern **/
-    String MEMBER_PATTERN_PROP = "checkstyle.pattern.member";
     /** property name for the public member variable pattern **/
     String PUBLIC_MEMBER_PATTERN_PROP = "checkstyle.pattern.publicmember";
     /** property name for length of constructors **/
@@ -97,7 +95,6 @@ public interface Defn
             TODO_PATTERN_PROP,
             STATIC_PATTERN_PROP,
             CONST_PATTERN_PROP,
-            MEMBER_PATTERN_PROP,
             PUBLIC_MEMBER_PATTERN_PROP,
         };
 

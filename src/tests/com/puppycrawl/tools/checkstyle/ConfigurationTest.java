@@ -28,14 +28,4 @@ public class ConfigurationTest
         final Configuration c = new Configuration(p, System.out);
         assertNotNull(c);
     }
-
-    public void testGetProperties() throws Exception
-    {
-        final Properties props = new Properties();
-        props.setProperty(Defn.MEMBER_PATTERN_PROP, "bulldogs");
-
-        final Configuration c = new Configuration(props, System.out);
-        assertEquals("bulldogs",
-                     c.getProperties().getProperty(Defn.MEMBER_PATTERN_PROP));
-    }
 }
