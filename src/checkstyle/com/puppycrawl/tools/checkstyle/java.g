@@ -281,7 +281,9 @@ field!
 						     mods,
 							 #(#[TYPE,"TYPE"],rt),
 							 IDENT,
+							 LPAREN,
 							 param,
+							 RPAREN,
 							 tc,
 							 s2);}
 			|	v:variableDefinitions[#mods,#t] SEMI
