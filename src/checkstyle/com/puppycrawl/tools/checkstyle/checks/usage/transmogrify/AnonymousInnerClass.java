@@ -48,12 +48,14 @@ public class AnonymousInnerClass extends ClassDef {
   }
 
   public void finishMakingDefinition() {
-    String extendedClassName = ASTUtil.constructDottedName(_classExtended);
-    IClass superclass = getClassDefinition(extendedClassName);
-
-    if (superclass != null) {
-      setSuperclass(superclass);
-      superclass.addSubclass(this);
+    if (_classExtended != null) {
+        String extendedClassName = ASTUtil.constructDottedName(_classExtended);
+        IClass superclass = getClassDefinition(extendedClassName);
+    
+        if (superclass != null) {
+          setSuperclass(superclass);
+          superclass.addSubclass(this);
+        }
     }
   }
 
