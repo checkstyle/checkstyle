@@ -26,6 +26,8 @@ import java.util.Map;
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  * @version 1
+ * @see EmptyForIteratorPadCheck
+ * @see ParenPadCheck
  */
 public final class PadOption
     extends AbstractOption
