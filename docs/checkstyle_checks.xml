@@ -38,7 +38,14 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.ModifierCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NeedBracesCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhiteSpaceAroundCheck"/>
+
     <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck"/>
+    <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck">
+        <tokens>
+            ASSIGN, DIV_ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN, STAR_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN, SL_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, BAND_ASSIGN
+        </tokens>
+        <set-property name="option" value="eol"/>
+    </check>
     <check classname="com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck">
         <set-property name="option" value="nlow"/>
     </check>
