@@ -56,6 +56,15 @@ public class IndentLevel
     }
 
     /**
+     * Checks wether we have more than one level.
+     * @return wether we have more than one level.
+     */
+    public final boolean isMultiLevel()
+    {
+        return mLevels.size() > 1;
+    }
+
+    /**
      * Checks if given indentation is accaptable.
      * @param aIndent indentation to check.
      * @return true if givent indentation is acceptable,

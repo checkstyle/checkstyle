@@ -26,3 +26,21 @@ public class InputUseTabs {
   }
     
 }
+
+public class Test {
+  public static void main(String[] args) {
+    System.out.println(" Hello" +
+      new Object() {
+        public String toString() {
+          return "World";
+        }
+      });
+
+    new Object()
+      .toString()
+      .toString()
+      .toString()
+      .toString()
+      .toString();
+  }
+}

@@ -318,8 +318,12 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "121: class def rcurly at indentation level 10 not at correct indentation, 8",
             "124: class def child at indentation level 10 not at correct indentation, 12",
             "129: method def child at indentation level 10 not at correct indentation, 8",
-            "138: object def lcurly at indentation level 6 not at correct indentation, 8",
-            "142: object def rcurly at indentation level 6 not at correct indentation, 8",
+            "138: object def lcurly at indentation level 6 not at correct indentation, [8, 12]",
+
+            "139: method def modifier at indentation level 12 not at correct indentation, 10",
+            "141: method def rcurly at indentation level 12 not at correct indentation, 10",
+
+            "142: object def rcurly at indentation level 6 not at correct indentation, [8, 12]",
             "147: method def modifier at indentation level 10 not at correct indentation, 12",
             "149: method def rcurly at indentation level 10 not at correct indentation, 12",
             // TODO: extends and implements need to be added

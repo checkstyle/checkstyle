@@ -121,7 +121,7 @@ public abstract class BaseCheckTestCase
         }
 
         assertEquals("unexpected output: " + lnr.readLine(),
-                aExpected.length, errs);
+                     aExpected.length, errs);
         aC.destroy();
     }
 }

@@ -100,6 +100,25 @@ public class MethodCallHandler extends ExpressionHandler
                 if (areOnSameLine(container.getMainAst(), getMainAst())) {
                     return container.getLevel();
                 }
+
+                // we should increase indentation only if this is the first
+                // chained method call which was moved to the next line
+                DetailAST main = getMainAst();
+                DetailAST dot = (DetailAST) main.getFirstChild();
+                DetailAST target = (DetailAST) dot.getFirstChild();
+
+                if (dot.getType() == TokenTypes.DOT
+                    && target.getType() == TokenTypes.METHOD_CALL)
+                {
+                    DetailAST dot1 = (DetailAST) target.getFirstChild();
+                    DetailAST target1 = (DetailAST) dot1.getFirstChild();
+
+                    if (dot1.getType() == TokenTypes.DOT
+                        && target1.getType() == TokenTypes.METHOD_CALL)
+                    {
+                        return container.getLevel();
+                    }
+                }
                 return new IndentLevel(container.getLevel(), getBasicOffset());
             }
 
@@ -170,12 +189,10 @@ public class MethodCallHandler extends ExpressionHandler
 
         DetailAST first = (DetailAST) getMainAst().getFirstChild();
         int indentLevel = getLineStart(first);
-        if (aChild instanceof MethodCallHandler) {
-            if (!areOnSameLine((DetailAST) aChild.getMainAst().getFirstChild(),
-                (DetailAST) getMainAst().getFirstChild()))
-            {
-                indentLevel += getBasicOffset();
-            }
+        if (!areOnSameLine((DetailAST) aChild.getMainAst().getFirstChild(),
+                           (DetailAST) getMainAst().getFirstChild()))
+        {
+            indentLevel += getBasicOffset();
         }
         return new IndentLevel(indentLevel);
     }

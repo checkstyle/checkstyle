@@ -346,6 +346,28 @@ public class BlockParentHandler extends ExpressionHandler
      */
     protected IndentLevel getChildrenExpectedLevel()
     {
+        // if we have multileveled expected level then we should
+        // try to suggest single level to children using curlies'
+        // levels.
+        if (getLevel().isMultiLevel() && hasCurlys()
+            && !areOnSameLine(getLCurly(), getRCurly()))
+        {
+            if (startsLine(getLCurly())) {
+                return new IndentLevel(expandedTabsColumnNo(getLCurly())
+                                       + getBasicOffset());
+            }
+            else if (startsLine(getRCurly())) {
+                return new IndentLevel(expandedTabsColumnNo(getRCurly())
+                                       + getBasicOffset());
+            }
+        }
         return new IndentLevel(getLevel(), getBasicOffset());
     }
+
+    /** {@inheritDoc} */
+    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    {
+        return getChildrenExpectedLevel();
+    }
+
 }
