@@ -177,15 +177,15 @@ The parameters for the <span class="default">&lt;property&gt;</span> element are
 </table>
 
 <h3>Examples</h3>
-<p><b>Run checkstyle with configuration file <code>docs/checkstyle_checks.xml</code> on a single file</b></p>
+<p><b>Run checkstyle with configuration file <code>docs/sun_checks.xml</code> on a single file</b></p>
 <pre>
-  &lt;checkstyle config=&quot;docs/checkstyle_checks.xml&quot; file=&quot;Check.java&quot;/&gt;
+  &lt;checkstyle config=&quot;docs/sun_checks.xml&quot; file=&quot;Check.java&quot;/&gt;
 </pre>
 
 <p><b>Run checkstyle on a set of Java files using site-wide configuration and
 an expanded property value</b></p>
 <pre>
-  &lt;checkstyle config=&quot;/path/to/site/checkstyle_checks.xml&quot;&gt;
+  &lt;checkstyle config=&quot;/path/to/site/sun_checks.xml&quot;&gt;
     &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
 
     &lt;!-- Location of cache-file. Something that is project specific --&gt;
@@ -195,18 +195,18 @@ an expanded property value</b></p>
 
 <p><b>Run checkstyle on a set of files and output messages to standard output in plain format, and a file in XML format</b></p>
 <pre>
-  &lt;checkstyle config=&quot;docs/checkstyle_checks.xml&quot;&gt;
+  &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;&gt;
     &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
     &lt;formatter type=&quot;plain&quot;/&gt;
     &lt;formatter type=&quot;xml&quot; toFile=&quot;build/checkstyle_errors.xml&quot;/&gt;
   &lt;/checkstyle&gt;
 </pre>
 <p>
-<b>Run checkstyle  with configuration file <code>docs/checkstyle_checks.xml</code> on a file and
+<b>Run checkstyle  with configuration file <code>docs/sun_checks.xml</code> on a file and
 provide a package names file</b>
 </p>
 <pre>
-  &lt;checkstyle config=&quot;docs/checkstyle_checks.xml&quot;
+  &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;
               packageNamesFile=&quot;myPackageNames.xml&quot;
               file=&quot;Check.java&quot;/&gt;
 </pre>
@@ -218,7 +218,7 @@ provide a package names file</b>
   &lt;target name=&quot;checkstyle&quot;
           description=&quot;Generates a report of code convention violations.&quot;>
 
-    &lt;checkstyle config=&quot;docs/checkstyle_checks.xml&quot;
+    &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;
                 failureProperty=&quot;checkstyle.failure&quot;
                 failOnViolation=&quot;false&quot;&gt;
       &lt;formatter type=&quot;xml&quot; tofile=&quot;checkstyle_report.xml&quot;/&gt;
