@@ -70,7 +70,7 @@ public class PackageNameCheck
         // Uppercase letters seem rather uncommon, but they're allowed in
         // http://java.sun.com/docs/books/jls/
         //   second_edition/html/packages.doc.html#40169
-        super("^[a-z]+(\\.[a-zA-Z_][a-zA-Z_0-9]*)*$");
+        super("^[a-z]+(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$");
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
