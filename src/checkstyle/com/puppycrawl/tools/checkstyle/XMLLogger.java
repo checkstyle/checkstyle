@@ -42,7 +42,7 @@ public class XMLLogger
     private PrintWriter mWriter;
 
     /** some known entities to detect */
-    private final static String[] ENTITIES = {"gt", "amp", "lt", "apos",
+    private static final String[] ENTITIES = {"gt", "amp", "lt", "apos",
                                               "quot"};
 
     /** Creates a new <code>XMLLogger</code> instance. */
