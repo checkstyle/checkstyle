@@ -90,6 +90,8 @@
                               int aLineNo)
 </pre>
 
+<p>By default an unused <span class="code">@throws</span> tag is reported as error. It is possible to enable checking to determine if the exception is a subclass of <span class="code">java.lang.RuntimeException</span>. This supports the convention in the <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html#throwstag">Sun Javadoc Guidelines</a> and the "Effective Java" book. By default the check is off as it requires the classpath to be configured.</p>
+
 <div class="tip">
 <h4 class="tip">Tip</h4>
 <p>It can be extremely painful writing or duplicating Javadoc for a method required for an interface. Hence checkstyle supports using the convention of using a single <span class="code">@see</span> tag instead of all the other tags. For example, if the previous method was implementing a method required by the <span class="code">com.puppycrawl.tools.checkstyle.Verifier</span> interface, then the Javadoc could be done as:</p>
