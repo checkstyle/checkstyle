@@ -253,7 +253,7 @@ public class CheckStyleTask
 //            }
 //            catch (FileNotFoundException e) {
 //                throw new BuildException(
-//                    "Could not find Properties file '" + mPropertiesFile + "'",
+// indent me - "Could not find Properties file '" + mPropertiesFile + "'",
 //                    e, getLocation());
 //            }
 //            catch (IOException e) {
@@ -286,7 +286,7 @@ public class CheckStyleTask
 //
 //        // setup the classloader
 //        if (mClasspath != null) {
-//            retVal.setClassLoader(new AntClassLoader(getProject(), mClasspath));
+// indent--retVal.setClassLoader(new AntClassLoader(getProject(), mClasspath));
 //        }
 //
 //        return retVal;
@@ -386,7 +386,7 @@ public class CheckStyleTask
             final Property p = (Property) it.next();
             retVal.put(p.getKey(), p.getValue());
         }
-        
+
         return retVal;
     }
 
