@@ -27,7 +27,8 @@ This command line tool is included in the checkstyle distribution.</p>
 <h2>Usage</h2>
 <p>The command line usage is:</p>
 <pre>
-  java com.puppycrawl.tools.checkstyle.Main \
+  java -D&lt;property&gt;=&lt;value&gt;  \
+       com.puppycrawl.tools.checkstyle.Main \
        [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] [-r &lt;dir&gt;] file...
 </pre>
 
@@ -35,10 +36,18 @@ This command line tool is included in the checkstyle distribution.</p>
 
 <ul>
   <li><span class="default">-f format</span> - specify the output format. Options are <span class="default">"plain"</span> for the <a href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a> and <span class="default">"xml"</span> for the <a href="api/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>. Defaults to <span class="default">"plain"</span>.</li>
-  <li><span class="default">-p propertiesFile</span> - specify a properties file to use. <a href="config.html">See here</a> for all available configuration options.</li>
+  <li><span class="default">-p propertiesFile</span> - specify a properties file to use.
   <li><span class="default">-o file</span> - specify the file to output to.</li>
   <li><span class="default">-r dir</span> - specify the directory to traverse for Java source files.</li>
 </ul>
+
+<p>The default behaviour of checkstyle can be changed either by setting system
+properties using the <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments
+to java or by specifying a property file using the <code>-p</code> option.
+<a href="config.html">See here</a> for all available configuration options.</li>
+If a property file is specified the system properties are ignored. The
+following table describes what properties can be set:</p>
+
 
 
 <h2>Examples</h2>
@@ -58,10 +67,22 @@ This command line tool is included in the checkstyle distribution.</p>
         -p myCheckstyle.properties Check.java
 </pre>
 
-<p><b>Run checkstyle on a file and output to a file in XML format</b></p>
+<p><b>Run checkstyle on a file and output to a file in XML format with Australian localisation</b></p>
 <pre>
-  java  com.puppycrawl.tools.checkstyle.Main \
+  java  -Dcheckstyle.allow.tabs=yes  \
+        -Dcheckstyle.locale.language=en \
+        -Dcheckstyle.locale.language=au \
+        com.puppycrawl.tools.checkstyle.Main \
         -f xml -o build/checkstyle_errors.xml Check.java
+</pre>
+
+<p><b>Run checkstyle on a file and disable pattern matching</b></p>
+<pre>
+  java  -Dcheckstyle.pattern.parameter=. \
+        -Dcheckstyle.pattern.static=. \
+        -Dcheckstyle.pattern.const=. \
+        -Dcheckstyle.pattern.member=. \
+        com.puppycrawl.tools.checkstyle.Main Check.java
 </pre>
 
 <div class="tip">
