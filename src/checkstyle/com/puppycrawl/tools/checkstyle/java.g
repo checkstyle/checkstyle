@@ -507,7 +507,7 @@ statement
 		)?
 
 	// For statement
-	|	"for"^
+	|	ff:"for"^ {ver.verifyWSAroundBegin(ff.getLine(), ff.getColumn(), ff.getText());}
 			LPAREN!
 				forInit s1:SEMI! {ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);} // initializer
 				forCond	s2:SEMI! {ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON);} // condition test
@@ -516,10 +516,17 @@ statement
 			statement                     // statement to loop over
 
 	// While statement
-	|	"while"^ LPAREN! expression RPAREN! statement
+	|	ww:"while"^ LPAREN! expression RPAREN! statement
+        {
+            ver.verifyWSAroundBegin(ww.getLine(), ww.getColumn(), ww.getText());
+        }
 
 	// do-while statement
-	|	"do"^ statement "while"! LPAREN! expression RPAREN! SEMI!
+	|	dd:"do"^ statement dw:"while"! LPAREN! expression RPAREN! SEMI!
+        {
+            ver.verifyWSAroundBegin(dd.getLine(), dd.getColumn(), dd.getText());
+            ver.verifyWSAroundBegin(dw.getLine(), dw.getColumn(), dw.getText());
+        }
 
 	// get out of a loop (or switch)
 	|	"break"^ (IDENT)? SEMI!
@@ -528,7 +535,7 @@ statement
 	|	"continue"^ (IDENT)? SEMI!
 
 	// Return an expression
-	|	"return"^ (expression)? SEMI!
+	|	rr:"return"^ (expression {ver.verifyWSAroundBegin(rr.getLine(), rr.getColumn(), rr.getText());} )? SEMI!
 
 	// switch/case statement
 	|	"switch"^ LPAREN! expression RPAREN! LCURLY!
@@ -542,7 +549,8 @@ statement
 	|	"throw"^ expression SEMI!
 
 	// synchronize a statement
-	|	"synchronized"^ LPAREN! expression RPAREN! compoundStatement
+	|	ss:"synchronized"^ LPAREN! expression RPAREN! compoundStatement
+        {ver.verifyWSAroundBegin(ss.getLine(), ss.getColumn(), ss.getText());}
 
 	// empty statement
 	|	s:SEMI {#s.setType(EMPTY_STAT);}
@@ -598,7 +606,8 @@ forIter
 
 // an exception handler try/catch block
 tryBlock
-	:	"try"^ compoundStatement
+	:	t:"try"^ compoundStatement
+        { ver.verifyWSAroundBegin(t.getLine(), t.getColumn(), t.getText()); }
 		(handler)*
 		( "finally"^ compoundStatement )?
 	;
@@ -606,7 +615,8 @@ tryBlock
 
 // an exception handler
 handler
-	:	"catch"^ LPAREN! parameterDeclaration RPAREN! compoundStatement
+	:	c:"catch"^ LPAREN! parameterDeclaration RPAREN! compoundStatement
+        {ver.verifyWSAroundBegin(c.getLine(), c.getColumn(), c.getText());}
 	;
 
 

@@ -101,6 +101,7 @@ public class CheckerTest
             filepath + ":28: '++' is preceeded with whitespace.",
             filepath + ":29: '++' is proceeded with whitespace.",
             filepath + ":35: 'synchronized' is not proceeded with whitespace.",
+            filepath + ":37: 'try' is not proceeded with whitespace.",
             filepath + ":39: 'catch' is not proceeded with whitespace.",
             filepath + ":56: 'if' is not proceeded with whitespace.",
             filepath + ":74: 'return' is not proceeded with whitespace.",
@@ -139,6 +140,7 @@ public class CheckerTest
             filepath + ":28: '++' is preceeded with whitespace.",
             filepath + ":29: '++' is proceeded with whitespace.",
             filepath + ":35: 'synchronized' is not proceeded with whitespace.",
+            filepath + ":37: 'try' is not proceeded with whitespace.",
             filepath + ":39: 'catch' is not proceeded with whitespace.",
             filepath + ":56: 'if' is not proceeded with whitespace.",
             filepath + ":74: 'return' is not proceeded with whitespace.",
@@ -174,11 +176,13 @@ public class CheckerTest
         final String filepath = getPath("InputBraces.java");
         final String[] expected = {
             filepath + ":29: 'do' construct must use '{}'s.",
+            filepath + ":41: 'while' is not proceeded with whitespace.",
             filepath + ":41: 'while' construct must use '{}'s.",
             filepath + ":41: ';' is not preceeded with whitespace.",
             filepath + ":42: 'while' construct must use '{}'s.",
             filepath + ":44: 'while' construct must use '{}'s.",
             filepath + ":45: 'if' construct must use '{}'s.",
+            filepath + ":58: 'for' is not proceeded with whitespace.",
             filepath + ":58: ';' needs to be followed by whitespace.",
             filepath + ":58: ';' needs to be followed by whitespace.",
             filepath + ":58: 'for' construct must use '{}'s.",
@@ -206,7 +210,9 @@ public class CheckerTest
         final Checker c = createChecker();
         final String filepath = getPath("InputBraces.java");
         final String[] expected = {
+            filepath + ":41: 'while' is not proceeded with whitespace.",
             filepath + ":41: ';' is not preceeded with whitespace.",
+            filepath + ":58: 'for' is not proceeded with whitespace.",
             filepath + ":58: ';' needs to be followed by whitespace.",
             filepath + ":58: ';' needs to be followed by whitespace.",
             filepath + ":58: ';' is not preceeded with whitespace.",

@@ -313,7 +313,6 @@ stat
    |  #(ii:"if" expression is1:stat (is2:stat)? )
       {
          ver.verifyLeftCurly(is1.getText(), false, "if", ii.getLineNo());
-         //ver.verifySurroundingWS(ii);
          ver.verifySurroundingWS(is1);
          if (is2 != null) {
             ver.verifyLeftCurly(is2.getText(), true, "else", ii.getLineNo());
@@ -327,37 +326,25 @@ stat
            fs:stat
            {
               ver.verifyLeftCurly(fs.getText(), false, "for", ff.getLineNo());
-              ver.verifySurroundingWS(ff);
               ver.verifySurroundingWS(fs);
            }
        )
    |  #(ww:"while" expression ws:stat)
       {
          ver.verifyLeftCurly(ws.getText(), false, "while", ww.getLineNo());
-         ver.verifySurroundingWS(ww);
          ver.verifySurroundingWS(ws);
       }
    |  #(dd:"do" ds:stat expression)
       {
          ver.verifyLeftCurly(ds.getText(), false, "do", dd.getLineNo());
-         ver.verifySurroundingWS(dd);
          ver.verifySurroundingWS(ds);
       }
    |  #("break" (IDENT)? )
    |  #("continue" (IDENT)? )
    |  #(rr:"return" (ee:expression)? )
-      {
-         if ( ee != null )
-         {
-            ver.verifySurroundingWS(rr); 
-         }   
-      }
    |  #("switch" expression (caseGroup)*)
    |  #("throw" expression)
    |  #(ss:"synchronized" expression stat)
-      {
-        ver.verifySurroundingWS(ss);
-      }
    |  tryBlock
    |  slist // nested SLIST
    |  EMPTY_STAT
@@ -374,9 +361,6 @@ tryBlock
 handler
 { Object ignore;}
 	:	#( cc:"catch" ignore=parameterDef slist )
-      {
-        ver.verifySurroundingWS(cc);
-      }
 	;
 
 elist
