@@ -46,5 +46,13 @@ class InputLeftCurlyOther
                 break;
             }
         }
+
+        synchronized (this)
+        {
+            do
+            {
+                x = 2;
+            } while (x == 2);
+        }
     }
 }

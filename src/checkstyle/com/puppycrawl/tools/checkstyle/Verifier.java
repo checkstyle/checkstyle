@@ -1077,10 +1077,8 @@ class Verifier
         if (mConfig.getHeaderLines().length > mLines.length) {
             log(1, "Missing a header - not enough lines in file.");
         }
-        else
-        {
-            for (int i = 0; i < mConfig.getHeaderLines().length; i++)
-            {
+        else {
+            for (int i = 0; i < mConfig.getHeaderLines().length; i++) {
                 // skip lines we are meant to ignore
                 if (mConfig.isHeaderIgnoreLineNo(i + 1)) {
                     continue;

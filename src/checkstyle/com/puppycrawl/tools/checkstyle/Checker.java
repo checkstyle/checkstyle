@@ -116,8 +116,7 @@ public class Checker
         // errors because the html file is not covered by the cache.
         total += checkPackageHtml(aFiles);
 
-        for (int i = 0; i < aFiles.length; i++)
-        {
+        for (int i = 0; i < aFiles.length; i++) {
             total += process(aFiles[i]);
         }
         fireAuditFinished();
@@ -194,8 +193,7 @@ public class Checker
 
         int packageHtmlErrors = 0;
         final HashSet checkedPackages = new HashSet();
-        for (int i = 0; i < aFiles.length; i++)
-        {
+        for (int i = 0; i < aFiles.length; i++) {
             final File file = new File(aFiles[i]);
             final File packageDir = file.getParentFile();
             if (!checkedPackages.contains(packageDir)) {
