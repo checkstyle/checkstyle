@@ -38,6 +38,7 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
   <li>Correct use of white space around binary and unary operators. For example, <span class="code">x -=- 1;</span> is illegal, whereas <span class="code">x -= -1;</span> is not. Note: these checks can be turned off.</li>
   <li>Ensure <span class="code">{}</span>'s are used for <span class="code">if/while/for/do</span> constructs. Note: this check can be turned off.</li>
   <li>Lines are not longer than a specified length.</li>
+  <li>Methods and constructors that are longer than a specified number of lines.</li>
   <li>Lines do not contain tabs. Note: this check can be turned off.</li>
 </ul>
 
@@ -142,6 +143,12 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
 
 <h3><a name="length">Long Lines</a></h3>
 <p>Checks for lines that are longer that a specified length. The default is <span class="default">&quot;80&quot;</span>. This can be turned off for <code>import</code> statements.</p>
+
+<h3><a name="methodLength">Method Body Length</a></h3>
+<p>Checks for method bodies that are longer that a specified number of lines. The default is <span class="default">&quot;150&quot;</span>.
+
+<h3><a name="constructorLength">Constructor Body Length</a></h3>
+<p>Checks for constructor bodies that are longer that a specified number of lines. The default is <span class="default">&quot;150&quot;</span>.
 
 <h3>Tab characters</h3>
 <p>Checks for lines that contain tab (<code>'\t'</code>) characters. This can be turned off.</p>
