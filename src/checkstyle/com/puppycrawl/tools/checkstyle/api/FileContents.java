@@ -110,7 +110,7 @@ public final class FileContents implements CommentListener
 
     /**
      * Returns a map of all the C++ style comments. The key is a line number,
-     * the value is the comment at the line.
+     * the value is the comment {@link TextBlock} at the line.
      * @return the Map of comments
      */
     public Map getCppComments()
@@ -153,7 +153,8 @@ public final class FileContents implements CommentListener
 
     /**
      * Returns a map of all C style comments. The key is the line number, the
-     * value is a list of C style comments at the line.
+     * value is a {@link List} of C style comment {@link TextBlock}s
+     * that start at that line.
      * @return the map of comments
      */
     public Map getCComments()
