@@ -12,8 +12,7 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestCase
             createCheckConfig(BooleanExpressionComplexityCheck.class);
 
         String[] expected = {
-            "10:9: Boolean expression complexity is 3 (max allowed is 2).",
-            "13:9: Boolean expression complexity is 4 (max allowed is 2).",
+            "13:9: Boolean expression complexity is 4 (max allowed is 3).",
         };
 
         verify(checkConfig, getPath("metrics" + File.separator + "BooleanExpressionComplexityCheckTestInput.java"), expected);

@@ -28,7 +28,7 @@ import java.util.Stack;
 
 /**
  * Restricts nested boolean operators (&&, || and ^) to
- * a specified depth (default = 2).
+ * a specified depth (default = 3).
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
@@ -36,7 +36,7 @@ import java.util.Stack;
 public final class BooleanExpressionComplexityCheck extends Check
 {
     /** Default allowed complexity. */
-    private static final int DEFAULT_MAX = 2;
+    private static final int DEFAULT_MAX = 3;
 
     /** Stack of contexts. */
     private final Stack mContextStack = new Stack();
