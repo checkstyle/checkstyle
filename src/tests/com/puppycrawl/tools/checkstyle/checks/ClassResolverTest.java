@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
 import junit.framework.TestCase;
 
@@ -16,9 +16,9 @@ public class ClassResolverTest
     public void testMisc() throws ClassNotFoundException
     {
         final Set imps = new HashSet();
-        imps.add(new LineText(666, "java.io.File"));
-        imps.add(new LineText(666, "nothing.will.match.*"));
-        imps.add(new LineText(666, "java.applet.*"));
+        imps.add("java.io.File");
+        imps.add("nothing.will.match.*");
+        imps.add("java.applet.*");
         ClassResolver cr =
             new ClassResolver(Thread.currentThread().getContextClassLoader(),
                               null, imps);
@@ -40,7 +40,7 @@ public class ClassResolverTest
         catch (ClassNotFoundException e) {
         }
 
-        imps.add(new LineText(324, "java.text.ChoiceFormat"));
+        imps.add("java.text.ChoiceFormat");
         cr.resolve("ChoiceFormat");
 
         cr = new ClassResolver(Thread.currentThread().getContextClassLoader(),

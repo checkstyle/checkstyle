@@ -398,7 +398,7 @@ public class Checker
             final String[] lines = Utils.getLines(aFileName);
             final FileContents contents = new FileContents(aFileName, lines);
             final DetailAST rootAST = parse(contents);
-            mWalker.walk(rootAST, contents);
+            mWalker.walk(rootAST, contents, mConfig.getClassLoader());
         }
         catch (FileNotFoundException fnfe) {
             mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
