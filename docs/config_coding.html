@@ -23,6 +23,15 @@
     <td class="menu" valign="top">
       <ul>
         <li>
+          <a href="#AvoidInlineConditionals">AvoidInlineConditionals</a>
+        </li>
+        <li>
+          <a href="#DoubleCheckedLocking">DoubleCheckedLocking</a>
+        </li>
+        <li>
+          <a href="#EmptyStatement">EmptyStatement</a>
+        </li>
+        <li>
           <a href="#EqualsHashCode">EqualsHashCode</a>
         </li>
         <li>
@@ -35,6 +44,9 @@
           <a href="#InnerAssignment">InnerAssignment</a>
         </li>
         <li>
+          <a href="#MagicNumber">MagicNumber</a>
+        </li>
+        <li>
           <a href="#MissingSwitchDefault">MissingSwitchDefault</a>
         </li>
         <li>
@@ -43,19 +55,111 @@
         <li>
           <a href="#SimplifyBooleanReturn">SimplifyBooleanReturn</a>
         </li>
-        <li>
-          <a href="#AvoidInlineConditionals">AvoidInlineConditionals</a>
-        </li>
-        <li>
-          <a href="#DoubleCheckedLocking">DoubleCheckedLocking</a>
-        </li>
-        <li>
-          <a href="#EmptyStatement">EmptyStatement</a>
-        </li>
       </ul>
     </td>
     <!--Content-->
     <td class="content" valign="top" align="left">
+
+      <!-- --> <a name="AvoidInlineConditionals"></a> <h2>AvoidInlineConditionals</h2> <h4>Description</h4>
+      <p class="body">
+      Detects inline conditionals.
+
+      An example inline conditional is this:
+      </p>
+      <pre class="body"	>
+String a = getParameter("a");
+String b = (a==null || a.length&lt;1) ? null : a.substring(1);
+      </pre>
+      <p class="body">
+      Rationale: Some developers find inline conditionals hard to read,
+      so their company's coding standards forbids them.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="DoubleCheckedLocking"></a> <h2>DoubleCheckedLocking</h2> <h4>Description</h4>
+      <p class="body">
+      The &quot;double-checked locking&quot; idiom (DCL) tries to avoid the runtime cost
+      of synchronization. An example that uses the DCL idiom is this:
+      </p>
+      <pre class="body">
+public class MySingleton
+{
+    private static theInstance = null;
+
+    private MySingleton() {}
+
+    public MySingleton getInstance() {
+        if ( theInstance == null ) { // synchronize only if necessary
+            synchronized( MySingleton.class ) {
+                if ( theInstance == null ) {
+                    theInstance = new MySingleton();
+                }
+            }
+        }
+    }
+}
+      </pre>
+      <p class="body">
+      The problem with the DCL idiom in Java is that it just does not work correctly.
+      Using it introduces bugs that are extremely hard to track down and reproduce.
+      The <a href="http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html">
+      &quot;Double-Checked Locking is Broken&quot; Declaration</a> has an in depth explanation
+      of the exact problem which has to do with the semantics of the Java memory model.
+      </p>
+      <p class="body">
+      The DoubleCheckedLocking check will find source code where a test is wrapped in a
+      synchronized block that is wrapped in the same test, like in the example above.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;DoubleCheckedLocking&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="EmptyStatement"></a> <h2>EmptyStatement</h2> <h4>Description</h4>
+      <p class="body">
+      Detects empty statements (standalone ;).
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;EmptyStatement&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+    
       <!-- --> <a name="EqualsHashCode"></a> <h2>EqualsHashCode</h2>
       <h4>Description</h4>
       <p class="body">
@@ -238,6 +342,61 @@
       <p class="body">
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
+
+      <!-- --> <a name="MagicNumber"></a> <h2>MagicNumber</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that there are no &quot;magic numbers&quot;, where a
+      magic number is a numeric literal that is not defined as a
+      constant. By default, -1, 0, 1, and 2 are not considered to
+      be magic numbers.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of tokens NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG</td>
+          <td>all tokens</td>
+        </tr>
+        <tr>
+          <td>ignoreNumbers</td>
+          <td>non-magic numbers</td>
+          <td>list of numbers</td>
+          <td>-1, 0, 1, 2</td>
+        </tr>
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;MagicNumber&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check so that it checks floating-point
+      numbers that are neither 0, 0.5, nor 1:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;MagicNumber&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;NUM_DOUBLE, NUM_FLOAT&quot;/&gt;
+    &lt;property name=&quot;ignoreNumbers&quot; value=&quot;0, 0.5, 1&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
       <!-- --> <a name="MissingSwitchDefault"></a> <h2>MissingSwitchDefault</h2> <h4>Description</h4>
       <p class="body">
       Checks that switch statement has &quot;default&quot; clause.
@@ -317,106 +476,6 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;SimplifyBooleanReturn&quot;/&gt;
-      </pre>
-      <h4>Package</h4>
-      <p class="body">
-      com.puppycrawl.tools.checkstyle.checks
-      </p>
-      <h4>Parent Module</h4>
-      <p class="body">
-      <a href="config.html#treewalker">TreeWalker</a>
-      </p>
-
-      <!-- --> <a name="AvoidInlineConditionals"></a> <h2>AvoidInlineConditionals</h2> <h4>Description</h4>
-      <p class="body">
-      Detects inline conditionals.
-
-      An example inline conditional is this:
-      </p>
-      <pre class="body"	>
-String a = getParameter("a");
-String b = (a==null || a.length&lt;1) ? null : a.substring(1);
-      </pre>
-      <p class="body">
-      Rationale: Some developers find inline conditionals hard to read,
-      so their company's coding standards forbids them.
-      </p>
-      <h4>Examples</h4>
-      <p class="body">
-      To configure the check:
-      </p>
-      <pre class="body">
-&lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
-      </pre>
-      <h4>Package</h4>
-      <p class="body">
-      com.puppycrawl.tools.checkstyle.checks
-      </p>
-      <h4>Parent Module</h4>
-      <p class="body">
-      <a href="config.html#treewalker">TreeWalker</a>
-      </p>
-
-      <!-- --> <a name="DoubleCheckedLocking"></a> <h2>DoubleCheckedLocking</h2> <h4>Description</h4>
-      <p class="body">
-      The &quot;double-checked locking&quot; idiom (DCL) tries to avoid the runtime cost
-      of synchronization. An example that uses the DCL idiom is this:
-      </p>
-      <pre class="body">
-public class MySingleton
-{
-    private static theInstance = null;
-
-    private MySingleton() {}
-
-    public MySingleton getInstance() {
-        if ( theInstance == null ) { // synchronize only if necessary
-            synchronized( MySingleton.class ) {
-                if ( theInstance == null ) {
-                    theInstance = new MySingleton();
-                }
-            }
-        }
-    }
-}
-      </pre>
-      <p class="body">
-      The problem with the DCL idiom in Java is that it just does not work correctly.
-      Using it introduces bugs that are extremely hard to track down and reproduce.
-      The <a href="http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html">
-      &quot;Double-Checked Locking is Broken&quot; Declaration</a> has an in depth explanation
-      of the exact problem which has to do with the semantics of the Java memory model.
-      </p>
-      <p class="body">
-      The DoubleCheckedLocking check will find source code where a test is wrapped in a
-      synchronized block that is wrapped in the same test, like in the example above.
-      </p>
-      <h4>Examples</h4>
-      <p class="body">
-      To configure the check:
-      </p>
-      <pre class="body">
-&lt;module name=&quot;DoubleCheckedLocking&quot;/&gt;
-      </pre>
-      <h4>Package</h4>
-      <p class="body">
-      com.puppycrawl.tools.checkstyle.checks
-      </p>
-      <h4>Parent Module</h4>
-      <p class="body">
-      <a href="config.html#treewalker">TreeWalker</a>
-      </p>
-
-      <!-- --> <a name="EmptyStatement"></a> <h2>EmptyStatement</h2> <h4>Description</h4>
-      <p class="body">
-      Detects empty statements (standalone ;).
-      </p>
-      <h4>Examples</h4>
-      <p class="body">
-      To configure the check:
-      </p>
-      <pre class="body">
-&lt;module name=&quot;EmptyStatement&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
