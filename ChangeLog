@@ -1,4 +1,4 @@
-2001-11-01  Oliver Burn  <oliver@cortexebusiness.com.au>
+2001-11-01  Oliver Burn  <checkstyle@puppycrawl.com>
 
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/Configuration.java: 

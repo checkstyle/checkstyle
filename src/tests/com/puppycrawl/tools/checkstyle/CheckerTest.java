@@ -329,8 +329,8 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":1: Missing a header - not enough lines in file.",
+            filepath + ":1: type name 'inputHeader' must match pattern '^[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":1: type is missing a Javadoc comment.",
-            filepath + ":1: type name 'inputHeader' must match pattern '^[A-Z][a-zA-Z0-9]*$'."
         };
         verify(c, filepath, expected);
     }

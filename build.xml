@@ -163,6 +163,7 @@
   <!-- DIST TARGETS -->
   <!-- -->
   <target name="build.bindist" depends="compile.checkstyle">
+    <delete dir="dist/checkstyle-${version}" />
     <mkdir dir="dist/checkstyle-${version}" />
     <jar jarfile="dist/checkstyle-${version}/checkstyle-${version}.jar"
          basedir="classes/checkstyle" />
@@ -185,15 +186,13 @@
     <!-- copy documentation -->
     <filter token="@@VERSION@@" value="${version}"/>
     <copy todir="dist/checkstyle-${version}" filtering="true">
-      <fileset dir=".">
-        <exclude name="**/RCS" />
-        <exclude name="*.xml" />
-        <exclude name="classes" />
-        <exclude name="dist" />
-        <exclude name="src" />
-        <exclude name="prj.el" />
-        <exclude name="**/TEST-*" />
-      </fileset>
+	<fileset dir=".">
+	    <include name="docs/*"/>
+	    <include name="LICENSE*"/>
+	    <include name="README"/>
+	    <include name="RIGHTS.antlr"/>
+	    <include name="TODO"/>
+	</fileset>
     </copy>
     <!-- create the final zip & tar/gzip files -->
     <zip zipfile="dist/checkstyle-${version}.zip">
@@ -212,7 +211,6 @@
     <copy todir="dist/checkstyle-src-${version}">
       <fileset dir=".">
         <exclude name="**/*.jpl" />
-        <exclude name="**/RCS" />
 	<exclude name="**/Generated*.java" />
 	<exclude name="**/Generated*.txt" />
         <exclude name="classes" />
