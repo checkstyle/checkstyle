@@ -30,5 +30,6 @@ public interface PackageNamesClient
      * @param aPackageNames The list of package names.
      * @throws CheckstyleException if there is an error.
      */
-    public void setPackageNames(String[] aPackageNames) throws CheckstyleException;
+     void setPackageNames(String[] aPackageNames)
+        throws CheckstyleException;
 }

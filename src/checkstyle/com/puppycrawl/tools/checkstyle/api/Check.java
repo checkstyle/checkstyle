@@ -51,8 +51,9 @@ public abstract class Check extends AutomaticBean
     private Map mTokenContext;
     /** the tab with for column reporting */
     private int mTabWidth = 8; // meaningful default
-
-    private ClassLoader mLoader = Thread.currentThread().getContextClassLoader();
+    /** current class loader */
+    private ClassLoader mLoader =
+        Thread.currentThread().getContextClassLoader();
 
     /**
      * Returns the default token a check is interested in. Only used if the
@@ -92,7 +93,7 @@ public abstract class Check extends AutomaticBean
      * Adds a set of tokens the check is interested in.
      * @param aStrRep the string representation of the tokens interested in
      */
-    final public void setTokens(String[] aStrRep)
+    public final void setTokens(String[] aStrRep)
     {
         for (int i = 0; i < aStrRep.length; i++) {
             String s = aStrRep[i];
@@ -104,7 +105,7 @@ public abstract class Check extends AutomaticBean
      * Returns the tokens registered for the check.
      * @return the set of token names
      */
-    final public Set getTokenNames()
+    public final Set getTokenNames()
     {
         return mTokens;
     }

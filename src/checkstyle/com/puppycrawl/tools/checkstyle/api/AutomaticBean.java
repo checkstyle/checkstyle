@@ -163,6 +163,9 @@ public class AutomaticBean implements Configurable, Contextualizable
             catch (InvocationTargetException e) {
                 // TODO: log.debug("The bean " + this.getClass()
                 // + " is not interested in " + value)
+                throw new CheckstyleException("cannot set property "
+                    + key + " to value " + value + " in bean "
+                    + this.getClass().getName());
             }
             catch (IllegalAccessException e) {
                 throw new CheckstyleException(
@@ -193,7 +196,7 @@ class StrArrayConverter extends AbstractArrayConverter
     /**
      * <p>Model object for type comparisons.</p>
      */
-    private static String[] mModel = new String[0];
+    private static String[] sModel = new String[0];
 
     /**
      * Creates a new StrArrayConverter object.
@@ -242,7 +245,7 @@ class StrArrayConverter extends AbstractArrayConverter
         }
 
         // Deal with the no-conversion-needed case
-        if (mModel.getClass() == aValue.getClass()) {
+        if (sModel.getClass() == aValue.getClass()) {
             return (aValue);
         }
 
