@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +32,8 @@ import java.util.Iterator;
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-public class UnusedImportsCheck extends ImportCheck
+public class UnusedImportsCheck
+    extends ImportCheck
 {
     /** flag to indicate when time to start collecting references */
     private boolean mCollect;
@@ -54,10 +56,16 @@ public class UnusedImportsCheck extends ImportCheck
         // loop over all the imports to see if referenced.
         final Iterator it = mImports.iterator();
         while (it.hasNext()) {
-            final String imp = (String) it.next();
-            if (!mReferenced.contains(basename(imp))) {
-                log(666, "unused import " + imp);
+            final FullIdent imp = (FullIdent) it.next();
+
+            if (!mReferenced.contains(basename(imp.getText()))) {
+                log(imp.getLineNo(),
+                    imp.getColumnNo(),
+                    "import.unused", imp.getText());
             }
+//            else if (isIllegalImport(imp.getText())) {
+//                mMessages.add(imp.getLineNo(), "import.illegal", imp.getText());
+//            }
         }
     }
 
@@ -113,8 +121,8 @@ public class UnusedImportsCheck extends ImportCheck
      */
     private void processImport(DetailAST aAST)
     {
-        final String name = getImportText(aAST);
-        if ((name != null) && !name.endsWith(".*")) {
+        final FullIdent name = getImportText(aAST);
+        if ((name != null) && !name.getText().endsWith(".*")) {
             mImports.add(name);
         }
     }
@@ -128,4 +136,5 @@ public class UnusedImportsCheck extends ImportCheck
         final int i = aType.lastIndexOf(".");
         return (i == -1) ? aType : aType.substring(i + 1);
     }
+
 }

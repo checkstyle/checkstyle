@@ -291,6 +291,20 @@ public abstract class Check
      * @param aColNo column number to associate with the message
      * @param aKey key to locale message format
      * @param aArg0 an <code>Object</code> value
+     */
+    public void log(int aLineNo, int aColNo, String aKey,
+                    Object aArg0)
+    {
+        log(aLineNo, aColNo, aKey, new Object[] {aArg0});
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aColNo column number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArg0 an <code>Object</code> value
      * @param aArg1 an <code>Object</code> value
      */
     public void log(int aLineNo, int aColNo, String aKey,
@@ -309,6 +323,7 @@ public abstract class Check
      */
     public void log(int aLineNo, int aColNo, String aKey, Object[] aArgs)
     {
+        // TODO: need to fix this ugly hack below!!!!!!
         final int col = aColNo + 1;
 //        final int col = 1 + Utils.lengthExpandedTabs(
 //            mLines[aLineNo - 1], aColNo, mTabWidth);

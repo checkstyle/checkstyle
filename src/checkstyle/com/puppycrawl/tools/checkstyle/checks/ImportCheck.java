@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 
 /**
@@ -41,47 +43,15 @@ public abstract class ImportCheck
      * @param aAST the node containing the import
      * @return a <code>String</code> value
      */
-    protected String getImportText(DetailAST aAST)
+    protected FullIdent getImportText(DetailAST aAST)
     {
-        String text = (String) getTokenContext().get(TEXT_KEY);
+        FullIdent text = (FullIdent) getTokenContext().get(TEXT_KEY);
         if (text != null) {
             return text;
         }
 
-        final StringBuffer buf = new StringBuffer();
-        extractIdent(buf, (DetailAST) aAST.getFirstChild());
-        text = buf.toString();
+        text = FullIdent.createFullIdent((DetailAST) aAST.getFirstChild());
         getTokenContext().put(TEXT_KEY, text);
         return text;
-    }
-
-    /**
-     * Fills in the name of an import.
-     *
-     * @param aBuf the StringBuffer to add the name to
-     * @param aAST the node to operate on
-     */
-    private static void extractIdent(StringBuffer aBuf, DetailAST aAST)
-    {
-        if (aAST == null) {
-            System.out.println("CALLED WITH NULL");
-            return;
-        }
-
-        if (aAST.getType() == JavaTokenTypes.DOT) {
-            extractIdent(aBuf, (DetailAST) aAST.getFirstChild());
-            aBuf.append(".");
-            extractIdent(aBuf,
-                         (DetailAST) aAST.getFirstChild().getNextSibling());
-        }
-        else if ((aAST.getType() == JavaTokenTypes.IDENT)
-                 || (aAST.getType() == JavaTokenTypes.STAR))
-        {
-            aBuf.append(aAST.getText());
-        }
-        else {
-            System.out.println("********* Got the string " + aAST.getText());
-            aBuf.append(aAST.getText());
-        }
     }
 }
