@@ -53,7 +53,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AvoidStarImportCheck
     extends Check
 {
-    private String[] m_excludes = new String[0];
+    /** the packages to exempt from this check */
+    private String[] mExcludes = new String[0];
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -65,27 +66,27 @@ public class AvoidStarImportCheck
      * Sets the list of packages to exempt from the check.
      * @param aExcludes a list of package names where star imports are ok
      */
-    public void setExcludes(String[] aExcludes) 
+    public void setExcludes(String[] aExcludes)
     {
-        m_excludes = new String[aExcludes.length];
+        mExcludes = new String[aExcludes.length];
         for (int i = 0; i < aExcludes.length; i++) {
-            m_excludes[i] = aExcludes[i];
-            if (!m_excludes[i].endsWith(".*")) {
+            mExcludes[i] = aExcludes[i];
+            if (!mExcludes[i].endsWith(".*")) {
                 // force all package names to end with ".*" to disambiguate
-                // "java.io" 
-                m_excludes[i] = m_excludes[i] + ".*";
+                // "java.io"
+                mExcludes[i] = mExcludes[i] + ".*";
             }
         }
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void visitToken(DetailAST aAST) 
+    public void visitToken(DetailAST aAST)
     {
         final FullIdent name = FullIdent.createFullIdentBelow(aAST);
         if ((name != null) && name.getText().endsWith(".*")) {
             boolean exempt = false;
-            for (int i = 0; i < m_excludes.length && !exempt; i++) {
-                if (name.getText().equals(m_excludes[i])) {
+            for (int i = 0; i < mExcludes.length && !exempt; i++) {
+                if (name.getText().equals(mExcludes[i])) {
                     exempt = true;
                 }
             }
