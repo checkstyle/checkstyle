@@ -171,8 +171,8 @@ public class Checker
                 catch (IOException ignored) {
                 }
             }
+            it.remove();
         }
-        it.remove();
     }
 
     /**
