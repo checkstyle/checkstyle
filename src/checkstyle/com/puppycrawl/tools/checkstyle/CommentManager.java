@@ -77,8 +77,11 @@ public class CommentManager
      * This should be called for every file that is checked.
      * @param aLines all lines in a file.
      */
-    CommentManager(String[] aLines)
+    public CommentManager(String[] aLines)
     {
+        // TODO: Make this constructor package local again
+        // when parsing is done in a central place
+        // (currently it's done in the c.p.t.checkstyle and c.p.t.c.gui)
         mLines = aLines;
     }
 

@@ -27,8 +27,12 @@ import java.io.IOException;
  *
  * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne</a>
  */
-class StringArrayReader extends Reader
+public class StringArrayReader extends Reader
 {
+    // TODO: Make this class and it's constructor package local again
+    // when parsing is done in a central place
+    // (currently it's done in the c.p.t.checkstyle and c.p.t.c.gui)
+
     /** the underlying String array */
     private final String[] mUnderlyingArray;
 
@@ -49,7 +53,7 @@ class StringArrayReader extends Reader
      *
      * @param aUnderlyingArray the underlying String array.
      */
-    StringArrayReader(String[] aUnderlyingArray)
+    public StringArrayReader(String[] aUnderlyingArray)
     {
         final int length = aUnderlyingArray.length;
         mUnderlyingArray = new String[length];
