@@ -29,6 +29,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.Hashtable;
+import java.util.ResourceBundle;
 import java.net.URL;
 
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -215,6 +216,16 @@ public class CheckStyleTask
     public void execute()
         throws BuildException
     {
+        // output version info in debug mode
+        final ResourceBundle compilationProperties =
+            ResourceBundle.getBundle("checkstylecompilation");
+        final String version =
+            compilationProperties.getString("checkstyle.compile.version");
+        final String compileTimestamp =
+            compilationProperties.getString("checkstyle.compile.timestamp");
+        log("checkstyle version " + version, Project.MSG_VERBOSE);
+        log("compiled on " + compileTimestamp, Project.MSG_VERBOSE);
+
         // Check for no arguments
         if ((mFileName == null) && (mFileSets.size() == 0)) {
             throw new BuildException(
