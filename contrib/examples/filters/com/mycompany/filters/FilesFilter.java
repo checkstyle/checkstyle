@@ -20,20 +20,11 @@ public class FilesFilter
         setFiles("^$");
     }
     
-    public int decide(Object aObject)
+    public boolean accept(Object aObject)
     {
-        if (!(aObject instanceof AuditEvent)) {
-            return Filter.NEUTRAL;
-        }
-        
         final AuditEvent event = (AuditEvent) aObject;
         final String fileName = event.getFileName();
-        if ((fileName != null) && mFileRegexp.match(fileName)) {
-            return Filter.DENY;        
-        }
-        else {
-            return Filter.NEUTRAL;
-        }
+        return ((fileName == null) || !mFileRegexp.match(fileName));
     }
 
     public void setFiles(String aFilesPattern)
