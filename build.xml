@@ -129,6 +129,7 @@
             destdir="target/checkstyle" closure="yes"/>
     <javac srcdir="src/checkstyle"
            destdir="target/checkstyle"
+           includes="**/*.java"
            deprecation="on" debug="on"
            classpathref="build.classpath"
            encoding="iso-8859-1"
@@ -341,7 +342,7 @@
              -->
         <and>
           <equals arg1="${ant.java.version}" arg2="1.5" />
-          <!-- TODO: find a more eleagnt way to specify *minimum* version -->
+          <!-- TODO: find a more elegant way to specify *minimum* version -->
           <not>
             <or>
               <contains string="${ant.version}" substring="version 1.4" />
@@ -570,6 +571,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
           <exclude name="**/Generated*.java" />
           <exclude name="**/Generated*.txt" />
           <exclude name="**/gui/*.java" />
+          <exclude name="**/checks/*.java"/>
           <exclude name="**/usage/transmogrify/*.java" />
           <exclude name="**/*.properties" />
           <exclude name="**/*.g" />
@@ -589,18 +591,17 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
 
     <copy todir="target/xdocs">
       <fileset dir="${xdocs.src}">
-	<exclude name="**/*.css"/>
-	<exclude name="**/*.gif"/>
-	<exclude name="**/*.png"/>
+        <exclude name="**/*.css"/>
+        <exclude name="**/*.gif"/>
+        <exclude name="**/*.png"/>
       </fileset>
       <filterset>
         <filter token="CHECKSTYLE_VERSION" value="${version}" />
       </filterset>
     </copy>
 
-    <!--
     <javadoc sourcepath="src/checkstyle" destdir="target/xdocs"
-             classpathref="javadoc.classpath"
+             classpathref="build.classpath"
              failonerror="yes">
       <doclet name="com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet"
               path="target/checkstyle">
@@ -610,7 +611,6 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
         <include name="**/checks" />
       </packageset>
     </javadoc>
-    -->
 
     <taskdef name="anakia" classname="org.apache.velocity.anakia.AnakiaTask">
       <classpath refid="velocity.classpath"/>
@@ -618,9 +618,9 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
 
     <copy todir="${xdocs.dest}">
       <fileset dir="${xdocs.src}">
-	<include name="**/*.css"/>
-	<include name="**/*.gif"/>
-	<include name="**/*.png"/>
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.png"/>
       </fileset>
     </copy>
 

@@ -13,13 +13,22 @@
     <section name="Release 4.0">
 
       <p>New features:</p>
+
+      <ul>
+
+        <li>Documentation contains an alphabetically sorted
+            list of all available checks.</li>
+
+      </ul>
+
+
       <p>Resolved bugs: </p>
 
       <ul>
 
         <li>Fix bug with suppression filtering. (bug 1080343).</li>
 
-        <li>Improved french message translations 
+        <li>Improved french message translations
         (patch 1097980 by Olivier Parent).</li>
 
       </ul>
