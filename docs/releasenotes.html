@@ -56,11 +56,11 @@
           <li class="body">Added check that blocks are not introduced at arbitrary places but only for if, while, etc. (module AvoidNestedBlocks, request 632442).</li>
           <li class="body">Added check to enforce that utility classes (classes that have only static methods)
           cannot be instantiated (module HideUtilityClassConstructor, request 634838).</li>
-          <li class="body">Added check to enforce an Api design that shields classes against derived classes (module DesignForInheritance, request 659715).</li>
+          <li class="body">Added check to enforce an Api design that shields classes against bugs in derived classes (module DesignForInheritance, request 659715).</li>
           <li class="body">Added check to enforce that Interfaces do not contain
           only constants (module InterfaceIsType, see [Bloch, Effective Java], Item 17 &quot;Use interfaces only to define types&quot;).</li>
           <li class="body">Added check to enforce C style (char c[]) or Java style (char[] c) for array type declaration (module ArrayTypeStyle, request 493380).</li>
-          <li class="body">Added check to enforce the method parameters are final (module FinalParameters, request 528196)
+          <li class="body">Added check to enforce that method parameters are final (module FinalParameters, request 528196)
  (request 528196).</li>
         </ul>
 
@@ -69,6 +69,7 @@
       </p>
         <ul>
           <li class="body">False alarms from RightCurly module for code that does not have braces in if-then-else (bug 689836).</li>
+          <li class="body">ConfigurationLoader was not public (only relevant for plugin authors).</li>
         </ul>
 
       <a name="release3_0"></a>
