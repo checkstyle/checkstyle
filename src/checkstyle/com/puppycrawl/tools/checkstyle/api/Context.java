@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 /**
  * A context to be used in subcomponents.
  * The general idea of Context/Contextualizable was taken from
- * <a href="http://jakarta.apache.org/avalon">Jakarta's Avalon framework</a>.
+ * <a target="_top" href="http://jakarta.apache.org/avalon/">Jakarta's Avalon framework</a>.
  * @author lkuehne
  * @see Contextualizable
  */

@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 /**
  * A component that can be configured.
  * The general idea of Configuration/Configurable was taken from
- * <a href="http://jakarta.apache.org/avalon">Jakarta's Avalon framework</a>.
+ * <a target="_top" href="http://jakarta.apache.org/avalon/">Jakarta's Avalon framework</a>.
  * @author lkuehne
  */
 public interface Configurable
