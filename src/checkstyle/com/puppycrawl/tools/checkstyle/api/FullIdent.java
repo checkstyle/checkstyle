@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
-
 /**
  * Represents a string with an associated line number.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
@@ -108,7 +106,7 @@ public class FullIdent
             return;
         }
 
-        if (aAST.getType() == JavaTokenTypes.DOT) {
+        if (aAST.getType() == TokenTypes.DOT) {
             extractFullIdent(aFull, (DetailAST) aAST.getFirstChild());
             aFull.append(".");
             extractFullIdent(

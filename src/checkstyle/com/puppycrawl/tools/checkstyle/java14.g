@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 header {
 package com.puppycrawl.tools.checkstyle;
-import com.puppycrawl.tools.checkstyle.api.Scope;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 }
 
 
@@ -41,28 +43,20 @@ options {
 }
 
 // overrides the statement production in java.g, adds assertStatement
-statement[int[] aType, MyCommonAST[] aCurlies]
-	:	traditionalStatement[aType, aCurlies]
-	|	assertStatement[aType, aCurlies]
+statement
+	:	traditionalStatement
+	|	assertStatement
 	;
 
 // assert statement, available since JDK 1.4
-assertStatement[int[] aType, MyCommonAST[] aCurlies]
-{
-    final MyModifierSet modSet = new MyModifierSet();
-    final int[] stmtType = new int[1];
-    final MyCommonAST[] stmtBraces = new MyCommonAST[2];
-    stmtType[0] = STMT_OTHER;
-}
-	:	asrt:ASSERT^ expression ( c:COLON! expression )? SEMI!
-        {
-        }
+assertStatement
+	:	ASSERT^ expression ( COLON expression )? SEMI
 	;
 
 class GeneratedJava14Lexer extends GeneratedJavaLexer;
 
 options {
-	exportVocab=GeneratedJava14; // call the vocabulary "GeneratedJava14"
+	exportVocab=GeneratedJava14;    // call the vocabulary "Java14",
 	testLiterals=false;    // don't automatically test for literals
 	k=4;                   // four characters of lookahead
 	charVocabulary='\u0003'..'\uFFFF';

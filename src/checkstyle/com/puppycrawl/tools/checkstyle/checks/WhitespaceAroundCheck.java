@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.Java14TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
@@ -31,57 +30,56 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class WhitespaceAroundCheck
     extends Check
-    implements Java14TokenTypes
 {
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {
-            RCURLY,            // '}'
-            QUESTION,          // '?'
-            COLON,             // ':' TODO: dont flag after "case"
-            ASSIGN,            // '='
-            EQUAL,             // "=="
-            NOT_EQUAL,         // "!="
-            DIV,               // '/'
-            DIV_ASSIGN,        // "/="
-            PLUS,              //' +' (unaray plus is UNARY_PLUS)
-            PLUS_ASSIGN,       // "+="
-            MINUS,             // '-' (unary minus is UNARY_MINUS)
-            MINUS_ASSIGN,      //"-="
-            STAR,              // '*'
-            STAR_ASSIGN,       // "*="
-            MOD,               // '%'
-            MOD_ASSIGN,        // "%="
-            SR,                // ">>"
-            SR_ASSIGN,         // ">>="
-            BSR,               // ">>>"
-            BSR_ASSIGN,        // ">>>="
-            GE,                // ">="
-            GT,                // ">"
-            SL,                // "<<"
-            SL_ASSIGN,         // "<<="
-            LE,                // "<="
-            LT,                // '<'
-            BXOR,              // '^'
-            BXOR_ASSIGN,       // "^="
-            BOR,               // '|'
-            BOR_ASSIGN,        // "|="
-            LOR,               // "||"
-            BAND,              // '&'
-            BAND_ASSIGN,       // "&="
-            LAND,              // "&&"
-            LITERAL_catch,
-            LITERAL_do,
-            LITERAL_else,
-            LITERAL_finally,
-            LITERAL_for,
-            LITERAL_if,
-            LITERAL_return,
-            LITERAL_synchronized,
-            LITERAL_try,
-            LITERAL_while,
-            ASSERT                // TODO: why is it not LITERAL_assert?
+            TokenTypes.RCURLY,            // '}'
+            TokenTypes.QUESTION,          // '?'
+            TokenTypes.COLON,             // ':' TODO: dont flag after "case"
+            TokenTypes.ASSIGN,            // '='
+            TokenTypes.EQUAL,             // "=="
+            TokenTypes.NOT_EQUAL,         // "!="
+            TokenTypes.DIV,               // '/'
+            TokenTypes.DIV_ASSIGN,        // "/="
+            TokenTypes.PLUS,              //' +' (unaray plus is UNARY_PLUS)
+            TokenTypes.PLUS_ASSIGN,       // "+="
+            TokenTypes.MINUS,             // '-' (unary minus is UNARY_MINUS)
+            TokenTypes.MINUS_ASSIGN,      //"-="
+            TokenTypes.STAR,              // '*'
+            TokenTypes.STAR_ASSIGN,       // "*="
+            TokenTypes.MOD,               // '%'
+            TokenTypes.MOD_ASSIGN,        // "%="
+            TokenTypes.SR,                // ">>"
+            TokenTypes.SR_ASSIGN,         // ">>="
+            TokenTypes.BSR,               // ">>>"
+            TokenTypes.BSR_ASSIGN,        // ">>>="
+            TokenTypes.GE,                // ">="
+            TokenTypes.GT,                // ">"
+            TokenTypes.SL,                // "<<"
+            TokenTypes.SL_ASSIGN,         // "<<="
+            TokenTypes.LE,                // "<="
+            TokenTypes.LT,                // '<'
+            TokenTypes.BXOR,              // '^'
+            TokenTypes.BXOR_ASSIGN,       // "^="
+            TokenTypes.BOR,               // '|'
+            TokenTypes.BOR_ASSIGN,        // "|="
+            TokenTypes.LOR,               // "||"
+            TokenTypes.BAND,              // '&'
+            TokenTypes.BAND_ASSIGN,       // "&="
+            TokenTypes.LAND,              // "&&"
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_SYNCHRONIZED,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.ASSERT     // TODO: why is it not LITERAL_assert?
                                   // maybe it's a bug in the grammar?
         };
     }
@@ -90,8 +88,8 @@ public class WhitespaceAroundCheck
     public void visitToken(DetailAST aAST)
     {
         // Check for RCURLY in array initializer
-        if ((aAST.getType() == RCURLY)
-            && (aAST.getParent().getType() == ARRAY_INIT))
+        if ((aAST.getType() == TokenTypes.RCURLY)
+            && (aAST.getParent().getType() == TokenTypes.ARRAY_INIT))
         {
             return;
         }
@@ -108,7 +106,7 @@ public class WhitespaceAroundCheck
 
         if ((after < line.length())
             && !Character.isWhitespace(line.charAt(after))
-            && !((aAST.getType() == LITERAL_return)
+            && !((aAST.getType() == TokenTypes.LITERAL_RETURN)
                  && (aAST.getFirstChild().getType() == TokenTypes.SEMI)))
         {
             log(aAST.getLineNo(), aAST.getColumnNo() + aAST.getText().length(),
