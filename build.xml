@@ -119,10 +119,14 @@
     <target name="compile.tests" depends="compile.checkstyle">
         <mkdir dir="classes/tests" />
         <depend srcdir="src/tests" destdir="classes/tests" closure="yes"/>
+        <!-- start of a change to turn on compilation of all input files -->
+        <!-- under JDK1.4. -->
+        <property name="testExcludes"
+                  value="**/InputWhitespace.java,**/InputImport.java"/>
         <javac srcdir="src/tests"
                destdir="classes/tests"
                deprecation="on" debug="on"
-               excludes="**/*nput*.java"
+               excludes="${testExcludes}"
                classpathref="tests.buildpath" />
     </target>
 
@@ -183,6 +187,7 @@
                     lcurlyType="nl"
                     rcurly="alone"
                     parenPad="nospace"
+                    catchBlock="text"
                     todoPattern="TODO:">
             <fileset dir="src/checkstyle"
                      includes="**/*.java"
