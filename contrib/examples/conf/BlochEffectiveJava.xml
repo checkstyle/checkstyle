@@ -43,11 +43,13 @@
     <!-- Item 15 - Design and document for inheritance or else prohibit it -->
     <!-- the module actually implements a very strict rule, it would be
          interesting to know whether Joshua meant what checkstyle implements.
-         We feel this implementation would be well suited as a warning,
+         We feel this implementation is well suited as a warning,
          i.e. if you get error messages from this check you should be
          able to name a good reason to implement your code the way you do it,
          especially if you are designing a library and not an application. -->
-    <module name="DesignForInheritance"/>
+    <module name="DesignForInheritance">
+      <property name="severity" value="warning"/>
+    </module>
 
     <!-- Item 17 - Use interfaces only to define types -->
     <module name="InterfaceIsType"/>
@@ -101,7 +103,7 @@
     </module>
 
     <!-- Item 50 - Never invoke wait outside a loop -->
-    <!-- no rfe yet -->
+    <!-- rfe #712798 -->
 
     <!-- Item 57 - Provide a readResolve method when necessary -->
     <!-- no rfe yet -->
