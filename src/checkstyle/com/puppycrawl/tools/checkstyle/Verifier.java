@@ -193,8 +193,8 @@ class Verifier
                      && line.trim().startsWith("import")))
             {
                 log(i + 1,
-                    "line longer than " + mConfig.getMaxLineLength() +
-                    " characters");
+                    "line longer than " + mConfig.getMaxLineLength()
+                    + " characters");
             }
 
             // Check for tabs
@@ -209,8 +209,8 @@ class Verifier
         // Check excessive number of lines
         if (mLines.length > mConfig.getMaxFileLength()) {
             log(1,
-                "file length is " + mLines.length + " lines (max allowed is " +
-                mConfig.getMaxFileLength() + ").");
+                "file length is " + mLines.length + " lines (max allowed is "
+                + mConfig.getMaxFileLength() + ").");
         }
     }
 
@@ -222,13 +222,13 @@ class Verifier
     void verifyMethod(MethodSignature aSig)
     {
         // no need to check constructor names
-        if (!aSig.isConstructor() &&
-            !mConfig.getMethodRegexp().match(aSig.getName().getText()))
+        if (!aSig.isConstructor()
+            && !mConfig.getMethodRegexp().match(aSig.getName().getText()))
         {
             log(aSig.getName().getLineNo(),
                 aSig.getName().getColumnNo(),
-                "method name '" + aSig.getName().getText() +
-                "' must match pattern '" + mConfig.getMethodPat() + "'.");
+                "method name '" + aSig.getName().getText()
+                + "' must match pattern '" + mConfig.getMethodPat() + "'.");
         }
 
         // Always verify the parameters are ok
@@ -266,8 +266,8 @@ class Verifier
         else {
             final List tags = getMethodTags(jd, aSig.getFirstLineNo() - 1);
             // Check for only one @see tag
-            if ((tags.size() != 1) ||
-                !((JavadocTag) tags.get(0)).isSeeTag())
+            if ((tags.size() != 1)
+                || !((JavadocTag) tags.get(0)).isSeeTag())
             {
                 checkParamTags(tags, aSig.getParams());
                 checkThrowsTags(tags, aSig.getThrows());
@@ -298,8 +298,8 @@ class Verifier
         if (!mConfig.getTypeRegexp().match(aType.getText())) {
             log(aType.getLineNo(),
                 aType.getColumnNo(),
-                "type name '" + aType.getText() +
-                "' must match pattern '" + mConfig.getTypePat() + "'.");
+                "type name '" + aType.getText()
+                + "' must match pattern '" + mConfig.getTypePat() + "'.");
         }
 
         // Always check that the order of modifiers follows the JLS suggestion
@@ -323,9 +323,10 @@ class Verifier
         if (jd == null) {
             log(lineNo, "type is missing a Javadoc comment.");
         }
-        else if (!mConfig.isAllowNoAuthor() &&
-                 mInScope.size() == 0 && // don't check author for inner classes
-                 (MATCH_JAVADOC_AUTHOR.grep(jd).length == 0))
+        else if (!mConfig.isAllowNoAuthor()
+                 && (mInScope.size() == 0)
+                 // don't check author for inner classes
+                 && (MATCH_JAVADOC_AUTHOR.grep(jd).length == 0))
         {
             log(lineNo, "type Javadoc comment is missing an @author tag.");
         }
@@ -353,8 +354,8 @@ class Verifier
         // Always check that the order of modifiers follows the JLS suggestion
         checkModOrder(mods);
 
-        if (inCheckScope(variableScope) &&
-            getJavadocBefore(aVar.getStartLineNo() - 1) == null)
+        if (inCheckScope(variableScope)
+            && (getJavadocBefore(aVar.getStartLineNo() - 1) == null))
         {
             log(aVar.getLineNo(), aVar.getColumnNo() - 1,
                 "variable '" + aVar.getText() + "' missing Javadoc.");
@@ -386,9 +387,9 @@ class Verifier
                     }
                 }
                 else {
-                    if (Scope.PRIVATE.equals(variableScope) ||
-                        (mConfig.isAllowPackage() && isPckg) ||
-                        (mConfig.isAllowProtected() && isProt))
+                    if (Scope.PRIVATE.equals(variableScope)
+                        || (mConfig.isAllowPackage() && isPckg)
+                        || (mConfig.isAllowProtected() && isProt))
                     {
                         checkVariable(aVar,
                                       mConfig.getStaticRegexp(),
@@ -396,30 +397,31 @@ class Verifier
                     }
                     else {
                         log(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                            "variable '" + aVar.getText() +
-                            "' must be private and have accessor methods.");
+                            "variable '" + aVar.getText()
+                            + "' must be private and have accessor methods.");
                     }
                 }
             }
             else {
                 // These are the non-static variables
-                if (Scope.PRIVATE.equals(variableScope) ||
-                    (mConfig.isAllowPackage() && isPckg) ||
-                    (mConfig.isAllowProtected() && isProt))
+                if (Scope.PRIVATE.equals(variableScope)
+                    || (mConfig.isAllowPackage() && isPckg)
+                    || (mConfig.isAllowProtected() && isProt))
                 {
                     checkVariable(aVar,
                                   mConfig.getMemberRegexp(),
                                   mConfig.getMemberPat());
                 }
-                else if (mods.containsPublic() &&
-                         mConfig.getPublicMemberRegexp().match(aVar.getText()))
+                else if (mods.containsPublic()
+                         && mConfig.getPublicMemberRegexp()
+                               .match(aVar.getText()))
                 {
                     // silently allow
                 }
                 else {
                     log(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                        "variable '" + aVar.getText() +
-                        "' must be private and have accessor methods.");
+                        "variable '" + aVar.getText()
+                        + "' must be private and have accessor methods.");
                 }
             }
         }
@@ -473,8 +475,8 @@ class Verifier
                 "'" + aText + "' is not preceeded with whitespace.");
         }
 
-        if ((after < line.length()) &&
-            !Character.isWhitespace(line.charAt(after)))
+        if ((after < line.length())
+            && !Character.isWhitespace(line.charAt(after)))
         {
             log(aLineNo, after,
                 "'" + aText + "' is not followed by whitespace.");
@@ -494,8 +496,8 @@ class Verifier
 
         final String line = mLines[aAST.getLineNo() - 1];
         final int after = aAST.getColumnNo() + aAST.getText().length();
-        if ((after >= line.length()) ||
-            Character.isWhitespace(line.charAt(after)))
+        if ((after >= line.length())
+            || Character.isWhitespace(line.charAt(after)))
         {
             log(aAST.getLineNo(), after,
                 "'" + aAST.getText() + "' is followed by whitespace.");
@@ -603,8 +605,8 @@ class Verifier
     {
         if (aLength > mConfig.getMaxMethodLength()) {
             log(aLineNo,
-                "method length is " + aLength + " lines (max allowed is " +
-                mConfig.getMaxMethodLength() + ").");
+                "method length is " + aLength + " lines (max allowed is "
+                + mConfig.getMaxMethodLength() + ").");
         }
     }
 
@@ -721,8 +723,8 @@ class Verifier
     {
         if (aLength > mConfig.getMaxConstructorLength()) {
             log(aLineNo,
-                "constructor length is " + aLength + " lines (max allowed is " +
-                mConfig.getMaxConstructorLength() + ").");
+                "constructor length is " + aLength + " lines (max allowed is "
+                + mConfig.getMaxConstructorLength() + ").");
         }
     }
 
@@ -897,10 +899,9 @@ class Verifier
                 if ((mLines[aBraces[0].getLineNo() - 1]
                      .substring(aBraces[0].getColumnNo() + 1).trim().length()
                      == 0)
-                    &&
-                    (mLines[aBraces[1].getLineNo() - 1]
-                     .substring(0, aBraces[1].getColumnNo()).trim().length()
-                     == 0))
+                    && (mLines[aBraces[1].getLineNo() - 1]
+                        .substring(0, aBraces[1].getColumnNo()).trim().length()
+                        == 0))
                 {
 
                     // Need to check if all lines are also only whitespace
@@ -936,12 +937,54 @@ class Verifier
         final String typeName = aTypeName.getText();
         final int lineNo = aNewAST.getLineNo();
         final int colNo = aNewAST.getColumnNo();
-        if ("java.lang.Boolean".equals(typeName) ||
-            "Boolean".equals(typeName))
+        if ("java.lang.Boolean".equals(typeName)
+            || "Boolean".equals(typeName))
         {
             log(lineNo, colNo, "Avoid instantiation of java.lang.Boolean");
         }
     }
+
+    /**
+     * Verify an operator. Checks include that the operator is surrounded by
+     * whitespace, and that the operator follows the rules about whether to
+     * be at the end of a line.
+     * @param aLineNo number of line to check
+     * @param aColNo column where the text ends
+     * @param aText the text to check
+     */
+    void verifyOpEnd(int aLineNo, int aColNo, String aText)
+    {
+        verifyOpBegin(aLineNo, aColNo - aText.length(), aText);
+    }
+
+    /**
+     * Verify an operator. Checks include that the operator is surrounded by
+     * whitespace, and that the operator follows the rules about whether to
+     * be at the end of a line.
+     * @param aLineNo number of line to check
+     * @param aColNo column where the text starts
+     * @param aText the text to check
+     */
+    void verifyOpBegin(int aLineNo, int aColNo, String aText)
+    {
+        if (mConfig.isIgnoreWhitespace()) {
+            return;
+        }
+
+        verifyWSAroundBegin(aLineNo, aColNo, aText);
+
+        // Check if rest of line is whitespace, and not just the operator by
+        // itself. This last bit is to handle the example of the check below.:-)
+        if (!aText.equals(mLines[aLineNo - 1].trim())
+            &&
+            (mLines[aLineNo - 1].substring(aColNo + aText.length() - 1)
+             .trim().length() == 0))
+        {
+            log(aLineNo, aColNo - 1,
+                "'" + aText + "' should be on a new line.");
+        }
+    }
+
 
     // }}}
 
@@ -999,8 +1042,8 @@ class Verifier
             retVal = Utils.getRE(aPattern);
         }
         catch (RESyntaxException e) {
-            System.out.println("Failed to initialise regexp expression " +
-                               aPattern);
+            System.out.println("Failed to initialise regexp expression "
+                               + aPattern);
             e.printStackTrace(System.out);
             System.exit(1);
         }
@@ -1043,8 +1086,8 @@ class Verifier
     {
         if (!aRegexp.match(aVar.getText())) {
             log(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                "variable '" + aVar.getText() +
-                "' must match pattern '" + aPattern + "'.");
+                "variable '" + aVar.getText()
+                + "' must match pattern '" + aPattern + "'.");
         }
     }
 
@@ -1057,8 +1100,8 @@ class Verifier
     {
         if (!mConfig.getParamRegexp().match(aParam.getText())) {
             log(aParam.getLineNo(), aParam.getColumnNo(),
-                "parameter '" + aParam.getText() +
-                "' must match pattern '" + mConfig.getParamPat() + "'.");
+                "parameter '" + aParam.getText()
+                + "' must match pattern '" + mConfig.getParamPat() + "'.");
         }
     }
 
@@ -1315,8 +1358,8 @@ class Verifier
 
                     if (!match) {
                         log(i + 1,
-                            "Line does not match expected header line of '" +
-                            mConfig.getHeaderLines()[i] + "'.");
+                            "Line does not match expected header line of '"
+                            + mConfig.getHeaderLines()[i] + "'.");
                         break; // stop checking
                     }
                 }
@@ -1374,8 +1417,8 @@ class Verifier
             else if (fromPackage(imp.getText(), mPkgName)) {
                 log(imp.getLineNo(), "Redundant import from the same package.");
             }
-            else if (!imp.getText().endsWith(".*") &&
-                     !mReferenced.contains(basename(imp.getText())))
+            else if (!imp.getText().endsWith(".*")
+                     && !mReferenced.contains(basename(imp.getText())))
             {
                 log(imp.getLineNo(), "Unused import - " + imp.getText());
             }
@@ -1406,8 +1449,8 @@ class Verifier
     /** @return whether currently in an interface block **/
     private boolean inInterfaceBlock()
     {
-        return (!mInInterface.empty() &&
-                Boolean.TRUE.equals(mInInterface.peek()));
+        return (!mInInterface.empty()
+                && Boolean.TRUE.equals(mInInterface.peek()));
     }
 
     /** @return whether currently in a method block **/
@@ -1516,8 +1559,9 @@ class Verifier
     void checkWSAfter(int aLineNo, int aColNo,
                       MyToken aConstruct, String aAllow)
     {
-        if (mConfig.isIgnoreWhitespace() ||
-            ((MyToken.CAST == aConstruct) && mConfig.isIgnoreCastWhitespace()))
+        if (mConfig.isIgnoreWhitespace()
+            || ((MyToken.CAST == aConstruct)
+                && mConfig.isIgnoreCastWhitespace()))
         {
             return;
         }

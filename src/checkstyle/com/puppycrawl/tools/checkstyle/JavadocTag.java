@@ -75,8 +75,8 @@ class JavadocTag
     /** @return a string representation of the object **/
     public String toString()
     {
-        return "{Tag = '" + getTag() + "', lineNo = " + getLineNo() +
-            ", Arg1 = '" + getArg1() + "'}";
+        return "{Tag = '" + getTag() + "', lineNo = " + getLineNo()
+            + ", Arg1 = '" + getArg1() + "'}";
     }
 
     /** @return whether the tag is an 'author' tag **/

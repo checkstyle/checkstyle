@@ -66,8 +66,8 @@ class PropertyCacheFile
                 String cachedConfigHash = mDetails.getProperty(CONFIG_HASH_KEY);
                 String currentConfigHash = getConfigHashCode(aCurrentConfig);
                 setInActive = false;
-                if (cachedConfigHash == null ||
-                    !cachedConfigHash.equals(currentConfigHash))
+                if ((cachedConfigHash == null)
+                    || !cachedConfigHash.equals(currentConfigHash))
                 {
                     // Detected configuration change - clear cache
                     mDetails.clear();
@@ -108,8 +108,8 @@ class PropertyCacheFile
     boolean alreadyChecked(String aFileName, long aTimestamp)
     {
         final String lastChecked = mDetails.getProperty(aFileName);
-        return (lastChecked != null) &&
-            (lastChecked.equals(Long.toString(aTimestamp)));
+        return (lastChecked != null)
+            && (lastChecked.equals(Long.toString(aTimestamp)));
     }
 
     /**

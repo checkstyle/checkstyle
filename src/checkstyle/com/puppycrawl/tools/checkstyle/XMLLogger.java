@@ -155,8 +155,8 @@ public class XMLLogger
                 break;
             case '&':
                 int nextSemi = aValue.indexOf(";", i);
-                if ((nextSemi < 0) ||
-                    !isReference(aValue.substring(i, nextSemi + 1)))
+                if ((nextSemi < 0)
+                    || !isReference(aValue.substring(i, nextSemi + 1)))
                 {
                     sb.append("&amp;");
                 }
