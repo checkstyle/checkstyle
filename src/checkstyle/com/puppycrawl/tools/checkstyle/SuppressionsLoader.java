@@ -34,9 +34,8 @@ import com.puppycrawl.tools.checkstyle.api.FilterChain;
 import com.puppycrawl.tools.checkstyle.filter.SuppressElement;
 
 /**
- * Loads a list of package names from a package name XML file.
+ * Loads a filter chain of suppressions.
  * @author Rick Giles
- * @version 4-Dec-2002
  */
 public final class SuppressionsLoader
     extends AbstractLoader
