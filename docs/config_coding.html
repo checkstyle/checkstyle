@@ -44,6 +44,9 @@
           <a href="#HiddenField">HiddenField</a>
         </li>
         <li>
+          <a href="#IllegalCatch">IllegalCatch</a>
+        </li>
+        <li>
           <a href="#IllegalInstantiation">IllegalInstantiation</a>
         </li>
         <li>
@@ -979,6 +982,57 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;SuperFinalize&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="SuperClone"></a> <h2>SuperClone</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that an overriding <span class="code">clone()</span> method invokes <span class="code">super.clone()</span>.
+      </p>
+      <p class="body">
+      Reference: <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Object.html#clone()">Object.clone()</a>. 
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;SuperClone&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+
+      <!-- --> <a name="IllegalCatch"></a> <h2>IllegalCatch</h2> <h4>Description</h4>
+      <p class="body">
+      Catching java.lang.Exception, java.lang.Error or java.lang.RuntimeException
+      is almost never acceptable.
+      </p>
+      <p class="body">
+      Rationale: Junior developers often simply catch Exception in an
+      attempt to handle multiple exception classes. This unfortunately
+      leads to code that inadvertantly catchs NPE, OutOfMemoryErrors,
+      etc.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;IllegalCatch&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
