@@ -31,10 +31,26 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * <p>
- * Checks that modifiers are written in the order suggested by
- * the Java Language Specification (JLS). The relevant sections
- * are 8.1.1, 8.3.1 and 8.4.3.
- * </p>
+ * Checks that the order of modifiers conforms to the suggestions in the
+ * <a href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">
+ * Java Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>.
+ * The correct order is:</p>
+
+<ol>
+  <li><span class="code">public</span></li>
+  <li><span class="code">protected</span></li>
+
+  <li><span class="code">private</span></li>
+  <li><span class="code">abstract</span></li>
+  <li><span class="code">static</span></li>
+  <li><span class="code">final</span></li>
+  <li><span class="code">transient</span></li>
+  <li><span class="code">volatile</span></li>
+
+  <li><span class="code">synchronized</span></li>
+  <li><span class="code">native</span></li>
+  <li><span class="code">strictfp</span></li>
+</ol>
  * <p>
  * Rationale: Code is easier to read if everybody follows
  * a standard.
