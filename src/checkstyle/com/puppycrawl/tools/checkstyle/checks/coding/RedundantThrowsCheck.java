@@ -112,6 +112,16 @@ public class RedundantThrowsCheck
     }
 
     /**
+     * Logs error if unable to load class information.
+     * @param aIdent class name for which we can no load class.
+     */
+    protected final void logLoadError(FullIdent aIdent)
+    {
+        log(aIdent.getLineNo(), aIdent.getColumnNo(),
+            "redundant.throws.classInfo", aIdent.getText());
+    }
+
+    /**
      * Checks if an exception is already know (list of known
      * exceptions contains it or its superclass) and it's not
      * a superclass for some known exception and it's not
@@ -125,19 +135,11 @@ public class RedundantThrowsCheck
      */
     private void checkException(FullIdent aExc, List aKnownExcs)
     {
-        // Let's trye to load class.
-        Class excClass = null;
-
-        if (!mAllowUnchecked || !mAllowSubclasses) {
-            excClass = resolveClass(aExc.getText());
-            if (excClass == null) {
-                log(aExc.getLineNo(), aExc.getColumnNo(),
-                    "redundant.throws.classInfo", aExc.getText());
-            }
-        }
+        // Let's try to load class.
+        ClassInfo newClassInfo = new ClassInfo(aExc);
 
         if (!mAllowUnchecked) {
-            if (isUnchecked(excClass)) {
+            if (isUnchecked(newClassInfo.getClazz())) {
                 log(aExc.getLineNo(), aExc.getColumnNo(),
                     "redundant.throws.unchecked", aExc.getText());
             }
@@ -154,13 +156,13 @@ public class RedundantThrowsCheck
                     "redundant.throws.duplicate", aExc.getText());
             }
             else if (!mAllowSubclasses) {
-                if (isSubclass(ci.getClazz(), excClass)) {
+                if (isSubclass(ci.getClazz(), newClassInfo.getClazz())) {
                     known.remove();
                     log(fi.getLineNo(), fi.getColumnNo(),
                         "redundant.throws.subclass",
                         fi.getText(), aExc.getText());
                 }
-                else if (isSubclass(excClass, ci.getClazz())) {
+                else if (isSubclass(newClassInfo.getClazz(), ci.getClazz())) {
                     shouldAdd = false;
                     log(aExc.getLineNo(), aExc.getColumnNo(),
                         "redundant.throws.subclass",
@@ -170,7 +172,7 @@ public class RedundantThrowsCheck
         }
 
         if (shouldAdd) {
-            aKnownExcs.add(new ClassInfo(aExc, excClass));
+            aKnownExcs.add(newClassInfo);
         }
     }
 }

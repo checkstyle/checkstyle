@@ -239,4 +239,11 @@ class InputTags
        throws IOException
     {
     }
+
+    /**
+     * @exception WrongException exception w/o class info but matched by name
+     */
+    void method23() throws WrongException
+    {
+    }
 }
