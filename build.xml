@@ -139,6 +139,13 @@
             <sysproperty key="checkstyle.allow.tabs" value="yes"/>
             <arg value="InputSimple.java" />
         </java>
+        <java classname="com.puppycrawl.tools.checkstyle.Main"
+              fork="yes"
+              dir="."
+              classpathref="run.classpath">
+            <arg value="-r"/>
+            <arg value="src"/>
+        </java>
     </target>
 
     <target name="checkstyle.simple" depends="compile.tests">

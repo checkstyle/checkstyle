@@ -18,10 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.regexp.RESyntaxException;
 
 /**
@@ -44,7 +47,7 @@ public final class Main
         // be brain dead about arguments parsing
         String format = "plain";
         String output = null;
-        String[] files = null;
+        final ArrayList files = new ArrayList();
         for (int i = 0; i < aArgs.length; i++) {
             if ("-f".equals(aArgs[i])) {
                 format = aArgs[++i];
@@ -52,10 +55,11 @@ public final class Main
             else if ("-o".equals(aArgs[i])) {
                 output = aArgs[++i];
             }
+            else if ("-r".equals(aArgs[i])) {
+                traverse(new File(aArgs[++i]), files);
+            }
             else {
-                files = new String[aArgs.length - i];
-                System.arraycopy(aArgs, i, files, 0, files.length);
-                break;
+                files.add(aArgs[i]);
             }
         }
 
@@ -101,8 +105,8 @@ public final class Main
             System.exit(1);
         }
 
-        final int numErrs = c.process(files);
-
+        final int numErrs =
+            c.process((String[]) files.toArray(new String[files.size()]));
         c.destroy();
         System.exit(numErrs);
     }
@@ -111,14 +115,38 @@ public final class Main
     private static void usage()
     {
         System.out.println(
-            "Usage: java " +
-            Main.class.getName() + " <options> <file1> <file2>......");
+            "Usage: java " + Main.class.getName() + " <options> <file>......");
         System.out.println("Options");
         System.out.println(
-            "\t-f <format>\tsets output format. (plain|xml). " +
-            "Default to plain.");
-        System.out.println("\t-o <file>\tsets output file name. " +
-                           "Defaults to stdout");
+            "\t-f <format>\tsets output format. (plain|xml). "
+            + "Default to plain.");
+        System.out.println("\t-o <file>\tsets output file name. "
+                           + "Defaults to stdout");
+        System.out.println("\t-r <dir>\ttraverses the directory for Java"
+                           + " source files.");
         System.exit(1);
+    }
+
+    /**
+     * Traverses a specified node looking for Java source files. Found Java
+     * source files are added to a specified list. Subdirectories are also
+     * traversed.
+     *
+     * @param aNode the node to process
+     * @param aFiles list to add found files to
+     */
+    private static void traverse(File aNode, List aFiles)
+    {
+        if (aNode.canRead()) {
+            if (aNode.isDirectory()) {
+                final File[] nodes = aNode.listFiles();
+                for (int i = 0; i < nodes.length; i++) {
+                    traverse(nodes[i], aFiles);
+                }
+            }
+            else if (aNode.isFile() && aNode.getPath().endsWith(".java")) {
+                aFiles.add(aNode.getPath());
+            }
+        }
     }
 }
