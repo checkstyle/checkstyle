@@ -400,7 +400,7 @@ public class CheckerTest
             filepath + ":130: variable 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":131: '{' should be on the previous line.",
             filepath + ":132: variable 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            filepath + ":137: method name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            filepath + ":137:10: method name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":142: variable 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
         };
         verify(c, filepath, expected);

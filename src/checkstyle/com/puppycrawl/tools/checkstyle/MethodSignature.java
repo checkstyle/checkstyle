@@ -80,9 +80,9 @@ class MethodSignature
     }
 
     /** @return method name **/
-    String getName()
+    MyCommonAST getName()
     {
-        return mName.getText();
+        return mName;
     }
 
     /** @return the <code>MyModifierSet</code> for the method **/
