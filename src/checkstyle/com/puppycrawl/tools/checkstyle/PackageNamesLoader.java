@@ -89,7 +89,7 @@ public class PackageNamesLoader
     {
         if (aQName.equals("package")) {
             //push package name
-            final String name = (String) aAtts.getValue("name");
+            final String name = aAtts.getValue("name");
             if (name == null) {
                 throw new SAXException("missing package name");
             }
