@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle;
 class InputLeftCurlyOther
 {
     /** @see test method **/
-    void foo() throws InterruptedException
+    int foo() throws InterruptedException
     {
         int x = 1;
         int a = 2;
@@ -63,6 +63,12 @@ class InputLeftCurlyOther
         {
             String innerBlockVariable = "";
         }
+
+        // test input for bug reported by Joe Comuzzi
+        if (System.currentMillis() > 1000)
+            return 1;
+        else
+            return 2;
 
     }
 
