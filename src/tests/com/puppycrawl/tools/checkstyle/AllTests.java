@@ -4,6 +4,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporterTest;
 import com.puppycrawl.tools.checkstyle.api.DetailASTTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidInlineConditionalsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidStarImportTest;
+import com.puppycrawl.tools.checkstyle.checks.ArrayTrailingCommaCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.DesignForExtensionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.DoubleCheckedLockingCheckTest;
@@ -89,6 +90,7 @@ public class AllTests {
         suite.addTest(new TestSuite(AvoidInlineConditionalsCheckTest.class));
         suite.addTest(new TestSuite(AvoidNestedBlocksCheckTest.class));
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
+        suite.addTest(new TestSuite(ArrayTrailingCommaCheckTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
         suite.addTest(new TestSuite(DesignForExtensionCheckTest.class));

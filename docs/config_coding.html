@@ -23,6 +23,9 @@
     <td class="menu" valign="top">
       <ul>
         <li>
+          <a href="#ArrayTrailingComma">ArrayTrailingComma</a>
+        </li>
+        <li>
           <a href="#AvoidInlineConditionals">AvoidInlineConditionals</a>
         </li>
         <li>
@@ -62,6 +65,45 @@
     </td>
     <!--Content-->
     <td class="content" valign="top" align="left">
+
+      <!-- --> <a name="ArrayTrailingComma"></a> <h2>ArrayTrailingComma</h2> <h4>Description</h4>
+      <p class="body">
+      Checks if array initialization contains optional trailing comma.
+      </p>
+      <pre class="body"	>
+      int[] a = new int[] 
+      {
+          1, 
+          2, 
+          3, 
+      }; 
+      </pre>
+      <p class="body">
+      But it allows do not add comma if both left and right curlys 
+      on the same line.
+      </p>
+      <pre class="body">
+      return new int[] { 0 };
+      </pre>
+      <p class="body">
+      Rationale: Putting this comma in make is easier to change the 
+      order of the elements or add new elements on the end. 
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ArrayTrailingComma&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
 
       <!-- --> <a name="AvoidInlineConditionals"></a> <h2>AvoidInlineConditionals</h2> <h4>Description</h4>
       <p class="body">
