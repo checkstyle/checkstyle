@@ -41,10 +41,16 @@
     <module name="VisibilityModifier"/>
 
     <!-- Item 15 - Design and document for inheritance or else prohibit it -->
-    <!-- rfe #659715 -->
+    <!-- the module actually implements a very strict rule, it would be
+         interesting to know whether Joshua meant what checkstyle implements.
+         We feel this implementation would be well suited as a warning,
+         i.e. if you get error messages from this check you should be
+         able to name a good reason to implement your code the way you do it,
+         especially if you are designing a library and not an application. -->
+    <module name="DesignForInheritance"/>
 
     <!-- Item 17 - Use interfaces only to define types -->
-    <!-- rfe #659717 -->
+    <module name="InterfaceIsType"/>
 
     <!-- Item 25 - Design method signatures carefully -->
     <!-- Avoid long parameter lists -->
