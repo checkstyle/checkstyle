@@ -381,32 +381,38 @@ public class CheckStyleTask
         }
 
         // Create the checker
-        final int numErrs;
         Checker c = null;
         try {
-            c = new Checker(mConfig);
-            AuditListener[] listeners = getListeners();
-            for (int i = 0; i < listeners.length; i++) {
-                c.addListener(listeners[i]);
+            try {
+                c = new Checker(mConfig);
+                // setup the listeners
+                AuditListener[] listeners = getListeners();
+                for (int i = 0; i < listeners.length; i++) {
+                    c.addListener(listeners[i]);
+                }
             }
+            catch (Exception e) {
+                throw new BuildException("Unable to create a Checker", e);
+            }
+
+            // Process the files
             final String[] files = scanFileSets();
-            numErrs = c.process(files);
-        }
-        catch (Exception e) {
-            throw new BuildException("Unable to create a Checker", e);
+            final int numErrs = c.process(files);
+
+            // Handle the return status
+            if ((numErrs > 0) && mFailureProperty != null) {
+                getProject().setProperty(mFailureProperty, "true");
+            }
+
+            if ((numErrs > 0) && mFailOnViolation) {
+                throw new BuildException("Got " + numErrs + " errors.",
+                                         location);
+            }
         }
         finally {
             if (c != null) {
                 c.destroy();
             }
-        }
-
-        if ((numErrs > 0) && mFailureProperty != null) {
-            getProject().setProperty(mFailureProperty, "true");
-        }
-
-        if ((numErrs > 0) && mFailOnViolation) {
-            throw new BuildException("Got " + numErrs + " errors.", location);
         }
     }
 
