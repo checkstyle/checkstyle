@@ -112,9 +112,13 @@ public class CheckerTest
             filepath + ":37: 'synchronized' is not followed by whitespace.",
             filepath + ":39: 'try' is not followed by whitespace.",
             filepath + ":41: 'catch' is not followed by whitespace.",
+            filepath + ":58: '(' is followed by whitespace.",
+            filepath + ":58: ')' is preceeded by whitespace.",
             filepath + ":58: 'if' is not followed by whitespace.",
             filepath + ":59: '{' should be on the previous line.",
             filepath + ":63: '{' should be on the previous line.",
+            filepath + ":74: '(' is followed by whitespace.",
+            filepath + ":74: ')' is preceeded by whitespace.",
             filepath + ":75: '{' should be on the previous line.",
             filepath + ":76: 'return' is not followed by whitespace.",
             filepath + ":79: '{' should be on the previous line.",
@@ -177,9 +181,13 @@ public class CheckerTest
             filepath + ":37: 'synchronized' is not followed by whitespace.",
             filepath + ":39: 'try' is not followed by whitespace.",
             filepath + ":41: 'catch' is not followed by whitespace.",
+            filepath + ":58: '(' is followed by whitespace.",
+            filepath + ":58: ')' is preceeded by whitespace.",
             filepath + ":58: 'if' is not followed by whitespace.",
             filepath + ":59: '{' should be on the previous line.",
             filepath + ":63: '{' should be on the previous line.",
+            filepath + ":74: '(' is followed by whitespace.",
+            filepath + ":74: ')' is preceeded by whitespace.",
             filepath + ":75: '{' should be on the previous line.",
             filepath + ":76: 'return' is not followed by whitespace.",
             filepath + ":79: '{' should be on the previous line.",
@@ -532,6 +540,14 @@ public class CheckerTest
         final String filepath = getPath("InputScopeAnonInner.java");
         assertNotNull(c);
         final String[] expected = {
+            filepath + ":37: '(' is followed by whitespace.",
+            filepath + ":39: '(' is followed by whitespace.",
+            filepath + ":39: ')' is preceeded by whitespace.",
+            filepath + ":43: ')' is preceeded by whitespace.",
+            filepath + ":51: '(' is followed by whitespace.",
+            filepath + ":53: '(' is followed by whitespace.",
+            filepath + ":53: ')' is preceeded by whitespace.",
+            filepath + ":57: ')' is preceeded by whitespace.",
         };
         verify(c, filepath, expected);
     }
@@ -545,8 +561,16 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":26: method is missing a Javadoc comment.",
+            filepath + ":37: '(' is followed by whitespace.",
+            filepath + ":39: '(' is followed by whitespace.",
+            filepath + ":39: ')' is preceeded by whitespace.",
             filepath + ":39: method is missing a Javadoc comment.",
-            filepath + ":53: method is missing a Javadoc comment."
+            filepath + ":43: ')' is preceeded by whitespace.",
+            filepath + ":51: '(' is followed by whitespace.",
+            filepath + ":53: '(' is followed by whitespace.",
+            filepath + ":53: ')' is preceeded by whitespace.",
+            filepath + ":53: method is missing a Javadoc comment.",
+            filepath + ":57: ')' is preceeded by whitespace.",
         };
         verify(c, filepath, expected);
     }
@@ -576,6 +600,14 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":3: Line does not match expected header line of '// Created: 2002'.",
+            filepath + ":37: '(' is followed by whitespace.",
+            filepath + ":39: '(' is followed by whitespace.",
+            filepath + ":39: ')' is preceeded by whitespace.",
+            filepath + ":43: ')' is preceeded by whitespace.",
+            filepath + ":51: '(' is followed by whitespace.",
+            filepath + ":53: '(' is followed by whitespace.",
+            filepath + ":53: ')' is preceeded by whitespace.",
+            filepath + ":57: ')' is preceeded by whitespace.",
         };
         verify(c, filepath, expected);
     }
@@ -613,6 +645,14 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             packageHtmlPath + ":0: missing package documentation file.",
+            filepath + ":37: '(' is followed by whitespace.",
+            filepath + ":39: '(' is followed by whitespace.",
+            filepath + ":39: ')' is preceeded by whitespace.",
+            filepath + ":43: ')' is preceeded by whitespace.",
+            filepath + ":51: '(' is followed by whitespace.",
+            filepath + ":53: '(' is followed by whitespace.",
+            filepath + ":53: ')' is preceeded by whitespace.",
+            filepath + ":57: ')' is preceeded by whitespace.",
         };
         verify(c, filepath, expected);
     }
