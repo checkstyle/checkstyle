@@ -149,6 +149,8 @@ public class Configuration
     private boolean mIgnoreCastWhitespace = false;
     /** whether to ignore braces **/
     private boolean mIgnoreBraces = false;
+    /** whether to ignore 'public' keyword in interface definitions **/
+    private boolean mIgnorePublicInInterface = false;
     /** name of the cache file **/
     private String mCacheFile = null;
     /** whether to ignore max line length of import statements **/
@@ -243,6 +245,8 @@ public class Configuration
         setIgnoreBraces(getBooleanProperty(aProps,
                                            IGNORE_BRACES_PROP,
                                            mIgnoreBraces));
+        setIgnorePublicInInterface(getBooleanProperty(
+            aProps, IGNORE_PUBLIC_IN_INTERFACE_PROP, mIgnorePublicInInterface));
         setCacheFile(aProps.getProperty(CACHE_FILE_PROP));
         setIgnoreImportLength(getBooleanProperty(
             aProps, IGNORE_IMPORT_LENGTH_PROP, mIgnoreImportLength));
@@ -531,6 +535,12 @@ public class Configuration
         return mIgnoreBraces;
     }
 
+    /** @return whether to ignore checks for braces **/
+    public boolean isIgnorePublicInInterface()
+    {
+        return mIgnorePublicInInterface;
+    }
+
     /** @return whether to ignore max line length for import statements **/
     public boolean isIgnoreImportLength()
     {
@@ -813,6 +823,14 @@ public class Configuration
     public void setIgnoreBraces(boolean aTo)
     {
         mIgnoreBraces = aTo;
+    }
+
+    /**
+     * @param aTo whether to ignore 'public' in interface definitions
+     */
+    public void setIgnorePublicInInterface(boolean aTo)
+    {
+        mIgnorePublicInInterface = aTo;
     }
 
     /**

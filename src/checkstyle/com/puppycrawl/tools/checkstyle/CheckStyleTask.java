@@ -332,6 +332,12 @@ public class CheckStyleTask
         mConfig.setIgnoreBraces(aIgnore);
     }
 
+    /** @param aIgnore whether to ignore 'public' in interfaces **/
+    public void setIgnorePublicInInterface(boolean aIgnore)
+    {
+        mConfig.setIgnorePublicInInterface(aIgnore);
+    }
+
     /** @param aCacheFile the file to cache which files have been checked **/
     public void setCacheFile(File aCacheFile)
     {
