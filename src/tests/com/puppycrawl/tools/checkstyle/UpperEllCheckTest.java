@@ -8,8 +8,8 @@ public class UpperEllCheckTest
     public void testWithChecker()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(UpperEllCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(UpperEllCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {

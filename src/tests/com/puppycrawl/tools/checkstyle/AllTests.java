@@ -67,7 +67,6 @@ public class AllTests {
         suite.addTest(new TestSuite(StringArrayReaderTest.class));
         suite.addTest(new TestSuite(TabCharacterCheckTest.class));
         suite.addTest(new TestSuite(TodoCommentCheckTest.class));
-        suite.addTest(new TestSuite(TreeWalkerTest.class));
         suite.addTest(new TestSuite(TypeLeftCurlyCheckTest.class));
         suite.addTest(new TestSuite(TypeNameCheckTest.class));
         suite.addTest(new TestSuite(UnusedImportsCheckTest.class));

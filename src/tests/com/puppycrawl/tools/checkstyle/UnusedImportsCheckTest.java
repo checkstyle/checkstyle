@@ -8,8 +8,8 @@ public class UnusedImportsCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(UnusedImportsCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(UnusedImportsCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputImport.java");
         final String[] expected = {

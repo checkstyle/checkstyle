@@ -7,8 +7,8 @@ public class VisibilityModifierCheckTest
 {
     private Checker getChecker() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(VisibilityModifierCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
         return createChecker(checkConfig);
     }
 
@@ -30,11 +30,11 @@ public class VisibilityModifierCheckTest
     public void testIgnoreAccess()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-                checkConfig.setClassname(VisibilityModifierCheck.class.getName());
-        checkConfig.addProperty("publicMemberPattern", "^r[A-Z]");
-                checkConfig.addProperty("protectedAllowed", "true");
-        checkConfig.addProperty("packageAllowed", "true");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("publicMemberPattern", "^r[A-Z]");
+        checkConfig.addAttribute("protectedAllowed", "true");
+        checkConfig.addAttribute("packageAllowed", "true");
         final Checker c = createChecker(checkConfig);
         final String filepath = getPath("InputInner.java");
         final String[] expected = {

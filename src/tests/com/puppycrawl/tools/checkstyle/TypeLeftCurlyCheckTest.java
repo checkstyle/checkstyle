@@ -9,8 +9,8 @@ public class TypeLeftCurlyCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(TypeLeftCurlyCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TypeLeftCurlyCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeInnerInterfaces.java");
         final String[] expected = {
@@ -26,9 +26,9 @@ public class TypeLeftCurlyCheckTest
     public void testNL()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(TypeLeftCurlyCheck.class.getName());
-        checkConfig.addProperty("option", LeftCurlyOption.NL.toString());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TypeLeftCurlyCheck.class);
+        checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeInnerInterfaces.java");
         final String[] expected = {
@@ -39,9 +39,9 @@ public class TypeLeftCurlyCheckTest
     public void testNLOW()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(TypeLeftCurlyCheck.class.getName());
-        checkConfig.addProperty("option", LeftCurlyOption.NLOW.toString());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TypeLeftCurlyCheck.class);
+        checkConfig.addAttribute("option", LeftCurlyOption.NLOW.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeInnerInterfaces.java");
         final String[] expected = {
