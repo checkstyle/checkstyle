@@ -106,7 +106,13 @@ class JavadocTag
     /** @return whether the tag is a 'see' or 'inheritDoc' tag **/
     boolean isSeeOrInheritDocTag()
     {
-        return ("see".equals(getTag()) || "inheritDoc".equals(getTag()));
+        return ("see".equals(getTag()) || isInheritDocTag());
+    }
+
+    /** @return whether the tag is a 'inheritDoc' tag **/
+    boolean isInheritDocTag()
+    {
+        return "inheritDoc".equals(getTag());
     }
 }
 
