@@ -32,9 +32,11 @@ import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
+import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.taskdefs.LogOutputStream;
 import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
+import org.apache.tools.ant.types.Path;
 
 /**
  * An implementation of a ANT task for calling checkstyle. See the documentation
@@ -44,11 +46,13 @@ import org.apache.tools.ant.types.FileSet;
 public class CheckStyleTask
     extends Task
 {
-    // TODO: support setting a CLASSPATH.
     /** poor man's enum for an xml formatter **/
     private static final String E_XML = "xml";
     /** poor man's enum for an plain formatter **/
     private static final String E_PLAIN = "plain";
+
+    /** class path to locate class files **/
+    private Path mClasspath;
 
     /** name of file to check **/
     private String mFileName;
@@ -113,6 +117,23 @@ public class CheckStyleTask
         mFormatters.add(aFormatter);
     }
 
+    /**
+     * Set the class path.
+     * @param aClasspath the path to locate classes
+     */
+    public void setClasspath(Path aClasspath)
+    {
+        mClasspath = aClasspath;
+    }
+
+    /** @return a created path for locating classes **/
+    public Path createClasspath()
+    {
+        if (mClasspath == null) {
+            mClasspath = new Path(project);
+        }
+        return mClasspath.createPath();
+    }
 
     /** @param aFile the file to be checked **/
     public void setFile(File aFile)
@@ -486,6 +507,10 @@ public class CheckStyleTask
                 location);
         }
 
+        // setup the classloader
+        if (mClasspath != null) {
+            mConfig.setClassLoader(new AntClassLoader(project, mClasspath));
+        }
         // Create the checker
         Checker c = null;
         try {
