@@ -23,8 +23,55 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * Checks the placement of left curly braces on other constructs apart from
+ * <p>
+ * Checks the placement of left curly braces on other blocks apart from
  * methods and types.
+ * </p>
+ * <p> By default the check will check the following blocks:
+ *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
+ *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
+ *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
+ *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
+ *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
+ *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
+ *  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH},
+ *  {@link TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED},
+ *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY},
+ *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE}.
+ * </p>
+ * <p>
+ * The policy to verify is specified using the {@link
+ * LeftCurlyOption} class and defaults to {@link LeftCurlyOption#EOL}. Policies
+ * {@link LeftCurlyOption#EOL} and {@link LeftCurlyOption#NLOW} take into
+ * account property maxLineLength. The default value for maxLineLength is 80. 
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="OtherLeftCurlyCheck"/&gt;
+ * </pre> 
+ * <p>
+ * An example of how to configure the check with policy
+ * {@link LeftCurlyOption#NLOW} and maxLineLength 120 is:
+ * </p>
+ * <pre>
+ * &lt;config name="OtherLeftCurlyCheck"&gt;
+ *     &lt;property name="option" value="nlow"/&gt;
+ *     &lt;property name="maxLineLength" value="120"/&gt;
+ * &lt;/config&gt;
+ * </pre>
+ * <p>
+ * An example of how to configure the check with policy
+ * {@link LeftCurlyOption#NL} for <code>if</code> and <code>else</code> blocks
+ *  is:
+ * </p>
+ * <pre>
+ * &lt;config name="OtherLeftCurlyCheck"&gt;
+ *     &lt;property name="option" value="nl"/&gt;
+ *     &lt;property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/&gt;
+ * &lt;/config&gt;
+ * </pre> 
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author lkuehne

@@ -22,8 +22,29 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
+ * <p>
  * Checks the placement of left curly braces on types.
- *
+ * The policy to verify is specified using the {@link
+ * LeftCurlyOption} class and defaults to {@link LeftCurlyOption#EOL}. Policies
+ * {@link LeftCurlyOption#EOL} and {@link LeftCurlyOption#NLOW} take into
+ * account property maxLineLength. The default value for maxLineLength is 80. 
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="TypeLeftCurlyCheck"/&gt;
+ * </pre> 
+ * <p>
+ * An example of how to configure the check with policy
+ * {@link LeftCurlyOption#NLOW} and maxLineLength 120 is:
+ * </p>
+ * <pre>
+ * &lt;config name="TypeLeftCurlyCheck"&gt;
+ *     &lt;property name="option" value="nlow"/&gt;
+ *     &lt;property name="maxLineLength" value="120"/&gt;
+ * &lt;/config&gt;
+ * </pre> 
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author lkuehne
  * @version 1.0
