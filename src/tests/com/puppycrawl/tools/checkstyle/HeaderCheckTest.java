@@ -2,6 +2,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.checks.HeaderCheck;
 import com.puppycrawl.tools.checkstyle.checks.RegexpHeaderCheck;
+import com.puppycrawl.tools.checkstyle.CheckstyleException;
 
 public class HeaderCheckTest extends BaseCheckTestCase
 {
@@ -39,5 +40,36 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(c, fname, expected);
     }
 
+    public void testNoHeader()
+        throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(HeaderCheck.class.getName());
+        // No header file specified
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputScopeAnonInner.java");
+
+        // TODO: Is this really what we want or should we throw an Exception?
+        // Somehow checking nothing doesn't make too much sense...
+        final String[] expected = {
+        };
+
+        verify(c, fname, expected);
+    }
+
+    public void testIllegalArgs()
+            throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(HeaderCheck.class.getName());
+        checkConfig.addProperty("headerFile", getPath("nonexisting.file"));
+        try {
+            createChecker(checkConfig);
+            fail();
+        }
+        catch (CheckstyleException ex) {
+            // expected exception
+        }
+    }
 
 }
