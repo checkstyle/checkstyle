@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * <p>
  * For example this Check flags confusing code like
+ * </p>
  * <pre>
  * public void guessTheOutput()
  * {

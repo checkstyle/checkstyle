@@ -36,14 +36,17 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
  *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
  *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
+ * </p>
  *
  * <p> An example of how to configure the check is:
+ * </p>
  * <pre>
  * &lt;module name="EmptyBlock"/&gt;
  * </pre>
  *
  * <p> An example of how to configure the check for the {@link
  * BlockOption#TEXT} policy and only catch blocks is:
+ * </p>
  *
  * <pre>
  * &lt;module name="EmptyBlock"&gt;
