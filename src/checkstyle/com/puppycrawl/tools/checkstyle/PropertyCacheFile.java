@@ -22,7 +22,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.Properties;
 
 /**
@@ -35,8 +34,6 @@ class PropertyCacheFile
 {
     /** name of file to store details **/
     private final String mDetailsFile;
-    /** where to log messages **/
-    private final PrintStream mLog;
     /** the details on files **/
     private final Properties mDetails = new Properties();
 
@@ -45,11 +42,9 @@ class PropertyCacheFile
      *
      * @param aFileName name of properties file that contains details. if the
                         file does not exist, it will be created
-     * @param aLog where to log errors
      */
-    PropertyCacheFile(String aFileName, PrintStream aLog)
+    PropertyCacheFile(String aFileName)
     {
-        mLog = aLog;
         boolean setInActive = true;
         if (aFileName != null) {
             try {
@@ -61,8 +56,8 @@ class PropertyCacheFile
                 setInActive = false;
             }
             catch (IOException e) {
-                mLog.println("Unable to open cache file, ignoring.");
-                e.printStackTrace(mLog);
+                System.out.println("Unable to open cache file, ignoring.");
+                e.printStackTrace(System.out);
             }
         }
         mDetailsFile = (setInActive) ? null : aFileName;
@@ -76,8 +71,8 @@ class PropertyCacheFile
                 mDetails.store(new FileOutputStream(mDetailsFile), null);
             }
             catch (IOException e) {
-                mLog.println("Unable to save cache file");
-                e.printStackTrace(mLog);
+                System.out.println("Unable to save cache file");
+                e.printStackTrace(System.out);
             }
         }
     }

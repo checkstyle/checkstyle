@@ -86,8 +86,7 @@ public final class Main
         Checker c = null;
         try {
             c = new Checker(new Configuration(System.getProperties(),
-                                              System.out),
-                            System.out);
+                                              System.out));
             c.addListener(listener);
         }
         catch (RESyntaxException rese) {

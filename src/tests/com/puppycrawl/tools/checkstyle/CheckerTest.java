@@ -55,7 +55,7 @@ public class CheckerTest
         throws RESyntaxException
     {
         final AuditListener listener = new BriefLogger(mStream);
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = new Checker(mConfig);
         c.addListener(listener);
         return c;
     }

@@ -26,7 +26,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
-import java.io.PrintStream;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -49,13 +48,12 @@ public class Checker
     /**
      * Constructs the object.
      * @param aConfig contains the configuration to check with
-     * @param aLog the PrintStream to log messages to
      * @throws RESyntaxException unable to create a regexp object
      **/
-    public Checker(Configuration aConfig, PrintStream aLog)
+    public Checker(Configuration aConfig)
         throws RESyntaxException
     {
-        mCache = new PropertyCacheFile(aConfig.getCacheFile(), aLog);
+        mCache = new PropertyCacheFile(aConfig.getCacheFile());
         final Verifier v = new Verifier(aConfig);
         VerifierSingleton.setInstance(v);
     }
