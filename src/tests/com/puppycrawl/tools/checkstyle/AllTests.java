@@ -61,6 +61,7 @@ import com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundTest;
 import com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -94,6 +95,7 @@ public class AllTests {
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
         suite.addTest(new TestSuite(FileLengthCheckTest.class));
         suite.addTest(new TestSuite(FileSetCheckLifecycleTest.class));
+        suite.addTest(new TestSuite(FinalParametersCheckTest.class));
         suite.addTest(new TestSuite(GenericIllegalRegexpCheckTest.class));
         suite.addTest(new TestSuite(HeaderCheckTest.class));
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
