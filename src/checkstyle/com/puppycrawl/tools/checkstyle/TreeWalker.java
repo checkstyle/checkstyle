@@ -121,6 +121,7 @@ class TreeWalker
                 registerCheck(tokens[i], aCheck);
             }
         }
+        mAllChecks.add(aCheck);
     }
 
     /**
@@ -147,7 +148,6 @@ class TreeWalker
         }
 
         visitors.add(aCheck);
-        mAllChecks.add(aCheck);
     }
 
     /**
