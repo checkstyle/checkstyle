@@ -32,6 +32,7 @@ import java.util.Hashtable;
 import java.util.ResourceBundle;
 import java.net.URL;
 
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.BuildException;
