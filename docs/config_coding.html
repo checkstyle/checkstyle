@@ -80,6 +80,9 @@
           <a href="#RedundantThrows">RedundantThrows</a>
         </li>
         <li>
+          <a href="#ReturnCount">ReturnCount</a>
+        </li>
+        <li>
           <a href="#SimplifyBooleanExpression">SimplifyBooleanExpression</a>
         </li>
         <li>
@@ -1110,6 +1113,52 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;JUnitTestCase&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="ReturnCount"></a> <h2>ReturnCount</h2> <h4>Description</h4>
+      <p class="body">
+      Restrict the number of return statements. Default = 2.
+      </p>
+
+      <p class="body">
+      Rationale:
+      Too many return points can be indication that code is
+      attempting to do too much or may be difficult to understand.
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>maximum allowed number of return statments</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td><span class="default">2</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check so that it doesn't allow more than three
+      return statements per method:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ReturnCount&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+&lt;/module&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
