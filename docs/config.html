@@ -49,7 +49,7 @@
       module. The next level of modules contains <em>FileSetChecks</em>- modules that 
       take a set of input files and fire error messages. Many checks are submodules of 
       the <em>TreeWalker</em> FileSetCheck module. The TreeWalker operates by 
-      seperately transforming each of the Java source files into an abstract syntax 
+      separately transforming each of the Java source files into an abstract syntax 
       tree and then handing the result over to each of its submodules which in turn 
       have a look at certain aspects of the tree.
       </p>
@@ -219,7 +219,7 @@
      Some Checks, such as <span class="code">FileLength</span>
      and <span class="code">LineLength</span>, apply directly to the source file and do not involve tokens
      of the syntax tree.
-     Other Checks are associated with configurable sets of <em>acceptable tokens</em> that
+     Other Checks are associated with configurable sets of tokens that
      trigger the Checks.
      For example, this element configures Check <span class="code">MethodLength</span>:
      </p>
@@ -227,7 +227,7 @@
     &lt;module name=&quot;MethodLength&quot;/&gt;
     </pre>
     <p class="body">
-    The default acceptable token set for <span class="code">MethodLength</span> is
+    The default token set for <span class="code">MethodLength</span> is
      <span class="code">{METHOD_DEF, CTOR_DEF}</span>, method definition and constructor definition
      tokens, so <span class="code">TreeWalker</span> invokes
      <span class="code">MethodLength</span> whenever it visits a node with a
@@ -236,7 +236,7 @@
      <p class="body">
      You specify the trigger tokens for a Check with property <span class="code">tokens</span>.
      The value of <span class="code">tokens</span> is a list that denotes a subset of the Check&apos;s
-     acceptable tokens, as in the following element that configures Check
+     tokens, as in the following element that configures Check
      <span class="code">MethodLength</span> to check the number of lines of methods only: 
      </p>
       <pre class="body">
@@ -245,7 +245,7 @@
         &lt;/module&gt;
     </pre>
     <p class="body">
-    To apply particular properties to different subsets of acceptable tokens for a Check, repeat the Check.
+    To apply particular properties to different subsets of tokens for a Check, repeat the Check.
     For example, to check that the length of each method is at most 150 lines (the default value
     of <span class="code">MethodLength</span> property <span class="code">max</span>) and the
     length of each constructor is at most 60 lines, include the following in the
@@ -326,7 +326,7 @@
       <p class="body">
       Checkstyle also strictly enforces the encoding attribute of an XML declaration.
       If Checkstyle rejects your configuration document&apos;s encoding,  
-      correct the value of the encoding attribute, or remove the ecoding attribute entirely.
+      correct the value of the encoding attribute, or remove the echoing attribute entirely.
       </p>
       <p class="body">
       For a complete example of a configuration XML document, examine file <span class="code">docs/checkstyle_checks.xml</span>
