@@ -58,7 +58,7 @@ public class Checker
         throws RESyntaxException
     {
         mConfig = aConfig;
-        mCache = new PropertyCacheFile(aConfig.getCacheFile());
+        mCache = new PropertyCacheFile(aConfig);
         final Verifier v = new Verifier(aConfig);
         VerifierSingleton.setInstance(v);
     }

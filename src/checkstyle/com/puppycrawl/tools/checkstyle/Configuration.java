@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.Serializable;
+import java.io.ObjectInputStream;
+import java.io.InvalidObjectException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -35,7 +38,7 @@ import org.apache.regexp.RESyntaxException;
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
 public class Configuration
-    implements Defn
+    implements Defn, Serializable
 {
     ////////////////////////////////////////////////////////////////////////////
     // Constants
@@ -73,42 +76,42 @@ public class Configuration
     /** pattern to match parameters **/
     private String mParamPat;
     /** regexp to match parameters **/
-    private RE mParamRegexp;
+    private transient RE mParamRegexp;
 
     /** pattern to match static variables **/
     private String mStaticPat;
     /** regexp to match static variables **/
-    private RE mStaticRegexp;
+    private transient RE mStaticRegexp;
 
     /** pattern to match static final variables **/
     private String mStaticFinalPat;
     /** regexp to match static final variables **/
-    private RE mStaticFinalRegexp;
+    private transient RE mStaticFinalRegexp;
 
     /** pattern to match member variables **/
     private String mMemberPat;
     /** regexp to match member variables **/
-    private RE mMemberRegexp;
+    private transient RE mMemberRegexp;
 
     /** pattern to match public member variables **/
     private String mPublicMemberPat;
     /** regexp to match public member variables **/
-    private RE mPublicMemberRegexp;
+    private transient RE mPublicMemberRegexp;
 
     /** pattern to match type names **/
     private String mTypePat;
     /** regexp to match type names **/
-    private RE mTypeRegexp;
+    private transient RE mTypeRegexp;
 
     /** pattern to match local variables **/
     private String mLocalVarPat;
     /** regexp to match local variables **/
-    private RE mLocalVarRegexp;
+    private transient RE mLocalVarRegexp;
 
     /** pattern to match method names **/
     private String mMethodPat;
     /** regexp to match method names **/
-    private RE mMethodRegexp;
+    private transient RE mMethodRegexp;
 
     /** the maximum line length **/
     private int mMaxLineLength = MAX_LINE_LENGTH;
@@ -270,6 +273,39 @@ public class Configuration
         catch (RESyntaxException ex) {
             ex.printStackTrace();
             throw new IllegalStateException(ex.getMessage());
+        }
+    }
+
+    /**
+     * Extend default deserialization to initialize the RE member variables.
+     *
+     * @param aStream the ObjectInputStream that contains the serialized data
+     * @throws IOException if an I/O error occurs
+     * @throws ClassNotFoundException if the class of a serialized object
+     *     could not be found
+     */
+    private void readObject(ObjectInputStream aStream)
+        throws IOException, ClassNotFoundException
+    {
+        // initialize the serialized fields
+        aStream.defaultReadObject();
+
+        // initialize the transient fields
+        try {
+            setParamPat(getParamPat());
+            setStaticPat(getStaticPat());
+            setStaticFinalPat(getStaticFinalPat());
+            setMemberPat(getMemberPat());
+            setPublicMemberPat(getPublicMemberPat());
+            setTypePat(getTypePat());
+            setLocalVarPat(getLocalVarPat());
+            setMethodPat(getMethodPat());
+        }
+        catch (RESyntaxException ex) {
+            // This should never happen, as the serialized regexp patterns
+            // somehow must have passed a setPattern() method.
+            throw new InvalidObjectException(
+                "invalid regular expression syntax");
         }
     }
 
