@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -88,13 +89,22 @@ public class HeaderCheck
         return new int[0];
     }
 
+    /**
+     * Checks that required args were specified.
+     * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean#finishLocalSetup
+     */
+    protected final void finishLocalSetup() throws CheckstyleException
+    {
+        if (mHeaderLines == null) {
+            throw new CheckstyleException(
+                    "property 'headerFile' is missing or invalid in module "
+                    + getConfiguration().getName());
+        }
+    }
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree()
     {
-        if (mHeaderLines == null) {
-            log(1, "header.spec.missing");
-            return;
-        }
 
         final String[] lines = getLines();
 
