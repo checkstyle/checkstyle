@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -27,58 +27,54 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 import java.util.Stack;
 
 /**
- * <p>
- * Restricts return statements to a specified count (default = 2).
- * Ignores equals methods.
- * </p>
- * <p>
- * Rationale: Too many return points can be indication that code is
- * attempting to do too much or may be difficult to understand.
- * </p>
+ * Restricts nested boolean operators (&&, || and ^) to
+ * a specified depth (default = 2).
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * TODO: Test for inside a static block
+ * @author o_sukhodolsky
  */
-public final class ReturnCountCheck extends Check
+public final class BooleanExpressionComplexityCheck extends Check
 {
-    /** Default allowed number of return statements. */
+    /** Default allowed complexity. */
     private static final int DEFAULT_MAX = 2;
 
-    /** Stack of method contexts. */
+    /** Stack of contexts. */
     private final Stack mContextStack = new Stack();
-    /** Maximum allowed number of return stmts. */
+    /** Maximum allowed complexity. */
     private int mMax;
-    /** Current method context. */
+    /** Current context. */
     private Context mContext;
 
-    /** Creates new instance of the checks. */
-    public ReturnCountCheck()
+    /** Creates new instance of the check. */
+    public BooleanExpressionComplexityCheck()
     {
         setMax(DEFAULT_MAX);
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
-            TokenTypes.LITERAL_RETURN,
+            TokenTypes.EXPR,
+            TokenTypes.LAND,
+            TokenTypes.BAND,
+            TokenTypes.LOR,
+            TokenTypes.BOR,
+            TokenTypes.BXOR,
         };
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
-        return new int[]{
-            TokenTypes.CTOR_DEF,
-            TokenTypes.METHOD_DEF,
-        };
+        return getDefaultTokens();
     }
 
     /**
-     * Getter for max property.
-     * @return maximum allowed number of return statements.
+     * Getter for maximum allowed complexity.
+     * @return value of maximum allowed complexity.
      */
     public int getMax()
     {
@@ -86,22 +82,15 @@ public final class ReturnCountCheck extends Check
     }
 
     /**
-     * Setter for max property.
-     * @param aMax maximum allowed number of return statements.
+     * Setter for maximum allowed complexity.
+     * @param aMax new maximum allowed complexity.
      */
     public void setMax(int aMax)
     {
         mMax = aMax;
     }
 
-    /** @see Check */
-    public void beginTree(DetailAST aRootAST)
-    {
-        mContext = null;
-        mContextStack.clear();
-    }
-
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -109,33 +98,40 @@ public final class ReturnCountCheck extends Check
         case TokenTypes.METHOD_DEF:
             visitMethodDef(aAST);
             break;
-        case TokenTypes.LITERAL_RETURN:
-            mContext.visitLiteralReturn();
+        case TokenTypes.EXPR:
+            visitExpr();
+            break;
+        case TokenTypes.LAND:
+        case TokenTypes.BAND:
+        case TokenTypes.LOR:
+        case TokenTypes.BOR:
+        case TokenTypes.BXOR:
+            mContext.visitBooleanOperator();
             break;
         default:
             throw new IllegalStateException(aAST.toString());
         }
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
         case TokenTypes.CTOR_DEF:
         case TokenTypes.METHOD_DEF:
-            leaveMethodDef(aAST);
+            leaveMethodDef();
             break;
-        case TokenTypes.LITERAL_RETURN:
-            // Do nothing
+        case TokenTypes.EXPR:
+            leaveExpr(aAST);
             break;
         default:
-            throw new IllegalStateException(aAST.toString());
+            // Do nothing
         }
     }
 
     /**
-     * Creates new method context and places old one on the stack.
-     * @param aAST method definition for check.
+     * Creates new context for a given method.
+     * @param aAST a method we start to check.
      */
     private void visitMethodDef(DetailAST aAST)
     {
@@ -143,31 +139,48 @@ public final class ReturnCountCheck extends Check
         mContext = new Context(!CheckUtils.isEqualsMethod(aAST));
     }
 
+    /** Removes old context. */
+    private void leaveMethodDef()
+    {
+        mContext = (Context) mContextStack.pop();
+    }
+
+    /** Creates and pushes new context. */
+    private void visitExpr()
+    {
+        mContextStack.push(mContext);
+        mContext = new Context(mContext != null ? mContext.isChecking() : true);
+    }
+
     /**
-     * Checks number of return statments and restore
-     * previous method context.
-     * @param aAST method def node.
+     * Restores previous context.
+     * @param aAST expression we leave.
      */
-    private void leaveMethodDef(DetailAST aAST)
+    private void leaveExpr(DetailAST aAST)
     {
         mContext.checkCount(aAST);
         mContext = (Context) mContextStack.pop();
     }
 
     /**
-     * Class to encapsulate information about one method.
+     * Represents context (method/expression) in which we check complexity.
+     *
      * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
+     * @author o_sukhodolsky
      */
     private class Context
     {
-        /** Whether we should check this method or not. */
+        /**
+         * Should we perform check in current context or not.
+         * Usually false if we are inside equals() method.
+         */
         private final boolean mChecking;
-        /** Counter for return statements. */
+        /** Count of boolean operators. */
         private int mCount;
 
         /**
-         * Creates new method context.
-         * @param aChecking should we check this method or not.
+         * Creates new instance.
+         * @param aChecking should we check in current context or not.
          */
         public Context(boolean aChecking)
         {
@@ -175,22 +188,34 @@ public final class ReturnCountCheck extends Check
             mCount = 0;
         }
 
-        /** Increase number of return statements. */
-        public void visitLiteralReturn()
+        /**
+         * Getter for checking property.
+         * @return should we check in current context or not.
+         */
+        public boolean isChecking()
+        {
+            return mChecking;
+        }
+
+        /** Increases operator counter. */
+        public void visitBooleanOperator()
         {
             ++mCount;
         }
 
         /**
-         * Checks if number of return statements in method more
-         * than allowed.
-         * @param aAST method def associated with this context.
+         * Checks if we violates maximum allowed complexity.
+         * @param aAST a node we check now.
          */
         public void checkCount(DetailAST aAST)
         {
             if (mChecking && mCount > getMax()) {
-                log(aAST.getLineNo(), aAST.getColumnNo(), "return.count",
-                    new Integer(mCount), new Integer(getMax()));
+                DetailAST parentAST = aAST.getParent();
+
+                log(parentAST.getLineNo(), parentAST.getColumnNo(),
+                    "booleanExpressionComplexity",
+                    new Integer(mCount),
+                    new Integer(getMax()));
             }
         }
     }

@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 
 /**
  * <p>Checks that if a class defines a covariant method equals,
@@ -74,7 +75,7 @@ public class CovariantEqualsCheck extends Check
             DetailAST child = (DetailAST) objBlock.getFirstChild();
             while (child != null) {
                 if (child.getType() == TokenTypes.METHOD_DEF) {
-                    if (isEqualsMethod(child)) {
+                    if (CheckUtils.isEqualsMethod(child)) {
                         if (hasObjectParameter(child)) {
                             mHasEqualsObject = true;
                         }
@@ -100,34 +101,6 @@ public class CovariantEqualsCheck extends Check
                 }
             }
         }
-    }
-
-    /**
-     * Tests whether a method definition AST defines an equals covariant.
-     * @param aAST the method definition AST to test.
-     * Precondition: aAST is a TokenTypes.METHOD_DEF node.
-     * @return true if aAST defines an equals covariant.
-     */
-    private boolean isEqualsMethod(DetailAST aAST)
-    {
-        // non-static, non-abstract?
-        final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers.branchContains(TokenTypes.LITERAL_STATIC)
-            || modifiers.branchContains(TokenTypes.ABSTRACT))
-        {
-            return false;
-        }
-
-        // named "equals"?
-        final DetailAST nameNode = aAST.findFirstToken(TokenTypes.IDENT);
-        final String name = nameNode.getText();
-        if (!name.equals("equals")) {
-            return false;
-        }
-
-        // one parameter?
-        final DetailAST paramsNode = aAST.findFirstToken(TokenTypes.PARAMETERS);
-        return (paramsNode.getChildCount() == 1);
     }
 
     /**

@@ -107,7 +107,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /** {@inheritDoc} */
-    public final void visitToken(DetailAST aAST)
+    public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
         case TokenTypes.CTOR_DEF:
@@ -122,7 +122,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /** {@inheritDoc} */
-    public final void leaveToken(DetailAST aAST)
+    public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
         case TokenTypes.CTOR_DEF:
@@ -179,7 +179,6 @@ public abstract class AbstractComplexityCheck
 
         return mCurrentValue;
     }
-
 
     /** Process the start of the method definition */
     private void visitMethodDef()
