@@ -954,7 +954,9 @@ options {
 
     private CommentManager mCommentManager = null;
 
-    void setCommentManager(CommentManager aCommentManager)
+    // TODO: Check visibility of this method one parsing is done in central
+    // utility method
+    public void setCommentManager(CommentManager aCommentManager)
     {
         mCommentManager = aCommentManager;
     }
