@@ -30,6 +30,33 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
+    public void testInlineRegexpHeader()
+            throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("header", "^/*$\\n// .*\\n// Created: 2002\\n^//.*\\n^//.*");
+        final String[] expected = {
+            "3: Line does not match expected header line of '// Created: 2002'."
+        };
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+    }
+
+    public void testFailureForMultilineRegexp()
+            throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("header", "^(.*\\n.*)");
+        try {
+            createChecker(checkConfig);
+            fail("Checker creation should not succeed when regexp spans multiple lines");
+        }
+        catch (CheckstyleException ex) {
+            // expected exception
+        }
+    }
+
     public void testRegexpHeaderIgnore() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -122,7 +149,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         }
     }
 
-    public void testIllegalArgs()
+    public void testNonExistingHeaderFile()
             throws Exception
     {
         final DefaultConfiguration checkConfig =

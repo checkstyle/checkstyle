@@ -76,8 +76,8 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  *   &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
  *&lt;/module&gt;
  *     </pre>
- * <p><u>Note</u>: ignoreLines property was removed you should use ^.*$ regexp
- * for line to ignore it.
+ * <p><u>Note</u>: ignoreLines property has been removed from this check to
+ * simplify it. The regular expression &quot;^.*$&quot; can be used to ignore a line.
  * </p>
  *
  * @author Lars Kühne
@@ -129,6 +129,25 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
         throws ConversionException
     {
         super.setHeaderFile(aFileName);
+        initHeaderRegexps();
+    }
+
+    /**
+     * Set the header to check against. Individual lines in the header
+     * must be separated by '\n' characters.
+     * @param aHeader header content to check against.
+     * @throws ConversionException if the header cannot be loaded or one line
+     * is not a regexp.
+     */
+    public void setHeader(String aHeader)
+    {
+        super.setHeader(aHeader);
+        initHeaderRegexps();
+    }
+
+    /** Initializes {@link #mHeaderRegexps} from {@link #mHeaderLines}. */
+    private void initHeaderRegexps()
+    {
         final String[] headerLines = getHeaderLines();
         if (headerLines != null) {
             mHeaderRegexps = new RE[headerLines.length];
@@ -139,7 +158,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
                 }
                 catch (RESyntaxException ex) {
                     throw new ConversionException(
-                            "line " + i + " in header file is not a regexp");
+                            "line " + i + " in header specification is not a regular expression");
                 }
             }
         }

@@ -35,6 +35,7 @@
 
       <p>Checkstyle 3</p>
       <ul>
+        <li><a href="#release3_5">Release 3.5</a></li>
         <li><a href="#release3_4">Release 3.4</a></li>
         <li><a href="#release3_3">Release 3.3</a></li>
         <li><a href="#release3_2">Release 3.2</a></li>
@@ -67,6 +68,19 @@
           core classes (commons-beanutils-core.jar) are required.
           </li>
         </ul>
+
+      <p class="body">
+        New features:
+      </p>
+        <ul>
+          <li class="body">
+          Java parser supports JDK 1.5 source files (metadata, 
+          enhanced for loops, generics, enums).
+          </li>
+        </ul>
+
+      <a name="release3_5"></a>
+      <h2>Release 3.5</h2>
 
       <p class="body">
         New features:
@@ -124,6 +138,10 @@ checkstyle-user</a>).</li>
           <li class="body">FinalLocalVariable ignores parameters of interface methods
           and abstract methods.
           (request 993922 and bug 1002849).</li>
+
+          <li class="body">Header and RegexpHeader checks allow header
+          specification directly in the checkstyle configuration file,
+          not only in an external file (request 1041590). 
 
           <li class="body">com.puppycrawl.tools.checkstyle.gui.Main accepts an
           optional file name in the command line.
