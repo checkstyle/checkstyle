@@ -291,6 +291,32 @@ public class Configuration
         loadHeaderFile();
     }
 
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Setters
+    ////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Set the root directory for files.
+     * @param aRoot the root directory
+     */
+    public void setRootDir(File aRoot)
+    {
+        if ((aRoot == null) || !aRoot.isDirectory() || !aRoot.isAbsolute()) {
+            throw new IllegalArgumentException("Invalid root directory");
+        }
+        mRootDir = aRoot;
+    }
+
+    /**
+     * Set the class loader for locating classes.
+     * @param aLoader the class loader
+     */
+    public void setClassLoader(ClassLoader aLoader)
+    {
+        mLoader = aLoader;
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Getters
     ////////////////////////////////////////////////////////////////////////////
@@ -352,302 +378,302 @@ public class Configuration
     }
 
     /** @return the class loader **/
-    public ClassLoader getClassLoader()
+    ClassLoader getClassLoader()
     {
         return mLoader;
     }
 
     /** @return locale language to report messages  **/
-    public String getLocaleLanguage()
+    String getLocaleLanguage()
     {
         return getStringProperty(Defn.LOCALE_LANGUAGE_PROP);
     }
 
     /** @return locale country to report messages  **/
-    public String getLocaleCountry()
+    String getLocaleCountry()
     {
         return getStringProperty(Defn.LOCALE_COUNTRY_PROP);
     }
 
     /** @return pattern to match to-do lines **/
-    public String getTodoPat()
+    String getTodoPat()
     {
         return getPatternProperty(Defn.TODO_PATTERN_PROP);
     }
 
     /** @return regexp to match to-do lines **/
-    public RE getTodoRegexp()
+    RE getTodoRegexp()
     {
         return getRegexpProperty(Defn.TODO_PATTERN_PROP);
     }
 
     /** @return pattern to match parameters **/
-    public String getParamPat()
+    String getParamPat()
     {
         return getPatternProperty(Defn.PARAMETER_PATTERN_PROP);
     }
 
     /** @return regexp to match parameters **/
-    public RE getParamRegexp()
+    RE getParamRegexp()
     {
         return getRegexpProperty(Defn.PARAMETER_PATTERN_PROP);
     }
 
     /** @return pattern to match static variables **/
-    public String getStaticPat()
+    String getStaticPat()
     {
         return getPatternProperty(Defn.STATIC_PATTERN_PROP);
     }
 
     /** @return regexp to match static variables **/
-    public RE getStaticRegexp()
+    RE getStaticRegexp()
     {
         return getRegexpProperty(Defn.STATIC_PATTERN_PROP);
     }
 
     /** @return pattern to match static final variables **/
-    public String getStaticFinalPat()
+    String getStaticFinalPat()
     {
         return getPatternProperty(Defn.CONST_PATTERN_PROP);
     }
 
     /** @return regexp to match static final variables **/
-    public RE getStaticFinalRegexp()
+    RE getStaticFinalRegexp()
     {
         return getRegexpProperty(Defn.CONST_PATTERN_PROP);
     }
 
     /** @return pattern to match member variables **/
-    public String getMemberPat()
+    String getMemberPat()
     {
         return getPatternProperty(Defn.MEMBER_PATTERN_PROP);
     }
 
     /** @return regexp to match member variables **/
-    public RE getMemberRegexp()
+    RE getMemberRegexp()
     {
         return getRegexpProperty(Defn.MEMBER_PATTERN_PROP);
     }
 
     /** @return pattern to match public member variables **/
-    public String getPublicMemberPat()
+    String getPublicMemberPat()
     {
         return getPatternProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP);
     }
 
     /** @return regexp to match public member variables **/
-    public RE getPublicMemberRegexp()
+    RE getPublicMemberRegexp()
     {
         return getRegexpProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP);
     }
 
     /** @return pattern to match type names **/
-    public String getTypePat()
+    String getTypePat()
     {
         return getPatternProperty(Defn.TYPE_PATTERN_PROP);
     }
 
     /** @return regexp to match type names **/
-    public RE getTypeRegexp()
+    RE getTypeRegexp()
     {
         return getRegexpProperty(Defn.TYPE_PATTERN_PROP);
     }
 
     /** @return pattern to match local variables **/
-    public String getLocalVarPat()
+    String getLocalVarPat()
     {
         return getPatternProperty(Defn.LOCAL_VAR_PATTERN_PROP);
     }
 
     /** @return regexp to match local variables **/
-    public RE getLocalVarRegexp()
+    RE getLocalVarRegexp()
     {
         return getRegexpProperty(Defn.LOCAL_VAR_PATTERN_PROP);
     }
 
     /** @return pattern to match local final variables **/
-    public String getLocalFinalVarPat()
+    String getLocalFinalVarPat()
     {
         return getPatternProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP);
     }
 
     /** @return regexp to match local final variables **/
-    public RE getLocalFinalVarRegexp()
+    RE getLocalFinalVarRegexp()
     {
         return getRegexpProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP);
     }
 
     /** @return pattern to match method names **/
-    public String getMethodPat()
+    String getMethodPat()
     {
         return getPatternProperty(Defn.METHOD_PATTERN_PROP);
     }
 
     /** @return regexp to match method names **/
-    public RE getMethodRegexp()
+    RE getMethodRegexp()
     {
         return getRegexpProperty(Defn.METHOD_PATTERN_PROP);
     }
 
     /** @return the maximum line length **/
-    public int getMaxLineLength()
+    int getMaxLineLength()
     {
         return getIntProperty(Defn.MAX_LINE_LENGTH_PROP);
     }
 
     /** @return the maximum method length **/
-    public int getMaxMethodLength()
+    int getMaxMethodLength()
     {
         return getIntProperty(Defn.MAX_METHOD_LENGTH_PROP);
     }
 
     /** @return the maximum number parameters**/
-    public int getMaxParameters()
+    int getMaxParameters()
     {
         return getIntProperty(Defn.MAX_PARAMETERS_PROP);
     }
 
     /** @return the maximum constructor length **/
-    public int getMaxConstructorLength()
+    int getMaxConstructorLength()
     {
         return getIntProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP);
     }
 
     /** @return the maximum file length **/
-    public int getMaxFileLength()
+    int getMaxFileLength()
     {
         return getIntProperty(Defn.MAX_FILE_LENGTH_PROP);
     }
 
     /** @return whether to allow tabs **/
-    public boolean isAllowTabs()
+    boolean isAllowTabs()
     {
         return getBooleanProperty(Defn.ALLOW_TABS_PROP);
     }
 
     /** @return distance between tab stops */
-    public int getTabWidth()
+    int getTabWidth()
     {
         return getIntProperty(Defn.TAB_WIDTH_PROP);
     }
 
     /** @return whether to allow protected data **/
-    public boolean isAllowProtected()
+    boolean isAllowProtected()
     {
         return getBooleanProperty(Defn.ALLOW_PROTECTED_PROP);
     }
 
     /** @return whether to allow package data **/
-    public boolean isAllowPackage()
+    boolean isAllowPackage()
     {
         return getBooleanProperty(Defn.ALLOW_PACKAGE_PROP);
     }
 
     /** @return whether to allow having no author tag **/
-    public boolean isAllowNoAuthor()
+    boolean isAllowNoAuthor()
     {
         return getBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP);
     }
 
     /** @return whether to require having version tag */
-    public boolean isRequireVersion()
+    boolean isRequireVersion()
     {
         return getBooleanProperty(Defn.REQUIRE_VERSION_PROP);
     }
 
     /** @return visibility scope where Javadoc is checked **/
-    public Scope getJavadocScope()
+    Scope getJavadocScope()
     {
         return mJavadocScope;
     }
 
     /** @return whether javadoc package documentation is required */
-    public boolean isRequirePackageHtml()
+    boolean isRequirePackageHtml()
     {
         return getBooleanProperty(Defn.REQUIRE_PACKAGE_HTML_PROP);
     }
 
     /** @return whether to process imports **/
-    public boolean isIgnoreImports()
+    boolean isIgnoreImports()
     {
         return getBooleanProperty(Defn.IGNORE_IMPORTS_PROP);
     }
 
     /** @return whether to check unused @throws **/
-    public boolean isCheckUnusedThrows()
+    boolean isCheckUnusedThrows()
     {
         return getBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP);
     }
 
     /** @return Set of pkg prefixes that are illegal in import statements */
-    public Set getIllegalImports()
+    Set getIllegalImports()
     {
         return getStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP);
     }
 
     /** @return Set of classes where calling a constructor is illegal */
-    public Set getIllegalInstantiations()
+    Set getIllegalInstantiations()
     {
         return getStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP);
     }
 
     /** @return pattern to exclude from line lengh checking **/
-    public String getIgnoreLineLengthPat()
+    String getIgnoreLineLengthPat()
     {
         return getPatternProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP);
     }
 
     /** @return regexp to exclude from line lengh checking **/
-    public RE getIgnoreLineLengthRegexp()
+    RE getIgnoreLineLengthRegexp()
     {
         return getRegexpProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP);
     }
 
     /** @return whether to ignore checks for whitespace **/
-    public boolean isIgnoreWhitespace()
+    boolean isIgnoreWhitespace()
     {
         return getBooleanProperty(Defn.IGNORE_WHITESPACE_PROP);
     }
 
     /** @return whether to ignore checks for whitespace after casts **/
-    public boolean isIgnoreCastWhitespace()
+    boolean isIgnoreCastWhitespace()
     {
         return getBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP);
     }
 
     /** @return whether to ignore checks for braces **/
-    public boolean isIgnoreBraces()
+    boolean isIgnoreBraces()
     {
         return getBooleanProperty(Defn.IGNORE_BRACES_PROP);
     }
 
     /** @return whether to ignore long 'L' **/
-    public boolean isIgnoreLongEll()
+    boolean isIgnoreLongEll()
     {
         return getBooleanProperty(Defn.IGNORE_LONG_ELL_PROP);
     }
 
     /** @return whether to ignore 'public' keyword in interface definitions **/
-    public boolean isIgnorePublicInInterface()
+    boolean isIgnorePublicInInterface()
     {
         return getBooleanProperty(Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP);
     }
 
     /** @return whether to ignore max line length for import statements **/
-    public boolean isIgnoreImportLength()
+    boolean isIgnoreImportLength()
     {
         return getBooleanProperty(Defn.IGNORE_IMPORT_LENGTH_PROP);
     }
 
     /** @return the header lines to check for **/
-    public String[] getHeaderLines()
+    String[] getHeaderLines()
     {
         return mHeaderLines;
     }
 
 
     /** @return if lines in header file are regular expressions */
-    public boolean getHeaderLinesRegexp()
+    boolean getHeaderLinesRegexp()
     {
         return getBooleanProperty(Defn.HEADER_LINES_REGEXP_PROP);
     }
@@ -656,41 +682,16 @@ public class Configuration
      * @param aLineNo a line number
      * @return if <code>aLineNo</code> is one of the ignored header lines.
      */
-    public boolean isHeaderIgnoreLineNo(int aLineNo)
+    boolean isHeaderIgnoreLineNo(int aLineNo)
     {
         return mHeaderIgnoreLineNo.contains(new Integer(aLineNo));
     }
 
     /** @return the File of the cache file **/
-    public String getCacheFile()
+    String getCacheFile()
     {
         final String fname = getStringProperty(Defn.CACHE_FILE_PROP);
         return (fname == null) ? null : getAbsoluteFilename(fname);
-    }
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Setters
-    ////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Set the root directory for files.
-     * @param aRoot the root directory
-     */
-    public void setRootDir(File aRoot)
-    {
-        if ((aRoot == null) || !aRoot.isDirectory() || !aRoot.isAbsolute()) {
-            throw new IllegalArgumentException("Invalid root directory");
-        }
-        mRootDir = aRoot;
-    }
-
-    /**
-     * Set the class loader for locating classes.
-     * @param aLoader the class loader
-     */
-    public void setClassLoader(ClassLoader aLoader)
-    {
-        mLoader = aLoader;
     }
 
     /**
@@ -808,25 +809,25 @@ public class Configuration
     }
 
     /** @return the left curly placement option for methods **/
-    public LeftCurlyOption getLCurlyMethod()
+    LeftCurlyOption getLCurlyMethod()
     {
         return getLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP);
     }
 
     /** @return the left curly placement option for types **/
-    public LeftCurlyOption getLCurlyType()
+    LeftCurlyOption getLCurlyType()
     {
         return getLeftCurlyOptionProperty(Defn.LCURLY_TYPE_PROP);
     }
 
     /** @return the left curly placement option for others **/
-    public LeftCurlyOption getLCurlyOther()
+    LeftCurlyOption getLCurlyOther()
     {
         return getLeftCurlyOptionProperty(Defn.LCURLY_OTHER_PROP);
     }
 
     /** @return the right curly placement option **/
-    public RightCurlyOption getRCurly()
+    RightCurlyOption getRCurly()
     {
         return mRCurly;
     }
@@ -838,25 +839,25 @@ public class Configuration
     }
 
     /** @return the try block option **/
-    public BlockOption getTryBlock()
+    BlockOption getTryBlock()
     {
         return getBlockOptionProperty(Defn.TRY_BLOCK_PROP);
     }
 
     /** @return the catch block option **/
-    public BlockOption getCatchBlock()
+    BlockOption getCatchBlock()
     {
         return getBlockOptionProperty(Defn.CATCH_BLOCK_PROP);
     }
 
     /** @return the finally block option **/
-    public BlockOption getFinallyBlock()
+    BlockOption getFinallyBlock()
     {
         return getBlockOptionProperty(Defn.FINALLY_BLOCK_PROP);
     }
 
     /** @return the parenthesis padding option **/
-    public PadOption getParenPadOption()
+    PadOption getParenPadOption()
     {
         return mParenPadOption;
     }
@@ -868,7 +869,7 @@ public class Configuration
     }
 
     /** @return the wrapping on operator option **/
-    public WrapOpOption getWrapOpOption()
+    WrapOpOption getWrapOpOption()
     {
         return mWrapOpOption;
     }
@@ -880,7 +881,7 @@ public class Configuration
     }
 
     /** @return the base directory **/
-    public String getBasedir()
+    String getBasedir()
     {
         return getStringProperty(Defn.BASEDIR_PROP);
     }
