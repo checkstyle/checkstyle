@@ -15,6 +15,7 @@ public class EntityBeanEjbSelectCheckTest extends BaseCheckTestCase
             "110:33: Method ejbSelectSomething must be public.",
             "110:33: Method ejbSelectSomething must not have modifier final.",
             "110:33: Method ejbSelectSomething must not have modifier static.",
+            "110:33: Method ejbSelectSomething must throw javax.ejb.FinderException.",
         };
         verify(checkConfig, getPath("InputEntityBean.java"), expected);
     }
