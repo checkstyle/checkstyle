@@ -666,19 +666,19 @@ final class ExceptionInfo
     }
 
     /** @return <code>FullIdent</code> of the exception. */
-    final FullIdent getFullIdent()
+    FullIdent getFullIdent()
     {
         return mIdent;
     }
 
     /** Mark that the exception has associated throws tag */
-    final void setFound()
+    void setFound()
     {
         mFound = true;
     }
 
     /** @return whether the exception has throws tag associated with */
-    final boolean isFound()
+    boolean isFound()
     {
         return mFound;
     }
