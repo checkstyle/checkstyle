@@ -37,6 +37,15 @@ import com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck;
  *     &lt;property name="format" value="a href"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p> An example of how to configure the check to forbid leading zeros in an
+ * integer literal, other than a hex value is:
+ * <pre>
+ * &lt;module name="IllegalTokenText"&gt;
+ *     &lt;property name="tokens" value="NUM_INT,NUM_LONG"/&gt;
+ *     &lt;property name="format" value="^0[^lx]"/&gt;
+ *     &lt;property name="ignoreCase" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
  * @author Rick Giles
  */
 public class IllegalTokenTextCheck
