@@ -74,6 +74,7 @@
         </module>
         <module name="MethodLength"/>
         <module name="MethodName"/>
+        <module name="MethodParamPad"/>
         <module name="ModifierOrder"/>
         <module name="NeedBraces"/>
         <module name="NoWhitespaceAfter"/>
