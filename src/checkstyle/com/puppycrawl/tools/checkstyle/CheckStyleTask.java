@@ -49,6 +49,9 @@ public class CheckStyleTask
     /** name of file to check **/
     private String mFileName;
 
+    /** whether to fail build on violations **/
+    private boolean mFailOnViolation = true;
+
     /** contains the filesets to process **/
     private final List mFileSets = new ArrayList();
 
@@ -189,6 +192,12 @@ public class CheckStyleTask
         }
     }
 
+    /** @param aFail whether to fail if a violation is found **/
+    public void setFailOnViolation(boolean aFail)
+    {
+	mFailOnViolation = aFail;
+    }
+
     /** @param aNum **/
     public void setHeaderIgnoreLine(int aNum)
     {
@@ -264,7 +273,7 @@ public class CheckStyleTask
             }
         }
 
-        if (numErrs > 0) {
+        if ((numErrs > 0) && mFailOnViolation) {
             throw new BuildException("Got " + numErrs + " errors.", location);
         }
     }

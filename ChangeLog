@@ -1,5 +1,12 @@
 2001-10-31  Oliver Burn  <checkstyle@puppycrawl.com>
 
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java:
+	Included patch to control whether the build fails on violation errors.
+	From Michael McDougall [ mmcdouga _AT_ saul _DOT_ cis _DOT_ upenn
+	_DOT_ edu]
+
+2001-10-31  Oliver Burn  <checkstyle@puppycrawl.com>
+
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java, src/checkstyle/com/puppycrawl/tools/checkstyle/StringArrayReader.java:
 	Included performance patch from Lars Kuhne [lars _DOT_ kuehne _AT_
 	planet-interkom _DOT_ de]. Really nice performance increase.
