@@ -82,11 +82,11 @@
           <li class="body">Added NPathComplexity check from Simon
           Harris (request 750757)</li>
 
-          <li class="body">Added several more log() method to 
-          AbtractViolationReporter. (request 843551)</li>
+          <li class="body">Added several more log() methods to
+          AbstractViolationReporter. (request 843551)</li>
 
-          <li class="body">Added check to ensure that default is a last 
-          label in the switch statement.(module DefaultComesLast, 
+          <li class="body">Added check to ensure that default is a last
+          label in the switch statement.(module DefaultComesLast,
           request 754486 )</li>
 
           <li class="body">Added check to ensure that all classes
@@ -98,7 +98,7 @@
           request 754438)</li>
 
           <li class="body">Added check to ensure that every variable
-          declared in its own statement and on its own line (module
+          is declared in its own statement and on its own line (module
           MultipleVariableDeclarations, requests 639233, 753858,
           844705)</li>
 
@@ -139,6 +139,10 @@
           <li class="body">Added format property to ReturnCount check
           to configure ignored method names (request 904437)</li>
 
+          <li class="body">Added attribute 'default' to configuration
+          &lt;property&gt; tags, improves usability for centralized
+          configuration files.</li>
+
         </ul>
 
       <p class="body">
@@ -153,8 +157,8 @@
         <li class="body">FinalParameter now reports column of start of
         parameter declaration. (bug 864900)</li>
 
-        <li class="body">Fixed inconsistent handling of NLOW (new 
-        line on wrap) option by LeftCurly check. (bug 866501)</li> 
+        <li class="body">Fixed inconsistent handling of NLOW (new
+        line on wrap) option by LeftCurly check. (bug 866501)</li>
 
         <li class="body">JDK 1.4 classes used by usage checks.
         (bug 876570)</li>
@@ -196,11 +200,11 @@
           &quot;^.*$&quot; regexp for this line.</li>
 
           <li class="body">Fixing bug 895072 required changing the logic of
-          the NoWhiteSpaceBefore and ParenPad checks. 
+          the NoWhiteSpaceBefore and ParenPad checks.
           When a for loop has an empty initializer
-          (like <span class="code">for (; i < j; i++)</span>) 
+          (like <span class="code">for (; i < j; i++)</span>)
           both checks will not check whitespace between the opening parenthesis
-          and the first semicolon any more. 
+          and the first semicolon any more.
           To enforce your coding rules for such code, you have to use
           the EmptyForInitializerPad check (not available yet).</li>
 

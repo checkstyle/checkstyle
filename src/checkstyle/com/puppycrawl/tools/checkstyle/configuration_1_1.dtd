@@ -13,7 +13,8 @@
 <!ELEMENT property EMPTY>
 <!ATTLIST property
 	name NMTOKEN #REQUIRED
-	value CDATA #REQUIRED
+    value CDATA #REQUIRED
+    default CDATA #IMPLIED
 >
 
 <!--

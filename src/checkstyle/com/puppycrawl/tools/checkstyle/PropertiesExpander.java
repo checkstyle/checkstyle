@@ -20,8 +20,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.util.Properties;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-
 /**
  * Resolves external properties from an
  * underlying <code>Properties</code> object.
@@ -53,13 +51,7 @@ public final class PropertiesExpander
      * @see PropertyResolver#resolve
      */
     public String resolve(String aPropertyName)
-        throws CheckstyleException
     {
-        if (!mProperties.containsKey(aPropertyName)) {
-            throw new CheckstyleException(
-                "Property ${" + aPropertyName + "} has not been set");
-        }
-
         return mProperties.getProperty(aPropertyName);
     }
 }
