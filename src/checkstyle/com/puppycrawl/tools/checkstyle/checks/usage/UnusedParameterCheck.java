@@ -39,7 +39,7 @@ public class UnusedParameterCheck extends AbstractUsageCheck
 {
     /** controls checking of catch clause parameter */
     private boolean mIgnoreCatch = true;
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -47,7 +47,7 @@ public class UnusedParameterCheck extends AbstractUsageCheck
             TokenTypes.PARAMETER_DEF,
         };
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.checks.usage.AbstractUsageCheck */
     public String getErrorKey()
     {
@@ -63,29 +63,28 @@ public class UnusedParameterCheck extends AbstractUsageCheck
             if (parent.getType() == TokenTypes.PARAMETERS) {
                 final DetailAST grandparent = parent.getParent();
                 if (grandparent != null) {
-                    if (grandparent.getType() == TokenTypes.METHOD_DEF)
-                    {
+                    if (grandparent.getType() == TokenTypes.METHOD_DEF) {
                         final DetailAST modifiersAST =
-                        grandparent.findFirstToken(TokenTypes.MODIFIERS);
+                            grandparent.findFirstToken(TokenTypes.MODIFIERS);
                         if ((modifiersAST != null)
                             && !modifiersAST.branchContains(TokenTypes.ABSTRACT)
                             && !ScopeUtils.inInterfaceBlock(aAST))
                         {
                             result = true;
-                        }                   
+                        }
                     }
                     else if (grandparent.getType() == TokenTypes.CTOR_DEF) {
                         result = true;
-                    }               
+                    }
                 }
             }
             else if (parent.getType() == TokenTypes.LITERAL_CATCH) {
                 result = !mIgnoreCatch;
             }
         }
-        return result;   
+        return result;
     }
-    
+
     /**
      * Control whether unused catch clause parameters are flagged.
      * @param aIgnoreCatch whether unused catch clause parameters

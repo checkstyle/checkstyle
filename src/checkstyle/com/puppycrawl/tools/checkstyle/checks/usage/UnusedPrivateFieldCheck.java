@@ -46,7 +46,6 @@ public class UnusedPrivateFieldCheck
             TokenTypes.VARIABLE_DEF,
         };
     }
-    
 
     /** @see com.puppycrawl.tools.checkstyle.checks.usage.AbstractUsageCheck */
     public String getErrorKey()

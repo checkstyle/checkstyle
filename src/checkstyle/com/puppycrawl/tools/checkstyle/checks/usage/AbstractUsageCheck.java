@@ -45,7 +45,7 @@ public abstract class AbstractUsageCheck
 {
     /** determines whether all checks are single, intra-file checks */
     private static boolean sIsSingleFileCheckSet = true;
-    
+
     /** the regexp to match against */
     private RE mRegexp = null;
     /** the format string of the regexp */
@@ -85,7 +85,7 @@ public abstract class AbstractUsageCheck
     {
         // use my class loader
         ClassManager.setClassLoader(getClassLoader());
-        
+
         final String fileName = getFileContents().getFilename();
         ASTManager.getInstance().addTree(fileName, aRootAST);
     }
@@ -124,7 +124,7 @@ public abstract class AbstractUsageCheck
      */
     public void logError(Exception aException)
     {
-        log(0, "general.exception", new String[] { aException.getMessage()});
+        log(0, "general.exception", new String[] {aException.getMessage()});
     }
 
     /**
@@ -134,14 +134,15 @@ public abstract class AbstractUsageCheck
      * @param aFile the file to add.
      * @param aAST the DetailAST to add.
     */
-    private void addToTree(SymTabAST aRoot, File aFile, DetailAST aAST) {
+    private void addToTree(SymTabAST aRoot, File aFile, DetailAST aAST)
+    {
         // add aFile to aRoot
         final SymTabAST fileNode =
             SymTabASTFactory.create(0, aFile.getAbsolutePath());
         fileNode.setFile(aFile);
         aRoot.addChild(fileNode);
         fileNode.setParent(aRoot);
-        
+
         // add aAST to aFile
         final SymTabAST child = SymTabASTFactory.create(aAST);
         child.setFile(aFile);
@@ -153,13 +154,13 @@ public abstract class AbstractUsageCheck
     /**
      * Determines the reference count for a DetailAST.
      * @param aAST the DetailAST to count.
-     * @return the number of references to aAST. 
+     * @return the number of references to aAST.
      */
     private int getReferenceCount(DetailAST aAST)
     {
         final SymTabAST ident = ASTManager.getInstance().get(aAST);
         final Definition definition =
-            (Definition)ident.getDefinition();
+            (Definition) ident.getDefinition();
         if (definition != null) {
             return definition.getNumReferences();
         }
@@ -183,9 +184,10 @@ public abstract class AbstractUsageCheck
 
     /**
      * Applies this check to a set of nodes.
-     * @param nodes the nodes to check.
+     * @param aNodes the nodes to check.
      */
-    public void applyTo(Set aNodes) {
+    public void applyTo(Set aNodes)
+    {
         final Iterator it = aNodes.iterator();
         while (it.hasNext()) {
             final DetailAST nameAST = (DetailAST) it.next();
