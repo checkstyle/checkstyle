@@ -36,6 +36,9 @@ public class SeverityMatchFilter
     /** the severity level to accept */
     private SeverityLevel mSeverityLevel = SeverityLevel.ERROR;
 
+    /** whether to accept or reject on severity matches */
+    private boolean mAcceptOnMatch = true;
+
     /**
      * Sets the severity level.  The string should be one of the names
      * defined in the <code>SeverityLevel</code> class.
@@ -48,6 +51,15 @@ public class SeverityMatchFilter
         mSeverityLevel = SeverityLevel.getInstance(aSeverity);
     }
 
+    /**
+     * Sets whether to accept or reject on matching severity level.
+     * @param aAcceptOnMatch if true, accept on matches; if
+     * false, reject on matches.
+     */
+    public final void setAcceptOnMatch(boolean aAcceptOnMatch)
+    {
+        mAcceptOnMatch = aAcceptOnMatch;
+    }
 
     /** @see com.puppycrawl.tools.checkstyle.filter.Filter */
     public boolean accept(Object aObject)
@@ -57,7 +69,12 @@ public class SeverityMatchFilter
         }
 
         final AuditEvent event = (AuditEvent) aObject;
-
-        return mSeverityLevel.equals(event.getSeverityLevel());
+        boolean result = mSeverityLevel.equals(event.getSeverityLevel());
+        if (mAcceptOnMatch) {
+            return result;
+        }
+        else {
+            return !result;
+        }
     }
 }
