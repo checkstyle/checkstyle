@@ -85,9 +85,34 @@ public final class DetailAST
     {
         mChildCount = NOT_INITIALIZED;
         super.setFirstChild(aAST);
+        if (aAST != null) {
+            ((DetailAST) aAST).setParent(this);
+        }
     }
 
+    /**
+     * Sets AST's next sibling
+     * @param aAST the new next sibling
+     */
+    public void setNextSibling(AST aAST)
+    {
+        super.setNextSibling(aAST);
+        if (aAST != null && mParent != null) {
+            ((DetailAST) aAST).setParent(mParent);
+        }
+    }
 
+    /**
+     * Adds new child to AST
+     * @param aAST the new child
+     */
+    public void addChild(AST aAST)
+    {
+        super.addChild(aAST);
+        if (aAST != null) {
+            ((DetailAST) aAST).setParent(this);
+        }
+    }
 
     /**
      * Returns the number of child nodes one level below this node. That is is
@@ -120,6 +145,10 @@ public final class DetailAST
         // TODO: Check visibility, could be private
         // if set in setFirstChild() and friends
         mParent = aParent;
+        DetailAST nextSibling = (DetailAST) getNextSibling();
+        if (nextSibling != null) {
+            nextSibling.setParent(aParent);
+        }
     }
 
     /**
