@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.DoubleCheckedLockingCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheckTest;
@@ -149,6 +150,7 @@ public class AllTests {
         suite.addTest(new TestSuite(FileLengthCheckTest.class));
         suite.addTest(new TestSuite(FileSetCheckLifecycleTest.class));
         suite.addTest(new TestSuite(FinalClassCheckTest.class));
+        suite.addTest(new TestSuite(FinalLocalVariableCheckTest.class));
         suite.addTest(new TestSuite(FinalParametersCheckTest.class));
         suite.addTest(new TestSuite(GenericIllegalRegexpCheckTest.class));
         suite.addTest(new TestSuite(HeaderCheckTest.class));
