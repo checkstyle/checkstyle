@@ -695,14 +695,14 @@ tryBlock
 }
 	:	t:"try"^ compoundStatement[stmtBraces, isEmpty]
         {
-            ver.reportTryBlock(stmtBraces, isEmpty[0]);
+//            ver.reportTryBlock(stmtBraces, isEmpty[0]);
         }
 
         (
             c:"catch"^
             LPAREN! parameterDeclaration[ignoreMS] RPAREN! compoundStatement[stmtBraces, isEmpty]
             {
-                ver.reportCatchBlock(stmtBraces, isEmpty[0]);
+//                ver.reportCatchBlock(stmtBraces, isEmpty[0]);
             }
         )*
 
@@ -710,7 +710,7 @@ tryBlock
             f:"finally"^
             compoundStatement[stmtBraces, isEmpty]
             {
-                ver.reportFinallyBlock(stmtBraces, isEmpty[0]);
+//                ver.reportFinallyBlock(stmtBraces, isEmpty[0]);
             }
         )?
 	;
