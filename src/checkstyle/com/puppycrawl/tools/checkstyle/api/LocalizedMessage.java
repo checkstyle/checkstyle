@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.ResourceBundle;
 import java.util.Locale;
@@ -59,7 +59,10 @@ public class LocalizedMessage
      * @param aKey the key to locate the translation
      * @param aArgs arguments for the translation
      */
-    LocalizedMessage(int aLineNo, int aColNo, String aKey, Object[] aArgs)
+    public LocalizedMessage(int aLineNo,
+                            int aColNo,
+                            String aKey,
+                            Object[] aArgs)
     {
         mLineNo = aLineNo;
         mColNo = aColNo;
@@ -75,7 +78,7 @@ public class LocalizedMessage
      * @param aKey the key to locate the translation
      * @param aArgs arguments for the translation
      */
-    LocalizedMessage(int aLineNo, String aKey, Object[] aArgs)
+    public LocalizedMessage(int aLineNo, String aKey, Object[] aArgs)
     {
         this(aLineNo, 0, aKey, aArgs);
     }
@@ -106,7 +109,7 @@ public class LocalizedMessage
     }
 
     /** @param aLocale the locale to use for localization **/
-    static void setLocale(Locale aLocale)
+    public static void setLocale(Locale aLocale)
     {
         sLocale = aLocale;
     }

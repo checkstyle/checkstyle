@@ -2,6 +2,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import junit.framework.TestCase;
 import org.apache.regexp.RE;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 public class UtilsTest
     extends TestCase

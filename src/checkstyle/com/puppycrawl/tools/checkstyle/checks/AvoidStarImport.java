@@ -24,13 +24,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * Check that finds import statement that use the * notation.
- * <p>
- * Rationale: Importing all classes from a package leads to tight coupling between
- * packages and might lead to problems when a new version of a library introduces
- * name clashes.
+ *
+ * <p> Rationale: Importing all classes from a package leads to tight coupling
+ * between packages and might lead to problems when a new version of a library
+ * introduces name clashes.
  *
  * @author Oliver Burn
- * @version $Id: AvoidStarImport.java,v 1.2 2002-09-15 16:55:59 lkuehne Exp $
+ * @version $Id: AvoidStarImport.java,v 1.3 2002-09-17 12:33:29 oburn Exp $
  */
 public class AvoidStarImport extends ImportCheck
 {

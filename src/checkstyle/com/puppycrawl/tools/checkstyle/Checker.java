@@ -31,6 +31,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
 import org.apache.regexp.RESyntaxException;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 /**
  * This class provides the functionality to check a set of files.
