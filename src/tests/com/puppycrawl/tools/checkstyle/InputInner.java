@@ -36,4 +36,9 @@ class InputInner
             int packageVariable;
         }
     }
+
+    /** demonstrate bug in handling static final **/
+    protected static Object sWeird = new Object();
+    /** demonstrate bug in handling static final **/
+    static Object sWeird2 = new Object();
 }

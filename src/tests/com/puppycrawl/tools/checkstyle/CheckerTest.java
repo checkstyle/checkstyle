@@ -334,8 +334,9 @@ public class CheckerTest
             filepath + ":30: variable 'rData' missing Javadoc.",
             filepath + ":30: variable 'rData' must be private and have accessor methods.",
             filepath + ":33: variable 'protectedVariable' must be private and have accessor methods.",
-            filepath + ":36: variable 'packageVariable' must be private and have accessor methods."
-
+            filepath + ":36: variable 'packageVariable' must be private and have accessor methods.",
+            filepath + ":41: variable 'sWeird' must be private and have accessor methods.",
+            filepath + ":43: variable 'sWeird2' must be private and have accessor methods.",
         };
         verify(c, filepath, expected);
     }
