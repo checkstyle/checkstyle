@@ -385,7 +385,7 @@ final class StrArrayConverter extends AbstractArrayConverter
      * <li>If an element is itself delimited by matching single or double
      * quotes, the usual rules for interpreting a quoted String apply.</li>
      * </ul>
-     * 
+     *
      * @param aValue
      *            String value to be parsed
      * @return the list of Strings parsed from the array

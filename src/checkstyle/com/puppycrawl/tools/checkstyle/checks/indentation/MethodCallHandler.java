@@ -128,10 +128,10 @@ public class MethodCallHandler extends ExpressionHandler
 
     /**
      * Get the first AST of the specified method call.
-     * 
+     *
      * @param aAst
      *            the method call
-     * 
+     *
      * @return the first AST of the specified method call
      */
     private DetailAST getFirstAst(DetailAST aAst)
