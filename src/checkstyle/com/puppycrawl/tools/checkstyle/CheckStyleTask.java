@@ -241,39 +241,7 @@ public class CheckStyleTask
         // Create the checker
         Checker c = null;
         try {
-            try {
-                final Properties props = createOverridingProperties();
-                final Configuration config =
-                    ConfigurationLoader.loadConfiguration(
-                        mConfigLocation, new PropertiesExpander(props));
-
-                final DefaultContext context = new DefaultContext();
-                final ClassLoader loader =
-                    new AntClassLoader(getProject(), mClasspath);
-                context.add("classloader", loader);
-
-                c = new Checker();
-
-                //load the set of package names
-                if (mPackageNamesFile != null) {
-                    final ModuleFactory moduleFactory =
-                        PackageNamesLoader.loadModuleFactory(
-                            mPackageNamesFile.getAbsolutePath());
-                    c.setModuleFactory(moduleFactory);
-                }
-                c.contextualize(context);
-                c.configure(config);
-
-                // setup the listeners
-                final AuditListener[] listeners = getListeners();
-                for (int i = 0; i < listeners.length; i++) {
-                    c.addListener(listeners[i]);
-                }
-            }
-            catch (Exception e) {
-                throw new BuildException(
-                    "Unable to create a Checker: " + e.getMessage(), e);
-            }
+            c = createChecker();
 
             // Process the files
             final File[] files = scanFileSets();
@@ -296,6 +264,49 @@ public class CheckStyleTask
         }
     }
 
+    /**
+     * Creates new instance of <code>Checker</code>.
+     * @return new instance of <code>Checker</code>
+     */
+    private Checker createChecker()
+    {
+        Checker c = null;
+        try {
+            final Properties props = createOverridingProperties();
+            final Configuration config =
+                ConfigurationLoader.loadConfiguration(
+                    mConfigLocation, new PropertiesExpander(props));
+
+            final DefaultContext context = new DefaultContext();
+            final ClassLoader loader =
+                new AntClassLoader(getProject(), mClasspath);
+            context.add("classloader", loader);
+
+            c = new Checker();
+
+            //load the set of package names
+            if (mPackageNamesFile != null) {
+                final ModuleFactory moduleFactory =
+                    PackageNamesLoader.loadModuleFactory(
+                        mPackageNamesFile.getAbsolutePath());
+                c.setModuleFactory(moduleFactory);
+            }
+            c.contextualize(context);
+            c.configure(config);
+
+            // setup the listeners
+            final AuditListener[] listeners = getListeners();
+            for (int i = 0; i < listeners.length; i++) {
+                c.addListener(listeners[i]);
+            }
+        }
+        catch (Exception e) {
+            throw new BuildException(
+                "Unable to create a Checker: " + e.getMessage(), e);
+        }
+
+        return c;
+    }
     /**
      * Create the Properties object based on the arguments specified
      * to the ANT task.
