@@ -184,8 +184,16 @@
 
   <!-- Targets to verify that Xalan is in the classpath -->
   <target name="check.xalan">
-    <available property="have.xalan"
-               classname="org.apache.xalan.Version"/>
+    <condition property="have.xalan">
+      <or>
+        <!-- jdk 1.3 with modern Xalan -->
+        <available classname="org.apache.xalan.Version"/>
+        <!-- Xalan classes in jdk 1.4 (beta 3) are OK for running
+             the tests, but there is no Version class in jdk 1.4:
+             fallback to stable jaxp implementation class          -->
+        <available classname="org.apache.xalan.transformer.TransformerImpl"/>
+      </or>
+    </condition>
   </target>
   <target name="require.xalan" depends="check.xalan" unless="have.xalan">
     <fail message="Need to have Xalan in your CLASSPATH to run the tests. You can download it from http://xml.apache.org/."/>
@@ -221,11 +229,11 @@
     </junitreport>
 
     <!-- if only fail had an if attribute ... ugly workaround follows -->
-    <antcall target="tests.failed"/>
+    <antcall target="check.tests.failed"/>
 
   </target>
 
-  <target name="tests.failed" if="tests.have.failed">
+  <target name="check.tests.failed" if="tests.have.failed">
     <property name="report" value="${basedir}/${testreport.dir}/index.html"/>
     <fail message="Unit tests failed - Report is available in ${report}"/>
   </target>
