@@ -26,4 +26,12 @@ class InputOpWrap
         y = false
             && true;
     }
+    
+    void testAssignment()
+    {
+        int x
+            = 0; //error when checking assignment operators with EOL wrap option
+        int y =
+            0;
+    }
 }
