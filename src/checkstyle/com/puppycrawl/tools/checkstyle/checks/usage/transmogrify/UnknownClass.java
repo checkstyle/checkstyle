@@ -165,9 +165,7 @@ public class UnknownClass implements IClass {
         final UnknownClass other = (UnknownClass) o;
         return other.getName().equals(getName());
     }
-    else {
-        return false;
-    }
+    return false;
   }
 
   public String toString() {

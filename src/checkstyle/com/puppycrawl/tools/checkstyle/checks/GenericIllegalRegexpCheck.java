@@ -167,20 +167,14 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
                     // check if the expression is on the rest of the line
                     return findNonCommentMatch(aLine, aLineNumber, endCol);
                 }
-                else {
-                    // end of line reached
-                    return false;
-                }
+                // end of line reached
+                return false;
             }
-            else {
-                // not intersecting with comment
-                return true;
-            }
+            // not intersecting with comment
+            return true;
         }
-        else {
-            // no match is found
-            return false;
-        }
+        // no match is found
+        return false;
     }
 
     /** @return the regexp to match against */

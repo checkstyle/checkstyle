@@ -106,9 +106,7 @@ public class TokenTypesDoclet
                     aReporter.printError("Only one -destfile option allowed.");
                     return false;
                 }
-                else {
-                    foundDestFileOption = true;
-                }
+                foundDestFileOption = true;
             }
         }
         if (!foundDestFileOption) {

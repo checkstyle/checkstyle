@@ -100,10 +100,7 @@ public class MethodCallHandler extends ExpressionHandler
                 if (areOnSameLine(container.getMainAst(), getMainAst())) {
                     return container.getLevel();
                 }
-                else {
-                    return new IndentLevel(container.getLevel(),
-                                           getBasicOffset());
-                }
+                return new IndentLevel(container.getLevel(), getBasicOffset());
             }
 
             // if we get here, we are the child of the left hand side (name
@@ -126,16 +123,15 @@ public class MethodCallHandler extends ExpressionHandler
         if (lineStart != firstCol) {
             return new IndentLevel(lineStart);
         }
-        else {
-            return super.getLevelImpl();
-        }
+        return super.getLevelImpl();
     }
 
     /**
      * Get the first AST of the specified method call.
-     *
-     * @param aAst   the method call
-     *
+     * 
+     * @param aAst
+     *            the method call
+     * 
      * @return the first AST of the specified method call
      */
     private DetailAST getFirstAst(DetailAST aAst)

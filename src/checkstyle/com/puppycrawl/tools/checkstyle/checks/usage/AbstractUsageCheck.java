@@ -146,9 +146,8 @@ public abstract class AbstractUsageCheck
         if (definition != null) {
             return definition.getNumReferences();
         }
-        else {
-            return 0;
-        }
+
+        return 0;
     }
 
     /**

@@ -547,9 +547,7 @@ public class CheckStyleTask
             {
                 return createXMLLogger(aTask);
             }
-            else {
-                return createDefaultLogger(aTask);
-            }
+			return createDefaultLogger(aTask);
         }
 
         /**
@@ -580,9 +578,7 @@ public class CheckStyleTask
                 return new XMLLogger(
                     new LogOutputStream(aTask, Project.MSG_INFO), true);
             }
-            else {
-                return new XMLLogger(new FileOutputStream(mToFile), true);
-            }
+			return new XMLLogger(new FileOutputStream(mToFile), true);
         }
     }
 

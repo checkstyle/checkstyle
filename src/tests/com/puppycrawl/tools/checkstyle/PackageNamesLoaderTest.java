@@ -25,7 +25,6 @@ public class PackageNamesLoaderTest extends TestCase
     }
     
     public void testNoFile()
-        throws CheckstyleException
     {
         try {
             PackageNamesLoader.loadModuleFactory("NoFile");

@@ -82,8 +82,6 @@ public class ForHandler extends BlockParentHandler
         if (aChild instanceof ElseHandler) {
             return getLevel();
         }
-        else {
-            return super.suggestedChildLevel(aChild);
-        }
+        return super.suggestedChildLevel(aChild);
     }
 }
