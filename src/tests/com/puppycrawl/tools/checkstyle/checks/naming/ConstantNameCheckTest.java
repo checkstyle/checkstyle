@@ -28,8 +28,8 @@ public class ConstantNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
         final String[] expected = {
-            "25:29: Name 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
-            "142:30: Name 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'."
+            "25:29: Name 'badConstant' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "142:30: Name 'BAD__NAME' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'."
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
@@ -40,7 +40,7 @@ public class ConstantNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
         final String[] expected = {
-            "24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'."
+            "24:16: Name 'data' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'."
         };
         verify(checkConfig, getPath("InputInner.java"), expected);
     }

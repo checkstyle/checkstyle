@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * A <em>constant</em> is a <strong>static</strong> and <strong>final</strong>
  * field or an interface field, except <strong>serialVersionUID</strong>.
  * The format is a regular expression and defaults to
- * <strong>^[A-Z](_?[A-Z0-9]+)*$</strong>.
+ * <strong>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</strong>.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -59,7 +59,7 @@ public class ConstantNameCheck
     /** Creates a new <code>ConstantNameCheck</code> instance. */
     public ConstantNameCheck()
     {
-        super("^[A-Z](_?[A-Z0-9]+)*$");
+        super("^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
