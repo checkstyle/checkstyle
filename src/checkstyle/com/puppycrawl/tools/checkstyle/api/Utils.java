@@ -139,15 +139,25 @@ public final class Utils
     public static String[] getLines(String aFileName)
         throws IOException
     {
+        final ArrayList lines = new ArrayList();
         final LineNumberReader lnr =
             new LineNumberReader(new FileReader(aFileName));
-        final ArrayList lines = new ArrayList();
-        while (true) {
-            final String l = lnr.readLine();
-            if (l == null) {
-                break;
+        try {
+            while (true) {
+                final String l = lnr.readLine();
+                if (l == null) {
+                    break;
+                }
+                lines.add(l);
             }
-            lines.add(l);
+        }
+        finally {
+            try {
+                lnr.close();
+            }
+            catch (IOException e) {
+                ; // silently ignore
+            }
         }
 
         return (String[]) lines.toArray(new String[0]);
