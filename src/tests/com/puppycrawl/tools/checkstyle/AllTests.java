@@ -10,6 +10,10 @@ import junit.framework.TestSuite;
  */
 public class AllTests {
 
+    public static void main(String[] args) {
+        junit.textui.TestRunner.run(AllTests.class);
+    }
+
     public static Test suite() {
         TestSuite suite =
             new TestSuite("Test for com.puppycrawl.tools.checkstyle");
@@ -20,8 +24,6 @@ public class AllTests {
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
         suite.addTest(new TestSuite(FileLengthCheckTest.class));
         suite.addTest(new TestSuite(GenericIllegalRegexpCheckTest.class));
-        suite.addTest(new TestSuite(GlobalPropertiesSerializationTest.class));
-        suite.addTest(new TestSuite(GlobalPropertiesTest.class));
         suite.addTest(new TestSuite(HeaderCheckTest.class));
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
         suite.addTest(new TestSuite(IllegalImportCheckTest.class));
@@ -43,10 +45,7 @@ public class AllTests {
         suite.addTest(new TestSuite(NoWhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceBeforeCheckTest.class));
         suite.addTest(new TestSuite(OperatorWrapCheckTest.class));
-        
-        // TODO: Why does one test fail?
         suite.addTest(new TestSuite(OtherLeftCurlyCheckTest.class));
-        
         suite.addTest(new TestSuite(PackageNameCheckTest.class));
         suite.addTest(new TestSuite(ParameterNameCheckTest.class));
         suite.addTest(new TestSuite(ParameterNumberCheckTest.class));
@@ -70,6 +69,8 @@ public class AllTests {
         suite.addTest(new TestSuite(VisibilityModifierCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAroundTest.class));
+        suite.addTest(new TestSuite(ConfigSerializationTest.class));
+        suite.addTest(new TestSuite(ConfigurationTest.class));
         //$JUnit-END$
         return suite;
     }
