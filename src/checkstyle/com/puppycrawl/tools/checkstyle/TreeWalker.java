@@ -43,7 +43,7 @@ import antlr.TokenStreamException;
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-class TreeWalker
+public final class TreeWalker
 {
     /**
      * Overrides ANTLR error reporting so we completely control
