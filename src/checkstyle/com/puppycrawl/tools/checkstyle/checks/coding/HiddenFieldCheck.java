@@ -51,6 +51,16 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  *    &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * An example of how to configure the check so that it ignores the parameter of
+ * a setter method is:
+ * </p>
+ * <pre>
+ * &lt;module name="HiddenField"&gt;
+ *    &lt;property name="ignoreSetter" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+
  * @author Rick Giles
  * @version 1.0
  */
@@ -63,6 +73,9 @@ public class HiddenFieldCheck
 
     /** the regexp to match against */
     private RE mRegexp = null;
+
+    /** controls whether to check the parameter of a property setter method */
+    private boolean mIgnoreSetter = false;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -152,14 +165,58 @@ public class HiddenFieldCheck
                     final HashSet aFieldsSet = (HashSet) it.next();
                     if (aFieldsSet.contains(name)) {
                         if ((mRegexp == null) || (!getRegexp().match(name))) {
-                            log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                                "hidden.field", name);
-                            break;
+                            if (!isIgnoredSetterParam(aAST, name)) {
+                                log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                                    "hidden.field", name);
+                                break;
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    /**
+     * Decides whether to ignore an AST node that is the parameter of a
+     * setter method, where the property setter method for field 'xyz' has
+     * name 'setXyz', one parameter named 'xyz', and return type void.
+     * @param aAST the AST to check.
+     * @param aName the name of aAST.
+     * @return true if aAST should be ignored because check property
+     * ignoreSetter is true and aAST is the parameter of a setter method.
+     */
+    private boolean isIgnoredSetterParam(DetailAST aAST, String aName)
+    {
+        if (!(aAST.getType() == TokenTypes.PARAMETER_DEF)
+            || !mIgnoreSetter)
+        {
+            return false;
+        }
+        //single parameter?
+        final DetailAST parametersAST = aAST.getParent();
+        if (parametersAST.getChildCount() != 1)
+        {
+            return false;
+        }
+        //method parameter, not constructor parameter?
+        final DetailAST methodAST = parametersAST.getParent();
+        if (methodAST.getType() != TokenTypes.METHOD_DEF) {
+            return false;
+        }
+        //property setter name?
+        final String expectedName =
+            "set" + aName.substring(0, 1).toUpperCase() + aName.substring(1);
+        final DetailAST methodNameAST
+            = methodAST.findFirstToken(TokenTypes.IDENT);
+        final String methodName = methodNameAST.getText();
+        if (!methodName.equals(expectedName)) {
+            return false;
+        }
+        //void?
+        final DetailAST typeAST
+            = methodAST.findFirstToken(TokenTypes.TYPE);
+        return typeAST.branchContains(TokenTypes.LITERAL_VOID);
     }
 
     /**
@@ -176,6 +233,16 @@ public class HiddenFieldCheck
         catch (RESyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
+    }
+
+    /**
+     * Set whether to ignore the parameter of a property setter method.
+     * @param aIgnoreSetter decide whether to ignore the parameter of
+     * a property setter method.
+     */
+    public void setIgnoreSetter(boolean aIgnoreSetter)
+    {
+        mIgnoreSetter = aIgnoreSetter;
     }
 
     /** @return the regexp to match against */
