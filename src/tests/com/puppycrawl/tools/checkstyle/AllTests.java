@@ -132,6 +132,7 @@ public class AllTests {
         suite.addTest(new TestSuite(VisibilityModifierCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAroundTest.class));
+        suite.addTest(new TestSuite(XMLLoggerTest.class));
         //$JUnit-END$
         return suite;
     }
