@@ -50,11 +50,13 @@ public class HeaderCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(HeaderCheck.class);
         // No header file specified
-        final String[] expected = {
-            "1: Unable to check header as missing lines to check."
-        };
-
-        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+        try {
+            createChecker(checkConfig);
+            fail();
+        }
+        catch (CheckstyleException ex) {
+            // expected exception
+        }
     }
 
     public void testIllegalArgs()
@@ -66,6 +68,21 @@ public class HeaderCheckTest extends BaseCheckTestCase
         try {
             createChecker(checkConfig);
             fail();
+        }
+        catch (CheckstyleException ex) {
+            // expected exception
+        }
+    }
+
+    public void testEmptyFilename()
+            throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", "");
+        try {
+            createChecker(checkConfig);
+            fail("Checker creation should not succeed with invalid headerFile");
         }
         catch (CheckstyleException ex) {
             // expected exception
