@@ -214,9 +214,10 @@ class Verifier
     {
         // no need to check constructor names
         if (!aSig.isConstructor() &&
-            !mConfig.getMethodRegexp().match(aSig.getName()))
+            !mConfig.getMethodRegexp().match(aSig.getName().getText()))
         {
-            log(aSig.getLineNo(),
+            log(aSig.getName().getLineNo(),
+                aSig.getName().getColumnNo(),
                 "method name '" + aSig.getName() +
                 "' must match pattern '" + mConfig.getMethodPat() + "'.");
         }
@@ -528,7 +529,7 @@ class Verifier
             for (int i = 0; i < before; i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
                     log(aAST.getLineNo(),
-                        aAST.getColumnNo(),
+                        aAST.getColumnNo() - 1,
                         "'.' is preceeded with whitespace.");
                     break;
                 }
@@ -900,7 +901,7 @@ class Verifier
      **/
     private void log(int aLineNo, int aColNo, String aMsg)
     {
-        mMessages.add(new LineText(aLineNo, aColNo, aMsg));
+        mMessages.add(new LineText(aLineNo, aColNo + 1, aMsg));
     }
 
 
