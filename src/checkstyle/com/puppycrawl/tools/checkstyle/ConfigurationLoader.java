@@ -101,10 +101,8 @@ class ConfigurationLoader
         throws SAXException
     {
         if (CONFIG_DTD_PUBLIC_ID.equals(aPublicId)) {
-            final InputStream dtdIS =
-//            Thread.currentThread().getContextClassLoader()
-            getClass().getClassLoader()
-                    .getResourceAsStream(CONFIG_DTD_RESOURCE);
+            final InputStream dtdIS = getClass().getClassLoader()
+                .getResourceAsStream(CONFIG_DTD_RESOURCE);
             if (dtdIS == null) {
                 throw new SAXException(
                     "Unable to load internal dtd " + CONFIG_DTD_RESOURCE);
