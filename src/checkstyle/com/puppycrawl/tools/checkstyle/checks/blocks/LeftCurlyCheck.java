@@ -138,7 +138,7 @@ public class LeftCurlyCheck
             startToken = (DetailAST) aAST.getFirstChild();
             final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
             brace = (objBlock == null)
-                ? null 
+                ? null
                 : (DetailAST) objBlock.getFirstChild();
             break;
 
