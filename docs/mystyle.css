@@ -47,6 +47,14 @@ td.content {
   margin-right : 3%;
 }
 
+img {
+  border: none;
+}
+
+p.copyright {
+  text-align: center;
+}
+
 span.code {
   white-space: nowrap;
   font-family: monospace;
