@@ -29,7 +29,7 @@ import java.util.Iterator;
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-class ClassResolver
+public class ClassResolver
 {
     /** name of the package to check if the class belongs to **/
     private final String mPkg;
@@ -45,7 +45,7 @@ class ClassResolver
      * @param aPkg the name of the package the class may belong to
      * @param aImports set of imports to check if the class belongs to
      */
-    ClassResolver(ClassLoader aLoader, String aPkg, Set aImports)
+    public ClassResolver(ClassLoader aLoader, String aPkg, Set aImports)
     {
         mLoader = aLoader;
         mPkg = aPkg;
@@ -63,7 +63,7 @@ class ClassResolver
      * @return the resolved class
      * @throws ClassNotFoundException if unable to resolve the class
      */
-    Class resolve(String aName) throws ClassNotFoundException
+    public Class resolve(String aName) throws ClassNotFoundException
     {
         // See if the class is full qualified
         if (isLoadable(aName)) {
@@ -115,7 +115,7 @@ class ClassResolver
      * @return whether a specified class is loadable with safeLoad().
      * @param aName name of the class to check
      */
-    boolean isLoadable(String aName)
+    public boolean isLoadable(String aName)
     {
         try {
             safeLoad(aName);
@@ -133,7 +133,7 @@ class ClassResolver
      * @return the <code>Class</code> for the specified class
      * @throws ClassNotFoundException if an error occurs
      */
-    Class safeLoad(String aName)
+    public Class safeLoad(String aName)
         throws ClassNotFoundException
     {
         // The next line will load the class using the specified class
