@@ -73,6 +73,8 @@ public final class ConfigurationLoader
         private static final String PROPERTY = "property";
         /** value attribute */
         private static final String VALUE = "value";
+        /** default attribute */
+        private static final String DEFAULT = "default";
 
         /**
          * Creates a new InternalLoader.
@@ -118,7 +120,7 @@ public final class ConfigurationLoader
                 final String value;
                 try {
                     value = replaceProperties(aAtts.getValue(VALUE),
-                        mOverridePropsResolver);
+                        mOverridePropsResolver, aAtts.getValue(DEFAULT));
                 }
                 catch (CheckstyleException ex) {
                     throw new SAXException(ex.getMessage());
@@ -257,6 +259,8 @@ public final class ConfigurationLoader
      *              method returns immediately with no effect.
      * @param aProps  Mapping (String to String) of property names to their
      *              values. Must not be <code>null</code>.
+     * @param aDefaultValue default to use if one of the properties in aValue
+     *              cannot be resolved from aProps.
      *
      * @throws CheckstyleException if the string contains an opening
      *                           <code>${</code> without a closing
@@ -267,7 +271,9 @@ public final class ConfigurationLoader
      * Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      */
-    static String replaceProperties(String aValue, PropertyResolver aProps)
+    // Package visible for testing purposes
+    static String replaceProperties(
+            String aValue, PropertyResolver aProps, String aDefaultValue)
         throws CheckstyleException
     {
         if (aValue == null) {
@@ -286,6 +292,13 @@ public final class ConfigurationLoader
             if (fragment == null) {
                 final String propertyName = (String) j.next();
                 fragment = aProps.resolve(propertyName);
+                if (fragment == null) {
+                    if (aDefaultValue != null) {
+                        return aDefaultValue;
+                    }
+                    throw new CheckstyleException(
+                        "Property ${" + propertyName + "} has not been set");
+                }
             }
             sb.append(fragment);
         }

@@ -175,7 +175,7 @@ public class ConfigurationLoaderTest extends TestCase
         final Properties props = initProperties();
         for (int i = 0; i < testValues.length; i++) {
             final String value = ConfigurationLoader.replaceProperties(
-                testValues[i], new PropertiesExpander(props));
+                testValues[i], new PropertiesExpander(props), null);
             assertEquals("\"" + testValues[i] + "\"", value, testValues[i]);
         }
     }
@@ -185,7 +185,7 @@ public class ConfigurationLoaderTest extends TestCase
         final Properties props = initProperties();
         try {
             final String value = ConfigurationLoader.replaceProperties(
-                "${a", new PropertiesExpander(props));
+                "${a", new PropertiesExpander(props), null);
             fail("expected to fail, instead got: " + value);
         }
         catch (CheckstyleException ex) {
@@ -198,7 +198,7 @@ public class ConfigurationLoaderTest extends TestCase
         final Properties props = initProperties();
         try {
             final String value = ConfigurationLoader.replaceProperties(
-                "${c}", new PropertiesExpander(props));
+                "${c}", new PropertiesExpander(props), null);
             fail("expected to fail, instead got: " + value);
         }
         catch (CheckstyleException ex) {
@@ -226,7 +226,7 @@ public class ConfigurationLoaderTest extends TestCase
         final Properties props = initProperties();
         for (int i = 0; i < testValues.length; i++) {
             final String value = ConfigurationLoader.replaceProperties(
-                testValues[i][0], new PropertiesExpander(props));
+                testValues[i][0], new PropertiesExpander(props), null);
             assertEquals("\"" + testValues[i][0] + "\"",
                 testValues[i][1], value);
         }
