@@ -21,14 +21,11 @@ public class AllTests {
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
         suite.addTest(new TestSuite(ConfigurationSerializationTest.class));
-        suite.addTest(new TestSuite(ConfigurationTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
         suite.addTest(new TestSuite(EmptyBlockCheckTest.class));
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
         suite.addTest(new TestSuite(FileLengthCheckTest.class));
         suite.addTest(new TestSuite(GenericIllegalRegexpCheckTest.class));
-        suite.addTest(new TestSuite(GlobalPropertiesSerializationTest.class));
-        suite.addTest(new TestSuite(GlobalPropertiesTest.class));
         suite.addTest(new TestSuite(HeaderCheckTest.class));
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
         suite.addTest(new TestSuite(IllegalImportCheckTest.class));
