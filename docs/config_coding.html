@@ -76,6 +76,9 @@
         <li>
           <a href="#StringLiteralEquality">StringLiteralEquality</a>
         </li>
+        <li>
+          <a href="#SuperClone">SuperClone</a>
+        </li>
       </ul>
     </td>
     <!--Content-->
@@ -833,6 +836,30 @@ return !valid();
 &lt;module name=&quot;NestedTryDepth&quot;&gt;
     &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+
+      <!-- --> <a name="SuperClone"></a> <h2>SuperClone</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that an overriding <span class="code">clone()</span> method invokes <span class="code">super.clone()</span>.
+      </p>
+      <p class="body">
+      Reference: <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Object.html#clone()">Object.clone()</a>. 
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;SuperClone&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
