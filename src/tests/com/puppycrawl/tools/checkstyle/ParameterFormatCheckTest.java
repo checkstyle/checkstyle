@@ -1,6 +1,5 @@
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.checks.AvoidStarImport;
 import com.puppycrawl.tools.checkstyle.checks.ParameterFormatCheck;
 
 public class ParameterFormatCheckTest

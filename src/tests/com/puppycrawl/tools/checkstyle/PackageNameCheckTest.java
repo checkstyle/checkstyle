@@ -1,9 +1,5 @@
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.checks.AvoidStarImport;
-import com.puppycrawl.tools.checkstyle.checks.ParameterFormatCheck;
-import com.puppycrawl.tools.checkstyle.checks.TypeNameCheck;
-import com.puppycrawl.tools.checkstyle.checks.MethodNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.PackageNameCheck;
 
 public class PackageNameCheckTest

@@ -25,7 +25,6 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import antlr.collections.AST;
