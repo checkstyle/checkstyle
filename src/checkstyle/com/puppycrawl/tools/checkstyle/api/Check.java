@@ -233,8 +233,14 @@ public abstract class Check extends AbstractViolationReporter
      */
     protected final void log(int aLine, String aKey, Object aArgs[])
     {
-        mMessages.add(new LocalizedMessage(
-                aLine, getMessageBundle(), aKey, aArgs, getSeverityLevel()));
+        mMessages.add(
+            new LocalizedMessage(
+                aLine,
+                getMessageBundle(),
+                aKey,
+                aArgs,
+                getSeverityLevel(),
+                this.getClass().getName()));
     }
 
 
@@ -251,9 +257,14 @@ public abstract class Check extends AbstractViolationReporter
     {
         final int col = 1 + Utils.lengthExpandedTabs(
             getLines()[aLineNo - 1], aColNo, getTabWidth());
-        mMessages.add(new LocalizedMessage(
-            aLineNo, col, getMessageBundle(), aKey, aArgs, getSeverityLevel()));
+        mMessages.add(
+            new LocalizedMessage(
+                aLineNo,
+                col,
+                getMessageBundle(),
+                aKey,
+                aArgs,
+                getSeverityLevel(),
+                this.getClass().getName()));
     }
-
-
 }

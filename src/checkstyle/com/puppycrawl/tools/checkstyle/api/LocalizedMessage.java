@@ -68,6 +68,9 @@ public final class LocalizedMessage
 
     /** name of the resource bundle to get messages from **/
     private final String mBundle;
+    
+    /** name of the source for this LocalizedMessage */
+    private final String mSourceName;
 
     /** @see Object#equals */
     public boolean equals(Object aObject)
@@ -124,6 +127,34 @@ public final class LocalizedMessage
      * @param aBundle resource bundle name
      * @param aKey the key to locate the translation
      * @param aArgs arguments for the translation
+     * @param aSeverityLevel severity level for the message
+     * @param aSourceName the name of the source of the message
+     */
+    public LocalizedMessage(int aLineNo,
+                            int aColNo,
+                            String aBundle,
+                            String aKey,
+                            Object[] aArgs,
+                            SeverityLevel aSeverityLevel,
+                            String aSourceName)
+    {
+        mLineNo = aLineNo;
+        mColNo = aColNo;
+        mKey = aKey;
+        mArgs = aArgs;
+        mBundle = aBundle;
+        mSeverityLevel = aSeverityLevel;
+        mSourceName = aSourceName;
+    }
+
+    /**
+     * Creates a new <code>LocalizedMessage</code> instance.
+     *
+     * @param aLineNo line number associated with the message
+     * @param aColNo column number associated with the message
+     * @param aBundle resource bundle name
+     * @param aKey the key to locate the translation
+     * @param aArgs arguments for the translation
      */
     public LocalizedMessage(int aLineNo,
                             int aColNo,
@@ -131,12 +162,7 @@ public final class LocalizedMessage
                             String aKey,
                             Object[] aArgs)
     {
-        mLineNo = aLineNo;
-        mColNo = aColNo;
-        mKey = aKey;
-        mArgs = aArgs;
-        mBundle = aBundle;
-        mSeverityLevel = DEFAULT_SEVERITY;
+        this(aLineNo, aColNo, aBundle, aKey, aArgs, DEFAULT_SEVERITY);
     }
 
     /**
@@ -156,14 +182,29 @@ public final class LocalizedMessage
                             Object[] aArgs,
                             SeverityLevel aSeverityLevel)
     {
-        mLineNo = aLineNo;
-        mColNo = aColNo;
-        mKey = aKey;
-        mArgs = aArgs;
-        mBundle = aBundle;
-        mSeverityLevel = aSeverityLevel;
+        this(aLineNo, aColNo, aBundle, aKey, aArgs, aSeverityLevel, "");
     }
-
+    
+    /**
+     * Creates a new <code>LocalizedMessage</code> instance.
+     *
+     * @param aLineNo line number associated with the message
+     * @param aBundle resource bundle name
+     * @param aKey the key to locate the translation
+     * @param aArgs arguments for the translation
+     * @param aSeverityLevel severity level for the message
+     * @param aSourceName the name of the source for the message
+     */
+    public LocalizedMessage(int aLineNo,
+                            String aBundle,
+                            String aKey,
+                            Object[] aArgs,
+                            SeverityLevel aSeverityLevel,
+                            String aSourceName)
+    {
+        this(aLineNo, 0, aBundle, aKey, aArgs, aSeverityLevel, aSourceName);
+    }
+    
     /**
      * Creates a new <code>LocalizedMessage</code> instance. The column number
      * defaults to 0.
@@ -177,6 +218,26 @@ public final class LocalizedMessage
             int aLineNo, String aBundle, String aKey, Object[] aArgs)
     {
         this(aLineNo, 0, aBundle, aKey, aArgs);
+    }
+    
+    /**
+     * Creates a new <code>LocalizedMessage</code> instance. The column number
+     * defaults to 0.
+     *
+     * @param aLineNo line number associated with the message
+     * @param aBundle name of a resource bundle that contains error messages
+     * @param aKey the key to locate the translation
+     * @param aArgs arguments for the translation
+     * @param aSourceName the name of the source for the message
+     */
+    public LocalizedMessage(
+        int aLineNo,
+        String aBundle,
+        String aKey,
+        Object[] aArgs,
+        String aSourceName)
+    {
+        this(aLineNo, 0, aBundle, aKey, aArgs, DEFAULT_SEVERITY, aSourceName);
     }
 
     /**
@@ -193,7 +254,7 @@ public final class LocalizedMessage
             int aLineNo, String aBundle, String aKey, Object[] aArgs,
             SeverityLevel aSeverityLevel)
     {
-        this(aLineNo, 0, aBundle, aKey, aArgs, aSeverityLevel);
+        this(aLineNo, 0, aBundle, aKey, aArgs, aSeverityLevel, "");
     }
 
     /** @return the translated message **/
@@ -260,6 +321,12 @@ public final class LocalizedMessage
         return mKey;
     }
 
+    /** @return the name of the source for this LocalizedMessage */
+    public String getSourceName()
+    {
+        return mSourceName;
+    }
+    
     /** @param aLocale the locale to use for localization **/
     public static void setLocale(Locale aLocale)
     {

@@ -157,7 +157,8 @@ public abstract class AbstractFileSetCheck
                                  getMessageBundle(),
                                  aKey,
                                  aArgs,
-                                 getSeverityLevel()));
+                                 getSeverityLevel(),
+                                 this.getClass().getName()));
     }
 
     /**

@@ -160,7 +160,12 @@ public class NewlineAtEndOfFileCheck
             key = "general.exception";
         }
         LocalizedMessage message =
-            new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE, key, args);
+            new LocalizedMessage(
+                0,
+                Defn.CHECKSTYLE_BUNDLE,
+                key,
+                args,
+                this.getClass().getName());
         getMessageCollector().add(message);
     }
     
