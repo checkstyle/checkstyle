@@ -230,6 +230,7 @@ public class IndentationCheck extends Check
      */
     public void beginTree(DetailAST aAst)
     {
+        mHandlerFactory.clearCreatedHandlers();
         mHandlers.clear();
         mHandlers.push(new PrimordialHandler(this));
     }

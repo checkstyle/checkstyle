@@ -228,6 +228,12 @@ public class HandlerFactory
         return new MethodCallHandler(aIndentCheck, aAst, aParent);
     }
 
+    /** Clears cache of created handlers. */
+    void clearCreatedHandlers()
+    {
+        mCreatedHandlers.clear();
+    }
+
     /** cache for created method call handlers */
     private Map mCreatedHandlers = new HashMap();
 }
