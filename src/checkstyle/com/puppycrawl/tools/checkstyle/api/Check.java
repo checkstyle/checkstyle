@@ -282,9 +282,6 @@ public abstract class Check
      */
     public void log(int aLineNo, int aColNo, String aKey, Object[] aArgs)
     {
-        final String fname = getFilename();
-        System.out.println(fname + ":" + aLineNo + ": " + aKey);
-
         final int col = aColNo + 1;
 //        final int col = 1 + Utils.lengthExpandedTabs(
 //            mLines[aLineNo - 1], aColNo, mTabWidth);
@@ -313,7 +310,7 @@ public abstract class Check
         // PERF: check perf impact, maybe cache result
         final String className = this.getClass().getName();
         final String packageName =
-                className.substring(className.lastIndexOf('.') + 1);
+                className.substring(0, className.lastIndexOf('.'));
         return packageName + "." + "messages";
     }
 }
