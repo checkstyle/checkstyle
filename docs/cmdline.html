@@ -29,10 +29,19 @@ This command line tool is included in the checkstyle distribution.</p>
 <h3>Usage</h3>
 <p>The command line usage is:</p>
 <pre>
-  java -D&lt;property&gt;=&lt;value&gt; com.puppycrawl.tools.checkstyle.Main file...
+  java -D&lt;property&gt;=&lt;value&gt;  \
+       com.puppycrawl.tools.checkstyle.Main \
+       [-f &lt;format&gt;] [-o &lt;toFile&gt;] file...
 </pre>
 
-<p>checkstyle will process the specified files and report errors to standard error. The default behaviour of checkstyle can be changed by setting system properties using the <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to java. The following table describes what properties can be set:</p>
+<p>Checkstyle will process the specified files and by default report errors to standard out in plain format. The options are:</p>
+
+<ul>
+  <li>-f format: specify the output format. Options are plain and xml. Defaults to "plain"</li>
+  <li>-o file: specify the file to output to.</li>
+</ul>
+
+<p>The default behaviour of checkstyle can be changed by setting system properties using the <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to java. The following table describes what properties can be set:</p>
 
 <table border="1" cellpadding="2" cellspacing="0">
   <tr>
@@ -141,7 +150,15 @@ Older versions of the checkstyle task supported the boolean parameters checkstyl
 
 <p><b>Run checkstyle on a file and allow tabs</b></p>
 <pre>
-  java  -Dcheckstyle.allow.tabs=yes  com.puppycrawl.tools.checkstyle.Main Check.java
+  java  -Dcheckstyle.allow.tabs=yes \
+        com.puppycrawl.tools.checkstyle.Main Check.java
+</pre>
+
+<p><b>Run checkstyle on a file and output to a file in XML format</b></p>
+<pre>
+  java  -Dcheckstyle.allow.tabs=yes  \
+        com.puppycrawl.tools.checkstyle.Main \
+        -f xml -o build/checkstyle_errors.xml Check.java
 </pre>
 
 <p><b>Run checkstyle on a file and disable pattern matching</b></p>
