@@ -53,14 +53,11 @@
   <!-- -->
   <!-- Cleanup targets -->
   <!-- -->
-  <target name="clean.antlr">
+  <target name="clean">
     <delete>
       <fileset dir="src/checkstyle" includes="**/Generated*.java" />
       <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
     </delete>
-  </target>
-
-  <target name="clean" depends="clean.antlr">
     <delete dir="classes" />
     <delete dir="dist" />
     <delete includeemptydirs="true">
@@ -275,12 +272,22 @@
   </target>
 
 
-  <target name="javadoc" depends="compile.checkstyle, clean.antlr">
+  <target name="javadoc" depends="compile.checkstyle">
     <mkdir dir="docs/api" />
+    <move toDir="src/checkstyle">
+      <fileset dir="src/checkstyle" includes="**/Generated*.java" />
+      <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
+      <fileset dir="src/checkstyle" includes="**/MyCommonAST.java" />
+      <mapper type="glob" from="*" to="*.HIDING"/>
+    </move>
     <javadoc sourcepath="src/checkstyle" destdir="docs/api"
              packagenames="com.puppycrawl.tools.checkstyle"
              Windowtitle="Checkstyle API"
 	     classpathref="javadoc.classpath" />
+    <move toDir="src/checkstyle">
+      <fileset dir="src/checkstyle" includes="**/*.HIDING" />
+      <mapper type="glob" from="*.HIDING" to="*"/>
+    </move>
   </target>
 
 </project>
