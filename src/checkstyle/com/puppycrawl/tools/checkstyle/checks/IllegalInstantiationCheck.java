@@ -81,7 +81,26 @@ public class IllegalInstantiationCheck
             TokenTypes.PACKAGE_DEF
         };
     }
-
+    
+    /**
+     * Prevent user from changing tokens in the configuration.
+     * @see com.puppycrawl.tools.checkstyle.api.Check
+     */
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {};
+    }
+    
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public int[] getRequiredTokens()
+    {
+        return new int[] {
+            TokenTypes.IMPORT,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.PACKAGE_DEF
+        };
+    }
+    
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree()
     {
