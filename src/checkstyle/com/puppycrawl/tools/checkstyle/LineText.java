@@ -61,7 +61,7 @@ class LineText
      **/
     LineText(LineText aOther)
     {
-        this(aOther.getLineNo(), aOther.getText());
+        this(aOther.getLineNo(), aOther.getColumnNo(), aOther.getText());
     }
 
     /** @return the text **/
