@@ -7,19 +7,18 @@
   <property file="checkstyle.buildproperties" />
   <property file="${user.home}/checkstyle.buildproperties" />
 
-  <!-- Note: to compile successfully, the classpath must point to the home -->
-  <!-- of ANTLR. This is because not all ANTLR classes are part of the ANTLR -->
-  <!-- distributed jar file. -->
-  <property name="antlr.home" value="c:/apps/antlr-2.7.1" />
-  <property name="regexp.jar" value="c:/apps/jakarta-regexp-1.2/jakarta-regexp-1.2.jar" />
+  <property name="antlr.jar" value="lib/antlr.jar" />
+  <property name="antlr-tools.jar" value="lib/antlr-tools.jar" />
+  <property name="regexp.jar" value="lib/jakarta-regexp-1.2.jar" />
   <property name="junit.jar" value="c:/apps/junit3.7/junit.jar" />
+
   <property name="checkstyle.dir" value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
   <property name="testreport.dir" value="testreports"/>
 
   <property name="version" value="1.4" />
 
   <path id="build.classpath">
-    <pathelement location="${antlr.home}" />
+    <pathelement location="${antlr.jar}" />
     <pathelement location="${regexp.jar}" />
   </path>
 
@@ -83,7 +82,7 @@
   <!-- which creates lots of problems. -->
   <target name="build.antlr" depends="check.antlr" unless="uptodate.antlr">
     <java classname="antlr.Tool"
-          classpath="${antlr.home}"
+          classpath="${antlr-tools.jar}"
           fork="yes"
           dir="${checkstyle.dir}">
       <arg value="java.g" />
@@ -224,7 +223,7 @@
     <!-- copy the JARS and make a mega JAR out of them -->
     <copy file="${regexp.jar}"
           todir="dist/checkstyle-${version}" />
-    <copy file="${antlr.home}/antlr.jar"
+    <copy file="${antlr.jar}"
           todir="dist/checkstyle-${version}" />
     <mkdir dir="dist/checkstyle-${version}/tmp" />
     <unjar src="dist/checkstyle-${version}/antlr.jar"
