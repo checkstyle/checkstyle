@@ -1,7 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.ParenPadCheck;
-import com.puppycrawl.tools.checkstyle.checks.PadOption;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ParenPadCheckTest
     extends BaseCheckTestCase
@@ -11,15 +11,13 @@ public class ParenPadCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParenPadCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
             "58:12: '(' is followed by whitespace.",
             "58:36: ')' is preceeded with whitespace.",
             "74:13: '(' is followed by whitespace.",
             "74:18: ')' is preceeded with whitespace.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
     public void testSpace()
@@ -28,8 +26,6 @@ public class ParenPadCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
             "29:20: '(' is not followed by whitespace.",
             "29:23: ')' is not preceeded with whitespace.",
@@ -58,6 +54,6 @@ public class ParenPadCheckTest
             "162:20: '(' is not followed by whitespace.",
             "165:10: ')' is not preceeded with whitespace.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 }

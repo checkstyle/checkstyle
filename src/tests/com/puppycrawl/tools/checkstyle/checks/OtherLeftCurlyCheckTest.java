@@ -1,7 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck;
-import com.puppycrawl.tools.checkstyle.checks.LeftCurlyOption;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class OtherLeftCurlyCheckTest
     extends BaseCheckTestCase
@@ -11,8 +11,6 @@ public class OtherLeftCurlyCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OtherLeftCurlyCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputLeftCurlyOther.java");
         final String[] expected = {
             "19:9: '{' should be on the previous line.",
             "21:13: '{' should be on the previous line.",
@@ -25,7 +23,7 @@ public class OtherLeftCurlyCheckTest
             "54:13: '{' should be on the previous line.",
             "63:9: '{' should be on the previous line.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
     public void testNL()
@@ -34,12 +32,10 @@ public class OtherLeftCurlyCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(OtherLeftCurlyCheck.class);
         checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputLeftCurlyOther.java");
         final String[] expected = {
             "26:33: '{' should be on a new line."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
     public void testMissingBraces()
@@ -47,10 +43,8 @@ public class OtherLeftCurlyCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OtherLeftCurlyCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputBraces.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputBraces.java"), expected);
     }
 }

@@ -1,7 +1,8 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 
 public class TranslationCheckTest
     extends BaseCheckTestCase
@@ -16,15 +17,15 @@ public class TranslationCheckTest
     public void testTranslation()
          throws Exception
     {
-        Configuration checkConfig = createCheckConfig(TranslationCheck.class);
-        Checker c = createChecker(checkConfig);
-        final String bundlePath = getPath("messages_de.properties");
-        final String filepath = getPath("InputScopeAnonInner.java");
-
+        final Configuration checkConfig = createCheckConfig(TranslationCheck.class);
         final String[] expected = {
             "0: Key 'only.english' missing."
         };
-        verify(c, filepath, bundlePath, expected);
+        verify(
+            createChecker(checkConfig),
+            getPath("InputScopeAnonInner.java"),
+            getPath("messages_de.properties"),
+            expected);
     }
 
     // TODO: test with the same resourcebundle name in different packages
