@@ -24,9 +24,9 @@ public class MethodLengthCheckTest extends BaseCheckTestCase
 {
     public void testIt() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(MethodLengthCheck.class.getName());
-        checkConfig.addProperty("max", "19");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MethodLengthCheck.class);
+        checkConfig.addAttribute("max", "19");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
@@ -37,8 +37,8 @@ public class MethodLengthCheckTest extends BaseCheckTestCase
 
     public void testAbstract() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(MethodLengthCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MethodLengthCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputModifier.java");
         final String[] expected = {

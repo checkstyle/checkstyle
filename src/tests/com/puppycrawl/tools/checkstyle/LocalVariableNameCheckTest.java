@@ -8,8 +8,8 @@ public class LocalVariableNameCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(LocalVariableNameCheck.class.getName());;
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(LocalVariableNameCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {

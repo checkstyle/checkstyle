@@ -8,8 +8,8 @@ public class MethodNameCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(MethodNameCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MethodNameCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {

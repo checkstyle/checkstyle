@@ -7,10 +7,10 @@ public class LineLengthCheckTest extends BaseCheckTestCase
     public void testSimple()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(LineLengthCheck.class.getName());
-        checkConfig.addProperty("max", "80");
-        checkConfig.addProperty("ignorePattern",  "^.*is OK.*regexp.*$");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(LineLengthCheck.class);
+        checkConfig.addAttribute("max", "80");
+        checkConfig.addAttribute("ignorePattern",  "^.*is OK.*regexp.*$");
         final Checker c = createChecker(checkConfig);
         final String filepath = getPath("InputSimple.java");
         final String[] expected = {
@@ -19,5 +19,4 @@ public class LineLengthCheckTest extends BaseCheckTestCase
         };
         verify(c, filepath, expected);
     }
-
 }
