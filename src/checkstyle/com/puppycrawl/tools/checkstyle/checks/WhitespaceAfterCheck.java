@@ -26,7 +26,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * <p>
  * Checks that a token is followed by whitespace, with the exception that it
  * does not check for whitespace after the semicolon of an empty for iterator.
- * Use Check {@link EmptyForIteratorPad} to validate empty for iterators.
+ * Use Check {@link EmptyForIteratorPadCheck EmptyForIteratorPad} to validate
+ * empty for iterators.
  * </p>
  * <p> By default the check will check the following tokens:
  *  {@link TokenTypes#COMMA COMMA},
