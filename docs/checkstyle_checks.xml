@@ -37,9 +37,23 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.MethodNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.ModifierCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NeedBracesCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhiteSpaceAroundCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck"/>
+
+<!-- Dot operator -->
+ <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheck">
+     <tokens>
+           DOT
+      </tokens>
+      <set-property name="allowLineBreaks" value="true"/>
+  </check>
+ <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck">
+     <tokens>
+           DOT
+      </tokens>
+      <set-property name="allowLineBreaks" value="true"/>
+ </check>
+
  
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck"/>
