@@ -160,4 +160,16 @@ class InputTags
 
     /** getting code coverage up **/
     static final int serialVersionUID = 666;
+
+    //**********************************************************************/
+    // Method Name: method16
+    /**
+     * handle the case of an elaborate header surrounding javadoc comments
+     *
+     * @param aOne valid parameter content
+     */
+    //**********************************************************************/
+    void method16(int aOne)
+    {
+    }
 }
