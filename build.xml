@@ -130,6 +130,7 @@
                   includes="**/*_ja.properties" />
     <copy todir="target/checkstyle">
       <fileset dir="src/checkstyle" includes="**/*.properties"/>
+      <fileset dir="src/checkstyle" includes="**/*.xml"/>
     </copy>
 
 
