@@ -321,7 +321,6 @@
               src="dist/checkstyle-src-${version}.tar" />
     </target>
 
-
     <target name="javadoc" depends="compile.checkstyle">
         <mkdir dir="docs/api" />
         <move toDir="src/checkstyle">
@@ -340,4 +339,6 @@
         </move>
     </target>
 
+    <!-- Added for GUMP testing -->
+    <target name="gump" depends="build.bindist,build.srcdist,run.tests"/>
 </project>
