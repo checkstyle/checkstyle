@@ -95,4 +95,13 @@ public class InputPublicOnly // ignore - need javadoc
     {
     }
 
+    /**
+       This inner class has no author tag, which is OK.
+     */
+    public class InnerWithoutAuthor
+    {
+        
+    }
+    
+
 }
