@@ -179,7 +179,7 @@ public class JavadocMethodCheck
     {
         final FullIdent name = getImportText(aAST);
         if (name != null) {
-            mImports.add(name);
+            mImports.add(name.getText());
         }
     }
 
@@ -473,13 +473,16 @@ public class JavadocMethodCheck
             if (!found) {
                 boolean reqd = true;
                 if (mCheckUnusedThrows) {
-                    final ClassResolver cr = new ClassResolver(
-                        Thread.currentThread().getContextClassLoader(),
-                        mPackageFullIdent.getText(), mImports);
+                    final ClassResolver cr =
+                        new ClassResolver(
+                            getClassLoader(),
+                            mPackageFullIdent.getText(),
+                            mImports);
                     try {
                         final Class clazz = cr.resolve(tag.getArg1());
-                        reqd = !RuntimeException.class.isAssignableFrom(clazz)
-                            && !Error.class.isAssignableFrom(clazz);
+                        reqd =
+                            !RuntimeException.class.isAssignableFrom(clazz)
+                                && !Error.class.isAssignableFrom(clazz);
                     }
                     catch (ClassNotFoundException e) {
                         log(tag.getLineNo(), "javadoc.classInfo",

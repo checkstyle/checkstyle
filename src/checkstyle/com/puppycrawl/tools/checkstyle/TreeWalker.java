@@ -125,11 +125,12 @@ class TreeWalker
      * Initiates the walk of an AST.
      * @param aAST the root AST
      * @param aContents the contents of the file the AST was generated from
+     * @param aLoader the class loader for resolving classes
      */
-    void walk(DetailAST aAST, FileContents aContents)
+    void walk(DetailAST aAST, FileContents aContents, ClassLoader aLoader)
     {
         mMessages.reset();
-        notifyBegin(aContents);
+        notifyBegin(aContents, aLoader);
 
          // empty files are not flagged by javac, will yield aAST == null
         if (aAST != null) {
@@ -143,8 +144,9 @@ class TreeWalker
     /**
      * Notify interested checks that about to begin walking a tree.
      * @param aContents the contents of the file the AST was generated from
+     * @param aLoader the class loader for resolving classes
      */
-    private void notifyBegin(FileContents aContents)
+    private void notifyBegin(FileContents aContents, ClassLoader aLoader)
     {
         // TODO: do not track Context properly for token
         final Iterator it = mAllChecks.iterator();
@@ -153,6 +155,7 @@ class TreeWalker
             final HashMap treeContext = new HashMap();
             check.setTreeContext(treeContext);
             check.setFileContents(aContents);
+            check.setClassLoader(aLoader);
             check.beginTree();
         }
     }

@@ -33,6 +33,8 @@ public abstract class Check
 
     /** name to store file contents under */
     private static final String FILE_CONTENTS_ATTRIBUTE = "fILEcONTENTS";
+    /** name to store class loader under */
+    private static final String CLASS_LOADER_ATTRIBUTE = "cLaSsLoAdEr";
 
     /** the global context for the check */
     private Map mGlobalContext;
@@ -222,6 +224,24 @@ public abstract class Check
     public final FileContents getFileContents()
     {
         return (FileContents) getTreeContext().get(FILE_CONTENTS_ATTRIBUTE);
+    }
+
+    /**
+     * Set the class loader associated with the tree.
+     * @param aLoader the class loader
+     */
+    public final void setClassLoader(ClassLoader aLoader)
+    {
+        getTreeContext().put(CLASS_LOADER_ATTRIBUTE, aLoader);
+    }
+
+    /**
+     * Returns the class loader associated with the tree.
+     * @return the class loader
+     */
+    public final ClassLoader getClassLoader()
+    {
+        return (ClassLoader) getTreeContext().get(CLASS_LOADER_ATTRIBUTE);
     }
 
     /** @return the tab width to report errors with */

@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.util.Set;
 import java.util.Iterator;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-
 /**
  * Utility class to resolve a class name to an actual class. Note that loaded
  * classes are not initialized.
@@ -75,7 +73,7 @@ class ClassResolver
         // try matching explicit imports
         Iterator it = mImports.iterator();
         while (it.hasNext()) {
-            final String imp = ((DetailAST) it.next()).getText();
+            final String imp = (String) it.next();
             if (imp.endsWith(aName) && isLoadable(imp)) {
                 return safeLoad(imp);
             }
@@ -98,7 +96,7 @@ class ClassResolver
         // try star imports
         it = mImports.iterator();
         while (it.hasNext()) {
-            final String imp = ((DetailAST) it.next()).getText();
+            final String imp = (String) it.next();
             if (imp.endsWith(".*")) {
                 final String fqn = imp.substring(0, imp.lastIndexOf('.') + 1)
                     + aName;
