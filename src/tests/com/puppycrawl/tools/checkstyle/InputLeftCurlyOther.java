@@ -55,5 +55,8 @@ class InputLeftCurlyOther
                 x = 2;
             } while (x == 2);
         }
+
+        this.wait(666
+                 ); // Bizarre, but legal
     }
 }
