@@ -444,7 +444,6 @@ class Verifier
      */
     void verifyWSAroundEnd(int aLineNo, int aColNo, String aText)
     {
-        verifyWSAroundBegin(aLineNo, aColNo - aText.length(), aText);
     }
 
 
@@ -456,23 +455,6 @@ class Verifier
      */
     void verifyWSAroundBegin(int aLineNo, int aColNo, String aText)
     {
-        if (mConfig.isIgnoreWhitespace()) {
-            return;
-        }
-
-        final String line = mLines[aLineNo - 1];
-        final int before = aColNo - 2;
-        final int after = aColNo + aText.length() - 1;
-
-        if ((before >= 0) && !Character.isWhitespace(line.charAt(before))) {
-            mMessages.add(aLineNo, before + 1, "ws.notPreceeded", aText);
-        }
-
-        if ((after < line.length())
-            && !Character.isWhitespace(line.charAt(after)))
-        {
-            mMessages.add(aLineNo, after, "ws.notFollowed", aText);
-        }
     }
 
 

@@ -176,7 +176,7 @@ public class Checker
         LocalizedMessage.setLocale(new Locale(mConfig.getLocaleLanguage(),
                                               mConfig.getLocaleCountry()));
         mMessages = new LocalizedMessages(mConfig.getTabWidth());
-        mWalker = new TreeWalker(mMessages);
+        mWalker = new TreeWalker(mMessages, mConfig.getTabWidth());
         // TODO: improve the error handing
         for (int i = 0; i < aConfigs.length; i++) {
             final CheckConfiguration config = aConfigs[i];

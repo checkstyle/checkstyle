@@ -18,9 +18,9 @@ extends BaseCheckTestCase
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputImport.java");
         final String[] expected = {
-            "7:1: Avoid using the '.*' form of import.",
-            "9:1: Avoid using the '.*' form of import.",
-            "10:1: Avoid using the '.*' form of import.",
+            "7: Avoid using the '.*' form of import.",
+            "9: Avoid using the '.*' form of import.",
+            "10: Avoid using the '.*' form of import.",
         };
         verify(c, fname, expected);
     }

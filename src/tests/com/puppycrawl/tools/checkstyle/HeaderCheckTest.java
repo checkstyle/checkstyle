@@ -19,7 +19,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("inputHeader.java");
         final String[] expected = {
-            "1:1: Missing a header - not enough lines in file."
+            "1: Missing a header - not enough lines in file."
         };
         verify(c, fname, expected);
     }
@@ -34,7 +34,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {
-            "3:1: Line does not match expected header line of '// Created: 2002'."
+            "3: Line does not match expected header line of '// Created: 2002'."
         };
         verify(c, fname, expected);
     }

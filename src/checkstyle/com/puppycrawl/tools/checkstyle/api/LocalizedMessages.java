@@ -34,9 +34,9 @@ public class LocalizedMessages
 {
     /** contains the messages logged **/
     private final ArrayList mMessages = new ArrayList();
-    /** the tabwidth to calculate columns **/
+    /** the tabwidth to calculate columns TODO: remove */
     private final int mTabWidth;
-    /** the lines of the file being checked **/
+    /** the lines of the file being checked, TODO: remove */
     private String[] mLines;
     /** Name of the exising resource bundle
      * TODO: remove this
