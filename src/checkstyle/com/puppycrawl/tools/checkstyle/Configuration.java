@@ -192,8 +192,12 @@ public class Configuration
     private LeftCurlyOption mLCurlyOther = LeftCurlyOption.EOL;
     /** where to place right curlies  **/
     private RightCurlyOption mRCurly = RightCurlyOption.SAME;
+    /** how to process try blocks **/
+    private BlockOption mTryBlock = BlockOption.STMT;
     /** how to process catch blocks **/
-    private CatchBlockOption mCatchBlock = CatchBlockOption.TEXT;
+    private BlockOption mCatchBlock = BlockOption.TEXT;
+    /** how to process finally blocks **/
+    private BlockOption mFinallyBlock = BlockOption.STMT;
 
     /** how to pad parenthesis **/
     private PadOption mParenPadOption = PadOption.NOSPACE;
@@ -295,9 +299,15 @@ public class Configuration
                            LeftCurlyOption.EOL, aLog));
         setRCurly(getRightCurlyOptionProperty(
                       aProps, RCURLY_PROP, RightCurlyOption.SAME, aLog));
+        setTryBlock(
+            getBlockOptionProperty(
+                aProps, TRY_BLOCK_PROP, BlockOption.TEXT, aLog));
         setCatchBlock(
-            getCatchBlockOptionProperty(
-                aProps, CATCH_BLOCK_PROP, CatchBlockOption.TEXT, aLog));
+            getBlockOptionProperty(
+                aProps, CATCH_BLOCK_PROP, BlockOption.TEXT, aLog));
+        setFinallyBlock(
+            getBlockOptionProperty(
+                aProps, FINALLY_BLOCK_PROP, BlockOption.TEXT, aLog));
         setParenPadOption(getPadOptionProperty(aProps,
                                                PAREN_PAD_PROP,
                                                PadOption.NOSPACE,
@@ -1021,16 +1031,40 @@ public class Configuration
         mRCurly = aTo;
     }
 
+    /** @return the try block option **/
+    public BlockOption getTryBlock()
+    {
+        return mTryBlock;
+    }
+
+    /** @param aTo set the try block option **/
+    public void setTryBlock(BlockOption aTo)
+    {
+        mTryBlock = aTo;
+    }
+
     /** @return the catch block option **/
-    public CatchBlockOption getCatchBlock()
+    public BlockOption getCatchBlock()
     {
         return mCatchBlock;
     }
 
     /** @param aTo set the catch block option **/
-    public void setCatchBlock(CatchBlockOption aTo)
+    public void setCatchBlock(BlockOption aTo)
     {
         mCatchBlock = aTo;
+    }
+
+    /** @return the finally block option **/
+    public BlockOption getFinallyBlock()
+    {
+        return mFinallyBlock;
+    }
+
+    /** @param aTo set the finally block option **/
+    public void setFinallyBlock(BlockOption aTo)
+    {
+        mFinallyBlock = aTo;
     }
 
     /** @return the parenthesis padding option **/
@@ -1159,19 +1193,18 @@ public class Configuration
      * @param aName the name of the property to parse
      * @param aDefault the default value to use.
      *
-     * @return the value of a CatchBlockOption property. If the property is not
+     * @return the value of a BlockOption property. If the property is not
      *    defined or cannot be decoded, then a default value is returned.
      */
-    private static CatchBlockOption getCatchBlockOptionProperty(
-        Properties aProps,
-        String aName,
-        CatchBlockOption aDefault,
-        PrintStream aLog)
+    private static BlockOption getBlockOptionProperty(Properties aProps,
+                                                      String aName,
+                                                      BlockOption aDefault,
+                                                      PrintStream aLog)
     {
-        CatchBlockOption retVal = aDefault;
+        BlockOption retVal = aDefault;
         final String strRep = aProps.getProperty(aName);
         if (strRep != null) {
-            retVal = CatchBlockOption.decode(strRep);
+            retVal = BlockOption.decode(strRep);
             if (retVal == null) {
                 aLog.println("Unable to parse " + aName
                              + " property with value " + strRep

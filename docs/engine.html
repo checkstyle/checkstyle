@@ -9,7 +9,7 @@
 <body>
 <h1>Checkstyle Core Engine - Version @CHECKSTYLE_VERSION@</h1>
 
-<p>Author: <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a></p>
+<p>Authors: <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>, <a href="mailto:lars.kuehne@planet-interkom.de">Lars Kühne</a></p>
 
 <h2>Introduction</h2>
 <p>This document describes the core engine of Checkstyle, including what checks it performs and what can be configured. The engine can be executed via different <a href="index.html#related">interfaces</a>. The standard distribution includes support for:
@@ -378,22 +378,22 @@ line 5: /{71}
 <p>Lines 1 and 5 demonstrate a more compact notation for 71 '/' characters. Line 3 enforces that the copyright notice includes a four digit year. Line 4 is an example how to enforce revision control keywords in a file header.</p>
 </div>
 
-<h3>Exception handling</h3>
-<p>Checks for empty <span class="code">catch</span> blocks. The check can be configured with the following options:</p>
+<h3>Empty Blocks</h3>
+<p>Checks for empty <span class="code">try</span>, <span class="code">catch</span>, <span class="code">finally</span> blocks. The checks can be configured with the following options:</p>
 
-<a name="catchBlockOpt"></a>
-<table border="1" summary="catch block options">
+<a name="blockOpt"></a>
+<table border="1" summary="block options">
   <tr class="header">
     <td>Option</td>
     <td>Definition</td>
   </tr>
   <tr>
     <td><span class="code">ignore</span></td>
-    <td>Ignore empty <span class="code">catch</span> blocks.</td>
+    <td>Ignore empty blocks.</td>
   </tr>
   <tr>
     <td><span class="code">text</span></td>
-    <td>Require that there is some text in the <span class="code">catch</span> block. For example:
+    <td>Require that there is some text in the block. For example:
 <pre>
     catch (Exception ex) {
         // This is a bad coding practice
@@ -403,10 +403,10 @@ line 5: /{71}
   </tr>
   <tr>
     <td><span class="code">stmt</span></td>
-    <td>Require that there is a statement in the <span class="code">catch</span> block. For example:
+    <td>Require that there is a statement in the block. For example:
 <pre>
-    catch (Exception ex) {
-        log.warn("Caught exception.", ex);
+    finally {
+        lock.release();
     }
 </pre>
   </tr>
