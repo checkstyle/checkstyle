@@ -31,12 +31,21 @@ public class WhitespaceAfterCheckTest
     }
 
     public void testSemi() throws Exception
-    {;
+    {
         final String[] expected = {
             "58:23: ';' is not followed by whitespace.",
             "58:29: ';' is not followed by whitespace.",
             "107:19: ';' is not followed by whitespace.",
         };
         verify(mCheckConfig, getPath("InputBraces.java"), expected);
+    }
+   
+    public void testEmptyForIterator() throws Exception
+    {
+        final String[] expected = {
+            "14:31: ';' is not followed by whitespace.",
+            "17:31: ';' is not followed by whitespace.",
+        };
+        verify(mCheckConfig, getPath("InputForWhitespace.java"), expected);
     }
 }

@@ -4,6 +4,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailASTTest;
 import com.puppycrawl.tools.checkstyle.checks.AvoidStarImportTest;
 import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.EmptyForIteratorPadCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.FileLengthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.FileSetCheckLifecycleTest;
@@ -76,6 +77,7 @@ public class AllTests {
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
         suite.addTest(new TestSuite(EmptyBlockCheckTest.class));
+        suite.addTest(new TestSuite(EmptyForIteratorPadCheckTest.class));
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
         suite.addTest(new TestSuite(FileLengthCheckTest.class));
         suite.addTest(new TestSuite(FileSetCheckLifecycleTest.class));

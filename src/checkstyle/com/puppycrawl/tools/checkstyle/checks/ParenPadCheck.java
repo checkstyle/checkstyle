@@ -26,7 +26,11 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 /**
  * <p>Checks the padding of parentheses; that is whether a space is required
  * after a left parenthesis and before a right parenthesis, or such spaces are
- * forbidden.
+ * forbidden, with the exception that it does
+ * not check for padding of the right parenthesis  at an empty for iterator.
+ * Use Check {@link EmptyForIteratorPad} to validate empty for iterators.
+ * <p>
+ * </p>
  * The policy to verify is specified using the {@link PadOption} class and
  * defaults to {@link PadOption#NOSPACE}.
  * </p>
@@ -61,7 +65,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  */
 public class ParenPadCheck
     extends AbstractOptionCheck
-{
+{    
     /**
      * Sets the paren pad otion to nospace.
      */  
@@ -69,7 +73,7 @@ public class ParenPadCheck
     {
         super(PadOption.NOSPACE);
     }
-
+    
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -125,7 +129,31 @@ public class ParenPadCheck
         final String line = getLines()[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
         if (before >= 0) {
-            if ((PadOption.NOSPACE == getAbstractOption())
+            boolean followsEmptyForIterator = false;
+            final DetailAST parent = aAST.getParent();
+            if ((parent != null) 
+                && (parent.getType() == TokenTypes.LITERAL_FOR))
+            {
+                final DetailAST forIterator =
+                    parent.findFirstToken(TokenTypes.FOR_ITERATOR);
+                followsEmptyForIterator = (forIterator.getChildCount() == 0)
+                    && (aAST == forIterator.getNextSibling());
+            }
+            if (followsEmptyForIterator) {
+                return;
+//                if (mPadEmptyForIterator
+//                    && !Character.isWhitespace(line.charAt(before)))
+//                {
+//                    log(aAST.getLineNo(), aAST.getColumnNo(),
+//                        "ws.notPreceeded", ")");
+//                }
+//                else if (!mPadEmptyForIterator
+//                    && Character.isWhitespace(line.charAt(before)))
+//                {
+//                    log(aAST.getLineNo(), before, "ws.preceeded", ")");
+//                }  
+            }
+            else if ((PadOption.NOSPACE == getAbstractOption())
                 && Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line))
             {

@@ -58,4 +58,35 @@ public class ParenPadCheckTest
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
+    
+    public void testDefaultForIterator()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParenPadCheck.class);
+        final String[] expected = {
+            "17:34: ')' is preceeded with whitespace.",
+            "20:35: ')' is preceeded with whitespace.",
+        };
+        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+    }
+
+    public void testSpaceEmptyForIterator()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParenPadCheck.class);
+        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        final String[] expected = {
+            "11:14: '(' is not followed by whitespace.",
+            "11:35: ')' is not preceeded with whitespace.",
+            "14:14: '(' is not followed by whitespace.",
+            "14:34: ')' is not preceeded with whitespace.",
+            "17:14: '(' is not followed by whitespace.",
+            "20:14: '(' is not followed by whitespace.",
+            "23:14: '(' is not followed by whitespace.",
+            "27:14: '(' is not followed by whitespace.",
+        };
+        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+    }
 }

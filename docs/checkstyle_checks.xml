@@ -16,6 +16,7 @@
         <module name="AvoidStarImport"/>
         <module name="ConstantName"/>
         <module name="EmptyBlock"/>
+        <module name="EmptyForIteratorPad"/>
         <module name="EqualsHashCode"/>
         <module name="FileLength"/>
         <module name="Header">
