@@ -11,7 +11,6 @@ public class MessageBeanCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(MessageBeanCheck.class);
         final String[] expected = {
-            "12:14: Message bean 'InputMessageBean' must have a public constructor with no parameters.",
             "12:14: Message bean 'InputMessageBean' must have method 'ejbCreate()'.",
             "41:16: Message bean 'AbstractMessageBean' must be public.",
             "41:16: Message bean 'AbstractMessageBean' must not have modifier 'abstract'.",
