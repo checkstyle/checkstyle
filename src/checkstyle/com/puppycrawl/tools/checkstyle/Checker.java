@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 import java.io.File;
