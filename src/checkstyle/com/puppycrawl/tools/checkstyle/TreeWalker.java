@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -46,9 +47,11 @@ class TreeWalker
     private static final Map TOKEN_VALUE_TO_NAME = new HashMap();
 
     /** maps from token name to checks */
-    private Map mTokenToChecks = new HashMap();
+    private final Map mTokenToChecks = new HashMap();
     /** all the registered checks */
-    private Set mAllChecks = new HashSet();
+    private final Set mAllChecks = new HashSet();
+    /** collects the error messages */
+    private final LocalizedMessages mMessages;
 
     // initialise the constants
     static {
@@ -73,6 +76,11 @@ class TreeWalker
             }
         }
 
+    }
+
+    public TreeWalker(LocalizedMessages aMessages)
+    {
+        mMessages = aMessages;
     }
 
     /**
@@ -143,12 +151,14 @@ class TreeWalker
      * @param aLines the lines of the file the AST was generated from
      * @param aFilename the file name of the file the AST was generated from
      */
-    void walk(DetailAST aAST, String[] aLines, String aFilename)
+    LocalizedMessages walk(DetailAST aAST, String[] aLines, String aFilename)
     {
+        mMessages.reset();
         notifyBegin(aLines, aFilename);
         aAST.setParent(null);
         process(aAST);
         notifyEnd();
+        return mMessages;
     }
 
     /**

@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Collections;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-class LocalizedMessages
+public class LocalizedMessages
 {
     /** contains the messages logged **/
     private final ArrayList mMessages = new ArrayList();
@@ -40,19 +40,19 @@ class LocalizedMessages
      *
      * @param aTabWidth the tab width to calculate columns with
      */
-    LocalizedMessages(int aTabWidth)
+    public LocalizedMessages(int aTabWidth)
     {
         mTabWidth = aTabWidth;
     }
 
     /** @param aLines the lines to record messages against **/
-    void setLines(String[] aLines)
+    public void setLines(String[] aLines)
     {
         mLines = aLines;
     }
 
     /** @return the logged messages **/
-    LocalizedMessage[] getMessages()
+    public LocalizedMessage[] getMessages()
     {
         Collections.sort(mMessages);
         return (LocalizedMessage[])
@@ -60,7 +60,7 @@ class LocalizedMessages
     }
 
     /** Reset the object **/
-    void reset()
+    public void reset()
     {
         mMessages.clear();
         mLines = null;
@@ -70,7 +70,7 @@ class LocalizedMessages
      * Logs a message to be reported
      * @param aMsg the message to log
      **/
-    void add(LocalizedMessage aMsg)
+    public void add(LocalizedMessage aMsg)
     {
         mMessages.add(aMsg);
     }
@@ -82,7 +82,7 @@ class LocalizedMessages
      * @param aKey key to locale message format
      * @param aArgs arguments for message
      */
-    void add(int aLineNo, String aKey, Object[] aArgs)
+    public void add(int aLineNo, String aKey, Object[] aArgs)
     {
         add(new LocalizedMessage(aLineNo, 0, aKey, aArgs));
     }
@@ -93,7 +93,7 @@ class LocalizedMessages
      * @param aLineNo line number to associate with the message
      * @param aKey key to locale message format
      */
-    void add(int aLineNo, String aKey)
+    public void add(int aLineNo, String aKey)
     {
         add(aLineNo, aKey, new Object[0]);
     }
@@ -105,7 +105,7 @@ class LocalizedMessages
      * @param aKey key to locale message format
      * @param aArg0 first argument
      */
-    void add(int aLineNo, String aKey, Object aArg0)
+    public void add(int aLineNo, String aKey, Object aArg0)
     {
         add(aLineNo, aKey, new Object[] {aArg0});
     }
@@ -118,7 +118,7 @@ class LocalizedMessages
      * @param aArg0 first argument
      * @param aArg1 second argument
      */
-    void add(int aLineNo, String aKey, Object aArg0, Object aArg1)
+    public void add(int aLineNo, String aKey, Object aArg0, Object aArg1)
     {
         add(aLineNo, aKey, new Object[] {aArg0, aArg1});
     }
@@ -132,7 +132,7 @@ class LocalizedMessages
      * @param aArg1 second argument
      * @param aArg2 third argument
      */
-    void add(int aLineNo, String aKey,
+    public void add(int aLineNo, String aKey,
              Object aArg0, Object aArg1, Object aArg2)
     {
         add(aLineNo, aKey, new Object[] {aArg0, aArg1, aArg2});
@@ -146,7 +146,7 @@ class LocalizedMessages
      * @param aKey key to locale message format
      * @param aArgs arguments for message
      */
-    void add(int aLineNo, int aColNo, String aKey, Object[] aArgs)
+    public void add(int aLineNo, int aColNo, String aKey, Object[] aArgs)
     {
         final int col = 1 + Utils.lengthExpandedTabs(
             mLines[aLineNo - 1], aColNo, mTabWidth);
@@ -160,7 +160,7 @@ class LocalizedMessages
      * @param aColNo column number to associate with the message
      * @param aKey key to locale message format
      */
-    void add(int aLineNo, int aColNo, String aKey)
+    public void add(int aLineNo, int aColNo, String aKey)
     {
         add(aLineNo, aColNo, aKey, new Object[0]);
     }
@@ -173,7 +173,7 @@ class LocalizedMessages
      * @param aKey key to locale message format
      * @param aArg0 first argument
      */
-    void add(int aLineNo, int aColNo, String aKey, Object aArg0)
+    public void add(int aLineNo, int aColNo, String aKey, Object aArg0)
     {
         add(aLineNo, aColNo, aKey, new Object[] {aArg0});
     }
@@ -187,7 +187,7 @@ class LocalizedMessages
      * @param aArg0 first argument
      * @param aArg1 second argument
      */
-    void add(int aLineNo, int aColNo, String aKey,
+    public void add(int aLineNo, int aColNo, String aKey,
              Object aArg0, Object aArg1)
     {
         add(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1});

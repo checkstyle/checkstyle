@@ -39,6 +39,7 @@ import java.util.TreeSet;
 
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Represents the configuration that checkstyle uses when checking. The

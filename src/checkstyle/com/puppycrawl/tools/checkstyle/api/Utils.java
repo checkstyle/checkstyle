@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -33,7 +33,7 @@ import org.apache.regexp.RESyntaxException;
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-final class Utils
+public final class Utils
 {
     /** Map of all created regular expressions **/
     private static final Map CREATED_RES = new HashMap();
@@ -51,7 +51,7 @@ final class Utils
      * @param aLine the line to check
      * @return whether there is only whitespace
      */
-    static boolean whitespaceBefore(int aIndex, String aLine)
+    public static boolean whitespaceBefore(int aIndex, String aLine)
     {
         for (int i = 0; i < aIndex; i++) {
             if (!Character.isWhitespace(aLine.charAt(i))) {
@@ -68,7 +68,7 @@ final class Utils
      * @param aLine the string to process
      * @return the length of the string ignoring all trailing whitespace
      **/
-    static int lengthMinusTrailingWhitespace(String aLine)
+    public static int lengthMinusTrailingWhitespace(String aLine)
     {
         int len = aLine.length();
         for (int i = len - 1; i >= 0; i--) {
@@ -89,7 +89,9 @@ final class Utils
      * @param aTabWidth the distance betweeen tab stop position.
      * @return the length of aString.substring(0, aToIdx) with tabs expanded.
      */
-    static int lengthExpandedTabs(String aString, int aToIdx, int aTabWidth)
+    public static int lengthExpandedTabs(String aString,
+                                         int aToIdx,
+                                         int aTabWidth)
     {
         int len = 0;
         for (int idx = 0; idx < aToIdx; idx++) {
@@ -111,7 +113,7 @@ final class Utils
      * @param aPattern the regular expression pattern
      * @throws RESyntaxException an invalid pattern was supplied
      **/
-    static RE getRE(String aPattern)
+    public static RE getRE(String aPattern)
         throws RESyntaxException
     {
         RE retVal = (RE) CREATED_RES.get(aPattern);
@@ -128,7 +130,9 @@ final class Utils
      * @param aKey the key to add the property under
      * @param aValue if not null, then the value to add the property with
      */
-    static void addObjectString(Properties aProps, String aKey, Object aValue)
+    public static void addObjectString(Properties aProps,
+                                       String aKey,
+                                       Object aValue)
     {
         if (aValue != null) {
             aProps.put(aKey, aValue.toString());
@@ -142,7 +146,7 @@ final class Utils
      * @param aKey the key to add the property under
      * @param aSet the Set to encode
      */
-    static void addSetString(Properties aProps, String aKey, Set aSet)
+    public static void addSetString(Properties aProps, String aKey, Set aSet)
     {
         final StringBuffer buf = new StringBuffer();
         final Iterator it = aSet.iterator();

@@ -35,6 +35,11 @@ public abstract class Check
 
     /** the global context for the check */
     private Map mGlobalContext;
+    /**
+     * the object for collecting messages. decided to not put in the global
+     * context for performance and ease of use.
+     */
+    private LocalizedMessages mMessages;
     /** the context for the check across an AST */
     private Map mTreeContext;
     /** the context for a check across a token. */
@@ -59,11 +64,20 @@ public abstract class Check
 
     /**
      * Set the global context for the check.
-     * @param aGlobalContext the global context
+     * @param aContext the context
      */
-    public void setGlobalContext(Map aGlobalContext)
+    public void setGlobalContext(Map aContext)
     {
-        mGlobalContext = aGlobalContext;
+        mGlobalContext = aContext;
+    }
+
+    /**
+     * Set the global object used to collect messages.
+     * @param aMessages the messages to log with
+     */
+    public void setMessages(LocalizedMessages aMessages)
+    {
+        mMessages = aMessages;
     }
 
     /**

@@ -25,18 +25,18 @@ import java.util.TreeMap;
 
 /**
  * Checks can query the CommentManager if they want to analyse comments.
- * <p>
- * The AST tree does not contain comments as they can occur at arbitrary places.
- * Adding them to the AST tree would make it very hard to write checks, as you would
- * always have to beware of comment nodes.
- * </p>
- * <p>
- * Instead, during Java parsing comments are registered with the CommentManager, and
- * Checks that need to analyse comments can use the CommentManager to access that data.
- * </p>
- * <p>
- * Sample Checks that use the CommentManager are the to-do check and the javadoc check.
- * </p>
+ *
+ * <p> The AST tree does not contain comments as they can occur at arbitrary
+ * places.  Adding them to the AST tree would make it very hard to write
+ * checks, as you would always have to beware of comment nodes.  </p>
+ *
+ * <p> Instead, during Java parsing comments are registered with the
+ * CommentManager, and Checks that need to analyse comments can use the
+ * CommentManager to access that data.  </p>
+ *
+ * <p> Sample Checks that use the CommentManager are the to-do check and the
+ * javadoc check.  </p>
+ *
  * @author Lars Kühne
  */
 public class CommentManager
@@ -150,8 +150,8 @@ public class CommentManager
 
     /**
      * An iterator over all comments.
-     * @return an iterator that contains entries of type String (CPP style comments)
-     *  or String[] (C style comments)
+     * @return an iterator that contains entries of type String (CPP style
+     * comments) or String[] (C style comments)
      */
     public Iterator iterator()
     {
