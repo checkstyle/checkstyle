@@ -8,6 +8,9 @@ import com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.IllegalImportCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.RedundantImportCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.UnusedImportsCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
