@@ -20,6 +20,7 @@ public class AllTests
         suite.addTest(new TestSuite(CSVFilterTest.class));
         suite.addTest(new TestSuite(SeverityMatchFilterTest.class));
         suite.addTest(new TestSuite(SuppressElementTest.class));
+        suite.addTest(new TestSuite(SuppressionCommentFilterTest.class));
         //$JUnit-END$
         return suite;
     }

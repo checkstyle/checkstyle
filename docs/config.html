@@ -636,6 +636,147 @@
 &lt;/suppressions&gt;
     </pre>
 
+		  <p class="body">
+		  Filter <span class="code">SuppressionCommentFilter</span> uses
+			pairs of comments to suppress audit events.
+      </p>
+      <p class="body">
+      Rationale: Sometimes there are legitimate reasons for violating
+      a check.  When this is a matter of the code in question and not
+      personal preference, the best place to override the policy is in
+      the code itself.  Semi-structured comments can be associated
+      with the check.  This is sometimes superior to a separate
+      suppressions file, which must be kept up-to-date as the source
+      file is edited.
+      </p>
+      <p class="body">
+      Usage: This filter only works in conjunction with a
+      <span class="code">FileContentsHolder</span>, since that check makes the suppression
+      comments in the .java files available <i>sub rosa</i>. A configuration
+			that includes this filter must configure <span class="code">FileContentsHolder</span>
+			as a child module of <span class="code">TreeWalker</span>.
+      </p>
+      <h4 class="body">SuppressionCommentFilter Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>offCommentFormat</td>
+          <td>comment pattern to trigger filter to begin suppression</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td><span class="default">CHECKSTYLE\:OFF</span></td>
+        </tr>
+				<tr>
+          <td>onCommentFormat</td>
+          <td>comment pattern to trigger filter to end suppression</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td><span class="default">CHECKSTYLE\:ON</span></td>
+        </tr>
+        <tr>
+          <td>checkFormat</td>
+          <td>check pattern to suppress</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td><span class="default">.*</span> (all checks)</td>
+        </tr>
+        <tr>
+          <td>messageFormat</td>
+          <td>message pattern to suppress</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td>none</td>
+        </tr>
+        <tr>
+          <td>checkCPP</td>
+          <td>whether to check C++ style comments (<code>//</code>)</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+        <tr>
+          <td>checkC</td>
+          <td>whether to check C style comments (<code>/* ... */</code>)</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+      </table>
+			<h4 class="body">Restrictions</h4>
+			<p class="body">
+      offCommentFormat and onCommentFormat must have equal
+      <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html#getParenCount()">paren counts</a>.
+      </p>
+      <h4 class="body">Examples</h4>
+      <p class="body">
+      To configure the check that makes comments available to the filter:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;TreeWalker&quot;&gt;
+    ...
+    &lt;module name=&quot;FileContentsHolder&quot;/&gt;
+    ...
+&lt;/module&gt;	
+      </pre>
+      <p class="body">
+      To configure a filter to suppress audit events between a
+			comment containing <code>CHECKSTYLE:OFF</code> and a
+			comment containing <code>CHECKSTYLE:ON</code>:
+       </p>
+      <pre class="body">
+&lt;module name=&quot;SuppressionCommentFilter&quot;/&gt;
+      </pre>
+			
+			<p class="body">
+      To configure a filter to suppress audit events between a
+			comment containing line <code>BEGIN GENERATED CODE</code> and a
+			comment containing line <code>END GENERATED CODE</code>:
+       </p>
+      <pre class="body">
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;BEGIN GENERATED CODE&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;END GENERATED CODE&quot;/&gt;
+&lt;/module>
+      </pre>
+
+      <p class="body">
+      To configure a filter so that <code>// stop constant check</code> and
+			<code>// resume constant check</code>
+      marks legitimate constant names:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop constant check&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume constant check&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;ConstantNameCheck&quot;/&gt;
+&lt;/module>
+      </pre>
+      <p class="body">
+      To configure a filter so that <code>UNUSED OFF: <i>var</i></code>
+			and <code>UNUSED ON: <i>var</i></code>
+      marks a variable or parameter known not to be used by the code
+      by matching the variable name in the message:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;UNUSED OFF\: (\w+)&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;UNUSED ON\: (\w+)&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;Unused&quot;/&gt;
+    &lt;property name=&quot;messageFormat&quot; value=&quot;^Unused \w+ '$1'.$&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <p class="body">
+      To configure a filter so that <code>CSOFF: <i>regexp</i></code>
+      and <code>CSN: <i>regexp</i></code>
+      mark a matching check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF\: ([\w\|]+)&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON\: ([\w\|]+)&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+			
       <a name="auditlisteners"></a>
       <h2>AuditListeners</h2>
       <p class="body">
