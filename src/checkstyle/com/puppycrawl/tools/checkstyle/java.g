@@ -307,7 +307,7 @@ field!
 {
     java.util.List exs = new java.util.ArrayList();
     MethodSignature msig = new MethodSignature();
-    final MyCommonAST[] lcurls = new MyCommonAST[2];
+    final MyCommonAST[] stmtBraces = new MyCommonAST[2];
 }
 	:	// method, constructor, or variable declaration
 		mods:modifiers[msig.getModSet()]
@@ -347,9 +347,9 @@ field!
                     ver.reportStartMethodBlock();
                 }
 				(
-                    s2:compoundStatement[lcurls]
+                    s2:compoundStatement[stmtBraces]
                     {
-                        ver.verifyLCurlyMethod(msig.getLineNo(), lcurls[0]);
+                        ver.verifyLCurlyMethod(msig.getLineNo(), stmtBraces[0]);
                         ver.verifyMethodLength(#s2.getLineNo(),
                                                sCompoundLength);
                     }
@@ -370,8 +370,12 @@ field!
 		)
 
     // "static { ... }" class initializer
-	|	"static" {ver.reportStartMethodBlock();} s3:compoundStatement[sIgnoreAST] {ver.reportEndMethodBlock();}
-		{#field = #(#[STATIC_INIT,"STATIC_INIT"], s3);}
+	|	st:"static" {ver.reportStartMethodBlock();} s3:compoundStatement[stmtBraces]
+        {
+            #field = #(#[STATIC_INIT,"STATIC_INIT"], s3);
+            ver.reportEndMethodBlock();
+            ver.verifyLCurlyOther(st.getLine(), stmtBraces[0]);
+        }
 
     // "{ ... }" instance initializer
 	|	{ver.reportStartMethodBlock();} s4:compoundStatement[sIgnoreAST] {ver.reportEndMethodBlock();}
@@ -561,7 +565,7 @@ statement[int[] aType, MyCommonAST[] aCurlies]
 	// Attach a label to the front of a statement
 	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement[sIgnoreType, sIgnoreAST]
 
-	// If-else statement
+    // If-else statement
 	|	ii:"if"^ LPAREN! expression RPAREN! statement[stmtType, stmtBraces]
         {
             aType[0] = STMT_IF;
@@ -720,17 +724,32 @@ forIter
 
 // an exception handler try/catch block
 tryBlock
-	:	t:"try"^ compoundStatement[sIgnoreAST]
-        { ver.verifyWSAroundBegin(t.getLine(), t.getColumn(), t.getText()); }
+{
+    final MyCommonAST[] stmtBraces = new MyCommonAST[2];
+}
+	:	t:"try"^ compoundStatement[stmtBraces]
+        {
+            ver.verifyWSAroundBegin(t.getLine(), t.getColumn(), t.getText());
+            ver.verifyLCurlyOther(t.getLine(), stmtBraces[0]);
+        }
 		(handler)*
-		( "finally"^ compoundStatement[sIgnoreAST] )?
+		(
+            f:"finally"^ compoundStatement[stmtBraces]
+            { ver.verifyLCurlyOther(f.getLine(), stmtBraces[0]); }
+        )?
 	;
 
 
 // an exception handler
 handler
-	:	c:"catch"^ LPAREN! parameterDeclaration[new MethodSignature()] RPAREN! compoundStatement[sIgnoreAST]
-        {ver.verifyWSAroundBegin(c.getLine(), c.getColumn(), c.getText());}
+{
+    final MyCommonAST[] stmtBraces = new MyCommonAST[2];
+}
+	:	c:"catch"^ LPAREN! parameterDeclaration[new MethodSignature()] RPAREN! compoundStatement[stmtBraces]
+        {
+            ver.verifyWSAroundBegin(c.getLine(), c.getColumn(), c.getText());
+            ver.verifyLCurlyOther(c.getLine(), stmtBraces[0]);
+        }
 	;
 
 
