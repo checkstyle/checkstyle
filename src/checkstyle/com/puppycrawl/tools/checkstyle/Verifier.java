@@ -182,10 +182,13 @@ class Verifier
         // Iterate over the lines looking for long lines and tabs.
         for (int i = 0; i < mLines.length; i++) {
             // check for long line, but possibly allow imports
-            if ((mLines[i].length() > mConfig.getMaxLineLength()) &&
-                !(mConfig.getIgnoreLineLengthRegexp().match(mLines[i])) &&
+            String line = mLines[i];
+            int realLength = Utils.lengthExpandedTabs(
+                line, line.length(), mConfig.getTabWidth());
+            if ((realLength > mConfig.getMaxLineLength()) &&
+                !(mConfig.getIgnoreLineLengthRegexp().match(line)) &&
                 !(mConfig.isIgnoreImportLength() &&
-                  mLines[i].trim().startsWith("import")))
+                  line.trim().startsWith("import")))
             {
                 log(i + 1,
                     "line longer than " + mConfig.getMaxLineLength() +
@@ -920,7 +923,10 @@ class Verifier
      **/
     private void log(int aLineNo, int aColNo, String aMsg)
     {
-        mMessages.add(new LineText(aLineNo, aColNo + 1, aMsg));
+        // message must account for tabs before the error column
+        int colNo = Utils.lengthExpandedTabs(
+            mLines[aLineNo - 1], aColNo, mConfig.getTabWidth());
+        mMessages.add(new LineText(aLineNo, colNo + 1, aMsg));
     }
 
 

@@ -156,6 +156,18 @@ public class CheckStyleTask
             });
     }
 
+    /** @param aTabWidth number of spaces that are represented by one tab **/
+    public void setTabWidth(final int aTabWidth)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setTabWidth(aTabWidth);
+                }
+            });
+    }
+
     /** @param aAllowed whether protected data is allowed **/
     public void setAllowProtected(final boolean aAllowed)
     {

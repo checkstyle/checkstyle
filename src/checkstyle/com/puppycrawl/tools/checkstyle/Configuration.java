@@ -74,6 +74,8 @@ public class Configuration
     private static final int MAX_FILE_LENGTH = 2000;
     /** the set of illegal imports (comma separated package prefixes) **/
     private static final String ILLEGAL_IMPORTS = "sun";
+    /** the number of spaces that are represented by one tab character **/
+    private static final int TAB_WIDTH = 8;
 
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
@@ -129,6 +131,8 @@ public class Configuration
     private int mMaxFileLength = MAX_FILE_LENGTH;
     /** whether to allow tabs **/
     private boolean mAllowTabs = false;
+    /** the distance between tab stops **/
+    private int mTabWidth = TAB_WIDTH;
     /** whether to allow protected data **/
     private boolean mAllowProtected = false;
     /** whether to allow protected data **/
@@ -224,6 +228,7 @@ public class Configuration
             aProps, aLog, MAX_FILE_LENGTH_PROP, MAX_FILE_LENGTH));
 
         setAllowTabs(getBooleanProperty(aProps, ALLOW_TABS_PROP, mAllowTabs));
+        setTabWidth(getIntProperty(aProps, aLog, TAB_WIDTH_PROP, TAB_WIDTH));
         setAllowProtected(
             getBooleanProperty(aProps, ALLOW_PROTECTED_PROP, mAllowProtected));
         setAllowPackage(
@@ -469,6 +474,12 @@ public class Configuration
     public boolean isAllowTabs()
     {
         return mAllowTabs;
+    }
+
+    /** @return distance between tab stops */
+    public int getTabWidth()
+    {
+        return mTabWidth;
     }
 
     /** @return whether to allow protected data **/
@@ -761,6 +772,12 @@ public class Configuration
     public void setAllowTabs(boolean aAllowTabs)
     {
         mAllowTabs = aAllowTabs;
+    }
+
+    /** @param aTabWidth distance between tab stops */
+    public void setTabWidth(int aTabWidth)
+    {
+        mTabWidth = aTabWidth;
     }
 
     /**

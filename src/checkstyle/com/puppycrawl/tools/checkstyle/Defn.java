@@ -51,6 +51,8 @@ public interface Defn
     /** property name for allowing tabs **/
     String ALLOW_TABS_PROP = "checkstyle.allow.tabs";
     /** property name for allowing protected data **/
+    String TAB_WIDTH_PROP = "checkstyle.tab.width";
+    /** property name for allowing protected data **/
     String ALLOW_PROTECTED_PROP = "checkstyle.allow.protected";
     /** property name for allowing package data **/
     String ALLOW_PACKAGE_PROP = "checkstyle.allow.package";
