@@ -276,7 +276,7 @@ interfaceDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 // This is the body of a class.  You can have fields and extra semicolons,
 // That's about it (until you see what a field is...)
 classBlock[int aLine]
-	:	lc:LCURLY! { if (aLine != -1) ver.verifyLCurlyType(aLine, #lc); }
+	:	lc:LCURLY!
 			( field | SEMI! )*
 		RCURLY!
 		{#classBlock = #([OBJBLOCK, "OBJBLOCK"], #classBlock);}
@@ -351,7 +351,6 @@ field!
 				(
                     s2:compoundStatement[stmtBraces, sIgnoreIsEmpty]
                     {
-                        ver.verifyLCurlyMethod(msig.getFirstLineNo(), stmtBraces[0]);
                         ver.verifyMethodLength(
                             #s2.getLineNo(),
                             stmtBraces[1].getLineNo()
@@ -378,7 +377,6 @@ field!
         {
             #field = #(#[STATIC_INIT,"STATIC_INIT"], s3);
             ver.reportEndMethodBlock();
-            ver.verifyLCurlyOther(st.getLine(), stmtBraces[0]);
         }
 
     // "{ ... }" instance initializer
@@ -387,7 +385,7 @@ field!
 	;
 
 constructorBody[int aLineNo]
-    :   lc:LCURLY^ {#lc.setType(SLIST); ver.verifyLCurlyMethod(aLineNo, #lc); }
+    :   lc:LCURLY^ {#lc.setType(SLIST); }
 		// Predicate might be slow but only checked once per constructor def
 		// not for general methods.
 		(	(explicitConstructorInvocation) => explicitConstructorInvocation
@@ -584,9 +582,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(ii);
             }
-            else {
-                ver.verifyLCurlyOther(ii.getLine(), stmtBraces[0]);
-            }
         }
 		(
 			// CONFLICT: the old "dangling-else" problem...
@@ -598,9 +593,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 		:
 			ee:"else"!
             {
-                if (stmtType[0] == STMT_COMPOUND) {
-                    ver.verifyRCurly(stmtBraces[1], ee.getLine());
-                }
                 stmtType[0] = STMT_OTHER;
             }
             statement[stmtType, stmtBraces]
@@ -608,9 +600,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
                 ver.verifyWSAroundBegin(ee.getLine(), ee.getColumn(), ee.getText());
                 if (stmtType[0] == STMT_OTHER) {
                     ver.reportNeedBraces(ee);
-                }
-                else if (stmtType[0] == STMT_COMPOUND) {
-                    ver.verifyLCurlyOther(ee.getLine(), stmtBraces[0]);
                 }
             }
 		)?
@@ -630,9 +619,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(ff);
             }
-            else {
-                ver.verifyLCurlyOther(ff.getLine(), stmtBraces[0]);
-            }
         }
 
 	// While statement
@@ -641,9 +627,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
             ver.verifyWSAroundBegin(ww.getLine(), ww.getColumn(), ww.getText());
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(ww);
-            }
-            else {
-                ver.verifyLCurlyOther(ww.getLine(), stmtBraces[0]);
             }
         }
 
@@ -654,9 +637,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
             ver.verifyWSAroundBegin(dw.getLine(), dw.getColumn(), dw.getText());
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(dd);
-            }
-            else {
-                ver.verifyLCurlyOther(dd.getLine(), stmtBraces[0]);
             }
         }
 
@@ -671,7 +651,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 
 	// switch/case statement
 	|	ss2:"switch"^ LPAREN! expression RPAREN! lc:LCURLY!
-        { ver.verifyLCurlyOther(ss2.getLine(), #lc); }
 			( casesGroup )*
 		RCURLY!
 
@@ -685,7 +664,6 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 	|	ss:"synchronized"^ LPAREN! expression RPAREN! compoundStatement[stmtBraces, sIgnoreIsEmpty]
         {
             ver.verifyWSAroundBegin(ss.getLine(), ss.getColumn(), ss.getText());
-            ver.verifyLCurlyOther(ss.getLine(), stmtBraces[0]);
         }
 
 	// empty statement
@@ -748,25 +726,22 @@ tryBlock
         {
             ver.verifyWSAroundBegin(t.getLine(), t.getColumn(), t.getText());
             ver.reportTryBlock(stmtBraces, isEmpty[0]);
-            ver.verifyLCurlyOther(t.getLine(), stmtBraces[0]);
         }
 
         (
-            c:"catch"^ { ver.verifyRCurly(stmtBraces[1], c.getLine()); }
+            c:"catch"^
             LPAREN! parameterDeclaration[ignoreMS] RPAREN! compoundStatement[stmtBraces, isEmpty]
             {
                 ver.verifyWSAroundBegin(
                     c.getLine(), c.getColumn(), c.getText());
                 ver.reportCatchBlock(stmtBraces, isEmpty[0]);
-                ver.verifyLCurlyOther(c.getLine(), stmtBraces[0]);
             }
         )*
 
         (
-            f:"finally"^ { ver.verifyRCurly(stmtBraces[1], f.getLine()); }
+            f:"finally"^
             compoundStatement[stmtBraces, isEmpty]
             {
-                ver.verifyLCurlyOther(f.getLine(), stmtBraces[0]);
                 ver.reportFinallyBlock(stmtBraces, isEmpty[0]);
             }
         )?
@@ -1144,8 +1119,8 @@ options {
 
 // OPERATORS
 QUESTION     : '?' {ver.verifyOpEnd(getLine(), getColumn(), "?");} ;
-LPAREN   : '(' { ver.verifyLParen(getLine(), getColumn()); } ;
-RPAREN   : ')' { ver.verifyRParen(getLine(), getColumn()); } ;
+LPAREN   : '(';
+RPAREN   : ')';
 LBRACK   : '['  ;
 RBRACK   : ']'  ;
 LCURLY   : '{'  ;
