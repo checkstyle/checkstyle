@@ -316,7 +316,7 @@ public class Checker
                 if (!packageDoc.exists()) {
                     final LineText error =
                         new LineText(0, "missing package documentation file.");
-                    fireErrors(docFile, new LineText[]{error} );
+                    fireErrors(docFile, new LineText[]{error});
                     packageHtmlErrors++;
                 }
                 fireFileFinished(docFile);

@@ -69,7 +69,7 @@ class StringArrayReader extends Reader
     }
 
     /** @see Reader */
-    public int read( char[] aCbuf, int aOff, int aLen ) throws IOException
+    public int read(char[] aCbuf, int aOff, int aLen) throws IOException
     {
         if (mClosed) {
             throw new IOException("already closed");
