@@ -154,14 +154,14 @@ public abstract class ExpressionHandler
      * @param aActualLevel   the actual indent level of the expression
      * @param aExpectedLevel the expected indent level of the expression
      */
-    protected final void logChildError(int aLine,
-                                       int aActualLevel,
-                                       int aExpectedLevel)
+    private void logChildError(int aLine,
+                               int aActualLevel,
+                               IndentLevel aExpectedLevel)
     {
         Object[] args = new Object[] {
             mTypeName,
             new Integer(aActualLevel),
-            new Integer(aExpectedLevel),
+            aExpectedLevel,
         };
         mIndentCheck.indentationLog(aLine,
                                     "indentation.child.error",
@@ -278,7 +278,7 @@ public abstract class ExpressionHandler
      * @param aFirstLine          firstline of whole expression
      */
     private void checkLinesIndent(LineSet aLines,
-                                  int aIndentLevel,
+                                  IndentLevel aIndentLevel,
                                   boolean aFirstLineMatches,
                                   int aFirstLine)
     {
@@ -310,7 +310,8 @@ public abstract class ExpressionHandler
         if (aFirstLineMatches
             || (aFirstLine > mMainAst.getLineNo() && shouldIncraeseIndent()))
         {
-            aIndentLevel += mIndentCheck.getBasicOffset();
+            aIndentLevel = new IndentLevel(aIndentLevel,
+                                           mIndentCheck.getBasicOffset());
         }
 
         // check following lines
@@ -332,7 +333,8 @@ public abstract class ExpressionHandler
             if (thisLine.matches("^\\s*\\.")
                 || prevLine.matches("\\.\\s*$"))
             {
-                aIndentLevel += mIndentCheck.getBasicOffset();
+                aIndentLevel = new IndentLevel(aIndentLevel,
+                                               mIndentCheck.getBasicOffset());
             }
 
             if (col != null) {
@@ -352,7 +354,7 @@ public abstract class ExpressionHandler
         String line = mIndentCheck.getLines()[aLineNum - 1];
         int start = getLineStart(line);
         if (start < aIndentLevel) {
-            logChildError(aLineNum, start, aIndentLevel);
+            logChildError(aLineNum, start, new IndentLevel(aIndentLevel));
         }
     }
 
@@ -366,7 +368,7 @@ public abstract class ExpressionHandler
      */
 
     private void checkSingleLine(int aLineNum, int aColNum,
-        int aIndentLevel, boolean aMustMatch)
+        IndentLevel aIndentLevel, boolean aMustMatch)
     {
         String line = mIndentCheck.getLines()[aLineNum - 1];
         int start = getLineStart(line);
@@ -374,8 +376,8 @@ public abstract class ExpressionHandler
         // at the correct indention level; otherwise, it is an only an
         // error if this statement starts the line and it is less than
         // the correct indentation level
-        if (aMustMatch ? start != aIndentLevel
-            : aColNum == start && start < aIndentLevel)
+        if (aMustMatch ? !aIndentLevel.accept(start)
+            : aColNum == start && aIndentLevel.gt(start))
         {
             logChildError(aLineNum, start, aIndentLevel);
         }
@@ -416,7 +418,7 @@ public abstract class ExpressionHandler
      * @param aAllowNesting       whether or not nested children are allowed
      */
     protected final void checkChildren(DetailAST aParent, int[] aTokenTypes,
-        int aStartLevel,
+        IndentLevel aStartLevel,
         boolean aFirstLineMatches, boolean aAllowNesting)
     {
         Arrays.sort(aTokenTypes);
@@ -446,6 +448,25 @@ public abstract class ExpressionHandler
         boolean aAllowNesting
     )
     {
+        checkExpressionSubtree(aTree, new IndentLevel(aLevel),
+                               aFirstLineMatches, aAllowNesting);
+    }
+
+    /**
+     * Check the indentation level for an expression subtree.
+     *
+     * @param aTree               the expression subtree to check
+     * @param aLevel              the indentation level
+     * @param aFirstLineMatches   whether or not the first line has to match
+     * @param aAllowNesting       whether or not subtree nesting is allowed
+     */
+    protected final void checkExpressionSubtree(
+        DetailAST aTree,
+        IndentLevel aLevel,
+        boolean aFirstLineMatches,
+        boolean aAllowNesting
+    )
+    {
         LineSet subtreeLines = new LineSet();
         int firstLine = getFirstLine(Integer.MAX_VALUE, aTree);
         if (aFirstLineMatches && !aAllowNesting) {
@@ -455,8 +476,7 @@ public abstract class ExpressionHandler
         }
         findSubtreeLines(subtreeLines, aTree, aAllowNesting);
 
-        checkLinesIndent(subtreeLines, aLevel, aFirstLineMatches,
-                         firstLine);
+        checkLinesIndent(subtreeLines, aLevel, aFirstLineMatches, firstLine);
     }
 
     /**

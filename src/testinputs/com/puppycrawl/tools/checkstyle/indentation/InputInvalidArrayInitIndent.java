@@ -44,10 +44,10 @@ public class InputInvalidArrayInitIndent {
   {1, 2, 3};
     
 
-// TODO: not allowed, for now
-//    int[] array6 = new int[] { 1, 2, 
-//        3
-//    };
+    int[] array6 = new int[] { 1, 2,
+                    3,
+    4,};
+
 
         
     int[] array7 = new int[] { 
