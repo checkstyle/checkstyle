@@ -10,7 +10,7 @@ public class AvoidStarImportTest
         throws Exception
     {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(AvoidStarImport.class);
+            createCheckConfig(AvoidStarImportCheck.class);
         final String[] expected = {
             "7: Avoid using the '.*' form of import - com.puppycrawl.tools.checkstyle.*.",
             "9: Avoid using the '.*' form of import - java.io.*.",
