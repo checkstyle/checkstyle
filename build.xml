@@ -104,7 +104,7 @@
   </target>
 
   <target name="checkstyle.simple" depends="compile.tests">
-    <taskdef name="checkstyle"
+    <taskdef name="checkstyle" reverseloader="true"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
@@ -112,7 +112,7 @@
   </target>
 
   <target name="checkstyle.import" depends="compile.tests">
-    <taskdef name="checkstyle"
+    <taskdef name="checkstyle" reverseloader="true"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
@@ -120,7 +120,7 @@
   </target>
 
   <target name="checkstyle.checkstyle" depends="compile.checkstyle">
-    <taskdef name="checkstyle"
+    <taskdef name="checkstyle" reverseloader="true"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
@@ -135,7 +135,7 @@
   </target>
 
   <target name="checkstyle.noargs" depends="compile.checkstyle">
-    <taskdef name="checkstyle"
+    <taskdef name="checkstyle" reverseloader="true"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
