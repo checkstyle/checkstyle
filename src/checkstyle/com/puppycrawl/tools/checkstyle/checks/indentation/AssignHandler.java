@@ -79,4 +79,14 @@ public class AssignHandler extends BlockParentHandler
     {
         return false;
     }
+
+    /** {@inheritDoc} */
+    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    {
+        final DetailAST assign = getMainAst();
+        if (startsLine(assign)) {
+            return new IndentLevel(expandedTabsColumnNo(assign));
+        }
+        return super.suggestedChildLevel(aChild);
+    }
 }
