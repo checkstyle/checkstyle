@@ -504,10 +504,7 @@ public class CheckStyleTask
         {
             final Class clazz = Class.forName(mClassName);
             final AuditListener listener = (AuditListener) clazz.newInstance();
-            if (listener instanceof Streamable) {
-                final Streamable o = (Streamable) listener;
-                o.setOutputStream(createOutputStream(aTask));
-            }
+            listener.setOutputStream(createOutputStream(aTask));
             return listener;
         }
 
