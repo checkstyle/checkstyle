@@ -1,5 +1,6 @@
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheckTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
