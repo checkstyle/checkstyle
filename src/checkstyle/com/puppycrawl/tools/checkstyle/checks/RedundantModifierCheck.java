@@ -102,15 +102,23 @@ public class RedundantModifierCheck
             if (inInterfaceBlock(aAST)) {
                 DetailAST ast = (DetailAST) aAST.getFirstChild();
                 while (ast != null) {
-                    String modifier = ast.getText();
-                    if ("public".equals(modifier)
-                        || "abstract".equals(modifier))
+
+                    // javac does not allow final in interface methods
+                    // hence no need to check that this is not a method
+
+                    final int type = ast.getType();
+                    if (type == TokenTypes.LITERAL_PUBLIC
+                            || type == TokenTypes.ABSTRACT
+                            || type == TokenTypes.FINAL)
                     {
-                        log(ast.getLineNo(),
-                            ast.getColumnNo(),
-                            "redundantModifier",
-                            new String[] {modifier});
+                            String modifier = ast.getText();
+                            log(ast.getLineNo(),
+                                    ast.getColumnNo(),
+                                    "redundantModifier",
+                                    new String[] {modifier});
+                            break;
                     }
+
                     ast = (DetailAST) ast.getNextSibling();
                 }
             }
