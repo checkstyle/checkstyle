@@ -64,6 +64,7 @@ tokens {
     final Verifier ver = VerifierSingleton.getInstance();
     private static String sFirstIdent = "";
     private static int sCompoundLength = -1;
+    private static final MyCommonAST[] sIgnoreAST = new MyCommonAST[2];
     private static LineText sLastIdentifier;
     private static final int[] sIgnoreType = new int[1];
 
@@ -306,6 +307,7 @@ field!
 {
     java.util.List exs = new java.util.ArrayList();
     MethodSignature msig = new MethodSignature();
+    final MyCommonAST[] lcurls = new MyCommonAST[2];
 }
 	:	// method, constructor, or variable declaration
 		mods:modifiers[msig.getModSet()]
@@ -315,7 +317,7 @@ field!
                 ver.verifyMethod(msig);
                 ver.reportStartMethodBlock();
             } 
-            s:constructorBody // constructor
+            s:constructorBody[msig.getLineNo()] // constructor
 			{#field = #(#[CTOR_DEF,"CTOR_DEF"], mods, h, s);}
             {ver.reportEndMethodBlock();} 
 
@@ -344,7 +346,16 @@ field!
                     ver.verifyMethod(msig);
                     ver.reportStartMethodBlock();
                 } 
-				( s2:compoundStatement {ver.verifyMethodLength(#s2.getLineNo(), sCompoundLength);} | SEMI )
+				(
+                    s2:compoundStatement[lcurls]
+                    {
+                        ver.verifyMethodLCurly(msig.getLineNo(), lcurls[0]);
+                        ver.verifyMethodLength(#s2.getLineNo(),
+                                               sCompoundLength);
+                    }
+                |
+                    SEMI
+                )
 				{#field = #(#[METHOD_DEF,"METHOD_DEF"],
 						     mods,
 							 #(#[TYPE,"TYPE"],rt),
@@ -359,16 +370,16 @@ field!
 		)
 
     // "static { ... }" class initializer
-	|	"static" {ver.reportStartMethodBlock();} s3:compoundStatement {ver.reportEndMethodBlock();}
+	|	"static" {ver.reportStartMethodBlock();} s3:compoundStatement[sIgnoreAST] {ver.reportEndMethodBlock();}
 		{#field = #(#[STATIC_INIT,"STATIC_INIT"], s3);}
 
     // "{ ... }" instance initializer
-	|	{ver.reportStartMethodBlock();} s4:compoundStatement {ver.reportEndMethodBlock();}
+	|	{ver.reportStartMethodBlock();} s4:compoundStatement[sIgnoreAST] {ver.reportEndMethodBlock();}
 		{#field = #(#[INSTANCE_INIT,"INSTANCE_INIT"], s4);}
 	;
 
-constructorBody
-    :   lc:LCURLY^ {#lc.setType(SLIST);}
+constructorBody[int aLineNo]
+    :   lc:LCURLY^ {#lc.setType(SLIST); ver.verifyMethodLCurly(aLineNo, #lc); }
 		// Predicate might be slow but only checked once per constructor def
 		// not for general methods.
 		(	(explicitConstructorInvocation) => explicitConstructorInvocation
@@ -511,11 +522,15 @@ parameterModifier
 //   As a completely indepdent braced block of code inside a method
 //      it starts a new scope for variable definitions
 
-compoundStatement
-	:	lc:LCURLY^ {#lc.setType(SLIST);}
+compoundStatement[MyCommonAST[] aCurlies]
+	:	lc:LCURLY^ {#lc.setType(SLIST); aCurlies[0] = #lc;}
 			// include the (possibly-empty) list of statements
 			(statement[sIgnoreType])*
-		rc:RCURLY! { sCompoundLength = rc.getLine() - lc.getLine() + 1; }
+		rc:RCURLY!
+        {
+            sCompoundLength = rc.getLine() - lc.getLine() + 1;
+            aCurlies[1] = #rc;
+        }
 	;
 
 
@@ -526,7 +541,7 @@ statement[int[] aType]
     stmtType[0] = STMT_OTHER;
 }
 	// A list of statements in curly braces -- start a new scope!
-	:	compoundStatement { aType[0] = STMT_COMPOUND; }
+	:	compoundStatement[sIgnoreAST] { aType[0] = STMT_COMPOUND; }
 
 	// declarations are ambiguous with "ID DOT" relative to expression
 	// statements.  Must backtrack to be sure.  Could use a semantic
@@ -628,7 +643,7 @@ statement[int[] aType]
 	|	"throw"^ expression SEMI!
 
 	// synchronize a statement
-	|	ss:"synchronized"^ LPAREN! expression RPAREN! compoundStatement
+	|	ss:"synchronized"^ LPAREN! expression RPAREN! compoundStatement[sIgnoreAST]
         {ver.verifyWSAroundBegin(ss.getLine(), ss.getColumn(), ss.getText());}
 
 	// empty statement
@@ -685,16 +700,16 @@ forIter
 
 // an exception handler try/catch block
 tryBlock
-	:	t:"try"^ compoundStatement
+	:	t:"try"^ compoundStatement[sIgnoreAST]
         { ver.verifyWSAroundBegin(t.getLine(), t.getColumn(), t.getText()); }
 		(handler)*
-		( "finally"^ compoundStatement )?
+		( "finally"^ compoundStatement[sIgnoreAST] )?
 	;
 
 
 // an exception handler
 handler
-	:	c:"catch"^ LPAREN! parameterDeclaration[new MethodSignature()] RPAREN! compoundStatement
+	:	c:"catch"^ LPAREN! parameterDeclaration[new MethodSignature()] RPAREN! compoundStatement[sIgnoreAST]
         {ver.verifyWSAroundBegin(c.getLine(), c.getColumn(), c.getText());}
 	;
 

@@ -572,6 +572,57 @@ class Verifier
         }
     }
 
+    /**
+     * Verify that a method has correct placement of the left curly brace.
+     * @param aMethodLine line the method starts on
+     * @param aBrace location of the brace
+     */
+    void verifyMethodLCurly(int aMethodLine, MyCommonAST aBrace)
+    {
+        final String prevLine = mLines[aBrace.getLineNo() - 2];
+        final String braceLine = mLines[aBrace.getLineNo() - 1];
+        final LeftCurlyOption option = mConfig.getLCurlyMethod();
+
+        // Check for being told to ignore, or have '{}' which is a special case
+        if ((option == LeftCurlyOption.IGNORE)
+            || ((braceLine.length() > (aBrace.getColumnNo() + 1))
+                && (braceLine.charAt(aBrace.getColumnNo() + 1) == '}')))
+        {
+            // ignore
+        }
+        else if (option == LeftCurlyOption.NL) {
+            if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
+                log(aBrace.getLineNo(), "'{' should be on a new line.");
+            }
+        }
+        else if (option == LeftCurlyOption.EOL) {
+            if (Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)
+                && ((Utils.lengthMinusTrailingWhitespace(prevLine) + 2)
+                    <= mConfig.getMaxLineLength()))
+            {
+                log(aBrace.getLineNo(), "'{' should be on the previous line.");
+            }
+        }
+        else if (option == LeftCurlyOption.NLOW) {
+            if (aMethodLine == aBrace.getLineNo()) {
+                // all ok as on the same line
+            }
+            else if ((aMethodLine + 1) == aBrace.getLineNo()) {
+                if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
+                    log(aBrace.getLineNo(), "'{' should be on a new line.");
+                }
+                else if ((Utils.lengthMinusTrailingWhitespace(prevLine) + 2)
+                         <= mConfig.getMaxLineLength()) {
+                    log(aBrace.getLineNo(),
+                        "'{' should be on the previous line.");
+                }
+            }
+            else if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
+                log(aBrace.getLineNo(), "'{' should be on a new line.");
+            }
+        }
+    }
+
 
     /**
      * Verify that a constructor length is ok.

@@ -42,6 +42,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setHeaderFile(getPath("java.header"));
+        mConfig.setLCurlyMethod(LeftCurlyOption.NL);
     }
 
     protected String getPath(String aFilename)
@@ -588,6 +589,35 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             packageHtmlPath + ":0: missing package documentation file.",
+        };
+        verify(c, filepath, expected);
+    }
+
+    public void testLCurlyMethodIgnore()
+        throws Exception
+    {
+        mConfig.setLCurlyMethod(LeftCurlyOption.IGNORE);
+        mConfig.setJavadocScope(Scope.NOTHING);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputLeftCurlyMethod.java");
+        assertNotNull(c);
+        final String[] expected = {
+        };
+        verify(c, filepath, expected);
+    }
+
+    public void testLCurlyMethodNL()
+        throws Exception
+    {
+        mConfig.setLCurlyMethod(LeftCurlyOption.NL);
+        mConfig.setJavadocScope(Scope.NOTHING);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputLeftCurlyMethod.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":14: '{' should be on a new line.",
+            filepath + ":21: '{' should be on a new line.",
+            filepath + ":34: '{' should be on a new line.",
         };
         verify(c, filepath, expected);
     }
