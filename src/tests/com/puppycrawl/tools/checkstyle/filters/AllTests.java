@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.filter;
+package com.puppycrawl.tools.checkstyle.filters;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;

@@ -31,7 +31,7 @@ import org.xml.sax.SAXException;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterChain;
-import com.puppycrawl.tools.checkstyle.filter.SuppressElement;
+import com.puppycrawl.tools.checkstyle.filters.SuppressElement;
 
 /**
  * Loads a filter chain of suppressions.

@@ -9,7 +9,7 @@
 
     <property name="severity" value="error"/>
 
-    <module name="filter.SuppressionFilter">
+    <module name="SuppressionFilter">
         <property name="file" value="${checkstyle.suppressions.file}"/>
     </module>
 

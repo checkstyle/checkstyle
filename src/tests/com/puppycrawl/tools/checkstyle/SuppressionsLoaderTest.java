@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterChain;
-import com.puppycrawl.tools.checkstyle.filter.SuppressElement;
+import com.puppycrawl.tools.checkstyle.filters.SuppressElement;
 
 /**
  * Tests SuppressionsLoader.
