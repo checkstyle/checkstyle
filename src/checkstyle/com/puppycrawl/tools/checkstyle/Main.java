@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.IOException;
 import org.apache.regexp.RESyntaxException;
 
 /**
@@ -39,12 +40,19 @@ public final class Main
 
         Checker c = null;
         try {
-            c = new Checker(System.getProperties(), System.out);
+            c = new Checker(new Configuration(System.getProperties(),
+                                              System.out),
+                            System.out);
         }
         catch (RESyntaxException rese) {
             System.out.println("Unable to create an regexp object: " +
                                rese.getMessage());
             rese.printStackTrace(System.out);
+            System.exit(1);
+        }
+        catch (IOException ex) {
+            System.out.println("I/O error occurred: " + ex.getMessage());
+            ex.printStackTrace(System.out);
             System.exit(1);
         }
 

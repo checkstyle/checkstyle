@@ -1,3 +1,20 @@
+2001-06-29  Oliver Burn  <oliver-work@puppycrawl.com>
+
+	* src/tests/com/puppycrawl/tools/checkstyle/CheckerTest.java: 
+	Refactored to use the Configuration object.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/Main.java: 
+	Refactored to use the Configuration object.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/Configuration.java:
+	First implementation.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java: 
+	Refactored to use the Configuration object.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java:
+	Refactored to use the Configuration object.
+
 2001-06-28  Oliver Burn  <checkstyle@puppycrawl.com>
 
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.tree.g: Now report

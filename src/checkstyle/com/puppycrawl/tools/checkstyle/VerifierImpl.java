@@ -385,7 +385,7 @@ class VerifierImpl
     /** @see Verifier **/
     public void reportImport(int aLineNo, String aType)
     {
-        if (mConfig.isCheckImports()) {
+        if (!mConfig.isIgnoreImports()) {
             // Check for a duplicate import
             final Iterator it = mImports.iterator();
             while (it.hasNext()) {
@@ -410,8 +410,11 @@ class VerifierImpl
     /** @see Verifier **/
     public void reportStarImport(int aLineNo, String aPkg)
     {
-        if (mConfig.isCheckImports()) {
+        if (!mConfig.isIgnoreImports()) {
             log(aLineNo, "Avoid using the '.*' form of import.");
+            if (aPkg.startsWith("java.lang.")) {
+                log(aLineNo, "Redundant import from the java.lang package.");
+            }
         }
     }
 
@@ -715,7 +718,7 @@ class VerifierImpl
     /** Check the imports that are unused or unrequired. **/
     private void checkImports()
     {
-        if (!mConfig.isCheckImports()) {
+        if (mConfig.isIgnoreImports()) {
             return;
         }
 

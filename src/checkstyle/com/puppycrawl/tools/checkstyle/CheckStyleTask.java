@@ -19,10 +19,10 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 import org.apache.regexp.RESyntaxException;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -36,14 +36,13 @@ import org.apache.tools.ant.types.FileSet;
  **/
 public class CheckStyleTask
     extends Task
-    implements Defn
 {
     /** name of file to check **/
     private String mFileName;
     /** contains the filesets to process **/
     private final List mFileSets = new ArrayList();
-    /** the properties to pass to the checker **/
-    private final Properties mProps = new Properties();
+    /** the configuration to pass to the checker **/
+    private final Configuration mConfig = new Configuration();
 
     ////////////////////////////////////////////////////////////////////////////
     // Setters for attributes
@@ -67,79 +66,115 @@ public class CheckStyleTask
     /** @param aAllowed whether tabs are allowed **/
     public void setAllowtabs(boolean aAllowed)
     {
-        mProps.setProperty(ALLOW_TABS_PROP, "" + aAllowed);
+        mConfig.setAllowTabs(aAllowed);
     }
 
     /** @param aAllowed whether protected data is allowed **/
     public void setAllowprotected(boolean aAllowed)
     {
-        mProps.setProperty(ALLOW_PROTECTED_PROP, "" + aAllowed);
+        mConfig.setAllowProtected(aAllowed);
     }
 
     /** @param aAllowed whether allow having no author **/
     public void setAllownoauthor(boolean aAllowed)
     {
-        mProps.setProperty(ALLOW_NO_AUTHOR_PROP, "" + aAllowed);
+        mConfig.setAllowNoAuthor(aAllowed);
     }
 
     /** @param aLen max allowed line length **/
     public void setMaxlinelen(int aLen)
     {
-        mProps.setProperty(MAX_LINE_LENGTH_PROP, "" + aLen);
+        mConfig.setMaxLineLength(aLen);
     }
 
     /** @param aPat pattern for member variables **/
     public void setMemberpattern(String aPat)
     {
-        mProps.setProperty(MEMBER_PATTERN_PROP, aPat);
+        try {
+            mConfig.setMemberPat(aPat);
+        }
+        catch (RESyntaxException ex) {
+            throw new BuildException("Unable to parse memberpattern - " +
+                                     ex.getMessage());
+        }
     }
 
     /** @param aPat pattern for parameters **/
     public void setParampattern(String aPat)
     {
-        mProps.setProperty(PARAMETER_PATTERN_PROP, aPat);
+        try {
+            mConfig.setParamPat(aPat);
+        }
+        catch (RESyntaxException ex) {
+            throw new BuildException("Unable to parse parampattern - " +
+                                     ex.getMessage());
+        }
     }
 
     /** @param aPat pattern for constant variables **/
     public void setConstpattern(String aPat)
     {
-        mProps.setProperty(CONST_PATTERN_PROP, aPat);
+        try {
+            mConfig.setStaticFinalPat(aPat);
+        }
+        catch (RESyntaxException ex) {
+            throw new BuildException("Unable to parse constpattern - " +
+                                     ex.getMessage());
+        }
     }
 
     /** @param aPat pattern for static variables **/
     public void setStaticpattern(String aPat)
     {
-        mProps.setProperty(STATIC_PATTERN_PROP, aPat);
+        try {
+            mConfig.setStaticPat(aPat);
+        }
+        catch (RESyntaxException ex) {
+            throw new BuildException("Unable to parse staticpattern - " +
+                                     ex.getMessage());
+        }
     }
 
     /** @param aPat pattern for type names **/
     public void setTypepattern(String aPat)
     {
-        mProps.setProperty(TYPE_PATTERN_PROP, aPat);
+        try {
+            mConfig.setTypePat(aPat);
+        }
+        catch (RESyntaxException ex) {
+            throw new BuildException("Unable to parse typepattern - " +
+                                     ex.getMessage());
+        }
     }
 
     /** @param aName header file name **/
     public void setHeaderfile(File aName)
     {
-        mProps.setProperty(HEADER_FILE_PROP, aName.getAbsolutePath());
+        try {
+            mConfig.setHeaderFile(aName.getAbsolutePath());
+        }
+        catch (IOException ex) {
+            throw new BuildException("Unable to read headerfile - " +
+                                     ex.getMessage());
+        }
     }
 
     /** @param aNum **/
     public void setHeaderignoreline(int aNum)
     {
-        mProps.setProperty(HEADER_IGNORE_LINE_PROP, "" + aNum);
+        mConfig.setHeaderIgnoreLineNo(aNum);
     }
 
     /** @param aRelax whether to be relaxed on Javadoc **/
     public void setRelaxJavadoc(boolean aRelax)
     {
-        mProps.setProperty(RELAX_JAVADOC_PROP, "" + aRelax);
+        mConfig.setRelaxJavadoc(aRelax);
     }
 
     /** @param aIgnore whether to ignore import statements **/
     public void setIgnoreImports(boolean aIgnore)
     {
-        mProps.setProperty(IGNORE_IMPORTS_PROP, "" + aIgnore);
+        mConfig.setIgnoreImports(aIgnore);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -163,7 +198,7 @@ public class CheckStyleTask
         // Create the checker
         Checker c;
         try {
-            c = new Checker(mProps, System.out);
+            c = new Checker(mConfig, System.out);
         }
         catch (RESyntaxException e){
             e.printStackTrace();
