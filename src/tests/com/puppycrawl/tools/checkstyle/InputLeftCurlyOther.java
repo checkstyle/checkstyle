@@ -10,8 +10,8 @@ package com.puppycrawl.tools.checkstyle;
  **/
 class InputLeftCurlyOther
 {
-    /** test method **/
-    void foo()
+    /** @see test method **/
+    void foo() throws InterruptedException
     {
         int x = 1;
         int a = 2;
