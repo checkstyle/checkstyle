@@ -18,6 +18,9 @@ public class AllTests {
         //$JUnit-BEGIN$
         suite.addTest(new TestSuite(EntityBeanCheckTest.class));
         suite.addTest(new TestSuite(EntityBeanEjbCreateCheckTest.class));
+        suite.addTest(new TestSuite(EntityBeanEjbHomeCheckTest.class));
+        suite.addTest(new TestSuite(EntityBeanEjbPostCreateCheckTest.class));
+        suite.addTest(new TestSuite(EntityBeanEjbSelectCheckTest.class));
         suite.addTest(new TestSuite(EntityBeanFindByPrimaryKeyCheckTest.class));
         suite.addTest(new TestSuite(EntityBeanFinderCheckTest.class));
         suite.addTest(new TestSuite(HomeInterfaceCheckTest.class));

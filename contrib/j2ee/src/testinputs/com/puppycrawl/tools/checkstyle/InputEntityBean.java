@@ -96,6 +96,21 @@ final class FinalEntityBean
     {
     }
 
+    protected static final int ejbPostCreate(int i)
+    {
+        return 0;
+    }
+    
+    protected static final int ejbHomeMethod(int i)
+        throws java.rmi.RemoteException
+    {
+        return 0;
+    }
+    
+    protected static final void ejbSelectSomething(int i)
+    {
+    }
+    
     /**
      * @see javax.ejb.EntityBean#setEntityContext(javax.ejb.EntityContext)
      */

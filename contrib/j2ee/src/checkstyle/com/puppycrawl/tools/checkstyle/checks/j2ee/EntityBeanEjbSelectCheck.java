@@ -22,16 +22,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that a EntityBean ejbCreate method satisfies these requirements:
+ * Checks that a EntityBean ejbSelect method satisfies these requirements:
  * <ul>
  * <li>The access control modifier must be <code>public</code>.</li>
+ * <li>The method must be <code>abstract</code>.</li>
  * <li>The return type must not be void.</li>
  * <li>The method modifier cannot be <code>final</code>
  * or <code>static</code>.</li>
  * </ul>
  * @author Rick Giles
  */
-public class EntityBeanEjbCreateCheck
+public class EntityBeanEjbSelectCheck
     extends AbstractMethodCheck
 {
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -39,13 +40,17 @@ public class EntityBeanEjbCreateCheck
     {
         final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
         final String name = nameAST.getText();
-        if (name.startsWith("ejbCreate")
+        if (name.startsWith("ejbSelect")
             && Utils.implementsEntityBean(aAST))
         {
             checkMethod(aAST);
             if (Utils.isVoid(aAST)) {
                 log(nameAST.getLineNo(), nameAST.getColumnNo(),
                     "voidmethod.bean", name);
+            }
+            if (!Utils.isAbstract(aAST)) {
+                log(nameAST.getLineNo(), nameAST.getColumnNo(),
+                    "nonabstract.bean", "Method " + name);
             }
         }
     }
