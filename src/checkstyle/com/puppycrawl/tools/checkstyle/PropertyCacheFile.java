@@ -66,7 +66,6 @@ class PropertyCacheFile
             }
         }
         mDetailsFile = (setInActive) ? null : aFileName;
-        System.out.println("mDetailsFile = " + mDetailsFile);
     }
 
     /** Cleans up the object **/
