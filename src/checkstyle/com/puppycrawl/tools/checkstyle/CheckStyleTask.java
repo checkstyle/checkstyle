@@ -43,6 +43,7 @@ import org.apache.tools.ant.taskdefs.LogOutputStream;
 import org.apache.tools.ant.types.EnumeratedAttribute;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
+import org.apache.tools.ant.types.Reference;
 
 /**
  * An implementation of a ANT task for calling checkstyle. See the documentation
@@ -141,7 +142,21 @@ public class CheckStyleTask
      */
     public void setClasspath(Path aClasspath)
     {
-        mClasspath = aClasspath;
+        if (mClasspath == null) {
+            mClasspath = aClasspath;
+        }
+        else {
+            mClasspath.append(aClasspath);
+        }
+    }
+
+    /**
+     * Set the class path from a reference defined elsewhere.
+     * @param aClasspathRef the reference to an instance defining the classpath
+     */
+    public void setClasspathRef(Reference aClasspathRef)
+    {
+        createClasspath().setRefid(aClasspathRef);
     }
 
     /** @return a created path for locating classes */
