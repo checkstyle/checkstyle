@@ -52,8 +52,6 @@ public interface Defn
     String IGNORE_WHITESPACE_PROP = "checkstyle.ignore.whitespace";
     /** property name for ignoring whitespace after casts **/
     String IGNORE_CAST_WHITESPACE_PROP = "checkstyle.ignore.whitespace.cast";
-    /** property name for ignoring braces **/
-    String IGNORE_BRACES_PROP = "checkstyle.ignore.braces";
     /** property name for cache file **/
     String CACHE_FILE_PROP = "checkstyle.cache.file";
 
@@ -78,7 +76,6 @@ public interface Defn
         {
             ALLOW_PACKAGE_PROP,
             ALLOW_PROTECTED_PROP,
-            IGNORE_BRACES_PROP,
             IGNORE_CAST_WHITESPACE_PROP,
             IGNORE_WHITESPACE_PROP,
             JAVADOC_CHECK_UNUSED_THROWS_PROP,

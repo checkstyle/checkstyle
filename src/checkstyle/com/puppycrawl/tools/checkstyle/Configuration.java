@@ -368,12 +368,6 @@ public class Configuration
         return getBooleanProperty(Defn.IGNORE_CAST_WHITESPACE_PROP);
     }
 
-    /** @return whether to ignore checks for braces **/
-    boolean isIgnoreBraces()
-    {
-        return getBooleanProperty(Defn.IGNORE_BRACES_PROP);
-    }
-
     /** @return the File of the cache file **/
     String getCacheFile()
     {
