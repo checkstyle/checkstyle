@@ -22,12 +22,16 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.ArrayList;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 import org.apache.commons.beanutils.ConversionException;
+import org.apache.regexp.RE;
 
 /**
  * Abstract super class for header checks.
@@ -61,25 +65,100 @@ public abstract class AbstractHeaderCheck extends Check
             return;
         }
 
+        checkHeaderNotInitialized();
+
         // load the file
+        Reader headerReader = null;
         try {
-            final LineNumberReader lnr =
-                    new LineNumberReader(new FileReader(aFileName));
-            final ArrayList lines = new ArrayList();
-            while (true) {
-                final String l = lnr.readLine();
-                if (l == null) {
-                    break;
-                }
-                lines.add(l);
-            }
-            mHeaderLines = (String[]) lines.toArray(new String[0]);
+            headerReader = new FileReader(aFileName);
+            loadHeader(headerReader);
         }
         catch (IOException ex) {
             throw new ConversionException(
                     "unable to load header file " + aFileName, ex);
         }
+        finally {
+            if (headerReader != null) {
+                try {
+                    headerReader.close();
+                }
+                catch (IOException ex) {
+                    throw new ConversionException(
+                            "unable to close header file " + aFileName, ex);
+                }
+            }
+        }
+    }
 
+    /**
+     * Set the header to check against. Individual lines in the header
+     * must be separated by '\n' characters.
+     * @param aHeader header content to check against.
+     * @throws ConversionException if the header cannot be interpreted
+     */
+    public void setHeader(String aHeader)
+    {
+        if ((aHeader == null) || (aHeader.trim().length() == 0)) {
+            return;
+        }
+
+        checkHeaderNotInitialized();
+
+        // in JDK 1.4 we'd simply do aHeader.replaceAll("\\\\n", "\n");
+        final RE re = Utils.getRE("\\\\n");
+        final String headerExpandedNewLines = re.subst(aHeader, "\n");
+
+        final Reader headerReader = new StringReader(headerExpandedNewLines);
+        try {
+            loadHeader(headerReader);
+        }
+        catch (IOException ex) {
+            throw new ConversionException(
+                    "unable to load header", ex);
+        }
+        finally {
+            try {
+                headerReader.close();
+            }
+            catch (IOException ex) {
+                // shouldn't happen with StringReader
+                throw new ConversionException(
+                        "unable to close header", ex);
+            }
+        }
+
+    }
+
+    /**
+     * Called before initializing the header.
+     * @throws ConversionException if header has already been set
+     */
+    private void checkHeaderNotInitialized()
+    {
+        if (mHeaderLines != null) {
+            throw new ConversionException(
+                    "header has already been set - "
+                    + "set either header or headerFile, not both");
+        }
+    }
+
+    /**
+     * Load header to check against from a Reader into mHeaderLines.
+     * @param aHeaderReader delivers the header to check against
+     * @throws IOException if
+     */
+    private void loadHeader(final Reader aHeaderReader) throws IOException
+    {
+        final LineNumberReader lnr = new LineNumberReader(aHeaderReader);
+        final ArrayList lines = new ArrayList();
+        while (true) {
+            final String l = lnr.readLine();
+            if (l == null) {
+                break;
+            }
+            lines.add(l);
+        }
+        mHeaderLines = (String[]) lines.toArray(new String[0]);
     }
 
     /**

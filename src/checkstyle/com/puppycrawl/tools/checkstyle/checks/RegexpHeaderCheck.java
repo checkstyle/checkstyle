@@ -129,6 +129,25 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
         throws ConversionException
     {
         super.setHeaderFile(aFileName);
+        initHeaderRegexps();
+    }
+
+    /**
+     * Set the header to check against. Individual lines in the header
+     * must be separated by '\n' characters.
+     * @param aHeader header content to check against.
+     * @throws ConversionException if the header cannot be loaded or one line
+     * is not a regexp.
+     */
+    public void setHeader(String aHeader)
+    {
+        super.setHeader(aHeader);
+        initHeaderRegexps();
+    }
+
+    /** Initializes {@link #mHeaderRegexps} from {@link #mHeaderLines}. */
+    private void initHeaderRegexps()
+    {
         final String[] headerLines = getHeaderLines();
         if (headerLines != null) {
             mHeaderRegexps = new RE[headerLines.length];
@@ -139,7 +158,8 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
                 }
                 catch (RESyntaxException ex) {
                     throw new ConversionException(
-                            "line " + i + " in header file is not a regexp");
+                            "line " + i + " in header specification"
+                            + " is not a regular expression");
                 }
             }
         }
