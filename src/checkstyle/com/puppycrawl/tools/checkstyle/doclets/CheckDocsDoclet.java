@@ -100,12 +100,27 @@ public final class CheckDocsDoclet
          */
         private void addCheck(ClassDoc aClassDoc)
         {
-            final String strippedClassName = aClassDoc.typeName();
-            final String checkName = strippedClassName.endsWith("Check")
-                    ? strippedClassName.substring(
-                            0, strippedClassName.length() - "Check".length())
-                    : strippedClassName;
+            String checkName = getCheckName(aClassDoc);
             mChecks.put(checkName, aClassDoc);
+        }
+
+        /**
+         * The first sentence of the check description.
+         * Checks msut have been registered with {@link #addCheck}.
+         *
+         * @param aCheckName the name of the check, e.g. EmptyStatement
+         * @return The first sentence of the check description.
+         */
+        private String getDescription(String aCheckName)
+        {
+            ClassDoc classDoc = (ClassDoc) mChecks.get(aCheckName);
+            final Tag[] tags = classDoc.firstSentenceTags();
+            StringBuffer buf = new StringBuffer();
+            if (tags.length > 0) {
+                buf.append(tags[0].text());
+            }
+            removeOpeningParagraphTag(buf);
+            return buf.toString();
         }
 
         /**
@@ -116,16 +131,9 @@ public final class CheckDocsDoclet
         private void write(Writer aWriter) throws IOException
         {
             // TODO: use velocity to implement this method???
+            final String title = getTitle();
             PrintWriter pw = new PrintWriter(aWriter);
-            pw.println("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>");
-            pw.println("<document>");
-            pw.println("<properties>");
-            pw.println("<title>" + getTitle() + "</title>");
-            pw.println("<author email=\"checkstyle-devel@lists.sourceforge.net"
-                    + "\">Checkstyle Development Team</author>");
-            pw.println("</properties>");
-            pw.println("<body>");
-            pw.flush();
+            writeXdocsHeader(pw, title);
             final Tag[] packageInlineTags = mPackageDoc.inlineTags();
             for (int i = 0; i < packageInlineTags.length; i++) {
                 Tag packageInlineTag = packageInlineTags[i];
@@ -162,8 +170,7 @@ public final class CheckDocsDoclet
 
             }
 
-            pw.println("</body>");
-            pw.println("</document>");
+            writeXdocsFooter(pw);
         }
 
         /**
@@ -224,6 +231,55 @@ public final class CheckDocsDoclet
     }
 
     /**
+     * Returns the official name of a check.
+     *
+     * @param aClassDoc the the check's documentation as extracted by javadoc
+     * @return the check name, e.g. "IllegalImport" for
+     * the "c.p.t.c.c.i.IllegalImportCheck" class.
+     */
+    private static String getCheckName(final ClassDoc aClassDoc)
+    {
+        final String strippedClassName = aClassDoc.typeName();
+        final String checkName = strippedClassName.endsWith("Check")
+                ? strippedClassName.substring(
+                        0, strippedClassName.length() - "Check".length())
+                : strippedClassName;
+        return checkName;
+    }
+
+    /**
+     * Writes the opening tags of an xdoc.
+     * @param aPrintWriter you guessed it ... the target to print to :)
+     * @param aTitle the title to use for the document.
+     */
+    private static void writeXdocsHeader(
+            final PrintWriter aPrintWriter,
+            final String aTitle)
+    {
+        aPrintWriter.println("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>");
+        aPrintWriter.println("<document>");
+        aPrintWriter.println("<properties>");
+        aPrintWriter.println("<title>" + aTitle + "</title>");
+        aPrintWriter.println("<author "
+                + "email=\"checkstyle-devel@lists.sourceforge.net"
+                + "\">Checkstyle Development Team</author>");
+        aPrintWriter.println("</properties>");
+        aPrintWriter.println("<body>");
+        aPrintWriter.flush();
+    }
+
+    /**
+     * Writes the closing tags of an xdoc document.
+     * @param aPrintWriter you guessed it ... the target to print to :)
+     */
+    private static void writeXdocsFooter(final PrintWriter aPrintWriter)
+    {
+        aPrintWriter.println("</body>");
+        aPrintWriter.println("</document>");
+        aPrintWriter.flush();
+    }
+
+    /**
      * Finds or creates a documentation page where the content of
      * a check's class documentation should be included.
      *
@@ -255,6 +311,7 @@ public final class CheckDocsDoclet
     public static boolean start(RootDoc aRoot) throws IOException
     {
         final ClassDoc[] classDocs = aRoot.classes();
+        final Map allChecks = new TreeMap();
         for (int i = 0; i < classDocs.length; i++) {
             ClassDoc classDoc = classDocs[i];
             // TODO: introduce a "CheckstyleModule" interface
@@ -264,8 +321,11 @@ public final class CheckDocsDoclet
             {
                 DocumentationPage page = findDocumentationPage(classDoc);
                 page.addCheck(classDoc);
+                allChecks.put(getCheckName(classDoc), page);
             }
         }
+
+        // TODO: close files in finally blocks
 
         final Collection pages = sDocumentationPages.values();
         final File destDir = new File(getDestDir(aRoot.options()));
@@ -277,6 +337,33 @@ public final class CheckDocsDoclet
             page.write(writer);
             writer.close();
         }
+
+        final File checksIndexFile = new File(destDir, "availablechecks.xml");
+        PrintWriter fileWriter = new PrintWriter(
+                new FileWriter(checksIndexFile));
+        writeXdocsHeader(fileWriter, "Available Checks");
+
+        fileWriter.println("<p>Checkstyle provides many checks that you can"
+                + " apply to your sourcecode. Below is an alphabetical"
+                + " reference, the site navigation menu provides a reference"
+                + " organized by functionality.</p>");
+        fileWriter.println("<table>");
+
+        for (Iterator it = allChecks.keySet().iterator(); it.hasNext();) {
+            String checkName = (String) it.next();
+            DocumentationPage page =
+                    (DocumentationPage) allChecks.get(checkName);
+            String descr = page.getDescription(checkName);
+            fileWriter.println("<tr>"
+                    + "<td><a href=\""
+                    + "config_" + getPageName(page) + ".html#" + checkName
+                    + "\">" + checkName + "</a></td><td>"
+                    + descr
+                    + "</td></tr>");
+        }
+        fileWriter.println("</table>");
+        writeXdocsFooter(fileWriter);
+        fileWriter.close();
 
         return true;
     }

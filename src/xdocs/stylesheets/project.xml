@@ -12,7 +12,7 @@
         </menu>
         <menu name="Documentation">
             <item name="Configuration"/>
-            <item name="Available Checks" href="/checks.html">
+            <item name="Available Checks" href="/availablechecks.html">
                 <item name="Javadoc Comments"     href="/config_javadoc.html"/>
                 <item name="Naming Conventions"   href="/config_naming.html"/>
                 <item name="Headers"              href="/config_header.html"/>
