@@ -14,7 +14,9 @@
   <property name="regexp.jar" value="c:/apps/jakarta-regexp-1.2/jakarta-regexp-1.2.jar" />
   <property name="junit.jar" value="c:/apps/junit3.7/junit.jar" />
   <property name="checkstyle.dir" value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
-  <property name="version" value="1.3" />
+  <property name="testreport.dir" value="testreports"/>
+
+  <property name="version" value="1.4" />
 
   <path id="build.classpath">
     <pathelement location="${antlr.home}" />
@@ -48,10 +50,10 @@
     <delete dir="classes" />
     <delete dir="dist" />
     <delete dir="javadoc" />
+    <delete dir="${testreport.dir}" />
     <delete>
       <fileset dir="src/checkstyle" includes="**/Generated*.java" />
       <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
-      <fileset dir="." includes="**/TEST-*" />
     </delete>
   </target>
 
@@ -149,18 +151,41 @@
   </target>
 
   <target name="run.tests" depends="compile.tests">
+
+    <mkdir dir="${testreport.dir}"/>
+
     <property name="tests.dir"
-	      location="src/tests/com/puppycrawl/tools/checkstyle"/>
-    <junit printsummary="yes" fork="yes">
+              location="src/tests/com/puppycrawl/tools/checkstyle"/>
+
+    <junit printsummary="yes" 
+           fork="yes" 
+           haltonfailure="no" 
+           failureProperty="tests.have.failed">
       <jvmarg value="-Dtests.dir=${tests.dir}"/>
-      <formatter type="plain" />
+      <formatter type="xml" />
       <classpath refid="tests.runpath"/>
-      <batchtest>
+      <batchtest todir="${testreport.dir}">
         <fileset dir="src/tests">
           <include name="**/*Test.java" />
         </fileset>
       </batchtest>
     </junit>
+
+    <junitreport todir="${testreport.dir}">
+      <fileset dir="${testreport.dir}">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <report todir="${testreport.dir}"/>
+    </junitreport>
+
+    <!-- if only fail had an if attribute ... ugly workaround follows -->
+    <antcall target="tests.failed"/> 
+
+  </target>
+
+  <target name="tests.failed" if="tests.have.failed">
+    <property name="report" value="${basedir}/${testreport.dir}/index.html"/>
+    <fail message="Unit tests failed - Report is available in ${report}"/>
   </target>
 
   <!-- -->

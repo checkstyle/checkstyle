@@ -1,3 +1,9 @@
+2001-12-20  Oliver Burn  <oliver@cortexebusiness.com.au>
+
+	* build.xml:
+	Included patch to fail build if unit tests fail, and also format the
+	unit test results. From Lars kuehne.
+
 2001-12-11  Oliver Burn  <oliver@cortexebusiness.com.au>
 
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.tree.g:

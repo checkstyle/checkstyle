@@ -1,3 +1,3 @@
-TEST-com.puppycrawl.tools.checkstyle.*.txt
+testreports
 classes
 dist
