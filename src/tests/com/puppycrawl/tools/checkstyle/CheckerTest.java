@@ -377,7 +377,7 @@ public class CheckerTest
             filepath + ":1: file length is 146 lines (max allowed is 20).",
             filepath + ":3: Line does not match expected header line of '// Created: 2001'.",
             filepath + ":18: line longer than 80 characters",
-            filepath + ":19: line contains a tab character",
+            filepath + ":19:25: line contains a tab character",
             filepath + ":25:29: variable 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":30:24: variable 'badStatic' must match pattern '^s[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":35:17: variable 'badMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
