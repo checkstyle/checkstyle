@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle.checks.usage;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 
@@ -63,19 +62,7 @@ public class UnusedParameterCheck extends AbstractUsageCheck
             if (parent.getType() == TokenTypes.PARAMETERS) {
                 final DetailAST grandparent = parent.getParent();
                 if (grandparent != null) {
-                    if (grandparent.getType() == TokenTypes.METHOD_DEF) {
-                        final DetailAST modifiersAST =
-                            grandparent.findFirstToken(TokenTypes.MODIFIERS);
-                        if ((modifiersAST != null)
-                            && !modifiersAST.branchContains(TokenTypes.ABSTRACT)
-                            && !ScopeUtils.inInterfaceBlock(aAST))
-                        {
-                            result = true;
-                        }
-                    }
-                    else if (grandparent.getType() == TokenTypes.CTOR_DEF) {
-                        result = true;
-                    }
+                    result = hasBody(grandparent);
                 }
             }
             else if (parent.getType() == TokenTypes.LITERAL_CATCH) {
@@ -83,6 +70,23 @@ public class UnusedParameterCheck extends AbstractUsageCheck
             }
         }
         return result;
+    }
+
+    /**
+     * Determines whether an AST is a method definition with a body, or is
+     * a constructor definition.
+     * @param aAST the AST to check.
+     * @return if AST has a body.
+     */
+    private boolean hasBody(DetailAST aAST)
+    {
+        if (aAST.getType() == TokenTypes.METHOD_DEF) {
+            return aAST.branchContains(TokenTypes.SLIST);
+        }
+        else if (aAST.getType() == TokenTypes.CTOR_DEF) {
+            return true;
+        }
+        return false;
     }
 
     /**
