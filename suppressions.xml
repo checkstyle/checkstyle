@@ -13,5 +13,5 @@
               lines="176"/>
     <suppress checks="MagicNumber"
               files="JavadocMethodCheck.java"
-              lines="753,785,810"/>
+              lines="714,746,771"/>
 </suppressions>

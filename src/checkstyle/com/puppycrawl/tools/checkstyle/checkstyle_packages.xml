@@ -16,6 +16,7 @@
       <package name="indentation"/>
       <package name="javadoc"/>
       <package name="metrics"/>
+      <package name="modifier"/>
       <package name="naming"/>
       <package name="sizes"/>
       <package name="whitespace"/>

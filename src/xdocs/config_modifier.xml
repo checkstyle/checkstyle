@@ -71,39 +71,41 @@
           <a href="config.html#treewalker">TreeWalker</a>
         </p>
       </subsection>
+    </section>
 
-      <subsection name="RedundantModifier">
+    <section name="RedundantModifier">
+
+      <subsection name="Description">
         <p>
-          Checks that:
+          Checks for redundant modifiers in interface and annotation
+          definitions.  Also checks for redundant final modifiers on
+          methods of final classes.
+        </p>
+ 
+        <p>
+          Rationale: The Java Language Specification strongly
+          discourages the usage of "public" and "abstract" for method
+          declarations in interface definitions as a matter of style.
+        </p>
+
+        <p>
+          Variables in interfaces and annotations are automatically
+          public, static and final, so these modifiers are redundant as
+          well.
         </p>
         
-        <ul>
-          <li>
-            method declarations in interfaces include neither the <span
-            class="code"> public</span> modifier nor the <span
-            class="code">abstract</span> modifier (see the <a
-            href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java
-            Language specification, section 9.4</a>).
-          </li>
-          <li>
-            all <span class="code">private</span> method declarations and all
-            method declarations in a <span class="code">final</span> class do
-            not include modifier <span class="code">final</span> (see the <a
-            href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#11246">Java
-            Language specification, section 8.4.3.3</a>).
-          </li>
-          <li>
-            variable declarations in interfaces include none of the following
-            modifiers: <span class="code">public</span>, <span
-            class="code">static</span>, <span class="code">final</span>
-            (variables in interface definitions are constants and have these
-            modifiers implicitly, see the <a
-            href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java
-            Language specification, section 9.3</a>).
-          </li>
-        </ul>
-      </subsection>
+        <p>
+          As annotations are a form of interface, their fields are also
+          automatically public, static and final just as their
+          annotation fields are automatically public and abstract.
+        </p>
 
+        <p>
+          Final classes by definition can not be extended so the final
+          modifier on the method of a final class is redundant.
+        </p>
+      </subsection>
+      
       <subsection name="Properties">
         <table>
           <tr>
@@ -119,13 +121,17 @@
               subset of tokens <a
               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
               <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>
             </td>
             <td>
               <a
               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
               <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>
             </td>
           </tr>
         </table>
@@ -136,7 +142,7 @@
         <source>
 &lt;module name=&quot;RedundantModifier&quot;/&gt;
         </source>
-        
+
         <p>
           To configure the check to check only methods and not variables:
         </p>

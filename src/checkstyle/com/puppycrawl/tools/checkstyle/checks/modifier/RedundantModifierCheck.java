@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -27,30 +27,6 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
  * Checks for redundant modifiers in interface and annotation definitions.
  * Also checks for redundant final modifiers on methods of final classes.
  *
- * <p>
- * Rationale: The Java Language Specification strongly discourages the usage
- * of "public" and "abstract" for method declarations in interface definitions
- * as a matter of style.
- * </p>
- * <p>
- * Variables in interfaces and annotations are automatically public, static and
- * final, so these modifiers are redundant as well.
- * </p>
- * <p>
- * As annotations are a form of interface, their fields are also automatically
- * public, static and final just as their annotation fields are automatically
- * public and abstract.
- * </p>
- * <p>
- * Final classes by definition can not be extended so the final modifier on the
- * method of a final class is redundant.
- * </p>
- * <p>
- * An example of how to configure the check is:
- * </p>
- * <pre>
- * &lt;module name="RedundantModifier"/&gt;
- * </pre>
  * @author lkuehne
  */
 public class RedundantModifierCheck

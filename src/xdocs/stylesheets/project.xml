@@ -32,7 +32,7 @@
               <item name="Imports"            href="/config_import.html"/>
               <item name="Size Violations"    href="/config_sizes.html"/>
               <item name="Whitespace"         href="/config_whitespace.html"/>
-              <item name="Modifiers"          href="/config_modifiers.html"/>
+              <item name="Modifiers"          href="/config_modifier.html"/>
               <item name="Block Checks"       href="/config_blocks.html"/>
               <item name="Coding"             href="/config_coding.html"/>
               <item name="Class Design"       href="/config_design.html"/>

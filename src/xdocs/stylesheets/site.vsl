@@ -132,6 +132,10 @@
     </div>
 #end
 
+#macro ( token $value)
+    <a href="../../blah/jibber/$value>$value</a>
+#end
+
 ## ============================================
 ##  subsection macro
 ## ============================================

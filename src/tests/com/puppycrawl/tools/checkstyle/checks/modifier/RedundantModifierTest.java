@@ -1,7 +1,8 @@
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck;
 
 public class RedundantModifierTest
     extends BaseCheckTestCase
