@@ -231,6 +231,7 @@ public class Checker extends AutomaticBean
         return stripped;
     }
 
+    /** @param aBasedir the base directory to strip off in filenames */
     public void setBasedir(String aBasedir)
     {
         mBasedir = aBasedir;
@@ -313,6 +314,11 @@ public class Checker extends AutomaticBean
         mPackageNames = aPackageNames;
     }
 
+    /**
+     * Gets the package names to use for instantiating object.
+     * @return the package names.
+     * @throws CheckstyleException if there is an error.
+     */
     private String[] getPackageNames()
         throws CheckstyleException
     {
@@ -324,11 +330,13 @@ public class Checker extends AutomaticBean
         return mPackageNames;
     }
 
+    /** @param aLocaleCountry the country to report messages  **/
     public void setLocaleCountry(String aLocaleCountry)
     {
         mLocaleCountry = aLocaleCountry;
     }
 
+    /** @param aLocaleLanguage the language to report messages  **/
     public void setLocaleLanguage(String aLocaleLanguage)
     {
         mLocaleLanguage = aLocaleLanguage;

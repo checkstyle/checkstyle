@@ -95,6 +95,7 @@ public class LineLengthCheck extends Check
      * @throws ConversionException unable to parse aFormat
      */
     public void setIgnorePattern(String aFormat)
+        throws ConversionException
     {
         try {
             mIgnorePattern = Utils.getRE(aFormat);

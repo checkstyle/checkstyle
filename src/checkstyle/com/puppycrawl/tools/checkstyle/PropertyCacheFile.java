@@ -58,6 +58,7 @@ class PropertyCacheFile
      * Creates a new <code>PropertyCacheFile</code> instance.
      *
      * @param aCurrentConfig the current configuration, not null
+     * @param aFileName the cache file
      */
     PropertyCacheFile(Configuration aCurrentConfig, String aFileName)
     {

@@ -323,7 +323,8 @@ public class CheckStyleTask
                         mConfigFile.getAbsolutePath(), props);
 
                 DefaultContext context = new DefaultContext();
-                ClassLoader loader = new AntClassLoader(getProject(), mClasspath);
+                ClassLoader loader =
+                    new AntClassLoader(getProject(), mClasspath);
                 context.add("classloader", loader);
 
                 c = new Checker();

@@ -107,10 +107,10 @@ public class HeaderCheck
     /**
      * Set the header file to check against.
      * @param aFileName the file that contains the header to check against.
-     * @throws org.apache.commons.beanutils.ConversionException if
-     * the file cannot be loaded
+     * @throws ConversionException if the file cannot be loaded
      */
     public void setHeaderFile(String aFileName)
+        throws ConversionException
     {
         // Handle empty param
         if ((aFileName == null) || (aFileName.trim().length() == 0)) {
