@@ -325,18 +325,29 @@
 
 
 <h3>Line wrapping on operators</h3>
-<p>Checks for wrapping lines before operators. Examples of legal and illegal wrapping are:</p>
+<p>Check for wrapping lines on operators. The check can be configured with the following options:</p>
 
+<a name="wrapopopt"></a>
+<table border="1" summary="wrap operator options">
+  <tr class="header">
+    <td>Option</td>
+    <td>Definition</td>
+  </tr>
+  <tr>
+    <td><span class="code">ignore</span></td>
+    <td>Ignore wrapping on an operator.</td>
+  </tr>
+  <tr>
+    <td><span class="code">nl</span></td>
+    <td>The operator must be on a new line. For example:
 <pre>
-    // Valid
     someVariable = aBigVariableNameToMakeThings + "this may work"
                    + lookVeryInteresting;
-    // Invalid
-    anotherVariable = anotherBigVariableNameToMakeThings + "this may work" +
-                      lookVeryInteresting;
 </pre>
-
-<p>This feature can be turned off.</p>
+      This is the default value.
+    </td>
+  </tr>
+</table>
 
 
 <h3>Missing Braces</h3>
