@@ -63,10 +63,10 @@ public abstract class Check extends AutomaticBean
     public abstract int[] getDefaultTokens();
 
     /**
-     * The token set this check is designed for. Used to protect Checks
-     * against malicious users who specify a meaningless token set in the
-     * config file.
-     * The default implementations returns the check's default tokens.
+     * The configurable token set.
+     * Used to protect Checks against malicious users who specify an
+     * unacceptable token set in the configuration file.
+     * The default implementation returns the check's default tokens.
      * @return the token set this check is designed for.
      */
     public int[] getAcceptableTokens()
@@ -77,17 +77,14 @@ public abstract class Check extends AutomaticBean
         return copy;
     }
 
-
-    // oburn on checkstyle-dev: another method should be added
-    // to specify the tokens that a check must have. For some checks to
-    // work, they must be registered for some tokens.
-    //
-    // The example I could think of is one is a
-    // check that tracked scope information automatically (for performance
-    // reasons). It would need to always be notified about class, interface
-    // definitions.
-    //
-    // Lets worry about it when it becomes a problem.
+    /**
+     * The tokens that this check must be registered for.
+     * @return the token set this must be registered for.
+     */
+    public int[] getRequiredTokens()
+    {
+        return new int[] {};
+    }
 
     /**
      * Adds a set of tokens the check is interested in.

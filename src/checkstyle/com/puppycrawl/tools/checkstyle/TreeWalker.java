@@ -275,8 +275,12 @@ public final class TreeWalker
     private void registerCheck(Check aCheck)
         throws CheckstyleException
     {
+        int[] tokens = aCheck.getDefaultTokens();
         final Set checkTokens = aCheck.getTokenNames();
         if (!checkTokens.isEmpty()) {
+            tokens = aCheck.getRequiredTokens();
+
+            //register configured tokens
             final int acceptableTokens[] = aCheck.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
             final Iterator it = checkTokens.iterator();
@@ -295,11 +299,8 @@ public final class TreeWalker
                 }
             }
         }
-        else {
-            final int[] tokens = aCheck.getDefaultTokens();
-            for (int i = 0; i < tokens.length; i++) {
-                registerCheck(tokens[i], aCheck);
-            }
+        for (int i = 0; i < tokens.length; i++) {
+            registerCheck(tokens[i], aCheck);
         }
         mAllChecks.add(aCheck);
     }
