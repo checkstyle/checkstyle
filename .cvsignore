@@ -5,6 +5,7 @@ checkstyle.buildproperties
 checkstyle.ipr
 checkstyle.iws
 devnull
+bin
 target
 *.vpj
 *.vpw
