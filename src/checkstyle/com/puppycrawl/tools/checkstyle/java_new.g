@@ -440,8 +440,15 @@ compoundStatement
 		RCURLY!
 	;
 
-
+// This production provides a slot for adding additional statement productions.
+// It is used to simplify an inherited grammar that includes assert statements
+// (new Java language feature in JDK 1.4)
 statement
+	:	traditionalStatement
+	;
+
+// a traditional (JDK < 1.4) java statement, assert keyword is not allowed
+traditionalStatement
 	// A list of statements in curly braces -- start a new scope!
 	:	compoundStatement
 
