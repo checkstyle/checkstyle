@@ -92,30 +92,12 @@ public final class Main
             usage();
         }
 
-        // Load the config file
-        Configuration config = null;
-        try {
-            config = ConfigurationLoader.loadConfiguration(
-                    line.getOptionValue("c"), new PropertiesExpander(props));
-        }
-        catch (CheckstyleException e) {
-            System.out.println("Error loading configuration file");
-            e.printStackTrace(System.out);
-            System.exit(1);
-        }
+        final Configuration config = loadConfig(line, props);
 
         //Load the set of package names
         ModuleFactory moduleFactory = null;
         if (line.hasOption("n")) {
-            try {
-                moduleFactory = PackageNamesLoader.loadModuleFactory(
-                    line.getOptionValue("n"));
-            }
-            catch (CheckstyleException e) {
-                System.out.println("Error loading package names file");
-                e.printStackTrace(System.out);
-                System.exit(1);
-            }
+            moduleFactory = loadPackages(line);
         }
 
         // setup the output stream
@@ -137,60 +119,28 @@ public final class Main
             closeOut = false;
         }
 
-        // create the appropriate listener
-        final String format =
-            line.hasOption("f") ? line.getOptionValue("f") : "plain";
+        final AuditListener listener = createListener(line, out, closeOut);
+        final List files = getFilesToProcess(line);
+        final Checker c = createChecker(config, moduleFactory, listener);
+        addCustomListeners(c, line);
 
-        AuditListener listener = null;
-        if ("xml".equals(format)) {
-            listener = new XMLLogger(out, closeOut);
-        }
-        else if ("plain".equals(format)) {
-            listener = new DefaultLogger(out, closeOut);
-        }
-        else {
-            System.out.println("Invalid format: (" + format
-                               + "). Must be 'plain' or 'xml'.");
-            usage();
-        }
+        final File[] processedFiles = new File[files.size()];
+        files.toArray(processedFiles);
+        final int numErrs = c.process(processedFiles);
+        c.destroy();
+        System.exit(numErrs);
+    }
 
-        // Get all the Java files
-        final List files = new LinkedList();
-        if (line.hasOption("r")) {
-            final String[] values = line.getOptionValues("r");
-            for (int i = 0; i < values.length; i++) {
-                traverse(new File(values[i]), files);
-            }
-        }
-
-        final String[] remainingArgs = line.getArgs();
-        for (int i = 0; i < remainingArgs.length; i++) {
-            files.add(new File(remainingArgs[i]));
-        }
-
-        if (files.isEmpty()) {
-            System.out.println("Must specify files to process");
-            usage();
-        }
-
-        // create the checker
-        Checker c = null;
-        try {
-            c = new Checker();
-            c.setModuleFactory(moduleFactory);
-            c.configure(config);
-            c.addListener(listener);
-        }
-        catch (Exception e) {
-            System.out.println("Unable to create Checker: "
-                               + e.getMessage());
-            e.printStackTrace(System.out);
-            System.exit(1);
-        }
-
-        // add custom listeners
-        if (line.hasOption("l")) {
-            final String listeners = line.getOptionValue("l");
+    /**
+     * Added the custom listeners to a checker.
+     *
+     * @param aChecker who to add the listeners to
+     * @param aLine contains the command line options for what listeners to add
+     */
+    private static void addCustomListeners(Checker aChecker, CommandLine aLine)
+    {
+        if (aLine.hasOption("l")) {
+            final String listeners = aLine.getOptionValue("l");
             final StringTokenizer t = new StringTokenizer(listeners, ",");
             while (t.hasMoreTokens()) {
                 final String className = t.nextToken();
@@ -205,15 +155,137 @@ public final class Main
                     e.printStackTrace(System.out);
                     System.exit(1);
                 }
-                c.addListener(customListener);
+                aChecker.addListener(customListener);
+            }
+        }
+    }
+
+    /**
+     * Creates the Checker object.
+     *
+     * @param aConfig the configuration to use
+     * @param aFactory the module factor to use
+     * @param aNosy the sticky beak to track what happens
+     * @return a nice new fresh Checker
+     */
+    private static Checker createChecker(Configuration aConfig,
+                                         ModuleFactory aFactory,
+                                         AuditListener aNosy)
+    {
+        Checker c = null;
+        try {
+            c = new Checker();
+            c.setModuleFactory(aFactory);
+            c.configure(aConfig);
+            c.addListener(aNosy);
+        }
+        catch (Exception e) {
+            System.out.println("Unable to create Checker: "
+                               + e.getMessage());
+            e.printStackTrace(System.out);
+            System.exit(1);
+        }
+        return c;
+    }
+
+    /**
+     * Determines the files to process.
+     *
+     * @param aLine the command line options specifying what files to process
+     * @return list of files to process
+     */
+    private static List getFilesToProcess(CommandLine aLine)
+    {
+        final List files = new LinkedList();
+        if (aLine.hasOption("r")) {
+            final String[] values = aLine.getOptionValues("r");
+            for (int i = 0; i < values.length; i++) {
+                traverse(new File(values[i]), files);
             }
         }
 
-        final File[] processedFiles = new File[files.size()];
-        files.toArray(processedFiles);
-        final int numErrs = c.process(processedFiles);
-        c.destroy();
-        System.exit(numErrs);
+        final String[] remainingArgs = aLine.getArgs();
+        for (int i = 0; i < remainingArgs.length; i++) {
+            files.add(new File(remainingArgs[i]));
+        }
+
+        if (files.isEmpty()) {
+            System.out.println("Must specify files to process");
+            usage();
+        }
+        return files;
+    }
+
+    /**
+     * Create the audit listener
+     *
+     * @param aLine command line options supplied
+     * @param aOut the stream to log to
+     * @param aCloseOut whether the stream should be closed
+     * @return a fresh new <code>AuditListener</code>
+     */
+    private static AuditListener createListener(CommandLine aLine,
+                                                OutputStream aOut,
+                                                boolean aCloseOut)
+    {
+        final String format =
+            aLine.hasOption("f") ? aLine.getOptionValue("f") : "plain";
+
+        AuditListener listener = null;
+        if ("xml".equals(format)) {
+            listener = new XMLLogger(aOut, aCloseOut);
+        }
+        else if ("plain".equals(format)) {
+            listener = new DefaultLogger(aOut, aCloseOut);
+        }
+        else {
+            System.out.println("Invalid format: (" + format
+                               + "). Must be 'plain' or 'xml'.");
+            usage();
+        }
+        return listener;
+    }
+
+    /**
+     * Loads the packages, or exists if unable to.
+     *
+     * @param aLine the supplied command line options
+     * @return a fresh new <code>ModuleFactory</code>
+     */
+    private static ModuleFactory loadPackages(CommandLine aLine)
+    {
+        try {
+            return PackageNamesLoader.loadModuleFactory(
+                aLine.getOptionValue("n"));
+        }
+        catch (CheckstyleException e) {
+            System.out.println("Error loading package names file");
+            e.printStackTrace(System.out);
+            System.exit(1);
+            return null; // never get here
+        }
+    }
+
+    /**
+     * Loads the configuration file. Will exit if unable to load.
+     *
+     * @param aLine specifies the location of the configuration
+     * @param aProps the properties to resolve with the configuration
+     * @return a fresh new configuration
+     */
+    private static Configuration loadConfig(CommandLine aLine,
+                                            Properties aProps)
+    {
+        try {
+            return ConfigurationLoader.loadConfiguration(
+                    aLine.getOptionValue("c"), new PropertiesExpander(aProps));
+        }
+        catch (CheckstyleException e) {
+            System.out.println("Error loading configuration file");
+            e.printStackTrace(System.out);
+            System.exit(1);
+            return null; // can never get here
+        }
     }
 
     /** Prints the usage information. **/
