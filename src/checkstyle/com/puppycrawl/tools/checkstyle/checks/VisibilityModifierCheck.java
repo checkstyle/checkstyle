@@ -16,13 +16,12 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -122,14 +121,14 @@ public class VisibilityModifierCheck
     /** @see Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.VARIABLE_DEF};
+        return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     /** @see Check */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() != JavaTokenTypes.VARIABLE_DEF
-                || aAST.getParent().getType() != JavaTokenTypes.OBJBLOCK)
+        if (aAST.getType() != TokenTypes.VARIABLE_DEF
+                || aAST.getParent().getType() != TokenTypes.OBJBLOCK)
         {
             return;
         }
@@ -165,7 +164,7 @@ public class VisibilityModifierCheck
         AST ast = aVariableDefAST.getFirstChild();
         while (ast != null) {
             AST nextSibling = ast.getNextSibling();
-            if (ast.getType() == JavaTokenTypes.TYPE) {
+            if (ast.getType() == TokenTypes.TYPE) {
                 return (DetailAST) nextSibling;
             }
             ast = nextSibling;
@@ -183,9 +182,9 @@ public class VisibilityModifierCheck
         DetailAST ast = aAST.getParent();
         while (ast != null) {
             switch (ast.getType()) {
-                case JavaTokenTypes.INTERFACE_DEF:
+                case TokenTypes.INTERFACE_DEF:
                     return true;
-                case JavaTokenTypes.CLASS_DEF:
+                case TokenTypes.CLASS_DEF:
                     return false;
                 default:
                     ast = ast.getParent();
@@ -201,11 +200,11 @@ public class VisibilityModifierCheck
      */
     private Set getModifiers(DetailAST variableDefAST)
     {
-        AST modifiersAST = variableDefAST.getFirstChild();
-        if (modifiersAST.getType() != JavaTokenTypes.MODIFIERS) {
+        final AST modifiersAST = variableDefAST.getFirstChild();
+        if (modifiersAST.getType() != TokenTypes.MODIFIERS) {
             throw new IllegalStateException("Strange parse tree");
         }
-        Set retVal = new HashSet();
+        final Set retVal = new HashSet();
         AST modifier = modifiersAST.getFirstChild();
         while (modifier != null) {
             retVal.add(modifier.getText());

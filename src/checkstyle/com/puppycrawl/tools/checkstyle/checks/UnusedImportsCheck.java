@@ -16,10 +16,9 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 
@@ -72,25 +71,25 @@ public class UnusedImportsCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.IMPORT,
-                          JavaTokenTypes.CLASS_DEF,
-                          JavaTokenTypes.INTERFACE_DEF,
-                          JavaTokenTypes.IDENT};
+        return new int[] {TokenTypes.IMPORT,
+                          TokenTypes.CLASS_DEF,
+                          TokenTypes.INTERFACE_DEF,
+                          TokenTypes.IDENT};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() == JavaTokenTypes.IDENT) {
+        if (aAST.getType() == TokenTypes.IDENT) {
             if (mCollect) {
                 processIdent(aAST);
             }
         }
-        else if (aAST.getType() == JavaTokenTypes.IMPORT) {
+        else if (aAST.getType() == TokenTypes.IMPORT) {
             processImport(aAST);
         }
-        else if ((aAST.getType() == JavaTokenTypes.CLASS_DEF)
-            || (aAST.getType() == JavaTokenTypes.INTERFACE_DEF))
+        else if ((aAST.getType() == TokenTypes.CLASS_DEF)
+            || (aAST.getType() == TokenTypes.INTERFACE_DEF))
         {
             mCollect = true;
         }
@@ -105,7 +104,7 @@ public class UnusedImportsCheck
         // TODO: should be a lot smarter in selection. Currently use
         // same algorithm as real checkstyle
         final DetailAST parent = aAST.getParent();
-        if (parent.getType() == JavaTokenTypes.DOT) {
+        if (parent.getType() == TokenTypes.DOT) {
             if (aAST.getNextSibling() != null) {
                 mReferenced.add(aAST.getText());
             }

@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 
@@ -32,19 +32,20 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * @author Lars Kühne
  */
-public class SimplifyBooleanReturnCheck extends Check
+public class SimplifyBooleanReturnCheck
+    extends Check
 {
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.LITERAL_if};
+        return new int[] {TokenTypes.LITERAL_IF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         // paranoia - what an untrusting sole :-)
-        if (aAST.getType() != JavaTokenTypes.LITERAL_if) {
+        if (aAST.getType() != TokenTypes.LITERAL_IF) {
             throw new IllegalArgumentException("not an if");
         }
 
@@ -108,7 +109,7 @@ public class SimplifyBooleanReturnCheck extends Check
      */
     private boolean isBooleanLiteralReturnStatement(AST aAST)
     {
-        if (aAST.getType() != JavaTokenTypes.LITERAL_return) {
+        if (aAST.getType() != TokenTypes.LITERAL_RETURN) {
             return false;
         }
 
@@ -116,7 +117,7 @@ public class SimplifyBooleanReturnCheck extends Check
         final AST value = expr.getFirstChild();
 
         final int valueType = value.getType();
-        return ((valueType == JavaTokenTypes.LITERAL_true)
-                || (valueType == JavaTokenTypes.LITERAL_false));
+        return ((valueType == TokenTypes.LITERAL_TRUE)
+                || (valueType == TokenTypes.LITERAL_FALSE));
     }
 }

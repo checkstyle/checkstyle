@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -48,7 +48,7 @@ public class ParameterNumberCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.METHOD_DEF, JavaTokenTypes.CTOR_DEF};
+        return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -56,12 +56,12 @@ public class ParameterNumberCheck
     {
         final DetailAST params =
             Utils.findFirstToken(aAST.getFirstChild(),
-                                 JavaTokenTypes.PARAMETERS);
+                                 TokenTypes.PARAMETERS);
         final int count = Utils.countTokens(params.getFirstChild(),
-                                            JavaTokenTypes.PARAMETER_DEF);
+                                            TokenTypes.PARAMETER_DEF);
         if (count > mMax) {
             final DetailAST name = Utils.findFirstToken(aAST.getFirstChild(),
-                                                        JavaTokenTypes.IDENT);
+                                                        TokenTypes.IDENT);
             log(name.getLineNo(), name.getColumnNo(),
                 "maxParam", new Integer(mMax));
         }

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -35,8 +35,8 @@ public class MethodLeftCurlyCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.CTOR_DEF,
-                          JavaTokenTypes.METHOD_DEF};
+        return new int[] {TokenTypes.CTOR_DEF,
+                          TokenTypes.METHOD_DEF};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -45,7 +45,7 @@ public class MethodLeftCurlyCheck
         final DetailAST brace = Utils.getLastSibling(aAST.getFirstChild());
         // TODO: should check for modifiers
         final DetailAST startToken;
-        if (aAST.getType() == JavaTokenTypes.CTOR_DEF) {
+        if (aAST.getType() == TokenTypes.CTOR_DEF) {
             startToken = (DetailAST) aAST.getFirstChild().getNextSibling();
         }
         else {

@@ -21,14 +21,14 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.ArrayList;
-import java.lang.reflect.Field;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -41,11 +41,6 @@ class TreeWalker
 {
     // TODO: really need to optimise the performance of this class.
 
-    /** maps from a token name to value */
-    private static final Map TOKEN_NAME_TO_VALUE = new HashMap();
-    /** maps from a token value to name */
-    private static final Map TOKEN_VALUE_TO_NAME = new HashMap();
-
     /** maps from token name to checks */
     private final Map mTokenToChecks = new HashMap();
     /** all the registered checks */
@@ -54,30 +49,6 @@ class TreeWalker
     private final LocalizedMessages mMessages;
     /** the tab width for error reporting */
     private final int mTabWidth;
-
-    // initialise the constants
-    static {
-        final Field[] fields = Java14TokenTypes.class.getDeclaredFields();
-        for (int i = 0; i < fields.length; i++) {
-            final Field f = fields[i];
-            final String name = f.getName();
-            try {
-                // this should NEVER fail (famous last words)
-                final Integer value = new Integer(f.getInt(name));
-                TOKEN_NAME_TO_VALUE.put(name, value);
-                TOKEN_VALUE_TO_NAME.put(value, name);
-            }
-            catch (IllegalArgumentException e) {
-                e.printStackTrace();
-                System.exit(1);
-            }
-            catch (IllegalAccessException e) {
-                e.printStackTrace();
-                System.exit(1);
-            }
-        }
-
-    }
 
     /**
      * Creates a new <code>TreeWalker</code> instance.
@@ -89,20 +60,6 @@ class TreeWalker
     {
         mMessages = aMessages;
         mTabWidth = aTabWidth;
-    }
-
-    /**
-     * Returns the name of a token for a given ID.
-     * @param aID the ID of the token name to get
-     * @return a token name
-     */
-    static String getTokenName(int aID)
-    {
-        final String name = (String) TOKEN_VALUE_TO_NAME.get(new Integer(aID));
-        if (name == null) {
-            throw new IllegalArgumentException("given id " + aID);
-        }
-        return name;
     }
 
     /**
@@ -136,7 +93,7 @@ class TreeWalker
      */
     private void registerCheck(int aTokenID, Check aCheck)
     {
-        registerCheck(getTokenName(aTokenID), aCheck);
+        registerCheck(TokenTypes.getTokenName(aTokenID), aCheck);
     }
 
     /**
@@ -236,7 +193,8 @@ class TreeWalker
     private void notifyVisit(DetailAST aAST)
     {
         final ArrayList visitors =
-            (ArrayList) mTokenToChecks.get(getTokenName(aAST.getType()));
+            (ArrayList) mTokenToChecks.get(TokenTypes.getTokenName(
+                                               aAST.getType()));
         if (visitors != null) {
             final Map ctx = new HashMap();
             for (int i = 0; i < visitors.size(); i++) {
@@ -254,7 +212,8 @@ class TreeWalker
     private void notifyLeave(DetailAST aAST)
     {
         final ArrayList visitors =
-            (ArrayList) mTokenToChecks.get(getTokenName(aAST.getType()));
+            (ArrayList) mTokenToChecks.get(TokenTypes.getTokenName(
+                                               aAST.getType()));
         if (visitors != null) {
             for (int i = 0; i < visitors.size(); i++) {
                 final Check check = (Check) visitors.get(i);

@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -37,18 +37,18 @@ public class OtherLeftCurlyCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.LITERAL_while,
-                          JavaTokenTypes.LITERAL_try,
-                          JavaTokenTypes.LITERAL_catch,
-                          JavaTokenTypes.LITERAL_finally,
-                          JavaTokenTypes.LITERAL_synchronized,
-                          JavaTokenTypes.LITERAL_switch,
-                          JavaTokenTypes.LITERAL_do,
-                          JavaTokenTypes.LITERAL_if,
-                          JavaTokenTypes.LITERAL_else,
-                          JavaTokenTypes.LITERAL_for,
+        return new int[] {TokenTypes.LITERAL_WHILE,
+                          TokenTypes.LITERAL_TRY,
+                          TokenTypes.LITERAL_CATCH,
+                          TokenTypes.LITERAL_FINALLY,
+                          TokenTypes.LITERAL_SYNCHRONIZED,
+                          TokenTypes.LITERAL_SWITCH,
+                          TokenTypes.LITERAL_DO,
+                          TokenTypes.LITERAL_IF,
+                          TokenTypes.LITERAL_ELSE,
+                          TokenTypes.LITERAL_FOR,
                           // TODO: need to handle....
-                          //JavaTokenTypes.STATIC_INIT,
+                          //TokenTypes.STATIC_INIT,
         };
     }
 
@@ -59,20 +59,20 @@ public class OtherLeftCurlyCheck
         final DetailAST brace;
 
         switch (aAST.getType()) {
-            case JavaTokenTypes.LITERAL_while:
-            case JavaTokenTypes.LITERAL_catch:
-            case JavaTokenTypes.LITERAL_synchronized:
-            case JavaTokenTypes.LITERAL_for:
+            case TokenTypes.LITERAL_WHILE:
+            case TokenTypes.LITERAL_CATCH:
+            case TokenTypes.LITERAL_SYNCHRONIZED:
+            case TokenTypes.LITERAL_FOR:
                 brace = Utils.getLastSibling(aAST.getFirstChild());
                 break;
-            case JavaTokenTypes.LITERAL_try:
-            case JavaTokenTypes.LITERAL_finally:
-            case JavaTokenTypes.LITERAL_do:
+            case TokenTypes.LITERAL_TRY:
+            case TokenTypes.LITERAL_FINALLY:
+            case TokenTypes.LITERAL_DO:
                 brace = (DetailAST) aAST.getFirstChild();
                 break;
-            case JavaTokenTypes.LITERAL_else:
+            case TokenTypes.LITERAL_ELSE:
                 final DetailAST candidate = (DetailAST) aAST.getFirstChild();
-                if (candidate.getType() == JavaTokenTypes.SLIST) {
+                if (candidate.getType() == TokenTypes.SLIST) {
                     brace = candidate;
                 }
                 else {
@@ -80,8 +80,8 @@ public class OtherLeftCurlyCheck
                     brace = null;
                 }
                 break;
-            case JavaTokenTypes.LITERAL_switch:
-            case JavaTokenTypes.LITERAL_if:
+            case TokenTypes.LITERAL_SWITCH:
+            case TokenTypes.LITERAL_IF:
                 brace = (DetailAST) aAST.getFirstChild().getNextSibling()
                     .getNextSibling().getNextSibling();
                 break;

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -39,9 +39,9 @@ public class RightCurlyCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.LITERAL_try,
-                          JavaTokenTypes.LITERAL_catch,
-                          JavaTokenTypes.LITERAL_else};
+        return new int[] {TokenTypes.LITERAL_TRY,
+                          TokenTypes.LITERAL_CATCH,
+                          TokenTypes.LITERAL_ELSE};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -50,18 +50,18 @@ public class RightCurlyCheck
         // Attempt to locate the tokens to do the check
         DetailAST rcurly = null;
         DetailAST nextToken = null;
-        if (aAST.getType() == JavaTokenTypes.LITERAL_else) {
+        if (aAST.getType() == TokenTypes.LITERAL_ELSE) {
             nextToken = aAST;
             rcurly = Utils.getLastSibling(
                 aAST.getParent().getFirstChild().getNextSibling()
                 .getNextSibling().getNextSibling().getFirstChild());
         }
-        else if (aAST.getType() == JavaTokenTypes.LITERAL_catch) {
+        else if (aAST.getType() == TokenTypes.LITERAL_CATCH) {
             nextToken = (DetailAST) aAST.getNextSibling();
             rcurly = Utils.getLastSibling(
                 Utils.getLastSibling(aAST.getFirstChild()).getFirstChild());
         }
-        else if (aAST.getType() == JavaTokenTypes.LITERAL_try) {
+        else if (aAST.getType() == TokenTypes.LITERAL_TRY) {
             nextToken = (DetailAST) aAST.getFirstChild().getNextSibling();
             rcurly = Utils.getLastSibling(aAST.getFirstChild().getFirstChild());
         }

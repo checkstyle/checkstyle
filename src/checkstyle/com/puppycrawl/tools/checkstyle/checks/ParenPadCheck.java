@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import org.apache.commons.beanutils.ConversionException;
 
@@ -40,19 +40,19 @@ public class ParenPadCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.RPAREN,
-                          JavaTokenTypes.LPAREN,
-                          JavaTokenTypes.CTOR_CALL,
-                          JavaTokenTypes.SUPER_CTOR_CALL,
-                          JavaTokenTypes.TYPECAST, // TODO: treat this?
-                          JavaTokenTypes.METHOD_CALL,
+        return new int[] {TokenTypes.RPAREN,
+                          TokenTypes.LPAREN,
+                          TokenTypes.CTOR_CALL,
+                          TokenTypes.SUPER_CTOR_CALL,
+                          TokenTypes.TYPECAST, // TODO: treat this?
+                          TokenTypes.METHOD_CALL,
         };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() == JavaTokenTypes.RPAREN) {
+        if (aAST.getType() == TokenTypes.RPAREN) {
             processRight(aAST);
         }
         else {

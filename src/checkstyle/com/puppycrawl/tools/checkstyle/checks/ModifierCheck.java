@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
@@ -56,7 +56,7 @@ public class ModifierCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {JavaTokenTypes.MODIFIERS};
+        return new int[] {TokenTypes.MODIFIERS};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
