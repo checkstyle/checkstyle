@@ -90,3 +90,40 @@ interface NothingHidden
     // not an error
     public void noShadow(int notHidden);
 }
+
+/** tests ignoring the parameter of a property setter method */
+class PropertySetter
+{
+    private int prop;
+    
+    /** setter */
+    public void setProp(int prop)
+    {
+        this.prop = prop;
+    }
+    
+    /** error - incorrect method name */
+    public void setprop(int prop)
+    {
+        this.prop = prop;
+    }
+    
+    /** error - more than one parameter */
+    public void setProp(int prop, int extra)
+    {
+        this.prop = prop;
+    }
+}
+
+/** tests a non-void method */
+class PropertySetter2
+{
+    private int prop;
+    
+    /** error - not a void method */
+    public int setProp(int prop)
+    {
+        this.prop = prop;
+        return 0;
+    }
+}
