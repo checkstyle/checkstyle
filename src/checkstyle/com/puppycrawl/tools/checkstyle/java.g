@@ -1154,11 +1154,11 @@ NUM_INT
     :   '.' {_ttype = DOT;}
             (	('0'..'9')+ (EXPONENT)? (f1:FLOAT_SUFFIX {t=f1;})?
                 {
-				if (t != null && t.getText().toUpperCase().indexOf('D')>=0) {
-                	_ttype = NUM_DOUBLE;
+				if (t != null && t.getText().toUpperCase().indexOf('F')>=0) {
+                	_ttype = NUM_FLOAT;
 				}
 				else {
-                	_ttype = NUM_FLOAT;
+                	_ttype = NUM_DOUBLE; // assume double
 				}
 				}
             )?
@@ -1189,11 +1189,11 @@ NUM_INT
             |   f4:FLOAT_SUFFIX {t=f4;}
             )
             {
-			if (t != null && t.getText().toUpperCase() .indexOf('D') >= 0) {
-                _ttype = NUM_DOUBLE;
+			if (t != null && t.getText().toUpperCase() .indexOf('F') >= 0) {
+                _ttype = NUM_FLOAT;
 			}
             else {
-                _ttype = NUM_FLOAT;
+	           	_ttype = NUM_DOUBLE; // assume double
 			}
 			}
         )?

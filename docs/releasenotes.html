@@ -101,8 +101,13 @@
       <p class="body">
         Resolved bugs:
       </p>
-        <ul>
-          <li class="body">False alarms from RightCurly module for code that does not have braces in if-then-else (bug 689836).</li>
+	<ul>
+	  
+	  <li class="body">False alarms from RightCurly module for code that
+does not have braces in if-then-else (bug 689836).</li>
+
+	  <li class="body">Grammar incorrectly defaulting unqualified floating point literals to be float, when they should be double (bug 713716).</li>
+
           <li class="body">&quot;threadsafe&quot; was treated as a Java keyword, resulting in parser errors for
           sources that use it as an identifier (bug 710319).</li>
           <li class="body">ConfigurationLoader was not public (only relevant for IDE plugin authors).</li>
