@@ -480,7 +480,8 @@
     <javadoc sourcepath="src/checkstyle" destdir="docs/api"
              packagenames="com.puppycrawl.tools.checkstyle.*"
              Windowtitle="Checkstyle API"
-             classpathref="javadoc.classpath" />
+             classpathref="javadoc.classpath"
+             Use="true" />
     <move toDir="src/checkstyle">
       <fileset dir="src/checkstyle" includes="**/*.HIDING" />
       <mapper type="glob" from="*.HIDING" to="*"/>
