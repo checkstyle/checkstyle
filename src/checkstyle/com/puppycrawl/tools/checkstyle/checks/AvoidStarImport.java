@@ -47,7 +47,7 @@ public class AvoidStarImport
     {
         final FullIdent name = getImportText(aAST);
         if ((name != null) && name.getText().endsWith(".*")) {
-            log(aAST.getLineNo(), "import.avoidStar");
+            log(aAST.getLineNo(), "import.avoidStar", name.getText());
         }
     }
 }
