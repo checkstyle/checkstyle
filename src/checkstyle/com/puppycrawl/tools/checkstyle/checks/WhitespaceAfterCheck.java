@@ -24,7 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * <p>
- * Checks that a token is followed by whitespace.
+ * Checks that a token is followed by whitespace, with the exception that it
+ * does not check for whitespace after the semicolon of an empty for iterator.
+ * Use Check {@link EmptyForIteratorPad} to validate empty for iterators.
  * </p>
  * <p> By default the check will check the following tokens:
  *  {@link TokenTypes#COMMA COMMA},
@@ -51,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class WhitespaceAfterCheck
     extends Check
-{
+{   
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -90,6 +92,17 @@ public class WhitespaceAfterCheck
                 return;
             }
             if (!Character.isWhitespace(charAfter)) {
+                //empty FOR_ITERATOR?
+                if (targetAST.getType() == TokenTypes.SEMI) {
+                    final DetailAST sibling =
+                        (DetailAST) targetAST.getNextSibling();
+                    if ((sibling != null)
+                        && (sibling.getType() == TokenTypes.FOR_ITERATOR)
+                        && (sibling.getChildCount() == 0))
+                    {
+                        return;
+                    }
+                }   
                 log(targetAST.getLineNo(),
                     targetAST.getColumnNo() + targetAST.getText().length(),
                     "ws.notFollowed",
