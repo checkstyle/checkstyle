@@ -8,9 +8,9 @@ public class PackageNameCheckTest
     public void testSpecified()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(PackageNameCheck.class.getName());
-        checkConfig.addProperty("format", "[A-Z]+");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(PackageNameCheck.class);
+        checkConfig.addAttribute("format", "[A-Z]+");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
@@ -22,8 +22,8 @@ public class PackageNameCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(PackageNameCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(PackageNameCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {

@@ -7,8 +7,8 @@ public class ModifierCheckTest
 {
     public void testIt() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ModifierCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ModifierCheck.class);
         final Checker c = createChecker(checkConfig);
         final String filepath = getPath("InputModifier.java");
         assertNotNull(c);
@@ -18,6 +18,5 @@ public class ModifierCheckTest
             "24:14: 'private' modifier out of order with the JLS suggestions.",
         };
         verify(c, filepath, expected);
-
     }
 }

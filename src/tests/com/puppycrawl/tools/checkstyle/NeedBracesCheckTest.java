@@ -24,8 +24,8 @@ public class NeedBracesCheckTest extends BaseCheckTestCase
 {
     public void testIt() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(NeedBracesCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NeedBracesCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputBraces.java");
         final String[] expected = {
