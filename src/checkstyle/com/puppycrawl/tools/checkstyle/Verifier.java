@@ -664,7 +664,7 @@ class Verifier
         final int after = aColNo - 1;
         if (after < line.length()) {
             if (Character.isWhitespace(line.charAt(after))) {
-                log(aLineNo, "'(' is followed by whitespace.");
+                log(aLineNo, after, "'(' is followed by whitespace.");
             }
         }
     }
@@ -686,7 +686,7 @@ class Verifier
         final int before = aColNo - 3;
         if (before >= 0) {
             if (Character.isWhitespace(line.charAt(before))) {
-                log(aLineNo, "')' is preceeded by whitespace.");
+                log(aLineNo, before, "')' is preceeded by whitespace.");
             }
         }
     }
