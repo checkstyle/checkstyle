@@ -1,33 +1,31 @@
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.Map;
-
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
- * A factory for creating objects by mapping a name to a class name.
- * <code>MappedObjectFactory</code> has no public constructor..
+ * A factory for creating objects from package names and names.
+ * <code>PackageObjectFactory</code> has no public constructor.
  * @author Rick Giles
  * @version 4-Dec-2002
  */
 public class PackageObjectFactory
 {
     /**
-     * Creates a new <code>MappedObjectFactory</code> instance.
+     * Creates a new <code>PackageObjectFactory</code> instance.
      */    
     private PackageObjectFactory()
     {
     }
 
     /**
-     * Creates a new instance of a class. Determines the name of the
-     * class to instantiate by mapping a given name to a class name,
-     *  using a provided <code>Map</code>.
-     * @param aMap the mapping from aName to a class name.
+     * Creates a new instance of a class from a given name. If the name is
+     * a classname, creates an instance of the named class. Otherwise, creates
+     * an instance of a classname obtained by concatenating the given
+     * to a package name from a given list of package names. 
+     * @param aPackages list of package names.
      * @param aLoader the <code>ClassLoader</code> to create the instance with.
-     * @param aName the name to map to the class name.
-     * @return the <code>Object</code> created by aLoader after mapping
-     * aName to a class name.
+     * @param aName the name of a class.
+     * @return the <code>Object</code> created by aLoader.
      * @throws CheckstyleException if an error occurs.
      */            
     private Object doMakeObject(String[] aPackages, ClassLoader aLoader,
@@ -85,21 +83,21 @@ public class PackageObjectFactory
     } 
     
     /**
-     * Creates a new instance of a class. Determines the name of the
-     * class to instantiate by mapping a given name to a class name,
-     *  using a provided <code>Map</code>.
-     * @param aMap the mapping from aName to a class name.
+     * Creates a new instance of a class from a given name. If the name is
+     * a classname, creates an instance of the named class. Otherwise, creates
+     * an instance of a classname obtained by concatenating the given
+     * to a package name from a given list of package names. 
+     * @param aPackages list of package names.
      * @param aLoader the <code>ClassLoader</code> to create the instance with.
-     * @param aName the name that will be mapped to the name of a class.
-     * @return the <code>Object</code> created by aLoader after mapping
-     * aName to a class name.
+     * @param aName the name of a class.
+     * @return the <code>Object</code> created by aLoader.
      * @throws CheckstyleException if an error occurs.
-     */
+     */            
     public static Object makeObject(String[] aPackages, ClassLoader aLoader,
-        String aClassName)
+        String aName)
         throws CheckstyleException
     {
         final PackageObjectFactory factory = new PackageObjectFactory();
-        return factory.doMakeObject(aPackages, aLoader, aClassName);
+        return factory.doMakeObject(aPackages, aLoader, aName);
     }
 }
