@@ -694,7 +694,9 @@ class Verifier
         final String line = mLines[aLineNo - 1];
         final int before = aColNo - 3;
         if (before >= 0) {
-            if (Character.isWhitespace(line.charAt(before))) {
+            if (Character.isWhitespace(line.charAt(before))
+                && !Utils.whitespaceBefore(before, line))
+            {
                 log(aLineNo, before, "')' is preceeded by whitespace.");
             }
         }
