@@ -120,7 +120,7 @@
     </tr>
     <tr>
       <td bgcolor="#023264" width="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
-      <td bgcolor="#ffffff"><pre>$escape.getText($value.getText())</pre></td>
+      <td bgcolor="#ffffff"><pre>$escape.getText($value.getText().trim())</pre></td>
       <td bgcolor="#023264" width="1"><img src="/images/void.gif" width="1" height="1" vspace="0" hspace="0" border="0"/></td>
     </tr>
     <tr>
@@ -186,7 +186,11 @@
   <ul>
   #foreach ( $item in $menu.getChildren() )
       #set ($name = $item.getAttributeValue("name"))
-      <li>#projectanchor($name $item.getAttributeValue("href"))</li>
+      #if ( $name.equalsIgnoreCase($docname) )
+          <li><b>#projectanchor($name $item.getAttributeValue("href"))</b></li>
+      #else
+          <li>#projectanchor($name $item.getAttributeValue("href"))</li>
+      #end
       #if ( $name.equalsIgnoreCase($docname) )
           <ul class="sectionquicklink">
           #foreach ( $candidate in $root.getChild("body").getChildren() )
@@ -283,7 +287,7 @@
 
         <body bgcolor="$bodybg" text="$bodyfg" link="$bodylink">
            <!-- START Header table -->
-           <table border="0" cellspacing="0" width="90%">
+           <table border="0" cellspacing="0" width="98%">
                 <!-- TOP IMAGE -->
                 <tr>
                     #getProjectImage()
@@ -292,7 +296,7 @@
            <!-- END Header table -->
 
            <!-- START main table -->
-            <table id="main" border="0" width="90%" cellspacing="2" cellpadding="0">
+            <table id="main" border="0" width="98%" cellspacing="2" cellpadding="0">
                 <tr><td colspan="2">
                     <hr noshade="" size="1"/>
                 </td></tr>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<document>
+
+  <properties>
+    <title>Property Types</title>
+    <author>Oliver Burn</author>
+  </properties>
+
+  <body>
+
+    <p>
+      Checkstyle is configured using properties, which are string
+      representations. This document describes how these string
+      representations are mapped to typed properties.
+    </p>
+
+    
+    <section name="integer">
+      <p>
+        This property represents an integer. The string representation is
+        parsed using the <span class="code">java.lang.Integer</span> class.
+      </p>
+    </section>
+
+    <section name="string">
+      <p>
+        This property represents a string. The literal string representation
+        is used.
+      </p>
+    </section>
+
+    <section name="boolean">
+      <p>
+        This property represents a boolean. The default value is <span
+        class="code">false</span>. The following string representations will
+        map to <span class="code">true</span>:
+      </p>
+
+      <ul>
+        <li><span class="code">yes</span></li>
+        <li><span class="code">true</span></li>
+        <li><span class="code">on</span></li>
+      </ul>
+
+      <p>Anything else will map to <span class="code">false</span>.</p>
+    </section>
+
+    <section name="stringSet">
+      <p>
+        This property represents a set of strings. The string representation
+        is parsed as a set of comma (',') separated strings.
+      </p>
+    </section>
+
+    <section name="intSet">
+      <p>
+        This property represents a set of integers. The string representation
+        is parsed as a set of comma (',') separated integers that are parsed
+        using the <span class="code">java.lang.Integer</span> class.
+      </p>
+    </section>
+
+    <section name="regexp">
+      <p>
+        This property represents a regular expression. The string
+        representation is parsed using the excellent <a
+        href="http://jakarta.apache.org/regexp/">Jakarta Regexp</a>
+        library.
+      </p>
+    </section>
+
+    <section name="parenPad">
+      <p>
+        This property represents the policy for padding with white space. The
+        following table describes the valid options:
+      </p>
+
+      <table summary="padding options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+        <tr>
+          <td><span class="code">nospace</span></td>
+          <td>
+            Do not pad. For example, <span class="code">method(a, b);</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="code">space</span></td>
+          <td>
+            Ensure padding. For example,
+            <span class="code">method( a, b );</span>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <section name="wrapOp">
+      <p>
+        This property represents the policy for wrapping lines on
+        operators. The following table describes the valid options:
+      </p>
+
+      <table summary="wrap operator options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+        <tr>
+          <td><span class="code">nl</span></td>
+          <td>
+            The operator must be on a new line. For example:
+            <pre>
+    someVariable = aBigVariableNameToMakeThings + "this may work"
+                   + lookVeryInteresting;
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="code">eol</span></td>
+          <td>
+            The operator must be at the end of the line. For example:
+            <pre>
+    someVariable = aBigVariableNameToMakeThings + "this may work" +
+                   lookVeryInteresting;
+            </pre>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <section name="block">
+      <p>
+        This property represents the policy for checking block statements. The
+        following table describes the valid options:
+      </p>
+
+      <table summary="block options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+        <tr>
+          <td><span class="code">text</span></td>
+          <td>
+            Require that there is some text in the block. For example:
+            <pre>
+    catch (Exception ex) {
+        // This is a bad coding practice
+    }
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="code">stmt</span></td>
+          <td>
+            Require that there is a statement in the block. For example:
+            <pre>
+    finally {
+        lock.release();
+    }
+            </pre>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <section name="lcurly">
+      <p>
+        This property represents the policy for checking the placement of a
+        left curly brace (<span class="code">'{'</span>). The following table
+        describes the valid options:
+      </p>
+
+      <table summary="left curly options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+        
+        <tr>
+          <td><span class="code">eol</span></td>
+          <td>
+            The brace must always be on the end of the line. For example:
+            <pre>
+    if (condition) {
+        ...
+            </pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">nl</span></td>
+          <td>
+            The brace must always be on a new line. For example:
+            <pre>
+    if (condition)
+    {
+        ...
+            </pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">nlow</span></td>
+          <td>
+            If the brace will fit on the first line of the statement, taking
+            into account maximum line length, then apply <span
+            class="code">eol</span> rule. Otherwise apply the <span
+            class="code">nl</span> rule. <span class="code">nlow</span> is a
+            mnemonic for "new line on wrap". For the example above Checkstyle
+            will enforce:
+            <pre>
+    if (condition) {
+        ...
+            </pre>
+            But for a statement spanning multiple lines, Checkstyle will
+            enforce:
+            <pre>
+    if (condition1 &amp;&amp; condition2 &amp;&amp;
+        condition3 &amp;&amp; condition4)
+    {
+        ...
+            </pre>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <section name="rcurly">
+      <p>
+        This property represents the policy for checking the placement of a
+        right curly brace (<span class="code">'}'</span>). The following table
+        describes the valid options:
+      </p>
+
+      <table summary="right curly options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+
+        <tr>
+          <td><span class="code">same</span></td>
+          <td>
+            The brace must be on the same line as the next statement. For
+            example:
+            <pre>
+    try {
+        ...
+    } finally {
+            </pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">alone</span></td>
+          <td>
+            The brace must be alone on the line. For example:
+            <pre>
+    try {
+        ...
+    }
+    finally {
+            </pre>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <section name="scope">
+      <p>This property represents a Java scope. The valid options are:</p>
+
+      <ul>
+        <li><span class="default">nothing</span></li>
+        <li><span class="default">public</span></li>
+        <li><span class="default">protected</span></li>
+        <li><span class="default">package</span></li>
+        <li><span class="default">private</span></li>
+        <li><span class="default">anoninner</span></li>
+      </ul>
+    </section>
+
+    <section name="severity">
+      <p>
+        This property represents the severity level of a check violation. The
+        valid options are:
+      </p>
+
+      <ul>
+        <li><span class="default">ignore</span></li>
+        <li><span class="default">info</span></li>
+        <li><span class="default">warning</span></li>
+        <li><span class="default">error</span></li>
+      </ul>
+    </section>
+
+    <section name="persistence">
+      <p>
+        This property represents the policy for checking entity beans
+        according to whether the beans have bean-managed persistence,
+        container-managed persistence, or mixed persistence:
+      </p>
+
+      <table summary="right curly options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+
+        <tr>
+          <td><span class="code">bean</span></td>
+          <td>The beans have bean-managed persistence.</td>
+        </tr>
+
+        <tr>
+          <td><span class="code">container</span></td>
+          <td>The beans have container-managed persistence.</td>
+        </tr>
+
+        <tr>
+          <td><span class="code">mixed</span></td>
+          <td>
+            The beans have mixed bean-managed and container-managed
+            persistence.
+          </td>
+        </tr>
+      </table>
+    </section>
+  </body>
+</document>

@@ -1,58 +1,78 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <project name="Checkstyle"
-        href="http://checkstyle.sourceforge.net/">
+         href="http://checkstyle.sourceforge.net/">
 
-    <title>Checkstyle</title>
-    <logo href="./images/logo.png">Checkstyle Logo</logo>
+  <title>Checkstyle</title>
+  <logo href="./images/logo.png">Checkstyle Logo</logo>
 
-    <body>
-        <menu name="About">
-            <item name="Checkstyle"
-                href="/index.html"/>
-        </menu>
-        <menu name="Documentation">
-            <item name="Configuration"/>
-            <item name="Available Checks" href="/availablechecks.html">
-                <item name="Javadoc Comments"     href="/config_javadoc.html"/>
-                <item name="Naming Conventions"   href="/config_naming.html"/>
-                <item name="Headers"              href="/config_header.html"/>
-                <item name="Imports"              href="/config_import.html"/>
-                <item name="Size Violations"      href="/config_sizes.html"/>
-                <item name="Whitespace"           href="/config_whitespace.html"/>
-                <item name="Modifiers"            href="/config_modifiers.html"/>
-                <item name="Block Checks"         href="/config_blocks.html"/>
-                <item name="Coding"               href="/config_coding.html"/>
-                <item name="Class Design"         href="/config_design.html"/>
-                <item name="Duplicate Code Detection" href="/config_duplicates.html"/>
-                <item name="Metrics"              href="/config_metrics.html"/>
-                <item name="Miscellaneous"        href="/config_misc.html"/>
-                <!-- TODO: <item name="Optional Checks" href="/optional.html"/> -->
+  <body>
+    <menu name="About">
+      <item name="Checkstyle" href="/index.html"/>
+    </menu>
 
-            </item>
+    <menu name="Documentation">
 
-            <item name="Writing your own checks"
-                href="/writingchecks.html"/>
-            <item name="Javadoc"
-                href="/api/index.html"/>
-        </menu>
+      <item name="Release Notes" href="/releasenotes.html"/>
 
-        <menu name="SourceForge">
-            <item name="Mailing Lists"
-                href="http://sourceforge.net/mail/?group_id=29721"/>
+      <item name="Configuration" href="/config.html">
+        <item name="Property Types" href="/property_types.html"/>
+      </item>
 
-            <item name="Bug Database"
-                href="http://sourceforge.net/tracker/?atid=397078&amp;group_id=29721&amp;func=browse"/>
-            <item name="Feature Requests"
-                href="http://sourceforge.net/tracker/?atid=397081&amp;group_id=29721&amp;func=browse"/>
-        </menu>
+      <item name="Running" href="/running.html">
+        <item name="Ant Task" href="/anttask.html"/>
+        <item name="Command Line" href="/cmdline.html"/>
+      </item>
 
-        <menu name="Developers">
-            <item name="Project Page"
-                href="http://sourceforge.net/projects/checkstyle"/>
-            <item name="CVS Repository"
-                href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/checkstyle/"/>
-            <item name="Contributing"
-                href="/contributing.html"/>
-        </menu>
-    </body>
+      <item name="Standard Checks" href="/checks.html">
+        <item name="Javadoc Comments"   href="/config_javadoc.html"/>
+        <item name="Naming Conventions" href="/config_naming.html"/>
+        <item name="Headers"            href="/config_header.html"/>
+        <item name="Imports"            href="/config_import.html"/>
+        <item name="Size Violations"    href="/config_sizes.html"/>
+        <item name="Whitespace"         href="/config_whitespace.html"/>
+        <item name="Modifiers"          href="/config_modifiers.html"/>
+        <item name="Block Checks"       href="/config_blocks.html"/>
+        <item name="Coding"             href="/config_coding.html"/>
+        <item name="Class Design"       href="/config_design.html"/>
+        <item name="Duplicate Code"     href="/config_duplicates.html"/>
+        <item name="Metrics"            href="/config_metrics.html"/>
+        <item name="Miscellaneous"      href="/config_misc.html"/>
+      </item>
+
+      <item name="Optional Checks" href="/optional.html">
+        <item name="Usage Checks" href="/config_usage.html"/>
+        <item name="J2EE Checks" href="/config_j2ee.html"/>
+      </item>
+
+      <item name="Extending Checkstyle" href="/extending.html">
+        <item name="Writing checks" href="/writingchecks.html"/>
+        <item name="Writing filters" href="/writingfilters.html"/>
+        <item name="Writing listeners" href="/writinglisteners.html"/>
+      </item>
+
+      <item name="Javadoc" href="/api/index.html"/>
+    </menu>
+
+    <menu name="SourceForge">
+      <item name="Mailing Lists"
+            href="http://sourceforge.net/mail/?group_id=29721"/>
+
+      <item name="Bug Database"
+            href="http://sourceforge.net/tracker/?atid=397078&amp;group_id=29721&amp;func=browse"/>
+
+      <item name="Feature Requests"
+            href="http://sourceforge.net/tracker/?atid=397081&amp;group_id=29721&amp;func=browse"/>
+    </menu>
+
+    <menu name="Developers">
+      <item name="Project Page"
+            href="http://sourceforge.net/projects/checkstyle"/>
+
+      <item name="CVS Repository"
+            href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/checkstyle/"/>
+
+      <item name="Contributing" href="/contributing.html"/>
+    </menu>
+  </body>
 </project>

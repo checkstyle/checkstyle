@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<document>
+
+  <properties>
+    <title>Reporting Configuration</title>
+    <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
+  </properties>
+
+  <body>
+    <section name="Caching Support">
+      <p>
+        The property <span class="code">checkstyle.cache.file</span>
+        specifies the name of a file that can be used to cache details
+        of files that pass Checkstyle. This can <i>significantly</i>
+        increase the speed of checkstyle on successive runs. The
+        property type is <a href="property_types.html#string">string</a>
+        and defaults to an empty string (which means do not cache).
+      </p>
+    </section>
+
+    <section name="Localisation Support">
+      <p>
+        Checkstyle supports a mechanism for localising the output
+        messages. If your language is not supported, please consider
+        translating the messages in the <span
+        class="default">messages.properties</span> file. Please let us
+        know if you translate the file.
+      </p>
+
+      <p>
+        The property <span
+        class="code">checkstyle.locale.language</span> specifies the
+        language to use in localising the output messages. The property
+        type is <a href="property_types.html#string">string</a> and
+        defaults to the default system locale language.
+      </p>
+
+      <p>
+        The property <span class="code">checkstyle.locale.country</span>
+        specifies the country to use in localising the output
+        messages. The property type is <a
+        href="property_types.html#string">string</a> and defaults to the
+        default system locale country.
+      </p>
+    </section>
+
+    <section name="Base directory support">
+      <p>
+        The property <span class="code">checkstyle.basedir</span>
+        specifies a base directory which files are then reported
+        relative to. For example, if a base directory is specified as
+        <span class="code">c:\projects\checkstyle</span>, then an error
+        in the file <span
+        class="code">c:\projects\checkstyle\src\dir\subdir\File.java</span>
+        will be reported as <span
+        class="code">src\dir\subdir\File.java</span>. The property type
+        is <a href="property_types.html#string">string</a> and defaults
+        to an empty string.
+      </p>
+    </section>
+  </body>
+</document>

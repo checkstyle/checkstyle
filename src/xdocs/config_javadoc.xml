@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<document>
+
+  <properties>
+    <title>Javadoc Comments</title>
+    <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
+  </properties>
+
+  <body>
+    <section name="PackageHtml">
+      <subsection name="Description">
+        <p>
+          Checks that a <span class="code">package.html</span> file
+          exists for each package. More specifically, checks that each
+          java file has a package.html sibling.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>
+              file type extension to identify java files. Setting this
+              property is typically only required if your java source
+              files are preprocessed and the original files do not have
+              the extension <span class="code">.java</span>
+            </td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><span class="default">java</span></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Example">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name="PackageHtml"/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="JavadocType">
+      <subsection name="Description">
+        <p>
+          Checks Javadoc comments for class and interface definitions.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>scope</td>
+            <td>visibility scope where Javadoc comments are checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">private</span></td>
+          </tr>
+          <tr>
+            <td>excludeScope</td>
+            <td>visibility scope where Javadoc comments are not checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">null</span></td>
+          </tr>
+          <tr>
+            <td>authorFormat</td>
+            <td>pattern for @author tag</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">null</span> (tag not required)</td>
+          </tr>
+          <tr>
+            <td>versionFormat</td>
+            <td>pattern for @version tag</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">null</span> (tag not required)</td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>definitions to check</td>
+            <td>
+              subset of tokens <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>
+            </td>
+            <td>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+               <a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the default check:
+        </p>
+        <source>
+&lt;module name="JavadocType"/&gt;
+        </source>
+
+        <p>
+          To configure the check for <span class="default">public</span> scope:
+        </p>
+        <source>
+&lt;module name="JavadocType"&gt;
+   &lt;property name="scope" value="public"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check for an @author tag:
+        </p>
+        <source>
+&lt;module name="JavadocType"&gt;
+   &lt;property name="authorFormat" value="\S"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check for a CVS revision version tag:
+        </p>
+        <source>
+&lt;module name="JavadocType"&gt;
+   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check for <span
+          class="default">private</span> classes only:
+        </p>
+        <source>
+&lt;module name="JavadocType"&gt;
+   &lt;property name="scope" value="private"/&gt;
+   &lt;property name="excludescope" value="package"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="JavadocMethod">
+      <subsection name="Description">
+        <p>
+          Checks to ensure that the following tags exist (if required):
+        </p>
+
+        <ul>
+          <li>
+            <span class="code">@return</span>
+          </li>
+          <li>
+            <span class="code">@param</span>
+          </li>
+          <li>
+            <span class="code">@throws</span> or <span
+            class="code">@exception</span>
+          </li>
+          <li>
+            <span class="code">@see</span> or <span
+            class="code">{@inheritDoc}</span>
+          </li>
+        </ul>
+
+        <p>
+          For example, the following is valid:
+        </p>
+        <source>
+/**
+ * Checks for a return tag.
+ * @return the index of the next unchecked tag
+ * @param aTagIndex the index to start in the tags
+ * @param aTags the tags to check
+ * @param aLineNo the line number of the expected tag
+ **/
+public int checkReturnTag(final int aTagIndex,
+                          JavadocTag[] aTags,
+                          int aLineNo)
+        </source>
+
+        <p>
+          This supports the convention in the <a
+          href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html#throwstag">Sun
+          Javadoc Guidelines</a> and the "Effective Java" book.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>scope</td>
+            <td>visibility scope where Javadoc comments are checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">private</span></td>
+          </tr>
+          <tr>
+            <td>excludeScope</td>
+            <td>visibility scope where Javadoc comments are not checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">null</span></td>
+          </tr>
+          <tr>
+            <td>allowUndeclaredRTE</td>
+            <td>whether to allow documented exceptions that
+            are not declared if they are a subclass of <span
+            class="code">java.lang.RuntimeException</span></td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>allowThrowsTagsForSubclasses</td>
+            <td>whether to allow documented exceptions that
+            are subclass of one of declared exception.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>allowMissingParamTags</td>
+            <td>whether to ignore errors when a method has parameters
+            but does not have matching param tags in the javadoc.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>allowMissingThrowsTags</td>
+            <td>whether to ignore errors when a method declares
+            that it throws exceptions but does have matching throws tags
+            in the javadoc.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>allowMissingReturnTag</td>
+            <td>whether to ignore errors when a method returns
+            non-void type does have a return tag in the javadoc.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>definitions to check</td>
+
+            <td>subset of tokens <a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+
+            <td><a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a
+            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the default check:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"/&gt;
+        </source>
+
+        <p>
+          To configure the check for <span class="default">public</span>
+          scope and to allow documentation of undeclared
+          RuntimeExceptions:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+   &lt;property name="scope" value="public"/&gt;
+   &lt;property name="allowUndeclaredRTE" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check for methods which are in <span
+          class="default">private</span> , but not in <span
+          class="default">protected</span> scope:
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+   &lt;property name="scope" value="private"/&gt;
+   &lt;property name="excludeScope" value="protected"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Notes">
+        <ul>
+          <li>
+            The classpath may need to be configured to locate the class
+            information. The classpath configuration is dependent on the
+            mechanism used to invoke Checkstyle.
+          </li>
+
+          <li>
+            It can be extremely painful writing or duplicating Javadoc
+            for a method required for an interface. Hence checkstyle
+            supports using the convention of using a single <span
+            class="code">@see</span> or <span
+            class="code">{@inheritDoc}</span> tag instead of all the
+            other tags. For example, if the <a
+            href="#checkReturnTag">above method</a> was implementing a
+            method required by the <span class="code">
+            com.puppycrawl.tools.checkstyle.Verifier</span> interface,
+            then the Javadoc could be done as:
+
+            <source>
+/** @see com.puppycrawl.tools.checkstyle.Verifier **/
+public int checkReturnTag(final int aTagIndex,
+                          JavadocTag[] aTags,
+                          int aLineNo)
+            </source>
+
+            or:
+            <source>
+/** {@inheritDoc} **/
+public int checkReturnTag(final int aTagIndex,
+                          JavadocTag[] aTags,
+                          int aLineNo)
+            </source>
+
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+
+      <section name="JavadocVariable">
+        <subsection name="Description">
+          <p>
+            Checks that variables have Javadoc comments.
+          </p>
+        </subsection>
+
+        <subsection name="Properties">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>visibility scope where Javadoc comments are checked</td>
+              <td><a href="property_types.html#scope">scope</a></td>
+              <td><span class="default">private</span></td>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>visibility scope where Javadoc comments are not checked</td>
+              <td><a href="property_types.html#scope">scope</a></td>
+              <td><span class="default">null</span></td>
+            </tr>
+          </table>
+        </subsection>
+
+        <subsection name="Examples">
+          <p>
+            To configure the default check:
+          </p>
+          <source>
+&lt;module name="JavadocVariable"/&gt;
+          </source>
+
+          <p>
+            To configure the check for <span
+            class="default">public</span> scope:
+          </p>
+          <source>
+&lt;module name="JavadocVariable"&gt;
+   &lt;property name="scope" value="public"/&gt;
+&lt;/module&gt;
+          </source>
+
+          <p>
+            To configure the check for members which are in <span
+            class="default">private</span>, but not in <span
+            class="default">protected</span> scope:
+          </p>
+          <source>
+&lt;module name="JavadocVariable"&gt;
+   &lt;property name="scope" value="private"/&gt;
+   &lt;property name="excludeScope" value="protected"/&gt;
+&lt;/module&gt;
+          </source>
+        </subsection>
+
+        <subsection name="Package">
+          <p>
+            com.puppycrawl.tools.checkstyle.checks.javadoc
+          </p>
+        </subsection>
+
+        <subsection name="Parent Module">
+          <p>
+            <a href="config.html#treewalker">TreeWalker</a>
+          </p>
+        </subsection>
+      </section>
+
+      <section name="JavadocStyle">
+	<subsection name="Description">
+          <p>
+            Validates Javadoc comments to help ensure they are well
+            formed.  The following checks are performed:
+          </p>
+
+          <ul>
+            <li>
+              Ensures the first sentence ends with proper punctuation
+              (That is a period, question mark, or exclamation mark).
+              Javadoc automatically places the first sentence in the
+              method summary table and index.  With out proper
+              punctuation the Javadoc may be malformed.
+            </li>
+
+            <li>
+              Check text for Javadoc statements that do not have any
+              description.  This includes both completely empty Javadoc,
+              and Javadoc with only tags such as @param and
+              @return.
+            </li>
+
+            <li>
+              Check text for incomplete HTML tags.  Verifies that HTML
+              tags have corresponding end tags and issues an "Unclosed
+              HTML tag found:" error if not.  An "Extra HTML tag found:"
+              error is issued if an end tag is found without a previous
+              open tag.
+            </li>
+          </ul>
+
+          <p>
+            These checks were patterned after the checks made by the <a
+            href="http://java.sun.com/j2se/javadoc/doccheck/index.html">DocCheck</a>
+            doclet available from Sun.
+          </p>
+        </subsection>
+
+        <subsection name="Properties">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>visibility scope where Javadoc comments are checked</td>
+              <td><a href="property_types.html#scope">scope</a></td>
+              <td><span class="default">private</span></td>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>visibility scope where Javadoc comments are not checked</td>
+              <td><a href="property_types.html#scope">scope</a></td>
+              <td><span class="default">null</span></td>
+            </tr>
+            <tr>
+              <td>checkFirstSentence</td>
+              <td>
+                Whether to check the first sentence for proper end of sentence.
+              </td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><span class="default">true</span></td>
+            </tr>
+            <tr>
+              <td>checkEmptyJavadoc</td>
+              <td>
+                Whether to check if the Javadoc is missing a describing text.
+              </td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><span class="default">false</span></td>
+            </tr>
+            <tr>
+              <td>checkHtml</td>
+              <td>Whether to check for incomplete html tags.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><span class="default">true</span></td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>definitions to check</td>
+
+              <td>
+                subset of tokens <a
+                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+                <a
+                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+                <a
+                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+                <a
+                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+                <a
+                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+              </td>
+
+              <td>
+                <a
+                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+                <a
+                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+                <a
+                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+                <a
+                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+                <a
+                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+              </td>
+            </tr>
+          </table>
+        </subsection>
+
+        <subsection name="Examples">
+          <p>
+            To configure the default check:
+          </p>
+
+          <source>
+&lt;module name="JavadocStyle"/&gt;
+          </source>
+
+          <p>
+            To configure the check for <span
+            class="default">public</span> scope:
+          </p>
+
+          <source>
+&lt;module name="JavadocStyle"&gt;
+   &lt;property name="scope" value="public"/&gt;
+&lt;/module&gt;
+          </source>
+
+          <p>
+            To configure the check for javadoc which is in <span
+            class="default">private</span>, but not in <span
+            class="default">package</span> scope:
+          </p>
+
+          <source>
+&lt;module name="JavadocStyle"&gt;
+   &lt;property name="scope" value="private"/&gt;
+   &lt;property name="excludeScope" value="package"/&gt;
+&lt;/module&gt;
+          </source>
+
+          <p>
+            To configure the check to turn off first sentence checking:
+          </p>
+          <source>
+&lt;module name="JavadocStyle"&gt;
+   &lt;property name="checkFirstSentence" value="false"/&gt;
+&lt;/module&gt;
+          </source>
+        </subsection>
+
+        <subsection name="Package">
+          <p>
+            com.puppycrawl.tools.checkstyle.checks
+          </p>
+        </subsection>
+
+        <subsection name="Parent Module">
+          <p>
+            <a href="config.html#treewalker">TreeWalker</a>
+          </p>
+        </subsection>
+      </section>
+    </section>
+  </body>
+</document>

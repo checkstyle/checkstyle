@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<document>
+
+  <properties>
+    <title>Optional Checks</title>
+    <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
+  </properties>
+
+  <body>
+
+    <section name="Overview">
+      <p>
+        <a href="checks.html">Standard</a> Checkstyle Checks are
+        applicable to general Java coding style and require no external
+        libraries. An optional Check is for special applications or
+        requires additional libraries. There are are optional Checks
+        for:
+      </p>
+
+      <ul>
+        <li><a href="config_j2ee.html">J2EE Requirements</a></li>
+        <li><a href="config_usage.html">Usage</a></li>
+      </ul>
+    </section>
+
+    <section name="Configuration">
+      <p>
+        As with standard checks, optional checks are configured as
+        submodules of <a
+        href="config.html#treewalker">TreeWalker</a>. The shortened name
+        of an optional Check module must include the appropriate package
+        name prefix. For example, this is a configuration fragment for
+        Check <span
+        class="code">com.puppycrawl.tools.checkstyle.checks.usage.UnusedLocalVariable</span>:
+      </p>
+
+      <source>
+&lt;module name=&quot;usage.UnusedLocalVariable&quot;/&gt;
+      </source>
+
+      <p>
+        Consult the <a href="config.html#packagenames">Checkstyle
+        configuration manual</a> to learn how to integrate optional
+        Checks into the package configuration so that you can use fully
+        shortened names such as <span
+        class="code">UnusedLocalVariable</span>.
+      </p>
+    </section>
+
+    <section name="Usage">
+      <p>
+        Optional checks are distributed in jar file <span
+        class="code">checkstyle-optional-@CHECKSTYLE_VERSION@.jar</span>
+        and, in order to use an optional check, this jar file must be in
+        the classpath.  For example, this is a command to run Checkstyle
+        with a configuration that contains optional checks:
+      </p>
+
+      <source>
+java -classpath checkstyle-optional-@CHECKSTYLE_VERSION@.jar:checkstyle-all-@CHECKSTYLE_VERSION@.jar \
+    com.puppycrawl.tools.checkstyle.Main \
+    -c config.xml -r .
+      </source>
+
+      <p>
+        Please consult <a href="cmdline.html">Command Line</a> and <a
+        href="anttask.html">ANT Task</a> documentation for further usage
+        information.
+      </p>
+    </section>
+  </body>
+</document>
