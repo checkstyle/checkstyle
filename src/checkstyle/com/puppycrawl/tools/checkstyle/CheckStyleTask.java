@@ -114,6 +114,18 @@ public class CheckStyleTask
         mConfig.setMaxLineLength(aLen);
     }
 
+    /** @param aLen max allowed method length **/
+    public void setMaxMethodLen(int aLen)
+    {
+        mConfig.setMaxMethodLength(aLen);
+    }
+
+    /** @param aLen max allowed constructor length **/
+    public void setMaxConstructorLen(int aLen)
+    {
+        mConfig.setMaxConstructorLength(aLen);
+    }
+
     /** @param aIgnore whether max line length should be ignored for
      *                 import statements
      */
