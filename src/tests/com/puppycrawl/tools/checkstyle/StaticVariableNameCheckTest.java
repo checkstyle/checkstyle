@@ -8,9 +8,9 @@ public class StaticVariableNameCheckTest
     public void testSpecified()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(StaticVariableNameCheck.class.getName());
-        checkConfig.addProperty("format", "^s[A-Z][a-zA-Z0-9]*$");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(StaticVariableNameCheck.class);
+        checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {

@@ -8,9 +8,9 @@ public class TodoCommentCheckTest
     public void testIt()
             throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(TodoCommentCheck.class.getName());
-        checkConfig.addProperty("format", "FIXME:");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TodoCommentCheck.class);
+        checkConfig.addAttribute("format", "FIXME:");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
