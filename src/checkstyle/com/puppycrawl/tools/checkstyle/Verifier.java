@@ -797,6 +797,18 @@ class Verifier
     void reportReference(String aType)
     {
         mReferenced.add(aType);
+
+        // we might have multiple levels of inner classes,
+        // all of them have to be marked as referenced
+
+        // as an unwanted side effect we also add package names like
+        // "com", "java", etc., but that probably doesn't hurt
+        // and could be fixed by getting more info using the classloader
+        int lastDot = aType.lastIndexOf('.');
+        while (lastDot != -1) {
+            mReferenced.add(aType.substring(0, lastDot));
+            lastDot = aType.lastIndexOf('.', lastDot - 1);
+        }
     }
 
 
@@ -1434,9 +1446,7 @@ class Verifier
             else if (fromPackage(imp.getText(), mPkgName)) {
                 log(imp.getLineNo(), "Redundant import from the same package.");
             }
-            else if (!imp.getText().endsWith(".*")
-                     && !mReferenced.contains(basename(imp.getText())))
-            {
+            else if (!isReferencedImport(imp)) {
                 log(imp.getLineNo(), "Unused import - " + imp.getText());
             }
             else if (isIllegalImport(imp.getText())) {
@@ -1444,6 +1454,24 @@ class Verifier
                     "Import from illegal package - " + imp.getText());
             }
         }
+    }
+
+    /**
+     * Checks is an import statement is referenced.
+     * @param aImp the import parameter, e.g. "javax.swing.JButton".
+     * @return if aImp is used by one of the entries in mReferenced.
+     */
+    private boolean isReferencedImport(LineText aImp)
+    {
+        if (aImp.getText().endsWith(".*")) {
+            // we should try to figure out the used classes via classloader
+            return true;
+        }
+        String impText = aImp.getText();
+
+        return
+            mReferenced.contains(basename(impText))
+            || mReferenced.contains(impText);
     }
 
     /**
