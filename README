@@ -1,0 +1,31 @@
+CHECKSTYLE
+==========
+
+This directory contains the distribution for checkstyle. It is a tool for
+checking Java source code for adherence to a set of rules.
+
+The latest version can be found at http://www.puppycrawl.com/checkstyle.
+
+Documentation is available in HTML format, in the docs/ directory.
+
+Licensing
+=========
+
+This software is licensed under the terms in the file named "LICENSE" in this
+directory.
+
+The software uses the ANTLR package (http://www.antlr.org). Its license terms
+are in the file named "RIGHTS.antlr" in this directory.
+
+The software uses the Jakarta Regexp package (http://jakarta.apache.org/regexp).
+Its license terms are in the file named "LICENSE.apache" in this directory.
+
+
+Feedback
+========
+
+Please send any feedback or bugs to checkstyle@puppycrawl.com.
+
+Thanks for trying out checkstyle!
+
+Oliver Burn

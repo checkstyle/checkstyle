@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+  <title>checkstyle Command Line</title>
+  <style>
+    span.default {white-space: nowrap;font-family: monospace;font-size: x-small;}
+  </style>
+</head>
+
+<body>
+<h2><a name="checkstyle">checkstyle Command Line</a></h2>
+<h3>Description</h3>
+
+<p>This document describes how to run checkstyle using the command line tool. The latest version of checkstyle can be found at 
+<a href="http://www.puppycrawl.com/checkstyle">http://www.puppycrawl.com/checkstyle</a>.
+This command line tool is included in the checkstyle distribution.</p>
+
+
+<h3>Installation</h3>
+<p>The easiest way is to include <span class="default">checkstyle-all-1.0.jar</span> in the classpath. This contains all the classes required to run checkstyle. Alternatively, you must include the following in the classpath:</p>
+<ol>
+  <li><span class="default">checkstyle-1.0.jar</span></li>
+  <li>ANTLR 2.7.1 classes. <span class="default">antlr.jar</span> is included in the distribution.</li>
+  <li>Jakarta Regexp 1.2 classes. <span class="default">jakarta-regexp-1.2.jar</span> is included in the distribution.</li>
+</ol>
+
+
+<h3>Usage</h3>
+<p>The command line usage is:</p>
+<pre>
+  java -D&lt;property&gt;=&lt;value&gt; com.puppycrawl.tools.checkstyle.Main file...
+</pre>
+
+<p>checkstyle will process the specified files and report errors to standard error. The default behaviour of checkstyle can be changed by setting system properties using the <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to java. The following table describes what properties can be set:</p>
+
+<table border="1" cellpadding="2" cellspacing="0">
+  <tr>
+    <td valign="top"><b>Property</b></td>
+    <td valign="top"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.allow.tabs</td> 
+    <td valign="top">Indicates whether to allow tabs. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.allow.protected</td> 
+    <td valign="top">Indicates whether to allow protected data. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+ </tr>
+  <tr>
+     <td valign="top">checkstyle.allow.noauthor</td> 
+    <td valign="top">Indicates whether to allow no <span class="default">@author</span> tag to be defined for class and interface Javadoc comments. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+  </tr>
+ <tr>
+    <td valign="top">checkstyle.maxlinelen</td> 
+    <td valign="top">Specifies the maximum line length. Default value is defined <a href="index.html#length">here</a>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.pattern.member</td> 
+    <td valign="top">Specifies the regular expression to match against member variables. Default value is defined <a href="index.html#varformat">here</a>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.pattern.parameter</td> 
+    <td valign="top">Specifies the regular expression to match against parameters. Default value is defined <a href="index.html#paramformat">here</a>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.pattern.const</td> 
+    <td valign="top">Specifies the regular expression to match against static/final variables. Default value is defined <a href="index.html#varformat">here</a>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.pattern.static</td> 
+    <td valign="top">Specifies the regular expression to match against static variables. Default value is defined <a href="index.html#varformat">here</a>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.pattern.type</td> 
+    <td valign="top">Specifies the regular expression to match against type names. Default value is defined <a href="index.html#typeformat">here</a>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.header.file</td> 
+    <td valign="top">Specifies the file containing the header lines. Default is to not check.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.header.ignoreline</td> 
+    <td valign="top">Specifies the line in the header to ignore when comparing. Default it to not ignore any line.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.javadoc.relax</td> 
+    <td valign="top">Specifies whether to relax checking Javadoc comments. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.ignore.imports</td> 
+    <td valign="top">Specifies whether to ignore checking import statements. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+  </tr>
+</table>
+
+<h3>Examples</h3>
+<p><b>Run checkstyle on a file</b></p>
+<pre>
+  java  com.puppycrawl.tools.checkstyle.Main  Check.java
+</pre>
+
+<p><b>Run checkstyle on a file and allow tabs</b></p>
+<pre>
+  java  -Dcheckstyle.allow.tabs=yes  com.puppycrawl.tools.checkstyle.Main Check.java
+</pre>
+
+<p><b>Run checkstyle on a file and disable pattern matching</b></p>
+<pre>
+  java  -Dcheckstyle.pattern.parameter=. \
+        -Dcheckstyle.pattern.static=. \
+        -Dcheckstyle.pattern.const=. \
+        -Dcheckstyle.pattern.member=. \
+        com.puppycrawl.tools.checkstyle.Main Check.java
+</pre>
+
+<hr>
+<p align="center">Copyright &copy; 2001 Oliver Burn. All rights Reserved.</p>
+</body>
+</html>
