@@ -428,12 +428,12 @@
       You can use the security property to control the output of the plain formatter for the <a href="cmdline.html">command
       line tool</a> and the <a href="anttask.html">ANT task</a>. The plain formatter does not report violations with severity level
       <span class="default">ignore</span>, and notes violations with severity level 
-      <span class="default">warning</span>. For example, the following configuration fragment
-      directs the plain formatter to ignore translation violations:
+      <span class="default">warning</span>. For example, according to the following configuration fragment,
+       the plain formatter outputs warnings for translation violations:
       </p>
       <pre class="body">
         &lt;module name=&quot;Translation&quot;&gt;
-            &lt;property name=&quot;severity&quot; value=&quot;ignore&quot;/&gt;
+            &lt;property name=&quot;severity&quot; value=&quot;warning&quot;/&gt;
         &lt;/module&gt;
       </pre>
       <p class="body">
