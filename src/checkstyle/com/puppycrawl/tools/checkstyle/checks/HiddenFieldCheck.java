@@ -28,9 +28,27 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that a local variable or a parameter does not shadow
- * a field that is defined in the same class.
- *
+ * <p>Checks that a local variable or a parameter does not shadow
+ * a field that is defined in the same class. To disable checking of
+ * parameters, set the checkParameters property to <strong>false</strong>.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.HiddenFieldCheck"/&gt;
+ * </pre>
+ * <p>
+ * An example of how to configure the check so that it doesn't check parameters
+ * is:
+ * </p>
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.HiddenFieldCheck"&gt;
+ *    &lt;property name="checkParameters" value="false"/&gt;
+ * &lt;/check&gt;
+ * </pre>
  * @author Rick Giles
  * @version 1.0
  */
