@@ -16,7 +16,6 @@ import javax.mail.internet.MimeMessage;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
@@ -52,7 +51,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * @author Rick Giles
  */
 public class MailLogger
-    extends AutomaticBean
     implements AuditListener
 {
     /** output stream for logger */

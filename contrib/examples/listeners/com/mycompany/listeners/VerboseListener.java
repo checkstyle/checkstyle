@@ -2,7 +2,6 @@ package com.mycompany.listeners;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
@@ -10,7 +9,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * @author Rick Giles
  */
 public class VerboseListener
-    extends AutomaticBean
     implements AuditListener
 {
     /** total number of errors and exceptions */
