@@ -68,10 +68,21 @@ public class MagicNumberCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         if (!inIgnoreList(aAST) && !isConstantDefinition(aAST)) {
+            String text = aAST.getText();
+            int columnNo = aAST.getColumnNo();
+            final DetailAST parent = aAST.getParent();
+            if (parent.getType() == TokenTypes.UNARY_MINUS) {
+                columnNo--;
+                text = "-" + text;
+            }
+            else if (parent.getType() == TokenTypes.UNARY_PLUS) {
+                columnNo--;
+                text = "+" + text;
+            }
             log(aAST.getLineNo(),
-                aAST.getColumnNo(),
+                columnNo,
                 "magic.number",
-                aAST.getText());
+                text);
         }
     }
 
@@ -84,7 +95,11 @@ public class MagicNumberCheck extends Check
      */
     private boolean inIgnoreList(DetailAST aAST)
     {
-        final float value = parseFloat(aAST.getText(), aAST.getType());
+        float value = parseFloat(aAST.getText(), aAST.getType());
+        final DetailAST parent = aAST.getParent();
+        if (parent.getType() == TokenTypes.UNARY_MINUS) {
+            value = -1 * value;
+        }
         return (Arrays.binarySearch(mIgnoreNumbers, value) >= 0);
     }
 
@@ -142,6 +157,17 @@ public class MagicNumberCheck extends Check
             return true;
         }
         DetailAST parent = aAST.getParent();
+
+        if (parent == null) {
+            return false;
+        }
+
+        //UNARY_MINUS or UNARY_PLUS should be ignored
+        if ((parent.getType() == TokenTypes.UNARY_MINUS)
+            || (parent.getType() == TokenTypes.UNARY_PLUS))
+        {
+            parent = parent.getParent();
+        }
 
         //expression?
         if ((parent == null) || (parent.getType() != TokenTypes.EXPR)) {
