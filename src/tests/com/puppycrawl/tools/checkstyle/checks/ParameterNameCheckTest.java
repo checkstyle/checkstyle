@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ParameterNameCheckTest
     extends BaseCheckTestCase
@@ -11,11 +12,9 @@ public class ParameterNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^NO_WAY_MATEY$");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputLeftCurlyOther.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
     public void testSpecified()
@@ -24,14 +23,12 @@ public class ParameterNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^a[A-Z][a-zA-Z0-9]*$");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
         final String[] expected = {
             "71:19: Name 'badFormat1' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
             "71:34: Name 'badFormat2' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
             "72:25: Name 'badFormat3' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
     public void testDefault()
@@ -39,10 +36,8 @@ public class ParameterNameCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 }

@@ -1,7 +1,8 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.PackageHtmlCheck;
 
 
 public class PackageHtmlCheckTest
@@ -18,13 +19,13 @@ public class PackageHtmlCheckTest
          throws Exception
     {
         Configuration checkConfig = createCheckConfig(PackageHtmlCheck.class);
-        Checker c = createChecker(checkConfig);
-        final String packageHtmlPath = getPath("package.html");
-        final String filepath = getPath("InputScopeAnonInner.java");
-
         final String[] expected = {
             "0: Missing package documentation file.",
         };
-        verify(c, filepath, packageHtmlPath, expected);
+        verify(
+            createChecker(checkConfig),
+            getPath("InputScopeAnonInner.java"),
+            getPath("package.html"),
+            expected);
     }
 }

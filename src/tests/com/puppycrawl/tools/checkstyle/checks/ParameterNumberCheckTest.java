@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.ParameterNumberCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ParameterNumberCheckTest
     extends BaseCheckTestCase
@@ -10,12 +11,10 @@ public class ParameterNumberCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNumberCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
         final String[] expected = {
             "194:10: More than 7 parameters.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
     public void testNum()
@@ -24,12 +23,10 @@ public class ParameterNumberCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNumberCheck.class);
         checkConfig.addAttribute("max", "2");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
         final String[] expected = {
             "71:9: More than 2 parameters.",
             "194:10: More than 2 parameters.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 }
