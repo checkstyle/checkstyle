@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
@@ -46,6 +47,14 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 class ConfigurationLoader
     extends DefaultHandler
 {
+    /** the public ID for the configuration dtd */
+    private static final String CONFIG_DTD_PUBLIC_ID =
+        "-//Puppy Crawl//DTD Check Configuration 1.0//EN";
+
+    /** the resource for the configuration dtd */
+    private static final String CONFIG_DTD_RESOURCE =
+        "com/puppycrawl/tools/checkstyle/configuration_1_0.dtd";
+
     /** overriding properties **/
     private Properties mOverrideProps = new Properties();
     /** parser to read XML files **/
@@ -64,9 +73,10 @@ class ConfigurationLoader
         throws ParserConfigurationException, SAXException
     {
         final SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setValidating(false);
+        factory.setValidating(true);
         mParser = factory.newSAXParser().getXMLReader();
         mParser.setContentHandler(this);
+        mParser.setEntityResolver(this);
     }
 
     /**
@@ -85,6 +95,26 @@ class ConfigurationLoader
     ///////////////////////////////////////////////////////////////////////////
     // Document handler methods
     ///////////////////////////////////////////////////////////////////////////
+
+    /** @see org.xml.sax.EntityResolver */
+    public InputSource resolveEntity(String aPublicId, String aSystemId)
+        throws SAXException
+    {
+        if (CONFIG_DTD_PUBLIC_ID.equals(aPublicId)) {
+            final InputStream dtdIS =
+//            Thread.currentThread().getContextClassLoader()
+            getClass().getClassLoader()
+                    .getResourceAsStream(CONFIG_DTD_RESOURCE);
+            if (dtdIS == null) {
+                throw new SAXException(
+                    "Unable to load internal dtd " + CONFIG_DTD_RESOURCE);
+            }
+            return new InputSource(dtdIS);
+        }
+
+        return super.resolveEntity(aPublicId, aSystemId);
+    }
+
 
     /** @see org.xml.sax.helpers.DefaultHandler **/
     public void startElement(String aNamespaceURI,
@@ -111,21 +141,21 @@ class ConfigurationLoader
                         (DefaultConfiguration) mConfigStack.peek();
                 top.addChild(conf);
             }
-            
+
             mConfigStack.push(conf);
         }
         else if (aQName.equals("property")) {
-            
+
             //extract name and value
             final String name = aAtts.getValue("name");
             if (name == null) {
                 throw new SAXException("missing property name");
-            }            
+            }
             String value = aAtts.getValue("value");
             if (value == null) {
                 throw new SAXException("missing value for property " + name);
             }
-                
+
             // expand properties
             if (mOverrideProps != null) {
                 try {
@@ -135,7 +165,7 @@ class ConfigurationLoader
                     throw new SAXException(ex.getMessage());
                 }
             }
-            
+
             //add to attributes of configuration
             if (!mConfigStack.isEmpty()) {
                 DefaultConfiguration top =
@@ -145,7 +175,7 @@ class ConfigurationLoader
             else {
                 throw new SAXException(
                             "property " + name + "has no config parent");
-            }               
+            }
         }
     }
 
