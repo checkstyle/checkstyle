@@ -10,6 +10,7 @@
       <package name="blocks"/>
       <package name="coding"/>
       <package name="design"/>
+      <package name="duplicates"/>
       <package name="imports"/>
       <package name="indentation"/>
       <package name="j2ee"/>
