@@ -3,9 +3,10 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundCheck;
+import com.puppycrawl.tools.checkstyle.checks.RedundantModifierCheck;
 
 public class WhitespaceAroundTest
-        extends AbstractCheckTestCase
+        extends BaseCheckTestCase
 {
     public WhitespaceAroundTest(String aName)
     {
@@ -15,47 +16,41 @@ public class WhitespaceAroundTest
     public void testIt()
         throws Exception
     {
-        final LocalizedMessages msgs = new LocalizedMessages(8);
-        final TreeWalker walker = new TreeWalker(msgs);
-        final CheckConfiguration config = new CheckConfiguration();
-        config.setClassname(WhitespaceAroundCheck.class.getName());
-        final Check c = config.createInstance(
-            Thread.currentThread().getContextClassLoader());
-        walker.registerCheck(c, config);
-        final String fname = CheckerTest.getPath("InputWhitespace.java");
-        final String[] lines = getLines(fname);
-        walker.walk(getAST(fname, lines), lines, fname);
-        assertEquals(29, msgs.getMessages().length);
-        int idx = 0;
-        verifyMessage(msgs, idx++, 16, 22, "'=' is not preceeded with whitespace.");
-        verifyMessage(msgs, idx++, 16, 23, "'=' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 18, 24, "'=' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 26, 14, "'=' is not preceeded with whitespace.");
-        verifyMessage(msgs, idx++, 27, 10, "'=' is not preceeded with whitespace.");
-        verifyMessage(msgs, idx++, 27, 11, "'=' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 28, 10, "'+=' is not preceeded with whitespace.");
-        verifyMessage(msgs, idx++, 28, 12, "'+=' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 29, 13, "'-=' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 37, 21, "'synchronized' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 39, 12, "'try' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 41, 14, "'catch' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 58, 11, "'if' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 76, 19, "'return' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 97, 29, "'?' is not preceeded with whitespace.");
-        verifyMessage(msgs, idx++, 97, 30, "'?' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 98, 15, "'==' is not preceeded with whitespace.");
-        verifyMessage(msgs, idx++, 98, 17, "'==' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 104, 20, "'*' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 104, 21, "'*' is not preceeded with whitespace.");
-        verifyMessage(msgs, idx++, 119, 18, "'%' is not preceeded with whitespace.");
-        verifyMessage(msgs, idx++, 120, 20, "'%' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 121, 18, "'%' is not preceeded with whitespace.");
-        verifyMessage(msgs, idx++, 121, 19, "'%' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 123, 18, "'/' is not preceeded with whitespace.");
-        verifyMessage(msgs, idx++, 124, 20, "'/' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 125, 18, "'/' is not preceeded with whitespace.");
-        verifyMessage(msgs, idx++, 125, 19, "'/' is not followed by whitespace.");
-        verifyMessage(msgs, idx++, 153, 15, "'assert' is not followed by whitespace.");
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(WhitespaceAroundCheck.class.getName());
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputWhitespace.java");
+        final String[] expected = {
+            "16:22: '=' is not preceeded with whitespace.",
+            "16:23: '=' is not followed by whitespace.",
+            "18:24: '=' is not followed by whitespace.",
+            "26:14: '=' is not preceeded with whitespace.",
+            "27:10: '=' is not preceeded with whitespace.",
+            "27:11: '=' is not followed by whitespace.",
+            "28:10: '+=' is not preceeded with whitespace.",
+            "28:12: '+=' is not followed by whitespace.",
+            "29:13: '-=' is not followed by whitespace.",
+            "37:21: 'synchronized' is not followed by whitespace.",
+            "39:12: 'try' is not followed by whitespace.",
+            "41:14: 'catch' is not followed by whitespace.",
+            "58:11: 'if' is not followed by whitespace.",
+            "76:19: 'return' is not followed by whitespace.",
+            "97:29: '?' is not preceeded with whitespace.",
+            "97:30: '?' is not followed by whitespace.",
+            "98:15: '==' is not preceeded with whitespace.",
+            "98:17: '==' is not followed by whitespace.",
+            "104:20: '*' is not followed by whitespace.",
+            "104:21: '*' is not preceeded with whitespace.",
+            "119:18: '%' is not preceeded with whitespace.",
+            "120:20: '%' is not followed by whitespace.",
+            "121:18: '%' is not preceeded with whitespace.",
+            "121:19: '%' is not followed by whitespace.",
+            "123:18: '/' is not preceeded with whitespace.",
+            "124:20: '/' is not followed by whitespace.",
+            "125:18: '/' is not preceeded with whitespace.",
+            "125:19: '/' is not followed by whitespace.",
+            "153:15: 'assert' is not followed by whitespace.",
+        };
+        verify(c, fname, expected);
     }
-
 }
