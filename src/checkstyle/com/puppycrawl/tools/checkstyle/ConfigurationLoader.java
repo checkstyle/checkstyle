@@ -39,13 +39,12 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 /**
- * Loads a configuration from a configuration XML file.
+ * Loads a configuration from a standard configuration XML file.
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-public class ConfigurationLoader
-    extends AbstractLoader
+public final class ConfigurationLoader
 {
     /** the public ID for the configuration dtd */
     private static final String DTD_PUBLIC_ID =
@@ -57,6 +56,82 @@ public class ConfigurationLoader
 
     /** constant to specify two kilobyte of data */
     private static final int TWO_KB = 2048;
+
+    /**
+     * Implements the SAX document handler interfaces, so they do not
+     * appear in the public API of the ConfigurationLoader.
+     */
+    private class InternalLoader extends AbstractLoader
+    {
+        /**
+         * Creates a new InternalLoader.
+         * @throws SAXException if an error occurs
+         * @throws ParserConfigurationException if an error occurs
+         */
+        private InternalLoader()
+            throws SAXException, ParserConfigurationException
+        {
+            super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
+        }
+
+        /** @see org.xml.sax.helpers.DefaultHandler **/
+        public void startElement(String aNamespaceURI,
+                                 String aLocalName,
+                                 String aQName,
+                                 Attributes aAtts)
+                throws SAXException
+        {
+            // TODO: debug logging for support puposes
+            if (aQName.equals("module")) {
+                //create configuration
+                final String name = aAtts.getValue("name");
+                DefaultConfiguration conf = new DefaultConfiguration(name);
+                if (mConfiguration == null) {
+                    mConfiguration = conf;
+                }
+
+                //add configuration to it's parent
+                if (!mConfigStack.isEmpty()) {
+                    final DefaultConfiguration top =
+                            (DefaultConfiguration) mConfigStack.peek();
+                    top.addChild(conf);
+                }
+
+                mConfigStack.push(conf);
+            }
+            else if (aQName.equals("property")) {
+                //extract name and value
+                final String name = aAtts.getValue("name");
+                final String value;
+                try {
+                    value = replaceProperties(aAtts.getValue("value"),
+                        mOverrideProps);
+                }
+                catch (CheckstyleException ex) {
+                    throw new SAXException(ex.getMessage());
+                }
+
+                //add to attributes of configuration
+                final DefaultConfiguration top =
+                    (DefaultConfiguration) mConfigStack.peek();
+                top.addAttribute(name, value);
+            }
+        }
+
+        /** @see org.xml.sax.helpers.DefaultHandler **/
+        public void endElement(String aNamespaceURI,
+                               String aLocalName,
+                               String aQName)
+        {
+            if (aQName.equals("module")) {
+                mConfigStack.pop();
+            }
+        }
+
+    }
+
+    /** the SAX document handler */
+    private InternalLoader mSaxHandler = null;
 
     /** overriding properties **/
     private final Properties mOverrideProps;
@@ -75,7 +150,7 @@ public class ConfigurationLoader
     private ConfigurationLoader(Properties aOverrideProps)
         throws ParserConfigurationException, SAXException
     {
-        super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
+        mSaxHandler = new InternalLoader();
         mOverrideProps = aOverrideProps;
     }
 
@@ -94,70 +169,13 @@ public class ConfigurationLoader
         final InputStream configStream =
             new BufferedInputStream(aStream, TWO_KB);
         final InputSource inputSource = new InputSource(configStream);
-        parseInputSource(inputSource);
+        mSaxHandler.parseInputSource(inputSource);
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Document handler methods
-    ///////////////////////////////////////////////////////////////////////////
-
-    /** @see org.xml.sax.helpers.DefaultHandler **/
-    public void startElement(String aNamespaceURI,
-                             String aLocalName,
-                             String aQName,
-                             Attributes aAtts)
-            throws SAXException
-    {
-        // TODO: debug logging for support puposes
-        if (aQName.equals("module")) {
-            //create configuration
-            final String name = aAtts.getValue("name");
-            final DefaultConfiguration conf = new DefaultConfiguration(name);
-            if (mConfiguration == null) {
-                mConfiguration = conf;
-            }
-
-            //add configuration to it's parent
-            if (!mConfigStack.isEmpty()) {
-                final DefaultConfiguration top =
-                        (DefaultConfiguration) mConfigStack.peek();
-                top.addChild(conf);
-            }
-
-            mConfigStack.push(conf);
-        }
-        else if (aQName.equals("property")) {
-            //extract name and value
-            final String name = aAtts.getValue("name");
-            final String value;
-            try {
-                value = replaceProperties(aAtts.getValue("value"),
-                    mOverrideProps);
-            }
-            catch (CheckstyleException ex) {
-                throw new SAXException(ex.getMessage());
-            }
-
-            //add to attributes of configuration
-            final DefaultConfiguration top =
-                (DefaultConfiguration) mConfigStack.peek();
-            top.addAttribute(name, value);
-        }
-    }
-
-    /** @see org.xml.sax.helpers.DefaultHandler **/
-    public void endElement(String aNamespaceURI,
-                           String aLocalName,
-                           String aQName)
-    {
-        if (aQName.equals("module")) {
-            mConfigStack.pop();
-        }
-    }
 
     /**
-     * Returns the check configurations in a specified file.
-     * @param aConfig name of config file
+     * Returns the module configurations in a specified file.
+     * @param aConfig location of config file, can be either a URL or a filename
      * @param aOverrideProps overriding properties
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
