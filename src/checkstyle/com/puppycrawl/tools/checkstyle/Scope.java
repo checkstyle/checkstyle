@@ -26,8 +26,12 @@ import java.util.HashMap;
  *
  * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne</a>
  */
-final class Scope implements Comparable
+public final class Scope implements Comparable
 {
+    // Note that although this class might seem to be an
+    // implementation details, this class has to be public because it
+    // is used as a parameter in Configuration.setJavadocScope()
+
     /** poor man's enum for nothing scope */
     private static final int SCOPECODE_NOTHING = 0;
     /** poor man's enum for public scope */
