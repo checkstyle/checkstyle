@@ -240,6 +240,11 @@ Older versions of the checkstyle task supported the boolean parameters checkstyl
   java  com.puppycrawl.tools.checkstyle.Main  Check.java
 </pre>
 
+<p><b>Run checkstyle on all java files in a directory</b></p>
+<pre>
+  java  com.puppycrawl.tools.checkstyle.Main -r src/
+</pre>
+
 <p><b>Run checkstyle on a file and allow tabs</b></p>
 <pre>
   java  -Dcheckstyle.allow.tabs=yes \
