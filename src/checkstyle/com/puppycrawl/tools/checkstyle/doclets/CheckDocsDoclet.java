@@ -22,16 +22,13 @@ package com.puppycrawl.tools.checkstyle.doclets;
 import com.sun.javadoc.RootDoc;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.Tag;
-import com.sun.javadoc.PackageDoc;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.TreeMap;
-import java.util.Iterator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * Doclet which is used to extract Anakia input files from the
@@ -45,80 +42,52 @@ public final class CheckDocsDoclet
     /** javadoc command line option for dest dir. */
     private static final String DEST_DIR_OPT = "-d";
 
-    /** Maps package names to DocumentationPages. */
-    private static Map sDocumentationPages = new HashMap();
+    /**
+     * Comparator that compares the {@link ClassDoc ClassDocs} of two checks
+     * by their check name.
+     */
+    private static class ClassDocByCheckNameComparator implements Comparator
+    {
+        /** @see Comparator#compare */
+        public int compare(Object aObject1, Object aObject2)
+        {
+            final ClassDoc classDoc1 = (ClassDoc) aObject1;
+            final ClassDoc classDoc2 = (ClassDoc) aObject2;
+            final String checkName1 = getCheckName(classDoc1);
+            final String checkName2 = getCheckName(classDoc2);
+            return checkName1.compareTo(checkName2);
+        }
+    }
 
     /**
-     * Collects the content of a page in the resulting documentation.
-     * Each Java package will result in one doc page.
-     * */
-    private static final class DocumentationPage
+     * The first sentence of the check description.
+     *
+     * @param aClassDoc class doc of the check, e.g. EmptyStatement
+     * @return The first sentence of the check description.
+     */
+    private static String getDescription(final ClassDoc aClassDoc)
     {
-        /** The javadoc for the corresponding java package. */
-        private PackageDoc mPackageDoc;
-
-        /** maps check names to class doc, sorted. */
-        private Map mChecks = new TreeMap();
-
-        /**
-         * Creates a new Documentation page.
-         * @param aPackageDoc package.html for the corresponding java package
-         */
-        private DocumentationPage(PackageDoc aPackageDoc)
-        {
-            mPackageDoc = aPackageDoc;
+        final Tag[] tags = aClassDoc.firstSentenceTags();
+        StringBuffer buf = new StringBuffer();
+        if (tags.length > 0) {
+            buf.append(tags[0].text());
         }
+        removeOpeningParagraphTag(buf);
+        return buf.toString();
+    }
 
-        /** @return the package name of the corresponding java package. */
-        private String getPackageName()
+    /**
+     * Removes an opening p tag from a StringBuffer.
+     * @param aText the text to process
+     */
+    private static void removeOpeningParagraphTag(final StringBuffer aText)
+    {
+        final String openTag = "<p>";
+        final int tagLen = openTag.length();
+        if (aText.length() > tagLen
+                && aText.substring(0, tagLen).equals(openTag))
         {
-            return mPackageDoc.name();
-        }
-
-        /**
-         * Register a Checkstyle check's class documentation for inclusion
-         * on the DocumentationPage.
-         *
-         * @param aClassDoc the check's documentation as extracted by javadoc
-         */
-        private void addCheck(ClassDoc aClassDoc)
-        {
-            String checkName = getCheckName(aClassDoc);
-            mChecks.put(checkName, aClassDoc);
-        }
-
-        /**
-         * The first sentence of the check description.
-         * Checks must have been registered with {@link #addCheck}.
-         *
-         * @param aCheckName the name of the check, e.g. EmptyStatement
-         * @return The first sentence of the check description.
-         */
-        private String getDescription(String aCheckName)
-        {
-            ClassDoc classDoc = (ClassDoc) mChecks.get(aCheckName);
-            final Tag[] tags = classDoc.firstSentenceTags();
-            StringBuffer buf = new StringBuffer();
-            if (tags.length > 0) {
-                buf.append(tags[0].text());
-            }
-            removeOpeningParagraphTag(buf);
-            return buf.toString();
-        }
-
-        /**
-         * Removes an opening p tag from a StringBuffer.
-         * @param aText the text to process
-         */
-        private void removeOpeningParagraphTag(final StringBuffer aText)
-        {
-            final String openTag = "<p>";
-            final int tagLen = openTag.length();
-            if (aText.length() > tagLen
-                    && aText.substring(0, tagLen).equals(openTag))
-            {
-                aText.delete(0, tagLen);
-            }
+            aText.delete(0, tagLen);
         }
     }
 
@@ -172,29 +141,6 @@ public final class CheckDocsDoclet
     }
 
     /**
-     * Finds or creates a documentation page where the content of
-     * a check's class documentation should be included.
-     *
-     * @param aClassDoc the class documentation
-     * @return the found or created page, registered in
-     * {@link #sDocumentationPages}
-     */
-    private static DocumentationPage findDocumentationPage(ClassDoc aClassDoc)
-    {
-        final PackageDoc packageDoc = aClassDoc.containingPackage();
-        final String packageName = packageDoc.name();
-        DocumentationPage page =
-                (DocumentationPage) sDocumentationPages.get(packageName);
-
-        if (page == null) {
-            page = new DocumentationPage(packageDoc);
-            sDocumentationPages.put(packageName, page);
-        }
-
-        return page;
-    }
-
-    /**
      * Doclet entry point.
      * @param aRoot parsed javadoc of all java files passed to the javadoc task
      * @return true (TODO: semantics of the return value is not clear to me)
@@ -203,26 +149,11 @@ public final class CheckDocsDoclet
     public static boolean start(RootDoc aRoot) throws IOException
     {
         final ClassDoc[] classDocs = aRoot.classes();
-        final Map allChecks = new TreeMap();
-        for (int i = 0; i < classDocs.length; i++) {
-            ClassDoc classDoc = classDocs[i];
-            // TODO: introduce a "CheckstyleModule" interface
-            // so we can do better in the next line...
-            if (classDoc.typeName().endsWith("Check")
-                    && !classDoc.isAbstract())
-            {
-                DocumentationPage page = findDocumentationPage(classDoc);
-                page.addCheck(classDoc);
-                allChecks.put(getCheckName(classDoc), page);
-            }
-        }
-
-        // TODO: close files in finally blocks
 
         final File destDir = new File(getDestDir(aRoot.options()));
 
         final File checksIndexFile = new File(destDir, "availablechecks.xml");
-        PrintWriter fileWriter = new PrintWriter(
+        final PrintWriter fileWriter = new PrintWriter(
                 new FileWriter(checksIndexFile));
         writeXdocsHeader(fileWriter, "Available Checks");
 
@@ -232,18 +163,39 @@ public final class CheckDocsDoclet
                 + " organized by functionality.</p>");
         fileWriter.println("<table>");
 
-        for (Iterator it = allChecks.keySet().iterator(); it.hasNext();) {
-            String checkName = (String) it.next();
-            DocumentationPage page =
-                    (DocumentationPage) allChecks.get(checkName);
-            String descr = page.getDescription(checkName);
-            fileWriter.println("<tr>"
-                    + "<td><a href=\""
-                    + "config_" + getPageName(page) + ".html#" + checkName
-                    + "\">" + checkName + "</a></td><td>"
-                    + descr
-                    + "</td></tr>");
+        Arrays.sort(classDocs, new ClassDocByCheckNameComparator());
+
+        for (int i = 0; i < classDocs.length; i++) {
+
+            final ClassDoc classDoc = classDocs[i];
+
+            // TODO: introduce a "CheckstyleModule" interface
+            // so we can do better in the next line...
+            if (classDoc.typeName().endsWith("Check")
+                    && !classDoc.isAbstract())
+            {
+                String pageName = getPageName(classDoc);
+
+                // allow checks to override pageName when
+                // java package hierarchy is not reflected in doc structure
+                final Tag[] docPageTags = classDoc.tags("checkstyle-docpage");
+                if (docPageTags != null && docPageTags.length > 0) {
+                    pageName = docPageTags[0].text();
+                }
+
+                final String descr = getDescription(classDoc);
+                final String checkName = getCheckName(classDoc);
+
+
+                fileWriter.println("<tr>"
+                        + "<td><a href=\""
+                        + "config_" + pageName + ".html#" + checkName
+                        + "\">" + checkName + "</a></td><td>"
+                        + descr
+                        + "</td></tr>");
+            }
         }
+
         fileWriter.println("</table>");
         writeXdocsFooter(fileWriter);
         fileWriter.close();
@@ -254,12 +206,12 @@ public final class CheckDocsDoclet
     /**
      * Calculates the human readable page name for a doc page.
      *
-     * @param aPage the doc page.
+     * @param aClassDoc the doc page.
      * @return the human readable page name for the doc page.
      */
-    private static String getPageName(DocumentationPage aPage)
+    private static String getPageName(ClassDoc aClassDoc)
     {
-        final String packageName = aPage.getPackageName();
+        final String packageName = aClassDoc.containingPackage().name();
         String pageName =
                 packageName.substring(packageName.lastIndexOf('.') + 1);
         if ("checks".equals(pageName)) {
