@@ -887,6 +887,12 @@ public class Resolver extends DefinitionTraverser {
         IClass type = null;
 
         final SymTabAST child = (SymTabAST) typeNode.getFirstChild();
+        // TODO: Checkstyle change.
+        // Do not create references from typecast.
+        // Original transmogrify code is equivalent to
+        // final boolean createReference = referencePhase;
+        // which creates non-existant references for variables.
+        final boolean createReference = false;
         if (child.getType()
             == TokenTypes.ARRAY_DECLARATOR) {
             type =
@@ -895,10 +901,10 @@ public class Resolver extends DefinitionTraverser {
                         (SymTabAST) typeNode.getFirstChild(),
                         location,
                         context,
-                        referencePhase));
+                        createReference));
         }
         else {
-            type = resolveType(typeNode, location, context, referencePhase);
+            type = resolveType(typeNode, location, context, createReference);
         }
 
         resolveExpression(exprNode, location, context, referencePhase);
@@ -1161,13 +1167,19 @@ public class Resolver extends DefinitionTraverser {
         IClass result = null;
         SymTabAST nameNode = (SymTabAST) expr.getFirstChild();
 
+        // TODO: Checkstyle change.
+        // Do not create references from typecast.
+        // Original transmogrify code is equivalent to
+        // final boolean createReference = referencePhase;
+        // which creates non-existant references for variables.
+        final boolean createReference = false;
         if (nameNode.getType() == TokenTypes.DOT) {
             result =
-                resolveDottedName(nameNode, location, context, referencePhase);
+                resolveDottedName(nameNode, location, context, createReference);
         }
         else {
             result =
-                resolveClassIdent(nameNode, location, context, referencePhase);
+                resolveClassIdent(nameNode, location, context, createReference);
         }
 
         return result;
