@@ -46,7 +46,7 @@ class InputSemantic
     void exHandlerTest()
     {
         try {
-            // do stuff and don't handle exceptions in some cases
+            ; // do stuff and don't handle exceptions in some cases
         }
         catch (IllegalStateException emptyCatchIsAlwaysAnError) {
         }
@@ -70,5 +70,22 @@ class InputSemantic
         catch (SecurityException ex) { /* hello */ }
         catch (StringIndexOutOfBoundsException ex) {}
         catch (IllegalArgumentException ex) { }
+
+        try {
+        }
+        finally {
+        }
+        try {
+        // something
+        }
+        finally {
+            // something
+        }
+        try {
+            ; // something
+        }
+        finally {
+            ; // statement
+        }
     }
 }

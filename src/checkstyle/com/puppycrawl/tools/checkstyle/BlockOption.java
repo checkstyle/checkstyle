@@ -24,50 +24,49 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- * Represents the options for a catch block.
+ * Represents the options for a  block.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  */
-public final class CatchBlockOption implements Serializable
+public final class BlockOption implements Serializable
 {
     /** maps from a string representation to an option **/
     private static final Map STR_TO_OPT = new HashMap();
 
-    /** represents ignoring catch blocks **/
-    public static final CatchBlockOption IGNORE =
-        new CatchBlockOption("ignore");
-    /** represents requiring some text in the catch block **/
-    public static final CatchBlockOption TEXT = new CatchBlockOption("text");
-    /** represents requiring a statement in the catch block **/
-    public static final CatchBlockOption STMT = new CatchBlockOption("stmt");
+    /** represents ignoring  blocks **/
+    public static final BlockOption IGNORE = new BlockOption("ignore");
+    /** represents requiring some text in the  block **/
+    public static final BlockOption TEXT = new BlockOption("text");
+    /** represents requiring a statement in the  block **/
+    public static final BlockOption STMT = new BlockOption("stmt");
 
     /** the string representation of the option **/
     private final String mStrRep;
 
     /**
-     * Creates a new <code>CatchBlockOption</code> instance.
+     * Creates a new <code>BlockOption</code> instance.
      * @param aStrRep the string representation
      */
-    private CatchBlockOption(String aStrRep)
+    private BlockOption(String aStrRep)
     {
         mStrRep = aStrRep.trim().toLowerCase();
         STR_TO_OPT.put(mStrRep, this);
     }
 
     /**
-     * Returns the CatchBlockOption specified by a string representation. If no
+     * Returns the BlockOption specified by a string representation. If no
      * option exists then null is returned.
      * @param aStrRep the String representation to parse
-     * @return the <code>CatchBlockOption</code> value represented by aStrRep,
+     * @return the <code>BlockOption</code> value represented by aStrRep,
      *         or null if none exists.
      */
-    public static CatchBlockOption decode(String aStrRep)
+    public static BlockOption decode(String aStrRep)
     {
-        return (CatchBlockOption) STR_TO_OPT.get(aStrRep.trim().toLowerCase());
+        return (BlockOption) STR_TO_OPT.get(aStrRep.trim().toLowerCase());
     }
 
     /**
-     * Ensures that we don't get multiple instances of one CatchBlockOption
+     * Ensures that we don't get multiple instances of one BlockOption
      * during deserialization. See Section 3.6 of the Java Object
      * Serialization Specification for details.
      *

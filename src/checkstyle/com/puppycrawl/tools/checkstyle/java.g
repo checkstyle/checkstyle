@@ -742,9 +742,10 @@ tryBlock
     final MethodSignature ignoreMS = new MethodSignature();
     final boolean[] isEmpty = new boolean[1];
 }
-	:	t:"try"^ compoundStatement[stmtBraces, sIgnoreIsEmpty]
+	:	t:"try"^ compoundStatement[stmtBraces, isEmpty]
         {
             ver.verifyWSAroundBegin(t.getLine(), t.getColumn(), t.getText());
+            ver.reportTryBlock(stmtBraces, isEmpty[0]);
             ver.verifyLCurlyOther(t.getLine(), stmtBraces[0]);
         }
 
@@ -761,8 +762,11 @@ tryBlock
 
         (
             f:"finally"^ { ver.verifyRCurly(stmtBraces[1], f.getLine()); }
-            compoundStatement[stmtBraces, sIgnoreIsEmpty]
-            { ver.verifyLCurlyOther(f.getLine(), stmtBraces[0]); }
+            compoundStatement[stmtBraces, isEmpty]
+            {
+                ver.verifyLCurlyOther(f.getLine(), stmtBraces[0]);
+                ver.reportFinallyBlock(stmtBraces, isEmpty[0]);
+            }
         )?
 	;
 

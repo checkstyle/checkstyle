@@ -105,6 +105,10 @@ public interface Defn
     /** property name for padding around parenthesis **/
     String PAREN_PAD_PROP = "checkstyle.paren.pad";
 
+    /** property name for try block options **/
+    String TRY_BLOCK_PROP = "checkstyle.block.try";
     /** property name for catch block options **/
-    String CATCH_BLOCK_PROP = "checkstyle.catchblock";
+    String CATCH_BLOCK_PROP = "checkstyle.block.catch";
+    /** property name for finally block options **/
+    String FINALLY_BLOCK_PROP = "checkstyle.block.finally";
 }

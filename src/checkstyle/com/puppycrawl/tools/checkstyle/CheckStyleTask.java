@@ -669,6 +669,18 @@ public class CheckStyleTask
             });
     }
 
+    /** @param aTo the try block option **/
+    public void setTryBlock(final String aTo)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setTryBlock(extractBlockOption(aTo));
+                }
+            });
+    }
+
     /** @param aTo the catch block option **/
     public void setCatchBlock(final String aTo)
     {
@@ -676,7 +688,19 @@ public class CheckStyleTask
             {
                 public void run()
                 {
-                    mConfig.setCatchBlock(extractCatchBlockOption(aTo));
+                    mConfig.setCatchBlock(extractBlockOption(aTo));
+                }
+            });
+    }
+
+    /** @param aTo the finally block option **/
+    public void setFinallyBlock(final String aTo)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setFinallyBlock(extractBlockOption(aTo));
                 }
             });
     }
@@ -945,10 +969,10 @@ public class CheckStyleTask
      * @return the CatchBlockOption represented by aFrom
      * @throws BuildException if unable to decode aFrom
      */
-    private CatchBlockOption extractCatchBlockOption(String aFrom)
+    private BlockOption extractBlockOption(String aFrom)
         throws BuildException
     {
-        final CatchBlockOption opt = CatchBlockOption.decode(aFrom);
+        final BlockOption opt = BlockOption.decode(aFrom);
         if (opt == null) {
             throw new BuildException("Unable to parse '" + aFrom + "'.",
                                      location);

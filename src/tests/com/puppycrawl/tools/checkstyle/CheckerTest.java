@@ -87,7 +87,8 @@ public class CheckerTest
     {
         mConfig.setIgnoreCastWhitespace(false);
         mConfig.setParenPadOption(PadOption.NOSPACE);
-        mConfig.setCatchBlock(CatchBlockOption.IGNORE);
+        mConfig.setTryBlock(BlockOption.IGNORE);
+        mConfig.setCatchBlock(BlockOption.IGNORE);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -159,7 +160,8 @@ public class CheckerTest
     {
         mConfig.setIgnoreCastWhitespace(true);
         mConfig.setParenPadOption(PadOption.IGNORE);
-        mConfig.setCatchBlock(CatchBlockOption.IGNORE);
+        mConfig.setTryBlock(BlockOption.IGNORE);
+        mConfig.setCatchBlock(BlockOption.IGNORE);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -224,7 +226,8 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setIgnoreWhitespace(true);
-        mConfig.setCatchBlock(CatchBlockOption.IGNORE);
+        mConfig.setTryBlock(BlockOption.IGNORE);
+        mConfig.setCatchBlock(BlockOption.IGNORE);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -765,7 +768,9 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setCatchBlock(CatchBlockOption.STMT);
+        mConfig.setTryBlock(BlockOption.STMT);
+        mConfig.setCatchBlock(BlockOption.STMT);
+        mConfig.setFinallyBlock(BlockOption.STMT);
         mConfig.setIgnoreImports(true);
         mConfig.setIllegalInstantiations(
             "java.lang.Boolean," +
@@ -788,6 +793,10 @@ public class CheckerTest
             filepath + ":70:38: Must have at least one statement.",
             filepath + ":71:52: Must have at least one statement.",
             filepath + ":72:45: Must have at least one statement.",
+            filepath + ":74:13: Must have at least one statement.",
+            filepath + ":76:17: Must have at least one statement.",
+            filepath + ":78:13: Must have at least one statement.",
+            filepath + ":81:17: Must have at least one statement.",
         };
         verify(c, filepath, expected);
     }
@@ -796,7 +805,9 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setJavadocScope(Scope.NOTHING);
-        mConfig.setCatchBlock(CatchBlockOption.TEXT);
+        mConfig.setTryBlock(BlockOption.TEXT);
+        mConfig.setCatchBlock(BlockOption.TEXT);
+        mConfig.setFinallyBlock(BlockOption.TEXT);
         mConfig.setIgnoreImports(true);
         mConfig.setIllegalInstantiations("");
         final Checker c = createChecker();
@@ -806,6 +817,8 @@ public class CheckerTest
             filepath + ":51:65: Empty catch block.",
             filepath + ":71:52: Empty catch block.",
             filepath + ":72:45: Empty catch block.",
+            filepath + ":74:13: Empty try block.",
+            filepath + ":76:17: Empty finally block.",
         };
         verify(c, filepath, expected);
     }
