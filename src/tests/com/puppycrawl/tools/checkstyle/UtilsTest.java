@@ -27,6 +27,11 @@ public class UtilsTest
 
         String s4 = " \t ";
         assertEquals(9, Utils.lengthExpandedTabs(s4, s4.length(), 8));
+
+        assertEquals(0, Utils.lengthMinusTrailingWhitespace(""));
+        assertEquals(0, Utils.lengthMinusTrailingWhitespace(" \t "));
+        assertEquals(3, Utils.lengthMinusTrailingWhitespace(" 23"));
+        assertEquals(3, Utils.lengthMinusTrailingWhitespace(" 23 \t "));
     }
 
 }
