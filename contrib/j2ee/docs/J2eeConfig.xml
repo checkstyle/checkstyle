@@ -9,6 +9,9 @@
     <module name="TreeWalker">
          <module name="j2ee.EntityBean"/>
          <module name="j2ee.EntityBeanEjbCreate"/>
+         <module name="j2ee.EntityBeanEjbHome"/>
+         <module name="j2ee.EntityBeanEjbPostCreate"/>
+         <module name="j2ee.EntityBeanEjbSelect"/>
          <module name="j2ee.EntityBeanFindByPrimaryKey"/>
          <module name="j2ee.EntityBeanFinder"/>
          <module name="j2ee.HomeInterface"/>

@@ -10,14 +10,14 @@ public class RemoteInterfaceCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(RemoteInterfaceCheck.class);
         final String[] expected = {
-            "20:19: Method createSomething does not throw java.rmi.RemoteException.",
-            "20:19: Method createSomething does not throw javax.ejb.CreateException.",
-            "20:19: Method createSomething is not public.",
-            "20:19: Void createSomething method.",
-            "22:19: Method findSomething does not throw java.rmi.RemoteException.",
-            "22:19: Method findSomething does not throw javax.ejb.FinderException.",
-            "22:19: Method findSomething is not public.",
-            "22:19: Void findSomething method.",
+            "20:19: Method createSomething must be non-void.",
+            "20:19: Method createSomething must be public.",
+            "20:19: Method createSomething must throw java.rmi.RemoteException.",
+            "20:19: Method createSomething must throw javax.ejb.CreateException.",
+            "22:19: Method findSomething must be non-void.",
+            "22:19: Method findSomething must be public.",
+            "22:19: Method findSomething must throw java.rmi.RemoteException.",
+            "22:19: Method findSomething must throw javax.ejb.FinderException.",
         };
         verify(checkConfig, getPath("InputRemoteInterface.java"), expected);
     }

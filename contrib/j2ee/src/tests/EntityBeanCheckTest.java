@@ -10,9 +10,9 @@ public class EntityBeanCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(EntityBeanCheck.class);
         final String[] expected = {
-            "13:14: Entity bean does not have a public constructor with no parameters.",
-            "83:13: Entity bean has illegal modifier final.",
-            "83:13: Entity bean is not public.",
+            "13:14: Entity bean must have a public constructor with no parameters.",
+            "83:13: Entity bean must be public.",
+            "83:13: Entity bean must not have modifier final.",
         };
         verify(checkConfig, getPath("InputEntityBean.java"), expected);
     }

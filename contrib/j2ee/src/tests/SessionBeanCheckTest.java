@@ -10,10 +10,10 @@ public class SessionBeanCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(SessionBeanCheck.class);
         final String[] expected = {
-            "12:14: Session bean does not have a public constructor with no parameters.",
-            "12:14: Session bean has no ejbCreate method.",
-            "58:13: Session bean has illegal modifier final.",
-            "58:13: Session bean is not public.",
+            "12:14: Session bean must have a public constructor with no parameters.",
+            "12:14: Session bean must have method ejbCreate.",
+            "58:13: Session bean must be public.",
+            "58:13: Session bean must not have modifier final.",
         };
         verify(checkConfig, getPath("InputSessionBean.java"), expected);
     }

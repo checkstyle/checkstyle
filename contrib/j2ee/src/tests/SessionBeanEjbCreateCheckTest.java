@@ -10,10 +10,10 @@ public class SessionBeanEjbCreateCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(SessionBeanEjbCreateCheck.class);
         final String[] expected = {
-            "69:32: Method ejbCreate has illegal modifier final.",
-            "69:32: Method ejbCreate has illegal modifier static.",
-            "69:32: Method ejbCreate is not public.",
-            "69:32: Non-void ejbCreate method.",
+            "69:32: Method ejbCreate must be public.",
+            "69:32: Method ejbCreate must be void.",
+            "69:32: Method ejbCreate must not have modifier final.",
+            "69:32: Method ejbCreate must not have modifier static.",
         };
         verify(checkConfig, getPath("InputSessionBean.java"), expected);
     }

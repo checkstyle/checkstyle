@@ -10,10 +10,10 @@ public class EntityBeanFinderCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(EntityBeanFinderCheck.class);
         final String[] expected = {
-            "95:33: Method ejbFindSomething has illegal modifier final.",
-            "95:33: Method ejbFindSomething has illegal modifier static.",
-            "95:33: Method ejbFindSomething is not public.",
-            "95:33: Void ejbFindSomething method.",
+            "95:33: Method ejbFindSomething must be non-void.",
+            "95:33: Method ejbFindSomething must be public.",
+            "95:33: Method ejbFindSomething must not have modifier final.",
+            "95:33: Method ejbFindSomething must not have modifier static.",
         };
         verify(checkConfig, getPath("InputEntityBean.java"), expected);
     }
