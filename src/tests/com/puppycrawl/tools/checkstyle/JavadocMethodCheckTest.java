@@ -182,4 +182,17 @@ public class JavadocMethodCheckTest
         };
         verify(c, fname, expected);
     }
+    
+        public void testScopeAnonInnerWithResolver()
+        throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(JavadocMethodCheck.class.getName());
+        checkConfig.addProperty("checkUnusedThrows", "true");
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputScopeAnonInner.java");
+        final String[] expected = {
+        };
+        verify(c, fname, expected);
+    }
 }
