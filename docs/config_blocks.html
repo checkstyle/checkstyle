@@ -26,7 +26,7 @@
           <a href="#EmptyBlock">EmptyBlock</a>
         </li>
         <li>
-          <a href="#LeftCurly">LeftCurly Checks</a>
+          <a href="#LeftCurly">LeftCurly</a>
         </li>
         <li>
           <a href="#NeedBraces">NeedBraces</a>
@@ -90,33 +90,14 @@
       <p class="body">
       TreeWalker
       </p>
-      <a name="LeftCurly"></a> <h2>LeftCurly Checks</h2> <h4>Description</h4>
+      <a name="LeftCurly"></a> <h2>LeftCurly</h2> <h4>Description</h4>
       <p class="body">
-      There are three checks for the placement of left curly braces (<span class="code">' 
-      {'</span>) for code blocks:
-      </p>
-      <ul class="body">
-        <li>
-          <span class="code">MethodLeftCurly</span> checks for methods and constructors. 
-          It&apos;s token set is METHOD_DEF and CTOR_DEF.
-        </li>
-        <li>
-          <span class="code">TypeLeftCurly</span> checks for classes and interfaces. It&apos;s 
-          token set is CLASS_DEF and INTERFACE_DEF.
-        </li>
-        <li>
-          <span class="code">OtherLeftCurly</span> checks for blocks other than methods, 
-          constructors, and types. It&apos;s token set is LITERAL_CATCH, LITERAL_DO, 
-          LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, 
-          LITERAL_SYNCHRONIZED, LITERAL_TRY, and LITERAL_WHILE.
-        </li>
-      </ul>
-      <p class="body">
-      All left curly brace checks have a policy to verify that is specified using 
-      property <span class="code">option</span>. Policies <span class="code">eol</span> and <span class="code">
+      Checks for the placement of left curly braces (<span class="code">'{'</span>) for code blocks.
+      The policy to verify is specified using property <span class="code">option</span>.
+      Policies <span class="code">eol</span> and <span class="code">
       nlow</span> take into account property <span class="code">maxLineLength</span>.
       </p>
-      <h4>Properties other than <span class="code">tokens</span></h4>
+      <h4>Properties</h4>
       <table width="100%" border="1" cellpadding="5" class="body">
         <tr class="header">
           <th>name</th>
@@ -136,23 +117,30 @@
           <td><a href="property_types.html#integer">integer</a></td>
           <td><span class="default">80</span></td>
         </tr>
+        <tr>
+          <td>tokens</td>
+          <td>blocks to check</td>
+          <td>subset of tokens CLASS_DEF, CTOR_DEF, INTERFACE_DEF, LITERAL_CATCH, LITERAL_DO, 
+          LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, 
+          LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, METHOD_DEF</td>
+          <td>all tokens</td>
+        </tr>
       </table>
 
       <h4>Examples</h4>
       <p class="body">
-      To configure the <span class="code">OtherLeftCurly</span> check:
+      To configure the check:
       </p>
       <pre class="body">
-&lt;module name=&quot;OtherLeftCurly&quot;/&gt;
+&lt;module name=&quot;LeftCurly&quot;/&gt;
       </pre>
       <p class="body">
-      To configure the <span class="code">MethodLeftCurly</span> check for the <span class="code">nl</span> policy and maximum 
-      line length <span class="code">120</span>:
+      To configure the check to apply the <span class="code">nl</span> policy to type blocks:
       </p>
       <pre class="body">
-&lt;module name=&quot;MethodLeftCurly&quot;&gt;
+&lt;module name=&quot;LeftCurly&quot;&gt;
     &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
-    &lt;property name=&quot;maxLineLength&quot; value=&quot;120&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
 &lt;/module&gt;
       </pre>
       <h4>Package</h4>
