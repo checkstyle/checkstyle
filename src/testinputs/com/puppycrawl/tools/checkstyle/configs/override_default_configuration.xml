@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <configuration>
     <global>
-        <set-property name="checkstyle.tab.width" value="4"/>
-        <set-property name="checkstyle.require.packagehtml" value="true"/>
-        <set-property name="checkstyle.cache.file" value="cache"/>
-        <set-property name="checkstyle.basedir" value="basedir"/>
-        <set-property name="checkstyle.locale.language" value="language"/>
-        <set-property name="checkstyle.locale.country" value="country"/>
-        <set-property name="notdefault" value="true"/>
+        <property name="checkstyle.tab.width" value="4"/>
+        <property name="checkstyle.require.packagehtml" value="true"/>
+        <property name="checkstyle.cache.file" value="cache"/>
+        <property name="checkstyle.basedir" value="basedir"/>
+        <property name="checkstyle.locale.language" value="language"/>
+        <property name="checkstyle.locale.country" value="country"/>
+        <property name="notdefault" value="true"/>
     </global>
 </configuration>

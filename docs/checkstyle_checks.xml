@@ -4,7 +4,7 @@
 -->
 <configuration>
     <global>
- <set-property name="tabWidth" value="4"/>
+ <property name="tabWidth" value="4"/>
     </global>
  <check classname="com.puppycrawl.tools.checkstyle.checks.AvoidStarImport"/>
 
@@ -23,7 +23,7 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheck"/>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck">
-        <set-property name="checkUnusedThrows" value="true"/>
+        <property name="checkUnusedThrows" value="true"/>
     </check>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocVariableCheck"/>
@@ -34,7 +34,7 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.MemberNameCheck"/>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLeftCurlyCheck">
-        <set-property name="option" value="nl"/>
+        <property name="option" value="nl"/>
     </check>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLengthCheck"/>
@@ -49,13 +49,13 @@
         <tokens>
            DOT
         </tokens>
-        <set-property name="allowLineBreaks" value="true"/>
+        <property name="allowLineBreaks" value="true"/>
     </check>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck">
         <tokens>
            DOT
         </tokens>
-        <set-property name="allowLineBreaks" value="true"/>
+        <property name="allowLineBreaks" value="true"/>
     </check>
 
  
@@ -66,10 +66,10 @@
         <tokens>
             ASSIGN, DIV_ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN, STAR_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN, SL_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, BAND_ASSIGN
         </tokens>
-        <set-property name="option" value="eol"/>
+        <property name="option" value="eol"/>
     </check>
     <check classname="com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck">
-        <set-property name="option" value="nlow"/>
+        <property name="option" value="nlow"/>
     </check>
     <check classname="com.puppycrawl.tools.checkstyle.checks.PackageNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck"/>
@@ -81,7 +81,7 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.RegexpHeaderCheck"/>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck">
-        <set-property name="option" value="alone"/>
+        <property name="option" value="alone"/>
     </check>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanExpressionCheck"/>
@@ -90,7 +90,7 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.TabCharacterCheck"/>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.TypeLeftCurlyCheck">
-        <set-property name="option" value="nl"/>
+        <property name="option" value="nl"/>
     </check>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.TypeNameCheck"/>
@@ -102,7 +102,7 @@
 
     <!--
     <check classname="com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck">
-        <set-property name="format" value="System.out.println"/>
+        <property name="format" value="System.out.println"/>
     </check>
     -->
 
