@@ -50,6 +50,31 @@ public abstract class AbstractTypeAwareCheck
     private ClassResolver mClassResolver;
 
     /**
+     * Indicates whether subclass is interested in getting notified
+     * of the CLASS token. This is a short term hack that keeps
+     * binary compatability with existing behaviour for v3. Will
+     * be fixed in v4.
+     * TODO: fix this hack
+     */
+    private final boolean mProcessClassToken;
+
+    /**
+     * Create an object. Unfortunately the behaviouur of this class has
+     * changed and there is no way to maintain binary comatibility with
+     * this class. If you previously had the <code>CLASS_DEF</code>
+     * token in your list you need to pass <code>true</code> to this
+     * constructor. Otherwise, you need to add the
+     * <code>CLASS_DEF</code> token to your list and pass
+     * <code>false</code> to this constructor.
+     * @param aProcessClassToken indicated if subclass wants to be notified
+     *     of CLASS tokens.
+     */
+    protected AbstractTypeAwareCheck(final boolean aProcessClassToken)
+    {
+        mProcessClassToken = aProcessClassToken;
+    }
+
+    /**
      * Called to process an AST when visiting it.
      * @param aAST the AST to process. Guaranteed to not be PACKAGE_DEF or
      *             IMPORT tokens.
@@ -76,6 +101,9 @@ public abstract class AbstractTypeAwareCheck
         }
         else if (aAST.getType() == TokenTypes.CLASS_DEF) {
             processClass(aAST);
+            if (mProcessClassToken) {
+                processAST(aAST);
+            }
         }
         else {
             processAST(aAST);
@@ -282,7 +310,7 @@ public abstract class AbstractTypeAwareCheck
         private FullIdent mName;
         /** <code>Class</code> object of this class if it's loadable. */
         private Class mClass;
-        /** name of surrundeing class. */
+        /** name of surrounding class. */
         private String mCurrentClass;
         /** is class loadable. */
         private boolean mIsLoadable;

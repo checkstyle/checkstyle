@@ -177,6 +177,14 @@ public class JavadocMethodCheck
     private boolean mAllowMissingReturnTag;
 
     /**
+     * Create an object.
+     */
+    public JavadocMethodCheck()
+    {
+        super(false);
+    }
+
+    /**
      * Set the scope.
      * @param aFrom a <code>String</code> value
      */
