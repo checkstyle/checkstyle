@@ -219,7 +219,6 @@ public final class CheckDocsDoclet
             }
             removeClosingDot(text);
             removeOpeningParagraphTag(text);
-            System.out.println("text = '" + text + "'");
             return text.toString().trim();
         }
     }
