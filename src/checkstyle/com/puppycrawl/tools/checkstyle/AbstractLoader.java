@@ -41,7 +41,7 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  */
-abstract class AbstractLoader
+public abstract class AbstractLoader
     extends DefaultHandler
 {
     /** the public id to resolve */
