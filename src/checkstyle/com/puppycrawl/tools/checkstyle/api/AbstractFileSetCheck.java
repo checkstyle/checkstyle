@@ -16,23 +16,15 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Set;
 import java.util.HashSet;
 import java.io.File;
 
-import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-
 /**
  * Provides common functionality for many FileSetChecks.
- * TODO: maybe this should be a public class and go into the api package?
- * TODO: shouldn't be public if it stays in this package.
- * (oliver here) I think this class should remain public, even if it stays in
- * this package. That said, it should be in the API package.
- * 
+ *
  * @author lkuehne
  */
 public abstract class AbstractFileSetCheck
@@ -43,7 +35,7 @@ public abstract class AbstractFileSetCheck
 
     /**
      * Does nothing.
-     * @see FileSetCheck
+     * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
      */
     public void destroy()
     {
@@ -67,7 +59,7 @@ public abstract class AbstractFileSetCheck
         return directories;
     }
 
-    /** @see FileSetCheck */
+    /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
     public void setMessageDispatcher(MessageDispatcher aDispatcher)
     {
         mDispatcher = aDispatcher;
