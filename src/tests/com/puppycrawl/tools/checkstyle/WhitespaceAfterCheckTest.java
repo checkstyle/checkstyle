@@ -41,7 +41,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "58:23: ';' is not followed by whitespace.",
             "58:29: ';' is not followed by whitespace.",
-            "110:19: ';' is not followed by whitespace.",
+            "107:19: ';' is not followed by whitespace.",
         };
         verify(c, fname, expected);
     }
