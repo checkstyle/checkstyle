@@ -60,7 +60,8 @@
   <!-- -->
 
   <target name="antlr">
-    <antlr target="${checkstyle.dir}/java.g" />
+    <antlr target="${checkstyle.dir}/java.g"
+           fork="yes" dir="${checkstyle.dir}" />
     <!-- need to fork to run in the directory where the files generated -->
     <!-- from the previous task are.                                    -->
     <antlr target="${checkstyle.dir}/java.tree.g"
