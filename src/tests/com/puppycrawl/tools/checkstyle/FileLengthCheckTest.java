@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.checks.FileLengthCheck;
+import org.apache.commons.beanutils.ConversionException;
 
 public class FileLengthCheckTest
         extends BaseCheckTestCase
@@ -44,13 +45,9 @@ public class FileLengthCheckTest
             createChecker(checkConfig);
             fail("Should indicate illegal args");
         }
-        catch (Exception ex)
+        catch (ConversionException ex)
         {
             // Expected Exception because of illegal argument for "max"
-
-            // TODO: I would have expected to receive a ConversionException here
-            // but in fact I do get an InvocationTargetException - another
-            // mystery in beanutils?
         }
     }
 
