@@ -46,5 +46,55 @@ parsed using the excellent <a href="http://jakarta.apache.org/regexp">Jakarta
 Regexp</a> library.</p>
 
 
+<h2><a name="parenPad">Pad Parenthesis Policy</a></h2>
+
+<p>This property represents the policy for padding parenthesises. The
+following table describes the valid options:</p>
+
+<table border="1" summary="parenthesises padding options">
+  <tr class="header">
+    <td>Option</td>
+    <td>Definition</td>
+  </tr>
+  <tr>
+    <td><span class="code">ignore</span></td>
+    <td>Ignore the padding.</td>
+  </tr>
+  <tr>
+    <td><span class="code">nospace</span></td>
+    <td>Do not pad. For example, <span class="code">method(a, b);</span></td>
+  </tr>
+  <tr>
+    <td><span class="code">space</span></td>
+    <td>Ensure padding. For example, <span class="code">method( a, b );</span></td>
+  </tr>
+</table>
+
+
+<h2><a name="wrapOp">Operator Wrap Policy</a></h2>
+
+<p>This property represents the policy for wrapping lines on operators. The
+following table describes the valid options:</p>
+
+<table border="1" summary="wrap operator options">
+  <tr class="header">
+    <td>Option</td>
+    <td>Definition</td>
+  </tr>
+  <tr>
+    <td><span class="code">ignore</span></td>
+    <td>Ignore wrapping on an operator.</td>
+  </tr>
+  <tr>
+    <td><span class="code">nl</span></td>
+    <td>The operator must be on a new line. For example:
+<pre>
+    someVariable = aBigVariableNameToMakeThings + "this may work"
+                   + lookVeryInteresting;
+</pre>
+    </td>
+  </tr>
+</table>
+
 </body>
 </html>
