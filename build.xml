@@ -521,20 +521,12 @@
             value="**/CheckStyleTas*,**/Generated*.java,**/Java*Recognizer.java,**/Java*Lexer.java,**/Java*TokenTypes.java,**/gui/*"/>
 
   <target name="with.clover">
+    <taskdef resource="clovertasks"/>
     <mkdir dir="target/clover/db"/>
     <mkdir dir="target/clover/html"/>
     <clover-setup initString="target/clover/db/csdb"/>
     <property name="clover.html.dir" location="target/clover/html"/>
-<!--    <property name="build.compiler"
-              value="org.apache.tools.ant.taskdefs.CloverCompilerAdapter"/> -->
   </target>
-
-  <path id="clover.classpath">
-    <pathelement path="${clover.lib}/clover.jar"/>
-    <pathelement path="${clover.lib}/velocity.jar"/>
-  </path>
-
-  <taskdef resource="clovertasks"/>
 
   <target name="clover.report" depends="with.clover">
     <clover-report>
