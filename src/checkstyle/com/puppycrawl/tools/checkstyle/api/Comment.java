@@ -60,59 +60,37 @@ class Comment implements TextBlock
         mLastCol = aLastCol;
     }
 
-    /**
-     * Returns line that make up the comment.
-     * @return comment text.
-     */
+    /** {@inheritDoc} */
     public final String[] getText()
     {
         return (String[]) mText.clone();
     }
 
-    /**
-     * Returns number of fist line of the comment.
-     * @return number of fist line of the comment
-     */
+    /** {@inheritDoc} */
     public final int getStartLineNo()
     {
         return mFirstLine;
     }
 
-    /**
-     * Returns number of last line of the comment.
-     * @return number of last line of the comment
-     */
+    /** {@inheritDoc} */
     public final int getEndLineNo()
     {
         return mLastLine;
     }
 
-    /**
-     * @see TextBlock
-     */
+    /** {@inheritDoc} */
     public int getStartColNo()
     {
         return mFirstCol;
     }
 
-    /**
-     * @see TextBlock
-     */
+    /** {@inheritDoc} */
     public int getEndColNo()
     {
         return mLastCol;
     }
 
-    /**
-     * Checks if this comment intersects with a specified
-     * part of the file.
-     *
-     * @param aStartLineNo the starting line number in the file
-     * @param aStartColNo the starting column number in the file
-     * @param aEndLineNo the ending line number in the file
-     * @param aEndColNo the ending column number in the file
-     * @return true if the positions intersects with this comment.
-     **/
+    /** {@inheritDoc} */
     public boolean intersects(int aStartLineNo, int aStartColNo,
                               int aEndLineNo, int aEndColNo)
     {
