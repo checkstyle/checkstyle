@@ -21,10 +21,10 @@ public class InputRedundantThrows
     }
 
     // bad - no information for checking exception
-    void method3()
-        throws WrongException
-    {
-    }
+//     void method3()
+//         throws WrongException // we will throw exception here, thus I remove it from the test input
+//     {
+//     }
 
     // right
     void method4()
@@ -32,7 +32,7 @@ public class InputRedundantThrows
     {
     }
 
-    void method5() throws WrongException, IOException
+    void method5() throws /* WrongException, */ IOException
     {
     }
 

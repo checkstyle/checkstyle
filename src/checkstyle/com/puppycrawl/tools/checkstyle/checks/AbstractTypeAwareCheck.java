@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.util.HashSet;
@@ -229,6 +230,26 @@ public abstract class AbstractTypeAwareCheck
      * @param aIdent class name for which we can no load class.
      */
     protected abstract void logLoadError(FullIdent aIdent);
+
+    /**
+     * Common implementation for logLoadError() method.
+     * @param aLineNo line number of the problem.
+     * @param aColumnNo column number of the problem.
+     * @param aMsgKey message key to use.
+     * @param aValues values to fill the message out.
+     */
+    protected final void logLoadErrorImpl(int aLineNo, int aColumnNo,
+                                          String aMsgKey, Object[] aValues)
+    {
+        LocalizedMessage msg = new LocalizedMessage(aLineNo,
+                                                    aColumnNo,
+                                                    getMessageBundle(),
+                                                    aMsgKey,
+                                                    aValues,
+                                                    getSeverityLevel(),
+                                                    this.getClass());
+        throw new RuntimeException(msg.getMessage());
+    }
 
     /**
      * Collects the details of a package.

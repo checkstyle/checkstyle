@@ -691,8 +691,10 @@ public class JavadocMethodCheck
      */
     protected final void logLoadError(FullIdent aIdent)
     {
-        log(aIdent.getLineNo(), "javadoc.classInfo", "@throws",
-            aIdent.getText());
+        logLoadErrorImpl(aIdent.getLineNo(),
+                         aIdent.getColumnNo(),
+                         "javadoc.classInfo",
+                         new Object[] {"@throws", aIdent.getText()});
     }
 
     /** Stores useful information about declared exception. */

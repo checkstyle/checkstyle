@@ -118,8 +118,10 @@ public class RedundantThrowsCheck
      */
     protected final void logLoadError(FullIdent aIdent)
     {
-        log(aIdent.getLineNo(), aIdent.getColumnNo(),
-            "redundant.throws.classInfo", aIdent.getText());
+        logLoadErrorImpl(aIdent.getLineNo(),
+                         aIdent.getColumnNo(),
+                         "redundant.throws.classInfo",
+                         new Object[] {aIdent.getText()});
     }
 
     /**
