@@ -18,4 +18,10 @@ public class InputIllegalTokens
     }
     
     public native void nativeMethod();
+    
+    public void methodWithLiterals()
+    {
+        final String ref = "<a href=\"";
+        final String refCase = "<A hReF=\"";
+    }
 }

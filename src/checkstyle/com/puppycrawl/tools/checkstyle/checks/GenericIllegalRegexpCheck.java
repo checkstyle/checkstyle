@@ -70,6 +70,16 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
     }
 
     /**
+     * Getter for message property.
+     * @return custom message which should be used
+     * to report about violations.
+     */
+    public String getMessage()
+    {
+        return mMessage;
+    }
+
+    /**
      * Set whether or not the match is case sensitive.
      * @param aCaseInsensitive true if the match is case insensitive.
      */
