@@ -159,7 +159,8 @@ public class Checker extends AutomaticBean
         try {
             final Object module = mModuleFactory.createModule(name);
             if (!(module instanceof FileSetCheck)) {
-                throw new CheckstyleException(name + " is not a FileSetCheck");
+                throw new CheckstyleException(name
+                    + " is not allowed as a module in Checker");
             }
             final FileSetCheck fsc = (FileSetCheck) module;
             fsc.contextualize(mChildContext);
@@ -169,7 +170,7 @@ public class Checker extends AutomaticBean
         catch (Exception ex) {
             // TODO i18n
             throw new CheckstyleException(
-                    "cannot initialize filesetcheck with name "
+                    "cannot initialize module "
                     + name + " - " + ex.getMessage());
         }
     }
