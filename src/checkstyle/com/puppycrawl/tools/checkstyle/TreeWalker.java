@@ -32,6 +32,8 @@ import java.util.Set;
 
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
+import antlr.TokenStreamRecognitionException;
+
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -244,11 +246,36 @@ public final class TreeWalker
                 .debug("RecognitionException occured.", re);
             getMessageCollector().add(
                 new LocalizedMessage(
-                    0,
+                    re.getLine(),
+                    re.getColumn(),
                     Defn.CHECKSTYLE_BUNDLE,
                     "general.exception",
                     new String[] {re.getMessage()},
                     this.getClass()));
+        }
+        catch (TokenStreamRecognitionException tre) {
+            Utils.getExceptionLogger()
+                .debug("TokenStreamRecognitionException occured.", tre);
+            final RecognitionException re = tre.recog;
+            if (re != null) {
+                getMessageCollector().add(
+                    new LocalizedMessage(
+                        re.getLine(),
+                        re.getColumn(),
+                        Defn.CHECKSTYLE_BUNDLE,
+                        "general.exception",
+                        new String[] {re.getMessage()},
+                        this.getClass()));
+            }
+            else {
+                getMessageCollector().add(
+                    new LocalizedMessage(
+                        0,
+                        Defn.CHECKSTYLE_BUNDLE,
+                        "general.exception",
+                        new String[] {re.getMessage()},
+                        this.getClass()));
+            }
         }
         catch (TokenStreamException te) {
             Utils.getExceptionLogger()

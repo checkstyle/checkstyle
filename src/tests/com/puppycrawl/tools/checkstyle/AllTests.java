@@ -32,7 +32,8 @@ public class AllTests {
         suite.addTest(com.puppycrawl.tools.checkstyle.api.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.filters.AllTests.suite());
-
+        suite.addTest(
+            com.puppycrawl.tools.checkstyle.grammars.AllTests.suite());
         //$JUnit-END$
         return suite;
     }
