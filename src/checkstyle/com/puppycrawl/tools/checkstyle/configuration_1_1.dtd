@@ -18,7 +18,7 @@
 
 <!--
 
-   Used to sort metadata in the Checkstyle configuration file. This
+   Used to store metadata in the Checkstyle configuration file. This
    information is ignored by Checkstyle. This may be useful if you want to
    store plug-in specific information.
 
