@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
  * @author Oliver Burn
  * @version 1.0
  */
-public class AvoidStarImport
+public class AvoidStarImportCheck
     extends AbstractImportCheck
 {
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
