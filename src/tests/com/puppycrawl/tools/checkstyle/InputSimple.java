@@ -148,4 +148,7 @@ strictfp final class InputSimple // illegal order of modifiers for class
     strictfp private void doStuff()
     {
     }
+
+    /** test illegal constant **/
+    private static final int BAD__NAME = 3;
 }

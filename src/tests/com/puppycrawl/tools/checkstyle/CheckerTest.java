@@ -329,7 +329,7 @@ public class CheckerTest
             filepath + ":17: variable 'fData' missing Javadoc.",
             filepath + ":21: type is missing a Javadoc comment.",
             filepath + ":24: variable 'data' missing Javadoc.",
-            filepath + ":24: variable 'data' must match pattern '^[A-Z]([A-Z0-9_]*[A-Z0-9])?$'.",
+            filepath + ":24: variable 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":27: type is missing a Javadoc comment.",
             filepath + ":30: variable 'rData' missing Javadoc.",
             filepath + ":30: variable 'rData' must be private and have accessor methods.",
@@ -355,7 +355,7 @@ public class CheckerTest
             filepath + ":17: variable 'fData' must be private and have accessor methods.",
             filepath + ":21: type is missing a Javadoc comment.",
             filepath + ":24: variable 'data' missing Javadoc.",
-            filepath + ":24: variable 'data' must match pattern '^[A-Z]([A-Z0-9_]*[A-Z0-9])?$'.",
+            filepath + ":24: variable 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":27: type is missing a Javadoc comment.",
             filepath + ":30: variable 'rData' missing Javadoc.",
         };
@@ -375,12 +375,12 @@ public class CheckerTest
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":1: file length is 151 lines (max allowed is 20).",
+            filepath + ":1: file length is 154 lines (max allowed is 20).",
             filepath + ":3: Line does not match expected header line of '// Created: 2001'.",
             filepath + ":16: 'final' modifier out of order with the JLS suggestions.",
             filepath + ":18: line longer than 80 characters",
             filepath + ":19: line contains a tab character",
-            filepath + ":25: variable 'badConstant' must match pattern '^[A-Z]([A-Z0-9_]*[A-Z0-9])?$'.",
+            filepath + ":25: variable 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":30: variable 'badStatic' must match pattern '^s[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":35: variable 'badMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":39: variable 'mNumCreated2' must be private and have accessor methods.",
@@ -405,6 +405,7 @@ public class CheckerTest
             filepath + ":137: method name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":142: 'private' modifier out of order with the JLS suggestions.",
             filepath + ":148: 'private' modifier out of order with the JLS suggestions.",
+            filepath + ":153: variable 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
         };
         verify(c, filepath, expected);
     }
