@@ -40,6 +40,7 @@ public class AuditEvent
 {
     /** filename event associated with **/
     private final String mFileName;
+    /** message associated with the event **/
     private final LocalizedMessage mMessage;
 
     /**
@@ -109,6 +110,7 @@ public class AuditEvent
         return mMessage.getColumnNo();
     }
 
+    /** @return the localized message **/
     public LocalizedMessage getLocalizedMessage()
     {
         return mMessage;
