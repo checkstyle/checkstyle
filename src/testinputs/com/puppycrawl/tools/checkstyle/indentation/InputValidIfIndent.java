@@ -11,59 +11,59 @@ package com.puppycrawl.tools.checkstyle.indentation;
  * @author  jrichard
  */
 public class InputValidIfIndent {
-        
+
 
     // test ifs
     public void emptyIfTest()
     {
         boolean test = true;
-        
+
         // lcurly on same line
         if (test) {
         }
 
         // lcurly on next line
-        if (test) 
+        if (test)
         {
         }
-                
+
         // lcurly for if and else on same line
         if (test) {
         } else {
         }
-        
+
         // lcurly for if and else on same line
-        if (test) 
+        if (test)
         {
-        } 
-        else 
+        }
+        else
         {
         }
 
         // lcurly for if and else on same line -- mixed braces
         if (test) {
-        } 
-        else 
+        }
+        else
         {
         }
-        
+
 
         // lcurly for if and else on same line -- mixed braces
-        if (test) 
+        if (test)
         {
-        } else 
+        } else
         {
         }
-        
+
         // lcurly for if and else on same line -- mixed braces
-        if (test) 
+        if (test)
         {
         } else {
         }
-        
+
         // lcurly for if and else on same line -- mixed braces, unnested
         if (test) {
-        } 
+        }
         else {
         }
     }
@@ -82,14 +82,14 @@ public class InputValidIfIndent {
         else
             System.getProperty("blah");
 
-        
+
         // lcurly on same line, and stmt
         if (test) {
             System.getProperty("blah");
         }
-        
+
         // lcurly on next line and stmt
-        if (test) 
+        if (test)
         {
             System.getProperty("blah");
         }
@@ -100,14 +100,14 @@ public class InputValidIfIndent {
             System.
                 getProperty("blah");
         }
-        
+
         // lcurly for if and else on same line
-        if (test) 
+        if (test)
         {
             System.getProperty("blah");
             System.getProperty("blah");
-        } 
-        else 
+        }
+        else
         {
             System.getProperty("blah");
         }
@@ -115,117 +115,119 @@ public class InputValidIfIndent {
         // lcurly for if and else on same line -- mixed braces
         if (test) {
             System.getProperty("blah");
-        } 
-        else 
+        }
+        else
         {
             System.getProperty("blah");
         }
-        
+
 
         // lcurly for if and else on same line -- mixed braces
-        if (test) 
+        if (test)
         {
             System.getProperty("blah");
-        } else 
+        } else
         {
             System.getProperty("blah");
         }
-        
+
         // lcurly for if and else on same line -- mixed braces
-        if (test) 
+        if (test)
         {
             System.getProperty("blah");
         } else {
             System.getProperty("blah");
         }
-        
+
         // lcurly for if and else on same line -- mixed braces, unnested
         if (test) {
             System.getProperty("blah");
-        } 
+        }
         else {
             System.getProperty("blah");
         }
-        
+
         if (test) System.getProperty("blah");
 
-        if (test) System.getProperty("blah"); 
-        else System.getProperty("foo");
-        
         if (test) System.getProperty("blah");
-        else 
+        else System.getProperty("foo");
+
+        if (test) System.getProperty("blah");
+        else
             System.getProperty("foo");
 
-        if (test) 
-            System.getProperty("blah"); 
+        if (test)
+            System.getProperty("blah");
         else System.getProperty("foo");
-        
+
         if (test
             && 7 < 8 && 8 < 9
             && 10 < 11) {
         }
-        
+
         if (test)
             return;
-        
-        
+
+
         if (test) {
         } else if (7 < 8) {
         } else if (8 < 9) {
         }
 
         if (test) {
-            System.getProperty("blah"); 
+            System.getProperty("blah");
         } else if (7 < 8) {
-            System.getProperty("blah"); 
+            System.getProperty("blah");
         } else if (8 < 9) {
-            System.getProperty("blah"); 
+            System.getProperty("blah");
         }
 
-        
+
         if (test)
-            System.getProperty("blah"); 
+            System.getProperty("blah");
         else if (7 < 8)
-            System.getProperty("blah"); 
+            System.getProperty("blah");
         else if (8 < 9)
-            System.getProperty("blah"); 
-        
-        
+            System.getProperty("blah");
+
+
         // TODO: bother to support this style?
         if (test) {
-            System.getProperty("blah"); 
-        } else 
+            System.getProperty("blah");
+        } else
             if (7 < 8) {
-                System.getProperty("blah"); 
-            } else 
+                System.getProperty("blah");
+            } else
                 if (8 < 9) {
-                    System.getProperty("blah"); 
+                    System.getProperty("blah");
                 }
-    
+
     }
-    
-//    public void  parenIfTest() {
-//        boolean test = true;
-//        
-//        if (test
-//        ) {
-//            System.getProperty("blah"); 
-//        }
+
+    public void  parenIfTest() {
+        boolean test = true;
+
+        if (test
+        ) {
+            System.getProperty("blah");
+        }
 //
-//        if (test
-//        ) 
-//        {
-//            System.getProperty("blah"); 
-//        }
-//        
-//        if 
-//        (
-//            test
-//        ) {
-//            System.getProperty("blah"); 
-//        }
-//        
-//    }
-    
-    
+        if (test
+        )
+        {
+            System.getProperty("blah");
+        }
+
+        if
+        (
+            test
+        ) {
+            System.getProperty("blah");
+        }
+
+        if (test
+            )
+        {
+        }
+    }
 }

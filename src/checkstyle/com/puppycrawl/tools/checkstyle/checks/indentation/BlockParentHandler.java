@@ -268,21 +268,29 @@ public class BlockParentHandler extends ExpressionHandler
      */
     protected void checkRParen()
     {
-        // the rcurly can either be at the correct indentation, or on
-        // the same line as the lcurly
         final DetailAST rparen = getRParen();
 
-        // TODO: perhaps the handler should allow to place
-        // rparen at indentation of lparen plus 1
-        // if (test1
-        //     || test2
-        //     )
-        if (rparen == null
-            || expandedTabsColumnNo(rparen) == getLevel()
+        // no paren - no check :)
+        if (rparen == null) {
+            return;
+        }
+
+        // the rcurly can either be at the correct indentation,
+        // or not first on the line ...
+        final int rparenLevel = expandedTabsColumnNo(rparen);
+        if (rparenLevel == getLevel()
             || !startsLine(rparen))
         {
             return;
         }
+
+        // or has <lparen level> + 1 indentation
+        final DetailAST lparen = getLParen();
+        final int lparenLevel = expandedTabsColumnNo(lparen);
+        if (rparenLevel == (lparenLevel + 1)) {
+            return;
+        }
+
         logError(rparen, "rparen", expandedTabsColumnNo(rparen));
     }
 
@@ -318,7 +326,7 @@ public class BlockParentHandler extends ExpressionHandler
         }
         DetailAST listChild = getListChild();
         if (listChild != null) {
-            final int expectedLevel =
+            final int expectedLevel = 
                 getLevel() + getIndentCheck().getIndentationAmount();
             // NOTE: switch statements usually don't have curlys
             if (!hasCurlys() || !areOnSameLine(getLCurly(), getRCurly())) {
