@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import junit.framework.TestCase;
 
 /**
- * TODO: document here
+ * TestCase to check DetailAST.
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  */
 public class DetailASTTest extends TestCase {
