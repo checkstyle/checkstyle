@@ -1,0 +1,22 @@
+package com.puppycrawl.tools.checkstyle.checks.coding;
+
+public class InputParameterAssignment {
+    int field;
+    void foo1(int field) {
+        int i = field;
+        this.field = field;
+        i++;
+        field = 0;
+        field += 1;
+        this.field++;
+        field--;
+    }
+
+    void foo2() {
+        field = 0;
+    }
+
+    void foo3(String field, int field1) {
+        this.field = (field1 += field.length);
+    }
+}
