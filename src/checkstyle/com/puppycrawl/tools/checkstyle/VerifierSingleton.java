@@ -22,13 +22,13 @@ package com.puppycrawl.tools.checkstyle;
  * Singleton helper for the Verifier
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
-public final class VerifierSingleton
+final class VerifierSingleton
 {
     /** the instance **/
     private static Verifier sInstance;
 
     /** @return the instance **/
-    public static Verifier getInstance()
+    static Verifier getInstance()
     {
         return sInstance;
     }
@@ -37,7 +37,7 @@ public final class VerifierSingleton
      * Sets the instance.
      * @param aInstance the instance to set
      **/
-    public static void setInstance(Verifier aInstance)
+    static void setInstance(Verifier aInstance)
     {
         sInstance = aInstance;
     }

@@ -101,7 +101,7 @@ public class Checker
      * the destroy method to close and remove the listeners.
      * @param aFiles the list of files to be audited.
      * @return the total number of errors found
-     * @see destroy()
+     * @see #destroy()
      */
     public int process(String[] aFiles)
     {

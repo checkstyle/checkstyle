@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle;
  * Represents a variable with an associated name, line number and modifiers.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
-public class MyVariable
+class MyVariable
     extends LineText
 {
     /** the modifiers **/
@@ -32,14 +32,14 @@ public class MyVariable
      * @param aName the name of the variable
      * @param aMods the modifiers for the variable
      **/
-    public MyVariable(LineText aName, MyModifierSet aMods)
+    MyVariable(LineText aName, MyModifierSet aMods)
     {
         super(aName);
         mModifierSet = aMods;
     }
 
     /** @return the modifiers **/
-    public MyModifierSet getModifierSet()
+    MyModifierSet getModifierSet()
     {
         return mModifierSet;
     }

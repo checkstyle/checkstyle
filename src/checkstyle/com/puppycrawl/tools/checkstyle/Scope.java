@@ -26,7 +26,7 @@ import java.util.HashMap;
  *
  * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne</a>
  */
-public final class Scope implements Comparable
+final class Scope implements Comparable
 {
     /** poor man's enum for nothing scope */
     private static final int SCOPECODE_NOTHING = 0;
@@ -55,27 +55,27 @@ public final class Scope implements Comparable
     private static final String SCOPENAME_ANONINNER = "anoninner";
 
     /** nothing scope */
-    public static final Scope NOTHING =
+    static final Scope NOTHING =
         new Scope(SCOPECODE_NOTHING, SCOPENAME_NOTHING);
 
     /** public scope */
-    public static final Scope PUBLIC =
+    static final Scope PUBLIC =
         new Scope(SCOPECODE_PUBLIC, SCOPENAME_PUBLIC);
 
     /** protected scope */
-    public static final Scope PROTECTED =
+    static final Scope PROTECTED =
         new Scope(SCOPECODE_PROTECTED, SCOPENAME_PROTECTED);
 
     /** package scope */
-    public static final Scope PACKAGE =
+    static final Scope PACKAGE =
         new Scope(SCOPECODE_PACKAGE, SCOPENAME_PACKAGE);
 
     /** private scope */
-    public static final Scope PRIVATE =
+    static final Scope PRIVATE =
         new Scope(SCOPECODE_PRIVATE, SCOPENAME_PRIVATE);
 
     /** anon inner scope */
-    public static final Scope ANONINNER =
+    static final Scope ANONINNER =
         new Scope(SCOPECODE_ANONINNER, SCOPENAME_ANONINNER);
 
     /** map from scope names to the respective Scope */
@@ -89,17 +89,17 @@ public final class Scope implements Comparable
         NAME_TO_SCOPE.put(SCOPENAME_PRIVATE, PRIVATE);
         NAME_TO_SCOPE.put(SCOPENAME_ANONINNER, ANONINNER);
     };
-    
+
     /** the SCOPECODE_XYZ value of this scope. */
     private final int mCode;
 
     /** the name of this scope. */
     private final String mName;
-    
+
     /**
      * @see Object
      */
-    public String toString() 
+    public String toString()
     {
         return "Scope[" + mCode + " (" + mName + ")]";
     }
@@ -107,11 +107,11 @@ public final class Scope implements Comparable
     /**
      * @return the name of this scope.
      */
-    public String getName()
+    String getName()
     {
         return mName;
     }
-    
+
     /**
      * @see Comparable
      */
@@ -128,11 +128,11 @@ public final class Scope implements Comparable
      * @param aScope a <code>Scope</code> value
      * @return if <code>this</code> is a subscope of <code>aScope</code>.
      */
-    public boolean isIn(Scope aScope)
+    boolean isIn(Scope aScope)
     {
         return (compareTo(aScope) <= 0);
     }
-    
+
     /**
      * Creates a new <code>Scope</code> instance.
      *
@@ -144,14 +144,14 @@ public final class Scope implements Comparable
         mCode = aCode;
         mName = aName;
     }
-    
+
     /**
      * Scope factory method.
      *
      * @param aScopeName scope name, such as "nothing", "public", etc.
      * @return the <code>Scope</code> associated with <code>aScopeName</code>
      */
-    public static Scope getInstance(String aScopeName)
+    static Scope getInstance(String aScopeName)
     {
         // canonicalize argument
         String scopeName = aScopeName.toLowerCase();

@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle;
  * Represents a string with an associated line number.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
-public class LineText
+class LineText
     implements Comparable
 {
     /** the string **/
@@ -35,7 +35,7 @@ public class LineText
      * @param aLineNo the line number
      * @param aText the text
      **/
-    public LineText(int aLineNo, String aText)
+    LineText(int aLineNo, String aText)
     {
         mLineNo = aLineNo;
         mText = aText;
@@ -45,19 +45,19 @@ public class LineText
      * Constructs the object.
      * @param aOther the object to initialise from
      **/
-    public LineText(LineText aOther)
+    LineText(LineText aOther)
     {
         this(aOther.getLineNo(), aOther.getText());
     }
 
     /** @return the text **/
-    public String getText()
+    String getText()
     {
         return mText;
     }
 
     /** @return the line number **/
-    public int getLineNo()
+    int getLineNo()
     {
         return mLineNo;
     }
@@ -65,7 +65,7 @@ public class LineText
     /** Appends to the string.
     * @param aText the text to append
     **/
-    public void appendText(String aText)
+    void appendText(String aText)
     {
         mText += aText;
     }
