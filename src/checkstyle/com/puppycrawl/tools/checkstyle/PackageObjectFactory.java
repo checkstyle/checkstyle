@@ -119,12 +119,16 @@ class PackageObjectFactory implements ModuleFactory
                 "Unable to find class for " + aClassName, e);
         }
         catch (InstantiationException e) {
+            ///CLOVER:OFF 
             throw new CheckstyleException(
                 "Unable to instantiate " + aClassName, e);
+            ///CLOVER:ON 
         }
         catch (IllegalAccessException e) {
+            ///CLOVER:OFF 
             throw new CheckstyleException(
                 "Unable to instantiate " + aClassName, e);
+            ///CLOVER:ON 
         }
     }
 
