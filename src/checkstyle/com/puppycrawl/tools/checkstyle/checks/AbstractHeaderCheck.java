@@ -36,9 +36,6 @@ import org.apache.commons.beanutils.ConversionException;
  */
 public abstract class AbstractHeaderCheck extends Check
 {
-    /** empty array to avoid instantiations. */
-    private static final int[] EMPTY_INT_ARRAY = new int[0];
-
     /** the lines of the header file. */
     private String[] mHeaderLines;
 
