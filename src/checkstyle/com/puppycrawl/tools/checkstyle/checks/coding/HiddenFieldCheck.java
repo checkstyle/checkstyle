@@ -19,7 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -129,7 +129,11 @@ public class HiddenFieldCheck
     {
         if (aAST.getType() == TokenTypes.CLASS_DEF) {
             //find and push fields
-            final FieldFrame frame = new FieldFrame();
+            final DetailAST classMods =
+                aAST.findFirstToken(TokenTypes.MODIFIERS);
+            final boolean isStaticInnerClass =
+                classMods.branchContains(TokenTypes.LITERAL_STATIC);
+            final FieldFrame frame = new FieldFrame(isStaticInnerClass);
             //add fields to container
             final DetailAST objBlock =
                 aAST.findFirstToken(TokenTypes.OBJBLOCK);
@@ -181,10 +185,12 @@ public class HiddenFieldCheck
                 //local variable or parameter. Does it shadow a field?
                 final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
                 final String name = nameAST.getText();
-                final boolean inStatic = inStatic(aAST);
-                final Iterator it = mFieldsStack.iterator();
-                while (it.hasNext()) {
-                    final FieldFrame frame = (FieldFrame) it.next();
+                boolean inStatic = inStatic(aAST);
+                final ListIterator it =
+                    mFieldsStack.listIterator(mFieldsStack.size());
+                while (it.hasPrevious()) {
+                    final FieldFrame frame = (FieldFrame) it.previous();
+                    inStatic |= frame.isStaticClass();
                     if ((frame.containsStaticField(name)
                         || (!inStatic && frame.containsInstanceField(name)))
                         && ((mRegexp == null) || (!getRegexp().match(name)))
@@ -333,13 +339,32 @@ public class HiddenFieldCheck
      * @author Rick Giles
      * @version Oct 26, 2003
      */
-    private class FieldFrame
+    private static class FieldFrame
     {
+        /** is this a static inner class */
+        private boolean mStaticClass;
+
         /** set of instance field names */
         private Set mInstanceFields = new HashSet();
 
         /** set of static field names */
         private Set mStaticFields = new HashSet();
+
+        /** Creates new frame.
+         * @param aStaticClass is this a static inner class.
+         */
+        public FieldFrame(boolean aStaticClass)
+        {
+            mStaticClass = aStaticClass;
+        }
+
+        /** Is this frame for static inner class.
+         * @return is this field frame for static inner class.
+         */
+        boolean isStaticClass()
+        {
+            return mStaticClass;
+        }
 
         /**
          * Adds an instance field to this FieldFrame.
