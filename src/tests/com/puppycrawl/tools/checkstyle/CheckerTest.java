@@ -87,7 +87,7 @@ public class CheckerTest
     {
         mConfig.setIgnoreCastWhitespace(false);
         mConfig.setParenPadOption(PadOption.NOSPACE);
-        mConfig.setAllowEmptyCatch(true);
+        mConfig.setCatchBlock(CatchBlockOption.IGNORE);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -158,7 +158,7 @@ public class CheckerTest
     {
         mConfig.setIgnoreCastWhitespace(true);
         mConfig.setParenPadOption(PadOption.IGNORE);
-        mConfig.setAllowEmptyCatch(true);
+        mConfig.setCatchBlock(CatchBlockOption.IGNORE);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -223,7 +223,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setIgnoreWhitespace(true);
-        mConfig.setAllowEmptyCatch(true);
+        mConfig.setCatchBlock(CatchBlockOption.IGNORE);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -764,15 +764,38 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setJavadocScope(Scope.NOTHING);
+        mConfig.setCatchBlock(CatchBlockOption.STMT);
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");
         assertNotNull(c);
         final String[] expected = {
             filepath + ":15:21: Avoid instantiation of java.lang.Boolean",
             filepath + ":20:21: Avoid instantiation of java.lang.Boolean",
-            filepath + ":26:21: Avoid instantiation of java.lang.Boolean",
-            filepath + ":34:9: Empty catch block.",
-            filepath + ":36:9: Empty catch block.",
+            filepath + ":26:16: Avoid instantiation of java.lang.Boolean",
+            filepath + ":34:65: Must have at least one statement.",
+            filepath + ":36:41: Must have at least one statement.",
+            filepath + ":53:38: Must have at least one statement.",
+            filepath + ":54:52: Must have at least one statement.",
+            filepath + ":55:45: Must have at least one statement.",
+        };
+        verify(c, filepath, expected);
+    }
+
+    public void testSemantic2()
+        throws Exception
+    {
+        mConfig.setJavadocScope(Scope.NOTHING);
+        mConfig.setCatchBlock(CatchBlockOption.TEXT);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputSemantic.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":15:21: Avoid instantiation of java.lang.Boolean",
+            filepath + ":20:21: Avoid instantiation of java.lang.Boolean",
+            filepath + ":26:16: Avoid instantiation of java.lang.Boolean",
+            filepath + ":34:65: Empty catch block.",
+            filepath + ":54:52: Empty catch block.",
+            filepath + ":55:45: Empty catch block.",
         };
         verify(c, filepath, expected);
     }
