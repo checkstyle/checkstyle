@@ -486,12 +486,12 @@ public final class TreeWalker
     /**
      * Static helper method to parses a Java source file.
      * @param aContents contains the contents of the file
-     * @return the root of the AST
      * @throws RecognitionException if parsing failed
      * @throws TokenStreamException if lexing failed
+     * @return the root of the AST
      */
     public static DetailAST parse(FileContents aContents)
-        throws TokenStreamException, RecognitionException
+        throws RecognitionException, TokenStreamException
     {
         DetailAST rootAST;
         try {
