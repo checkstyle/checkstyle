@@ -123,6 +123,8 @@ public class IllegalInstantiationCheck
             case TokenTypes.IMPORT:
                 processImport(aAST);
                 break;
+            default:
+                throw new IllegalArgumentException("Unknown type " + aAST);
         }
     }
 
