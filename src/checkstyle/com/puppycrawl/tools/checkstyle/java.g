@@ -231,15 +231,9 @@ classDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 		// it might implement some interfaces...
 		ic:implementsClause
 		// now parse the body of the class
-        {
-            ver.reportStartTypeBlock(modSet.getVisibilityScope(), false, #IDENT);
-        }
 		cb:classBlock[(modSet.size() == 0) ? #cc.getLineNo() : modSet.getFirstLineNo()]
 		{#classDefinition = #(#[CLASS_DEF,"CLASS_DEF"],
 							   modifiers,IDENT,sc,ic,cb);}
-        {
-            ver.reportEndTypeBlock(true);
-        }
 	;
 
 superClassClause!
@@ -253,15 +247,9 @@ interfaceDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 		// it might extend some other interfaces
 		ie:interfaceExtends
 		// now parse the body of the interface (looks like a class...)
-        {
-            ver.reportStartTypeBlock(modSet.getVisibilityScope(), true, #IDENT);
-        }
 		cb:classBlock[(modSet.size() == 0) ? #ii.getLineNo() : modSet.getFirstLineNo()]
 		{#interfaceDefinition = #(#[INTERFACE_DEF,"INTERFACE_DEF"],
 									modifiers,IDENT,ie,cb);}
-        {
-            ver.reportEndTypeBlock(true);
-        }
 	;
 
 
@@ -308,11 +296,9 @@ field!
 		(	h:ctorHead[exs, msig]
             {
                 msig.setThrows(exs);
-                ver.reportStartMethodBlock();
             }
             s:constructorBody[msig.getFirstLineNo()] // constructor
 			{#field = #(#[CTOR_DEF,"CTOR_DEF"], mods, h, s);}
-            {ver.reportEndMethodBlock();}
 
 		|	cd:classDefinition[#mods, msig.getModSet()]       // inner class
 			{#field = #cd;}
@@ -336,7 +322,6 @@ field!
                     msig.setName(#IDENT);
                     msig.setThrows(exs);
                     msig.setReturnType(#t);
-                    ver.reportStartMethodBlock();
                 }
 				(
                     s2:compoundStatement[stmtBraces, sIgnoreIsEmpty]
@@ -352,21 +337,19 @@ field!
 							 param,
 							 tc,
 							 s2); }
-                {ver.reportEndMethodBlock();}
 			|	v:variableDefinitions[#mods,#t, msig.getModSet()] SEMI
 				{#field = #v;}
 			)
 		)
 
     // "static { ... }" class initializer
-	|	st:"static" {ver.reportStartMethodBlock();} s3:compoundStatement[stmtBraces, sIgnoreIsEmpty]
+	|	st:"static" s3:compoundStatement[stmtBraces, sIgnoreIsEmpty]
         {
             #field = #(#[STATIC_INIT,"STATIC_INIT"], s3);
-            ver.reportEndMethodBlock();
         }
 
     // "{ ... }" instance initializer
-	|	{ver.reportStartMethodBlock();} s4:compoundStatement[sIgnoreAST, sIgnoreIsEmpty] {ver.reportEndMethodBlock();}
+	|	 s4:compoundStatement[sIgnoreAST, sIgnoreIsEmpty]
 		{#field = #(#[INSTANCE_INIT,"INSTANCE_INIT"], s4);}
 	;
 
@@ -1000,7 +983,7 @@ primaryExpression
  */
 newExpression
 	:	n:"new"^ t:type
-		(	LPAREN! argList RPAREN! ({ver.reportStartTypeBlock(Scope.ANONINNER, false, null);}  classBlock[-1]  {ver.reportEndTypeBlock(false);})?
+		(	LPAREN! argList RPAREN! ( classBlock[-1] )?
 
 			//java 1.1
 			// Note: This will allow bad constructs like
