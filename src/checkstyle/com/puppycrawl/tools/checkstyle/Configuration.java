@@ -626,23 +626,6 @@ public class Configuration
     }
 
     /**
-     * This method is being kept for API backwards compatibility with
-     * Checkstyle version below <code>2.1</code>.
-     * @return the first line number to ignore in header
-     * @deprecated use isHeaderIgnoreLineNo(int) instead
-     **/
-    public int getHeaderIgnoreLineNo()
-    {
-        if (mHeaderIgnoreLineNo.isEmpty()) {
-            return -1;
-        }
-        else {
-            Integer firstLine = (Integer) mHeaderIgnoreLineNo.first();
-            return firstLine.intValue();
-        }
-    }
-
-    /**
      * @param aLineNo a line number
      * @return if <code>aLineNo</code> is one of the ignored header lines.
      */
@@ -962,17 +945,6 @@ public class Configuration
     public void setHeaderLinesRegexp(boolean aHeaderLinesRegexp)
     {
         mHeaderLinesRegexp = aHeaderLinesRegexp;
-    }
-
-    /**
-     * This method is being kept for API backwards compatibility with
-     * Checkstyle version below <code>2.1</code>.
-     * @param aHeaderIgnoreLineNo line number to ignore in header
-     * @deprecated use setHeaderIgnoreLines(String) instead
-     */
-    public void setHeaderIgnoreLineNo(int aHeaderIgnoreLineNo)
-    {
-        setHeaderIgnoreLines(String.valueOf(aHeaderIgnoreLineNo));
     }
 
     /**

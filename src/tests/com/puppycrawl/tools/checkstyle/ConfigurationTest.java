@@ -27,10 +27,7 @@ public class ConfigurationTest
         final Configuration c = new Configuration(p, System.out);
         assertNotNull(c);
         assertEquals(66, c.getMaxLineLength());
-        assertEquals(-1, c.getHeaderIgnoreLineNo());
         assertEquals(true, c.isAllowTabs());
-        c.setHeaderIgnoreLineNo(666);
-        assertEquals(666, c.getHeaderIgnoreLineNo());
     }
 
     public void test2() throws Exception
