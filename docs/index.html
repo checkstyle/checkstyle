@@ -116,36 +116,16 @@
       </p>
 
       <a name="upgrading"></a>
-      <h2>Upgrading to release 2.4</h2>
+      <h2>Upgrading to release 3.0</h2>
 
-      <p class="body">As of release 2.4 Checkstyle can only be configured by
-      properties. The major impact is to the ANT task as many arguments have
-      been removed. It is still possible to customise Checkstyle via ANT task,
-      but the technique has changed. For example the following call with
-      Checkstyle 2.3: </p>
-
-<pre>
-    &lt;checkstyle cacheFile="target/checkstyle.cache"
-                headerFile="dev/header.txt"
-                properties="dev/checkstyle.config"&gt;
-      &lt;fileset dir="src" includes="**/*.java"/&gt;
-    &lt;/checkstyle&gt;
-</pre>
-
-      <p class="body">has the equivalent call with Checkstyle 2.4:</p>
-<pre>
-    &lt;checkstyle properties="dev/checkstyle.config"&gt;
-      &lt;fileset dir="src" includes="**/*.java"/&gt;
-      &lt;property key="checkstyle.cache.file"
-                file="target/checkstyle.cache"/&gt;
-      &lt;property key="checkstyle.header.file"
-                file="dev/header.txt"/&gt;
-    &lt;/checkstyle&gt;
-</pre>
-
-      <p class="body">See the documentation for the <a href="anttask.html">ANT
-      Task</a> for more examples.</p>
-
+      <p class="body">As of release 3.0 Checkstyle has changed it's
+      configuration system, the configuration file is now an XML file
+      that configures a tree of check modules. The Checkstyle 2
+      configuration files (based on properties) are not supported in
+      Checkstyle 3. Please consult the <a
+      href="config.html">documentation</a> to learn about the new
+      configuration file format.
+      </p>
 
       <a  name="related"></a>
       <h2>Related Tools</h2>
@@ -155,8 +135,8 @@
       </p>
 
         <ul>
-	  <li class="body">An <a href="http://jakarta.apache.org/ant/index.html">Ant</a> task.</li>
-	  <li class="body">A command line tool.</li>
+          <li class="body">An <a href="http://jakarta.apache.org/ant/index.html">Ant</a> task.</li>
+          <li class="body">A command line tool.</li>
         </ul>
       <p class="body">
         Additionally:
@@ -164,7 +144,13 @@
 
         <ul>
 
+          <li class="body">David Schneider has written a plug-in to integrate Checkstyle with <a href="http://www.eclipse.org">Eclipse/WSAD</a>. It is available from <a href="http://www.atlas-sw.com">http://www.atlas-sw.com</a>.</li>
+
+          <li class="body">Mark Lussier has written a plug-in to integrate Checkstyle with <a href="http://www.intellij.com/idea/">IntelliJ IDEA</a>. It is available from <a href="http://www.intellij.org/twiki/bin/view/Main/JetStylePlugin">http://www.intellij.org/twiki/bin/view/Main/JetStylePlugin</a>.</li>
+
           <li class="body">The <a href="http://jakarta.apache.org/turbine/maven">Maven</a> project management system provides support for Checkstyle. Configuration documentation is available from <a href="http://jakarta.apache.org/turbine/maven/ref/properties.html#Checkstyle Settings">here</a> and an example report <a href="http://jakarta.apache.org/turbine/maven/checkstyle-report.html">here</a>.</li>
+
+          <li class="body">Xandy Johnson has written a file-type plug-in to integrate Checkstyle with the <a href="http://www.vim.org">Vim editor</a>. It is available from <a href="http://vim.sourceforge.net/script.php?script_id=448">here</a>.</li>
 
           <li class="body">Todd Papaioannou has written <a href="http://plugins.jedit.org/plugins/CheckStylePlugin">CheckStylePlugin</a> to integrate Checkstyle with the very cool <a href="http://www.jedit.org/">jEdit</a> editor.</li>
 
@@ -172,9 +158,7 @@
 
           <li class="body">The <a href="http://www.krysalis.org/centipede/">Krysalis Centipede</a> build system provides a plug-in for Checkstyle. Documentation  is available from <a href="http://www.krysalis.org/centipede/centipede/">http://www.krysalis.org/centipede/centipede/</a>.</li>
 
-	  <li class="body">Angus Chan has written <a href="http://jbcheckstyle.sourceforge.net">jbCheckStyle</a>, an Open Tool for JBuilder.</li>
-
-	  <li class="body">David Schneider has written a plug-in to integrate Checkstyle with <a href="http://www.eclipse.org">Eclipse/WSAD</a>. It is available from <a href="http://www.telesynthesis.com">http://www.telesynthesis.com</a>.</li>
+          <li class="body">Angus Chan has written <a href="http://jbcheckstyle.sourceforge.net">jbCheckStyle</a>, an Open Tool for JBuilder.</li>
 
           <li class="body">Markus Mohnen has written a nice interface to Checkstyle for the <a href="http://jde.sunsite.dk">Emacs JDE</a>. It is now part of the standard JDE distribution.</li>
 
@@ -182,7 +166,7 @@
 
       <p class="body">
 
-        If you have written a plugin for other IDEs, like <a href="http://www.webgain.com">VisualCaf&eacute;</a>, please <a href="mailto:checkstyle@puppycrawl.com">let us know</a>, so we can provide a link here.
+        If you have written a plugin for other IDEs, please <a href="mailto:checkstyle@puppycrawl.com">let us know</a>, so we can provide a link here.
 
       </p>
     </td>
