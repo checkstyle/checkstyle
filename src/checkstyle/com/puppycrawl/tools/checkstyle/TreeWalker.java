@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
  * @version 1.0
  */
 public final class TreeWalker
-        extends AbstractFileSetCheck
+    extends AbstractFileSetCheck
 {
     /**
      * Overrides ANTLR error reporting so we completely control
@@ -144,36 +144,6 @@ public final class TreeWalker
         mClassLoader = aClassLoader;
     }
 
-//    public void configure(Configuration aConfiguration)
-//            throws CheckstyleException
-//    {
-//        super.configure(aConfiguration);
-//        mConfig = aConfiguration;
-//
-//        DefaultContext checkContext = new DefaultContext();
-//        checkContext.add("classLoader", mClassLoader);
-//        checkContext.add("messages", mMessages);
-//        // TODO: hmmm.. this looks less than elegant
-//        checkContext.add("tabWidth", String.valueOf(mTabWidth));
-//
-//        // TODO: improve the error handing
-//        Configuration[] checkConfigs = aConfiguration.getChildren();
-//        for (int i = 0; i < checkConfigs.length; i++) {
-//            final Configuration config = checkConfigs[i];
-//            // IMPORTANT! Need to use the same class loader that created this
-//            // class. Otherwise can get ClassCastException problems.
-//            final String className = config.getAttribute("classname");
-//            final Check check = createCheck(
-//                    this.getClass().getClassLoader(), className);
-//
-//            check.contextualize(checkContext);
-//            check.configure(config);
-//
-//            registerCheck(check);
-//        }
-//
-//    }
-
     public void configure(Configuration aConfiguration)
             throws CheckstyleException
     {
@@ -203,7 +173,6 @@ public final class TreeWalker
 
             registerCheck(check);
         }
-
     }
 
     /**
@@ -253,7 +222,7 @@ public final class TreeWalker
         }
         else {
             getMessageDispatcher().fireErrors(
-                    fileName, mMessages.getMessages());
+                fileName, mMessages.getMessages());
         }
 
         getMessageDispatcher().fireFileFinished(fileName);
@@ -268,13 +237,13 @@ public final class TreeWalker
     {
         final Set checkTokens = aCheck.getTokenNames();
         if (!checkTokens.isEmpty()) {
-            int acceptableTokens[] = aCheck.getAcceptableTokens();
+            final int acceptableTokens[] = aCheck.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
             final Iterator it = checkTokens.iterator();
             while (it.hasNext()) {
                 final String token = (String) it.next();
                 try {
-                    int tokenId = TokenTypes.getTokenId(token);                    
+                    final int tokenId = TokenTypes.getTokenId(token);                    
                     if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
                         registerCheck(token, aCheck);
                     }
@@ -404,8 +373,8 @@ public final class TreeWalker
     private void notifyVisit(DetailAST aAST)
     {
         final ArrayList visitors =
-            (ArrayList) mTokenToChecks.get(TokenTypes.getTokenName(
-                                               aAST.getType()));
+            (ArrayList) mTokenToChecks.get(
+                TokenTypes.getTokenName(aAST.getType()));
         if (visitors != null) {
             final Map ctx = new HashMap();
             for (int i = 0; i < visitors.size(); i++) {
@@ -423,8 +392,8 @@ public final class TreeWalker
     private void notifyLeave(DetailAST aAST)
     {
         final ArrayList visitors =
-            (ArrayList) mTokenToChecks.get(TokenTypes.getTokenName(
-                                               aAST.getType()));
+            (ArrayList) mTokenToChecks.get(
+                TokenTypes.getTokenName(aAST.getType()));
         if (visitors != null) {
             for (int i = 0; i < visitors.size(); i++) {
                 final Check check = (Check) visitors.get(i);
