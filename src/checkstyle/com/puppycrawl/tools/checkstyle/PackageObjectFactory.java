@@ -18,21 +18,52 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * A factory for creating objects from package names and names.
- * <code>PackageObjectFactory</code> has no public constructor.
  * @author Rick Giles
- * @version 4-Dec-2002
+ * @author lkuehne
+ * @version $Revision$
  */
-public class PackageObjectFactory
+class PackageObjectFactory implements ModuleFactory
 {
+    /**
+     * The class loader to use for creating Objects.
+     * Note: This is currently not configurable, we always use the
+     * classloader that created Checkstyle.
+     */
+    private ClassLoader mLoader = this.getClass().getClassLoader();
+
+    /** a list of package names to prepend to class names */
+    private List mPackages = new ArrayList();
+
     /**
      * Creates a new <code>PackageObjectFactory</code> instance.
      */
-    private PackageObjectFactory()
+    PackageObjectFactory()
     {
+    }
+
+    /**
+     * Helper for testing.
+     * @return the package names that have been added
+     */
+    String[] getPackages()
+    {
+        return (String[]) mPackages.toArray(new String[mPackages.size()]);
+    }
+
+    /**
+     * Registers a package name to use for shortName resolution.
+     * @param aPackageName the package name
+     */
+    void addPackage(String aPackageName)
+    {
+        mPackages.add(aPackageName);
     }
 
     /**
@@ -40,30 +71,27 @@ public class PackageObjectFactory
      * a classname, creates an instance of the named class. Otherwise, creates
      * an instance of a classname obtained by concatenating the given
      * to a package name from a given list of package names.
-     * @param aPackages list of package names.
-     * @param aLoader the <code>ClassLoader</code> to create the instance with.
      * @param aName the name of a class.
-     * @return the <code>Object</code> created by aLoader.
+     * @return the <code>Object</code>
      * @throws CheckstyleException if an error occurs.
      */
-    private Object doMakeObject(String[] aPackages,
-                                ClassLoader aLoader,
-                                String aName)
+    private Object doMakeObject(String aName)
         throws CheckstyleException
     {
         //try aName first
         try {
-            return createObject(aLoader, aName);
+            return createObject(aName);
         }
         catch (CheckstyleException ex) {
             ; // keep looking
         }
 
         //now try packages
-        for (int i = 0; i < aPackages.length; i++) {
-            final String className = aPackages[i] + aName;
+        for (int i = 0; i < mPackages.size(); i++) {
+            final String packageName = (String) mPackages.get(i);
+            final String className = packageName + aName;
             try {
-                return createObject(aLoader, className);
+                return createObject(className);
             }
             catch (CheckstyleException ex) {
                 ; // keep looking
@@ -75,16 +103,15 @@ public class PackageObjectFactory
 
     /**
      * Creates a new instance of a named class.
-     * @param aLoader the <code>ClassLoader</code> to create the instance with.
      * @param aClassName the name of the class to instantiate.
-     * @return the <code>Object</code> created by aLoader.
+     * @return the <code>Object</code> created by mLoader.
      * @throws CheckstyleException if an error occurs.
      */
-    private Object createObject(ClassLoader aLoader, String aClassName)
+    private Object createObject(String aClassName)
         throws CheckstyleException
     {
         try {
-            final Class clazz = Class.forName(aClassName, true, aLoader);
+            final Class clazz = Class.forName(aClassName, true, mLoader);
             return clazz.newInstance();
         }
         catch (ClassNotFoundException e) {
@@ -107,25 +134,20 @@ public class PackageObjectFactory
      * a classname, creates an instance of the named class. Otherwise, creates
      * an instance of a classname obtained by concatenating the given name
      * to a package name from a given list of package names.
-     * @param aPackages list of package names.
-     * @param aLoader the <code>ClassLoader</code> to create the instance with.
      * @param aName the name of a class.
      * @return the <code>Object</code> created by aLoader.
      * @throws CheckstyleException if an error occurs.
      */
-    public static Object makeObject(String[] aPackages, ClassLoader aLoader,
-        String aName)
+    public Object createModule(String aName)
         throws CheckstyleException
     {
-        final PackageObjectFactory factory = new PackageObjectFactory();
         try {
-            return factory.doMakeObject(aPackages, aLoader, aName);
+            return doMakeObject(aName);
         }
         catch (CheckstyleException ex) {
             //try again with suffix "Check"
             try {
-                return factory.
-                    doMakeObject(aPackages, aLoader, aName + "Check");
+                return doMakeObject(aName + "Check");
             }
             catch (CheckstyleException ex2) {
                 throw new CheckstyleException(

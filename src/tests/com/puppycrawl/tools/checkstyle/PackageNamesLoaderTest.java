@@ -11,23 +11,24 @@ import junit.framework.TestCase;
 /**
  * Enter a description of class PackageNamesLoaderTest.java.
  * @author Rick Giles
- * @version 8-Dec-2002
+ * @author lkuehne
+ * @version $Revision$
  */
 public class PackageNamesLoaderTest extends TestCase
 {
     public void testDefault()
         throws CheckstyleException
     {
-        String[] pkgNames = PackageNamesLoader.loadPackageNames(
+        ModuleFactory moduleFactory = PackageNamesLoader.loadModuleFactory(
             this.getClass().getClassLoader());
-        validatePackageNames(pkgNames);
+        validateFactory(moduleFactory);
     }
     
     public void testNoFile()
         throws CheckstyleException
     {
         try {
-            PackageNamesLoader.loadPackageNames("NoFile");
+            PackageNamesLoader.loadModuleFactory("NoFile");
             fail("Loaded non-existant file.");
         }
         catch (CheckstyleException ex) {
@@ -40,17 +41,21 @@ public class PackageNamesLoaderTest extends TestCase
     public void testFile()
         throws CheckstyleException
     {
-        String[] pkgNames =
-            PackageNamesLoader.loadPackageNames("src/checkstyle/checkstyle_packages.xml");
-        validatePackageNames(pkgNames);
+        ModuleFactory moduleFactory =
+            PackageNamesLoader.loadModuleFactory("src/checkstyle/checkstyle_packages.xml");
+        validateFactory(moduleFactory);
     }
     
-    private void validatePackageNames(String[] pkgNames)
+    private void validateFactory(ModuleFactory aModuleFactory)
     {
         String[] checkstylePackages = {
             "com.puppycrawl.tools.checkstyle.",
             "com.puppycrawl.tools.checkstyle.checks."
         };
+
+        PackageObjectFactory factory = (PackageObjectFactory) aModuleFactory;
+        String[] pkgNames = factory.getPackages();
+
         assertEquals("pkgNames.length.", checkstylePackages.length,
             pkgNames.length);
         Set checkstylePackagesSet =

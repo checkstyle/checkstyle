@@ -13,14 +13,19 @@ import junit.framework.TestCase;
 public class PackageObjectFactoryTest extends TestCase
 {
 
+    private PackageObjectFactory mFactory = new PackageObjectFactory();
+
+    public void setUp()
+    {
+        mFactory = new PackageObjectFactory();
+    }
+
     public void testMakeObjectFromName()
         throws CheckstyleException
     {
         final PackageObjectFactory factory =
-            (PackageObjectFactory) PackageObjectFactory.makeObject(
-                new String[] {},
-                getClass().getClassLoader(),
-                "com.puppycrawl.tools.checkstyle.PackageObjectFactory");
+                (PackageObjectFactory) mFactory.createModule(
+                        "com.puppycrawl.tools.checkstyle.PackageObjectFactory");
         assertNotNull(factory);
     }
 
@@ -28,21 +33,18 @@ public class PackageObjectFactoryTest extends TestCase
         throws CheckstyleException
     {
         final ConstantNameCheck check =
-            (ConstantNameCheck) PackageObjectFactory.makeObject(
-                new String[] {},
-                getClass().getClassLoader(),
-                "com.puppycrawl.tools.checkstyle.checks.ConstantName");
+                (ConstantNameCheck) mFactory.createModule(
+                        "com.puppycrawl.tools.checkstyle.checks.ConstantName");
         assertNotNull(check);
     }
     
     public void testMakeObectFromList()
         throws CheckstyleException
-    {    
+    {
+        mFactory.addPackage("com.");
         final PackageObjectFactory factory =
-            (PackageObjectFactory) PackageObjectFactory.makeObject(
-                new String [] {"com."},
-                this.getClass().getClassLoader(),
-                "puppycrawl.tools.checkstyle.PackageObjectFactory");
+                (PackageObjectFactory) mFactory.createModule(
+                        "puppycrawl.tools.checkstyle.PackageObjectFactory");
         assertNotNull(factory);
     }
     
@@ -50,9 +52,7 @@ public class PackageObjectFactoryTest extends TestCase
         throws CheckstyleException
     {
         try {
-            PackageObjectFactory.makeObject(new String[] {},
-                                            getClass().getClassLoader(),
-                                            "NoClass");
+            mFactory.createModule("NoClass");
             fail("Instantiated non-existant class");
         }
         catch (CheckstyleException ex) {

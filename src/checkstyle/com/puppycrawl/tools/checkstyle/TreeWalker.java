@@ -125,6 +125,9 @@ public final class TreeWalker
      */
     private Field mDetailASTmParent;
 
+    /** a factory for creating submodules (i.e. the Checks) */
+    private ModuleFactory mModuleFactory;
+
     /**
      * Creates a new <code>TreeWalker</code> instance.
      */
@@ -168,6 +171,15 @@ public final class TreeWalker
         mClassLoader = aClassLoader;
     }
 
+    /**
+     * Sets the module factory for creating child modules (Checks).
+     * @param aModuleFactory the factory
+     */
+    public void setModuleFactory(ModuleFactory aModuleFactory)
+    {
+        mModuleFactory = aModuleFactory;
+    }
+
     /** @see com.puppycrawl.tools.checkstyle.api.Configurable */
     public void finishLocalSetup()
     {
@@ -175,6 +187,8 @@ public final class TreeWalker
         checkContext.add("classLoader", mClassLoader);
         checkContext.add("messages", mMessages);
         // TODO: hmmm.. this looks less than elegant
+        // we have just parsed the string,
+        // now we're recreating it only to parse it again a few moments later
         checkContext.add("tabWidth", String.valueOf(mTabWidth));
 
         mChildContext = checkContext;
@@ -189,16 +203,8 @@ public final class TreeWalker
             throws CheckstyleException
     {
         // TODO: improve the error handing
-
-        // IMPORTANT! Need to use the same class loader that created this
-        // class. Otherwise can get ClassCastException problems.
         final String name = aChildConf.getName();
-        final String[] packageNames = getPackageNames();
-        final Check c =
-            (Check) PackageObjectFactory.makeObject(
-                packageNames,
-                getClass().getClassLoader(),
-                name);
+        final Check c = (Check) mModuleFactory.createModule(name);
         c.contextualize(mChildContext);
         c.configure(aChildConf);
         c.init();

@@ -16,34 +16,32 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.api;
+package com.puppycrawl.tools.checkstyle;
 
-import java.io.File;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
- * Interface for Checking a set of files for some criteria.
+ * A module factory creates Objects from a given name.
+ * It's purpose is to map the shortnames like
+ * <code>AvoidStarImport</code> to full classnames like
+ * <code>com.puppycrawl.tools.checkstyle.checks.AvoidStarImportCheck</code>.
+ * A ModuleFactory can implement this name resolution by using naming
+ * conventions, fallback strategies, etc.
  *
  * @author lkuehne
+ * @version $Revision: 1.1 $
  */
-public interface FileSetCheck
-    extends Configurable, Contextualizable
+public interface ModuleFactory
 {
     /**
-     * Sets the MessageDispatcher that is used to dispatch error
-     * messages to AuditListeners during processing.
-     * @param aDispatcher the dispatcher
+     * Creates a new instance of a class from a given name.
+     * If the provided module name is a class name an instance of that class
+     * is returned. If the name is not a class name the ModuleFactory uses
+     * heuristics to find the corresponding class.
+     *
+     * @param aName the name of the module, might be a shortname
+     * @return the created module
+     * @throws CheckstyleException if no module can be instantiated from aName
      */
-    void setMessageDispatcher(MessageDispatcher aDispatcher);
-
-    /**
-     * Processes a set of files and fires errors to the MessageDispatcher.
-     * Once this is done, it is highly recommended to call for
-     * the destroy method to close and remove the listeners.
-     * @param aFiles the files to be audited.
-     * @see #destroy()
-     */
-    void process(File[] aFiles);
-
-    /** Cleans up the object **/
-    void destroy();
+    Object createModule(String aName) throws CheckstyleException;
 }
