@@ -238,6 +238,13 @@ class Verifier
         // Always check that the order of modifiers follows the JLS suggestion
         checkModOrder(aSig.getModSet());
 
+        // Check for to many parameters
+        // TODO: Add documentation and a test
+        if (aSig.getParams().size() > mConfig.getMaxParameters()) {
+            log(aSig.getFirstLineNo(),
+                aSig.getFirstColNo(),
+                "More than " + mConfig.getMaxParameters() + " parameters.");
+        }
         // JLS, chapter 9.4 - public in interface is strongly discouraged
         if (!mConfig.isIgnorePublicInInterface() && inInterfaceBlock()
             && aSig.getModSet().containsPublic())

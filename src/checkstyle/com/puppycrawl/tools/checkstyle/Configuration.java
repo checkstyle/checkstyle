@@ -80,6 +80,8 @@ public class Configuration
     private static final int MAX_CONSTRUCTOR_LENGTH = 150;
     /** the maximum file length **/
     private static final int MAX_FILE_LENGTH = 2000;
+    /** the maximum number parameters **/
+    private static final int MAX_PARAMETERS = 5;
     /** the set of illegal imports (comma separated package prefixes) **/
     private static final String ILLEGAL_IMPORTS = "sun";
     /** the set of illegal instantiations (comma separated class names) **/
@@ -135,6 +137,7 @@ public class Configuration
         mIntProps.put(Defn.MAX_CONSTRUCTOR_LENGTH_PROP,
                       new Integer(MAX_CONSTRUCTOR_LENGTH));
         mIntProps.put(Defn.MAX_FILE_LENGTH_PROP, new Integer(MAX_FILE_LENGTH));
+        mIntProps.put(Defn.MAX_PARAMETERS_PROP, new Integer(MAX_PARAMETERS));
         mIntProps.put(Defn.TAB_WIDTH_PROP, new Integer(TAB_WIDTH));
     }
 
@@ -436,6 +439,12 @@ public class Configuration
     public int getMaxMethodLength()
     {
         return getIntProperty(Defn.MAX_METHOD_LENGTH_PROP);
+    }
+
+    /** @return the maximum number parameters**/
+    public int getMaxParameters()
+    {
+        return getIntProperty(Defn.MAX_PARAMETERS_PROP);
     }
 
     /** @return the maximum constructor length **/
