@@ -19,7 +19,7 @@
 package com.puppycrawl.tools.checkstyle.filter;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditEventFilter;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
@@ -29,13 +29,15 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * If there is an exact match between the value of the
  * severity option and the severity of the AuditEvent,
  * then the decide(AuditEvent) method
- * returns AbstractFilter.ACCEPT in case the acceptOnMatch option value is
- * set to true, if it is false then AbstractFilter.DENY is returned.
- * If there is no match, AbstractFilter.NEUTRAL is returned.
+ * returns Filter.ACCEPT in case the acceptOnMatch option value is
+ * set to true, if it is false then Filter.DENY is returned.
+ * If there is no match, or the filtered Object is not
+ * an AuditEvent, Filter.NEUTRAL is returned.
  * @author Rick Giles
  */
 public class SeverityMatchFilter
-    extends AuditEventFilter
+    extends AutomaticBean
+    implements Filter
 {
     /** the severity level to accept */
     private SeverityLevel mSeverityLevel = SeverityLevel.ERROR;
@@ -91,6 +93,10 @@ public class SeverityMatchFilter
     /** @see com.puppycrawl.tools.checkstyle.filter.Filter */
     public int decide(Object aObject)
     {
+        if (!(aObject instanceof AuditEvent)) {
+            return Filter.NEUTRAL;
+        }
+
         final AuditEvent event = (AuditEvent) aObject;
 
         if (mSeverityLevel == null) {
