@@ -566,11 +566,11 @@
     <move toDir="src/checkstyle">
       <fileset dir="src/checkstyle" includes="**/Generated*.java" />
       <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
-      <fileset dir="src/checkstyle" includes="**/MyCommonAST.java" />
+      <fileset dir="src/checkstyle" includes="**/gui/" />
       <mapper type="glob" from="*" to="*.HIDING"/>
     </move>
     <javadoc sourcepath="src/checkstyle" destdir="docs/api"
-             packagenames="com.puppycrawl.tools.checkstyle"
+             packagenames="com.puppycrawl.tools.checkstyle.*"
              Windowtitle="Checkstyle API"
              classpathref="javadoc.classpath" />
     <move toDir="src/checkstyle">
