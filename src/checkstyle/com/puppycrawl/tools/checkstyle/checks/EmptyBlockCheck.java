@@ -22,11 +22,42 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Check that reports empty blocks.
+ * Checks for empty blocks. The policy to verify is specified using the {@link
+ * BlockOption} class and defaults to {@link BlockOption#STMT}.
+ *
+ * <p> By default the check will check the following blocks:
+ *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE},
+ *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY},
+ *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
+ *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
+ *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
+ *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
+ *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
+ *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
+ *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
+ *
+ * <p> An example of how to configure the check is:
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck"/&gt;
+ * </pre>
+ *
+ * <p> An example of how to configure the check for the {@link
+ * BlockOption#TEXT} policy and only catch blocks is:
+ *
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck"&gt;
+ *
+ *    &lt;tokens&gt;LITERAL_CATCH&lt;/tokens&gt;
+ *    &lt;property name="option" value="text"/&gt;
+ * &lt;/check&gt;
+ * </pre>
  *
  * @author Lars Kühne
  */
-public class EmptyBlockCheck extends AbstractOptionCheck
+public class EmptyBlockCheck
+    extends AbstractOptionCheck
 {
     /**
      * Creates a new <code>EmptyBlockCheck</code> instance.
