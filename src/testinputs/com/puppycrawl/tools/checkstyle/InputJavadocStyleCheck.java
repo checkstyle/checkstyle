@@ -87,6 +87,7 @@ public class InputJavadocStyleCheck
    
    /**
     * Public check should fail</code>
+    * should fail <
     */
    public void method8()
    {

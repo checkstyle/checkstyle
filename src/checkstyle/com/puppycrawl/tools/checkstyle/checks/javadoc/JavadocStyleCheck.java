@@ -24,6 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+import java.util.NoSuchElementException;
 import java.util.Stack;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
@@ -271,7 +273,19 @@ public class JavadocStyleCheck
         final Stack htmlStack = new Stack();
 
         for (int i = 0; i < aComment.length; i++) {
-            final TagParser parser = new TagParser(aComment[i], lineno + i);
+            TagParser parser = null;
+            try {
+                // Can throw NoSuchElementException when tokenizing encounters
+                // "<" at end of aComment[i].
+                parser = new TagParser(aComment[i], lineno + i);
+            }
+            catch (NoSuchElementException e) {
+                log(
+                    lineno + i,
+                    "javadoc.incompleteTag",
+                    new Object[] {aComment[i]});
+                return;
+            }
             while (parser.hasNextTag()) {
                 final HtmlTag tag = parser.nextTag();
 
