@@ -9,6 +9,7 @@
     <package name="checks">
       <package name="imports"/>
       <package name="javadoc"/>
+      <package name="naming"/>
     </package>
   </package>
 </checkstyle-packages>
