@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.filter;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditEventFilter;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
@@ -34,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * @author Rick Giles
  */
 public class SeverityMatchFilter
-    extends Filter
+    extends AuditEventFilter
 {
     /** the severity level to accept */
     private SeverityLevel mSeverityLevel = SeverityLevel.ERROR;
@@ -87,15 +88,17 @@ public class SeverityMatchFilter
         return mAcceptOnMatch;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.filter.AbstractFilter */
-    public int decide(AuditEvent aEvent)
+    /** @see com.puppycrawl.tools.checkstyle.filter.Filter */
+    public int decide(Object aObject)
     {
+        final AuditEvent event = (AuditEvent) aObject;
+
         if (mSeverityLevel == null) {
             return Filter.NEUTRAL;
         }
 
         boolean matchOccurred = false;
-        if (mSeverityLevel.equals(aEvent.getSeverityLevel())) {
+        if (mSeverityLevel.equals(event.getSeverityLevel())) {
             matchOccurred = true;
         }
 

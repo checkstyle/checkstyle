@@ -16,33 +16,15 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.filter;
+package com.puppycrawl.tools.checkstyle.api;
 
-
-import com.puppycrawl.tools.checkstyle.api.Filter;
 
 /**
- * <p>
- * This filter drops all objects.
- * </p>
- * <p>You can add this filter to the end of a filter chain to
- * switch from the default "accept all unless instructed otherwise"
- * filtering behaviour to a "deny all unless instructed otherwise"
- * behaviour.
- * </p>
- * <p>
- * Modelled after the log4j DenyAllFilter.
- * </p>
  * @author Rick Giles
+ * @version 11-Jul-2003
  */
-public class DenyAllFilter
+public abstract class AuditEventFilter
+    extends AutomaticBean
     implements Filter
 {
-
-    /** @see com.puppycrawl.tools.checkstyle.filter.Filter */
-    public int decide(Object aObject)
-    {
-        return Filter.DENY;
-    }
-
 }
