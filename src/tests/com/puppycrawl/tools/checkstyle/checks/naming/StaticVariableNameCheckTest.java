@@ -1,19 +1,21 @@
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-public class MethodNameCheckTest
+public class StaticVariableNameCheckTest
     extends BaseCheckTestCase
 {
-    public void testDefault()
+    public void testSpecified()
         throws Exception
     {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(MethodNameCheck.class);
+            createCheckConfig(StaticVariableNameCheck.class);
+        checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
         final String[] expected = {
-            "137:10: Name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "30:24: Name 'badStatic' must match pattern '^s[A-Z][a-zA-Z0-9]*$'.",
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 }
+

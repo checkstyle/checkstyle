@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 
 import junit.framework.TestCase;
 
@@ -34,7 +34,7 @@ public class PackageObjectFactoryTest extends TestCase
     {
         final ConstantNameCheck check =
                 (ConstantNameCheck) mFactory.createModule(
-                        "com.puppycrawl.tools.checkstyle.checks.ConstantName");
+                        "com.puppycrawl.tools.checkstyle.checks.naming.ConstantName");
         assertNotNull(check);
     }
     
