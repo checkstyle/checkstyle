@@ -20,19 +20,16 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
 import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -46,16 +43,6 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 public class Configuration
     implements Serializable
 {
-    ////////////////////////////////////////////////////////////////////////////
-    // Constants
-    ////////////////////////////////////////////////////////////////////////////
-
-    /** pattern defaults **/
-    private static final Map PATTERN_DEFAULTS = new HashMap();
-    static {
-        PATTERN_DEFAULTS.put(Defn.TODO_PATTERN_PROP, "TODO:");
-    }
-
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
     ////////////////////////////////////////////////////////////////////////////
@@ -75,12 +62,6 @@ public class Configuration
     {
         mIntProps.put(Defn.TAB_WIDTH_PROP, new Integer(8));
     }
-
-
-    /** map of all the pattern properties **/
-    private final Map mPatterns = new HashMap();
-    /** map of all the corresponding RE objects for pattern properties **/
-    private transient Map mRegexps = new HashMap();
 
     /** map of all String properties - by default are null **/
     private final Map mStringProps = new HashMap();
@@ -112,10 +93,6 @@ public class Configuration
             setBooleanProperty(aProps, Defn.ALL_BOOLEAN_PROPS[i]);
         }
 
-        for (int i = 0; i < Defn.ALL_PATTERN_PROPS.length; i++) {
-            setPatternProperty(aProps, Defn.ALL_PATTERN_PROPS[i]);
-        }
-
         for (int i = 0; i < Defn.ALL_INT_PROPS.length; i++) {
             setIntProperty(aProps, aLog, Defn.ALL_INT_PROPS[i]);
         }
@@ -131,17 +108,6 @@ public class Configuration
      */
     public Configuration()
     {
-        try {
-            for (int i = 0; i < Defn.ALL_PATTERN_PROPS.length; i++) {
-                setPatternProperty(
-                    Defn.ALL_PATTERN_PROPS[i],
-                    (String) PATTERN_DEFAULTS.get(Defn.ALL_PATTERN_PROPS[i]));
-            }
-        }
-        catch (RESyntaxException ex) {
-            ex.printStackTrace();
-            throw new IllegalStateException(ex.getMessage());
-        }
     }
 
     /**
@@ -160,22 +126,6 @@ public class Configuration
 
         // initialize the transient fields
         mLoader = Thread.currentThread().getContextClassLoader();
-        mRegexps = new HashMap();
-
-        try {
-            // Loop on the patterns creating the RE's
-            final Iterator keys = mPatterns.keySet().iterator();
-            while (keys.hasNext()) {
-                final String k = (String) keys.next();
-                mRegexps.put(k, new RE((String) mPatterns.get(k)));
-            }
-        }
-        catch (RESyntaxException ex) {
-            // This should never happen, as the serialized regexp patterns
-            // somehow must have passed a setPattern() method.
-            throw new InvalidObjectException(
-                "invalid regular expression syntax");
-        }
     }
 
 
@@ -208,11 +158,6 @@ public class Configuration
             retVal.put(key, String.valueOf(getBooleanProperty(key)));
         }
 
-        for (int i = 0; i < Defn.ALL_PATTERN_PROPS.length; i++) {
-            final String key = Defn.ALL_PATTERN_PROPS[i];
-            Utils.addObjectString(retVal, key, getPatternProperty(key));
-        }
-
         for (int i = 0; i < Defn.ALL_INT_PROPS.length; i++) {
             final String key = Defn.ALL_INT_PROPS[i];
             Utils.addObjectString(retVal, key,
@@ -243,18 +188,6 @@ public class Configuration
     String getLocaleCountry()
     {
         return getStringProperty(Defn.LOCALE_COUNTRY_PROP);
-    }
-
-    /** @return pattern to match to-do lines **/
-    String getTodoPat()
-    {
-        return getPatternProperty(Defn.TODO_PATTERN_PROP);
-    }
-
-    /** @return regexp to match to-do lines **/
-    RE getTodoRegexp()
-    {
-        return getRegexpProperty(Defn.TODO_PATTERN_PROP);
     }
 
     /** @return distance between tab stops */
@@ -316,56 +249,9 @@ public class Configuration
         mIntProps.put(aName, new Integer(aTo));
     }
 
-    /**
-     * Set an pattern property.
-     * @param aName name of the property to set
-     * @param aPat the value to set
-     * @throws RESyntaxException if an error occurs
-     */
-    private void setPatternProperty(String aName, String aPat)
-        throws RESyntaxException
-    {
-        // Set the regexp first, incase cannot create the RE
-        mRegexps.put(aName, new RE(aPat));
-        mPatterns.put(aName, aPat);
-    }
-
     ////////////////////////////////////////////////////////////////////////////
     // Private methods
     ////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Set the value of an pattern property. If the property is not defined
-     *    then a default value is used.
-     * @param aProps the properties set to use
-     * @param aName the name of the property to parse
-     * @throws RESyntaxException if an error occurs
-     */
-    private void setPatternProperty(Properties aProps, String aName)
-        throws RESyntaxException
-    {
-        setPatternProperty(
-            aName,
-            aProps.getProperty(aName, (String) PATTERN_DEFAULTS.get(aName)));
-    }
-
-    /**
-     * @return the pattern for specified property
-     * @param aName the name of the property
-     */
-    private String getPatternProperty(String aName)
-    {
-        return (String) mPatterns.get(aName);
-    }
-
-    /**
-     * @return the regexp for specified property
-     * @param aName the name of the property
-     */
-    private RE getRegexpProperty(String aName)
-    {
-        return (RE) mRegexps.get(aName);
-    }
 
     /**
      * @return an integer property
