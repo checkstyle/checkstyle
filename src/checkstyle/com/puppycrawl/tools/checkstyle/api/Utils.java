@@ -173,4 +173,13 @@ public final class Utils
         return retVal;
     }
 
+    /**
+     * @return the base class name from a fully qualified name
+     * @param aType the fully qualified name. Cannot be null
+     */
+    public static String baseClassname(String aType)
+    {
+        final int i = aType.lastIndexOf(".");
+        return (i == -1) ? aType : aType.substring(i + 1);
+    }
 }
