@@ -41,16 +41,17 @@ public abstract class BaseCheckTestCase
         return checkConfig;
     }
 
-    protected Checker createChecker(Configuration aConfig)
+    protected Checker createChecker(Configuration aCheckConfig)
         throws Exception
     {
-        throw new IllegalStateException("not implemented yet");
-//        final DefaultConfiguration dc = new DefaultConfiguration("root");
-//        dc.addChild(aConfig);
-//        final Checker c = new Checker();
-//        c.configure(aConfig);
-//        c.addListener(new BriefLogger(mStream));
-//        return c;
+        final DefaultConfiguration dc = new DefaultConfiguration("root");
+        final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
+        dc.addChild(twConf);
+        twConf.addChild(aCheckConfig);
+        final Checker c = new Checker();
+        c.configure(dc);
+        c.addListener(new BriefLogger(mStream));
+        return c;
     }
 
     protected static String getPath(String aFilename)
