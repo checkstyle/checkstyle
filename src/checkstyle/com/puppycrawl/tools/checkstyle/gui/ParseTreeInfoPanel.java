@@ -116,12 +116,12 @@ public class ParseTreeInfoPanel extends JPanel
                 mParseTreeModel.setParseTree(parseTree);
             }
             catch (IOException ex) {
-                JOptionPane.showMessageDialog(
+                showErrorDialog(
                         aParent,
                         "Could not open " + aFile + ": " + ex.getMessage());
             }
             catch (ANTLRException ex) {
-                JOptionPane.showMessageDialog(
+                showErrorDialog(
                         aParent,
                         "Could not parse " + aFile + ": " + ex.getMessage());
             }
