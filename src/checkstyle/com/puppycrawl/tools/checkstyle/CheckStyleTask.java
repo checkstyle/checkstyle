@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 import java.util.Properties;
 import java.io.FileInputStream;
 import org.apache.regexp.RESyntaxException;
@@ -69,26 +70,31 @@ public class CheckStyleTask
     /** the properties **/
     private Properties mProperties = null;
 
+    /**
+     * holds Runnables that change mConfig just
+     * before the Checker is created.
+     */
+    private final ArrayList mOptionMemory = new ArrayList();
+
     ////////////////////////////////////////////////////////////////////////////
-    // Setters for attributes
+    // Setters for ANT specific attributes
     ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Sets a properties file for use instead
-     * of individually setting them
-     * @param aProps the properties File to use
+     * Tells this task to set the named property to "true" when there
+     * is a violation.
+     * @param aPropertyName the name of the property to set
+     *                      in the event of an failure.
      */
-    public void setProperties(File aProps)
+    public void setFailureProperty(String aPropertyName)
     {
-        Properties mProperties = new Properties();
-        try {
-            mProperties.load(new FileInputStream(aProps));
-            mConfig = new Configuration(mProperties, System.out);
-        }
-        catch (Exception e) {
-            throw new BuildException(
-                "Could not find Properties file '" + aProps + "'", location);
-        }
+        mFailureProperty = aPropertyName;
+    }
+
+    /** @param aFail whether to fail if a violation is found **/
+    public void setFailOnViolation(boolean aFail)
+    {
+        mFailOnViolation = aFail;
     }
 
     /**
@@ -116,285 +122,509 @@ public class CheckStyleTask
         mFileName = aFile.getAbsolutePath();
     }
 
-    /** @param aAllowed whether tabs are allowed **/
-    public void setAllowTabs(boolean aAllowed)
+    ////////////////////////////////////////////////////////////////////////////
+    // Setters for Checker configuration attributes
+    ////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Sets a properties file for use instead
+     * of individually setting them.
+     * @param aProps the properties File to use
+     */
+    public void setProperties(File aProps)
     {
-        mConfig.setAllowTabs(aAllowed);
+        Properties mProperties = new Properties();
+        try {
+            mProperties.load(new FileInputStream(aProps));
+            mConfig = new Configuration(mProperties, System.out);
+        }
+        catch (Exception e) {
+            throw new BuildException(
+                "Could not find Properties file '" + aProps + "'", location);
+        }
+    }
+
+    /** @param aAllowed whether tabs are allowed **/
+    public void setAllowTabs(final boolean aAllowed)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setAllowTabs(aAllowed);
+                }
+            });
     }
 
     /** @param aAllowed whether protected data is allowed **/
-    public void setAllowProtected(boolean aAllowed)
+    public void setAllowProtected(final boolean aAllowed)
     {
-        mConfig.setAllowProtected(aAllowed);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setAllowProtected(aAllowed);
+                }
+            });
     }
 
     /** @param aAllowed whether package visible data is allowed **/
-    public void setAllowPackage(boolean aAllowed)
+    public void setAllowPackage(final boolean aAllowed)
     {
-        mConfig.setAllowPackage(aAllowed);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setAllowPackage(aAllowed);
+                }
+            });
     }
 
     /** @param aAllowed whether allow having no author **/
-    public void setAllowNoAuthor(boolean aAllowed)
+    public void setAllowNoAuthor(final boolean aAllowed)
     {
-        mConfig.setAllowNoAuthor(aAllowed);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setAllowNoAuthor(aAllowed);
+                }
+            });
     }
 
     /** @param aLen max allowed line length **/
-    public void setMaxLineLen(int aLen)
+    public void setMaxLineLen(final int aLen)
     {
-        mConfig.setMaxLineLength(aLen);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setMaxLineLength(aLen);
+                }
+            });
     }
 
     /** @param aLen max allowed method length **/
-    public void setMaxMethodLen(int aLen)
+    public void setMaxMethodLen(final int aLen)
     {
-        mConfig.setMaxMethodLength(aLen);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setMaxMethodLength(aLen);
+                }
+            });
     }
 
     /** @param aLen max allowed constructor length **/
-    public void setMaxConstructorLen(int aLen)
+    public void setMaxConstructorLen(final int aLen)
     {
-        mConfig.setMaxConstructorLength(aLen);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setMaxConstructorLength(aLen);
+                }
+            });
     }
 
     /** @param aLen max allowed file length **/
-    public void setMaxFileLen(int aLen)
+    public void setMaxFileLen(final int aLen)
     {
-        mConfig.setMaxFileLength(aLen);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setMaxFileLength(aLen);
+                }
+            });
     }
 
     /** @param aPat line length check exclusion pattern */
-    public void setIgnoreLineLengthPattern(String aPat)
+    public void setIgnoreLineLengthPattern(final String aPat)
     {
-        try {
-            mConfig.setIgnoreLineLengthPat(aPat);
-        }
-        catch (RESyntaxException ex) {
-            throw new BuildException(
-                "Unable to parse ignoreLineLengthPattern - ", ex);
-        }
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setIgnoreLineLengthPat(aPat);
+                    }
+                    catch (RESyntaxException ex) {
+                        throw new BuildException(
+                            "Unable to parse ignoreLineLengthPattern - ", ex);
+                    }
+                }
+            });
     }
 
     /** @param aIgnore whether max line length should be ignored for
      *                 import statements
      */
-    public void setIgnoreImportLen(boolean aIgnore)
+    public void setIgnoreImportLen(final boolean aIgnore)
     {
-        mConfig.setIgnoreImportLength(aIgnore);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setIgnoreImportLength(aIgnore);
+                }
+            });
     }
 
     /** @param aPat pattern for member variables **/
-    public void setMemberPattern(String aPat)
+    public void setMemberPattern(final String aPat)
     {
-        try {
-            mConfig.setMemberPat(aPat);
-        }
-        catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse memberPattern - ", ex);
-        }
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setMemberPat(aPat);
+                    }
+                    catch (RESyntaxException ex) {
+                        throw new BuildException(
+                            "Unable to parse memberPattern - ", ex);
+                    }
+                }
+            });
+
     }
 
     /** @param aPat pattern for public member variables **/
-    public void setPublicMemberPattern(String aPat)
+    public void setPublicMemberPattern(final String aPat)
     {
-        try {
-            mConfig.setPublicMemberPat(aPat);
-        }
-        catch (RESyntaxException ex) {
-            throw new BuildException(
-                "Unable to parse publicMemberPattern - ", ex);
-        }
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setPublicMemberPat(aPat);
+                    }
+                    catch (RESyntaxException ex) {
+                        throw new BuildException(
+                            "Unable to parse publicMemberPattern - ", ex);
+                    }
+                }
+            });
     }
 
     /** @param aPat pattern for parameters **/
-    public void setParamPattern(String aPat)
+    public void setParamPattern(final String aPat)
     {
-        try {
-            mConfig.setParamPat(aPat);
-        }
-        catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse paramPattern - ", ex);
-        }
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setParamPat(aPat);
+                    }
+                    catch (RESyntaxException ex) {
+                        throw new BuildException(
+                            "Unable to parse paramPattern - ", ex);
+                    }
+                }
+            });
     }
 
     /** @param aPat pattern for constant variables **/
-    public void setConstPattern(String aPat)
+    public void setConstPattern(final String aPat)
     {
-        try {
-            mConfig.setStaticFinalPat(aPat);
-        }
-        catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse constPattern - " , ex);
-        }
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setStaticFinalPat(aPat);
+                    }
+                    catch (RESyntaxException ex) {
+                        throw new BuildException(
+                            "Unable to parse constPattern - " , ex);
+                    }
+                }
+            });
     }
 
     /** @param aPat pattern for static variables **/
-    public void setStaticPattern(String aPat)
+    public void setStaticPattern(final String aPat)
     {
-        try {
-            mConfig.setStaticPat(aPat);
-        }
-        catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse staticPattern - ", ex);
-        }
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setStaticPat(aPat);
+                    }
+                    catch (RESyntaxException ex) {
+                        throw new BuildException(
+                            "Unable to parse staticPattern - ", ex);
+                    }
+                }
+            });
     }
 
     /** @param aPat pattern for type names **/
-    public void setTypePattern(String aPat)
+    public void setTypePattern(final String aPat)
     {
-        try {
-            mConfig.setTypePat(aPat);
-        }
-        catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse typePattern - ", ex);
-        }
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setTypePat(aPat);
+                    }
+                    catch (RESyntaxException ex) {
+                        throw new BuildException(
+                            "Unable to parse typePattern - ", ex);
+                    }
+                }
+            });
     }
 
     /** @param aPat pattern for local variables **/
-    public void setLocalVarPattern(String aPat)
+    public void setLocalVarPattern(final String aPat)
     {
-        try {
-            mConfig.setLocalVarPat(aPat);
-        }
-        catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse localVarPattern - ", ex);
-        }
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setLocalVarPat(aPat);
+                    }
+                    catch (RESyntaxException ex) {
+                        throw new BuildException(
+                            "Unable to parse localVarPattern - ", ex);
+                    }
+                }
+            });
     }
 
     /** @param aPat pattern for method names **/
-    public void setMethodPattern(String aPat)
+    public void setMethodPattern(final String aPat)
     {
-        try {
-            mConfig.setMethodPat(aPat);
-        }
-        catch (RESyntaxException ex) {
-            throw new BuildException("Unable to parse methodPattern - ", ex);
-        }
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setMethodPat(aPat);
+                    }
+                    catch (RESyntaxException ex) {
+                        throw new BuildException(
+                            "Unable to parse methodPattern - ", ex);
+                    }
+                }
+            });
     }
 
     /** @param aName header file name **/
-    public void setHeaderFile(File aName)
+    public void setHeaderFile(final File aName)
     {
-        try {
-            mConfig.setHeaderFile(aName.getAbsolutePath());
-        }
-        catch (IOException ex) {
-            throw new BuildException("Unable to read headerfile - ", ex);
-        }
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    try {
+                        mConfig.setHeaderFile(aName.getAbsolutePath());
+                    }
+                    catch (IOException ex) {
+                        throw new BuildException(
+                            "Unable to read headerfile - ", ex);
+                    }
+                }
+            });
     }
 
     /** @param aIsRegexp whether to interpret header lines as regexp */
-    public void setHeaderLinesRegexp(boolean aIsRegexp)
+    public void setHeaderLinesRegexp(final boolean aIsRegexp)
     {
-        mConfig.setHeaderLinesRegexp(aIsRegexp);
-    }
-
-    /** @param aFail whether to fail if a violation is found **/
-    public void setFailOnViolation(boolean aFail)
-    {
-        mFailOnViolation = aFail;
-    }
-
-    /**
-     * Tells this task to set the named property to "true" when there
-     * is a violation.
-     * @param aPropertyName the name of the property to set
-     *                      in the event of an failure.
-     */
-    public void setFailureProperty(String aPropertyName)
-    {
-        mFailureProperty = aPropertyName;
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setHeaderLinesRegexp(aIsRegexp);
+                }
+            });
     }
 
     /** @param aList Comma separated list of line numbers **/
-    public void setHeaderIgnoreLine(String aList)
+    public void setHeaderIgnoreLine(final String aList)
     {
-        mConfig.setHeaderIgnoreLines(aList);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setHeaderIgnoreLines(aList);
+                }
+            });
     }
 
     /** @param aJavadocScope visibility scope where Javadoc is checked **/
-    public void setJavadocScope(String aJavadocScope)
+    public void setJavadocScope(final String aJavadocScope)
     {
-        mConfig.setJavadocScope(Scope.getInstance(aJavadocScope));
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setJavadocScope(Scope.getInstance(aJavadocScope));
+                }
+            });
     }
 
     /** @param aRequirePackageHtml whether package.html is required **/
-    public void setRequirePackageHtml(boolean aRequirePackageHtml)
+    public void setRequirePackageHtml(final boolean aRequirePackageHtml)
     {
-        mConfig.setRequirePackageHtml(aRequirePackageHtml);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setRequirePackageHtml(aRequirePackageHtml);
+                }
+            });
     }
 
     /** @param aIgnore whether to ignore import statements **/
-    public void setIgnoreImports(boolean aIgnore)
+    public void setIgnoreImports(final boolean aIgnore)
     {
-        mConfig.setIgnoreImports(aIgnore);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setIgnoreImports(aIgnore);
+                }
+            });
     }
 
     /** @param aPkgPrefixList comma separated list of package prefixes */
-    public void setIllegalImports(String aPkgPrefixList)
+    public void setIllegalImports(final String aPkgPrefixList)
     {
-        mConfig.setIllegalImports(aPkgPrefixList);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setIllegalImports(aPkgPrefixList);
+                }
+            });
     }
 
     /** @param aIgnore whether to ignore whitespace **/
-    public void setIgnoreWhitespace(boolean aIgnore)
+    public void setIgnoreWhitespace(final boolean aIgnore)
     {
-        mConfig.setIgnoreWhitespace(aIgnore);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setIgnoreWhitespace(aIgnore);
+                }
+            });
     }
 
     /** @param aIgnore whether to ignore whitespace after casts **/
-    public void setIgnoreCastWhitespace(boolean aIgnore)
+    public void setIgnoreCastWhitespace(final boolean aIgnore)
     {
-        mConfig.setIgnoreCastWhitespace(aIgnore);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setIgnoreCastWhitespace(aIgnore);
+                }
+            });
     }
 
     /** @param aIgnore whether to ignore braces **/
-    public void setIgnoreBraces(boolean aIgnore)
+    public void setIgnoreBraces(final boolean aIgnore)
     {
-        mConfig.setIgnoreBraces(aIgnore);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setIgnoreBraces(aIgnore);
+                }
+            });
     }
 
     /** @param aIgnore whether to ignore 'public' in interfaces **/
-    public void setIgnorePublicInInterface(boolean aIgnore)
+    public void setIgnorePublicInInterface(final boolean aIgnore)
     {
-        mConfig.setIgnorePublicInInterface(aIgnore);
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setIgnorePublicInInterface(aIgnore);
+                }
+            });
     }
 
     /** @param aCacheFile the file to cache which files have been checked **/
-    public void setCacheFile(File aCacheFile)
+    public void setCacheFile(final File aCacheFile)
     {
-        mConfig.setCacheFile(aCacheFile.getAbsolutePath());
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setCacheFile(aCacheFile.getAbsolutePath());
+                }
+            });
     }
 
     /** @param aTo the left curly placement option for methods **/
-    public void setLCurlyMethod(String aTo)
+    public void setLCurlyMethod(final String aTo)
     {
-        mConfig.setLCurlyMethod(extractLeftCurlyOption(aTo));
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setLCurlyMethod(extractLeftCurlyOption(aTo));
+                }
+            });
     }
 
     /** @param aTo the left curly placement option for types **/
-    public void setLCurlyType(String aTo)
+    public void setLCurlyType(final String aTo)
     {
-        mConfig.setLCurlyType(extractLeftCurlyOption(aTo));
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setLCurlyType(extractLeftCurlyOption(aTo));
+                }
+            });
     }
 
     /** @param aTo the left curly placement option for others **/
-    public void setLCurlyOther(String aTo)
+    public void setLCurlyOther(final String aTo)
     {
-        mConfig.setLCurlyOther(extractLeftCurlyOption(aTo));
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setLCurlyOther(extractLeftCurlyOption(aTo));
+                }
+            });
     }
 
     /** @param aTo the right curly placement option **/
-    public void setRCurly(String aTo)
+    public void setRCurly(final String aTo)
     {
-        mConfig.setRCurly(extractRightCurlyOption(aTo));
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setRCurly(extractRightCurlyOption(aTo));
+                }
+            });
     }
 
     /** @param aTo the parenthesis padding option **/
-    public void setParenPad(String aTo)
+    public void setParenPad(final String aTo)
     {
-        mConfig.setParenPadOption(extractPadOption(aTo));
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setParenPadOption(extractPadOption(aTo));
+                }
+            });
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -419,6 +649,7 @@ public class CheckStyleTask
         Checker c = null;
         try {
             try {
+                applyExplicitOptions();
                 c = new Checker(mConfig);
                 // setup the listeners
                 AuditListener[] listeners = getListeners();
@@ -657,4 +888,19 @@ public class CheckStyleTask
                                      location);
         }
         return opt;
-    }}
+    }
+
+    /**
+     * Applies the options that have been saved in the mOptionMemory.
+     */
+    private void applyExplicitOptions()
+    {
+        Iterator it = mOptionMemory.iterator();
+        while (it.hasNext()) {
+            Runnable runnable = (Runnable) it.next();
+            runnable.run();
+        }
+        mOptionMemory.clear();
+    }
+
+}
