@@ -62,11 +62,11 @@
 
       <!-- --> <a name="GenericIllegalRegexp"></a> <h2>GenericIllegalRegexp</h2> <h4>Description</h4>
       <p class="body">
-      A generic check for code problems - the user can search for any pattern. This is 
+      A generic check for code problems - the user can search for any pattern. This is
       similar to a recursive grep, only that it's integrated in checkstyle.
       </p>
       <p class="body">
-      Rationale: This check can be used to prototype checks and to find common bad 
+      Rationale: This check can be used to prototype checks and to find common bad
       practice such as calling <span class="code">ex.printStacktrace()</span>, <span class="code">
       System.out.println()</span>, <span class="code">System.exit()</span>, etc.
       </p>
@@ -98,7 +98,7 @@
         </tr>
         <tr>
           <td>message</td>
-          <td>message which is used to notify about violations, 
+          <td>message which is used to notify about violations,
           if empty then default(hard-coded) message is used.</td>
           <td><a href="property_types.html#String">String</a></td>
           <td><span class="default">&quot;&quot;</span>(empty)</td>
@@ -190,8 +190,8 @@
       </p>
       <!-- --> <a name="TodoComment"></a> <h2>TodoComment</h2> <h4>Description</h4>
       <p class="body">
-      A check for <span class="code">TODO:</span> comments. Actually it is a generic <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">regular 
-      expression</a> matcher on Java comments. To check for other patterns in Java 
+      A check for <span class="code">TODO:</span> comments. Actually it is a generic <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">regular
+      expression</a> matcher on Java comments. To check for other patterns in Java
       comments, set property format.
       </p>
       <h4>Properties</h4>
@@ -211,8 +211,8 @@
       </table>
       <h4>Notes</h4>
       <p class="body">
-      Using <span class="code">TODO:</span> comments is a great way to keep track of 
-      tasks that need to be done. Having them reported by Checkstyle makes it very 
+      Using <span class="code">TODO:</span> comments is a great way to keep track of
+      tasks that need to be done. Having them reported by Checkstyle makes it very
       hard to forget about them.
       </p>
       <h4>Examples</h4>
@@ -347,30 +347,30 @@
       <h4>Package</h4>
       <p class="body">
       com.puppycrawl.tools.checkstyle.checks
-      
+
       </p>
       <h4>Parent Module</h4>
       <p class="body">
       <a href="config.html#treewalker">TreeWalker</a>
-      
+
       </p>
 
       <!-- --> <a name="UpperEll"></a> <h2>UpperEll</h2> <h4>Description</h4>
       <p class="body">
-      Checks that long constants are defined with an upper ell. That is <span class="code">' 
+      Checks that long constants are defined with an upper ell. That is <span class="code">'
       L'</span> and
-not <span class="code">'l'</span>. This is in accordance to the Java Language 
-Specification, <a href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282"> 
+not <span class="code">'l'</span>. This is in accordance to the Java Language
+Specification, <a href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">
 Section
       3.10.1</a>.
 </p>
-<p class="body"> Rationale: The letter <span class="code">l</span> looks a lot 
+<p class="body"> Rationale: The letter <span class="code">l</span> looks a lot
 like <span class="code">1</span>.
       </p>
       <h4>Examples</h4>
       <p class="body">
       To configure the check:
-      
+
       </p>
       <pre class="body">
 &lt;module name=&quot;UpperEll&quot;/&gt;
@@ -378,12 +378,12 @@ like <span class="code">1</span>.
       <h4>Package</h4>
       <p class="body">
       com.puppycrawl.tools.checkstyle.checks
-      
+
       </p>
       <h4>Parent Module</h4>
       <p class="body">
       <a href="config.html#treewalker">TreeWalker</a>
-      
+
       </p>
 
       <!-- --> <a name="ArrayTypeStyle"></a> <h2>ArrayTypeStyle</h2> <h4>Description</h4>
@@ -880,7 +880,7 @@ like <span class="code">1</span>.
 <hr />
 <div><a href="index.html">Back to the Checkstyle Home Page</a></div>
 <p class="copyright">
-Copyright &copy; 2002-2003 Oliver Burn. All rights Reserved.
+Copyright &copy; 2002-2004 Oliver Burn. All rights Reserved.
 </p>
 
 </body>

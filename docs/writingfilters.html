@@ -55,10 +55,10 @@
       A <span class="code">FilterSet</span> is a particular <span class="code">Filter</span>
       that contains a set of <span class="code">Filter</span>s. A <span class="code">FilterSet</span> accepts an
       <span class="code">AuditEvent</span> if and only if
-      all <span class="code">Filter</span>s in the set accept the <span class="code">AuditEvent</span>. 
+      all <span class="code">Filter</span>s in the set accept the <span class="code">AuditEvent</span>.
       </p>
       <p class="body">
-      Here is a UML diagram for interface <span class="code">Filter</span> 
+      Here is a UML diagram for interface <span class="code">Filter</span>
       and class <span class="code">FilterSet</span>.
       </p>
       <img src="Filter.gif" width="233" height="324" alt="Filter UML diagram"/>
@@ -98,7 +98,7 @@ public class FilesFilter
     {
         setFiles("^$");
     }
-    
+
     public boolean accept(AuditEvent aEvent)
     {
         final String fileName = aEvent.getFileName();
@@ -117,13 +117,13 @@ public class FilesFilter
       <p class="body">
       To incorporate a <span class="code">Filter</span> in the filter set for a <span class="code">Checker</span>,
       include a module element for the <span class="code">Filter</span> in the
-      <a href="config.html#filters">configuration file<a>. For example, to configure a <span class="code">Checker</span>  
+      <a href="config.html#filters">configuration file<a>. For example, to configure a <span class="code">Checker</span>
       so that it uses custom filter <span class="code">FilesFilter</span> to prevent reporting of
       audit events for files whose name contains &quot;Generated&quot;, include the following module in the
       configuration file:
       </p>
 
-      <pre class="body">     
+      <pre class="body">
     &lt;module name=&quot;com.mycompany.filters.FilesFilter&quot;&gt;
         &lt;property name=&quot;files&quot; value=&quot;Generated&quot;/&gt;
     &lt;/module&gt;
@@ -131,12 +131,12 @@ public class FilesFilter
 
       <a name="huh"></a> <h2>Huh? I can&#39;t figure it out!</h2>
       <p class="body">
-      That&#39;s probably our fault, and it means that we have to provide better 
-      documentation. Please do not hesitate to ask questions on the user mailing list, 
-      this will help us to improve this document.  Please ask your questions as 
-      precisely as possible. We will not be able to answer questions like &quot;I want 
-      to write a filter but I don&#39;t know how, can you help me?&quot;. Tell us 
-      what you are trying to do (the purpose of the filter), what you have 
+      That&#39;s probably our fault, and it means that we have to provide better
+      documentation. Please do not hesitate to ask questions on the user mailing list,
+      this will help us to improve this document.  Please ask your questions as
+      precisely as possible. We will not be able to answer questions like &quot;I want
+      to write a filter but I don&#39;t know how, can you help me?&quot;. Tell us
+      what you are trying to do (the purpose of the filter), what you have
       understood so far, and what exactly you are getting stuck on.
       </p>
 
@@ -144,8 +144,8 @@ public class FilesFilter
       <p class="body">
       We need <em>your</em> help to keep improving Checkstyle.
 
-      Whenever you write a filter that you think is generally useful, please 
-      consider <a href="contributing.html">contributing</a> it to the Checkstyle 
+      Whenever you write a filter that you think is generally useful, please
+      consider <a href="contributing.html">contributing</a> it to the Checkstyle
       community and submit it for inclusion in the next release of Checkstyle.
 
       </p>
@@ -158,7 +158,7 @@ public class FilesFilter
   <a href="index.html">Back to the Checkstyle Home Page</a>
 </div>
 <p class="copyright">
-Copyright &copy; 2002-2003 Oliver Burn. All rights Reserved.
+Copyright &copy; 2002-2004 Oliver Burn. All rights Reserved.
 </p>
 </body>
 </html>

@@ -19,9 +19,9 @@
 <!-- content -->
    <h2>Overview</h2>
       <p class="body">
-      Each of these naming modules validates identifiers for particular code elements. Valid 
-      identifiers for a naming module are specified by its <span class="code"> 
-      format</span> property. The value of <span class="code">format</span> is a <a href="http://jakarta.apache.org/regexp/">regular 
+      Each of these naming modules validates identifiers for particular code elements. Valid
+      identifiers for a naming module are specified by its <span class="code">
+      format</span> property. The value of <span class="code">format</span> is a <a href="http://jakarta.apache.org/regexp/">regular
       expression</a> for valid identifiers.
       This is an example of a configuration of the <span class="code">MemberName</span> module to
       ensure that member identifiers begin with <span class="code">&#39;m&#39;</span>,
@@ -52,7 +52,7 @@
         </tr>
         <tr>
           <td><span class="code">ConstantName</span></td>
-          <td>constants (<span class="code">static</span>, <span class="code"> 
+          <td>constants (<span class="code">static</span>, <span class="code">
           final</span> fields)</td>
           <td><span class="default">^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</span></td>
         </tr>
@@ -103,10 +103,10 @@
       <ul class="body">
         <li>
         The default value of <span class="code">format</span> for
-        module <span class="code">PackageName</span> has 
-        been chosen to match the requirements in the <a href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169">Java 
-        Language specification</a> and the Sun coding conventions. However both 
-        underscores and uppercase letters are rather uncommon, so most configurations should 
+        module <span class="code">PackageName</span> has
+        been chosen to match the requirements in the <a href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169">Java
+        Language specification</a> and the Sun coding conventions. However both
+        underscores and uppercase letters are rather uncommon, so most configurations should
         probably assign value <span class="code">^[a-z]+(\.[a-z][a-z0-9]*)*$</span> to
         <span class="code">format</span> for
         module <span class="code">PackageName</span>, as in
@@ -121,10 +121,10 @@
             which can be used to control whether the check applies to variable declarations or
             <span class="code">catch</span> clause parameters through
             tokens
-            <span class="code">VARIABLE_DEF</span> and <span class="code">PARAMETER_DEF</span>. 
+            <span class="code">VARIABLE_DEF</span> and <span class="code">PARAMETER_DEF</span>.
             For example, the following configuration element ensures that
             <span class="code">catch</span> clause parameters begin with <span class="code">"e"</span>,
-            followed by letters and digits: 
+            followed by letters and digits:
             <pre class="body">
         &lt;module name=&quot;LocalVariableName&quot;&gt;
             &lt;property name=&quot;format&quot; value=&quot;^e[a-zA-Z0-9]*$&quot;/&gt;
@@ -136,9 +136,9 @@
             Module <span class="code">TypeName</span> also has property <span class="code">tokens</span>
             which can be used to control whether the check applies to classes or interfaces through
             tokens
-            <span class="code">CLASS_DEF</span> and <span class="code">INTERFACE_DEF</span>. 
+            <span class="code">CLASS_DEF</span> and <span class="code">INTERFACE_DEF</span>.
             For example, the following configuration element ensures that
-            interface names begin with <span class="code">"I_"</span>, followed by letters and digits: 
+            interface names begin with <span class="code">"I_"</span>, followed by letters and digits:
             <pre class="body">
         &lt;module name=&quot;TypeName&quot;&gt;
             &lt;property name=&quot;format&quot; value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
@@ -185,7 +185,7 @@
 <hr />
 <div><a href="index.html">Back to the Checkstyle Home Page</a></div>
 <p class="copyright">
-Copyright &copy; 2002-2003 Oliver Burn. All rights Reserved.
+Copyright &copy; 2002-2004 Oliver Burn. All rights Reserved.
 </p>
 
 </body>
