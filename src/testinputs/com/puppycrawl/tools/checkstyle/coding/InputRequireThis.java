@@ -1,3 +1,5 @@
+import java.awt.Toolkit;
+
 public class InputRequireThis {
     int i;
     void method1() {
