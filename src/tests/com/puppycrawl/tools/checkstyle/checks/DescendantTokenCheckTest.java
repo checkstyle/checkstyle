@@ -5,8 +5,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 import java.io.File;
 
-public class DescendantTokenCheckTest
-    extends BaseCheckTestCase
+public class DescendantTokenCheckTest extends BaseCheckTestCase
 {
     public void testDefault()
         throws Exception
@@ -188,4 +187,41 @@ public class DescendantTokenCheckTest
          verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
      }
 
+    public void testReturnFromCatch() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+
+        checkConfig.addAttribute("tokens", "LITERAL_CATCH");
+        checkConfig.addAttribute("limitedTokens", "LITERAL_RETURN");
+        checkConfig.addAttribute("maximumNumber", "0");
+        checkConfig.addAttribute("maximumMessage", "Return from catch is not allowed.");
+
+        String[] expected = {
+            "7:11: Return from catch is not allowed.",
+            "15:11: Return from catch is not allowed."
+        };
+
+        verify(checkConfig,
+               getPath("coding" + File.separator + "InputReturnFromCatchCheck.java"),
+               expected);
+    }
+
+    public void testReturnFromFinally() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+
+        checkConfig.addAttribute("tokens", "LITERAL_FINALLY");
+        checkConfig.addAttribute("limitedTokens", "LITERAL_RETURN");
+        checkConfig.addAttribute("maximumNumber", "0");
+        checkConfig.addAttribute("maximumMessage", "Return from finally is not allowed.");
+
+        String[] expected = {
+            "7:11: Return from finally is not allowed.",
+            "15:11: Return from finally is not allowed."
+        };
+
+        verify(checkConfig,
+               getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+               expected);
+    }
 }
