@@ -119,7 +119,7 @@ public class AbstractInterfaceCheck
             }
         }
     }
-    
+
     /**
      * Checks that an AST contains the definition of a findByPrimaryKey
      * method.
@@ -127,8 +127,7 @@ public class AbstractInterfaceCheck
      */
     protected void checkFindByPrimaryKey(DetailAST aAST)
     {
-        if (!Utils.hasPublicMethod(aAST, "findByPrimaryKey", false, 1))
-        {
+        if (!Utils.hasPublicMethod(aAST, "findByPrimaryKey", false, 1)) {
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
             log(
                 aAST.getLineNo(),
