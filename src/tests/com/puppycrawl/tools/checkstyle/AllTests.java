@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheckTe
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheckTest;
@@ -191,6 +192,7 @@ public class AllTests {
         suite.addTest(new TestSuite(PackageNameCheckTest.class));
         suite.addTest(new TestSuite(PackageNamesLoaderTest.class));
         suite.addTest(new TestSuite(PackageObjectFactoryTest.class));
+        suite.addTest(new TestSuite(ParameterAssignmentCheckTest.class));
         suite.addTest(new TestSuite(ParameterNameCheckTest.class));
         suite.addTest(new TestSuite(ParameterNumberCheckTest.class));
         suite.addTest(new TestSuite(ParenPadCheckTest.class));
