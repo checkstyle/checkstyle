@@ -639,7 +639,8 @@
     <target name="validate.xml"
             depends="require.xerces"
             description="Validates checkstyle XML file">
-        <xmlvalidate file="docs/checkstyle_checks.xml"/>
+        <xmlvalidate file="docs/checkstyle_checks.xml">
+        </xmlvalidate>
     </target>
 
 </project>
