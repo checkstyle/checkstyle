@@ -221,7 +221,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     {
         mIgnoredMethodNames.clear();
         for (int i = 0; i < aMethodNames.length; i++) {
-            mIllegalClassNames.add(aMethodNames[i]);
+            mIgnoredMethodNames.add(aMethodNames[i]);
         }
     }
 
