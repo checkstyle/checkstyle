@@ -85,7 +85,8 @@ public class DefaultLogger
      **/
     public void addError(AuditEvent aEvt)
     {
-        if (!SeverityLevel.IGNORE.equals(aEvt.getSeverityLevel())) {
+        final SeverityLevel severityLevel = aEvt.getSeverityLevel();
+        if (!SeverityLevel.IGNORE.equals(severityLevel)) {
 
             final String fileName = aEvt.getFileName();
             final String message = aEvt.getMessage();
@@ -98,6 +99,9 @@ public class DefaultLogger
             sb.append(':').append(aEvt.getLine());
             if (aEvt.getColumn() > 0) {
                 sb.append(':').append(aEvt.getColumn());
+            }
+            if (SeverityLevel.WARNING.equals(severityLevel)) {
+                sb.append(": warning");
             }
             sb.append(": ").append(message);
             mErrorWriter.println(sb.toString());
