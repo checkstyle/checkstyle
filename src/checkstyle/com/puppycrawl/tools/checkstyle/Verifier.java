@@ -1302,12 +1302,10 @@ class Verifier
 
             // Handle extra JavadocTag.
             if (!found) {
-                // TODO: Need write unit tests.
                 boolean reqd = true;
                 if (mConfig.isEnableCheckUnusedThrows()) {
                     final ClassResolver cr = new ClassResolver(
-                        Thread.currentThread().getContextClassLoader(),
-                        mPkgName, mImports);
+                        mConfig.getClassLoader(), mPkgName, mImports);
                     try {
                         reqd = !RuntimeException.class.isAssignableFrom(
                             cr.resolve(tag.getArg1()));
