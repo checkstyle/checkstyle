@@ -110,7 +110,40 @@
       <a name="gui"></a>
       <h3>The Checkstyle SDK gui</h3>
       <p class="body">
-      TODO: Screenshot, see grammar in action, identify token types.
+      Still with us? Great, you have mastered the basic theory so here
+      is your reward - a gui that displays the structure of a Java
+      source file. To run it type
+      <pre>
+      java -classpath checkstyle-all-${version}.jar com.puppycrawl.toos.checkstyle.gui.Main
+      </pre>
+      on the command line. Click the button at the botton of the frame
+      and select a Java source file (make sure that the file is
+      syntactically correct first). The frame will be populated with a tree
+      that corresponds to the structure of the java source code.
+      </p>
+
+      <p class="body">
+      TODO: screenshot
+      </p>
+
+      <p class="body">
+      In the leftmost column you can open and close branches of the
+      tree, the remaining columns display information about each node
+      in the tree.  The second column displays a token type for each
+      node. As you navigate from the root of the tree to one of the
+      leafs, you'll notice that the token type denotes smaller and
+      smaller units of your source file, i.e. close to the root you
+      might see the token type CLASS_DEF (a node that represents a
+      class definition) while you will see token types like IDENT (an
+      identifier) near the leafs of the tree.
+      </p>
+
+      <p class="body">
+      We'll get back to the details in the other columns later, they
+      are important for implementing checks but not for understanding
+      the basic concepts. For now it is sufficient to know that the
+      gui is a tool that let's you look at the structure of a java
+      file, i.e. you can see the java grammar 'in action'.
       </p>
 
       <a name="visitor"></a>
