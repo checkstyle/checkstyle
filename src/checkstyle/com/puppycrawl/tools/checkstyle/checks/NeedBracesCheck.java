@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
  *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE}.
  * </p>
+ * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>

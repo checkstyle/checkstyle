@@ -31,7 +31,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Rationale: The Java Language Specification strongly discourages the usage
  * of "public" and "abstract" in interface definitions as a matter of style.
  * </p>
- *
+  * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="RedundantModifierCheck"/&gt;
+ * </pre>
  * @author lkuehne
  */
 public class RedundantModifierCheck

@@ -28,8 +28,17 @@ import java.util.Set;
 import java.util.HashSet;
 
 /**
- * Checks for imports that are redundant.
- *
+ * <p>
+ * Checks for imports that are redundant, where a redundant import is
+ * from package <code>java.lang</code>, is from the same package as the class,
+ * or is a duplicate import.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="RedundantImportCheck"/&gt;
+ * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
@@ -89,7 +98,7 @@ public class RedundantImportCheck
     }
 
     /**
-     * Determines in an import statement is for types from a specified package.
+     * Determines if an import statement is for types from a specified package.
      * @param aImport the import name
      * @param aPkg the package name
      * @return whether from the package
