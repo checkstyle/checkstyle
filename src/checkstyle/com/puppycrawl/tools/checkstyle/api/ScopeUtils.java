@@ -28,12 +28,12 @@ import antlr.collections.AST;
  */
 public final class ScopeUtils
 {
-    ///CLOVER:OFF 
+    ///CLOVER:OFF
     /** prevent instantiation */
     private ScopeUtils()
     {
     }
-    ///CLOVER:ON 
+    ///CLOVER:ON
 
     /**
      * Returns the Scope specified by the modifier set.

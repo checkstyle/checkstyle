@@ -35,12 +35,12 @@ import java.lang.reflect.Field;
  */
 public final class TokenTypes
 {
-    ///CLOVER:OFF 
+    ///CLOVER:OFF
     /** prevent instantiation */
     private TokenTypes()
     {
     }
-    ///CLOVER:ON 
+    ///CLOVER:ON
 
     // The following three types are never part of an AST,
     // left here as a reminder so nobody will readd them accidentally
