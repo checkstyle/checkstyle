@@ -60,9 +60,9 @@ class ConfigurationLoader
     /** buffer for collecting text **/
     private final StringBuffer mBuf = new StringBuffer();
     /** in global element **/
-    private boolean isInGlobalElement = false;
+    private boolean mIsInGlobalElement = false;
     /** started processing check configurations **/
-    private boolean isInCheckMode = false;
+    private boolean mIsInCheckMode = false;
 
     /**
      * Creates a new <code>ConfigurationLoader</code> instance.
@@ -118,12 +118,12 @@ class ConfigurationLoader
     {
         mBuf.setLength(0);
         if ("global".equals(aQName)) {
-            isInGlobalElement = true;
+            mIsInGlobalElement = true;
         }
         else if ("check".equals(aQName)) {
             //first apply overriding properties
-            if (!isInCheckMode) {
-                isInCheckMode = true;
+            if (!mIsInCheckMode) {
+                mIsInCheckMode = true;
                 for (Enumeration enum = mOverrideProps.keys();
                       enum.hasMoreElements();)
                 {
@@ -146,7 +146,7 @@ class ConfigurationLoader
                 value = (String) mProps.get(globalKey); 
             }
                 
-            if (isInGlobalElement) {
+            if (mIsInGlobalElement) {
                 mProps.setProperty(name, value);
             }
             else {
@@ -162,7 +162,7 @@ class ConfigurationLoader
                            String aQName)
     {
         if ("global".equals(aQName)) {
-            isInGlobalElement = false;
+            mIsInGlobalElement = false;
         }
         else if ("check".equals(aQName)) {
             mCheckConfigs.add(mCurrent);

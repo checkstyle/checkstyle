@@ -92,13 +92,13 @@ public class HeaderCheck extends Check
 
     /**
      * Checks if a code line matches the required header line.
-     * @param lineNumber the linenumber to check against the header
+     * @param aLineNumber the linenumber to check against the header
      * @return true if and only if the line matches the required header line
      */
-    protected boolean isMatch(int lineNumber)
+    protected boolean isMatch(int aLineNumber)
     {
         final String[] lines = getLines();
-        return mHeaderLines[lineNumber].equals(lines[lineNumber]);
+        return mHeaderLines[aLineNumber].equals(lines[aLineNumber]);
     }
 
     /**
