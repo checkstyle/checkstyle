@@ -102,6 +102,7 @@ public class CheckerTest
             filepath + ":29: '++' is proceeded with whitespace.",
             filepath + ":35: 'synchronized' is not proceeded with whitespace.",
             filepath + ":39: 'catch' is not proceeded with whitespace.",
+            filepath + ":74: 'return' is not proceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }

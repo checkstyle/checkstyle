@@ -345,7 +345,13 @@ stat
       }
    |  #("break" (IDENT)? )
    |  #("continue" (IDENT)? )
-   |  #("return" (expression)? )
+   |  #(rr:"return" (ee:expression)? )
+      {
+         if ( ee != null )
+         {
+            ver.verifySurroundingWS(rr); 
+         }   
+      }
    |  #("switch" expression (caseGroup)*)
    |  #("throw" expression)
    |  #(ss:"synchronized" expression stat)

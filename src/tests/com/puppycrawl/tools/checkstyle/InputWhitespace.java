@@ -47,5 +47,36 @@ class InputWhitespace
     
     
     private int mVar4 = 1;
+
+
+    /** test WS after void return */
+    private void fastExit()
+    {
+        boolean complicatedStuffNeeded = true;
+        if ( !complicatedStuffNeeded )
+        {
+            return; // should not complain about missing WS after return
+        }
+        else
+        {
+            // do complicated stuff
+        }
+    }
+
+
+    /** test WS after non void return
+     @return 2
+    */
+    private int nonVoid()
+    {
+        if ( true )
+        {
+            return(2); // should complain about missing WS after return
+        }
+        else
+        {
+            return 2; // this is ok
+        }
+    }
     
 }
