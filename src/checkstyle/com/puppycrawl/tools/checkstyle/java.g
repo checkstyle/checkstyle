@@ -18,30 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 header {
 package com.puppycrawl.tools.checkstyle;
-import com.puppycrawl.tools.checkstyle.api.Scope;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 }
 
-
-/** Java 1.2 Recognizer
+/** Java 1.3 Recognizer
  *
  * Based heavily on the Grammer example that comes with ANTLR. See
  * http://www.antlr.org.
  *
- * BUG:
- * 		Doesn't like boolean.class!
- *
- * class Test {
- *   public static void main( String args[] ) {
- *     if (boolean.class.equals(boolean.class)) {
- *       System.out.println("works");
- *     }
- *   }
- * }
+ * This grammar is in the PUBLIC DOMAIN
  */
 class GeneratedJavaRecognizer extends Parser;
 
 options {
-	ASTLabelType=MyCommonAST;
+	ASTLabelType=DetailAST;
 	k = 2;                           // two token lookahead
 	exportVocab=GeneratedJava;       // Call its vocabulary "GeneratedJava"
 	codeGenMakeSwitchThreshold = 2;  // Some optimizations
@@ -61,19 +53,6 @@ tokens {
 	STRICTFP="strictfp"; SUPER_CTOR_CALL; CTOR_CALL;
 }
 
-{
-    final Verifier ver = VerifierSingleton.getInstance();
-    private static String sFirstIdent = "";
-    private static final MyCommonAST[] sIgnoreAST = new MyCommonAST[2];
-    private static LineText sLastIdentifier;
-    private static final int[] sIgnoreType = new int[1];
-    private static final boolean[] sIgnoreIsEmpty = new boolean[1];
-
-    // Constants to indicate statement type. Numbers are delibrately weird
-    private static int STMT_OTHER = 0;
-    private static int STMT_COMPOUND = 6;
-    private static int STMT_IF = 8;
-}
 
 // Compilation Unit: In Java, this is a single file.  This is the start
 //   rule for this parser
@@ -97,33 +76,31 @@ compilationUnit
 // Package statement: "package" followed by an identifier.
 packageDefinition
 	options {defaultErrorHandler = true;} // let ANTLR handle errors
-	:	p:"package"^ {#p.setType(PACKAGE_DEF);} identifier SEMI!
+	:	p:"package"^ {#p.setType(PACKAGE_DEF);} identifier SEMI
 	;
 
 
 // Import statement: import followed by a package or class name
 importDefinition
 	options {defaultErrorHandler = true;}
-	:	i:"import"^ {#i.setType(IMPORT);} identifierStar SEMI!
+	:	i:"import"^ {#i.setType(IMPORT);} identifierStar SEMI
 	;
 
 // A type definition in a file is either a class or interface definition.
 typeDefinition
 	options {defaultErrorHandler = true;}
-{ MyModifierSet modSet = new MyModifierSet(); }
-	:	m:modifiers[modSet]!
-		( classDefinition[#m, modSet]
-		| interfaceDefinition[#m, modSet]
+	:	m:modifiers!
+		( classDefinition[#m]
+		| interfaceDefinition[#m]
 		)
-	|	SEMI!
+	|	SEMI
 	;
 
 /** A declaration is the creation of a reference or primitive-type variable
  *  Create a separate Type/Var tree for each var in the var list.
  */
 declaration!
-{ MyModifierSet modSet = new MyModifierSet(); }
-	:	m:modifiers[modSet] t:typeSpec[false] v:variableDefinitions[#m,#t, modSet]
+	:	m:modifiers t:typeSpec[false] v:variableDefinitions[#m,#t]
 		{#declaration = #v;}
 	;
 
@@ -179,30 +156,21 @@ builtInType
 // A (possibly-qualified) java identifier.  We start with the first IDENT
 //   and expand its name by adding dots and following IDENTS
 identifier
-	:	i1:IDENT
-        {
-            sLastIdentifier = new LineText(i1.getLine(), i1.getColumn(), i1.getText());
-        }
-        ( DOT^ i2:IDENT {sLastIdentifier.appendText("." + i2.getText());} )*
-        {
-        }
+	:	IDENT  ( DOT^ IDENT )*
 	;
 
 identifierStar
-{ int ln = 0; String str = ""; boolean star = false; }
-	:	i1:IDENT {ln = i1.getLine(); str = i1.getText();}
-		( DOT^ i2:IDENT {str += "." + i2.getText(); } )*
-		( DOT^ i3:STAR {str += ".*"; star = true; } )?
-{
-}
+	:	IDENT
+		( DOT^ IDENT )*
+		( DOT^ STAR  )?
 	;
 
 // A list of zero or more modifiers.  We could have used (modifier)* in
 //   place of a call to modifiers, but I thought it was a good idea to keep
 //   this rule separate so they can easily be collected in a Vector if
 //   someone so desires
-modifiers[MyModifierSet mms]
-	:	( m:modifier {mms.addModifier(#m);} )*
+modifiers
+	:	( modifier )*
 		{#modifiers = #([MODIFIERS, "MODIFIERS"], #modifiers);}
 	;
 
@@ -224,14 +192,14 @@ modifier
 	;
 
 // Definition of a Java class
-classDefinition![MyCommonAST modifiers, MyModifierSet modSet]
-	:	cc:"class" IDENT
+classDefinition![DetailAST modifiers]
+	:	"class" IDENT
 		// it _might_ have a superclass...
 		sc:superClassClause
 		// it might implement some interfaces...
 		ic:implementsClause
 		// now parse the body of the class
-		cb:classBlock[(modSet.size() == 0) ? #cc.getLineNo() : modSet.getFirstLineNo()]
+		cb:classBlock
 		{#classDefinition = #(#[CLASS_DEF,"CLASS_DEF"],
 							   modifiers,IDENT,sc,ic,cb);}
 	;
@@ -242,12 +210,12 @@ superClassClause!
 	;
 
 // Definition of a Java Interface
-interfaceDefinition![MyCommonAST modifiers, MyModifierSet modSet]
-	:	ii:"interface" IDENT
+interfaceDefinition![DetailAST modifiers]
+	:	"interface" IDENT
 		// it might extend some other interfaces
 		ie:interfaceExtends
 		// now parse the body of the interface (looks like a class...)
-		cb:classBlock[(modSet.size() == 0) ? #ii.getLineNo() : modSet.getFirstLineNo()]
+		cb:classBlock
 		{#interfaceDefinition = #(#[INTERFACE_DEF,"INTERFACE_DEF"],
 									modifiers,IDENT,ie,cb);}
 	;
@@ -255,10 +223,10 @@ interfaceDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 
 // This is the body of a class.  You can have fields and extra semicolons,
 // That's about it (until you see what a field is...)
-classBlock[int aLine]
-	:	lc:LCURLY!
-			( field | SEMI! )*
-		RCURLY!
+classBlock
+	:	LCURLY
+			( field | SEMI )*
+		RCURLY
 		{#classBlock = #([OBJBLOCK, "OBJBLOCK"], #classBlock);}
 	;
 
@@ -266,7 +234,7 @@ classBlock[int aLine]
 interfaceExtends
 	:	(
 		e:"extends"!
-		identifier ( COMMA! identifier )*
+		identifier ( COMMA identifier )*
 		)?
 		{#interfaceExtends = #(#[EXTENDS_CLAUSE,"EXTENDS_CLAUSE"],
 							#interfaceExtends);}
@@ -275,7 +243,7 @@ interfaceExtends
 // A class can implement several interfaces...
 implementsClause
 	:	(
-			i:"implements"! identifier ( COMMA! identifier )*
+			i:"implements"! identifier ( COMMA identifier )*
 		)?
 		{#implementsClause = #(#[IMPLEMENTS_CLAUSE,"IMPLEMENTS_CLAUSE"],
 								 #implementsClause);}
@@ -286,82 +254,61 @@ implementsClause
 //   for example), and if this grammar were used for a compiler there would
 //   need to be some semantic checks to make sure we're doing the right thing...
 field!
-{
-    java.util.List exs = new java.util.ArrayList();
-    MethodSignature msig = new MethodSignature();
-    final MyCommonAST[] stmtBraces = new MyCommonAST[2];
-}
 	:	// method, constructor, or variable declaration
-		mods:modifiers[msig.getModSet()]
-		(	h:ctorHead[exs, msig]
-            {
-                msig.setThrows(exs);
-            }
-            s:constructorBody[msig.getFirstLineNo()] // constructor
+		mods:modifiers
+		(	h:ctorHead s:constructorBody // constructor
 			{#field = #(#[CTOR_DEF,"CTOR_DEF"], mods, h, s);}
 
-		|	cd:classDefinition[#mods, msig.getModSet()]       // inner class
+		|	cd:classDefinition[#mods]       // inner class
 			{#field = #cd;}
 
-		|	id:interfaceDefinition[#mods, msig.getModSet()]   // inner interface
+		|	id:interfaceDefinition[#mods]   // inner interface
 			{#field = #id;}
 
 		|	t:typeSpec[false]  // method or variable declaration(s)
 			(	IDENT  // the name of the method
 
 				// parse the formal parameter declarations.
-				LPAREN! param:parameterDeclarationList[msig] RPAREN!
+				LPAREN param:parameterDeclarationList RPAREN
 
 				rt:declaratorBrackets[#t]
 
 				// get the list of exceptions that this method is
 				// declared to throw
-				(tc:throwsClause[exs])?
+				(tc:throwsClause)?
 
-                {
-                    msig.setName(#IDENT);
-                    msig.setThrows(exs);
-                    msig.setReturnType(#t);
-                }
-				(
-                    s2:compoundStatement[stmtBraces, sIgnoreIsEmpty]
-                    {
-                    }
-                |
-                    SEMI
-                )
+				( s2:compoundStatement | SEMI )
 				{#field = #(#[METHOD_DEF,"METHOD_DEF"],
 						     mods,
 							 #(#[TYPE,"TYPE"],rt),
 							 IDENT,
 							 param,
 							 tc,
-							 s2); }
-			|	v:variableDefinitions[#mods,#t, msig.getModSet()] SEMI
+							 s2);}
+			|	v:variableDefinitions[#mods,#t] SEMI
+//				{#field = #(#[VARIABLE_DEF,"VARIABLE_DEF"], v);}
 				{#field = #v;}
 			)
 		)
 
     // "static { ... }" class initializer
-	|	st:"static" s3:compoundStatement[stmtBraces, sIgnoreIsEmpty]
-        {
-            #field = #(#[STATIC_INIT,"STATIC_INIT"], s3);
-        }
+	|	"static" s3:compoundStatement
+		{#field = #(#[STATIC_INIT,"STATIC_INIT"], s3);}
 
     // "{ ... }" instance initializer
-	|	 s4:compoundStatement[sIgnoreAST, sIgnoreIsEmpty]
+	|	s4:compoundStatement
 		{#field = #(#[INSTANCE_INIT,"INSTANCE_INIT"], s4);}
 	;
 
-constructorBody[int aLineNo]
-    :   lc:LCURLY^ {#lc.setType(SLIST); }
+constructorBody
+    :   lc:LCURLY^ {#lc.setType(SLIST);}
 		// Predicate might be slow but only checked once per constructor def
 		// not for general methods.
 		(	(explicitConstructorInvocation) => explicitConstructorInvocation
 		|
 		)
-        (statement[sIgnoreType, sIgnoreAST])*
-        rc:RCURLY!
+        (statement)*
+        RCURLY
     ;
 
 explicitConstructorInvocation
@@ -373,26 +320,24 @@ explicitConstructorInvocation
 				// it sees this( or super(
 				generateAmbigWarnings=false;
 			}
-		:	"this"! lp1:LPAREN^ argList RPAREN! SEMI!
+		:	"this"! lp1:LPAREN^ argList RPAREN SEMI
 			{#lp1.setType(CTOR_CALL);}
 
-	    |   "super"! lp2:LPAREN^ argList RPAREN! SEMI!
+	    |   "super"! lp2:LPAREN^ argList RPAREN SEMI
 			{#lp2.setType(SUPER_CTOR_CALL);}
 
 			// (new Outer()).super()  (create enclosing instance)
-		|	primaryExpression DOT! "super"! lp3:LPAREN^ argList RPAREN! SEMI!
+		|	primaryExpression DOT! "super"! lp3:LPAREN^ argList RPAREN SEMI
 			{#lp3.setType(SUPER_CTOR_CALL);}
 		)
     ;
 
-variableDefinitions[MyCommonAST mods, MyCommonAST t, MyModifierSet modSet]
-	:	variableDeclarator[(MyCommonAST) getASTFactory().dupTree(mods),
-						   (MyCommonAST) getASTFactory().dupTree(t),
-                           modSet]
-		(	COMMA!
-			variableDeclarator[(MyCommonAST) getASTFactory().dupTree(mods),
-							   (MyCommonAST) getASTFactory().dupTree(t),
-                               modSet]
+variableDefinitions[DetailAST mods, DetailAST t]
+	:	variableDeclarator[(DetailAST) getASTFactory().dupTree(mods),
+						   (DetailAST) getASTFactory().dupTree(t)]
+		(	COMMA
+			variableDeclarator[(DetailAST) getASTFactory().dupTree(mods),
+							   (DetailAST) getASTFactory().dupTree(t)]
 		)*
 	;
 
@@ -400,12 +345,12 @@ variableDefinitions[MyCommonAST mods, MyCommonAST t, MyModifierSet modSet]
  *   or a local variable in a method
  * It can also include possible initialization.
  */
-variableDeclarator![MyCommonAST mods, MyCommonAST t, MyModifierSet modSet]
+variableDeclarator![DetailAST mods, DetailAST t]
 	:	id:IDENT d:declaratorBrackets[t] v:varInitializer
 		{#variableDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], mods, #(#[TYPE,"TYPE"],d), id, v);}
 	;
 
-declaratorBrackets[MyCommonAST typ]
+declaratorBrackets[DetailAST typ]
 	:	{#declaratorBrackets=typ;}
 		(lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK!)*
 	;
@@ -427,11 +372,11 @@ arrayInitializer
 						warnWhenFollowAmbig = false;
 					}
 				:
-					COMMA! initializer
+					COMMA initializer
 				)*
-				(COMMA!)?
+				(COMMA)?
 			)?
-		RCURLY!
+		RCURLY
 	;
 
 
@@ -445,39 +390,35 @@ initializer
 // This is the header of a method.  It includes the name and parameters
 //   for the method.
 //   This also watches for a list of exception classes in a "throws" clause.
-ctorHead[java.util.List exs, MethodSignature msig]
-	:	IDENT  { msig.setName(#IDENT); } // the name of the method
+ctorHead
+	:	IDENT  // the name of the method
 
 		// parse the formal parameter declarations.
-		LPAREN! parameterDeclarationList[msig] RPAREN!
+		LPAREN parameterDeclarationList RPAREN
 
 		// get the list of exceptions that this method is declared to throw
-		(throwsClause[exs])?
+		(throwsClause)?
 	;
 
 // This is a list of exception classes that the method is declared to throw
-throwsClause[java.util.List exs]
-	:	"throws"^ i1:identifier { exs.add(sLastIdentifier); }
-        ( COMMA! i2:identifier { exs.add(sLastIdentifier); } )*
+throwsClause
+	:	"throws"^ identifier ( COMMA identifier )*
 	;
 
 
 // A list of formal parameters
-parameterDeclarationList[MethodSignature msig]
-	:	( parameterDeclaration[msig] ( COMMA! parameterDeclaration[msig] )* )?
+parameterDeclarationList
+	:	( parameterDeclaration ( COMMA parameterDeclaration )* )?
 		{#parameterDeclarationList = #(#[PARAMETERS,"PARAMETERS"],
 									#parameterDeclarationList);}
 	;
 
 // A formal parameter.
-parameterDeclaration![MethodSignature msig]
+parameterDeclaration!
 	:	pm:parameterModifier t:typeSpec[false] id:IDENT
 		pd:declaratorBrackets[#t]
 		{#parameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
 									pm, #([TYPE,"TYPE"],pd), id);}
-        {
-            msig.addParam(new LineText(#id.getLineNo(), #id.getColumnNo(), #id.getText()));
-        }
 	;
 
 parameterModifier
@@ -494,57 +435,44 @@ parameterModifier
 //   As a completely indepdent braced block of code inside a method
 //      it starts a new scope for variable definitions
 
-compoundStatement[MyCommonAST[] aCurlies, boolean[] aIsEmpty]
-{
-    aIsEmpty[0] = true;
-}
-	:	lc:LCURLY^  {#lc.setType(SLIST); aCurlies[0] = #lc;}
+compoundStatement
+	:	lc:LCURLY^ {#lc.setType(SLIST);}
 			// include the (possibly-empty) list of statements
-			(statement[sIgnoreType, sIgnoreAST] {aIsEmpty[0] = false;})*
-		rc:RCURLY!  { aCurlies[1] = #rc; }
+			(statement)*
+		RCURLY
 	;
-
 
 // This production provides a slot for adding additional statement productions.
 // It is used to simplify an inherited grammar that includes assert statements
 // (new Java language feature in JDK 1.4)
-statement[int[] aType, MyCommonAST[] aCurlies]
-	:	traditionalStatement[aType, aCurlies]
+statement
+	:	traditionalStatement
 	;
 
 // a traditional (JDK < 1.4) java statement, assert keyword is not allowed
-traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
-{
-    final MyModifierSet modSet = new MyModifierSet();
-    final int[] stmtType = new int[1];
-    final MyCommonAST[] stmtBraces = new MyCommonAST[2];
-    stmtType[0] = STMT_OTHER;
-}
+traditionalStatement
 	// A list of statements in curly braces -- start a new scope!
-	:	compoundStatement[aCurlies, sIgnoreIsEmpty] { aType[0] = STMT_COMPOUND; }
+	:	compoundStatement
 
 	// declarations are ambiguous with "ID DOT" relative to expression
 	// statements.  Must backtrack to be sure.  Could use a semantic
 	// predicate to test symbol table to see what the type was coming
 	// up, but that's pretty hard without a symbol table ;)
-	|	(declaration)=> declaration SEMI!
+	|	(declaration)=> declaration SEMI
 
 	// An expression statement.  This could be a method call,
 	// assignment statement, or any other expression evaluated for
 	// side-effects.
-	|	expression SEMI!
+	|	expression SEMI
 
 	// class definition
-	|	m:modifiers[modSet]! classDefinition[#m, modSet]
+	|	m:modifiers! classDefinition[#m]
 
 	// Attach a label to the front of a statement
-	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement[sIgnoreType, sIgnoreAST]
+	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement
 
-    // If-else statement
-	|	ii:"if"^ LPAREN! expression RPAREN! statement[stmtType, stmtBraces]
-        {
-            aType[0] = STMT_IF;
-        }
+	// If-else statement
+	|	"if"^ LPAREN expression RPAREN statement
 		(
 			// CONFLICT: the old "dangling-else" problem...
 			//           ANTLR generates proper code matching
@@ -553,65 +481,54 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 				warnWhenFollowAmbig = false;
 			}
 		:
-			ee:"else"!
-            {
-                stmtType[0] = STMT_OTHER;
-            }
-            statement[stmtType, stmtBraces]
-            {
-            }
+			elseStatement
 		)?
 
 	// For statement
-	|	ff:"for"^
-        LPAREN!
-        forInit s1:SEMI! // initializer
-        forCond	s2:SEMI! // condition test
-        forIter         // updater
-        RPAREN!
-        statement[stmtType, stmtBraces] // statement to loop over
-        {
-        }
+	|	"for"^
+			LPAREN
+				forInit SEMI   // initializer
+				forCond	SEMI   // condition test
+				forIter         // updater
+			RPAREN
+			statement                     // statement to loop over
 
 	// While statement
-	|	ww:"while"^ LPAREN! expression RPAREN! statement[stmtType, stmtBraces]
-        {
-        }
+	|	"while"^ LPAREN expression RPAREN statement
 
 	// do-while statement
-	|	dd:"do"^ statement[stmtType, stmtBraces] dw:"while"! LPAREN! expression RPAREN! SEMI!
-        {
-        }
+	|	"do"^ statement "while"! LPAREN expression RPAREN SEMI
 
 	// get out of a loop (or switch)
-	|	"break"^ (IDENT)? SEMI!
+	|	"break"^ (IDENT)? SEMI
 
 	// do next iteration of a loop
-	|	"continue"^ (IDENT)? SEMI!
+	|	"continue"^ (IDENT)? SEMI
 
 	// Return an expression
-	|	rr:"return"^ (expression  )? SEMI!
+	|	"return"^ (expression)? SEMI
 
 	// switch/case statement
-	|	ss2:"switch"^ LPAREN! expression RPAREN! lc:LCURLY!
+	|	"switch"^ LPAREN expression RPAREN LCURLY
 			( casesGroup )*
-		RCURLY!
+		RCURLY
 
 	// exception try-catch block
 	|	tryBlock
 
 	// throw an exception
-	|	"throw"^ expression SEMI!
+	|	"throw"^ expression SEMI
 
 	// synchronize a statement
-	|	ss:"synchronized"^ LPAREN! expression RPAREN! compoundStatement[stmtBraces, sIgnoreIsEmpty]
-        {
-        }
+	|	"synchronized"^ LPAREN expression RPAREN compoundStatement
 
 	// empty statement
 	|	s:SEMI {#s.setType(EMPTY_STAT);}
 	;
 
+elseStatement
+    : "else"^ statement
+    ;
 
 casesGroup
 	:	(	// CONFLICT: to which case group do the statements bind?
@@ -633,7 +550,7 @@ aCase
 	;
 
 caseSList
-	:	(statement[sIgnoreType, sIgnoreAST])*
+	:	(statement)*
 		{#caseSList = #(#[SLIST,"SLIST"],#caseSList);}
 	;
 
@@ -659,32 +576,20 @@ forIter
 
 // an exception handler try/catch block
 tryBlock
-{
-    final MyCommonAST[] stmtBraces = new MyCommonAST[2];
-    final MethodSignature ignoreMS = new MethodSignature();
-    final boolean[] isEmpty = new boolean[1];
-}
-	:	t:"try"^ compoundStatement[stmtBraces, isEmpty]
-        {
-//            ver.reportTryBlock(stmtBraces, isEmpty[0]);
-        }
-
-        (
-            c:"catch"^
-            LPAREN! parameterDeclaration[ignoreMS] RPAREN! compoundStatement[stmtBraces, isEmpty]
-            {
-//                ver.reportCatchBlock(stmtBraces, isEmpty[0]);
-            }
-        )*
-
-        (
-            f:"finally"^
-            compoundStatement[stmtBraces, isEmpty]
-            {
-//                ver.reportFinallyBlock(stmtBraces, isEmpty[0]);
-            }
-        )?
+	:	"try"^ compoundStatement
+		(handler)*
+		( finallyHandler )?
 	;
+
+
+// an exception handler
+handler
+	:	"catch"^ LPAREN parameterDeclaration RPAREN compoundStatement
+	;
+
+finallyHandler
+    : "finally"^ compoundStatement
+    ;
 
 
 // expressions
@@ -730,7 +635,7 @@ expression
 
 // This is a list of expressions.
 expressionList
-	:	expression (COMMA! expression)*
+	:	expression (COMMA expression)*
 		{#expressionList = #(#[ELIST,"ELIST"], expressionList);}
 	;
 
@@ -759,7 +664,7 @@ assignmentExpression
 // conditional test (level 12)
 conditionalExpression
 	:	logicalOrExpression
-		( QUESTION^ assignmentExpression c:COLON conditionalExpression )?
+		( QUESTION^ assignmentExpression COLON conditionalExpression )?
 	;
 
 
@@ -822,28 +727,26 @@ shiftExpression
 
 // binary addition/subtraction (level 3)
 additiveExpression
-	:	multiplicativeExpression
-        ((p:PLUS^ | m:MINUS^ )
-            multiplicativeExpression)*
+	:	multiplicativeExpression ((PLUS^ | MINUS^) multiplicativeExpression)*
 	;
 
 
 // multiplication/division/modulo (level 2)
 multiplicativeExpression
-	:	unaryExpression ((s:STAR^ | DIV^ | MOD^ )  unaryExpression)*
+	:	unaryExpression ((STAR^ | DIV^ | MOD^ ) unaryExpression)*
 	;
 
 unaryExpression
-	:	INC^ unaryExpression { }
-	|	DEC^ unaryExpression { }
-	|	MINUS^ {#MINUS.setType(UNARY_MINUS); } unaryExpression
-	|	PLUS^  {#PLUS.setType(UNARY_PLUS); } unaryExpression
+	:	INC^ unaryExpression
+	|	DEC^ unaryExpression
+	|	MINUS^ {#MINUS.setType(UNARY_MINUS);} unaryExpression
+	|	PLUS^  {#PLUS.setType(UNARY_PLUS);} unaryExpression
 	|	unaryExpressionNotPlusMinus
 	;
 
 unaryExpressionNotPlusMinus
-	:	BNOT^ unaryExpression { }
-	|	LNOT^ unaryExpression { }
+	:	BNOT^ unaryExpression
+	|	LNOT^ unaryExpression
 
 	|	(	// subrule allows option to shut off warnings
 			options {
@@ -853,14 +756,14 @@ unaryExpressionNotPlusMinus
 			}
 		:	// If typecast is built in type, must be numeric operand
 			// Also, no reason to backtrack if type keyword like int, float...
-			lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] rpb:RPAREN! { }
+			lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] RPAREN
 			unaryExpression
 
 			// Have to backtrack to see if operator follows.  If no operator
 			// follows, it's a typecast.  No semantic checking needed to parse.
 			// if it _looks_ like a cast, it _is_ a cast; else it's a "(expr)"
 		|	(LPAREN classTypeSpec[true] RPAREN unaryExpressionNotPlusMinus)=>
-			lp:LPAREN^ {#lp.setType(TYPECAST);} classTypeSpec[true] rpb2:RPAREN! { }
+			lp:LPAREN^ {#lp.setType(TYPECAST);} classTypeSpec[true] RPAREN
 			unaryExpressionNotPlusMinus
 
 		|	postfixExpression
@@ -872,7 +775,7 @@ postfixExpression
 	:	primaryExpression // start with a primary
 
 		(	// qualified id (id.id.id.id...) -- build the name
-			DOT^ ( i1:IDENT {sLastIdentifier.appendText("." + i1.getText()); }
+			DOT^ ( IDENT
 				| "this"
 				| "class"
 				| newExpression
@@ -882,7 +785,7 @@ postfixExpression
 			// is the _last_ qualifier.
 
 			// allow ClassName[].class
-		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR); } RBRACK! )+
+		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR);} RBRACK! )+
 			DOT^ "class"
 
 			// an array indexing operation
@@ -898,31 +801,27 @@ postfixExpression
 			// be hard to syntactically prevent ctor calls here
 		|	lp:LPAREN^ {#lp.setType(METHOD_CALL);}
 				argList
-			RPAREN!
+			RPAREN
 		)*
 
 		// possibly add on a post-increment or post-decrement.
 		// allows INC/DEC on too much, but semantics can check
-		(	in:INC^ {#in.setType(POST_INC); }
-	 	|	de:DEC^ {#de.setType(POST_DEC); }
+		(	in:INC^ {#in.setType(POST_INC);}
+	 	|	de:DEC^ {#de.setType(POST_DEC);}
 		|	// nothing
 		)
 	;
 
 // the basic element of an expression
 primaryExpression
-	:	i1:IDENT
-        {
-            sFirstIdent = i1.getText();
-            sLastIdentifier = new LineText(i1.getLine(), i1.getColumn(), i1.getText());
-        }
+	:	IDENT
 	|	constant
 	|	"true"
 	|	"false"
 	|	"this"
 	|	"null"
 	|	newExpression
-	|	LPAREN! assignmentExpression RPAREN!
+	|	LPAREN assignmentExpression RPAREN
 	|	"super"
 		// look for int.class and int[].class
 	|	builtInType
@@ -980,8 +879,8 @@ primaryExpression
  *
  */
 newExpression
-	:	n:"new"^ t:type
-		(	LPAREN! argList RPAREN! ( classBlock[-1] )?
+	:	"new"^ type
+		(	LPAREN argList RPAREN (classBlock)?
 
 			//java 1.1
 			// Note: This will allow bad constructs like
@@ -1035,9 +934,9 @@ constant
 class GeneratedJavaLexer extends Lexer;
 
 options {
-	exportVocab=GeneratedJava; // call the vocabulary "GeneratedJava"
-	testLiterals=false;    // don't automatically test for literals
-	k=4;                   // four characters of lookahead
+	exportVocab=GeneratedJava; // call the vocabulary "Java"
+	testLiterals=false;        // don't automatically test for literals
+	k=4;                       // four characters of lookahead
 	charVocabulary='\u0003'..'\uFFFF';
 	// without inlining some bitset tests, couldn't do unicode;
 	// I need to make ANTLR generate smaller bitsets; see
@@ -1045,8 +944,8 @@ options {
 	codeGenBitsetTestThreshold=20;
 }
 
+// JavaLexer verbatim source code
 {
-    final Verifier ver = VerifierSingleton.getInstance();
 
     // explicitly set tab width to 1 (default in ANTLR 2.7.1)
     // in ANTLR 2.7.2a2 the default has changed from 1 to 8
@@ -1054,54 +953,66 @@ options {
     {
         setColumn( getColumn() + 1 );
     }
+
+    private FileContents mFileContents = null;
+
+    // TODO: Check visibility of this method one parsing is done in central
+    // utility method
+    public void setFileContents(FileContents aContents)
+    { 
+        mFileContents = aContents;
+    }
+
 }
 
+
 // OPERATORS
-QUESTION     : '?';
-LPAREN   : '(';
-RPAREN   : ')';
-LBRACK   : '['  ;
-RBRACK   : ']'  ;
-LCURLY   : '{'  ;
-RCURLY   : '}'  ;
-COLON        : ':' ;
-COMMA        : ',' ;
-ASSIGN       : '=';
-EQUAL        : "==";
-LNOT         : '!' ; // check above
-BNOT         : '~' ; // check above
-NOT_EQUAL    : "!=";
-DIV          : '/';
-DIV_ASSIGN   : "/=";
-PLUS         : '+'; // must handle the UNARY_PLUS
-PLUS_ASSIGN  : "+=";
-INC          : "++" ; // must handle POST_INC
-MINUS        : '-' ; // must handle the UNARY_MINUS
-MINUS_ASSIGN : "-=";
-DEC          : "--" ; // must handle POST_DEC
-STAR         : '*' ; // star is special cause it can be used in imports.
-STAR_ASSIGN  : "*=";
-MOD          : '%';
-MOD_ASSIGN   : "%=";
-SR           : ">>";
-SR_ASSIGN    : ">>=";
-BSR          : ">>>";
-BSR_ASSIGN   : ">>>=";
-GE           : ">=";
-GT           : ">";
-SL           : "<<";
-SL_ASSIGN    : "<<=";
-LE           : "<=";
-LT           : '<';
-BXOR         : '^';
-BXOR_ASSIGN  : "^=";
-BOR          : '|';
-BOR_ASSIGN   : "|=";
-LOR          : "||";
-BAND         : '&';
-BAND_ASSIGN  : "&=";
-LAND         : "&&";
-SEMI   : ';'  ;
+QUESTION		:	'?'		;
+LPAREN			:	'('		;
+RPAREN			:	')'		;
+LBRACK			:	'['		;
+RBRACK			:	']'		;
+LCURLY			:	'{'		;
+RCURLY			:	'}'		;
+COLON			:	':'		;
+COMMA			:	','		;
+//DOT			:	'.'		;
+ASSIGN			:	'='		;
+EQUAL			:	"=="	;
+LNOT			:	'!'		;
+BNOT			:	'~'		;
+NOT_EQUAL		:	"!="	;
+DIV				:	'/'		;
+DIV_ASSIGN		:	"/="	;
+PLUS			:	'+'		;
+PLUS_ASSIGN		:	"+="	;
+INC				:	"++"	;
+MINUS			:	'-'		;
+MINUS_ASSIGN	:	"-="	;
+DEC				:	"--"	;
+STAR			:	'*'		;
+STAR_ASSIGN		:	"*="	;
+MOD				:	'%'		;
+MOD_ASSIGN		:	"%="	;
+SR				:	">>"	;
+SR_ASSIGN		:	">>="	;
+BSR				:	">>>"	;
+BSR_ASSIGN		:	">>>="	;
+GE				:	">="	;
+GT				:	">"		;
+SL				:	"<<"	;
+SL_ASSIGN		:	"<<="	;
+LE				:	"<="	;
+LT				:	'<'		;
+BXOR			:	'^'		;
+BXOR_ASSIGN		:	"^="	;
+BOR				:	'|'		;
+BOR_ASSIGN		:	"|="	;
+LOR				:	"||"	;
+BAND			:	'&'		;
+BAND_ASSIGN		:	"&="	;
+LAND			:	"&&"	;
+SEMI			:	';'		;
 
 
 // Whitespace -- ignored
@@ -1121,13 +1032,10 @@ WS	:	(	' '
 
 // Single-line comments
 SL_COMMENT
-   :  "//" { ver.reportCPPComment(getLine(), getColumn() - 3); }
-      (~('\n'|'\r'))* ('\n'|'\r'('\n')?)
-      {
-         $setType(Token.SKIP);
-         newline();
-      }
-   ;
+	:	"//" { mFileContents.reportCppComment(getLine(), getColumn() - 3); }
+		(~('\n'|'\r'))* ('\n'|'\r'('\n')?)
+		{$setType(Token.SKIP); newline();}
+	;
 
 // multiple-line comments
 ML_COMMENT
@@ -1135,31 +1043,31 @@ ML_COMMENT
    int startLine;
    int startCol;
 }
-   :  "/*"  { startLine = getLine(); startCol = getColumn() - 3; }
-      (/* '\r' '\n' can be matched in one alternative or by matching
-          '\r' in one iteration and '\n' in another.  I am trying to
-          handle any flavor of newline that comes in, but the language
-          that allows both "\r\n" and "\r" and "\n" to all be valid
-          newline is ambiguous.  Consequently, the resulting grammar
-          must be ambiguous.  I'm shutting this warning off.
-       */
-       options {
-          generateAmbigWarnings=false;
-       }
-       :
-          { LA(2)!='/' }? '*'
-          | '\r' '\n'  {newline();}
-          | '\r'       {newline();}
-          | '\n'       {newline();}
-          | ~('*'|'\n'|'\r')
-      )*
-      "*/"
+	:	"/*"  { startLine = getLine(); startCol = getColumn() - 3; }
+		(	/*	'\r' '\n' can be matched in one alternative or by matching
+				'\r' in one iteration and '\n' in another.  I am trying to
+				handle any flavor of newline that comes in, but the language
+				that allows both "\r\n" and "\r" and "\n" to all be valid
+				newline is ambiguous.  Consequently, the resulting grammar
+				must be ambiguous.  I'm shutting this warning off.
+			 */
+			options {
+				generateAmbigWarnings=false;
+			}
+		:
+			{ LA(2)!='/' }? '*'
+		|	'\r' '\n'		{newline();}
+		|	'\r'			{newline();}
+		|	'\n'			{newline();}
+		|	~('*'|'\n'|'\r')
+		)*
+		"*/"
       {
-         ver.reportCComment(startLine, startCol,
+         mFileContents.reportCComment(startLine, startCol,
                             getLine(), getColumn() - 2);
          $setType(Token.SKIP);
       }
-   ;
+	;
 
 
 // character literals
@@ -1304,3 +1212,4 @@ protected
 FLOAT_SUFFIX
 	:	'f'|'F'|'d'|'D'
 	;
+

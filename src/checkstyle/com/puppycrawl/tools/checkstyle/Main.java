@@ -53,7 +53,7 @@ public final class Main
             true,
             "Sets the output format. (plain|xml). Defaults to plain");
     }
-    
+
     /**
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.
@@ -71,7 +71,7 @@ public final class Main
             e.printStackTrace();
             usage();
         }
-        
+
         // setup the properties
         final Properties props =
             line.hasOption("p")
@@ -83,7 +83,7 @@ public final class Main
             System.out.println("Must specify a config XML file.");
             usage();
         }
-        
+
         // Load the config file
         CheckConfiguration[] checkConfigs = null;
         try {
@@ -100,7 +100,7 @@ public final class Main
         OutputStream out = null;
         boolean closeOut = false;
         if (line.hasOption("o")) {
-            final String fname = line.getOptionValue("o"); 
+            final String fname = line.getOptionValue("o");
             try {
                 out = new FileOutputStream(fname);
                 closeOut = true;
@@ -114,11 +114,11 @@ public final class Main
             out = System.out;
             closeOut = false;
         }
-        
+
         // create the appropriate listener
         final String format =
             line.hasOption("f") ? line.getOptionValue("f") : "plain";
-        
+
         AuditListener listener = null;
         if ("xml".equals(format)) {
             listener = new XMLLogger(out, closeOut);
@@ -140,16 +140,16 @@ public final class Main
                 traverse(new File(values[i]), files);
             }
         }
- 
+
         final String[] remainingArgs = line.getArgs();
         for (int i = 0; i < remainingArgs.length; i++) {
             files.add(remainingArgs[i]);
-        } 
+        }
 
         if (files.isEmpty()) {
             System.out.println("Must specify files to process");
             usage();
-        }         
+        }
 
         // create the checker
         Checker c = null;
@@ -165,7 +165,7 @@ public final class Main
         }
 
         final int numErrs =
-            c.processNEW((String[]) files.toArray(new String[files.size()]));
+            c.process((String[]) files.toArray(new String[files.size()]));
         c.destroy();
         System.exit(numErrs);
     }

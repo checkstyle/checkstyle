@@ -51,60 +51,15 @@ public class Checker
      * parsing fails because with the next grammar it might succeed
      * and the user will be confused.
      */
-    private class SilentJava14Recognizer extends GeneratedJava14Recognizer
+    private static class SilentJava14Recognizer
+        extends GeneratedJava14Recognizer
     {
-        // TODO: remove
         /**
          * Creates a new <code>SilentJava14Recognizer</code> instance.
          *
          * @param aLexer the tokenstream the recognizer operates on.
          */
         private SilentJava14Recognizer(GeneratedJava14Lexer aLexer)
-        {
-            super(aLexer);
-        }
-
-        /**
-         * Parser error-reporting function, does nothing.
-         * @param aRex the exception to be reported
-         */
-        public void reportError(RecognitionException aRex)
-        {
-        }
-
-        /**
-         * Parser error-reporting function, does nothing.
-         * @param aMsg the error message
-         */
-        public void reportError(String aMsg)
-        {
-        }
-
-        /**
-         * Parser warning-reporting function, does nothing.
-         * @param aMsg the error message
-         */
-        public void reportWarning(String aMsg)
-        {
-        }
-    }
-
-    /**
-     * Overrides ANTLR error reporting so we completely control
-     * checkstyle's output during parsing. This is important because
-     * we try parsing with several grammers (with/without support for
-     * <code>assert</code>). We must not write any error messages when
-     * parsing fails because with the next grammar it might succeed
-     * and the user will be confused.
-     */
-    private static class NEWSilentJava14Recognizer extends Java14Recognizer
-    {
-        /**
-         * Creates a new <code>SilentJava14Recognizer</code> instance.
-         *
-         * @param aLexer the tokenstream the recognizer operates on.
-         */
-        private NEWSilentJava14Recognizer(Java14Lexer aLexer)
         {
             super(aLexer);
         }
@@ -176,20 +131,6 @@ public class Checker
         }
     }
 
-    /**
-     * Constructs the object.
-     * @param aConfig contains the configuration to check with
-     * @throws CheckstyleException if an error occurs
-     */
-    public Checker(Configuration aConfig)
-        throws CheckstyleException
-    {
-        // TODO: delete this method eventually
-        this(aConfig, new CheckConfiguration[0]);
-        final Verifier v = new Verifier(aConfig);
-        VerifierSingleton.setInstance(v);
-    }
-
     /** Cleans up the object **/
     public void destroy()
     {
@@ -216,7 +157,7 @@ public class Checker
      */
     public int process(String[] aFiles)
     {
-        // TODO: delete
+        // TODO: rename and blow away the old stuff
         int total = 0;
         fireAuditStarted();
 
@@ -236,143 +177,12 @@ public class Checker
     }
 
     /**
-     * Processes a set of files.
-     * Once this is done, it is highly recommended to call for
-     * the destroy method to close and remove the listeners.
-     * @param aFiles the list of files to be audited.
-     * @return the total number of errors found
-     * @see #destroy()
-     */
-    public int processNEW(String[] aFiles)
-    {
-        // TODO: rename and blow away the old stuff
-        int total = 0;
-        fireAuditStarted();
-
-        // If you move checkPackageHtml() around beware of the caching
-        // functionality of checkstyle. Make sure that package.html
-        // checks are not skipped because of caching. Otherwise you
-        // might e.g. have a package.html file, check all java files
-        // without errors, delete package.html and then recheck without
-        // errors because the html file is not covered by the cache.
-        total += checkPackageHtml(aFiles);
-
-        for (int i = 0; i < aFiles.length; i++) {
-            total += processNEW(aFiles[i]);
-        }
-        fireAuditFinished();
-        return total;
-    }
-
-    /**
      * Processes a specified file and prints out all errors found.
      * @return the number of errors found
      * @param aFileName the name of the file to process
      **/
     private int process(String aFileName)
     {
-        // check if already checked and passed the file
-        final File f = new File(aFileName);
-        final long timestamp = f.lastModified();
-        if (mCache.alreadyChecked(aFileName, timestamp)) {
-            return 0;
-        }
-
-        // Create a stripped down version
-        final String stripped;
-        final String basedir = mConfig.getBasedir();
-        if ((basedir == null) || !aFileName.startsWith(basedir)) {
-            stripped = aFileName;
-        }
-        else {
-            // making the assumption that there is text after basedir
-            final int skipSep = basedir.endsWith(File.separator) ? 0 : 1;
-            stripped = aFileName.substring(basedir.length() + skipSep);
-        }
-
-        LocalizedMessage[] errors;
-        try {
-            fireFileStarted(stripped);
-            final String[] lines = Utils.getLines(aFileName);
-            try {
-                // try the 1.4 grammar first, this will succeed for
-                // all code that compiles without any warnings in JDK 1.4,
-                // that should cover most cases
-                VerifierSingleton.getInstance().reset();
-                VerifierSingleton.getInstance().setLines(lines);
-                final Reader sar = new StringArrayReader(lines);
-                final GeneratedJava14Lexer jl = new GeneratedJava14Lexer(sar);
-                jl.setFilename(aFileName);
-                final GeneratedJava14Recognizer jr =
-                    new SilentJava14Recognizer(jl);
-                jr.setFilename(aFileName);
-                jr.setASTNodeClass(MyCommonAST.class.getName());
-                jr.compilationUnit();
-            }
-            catch (RecognitionException re) {
-                // Parsing might have failed because the checked
-                // file contains "assert" as an identifier. Retry with a
-                // grammar that treats "assert" as an identifier
-                // and not as a keyword
-
-                // Arghh - the pain - duplicate code!
-                VerifierSingleton.getInstance().reset();
-                VerifierSingleton.getInstance().setLines(lines);
-                final Reader sar = new StringArrayReader(lines);
-                final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
-                jl.setFilename(aFileName);
-                final GeneratedJavaRecognizer jr =
-                    new GeneratedJavaRecognizer(jl);
-                jr.setFilename(aFileName);
-                jr.setASTNodeClass(MyCommonAST.class.getName());
-                jr.compilationUnit();
-            }
-            errors = VerifierSingleton.getInstance().getMessages();
-        }
-        catch (FileNotFoundException fnfe) {
-            errors = new LocalizedMessage[] {
-                new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                     "general.fileNotFound", null)};
-        }
-        catch (IOException ioe) {
-            errors = new LocalizedMessage[] {
-                new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                     "general.exception",
-                                     new String[] {ioe.getMessage()})};
-        }
-        catch (RecognitionException re) {
-            errors = new LocalizedMessage[] {
-                new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                     "general.exception",
-                                     new String[] {re.getMessage()})};
-        }
-        catch (TokenStreamException te) {
-            errors = new LocalizedMessage[] {
-                new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                     "general.exception",
-                                     new String[] {te.getMessage()})};
-        }
-
-        if (errors.length == 0) {
-            mCache.checkedOk(aFileName, timestamp);
-        }
-        else {
-            fireErrors(stripped, errors);
-        }
-
-        fireFileFinished(stripped);
-        return errors.length;
-    }
-
-    /**
-     * Processes a specified file and prints out all errors found.
-     * @return the number of errors found
-     * @param aFileName the name of the file to process
-     **/
-    private int processNEW(String aFileName)
-    {
-        // TODO: blow away the old process and rename this one
-
         // check if already checked and passed the file
         final File f = new File(aFileName);
         final long timestamp = f.lastModified();
@@ -448,12 +258,12 @@ public class Checker
             // all code that compiles without any warnings in JDK 1.4,
             // that should cover most cases
             final Reader sar = new StringArrayReader(aContents.getLines());
-            final Java14Lexer jl = new Java14Lexer(sar);
+            final GeneratedJava14Lexer jl = new GeneratedJava14Lexer(sar);
             jl.setFilename(aContents.getFilename());
             jl.setFileContents(aContents);
 
-            final Java14Recognizer jr =
-                new NEWSilentJava14Recognizer(jl);
+            final GeneratedJava14Recognizer jr =
+                new SilentJava14Recognizer(jl);
             jr.setFilename(aContents.getFilename());
             jr.setASTNodeClass(DetailAST.class.getName());
             jr.compilationUnit();
@@ -467,11 +277,11 @@ public class Checker
 
             // Arghh - the pain - duplicate code!
             final Reader sar = new StringArrayReader(aContents.getLines());
-            final JavaLexer jl = new JavaLexer(sar);
+            final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
             jl.setFilename(aContents.getFilename());
             jl.setFileContents(aContents);
 
-            final JavaRecognizer jr = new JavaRecognizer(jl);
+            final GeneratedJavaRecognizer jr = new GeneratedJavaRecognizer(jl);
             jr.setFilename(aContents.getFilename());
             jr.setASTNodeClass(DetailAST.class.getName());
             jr.compilationUnit();

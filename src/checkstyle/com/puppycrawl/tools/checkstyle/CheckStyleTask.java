@@ -217,7 +217,7 @@ public class CheckStyleTask
 
             // Process the files
             final String[] files = scanFileSets();
-            final int numErrs = c.processNEW(files);
+            final int numErrs = c.process(files);
 
             // Handle the return status
             if ((numErrs > 0) && mFailureProperty != null) {
