@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -33,24 +32,18 @@ public abstract class Check extends AutomaticBean
     /** resuable constant for message formating */
     private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
 
-    /** name to store file contents under */
-    private static final String FILE_CONTENTS_ATTRIBUTE = "fILEcONTENTS";
+    /** the current file contents */
+    private FileContents mFileContents = null;
 
-    /** the global context for the check */
-    private Map mGlobalContext;
     /** the tokens the check is interested in */
     private final Set mTokens = new HashSet();
-    /**
-     * the object for collecting messages. decided to not put in the global
-     * context for performance and ease of use.
-     */
+
+    /** the object for collecting messages. */
     private LocalizedMessages mMessages;
-    /** the context for the check across an AST */
-    private Map mTreeContext;
-    /** the context for a check across a token. */
-    private Map mTokenContext;
+
     /** the tab with for column reporting */
     private int mTabWidth = 8; // meaningful default
+
     /** current class loader */
     private ClassLoader mLoader =
         Thread.currentThread().getContextClassLoader();
@@ -107,26 +100,6 @@ public abstract class Check extends AutomaticBean
         return mTokens;
     }
 
-
-    /**
-     * Return the global context object for check. This context is valid for
-     * the lifetime of the check.
-     * @return the context object
-     */
-    public final Map getGlobalContext()
-    {
-        return mGlobalContext;
-    }
-
-    /**
-     * Set the global context for the check.
-     * @param aContext the context
-     */
-    public final void setGlobalContext(Map aContext)
-    {
-        mGlobalContext = aContext;
-    }
-
     /**
      * Set the global object used to collect messages.
      * @param aMessages the messages to log with
@@ -134,44 +107,6 @@ public abstract class Check extends AutomaticBean
     public final void setMessages(LocalizedMessages aMessages)
     {
         mMessages = aMessages;
-    }
-
-    /**
-     * Return the tree context object for check. This context is valid for
-     * the lifetime of a abstract syntax tree.
-     * @return the context object
-     */
-    public final Map getTreeContext()
-    {
-        return mTreeContext;
-    }
-
-    /**
-     * Set the tree context for the check.
-     * @param aContext the context
-     */
-    public final void setTreeContext(Map aContext)
-    {
-        mTreeContext = aContext;
-    }
-
-    /**
-     * Return the tree context object for check. This context is valid for
-     * the lifetime of a abstract syntax tree.
-     * @return the context object
-     */
-    public final Map getTokenContext()
-    {
-        return mTokenContext;
-    }
-
-    /**
-     * Set the token context for the check.
-     * @param aContext the global context
-     */
-    public final void setTokenContext(Map aContext)
-    {
-        mTokenContext = aContext;
     }
 
     /**
@@ -236,7 +171,7 @@ public abstract class Check extends AutomaticBean
      */
     public final void setFileContents(FileContents aContents)
     {
-        getTreeContext().put(FILE_CONTENTS_ATTRIBUTE, aContents);
+        mFileContents = aContents;
     }
 
     /**
@@ -245,7 +180,7 @@ public abstract class Check extends AutomaticBean
      */
     public final FileContents getFileContents()
     {
-        return (FileContents) getTreeContext().get(FILE_CONTENTS_ATTRIBUTE);
+        return mFileContents;
     }
 
     /**

@@ -100,7 +100,6 @@ public final class TreeWalker
         {
         }
     }
-    // TODO: really need to optimise the performance of this class.
 
     /** maps from token name to checks */
     private final Map mTokenToChecks = new HashMap();
@@ -119,12 +118,6 @@ public final class TreeWalker
     /** context of child components */
     private Context mChildContext;
     
-    /** context of visited node */
-    private final Map mTokenContext = new HashMap();
-
-    /** context of tree */
-    private final Map mTreeContext = new HashMap();
-
     /**
      * HACK - a reference to a private "mParent" field in DetailAST.
      * Don't do this at home!
@@ -385,12 +378,9 @@ public final class TreeWalker
      */
     private void notifyBegin(FileContents aContents)
     {
-        // TODO: do not track Context properly for token
         final Iterator it = mAllChecks.iterator();
         while (it.hasNext()) {
             final Check check = (Check) it.next();
-            mTreeContext.clear();
-            check.setTreeContext(mTreeContext);
             check.setFileContents(aContents);
             check.beginTree();
         }
@@ -446,10 +436,8 @@ public final class TreeWalker
             (ArrayList) mTokenToChecks.get(
                 TokenTypes.getTokenName(aAST.getType()));
         if (visitors != null) {
-            mTokenContext.clear();
             for (int i = 0; i < visitors.size(); i++) {
                 final Check check = (Check) visitors.get(i);
-                check.setTokenContext(mTokenContext);
                 check.visitToken(aAST);
             }
         }
@@ -467,7 +455,6 @@ public final class TreeWalker
         if (visitors != null) {
             for (int i = 0; i < visitors.size(); i++) {
                 final Check check = (Check) visitors.get(i);
-                // TODO: need to setup the token context
                 check.leaveToken(aAST);
             }
         }
