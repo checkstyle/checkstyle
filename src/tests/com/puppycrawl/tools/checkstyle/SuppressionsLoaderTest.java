@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.FilterChain;
 import com.puppycrawl.tools.checkstyle.filter.SuppressElement;
 
 /**
- * Enter a description of class PackageNamesLoaderTest.java.
+ * Tests SuppressionsLoader.
  * @author Rick Giles
  */
 public class SuppressionsLoaderTest extends TestCase
