@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p> An example of how to configure the check for <code>if</code> and
  * <code>else</code> blocks is:
+ * </p>
  * <pre>
  * &lt;module name="NeedBraces"&gt;
  *     &lt;property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/&gt;
