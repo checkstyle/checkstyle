@@ -19,30 +19,30 @@ public class ClassResolverTest
                               null, imps);
         assertNotNull(cr);
         try {
-            cr.resolve("who.will.win.the.world.cup");
+            cr.resolve("who.will.win.the.world.cup", "");
             fail("Should not resolve class");
         }
         catch (ClassNotFoundException e) {
         }
-        cr.resolve("java.lang.String");
-        cr.resolve("StringBuffer");
-        cr.resolve("AppletContext");
+        cr.resolve("java.lang.String", "");
+        cr.resolve("StringBuffer", "");
+        cr.resolve("AppletContext", "");
 
         try {
-            cr.resolve("ChoiceFormat");
+            cr.resolve("ChoiceFormat", "");
             fail();
         }
         catch (ClassNotFoundException e) {
         }
 
         imps.add("java.text.ChoiceFormat");
-        cr.resolve("ChoiceFormat");
+        cr.resolve("ChoiceFormat", "");
 
         cr = new ClassResolver(Thread.currentThread().getContextClassLoader(),
                                "java.util", imps);
-        cr.resolve("List");
+        cr.resolve("List", "");
         try {
-            cr.resolve("two.nil.england");
+            cr.resolve("two.nil.england", "");
             fail();
         }
         catch (ClassNotFoundException e) {
