@@ -39,23 +39,31 @@ public class LimitImplementationFiles
     {
         if (files != null && files.length > max) {
 
-            // Build the error list. Here we fire only one error
-            LocalizedMessage[] errors = new LocalizedMessage[1];
-
-            // get the resource bundle to use for the message
-            // will return "com.mycompany.checks.messages"
-            final String bundle = getMessageBundle();
-
-            // create the message arguments
-            Object[] msgArgs = new Object[]{new Integer(max)};
-
-            // create the actual message
-            errors[0] = new LocalizedMessage(
-                0, bundle, "max.files.exceeded", msgArgs);
-
-            // fire the errors to the AuditListeners
+            // figure out the file that contains the error
             final String path = files[max].getPath();
-            getMessageDispatcher().fireErrors(path, errors);
+
+            // message collector is used to collect error messages,
+            // needs to be reset before starting to collect error messages
+            // for a file.
+            getMessageCollector().reset();
+
+            // message dispatcher is used to fire AuditEvents
+            MessageDispatcher dispatcher = getMessageDispatcher();
+
+            // signal start of file to AuditListeners
+            dispatcher.fireFileStarted(path);
+
+            // log the message
+            log(0, "max.files.exceeded", new Integer(max));
+
+            // you can call log() multiple times to flag multiple
+            // errors in the same file
+
+            // fire the errors for this file to the AuditListeners
+            dispatcher.fireErrors(path, getMessageCollector().getMessages());
+
+            // signal end of file to AuditListeners
+            dispatcher.fireFileFinished(path);
         }
     }
 }
