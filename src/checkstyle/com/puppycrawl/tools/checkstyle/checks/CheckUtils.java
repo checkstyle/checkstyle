@@ -194,4 +194,28 @@ public final class CheckUtils
         }
         return result;
     }
+
+
+    /**
+     * Finds sub-node for given node minimal (line, column) pair.
+     * @param aNode the root of tree for search.
+     * @return sub-node with minimal (line, column) pair.
+     */
+    public static DetailAST getFirstNode(final DetailAST aNode)
+    {
+        DetailAST currentNode = aNode;
+        DetailAST child = (DetailAST) aNode.getFirstChild();
+        while (child != null) {
+            final DetailAST newNode = getFirstNode(child);
+            if (newNode.getLineNo() < currentNode.getLineNo()
+                || (newNode.getLineNo() == currentNode.getLineNo()
+                    && newNode.getColumnNo() < currentNode.getColumnNo()))
+            {
+                currentNode = newNode;
+            }
+            child = (DetailAST) child.getNextSibling();
+        }
+
+        return currentNode;
+    }
 }
