@@ -11,12 +11,13 @@ public class AllTests {
 
     public static Test suite() {
         TestSuite suite =
-            new TestSuite("Test for com.puppycrawl.tools.checkstyle.checks.coding");
+            new TestSuite("Tests for com.puppycrawl.tools.checkstyle.checks.coding");
 
         suite.addTest(new TestSuite(ArrayTrailingCommaCheckTest.class));
         suite.addTest(new TestSuite(AvoidInlineConditionalsCheckTest.class));
         suite.addTest(new TestSuite(CovariantEqualsCheckTest.class));
         suite.addTest(new TestSuite(DeclarationOrderCheckTest.class));
+        suite.addTest(new TestSuite(DefaultComesLastCheckTest.class));
         suite.addTest(new TestSuite(DoubleCheckedLockingCheckTest.class));
         suite.addTest(new TestSuite(EmptyStatementCheckTest.class));
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
