@@ -230,7 +230,7 @@ public abstract class Check extends AutomaticBean
     /**
      * Returns the severity level of the check.
      * @return the severity level
-     * @see com.puppycrawl.tools.checkstyle.SeverityLevel
+     * @see com.puppycrawl.tools.checkstyle.api.SeverityLevel
      */
     public final SeverityLevel getSeverityLevel()
     {
@@ -242,7 +242,7 @@ public abstract class Check extends AutomaticBean
      * defined in the <code>SeverityLevel</code> class.
      *
      * @param aSeverity  The new severity level
-     * @see com.puppycrawl.tools.checkstyle.SeverityLevel
+     * @see com.puppycrawl.tools.checkstyle.api.SeverityLevel
      */
     public void setSeverity(String aSeverity)
     {
