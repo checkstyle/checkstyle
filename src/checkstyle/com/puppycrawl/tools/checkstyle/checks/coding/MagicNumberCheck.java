@@ -45,7 +45,7 @@ import java.util.Arrays;
 public class MagicNumberCheck extends Check
 {
     /** the numbers to ignore in the check, sorted */
-    private float[] mIgnoreNumbers = {-1, 0, 1, 2};
+    private double[] mIgnoreNumbers = {-1, 0, 1, 2};
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
@@ -89,7 +89,7 @@ public class MagicNumberCheck extends Check
      */
     private boolean inIgnoreList(DetailAST aAST)
     {
-        float value = CheckUtils.parseFloat(aAST.getText(), aAST.getType());
+        double value = CheckUtils.parseDouble(aAST.getText(), aAST.getType());
         final DetailAST parent = aAST.getParent();
         if (parent.getType() == TokenTypes.UNARY_MINUS) {
             value = -1 * value;
@@ -151,16 +151,16 @@ public class MagicNumberCheck extends Check
 
     /**
      * Sets the numbers to ignore in the check.
-     * BeanUtils converts numeric token list to float array automatically.
+     * BeanUtils converts numeric token list to double array automatically.
      * @param aList list of numbers to ignore.
      */
-    public void setIgnoreNumbers(float[] aList)
+    public void setIgnoreNumbers(double[] aList)
     {
         if ((aList == null) || (aList.length == 0)) {
-            mIgnoreNumbers = new float[0];
+            mIgnoreNumbers = new double[0];
         }
         else {
-            mIgnoreNumbers = new float[aList.length];
+            mIgnoreNumbers = new double[aList.length];
             System.arraycopy(aList, 0, mIgnoreNumbers, 0, aList.length);
             Arrays.sort(mIgnoreNumbers);
         }

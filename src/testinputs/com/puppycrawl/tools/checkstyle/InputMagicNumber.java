@@ -88,7 +88,7 @@ class ArrayMagicTest
 /** test long hex */
 class LongHex
 {
-    long l = 0xffffffff;
+    long l = 0xffffffffL;
 }
 
 /** test signed values */
@@ -100,4 +100,17 @@ class Signed
     private int mMinusTwo = -2;
     private double mPlusDecimal = +3.5;
     private double mMinusDecimal = -2.5; 
+}
+
+/** test octal and hex negative values */
+class NegativeOctalHex
+{
+    private int hexIntMinusOne = 0xffffffff;
+    private long hexLongMinusOne = 0xffffffffffffffffL;
+    private long hexIntMinValue = 0x80000000;
+    private long hexLongMinValue = 0x8000000000000000L;
+    private int octalIntMinusOne = 037777777777;
+    private long octalLongMinusOne = 01777777777777777777777L;
+    private long octalIntMinValue = 020000000000;
+    private long octalLongMinValue = 01000000000000000000000L;
 }
