@@ -18,31 +18,60 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.filter;
 
-
 import com.puppycrawl.tools.checkstyle.api.Filter;
 
 /**
- * <p>
- * This filter drops all objects.
- * </p>
- * <p>You can add this filter to the end of a filter chain to
- * switch from the default "accept all unless instructed otherwise"
- * filtering behaviour to a "deny all unless instructed otherwise"
- * behaviour.
- * </p>
- * <p>
- * Modelled after the log4j DenyAllFilter.
- * </p>
+ * This filter accepts a matching Integer and is neutral
+ * on other Objects.
  * @author Rick Giles
  */
-public class DenyAllFilter
+public class IntMatchFilter
     implements Filter
 {
+    /** the matching Integer */
+    private Integer mMatchValue;
 
-    /** @see com.puppycrawl.tools.checkstyle.filter.Filter */
-    public int decide(Object aObject)
+    /**
+     * Constructs a MatchFilter for an int.
+     * @param aMatchValue the matching int.
+     */
+    public IntMatchFilter(int aMatchValue)
     {
-        return Filter.DENY;
+        mMatchValue = new Integer(aMatchValue);
     }
 
+    /** @see com.puppycrawl.tools.checkstyle.api.Filter */
+    public int decide(Object aObject)
+    {
+        if ((mMatchValue.equals(aObject))) {
+            return Filter.ACCEPT;
+        }
+        else {
+            return Filter.NEUTRAL;
+        }
+    }
+
+    /** @see java.lang.Object#toString() */
+    public String toString()
+    {
+        return "IntMatchFilter[" + mMatchValue + "]";
+    }
+
+    /** @see java.lang.Object#hashCode() */
+    public int hashCode()
+    {
+        return mMatchValue.hashCode();
+    }
+
+    /** @see java.lang.Object#equals(java.lang.Object) */
+    public boolean equals(Object aObject)
+    {
+        if (aObject instanceof IntMatchFilter) {
+            final IntMatchFilter other = (IntMatchFilter) aObject;
+            return (this.mMatchValue).equals(other.mMatchValue);
+        }
+        else {
+            return false;
+        }
+    }
 }

@@ -21,10 +21,10 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditEventFilter;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.FilterChain;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
@@ -124,8 +125,8 @@ public class Checker extends AutomaticBean
     /** the context of all child components */
     private Context mChildContext;
 
-    /** The filter chain */
-    private List mFilters = new ArrayList();
+    /** The audit event filter chain */
+    private FilterChain mFilterChain = new FilterChain();
 
     /**
      * The severity level of any violations found by submodules.
@@ -191,8 +192,8 @@ public class Checker extends AutomaticBean
                 final FileSetCheck fsc = (FileSetCheck) child;
                 addFileSetCheck(fsc);
             }
-            else if (child instanceof Filter) {
-                final Filter filter = (Filter) child;
+            else if (child instanceof AuditEventFilter) {
+                final AuditEventFilter filter = (AuditEventFilter) child;
                 addFilter(filter);
             }
             else if (child instanceof AuditListener) {
@@ -229,28 +230,7 @@ public class Checker extends AutomaticBean
      */
     public void addFilter(Filter aFilter)
     {
-        mFilters.add(aFilter);
-    }
-
-    /**
-     * Determines whether to accept an audit event according to
-     * the installed filter chain.
-     * @param aEvent the event to filter.
-     * @return true if the event is accepted by the filter chain.
-     */
-    public boolean accept(AuditEvent aEvent)
-    {
-        final Iterator it = mFilters.iterator();
-        while (it.hasNext()) {
-            final Filter filter = (Filter) it.next();
-            if (filter.decide(aEvent) == Filter.DENY) {
-                return false;
-            }
-            else if (filter.decide(aEvent) == Filter.ACCEPT) {
-                return true;
-            }
-        }
-        return true;
+        mFilterChain.addFilter(aFilter);
     }
 
     /** Cleans up the object **/
@@ -319,10 +299,12 @@ public class Checker extends AutomaticBean
     protected void fireAuditStarted()
     {
         final AuditEvent evt = new AuditEvent(this);
-        final Iterator it = mListeners.iterator();
-        while (it.hasNext()) {
-            final AuditListener listener = (AuditListener) it.next();
-            listener.auditStarted(evt);
+        if (mFilterChain.decide(evt) != Filter.DENY) {
+            final Iterator it = mListeners.iterator();
+            while (it.hasNext()) {
+                final AuditListener listener = (AuditListener) it.next();
+                listener.auditStarted(evt);
+            }
         }
     }
 
@@ -330,7 +312,7 @@ public class Checker extends AutomaticBean
     protected void fireAuditFinished()
     {
         final AuditEvent evt = new AuditEvent(this);
-        if (accept(evt)) {
+        if (mFilterChain.decide(evt) != Filter.DENY) {
             final Iterator it = mListeners.iterator();
             while (it.hasNext()) {
                 final AuditListener listener = (AuditListener) it.next();
@@ -347,7 +329,7 @@ public class Checker extends AutomaticBean
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        if (accept(evt)) {
+        if (mFilterChain.decide(evt) != Filter.DENY) {
             final Iterator it = mListeners.iterator();
             while (it.hasNext()) {
                 final AuditListener listener = (AuditListener) it.next();
@@ -364,7 +346,7 @@ public class Checker extends AutomaticBean
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        if (accept(evt)) {
+        if (mFilterChain.decide(evt) != Filter.DENY) {
             final Iterator it = mListeners.iterator();
             while (it.hasNext()) {
                 final AuditListener listener = (AuditListener) it.next();
@@ -383,7 +365,7 @@ public class Checker extends AutomaticBean
         final String stripped = getStrippedFileName(aFileName);
         for (int i = 0; i < aErrors.length; i++) {
             final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);
-            if (accept(evt)) {
+            if (mFilterChain.decide(evt) != Filter.DENY) {
                 final Iterator it = mListeners.iterator();
                 while (it.hasNext()) {
                     final AuditListener listener = (AuditListener) it.next();
