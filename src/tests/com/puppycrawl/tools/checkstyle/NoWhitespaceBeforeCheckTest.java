@@ -5,11 +5,10 @@ import com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck;
 public class NoWhitespaceBeforeCheckTest
     extends BaseCheckTestCase
 {
-    private CheckConfiguration checkConfig;
+    private DefaultConfiguration checkConfig;
 
     public void setUp() {
-        checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(NoWhitespaceBeforeCheck.class.getName());
+        checkConfig = createCheckConfig(NoWhitespaceBeforeCheck.class);
     }
 
     public void testDefault() throws Exception
@@ -25,7 +24,7 @@ public class NoWhitespaceBeforeCheckTest
 
     public void testDot() throws Exception
     {
-        checkConfig.addTokens("DOT");
+        checkConfig.addAttribute("tokens", "DOT");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
@@ -41,8 +40,8 @@ public class NoWhitespaceBeforeCheckTest
 
     public void testDotAllowLineBreaks() throws Exception
     {
-        checkConfig.addTokens("DOT");
-        checkConfig.addProperty("allowLineBreaks", "yes");
+        checkConfig.addAttribute("tokens", "DOT");
+        checkConfig.addAttribute("allowLineBreaks", "yes");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputWhitespace.java");
         final String[] expected = {

@@ -6,11 +6,10 @@ import com.puppycrawl.tools.checkstyle.checks.OperatorWrapOption;
 public class OperatorWrapCheckTest
     extends BaseCheckTestCase
 {
-    private CheckConfiguration checkConfig;
+    private DefaultConfiguration checkConfig;
 
     public void setUp() {
-        checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(OperatorWrapCheck.class.getName());
+        checkConfig = createCheckConfig(OperatorWrapCheck.class);
     }
 
     public void testDefault()
@@ -30,7 +29,7 @@ public class OperatorWrapCheckTest
     public void testOpWrapEOL()
         throws Exception
     {
-        checkConfig.addProperty("option", OperatorWrapOption.EOL.toString());
+        checkConfig.addAttribute("option", OperatorWrapOption.EOL.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputOpWrap.java");
         final String[] expected = {
@@ -44,8 +43,8 @@ public class OperatorWrapCheckTest
     public void testAssignEOL()
         throws Exception
     {
-        checkConfig.addTokens("ASSIGN");
-        checkConfig.addProperty("option", OperatorWrapOption.EOL.toString());
+        checkConfig.addAttribute("tokens", "ASSIGN");
+        checkConfig.addAttribute("option", OperatorWrapOption.EOL.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputOpWrap.java");
         final String[] expected = {

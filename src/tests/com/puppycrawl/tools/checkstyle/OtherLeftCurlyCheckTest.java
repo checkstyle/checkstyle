@@ -9,8 +9,8 @@ public class OtherLeftCurlyCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(OtherLeftCurlyCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(OtherLeftCurlyCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputLeftCurlyOther.java");
         final String[] expected = {
@@ -31,9 +31,9 @@ public class OtherLeftCurlyCheckTest
     public void testNL()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(OtherLeftCurlyCheck.class.getName());
-        checkConfig.addProperty("option", LeftCurlyOption.NL.toString());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(OtherLeftCurlyCheck.class);
+        checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputLeftCurlyOther.java");
         final String[] expected = {
@@ -45,8 +45,8 @@ public class OtherLeftCurlyCheckTest
     public void testMissingBraces()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(OtherLeftCurlyCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(OtherLeftCurlyCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputBraces.java");
         final String[] expected = {
