@@ -335,7 +335,7 @@ public class TokenTypes
     /** token representing a FLOAT_SUFFIX */
     public static final int FLOAT_SUFFIX = 151;
     /** token representing a ASSERT */
-    public static final int ASSERT = 152;
+    public static final int LITERAL_ASSERT = 152;
 
     ////////////////////////////////////////////////////////////////////////
     // The interesting code goes here
