@@ -49,14 +49,18 @@ public class ArrayTypeStyleCheck extends Check
             return;
         }
 
-        DetailAST variableAST = (DetailAST) typeAST.getNextSibling();
-        boolean isJavaStyle = (variableAST.getColumnNo() > aAST.getColumnNo());
+        final DetailAST variableAST = (DetailAST) typeAST.getNextSibling();
+        if (variableAST != null) {
+            final boolean isJavaStyle =
+                (variableAST.getColumnNo() > aAST.getColumnNo());
 
-        if (isJavaStyle != mJavaStyle) {
-            log(aAST.getLineNo(), aAST.getColumnNo(),
+            if (isJavaStyle != mJavaStyle) {
+                log(
+                    aAST.getLineNo(),
+                    aAST.getColumnNo(),
                     "Array brackets at illegal position.");
+            }
         }
-
     }
 
     /**
@@ -67,6 +71,4 @@ public class ArrayTypeStyleCheck extends Check
     {
         mJavaStyle = aJavaStyle;
     }
-
-
 }

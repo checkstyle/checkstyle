@@ -27,6 +27,7 @@ public class ArrayTypeStyleCheckTest
         final String[] expected = {
             "13:16: Array brackets at illegal position.",
             "16:39: Array brackets at illegal position.",
+            "22:18: Array brackets at illegal position.",
         };
         verify(checkConfig, getPath("InputArrayTypeStyle.java"), expected);
     }
