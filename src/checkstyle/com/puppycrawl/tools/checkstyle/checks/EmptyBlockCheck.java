@@ -80,17 +80,17 @@ public class EmptyBlockCheck extends AbstractOptionCheck
     }
 
     /**
-     * @param slistAST a <code>DetailAST</code> value
+     * @param aSlistAST a <code>DetailAST</code> value
      * @return whether the SLIST token contains any text.
      */
-    private boolean hasText(final DetailAST slistAST)
+    private boolean hasText(final DetailAST aSlistAST)
     {
         boolean retVal = false;
 
-        final DetailAST rcurlyAST = slistAST.findFirstToken(TokenTypes.RCURLY);
+        final DetailAST rcurlyAST = aSlistAST.findFirstToken(TokenTypes.RCURLY);
         if (rcurlyAST != null) {
-            final int slistLineNo = slistAST.getLineNo();
-            final int slistColNo = slistAST.getColumnNo();
+            final int slistLineNo = aSlistAST.getLineNo();
+            final int slistColNo = aSlistAST.getColumnNo();
             final int rcurlyLineNo = rcurlyAST.getLineNo();
             final int rcurlyColNo = rcurlyAST.getColumnNo();
             final String[] lines = getLines();
