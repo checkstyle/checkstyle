@@ -60,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="ModifierCheck"/&gt;
+ * &lt;module name="Modifier"/&gt;
  * </pre>
  * @author Lars Kühne
  */

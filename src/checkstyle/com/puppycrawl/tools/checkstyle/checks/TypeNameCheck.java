@@ -33,16 +33,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="TypeNameCheck"/&gt;
+ * &lt;module name="TypeName"/&gt;
  * </pre> 
  * <p>
  * An example of how to configure the check for names that begin with
  * a lower case letter, followed by letters, digits, and underscores is:
  * </p>
  * <pre>
- * &lt;config name="TypeNameCheck"&gt;
+ * &lt;module name="TypeName"&gt;
  *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author Oliver Burn
  */

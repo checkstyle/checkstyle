@@ -56,10 +56,10 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * &quot;java.header&quot; and ignore lines 4 and 5 is:
  * </p>
  * <pre>
- * &lt;config name="RegexpHeaderCheck"&gt;
+ * &lt;module name="RegexpHeader"&gt;
  *    &lt;property name="headerFile" value="java.header"/&gt;
  *    &lt;property name="ignoreLines" value="4, 5"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  *
  * @author Lars Kühne

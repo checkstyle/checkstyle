@@ -32,9 +32,9 @@ package com.puppycrawl.tools.checkstyle.checks;
  * <code>System.out.println</code> is:
  * </p>
  * <pre>
- * &lt;config name="GenericIllegalRegexpCheck"&gt;
+ * &lt;module name="GenericIllegalRegexp"&gt;
  *    &lt;property name="format" value="System\.out\.println"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author lkuehne
  */

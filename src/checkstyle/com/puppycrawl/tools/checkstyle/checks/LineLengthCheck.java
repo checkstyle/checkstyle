@@ -51,24 +51,24 @@ import org.apache.commons.beanutils.ConversionException;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="LineLengthCheck"/&gt;
+ * &lt;module name="LineLength"/&gt;
  * </pre>
  * <p> An example of how to configure the check to accept lines up to 120
  * characters long is:
  *</p>
  * <pre>
- * &lt;config name="LineLengthCheck"&gt;
+ * &lt;module name="LineLength"&gt;
  *    &lt;property name="max" value="120"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * <p> An example of how to configure the check to ignore lines that begin with
  * &quot; * &quot;, followed by just one word, such as within a Javadoc comment,
  * is:
  * </p>
  * <pre>
- * &lt;config name="LineLengthCheck"&gt;
+ * &lt;module name="LineLength"&gt;
  *    &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * 
  * @author Lars Kühne

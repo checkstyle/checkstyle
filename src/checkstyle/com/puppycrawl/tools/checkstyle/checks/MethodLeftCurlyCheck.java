@@ -34,17 +34,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="MethodLeftCurlyCheck"/&gt;
+ * &lt;module name="MethodLeftCurly"/&gt;
  * </pre> 
  * <p>
  * An example of how to configure the check with policy
  * {@link LeftCurlyOption#NLOW} and maxLineLength 120 is:
  * </p>
  * <pre>
- * &lt;config name="MethodLeftCurlyCheck"&gt;
+ * &lt;module name="MethodLeftCurly"&gt;
  *     &lt;property name="option" value="nlow"/&gt;
  *     &lt;property name="maxLineLength" value="120"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre> 
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>

@@ -36,16 +36,16 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="TodoCommentCheck"/&gt;
+ * &lt;module name="TodoComment"/&gt;
  * </pre>
  * <p>
  * An example of how to configure the check for comments that contain
  * <code>WARNING</code> is:
  * </p>
  * <pre>
- * &lt;config name="TodoCommentCheck"&gt;
+ * &lt;module name="TodoComment"&gt;
  *    &lt;property name="format" value="WARNING"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre> 
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0

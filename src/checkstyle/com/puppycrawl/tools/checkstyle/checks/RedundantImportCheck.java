@@ -43,7 +43,7 @@ import java.util.HashSet;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="RedundantImportCheck"/&gt;
+ * &lt;module name="RedundantImport"/&gt;
  * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0

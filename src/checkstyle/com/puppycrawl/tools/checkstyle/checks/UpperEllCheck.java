@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="UpperEllCheck"/&gt;
+ * &lt;module name="UpperEll"/&gt;
  * </pre>
  * @author Oliver Burn
  * @version 1.0

@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="AvoidStarImport"/&gt;
+ * &lt;module name="AvoidStarImport"/&gt;
  * </pre>
  * @author Oliver Burn
  * @version 1.0

@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="EqualsHashCodeCheck"/&gt;
+ * &lt;module name="EqualsHashCode"/&gt;
  * </pre>
  * @author lkuehne
  */

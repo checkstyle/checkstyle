@@ -36,17 +36,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="RightCurlyCheck"/&gt;
+ * &lt;module name="RightCurly"/&gt;
  * </pre> 
  * <p>
  * An example of how to configure the check with policy
  * {@link RightCurlyOption#ALONE} for <code>else</code> tokens is:
  * </p>
  * <pre>
- * &lt;config name="RightCurlyCheck"&gt;
+ * &lt;module name="RightCurly"&gt;
  *     &lt;property name="tokens" value="LITERAL_ELSE"/&gt;
  *     &lt;property name="option" value="alone"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre> 
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author lkuehne

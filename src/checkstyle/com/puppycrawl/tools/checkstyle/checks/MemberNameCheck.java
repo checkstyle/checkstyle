@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="MemberNameCheck"/&gt;
+ * &lt;module name="MemberName"/&gt;
  * </pre> 
  * <p>
  * An example of how to configure the check for names that begin with
@@ -43,9 +43,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * digits is:
  * </p>
  * <pre>
- * &lt;config name="MemberNameCheck"&gt;
+ * &lt;module name="MemberName"&gt;
  *    &lt;property name="format" value="^m[A-Z][a-zA-Z0-9]*$"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author Rick Giles
  * @version 1.0

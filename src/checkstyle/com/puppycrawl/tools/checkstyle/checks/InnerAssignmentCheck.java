@@ -51,16 +51,16 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  * <p> An example of how to configure the check is:
  * <pre>
- * &lt;config name="InnerAssignmentCheck"/&gt;
+ * &lt;module name="InnerAssignment"/&gt;
  * </pre>
  *
  * <p> An example of how to configure the check for only <code>+</code>,
  * <code>+=</code>, and <code>-=</code> operators is:
  * </p>
  * <pre>
- * &lt;config name="InnerAssignmentCheck"&gt;
+ * &lt;module name="InnerAssignment"&gt;
  *    &lt;tokens&gt;ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN&lt;/tokens&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
 
  * @author lkuehne

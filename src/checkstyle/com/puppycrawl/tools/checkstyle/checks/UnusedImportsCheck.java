@@ -34,7 +34,7 @@ import java.util.Iterator;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="UnusedImportsCheck"/&gt;
+ * &lt;module name="UnusedImports"/&gt;
  * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0

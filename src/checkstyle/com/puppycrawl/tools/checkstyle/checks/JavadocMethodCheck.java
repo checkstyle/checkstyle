@@ -48,16 +48,16 @@ import org.apache.regexp.RE;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="JavadocMethodCheck"/&gt;
+ * &lt;module name="JavadocMethod"/&gt;
  * </pre>
  * <p> An example of how to configure the check to check for unused imports
  * and for the {@link Scope#PUBLIC} scope is:
  *</p>
  * <pre>
- * &lt;config name="JavadocMethodCheck"&gt;
+ * &lt;module name="JavadocMethod"&gt;
  *    &lt;property name="scope" value="public"/&gt;
  *    &lt;property name="checkUnusedThrows" value="true"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>

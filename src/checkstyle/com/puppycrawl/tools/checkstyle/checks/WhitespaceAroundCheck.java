@@ -79,16 +79,16 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="WhitespaceAroundCheck"/&gt;
+ * &lt;module name="WhitespaceAround"/&gt;
  * </pre> 
  * <p> An example of how to configure the check for whitespace only around
  * assignment operators is:
  * </p>
  * <pre>
- * &lt;config name="WhitespaceAroundCheck"&gt;
+ * &lt;module name="WhitespaceAround"&gt;
  *     &lt;property name="tokens"
  *               value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,MOD_ASSIGN,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>

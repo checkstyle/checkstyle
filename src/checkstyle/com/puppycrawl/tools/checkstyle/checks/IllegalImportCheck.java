@@ -38,16 +38,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="IllegalImportCheck"/&gt;
+ * &lt;module name="IllegalImport"/&gt;
  * </pre>
  * <p>
  * An example of how to configure the check so that it rejects packages
  * <code>java.io.*</code> and <code>java.sql.*</code> is
  * </p>
  * <pre>
- * &lt;config name="IllegalImportCheck"&gt;
+ * &lt;module name="IllegalImport"&gt;
  *    &lt;property name="illegalPkgs" value="java.io, java.sql"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author Lars Kühne

@@ -56,7 +56,7 @@ import antlr.collections.AST;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="IllegalInstantiationCheck"/&gt;
+ * &lt;module name="IllegalInstantiation"/&gt;
  * </pre>
  * @author lkuehne
  */

@@ -39,16 +39,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;config name="MethodLengthCheck"/&gt;
+ * &lt;module name="MethodLength"/&gt;
  * </pre>
  * <p>
  * An example of how to configure the check so that it accepts methods with at
  * most 60 lines is:
  * </p>
  * <pre>
- * &lt;config name="MethodLengthCheck"&gt;
+ * &lt;module name="MethodLength"&gt;
  *    &lt;property name="max" value="60"/&gt;
- * &lt;/config&gt;
+ * &lt;/module&gt;
  * </pre>
  * @author Lars Kühne
  */
