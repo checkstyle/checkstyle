@@ -35,24 +35,20 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * so their company's coding standards forbids them.
  *
  * @author lkuehne
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class AvoidInlineConditionalsCheck extends Check
 {
-    /** avoids multiple instantiations of equivalten arrays */
-    private static final int[] DEFAULT_TOKENS =
-        new int[]{TokenTypes.QUESTION};
-
     /** @see Check */
     public int[] getDefaultTokens()
     {
-        return DEFAULT_TOKENS;
+        return new int[]{TokenTypes.QUESTION};
     }
 
     /** @see Check */
     public int[] getRequiredTokens()
     {
-        return DEFAULT_TOKENS;
+        return getDefaultTokens();
     }
 
     /** @see Check */

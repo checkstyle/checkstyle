@@ -53,18 +53,14 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class DesignForInheritanceCheck extends Check
 {
-    /** the default tokens for this check */
-    private static final int[] DEFAULT_TOKENS =
-        new int[] {TokenTypes.METHOD_DEF};
-
     /** @see Check */
     public int[] getDefaultTokens()
     {
-        return DEFAULT_TOKENS;
+        return new int[] {TokenTypes.METHOD_DEF};
     }
 
     /** @see Check */
