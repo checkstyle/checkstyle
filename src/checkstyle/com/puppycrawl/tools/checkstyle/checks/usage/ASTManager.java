@@ -1,20 +1,20 @@
 ////////////////////////////////////////////////////////////////////////////////
-//checkstyle: Checks Java source code for adherence to a set of rules.
-//Copyright (C) 2001-2003  Oliver Burn
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2003  Oliver Burn
 //
-//This library is free software; you can redistribute it and/or
-//modify it under the terms of the GNU Lesser General Public
-//License as published by the Free Software Foundation; either
-//version 2.1 of the License, or (at your option) any later version.
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
 //
-//This library is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//Lesser General Public License for more details.
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
 //
-//You should have received a copy of the GNU Lesser General Public
-//License along with this library; if not, write to the Free Software
-//Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.usage;
 
@@ -43,11 +43,11 @@ import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.TableMaker;
 public final class ASTManager
 {
     /** singleton */
-    private static final ASTManager sInstance = new ASTManager();
+    private static final ASTManager INSTANCE = new ASTManager();
 
     /** maps DetailASTs to SymTabASTs. */
     private Map mMap = new IdentityHashMap();
-        
+
     /** root with subtrees for a set of files */
     private SymTabAST mCompleteTree = null;
 
@@ -61,14 +61,14 @@ public final class ASTManager
     private ASTManager()
     {
     }
-    
+
     /**
      * Returns the singleon ASTManager.
      * @return the singleon ASTManager.
      */
     public static ASTManager getInstance()
     {
-        return sInstance;
+        return INSTANCE;
     }
 
     /**
@@ -83,6 +83,7 @@ public final class ASTManager
 
     /**
      * Builds the complete tree for all added parse trees.
+     * @throws SymbolTableException if there is an error.
      */
     private void buildTree()
         throws SymbolTableException
@@ -108,14 +109,15 @@ public final class ASTManager
      * @param aFile the file to add.
      * @param aAST the DetailAST to add.
     */
-    private void addToCompleteTree(File aFile, AST aAST) {
+    private void addToCompleteTree(File aFile, AST aAST)
+    {
         // add aFile to the root
         final SymTabAST fileNode =
             SymTabASTFactory.create(0, aFile.getAbsolutePath());
         fileNode.setFile(aFile);
         mCompleteTree.addChild(fileNode);
         fileNode.setParent(mCompleteTree);
-        
+
         // add aAST to aFile
         final SymTabAST child = SymTabASTFactory.create(aAST);
         child.setFile(aFile);
@@ -153,7 +155,7 @@ public final class ASTManager
     {
         // lazy initialization
         if (mCompleteTree == null) {
-              buildTree();
+            buildTree();
         }
         Set result = (Set) mCheckNodes.get(aCheck);
         if (result == null) {
@@ -181,7 +183,7 @@ public final class ASTManager
     {
         return (SymTabAST) mMap.get(aAST);
     }
-    
+
     /**
      * Clears all associations from DetailsASTs to SymTabASTs.
      */
@@ -206,7 +208,7 @@ public final class ASTManager
     {
         mCheckNodes.clear();
         mCompleteTree = null;
-        mMap .clear();
+        mMap.clear();
         mTrees.clear();
     }
 }

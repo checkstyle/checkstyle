@@ -44,7 +44,6 @@ public class UnusedLocalVariableCheck extends AbstractUsageCheck
             TokenTypes.VARIABLE_DEF,
         };
     }
-    
 
     /** @see com.puppycrawl.tools.checkstyle.checks.usage.AbstractUsageCheck */
     public String getErrorKey()
@@ -55,6 +54,6 @@ public class UnusedLocalVariableCheck extends AbstractUsageCheck
     /** @see com.puppycrawl.tools.checkstyle.checks.usage.AbstractUsageCheck */
     public boolean mustCheckReferenceCount(DetailAST aAST)
     {
-        return ScopeUtils.isLocalVariableDef(aAST);   
+        return ScopeUtils.isLocalVariableDef(aAST);
     }
 }
