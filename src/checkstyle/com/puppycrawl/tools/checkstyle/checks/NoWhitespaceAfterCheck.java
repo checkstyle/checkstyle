@@ -28,8 +28,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that there is no whitespace after a token.
  * More specifically, it checks that it is not followed by whitespace,
  * or (if linebreaks are allowed) all characters on the line after are
- * whitespace. To allow linebreaks afer a token, set property
- * allowLineBreaks to true.
+ * whitespace. To forbid linebreaks afer a token, set property
+ * allowLineBreaks to false.
  * </p>
   * <p> By default the check will check the following operators:
  *  {@link TokenTypes#ARRAY_INIT ARRAY_INIT},
