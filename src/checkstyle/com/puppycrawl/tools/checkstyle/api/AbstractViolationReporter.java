@@ -180,9 +180,24 @@ public abstract class AbstractViolationReporter
     protected String getMessageBundle()
     {
         final String className = this.getClass().getName();
-        final int endIndex = className.lastIndexOf('.');
-        final String packageName = className.substring(0, endIndex);
-        return packageName + "." + "messages";
+        return getMessageBundle(className);
+    }
+
+    /**
+     * for unit tests, especially with a class with no package name.
+     * @param aClassName class name of the module.
+     * @return name of a resource bundle that contains the messages
+     * used by the module.
+     */
+    String getMessageBundle(final String aClassName)
+    {
+        final int endIndex = aClassName.lastIndexOf('.');
+        final String messages = "messages";
+        if (endIndex < 0) {
+            return messages;
+        }
+        final String packageName = aClassName.substring(0, endIndex);
+        return packageName + "." + messages;
     }
 
     /**
