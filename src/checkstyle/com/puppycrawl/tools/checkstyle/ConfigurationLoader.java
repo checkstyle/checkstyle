@@ -102,7 +102,8 @@ class ConfigurationLoader
                 String propName = value.substring(2, value.length() - 1);
                 value = mOverrideProps.getProperty(propName);
                 if (value == null) {
-                    throw new SAXException("missing external property " + propName);
+                    throw new SAXException(
+                            "missing external property " + propName);
                 }
             }
 
@@ -114,7 +115,8 @@ class ConfigurationLoader
         }
 
         if (!mConfigStack.isEmpty()) {
-            DefaultConfiguration top = (DefaultConfiguration) mConfigStack.peek();
+            DefaultConfiguration top =
+                    (DefaultConfiguration) mConfigStack.peek();
             top.addChild(conf);
         }
 
