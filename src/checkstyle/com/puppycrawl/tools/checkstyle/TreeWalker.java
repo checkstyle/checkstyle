@@ -248,7 +248,7 @@ public final class TreeWalker
             while (it.hasNext()) {
                 final String token = (String) it.next();
                 try {
-                    final int tokenId = TokenTypes.getTokenId(token);                    
+                    final int tokenId = TokenTypes.getTokenId(token);
                     if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
                         registerCheck(token, aCheck);
                     }

@@ -12,7 +12,7 @@ public class PackageObjectFactory
 {
     /**
      * Creates a new <code>PackageObjectFactory</code> instance.
-     */    
+     */
     private PackageObjectFactory()
     {
     }
@@ -21,13 +21,13 @@ public class PackageObjectFactory
      * Creates a new instance of a class from a given name. If the name is
      * a classname, creates an instance of the named class. Otherwise, creates
      * an instance of a classname obtained by concatenating the given
-     * to a package name from a given list of package names. 
+     * to a package name from a given list of package names.
      * @param aPackages list of package names.
      * @param aLoader the <code>ClassLoader</code> to create the instance with.
      * @param aName the name of a class.
      * @return the <code>Object</code> created by aLoader.
      * @throws CheckstyleException if an error occurs.
-     */            
+     */
     private Object doMakeObject(String[] aPackages,
                                 ClassLoader aLoader,
                                 String aName)
@@ -38,9 +38,9 @@ public class PackageObjectFactory
             return createObject(aLoader, aName);
         }
         catch (CheckstyleException ex) {
-            // keep looking
+            ; // keep looking
         }
-        
+
         //now try packages
         for (int i = 0; i < aPackages.length; i++) {
             final String className = aPackages[i] + aName;
@@ -48,7 +48,7 @@ public class PackageObjectFactory
                 return createObject(aLoader, className);
             }
             catch (CheckstyleException ex) {
-                // keep looking
+                ; // keep looking
             }
         }
 
@@ -81,19 +81,19 @@ public class PackageObjectFactory
             throw new CheckstyleException(
                 "Unable to instantiate " + aClassName);
         }
-    } 
-    
+    }
+
     /**
      * Creates a new instance of a class from a given name. If the name is
      * a classname, creates an instance of the named class. Otherwise, creates
      * an instance of a classname obtained by concatenating the given
-     * to a package name from a given list of package names. 
+     * to a package name from a given list of package names.
      * @param aPackages list of package names.
      * @param aLoader the <code>ClassLoader</code> to create the instance with.
      * @param aName the name of a class.
      * @return the <code>Object</code> created by aLoader.
      * @throws CheckstyleException if an error occurs.
-     */            
+     */
     public static Object makeObject(String[] aPackages, ClassLoader aLoader,
         String aName)
         throws CheckstyleException
