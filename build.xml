@@ -9,6 +9,8 @@
   <property name="ant.jar" value="${ant.home}/lib/ant.jar" />
   <property name="crimson.jar" value="${ant.home}/lib/crimson.jar" />
   <property name="antlr.jar" value="lib/antlr.jar" />
+  <property name="velocity.jar" value="lib/velocity-dep-1.4.jar" />
+  <property name="jdom.jar" value="lib/jdom-b9.jar" />
   <property name="regexp.jar" value="lib/jakarta-regexp-1.3.jar" />
   <property name="junit.jar" value="lib/junit.jar" />
   <property name="beanutils.jar" value="lib/commons-beanutils.jar" />
@@ -25,6 +27,8 @@
   <property name="testreport.dir" value="target/testreports"/>
   <property name="dist.dir" value="target/dist"/>
 
+  <property name="xdocs.src" value="src/xdocs"/>
+  <property name="xdocs.dest" value="target/thedocs"/>
   <property name="version" value="3.5" />
 
   <path id="build.classpath">
@@ -59,6 +63,11 @@
     <pathelement location="target/tests" />
     <pathelement path="${clover.lib}/clover.jar"/>
     <path refid="tests.buildpath" />
+  </path>
+
+  <path id="velocity.classpath">
+    <pathelement location="${velocity.jar}"/>
+    <pathelement location="${jdom.jar}" />
   </path>
 
   <target name="display.classpath" description="Displays the run classpath">
@@ -424,7 +433,7 @@
   <!-- -->
   <!-- DIST TARGETS -->
   <!-- -->
-  <target name="build.bindist" depends="compile.checkstyle, javadoc"
+  <target name="build.bindist" depends="compile.checkstyle, javadoc, xdocs"
           description="Builds the compressed distribution files">
     <delete dir="${dist.dir}/checkstyle-${version}" />
     <mkdir dir="${dist.dir}/checkstyle-${version}" />
@@ -529,10 +538,13 @@
           src="${dist.dir}/checkstyle-src-${version}.tar" />
   </target>
 
+  <!-- -->
+  <!-- DOC TARGETS -->
+  <!-- -->
   <target name="javadoc" depends="compile.checkstyle"
           description="Creates the javadoc html files">
-    <mkdir dir="docs/api" />
-    <javadoc sourcepath="src/checkstyle" destdir="docs/api"
+    <mkdir dir="${xdocs.dest}/api" />
+    <javadoc sourcepath="src/checkstyle" destdir="${xdocs.dest}/api"
              Windowtitle="Checkstyle API"
              classpathref="javadoc.classpath"
              Use="true"
@@ -550,6 +562,55 @@
           <exclude name="**/*.html" />
         </fileset>
     </javadoc>
+  </target>
+
+  <target name="xdocs" depends="compile.checkstyle">
+    
+    <mkdir dir="${xdocs.dest}"/>
+
+    <mkdir dir="target/xdocs"/>
+
+    <copy todir="target/xdocs">
+      <fileset dir="${xdocs.src}">
+	<exclude name="**/*.png"/>
+	<exclude name="**/*.css"/>
+      </fileset>
+    </copy>
+
+    <javadoc
+      sourcepath="src/checkstyle" destdir="target/xdocs"
+      classpathref="javadoc.classpath"
+      failonerror="yes">
+      <doclet name="com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet"
+	path="target/checkstyle">
+      </doclet>
+      <packageset dir="src/checkstyle">
+	<include name="**/checks/**" />
+	<include name="**/checks" />
+      </packageset>
+    </javadoc>
+    
+    <taskdef name="anakia" classname="org.apache.velocity.anakia.AnakiaTask">
+      <classpath refid="velocity.classpath"/>
+    </taskdef>
+    
+    <copy todir="${xdocs.dest}">
+      <fileset dir="${xdocs.src}">
+	<include name="**/*.png"/>
+	<include name="**/*.css"/>
+      </fileset>
+    </copy>
+    
+    <anakia basedir="target/xdocs" destdir="${xdocs.dest}/"
+      extension=".html"
+      style="site.vsl"
+      projectFile="stylesheets/project.xml"
+      excludes="**/stylesheets/**"
+      includes="**/*.xml"
+      lastModifiedCheck="true"
+      templatePath="src/xdocs/stylesheets">
+    </anakia>
+    
   </target>
 
   <!-- Added for GUMP testing -->
