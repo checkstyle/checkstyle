@@ -207,7 +207,6 @@ class Verifier
 
         // Iterate over the lines looking for:
         //    - long lines
-        //    - tabs
         for (int i = 0; i < mLines.length; i++) {
             // check for long line, but possibly allow imports
             final String line = mLines[i];
@@ -221,21 +220,6 @@ class Verifier
                 mMessages.add(i + 1, "maxLineLen",
                               new Integer(mConfig.getMaxLineLength()));
             }
-
-            // Check for tabs
-            if (!mConfig.isAllowTabs()) {
-                final int tabPosition = mLines[i].indexOf('\t');
-                if (tabPosition != -1) {
-                    mMessages.add(i + 1, tabPosition, "containsTab");
-                }
-            }
-        }
-
-        // Check excessive number of lines
-        if (mLines.length > mConfig.getMaxFileLength()) {
-            mMessages.add(1, "maxLen.file",
-                          new Integer(mLines.length),
-                          new Integer(mConfig.getMaxFileLength()));
         }
     }
 

@@ -49,12 +49,8 @@ public interface Defn
     String MAX_METHOD_LENGTH_PROP = "checkstyle.maxmethodlen";
     /** property name for length of constructors **/
     String MAX_CONSTRUCTOR_LENGTH_PROP = "checkstyle.maxconstructorlen";
-    /** property name for length of files **/
-    String MAX_FILE_LENGTH_PROP = "checkstyle.maxfilelen";
     /** property name for maximum number of parameters **/
     String MAX_PARAMETERS_PROP = "checkstyle.maxparameters";
-    /** property name for allowing tabs **/
-    String ALLOW_TABS_PROP = "checkstyle.allow.tabs";
     /** property name for allowing protected data **/
     String TAB_WIDTH_PROP = "checkstyle.tab.width";
     /** property name for allowing protected data **/
@@ -123,7 +119,6 @@ public interface Defn
             ALLOW_NO_AUTHOR_PROP,
             ALLOW_PACKAGE_PROP,
             ALLOW_PROTECTED_PROP,
-            ALLOW_TABS_PROP,
             IGNORE_BRACES_PROP,
             IGNORE_CAST_WHITESPACE_PROP,
             IGNORE_IMPORT_LENGTH_PROP,
@@ -151,7 +146,6 @@ public interface Defn
     String[] ALL_INT_PROPS = new String[]
         {
             MAX_CONSTRUCTOR_LENGTH_PROP,
-            MAX_FILE_LENGTH_PROP,
             MAX_LINE_LENGTH_PROP,
             MAX_METHOD_LENGTH_PROP,
             MAX_PARAMETERS_PROP,

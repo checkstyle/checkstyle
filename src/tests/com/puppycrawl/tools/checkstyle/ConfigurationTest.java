@@ -15,18 +15,17 @@ public class ConfigurationTest
     public void test1() throws Exception
     {
         final Properties p = new Properties();
-        p.setProperty(Defn.MAX_FILE_LENGTH_PROP, "a");
         p.setProperty(Defn.MAX_LINE_LENGTH_PROP, "66");
-        p.setProperty(Defn.ALLOW_TABS_PROP, "true");
         p.setProperty(Defn.LCURLY_METHOD_PROP, "ignore");
         p.setProperty(Defn.LCURLY_OTHER_PROP, "claiea");
         p.setProperty(Defn.RCURLY_PROP, "ignore");
-        p.setProperty(Defn.CATCH_BLOCK_PROP, "ignore");
+        p.setProperty(Defn.CATCH_BLOCK_PROP, "text");
         p.setProperty(Defn.PAREN_PAD_PROP, "ignore");
         final Configuration c = new Configuration(p, System.out);
         assertNotNull(c);
         assertEquals(66, c.getMaxLineLength());
-        assertEquals(true, c.isAllowTabs());
+        assertEquals(RightCurlyOption.IGNORE, c.getRCurly());
+        assertEquals(BlockOption.TEXT, c.getCatchBlock());
     }
 
     public void test2() throws Exception
