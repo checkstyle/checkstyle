@@ -113,8 +113,10 @@ public class CheckerTest
             filepath + ":41: 'catch' is not followed by whitespace.",
             filepath + ":58: 'if' is not followed by whitespace.",
             filepath + ":59: '{' should be on the previous line.",
+            filepath + ":63: '{' should be on the previous line.",
             filepath + ":75: '{' should be on the previous line.",
             filepath + ":76: 'return' is not followed by whitespace.",
+            filepath + ":79: '{' should be on the previous line.",
             filepath + ":88: cast needs to be followed by whitespace.",
             filepath + ":97: '?' is not preceeded with whitespace.",
             filepath + ":97: '?' is not followed by whitespace.",
@@ -173,8 +175,10 @@ public class CheckerTest
             filepath + ":41: 'catch' is not followed by whitespace.",
             filepath + ":58: 'if' is not followed by whitespace.",
             filepath + ":59: '{' should be on the previous line.",
+            filepath + ":63: '{' should be on the previous line.",
             filepath + ":75: '{' should be on the previous line.",
             filepath + ":76: 'return' is not followed by whitespace.",
+            filepath + ":79: '{' should be on the previous line.",
             filepath + ":97: '?' is not preceeded with whitespace.",
             filepath + ":97: '?' is not followed by whitespace.",
             filepath + ":97: ':' is not preceeded with whitespace.",
@@ -211,7 +215,9 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":13: type Javadoc comment is missing an @author tag.",
             filepath + ":59: '{' should be on the previous line.",
+            filepath + ":63: '{' should be on the previous line.",
             filepath + ":75: '{' should be on the previous line.",
+            filepath + ":79: '{' should be on the previous line.",
         };
         verify(c, filepath, expected);
     }
@@ -376,7 +382,9 @@ public class CheckerTest
             filepath + ":103: constructor length is 10 lines (max allowed is 9).",
             filepath + ":119: variable 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":123: variable 'CDE' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            filepath + ":127: '{' should be on the previous line.",
             filepath + ":130: variable 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            filepath + ":131: '{' should be on the previous line.",
             filepath + ":132: variable 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":137: method name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":142: 'private' modifier out of order with the JLS suggestions.",
@@ -640,7 +648,10 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":19: '{' should be on the previous line.",
             filepath + ":22: '{' should be on the previous line.",
+            filepath + ":29: '{' should be on the previous line.",
             filepath + ":33: '{' should be on the previous line.",
+            filepath + ":51: '{' should be on the previous line.",
+            filepath + ":53: '{' should be on the previous line.",
         };
         verify(c, filepath, expected);
     }

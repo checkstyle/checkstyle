@@ -316,10 +316,10 @@ field!
                 msig.setThrows(exs);
                 ver.verifyMethod(msig);
                 ver.reportStartMethodBlock();
-            } 
+            }
             s:constructorBody[msig.getLineNo()] // constructor
 			{#field = #(#[CTOR_DEF,"CTOR_DEF"], mods, h, s);}
-            {ver.reportEndMethodBlock();} 
+            {ver.reportEndMethodBlock();}
 
 		|	cd:classDefinition[#mods, msig.getModSet()]       // inner class
 			{#field = #cd;}
@@ -345,7 +345,7 @@ field!
                     msig.setReturnType(#t);
                     ver.verifyMethod(msig);
                     ver.reportStartMethodBlock();
-                } 
+                }
 				(
                     s2:compoundStatement[lcurls]
                     {
@@ -363,7 +363,7 @@ field!
 							 param,
 							 tc,
 							 s2); }
-                {ver.reportEndMethodBlock();} 
+                {ver.reportEndMethodBlock();}
 			|	v:variableDefinitions[#mods,#t, msig.getModSet()] SEMI
 				{#field = #v;}
 			)
@@ -581,11 +581,14 @@ statement[int[] aType, MyCommonAST[] aCurlies]
 				warnWhenFollowAmbig = false;
 			}
 		:
-			ee:"else"! {stmtType[0] = STMT_OTHER; } statement[stmtType, sIgnoreAST]
+			ee:"else"! {stmtType[0] = STMT_OTHER; } statement[stmtType, stmtBraces]
             {
                 ver.verifyWSAroundBegin(ee.getLine(), ee.getColumn(), ee.getText());
                 if (stmtType[0] == STMT_OTHER) {
                     ver.reportNeedBraces(ee);
+                }
+                else if (stmtType[0] == STMT_COMPOUND) {
+                    ver.verifyLCurlyOther(ee.getLine(), stmtBraces[0]);
                 }
             }
 		)?
@@ -597,13 +600,16 @@ statement[int[] aType, MyCommonAST[] aCurlies]
         forCond	s2:SEMI! // condition test
         forIter         // updater
         RPAREN!
-        statement[stmtType, sIgnoreAST] // statement to loop over
+        statement[stmtType, stmtBraces] // statement to loop over
         {
             ver.verifyWSAroundBegin(ff.getLine(), ff.getColumn(), ff.getText());
             ver.verifyWSAfter(s1.getLine(), s1.getColumn(), MyToken.SEMI_COLON);
             ver.verifyWSAfter(s2.getLine(), s2.getColumn(), MyToken.SEMI_COLON);
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(ff);
+            }
+            else {
+                ver.verifyLCurlyOther(ff.getLine(), stmtBraces[0]);
             }
         }
 
@@ -620,12 +626,15 @@ statement[int[] aType, MyCommonAST[] aCurlies]
         }
 
 	// do-while statement
-	|	dd:"do"^ statement[stmtType, sIgnoreAST] dw:"while"! LPAREN! expression RPAREN! SEMI!
+	|	dd:"do"^ statement[stmtType, stmtBraces] dw:"while"! LPAREN! expression RPAREN! SEMI!
         {
             ver.verifyWSAroundBegin(dd.getLine(), dd.getColumn(), dd.getText());
             ver.verifyWSAroundBegin(dw.getLine(), dw.getColumn(), dw.getText());
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(dd);
+            }
+            else {
+                ver.verifyLCurlyOther(dd.getLine(), stmtBraces[0]);
             }
         }
 
@@ -651,8 +660,11 @@ statement[int[] aType, MyCommonAST[] aCurlies]
 	|	"throw"^ expression SEMI!
 
 	// synchronize a statement
-	|	ss:"synchronized"^ LPAREN! expression RPAREN! compoundStatement[sIgnoreAST]
-        {ver.verifyWSAroundBegin(ss.getLine(), ss.getColumn(), ss.getText());}
+	|	ss:"synchronized"^ LPAREN! expression RPAREN! compoundStatement[stmtBraces]
+        {
+            ver.verifyWSAroundBegin(ss.getLine(), ss.getColumn(), ss.getText());
+            ver.verifyLCurlyOther(ss.getLine(), stmtBraces[0]);
+        }
 
 	// empty statement
 	|	s:SEMI {#s.setType(EMPTY_STAT);}

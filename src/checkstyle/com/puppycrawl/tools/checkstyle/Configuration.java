@@ -484,8 +484,7 @@ public class Configuration
         if (mHeaderIgnoreLineNo.isEmpty()) {
             return -1;
         }
-        else
-        {
+        else {
             Integer firstLine = (Integer) mHeaderIgnoreLineNo.first();
             return firstLine.intValue();
         }
