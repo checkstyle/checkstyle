@@ -288,7 +288,7 @@ public abstract class AbstractClassCouplingCheck extends Check
                     new Object[] {
                         new Integer(mReferencedClassNames.size()),
                         new Integer(getMax()),
-                            mReferencedClassNames.toString(), });
+                        mReferencedClassNames.toString(), });
             }
         }
 
