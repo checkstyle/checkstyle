@@ -172,7 +172,7 @@ public class DetailAST
     public DetailAST getLastChild()
     {
         AST ast = getFirstChild();
-        while (ast.getNextSibling() != null) {
+        while (ast != null && ast.getNextSibling() != null) {
             ast = ast.getNextSibling();
         }
         return (DetailAST) ast;
