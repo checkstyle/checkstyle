@@ -1,14 +1,14 @@
-public class InputNoJavadic
+public class InputNoJavadoc
 {
     public int i1;
     protected int i2;
     int i3;
     private int i4;
 
-    public foo1() {}
-    protected foo2() {}
-    foo3() {}
-    private foo4() {}
+    public void foo1() {}
+    protected void foo2() {}
+    void foo3() {}
+    private void foo4() {}
 
     protected class ProtectedInner {
         public int i1;
@@ -16,10 +16,10 @@ public class InputNoJavadic
         int i3;
         private int i4;
 
-        public foo1() {}
-        protected foo2() {}
-        foo3() {}
-        private foo4() {}
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
     class PackageInner {
@@ -28,10 +28,10 @@ public class InputNoJavadic
         int i3;
         private int i4;
 
-        public foo1() {}
-        protected foo2() {}
-        foo3() {}
-        private foo4() {}
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
     private class PrivateInner {
@@ -40,10 +40,10 @@ public class InputNoJavadic
         int i3;
         private int i4;
 
-        public foo1() {}
-        protected foo2() {}
-        foo3() {}
-        private foo4() {}
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 }
 
@@ -53,10 +53,10 @@ class PackageClass {
     int i3;
     private int i4;
 
-    public foo1() {}
-    protected foo2() {}
-    foo3() {}
-    private foo4() {}
+    public void foo1() {}
+    protected void foo2() {}
+    void foo3() {}
+    private void foo4() {}
 
     public class PublicInner {
         public int i1;
@@ -64,10 +64,10 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public foo1() {}
-        protected foo2() {}
-        foo3() {}
-        private foo4() {}
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
     protected class ProtectedInner {
@@ -76,10 +76,10 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public foo1() {}
-        protected foo2() {}
-        foo3() {}
-        private foo4() {}
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
     class PackageInner {
@@ -88,10 +88,10 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public foo1() {}
-        protected foo2() {}
-        foo3() {}
-        private foo4() {}
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
     private class PrivateInner {
@@ -100,9 +100,9 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public foo1() {}
-        protected foo2() {}
-        foo3() {}
-        private foo4() {}
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 }
