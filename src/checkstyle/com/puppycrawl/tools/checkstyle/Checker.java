@@ -21,20 +21,23 @@ package com.puppycrawl.tools.checkstyle;
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 import antlr.collections.AST;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Properties;
 import org.apache.regexp.RESyntaxException;
-import java.io.File;
 
 /**
  * This class provides the functionality to check a file.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- **/
+ * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
+ */
 class Checker
     implements Defn
 {
@@ -43,6 +46,9 @@ class Checker
 
     /** cache file **/
     private final PropertyCacheFile mCache;
+
+    /** vector of listeners */
+    private final ArrayList mListeners = new ArrayList();
 
     /**
      * Constructs the object.
@@ -63,6 +69,54 @@ class Checker
     void destroy()
     {
         mCache.destroy();
+
+        // close all streamable listeners
+        final Iterator it = mListeners.iterator();
+        while (it.hasNext()) {
+            final Object obj = it.next();
+            if (obj instanceof Streamable) {
+                final Streamable str = (Streamable) obj;
+                final OutputStream os = str.getOutputStream();
+                // close only those that can be closed...
+                if ((os != System.out) && (os != System.err) && (os != null)) {
+                    try  {
+                        os.flush();
+                        os.close();
+                    }
+                    catch (IOException ignored) {
+                    }
+                }
+            }
+            it.remove();
+        }
+    }
+
+    /**
+     * Add the listener that will be used to receive events from the audit
+     * @param aListener the nosy thing
+     */
+    void addListener(AuditListener aListener)
+    {
+        mListeners.add(aListener);
+    }
+
+    /**
+     * Processes a set of files.
+     * Once this is done, it is highly recommended to call for
+     * the destroy method to close and remove the listeners.
+     * @param aFiles the list of files to be audited.
+     * @return the total number of errors found
+     * @see destroy()
+     */
+    int process(String[] aFiles)
+    {
+        int total = 0;
+        fireAuditStarted();
+        for (int i = 0; i < aFiles.length; i++) {
+            total += process(aFiles[i]);
+        }
+        fireAuditFinished();
+        return total;
     }
 
     /**
@@ -70,15 +124,17 @@ class Checker
      * @return the number of errors found
      * @param aFileName the name of the file to process
      **/
-    int process(String aFileName)
+    private int process(String aFileName)
     {
-        final long timestamp = new File(aFileName).lastModified();
+        final File f = new File(aFileName);
+        final long timestamp = f.lastModified();
         if (mCache.alreadyChecked(aFileName, timestamp)) {
             return 0;
         }
 
         LineText[] errors;
         try {
+            fireFileStarted(aFileName);
             VerifierSingleton.getInstance().clearMessages();
             VerifierSingleton.getInstance().setLines(getLines(aFileName));
             final AST ast = getAST(aFileName);
@@ -95,8 +151,7 @@ class Checker
         catch (RecognitionException re) {
             errors = new LineText[] {
                 new LineText(0,
-                             "Got a RecognitionException -" +
-                             re.getMessage())};
+                             "Got a RecognitionException -" + re.getMessage())};
         }
         catch (TokenStreamException te) {
             errors = new LineText[] {
@@ -108,8 +163,10 @@ class Checker
             mCache.checkedOk(aFileName, timestamp);
         }
         else {
-            displayErrors(aFileName, errors);
+            fireErrors(aFileName, errors);
         }
+
+        fireFileFinished(aFileName);
         return errors.length;
     }
 
@@ -173,20 +230,6 @@ class Checker
     }
 
     /**
-     * Displays the errors associated with a file name. The errors are formatted
-     * to be parsed by Emacs.
-     * @param aFileName the file name to associate with the errors
-     * @param aErrors the errors to display
-     **/
-    private void displayErrors(String aFileName, LineText[] aErrors)
-    {
-        for (int i = 0; i < aErrors.length; i++) {
-            mLog.println(aFileName + ":" + aErrors[i].getLineNo() +
-                         ": " + aErrors[i].getText());
-        }
-    }
-
-    /**
      * @return the header lines specified by a file in the supplied properties
      *    set. If no file specified, or unable to read specified file, then an
      *    empty list is returned. Errors are reported.
@@ -208,5 +251,72 @@ class Checker
         return retVal;
     }
 
+    /** notify all listeners about the audit start */
+    protected void fireAuditStarted()
+    {
+        final AuditEvent evt = new AuditEvent(this);
+        final Iterator it = mListeners.iterator();
+        while (it.hasNext()) {
+            final AuditListener listener = (AuditListener) it.next();
+            listener.auditStarted(evt);
+        }
+    }
 
+    /** notify all listeners about the audit end */
+    protected void fireAuditFinished()
+    {
+        final AuditEvent evt = new AuditEvent(this);
+        final Iterator it = mListeners.iterator();
+        while (it.hasNext()) {
+            final AuditListener listener = (AuditListener) it.next();
+            listener.auditFinished(evt);
+        }
+    }
+
+    /**
+     * notify all listeners about the beginning of a file audit
+     * @param aFileName the file to be audited
+     */
+    protected void fireFileStarted(String aFileName)
+    {
+        final AuditEvent evt = new AuditEvent(this, aFileName);
+        final Iterator it = mListeners.iterator();
+        while (it.hasNext()) {
+            final AuditListener listener = (AuditListener) it.next();
+            listener.fileStarted(evt);
+        }
+    }
+
+    /**
+     * notify all listeners about the end of a file audit
+     * @param aFileName the audited file
+     */
+    protected void fireFileFinished(String aFileName)
+    {
+        final AuditEvent evt = new AuditEvent(this, aFileName);
+        final Iterator it = mListeners.iterator();
+        while (it.hasNext()) {
+            final AuditListener listener = (AuditListener) it.next();
+            listener.fileFinished(evt);
+        }
+    }
+
+    /**
+     * notify all listeners about the errors in a file.
+     * @param aFileName the audited file
+     * @param aErrors the audit errors from the file
+     */
+    protected void fireErrors(String aFileName, LineText[] aErrors)
+    {
+        for (int i = 0; i < aErrors.length; i++) {
+            final AuditEvent evt =
+                new AuditEvent(this, aFileName, aErrors[i].getLineNo(),
+                               aErrors[i].getText());
+            final Iterator it = mListeners.iterator();
+            while (it.hasNext()) {
+                final AuditListener listener = (AuditListener) it.next();
+                listener.addError(evt);
+            }
+        }
+    }
 }

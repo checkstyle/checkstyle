@@ -6,14 +6,33 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.URL;
 import java.util.Properties;
 import junit.framework.TestCase;
+import org.apache.regexp.RESyntaxException;
 
 public class CheckerTest
     extends TestCase
 {
+    /** a brief logger that only display info about errors */
+    protected static class BriefLogger
+        extends DefaultLogger
+    {
+        public BriefLogger(OutputStream out)
+        {
+            super(out);
+        }
+        public void auditStarted(AuditEvent evt) {}
+        public void fileFinished(AuditEvent evt) {}
+        public void fileStarted(AuditEvent evt) {}
+        //public void auditFinished(AuditEvent evt) {
+
+            //writer.flush();
+        //}
+    }
+
     private final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
     private final PrintStream mStream = new PrintStream(mBAOS);
     private final Configuration mConfig = new Configuration();
@@ -36,10 +55,20 @@ public class CheckerTest
         return f.getCanonicalPath();
     }
 
+    protected Checker createChecker()
+        throws RESyntaxException
+    {
+        final AuditListener listener = new BriefLogger(mStream);
+        final Checker c = new Checker(mConfig, mStream);
+        c.addListener(listener);
+        return c;
+    }
+
     private void verify(Checker aC, String aFilename, String[] aExpected)
         throws Exception
     {
-        final int errs = aC.process(aFilename);
+        mStream.flush();
+        final int errs = aC.process(new String[] {aFilename});
 
         // process each of the lines
         final ByteArrayInputStream bais =
@@ -57,7 +86,7 @@ public class CheckerTest
     public void testWhitespace()
         throws Exception
     {
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
         final String[] expected = {
@@ -79,7 +108,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setIgnoreWhitespace(true);
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
         final String[] expected = {
@@ -91,7 +120,7 @@ public class CheckerTest
     public void testBraces()
         throws Exception
     {
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("InputBraces.java");
         final String[] expected = {
             filepath + ":29: 'do' construct must use '{}'s.",
@@ -122,7 +151,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setIgnoreBraces(true);
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("InputBraces.java");
         final String[] expected = {
             filepath + ":41: ';' is not preceeded with whitespace.",
@@ -135,7 +164,7 @@ public class CheckerTest
     public void testTags()
         throws Exception
     {
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("InputTags.java");
         assertNotNull(c);
         final String[] expected = {
@@ -166,7 +195,7 @@ public class CheckerTest
     public void testInner()
         throws Exception
     {
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("InputInner.java");
         assertNotNull(c);
         final String[] expected = {
@@ -186,7 +215,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setPublicMemberPat("^r[A-Z]");
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("InputInner.java");
         assertNotNull(c);
         final String[] expected = {
@@ -205,7 +234,7 @@ public class CheckerTest
     public void testSimple()
         throws Exception
     {
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
@@ -231,7 +260,7 @@ public class CheckerTest
     public void testStrictJavadoc()
         throws Exception
     {
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
         final String[] expected = {
@@ -269,7 +298,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setRelaxJavadoc(true);
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
         final String[] expected = {
@@ -295,7 +324,7 @@ public class CheckerTest
     public void testHeader()
         throws Exception
     {
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("inputHeader.java");
         assertNotNull(c);
         final String[] expected = {
@@ -309,7 +338,7 @@ public class CheckerTest
     public void testImport()
         throws Exception
     {
-        final Checker c = new Checker(mConfig, mStream);
+        final Checker c = createChecker();
         final String filepath = getPath("InputImport.java");
         assertNotNull(c);
         final String[] expected = {
