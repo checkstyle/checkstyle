@@ -113,21 +113,16 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
     public RE getRegexp()
     {
         final RE regexp = super.getRegexp();
+
+        // we should explicitly set match flags because
+        // we caching RE and another check (or instance
+        // of this check could change match flags.
         if (mIgnoreCase) {
             regexp.setMatchFlags(RE.MATCH_CASEINDEPENDENT);
         }
-        // Without the else, in a sequence of GenericIllegalRegexpCheck's,
-        // the first with mIgnoreCase true, the second with mIgnoreCase
-        // false, the second still has match behaviour flags as
-        // RE.MATCH_CASEINDEPENDENT.
-        // This happens with GenericIllegalRegexpCheckTest method
-        // testIgnoreCaseFalse(), for example.
-        // TODO: Check whether this a bug or known feature of
-        // org.apache.regexp.RE.
         else {
             regexp.setMatchFlags(RE.MATCH_NORMAL);
         }
         return regexp;
     }
-
 }
