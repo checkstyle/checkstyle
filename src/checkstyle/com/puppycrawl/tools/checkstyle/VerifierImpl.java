@@ -355,18 +355,13 @@ class VerifierImpl
     }
 
     /** @see Verifier **/
-    public void verifyLeftCurly(String aText,
-                                boolean aAllowIf,
-                                String aConstruct,
-                                int aLineNo)
+    public void reportNeedBraces(int aLineNo, String aConstruct)
     {
         if (mConfig.isIgnoreBraces()) {
             return;
         }
 
-        if (!"{".equals(aText) && !(aAllowIf && "if".equals(aText))) {
-            log(aLineNo, "'" + aConstruct + "' construct must use '{}'s.");
-        }
+        log(aLineNo, "'" + aConstruct + "' construct must use '{}'s.");
     }
 
     /** @see Verifier **/

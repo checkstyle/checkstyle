@@ -296,34 +296,14 @@ stat
    |  expression
    |  #(LABELED_STAT IDENT stat)
    |  #(ii:"if" expression is1:stat (is2:stat)? )
-      {
-         ver.verifyLeftCurly(is1.getText(), false, "if", ii.getLineNo());
-         ver.verifySurroundingWS(is1);
-         if (is2 != null) {
-            ver.verifyLeftCurly(is2.getText(), true, "else", ii.getLineNo());
-            ver.verifySurroundingWS(is2);
-         }
-      }
    |  #(ff:"for"
            #(FOR_INIT (ignore=variableDef | elist)?)
            #(FOR_CONDITION (expression)?)
            #(FOR_ITERATOR (elist)?)
            fs:stat
-           {
-              ver.verifyLeftCurly(fs.getText(), false, "for", ff.getLineNo());
-              ver.verifySurroundingWS(fs);
-           }
        )
    |  #(ww:"while" expression ws:stat)
-      {
-         ver.verifyLeftCurly(ws.getText(), false, "while", ww.getLineNo());
-         ver.verifySurroundingWS(ws);
-      }
    |  #(dd:"do" ds:stat expression)
-      {
-         ver.verifyLeftCurly(ds.getText(), false, "do", dd.getLineNo());
-         ver.verifySurroundingWS(ds);
-      }
    |  #("break" (IDENT)? )
    |  #("continue" (IDENT)? )
    |  #(rr:"return" (ee:expression)? )

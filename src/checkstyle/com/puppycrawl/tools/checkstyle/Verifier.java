@@ -75,16 +75,10 @@ interface Verifier
     void verifyParameter(LineText aParam);
 
     /**
-     * Verify that a left curly brace follows.
-     * @param aText the text to check
-     * @param aAllowIf indicates whether an "if" statement is valid instead
-     * @param aConstruct the type of construct being checked. For example "for".
-     * @param aLineNo the line number of the construct
-     **/
-    void verifyLeftCurly(String aText,
-                         boolean aAllowIf,
-                         String aConstruct,
-                         int aLineNo);
+     * Report that a statement should be using a compound statement
+     * (that is, {}'s).
+     */
+    void reportNeedBraces(int aLineNo, String aConstruct);
 
     /**
      * Verify that whitespace surrounds an AST.
