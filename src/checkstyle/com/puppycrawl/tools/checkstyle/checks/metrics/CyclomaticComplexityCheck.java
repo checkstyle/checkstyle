@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 /**
  * Checks cyclomatic complexity against a specified limit. The complexity is
  * measured by the number of "if", "while", "do", "for", "?:", "catch",
- * "switch", "case", "&&" and "||" statements (plus one) in the body of the
+ * "switch", "case", "&amp;&amp;" and "||" statements (plus one) in the body of the
  * member. It is a measure of the minimum number of possible paths through the
  * source and therefore the number of required tests. Generally 1-4 is
  * considered good, 5-7 ok, 8-10 consider re-factoring, and 11+ re-factor now!

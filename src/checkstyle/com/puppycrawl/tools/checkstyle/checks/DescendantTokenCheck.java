@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks for restricted tokens beneath other tokens.
+ * </p>
  * <p>
  * Examples of how to configure the check:
  * </p>
@@ -40,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
  *     &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
  *     &lt;property name="maximumNumber" value="0"/&gt;
- *     &lt;property name="maximumDepth" value="1"/&dt;
+ *     &lt;property name="maximumDepth" value="1"/&gt;
  * &lt;/module&gt;
  *
  * &lt;!-- Switch with no default --&gt;
@@ -160,7 +161,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     &lt;property name="maximumNumber" value="10"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
+ *
  * @author Tim Tyler &lt;tim@tt1.org&gt;
  * @author Rick Giles
  */
