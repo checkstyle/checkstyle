@@ -189,28 +189,29 @@ public final class Utils
         }
         return retVal;
     }
-        /**
-     * Replaces <code>${xxx}</code> style constructions in the given value 
+
+    /**
+     * Replaces <code>${xxx}</code> style constructions in the given value
      * with the string value of the corresponding data types.
      *
      * @param aValue The string to be scanned for property references.
      *              May be <code>null</code>, in which case this
      *              method returns immediately with no effect.
-     * @param aProps  Mapping (String to String) of property names to their 
+     * @param aProps  Mapping (String to String) of property names to their
      *              values. Must not be <code>null</code>.
-     * 
-     * @throws CheckstyleException if the string contains an opening 
-     *                           <code>${</code> without a closing 
+     *
+     * @throws CheckstyleException if the string contains an opening
+     *                           <code>${</code> without a closing
      *                           <code>}</code>
      * @return the original string with the properties replaced, or
      *         <code>null</code> if the original string is <code>null</code>.
-     * 
-     * Code copied from ant - 
+     *
+     * Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      */
-     public static String replaceProperties(String aValue,  Properties aProps)
-     throws CheckstyleException
-     {
+    public static String replaceProperties(String aValue,  Properties aProps)
+            throws CheckstyleException
+    {
         if (aValue == null) {
             return null;
         }
@@ -228,15 +229,15 @@ public final class Utils
                 final String propertyName = (String) j.nextElement();
                 if (!aProps.containsKey(propertyName)) {
                     throw new CheckstyleException(
-                        "Property ${" + propertyName + "} has not been set");
+                            "Property ${" + propertyName + "} has not been set");
                 }
-                fragment = (aProps.containsKey(propertyName)) 
-                    ? (String) aProps.get(propertyName) 
-                    : "${" + propertyName + "}"; 
+                fragment = (aProps.containsKey(propertyName))
+                    ? (String) aProps.get(propertyName)
+                    : "${" + propertyName + "}";
             }
             sb.append(fragment);
-        }                        
-        
+        }
+
         return sb.toString();
     }
 
@@ -244,22 +245,22 @@ public final class Utils
      * Parses a string containing <code>${xxx}</code> style property
      * references into two lists. The first list is a collection
      * of text fragments, while the other is a set of string property names.
-     * <code>null</code> entries in the first list indicate a property 
+     * <code>null</code> entries in the first list indicate a property
      * reference from the second list.
-     * 
+     *
      * @param aValue     Text to parse. Must not be <code>null</code>.
-     * @param aFragments List to add text fragments to. 
+     * @param aFragments List to add text fragments to.
      *                  Must not be <code>null</code>.
      * @param aPropertyRefs List to add property names to.
      *                     Must not be <code>null</code>.
-     * 
-     * @throws CheckstyleException if the string contains an opening 
-     *                           <code>${</code> without a closing 
+     *
+     * @throws CheckstyleException if the string contains an opening
+     *                           <code>${</code> without a closing
      *                           <code>}</code>
-     * Code copied from ant - 
+     * Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      */
-    public static void parsePropertyString(String aValue, Vector aFragments, 
+    public static void parsePropertyString(String aValue, Vector aFragments,
                                            Vector aPropertyRefs)
         throws CheckstyleException
     {
@@ -298,7 +299,7 @@ public final class Utils
                     aFragments.addElement(aValue.substring(pos, pos + 2));
                     prev = pos + 2;
                 }
-                
+
             }
             else {
                 //property found, extract its name or bail on a typo
