@@ -30,6 +30,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.Arrays;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -73,9 +74,16 @@ class TreeWalker
         aCheck.setMessages(mMessages);
         aCheck.setTabWidth(mTabWidth);
         if (!aConfig.getTokens().isEmpty()) {
+            int acceptableTokens[] = aCheck.getAcceptableTokens();
+            Arrays.sort(acceptableTokens);
             final Iterator it = aConfig.getTokens().iterator();
             while (it.hasNext()) {
-                registerCheck((String) it.next(), aCheck);
+                String token = (String) it.next();
+                int tokenId = TokenTypes.getTokenId(token);
+                if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
+                    registerCheck(token, aCheck);
+                }
+                // TODO: else error message?
             }
         }
         else {

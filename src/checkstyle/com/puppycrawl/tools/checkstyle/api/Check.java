@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Map;
+import java.util.Arrays;
 
 /**
  * The base class for checks.
@@ -54,6 +55,27 @@ public abstract class Check
      * @return the default tokens
      */
     public abstract int[] getDefaultTokens();
+
+    /**
+     * The token set this check is designed for. Used to protect Checks
+     * against malicious users who specify a meaningless token set in the
+     * config file.
+     * The default implementations returns the check's default tokens.
+     * @return the token set this check is designed for.
+     */
+    public int[] getAcceptableTokens()
+    {
+        int[] defaultTokens = getDefaultTokens();
+        int[] copy = new int[defaultTokens.length];
+        System.arraycopy(defaultTokens, 0, copy, 0, defaultTokens.length);
+        return copy;
+    }
+
+
+    // TODO: oburn on checkstyle-dev: another method should be added
+    // to specify the tokens that a check must have. For some checks to
+    // work, they must be registered for some tokens.
+
 
     /**
      * Return the global context object for check. This context is valid for
