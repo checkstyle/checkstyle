@@ -385,51 +385,6 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
-    public void testSemantic()
-        throws Exception
-    {
-        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
-        mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.STMT.toString());
-        mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.STMT.toString());
-        mProps.setProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.STMT.toString());
-        final Checker c = createChecker();
-        final String filepath = getPath("InputSemantic.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":52:65: Must have at least one statement.",
-            filepath + ":54:41: Must have at least one statement.",
-            filepath + ":71:38: Must have at least one statement.",
-            filepath + ":72:52: Must have at least one statement.",
-            filepath + ":73:45: Must have at least one statement.",
-            filepath + ":75:13: Must have at least one statement.",
-            filepath + ":77:17: Must have at least one statement.",
-            filepath + ":79:13: Must have at least one statement.",
-            filepath + ":82:17: Must have at least one statement.",
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testSemantic2()
-        throws Exception
-    {
-        mProps.setProperty(Defn.IGNORE_WHITESPACE_PROP, "true");
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
-        mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.TEXT.toString());
-        mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.TEXT.toString());
-        mProps.setProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.TEXT.toString());
-        final Checker c = createChecker();
-        final String filepath = getPath("InputSemantic.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":52:65: Empty catch block.",
-            filepath + ":72:52: Empty catch block.",
-            filepath + ":73:45: Empty catch block.",
-            filepath + ":75:13: Empty try block.",
-            filepath + ":77:17: Empty finally block.",
-        };
-        verify(c, filepath, expected);
-    }
 
     public void testOpWrapNL()
         throws Exception

@@ -447,36 +447,6 @@ class Verifier
     }
 
     /**
-     * Report that the parser has found a try block.
-     * @param aBraces the start and end braces from the try block
-     * @param aNoStmt whether there are any statements in the block
-     */
-    void reportTryBlock(MyCommonAST[] aBraces, boolean aNoStmt)
-    {
-        checkBlock("try", mConfig.getTryBlock(), aBraces, aNoStmt);
-    }
-
-    /**
-     * Report that the parser has found a catch block.
-     * @param aBraces the start and end braces from the catch block
-     * @param aNoStmt whether there are any statements in the block
-     */
-    void reportCatchBlock(MyCommonAST[] aBraces, boolean aNoStmt)
-    {
-        checkBlock("catch", mConfig.getCatchBlock(), aBraces, aNoStmt);
-    }
-
-    /**
-     * Report that the parser has found a finally block.
-     * @param aBraces the start and end braces from the finally block
-     * @param aNoStmt whether there are any statements in the block
-     */
-    void reportFinallyBlock(MyCommonAST[] aBraces, boolean aNoStmt)
-    {
-        checkBlock("finally", mConfig.getFinallyBlock(), aBraces, aNoStmt);
-    }
-
-    /**
      * Verify an operator. Checks include that the operator is surrounded by
      * whitespace, and that the operator follows the rules about whether to
      * be at the end of a line.
@@ -875,64 +845,6 @@ class Verifier
         {
             mMessages.add(aLineNo, aColNo,
                           "ws.notFollowed", aConstruct.getText());
-        }
-    }
-
-    /**
-     * Check that a block conforms to the specified rule.
-     * @param aType the type of block to be used in error messages
-     * @param aOption the option to check the block against
-     * @param aBraces the start and end braces from the block
-     * @param aNoStmt whether there are any statements in the block
-     */
-    void checkBlock(String aType, BlockOption aOption,
-                    MyCommonAST[] aBraces, boolean aNoStmt)
-    {
-        if (aNoStmt && (aOption == BlockOption.STMT)) {
-            mMessages.add(aBraces[0].getLineNo(), aBraces[0].getColumnNo(),
-                          "block.noStmt");
-        }
-        else if (aOption == BlockOption.TEXT) {
-            if (aBraces[0].getLineNo() == aBraces[1].getLineNo()) {
-                // Handle braces on the same line
-                final String txt = mLines[aBraces[0].getLineNo() - 1]
-                    .substring(aBraces[0].getColumnNo() + 1,
-                               aBraces[1].getColumnNo());
-                if (txt.trim().length() == 0) {
-                    mMessages.add(aBraces[0].getLineNo(),
-                                  aBraces[0].getColumnNo(),
-                                  "block.empty", aType);
-                }
-            }
-            else {
-                // check only whitespace of first & last lines
-                if ((mLines[aBraces[0].getLineNo() - 1]
-                     .substring(aBraces[0].getColumnNo() + 1).trim().length()
-                     == 0)
-                    && (mLines[aBraces[1].getLineNo() - 1]
-                        .substring(0, aBraces[1].getColumnNo()).trim().length()
-                        == 0))
-                {
-
-                    // Need to check if all lines are also only whitespace
-                    boolean isBlank = true;
-                    for (int i = aBraces[0].getLineNo();
-                         i < (aBraces[1].getLineNo() - 1);
-                         i++)
-                    {
-                        if (mLines[i].trim().length() > 0) {
-                            isBlank = false;
-                            break;
-                        }
-                    }
-
-                    if (isBlank) {
-                        mMessages.add(aBraces[0].getLineNo(),
-                                      aBraces[0].getColumnNo(),
-                                      "block.empty", aType);
-                    }
-                }
-            }
         }
     }
 }
