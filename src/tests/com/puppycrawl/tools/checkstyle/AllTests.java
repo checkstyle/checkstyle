@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.design.IllegalAbstractClassNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheckTest;
@@ -144,6 +145,7 @@ public class AllTests {
         suite.addTest(new TestSuite(HeaderCheckTest.class));
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
         suite.addTest(new TestSuite(HideUtilityClassConstructorCheckTest.class));
+        suite.addTest(new TestSuite(IllegalAbstractClassNameCheckTest.class));
         suite.addTest(new TestSuite(IllegalCatchCheckTest.class));
         suite.addTest(new TestSuite(IllegalImportCheckTest.class));
         suite.addTest(new TestSuite(IllegalInstantiationCheckTest.class));
