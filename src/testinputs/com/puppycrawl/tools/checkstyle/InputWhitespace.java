@@ -126,7 +126,7 @@ class InputWhitespace
     }
 
     /** @return dot test **/
-    private java .lang. String dotTest()
+    private java .lang.  String dotTest()
     {
         Object o = new java.lang.Object();
         o.
