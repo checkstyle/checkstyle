@@ -16,10 +16,8 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -45,22 +43,22 @@ public class EmptyBlockCheck extends AbstractOptionCheck
             TokenTypes.STATIC_INIT,
             // TODO: need to handle....
             //TokenTypes.LITERAL_SWITCH,
-            //TODO: does this handle TokenTypes.LITERAL_SYNCHRONIZED?      
+            //TODO: does this handle TokenTypes.LITERAL_SYNCHRONIZED?
         };
     }
-        
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST slistAST = aAST.findFirstToken(TokenTypes.SLIST);
         if (slistAST != null) {
             if (mOption == BlockOption.STMT) {
-                if (slistAST.getChildCount() <= 1) {      
+                if (slistAST.getChildCount() <= 1) {
                     log(slistAST.getLineNo(),
                         slistAST.getColumnNo(),
                         "block.noStmt",
                         aAST.getText());
-                }   
+                }
             }
             else if (mOption == BlockOption.TEXT) {
                 if (!hasText(slistAST)) {
@@ -76,7 +74,7 @@ public class EmptyBlockCheck extends AbstractOptionCheck
     private boolean hasText(final DetailAST slistAST)
     {
         boolean retVal = false;
-        
+
         final DetailAST rcurlyAST = slistAST.findFirstToken(TokenTypes.RCURLY);
         if (rcurlyAST != null) {
             final int slistLineNo = slistAST.getLineNo();
@@ -103,8 +101,7 @@ public class EmptyBlockCheck extends AbstractOptionCheck
                 }
                 else {
                     // check if all lines are also only whitespace
-                    for (int i = slistLineNo; i < (rcurlyLineNo - 1); i++)
-                    {
+                    for (int i = slistLineNo; i < (rcurlyLineNo - 1); i++) {
                         if (lines[i].trim().length() > 0) {
                             retVal = true;
                             break;
@@ -112,7 +109,7 @@ public class EmptyBlockCheck extends AbstractOptionCheck
                     }
                 }
             }
-        }               
+        }
         return retVal;
     }
 }
