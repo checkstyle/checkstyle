@@ -16,7 +16,7 @@
               value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
     <property name="testreport.dir" value="testreports"/>
 
-    <property name="version" value="2.2" />
+    <property name="version" value="2.3beta" />
 
     <path id="build.classpath">
         <pathelement location="${antlr.jar}" />
@@ -303,6 +303,9 @@
                 <include name="**/.cvsignore"/>
                 <include name="**/CVS"/>
             </fileset>
+            <filterset>
+                <filter token="CHECKSTYLE_VERSION" value="${version}" />
+            </filterset>
         </copy>
         <!-- create the final zip & tar/gzip files -->
         <zip zipfile="dist/checkstyle-${version}.zip">
