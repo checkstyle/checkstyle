@@ -16,6 +16,7 @@ import java.io.LineNumberReader;
 import java.io.InputStreamReader;
 import java.util.Locale;
 import java.util.Properties;
+import java.lang.reflect.InvocationTargetException;
 
 public class CheckerTest
     extends TestCase
@@ -69,7 +70,11 @@ public class CheckerTest
     }
 
     protected Checker createChecker()
-        throws RESyntaxException, FileNotFoundException, IOException, ParserConfigurationException, SAXException, ClassNotFoundException, InstantiationException, IllegalAccessException
+        throws RESyntaxException, FileNotFoundException, IOException,
+               ParserConfigurationException, SAXException,
+               ClassNotFoundException, InstantiationException,
+               IllegalAccessException, InvocationTargetException,
+               NoSuchMethodException
     {
         final Configuration config = new Configuration(mProps, mStream);
         final Checker c = new Checker(config);
