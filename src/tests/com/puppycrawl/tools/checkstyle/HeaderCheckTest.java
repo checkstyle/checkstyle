@@ -12,6 +12,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         final CheckConfiguration checkConfig = new CheckConfiguration();
         checkConfig.setClassname(HeaderCheck.class.getName());
         checkConfig.addProperty("headerFile", getPath("java.header"));
+        checkConfig.addProperty("ignoreLines", "");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("inputHeader.java");
         final String[] expected = {
@@ -31,6 +32,20 @@ public class HeaderCheckTest extends BaseCheckTestCase
         final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {
             "3: Line does not match expected header line of '// Created: 2002'."
+        };
+        verify(c, fname, expected);
+    }
+
+    public void testRegexpHeaderIgnore()
+        throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(RegexpHeaderCheck.class.getName());
+        checkConfig.addProperty("headerFile", getPath("regexp.header"));
+        checkConfig.addProperty("ignoreLines", "3,4,5");
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputScopeAnonInner.java");
+        final String[] expected = {
         };
         verify(c, fname, expected);
     }
