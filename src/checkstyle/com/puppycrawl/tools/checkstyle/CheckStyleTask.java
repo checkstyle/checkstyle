@@ -306,6 +306,17 @@ public class CheckStyleTask
         mConfig.setCacheFile(aCacheFile.getAbsolutePath());
     }
 
+    /** @param aTo the lefy curly placement option for methods **/
+    public void setLCurlyMethod(String aTo)
+    {
+        final LeftCurlyOption opt = LeftCurlyOption.decode(aTo);
+        if (opt == null) {
+            throw new BuildException("Unable to parse lcurlyMethod parameter,",
+                                     location);
+        }
+        mConfig.setLCurlyMethod(opt);
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // The doers
     ////////////////////////////////////////////////////////////////////////////
