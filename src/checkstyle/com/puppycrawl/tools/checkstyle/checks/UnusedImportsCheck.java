@@ -77,10 +77,12 @@ public class UnusedImportsCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.IMPORT,
-                          TokenTypes.CLASS_DEF,
-                          TokenTypes.INTERFACE_DEF,
-                          TokenTypes.IDENT};
+        return new int[] {
+            TokenTypes.IMPORT,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.IDENT,
+        };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */

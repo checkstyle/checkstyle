@@ -250,7 +250,8 @@ public class JavadocMethodCheck
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF};
+            TokenTypes.CTOR_DEF,
+        };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -258,7 +259,8 @@ public class JavadocMethodCheck
     {
         return new int[] {
             TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF};
+            TokenTypes.CTOR_DEF,
+        };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -266,7 +268,8 @@ public class JavadocMethodCheck
     {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
-            TokenTypes.IMPORT};
+            TokenTypes.IMPORT,
+        };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */

@@ -147,7 +147,7 @@ public class WhitespaceAroundCheck
             TokenTypes.SR_ASSIGN,
             TokenTypes.STAR,
             TokenTypes.STAR_ASSIGN,
-            TokenTypes.LITERAL_ASSERT
+            TokenTypes.LITERAL_ASSERT,
         };
     }
 

@@ -48,7 +48,7 @@ public class BlockParentHandler extends ExpressionHandler
         TokenTypes.VARIABLE_DEF,
         TokenTypes.EXPR,
         TokenTypes.OBJBLOCK,
-        TokenTypes.LITERAL_BREAK
+        TokenTypes.LITERAL_BREAK,
     };
 
     /**

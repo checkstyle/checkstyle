@@ -190,7 +190,8 @@ final class PropertyCacheFile
     /** hex digits */
     private static char[] sHexChars = {
         '0', '1', '2', '3', '4', '5', '6', '7',
-        '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+        '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+    };
 
     /** mask for last byte */
     private static final int MASK_0X0F = 0x0F;

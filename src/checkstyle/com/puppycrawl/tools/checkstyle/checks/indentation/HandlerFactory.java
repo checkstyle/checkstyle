@@ -52,8 +52,8 @@ public class HandlerFactory
         try {
             Constructor ctor = aHandlerClass.getConstructor(new Class[] {
                 IndentationCheck.class,
-                DetailAST.class,            // current AST
-                ExpressionHandler.class     // parent
+                DetailAST.class,             // current AST
+                ExpressionHandler.class,     // parent
             });
             mTypeHandlers.put(new Integer(aType), ctor);
         }
@@ -149,7 +149,7 @@ public class HandlerFactory
                     new Object[] {
                         aIndentCheck,
                         aAst,
-                        aParent
+                        aParent,
                     }
                 );
             }
