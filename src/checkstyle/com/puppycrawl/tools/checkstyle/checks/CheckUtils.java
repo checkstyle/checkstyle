@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -105,5 +106,28 @@ public final class CheckUtils
         return (aAST.getType() == TokenTypes.SLIST)
             && (aAST.getChildCount() == 2)
             && isElse(aAST.getParent());
+    }
+
+    /**
+     * Creates <code>FullIdent</code> for given type node.
+     * @param aTypeAST a type node.
+     * @return <code>FullIdent</code> for given type.
+     */
+    public static FullIdent createFullType(DetailAST aTypeAST)
+    {
+        DetailAST arrayDeclAST =
+            aTypeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+
+        return createFullTypeNoArrays(arrayDeclAST == null ? aTypeAST
+                                                           : arrayDeclAST);
+    }
+
+    /**
+     * @param aTypeAST a type node (no array)
+     * @return <code>FullIdent</code> for given type.
+     */
+    private static FullIdent createFullTypeNoArrays(DetailAST aTypeAST)
+    {
+        return FullIdent.createFullIdent((DetailAST) aTypeAST.getFirstChild());
     }
 }

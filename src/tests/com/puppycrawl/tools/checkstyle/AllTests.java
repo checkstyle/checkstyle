@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.DoubleCheckedLockingCheckTe
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheckTest;
@@ -140,6 +141,7 @@ public class AllTests {
         suite.addTest(new TestSuite(HeaderCheckTest.class));
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
         suite.addTest(new TestSuite(HideUtilityClassConstructorCheckTest.class));
+        suite.addTest(new TestSuite(IllegalCatchCheckTest.class));
         suite.addTest(new TestSuite(IllegalImportCheckTest.class));
         suite.addTest(new TestSuite(IllegalInstantiationCheckTest.class));
         suite.addTest(new TestSuite(IllegalTokenCheckTest.class));
