@@ -119,6 +119,18 @@ public abstract class AbstractViolationReporter
     /**
      * Helper method to log a LocalizedMessage.
      *
+     * @param aAST a node to get line and column numbers associated
+     *             with the message
+     * @param aKey key to locale message format
+     */
+    protected final void log(DetailAST aAST, String aKey)
+    {
+        log(aAST.getLineNo(), aAST.getColumnNo(), aKey);
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
      * @param aLineNo line number to associate with the message
      * @param aColNo column number to associate with the message
      * @param aKey key to locale message format
@@ -130,6 +142,18 @@ public abstract class AbstractViolationReporter
         log(aLineNo, aColNo, aKey, new Object[] {aArg0});
     }
 
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param aAST a node to get line and column numbers associated
+     *             with the message
+     * @param aKey key to locale message format
+     * @param aArg0 an <code>Object</code> value
+     */
+    protected final void log(DetailAST aAST, String aKey, Object aArg0)
+    {
+        log(aAST.getLineNo(), aAST.getColumnNo(), aKey, aArg0);
+    }
     /**
      * Helper method to log a LocalizedMessage.
      *
@@ -145,6 +169,20 @@ public abstract class AbstractViolationReporter
         log(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1});
     }
 
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param aAST a node to get line and column numbers associated
+     *             with the message
+     * @param aKey key to locale message format
+     * @param aArg0 an <code>Object</code> value
+     * @param aArg1 an <code>Object</code> value
+     */
+    protected final void log(DetailAST aAST, String aKey,
+                             Object aArg0, Object aArg1)
+    {
+        log(aAST.getLineNo(), aAST.getColumnNo(), aKey, aArg0, aArg1);
+    }
 
     /**
      * Returns the message bundle name resourcebundle that contains the messages

@@ -194,9 +194,7 @@ public abstract class AbstractComplexityCheck
     private void leaveMethodDef(DetailAST aAST)
     {
         if (mCurrentValue > mMax) {
-            log(aAST.getLineNo(),
-                aAST.getColumnNo(),
-                getMessageID(),
+            log(aAST, getMessageID(),
                 new Integer(mCurrentValue),
                 new Integer(mMax));
         }
