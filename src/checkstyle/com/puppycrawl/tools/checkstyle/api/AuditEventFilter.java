@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-
 /**
+ * Abstract class for configurable AuditEvent filters.
  * @author Rick Giles
- * @version 11-Jul-2003
  */
 public abstract class AuditEventFilter
     extends AutomaticBean
