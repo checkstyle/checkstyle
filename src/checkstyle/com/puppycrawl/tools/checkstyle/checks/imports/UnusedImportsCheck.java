@@ -91,6 +91,8 @@ public class UnusedImportsCheck
             TokenTypes.STATIC_IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
             TokenTypes.IDENT,
         };
     }
@@ -110,7 +112,9 @@ public class UnusedImportsCheck
             processStaticImport(aAST);
         }
         else if ((aAST.getType() == TokenTypes.CLASS_DEF)
-            || (aAST.getType() == TokenTypes.INTERFACE_DEF))
+            || (aAST.getType() == TokenTypes.INTERFACE_DEF)
+            || (aAST.getType() == TokenTypes.ENUM_DEF)
+            || (aAST.getType() == TokenTypes.ANNOTATION_DEF))
         {
             mCollect = true;
         }
