@@ -206,6 +206,19 @@
   </target>
 
   <!-- runs the command line version on a file -->
+  <target name="run.simple" depends="compile.tests"
+          description="Runs the command line version on a file">
+    <java classname="com.puppycrawl.tools.checkstyle.Main"
+          fork="yes"
+          dir="."
+          classpathref="run.classpath">
+      <sysproperty key="checkstyle.allow.tabs" value="yes"/>
+      <arg value="docs/checkstyle_checks.xml" />
+      <arg value="src/testinputs/com/puppycrawl/tools/checkstyle/InputSimple.java" />
+    </java>
+  </target>
+    
+  <!-- runs the command line version on a file -->
   <target name="run.checkstyle" depends="compile.tests"
           description="Runs the command line version on a file">
     <java classname="com.puppycrawl.tools.checkstyle.Main"

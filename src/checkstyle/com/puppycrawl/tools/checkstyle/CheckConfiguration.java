@@ -176,27 +176,42 @@ class CheckConfiguration
      *
      * @param aLoader the <code>ClassLoader</code> to create the instance with
      * @return the created check
-     * @throws ClassNotFoundException if an error occurs
-     * @throws InstantiationException if an error occurs
-     * @throws IllegalAccessException if an error occurs
-     * @throws InvocationTargetException if an error occurs
-     * @throws NoSuchMethodException if an error occurs
+     * @throws CheckstyleException if an error occurs
      */
     Check createInstance(ClassLoader aLoader)
-        throws ClassNotFoundException, InstantiationException,
-        IllegalAccessException, InvocationTargetException,
-        NoSuchMethodException
+        throws CheckstyleException
     {
-        final Class clazz = Class.forName(mClassname, true, aLoader);
-        final Check check = (Check) clazz.newInstance();
-        // TODO: need to set the properties
-        // Loop setting the properties
-        final Iterator keyIt = mProperties.keySet().iterator();
-        while (keyIt.hasNext()) {
-            final String key = (String) keyIt.next();
-            final String value = (String) mProperties.get(key);
-            BeanUtils.copyProperty(check, key, value);
+        try {
+            final Class clazz = Class.forName(mClassname, true, aLoader);
+            final Check check = (Check) clazz.newInstance();
+            // TODO: need to set the properties
+            // Loop setting the properties
+            final Iterator keyIt = mProperties.keySet().iterator();
+            while (keyIt.hasNext()) {
+                final String key = (String) keyIt.next();
+                final String value = (String) mProperties.get(key);
+                try {
+                    BeanUtils.copyProperty(check, key, value);
+                }
+                catch (InvocationTargetException e) {
+                    throw new CheckstyleException(
+                        "for check " + mClassname + " unable to set " + key
+                        + " with " + value);
+                }
+            }
+            return check;
         }
-        return check;
+        catch (ClassNotFoundException e) {
+            throw new CheckstyleException(
+                "Unable to find class for " + mClassname);
+        }
+        catch (InstantiationException e) {
+            throw new CheckstyleException(
+                "Unable to instantiate " + mClassname);
+        }
+        catch (IllegalAccessException e) {
+            throw new CheckstyleException(
+                "Unable to instantiate " + mClassname);
+        }
     }
 }

@@ -28,6 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 /**
  * Wrapper command line program for the Checker.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
@@ -48,7 +52,8 @@ public final class Main
         // be brain dead about arguments parsing
         String format = "plain";
         String output = null;
-        Properties properties = System.getProperties();
+        Properties props = System.getProperties();
+        final List foundFiles = new ArrayList();
         final ArrayList files = new ArrayList();
         for (int i = 0; i < aArgs.length; i++) {
             if ("-f".equals(aArgs[i])) {
@@ -58,10 +63,10 @@ public final class Main
                 output = aArgs[++i];
             }
             else if ("-r".equals(aArgs[i])) {
-                traverse(new File(aArgs[++i]), files);
+                traverse(new File(aArgs[++i]), foundFiles);
             }
             else if ("-p".equals(aArgs[i])) {
-                properties = loadProperties(new File(aArgs[++i]));
+                props = loadProperties(new File(aArgs[++i]));
             }
             else {
                 files.add(aArgs[i]);
@@ -94,9 +99,27 @@ public final class Main
             usage();
         }
 
+        // Check that I have a config file
+        if (files.isEmpty()) {
+            System.out.println("Need to specify a config file");
+            usage();
+        }
+
+        // Load the config file
+        final String configFname = (String) files.remove(0);
+        CheckConfiguration[] checkConfigs = null;
+        try {
+            checkConfigs = loadConfigs(configFname);
+        }
+        catch (CheckstyleException e) {
+            System.out.println("Error loading configuration file");
+            e.printStackTrace(System.out);
+            System.exit(1);
+        }
+
         Checker c = null;
         try {
-            c = new Checker(new Configuration(properties, System.out));
+            c = new Checker(new Configuration(props, System.out), checkConfigs);
             c.addListener(listener);
         }
         catch (Exception e) {
@@ -106,17 +129,48 @@ public final class Main
             System.exit(1);
         }
 
+        files.addAll(foundFiles);
         final int numErrs =
-            c.process((String[]) files.toArray(new String[files.size()]));
+            c.processNEW((String[]) files.toArray(new String[files.size()]));
         c.destroy();
         System.exit(numErrs);
+    }
+
+    /**
+     * Returns the check configurations in a specified file.
+     * @param aConfigFname name of config file
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    private static CheckConfiguration[] loadConfigs(String aConfigFname)
+        throws CheckstyleException
+    {
+        System.out.println("Loading from " + aConfigFname);
+        try {
+            final ConfigurationLoader loader = new ConfigurationLoader();
+            loader.parseFile(aConfigFname);
+            return loader.getConfigs();
+        }
+        catch (FileNotFoundException e) {
+            throw new CheckstyleException("unable to find " + aConfigFname);
+        }
+        catch (ParserConfigurationException e) {
+            throw new CheckstyleException("unable to parse " + aConfigFname);
+        }
+        catch (SAXException e) {
+            throw new CheckstyleException("unable to parse " + aConfigFname);
+        }
+        catch (IOException e) {
+            throw new CheckstyleException("unable to read " + aConfigFname);
+        }
     }
 
     /** Prints the usage information. **/
     private static void usage()
     {
         System.out.println(
-            "Usage: java " + Main.class.getName() + " <options> <file>......");
+            "Usage: java " + Main.class.getName()
+            + " <options> config <file>......");
         System.out.println("Options");
         System.out.println(
             "\t-f <format>\tsets output format. (plain|xml). "
