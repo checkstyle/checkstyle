@@ -298,7 +298,6 @@ public class CheckerTest
         mProps.setProperty(Defn.MEMBER_PATTERN_PROP, "^m[A-Z][a-zA-Z0-9]*$");
         mProps.setProperty(Defn.TODO_PATTERN_PROP, "FIXME:");
         mProps.setProperty(Defn.MEMBER_PATTERN_PROP, "^m[A-Z][a-zA-Z0-9]*$");
-        mProps.setProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP, "[A-Z]+");
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
@@ -309,7 +308,6 @@ public class CheckerTest
             filepath + ":71:30: ',' is not followed by whitespace.",
             filepath + ":103: Constructor length is 10 lines (max allowed is 9).",
             filepath + ":119:13: Name 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            filepath + ":122:19: Name 'cde' must match pattern '[A-Z]+'.",
             filepath + ":130:18: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":132:20: Name 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":161: Comment matches to-do format 'FIXME:'.",

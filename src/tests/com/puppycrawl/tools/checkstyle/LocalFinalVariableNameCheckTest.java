@@ -22,5 +22,19 @@ public class LocalFinalVariableNameCheckTest
         };
         verify(c, fname, expected);
     }
+
+    public void testSet()
+        throws Exception
+    {
+        final CheckConfiguration checkConfig = new CheckConfiguration();
+        checkConfig.setClassname(LocalFinalVariableNameCheck.class.getName());
+        checkConfig.addProperty("format", "[A-Z]+");
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("InputSimple.java");
+        final String[] expected = {
+            "122:19: Name 'cde' must match pattern '[A-Z]+'.",
+        };
+        verify(c, fname, expected);
+    }
 }
 
