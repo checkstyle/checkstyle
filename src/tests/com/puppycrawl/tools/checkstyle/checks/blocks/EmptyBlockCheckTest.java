@@ -21,6 +21,7 @@ public class EmptyBlockCheckTest
             "77:17: Must have at least one statement.",
             "79:13: Must have at least one statement.",
             "82:17: Must have at least one statement.",
+            "178:5: Must have at least one statement.",
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -37,6 +38,7 @@ public class EmptyBlockCheckTest
             "73:45: Empty catch block.",
             "75:13: Empty try block.",
             "77:17: Empty finally block.",
+            "178:5: Empty INSTANCE_INIT block.",
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -57,6 +59,7 @@ public class EmptyBlockCheckTest
             "77:17: Must have at least one statement.",
             "79:13: Must have at least one statement.",
             "82:17: Must have at least one statement.",
+            "178:5: Must have at least one statement.",
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }

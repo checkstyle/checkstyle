@@ -173,4 +173,8 @@ class InputSemantic
         if (true)
             return;
     }
+    
+    // empty instance initializer
+    {
+    }
 }
