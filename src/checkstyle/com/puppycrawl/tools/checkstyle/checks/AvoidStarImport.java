@@ -43,6 +43,7 @@ public class AvoidStarImport extends ImportCheck
     {
         final String name = getImportText(aAST);
         if ((name != null) && name.endsWith(".*")) {
+            System.out.println("AvoidStarImport.visitToken");
             log(aAST.getLineNo(), "import.avoidStar");
         }
     }

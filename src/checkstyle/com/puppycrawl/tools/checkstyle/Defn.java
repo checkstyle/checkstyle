@@ -29,6 +29,8 @@ public interface Defn
     /** name of resource bundle for Checkstyle */
     String CHECKSTYLE_BUNDLE = "com.puppycrawl.tools.checkstyle.messages";
 
+    /** property name for the configuration files */
+    String CHECK_CONFIG_FILES_PROP = "checkstyle.check.configs";
     /** property name for the to-do pattern **/
     String TODO_PATTERN_PROP = "checkstyle.pattern.todo";
     /** property name for the parameter pattern **/
@@ -217,6 +219,7 @@ public interface Defn
      **/
     String[] ALL_STRING_SET_PROPS = new String[]
         {
+            CHECK_CONFIG_FILES_PROP,
             ILLEGAL_IMPORTS_PROP,
             ILLEGAL_INSTANTIATIONS_PROP,
         };

@@ -100,15 +100,10 @@ public final class Main
             c = new Checker(new Configuration(properties, System.out));
             c.addListener(listener);
         }
-        catch (RESyntaxException rese) {
-            System.out.println("Unable to create an regexp object: "
-                               + rese.getMessage());
-            rese.printStackTrace(System.out);
-            System.exit(1);
-        }
-        catch (IOException ex) {
-            System.out.println("I/O error occurred: " + ex.getMessage());
-            ex.printStackTrace(System.out);
+        catch (Exception e) {
+            System.out.println("Unable to create Checker: "
+                               + e.getMessage());
+            e.printStackTrace(System.out);
             System.exit(1);
         }
 

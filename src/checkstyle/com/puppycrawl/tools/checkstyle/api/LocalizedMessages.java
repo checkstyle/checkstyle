@@ -238,4 +238,9 @@ public class LocalizedMessages
     {
         add(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1, aArg2});
     }
+
+    public int size()
+    {
+        return mMessages.size();
+    }
 }
