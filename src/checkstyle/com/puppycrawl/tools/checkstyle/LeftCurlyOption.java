@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.Serializable;
+import java.io.ObjectStreamException;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -25,9 +27,9 @@ import java.util.HashMap;
  * Represents the options for placing the left curly brace '{'.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version 1.0
+ * @version $Id: LeftCurlyOption.java,v 1.4 2002-03-05 20:53:04 lkuehne Exp $
  */
-public final class LeftCurlyOption
+public final class LeftCurlyOption implements Serializable
 {
     /** maps from a string representation to an option **/
     private static final Map STR_TO_OPT = new HashMap();
@@ -73,5 +75,18 @@ public final class LeftCurlyOption
     public static LeftCurlyOption decode(String aStrRep)
     {
         return (LeftCurlyOption) STR_TO_OPT.get(aStrRep.trim().toLowerCase());
+    }
+
+    /**
+     * Ensures that we don't get multiple instances of one LeftCurlyOption
+     * during deserialization. See Section 3.6 of the Java Object
+     * Serialization Specification for details.
+     *
+     * @return the serialization replacement object
+     * @throws ObjectStreamException if a deserialization error occurs
+     */
+    private Object readResolve() throws ObjectStreamException
+    {
+        return decode(mStrRep);
     }
 }

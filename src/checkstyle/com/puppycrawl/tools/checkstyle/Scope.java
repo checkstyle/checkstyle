@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.Serializable;
+import java.io.ObjectStreamException;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -26,7 +28,7 @@ import java.util.HashMap;
  *
  * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne</a>
  */
-public final class Scope implements Comparable
+public final class Scope implements Comparable, Serializable
 {
     // Note that although this class might seem to be an
     // implementation details, this class has to be public because it
@@ -164,5 +166,18 @@ public final class Scope implements Comparable
             throw new IllegalArgumentException(scopeName);
         }
         return retVal;
+    }
+
+    /**
+     * Ensures that we don't get multiple instances of one Scope
+     * during deserialization. See Section 3.6 of the Java Object
+     * Serialization Specification for details.
+     *
+     * @return the serialization replacement object
+     * @throws ObjectStreamException if a deserialization error occurs
+     */
+    private Object readResolve() throws ObjectStreamException
+    {
+        return getInstance(mName);
     }
 }
