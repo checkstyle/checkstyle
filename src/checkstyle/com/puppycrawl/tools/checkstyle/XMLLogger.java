@@ -107,7 +107,8 @@ public class XMLLogger
     }
 
     /** @see AuditListener **/
-    public void addError(AuditEvent aEvt) {
+    public void addError(AuditEvent aEvt)
+    {
         mWriter.println("<error " +
                         "line=\"" + aEvt.getLine() + "\" " +
                         "message=\"" + encode(aEvt.getMessage()) + "\"/>");
