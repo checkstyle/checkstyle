@@ -91,14 +91,14 @@ checkstyle-user</a>).</li>
           <li class="body">Added filter that suppresses audit events according to source file
           comments, contributed by Mike McMahon (module SuppressionCommentFilter,
           requests 732196 and 931327).</li>
-          
+
            <li class="body">Better information for unexpected char (request 666188).
            </li>
-           
+
            <li class="body">Added charset property to TreeWalker and StrictDuplicateCode
           check (addresses bug 975346).
           </li>
-          
+
           <li class="body">French message translations,
           contributed by Pierre Dittgen
           (request 978916).</li>
@@ -110,7 +110,7 @@ checkstyle-user</a>).</li>
           <li class="body">FinalLocalVariable ignores parameters of interface methods
           and abstract methods.
           (request 993922 and bug 1002849).</li>
-          
+
           <li class="body">com.puppycrawl.tools.checkstyle.gui.Main accepts an
           optional file name in the command line.
           (request 1000102).</li>
@@ -137,17 +137,24 @@ checkstyle-user</a>).</li>
 
          <li class="body">StrictDuplicateCodeCheck did not find duplicates
          within the same file.</li>
-         
+
          <li class="body">Unexpected char (bug 975346).</li>
 
          <li class="body">MagicNumber check overly aggressive
          (reported on user mailing list).</li>
-         
+
          <li class="body">Documentation error for naming convention checks
          (bug 987503).</li>
 
-          <li class="body">FinalParametersCheck checks parameters of abstract methods.
+	 <li class="body">FinalParametersCheck checks parameters of
+	 abstract methods.
           (bug 1002849).</li>
+
+	  <li>Bug in ClassResolver where it was mismatching imports -
+	  example would match SecurityDataException when looking for
+	  DataException. Bug was visible in RedundantThrows check (no
+	  known bug).</li>
+
       </ul>
 
       <p class="body">
