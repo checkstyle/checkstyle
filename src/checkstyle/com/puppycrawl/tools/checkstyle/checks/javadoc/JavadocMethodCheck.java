@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -26,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
 import com.puppycrawl.tools.checkstyle.checks.ClassResolver;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -81,10 +81,8 @@ import org.apache.regexp.RE;
  * @version 1.1
  */
 public class JavadocMethodCheck
-    extends Check
+    extends AbstractTypeAwareCheck
 {
-
-       // {{{ Data declarations
     /** the pattern to match Javadoc tags that take an argument **/
     private static final String MATCH_JAVADOC_ARG_PAT =
         "@(throws|exception|param)\\s+(\\S+)\\s+\\S";
@@ -135,12 +133,6 @@ public class JavadocMethodCheck
     /** compiled regexp to match Javadoc tags with no argument and {} **/
     private static final RE MATCH_JAVADOC_NOARG_CURLY =
         Utils.createRE(MATCH_JAVADOC_NOARG_CURLY_PAT);
-
-    /** full identifier for package of the method **/
-    private FullIdent mPackageFullIdent = null;
-
-    /** imports details **/
-    private Set mImports = new HashSet();
 
     /** the visibility scope where Javadoc comments are checked **/
     private Scope mScope = Scope.PRIVATE;
@@ -272,60 +264,11 @@ public class JavadocMethodCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void beginTree(DetailAST aRootAST)
-    {
-        mPackageFullIdent = FullIdent.createFullIdent(null);
-        mImports.clear();
-        mClassResolver = null;
-    }
-
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public void visitToken(DetailAST aAST)
-    {
-        if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
-            if (mAllowUndeclaredRTE) {
-                processPackage(aAST);
-            }
-        }
-        else if (aAST.getType() == TokenTypes.IMPORT) {
-            processImport(aAST);
-        }
-        else {
-            //TokenTypes.METHOD_DEF or TokenTypes.CTOR_DEF
-            processMethod(aAST);
-        }
-    }
-
-
-
-    /**
-     * Collects the details of a package.
-     * @param aAST node containing the package details
-     */
-    private void processPackage(DetailAST aAST)
-    {
-        final DetailAST nameAST = (DetailAST) aAST.getFirstChild();
-        mPackageFullIdent = FullIdent.createFullIdent(nameAST);
-    }
-
-    /**
-     * Collects the details of imports.
-     * @param aAST node containing the import details
-     */
-    private void processImport(DetailAST aAST)
-    {
-        final FullIdent name = FullIdent.createFullIdentBelow(aAST);
-        if (name != null) {
-            mImports.add(name.getText());
-        }
-    }
-
     /**
      * Checks Javadoc comments for a method or constructor.
      * @param aAST the tree node for the method or constructor.
      */
-    private void processMethod(DetailAST aAST)
+    protected final void processAST(DetailAST aAST)
     {
         final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
         final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
@@ -556,57 +499,6 @@ public class JavadocMethodCheck
     }
 
     /**
-     * Return if two Strings represent the same type, inspecting the
-     * import statements if necessary
-     *
-     * @param aDeclared type declared in throws clause
-     * @param aDocumented type declared in javadoc throws tag
-     * @return true iff type names represent the same type
-     */
-    private boolean isSameType(String aDeclared, String aDocumented)
-    {
-        return aDeclared.equals(aDocumented)
-                || isShortName(aDeclared, aDocumented)
-                || isShortName(aDocumented, aDeclared);
-    }
-
-    /**
-     * Calculate if one type name is a shortname for another type name.
-     * @param aShortName a shorthand, such as <code>IOException</code>
-     * @param aFullName a full name, such as <code>java.io.IOException</code>
-     * @return true iff aShortName represents the same type as aFullName
-     */
-    private boolean isShortName(String aShortName, String aFullName)
-    {
-        if (aShortName.length() >= aFullName.length()) {
-            return false;
-        }
-
-        final String base = Utils.baseClassname(aFullName);
-        if (aShortName.length() >= aFullName.length()
-                || !base.equals(aShortName))
-        {
-            return false;
-        }
-
-        // check fully qualified import
-        if (mImports.contains(aFullName)) {
-            return true;
-        }
-
-        // check .* import
-        final int endIndex = aFullName.length() - base.length() - 1;
-        final String packageName = aFullName.substring(0, endIndex);
-        final String starImport = packageName + ".*";
-        if (mImports.contains(starImport)) {
-            return true;
-        }
-
-        // check fully qualified class from same package
-        return packageName.equals(mPackageFullIdent.getText());
-    }
-
-    /**
      * Checks whether a method is a function.
      * @param aAST the method node.
      * @return whether the method is a function.
@@ -750,21 +642,6 @@ public class JavadocMethodCheck
             }
         }
     }
-
-    /** @return <code>ClassResolver</code> for current tree. */
-    final ClassResolver getClassResolver()
-    {
-        if (mClassResolver == null) {
-            mClassResolver = new ClassResolver(getClassLoader(),
-                                               mPackageFullIdent.getText(),
-                                               mImports);
-
-        }
-        return mClassResolver;
-    }
-
-    /** <code>ClassResolver</code> instance for current tree. */
-    private ClassResolver mClassResolver;
 }
 
 /**
