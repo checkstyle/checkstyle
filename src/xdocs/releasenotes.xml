@@ -10,6 +10,19 @@
 
   <body>
 
+    <section name="Release 4.0">
+
+      <p>New features:</p>
+      <p>Resolved bugs: </p>
+
+      <ul>
+
+        <li> Fix bug with suppression filtering. (bug 1080343).</li>
+
+      </ul>
+
+    </section>
+
     <section name="Release 3.5">
 
       <p>New features:</p>

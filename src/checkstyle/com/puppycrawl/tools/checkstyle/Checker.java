@@ -412,12 +412,10 @@ public class Checker extends AutomaticBean
     protected void fireAuditStarted()
     {
         final AuditEvent evt = new AuditEvent(this);
-        if (mFilters.accept(evt)) {
-            final Iterator it = mListeners.iterator();
-            while (it.hasNext()) {
-                final AuditListener listener = (AuditListener) it.next();
-                listener.auditStarted(evt);
-            }
+        final Iterator it = mListeners.iterator();
+        while (it.hasNext()) {
+            final AuditListener listener = (AuditListener) it.next();
+            listener.auditStarted(evt);
         }
     }
 
@@ -425,53 +423,54 @@ public class Checker extends AutomaticBean
     protected void fireAuditFinished()
     {
         final AuditEvent evt = new AuditEvent(this);
-        if (mFilters.accept(evt)) {
-            final Iterator it = mListeners.iterator();
-            while (it.hasNext()) {
-                final AuditListener listener = (AuditListener) it.next();
-                listener.auditFinished(evt);
-            }
+        final Iterator it = mListeners.iterator();
+        while (it.hasNext()) {
+            final AuditListener listener = (AuditListener) it.next();
+            listener.auditFinished(evt);
         }
     }
 
     /**
      * Notify all listeners about the beginning of a file audit.
-     * @param aFileName the file to be audited
+     *
+     * @param aFileName
+     *            the file to be audited
      */
     public void fireFileStarted(String aFileName)
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        if (mFilters.accept(evt)) {
-            final Iterator it = mListeners.iterator();
-            while (it.hasNext()) {
-                final AuditListener listener = (AuditListener) it.next();
-                listener.fileStarted(evt);
-            }
+        final Iterator it = mListeners.iterator();
+        while (it.hasNext()) {
+            final AuditListener listener = (AuditListener) it.next();
+            listener.fileStarted(evt);
         }
     }
 
     /**
      * Notify all listeners about the end of a file audit.
-     * @param aFileName the audited file
+     *
+     * @param aFileName
+     *            the audited file
      */
     public void fireFileFinished(String aFileName)
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        if (mFilters.accept(evt)) {
-            final Iterator it = mListeners.iterator();
-            while (it.hasNext()) {
-                final AuditListener listener = (AuditListener) it.next();
-                listener.fileFinished(evt);
-            }
+        final Iterator it = mListeners.iterator();
+        while (it.hasNext()) {
+            final AuditListener listener = (AuditListener) it.next();
+            listener.fileFinished(evt);
         }
     }
 
     /**
      * notify all listeners about the errors in a file.
-     * @param aFileName the audited file
-     * @param aErrors the audit errors from the file
+     *
+     * @param aFileName
+     *            the audited file
+     * @param aErrors
+     *            the audit errors from the file
      */
     public void fireErrors(String aFileName, LocalizedMessage[] aErrors)
     {
