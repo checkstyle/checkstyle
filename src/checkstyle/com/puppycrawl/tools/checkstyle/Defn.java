@@ -31,14 +31,8 @@ public interface Defn
 
     /** property name for the to-do pattern **/
     String TODO_PATTERN_PROP = "checkstyle.pattern.todo";
-    /** property name for the static final variable pattern **/
-    String CONST_PATTERN_PROP = "checkstyle.pattern.const";
-    /** property name for the public member variable pattern **/
-    String PUBLIC_MEMBER_PATTERN_PROP = "checkstyle.pattern.publicmember";
     /** property name for allowing protected data **/
     String TAB_WIDTH_PROP = "checkstyle.tab.width";
-    /** property name for visibility scope where Javadoc is checked **/
-    String JAVADOC_CHECKSCOPE_PROP = "checkstyle.javadoc.scope";
     /** property name for checking for Runtime @throws in Javadoc **/
     String JAVADOC_CHECK_UNUSED_THROWS_PROP =
         "checkstyle.javadoc.checkUnusedThrows";
@@ -72,8 +66,6 @@ public interface Defn
     String[] ALL_PATTERN_PROPS = new String[]
         {
             TODO_PATTERN_PROP,
-            CONST_PATTERN_PROP,
-            PUBLIC_MEMBER_PATTERN_PROP,
         };
 
     /** All the integer properties */

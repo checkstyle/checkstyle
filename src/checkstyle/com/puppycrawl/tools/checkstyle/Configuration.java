@@ -18,11 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InvalidObjectException;
@@ -36,6 +31,11 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+
+import org.apache.regexp.RE;
+import org.apache.regexp.RESyntaxException;
+
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Represents the configuration that checkstyle uses when checking. The
@@ -54,17 +54,11 @@ public class Configuration
     private static final Map PATTERN_DEFAULTS = new HashMap();
     static {
         PATTERN_DEFAULTS.put(Defn.TODO_PATTERN_PROP, "TODO:");
-        PATTERN_DEFAULTS.put(Defn.CONST_PATTERN_PROP, "^[A-Z](_?[A-Z0-9]+)*$");
-        PATTERN_DEFAULTS.put(Defn.PUBLIC_MEMBER_PATTERN_PROP,
-                             "^f[A-Z][a-zA-Z0-9]*$");
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
     ////////////////////////////////////////////////////////////////////////////
-
-    /** visibility scope where Javadoc is checked **/
-    private Scope mJavadocScope = Scope.PRIVATE;
 
     /**
      * class loader to resolve classes with. Needs to be transient as unable
@@ -113,11 +107,6 @@ public class Configuration
     public Configuration(Properties aProps, PrintStream aLog)
         throws RESyntaxException, FileNotFoundException, IOException
     {
-        // Init the special properties
-        setJavadocScope(
-            Scope.getInstance(aProps.getProperty(Defn.JAVADOC_CHECKSCOPE_PROP,
-                                                 Scope.PRIVATE.getName())));
-
         // Initialise the general properties
         for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
             setBooleanProperty(aProps, Defn.ALL_BOOLEAN_PROPS[i]);
@@ -214,9 +203,6 @@ public class Configuration
     {
         final Properties retVal = new Properties();
 
-        Utils.addObjectString(retVal, Defn.JAVADOC_CHECKSCOPE_PROP,
-                              mJavadocScope.getName());
-
         for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
             final String key = Defn.ALL_BOOLEAN_PROPS[i];
             retVal.put(key, String.valueOf(getBooleanProperty(key)));
@@ -271,40 +257,10 @@ public class Configuration
         return getRegexpProperty(Defn.TODO_PATTERN_PROP);
     }
 
-    /** @return pattern to match static final variables **/
-    String getStaticFinalPat()
-    {
-        return getPatternProperty(Defn.CONST_PATTERN_PROP);
-    }
-
-    /** @return regexp to match static final variables **/
-    RE getStaticFinalRegexp()
-    {
-        return getRegexpProperty(Defn.CONST_PATTERN_PROP);
-    }
-
-    /** @return pattern to match public member variables **/
-    String getPublicMemberPat()
-    {
-        return getPatternProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP);
-    }
-
-    /** @return regexp to match public member variables **/
-    RE getPublicMemberRegexp()
-    {
-        return getRegexpProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP);
-    }
-
     /** @return distance between tab stops */
     int getTabWidth()
     {
         return getIntProperty(Defn.TAB_WIDTH_PROP);
-    }
-
-    /** @return visibility scope where Javadoc is checked **/
-    Scope getJavadocScope()
-    {
-        return mJavadocScope;
     }
 
     /** @return whether javadoc package documentation is required */
@@ -335,14 +291,6 @@ public class Configuration
     String getCacheFile()
     {
         return getStringProperty(Defn.CACHE_FILE_PROP);
-    }
-
-    /**
-     * @param aJavadocScope visibility scope where Javadoc is checked
-     */
-    private void setJavadocScope(Scope aJavadocScope)
-    {
-        mJavadocScope = aJavadocScope;
     }
 
     /**
