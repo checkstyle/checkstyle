@@ -95,7 +95,9 @@ public class SwitchHandler extends BlockParentHandler
         checkExpressionSubtree(
             (DetailAST) getMainAst().findFirstToken(TokenTypes.LPAREN).
                 getNextSibling(),
-            getLevel());
+            getLevel(),
+            false,
+            false);
     }
 
     /**
