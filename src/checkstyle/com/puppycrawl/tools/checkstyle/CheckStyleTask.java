@@ -259,7 +259,7 @@ public class CheckStyleTask
             c = new Checker(mConfig, System.out);
             AuditListener[] listeners = getListeners();
             for (int i = 0; i < listeners.length; i++) {
-                c.addListener( listeners[i] );
+                c.addListener(listeners[i]);
             }
             final String[] files = scanFileSets();
             numErrs = c.process(files);
