@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * The model that backs the parse tree in the GUI.
  *
- * @author Lars Kühne
- * @version $Id: ParseTreeModel.java,v 1.3 2003-01-11 13:09:04 lkuehne Exp $
+ * @author Lars Kï¿½hne
+ * @version $Id: ParseTreeModel.java,v 1.4 2004-06-22 09:35:57 rickgiles Exp $
  */
 public class ParseTreeModel extends AbstractTreeTableModel
 {
@@ -45,7 +45,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
     private static DetailAST createArtificialTreeRoot()
     {
         ASTFactory factory = new ASTFactory();
-        factory.setASTNodeType(DetailAST.class.getName());
+        factory.setASTNodeClass(DetailAST.class.getName());
         // TODO: Need to resolve if need a fake root node....
         return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
     }
