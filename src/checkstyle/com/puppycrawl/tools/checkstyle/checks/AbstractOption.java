@@ -37,7 +37,7 @@ public abstract class AbstractOption
     private final String mStrRep;
 
     /**
-     * Creates a new <code>PadOption</code> instance.
+     * Creates a new <code>AbstractOption</code> instance.
      * @param aStrRep the string representation
      */
     protected AbstractOption(String aStrRep)
@@ -57,8 +57,8 @@ public abstract class AbstractOption
      * Returns the option specified by a string representation. If no
      * option exists then null is returned.
      * @param aStrRep the String representation to parse
-     * @return the <code>PadOption</code> value represented by aStrRep, or
-     *         null if none exists.
+     * @return the <code>AbstractOption</code> value represented by
+     *         aStrRep, or null if none exists.
      */
     public AbstractOption decode(String aStrRep)
     {
