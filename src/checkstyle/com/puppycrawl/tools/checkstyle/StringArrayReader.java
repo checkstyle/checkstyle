@@ -116,8 +116,8 @@ class StringArrayReader extends Reader
             return '\n';
         }
 
-        if (mArrayIdx < mUnderlyingArray.length
-            && mStringIdx < mUnderlyingArray[mArrayIdx].length() )
+        if ((mArrayIdx < mUnderlyingArray.length)
+            && (mStringIdx < mUnderlyingArray[mArrayIdx].length()))
         {
             // this is the common case,
             // avoid char[] creation in super.read for performance
