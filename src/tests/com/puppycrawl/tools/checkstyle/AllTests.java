@@ -65,6 +65,7 @@ import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck
 import com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.TabCharacterCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundTest;
 import junit.framework.Test;
@@ -148,6 +149,7 @@ public class AllTests {
         suite.addTest(new TestSuite(TabCharacterCheckTest.class));
         suite.addTest(new TestSuite(TodoCommentCheckTest.class));
         suite.addTest(new TestSuite(TranslationCheckTest.class));
+        suite.addTest(new TestSuite(TypecastParenPadCheckTest.class));
         suite.addTest(new TestSuite(LeftCurlyCheckTest.class));
         suite.addTest(new TestSuite(TypeNameCheckTest.class));
         suite.addTest(new TestSuite(UncommentedMainCheckTest.class));

@@ -88,6 +88,7 @@
         </module>
         <module name="ParameterNumber"/>
         <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
         <module name="RedundantImport"/>
         <module name="RedundantModifier"/>
         <module name="RightCurly">
