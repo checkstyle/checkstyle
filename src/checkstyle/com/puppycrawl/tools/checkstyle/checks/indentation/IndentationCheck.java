@@ -136,9 +136,9 @@ public class IndentationCheck extends Check
      *
      * @param aBasicOffset   the number of tabs or spaces to indent
      */
-    public void setBasicOffset(String aBasicOffset)
+    public void setBasicOffset(int aBasicOffset)
     {
-        mBasicOffset = Integer.parseInt(aBasicOffset);
+        mBasicOffset = aBasicOffset;
     }
 
     /**
@@ -146,9 +146,9 @@ public class IndentationCheck extends Check
      *
      * @return the number of tabs or spaces to indent
      */
-    public String getBasicOffset()
+    public int getBasicOffset()
     {
-        return String.valueOf(mBasicOffset);
+        return mBasicOffset;
     }
 
     /**
@@ -156,9 +156,9 @@ public class IndentationCheck extends Check
      *
      * @param aAdjustmentAmount   the brace offset
      */
-    public void setBraceAdjustment(String aAdjustmentAmount)
+    public void setBraceAdjustment(int aAdjustmentAmount)
     {
-        mBraceAdjustment = Integer.parseInt(aAdjustmentAmount);
+        mBraceAdjustment = aAdjustmentAmount;
     }
 
     /**
@@ -166,9 +166,9 @@ public class IndentationCheck extends Check
      *
      * @return the positive offset to adjust braces
      */
-    public String getBraceAdjustement()
+    public int getBraceAdjustement()
     {
-        return String.valueOf(mBraceAdjustment);
+        return mBraceAdjustment;
     }
 
     /**
@@ -176,9 +176,9 @@ public class IndentationCheck extends Check
      *
      * @param aAmount   the case indentation level
      */
-    public void setCaseIndent(String aAmount)
+    public void setCaseIndent(int aAmount)
     {
-        mCaseIndentationAmount = Integer.parseInt(aAmount);
+        mCaseIndentationAmount = aAmount;
     }
 
     /**
@@ -186,9 +186,9 @@ public class IndentationCheck extends Check
      *
      * @return the case indentation level
      */
-    public String getCaseIndent()
+    public int getCaseIndent()
     {
-        return String.valueOf(mCaseIndentationAmount);
+        return mCaseIndentationAmount;
     }
 
     /**

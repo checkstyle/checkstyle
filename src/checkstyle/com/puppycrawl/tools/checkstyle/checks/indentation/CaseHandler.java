@@ -57,8 +57,8 @@ public class CaseHandler extends ExpressionHandler
      */
     public IndentLevel getLevelImpl()
     {
-        int caseIndent = Integer.parseInt(getIndentCheck().getCaseIndent());
-        return new IndentLevel(getParent().getLevel(), caseIndent);
+        return new IndentLevel(getParent().getLevel(),
+                               getIndentCheck().getCaseIndent());
     }
 
     /**

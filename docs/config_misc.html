@@ -718,29 +718,22 @@ like <span class="code">1</span>.
         <tr>
           <td>basicOffset</td>
           <td>how many spaces to use for new indentation level</td>
-          <td><a href="property_types.html#String">String</a></td>
-          <td>&quot;4&quot;</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td>4</td>
         </tr>
         <tr>
           <td>braceAdjustment</td>
           <td>how far brace should be indented when on next line</td>
-          <td><a href="property_types.html#String">String</a></td>
-          <td>&quot;0&quot;</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td>0</td>
         </tr>
         <tr>
           <td>caseIndent</td>
           <td>how much to indent a case label</td>
-          <td><a href="property_types.html#String">String</a></td>
-          <td>&quot;4&quot;</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td>4</td>
         </tr>
       </table>
-
-      <p class="body">
-      <u>NOTE</u>: Although all properties have a String type
-      currently they must be a string representation of integer
-      numbers.  In the next releases this lets us enhance these
-      properties in compatible manner.
-      </p>
 
       <h4>Examples</h4>
       <p class="body">
@@ -754,7 +747,7 @@ like <span class="code">1</span>.
       by Sun:
       <pre class="body">
 &lt;module name=&quot;Indentation&quot;&gt;
-    &lt;property name=&quot;braceAdjustment&quot; value=&quot;0&quot;/&gt;
+    &lt;property name=&quot;caseIndent&quot; value=&quot;0&quot;/&gt;
 &lt;/module&gt;
       </pre>
       </p>
