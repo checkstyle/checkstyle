@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<title>Checkstyle Home Page</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+<body>
+
+<!-- The header -->
+<table border="0" width="100%">
+  <tr>
+    <td>
+      <font style="font-family: Courier New; font-size=36; font-weight:bold; color:#aaaaaa">Checkstyle Home Page</font>
+    </td>
+    <td align="right">
+      NEED THE LOGO
+    </td>
+  </tr>
+</table>
+
+<!-- content -->
+<table border="0" width="100%">
+  <tr>
+    <!--Left menu-->
+    <td valign="top" align="left" nowrap="true">
+      <p>Checkstyle</p>
+      <ul>
+	<li><a href="./site.html">Overview</a></li>
+	<li><a href="./site.html">Features</a></li>
+	<li><a href="./site.html">Download</a></li>
+	<li><a href="http://www.gnu.org/copyleft/gpl.html">License</a></li>
+	<li><a href="./site.html">Related Tools</a></li>
+      </ul>
+      
+      <p>Documentation</p>
+      <ul>
+	<li>ANT Task</li>
+	<li>Command Line</li>
+      </ul>
+      
+      <p>SourceForge</p>
+      <ul>
+	<li>Mailing Lists</li>
+	<li>Bug Database</li>
+	<li>Feature Requests</li>
+      </ul>
+
+      <p>Developers</p>
+      <ul>
+	<li>Project Page</li>
+	<li>CVS Repository</li>
+	<li>JavaDoc</li>
+      </ul>
+    </td>
+
+    <!--Content-->
+    <td width="100%" valign="top" align="left">
+
+      <h2>Overview</h2>
+      <p class="body">
+      Checkstyle is a development tool to help programmers write Java code
+      that adheres to a coding standard. It automates the process
+      of checking Java code to spare humans of this boring (but important)
+      task. This makes it ideal for projects that want to enforce a coding
+      standard.
+      </p>
+
+      <p class="body">
+      By default it supports the <a href="http://java.sun.com/docs/codeconv/">
+      Sun Code Conventions</a>. However, Checkstyle is highly configurable. 
+      </p>
+      
+      <p class="body">
+      My experience from using a similar proprietary tool at a previous employer
+      was that it increased the productivity of code reviews. This is because it
+      allowed the reviewers to get on with reviewing the code and not get into
+      "style" debates.
+      </p>
+      
+      <h2>Features</h2>
+      <p class="body">The things that checkstyle checks for are:</p>
+      <ul>
+	<li class="body">Unused or duplicate <span class="code">import</span> statements. Note: this can be turned off.</li>
+	<li class="body">Javadoc comments are defined for class, interface, variable and method declarations. Note: This can be made to check only <span class="code">public</span> and <span class="code">protected</span> declarations.</li>
+	<li class="body">Javadoc tags for a method match the actual code.</li>
+	<li class="body">The file starts with a specified header. This is useful to ensure that a file has a copyright notice.</li>
+	<li class="body">An <span class="code">@author</span> tag exists for class and interface Javadoc comments. Note: this can be turned off.</li>
+	<li class="body">Format of variable names match specified regular expressions. For example, can enforce that all <span class="code">static</span> variables must start with <span class="code">"s"</span>.</li>
+	<li class="body">Format of class and interface names match a specified regular expression.</li>
+	<li class="body">Format of parameter names match a specified regular expression.</li>
+	<li class="body">Variables that are not declared as <span class="code">private</span> or <span class="code">protected</span>.</li>
+	<li class="body">Correct use of white space around binary and unary operators. For example, <span class="code">x -=- 1;</span> is illegal, whereas <span class="code">x -= -1;</span> is not.</li>
+	<li class="body">Ensure <span class="code">{}</span>'s are used for <span class="code">if/while/for/do</span> constructs.</li>
+	<li class="body">Lines are not longer than a specified length.</li>
+	<li class="body">Lines do not contain tabs. Note: this check can be turned off.</li>
+      </ul>
+
+    </td>
+  </tr>
+</table>
+
+</body> </html>
