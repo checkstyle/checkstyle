@@ -27,7 +27,7 @@ import java.util.HashMap;
  * Represents the options for placing the left curly brace '{'.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: LeftCurlyOption.java,v 1.6 2002-06-06 11:45:40 oburn Exp $
+ * @version $Id: LeftCurlyOption.java,v 1.7 2002-10-13 12:46:33 oburn Exp $
  */
 public final class LeftCurlyOption implements Serializable
 {
@@ -36,8 +36,6 @@ public final class LeftCurlyOption implements Serializable
 
     /** represents placing the brace at the end of line **/
     public static final LeftCurlyOption EOL = new LeftCurlyOption("eol");
-    /** represents ignoring the placement **/
-    public static final LeftCurlyOption IGNORE = new LeftCurlyOption("ignore");
     /**
      * represents placing on the end of the line if it fits on the first line,
      * otherwise placing on a new line.

@@ -56,17 +56,4 @@ public class RightCurlyCheckTest
         };
         verify(c, fname, expected);
     }
-
-    public void testIgnore()
-        throws Exception
-    {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(RightCurlyCheck.class.getName());
-        checkConfig.addProperty("option", RightCurlyOption.IGNORE.toString());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputLeftCurlyOther.java");
-        final String[] expected = {
-        };
-        verify(c, fname, expected);
-    }
 }

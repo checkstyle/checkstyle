@@ -42,9 +42,8 @@ public abstract class LeftCurlyCheck extends Check
                 getLines()[aBrace.getLineNo() - 2]);
 
         // Check for being told to ignore, or have '{}' which is a special case
-        if ((mOption == LeftCurlyOption.IGNORE)
-            || ((braceLine.length() > (aBrace.getColumnNo() + 1))
-                && (braceLine.charAt(aBrace.getColumnNo() + 1) == '}')))
+        if ((braceLine.length() > (aBrace.getColumnNo() + 1))
+            && (braceLine.charAt(aBrace.getColumnNo() + 1) == '}'))
         {
             // ignore
         }
