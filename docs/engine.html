@@ -43,9 +43,14 @@
 <p>For each Java file, Checkstyle will check the following:</p>
 
 <h3><a name="imports">Imports</a></h3>
+
+<p>Checks for illegal package prefixes in import statements. The prefix <span class="code">sun</span> is the default, since programs that contain direct calls to the <span class="code">sun.*</span> packages are <a href="http://java.sun.com/products/jdk/faq/faq-sun-packages.html">not 100% Pure Java</a>.</p>
+
 <p>Checks for import statements that are not used. It will warn about wild-card imports like <span class="code">import java.io.*;</span>. It will also warn about duplicate import statements.</p>
 
 <p>Removing unused import statements reduces unnecessary dependencies in a code base. This feature can be turned off.</p>
+
+
 
 <h3>Javadoc tags</h3>
 

@@ -12,6 +12,7 @@ import java.lang.String;
 import java.sql.Connection;
 import java.util.List;
 import java.util.List;
+import sun.net.ftpclient.FtpClient;
 
 /**
  * Test case for imports
@@ -23,4 +24,6 @@ class InputImport
     private Class mUse1 = Connection.class;
     /** ignore **/
     private Class mUse2 = java.io.File.class;
+    /** ignore **/
+    private FtpClient ftpClient = null;
 }

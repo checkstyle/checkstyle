@@ -1221,7 +1221,28 @@ class Verifier
             {
                 log(imp.getLineNo(), "Unused import - " + imp.getText());
             }
+            else if (isIllegalImport(imp.getText())) {
+                log(imp.getLineNo(),
+                    "Import from illegal package - " + imp.getText());
+            }
         }
+    }
+
+    /**
+     * Checks if an import is from a package that must not be used.
+     * @param aImportText the argument of the import keyword
+     * @return if <code>aImportText</code> contains an illegal package prefix
+     */
+    private boolean isIllegalImport(String aImportText)
+    {
+        final Iterator it = mConfig.getIllegalImports().iterator();
+        while (it.hasNext()) {
+            final String illegalPkgName = (String) it.next();
+            if (aImportText.startsWith(illegalPkgName + ".")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** @return whether currently in an interface block **/
