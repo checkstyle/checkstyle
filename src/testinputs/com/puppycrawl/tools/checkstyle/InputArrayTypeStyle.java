@@ -35,5 +35,9 @@ public class InputArrayTypeStyle
         { // we shouldn't check methods because there is no alternatives.
             return null;
         }
+
+        public Test[] getNewTest()
+        {
+        }
     }
 }
