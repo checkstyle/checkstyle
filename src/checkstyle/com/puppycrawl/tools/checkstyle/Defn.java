@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle;
  * Contains definitions common to the package.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
-interface Defn
+public interface Defn
 {
     /** property name for the parameter pattern **/
     String PARAMETER_PATTERN_PROP = "checkstyle.pattern.parameter";
