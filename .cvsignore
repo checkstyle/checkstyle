@@ -1,3 +1,7 @@
 checkstyle.ipr
 checkstyle.iws
 target
+checkstyle.buildproperties
+.project
+.checkstyle
+.classpath
