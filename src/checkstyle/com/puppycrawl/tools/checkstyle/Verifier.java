@@ -192,8 +192,11 @@ class Verifier
                     " characters");
             }
 
-            if (!mConfig.isAllowTabs() && (mLines[i].indexOf('\t') != -1)) {
-                log(i + 1, "line contains a tab character");
+            if (!mConfig.isAllowTabs()) {
+                final int tabPosition = mLines[i].indexOf('\t');
+                if (tabPosition != -1) {
+                    log(i + 1, tabPosition, "line contains a tab character");
+                }
             }
         }
 
