@@ -28,3 +28,70 @@ class test6
 {
     public test6() {}
 }
+
+// Typesafe enum with operation
+// abstract classes cannot be final, see bug #837012
+abstract class Operation
+{
+    abstract double eval(double a, double b);
+    
+    public static final Operation PLUS =
+	new Operation("+")
+	{
+	    double eval(double a, double b)
+	    {
+		return a + b;
+	    }
+	};
+    
+    public static final Operation MINUS =
+	new Operation("-")
+	{
+	    double eval(double a, double b)
+	    {
+		return a - b;
+	    }
+	};
+    
+    private String _name;
+    private Operation(String name)
+    {
+	this._name = name;
+    }
+}
+
+// Typesafe enum with operation
+// abstract classes cannot be final, see bug #837012
+interface Evaluatable
+{
+    double eval(double a, double b);
+}
+
+// abstract class without it's own abstract method decl
+abstract class Operation2 implements Evaluatable 
+{
+    
+    public static final Operation2 PLUS =
+	new Operation2("+")
+	{
+	    double eval(double a, double b)
+	    {
+		return a + b;
+	    }
+	};
+    
+    public static final Operation2 MINUS =
+	new Operation2("-")
+	{
+	    double eval(double a, double b)
+	    {
+		return a - b;
+	    }
+	};
+    
+    private String _name;
+    private Operation2(String name)
+    {
+	this._name = name;
+    }
+}

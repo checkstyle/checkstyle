@@ -54,10 +54,11 @@ public class FinalClassCheck
         final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
 
         if (aAST.getType() == TokenTypes.CLASS_DEF) {
-            final boolean isFinal =
-                (modifiers != null)
+            final boolean isFinal = (modifiers != null)
                     && modifiers.branchContains(TokenTypes.FINAL);
-            mClasses.push(new ClassDesc(isFinal));
+            final boolean isAbstract = (modifiers != null)
+                    && modifiers.branchContains(TokenTypes.ABSTRACT);
+            mClasses.push(new ClassDesc(isFinal, isAbstract));
         }
         else {
             final ClassDesc desc = (ClassDesc) mClasses.peek();
@@ -81,6 +82,7 @@ public class FinalClassCheck
 
         final ClassDesc desc = (ClassDesc) mClasses.pop();
         if (!desc.isDeclaredAsFinal()
+            && !desc.isDeclaredAsAbstract()
             && desc.hasPrivateCtor()
             && !desc.hasNonPrivateCtor())
         {
@@ -96,6 +98,9 @@ public class FinalClassCheck
         /** is class declared as final */
         private final boolean mDeclaredAsFinal;
 
+        /** is class declared as abstract */
+        private final boolean mDeclaredAsAbstract;
+
         /** does class have non-provate ctors */
         private boolean mHasNonPrivateCtor;
 
@@ -103,29 +108,32 @@ public class FinalClassCheck
         private boolean mHasPrivateCtor;
 
         /**
-         *  create a new ClassDesc instance
+         *  create a new ClassDesc instance.
          *  @param aDeclaredAsFinal indicates if the
          *         class declared as final
+         *  @param aDeclaredAsAbstract indicates if the
+         *         class declared as abstract
          */
-        ClassDesc(boolean aDeclaredAsFinal)
+        ClassDesc(boolean aDeclaredAsFinal, boolean aDeclaredAsAbstract)
         {
             mDeclaredAsFinal = aDeclaredAsFinal;
+            mDeclaredAsAbstract = aDeclaredAsAbstract;
         }
 
-        /** adds private ctor */
+        /** adds private ctor. */
         void reportPrivateCtor()
         {
             mHasPrivateCtor = true;
         }
 
-        /** adds non-private ctor */
+        /** adds non-private ctor. */
         void reportNonPrivateCtor()
         {
             mHasNonPrivateCtor = true;
         }
 
         /**
-         *  does class have private ctors
+         *  does class have private ctors.
          *  @return true if class has private ctors
          */
         boolean hasPrivateCtor()
@@ -134,7 +142,7 @@ public class FinalClassCheck
         }
 
         /**
-         *  does class have non-private ctors
+         *  does class have non-private ctors.
          *  @return true if class has non-private ctors
          */
         boolean hasNonPrivateCtor()
@@ -143,7 +151,7 @@ public class FinalClassCheck
         }
 
         /**
-         *  is class declared as final
+         *  is class declared as final.
          *  @return true if class is declared as final
          */
         boolean isDeclaredAsFinal()
@@ -152,13 +160,27 @@ public class FinalClassCheck
         }
 
         /**
+         *  is class declared as abstract.
+         *  @return true if class is declared as final
+         */
+        boolean isDeclaredAsAbstract()
+        {
+            return mDeclaredAsAbstract;
+        }
+
+        /**
          * Returns a string representation of the object.
          * @return a string representation of the object
          */
         public String toString()
         {
-            return "decl=" + mDeclaredAsFinal + "; pctor=" + mHasPrivateCtor
-                + "; ctor=" + mHasNonPrivateCtor;
+            return this.getClass().getName()
+                + "["
+                + "final=" + mDeclaredAsFinal
+                + " abstract=" + mDeclaredAsAbstract
+                + " pctor=" + mHasPrivateCtor
+                + " ctor=" + mHasNonPrivateCtor
+                + "]";
         }
     }
 }
