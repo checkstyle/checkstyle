@@ -294,7 +294,6 @@ class Verifier
      */
     void verifyOpEnd(int aLineNo, int aColNo, String aText)
     {
-        verifyOpBegin(aLineNo, aColNo - aText.length(), aText);
     }
 
     /**
@@ -307,26 +306,6 @@ class Verifier
      */
     void verifyOpBegin(int aLineNo, int aColNo, String aText)
     {
-        final WrapOpOption wOp = mConfig.getWrapOpOption();
-
-        if (wOp != WrapOpOption.IGNORE) {
-
-            // Check if rest of line is whitespace, and not just the operator
-            // by itself. This last bit is to handle the operator on a line by
-            // itself.
-            if (wOp == WrapOpOption.NL
-                && !aText.equals(mLines[aLineNo - 1].trim())
-                && (mLines[aLineNo - 1].substring(aColNo + aText.length() - 1)
-                    .trim().length() == 0))
-            {
-                mMessages.add(aLineNo, aColNo - 1, "line.new", aText);
-            }
-            else if (wOp == WrapOpOption.EOL
-                     && Utils.whitespaceBefore(aColNo - 1, mLines[aLineNo - 1]))
-            {
-                mMessages.add(aLineNo, aColNo - 1, "line.previous", aText);
-            }
-        }
     }
 
     // }}}

@@ -143,32 +143,6 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
-//    public void testInner()
-//        throws Exception
-//    {
-//        final Checker c = createChecker();
-//        final String filepath = getPath("InputInner.java");
-//        assertNotNull(c);
-//        final String[] expected = {
-//            filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
-//        };
-//        verify(c, filepath, expected);
-//    }
-//
-//    public void testIgnoreAccess()
-//        throws Exception
-//    {
-//        mProps.setProperty(Defn.ALLOW_PROTECTED_PROP, "true");
-//        mProps.setProperty(Defn.ALLOW_PACKAGE_PROP, "true");
-//        final Checker c = createChecker();
-//        final String filepath = getPath("InputInner.java");
-//        assertNotNull(c);
-//        final String[] expected = {
-//            filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
-//        };
-//        verify(c, filepath, expected);
-//    }
-
     public void testSimple()
         throws Exception
     {
@@ -210,52 +184,6 @@ public class CheckerTest
         mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
         final Checker c = createChecker();
         final String filepath = getPath("InputAssertIdentifier.java");
-        assertNotNull(c);
-        final String[] expected = {
-        };
-        verify(c, filepath, expected);
-    }
-
-
-    public void testOpWrapNL()
-        throws Exception
-    {
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
-        mProps.setProperty(Defn.WRAP_OP_PROP, WrapOpOption.NL.toString());
-        final Checker c = createChecker();
-        final String filepath = getPath("InputOpWrap.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":15:19: '+' should be on a new line.",
-            filepath + ":16:15: '-' should be on a new line.",
-            filepath + ":24:18: '&&' should be on a new line.",
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testOpWrapEOL()
-        throws Exception
-    {
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
-        mProps.setProperty(Defn.WRAP_OP_PROP, WrapOpOption.EOL.toString());
-        final Checker c = createChecker();
-        final String filepath = getPath("InputOpWrap.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":18:13: '-' should be on the previous line.",
-            filepath + ":22:13: '&&' should be on the previous line.",
-            filepath + ":27:13: '&&' should be on the previous line.",
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testOpWrapIgnore()
-        throws Exception
-    {
-        mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
-        mProps.setProperty(Defn.WRAP_OP_PROP, WrapOpOption.IGNORE.toString());
-        final Checker c = createChecker();
-        final String filepath = getPath("InputOpWrap.java");
         assertNotNull(c);
         final String[] expected = {
         };
