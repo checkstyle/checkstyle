@@ -355,7 +355,7 @@ public class CheckStyleTask
         }
         for (int i = 0; i < mFileSets.size(); i++) {
             final FileSet fs = (FileSet) mFileSets.get(i);
-            final DirectoryScanner ds = fs.getDirectoryScanner(project);
+            final DirectoryScanner ds = fs.getDirectoryScanner(getProject());
             ds.scan();
 
             final String[] names = ds.getIncludedFiles();
