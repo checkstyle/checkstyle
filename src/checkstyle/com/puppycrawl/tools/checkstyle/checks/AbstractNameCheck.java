@@ -31,10 +31,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public abstract class AbstractNameCheck
     extends AbstractFormatCheck
 {
-    /** Creates a new <code>AbstractNameCheck</code> instance. */
-    public AbstractNameCheck(String format)
+    /**
+     * Creates a new <code>AbstractNameCheck</code> instance.
+     * @param aFormat format to check with
+     */
+    public AbstractNameCheck(String aFormat)
     {
-        super(format);
+        super(aFormat);
     }
 
     /**
@@ -43,12 +46,12 @@ public abstract class AbstractNameCheck
      * @param aAST the AST to check.
      * @return true if the IDENT subnode of aAST should be checked against
      * the format regexp.
-     */ 
+     */
     protected boolean mustCheckName(DetailAST aAST)
     {
         return true;
     }
-     
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {

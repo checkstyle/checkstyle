@@ -35,6 +35,10 @@ public class EmptyBlockCheck extends Check
 {
     private final Set mCheckFor = new HashSet();
 
+    /**
+     * Creates a new <code>EmptyBlockCheck</code> instance.
+     *
+     */
     public EmptyBlockCheck()
     {
         mCheckFor.add("if");

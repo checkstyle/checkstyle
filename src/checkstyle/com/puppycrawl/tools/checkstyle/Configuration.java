@@ -399,18 +399,6 @@ public class Configuration
         return getBooleanProperty(Defn.ALLOW_PACKAGE_PROP);
     }
 
-    /** @return whether to allow having no author tag **/
-    boolean isAllowNoAuthor()
-    {
-        return getBooleanProperty(Defn.ALLOW_NO_AUTHOR_PROP);
-    }
-
-    /** @return whether to require having version tag */
-    boolean isRequireVersion()
-    {
-        return getBooleanProperty(Defn.REQUIRE_VERSION_PROP);
-    }
-
     /** @return visibility scope where Javadoc is checked **/
     Scope getJavadocScope()
     {
