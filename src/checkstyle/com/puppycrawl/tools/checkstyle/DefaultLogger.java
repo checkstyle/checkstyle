@@ -92,13 +92,11 @@ public class DefaultLogger
     /** @see AuditListener **/
     public void fileFinished(AuditEvent aEvt)
     {
-        mWriter.println("End audit " + aEvt.getFileName());
     }
 
     /** @see AuditListener **/
     public void fileStarted(AuditEvent aEvt)
     {
-        mWriter.println("Auditing " + aEvt.getFileName());
     }
 
     /** @see AuditListener **/
