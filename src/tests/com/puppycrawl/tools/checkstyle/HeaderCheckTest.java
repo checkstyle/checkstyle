@@ -2,6 +2,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.HeaderCheck;
+import com.puppycrawl.tools.checkstyle.checks.RegexpHeaderCheck;
 
 public class HeaderCheckTest extends BaseCheckTestCase
 {
@@ -24,7 +25,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         throws Exception
     {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(HeaderCheck.class);
+            createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header"));
         checkConfig.addAttribute("ignoreLines", "4,5");
         final Checker c = createChecker(checkConfig);
@@ -39,7 +40,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         throws Exception
     {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(HeaderCheck.class);
+            createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header"));
         checkConfig.addAttribute("ignoreLines", "3,4,5");
         final Checker c = createChecker(checkConfig);
