@@ -30,6 +30,7 @@ import org.apache.commons.beanutils.ConversionException;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
+import java.util.Vector;
 
 /**
  * <p>
@@ -84,12 +85,8 @@ public class JavadocTypeCheck
 {
     /** the scope to check for */
     private Scope mScope = Scope.PRIVATE;
-    /** compiled regexp to match author tag **/
-    private RE mAuthorTagRE;
     /** compiled regexp to match author tag content **/
     private RE mAuthorFormatRE;
-    /** compiled regexp to match version tag **/
-    private RE mVersionTagRE;
     /** compiled regexp to match version tag content **/
     private RE mVersionFormatRE;
     /** regexp to match author tag content */
@@ -115,7 +112,6 @@ public class JavadocTypeCheck
         throws ConversionException
     {
         try {
-            mAuthorTagRE = Utils.getRE("@author\\s+(.*$)");
             mAuthorFormat = aFormat;
             mAuthorFormatRE = Utils.getRE(aFormat);
         }
@@ -133,7 +129,6 @@ public class JavadocTypeCheck
         throws ConversionException
     {
         try {
-            mVersionTagRE = Utils.getRE("@version\\s+(.*$)");
             mVersionFormat = aFormat;
             mVersionFormatRE = Utils.getRE(aFormat);
         }
@@ -167,53 +162,73 @@ public class JavadocTypeCheck
                 }
                 else if (ScopeUtils.isOuterMostType(aAST)) {
                     // don't check author/version for inner classes
-                    checkTag(lineNo, cmt.getText(), "@author",
-                            mAuthorTagRE, mAuthorFormatRE, mAuthorFormat);
-                    checkTag(lineNo, cmt.getText(), "@version",
-                            mVersionTagRE, mVersionFormatRE, mVersionFormat);
+                    Vector tags = getJavadocTags(cmt);
+                    checkTag(lineNo, tags, "author",
+                             mAuthorFormatRE, mAuthorFormat);
+                    checkTag(lineNo, tags, "version",
+                             mVersionFormatRE, mVersionFormat);
                 }
             }
         }
     }
 
     /**
+     * Gets all standalone tags from a given javadoc.
+     * @param aCmt teh Javadoc comment to process.
+     * @return all standalone tags from the given javadoc.
+     */
+    private Vector getJavadocTags(TextBlock aCmt)
+    {
+        final String[] text = aCmt.getText();
+        Vector tags = new Vector();
+        RE tagRE = Utils.getRE("/\\*{2,}\\s*@([:alpha:]+)\\s");
+        for (int i = 0; i < text.length; i++) {
+            final String s = text[i];
+            if (tagRE.match(s)) {
+                final String tagName = tagRE.getParen(1);
+                String content = s.substring(tagRE.getParenEnd(0));
+                if (content.endsWith("*/")) {
+                    content = content.substring(0, content.length() - 2);
+                }
+                tags.add(new JavadocTag(aCmt.getStartLineNo() + i,
+                                        tagName,
+                                        content.trim()));
+            }
+            if (i != 0) {
+                tagRE = Utils.getRE("^\\s*\\**\\s*@([:alpha:]+)\\s");
+            }
+        }
+        return tags;
+    }
+
+    /**
      * Verifies that a type definition has a required tag.
      * @param aLineNo the line number for the type definition.
-     * @param aCmt the Javadoc comment for the type definition.
+     * @param aTags tags from the Javadoc comment for the type definition.
      * @param aTag the required tag name.
-     * @param aTagRE regexp for the full tag.
      * @param aFormatRE regexp for the tag value.
      * @param aFormat pattern for the tag value.
      */
-    private void checkTag(
-            int aLineNo,
-            String[] aCmt,
-            String aTag,
-            RE aTagRE,
-            RE aFormatRE,
-            String aFormat)
+    private void checkTag(int aLineNo, Vector aTags, String aTag,
+                          RE aFormatRE, String aFormat)
     {
-        if (aTagRE == null) {
+        if (aFormatRE == null) {
             return;
         }
 
         int tagCount = 0;
-        for (int i = 0; i < aCmt.length; i++) {
-            final String s = aCmt[i];
-            if (aTagRE.match(s)) {
-                tagCount += 1;
-                final int contentStart = aTagRE.getParenStart(1);
-                final String content = s.substring(contentStart);
-                if (!aFormatRE.match(content)) {
-                    log(aLineNo, "type.tagFormat", aTag, aFormat);
+        for (int i = aTags.size() - 1; i >= 0; i--) {
+            final JavadocTag tag = (JavadocTag) aTags.get(i);
+            if (tag.getTag().equals(aTag)) {
+                tagCount++;
+                if (!aFormatRE.match(tag.getArg1())) {
+                    log(aLineNo, "type.tagFormat", "@" + aTag, aFormat);
                 }
-
             }
         }
         if (tagCount == 0) {
-            log(aLineNo, "type.missingTag", aTag);
+            log(aLineNo, "type.missingTag", "@" + aTag);
         }
-
     }
 
 }
