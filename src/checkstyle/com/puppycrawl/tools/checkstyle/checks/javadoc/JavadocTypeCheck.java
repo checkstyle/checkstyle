@@ -85,6 +85,8 @@ public class JavadocTypeCheck
 {
     /** the scope to check for */
     private Scope mScope = Scope.PRIVATE;
+    /** the visibility scope where Javadoc comments shouldn't be checked **/
+    private Scope mExcludeScope;
     /** compiled regexp to match author tag content **/
     private RE mAuthorFormatRE;
     /** compiled regexp to match version tag content **/
@@ -101,6 +103,15 @@ public class JavadocTypeCheck
     public void setScope(String aFrom)
     {
         mScope = Scope.getInstance(aFrom);
+    }
+
+    /**
+     * Set the excludeScope.
+     * @param aScope a <code>String</code> value
+     */
+    public void setExcludeScope(String aScope)
+    {
+        mExcludeScope = Scope.getInstance(aScope);
     }
 
     /**
@@ -147,29 +158,43 @@ public class JavadocTypeCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
-        final Scope typeScope =
-            ScopeUtils.inInterfaceBlock(aAST) ? Scope.PUBLIC : declaredScope;
-        if (typeScope.isIn(mScope)) {
-            final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
-            if ((surroundingScope == null) || surroundingScope.isIn(mScope)) {
-                final FileContents contents = getFileContents();
-                final int lineNo = aAST.getLineNo();
-                final TextBlock cmt = contents.getJavadocBefore(lineNo);
-                if (cmt == null) {
-                    log(lineNo, "javadoc.missing");
-                }
-                else if (ScopeUtils.isOuterMostType(aAST)) {
-                    // don't check author/version for inner classes
-                    Vector tags = getJavadocTags(cmt);
-                    checkTag(lineNo, tags, "author",
-                             mAuthorFormatRE, mAuthorFormat);
-                    checkTag(lineNo, tags, "version",
-                             mVersionFormatRE, mVersionFormat);
-                }
+        if (shouldCheck(aAST)) {
+            final FileContents contents = getFileContents();
+            final int lineNo = aAST.getLineNo();
+            final TextBlock cmt = contents.getJavadocBefore(lineNo);
+            if (cmt == null) {
+                log(lineNo, "javadoc.missing");
+            }
+            else if (ScopeUtils.isOuterMostType(aAST)) {
+                // don't check author/version for inner classes
+                Vector tags = getJavadocTags(cmt);
+                checkTag(lineNo, tags, "author",
+                         mAuthorFormatRE, mAuthorFormat);
+                checkTag(lineNo, tags, "version",
+                         mVersionFormatRE, mVersionFormat);
             }
         }
+    }
+
+    /**
+     * Whether we should check this node.
+     * @param aAST a given node.
+     * @return whether we should check a given node.
+     */
+    private boolean shouldCheck(final DetailAST aAST)
+    {
+        final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
+        final Scope scope =
+            ScopeUtils.inInterfaceBlock(aAST) ? Scope.PUBLIC : declaredScope;
+        final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
+
+        return scope.isIn(mScope)
+            && ((surroundingScope == null) || surroundingScope.isIn(mScope))
+            && ((mExcludeScope == null)
+                || !scope.isIn(mExcludeScope)
+                || (surroundingScope != null)
+                && !surroundingScope.isIn(mExcludeScope));
     }
 
     /**

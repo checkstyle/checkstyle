@@ -4,6 +4,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 
+import java.io.File;
+
 /**
  * @author Oliver.Burn
  *
@@ -195,5 +197,59 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
             "31: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
+    }
+
+    public void testScopes() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        final String[] expected = {
+            "1: Missing a Javadoc comment.",
+            "13: Missing a Javadoc comment.",
+            "25: Missing a Javadoc comment.",
+            "37: Missing a Javadoc comment.",
+            "50: Missing a Javadoc comment.",
+            "61: Missing a Javadoc comment.",
+            "73: Missing a Javadoc comment.",
+            "85: Missing a Javadoc comment.",
+            "97: Missing a Javadoc comment.",
+        };
+        verify(checkConfig,
+               getPath("javadoc" + File.separator +"InputNoJavadoc.java"),
+               expected);
+    }
+
+    public void testScopes2() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
+        final String[] expected = {
+            "1: Missing a Javadoc comment.",
+            "13: Missing a Javadoc comment.",
+        };
+        verify(checkConfig,
+               getPath("javadoc" + File.separator +"InputNoJavadoc.java"),
+               expected);
+    }
+
+    public void testExcludeScope() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
+        checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
+        final String[] expected = {
+            "25: Missing a Javadoc comment.",
+            "37: Missing a Javadoc comment.",
+            "50: Missing a Javadoc comment.",
+            "61: Missing a Javadoc comment.",
+            "73: Missing a Javadoc comment.",
+            "85: Missing a Javadoc comment.",
+            "97: Missing a Javadoc comment.",
+        };
+        verify(checkConfig,
+               getPath("javadoc" + File.separator +"InputNoJavadoc.java"),
+               expected);
     }
 }

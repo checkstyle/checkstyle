@@ -138,6 +138,9 @@ public class JavadocMethodCheck
     /** the visibility scope where Javadoc comments are checked **/
     private Scope mScope = Scope.PRIVATE;
 
+    /** the visibility scope where Javadoc comments shouldn't be checked **/
+    private Scope mExcludeScope;
+
     /**
      * controls whether to allow documented exceptions that
      * are not declared if they are a subclass of
@@ -180,6 +183,15 @@ public class JavadocMethodCheck
     public void setScope(String aFrom)
     {
         mScope = Scope.getInstance(aFrom);
+    }
+
+    /**
+     * Set the excludeScope.
+     * @param aScope a <code>String</code> value
+     */
+    public void setExcludeScope(String aScope)
+    {
+        mExcludeScope = Scope.getInstance(aScope);
     }
 
     /**
@@ -271,30 +283,36 @@ public class JavadocMethodCheck
      */
     protected final void processAST(DetailAST aAST)
     {
-        final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
-        final Scope targetScope =
-            ScopeUtils.inInterfaceBlock(aAST)
-                ? Scope.PUBLIC
-                : declaredScope;
+        if (shouldCheck(aAST)) {
+            final FileContents contents = getFileContents();
+            final TextBlock cmt = contents.getJavadocBefore(aAST.getLineNo());
 
-        if (targetScope.isIn(mScope)) {
-            final Scope surroundingScope =
-                ScopeUtils.getSurroundingScope(aAST);
-
-            if (surroundingScope.isIn(mScope)) {
-                final FileContents contents = getFileContents();
-                final TextBlock cmt =
-                    contents.getJavadocBefore(aAST.getLineNo());
-
-                if (cmt == null) {
-                    log(aAST, "javadoc.missing");
-                }
-                else {
-                    checkComment(aAST, cmt);
-                }
+            if (cmt == null) {
+                log(aAST, "javadoc.missing");
+            }
+            else {
+                checkComment(aAST, cmt);
             }
         }
+    }
+
+    /**
+     * Whether we should check this node.
+     * @param aAST a given node.
+     * @return whether we should check a given node.
+     */
+    private boolean shouldCheck(final DetailAST aAST)
+    {
+        final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
+        final Scope scope =
+            ScopeUtils.inInterfaceBlock(aAST) ? Scope.PUBLIC : declaredScope;
+        final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
+
+        return scope.isIn(mScope) && surroundingScope.isIn(mScope)
+            && ((mExcludeScope == null)
+                || !scope.isIn(mExcludeScope)
+                || !surroundingScope.isIn(mExcludeScope));
     }
 
     /**

@@ -160,4 +160,27 @@ public class JavadocStyleCheckTest
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
     }
 
+    public void testExcludeScope()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocStyleCheck.class);
+        checkConfig.addAttribute("scope", "private");
+        checkConfig.addAttribute("excludeScope", "protected");
+        final String[] expected =
+        {
+            "20: First sentence should end with a period.",
+            "53: First sentence should end with a period.",
+            "63:11: Unclosed HTML tag found: <b>This guy is missing end of bold tag",
+            "66:7: Extra HTML tag found: </td>Extra tag shouldn't be here",
+            "68:19: Unclosed HTML tag found: <code>dummy.",
+            "81: First sentence should end with a period.",
+            "82:31: Unclosed HTML tag found: <b>should fail",
+            "109:39: Extra HTML tag found: </img>",
+            "186:8: Unclosed HTML tag found: <blockquote>",
+            "193: First sentence should end with a period.",
+        };
+
+        verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
+    }
 }
