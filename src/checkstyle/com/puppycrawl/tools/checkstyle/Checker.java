@@ -23,7 +23,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
 
@@ -156,18 +155,8 @@ public class Checker
      */
     public int process(String[] aFiles)
     {
-        // TODO: rename and blow away the old stuff
         int total = 0;
         fireAuditStarted();
-
-        // If you move checkPackageHtml() around beware of the caching
-        // functionality of checkstyle. Make sure that package.html
-        // checks are not skipped because of caching. Otherwise you
-        // might e.g. have a package.html file, check all java files
-        // without errors, delete package.html and then recheck without
-        // errors because the html file is not covered by the cache.
-        total += checkPackageHtml(aFiles);
-
         for (int i = 0; i < aFiles.length; i++) {
             total += process(aFiles[i]);
         }
@@ -287,41 +276,6 @@ public class Checker
             rootAST = (DetailAST) jr.getAST();
         }
         return rootAST;
-    }
-
-    /**
-     * Checks for a package.html file for all java files in parameter list.
-     * @param aFiles the filenames of the java files to check
-     * @return the number of errors found
-     */
-    private int checkPackageHtml(String[] aFiles)
-    {
-        if (!mConfig.isRequirePackageHtml()) {
-            return 0;
-        }
-
-        int packageHtmlErrors = 0;
-        final HashSet checkedPackages = new HashSet();
-        for (int i = 0; i < aFiles.length; i++) {
-            final File file = new File(aFiles[i]);
-            final File packageDir = file.getParentFile();
-            if (!checkedPackages.contains(packageDir)) {
-                final File packageDoc =
-                    new File(packageDir, "package.html");
-                final String docFile = packageDoc.toString();
-                fireFileStarted(docFile);
-                if (!packageDoc.exists()) {
-                    final LocalizedMessage error =
-                        new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
-                                             "javadoc.packageHtml", null);
-                    fireErrors(docFile, new LocalizedMessage[]{error});
-                    packageHtmlErrors++;
-                }
-                fireFileFinished(docFile);
-                checkedPackages.add(packageDir);
-            }
-        }
-        return packageHtmlErrors;
     }
 
 
