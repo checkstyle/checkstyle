@@ -18,26 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import org.apache.tools.ant.AntClassLoader;
+import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.DirectoryScanner;
+import org.apache.tools.ant.Project;
+import org.apache.tools.ant.Task;
+import org.apache.tools.ant.taskdefs.LogOutputStream;
+import org.apache.tools.ant.types.EnumeratedAttribute;
+import org.apache.tools.ant.types.FileSet;
+import org.apache.tools.ant.types.Path;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
-import java.io.FileInputStream;
-import org.apache.regexp.RESyntaxException;
-import org.apache.tools.ant.BuildException;
-import org.apache.tools.ant.DirectoryScanner;
-import org.apache.tools.ant.Project;
-import org.apache.tools.ant.Task;
-import org.apache.tools.ant.AntClassLoader;
-import org.apache.tools.ant.taskdefs.LogOutputStream;
-import org.apache.tools.ant.types.EnumeratedAttribute;
-import org.apache.tools.ant.types.FileSet;
-import org.apache.tools.ant.types.Path;
 
 /**
  * An implementation of a ANT task for calling checkstyle. See the documentation
@@ -168,148 +168,6 @@ public class CheckStyleTask
                 "Error loading Properties file '" + aProps + "'",
                 e, getLocation());
         }
-    }
-
-    /** @param aTabWidth number of spaces that are represented by one tab **/
-    public void setTabWidth(final int aTabWidth)
-    {
-        setIntProperty(Defn.TAB_WIDTH_PROP, aTabWidth);
-    }
-
-    /** @param aLen max allowed line length **/
-    public void setMaxLineLen(final int aLen)
-    {
-        setIntProperty(Defn.MAX_LINE_LENGTH_PROP, aLen);
-    }
-
-    /** @param aLen max allowed method length **/
-    public void setMaxMethodLen(final int aLen)
-    {
-        setIntProperty(Defn.MAX_METHOD_LENGTH_PROP, aLen);
-    }
-
-    /** @param aLen max allowed constructor length **/
-    public void setMaxConstructorLen(final int aLen)
-    {
-        setIntProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, aLen);
-    }
-
-    /** @param aLen max allowed file length **/
-    public void setMaxFileLen(final int aLen)
-    {
-        setIntProperty(Defn.MAX_FILE_LENGTH_PROP, aLen);
-    }
-
-    /** @param aNum max allowed file length **/
-    public void setMaxParameters(final int aNum)
-    {
-        setIntProperty(Defn.MAX_PARAMETERS_PROP, aNum);
-    }
-
-    /** @param aPat line length check exclusion pattern */
-    public void setIgnoreLineLengthPattern(final String aPat)
-    {
-        setPatternProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP, aPat,
-                           "ignoreLineLengthPattern");
-    }
-
-    /** @param aPat pattern for member variables **/
-    public void setMemberPattern(final String aPat)
-    {
-        setPatternProperty(Defn.MEMBER_PATTERN_PROP, aPat, "memberPattern");
-    }
-
-    /** @param aPat pattern for public member variables **/
-    public void setPublicMemberPattern(final String aPat)
-    {
-        setPatternProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP, aPat,
-                           "publicMemberPattern");
-    }
-
-    /** @param aPat pattern for to-do lines **/
-    public void setTodoPattern(final String aPat)
-    {
-        setPatternProperty(Defn.TODO_PATTERN_PROP, aPat, "todoPattern");
-    }
-
-    /** @param aPat pattern for parameters **/
-    public void setParamPattern(final String aPat)
-    {
-        setPatternProperty(Defn.PARAMETER_PATTERN_PROP, aPat, "paramPattern");
-    }
-
-    /** @param aPat pattern for constant variables **/
-    public void setConstPattern(final String aPat)
-    {
-        setPatternProperty(Defn.CONST_PATTERN_PROP, aPat, "constPattern");
-    }
-
-    /** @param aPat pattern for static variables **/
-    public void setStaticPattern(final String aPat)
-    {
-        setPatternProperty(Defn.STATIC_PATTERN_PROP, aPat, "staticPattern");
-    }
-
-    /** @param aPat pattern for type names **/
-    public void setTypePattern(final String aPat)
-    {
-        setPatternProperty(Defn.TYPE_PATTERN_PROP, aPat, "typePattern");
-    }
-
-    /** @param aPat pattern for local variables **/
-    public void setLocalVarPattern(final String aPat)
-    {
-        setPatternProperty(Defn.LOCAL_VAR_PATTERN_PROP, aPat,
-                           "localVarPattern");
-    }
-
-    /** @param aPat pattern for local final variables **/
-    public void setLocalFinalVarPattern(final String aPat)
-    {
-        setPatternProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP, aPat,
-                           "localFinalVarPattern");
-    }
-
-    /** @param aPat pattern for method names **/
-    public void setMethodPattern(final String aPat)
-    {
-        setPatternProperty(Defn.METHOD_PATTERN_PROP, aPat, "methodPattern");
-    }
-
-    /** @param aTo the left curly placement option for methods **/
-    public void setLCurlyMethod(final String aTo)
-    {
-        setLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP, aTo);
-    }
-
-    /** @param aTo the left curly placement option for types **/
-    public void setLCurlyType(final String aTo)
-    {
-        setLeftCurlyOptionProperty(Defn.LCURLY_TYPE_PROP, aTo);
-    }
-
-    /** @param aTo the left curly placement option for others **/
-    public void setLCurlyOther(final String aTo)
-    {
-        setLeftCurlyOptionProperty(Defn.LCURLY_OTHER_PROP, aTo);
-    }
-
-    /** @param aTo the try block option **/
-    public void setTryBlock(final String aTo)
-    {
-        setBlockOptionProperty(Defn.TRY_BLOCK_PROP, aTo);
-    }
-
-    /** @param aTo the catch block option **/
-    public void setCatchBlock(final String aTo)
-    {
-        setBlockOptionProperty(Defn.CATCH_BLOCK_PROP, aTo);
-    }
-
-    /** @param aTo the finally block option **/
-    public void setFinallyBlock(final String aTo)
-    {
-        setBlockOptionProperty(Defn.FINALLY_BLOCK_PROP, aTo);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -549,93 +407,5 @@ public class CheckStyleTask
             runnable.run();
         }
         mOptionMemory.clear();
-    }
-
-    /**
-     * Set the specified integer property.
-     * @param aName name of property to set
-     * @param aTo the value of the property
-     */
-    private void setIntProperty(final String aName, final int aTo)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setIntProperty(aName, aTo);
-                }
-            });
-    }
-
-    /**
-     * Set the specified pattern property.
-     * @param aName name of property to set
-     * @param aTo the value of the property
-     * @param aLabel the label to display in errors
-     */
-    private void setPatternProperty(final String aName,
-                                    final String aTo,
-                                    final String aLabel)
-    {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    try {
-                        mConfig.setPatternProperty(aName, aTo);
-                    }
-                    catch (RESyntaxException ex) {
-                        throw new BuildException(
-                            "Unable to parse " + aLabel + " - ", ex);
-                    }
-                }
-            });
-    }
-
-    /**
-     * Set the specified BlockOption property.
-     * @param aName name of property to set
-     * @param aTo the value of the property
-     * @throws BuildException if unable to decode aTo
-     */
-    private void setBlockOptionProperty(final String aName, String aTo)
-        throws BuildException
-    {
-        final BlockOption opt = BlockOption.decode(aTo);
-        if (opt == null) {
-            throw new BuildException("Unable to parse '" + aTo + "'.",
-                                     getLocation());
-        }
-
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setBlockOptionProperty(aName, opt);
-                }
-            });
-    }
-
-    /**
-     * Set the specified LeftCurlyOption property.
-     * @param aName name of property to set
-     * @param aTo the value of the property
-     * @throws BuildException if unable to decode aTo
-     */
-    private void setLeftCurlyOptionProperty(final String aName, String aTo)
-        throws BuildException
-    {
-        final LeftCurlyOption opt = LeftCurlyOption.decode(aTo);
-        if (opt == null) {
-            throw new BuildException("Unable to parse '" + aTo + "'.",
-                                     getLocation());
-        }
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setLeftCurlyOptionProperty(aName, opt);
-                }
-            });
     }
 }

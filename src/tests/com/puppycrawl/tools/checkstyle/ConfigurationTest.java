@@ -2,8 +2,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import junit.framework.TestCase;
 
-import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.Properties;
 
 public class ConfigurationTest
@@ -44,13 +42,13 @@ public class ConfigurationTest
 
     public void testGetProperties() throws Exception
     {
-        final Configuration c = new Configuration();
-        assertEquals("80",
-                     c.getProperties().getProperty(Defn.MAX_LINE_LENGTH_PROP));
-        c.setIntProperty(Defn.MAX_LINE_LENGTH_PROP, 666);
+        final Properties props = new Properties();
+        props.setProperty(Defn.MAX_LINE_LENGTH_PROP, "666");
+        props.setProperty(Defn.MEMBER_PATTERN_PROP, "bulldogs");
+
+        final Configuration c = new Configuration(props, System.out);
         assertEquals("666",
                      c.getProperties().getProperty(Defn.MAX_LINE_LENGTH_PROP));
-        c.setPatternProperty(Defn.MEMBER_PATTERN_PROP, "bulldogs");
         assertEquals("bulldogs",
                      c.getProperties().getProperty(Defn.MEMBER_PATTERN_PROP));
     }
