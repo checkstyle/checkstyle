@@ -37,10 +37,6 @@ public interface Defn
     String PUBLIC_MEMBER_PATTERN_PROP = "checkstyle.pattern.publicmember";
     /** property name for allowing protected data **/
     String TAB_WIDTH_PROP = "checkstyle.tab.width";
-    /** property name for allowing protected data **/
-    String ALLOW_PROTECTED_PROP = "checkstyle.allow.protected";
-    /** property name for allowing package data **/
-    String ALLOW_PACKAGE_PROP = "checkstyle.allow.package";
     /** property name for visibility scope where Javadoc is checked **/
     String JAVADOC_CHECKSCOPE_PROP = "checkstyle.javadoc.scope";
     /** property name for checking for Runtime @throws in Javadoc **/
@@ -68,8 +64,6 @@ public interface Defn
     /** All the properties that are a boolean. They all must default to false */
     String[] ALL_BOOLEAN_PROPS = new String[]
         {
-            ALLOW_PACKAGE_PROP,
-            ALLOW_PROTECTED_PROP,
             IGNORE_CAST_WHITESPACE_PROP,
             IGNORE_WHITESPACE_PROP,
             JAVADOC_CHECK_UNUSED_THROWS_PROP,

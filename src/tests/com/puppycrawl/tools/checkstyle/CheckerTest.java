@@ -143,31 +143,31 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
-    public void testInner()
-        throws Exception
-    {
-        final Checker c = createChecker();
-        final String filepath = getPath("InputInner.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
-        };
-        verify(c, filepath, expected);
-    }
-
-    public void testIgnoreAccess()
-        throws Exception
-    {
-        mProps.setProperty(Defn.ALLOW_PROTECTED_PROP, "true");
-        mProps.setProperty(Defn.ALLOW_PACKAGE_PROP, "true");
-        final Checker c = createChecker();
-        final String filepath = getPath("InputInner.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
-        };
-        verify(c, filepath, expected);
-    }
+//    public void testInner()
+//        throws Exception
+//    {
+//        final Checker c = createChecker();
+//        final String filepath = getPath("InputInner.java");
+//        assertNotNull(c);
+//        final String[] expected = {
+//            filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
+//        };
+//        verify(c, filepath, expected);
+//    }
+//
+//    public void testIgnoreAccess()
+//        throws Exception
+//    {
+//        mProps.setProperty(Defn.ALLOW_PROTECTED_PROP, "true");
+//        mProps.setProperty(Defn.ALLOW_PACKAGE_PROP, "true");
+//        final Checker c = createChecker();
+//        final String filepath = getPath("InputInner.java");
+//        assertNotNull(c);
+//        final String[] expected = {
+//            filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
+//        };
+//        verify(c, filepath, expected);
+//    }
 
     public void testSimple()
         throws Exception

@@ -111,27 +111,6 @@ class Verifier
     }
 
     /**
-     * Verify that a variable conforms to the style.
-     * @param aVar the variable details
-     **/
-    void verifyVariable(MyVariable aVar)
-    {
-        if (inMethodBlock()) {
-            return;
-        }
-
-        // Check correct format
-        if (inInterfaceBlock()) {
-            // The only declarations allowed in interfaces are all static final,
-            // even if not declared that way.
-            checkVariable(aVar,
-                          mConfig.getStaticFinalRegexp(),
-                          mConfig.getStaticFinalPat());
-        }
-    }
-
-
-    /**
      * Verify that no whitespace after an AST.
      * @param aAST the AST to check
      **/
@@ -356,23 +335,6 @@ class Verifier
     ////////////////////////////////////////////////////////////////////////////
     // Private methods
     ////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Checks that a variable confirms to a specified regular expression. Logs
-     * a message if it does not.
-     * @param aVar the variable to check
-     * @param aRegexp the regexp to match against
-     * @param aPattern text representation of regexp
-     **/
-    private void checkVariable(MyVariable aVar, RE aRegexp, String aPattern)
-    {
-        if (!aRegexp.match(aVar.getText())) {
-            mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                          "name.invalidPattern",
-                          aVar.getText(), aPattern);
-        }
-    }
-
 
     /**
      * Returns the specified C comment as a String array.
