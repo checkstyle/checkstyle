@@ -726,7 +726,8 @@ public class Configuration
     public void setHeaderFile(String aFileName)
         throws FileNotFoundException, IOException
     {
-        if (aFileName == null) {
+        // Handle a missing property, or an empty one
+        if ((aFileName == null) || (aFileName.trim().length() == 0)) {
             return;
         }
 
