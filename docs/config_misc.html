@@ -73,13 +73,21 @@
           <td><span class="default">^$</span> (empty)</td>
         </tr>
       </table>
-      <h4>Example</h4>
+      <h4>Examples</h4>
       <p class="body">
       To configure the check for calls to <span class="code">System.out.println</span>:
       </p>
       <pre class="body">
 &lt;module name=&quot;GenericIllegalRegexp&quot;&gt;
     &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <p class="body">
+      To configure the check to find trailing whitespace at the end of a line:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;GenericIllegalRegexp&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;\s$&quot;/&gt;
 &lt;/module&gt;
       </pre>
       <h4>Package</h4>
