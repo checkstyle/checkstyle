@@ -112,11 +112,14 @@
   </target>
 
   <target name="checkstyle.import" depends="compile.tests">
-    <taskdef name="checkstyle" reverseloader="true"
-             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
-      <classpath refid="run.classpath"/>
-    </taskdef>
-    <checkstyle file="src/tests/com/puppycrawl/tools/checkstyle/InputImport.java" />
+      <taskdef name="checkstyle" reverseloader="true"
+	       classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+	  <classpath refid="run.classpath"/>
+      </taskdef>
+      <echo message="Expect to get a message after checkstyle"/>
+      <checkstyle failOnViolation="false"
+		  file="src/tests/com/puppycrawl/tools/checkstyle/InputImport.java" />
+      <echo message="THIS IS THE EXPECTED MESSAGE"/>
   </target>
 
   <target name="checkstyle.checkstyle" depends="compile.checkstyle">
@@ -184,14 +187,14 @@
          basedir="dist/checkstyle-${version}/tmp" />
     <delete dir="dist/checkstyle-${version}/tmp" />
     <!-- copy documentation -->
-    <filter token="@@VERSION@@" value="${version}"/>
-    <copy todir="dist/checkstyle-${version}" filtering="true">
+    <copy todir="dist/checkstyle-${version}">
 	<fileset dir=".">
-	    <include name="docs/*"/>
+	    <include name="ChangeLog"/>
 	    <include name="LICENSE*"/>
 	    <include name="README"/>
 	    <include name="RIGHTS.antlr"/>
 	    <include name="TODO"/>
+	    <include name="docs/*"/>
 	</fileset>
     </copy>
     <!-- create the final zip & tar/gzip files -->
@@ -207,18 +210,19 @@
   </target>
 
   <target name="build.srcdist" depends="checkstyle.checkstyle">
+    <delete dir="dist/checkstyle-src-${version}" />
     <mkdir dir="dist/checkstyle-src-${version}" />
     <copy todir="dist/checkstyle-src-${version}">
-      <fileset dir=".">
-        <exclude name="**/*.jpl" />
-	<exclude name="**/Generated*.java" />
-	<exclude name="**/Generated*.txt" />
-        <exclude name="classes" />
-        <exclude name="dist" />
-        <exclude name="javadoc" />
-        <exclude name="prj.el" />
-        <exclude name="**/TEST-*" />
-      </fileset>
+	<fileset dir=".">
+	    <include name="ChangeLog"/>
+	    <include name="LICENSE*"/>
+	    <include name="README"/>
+	    <include name="RIGHTS.antlr"/>
+	    <include name="TODO"/>
+	    <include name="build.xml"/>
+	    <include name="docs/*"/>
+	    <include name="src/**"/>
+	</fileset>
     </copy>
     <!-- Produce the final distributions -->
     <zip zipfile="dist/checkstyle-src-${version}.zip">
