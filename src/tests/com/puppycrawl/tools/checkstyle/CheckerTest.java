@@ -510,7 +510,7 @@ public class CheckerTest
     public void testScopeInnerClassesPackage()
         throws Exception
     {
-        mConfig.setJavadocScope(Scope.PACKAGE);
+        mConfig.setJavadocScope(Scope.getInstance("package"));
         final Checker c = createChecker();
         final String filepath = getPath("InputScopeInnerClasses.java");
         assertNotNull(c);
