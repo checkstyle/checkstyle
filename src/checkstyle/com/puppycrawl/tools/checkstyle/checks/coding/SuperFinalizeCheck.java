@@ -22,22 +22,22 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 /**
  * <p>
- * Checks that an overriding clone() method invokes super.clone().
+ * Checks that an overriding finalize() method invokes super.finalize().
  * </p>
  * <p>
  * Reference:<a
- * href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Object.html#clone()">
- * Object.clone</a>.
+ * href="http://java.sun.com/docs/books/tutorial/java/data/garbagecollection.html">
+ * Cleaning up unused objects</a>.
  * </p>
  * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="SuperClone"/&gt;
+ * &lt;module name="SuperFinalize"/&gt;
  * </pre>
  * @author Rick Giles
  */
-public class SuperCloneCheck
+public class SuperFinalizeCheck
         extends AbstractSuperCheck
 {
 
@@ -46,6 +46,6 @@ public class SuperCloneCheck
      */
     protected String getMethodName()
     {
-        return "clone";
+        return "finalize";
     }
 }
