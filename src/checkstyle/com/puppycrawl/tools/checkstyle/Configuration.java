@@ -846,7 +846,7 @@ public class Configuration
      * @param aName name of the property to set
      * @param aTo the value to set
      */
-    public void setIntProperty(String aName, int aTo)
+    private void setIntProperty(String aName, int aTo)
     {
         mIntProps.put(aName, new Integer(aTo));
     }
@@ -857,7 +857,7 @@ public class Configuration
      * @param aPat the value to set
      * @throws RESyntaxException if an error occurs
      */
-    public void setPatternProperty(String aName, String aPat)
+    private void setPatternProperty(String aName, String aPat)
         throws RESyntaxException
     {
         // Set the regexp first, incase cannot create the RE
@@ -870,7 +870,7 @@ public class Configuration
      * @param aName name of the property to set
      * @param aTo the value to set
      */
-    public void setBlockOptionProperty(String aName, BlockOption aTo)
+    private void setBlockOptionProperty(String aName, BlockOption aTo)
     {
         mBlockProps.put(aName, aTo);
     }
@@ -880,7 +880,7 @@ public class Configuration
      * @param aName name of the property to set
      * @param aTo the value to set
      */
-    public void setLeftCurlyOptionProperty(String aName, LeftCurlyOption aTo)
+    private void setLeftCurlyOptionProperty(String aName, LeftCurlyOption aTo)
     {
         mLCurliesProps.put(aName, aTo);
     }

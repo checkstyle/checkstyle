@@ -6,6 +6,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Properties;
+
 import junit.framework.TestCase;
 import org.apache.regexp.RE;
 
@@ -44,8 +46,9 @@ public class ConfigSerializationTest
     public void testRegexpDeserialization()
         throws Exception
     {
-        Configuration configOrig = new Configuration();
-        configOrig.setPatternProperty(Defn.TYPE_PATTERN_PROP, "xyz");
+        final Properties props = new Properties();
+        props.setProperty(Defn.TYPE_PATTERN_PROP, "xyz");
+        Configuration configOrig = new Configuration(props, System.out);
 
         Configuration configCopy = copyBySerialization(configOrig);
         assertNotNull(configCopy);
