@@ -231,4 +231,18 @@ public class InputJavadocStyleCheck
     public void method19()
     {  // should report empty javadoc (no text before see tag)
     }
+
+    public enum Test
+        //Should complain about no javadoc
+    {
+        /**
+         * Value 1 without a period
+         */
+        value1,
+
+        /**
+         * Value 2 with a period.
+         */
+        value2,
+    }
 }

@@ -138,8 +138,17 @@ public class JavadocStyleCheck
             return false;
         }
 
-        final DetailAST mods = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
+        final Scope declaredScope;
+        if (aAST.getType() == TokenTypes.ENUM_CONSTANT_DEF)
+        {
+            declaredScope = Scope.PUBLIC;
+        }
+        else
+        {
+            declaredScope = ScopeUtils.getScopeFromMods(
+                aAST.findFirstToken(TokenTypes.MODIFIERS));
+        }
+
         final Scope scope =
             ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
             ? Scope.PUBLIC : declaredScope;
