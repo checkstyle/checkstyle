@@ -43,7 +43,7 @@ public class XPathCheck extends Check
 {
     /** XPath for this check */
     private XPath mXPath;
-    
+
     /** error message */
     private String mMessage = "illegal.xpath";
 
@@ -74,8 +74,7 @@ public class XPathCheck extends Check
                         new String[] {node.getText()});
                 }
             }
-            catch (JaxenException e)
-            {
+            catch (JaxenException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
