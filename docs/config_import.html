@@ -23,6 +23,9 @@
     <td class="menu" valign="top">
       <ul>
         <li>
+          <a href="#AvoidStarImport">AvoidStarImport</a>
+        </li>
+        <li>
           <a href="#IllegalImport">IllegalImport</a>
         </li>
         <li>
@@ -34,7 +37,33 @@
       </ul>
     </td>
     <!--Content-->
-    <td class="content" valign="top" align="left"><a name="IllegalImport"></a> <h2>IllegalImport</h2>
+    <td class="content" valign="top" align="left">
+    <a name="AvoidStarImport"></a> <h2>AvoidStarImport</h2>
+      <h4>Description</h4>
+      <p class="body">
+      Checks that there are no import statements that use the * notation.
+      </p>
+      <p class="body">
+      Rationale: Importing all classes from a package leads to tight coupling
+      between packages and might lead to problems when a new version of a library
+      introduces name clashes.
+      </p>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;AvoidStarImport&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+    <a name="IllegalImport"></a> <h2>IllegalImport</h2>
       <h4>Description</h4>
 
       <p class="body">
