@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * introduces name clashes.
  *
  * @author Oliver Burn
- * @version $Id: AvoidStarImport.java,v 1.3 2002-09-17 12:33:29 oburn Exp $
+ * @version 1.0
  */
 public class AvoidStarImport extends ImportCheck
 {
@@ -43,7 +43,7 @@ public class AvoidStarImport extends ImportCheck
     {
         final String name = getImportText(aAST);
         if ((name != null) && name.endsWith(".*")) {
-            log(aAST.getLineNo(), "Avoid STAR import - " + name);
+            log(aAST.getLineNo(), "import.avoidStar");
         }
     }
 }

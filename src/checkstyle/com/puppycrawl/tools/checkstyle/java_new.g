@@ -942,7 +942,7 @@ options {
 
     void setCommentManager(CommentManager aCommentManager)
     {
-      mCommentManager = aCommentManager;
+        mCommentManager = aCommentManager;
     }
 
 }
