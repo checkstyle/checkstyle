@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<document>
+
+ <properties>
+  <title>Checkstyle</title>
+  <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
+ </properties>
+
+ <body>
+<section name="Overview">
+
+      <p>
+      Checkstyle is a development tool to help programmers write Java code
+      that adheres to a coding standard. It automates the process
+      of checking Java code to spare humans of this boring (but important)
+      task. This makes it ideal for projects that want to enforce a coding
+      standard.
+      </p>
+
+      <p> Checkstyle is highly configurable and can be made to
+      support almost any coding standard. An example configuration file is
+      supplied supporting the <a href="http://java.sun.com/docs/codeconv/">Sun
+      Code Conventions</a>. As well, other sample configuration files are
+      supplied for other well known conventions.</p>
+
+      <p>
+      A good example of a report that can be produced using Checkstyle and
+      <a href="http://maven.apache.org/">Maven</a> can be
+      <a href="http://maven.apache.org/checkstyle-report.html">seen here</a>.
+      </p>
+
+</section>
+
+<section name="Features">
+
+<p>
+</p>
+
+</section>
+
+<section name="Download">
+
+      <p>
+        The latest release of Checkstyle can be downloaded from <a href="http://sourceforge.net/project/showfiles.php?group_id=29721">the SourceForge download page</a>.
+      </p>
+
+      <p>
+        If you want to live on the bleeding edge, you can <a href="http://sourceforge.net/cvs/?group_id=29721">checkout the current development code from CVS</a> and compile yourself.
+      </p>
+
+</section>
+
+ </body>
+ </document>
+
+
+
+
+
