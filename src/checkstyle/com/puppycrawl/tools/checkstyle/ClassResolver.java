@@ -65,7 +65,6 @@ class ClassResolver
      */
     Class resolve(String aName) throws ClassNotFoundException
     {
-        System.out.println("resolve called for " + aName);
         // See if the class is full qualified
         if (isLoadable(aName)) {
             return safeLoad(aName);
