@@ -21,7 +21,7 @@ public class TreeWalkerTest
 
     public void testCreate()
     {
-        new TreeWalker(new LocalizedMessages(0), 8);
+        new TreeWalker(new LocalizedMessages(), 8);
         assertTrue(true);
     }
 }

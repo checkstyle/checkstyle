@@ -99,7 +99,7 @@ public class Checker
     private final ArrayList mListeners = new ArrayList();
 
     /** used to collect messages TODO: delete */
-    private final LocalizedMessages mMessages;
+    private final LocalizedMessages mMessages = new LocalizedMessages();
 
     /** used to walk an AST and notify the checks */
     private final TreeWalker mWalker;
@@ -118,7 +118,6 @@ public class Checker
         mCache = new PropertyCacheFile(aConfig);
         LocalizedMessage.setLocale(new Locale(mConfig.getLocaleLanguage(),
                                               mConfig.getLocaleCountry()));
-        mMessages = new LocalizedMessages(mConfig.getTabWidth());
         mWalker = new TreeWalker(mMessages, mConfig.getTabWidth());
         // TODO: improve the error handing
         for (int i = 0; i < aConfigs.length; i++) {
