@@ -76,9 +76,10 @@ public abstract class AbstractFileSetCheck
         ArrayList files = new ArrayList(aFiles.length);
         for (int i = 0; i < aFiles.length; i++) {
             File file = aFiles[i];
+            final String fileName = file.getName();
             for (int j = 0; j < mFileExtensions.length; j++) {
                 String fileExtension = mFileExtensions[j];
-                if (file.getName().endsWith(fileExtension)) {
+                if (fileName.endsWith(fileExtension)) {
                     files.add(file);
                 }
             }
