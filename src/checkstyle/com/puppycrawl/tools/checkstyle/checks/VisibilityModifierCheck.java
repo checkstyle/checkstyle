@@ -40,7 +40,7 @@ import antlr.collections.AST;
  * </p>
  * Rationale: Enforce encapsulation.
  *
- * @author Lars Kühne
+ * @author lkuehne
  */
 public class VisibilityModifierCheck
         extends Check
@@ -221,7 +221,7 @@ public class VisibilityModifierCheck
      */
     private String getVisibilityScope(Set aModifiers)
     {
-        String[] explicitModifiers = {"public", "private", "protected"};
+        final String[] explicitModifiers = {"public", "private", "protected"};
         for (int i = 0; i < explicitModifiers.length; i++) {
             String candidate = explicitModifiers[i];
             if (aModifiers.contains(candidate)) {
