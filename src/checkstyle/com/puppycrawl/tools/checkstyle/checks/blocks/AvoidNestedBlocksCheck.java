@@ -24,20 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * Finds nested blocks.
- * For example this Check finds the obsolete braces in
- * <pre>
- * switch (a)
- * {
- *     case 0:
- *         {
- *             x = 1;
- *         }
- *         break;
- *     default:
- *         break;
- * }
- * </pre>
- * and flags confusing code like
+ *
+ * <p>
+ * For example this Check flags confusing code like
  * <pre>
  * public void guessTheOutput()
  * {
@@ -49,10 +38,59 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * }
  * </pre>
  *
+ * and debugging / refactoring leftovers such as
+ *
+ * <pre>
+ * // if (someOldCondition)
+ * {
+ *     System.out.println("unconditional");
+ * }
+ * </pre>
+ *
+ * <p>
+ * A case in a switch statement does not implicitly form a block.
+ * Thus to be able to introduce local variables that have case scope
+ * it is necessary to open a nested block. This is supported, set
+ * the allowInSwitchCase property to true and include all statements
+ * of the case in the block.
+ * </p>
+ *
+ * <pre>
+ * switch (a)
+ * {
+ *     case 0:
+ *         // Never OK, break outside block
+ *         {
+ *             x = 1;
+ *         }
+ *         break;
+ *     case 1:
+ *         // Never OK, statement outside block
+ *         System.out.println("Hello");
+ *         {
+ *             x = 2;
+ *             break;
+ *         }
+ *     case 1:
+ *         // OK if allowInSwitchCase is true
+ *         {
+ *             System.out.println("Hello");
+ *             x = 2;
+ *             break;
+ *         }
+ * }
+ * </pre>
+ *
  * @author lkuehne
  */
 public class AvoidNestedBlocksCheck extends Check
 {
+    /**
+     * Whether nested blocks are allowed if they are the
+     * only child of a switch case.
+     */
+    private boolean mAllowInSwitchCase = false;
+
     /** @see Check */
     public int[] getDefaultTokens()
     {
@@ -62,9 +100,20 @@ public class AvoidNestedBlocksCheck extends Check
     /** @see Check */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getParent().getType() == TokenTypes.SLIST) {
+        final DetailAST parent = aAST.getParent();
+        if (parent.getType() == TokenTypes.SLIST) {
+            if (mAllowInSwitchCase
+                    && parent.getParent().getType() == TokenTypes.CASE_GROUP
+                    && parent.getNumberOfChildren() == 1)
+            {
+                return;
+            }
             log(aAST.getLineNo(), aAST.getColumnNo(), "block.nested");
         }
     }
 
+    public void setAllowInSwitchCase(boolean aAllowInSwitchCase)
+    {
+        mAllowInSwitchCase = aAllowInSwitchCase;
+    }
 }
