@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -209,4 +210,26 @@ public final class Utils
         final int i = aType.lastIndexOf(".");
         return (i == -1) ? aType : aType.substring(i + 1);
     }
+
+    /**
+     * Create a stripped down version of a filename.
+     * @param aBasedir the prefix to strip off the original filename
+     * @param aFileName the original filename
+     * @return the filename where an initial prefix of basedir is stripped
+     */
+    public static String getStrippedFileName(
+            final String aBasedir, final String aFileName)
+    {
+        final String stripped;
+        if ((aBasedir == null) || !aFileName.startsWith(aBasedir)) {
+            stripped = aFileName;
+        }
+        else {
+            // making the assumption that there is text after basedir
+            final int skipSep = aBasedir.endsWith(File.separator) ? 0 : 1;
+            stripped = aFileName.substring(aBasedir.length() + skipSep);
+        }
+        return stripped;
+    }
+
 }
