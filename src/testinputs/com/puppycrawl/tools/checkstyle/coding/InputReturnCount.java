@@ -46,3 +46,8 @@ public class InputReturnCount
         return;
     }
 }
+
+class Test {
+
+    public Test() {}
+}
