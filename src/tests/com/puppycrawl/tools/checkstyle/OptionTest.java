@@ -56,14 +56,10 @@ public class OptionTest extends TestCase {
     
     public void testPadOption()
     {
-        PadOption ignoreOpt = PadOption.IGNORE;
-        assertEquals("IGNORE", "ignore", ignoreOpt.toString());
         PadOption nospaceOpt = PadOption.NOSPACE;
         assertEquals("NOSPACE", "nospace", nospaceOpt.toString());
         PadOption spaceOpt = PadOption.SPACE;
         assertEquals("SPACE", "space", spaceOpt.toString());
-        PadOption ignoreDecode = (PadOption)(ignoreOpt.decode("ignore"));
-        assertTrue("IGNORE decode", ignoreOpt == ignoreDecode);
         PadOption nospaceDecode = (PadOption)(nospaceOpt.decode("nospace"));
         assertTrue("NOSPACE decode", nospaceOpt == nospaceDecode);
         PadOption spaceDecode = (PadOption)(spaceOpt.decode("space"));

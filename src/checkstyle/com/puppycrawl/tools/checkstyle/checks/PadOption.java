@@ -35,8 +35,6 @@ public final class PadOption
     
     /** represents no spacing **/
     public static final PadOption NOSPACE = new PadOption("nospace");
-    /** represents ignoring the spacing **/
-    public static final PadOption IGNORE = new PadOption("ignore");
     /** represents mandatory spacing **/
     public static final PadOption SPACE = new PadOption("space");
 
