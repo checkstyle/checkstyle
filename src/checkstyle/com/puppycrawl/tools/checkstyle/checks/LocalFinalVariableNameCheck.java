@@ -48,7 +48,7 @@ public class LocalFinalVariableNameCheck
     {
         final DetailAST modifiersAST
             = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isFinal = modifiersAST != null
+        final boolean isFinal = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.FINAL);
 
         return (isFinal && ScopeUtils.inCodeBlock(aAST));

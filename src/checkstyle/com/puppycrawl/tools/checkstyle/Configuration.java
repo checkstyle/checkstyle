@@ -60,8 +60,6 @@ public class Configuration
                              "^f[A-Z][a-zA-Z0-9]*$");
         PATTERN_DEFAULTS.put(Defn.LOCAL_VAR_PATTERN_PROP,
                              "^[a-z][a-zA-Z0-9]*$");
-        PATTERN_DEFAULTS.put(Defn.LOCAL_FINAL_VAR_PATTERN_PROP,
-                             "^[a-z][a-zA-Z0-9]*$");
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -361,18 +359,6 @@ public class Configuration
     RE getLocalVarRegexp()
     {
         return getRegexpProperty(Defn.LOCAL_VAR_PATTERN_PROP);
-    }
-
-    /** @return pattern to match local final variables **/
-    String getLocalFinalVarPat()
-    {
-        return getPatternProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP);
-    }
-
-    /** @return regexp to match local final variables **/
-    RE getLocalFinalVarRegexp()
-    {
-        return getRegexpProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP);
     }
 
     /** @return the maximum constructor length **/

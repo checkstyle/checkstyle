@@ -41,8 +41,6 @@ public interface Defn
     String PUBLIC_MEMBER_PATTERN_PROP = "checkstyle.pattern.publicmember";
     /** property name for the method local variable pattern **/
     String LOCAL_VAR_PATTERN_PROP = "checkstyle.pattern.localvar";
-    /** property name for the method local final variable pattern **/
-    String LOCAL_FINAL_VAR_PATTERN_PROP = "checkstyle.pattern.localfinalvar";
     /** property name for length of constructors **/
     String MAX_CONSTRUCTOR_LENGTH_PROP = "checkstyle.maxconstructorlen";
     /** property name for allowing protected data **/
@@ -104,7 +102,6 @@ public interface Defn
             MEMBER_PATTERN_PROP,
             PUBLIC_MEMBER_PATTERN_PROP,
             LOCAL_VAR_PATTERN_PROP,
-            LOCAL_FINAL_VAR_PATTERN_PROP,
         };
 
     /** All the integer properties */
