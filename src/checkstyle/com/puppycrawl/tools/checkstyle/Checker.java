@@ -19,9 +19,12 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.Stack;
+import java.util.StringTokenizer;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -35,8 +38,6 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-
-import org.apache.tools.ant.util.FileUtils;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -296,8 +297,148 @@ public class Checker extends AutomaticBean
         // we use getAbsolutePath() instead of getCanonicalPath()
         // because normalize() removes all . and .. so path
         // will be canonical by default.
-        mBasedir =
-            FileUtils.newFileUtils().normalize(aBasedir).getAbsolutePath();
+        mBasedir = normalize(aBasedir);
+    }
+
+    /**
+     * &quot;normalize&quot; the given absolute path.
+     *
+     * <p>This includes:
+     * <ul>
+     *   <li>Uppercase the drive letter if there is one.</li>
+     *   <li>Remove redundant slashes after the drive spec.</li>
+     *   <li>resolve all ./, .\, ../ and ..\ sequences.</li>
+     *   <li>DOS style paths that start with a drive letter will have
+     *     \ as the separator.</li>
+     * </ul>
+     *
+     * @param aPath a path for &quot;normalizing&quot;
+     * @return &quot;normalized&quot; file name
+     * @throws java.lang.NullPointerException if the file path is
+     * equal to null.
+     */
+    public String normalize(String aPath)
+    {
+        final String osName =
+            System.getProperty("os.name").toLowerCase(Locale.US);
+        final boolean onNetWare = (osName.indexOf("netware") > -1);
+
+        String orig = aPath;
+
+        aPath = aPath.replace('/', File.separatorChar)
+            .replace('\\', File.separatorChar);
+
+        // make sure we are dealing with an absolute path
+        int colon = aPath.indexOf(":");
+
+        if (!onNetWare) {
+            if (!aPath.startsWith(File.separator)
+                && !(aPath.length() >= 2
+                && Character.isLetter(aPath.charAt(0))
+                && colon == 1))
+            {
+                String msg = aPath + " is not an absolute path";
+                throw new IllegalArgumentException(msg);
+            }
+        }
+        else {
+            if (!aPath.startsWith(File.separator)
+                && (colon == -1))
+            {
+                String msg = aPath + " is not an absolute path";
+                throw new IllegalArgumentException(msg);
+            }
+        }
+
+        boolean dosWithDrive = false;
+        String root = null;
+        // Eliminate consecutive slashes after the drive spec
+        if ((!onNetWare
+             && aPath.length() >= 2
+             && Character.isLetter(aPath.charAt(0))
+             && aPath.charAt(1) == ':')
+            || (onNetWare && colon > -1))
+        {
+
+            dosWithDrive = true;
+
+            char[] ca = aPath.replace('/', '\\').toCharArray();
+            StringBuffer sbRoot = new StringBuffer();
+            for (int i = 0; i < colon; i++) {
+                sbRoot.append(Character.toUpperCase(ca[i]));
+            }
+            sbRoot.append(':');
+            if (colon + 1 < aPath.length()) {
+                sbRoot.append(File.separatorChar);
+            }
+            root = sbRoot.toString();
+
+            // Eliminate consecutive slashes after the drive spec
+            StringBuffer sbPath = new StringBuffer();
+            for (int i = colon + 1; i < ca.length; i++) {
+                if ((ca[i] != '\\')
+                    || (ca[i] == '\\' && ca[i - 1] != '\\'))
+                {
+                    sbPath.append(ca[i]);
+                }
+            }
+            aPath = sbPath.toString().replace('\\', File.separatorChar);
+
+        }
+        else {
+            if (aPath.length() == 1) {
+                root = File.separator;
+                aPath = "";
+            }
+            else if (aPath.charAt(1) == File.separatorChar) {
+                // UNC drive
+                root = File.separator + File.separator;
+                aPath = aPath.substring(2);
+            }
+            else {
+                root = File.separator;
+                aPath = aPath.substring(1);
+            }
+        }
+
+        Stack s = new Stack();
+        s.push(root);
+        StringTokenizer tok = new StringTokenizer(aPath, File.separator);
+        while (tok.hasMoreTokens()) {
+            String thisToken = tok.nextToken();
+            if (".".equals(thisToken)) {
+                continue;
+            }
+            else if ("..".equals(thisToken)) {
+                if (s.size() < 2) {
+                    throw new IllegalArgumentException("Cannot resolve path "
+                                                       + orig);
+                }
+                else {
+                    s.pop();
+                }
+            }
+            else { // plain component
+                s.push(thisToken);
+            }
+        }
+
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < s.size(); i++) {
+            if (i > 1) {
+                // not before the filesystem root and not after it, since root
+                // already contains one
+                sb.append(File.separatorChar);
+            }
+            sb.append(s.elementAt(i));
+        }
+
+
+        aPath = sb.toString();
+        if (dosWithDrive) {
+            aPath = aPath.replace('/', '\\');
+        }
+        return aPath;
     }
 
     /** @return the base directory property used in unit-test. */
