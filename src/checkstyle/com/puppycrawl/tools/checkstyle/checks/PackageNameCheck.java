@@ -32,7 +32,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <strong>^[a-z]+(\.[a-zA-Z_][a-zA-Z_0-9]*)*$</strong>.
  * </p>
  * The default format has been chosen to match the requirements in the
- * <a href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169">
+ * <a
+ * href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169">
  * Java Language specification</a> and the Sun coding conventions.
  * However both underscores and uppercase letters are rather uncommon,
  * so most projects should probably use
@@ -50,7 +51,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;config name="PackageNameCheck"&gt;
- *    &lt;property name="format" value="^com\.puppycrawl\.tools\.checkstyle(\\.[a-zA-Z_][a-zA-Z_0-9]*)*$"/&gt;
+ *    &lt;property name="format"
+ *              value="^com\.puppycrawl\.tools\.checkstyle(\\.[a-zA-Z_][a-zA-Z_0-9]*)*$"/&gt;
  * &lt;/config&gt;
  * </pre>
  *
