@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
 /**
  * Simple plain logger for text output.
  * This is maybe not very suitable for a text output into a file since it
@@ -83,20 +85,23 @@ public class DefaultLogger
      **/
     public void addError(AuditEvent aEvt)
     {
-        final String fileName = aEvt.getFileName();
-        final String message = aEvt.getMessage();
+        if (!SeverityLevel.IGNORE.equals(aEvt.getSeverityLevel())) {
 
-        // avoid StringBuffer.expandCapacity
-        final int bufLen = fileName.length() + message.length() + 12;
-        final StringBuffer sb = new StringBuffer(bufLen);
+            final String fileName = aEvt.getFileName();
+            final String message = aEvt.getMessage();
 
-        sb.append(fileName);
-        sb.append(':').append(aEvt.getLine());
-        if (aEvt.getColumn() > 0) {
-            sb.append(':').append(aEvt.getColumn());
+            // avoid StringBuffer.expandCapacity
+            final int bufLen = fileName.length() + message.length() + 12;
+            final StringBuffer sb = new StringBuffer(bufLen);
+
+            sb.append(fileName);
+            sb.append(':').append(aEvt.getLine());
+            if (aEvt.getColumn() > 0) {
+                sb.append(':').append(aEvt.getColumn());
+            }
+            sb.append(": ").append(message);
+            mErrorWriter.println(sb.toString());
         }
-        sb.append(": ").append(message);
-        mErrorWriter.println(sb.toString());
     }
 
     /** @see AuditListener **/
