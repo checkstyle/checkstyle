@@ -22,13 +22,189 @@
     <!--Left menu-->
     <td class="menu" valign="top">
       <ul>
-        <li>
-          <a href="#CyclomaticComplexity">CyclomaticComplexity</a>
-        </li>
+        <li><a href="#BooleanExpressionComplexity">BooleanExpressionComplexity</a></li>
+        <li><a href="#ClassDataAbstractionCoupling">ClassDataAbstractionCoupling</a></li>
+        <li><a href="#ClassFanOutComplexity">ClassFanOutComplexity</a></li>
+        <li><a href="#CyclomaticComplexity">CyclomaticComplexity</a></li>
+        <li><a href="#NPathComplexity">NPathComplexity</a></li>
       </ul>
     </td>
     <!--Content-->
     <td class="content" valign="top" align="left">
+
+      <!-- --><a name="BooleanExpressionComplexity"></a>
+      <h2>BooleanExpressionComplexity</h2>
+      <h4>Description</h4>
+
+      <p class="body">
+      Restrict the number of number of <span class="code">&&</span>,
+      <span class="code">||</span> and <span class="code">^</span> in
+      an expression.
+      </p>
+      <p>
+      Rationale:
+      Too many conditions leads to code that is difficult to
+      read and hence debug and maintain.
+      </p>
+
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>the maximum allowed number of boolean operations in one
+          experession.</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td><span class="default">3</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;BooleanExpressionComplexity&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check with 7 allowed operation in boolean expression:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;BooleanExpressionComplexity&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;7&quot;/&gt;
+&lt;/module&gt;
+      
+      </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.metrics
+      </p>
+
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --><a name="ClassDataAbstractionCoupling"></a> <h2>ClassDataAbstractionCoupling</h2>
+      <h4>Description</h4>
+
+      <p class="body">
+      This metric measures the number of instantiations of
+      other classes within the given class. This type of
+      coupling is not caused by inheritance or the object
+      oriented paradigm. Generally speaking, any abstract
+      data type with other abstract data types as members has
+      data abstraction coupling; therefore, if a class has a
+      local variable that is an instantiation (object) of
+      another class, there is data abstraction coupling. The
+      higher the DAC, the more complex the data structure
+      (classes) of the system.
+      </p>
+
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>the maximum threshold allowed</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td><span class="default">7</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check with a threshold of 5:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+&lt;/module&gt;
+      
+      </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.metrics
+      </p>
+
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --><a name="ClassFanOutComplexity"></a> <h2>ClassFanOutComplexity</h2>
+      <h4>Description</h4>
+
+      <p class="body">
+      The number of other classes a given class relies on. Also
+      the square of this has been shown to indicate the
+      amount of maintenence required in functional programs
+      (on a file basis) at least.
+      </p>
+
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>the maximum threshold allowed</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td><span class="default">20</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ClassFanOutComplexity&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check with a threshold of 10:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
+&lt;/module&gt;
+      
+      </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.metrics
+      </p>
+
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
 
       <!-- --><a name="CyclomaticComplexity"></a> <h2>CyclomaticComplexity</h2>
       <h4>Description</h4>
@@ -81,6 +257,68 @@ considered good, 5-7 ok, 8-10 consider re-factoring, and 11+ re-factor now!
       <pre class="body">
 &lt;module name=&quot;CyclomaticComplexity&quot;&gt;
     &lt;property name=&quot;max&quot; value=&quot;7&quot;/&gt;
+&lt;/module&gt;
+      
+      </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.metrics
+      </p>
+
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --><a name="NPathComplexity"></a> <h2>NPathComplexity</h2>
+      <h4>Description</h4>
+
+      <p class="body">
+      The NPATH metric computes the number of possible
+      execution paths through a function. It takes into
+      account the nesting of conditional statements and
+      multi-part boolean expressions (e.g., A && B, C || D,
+      etc.).
+      </p>
+      <p>
+      Rationale:
+      Nejmeh says that his group had an informal NPATH limit
+      of 200 on individual routines; functions that exceeded
+      this value were candidates for further decomposition -
+      or at least a closer look.
+      </p>
+
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>the maximum threshold allowed</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td><span class="default">200</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NPathComplexity&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check with a threshold of 20:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NPathComplexity&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;20&quot;/&gt;
 &lt;/module&gt;
       
       </pre>
