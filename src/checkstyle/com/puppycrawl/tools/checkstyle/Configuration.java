@@ -32,6 +32,9 @@ import java.util.StringTokenizer;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.TreeSet;
+import java.util.Map;
+import java.util.HashMap;
+
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
@@ -130,16 +133,6 @@ public class Configuration
     /** regexp to match method names **/
     private transient RE mMethodRegexp;
 
-    /** the maximum line length **/
-    private int mMaxLineLength = MAX_LINE_LENGTH;
-    /** the maximum method length **/
-    private int mMaxMethodLength = MAX_METHOD_LENGTH;
-    /** the maximum constructor length **/
-    private int mMaxConstructorLength = MAX_CONSTRUCTOR_LENGTH;
-    /** the maximum file length **/
-    private int mMaxFileLength = MAX_FILE_LENGTH;
-    /** the distance between tab stops **/
-    private int mTabWidth = TAB_WIDTH;
     /** visibility scope where Javadoc is checked **/
     private Scope mJavadocScope = Scope.PRIVATE;
     /** illegal imports **/
@@ -179,6 +172,19 @@ public class Configuration
     /** set of boolean flags **/
     private final Set mBooleanFlags = new HashSet();
 
+    /** map of int flags **/
+    private final Map mIntProps = new HashMap();
+    {
+        // Set up all the default values
+        mIntProps.put(MAX_LINE_LENGTH_PROP, new Integer(MAX_LINE_LENGTH));
+        mIntProps.put(MAX_METHOD_LENGTH_PROP, new Integer(MAX_METHOD_LENGTH));
+        mIntProps.put(MAX_CONSTRUCTOR_LENGTH_PROP,
+                      new Integer(MAX_CONSTRUCTOR_LENGTH));
+        mIntProps.put(MAX_FILE_LENGTH_PROP, new Integer(MAX_FILE_LENGTH));
+        mIntProps.put(TAB_WIDTH_PROP, new Integer(TAB_WIDTH));
+    }
+
+
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
     ////////////////////////////////////////////////////////////////////////////
@@ -210,17 +216,14 @@ public class Configuration
         setMethodPat(aProps.getProperty(METHOD_PATTERN_PROP, METHOD_PATTERN));
         setIgnoreLineLengthPat(aProps.getProperty(
             IGNORE_LINE_LENGTH_PATTERN_PROP, IGNORE_LINE_LENGTH_PATTERN));
-        setMaxLineLength(getIntProperty(
-            aProps, aLog, MAX_LINE_LENGTH_PROP, MAX_LINE_LENGTH));
-        setMaxMethodLength(getIntProperty(
-            aProps, aLog, MAX_METHOD_LENGTH_PROP, MAX_METHOD_LENGTH));
-        setMaxConstructorLength(getIntProperty(
-            aProps, aLog, MAX_CONSTRUCTOR_LENGTH_PROP, MAX_CONSTRUCTOR_LENGTH));
-        setMaxFileLength(getIntProperty(
-            aProps, aLog, MAX_FILE_LENGTH_PROP, MAX_FILE_LENGTH));
+        setIntProperty(aProps, aLog, MAX_LINE_LENGTH_PROP, MAX_LINE_LENGTH);
+        setIntProperty(aProps, aLog, MAX_METHOD_LENGTH_PROP, MAX_METHOD_LENGTH);
+        setIntProperty(aProps, aLog,
+                       MAX_CONSTRUCTOR_LENGTH_PROP, MAX_CONSTRUCTOR_LENGTH);
+        setIntProperty(aProps, aLog, MAX_FILE_LENGTH_PROP, MAX_FILE_LENGTH);
 
         setBooleanFlag(aProps, ALLOW_TABS_PROP);
-        setTabWidth(getIntProperty(aProps, aLog, TAB_WIDTH_PROP, TAB_WIDTH));
+        setIntProperty(aProps, aLog, TAB_WIDTH_PROP, TAB_WIDTH);
         setBooleanFlag(aProps, ALLOW_PROTECTED_PROP);
         setBooleanFlag(aProps, ALLOW_PACKAGE_PROP);
         setBooleanFlag(aProps, ALLOW_NO_AUTHOR_PROP);
@@ -454,25 +457,25 @@ public class Configuration
     /** @return the maximum line length **/
     public int getMaxLineLength()
     {
-        return mMaxLineLength;
+        return getIntProperty(MAX_LINE_LENGTH_PROP);
     }
 
     /** @return the maximum method length **/
     public int getMaxMethodLength()
     {
-        return mMaxMethodLength;
+        return getIntProperty(MAX_METHOD_LENGTH_PROP);
     }
 
     /** @return the maximum constructor length **/
     public int getMaxConstructorLength()
     {
-        return mMaxConstructorLength;
+        return getIntProperty(MAX_CONSTRUCTOR_LENGTH_PROP);
     }
 
     /** @return the maximum file length **/
     public int getMaxFileLength()
     {
-        return mMaxFileLength;
+        return getIntProperty(MAX_FILE_LENGTH_PROP);
     }
 
     /** @return whether to allow tabs **/
@@ -484,7 +487,7 @@ public class Configuration
     /** @return distance between tab stops */
     public int getTabWidth()
     {
-        return mTabWidth;
+        return getIntProperty(TAB_WIDTH_PROP);
     }
 
     /** @return whether to allow protected data **/
@@ -732,38 +735,6 @@ public class Configuration
     }
 
     /**
-     * @param aMaxLineLength the maximum line length
-     */
-    public void setMaxLineLength(int aMaxLineLength)
-    {
-        mMaxLineLength = aMaxLineLength;
-    }
-
-    /**
-     * @param aMaxMethodLength the maximum method length
-     */
-    public void setMaxMethodLength(int aMaxMethodLength)
-    {
-        mMaxMethodLength = aMaxMethodLength;
-    }
-
-    /**
-     * @param aMaxConstructorLength the maximum constructor length
-     */
-    public void setMaxConstructorLength(int aMaxConstructorLength)
-    {
-        mMaxConstructorLength = aMaxConstructorLength;
-    }
-
-    /**
-     * @param aMaxFileLength the maximum file length
-     */
-    public void setMaxFileLength(int aMaxFileLength)
-    {
-        mMaxFileLength = aMaxFileLength;
-    }
-
-    /**
      * @param aPkgPrefixList comma separated list of package prefixes
      */
     public void setIllegalImports(String aPkgPrefixList)
@@ -785,12 +756,6 @@ public class Configuration
         while (st.hasMoreTokens()) {
             mIllegalInstantiations.add(st.nextToken());
         }
-    }
-
-    /** @param aTabWidth distance between tab stops */
-    public void setTabWidth(int aTabWidth)
-    {
-        mTabWidth = aTabWidth;
     }
 
     /**
@@ -959,27 +924,45 @@ public class Configuration
         mParenPadOption = aTo;
     }
 
+    /**
+     * Set an integer property.
+     * @param aName name of the property to set
+     * @param aTo the value to set
+     */
+    public void setIntProperty(String aName, int aTo)
+    {
+        mIntProps.put(aName, new Integer(aTo));
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Private methods
     ////////////////////////////////////////////////////////////////////////////
 
     /**
+     * @return an integer property
+     * @param aName the name of the integer property to get
+     */
+    private int getIntProperty(String aName)
+    {
+        return ((Integer) mIntProps.get(aName)).intValue();
+    }
+
+    /**
+     * Set the value of an integer property. If the property is not defined
+     *    or cannot be parsed, then a default value is used.
      * @param aProps the properties set to use
      * @param aLog where to log errors to
      * @param aName the name of the property to parse
      * @param aDefault the default value to use.
-     *
-     * @return the value of an integer property. If the property is not defined
-     *    or cannot be parsed, then a default value is returned.
      */
-    private static int getIntProperty(Properties aProps, PrintStream aLog,
-                                      String aName, int aDefault)
+    private void setIntProperty(Properties aProps, PrintStream aLog,
+                                String aName, int aDefault)
     {
-        int retVal = aDefault;
+        int val = aDefault;
         final String strRep = aProps.getProperty(aName);
         if (strRep != null) {
             try {
-                retVal = Integer.parseInt(strRep);
+                val = Integer.parseInt(strRep);
             }
             catch (NumberFormatException nfe) {
                 aLog.println("Unable to parse " + aName
@@ -987,7 +970,7 @@ public class Configuration
                              + ", defaulting to " + aDefault + ".");
             }
         }
-        return retVal;
+        setIntProperty(aName, val);
     }
 
     /**

@@ -150,13 +150,7 @@ public class CheckStyleTask
     /** @param aTabWidth number of spaces that are represented by one tab **/
     public void setTabWidth(final int aTabWidth)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setTabWidth(aTabWidth);
-                }
-            });
+        setIntProperty(Defn.TAB_WIDTH_PROP, aTabWidth);
     }
 
     /** @param aAllowed whether protected data is allowed **/
@@ -180,49 +174,25 @@ public class CheckStyleTask
     /** @param aLen max allowed line length **/
     public void setMaxLineLen(final int aLen)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setMaxLineLength(aLen);
-                }
-            });
+        setIntProperty(Defn.MAX_LINE_LENGTH_PROP, aLen);
     }
 
     /** @param aLen max allowed method length **/
     public void setMaxMethodLen(final int aLen)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setMaxMethodLength(aLen);
-                }
-            });
+        setIntProperty(Defn.MAX_METHOD_LENGTH_PROP, aLen);
     }
 
     /** @param aLen max allowed constructor length **/
     public void setMaxConstructorLen(final int aLen)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setMaxConstructorLength(aLen);
-                }
-            });
+        setIntProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, aLen);
     }
 
     /** @param aLen max allowed file length **/
     public void setMaxFileLen(final int aLen)
     {
-        mOptionMemory.add(new Runnable()
-            {
-                public void run()
-                {
-                    mConfig.setMaxFileLength(aLen);
-                }
-            });
+        setIntProperty(Defn.MAX_FILE_LENGTH_PROP, aLen);
     }
 
     /** @param aPat line length check exclusion pattern */
@@ -946,6 +916,22 @@ public class CheckStyleTask
                 public void run()
                 {
                     mConfig.setBooleanFlag(aName, aTo);
+                }
+            });
+    }
+
+    /**
+     * Set the specified flag.
+     * @param aName name of flag to set
+     * @param aTo the value of the flag
+     */
+    private void setIntProperty(final String aName, final int aTo)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setIntProperty(aName, aTo);
                 }
             });
     }

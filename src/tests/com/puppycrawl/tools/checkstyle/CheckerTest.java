@@ -370,9 +370,9 @@ public class CheckerTest
     public void testSimple()
         throws Exception
     {
-        mConfig.setMaxFileLength(20);
-        mConfig.setMaxMethodLength(19);
-        mConfig.setMaxConstructorLength(9);
+        mConfig.setIntProperty(Defn.MAX_FILE_LENGTH_PROP, 20) ;
+        mConfig.setIntProperty(Defn.MAX_METHOD_LENGTH_PROP, 19) ;
+        mConfig.setIntProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, 9) ;
         mConfig.setParamPat("^a[A-Z][a-zA-Z0-9]*$");
         mConfig.setStaticPat("^s[A-Z][a-zA-Z0-9]*$");
         mConfig.setMemberPat("^m[A-Z][a-zA-Z0-9]*$");
