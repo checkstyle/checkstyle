@@ -26,19 +26,20 @@ import java.util.Locale;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.Context;
-import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.Context;
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -49,60 +50,9 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 public class Checker extends AutomaticBean
     implements MessageDispatcher
 {
-    /**
-     * An AuditListener that maintains the number of errors.
-     */
-    private class ErrorCounter implements AuditListener
-    {
-        /** keeps track of the number of errors */
-        private int mCount;
-
-        /** @see AuditListener */
-        public void addError(AuditEvent aEvt)
-        {
-            if (SeverityLevel.ERROR.equals(aEvt.getSeverityLevel())) {
-                mCount++;
-            }
-        }
-
-        /** @see AuditListener */
-        public void addException(AuditEvent aEvt, Throwable aThrowable)
-        {
-            mCount++;
-        }
-
-        /** @see AuditListener */
-        public void auditStarted(AuditEvent aEvt)
-        {
-            mCount = 0;
-        }
-
-        /** @see AuditListener */
-        public void fileStarted(AuditEvent aEvt)
-        {
-        }
-
-        /** @see AuditListener */
-        public void auditFinished(AuditEvent aEvt)
-        {
-        }
-
-        /** @see AuditListener */
-        public void fileFinished(AuditEvent aEvt)
-        {
-        }
-
-        /**
-         * @return the number of errors since audit started.
-         */
-        private int getCount()
-        {
-            return mCount;
-        }
-    }
-
     /** maintains error count */
-    private final ErrorCounter mCounter = new ErrorCounter();
+    private final SeverityLevelCounter mCounter =
+            new SeverityLevelCounter(SeverityLevel.ERROR);
 
     /** vector of listeners */
     private final ArrayList mListeners = new ArrayList();

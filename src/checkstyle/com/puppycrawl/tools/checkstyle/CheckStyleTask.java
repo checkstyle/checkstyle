@@ -34,6 +34,8 @@ import java.net.URL;
 
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -88,6 +90,12 @@ public class CheckStyleTask
     /** the name of the properties file */
     private File mPropertiesFile;
 
+    /** the maximum number of errors that are tolerated. */
+    private int mMaxErrors;
+
+    /** the maximum number of warnings that are tolerated. */
+    private int mMaxWarnings = Integer.MAX_VALUE;
+
     ////////////////////////////////////////////////////////////////////////////
     // Setters for ANT specific attributes
     ////////////////////////////////////////////////////////////////////////////
@@ -107,6 +115,25 @@ public class CheckStyleTask
     public void setFailOnViolation(boolean aFail)
     {
         mFailOnViolation = aFail;
+    }
+
+    /**
+     * Sets the maximum number of errors allowed. Default is 0.
+     * @param aMaxErrors the maximum number of errors allowed.
+     */
+    public void setMaxErrors(int aMaxErrors)
+    {
+        mMaxErrors = aMaxErrors;
+    }
+
+    /**
+     * Sets the maximum number of warings allowed. Default is
+     * {@link Integer#MAX_VALUE}.
+     * @param aMaxWarnings the maximum number of warnings allowed.
+     */
+    public void setMaxWarnings(int aMaxWarnings)
+    {
+        mMaxWarnings = aMaxWarnings;
     }
 
     /**
@@ -258,17 +285,26 @@ public class CheckStyleTask
         try {
             c = createChecker();
 
+            SeverityLevelCounter warningCounter =
+                    new SeverityLevelCounter(SeverityLevel.WARNING);
+            c.addListener(warningCounter);
+
             // Process the files
             final File[] files = scanFileSets();
             final int numErrs = c.process(files);
+            final int numWarnings = warningCounter.getCount();
+            final boolean ok = numErrs <= mMaxErrors
+                    && numWarnings <= mMaxWarnings;
 
             // Handle the return status
-            if ((numErrs > 0) && mFailureProperty != null) {
+            if (!ok && mFailureProperty != null) {
                 getProject().setProperty(mFailureProperty, "true");
             }
 
-            if ((numErrs > 0) && mFailOnViolation) {
-                throw new BuildException("Got " + numErrs + " errors.",
+            if (!ok && mFailOnViolation) {
+                throw new BuildException(
+                        "Got " + numErrs + " errors and "
+                        + numWarnings + " warnings.",
                                          getLocation());
             }
         }
