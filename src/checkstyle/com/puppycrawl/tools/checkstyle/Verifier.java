@@ -42,6 +42,11 @@ import org.apache.regexp.RESyntaxException;
  **/
 class Verifier
 {
+    // TODO: Need to refactor this file!!! It is just to big. First thing is
+    // to create a class for collecting errors, and get rid of all those log()
+    // methods. then should start spliting out helper classes for things like
+    // Javadoc.
+
     // {{{ Data declarations
     /** the pattern to match Javadoc tags that take an argument **/
     private static final String MATCH_JAVADOC_ARG_PAT
@@ -157,11 +162,12 @@ class Verifier
      * Returns the ordered list of error messages.
      * @return the list of messages
      **/
-    LineText[] getMessages()
+    LocalizedMessage[] getMessages()
     {
         checkImports();
         Collections.sort(mMessages);
-        return (LineText[]) mMessages.toArray(new LineText[mMessages.size()]);
+        return (LocalizedMessage[])
+            mMessages.toArray(new LocalizedMessage[mMessages.size()]);
     }
 
     /** Clears the list of error messages. Use before processing a file. **/
@@ -201,25 +207,25 @@ class Verifier
                 && !(mConfig.isIgnoreImportLength()
                      && line.trim().startsWith("import")))
             {
-                log(i + 1,
-                    "line longer than " + mConfig.getMaxLineLength()
-                    + " characters");
+                log(i + 1, "maxLineLen",
+                    new Integer(mConfig.getMaxLineLength()));
             }
 
             // Check for tabs
             if (!mConfig.isAllowTabs()) {
                 final int tabPosition = mLines[i].indexOf('\t');
                 if (tabPosition != -1) {
-                    log(i + 1, tabPosition, "line contains a tab character");
+                    log(i + 1, tabPosition, "containsTab");
                 }
             }
         }
 
         // Check excessive number of lines
         if (mLines.length > mConfig.getMaxFileLength()) {
-            log(1,
-                "file length is " + mLines.length + " lines (max allowed is "
-                + mConfig.getMaxFileLength() + ").");
+            log(1, "maxLen",
+                "file",
+                new Integer(mLines.length),
+                new Integer(mConfig.getMaxFileLength()));
         }
     }
 
@@ -236,8 +242,10 @@ class Verifier
         {
             log(aSig.getName().getLineNo(),
                 aSig.getName().getColumnNo(),
-                "method name '" + aSig.getName().getText()
-                + "' must match pattern '" + mConfig.getMethodPat() + "'.");
+                "name.invalidPattern",
+                "method",
+                aSig.getName().getText(),
+                mConfig.getMethodPat());
         }
 
         // Always verify the parameters are ok
@@ -253,7 +261,7 @@ class Verifier
         if (aSig.getParams().size() > mConfig.getMaxParameters()) {
             log(aSig.getFirstLineNo(),
                 aSig.getFirstColNo(),
-                "More than " + mConfig.getMaxParameters() + " parameters.");
+                "maxParam", new Integer(mConfig.getMaxParameters()));
         }
         // JLS, chapter 9.4 - public in interface is strongly discouraged
         if (!mConfig.isIgnorePublicInInterface() && inInterfaceBlock()
@@ -261,14 +269,14 @@ class Verifier
         {
             log(aSig.getModSet().getFirstLineNo(),
                 aSig.getModSet().getFirstColNo(),
-                "redundant 'public' modifier.");
+                "redundantModifier", "public");
         }
 
         // Check for redunant abstract
         if (inInterfaceBlock() && aSig.getModSet().containsAbstract()) {
             log(aSig.getModSet().getFirstLineNo(),
                 aSig.getModSet().getFirstColNo(),
-                "redundant 'abstract' modifier.");
+                "redundantModifier", "abstract");
         }
         // now check the javadoc
         final Scope methodScope = inInterfaceBlock()
@@ -283,7 +291,7 @@ class Verifier
         if (jd == null) {
             log(aSig.getFirstLineNo(),
                 aSig.getFirstColNo(),
-                "method is missing a Javadoc comment.");
+                "javadoc.missing", "method");
         }
         else {
             final List tags = getMethodTags(jd, aSig.getFirstLineNo() - 1);
@@ -302,7 +310,7 @@ class Verifier
                 while (it.hasNext()) {
                     final JavadocTag jt = (JavadocTag) it.next();
                     if (!jt.isSeeTag()) {
-                        log(jt.getLineNo(), "Unused Javadoc tag.");
+                        log(jt.getLineNo(), "javadoc.unusedTagGeneral");
                     }
                 }
             }
@@ -318,10 +326,9 @@ class Verifier
     void verifyType(MyModifierSet aMods, MyCommonAST aType)
     {
         if (!mConfig.getTypeRegexp().match(aType.getText())) {
-            log(aType.getLineNo(),
-                aType.getColumnNo(),
-                "type name '" + aType.getText()
-                + "' must match pattern '" + mConfig.getTypePat() + "'.");
+            log(aType.getLineNo(), aType.getColumnNo(),
+                "name.invalidPattern",
+                "type", aType.getText(), mConfig.getTypePat());
         }
 
         // Always check that the order of modifiers follows the JLS suggestion
@@ -343,14 +350,14 @@ class Verifier
 
         final String[] jd = getJavadocBefore(lineNo - 1);
         if (jd == null) {
-            log(lineNo, "type is missing a Javadoc comment.");
+            log(lineNo, "javadoc.missing", "type");
         }
         else if (!mConfig.isAllowNoAuthor()
                  && (mInScope.size() == 0)
                  // don't check author for inner classes
                  && (MATCH_JAVADOC_AUTHOR.grep(jd).length == 0))
         {
-            log(lineNo, "type Javadoc comment is missing an @author tag.");
+            log(lineNo, "type.missingAuthorTag");
         }
     }
 
@@ -380,7 +387,7 @@ class Verifier
             && (getJavadocBefore(aVar.getStartLineNo() - 1) == null))
         {
             log(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                "variable '" + aVar.getText() + "' missing Javadoc.");
+                "variable.missingJavadoc", aVar.getText());
         }
 
         // Check correct format
@@ -419,8 +426,7 @@ class Verifier
                     }
                     else {
                         log(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                            "variable '" + aVar.getText()
-                            + "' must be private and have accessor methods.");
+                            "variable.notPrivate", aVar.getText());
                     }
                 }
             }
@@ -442,8 +448,7 @@ class Verifier
                 }
                 else {
                     log(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                        "variable '" + aVar.getText()
-                        + "' must be private and have accessor methods.");
+                        "variable.notPrivate", aVar.getText());
                 }
             }
         }
@@ -458,8 +463,7 @@ class Verifier
     void reportNeedBraces(Token aStmt)
     {
         if (!mConfig.isIgnoreBraces()) {
-            log(aStmt.getLine(),
-                "'" + aStmt.getText() + "' construct must use '{}'s.");
+            log(aStmt.getLine(), "needBraces", aStmt.getText());
         }
     }
 
@@ -493,15 +497,13 @@ class Verifier
         final int after = aColNo + aText.length() - 1;
 
         if ((before >= 0) && !Character.isWhitespace(line.charAt(before))) {
-            log(aLineNo, before + 1,
-                "'" + aText + "' is not preceeded with whitespace.");
+            log(aLineNo, before + 1, "ws.notPreceeded", aText);
         }
 
         if ((after < line.length())
             && !Character.isWhitespace(line.charAt(after)))
         {
-            log(aLineNo, after,
-                "'" + aText + "' is not followed by whitespace.");
+            log(aLineNo, after, "ws.notFollowed", aText);
         }
     }
 
@@ -521,8 +523,7 @@ class Verifier
         if ((after >= line.length())
             || Character.isWhitespace(line.charAt(after)))
         {
-            log(aAST.getLineNo(), after,
-                "'" + aAST.getText() + "' is followed by whitespace.");
+            log(aAST.getLineNo(), after, "ws.followed", aAST.getText());
         }
     }
 
@@ -540,9 +541,7 @@ class Verifier
         final String line = mLines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
         if ((before < 0) || Character.isWhitespace(line.charAt(before))) {
-            log(aAST.getLineNo(),
-                before,
-                "'" + aAST.getText() + "' is preceeded with whitespace.");
+            log(aAST.getLineNo(), before, "ws.preceeded", aAST.getText());
         }
     }
 
@@ -569,9 +568,8 @@ class Verifier
             // verify all characters before '.' are whitespace
             for (int i = 0; i < before; i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
-                    log(aAST.getLineNo(),
-                        aAST.getColumnNo() - 1,
-                        "'.' is preceeded with whitespace.");
+                    log(aAST.getLineNo(), aAST.getColumnNo() - 1,
+                        "ws.preceeded", ".");
                     break;
                 }
             }
@@ -584,9 +582,7 @@ class Verifier
         {
             for (int i = after + 1; i < line.length(); i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
-                    log(aAST.getLineNo(),
-                        after,
-                        "'.' is followed by whitespace.");
+                    log(aAST.getLineNo(), after, "ws.followed", ".");
                     break;
                 }
             }
@@ -626,9 +622,9 @@ class Verifier
     void verifyMethodLength(int aLineNo, int aLength)
     {
         if (aLength > mConfig.getMaxMethodLength()) {
-            log(aLineNo,
-                "method length is " + aLength + " lines (max allowed is "
-                + mConfig.getMaxMethodLength() + ").");
+            log(aLineNo, "maxLen", "method",
+                new Integer(aLength),
+                new Integer(mConfig.getMaxMethodLength()));
         }
     }
 
@@ -682,16 +678,12 @@ class Verifier
         if ((mConfig.getRCurly() == RightCurlyOption.SAME)
             && (aBrace.getLineNo() != aStartLine))
         {
-            log(aBrace.getLineNo(),
-                aBrace.getColumnNo(),
-                "'}' should be on the same line.");
+            log(aBrace.getLineNo(), aBrace.getColumnNo(), "line.same", "}");
         }
         else if ((mConfig.getRCurly() == RightCurlyOption.ALONE)
                    && (aBrace.getLineNo() == aStartLine))
         {
-            log(aBrace.getLineNo(),
-                aBrace.getColumnNo(),
-                "'}' should be alone on a line.");
+            log(aBrace.getLineNo(), aBrace.getColumnNo(), "line.alone", "}");
         }
     }
 
@@ -712,7 +704,7 @@ class Verifier
         final int after = aColNo - 1;
         if (after < line.length()) {
             if (Character.isWhitespace(line.charAt(after))) {
-                log(aLineNo, after, "'(' is followed by whitespace.");
+                log(aLineNo, after, "ws.followed", "(");
             }
         }
     }
@@ -736,7 +728,7 @@ class Verifier
             if (Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line))
             {
-                log(aLineNo, before, "')' is preceeded by whitespace.");
+                log(aLineNo, before, "ws.preceeded", ")");
             }
         }
     }
@@ -750,9 +742,9 @@ class Verifier
     void verifyConstructorLength(int aLineNo, int aLength)
     {
         if (aLength > mConfig.getMaxConstructorLength()) {
-            log(aLineNo,
-                "constructor length is " + aLength + " lines (max allowed is "
-                + mConfig.getMaxConstructorLength() + ").");
+            log(aLineNo, "maxLen", "constructor",
+                new Integer(aLength),
+                new Integer(mConfig.getMaxConstructorLength()));
         }
     }
 
@@ -766,8 +758,7 @@ class Verifier
     {
         final String cmt = mLines[aStartLineNo - 1].substring(aStartColNo);
         if (mConfig.getTodoRegexp().match(cmt)) {
-            log(aStartLineNo,
-                "Comment matches to-do format '" + mConfig.getTodoPat() + "'.");
+            log(aStartLineNo, "todo.match", mConfig.getTodoPat());
         }
     }
 
@@ -792,9 +783,7 @@ class Verifier
         // Check for to-do comments
         for (int i = 0; i < cc.length; i++) {
             if (mConfig.getTodoRegexp().match(cc[i])) {
-                log(aStartLineNo + i,
-                    "Comment matches to-do format '" + mConfig.getTodoPat()
-                    + "'.");
+                log(aStartLineNo + i, "todo.match", mConfig.getTodoPat());
             }
         }
     }
@@ -845,8 +834,8 @@ class Verifier
             while (it.hasNext()) {
                 final LineText lt = (LineText) it.next();
                 if (aType.equals(lt.getText())) {
-                    log(aLineNo,
-                        "Duplicate import to line " + lt.getLineNo() + ".");
+                    log(aLineNo, "import.duplicate",
+                        new Integer(lt.getLineNo()));
                 }
             }
         }
@@ -863,7 +852,7 @@ class Verifier
     void reportStarImport(int aLineNo, String aPkg)
     {
         if (!mConfig.isIgnoreImports()) {
-            log(aLineNo, "Avoid using the '.*' form of import.");
+            log(aLineNo, "import.avoidStar");
         }
         mImports.add(new LineText(aLineNo, aPkg));
     }
@@ -953,7 +942,7 @@ class Verifier
         final int colNo = aNewAST.getColumnNo();
         final String fqClassName = getIllegalInstantiation(typeName);
         if (fqClassName != null) {
-            log(lineNo, colNo, "Avoid instantiation of " + fqClassName);
+            log(lineNo, colNo, "instantiation.avoid", fqClassName);
         }
     }
 
@@ -989,8 +978,7 @@ class Verifier
             && (mLines[aLineNo - 1].substring(aColNo + aText.length() - 1)
                 .trim().length() == 0))
         {
-            log(aLineNo, aColNo - 1,
-                "'" + aText + "' should be on a new line.");
+            log(aLineNo, aColNo - 1, "line.new", aText);
         }
     }
 
@@ -1004,7 +992,7 @@ class Verifier
         if (!mConfig.isIgnoreLongEll()
             && (mLines[aLineNo - 1].charAt(aColNo) == 'l'))
         {
-            log(aLineNo, aColNo, "Should use uppercase 'L'.");
+            log(aLineNo, aColNo, "upperEll");
         }
     }
 
@@ -1072,30 +1060,150 @@ class Verifier
         return retVal;
     }
 
+    // TODO: Need to refactor all those log() calls!!
+
     /**
-     * Logs a message to be reported. The column defaults to 0.
-     * @param aLineNo the line number associated with the message
+     * Logs a message to be reported
      * @param aMsg the message to log
      **/
-    private void log(int aLineNo, String aMsg)
+    private void log(LocalizedMessage aMsg)
     {
-        mMessages.add(new LineText(aLineNo, aMsg));
+        mMessages.add(aMsg);
     }
 
     /**
-     * Logs a message to be reported.
-     * @param aLineNo the line number associated with the message
-     * @param aColNo the column number associated with the message
-     * @param aMsg the message to log
-     **/
-    private void log(int aLineNo, int aColNo, String aMsg)
+     * Helper method to log a LocalizedMessage. Column defaults to 0.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArgs arguments for message
+     */
+    private void log(int aLineNo, String aKey, Object[] aArgs)
     {
-        // message must account for tabs before the error column
-        int colNo = Utils.lengthExpandedTabs(
+        log(new LocalizedMessage(aLineNo, 0, aKey, aArgs));
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage. Column defaults to 0.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aKey key to locale message format
+     */
+    private void log(int aLineNo, String aKey)
+    {
+        log(aLineNo, aKey, new Object[0]);
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage. Column defaults to 0.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArg0 first argument
+     */
+    private void log(int aLineNo, String aKey, Object aArg0)
+    {
+        log(aLineNo, aKey, new Object[] {aArg0});
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage. Column defaults to 0.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArg0 first argument
+     * @param aArg1 second argument
+     */
+    private void log(int aLineNo, String aKey, Object aArg0, Object aArg1)
+    {
+        log(aLineNo, aKey, new Object[] {aArg0, aArg1});
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage. Column defaults to 0.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArg0 first argument
+     * @param aArg1 second argument
+     * @param aArg2 third argument
+     */
+    private void log(int aLineNo, String aKey,
+                     Object aArg0, Object aArg1, Object aArg2)
+    {
+        log(aLineNo, aKey, new Object[] {aArg0, aArg1, aArg2});
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aColNo column number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArgs arguments for message
+     */
+    private void log(int aLineNo, int aColNo, String aKey, Object[] aArgs)
+    {
+        final int col = 1 + Utils.lengthExpandedTabs(
             mLines[aLineNo - 1], aColNo, mConfig.getTabWidth());
-        mMessages.add(new LineText(aLineNo, colNo + 1, aMsg));
+        log(new LocalizedMessage(aLineNo, col, aKey, aArgs));
     }
 
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aColNo column number to associate with the message
+     * @param aKey key to locale message format
+     */
+    private void log(int aLineNo, int aColNo, String aKey)
+    {
+        log(aLineNo, aColNo, aKey, new Object[0]);
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aColNo column number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArg0 first argument
+     */
+    private void log(int aLineNo, int aColNo, String aKey, Object aArg0)
+    {
+        log(aLineNo, aColNo, aKey, new Object[] {aArg0});
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aColNo column number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArg0 first argument
+     * @param aArg1 second argument
+     */
+    private void log(int aLineNo, int aColNo, String aKey,
+                     Object aArg0, Object aArg1)
+    {
+        log(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1});
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aColNo column number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArg0 first argument
+     * @param aArg1 second argument
+     * @param aArg2 third argument
+     */
+    private void log(int aLineNo, int aColNo, String aKey,
+                     Object aArg0, Object aArg1, Object aArg2)
+    {
+        log(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1, aArg2});
+    }
 
     /**
      * Checks that a variable confirms to a specified regular expression. Logs
@@ -1108,8 +1216,8 @@ class Verifier
     {
         if (!aRegexp.match(aVar.getText())) {
             log(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                "variable '" + aVar.getText()
-                + "' must match pattern '" + aPattern + "'.");
+                "name.invalidPattern",
+                "variable", aVar.getText(), aPattern);
         }
     }
 
@@ -1122,8 +1230,8 @@ class Verifier
     {
         if (!mConfig.getParamRegexp().match(aParam.getText())) {
             log(aParam.getLineNo(), aParam.getColumnNo(),
-                "parameter '" + aParam.getText()
-                + "' must match pattern '" + mConfig.getParamPat() + "'.");
+                "name.invalidPattern",
+                "parameter", aParam.getText(), mConfig.getParamPat());
         }
     }
 
@@ -1276,8 +1384,8 @@ class Verifier
 
             // Handle extra JavadocTag
             if (!found) {
-                log(tag.getLineNo(),
-                    "Unused @param tag for '" + tag.getArg1() + "'.");
+                log(tag.getLineNo(), "javadoc.unusedTag",
+                    "@param", tag.getArg1());
             }
         }
 
@@ -1286,7 +1394,7 @@ class Verifier
         while (paramIt.hasNext()) {
             final LineText param = (LineText) paramIt.next();
             log(param.getLineNo(), param.getColumnNo(),
-                "Expected @param tag for '" + param.getText() + "'.");
+                "javadoc.expectedTag", "@param", param.getText());
         }
     }
 
@@ -1306,7 +1414,7 @@ class Verifier
             final JavadocTag jt = (JavadocTag) it.next();
             if (jt.isReturnTag()) {
                 if (found) {
-                    log(jt.getLineNo(), "Duplicate @return tag.");
+                    log(jt.getLineNo(), "javadoc.return.duplicate");
                 }
                 found = true;
                 it.remove();
@@ -1315,7 +1423,7 @@ class Verifier
 
         // Handle there being no @return tags
         if (!found) {
-            log(aLineNo, "Expected an @return tag.");
+            log(aLineNo, "javadoc.return.expected");
         }
     }
 
@@ -1364,15 +1472,14 @@ class Verifier
                             && !Error.class.isAssignableFrom(clazz);
                     }
                     catch (ClassNotFoundException e) {
-                        log(tag.getLineNo(),
-                            "Unable to get class information for @throws tag '"
-                            + tag.getArg1() + "'.");
+                        log(tag.getLineNo(), "javadoc.classInfo",
+                            "@throws", tag.getArg1());
                     }
                 }
 
                 if (reqd) {
-                    log(tag.getLineNo(),
-                        "Unused @throws tag for '" + tag.getArg1() + "'.");
+                    log(tag.getLineNo(), "javadoc.unusedTag",
+                        "@throws", tag.getArg1());
                 }
             }
         }
@@ -1381,8 +1488,8 @@ class Verifier
         final ListIterator throwIt = aThrows.listIterator();
         while (throwIt.hasNext()) {
             final LineText t = (LineText) throwIt.next();
-            log(t.getLineNo(), t.getColumnNo() - 1,
-                "Expected @throws tag for '" + t.getText() + "'.");
+            log(t.getLineNo(), t.getColumnNo() - 1, "javadoc.expectedTag",
+                "@throws", t.getText());
         }
     }
 
@@ -1391,7 +1498,7 @@ class Verifier
     private void checkHeader()
     {
         if (mConfig.getHeaderLines().length > mLines.length) {
-            log(1, "Missing a header - not enough lines in file.");
+            log(1, "header.missing");
         }
         else {
             for (int i = 0; i < mConfig.getHeaderLines().length; i++) {
@@ -1408,16 +1515,13 @@ class Verifier
                         : headerLine.equals(mLines[i]);
 
                     if (!match) {
-                        log(i + 1,
-                            "Line does not match expected header line of '"
-                            + mConfig.getHeaderLines()[i] + "'.");
+                        log(i + 1, "header.mismatch",
+                            mConfig.getHeaderLines()[i]);
                         break; // stop checking
                     }
                 }
                 catch (RESyntaxException e) {
-                    log(i + 1,
-                        "Unable to parse regular expression '"
-                        + headerLine + "'.");
+                    log(i + 1, "regexp.parseError", headerLine);
                 }
             }
         }
@@ -1434,8 +1538,7 @@ class Verifier
         final MyCommonAST error = aModSet.checkOrderSuggestedByJLS();
         if (error != null) {
             log(error.getLineNo(), error.getColumnNo(),
-                "'" + error.getText()
-                + "' modifier out of order with the JLS suggestions.");
+                "mod.order", error.getText());
         }
     }
 
@@ -1462,18 +1565,16 @@ class Verifier
             final LineText imp = (LineText) it.next();
 
             if (fromPackage(imp.getText(), "java.lang")) {
-                log(imp.getLineNo(),
-                    "Redundant import from the java.lang package.");
+                log(imp.getLineNo(), "import.lang");
             }
             else if (fromPackage(imp.getText(), mPkgName)) {
-                log(imp.getLineNo(), "Redundant import from the same package.");
+                log(imp.getLineNo(), "import.same");
             }
             else if (!isReferencedImport(imp)) {
-                log(imp.getLineNo(), "Unused import - " + imp.getText());
+                log(imp.getLineNo(), "import.unused", imp.getText());
             }
             else if (isIllegalImport(imp.getText())) {
-                log(imp.getLineNo(),
-                    "Import from illegal package - " + imp.getText());
+                log(imp.getLineNo(), "import.illegal", imp.getText());
             }
         }
     }
@@ -1656,18 +1757,16 @@ class Verifier
         }
         else if (aOption == LeftCurlyOption.NL) {
             if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                log(aBrace.getLineNo(),
-                    aBrace.getColumnNo(),
-                    "'{' should be on a new line.");
+                log(aBrace.getLineNo(), aBrace.getColumnNo(),
+                    "line.new", "{");
             }
         }
         else if (aOption == LeftCurlyOption.EOL) {
             if (Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)
                 && ((prevLineLen + 2) <= mConfig.getMaxLineLength()))
             {
-                log(aBrace.getLineNo(),
-                    aBrace.getColumnNo(),
-                    "'{' should be on the previous line.");
+                log(aBrace.getLineNo(), aBrace.getColumnNo(),
+                    "line.previous", "{");
             }
         }
         else if (aOption == LeftCurlyOption.NLOW) {
@@ -1676,20 +1775,17 @@ class Verifier
             }
             else if ((aStartLine + 1) == aBrace.getLineNo()) {
                 if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                    log(aBrace.getLineNo(),
-                        aBrace.getColumnNo(),
-                        "'{' should be on a new line.");
+                    log(aBrace.getLineNo(), aBrace.getColumnNo(),
+                        "line.new", "{");
                 }
                 else if ((prevLineLen + 2) <= mConfig.getMaxLineLength()) {
-                    log(aBrace.getLineNo(),
-                        aBrace.getColumnNo(),
-                        "'{' should be on the previous line.");
+                    log(aBrace.getLineNo(), aBrace.getColumnNo(),
+                        "line.previous", "{");
                 }
             }
             else if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                log(aBrace.getLineNo(),
-                    aBrace.getColumnNo(),
-                    "'{' should be on a new line.");
+                log(aBrace.getLineNo(), aBrace.getColumnNo(),
+                    "line.new", "{");
             }
         }
     }
@@ -1716,9 +1812,7 @@ class Verifier
             && !Character.isWhitespace(line.charAt(aColNo))
             && (aAllow.indexOf(line.charAt(aColNo)) == -1))
         {
-            log(aLineNo,
-                aColNo,
-                aConstruct.getText() + " needs to be followed by whitespace.");
+            log(aLineNo, aColNo, "ws.notFollowed", aConstruct.getText());
         }
     }
 
@@ -1733,9 +1827,8 @@ class Verifier
                     MyCommonAST[] aBraces, boolean aNoStmt)
     {
         if (aNoStmt && (aOption == BlockOption.STMT)) {
-            log(aBraces[0].getLineNo(),
-                aBraces[0].getColumnNo(),
-                "Must have at least one statement.");
+            log(aBraces[0].getLineNo(), aBraces[0].getColumnNo(),
+                "block.noStmt");
         }
         else if (aOption == BlockOption.TEXT) {
             if (aBraces[0].getLineNo() == aBraces[1].getLineNo()) {
@@ -1744,9 +1837,8 @@ class Verifier
                     .substring(aBraces[0].getColumnNo() + 1,
                                aBraces[1].getColumnNo());
                 if (txt.trim().length() == 0) {
-                    log(aBraces[0].getLineNo(),
-                        aBraces[0].getColumnNo(),
-                        "Empty " + aType + " block.");
+                    log(aBraces[0].getLineNo(), aBraces[0].getColumnNo(),
+                        "block.empty", aType);
                 }
             }
             else {
@@ -1772,9 +1864,8 @@ class Verifier
                     }
 
                     if (isBlank) {
-                        log(aBraces[0].getLineNo(),
-                            aBraces[0].getColumnNo(),
-                            "Empty " + aType + " block.");
+                        log(aBraces[0].getLineNo(), aBraces[0].getColumnNo(),
+                            "block.empty", aType);
                     }
                 }
             }
