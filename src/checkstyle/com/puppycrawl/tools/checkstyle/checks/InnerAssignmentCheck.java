@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * &lt;module name="InnerAssignment"/&gt;
  * </pre>
  *
- * <p> An example of how to configure the check for only <code>+</code>,
+ * <p> An example of how to configure the check for only <code>=</code>,
  * <code>+=</code>, and <code>-=</code> operators is:
  * </p>
  * <pre>
