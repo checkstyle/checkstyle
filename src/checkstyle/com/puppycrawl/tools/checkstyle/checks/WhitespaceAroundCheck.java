@@ -154,23 +154,26 @@ public class WhitespaceAroundCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        // Check for RCURLY in array initializer
-        if ((aAST.getType() == TokenTypes.RCURLY)
-            && (aAST.getParent().getType() == TokenTypes.ARRAY_INIT))
+        final int type = aAST.getType();
+        final int parentType = aAST.getParent().getType();
+
+        // Check for CURLY in array initializer
+        if ((type == TokenTypes.RCURLY || type == TokenTypes.LCURLY)
+            && (parentType == TokenTypes.ARRAY_INIT))
         {
             return;
         }
 
         // Check for import pkg.name.*;
-        if ((aAST.getType() == TokenTypes.STAR)
-            && (aAST.getParent().getType() == TokenTypes.DOT))
+        if ((type == TokenTypes.STAR)
+            && (parentType == TokenTypes.DOT))
         {
             return;
         }
 
         // Check for an SLIST that has a parent CASE_GROUP. It is not a '{'.
-        if ((aAST.getType() == TokenTypes.SLIST)
-            && (aAST.getParent().getType() == TokenTypes.CASE_GROUP))
+        if ((type == TokenTypes.SLIST)
+            && (parentType == TokenTypes.CASE_GROUP))
         {
             return;
         }
@@ -185,15 +188,20 @@ public class WhitespaceAroundCheck
                     "ws.notPreceeded", new Object[]{aAST.getText()});
         }
 
-        if ((after < line.length())
-            && !Character.isWhitespace(
-                line.charAt(after)) // Check for "return;"
-            && !((aAST.getType() == TokenTypes.LITERAL_RETURN)
+        if (after >= line.length()) {
+            return;
+        }
+
+        final char nextChar = line.charAt(after);
+        if (!Character.isWhitespace(nextChar)
+            // Check for "return;"
+            && !((type == TokenTypes.LITERAL_RETURN)
                 && (aAST.getFirstChild().getType() == TokenTypes.SEMI))
-            // Check for "})" or "};". Happens with anon-inners
-            && !((aAST.getType() == TokenTypes.RCURLY)
-                && ((line.charAt(after) == ')')
-                    || (line.charAt(after) == ';'))))
+            // Check for "})" or "};" or "},". Happens with anon-inners
+            && !((type == TokenTypes.RCURLY)
+                && ((nextChar == ')')
+                    || (nextChar == ';')
+                    || (nextChar == ','))))
         {
             log(
                 aAST.getLineNo(),
