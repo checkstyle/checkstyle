@@ -340,17 +340,24 @@
          basedir="${dist.dir}/checkstyle-${version}/tmp"
          manifest="config/manifest.mf" />
     <delete dir="${dist.dir}/checkstyle-${version}/tmp" />
-    <!-- copy documentation -->
+    <!-- copy stuff without filtering -->
     <copy todir="${dist.dir}/checkstyle-${version}">
       <fileset dir=".">
         <include name="LICENSE*"/>
         <include name="README"/>
         <include name="RIGHTS.antlr"/>
         <include name="TODO"/>
-        <include name="docs/**"/>
         <include name="contrib/**"/>
         <include name="**/.cvsignore"/>
         <include name="**/CVS"/>
+        <include name="docs/**"/>
+        <exclude name="docs/*.html"/>
+      </fileset>
+    </copy>
+    <!-- copy stuff with filtering -->
+    <copy todir="${dist.dir}/checkstyle-${version}">
+      <fileset dir=".">
+        <include name="docs/*.html"/>
       </fileset>
       <filterset>
         <filter token="CHECKSTYLE_VERSION" value="${version}" />
