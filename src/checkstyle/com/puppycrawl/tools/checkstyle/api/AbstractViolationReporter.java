@@ -25,7 +25,8 @@ package com.puppycrawl.tools.checkstyle.api;
  *
  * @author lkuehne
  */
-public abstract class AbstractViolationReporter extends AutomaticBean
+public abstract class AbstractViolationReporter
+    extends AutomaticBean
 {
     /** resuable constant for message formating */
     private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
@@ -205,7 +206,9 @@ public abstract class AbstractViolationReporter extends AutomaticBean
      *
      * @see java.text.MessageFormat
      */
-    protected abstract void log(int aLine, int aCol,
-                             String aKey, Object[] aArgs);
+    protected abstract void log(int aLine,
+                                int aCol,
+                                String aKey,
+                                Object[] aArgs);
 
 }
