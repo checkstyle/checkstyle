@@ -39,11 +39,13 @@ public class AuditEvent
     extends EventObject
 {
     /** filename event associated with **/
-    private String mFileName;
+    private final String mFileName;
     /** line event associated with **/
-    private int mLine;
+    private final int mLine;
+    /** column event associated with **/
+    private final int mColumn;
     /** message of event **/
-    private String mMessage;
+    private final String mMessage;
 
     /**
      * Creates a new instance.
@@ -51,7 +53,7 @@ public class AuditEvent
      */
     public AuditEvent(Object aSource)
     {
-        super(aSource);
+        this(aSource, null);
     }
 
     /**
@@ -61,8 +63,7 @@ public class AuditEvent
      */
     public AuditEvent(Object aSrc, String aFileName)
     {
-        super(aSrc);
-        mFileName = aFileName;
+        this(aSrc, aFileName, 0, 0, null);
     }
 
     /**
@@ -71,13 +72,19 @@ public class AuditEvent
      * @param aSrc source of the event
      * @param aFileName file associated with the event
      * @param aLine line number of message
+     * @param aColumn column number of message
      * @param aMessage the actual message
      */
-    public AuditEvent(Object aSrc, String aFileName, int aLine, String aMessage)
+    public AuditEvent(Object aSrc,
+                      String aFileName,
+                      int aLine,
+                      int aColumn,
+                      String aMessage)
     {
         super(aSrc);
         mFileName = aFileName;
         mLine = aLine;
+        mColumn = aColumn;
         mMessage = aMessage;
     }
 
@@ -109,4 +116,9 @@ public class AuditEvent
         return mMessage;
     }
 
+    /** @return the column associated with the message **/
+    public int getColumn()
+    {
+        return mColumn;
+    }
 }

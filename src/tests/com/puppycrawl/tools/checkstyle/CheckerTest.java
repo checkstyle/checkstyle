@@ -91,8 +91,8 @@ public class CheckerTest
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":5: '.' is preceeded with whitespace.",
             filepath + ":5: '.' is followed by whitespace.",
+            filepath + ":5:12: '.' is preceeded with whitespace.",
             filepath + ":13: type Javadoc comment is missing an @author tag.",
             filepath + ":16: '=' is not preceeded with whitespace.",
             filepath + ":16: '=' is not followed by whitespace.",
@@ -141,10 +141,10 @@ public class CheckerTest
             filepath + ":124: '/' is not followed by whitespace.",
             filepath + ":125: '/' is not preceeded with whitespace.",
             filepath + ":125: '/' is not followed by whitespace.",
-            filepath + ":129: '.' is preceeded with whitespace.",
             filepath + ":129: '.' is followed by whitespace.",
-            filepath + ":136: '.' is preceeded with whitespace.",
+            filepath + ":129:17: '.' is preceeded with whitespace.",
             filepath + ":136: '.' is followed by whitespace.",
+            filepath + ":136:10: '.' is preceeded with whitespace.",
             filepath + ":153: 'assert' is not followed by whitespace.",
             filepath + ":156: ':' is not preceeded with whitespace.",
             filepath + ":156: ':' is not followed by whitespace.",
@@ -161,8 +161,8 @@ public class CheckerTest
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":5: '.' is preceeded with whitespace.",
             filepath + ":5: '.' is followed by whitespace.",
+            filepath + ":5:12: '.' is preceeded with whitespace.",
             filepath + ":13: type Javadoc comment is missing an @author tag.",
             filepath + ":16: '=' is not preceeded with whitespace.",
             filepath + ":16: '=' is not followed by whitespace.",
@@ -206,10 +206,10 @@ public class CheckerTest
             filepath + ":124: '/' is not followed by whitespace.",
             filepath + ":125: '/' is not preceeded with whitespace.",
             filepath + ":125: '/' is not followed by whitespace.",
-            filepath + ":129: '.' is preceeded with whitespace.",
             filepath + ":129: '.' is followed by whitespace.",
-            filepath + ":136: '.' is preceeded with whitespace.",
+            filepath + ":129:17: '.' is preceeded with whitespace.",
             filepath + ":136: '.' is followed by whitespace.",
+            filepath + ":136:10: '.' is preceeded with whitespace.",
             filepath + ":153: 'assert' is not followed by whitespace.",
             filepath + ":156: ':' is not preceeded with whitespace.",
             filepath + ":156: ':' is not followed by whitespace.",

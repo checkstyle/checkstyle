@@ -366,7 +366,9 @@ public class Checker
     {
         for (int i = 0; i < aErrors.length; i++) {
             final AuditEvent evt =
-                new AuditEvent(this, aFileName, aErrors[i].getLineNo(),
+                new AuditEvent(this, aFileName,
+                               aErrors[i].getLineNo(),
+                               aErrors[i].getColumnNo(),
                                aErrors[i].getText());
             final Iterator it = mListeners.iterator();
             while (it.hasNext()) {
