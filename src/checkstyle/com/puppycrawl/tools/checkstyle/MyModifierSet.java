@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
+import com.puppycrawl.tools.checkstyle.api.Scope;
+
 /**
  * Represents a set of modifiers and tracks the first line of the modifiers.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>

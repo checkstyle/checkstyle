@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 header {
 package com.puppycrawl.tools.checkstyle;
+import com.puppycrawl.tools.checkstyle.api.Scope;
 }
 
 
