@@ -1,18 +1,17 @@
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.checks.HeaderCheck;
-import com.puppycrawl.tools.checkstyle.checks.RegexpHeaderCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.checks.HeaderCheck;
 
 public class HeaderCheckTest extends BaseCheckTestCase
 {
     public void testStaticHeader()
             throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(HeaderCheck.class.getName());
-        checkConfig.addProperty("headerFile", getPath("java.header"));
-        checkConfig.addProperty("ignoreLines", "");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("java.header"));
+        checkConfig.addAttribute("ignoreLines", "");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("inputHeader.java");
         final String[] expected = {
@@ -24,10 +23,10 @@ public class HeaderCheckTest extends BaseCheckTestCase
     public void testRegexpHeader()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(RegexpHeaderCheck.class.getName());
-        checkConfig.addProperty("headerFile", getPath("regexp.header"));
-        checkConfig.addProperty("ignoreLines", "4,5");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header"));
+        checkConfig.addAttribute("ignoreLines", "4,5");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {
@@ -39,10 +38,10 @@ public class HeaderCheckTest extends BaseCheckTestCase
     public void testRegexpHeaderIgnore()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(RegexpHeaderCheck.class.getName());
-        checkConfig.addProperty("headerFile", getPath("regexp.header"));
-        checkConfig.addProperty("ignoreLines", "3,4,5");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header"));
+        checkConfig.addAttribute("ignoreLines", "3,4,5");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeAnonInner.java");
         final String[] expected = {
@@ -53,8 +52,8 @@ public class HeaderCheckTest extends BaseCheckTestCase
     public void testNoHeader()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(HeaderCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HeaderCheck.class);
         // No header file specified
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputScopeAnonInner.java");
@@ -69,9 +68,9 @@ public class HeaderCheckTest extends BaseCheckTestCase
     public void testIllegalArgs()
             throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(HeaderCheck.class.getName());
-        checkConfig.addProperty("headerFile", getPath("nonexisting.file"));
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("nonexisting.file"));
         try {
             createChecker(checkConfig);
             fail();
@@ -80,5 +79,4 @@ public class HeaderCheckTest extends BaseCheckTestCase
             // expected exception
         }
     }
-
 }

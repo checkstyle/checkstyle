@@ -7,8 +7,8 @@ public class EqualsHashCodeCheckTest
 {
     public void testIt() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(EqualsHashCodeCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(EqualsHashCodeCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {
