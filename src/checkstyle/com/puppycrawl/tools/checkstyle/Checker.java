@@ -146,7 +146,7 @@ public class Checker extends AutomaticBean
 
     /** @see AutomaticBean */
     public void finishLocalSetup()
-            throws CheckstyleException
+        throws CheckstyleException
     {
         final Locale locale = new Locale(mLocaleLanguage, mLocaleCountry);
         LocalizedMessage.setLocale(locale);
@@ -169,7 +169,7 @@ public class Checker extends AutomaticBean
      * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean
      */
     protected void setupChild(Configuration aChildConf)
-            throws CheckstyleException
+        throws CheckstyleException
     {
         final String name = aChildConf.getName();
         try {

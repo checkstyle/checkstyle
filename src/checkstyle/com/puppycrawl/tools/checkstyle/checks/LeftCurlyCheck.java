@@ -119,48 +119,48 @@ public class LeftCurlyCheck
         final DetailAST brace;
 
         switch (aAST.getType()) {
-            case TokenTypes.CTOR_DEF :
-            case TokenTypes.METHOD_DEF :
-                startToken = aAST;
-                brace = aAST.findFirstToken(TokenTypes.SLIST);
-                break;
+        case TokenTypes.CTOR_DEF :
+        case TokenTypes.METHOD_DEF :
+            startToken = aAST;
+            brace = aAST.findFirstToken(TokenTypes.SLIST);
+            break;
 
-            case TokenTypes.INTERFACE_DEF :
-            case TokenTypes.CLASS_DEF :
-                // TODO: should check for modifiers
-                startToken = (DetailAST) aAST.getFirstChild().getNextSibling();
-                brace = (DetailAST) aAST.getLastChild().getFirstChild();
-                break;
+        case TokenTypes.INTERFACE_DEF :
+        case TokenTypes.CLASS_DEF :
+            // TODO: should check for modifiers
+            startToken = (DetailAST) aAST.getFirstChild().getNextSibling();
+            brace = (DetailAST) aAST.getLastChild().getFirstChild();
+            break;
 
-            case TokenTypes.LITERAL_WHILE:
-            case TokenTypes.LITERAL_CATCH:
-            case TokenTypes.LITERAL_SYNCHRONIZED:
-            case TokenTypes.LITERAL_FOR:
-            case TokenTypes.LITERAL_TRY:
-            case TokenTypes.LITERAL_FINALLY:
-            case TokenTypes.LITERAL_DO:
-            case TokenTypes.LITERAL_IF :
-                startToken = aAST;
-                brace = aAST.findFirstToken(TokenTypes.SLIST);
-                break;
+        case TokenTypes.LITERAL_WHILE:
+        case TokenTypes.LITERAL_CATCH:
+        case TokenTypes.LITERAL_SYNCHRONIZED:
+        case TokenTypes.LITERAL_FOR:
+        case TokenTypes.LITERAL_TRY:
+        case TokenTypes.LITERAL_FINALLY:
+        case TokenTypes.LITERAL_DO:
+        case TokenTypes.LITERAL_IF :
+            startToken = aAST;
+            brace = aAST.findFirstToken(TokenTypes.SLIST);
+            break;
 
-            case TokenTypes.LITERAL_ELSE :
-                startToken = aAST;
-                final DetailAST candidate = (DetailAST) aAST.getFirstChild();
-                brace =
-                    (candidate.getType() == TokenTypes.SLIST)
-                        ? candidate
-                        : null; // silently ignore
-                break;
+        case TokenTypes.LITERAL_ELSE :
+            startToken = aAST;
+            final DetailAST candidate = (DetailAST) aAST.getFirstChild();
+            brace =
+                (candidate.getType() == TokenTypes.SLIST)
+                ? candidate
+                : null; // silently ignore
+            break;
 
-            case TokenTypes.LITERAL_SWITCH :
-                startToken = aAST;
-                brace = aAST.findFirstToken(TokenTypes.LCURLY);
-                break;
+        case TokenTypes.LITERAL_SWITCH :
+            startToken = aAST;
+            brace = aAST.findFirstToken(TokenTypes.LCURLY);
+            break;
 
-            default :
-                startToken = null;
-                brace = null;
+        default :
+            startToken = null;
+            brace = null;
         }
 
         if ((brace != null) && (startToken != null)) {

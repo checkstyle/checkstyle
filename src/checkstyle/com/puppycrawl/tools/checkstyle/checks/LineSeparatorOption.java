@@ -34,7 +34,7 @@ public final class LineSeparatorOption extends AbstractOption
 
     /** Windows-style line separators **/
     public static final LineSeparatorOption CRLF =
-      new LineSeparatorOption("crlf", "\r\n");
+        new LineSeparatorOption("crlf", "\r\n");
 
     /** Mac-style line separators **/
     public static final LineSeparatorOption CR =

@@ -78,7 +78,7 @@ public final class PackageNamesLoader
                              String aLocalName,
                              String aQName,
                              Attributes aAtts)
-            throws SAXException
+        throws SAXException
     {
         if (aQName.equals("package")) {
             //push package name
@@ -88,7 +88,7 @@ public final class PackageNamesLoader
             }
             mPackageStack.push(name);
         }
-   }
+    }
 
     /**
      * Creates a full package name from the package names on the stack.

@@ -199,7 +199,7 @@ public final class TreeWalker
      * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean
      */
     public void setupChild(Configuration aChildConf)
-            throws CheckstyleException
+        throws CheckstyleException
     {
         // TODO: improve the error handing
         final String name = aChildConf.getName();
