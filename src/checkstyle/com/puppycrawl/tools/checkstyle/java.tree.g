@@ -313,7 +313,7 @@ stat
    |  #(ii:"if" expression is1:stat (is2:stat)? )
       {
          ver.verifyLeftCurly(is1.getText(), false, "if", ii.getLineNo());
-         ver.verifySurroundingWS(ii);
+         //ver.verifySurroundingWS(ii);
          ver.verifySurroundingWS(is1);
          if (is2 != null) {
             ver.verifyLeftCurly(is2.getText(), true, "else", ii.getLineNo());
