@@ -114,7 +114,7 @@ public class DetailAST
     public int getLineNo()
     {
         if (mLineNo == NOT_INITIALIZED) {
-            // an inner AST that has been initiaized
+            // an inner AST that has been initialized
             // with initialize(String text)
             DetailAST child = (DetailAST) getFirstChild();
             DetailAST sibling = (DetailAST) getNextSibling();
@@ -131,7 +131,7 @@ public class DetailAST
     public int getColumnNo()
     {
         if (mColumnNo == NOT_INITIALIZED) {
-            // an inner AST that has been initiaized
+            // an inner AST that has been initialized
             // with initialize(String text)
             DetailAST child = (DetailAST) getFirstChild();
             DetailAST sibling = (DetailAST) getNextSibling();
