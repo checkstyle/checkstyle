@@ -131,6 +131,7 @@
     <copy todir="target/checkstyle">
       <fileset dir="src/checkstyle" includes="**/*.properties"/>
       <fileset dir="src/checkstyle" includes="**/*.xml"/>
+      <fileset dir="src/checkstyle" includes="**/*.dtd"/>
     </copy>
 
 
