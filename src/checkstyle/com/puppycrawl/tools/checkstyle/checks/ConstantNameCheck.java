@@ -24,7 +24,33 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that constant names conform to a specified format.
+ * <p>
+ * Checks that constant names conform to a format specified
+ * by the format property.
+ * A <em>constant</em> is a <strong>static</strong> and <strong>final</strong>
+ * field or an interface field, except <strong>serialVersionUID</strong>.
+ * The format is a regular expression and defaults to
+ * <strong>^[A-Z](_?[A-Z0-9]+)*$</strong>.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck"/&gt;
+ * </pre>
+ * 
+ * <p>
+ * An example of how to configure the check for names that are only upper case
+ * letters and digits is:
+ * </p>
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck"&gt;
+ *    &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+ * &lt;/check&gt;
+ * </pre>
+ *   
  *
  * @author Rick Giles
  * @version 1.0
