@@ -79,8 +79,6 @@ public class Configuration
     private transient ClassLoader mLoader =
         Thread.currentThread().getContextClassLoader();
 
-    /** how to pad parenthesis **/
-    private PadOption mParenPadOption = PadOption.NOSPACE;
     /** how to wrap operators **/
     private WrapOpOption mWrapOpOption = WrapOpOption.NL;
 
@@ -140,10 +138,6 @@ public class Configuration
         setJavadocScope(
             Scope.getInstance(aProps.getProperty(Defn.JAVADOC_CHECKSCOPE_PROP,
                                                  Scope.PRIVATE.getName())));
-        setParenPadOption(getPadOptionProperty(aProps,
-                                               Defn.PAREN_PAD_PROP,
-                                               PadOption.NOSPACE,
-                                               aLog));
         setWrapOpOption(getWrapOpOptionProperty(aProps,
                                                 Defn.WRAP_OP_PROP,
                                                 WrapOpOption.NL,
@@ -251,8 +245,6 @@ public class Configuration
 
         Utils.addObjectString(retVal, Defn.JAVADOC_CHECKSCOPE_PROP,
                               mJavadocScope.getName());
-        Utils.addObjectString(retVal, Defn.PAREN_PAD_PROP,
-                              mParenPadOption.toString());
         Utils.addObjectString(retVal, Defn.WRAP_OP_PROP,
                               mWrapOpOption.toString());
 
@@ -552,18 +544,6 @@ public class Configuration
         return getBlockOptionProperty(Defn.FINALLY_BLOCK_PROP);
     }
 
-    /** @return the parenthesis padding option **/
-    PadOption getParenPadOption()
-    {
-        return mParenPadOption;
-    }
-
-    /** @param aTo set the parenthesis option **/
-    private void setParenPadOption(PadOption aTo)
-    {
-        mParenPadOption = aTo;
-    }
-
     /** @return the wrapping on operator option **/
     WrapOpOption getWrapOpOption()
     {
@@ -732,34 +712,6 @@ public class Configuration
                 setBlockOptionProperty(aName, opt);
             }
         }
-    }
-
-    /**
-     * @param aProps the properties set to use
-     * @param aLog where to log errors to
-     * @param aName the name of the property to parse
-     * @param aDefault the default value to use.
-     *
-     * @return the value of a PadOption property. If the property is not
-     *    defined or cannot be decoded, then a default value is returned.
-     */
-    private static PadOption getPadOptionProperty(
-        Properties aProps,
-        String aName,
-        PadOption aDefault,
-        PrintStream aLog)
-    {
-        PadOption retVal = aDefault;
-        final String strRep = aProps.getProperty(aName);
-        if (strRep != null) {
-            retVal = PadOption.decode(strRep);
-            if (retVal == null) {
-                aLog.println("Unable to parse " + aName
-                             + " property with value " + strRep
-                             + ", defaulting to " + aDefault + ".");
-            }
-        }
-        return retVal;
     }
 
     /**

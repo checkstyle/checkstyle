@@ -101,7 +101,6 @@ public class CheckerTest
         mProps.setProperty(Defn.IGNORE_CAST_WHITESPACE_PROP,
                            Boolean.FALSE.toString());
         mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, Boolean.FALSE.toString());
-        mProps.setProperty(Defn.PAREN_PAD_PROP, PadOption.NOSPACE.toString());
 
         mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE.toString());
         mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.IGNORE.toString());
@@ -118,10 +117,6 @@ public class CheckerTest
             filepath + ":30:21: '--' is preceeded with whitespace.",
             filepath + ":31:15: '++' is followed by whitespace.",
             filepath + ":31:22: '--' is followed by whitespace.",
-            filepath + ":58:12: '(' is followed by whitespace.",
-            filepath + ":58:36: ')' is preceeded with whitespace.",
-            filepath + ":74:13: '(' is followed by whitespace.",
-            filepath + ":74:18: ')' is preceeded with whitespace.",
             filepath + ":88:21: 'cast' is not followed by whitespace.",
             filepath + ":111:22: '!' is followed by whitespace.",
             filepath + ":112:23: '~' is followed by whitespace.",
@@ -139,7 +134,6 @@ public class CheckerTest
     {
         mProps.setProperty(Defn.IGNORE_CAST_WHITESPACE_PROP, "true");
         mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, "false");
-        mProps.setProperty(Defn.PAREN_PAD_PROP, PadOption.SPACE.toString());
         mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.IGNORE.toString());
         mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.IGNORE.toString());
         final Checker c = createChecker();
@@ -150,41 +144,17 @@ public class CheckerTest
             filepath + ":5:14: '.' is followed by whitespace.",
             filepath + ":13: Type Javadoc comment is missing an @author tag.",
             filepath + ":29:14: '-' is followed by whitespace.",
-            filepath + ":29:20: '(' is not followed by whitespace.",
             filepath + ":29:21: '+' is followed by whitespace.",
-            filepath + ":29:22: ')' is not preceeded with whitespace.",
             filepath + ":30:14: '++' is preceeded with whitespace.",
             filepath + ":30:21: '--' is preceeded with whitespace.",
             filepath + ":31:15: '++' is followed by whitespace.",
             filepath + ":31:22: '--' is followed by whitespace.",
-            filepath + ":37:22: '(' is not followed by whitespace.",
-            filepath + ":37:25: ')' is not preceeded with whitespace.",
-            filepath + ":41:15: '(' is not followed by whitespace.",
-            filepath + ":41:32: ')' is not preceeded with whitespace.",
-            filepath + ":76:20: '(' is not followed by whitespace.",
-            filepath + ":76:20: ')' is not preceeded with whitespace.",
-            filepath + ":87:21: '(' is not followed by whitespace.",
-            filepath + ":87:26: ')' is not preceeded with whitespace.",
-            filepath + ":88:14: '(' is not followed by whitespace.",
-            filepath + ":88:19: ')' is not preceeded with whitespace.",
-            filepath + ":89:14: '(' is not followed by whitespace.",
-            filepath + ":89:19: ')' is not preceeded with whitespace.",
-            filepath + ":90:14: '(' is not followed by whitespace.",
-            filepath + ":90:19: ')' is not preceeded with whitespace.",
-            filepath + ":97:22: '(' is not followed by whitespace.",
-            filepath + ":97:27: ')' is not preceeded with whitespace.",
-            filepath + ":98:14: '(' is not followed by whitespace.",
-            filepath + ":98:17: ')' is not preceeded with whitespace.",
             filepath + ":111:22: '!' is followed by whitespace.",
             filepath + ":112:23: '~' is followed by whitespace.",
             filepath + ":129:17: '.' is preceeded with whitespace.",
             filepath + ":129:24: '.' is followed by whitespace.",
             filepath + ":136:10: '.' is preceeded with whitespace.",
             filepath + ":136:12: '.' is followed by whitespace.",
-            filepath + ":150:28: '(' is not followed by whitespace.",
-            filepath + ":150:31: ')' is not preceeded with whitespace.",
-            filepath + ":153:16: '(' is not followed by whitespace.",
-            filepath + ":153:19: ')' is not preceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }
@@ -546,14 +516,6 @@ public class CheckerTest
         final String filepath = getPath("InputScopeAnonInner.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":37:34: '(' is followed by whitespace.",
-            filepath + ":39:42: '(' is followed by whitespace.",
-            filepath + ":39:57: ')' is preceeded with whitespace.",
-            filepath + ":43:14: ')' is preceeded with whitespace.",
-            filepath + ":51:34: '(' is followed by whitespace.",
-            filepath + ":53:42: '(' is followed by whitespace.",
-            filepath + ":53:57: ')' is preceeded with whitespace.",
-            filepath + ":57:14: ')' is preceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }
@@ -568,16 +530,8 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":26:9: Missing a Javadoc comment.",
-            filepath + ":37:34: '(' is followed by whitespace.",
             filepath + ":39:17: Missing a Javadoc comment.",
-            filepath + ":39:42: '(' is followed by whitespace.",
-            filepath + ":39:57: ')' is preceeded with whitespace.",
-            filepath + ":43:14: ')' is preceeded with whitespace.",
-            filepath + ":51:34: '(' is followed by whitespace.",
             filepath + ":53:17: Missing a Javadoc comment.",
-            filepath + ":53:42: '(' is followed by whitespace.",
-            filepath + ":53:57: ')' is preceeded with whitespace.",
-            filepath + ":57:14: ')' is preceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }
@@ -593,14 +547,6 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             packageHtmlPath + ":0: Missing package documentation file.",
-            filepath + ":37:34: '(' is followed by whitespace.",
-            filepath + ":39:42: '(' is followed by whitespace.",
-            filepath + ":39:57: ')' is preceeded with whitespace.",
-            filepath + ":43:14: ')' is preceeded with whitespace.",
-            filepath + ":51:34: '(' is followed by whitespace.",
-            filepath + ":53:42: '(' is followed by whitespace.",
-            filepath + ":53:57: ')' is preceeded with whitespace.",
-            filepath + ":57:14: ')' is preceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }

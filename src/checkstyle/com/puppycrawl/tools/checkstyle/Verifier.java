@@ -627,27 +627,6 @@ class Verifier
      */
     void verifyLParen(int aLineNo, int aColNo)
     {
-        if (mConfig.isIgnoreWhitespace()
-            || (PadOption.IGNORE == mConfig.getParenPadOption()))
-        {
-            return;
-        }
-
-        final String line = mLines[aLineNo - 1];
-        final int after = aColNo - 1;
-        if (after < line.length()) {
-            if ((PadOption.NOSPACE == mConfig.getParenPadOption())
-                && (Character.isWhitespace(line.charAt(after))))
-            {
-                mMessages.add(aLineNo, after, "ws.followed", "(");
-            }
-            else if ((PadOption.SPACE == mConfig.getParenPadOption())
-                     && !Character.isWhitespace(line.charAt(after))
-                     && (line.charAt(after) != ')'))
-            {
-                mMessages.add(aLineNo, after, "ws.notFollowed", "(");
-            }
-        }
     }
 
     /**
@@ -657,28 +636,6 @@ class Verifier
      */
     void verifyRParen(int aLineNo, int aColNo)
     {
-        if (mConfig.isIgnoreWhitespace()
-            || (PadOption.IGNORE == mConfig.getParenPadOption()))
-        {
-            return;
-        }
-
-        final String line = mLines[aLineNo - 1];
-        final int before = aColNo - 3;
-        if (before >= 0) {
-            if ((PadOption.NOSPACE == mConfig.getParenPadOption())
-                && Character.isWhitespace(line.charAt(before))
-                && !Utils.whitespaceBefore(before, line))
-            {
-                mMessages.add(aLineNo, before, "ws.preceeded", ")");
-            }
-            else if ((PadOption.SPACE == mConfig.getParenPadOption())
-                     && !Character.isWhitespace(line.charAt(before))
-                     && (line.charAt(before) != '('))
-            {
-                mMessages.add(aLineNo, before, "ws.notPreceeded", ")");
-            }
-        }
     }
 
 
