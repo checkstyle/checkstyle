@@ -197,13 +197,18 @@ public final class ASTManager
     }
 
     /**
-     * Clears all managed elements.
+     * Removes a check and its check nodes. Clears all managed elements if
+     * last check removed.
+     * @param check
      */
-    public void clear()
+    public void removeCheck(AbstractUsageCheck aCheck)
     {
-        mCheckNodes.clear();
-        mCompleteTree = null;
-        mMap.clear();
-        mTrees.clear();
+        mCheckNodes.remove(aCheck);
+        if (mCheckNodes.isEmpty()) {
+            mCompleteTree = null;
+            mMap.clear();
+            mTrees.clear();
+        }
+        
     }
 }

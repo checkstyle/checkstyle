@@ -117,7 +117,7 @@ public abstract class AbstractUsageCheck
         catch (SymbolTableException ste) {
             logError(ste);
         }
-        ASTManager.getInstance().clear();
+        ASTManager.getInstance().removeCheck(this);
     }
 
     /**
