@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents the options for whitespace around parenthesis.
  *
@@ -27,6 +30,9 @@ package com.puppycrawl.tools.checkstyle.checks;
 public final class PadOption
     extends AbstractOption
 {
+    /** maps from a string representation to an option */
+    private static final Map STR_TO_OPT = new HashMap();
+    
     /** represents no spacing **/
     public static final PadOption NOSPACE = new PadOption("nospace");
     /** represents ignoring the spacing **/
@@ -42,4 +48,10 @@ public final class PadOption
     {
         super(aStrRep);
     }
+    
+    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
+    protected Map getStrToOpt()
+    {
+        return STR_TO_OPT;
+    }  
 }

@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents the options for blocks.
  *
@@ -26,6 +29,14 @@ package com.puppycrawl.tools.checkstyle.checks;
 public final class BlockOption
     extends AbstractOption
 {
+    /** maps from a string representation to an option */
+    private static final Map STR_TO_OPT = new HashMap();
+    
+    /** require that there is some text in the block **/
+    public static final BlockOption TEXT = new BlockOption("text");
+    /** require that there is a statement in the block **/
+    public static final BlockOption STMT = new BlockOption("statement");
+    
     /**
      * Creates a new <code>BlockOption</code> instance.
      *
@@ -35,9 +46,10 @@ public final class BlockOption
     {
         super(aStrRep);
     }
-
-    /** require that there is some text in the block **/
-    public static final BlockOption TEXT = new BlockOption("text");
-    /** require that there is a statement in the block **/
-    public static final BlockOption STMT = new BlockOption("statement");
+    
+    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
+    protected Map getStrToOpt()
+    {
+        return STR_TO_OPT;
+    }
 }

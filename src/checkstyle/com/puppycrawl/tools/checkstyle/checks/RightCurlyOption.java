@@ -18,16 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents the options for placing the right curly brace '}'.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: RightCurlyOption.java,v 1.4 2002-11-03 17:47:37 rickgiles Exp $
+ * @version $Id: RightCurlyOption.java,v 1.5 2002-11-14 15:59:48 rickgiles Exp $
  */
 public final class RightCurlyOption
     extends AbstractOption
 {
-    /** represents placing the brace alone on a line **/
+    /** maps from a string representation to an option */
+    private static final Map STR_TO_OPT = new HashMap();
+    
+   /** represents placing the brace alone on a line **/
     public static final RightCurlyOption ALONE = new RightCurlyOption("alone");
     /** represents placing the brace on the same line **/
     public static final RightCurlyOption SAME = new RightCurlyOption("same");
@@ -39,5 +45,11 @@ public final class RightCurlyOption
     private RightCurlyOption(String aStrRep)
     {
        super(aStrRep);
+    }
+    
+    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
+    protected Map getStrToOpt()
+    {
+        return STR_TO_OPT;
     }
 }

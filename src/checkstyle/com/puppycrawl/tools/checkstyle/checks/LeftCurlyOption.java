@@ -18,16 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents the options for placing the left curly brace '{'.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: LeftCurlyOption.java,v 1.3 2002-11-03 17:47:37 rickgiles Exp $
+ * @version $Id: LeftCurlyOption.java,v 1.4 2002-11-14 15:59:49 rickgiles Exp $
  */
 public final class LeftCurlyOption
     extends AbstractOption
 {
-
+    /** maps from a string representation to an option */
+    private static final Map STR_TO_OPT = new HashMap();
+    
     /** represents placing the brace at the end of line **/
     public static final LeftCurlyOption EOL = new LeftCurlyOption("eol");
     /**
@@ -45,5 +50,11 @@ public final class LeftCurlyOption
     private LeftCurlyOption(String aStrRep)
     {
         super(aStrRep);
+    }
+    
+    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
+    protected Map getStrToOpt()
+    {
+        return STR_TO_OPT;
     }
 }

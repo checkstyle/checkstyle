@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.io.Serializable;
 import java.io.ObjectStreamException;
 import java.util.Map;
-import java.util.HashMap;
 
 /**
  * Abstract class that represents options.
@@ -33,8 +32,6 @@ import java.util.HashMap;
 public abstract class AbstractOption
     implements Serializable
 {
-    /** maps from a string representation to an option **/
-    private static final Map STR_TO_OPT = new HashMap();
 
     /** the string representation of the option **/
     private final String mStrRep;
@@ -46,8 +43,15 @@ public abstract class AbstractOption
     protected AbstractOption(String aStrRep)
     {
         mStrRep = aStrRep.trim().toLowerCase();
-        STR_TO_OPT.put(mStrRep, this);
+        Map strToOpt = getStrToOpt();
+        strToOpt.put(mStrRep, this);
     }
+    
+    /**
+     * Returns the map from string representations to options.
+     * @return <code>Map</code> from strings to options.
+     */
+    protected abstract Map getStrToOpt();
 
     /**
      * Returns the option specified by a string representation. If no
@@ -56,9 +60,10 @@ public abstract class AbstractOption
      * @return the <code>PadOption</code> value represented by aStrRep, or
      *         null if none exists.
      */
-    public static AbstractOption decode(String aStrRep)
+    public AbstractOption decode(String aStrRep)
     {
-        return (AbstractOption) STR_TO_OPT.get(aStrRep.trim().toLowerCase());
+        Map strToOpt = getStrToOpt();
+        return (AbstractOption) strToOpt.get(aStrRep.trim().toLowerCase());
     }
 
     /** @see java.lang.Object **/
