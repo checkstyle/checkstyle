@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <code>com.puppycrawl.tools.checkstyle</code> is:
  * </p>
  * <pre>
- * &lt;config name="PackageNameCheck"/&gt;
+ * &lt;config name="PackageNameCheck"&gt;
  *    &lt;property name="format" value="^com\.puppycrawl\.tools\.checkstyle(\\.[a-zA-Z_][a-zA-Z_0-9]*)*$"/&gt;
  * &lt;/config&gt;
  * </pre>
