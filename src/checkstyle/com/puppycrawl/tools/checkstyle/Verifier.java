@@ -1300,10 +1300,27 @@ class Verifier
                 }
             }
 
-            // Handle extra JavadocTag
+            // Handle extra JavadocTag.
             if (!found) {
-                log(tag.getLineNo(),
-                    "Unused @throws tag for '" + tag.getArg1() + "'.");
+                // TODO: Need write unit tests.
+                boolean reqd = true;
+                if (mConfig.isEnableCheckUnusedThrows()) {
+                    try {
+                        reqd = !Utils.isRuntimeException(
+                            tag.getArg1(),
+                            this.getClass().getClassLoader());
+                    }
+                    catch (ClassNotFoundException e) {
+                        log(tag.getLineNo(),
+                            "Unable to get class information for @throws tag '"
+                            + tag.getArg1() + "'.");
+                    }
+                }
+
+                if (reqd) {
+                    log(tag.getLineNo(),
+                        "Unused @throws tag for '" + tag.getArg1() + "'.");
+                }
             }
         }
 
