@@ -63,6 +63,10 @@ public class ScopeUtils
                     retVal = modScope;
                 }
             }
+            else if (type == TokenTypes.LITERAL_NEW) {
+                retVal = Scope.ANONINNER;
+                break; //because Scope.ANONINNER is not in any other Scope
+            }
         }
 
         return retVal;
