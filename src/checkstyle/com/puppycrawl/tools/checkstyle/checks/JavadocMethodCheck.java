@@ -344,7 +344,8 @@ public class JavadocMethodCheck
                 }
             }
             else if (MATCH_JAVADOC_NOARG_MULTILINE_START.match(aLines[i])) {
-                final String p1 = MATCH_JAVADOC_NOARG_MULTILINE_START.getParen(1);
+                final String p1 =
+                    MATCH_JAVADOC_NOARG_MULTILINE_START.getParen(1);
 
                 // Look for the rest of the comment if all we saw was
                 // the tag and the name. Stop when we see '*/' (end of
