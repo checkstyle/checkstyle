@@ -38,6 +38,9 @@
           <a href="#InnerAssignment">InnerAssignment</a>
         </li>
         <li>
+          <a href="#NewlineAtEndOfFile">NewlineAtEndOfFile</a>
+        </li>
+        <li>
           <a href="#SimplifyBooleanExpression">SimplifyBooleanExpression</a>
         </li>
         <li>
@@ -295,6 +298,53 @@
       <h4>Parent Module</h4>
       <p class="body">
       <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+      <!-- --> <a name="NewlineAtEndOfFile"></a> <h2>NewlineAtEndOfFile</h2> <h4>Description</h4>
+      <p class="body">
+      Checks whether files end with a new line.
+      </p>
+      <p class="body">
+      Rationale: Any source files and text files in general should end with a newline
+      character, especially when using SCM systems such as CVS. CVS will even
+      print a warning when it encounters a file that doesn't end with a newline.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>lineSeparator</td>
+          <td>type of line separator</td>
+          <td>One of &quot;system&quot; (system default), &quot;crlf&quot; (Windows-style), &quot;cr&quot; (Mac-style) and &quot;lf&quot; (Unix-style)</td>
+          <td>system default</td>
+        </tr>
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NewlineAtEndOfFile&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to always use Unix-style line separators:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
+    &lt;property name=&quot;lineSeparator&quot; value=&quot;lf&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#checker">Checker</a>
       </p>
       <!-- --> <a name="SimplifyBooleanExpression"></a> <h2>SimplifyBooleanExpression</h2>
       <h4>Description</h4>
