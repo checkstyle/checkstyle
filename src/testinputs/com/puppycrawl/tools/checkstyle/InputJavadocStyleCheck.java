@@ -198,4 +198,7 @@ public class InputJavadocStyleCheck
     private void method15()
     { // should report unended first sentance (check line number of the error)
     }
+
+    /** Description of field: {@value}. */
+    public static final int dummy = 4911;
 }
