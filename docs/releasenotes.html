@@ -43,8 +43,9 @@
         New features:
         <ul>
           <li class="body">Major refactoring on the way Checkstyle is configured. It is now completely based around properties. Big thanks to Vincent Massol for the suggestion on how to refactor the ANT task (bug 605141).</li>
+          <li class="body">Check the package name against a pattern (request 597787). Patch provided by Simon Langford.
           <li class="body">Detect the number of parameters in a declaration exceeding a specified amount (request 582144).</li>
-          <li class="body">Inspired by patch 580410 from Shinya Ohnuma, now the error message are localised.</li>
+          <li class="body">Inspired by patch 580410 from Shinya Ohnuma, now the error messages are localised.</li>
           <li class="body">Support checking to determine if an unused <span class="code">@throws</span> exception is a subclass of <span class="code">java.lang.Error</span> (request 583719).</li>
           <li class="body">Incorporate patch 555878 from Rick Giles to allow pattern for local final variables to be specified.</li>
           <li class="body">Incorporate patch 566855 from Rob Worth to optionally check that parenthesis are padded with spaces.</li>
