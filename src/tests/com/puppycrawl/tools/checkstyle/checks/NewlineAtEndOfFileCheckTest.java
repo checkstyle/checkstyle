@@ -1,7 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
+import org.apache.commons.beanutils.ConversionException;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class NewlineAtEndOfFileCheckTest
@@ -42,5 +45,34 @@ public class NewlineAtEndOfFileCheckTest
             getPath("InputNoNewlineAtEndOfFile.java"),
             expected);
     }
-
+    
+    public void testSetLineSeparatorFailure()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addAttribute("lineSeparator", "ct");
+        try {
+            createChecker(checkConfig);
+        }
+        catch (CheckstyleException ex) {
+            return;
+        }
+        fail("should throw conversion exception");
+    }
+    
+    public void testEmptyFileFile()
+         throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
+        final String[] expected = {
+            "0: File does not end with a newline."
+        };
+        verify(
+            createChecker(checkConfig),
+            getPath("InputEmptyFile.txt"),
+            expected);
+    }
 }

@@ -65,12 +65,6 @@ public class NewlineAtEndOfFileCheck
     private LineSeparatorOption mLineSeparator =
         LineSeparatorOption.SYSTEM;
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public int[] getDefaultTokens()
-    {
-        return new int[0];
-    }
-
     /**
      * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck#process
      */
@@ -90,7 +84,9 @@ public class NewlineAtEndOfFileCheck
                 }
             }
             catch (IOException e) {
+                ///CLOVER:OFF
                 logIOException(e);
+                ///CLOVER:ON
             }
             finally {
                 if (randomAccessFile != null) {
@@ -98,7 +94,9 @@ public class NewlineAtEndOfFileCheck
                         randomAccessFile.close();
                     }
                     catch (IOException e) {
+                        ///CLOVER:OFF
                         logIOException(e);
+                        ///CLOVER:ON
                     }
                 }
             }
@@ -151,6 +149,7 @@ public class NewlineAtEndOfFileCheck
      * Helper method to log an IO exception.
      * @param aEx the exception that occured
      */
+    ///CLOVER:OFF
     private void logIOException(IOException aEx)
     {
         String[] args = null;
@@ -168,5 +167,5 @@ public class NewlineAtEndOfFileCheck
                 this.getClass().getName());
         getMessageCollector().add(message);
     }
-
+    ///CLOVER:ON
 }
