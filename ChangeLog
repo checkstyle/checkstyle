@@ -1,3 +1,14 @@
+2001-08-06  Oliver Burn  <oliver-work@puppycrawl.com>
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/Main.java: Now destroys
+	the checker.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java, src/checkstyle/com/puppycrawl/tools/checkstyle/Configuration.java, src/checkstyle/com/puppycrawl/tools/checkstyle/Configuration.java, src/checkstyle/com/puppycrawl/tools/checkstyle/Defn.java:
+	Added support for caching.
+
+	* src/checkstyle/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java:
+	First implementation
+
 2001-08-05  Oliver Burn  <oliver-work@puppycrawl.com>
 
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/Configuration.java:

@@ -201,6 +201,12 @@ public class CheckStyleTask
         mConfig.setIgnoreBraces(aIgnore);
     }
 
+    /** @param aCacheFile the file to cache which files have been checked **/
+    public void setCacheFile(File aCacheFile)
+    {
+        mConfig.setCacheFile(aCacheFile.getAbsolutePath());
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // The doers
     ////////////////////////////////////////////////////////////////////////////
@@ -243,6 +249,8 @@ public class CheckStyleTask
                                ds.getIncludedFiles(),
                                c);
         }
+
+        c.destroy();
 
         if (numErrs > 0) {
             throw new BuildException("Got " + numErrs + " errors.", location);

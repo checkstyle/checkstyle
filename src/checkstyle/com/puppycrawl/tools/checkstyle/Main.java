@@ -61,6 +61,7 @@ public final class Main
             numErrors += c.process(aArgs[i]);
         }
 
+        c.destroy();
         System.exit(numErrors);
     }
 
