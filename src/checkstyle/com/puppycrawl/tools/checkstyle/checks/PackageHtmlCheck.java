@@ -24,6 +24,7 @@ import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
 /**
  * Checks that all packages have a package documentation.
