@@ -116,6 +116,9 @@ public final class ScopeUtils
             if (type == TokenTypes.CLASS_DEF) {
                 break; // in a class
             }
+            else if (type == TokenTypes.LITERAL_NEW) {
+                break; // inner implementation
+            }
             else if (type == TokenTypes.INTERFACE_DEF) {
                 retVal = true;
                 break;
