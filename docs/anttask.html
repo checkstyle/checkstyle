@@ -297,6 +297,12 @@ This task is included in the checkstyle distribution.</p>
     <td valign="top">Specifies a base directory for reporting file names relative to. Defaults to <span class="default">&quot;&quot;</span>.</td>
     <td align="center" valign="top">No</td>
   </tr>
+
+  <tr>
+    <td valign="top">localeLanguage</td>
+    <td valign="top">Specifies language to use in localising the output messages. Defaults to the default system locale language.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
 </table>
 
 <p>Older versions of the checkstyle task supported the boolean parameters <span class="default">relaxJavadoc</span> and <span class="default">ignoreJavadoc</span>. These parameters have been removed because they were conflicting and the semantics of <span class="default">relaxJavadoc</span> was not clearly specified. The two parameters have been replaced by the <span class="default">javadocScope</span> parameter. Instead of <span class="default">ignoreJavadoc="true"</span> you can now use <span class="default">javadocScope="nothing"</span>. The behaviour of <span class="default">relaxJavadoc="true"</span> is roughly the same as <span class="default">javadocScope="protected"</span>.</p>

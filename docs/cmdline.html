@@ -236,6 +236,11 @@ This command line tool is included in the checkstyle distribution.</p>
     <td valign="top">checkstyle.basedir</td>
     <td valign="top">Specifies a base directory for reporting file names relative to. Defaults to <span class="default">&quot;&quot;</span>.</td>
   </tr>
+
+  <tr>
+    <td valign="top">checkstyle.locale.language</td>
+    <td valign="top">Specifies language to use in localising the output messages. Defaults to the default system locale language.</td>
+  </tr>
 </table>
 
 <p>
@@ -259,9 +264,10 @@ Older versions of the checkstyle task supported the boolean parameters checkstyl
         com.puppycrawl.tools.checkstyle.Main Check.java
 </pre>
 
-<p><b>Run checkstyle on a file and output to a file in XML format</b></p>
+<p><b>Run checkstyle on a file and output to a file in XML format with German localisation</b></p>
 <pre>
   java  -Dcheckstyle.allow.tabs=yes  \
+        -Dcheckstyle.locale.language=de \
         com.puppycrawl.tools.checkstyle.Main \
         -f xml -o build/checkstyle_errors.xml Check.java
 </pre>
