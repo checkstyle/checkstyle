@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<project name="style" default="checkstyle.style" basedir=".">
+
+  <property name="checkstyle-all.jar" value="C:/javautil/checkstyle-3.4/checkstyle-all-3.4.jar" />
+  <property name="java2html.jar" value="C:/javautil/java2html/java2html.jar" />
+  <property name="src.dir" value="T:\2004\eclipse\workspace\checkstyle\src\checkstyle\com\puppycrawl\tools\checkstyle\checks" />
+  <property name="check.config" value="T:/2004/eclipse/workspace/checkstyle/docs/sun_checks.xml" />
+  <property name="dest.dir" value="target/cs-errors"/>
+  <property name="html.dir" value="src_html"/>
+
+  <!-- -->
+  <!-- Cleanup targets -->
+  <!-- -->
+  <target name="clean" description="Cleans any directories and generated files">
+      <delete dir="target" />
+  </target>
+
+  <!-- -->
+  <!-- Create syntax-highlighted HTML files from Java source files. -->
+  <!-- Requires java2html, http://www.java2html.de/                 -->
+  <!-- -->
+  <target name="java.to.html"
+          description="Creates HTML files with syntax highlighting from Java source files">
+
+    <taskdef name="java2html"
+             classname="de.java2html.anttasks.Java2HtmlTask"
+             classpath="${java2html.jar}"   
+    />
+    <java2html srcdir="${src.dir}"
+               destdir="target/${html.dir}"
+               includes="**/*.java"
+               outputFormat="html"
+               tabs="4"
+               style="eclipse"
+               showLineNumbers="true"
+               addLineAnchors="true"
+               showFileName="true"
+               includeDocumentHeader="true"
+               includeDocumentFooter="true"
+    />
+  </target>
+    
+  <taskdef resource="checkstyletask.properties"
+           classpath="${checkstyle-all.jar}"/>
+
+  <!-- -->
+  <!-- Run checkstyle and generate error report with links to source code -->
+  <!-- -->
+  <target name="checkstyle.style"
+          depends="java.to.html"
+          description="Runs checkstyle and generates an error report with links to source code">
+    
+    <mkdir dir="target"/>
+    <checkstyle failonviolation="false" config="${check.config}">
+      <fileset dir="${src.dir}"
+               includes="**/*.java,**/*.properties"
+               excludes="**/Generated*.java,**/gui/*,,**/transmogrify/*"/>
+      <formatter type="xml" toFile="target/cs_errors.xml"/>
+    </checkstyle>
+    <mkdir dir="target/cs-errors"/>
+    <style basedir="target"
+           destdir="target/cs-errors"
+           includes="cs_errors.xml"
+           style="checkstyle-noframes.xsl">
+       <param name="src.dir" expression="${src.dir}"/>
+       <param name="html.dir" expression="../${html.dir}"/>
+     </style>
+  </target>
+  
+</project>
