@@ -56,14 +56,15 @@
   <!-- -->
   <target name="clean">
     <delete>
-      <fileset dir="src/checkstyle" includes="**/Generated*.java" />
-      <fileset dir="src/checkstyle" includes="**/Generated*.txt" />
+      <fileset dir="src/checkstyle">
+        <include name="**/Generated*.java"/>
+        <include name="**/Generated*.txt"/>
+      </fileset>
     </delete>
     <delete dir="target" />
     <delete includeemptydirs="true">
       <fileset dir="docs/api" includes="**" excludes=".cvsignore,CVS/**"/>
     </delete>
-    <delete dir="${testreport.dir}" />
   </target>
 
   <!-- -->
@@ -379,6 +380,8 @@
         <include name="docs/*"/>
         <include name="src/**"/>
         <include name="lib/**"/>
+        <exclude name="src/checkstyle/**/Generated*.java"/>
+        <exclude name="src/checkstyle/**/Generated*.txt"/>
       </fileset>
     </copy>
     <!-- Produce the final distributions -->
