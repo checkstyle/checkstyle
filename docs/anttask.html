@@ -46,7 +46,7 @@ This task is included in the checkstyle distribution.</p>
   </tr>
   <tr>
     <td valign="top">properties</td> 
-    <td valign="top">Specifies a properties file that contains the configuration options. This is useful for sharing configurations across ant build files. The property names to use are the same as on the  <a href="cmdline.html">command line</a>.</td>
+    <td valign="top">Specifies a properties file that contains the configuration options. This is useful for sharing checkstyle configurations across ant build files. The property names to use in the file are the same as on the <a href="cmdline.html">command line</a>. Other parameters to the ANT task override the settings in the properties file.</td>
     <td align="center" valign="top">No</td>
   </tr>
   <tr>
@@ -97,6 +97,11 @@ This task is included in the checkstyle distribution.</p>
   <tr>
     <td valign="top">maxLineLen</td> 
     <td valign="top">Specifies the maximum line length. Default value is defined <a href="engine.html#length">here</a>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">tabWidth</td> 
+    <td valign="top">The distance between tab stops, used in line number and column calculations. Default value is <span class="default">&quot;8&quot;</span>.</td>
     <td align="center" valign="top">No</td>
   </tr>
   <tr>
