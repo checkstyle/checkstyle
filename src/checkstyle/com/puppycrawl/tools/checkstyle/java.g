@@ -181,7 +181,7 @@ identifier
 	:	i1:IDENT
         {
             ver.reportReference(i1.getText());
-            sLastIdentifier = new LineText(i1.getLine(), i1.getText());
+            sLastIdentifier = new LineText(i1.getLine(), i1.getColumn(), i1.getText());
         }
         ( DOT^ i2:IDENT {ver.verifyDot(#DOT); sLastIdentifier.appendText("." + i2.getText());} )*
 	;
@@ -316,7 +316,7 @@ field!
                 ver.verifyMethod(msig);
                 ver.reportStartMethodBlock();
             }
-            s:constructorBody[msig.getLineNo()] // constructor
+            s:constructorBody[msig.getFirstLineNo()] // constructor
 			{#field = #(#[CTOR_DEF,"CTOR_DEF"], mods, h, s);}
             {ver.reportEndMethodBlock();}
 
@@ -348,7 +348,7 @@ field!
 				(
                     s2:compoundStatement[stmtBraces]
                     {
-                        ver.verifyLCurlyMethod(msig.getLineNo(), stmtBraces[0]);
+                        ver.verifyLCurlyMethod(msig.getFirstLineNo(), stmtBraces[0]);
                         ver.verifyMethodLength(
                             #s2.getLineNo(),
                             stmtBraces[1].getLineNo()
@@ -509,7 +509,7 @@ parameterDeclaration![MethodSignature msig]
 		{#parameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
 									pm, #([TYPE,"TYPE"],pd), id);}
         {
-            msig.addParam(new LineText(#id.getLineNo(), #id.getText()));
+            msig.addParam(new LineText(#id.getLineNo(), #id.getColumnNo(), #id.getText()));
         }
 	;
 

@@ -92,7 +92,7 @@ class MethodSignature
     }
 
     /** @return the first line of the method signature **/
-    int getLineNo()
+    int getFirstLineNo()
     {
         return (mModSet.size() > 0)
             ? mModSet.getFirstLineNo()

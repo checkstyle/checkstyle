@@ -234,7 +234,9 @@ class Verifier
         if (!mConfig.isIgnorePublicInInterface() && inInterfaceBlock()
             && aSig.getModSet().containsPublic())
         {
-            log(aSig.getLineNo(), "redundant 'public' modifier.");
+            log(aSig.getModSet().getFirstLineNo(),
+                aSig.getModSet().getFirstColNo(),
+                "redundant 'public' modifier.");
         }
 
         // now check the javadoc
@@ -246,12 +248,12 @@ class Verifier
             return; // no need to really check anything
         }
 
-        final String[] jd = getJavadocBefore(aSig.getLineNo() - 1);
+        final String[] jd = getJavadocBefore(aSig.getFirstLineNo() - 1);
         if (jd == null) {
-            log(aSig.getLineNo(), "method is missing a Javadoc comment.");
+            log(aSig.getFirstLineNo(), "method is missing a Javadoc comment.");
         }
         else {
-            final List tags = getMethodTags(jd, aSig.getLineNo() - 1);
+            final List tags = getMethodTags(jd, aSig.getFirstLineNo() - 1);
             // Check for only one @see tag
             if ((tags.size() != 1) ||
                 !((JavadocTag) tags.get(0)).isSeeTag())
@@ -259,7 +261,7 @@ class Verifier
                 checkParamTags(tags, aSig.getParams());
                 checkThrowsTags(tags, aSig.getThrows());
                 if (aSig.isFunction()) {
-                    checkReturnTag(tags, aSig.getLineNo());
+                    checkReturnTag(tags, aSig.getFirstLineNo());
                 }
 
                 // Dump out all unused tags
@@ -343,7 +345,7 @@ class Verifier
         if (inCheckScope(variableScope) &&
             getJavadocBefore(aVar.getStartLineNo() - 1) == null)
         {
-            log(aVar.getLineNo(),
+            log(aVar.getLineNo(), aVar.getColumnNo() - 1,
                 "variable '" + aVar.getText() + "' missing Javadoc.");
         }
 
@@ -382,7 +384,7 @@ class Verifier
                                       mConfig.getStaticPat());
                     }
                     else {
-                        log(aVar.getLineNo(),
+                        log(aVar.getLineNo(), aVar.getColumnNo() - 1,
                             "variable '" + aVar.getText() +
                             "' must be private and have accessor methods.");
                     }
@@ -404,7 +406,7 @@ class Verifier
                     // silently allow
                 }
                 else {
-                    log(aVar.getLineNo(),
+                    log(aVar.getLineNo(), aVar.getColumnNo() - 1,
                         "variable '" + aVar.getText() +
                         "' must be private and have accessor methods.");
                 }
@@ -1170,7 +1172,7 @@ class Verifier
         final ListIterator throwIt = aThrows.listIterator();
         while (throwIt.hasNext()) {
             final LineText t = (LineText) throwIt.next();
-            log(t.getLineNo(),
+            log(t.getLineNo(), t.getColumnNo() - 1,
                 "Expected @throws tag for '" + t.getText() + "'.");
         }
     }
@@ -1219,7 +1221,7 @@ class Verifier
     {
         final String error = aModSet.checkOrderSuggestedByJLS();
         if (error != null) {
-            log(aModSet.getFirstLineNo(), error);
+            log(aModSet.getFirstLineNo(), aModSet.getFirstColNo(), error);
         }
     }
 
