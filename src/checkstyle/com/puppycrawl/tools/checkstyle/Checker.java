@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -30,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
@@ -122,6 +124,9 @@ public class Checker extends AutomaticBean
     /** the context of all child components */
     private Context mChildContext;
 
+    /** The filter chain */
+    private List mFilters = new ArrayList();
+
     /**
      * The severity level of any violations found by submodules.
      * The value of this property is passed to submodules via
@@ -166,7 +171,8 @@ public class Checker extends AutomaticBean
     }
 
     /**
-     * Instantiates, configures and registers a FileSetCheck
+     * Instantiates, configures and registers a child AbstractFilter
+     * or FileSetCheck
      * that is specified in the provided configuration.
      * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean
      */
@@ -175,15 +181,23 @@ public class Checker extends AutomaticBean
     {
         final String name = aChildConf.getName();
         try {
-            final Object module = mModuleFactory.createModule(name);
-            if (!(module instanceof FileSetCheck)) {
-                throw new CheckstyleException(name
-                    + " is not allowed as a module in Checker");
+            final Object child = mModuleFactory.createModule(name);
+            if (child instanceof FileSetCheck) {
+                final FileSetCheck fsc = (FileSetCheck) child;
+                fsc.contextualize(mChildContext);
+                fsc.configure(aChildConf);
+                addFileSetCheck(fsc);
             }
-            final FileSetCheck fsc = (FileSetCheck) module;
-            fsc.contextualize(mChildContext);
-            fsc.configure(aChildConf);
-            addFileSetCheck(fsc);
+            else if (child instanceof Filter) {
+                final Filter filter = (Filter) child;
+                filter.contextualize(mChildContext);
+                filter.configure(aChildConf);
+                addFilter(filter);
+            }
+            else {
+                throw new CheckstyleException(name
+                    + " is not allowed as a child in Checker");
+            }
         }
         catch (Exception ex) {
             // TODO i18n
@@ -202,6 +216,33 @@ public class Checker extends AutomaticBean
     {
         aFileSetCheck.setMessageDispatcher(this);
         mFileSetChecks.add(aFileSetCheck);
+    }
+
+    /**
+     * Adds a filter to the end of the audit event filter chain.
+     * @param aFilter the additional filter
+     */
+    public void addFilter(Filter aFilter)
+    {
+        mFilters.add(aFilter);
+    }
+
+    /**
+     * Determines whether to accept an audit event according to
+     * the installed filter chain.
+     * @param aEvent the event to filter.
+     * @return true if the event is accepted by the filter chain.
+     */
+    public boolean accept(AuditEvent aEvent)
+    {
+        final Iterator it = mFilters.iterator();
+        while (it.hasNext()) {
+            final Filter filter = (Filter) it.next();
+            if (filter.decide(aEvent) == Filter.DENY) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /** Cleans up the object **/
@@ -281,10 +322,12 @@ public class Checker extends AutomaticBean
     protected void fireAuditFinished()
     {
         final AuditEvent evt = new AuditEvent(this);
-        final Iterator it = mListeners.iterator();
-        while (it.hasNext()) {
-            final AuditListener listener = (AuditListener) it.next();
-            listener.auditFinished(evt);
+        if (accept(evt)) {
+            final Iterator it = mListeners.iterator();
+            while (it.hasNext()) {
+                final AuditListener listener = (AuditListener) it.next();
+                listener.auditFinished(evt);
+            }
         }
     }
 
@@ -296,10 +339,12 @@ public class Checker extends AutomaticBean
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        final Iterator it = mListeners.iterator();
-        while (it.hasNext()) {
-            final AuditListener listener = (AuditListener) it.next();
-            listener.fileStarted(evt);
+        if (accept(evt)) {
+            final Iterator it = mListeners.iterator();
+            while (it.hasNext()) {
+                final AuditListener listener = (AuditListener) it.next();
+                listener.fileStarted(evt);
+            }
         }
     }
 
@@ -311,10 +356,12 @@ public class Checker extends AutomaticBean
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        final Iterator it = mListeners.iterator();
-        while (it.hasNext()) {
-            final AuditListener listener = (AuditListener) it.next();
-            listener.fileFinished(evt);
+        if (accept(evt)) {
+            final Iterator it = mListeners.iterator();
+            while (it.hasNext()) {
+                final AuditListener listener = (AuditListener) it.next();
+                listener.fileFinished(evt);
+            }
         }
     }
 
@@ -328,10 +375,12 @@ public class Checker extends AutomaticBean
         final String stripped = getStrippedFileName(aFileName);
         for (int i = 0; i < aErrors.length; i++) {
             final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);
-            final Iterator it = mListeners.iterator();
-            while (it.hasNext()) {
-                final AuditListener listener = (AuditListener) it.next();
-                listener.addError(evt);
+            if (accept(evt)) {
+                final Iterator it = mListeners.iterator();
+                while (it.hasNext()) {
+                    final AuditListener listener = (AuditListener) it.next();
+                    listener.addError(evt);
+                }
             }
         }
     }
