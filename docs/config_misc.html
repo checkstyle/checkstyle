@@ -423,7 +423,7 @@ like <span class="code">1</span>.
 
       <!-- --> <a name="FinalParameters"></a> <h2>FinalParameters</h2> <h4>Description</h4>
       <p class="body">
-      Check that method/constructor parameters are final. Interface methods are not checked -
+      Check that method/constructor/catch block parameters are final. Interface methods are not checked -
       the final keyword does not make sense for interface method parameters as there is no code
       that could modify the parameter.
       </p>
@@ -449,7 +449,9 @@ like <span class="code">1</span>.
           <td>subset of tokens <a
           href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
           <a
-          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+<a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a></td>
 
           <td><a
           href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
