@@ -1,8 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title>Checkstyle Release Notes</title>
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link rel="stylesheet" type="text/css" href="mystyle.css"/>
 </head>
 
 <body>
@@ -14,7 +17,7 @@
       <h1>Checkstyle Release Notes</h1>
     </td>
     <td align="right">
-      <img src="logo.png" alt="Checkstyle Logo">
+      <img src="logo.png" alt="Checkstyle Logo"/>
     </td>
   </tr>
 </table>
@@ -23,7 +26,7 @@
 <table border="0" width="100%" cellpadding="5" summary="body layout">
   <tr>
     <!--Left menu-->
-    <td valign="top" align="left" nowrap="true" bgcolor="#EEEEEE">
+    <td class="menu" valign="top">
       <p>Checkstyle 3</p>
       <ul>
         <li><a href="#release3_0">Release 3.0</a></li>
@@ -40,13 +43,12 @@
     </td>
 
     <!--Content-->
-    <td width="100%" valign="top" align="left">
-
-
+    <td class="content" valign="top" align="left">
       <a name="release3_0"></a>
       <h2>Release 3.0</h2>
       <p class="body">
         New features:
+      </p>
         <ul>
           <li class="body">Completely new architecture based around pluggable modules. This means that users can now write their own checks without changing the sourcecode of checkstyle itself (request 578712).</li>
           <li class="body">Users can specify the Java token types for which a check must be performed. For example users can now control that there should be whitespace after 'synchronized' but not after 'if' (request 536385).</li>
@@ -58,30 +60,29 @@
           <li class="body">Detect hiding of fields by parameters or local variables with the same name.</li>
           <li class="body">Added DTD for XML output (request 622157).</li>
         </ul>
-      </p>
 
       <p class="body">
         Resolved bugs:
+      </p>
         <ul>
 	  <li class="body">Package name reported incorrectly (bug 622290).</li>
 	  <li class="body">array instantiation incorrectly flagged (bug 626875).</li>
 	  <li class="body">tests fail with non-english locale (bug 594469).</li>
         </ul>
-      </p>
 
       <p class="body">
         API changes (only relevant for IDE plugin authors):
+      </p>
         <ul>
 	  <li class="body">Configuration is not based on Properties any more. Instead a Configuration interface is used, IDE plugins can define their own way of creating Configurations or they can reuse the provided ConfigurationLoader to read checkstyle's standard XML config files.</li>
         </ul>
-      </p>
 
       <p class="body">
         Development Team:
+      </p>
         <ul>
 	  <li class="body">Rick Giles has joined the team.</li>
         </ul>
-      </p>
 
 
 
@@ -89,9 +90,10 @@
       <h2>Release 2.4</h2>
       <p class="body">
         New features:
+      </p>
         <ul>
           <li class="body">Major refactoring on the way Checkstyle is configured. It is now completely based around properties. Big thanks to Vincent Massol for the suggestion on how to refactor the ANT task (bug 605141).</li>
-          <li class="body">Check the package name against a pattern (request 597787). Patch provided by Simon Langford.
+          <li class="body">Check the package name against a pattern (request 597787). Patch provided by Simon Langford.</li>
           <li class="body">Detect the number of parameters in a declaration exceeding a specified amount (request 582144).</li>
           <li class="body">Inspired by patch 580410 from Shinya Ohnuma, now the error messages are localised.</li>
           <li class="body">Support checking to determine if an unused <span class="code">@throws</span> exception is a subclass of <span class="code">java.lang.Error</span> (request 583719).</li>
@@ -99,29 +101,29 @@
           <li class="body">Incorporate patch 566855 from Rob Worth to optionally check that parenthesis are padded with spaces.</li>
           <li class="body">Incorporate patch 590931 from Vijay Aravamudhan to improve documentation of the build.xml file.</li>
           <li class="body">Incorporate patch from Vijay Aravamudhan to enforce requiring @version tag (request 543964).</li>
-          <li class="body">Incorporate patch 607481 from Ville Skyttä to enforce wrap on operator at EOL.</li>
+          <li class="body">Incorporate patch 607481 from Ville Skytt&auml; to enforce wrap on operator at EOL.</li>
         </ul>
-      </p>
 
       <p class="body">
         Resolved bugs:
+      </p>
         <ul>
 	  <li class="body">Incorporate a patch from Ronald Hastings (Boeing) to correctly handle C++ style comments being between Javadoc comments and declarations.</li>
         </ul>
-      </p>
 
       <p class="body">
         API changes (only relevant for IDE plugin authors):
+      </p>
         <ul>
 	  <li class="body">Many changes to the Configuration object.</li>
         </ul>
-      </p>
 
 
       <a name="release2_3"></a>
       <h2>Release 2.3</h2>
       <p class="body">
         New features:
+      </p>
         <ul>
           <li class="body">Support checking to determine if an unused <span class="code">@throws</span> exception is a subclass of <span class="code">java.lang.RuntimeException</span> (request 540382).</li>
           <li class="body">Detect instantiations of classes that should not be instantiated (e.g. java.lang.Boolean) (request 550205).</li>
@@ -139,29 +141,29 @@
 	  <li class="body">Detect redundant <span class="code">abstract</span> modifier in interfaces (request 573485).</li>
 	  <li class="body">Support running Checkstyle using the <span class="code">-jar</span> option.</li>
         </ul>
-      </p>
 
       <p class="body">
         Resolved bugs:
+      </p>
         <ul>
 	  <li class="body">Better error reporting for missing properties files (bug 576165).</li>
 	  <li class="body">Ant task now logs style violations as errors (bug 561616).</li>
         </ul>
-      </p>
 
       <p class="body">
         API changes (only relevant for IDE plugin authors):
+      </p>
         <ul>
 	  <li class="body">The get/setOutputStream methods have been removed from the AuditListener interface. The XMLLogger and DefaultLogger implementations now expect OutputStreams to be provided as a constructor argument.</li>
 	  <li class="body">The DefaultLogger now differentiates between info messages ("started checking file ...", etc.)  and error messages (style errors found by checkstyle).</li>
         </ul>
-      </p>
 
 
       <a name="release2_2"></a>
       <h2>Release 2.2</h2>
       <p class="body">
         Resolved bugs:
+      </p>
         <ul>
           <li class="body">The cache was not invalidated upon parameter change (Bug 522282).</li>
           <li class="body">Tabs were not counted correctly in line length checks (Bug 524671).</li>
@@ -170,10 +172,10 @@
           <li class="body">The default regular expression for constant names allowed consecutive '_' characters to occur (Bug 540358).</li>
           <li class="body">Checkstyle reported unused @throws tag for multiple declarations of the same Exception. According to the <a href="http://developer.java.sun.com/developer/bugParade/bugs/4525364.html">Java BugParade</a> this is incorrect, multiple @throws tags for the same exception are OK (Bug 540384).</li>
         </ul>
-      </p>
 
       <p class="body">
         New features:
+      </p>
         <ul>
           <!--(Feature request 498879)-->
           <li class="body">added check for whitespace around '()'</li>
@@ -195,13 +197,13 @@
           <li class="body">incorporated patch from Warner Onstine to configure the ANT task by means of a property file</li>
           <li class="body">added 'contrib' directory, contains XSL stylesheets for formating checkstyle's XML output (contributions by Ingmar Stein, Stephane Bailliez, Scott McCrory and Gray Herter)</li>
         </ul>
-      </p>
 
 
       <a name="release2_1"></a>
       <h2>Release 2.1</h2>
       <p class="body">
         New features:
+        </p>
         <ul>
           <li class="body">added check for package.html</li>
           <li class="body">added flag allowPackage which acts similar as allowProtected</li>
@@ -213,22 +215,19 @@
           <li class="body">added checks for curly braces placement</li>
           <li class="body">incorporated patch from Andrew Lang for more robust Javadoc parsing</li>
         </ul>
-      </p>
 
       <a name="release2_0"></a>
       <h2>Release 2.0</h2>
       <p class="body">
         Changes:
+      </p>
         <ul>
           <li class="body">Now released under the GNU Lesser General Public License (LGPL).</li>
           <li class="body">Fix bug #508010, documentation and code are inconsistent.</li>
           <li class="body">Changes to make it build "out of the box".</li>
-
         </ul>
-      </p>
-
     </td>
   </tr>
 </table>
-<hr>
+<hr />
 </body> </html>
