@@ -41,7 +41,7 @@ public class ConfigSerializationTest
     /**
      * Test that the RE deserialization mechanism works for one example.
      */
-    public void testRegexpDesrialization()
+    public void testRegexpDeserialization()
         throws Exception
     {
         Configuration configOrig = new Configuration();
@@ -49,6 +49,7 @@ public class ConfigSerializationTest
 
         Configuration configCopy = copyBySerialization(configOrig);
         assertNotNull(configCopy);
+        assertNotNull(configCopy.getClassLoader());
 
         // test that the general deserialization mechanism for RE fields works
         RE typeRegexp = configCopy.getTypeRegexp();
