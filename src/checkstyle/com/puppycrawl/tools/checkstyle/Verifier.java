@@ -96,10 +96,18 @@ interface Verifier
     /**
      * Verify that whitespace IS around the specified text.
      * @param aLineNo number of line to check
+     * @param aColNo column where the text ends
+     * @param aText the text to check
+     */
+    void verifyWSAroundEnd(int aLineNo, int aColNo, String aText);
+
+    /**
+     * Verify that whitespace IS around the specified text.
+     * @param aLineNo number of line to check
      * @param aColNo column where the text starts
      * @param aText the text to check
      */
-    void verifyWSAround(int aLineNo, int aColNo, String aText);
+    void verifyWSAroundBegin(int aLineNo, int aColNo, String aText);
 
     /**
      * Verify that no whitespace after an AST.
