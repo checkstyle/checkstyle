@@ -30,7 +30,7 @@ import java.util.ArrayList;
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-public class LocalizedMessages
+public final class LocalizedMessages
 {
     /** contains the messages logged **/
     private final ArrayList mMessages = new ArrayList();

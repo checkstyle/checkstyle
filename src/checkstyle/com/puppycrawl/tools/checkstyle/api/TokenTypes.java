@@ -34,6 +34,11 @@ import java.lang.reflect.Field;
  */
 public class TokenTypes
 {
+    /** prevent instantiation */
+    private TokenTypes()
+    {
+    }
+
     // The following three types are never part of an AST,
     // left here as a reminder so nobody will readd them accidentally
 

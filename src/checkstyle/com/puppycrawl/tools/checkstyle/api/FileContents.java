@@ -32,7 +32,7 @@ import java.util.HashMap;
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-public class FileContents
+public final class FileContents
 {
     /**
      * the pattern to match a single line comment containing only the comment

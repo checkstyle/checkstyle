@@ -297,7 +297,7 @@ public class AutomaticBean implements Configurable, Contextualizable
  */
 
 
-class StrArrayConverter extends AbstractArrayConverter
+final class StrArrayConverter extends AbstractArrayConverter
 {
     /**
      * <p>Model object for type comparisons.</p>

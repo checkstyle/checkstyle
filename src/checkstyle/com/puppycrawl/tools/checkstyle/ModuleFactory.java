@@ -29,9 +29,9 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * conventions, fallback strategies, etc.
  *
  * @author lkuehne
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
-public interface ModuleFactory
+interface ModuleFactory
 {
     /**
      * Creates a new instance of a class from a given name.
