@@ -3,11 +3,13 @@
 
 package com.puppycrawl.tools.checkstyle.bcel.checks;
 
+import org.apache.bcel.classfile.FieldOrMethod;
 import org.apache.bcel.classfile.JavaClass;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
+import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.bcel.AbstractCheckVisitor;
 import com.puppycrawl.tools.checkstyle.bcel.IDeepVisitor;
@@ -22,6 +24,9 @@ import com.puppycrawl.tools.checkstyle.bcel.classfile.ReferenceDAO;
 public abstract class AbstractReferenceCheck
     extends AbstractCheckVisitor
 {
+    /** the scope for recorded references */
+    private Scope mScope = Scope.PRIVATE;
+
     /** the regexp to match class names against */
     private RE mIgnoreClassNameRegexp;
 
@@ -39,16 +44,52 @@ public abstract class AbstractReferenceCheck
     }
 
     /**
-     * Determines whether a class name and name should be ignored.
+     * Sets the scope for recorded references.
+     * @param aScopeName the scope for recorded references.
+     */
+    public void setScope(String aScopeName)
+    {
+        mScope = Scope.getInstance(aScopeName);
+    }
+    
+    /**
+     * Determines whether a class name and field or method should be ignored.
      * @param aClassName the class name.
      * @param aName the name.
      * @return true if aClassName and aName should be ignored.
      */
-    protected boolean ignore(String aClassName, String aName)
+    protected boolean ignore(String aClassName, FieldOrMethod aFieldOrMethod)
     {
-        return (mIgnoreClassNameRegexp.match(aClassName)
-            || mIgnoreNameRegexp.match(aName));
+        final String fieldOrMethodName = aFieldOrMethod.getName();
+        return (!equalScope(aFieldOrMethod)
+            || mIgnoreClassNameRegexp.match(aClassName)
+            || mIgnoreNameRegexp.match(fieldOrMethodName));
     }
+ 
+    /**
+     * Tests whether the scope of a field or method is compatible
+     * with the scope of this check. References for compatible
+     * fields or methods should be checked.
+     * @param aFieldOrMethod the field or method to check.
+     * @return true if the scope of aFieldOrMethod is compatible
+     * with the scope of this check.
+     */
+    private boolean equalScope(FieldOrMethod aFieldOrMethod)
+    {
+        if (aFieldOrMethod.isPrivate()) {
+            return (mScope == Scope.PRIVATE);
+        }
+        else if (aFieldOrMethod.isProtected()) {
+            return (mScope == Scope.PROTECTED);
+        }
+        else if (aFieldOrMethod.isPublic()) {
+            return (mScope == Scope.PUBLIC);
+        }
+        else {
+            return (mScope == Scope.PACKAGE);
+        }
+    }
+
 
     /**
      * Set the ignore class name to the specified regular expression.

@@ -32,7 +32,8 @@ public class UnreadFieldCheck
                 if (fieldDefs[i].getReadReferenceCount() == 0) {
                     final Field field = fieldDefs[i].getField();
                     if (!field.isFinal()
-                        && (!ignore(className, field)))
+                        && (!ignore(className, field))
+                        )
                     {
                         log(
                             0,
@@ -42,17 +43,5 @@ public class UnreadFieldCheck
                 }
             }
         }
-    }
-
-    /**
-     * Determines whether a class name and Field should be ignored.
-     * Normally the Field is a Field of the named class.
-     * @param aClassName the class name.
-     * @param aField the Field.
-     * @return true if aClassName and aField should be ignored.
-     */    
-    protected boolean ignore(String aClassName, Field aField)
-    {
-        return ignore(aClassName, aField.getName());
     }
 }

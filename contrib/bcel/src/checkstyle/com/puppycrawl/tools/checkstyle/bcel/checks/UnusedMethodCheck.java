@@ -44,23 +44,12 @@ public class UnusedMethodCheck
         }
     }
 
-    /**
-     * Determines whether a class name and Method should be ignored.
-     * Normally the Method is a Method of the named class.
-     * @param aClassName the class name.
-     * @param aMethod the Method.
-     * @return true if aClassName and aMethod should be ignored.
-     */    
-    protected boolean ignore(String aClassName, Method aMethod)
-    {
-        return ignore(aClassName, aMethod.getName());
-    }
-        
     /** @see AbstractReferenceCheck */
-    public boolean ignore(String aClassName, String aMethodName)
+    public boolean ignore(String aClassName, Method aMethod)
     {
-        return (super.ignore(aClassName, aMethodName)
-            || aMethodName.equals("<init>")
-            || aMethodName.equals("<clinit>"));
+        final String methodName = aMethod.getName();
+        return (super.ignore(aClassName, aMethod)
+            || methodName.equals("<init>")
+            || methodName.equals("<clinit>"));
     }
 }
