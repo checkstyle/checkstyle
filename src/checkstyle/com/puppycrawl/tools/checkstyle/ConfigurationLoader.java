@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Properties;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -44,6 +45,8 @@ import org.xml.sax.helpers.DefaultHandler;
 class ConfigurationLoader
     extends DefaultHandler
 {
+    /** overriding properties **/
+    private Properties mOverrideProps = new Properties();
     /** parser to read XML files **/
     private final XMLReader mParser;
     /** the loaded global properties **/
@@ -58,6 +61,8 @@ class ConfigurationLoader
     private final StringBuffer mBuf = new StringBuffer();
     /** in global element **/
     private boolean isInGlobalElement = false;
+    /** started processing check configurations **/
+    private boolean isInCheckMode = false;
 
     /**
      * Creates a new <code>ConfigurationLoader</code> instance.
@@ -116,6 +121,18 @@ class ConfigurationLoader
             isInGlobalElement = true;
         }
         else if ("check".equals(aQName)) {
+            //first apply overriding properties
+            if (!isInCheckMode) {
+                isInCheckMode = true;
+                for (Enumeration enum = mOverrideProps.keys();
+                      enum.hasMoreElements();)
+                {
+                    final String key = (String)enum.nextElement();
+                    final String value = (String)mOverrideProps.get(key);
+                    mProps.setProperty(key, value);
+                }
+            }
+
             mCurrent = new CheckConfiguration();
             mCurrent.setClassname(aAtts.getValue("classname"));
         }
@@ -124,7 +141,7 @@ class ConfigurationLoader
             String value = aAtts.getValue("value");
             
             if (value == null) {
-                //global?
+                //try global
                 String globalKey = aAtts.getValue("from-global");
                 value = (String) mProps.get(globalKey); 
             }
@@ -187,14 +204,17 @@ class ConfigurationLoader
     /**
      * Returns the check configurations in a specified file.
      * @param aConfigFname name of config file
+     * @param aOverrideProps overriding properties
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
-    public static Configuration loadConfiguration(String aConfigFname)
+    public static Configuration loadConfiguration(String aConfigFname,
+                                                   Properties aOverrideProps)
         throws CheckstyleException
     {
         try {
             final ConfigurationLoader loader = new ConfigurationLoader();
+            loader.mOverrideProps = aOverrideProps;
             loader.parseFile(aConfigFname);
             return loader.getConfiguration();
         }

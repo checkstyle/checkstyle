@@ -20,7 +20,7 @@ public class ConfigurationLoaderTest extends TestCase
     {
         String fName =
             System.getProperty("testinputs.dir") + "/configs/" + aName;
-        return ConfigurationLoader.loadConfiguration(fName);
+        return ConfigurationLoader.loadConfiguration(fName, new Properties());
     }
     
     public void testEmptyConfiguration()
@@ -119,7 +119,7 @@ public class ConfigurationLoaderTest extends TestCase
         assertEquals("option", "alone", option.toString());
     }
     
-        /** check that a global property doesn't effect a check property.
+    /** check that a global property doesn't effect a check property.
      *  and vice versa
      */
     public void testFromGlobal()
@@ -136,5 +136,27 @@ public class ConfigurationLoaderTest extends TestCase
         RightCurlyOption option =
             (RightCurlyOption) rightCurly.getAbstractOption();
         assertEquals("option", "alone", option.toString());
-    }        
+    }
+    
+    public void testOverridePropsGlobal()
+        throws Exception
+    {
+        String fName = System.getProperty("testinputs.dir") + "/configs/"
+                + "fromglobal_configuration.xml";
+        
+        Properties overrideProps = new Properties();
+        overrideProps.put("rightcurlycheck.option", "same");
+        
+        Configuration config =
+            ConfigurationLoader.loadConfiguration(fName, overrideProps);
+                                    
+        CheckConfiguration[] checkConfigs =
+            config.getCheckConfigurations();        
+        RightCurlyCheck rightCurly =
+            (RightCurlyCheck) (checkConfigs[0].
+                createInstance(this.getClass().getClassLoader()));
+        RightCurlyOption option =
+            (RightCurlyOption) rightCurly.getAbstractOption();
+        assertEquals("option", "same", option.toString());
+    }       
 }
