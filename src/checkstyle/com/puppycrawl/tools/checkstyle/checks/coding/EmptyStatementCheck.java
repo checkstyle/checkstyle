@@ -25,8 +25,15 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * <p>
- * Check that finds empty statements.
+ * Detects empty statements (standalone ';').
+ * Empty statements often introduce bugs
+ * that are hard to spot, such as in
  * </p>
+ * <pre>
+ * if (someCondition);
+ *   doConditionalStuff();
+ * doUnconditionalStuff();
+ * </pre>
  * <p>
  * An example of how to configure the check is:
  * </p>
