@@ -101,7 +101,7 @@ public final class PackageNamesLoader
         final StringBuffer buf = new StringBuffer();
         final Iterator it = mPackageStack.iterator();
         while (it.hasNext()) {
-            String subPackage = (String) it.next();
+            final String subPackage = (String) it.next();
             buf.append(subPackage);
             if (!subPackage.endsWith(".")) {
                 buf.append(".");

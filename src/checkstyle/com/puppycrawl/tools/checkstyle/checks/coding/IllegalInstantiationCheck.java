@@ -145,7 +145,7 @@ public class IllegalInstantiationCheck
     public void finishTree(DetailAST aRootAST)
     {
         for (Iterator it = mInstantiations.iterator(); it.hasNext();) {
-            DetailAST literalNewAST = (DetailAST) it.next();
+            final DetailAST literalNewAST = (DetailAST) it.next();
             postprocessLiteralNew(literalNewAST);
         }
     }
@@ -159,7 +159,7 @@ public class IllegalInstantiationCheck
     private void processClassDef(DetailAST aAST)
     {
         final DetailAST identToken = aAST.findFirstToken(TokenTypes.IDENT);
-        String className = identToken.getText();
+        final String className = identToken.getText();
         mClassNames.add(className);
     }
 
@@ -214,7 +214,7 @@ public class IllegalInstantiationCheck
             return;
         }
 
-        FullIdent typeIdent = FullIdent.createFullIdent(typeNameAST);
+        final FullIdent typeIdent = FullIdent.createFullIdent(typeNameAST);
         final String typeName = typeIdent.getText();
         final int lineNo = aAST.getLineNo();
         final int colNo = aAST.getColumnNo();
@@ -257,7 +257,7 @@ public class IllegalInstantiationCheck
                 // the expression "new Boolean()" refers to that class,
                 // not to java.lang.Boolean
 
-                boolean isSameFile = mClassNames.contains(aClassName);
+                final boolean isSameFile = mClassNames.contains(aClassName);
 
                 boolean isSamePackage = false;
                 try {

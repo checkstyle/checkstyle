@@ -84,7 +84,7 @@ public class ClassResolver
                 }
                 // perhaps this is a import for inner class
                 // let's try load it.
-                int dot = imp.lastIndexOf(".");
+                final int dot = imp.lastIndexOf(".");
                 if (dot != -1) {
                     final String innerName = imp.substring(0, dot) + "$"
                         + imp.substring(dot + 1);

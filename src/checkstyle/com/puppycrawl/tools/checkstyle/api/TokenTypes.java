@@ -2751,7 +2751,7 @@ public final class TokenTypes
 
         final String tokentypes =
             "com.puppycrawl.tools.checkstyle.api.tokentypes";
-        ResourceBundle bundle = ResourceBundle.getBundle(tokentypes);
+        final ResourceBundle bundle = ResourceBundle.getBundle(tokentypes);
         return bundle.getString(aName);
     }
 }

@@ -285,7 +285,7 @@ public class CheckStyleTask
         try {
             c = createChecker();
 
-            SeverityLevelCounter warningCounter =
+            final SeverityLevelCounter warningCounter =
                     new SeverityLevelCounter(SeverityLevel.WARNING);
             c.addListener(warningCounter);
 
@@ -401,7 +401,7 @@ public class CheckStyleTask
         }
 
         // override with Ant properties like ${basedir}
-        Hashtable antProps = this.getProject().getProperties();
+        final Hashtable antProps = this.getProject().getProperties();
         for (Iterator it = antProps.keySet().iterator(); it.hasNext();) {
             final String key = (String) it.next();
             final String value = String.valueOf(antProps.get(key));
@@ -436,8 +436,9 @@ public class CheckStyleTask
 
         // formatters
         if (mFormatters.size() == 0) {
-            OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
-            OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
+            final OutputStream debug =
+                new LogOutputStream(this, Project.MSG_DEBUG);
+            final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
             listeners[0] = new DefaultLogger(debug, true, err, true);
         }
         else {

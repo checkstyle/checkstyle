@@ -77,8 +77,7 @@ public class EqualsHashCodeCheck
     /** @see Check */
     public void visitToken(DetailAST aAST)
     {
-        DetailAST modifiers = (DetailAST) aAST.getFirstChild();
-
+        final DetailAST modifiers = (DetailAST) aAST.getFirstChild();
         final AST type = modifiers.getNextSibling();
         final AST methodName = type.getNextSibling();
         final DetailAST parameters = aAST.findFirstToken(TokenTypes.PARAMETERS);
@@ -109,7 +108,7 @@ public class EqualsHashCodeCheck
     private boolean isObjectParam(AST aFirstChild)
     {
         final AST modifiers = aFirstChild.getFirstChild();
-        AST type = modifiers.getNextSibling();
+        final AST type = modifiers.getNextSibling();
         switch (type.getFirstChild().getType()) {
         case TokenTypes.LITERAL_BOOLEAN:
         case TokenTypes.LITERAL_BYTE:
@@ -132,9 +131,10 @@ public class EqualsHashCodeCheck
     {
         final Set equalsDefs = mObjBlockEquals.keySet();
         for (Iterator it = equalsDefs.iterator(); it.hasNext();) {
-            Object objBlock = it.next();
+            final Object objBlock = it.next();
             if (!mObjBlockWithHashCode.contains(objBlock)) {
-                DetailAST equalsAST = (DetailAST) mObjBlockEquals.get(objBlock);
+                final DetailAST equalsAST =
+                    (DetailAST) mObjBlockEquals.get(objBlock);
                 log(equalsAST.getLineNo(), equalsAST.getColumnNo(),
                         "equals.noHashCode");
             }

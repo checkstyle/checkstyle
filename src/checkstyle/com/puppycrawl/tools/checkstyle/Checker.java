@@ -233,11 +233,12 @@ public class Checker extends AutomaticBean
     {
         fireAuditStarted();
         for (int i = 0; i < mFileSetChecks.size(); i++) {
-            FileSetCheck fileSetCheck = (FileSetCheck) mFileSetChecks.get(i);
+            final FileSetCheck fileSetCheck =
+                (FileSetCheck) mFileSetChecks.get(i);
             fileSetCheck.process(aFiles);
             fileSetCheck.destroy();
         }
-        int errorCount = mCounter.getCount();
+        final int errorCount = mCounter.getCount();
         fireAuditFinished();
         return errorCount;
     }
@@ -285,13 +286,13 @@ public class Checker extends AutomaticBean
             System.getProperty("os.name").toLowerCase(Locale.US);
         final boolean onNetWare = (osName.indexOf("netware") > -1);
 
-        String orig = aPath;
+        final String orig = aPath;
 
         aPath = aPath.replace('/', File.separatorChar)
             .replace('\\', File.separatorChar);
 
         // make sure we are dealing with an absolute path
-        int colon = aPath.indexOf(":");
+        final int colon = aPath.indexOf(":");
 
         if (!onNetWare) {
             if (!aPath.startsWith(File.separator)
@@ -299,7 +300,7 @@ public class Checker extends AutomaticBean
                      && Character.isLetter(aPath.charAt(0))
                      && colon == 1))
             {
-                String msg = aPath + " is not an absolute path";
+                final String msg = aPath + " is not an absolute path";
                 throw new IllegalArgumentException(msg);
             }
         }
@@ -307,7 +308,7 @@ public class Checker extends AutomaticBean
             if (!aPath.startsWith(File.separator)
                 && (colon == -1))
             {
-                String msg = aPath + " is not an absolute path";
+                final String msg = aPath + " is not an absolute path";
                 throw new IllegalArgumentException(msg);
             }
         }
@@ -324,8 +325,8 @@ public class Checker extends AutomaticBean
 
             dosWithDrive = true;
 
-            char[] ca = aPath.replace('/', '\\').toCharArray();
-            StringBuffer sbRoot = new StringBuffer();
+            final char[] ca = aPath.replace('/', '\\').toCharArray();
+            final StringBuffer sbRoot = new StringBuffer();
             for (int i = 0; i < colon; i++) {
                 sbRoot.append(Character.toUpperCase(ca[i]));
             }
@@ -336,7 +337,7 @@ public class Checker extends AutomaticBean
             root = sbRoot.toString();
 
             // Eliminate consecutive slashes after the drive spec
-            StringBuffer sbPath = new StringBuffer();
+            final StringBuffer sbPath = new StringBuffer();
             for (int i = colon + 1; i < ca.length; i++) {
                 if ((ca[i] != '\\')
                     || (ca[i] == '\\' && ca[i - 1] != '\\'))
@@ -363,11 +364,11 @@ public class Checker extends AutomaticBean
             }
         }
 
-        Stack s = new Stack();
+        final Stack s = new Stack();
         s.push(root);
-        StringTokenizer tok = new StringTokenizer(aPath, File.separator);
+        final StringTokenizer tok = new StringTokenizer(aPath, File.separator);
         while (tok.hasMoreTokens()) {
-            String thisToken = tok.nextToken();
+            final String thisToken = tok.nextToken();
             if (".".equals(thisToken)) {
                 continue;
             }
@@ -383,7 +384,7 @@ public class Checker extends AutomaticBean
             }
         }
 
-        StringBuffer sb = new StringBuffer();
+        final StringBuffer sb = new StringBuffer();
         for (int i = 0; i < s.size(); i++) {
             if (i > 1) {
                 // not before the filesystem root and not after it, since root

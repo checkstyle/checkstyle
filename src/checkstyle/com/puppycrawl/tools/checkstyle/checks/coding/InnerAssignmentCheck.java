@@ -123,7 +123,7 @@ public class InnerAssignmentCheck
         final int astType = aAST.getType();
 
         for (int i = 0; i < tokens.length; i++) {
-            int tokenType = tokens[i];
+            final int tokenType = tokens[i];
             if (astType == tokenType) {
                 return true;
             }

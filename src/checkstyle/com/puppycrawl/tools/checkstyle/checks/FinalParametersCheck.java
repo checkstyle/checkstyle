@@ -89,7 +89,8 @@ public class FinalParametersCheck extends Check
         }
 
         // we can now be sure that there is at least one parameter
-        DetailAST parameters = aMethod.findFirstToken(TokenTypes.PARAMETERS);
+        final DetailAST parameters =
+            aMethod.findFirstToken(TokenTypes.PARAMETERS);
         DetailAST child = (DetailAST) parameters.getFirstChild();
         while (child != null) {
             // childs are PARAMETER_DEF and COMMA

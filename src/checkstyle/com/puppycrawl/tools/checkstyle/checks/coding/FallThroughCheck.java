@@ -194,7 +194,8 @@ public class FallThroughCheck extends Check
 
         DetailAST catchStmt = aAST.findFirstToken(TokenTypes.LITERAL_CATCH);
         while (catchStmt != null && isTerminated) {
-            DetailAST catchBody = catchStmt.findFirstToken(TokenTypes.SLIST);
+            final DetailAST catchBody =
+                catchStmt.findFirstToken(TokenTypes.SLIST);
             isTerminated &= isTerminated(catchBody, aUseBreak, aUseContinue);
             catchStmt = (DetailAST) catchStmt.getNextSibling();
         }
@@ -215,7 +216,8 @@ public class FallThroughCheck extends Check
         while (isTerminated && caseGroup != null
                && caseGroup.getType() != TokenTypes.RCURLY)
         {
-            DetailAST caseBody = caseGroup.findFirstToken(TokenTypes.SLIST);
+            final DetailAST caseBody =
+                caseGroup.findFirstToken(TokenTypes.SLIST);
             isTerminated &= isTerminated(caseBody, false, aUseContinue);
             caseGroup = (DetailAST) caseGroup.getNextSibling();
         }

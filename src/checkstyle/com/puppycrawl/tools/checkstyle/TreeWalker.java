@@ -535,7 +535,7 @@ public final class TreeWalker
     /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
     public void process(File[] aFiles)
     {
-        File[] javaFiles = filter(aFiles);
+        final File[] javaFiles = filter(aFiles);
 
         for (int i = 0; i < javaFiles.length; i++) {
             process(javaFiles[i]);

@@ -74,7 +74,7 @@ public final class JUnitTestCaseCheck extends Check
      */
     private void visitMethodDef(DetailAST aAST)
     {
-        String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
+        final String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
 
         if (name.equalsIgnoreCase(SET_UP_METHOD_NAME)) {
             checkSetUpTearDownMethod(aAST, name, SET_UP_METHOD_NAME);
@@ -103,10 +103,10 @@ public final class JUnitTestCaseCheck extends Check
         }
 
         // let's check return type
-        DetailAST typeAST = aAST.findFirstToken(TokenTypes.TYPE);
-        boolean isArray =
+        final DetailAST typeAST = aAST.findFirstToken(TokenTypes.TYPE);
+        final boolean isArray =
             (typeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null);
-        String type = CheckUtils.createFullType(typeAST).getText();
+        final String type = CheckUtils.createFullType(typeAST).getText();
         if (isArray
             || !"Test".equals(type)
             && !"junit.framework.Test".equals(type))
@@ -149,7 +149,7 @@ public final class JUnitTestCaseCheck extends Check
      */
     private void checkReturnValue(DetailAST aAST, String aName)
     {
-        DetailAST returnValueAST = aAST.findFirstToken(TokenTypes.TYPE);
+        final DetailAST returnValueAST = aAST.findFirstToken(TokenTypes.TYPE);
 
         if (returnValueAST.findFirstToken(TokenTypes.LITERAL_VOID) == null) {
             log(aAST, "junit.method.return.type", aName, "void");
@@ -163,7 +163,8 @@ public final class JUnitTestCaseCheck extends Check
      */
     private void checkParameters(DetailAST aAST, String aName)
     {
-        DetailAST parametersAST = aAST.findFirstToken(TokenTypes.PARAMETERS);
+        final DetailAST parametersAST =
+            aAST.findFirstToken(TokenTypes.PARAMETERS);
 
         if (parametersAST.getChildCount() != 0) {
             log(aAST, "junit.method.parameters", aName);
@@ -178,10 +179,11 @@ public final class JUnitTestCaseCheck extends Check
      */
     private boolean isPublicOrProtected(DetailAST aAST)
     {
-        DetailAST modifiersAST = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        DetailAST publicAST =
+        final DetailAST modifiersAST =
+            aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST publicAST =
             modifiersAST.findFirstToken(TokenTypes.LITERAL_PUBLIC);
-        DetailAST protectedAST =
+        final DetailAST protectedAST =
             modifiersAST.findFirstToken(TokenTypes.LITERAL_PROTECTED);
 
         return (publicAST != null) || (protectedAST != null);

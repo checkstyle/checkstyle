@@ -191,7 +191,7 @@ public abstract class AbstractTypeAwareCheck
      */
     protected final Class tryLoadClass(FullIdent aIdent)
     {
-        Class clazz = resolveClass(aIdent.getText());
+        final Class clazz = resolveClass(aIdent.getText());
         if (clazz == null) {
             logLoadError(aIdent);
         }

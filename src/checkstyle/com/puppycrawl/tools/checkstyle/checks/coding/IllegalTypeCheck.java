@@ -132,7 +132,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     private void visitParameterDef(DetailAST aAST)
     {
-        DetailAST grandParentAST = aAST.getParent().getParent();
+        final DetailAST grandParentAST = aAST.getParent().getParent();
 
         if (grandParentAST.getType() == TokenTypes.METHOD_DEF
             && isCheckedMethod(grandParentAST))
@@ -157,7 +157,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     private void checkClassName(DetailAST aAST)
     {
         final DetailAST type = aAST.findFirstToken(TokenTypes.TYPE);
-        FullIdent ident = CheckUtils.createFullType(type);
+        final FullIdent ident = CheckUtils.createFullType(type);
 
         if (isMatchingClassName(ident.getText())) {
             log(ident.getLineNo(), ident.getColumnNo(),
@@ -182,7 +182,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     private boolean isCheckedMethod(DetailAST aAST)
     {
-        String methodName = aAST.findFirstToken(TokenTypes.IDENT).getText();
+        final String methodName =
+            aAST.findFirstToken(TokenTypes.IDENT).getText();
         return !mIgnoredMethodNames.contains(methodName);
     }
 
@@ -194,11 +195,12 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     {
         mIllegalClassNames.clear();
         for (int i = 0; i < aClassNames.length; i++) {
-            String name = aClassNames[i];
+            final String name = aClassNames[i];
             mIllegalClassNames.add(name);
-            int lastDot = name.lastIndexOf(".");
+            final int lastDot = name.lastIndexOf(".");
             if (lastDot > 0 && lastDot < (name.length() - 1)) {
-                String shortName = name.substring(name.lastIndexOf(".") + 1);
+                final String shortName =
+                    name.substring(name.lastIndexOf(".") + 1);
                 mIllegalClassNames.add(shortName);
             }
         }
