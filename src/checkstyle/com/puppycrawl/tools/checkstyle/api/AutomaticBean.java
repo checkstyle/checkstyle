@@ -167,7 +167,7 @@ public class AutomaticBean implements Configurable, Contextualizable
 
         Configuration[] childConfigs = aConfiguration.getChildren();
         for (int i = 0; i < childConfigs.length; i++) {
-            Configuration childConfig = childConfigs[i];
+            final Configuration childConfig = childConfigs[i];
             setupChild(childConfig);
         }
     }
@@ -235,7 +235,7 @@ public class AutomaticBean implements Configurable, Contextualizable
      * @see Configuration#getChildren
      */
     protected void setupChild(Configuration aChildConf)
-            throws CheckstyleException
+        throws CheckstyleException
     {
     }
 }
