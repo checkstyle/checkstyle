@@ -116,6 +116,8 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "142: method call child at indentation level 10 not at correct indentation, 12",
             "152: method call child at indentation level 6 not at correct indentation, 12",
             "158: method def throws at indentation level 6 not at correct indentation, 8",
+            "164: method def child at indentation level 4 not at correct indentation, 8",
+            "169: method def child at indentation level 4 not at correct indentation, 8",
         };
         verify(c, fname, expected);
     }
@@ -513,6 +515,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "74: while rparen at indentation level 5 not at correct indentation, 8",
             "81: while rparen at indentation level 10 not at correct indentation, 8",
             "88: while rparen at indentation level 10 not at correct indentation, 8",
+            "95: while child at indentation level 8 not at correct indentation, 12",
         };
         verify(c, fname, expected);
     }

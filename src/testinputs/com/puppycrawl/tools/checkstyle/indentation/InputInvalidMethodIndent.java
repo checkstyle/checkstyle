@@ -159,5 +159,13 @@ public class InputInvalidMethodIndent {
     {
     }
 
+    void method7() {
+        // return incorrectly indented
+    return;
+    }
 
+    void method8() {
+        // thow invorrectly indented
+    throw new RuntimeException("");
+    }
 }

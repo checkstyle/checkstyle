@@ -89,6 +89,11 @@ public class InputInvalidWhileIndent {
         {
             
         }
+
+        while (true)
+        {
+        continue;
+        }
     }
     
 }
