@@ -292,6 +292,20 @@ public abstract class Check
      * @param aKey key to locale message format
      * @param aArgs arguments for message
      */
+    public void log(int aLineNo, int aColNo, String aKey,
+                    Object aArg0, Object aArg1)
+    {
+        log(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1});
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param aLineNo line number to associate with the message
+     * @param aColNo column number to associate with the message
+     * @param aKey key to locale message format
+     * @param aArgs arguments for message
+     */
     public void log(int aLineNo, int aColNo, String aKey, Object[] aArgs)
     {
         final int col = aColNo + 1;

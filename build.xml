@@ -12,6 +12,8 @@
   <property name="regexp.jar" value="lib/jakarta-regexp-1.2.jar" />
   <property name="junit.jar" value="lib/junit.jar" />
   <property name="beanutils.jar" value="lib/commons-beanutils.jar" />
+  <property name="collections.jar" value="lib/commons-collections.jar" />
+  <property name="logging.jar" value="lib/commons-logging.jar" />
 
   <property name="checkstyle.dir"
             value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
@@ -23,7 +25,9 @@
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
     <pathelement location="${regexp.jar}" />
+    <pathelement location="${collections.jar}" />
     <pathelement location="${beanutils.jar}" />
+    <pathelement location="${logging.jar}" />
     <pathelement location="${ant.home}/lib/ant.jar" />
   </path>
 
