@@ -144,10 +144,64 @@
       </ol>
       <a name="properties"></a> <h2>Properties</h2>
       <p class="body">
-      Child <span class="code">property</span> elements of a <span class="code">module</span>
-      specify a module&apos;s properties.
-      Contexts. Property Expansion.Repeated modules with different properties.
+      Properties of a module control how the module performs its checks.
+       Each module property has a default value, and you are not required to define a property in the
+       configuration document if the default value is satisfactory.
+       To assign a non-default value to a module&apos;s property,
+      define a child <span class="code">property</span> element of the <span class="code">module</span>
+      element in the configuration XML document. Also provide appropriate
+      <span class="code">name</span> and
+      <span class="code">value</span> attributes for the <span class="code">property</span> element.
+      For example, property
+      <span class="code">max</span> of module <span class="code">MethodLength</span>
+      specifies the maximum allowable number of lines in a method or constructor, and has default
+      value <span class="code">150</span>.
+      Here is a configuration of module <span class="code">MethodLength</span> so that the check reports 
+      methods and constructors with more than <span class="code">60</span> lines:
       </p>
+      <pre class="body">      
+        &lt;module name=&quot;MethodLength&quot;&gt;
+            &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+        &lt;/module&gt;
+      </pre>
+      <p class="body">
+      </p>
+      <p class="body">
+      <a href="cmdline.html">Command line</a> properties
+      and ant <a href="anttask.html">Checkstyle task</a> properties apply
+      to the root <span class="code">Checker</span>
+      module. Also, properties are inherited in the
+      module hierarchy. These features make it easy to define one property value that applies to
+      many modules. For example, the following configuration fragment specifies that a 
+      <span class="code">tabWidth</span> of <span class="code">4</span> applies to all
+      FileSetCheck<em></em>s and their submodules:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
+    &lt;module name=&quot;PackageHtml&quot;/&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;module name=&quot;AvoidStarImport&quot;/&gt;
+        &lt;module name=&quot;ConstantName&quot;/&gt;
+        ...
+    &lt;/module&gt;
+&lt;/module&gt;
+    </pre>
+    <p class="body">
+    The value of a module property can be specified through <em>property expansion</em> with the
+    <span class="code">${<em>property_name</em>}</span> notation,
+    where <span class="code"><em>property_name</em></span> is a <a href="cmdline.html">command line</a>
+    property or an ant <a href="anttask.html">Checkstyle task</a> property.
+      For example, the following configuration document element gives property
+      <span class="code">headerFile</span> the value
+     of command line property <span class="code">checkstyle.header.file</span>:
+      <pre class="body">
+      &lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
+      </pre>
+      <p class="body">
+      Thus, you can re-specify a module property value without changing the configuration document.
+      </p>
+      
       <a name="treewalker"></a> <h2>TreeWalker Checks</h2>
       <p class="body">
       Lead-in paragraph.
@@ -188,6 +242,7 @@
       <a name="tokens"></a> <h2>Tokens</h2>
       <p class="body">
       What is a token? Default tokens. Acceptable tokens.
+      Repeated modules with different tokens/properties.
       </p>
       <a name="xml"></a> <h2>XML</h2>
       <p class="body">
