@@ -112,6 +112,11 @@ public class AvoidNestedBlocksCheck extends Check
         }
     }
 
+    /**
+     * Setter for allowInSwitchCase property.
+     * @param aAllowInSwitchCase whether nested blocks are allowed
+     *                 if they are the only child of a switch case.
+     */
     public void setAllowInSwitchCase(boolean aAllowInSwitchCase)
     {
         mAllowInSwitchCase = aAllowInSwitchCase;
