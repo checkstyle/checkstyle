@@ -33,7 +33,7 @@ public class ConfigurationLoaderTest extends TestCase
     {
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration("empty_configuration.xml");
-        verifyConfigNode(config, "configuration", 0, new Properties());
+        verifyConfigNode(config, "Checker", 0, new Properties());
     }
 
     public void testMissingPropertyName()
@@ -68,13 +68,13 @@ public class ConfigurationLoaderTest extends TestCase
     {
         try {
             loadConfiguration("missing_config_name.xml");
-            fail("missing config name");
+            fail("missing module name");
         }
         catch (CheckstyleException ex) {
             assertTrue(
                 ex.getMessage().endsWith(
                     "Attribute \"name\" is required and must be specified "
-                        + "for element type \"config\"."));
+                        + "for element type \"module\"."));
         }
     }
 
@@ -82,13 +82,13 @@ public class ConfigurationLoaderTest extends TestCase
     {
         try {
             loadConfiguration("missing_config_parent.xml");
-            fail("missing config parent");
+            fail("missing module parent");
         }
         catch (CheckstyleException ex) {
             assertTrue(
                 ex.getMessage().endsWith(
                     "Document root element \"property\", must match DOCTYPE "
-                        + "root \"config\"."));
+                        + "root \"module\"."));
         }
     }
 
@@ -105,15 +105,15 @@ public class ConfigurationLoaderTest extends TestCase
         final Properties atts = new Properties();
         atts.put("tabWidth", "4");
         atts.put("basedir", "basedir");
-        verifyConfigNode(config, "configuration", 3, atts);
+        verifyConfigNode(config, "Checker", 3, atts);
 
         //verify children
         final Configuration[] children = config.getChildren();
         atts.clear();
         verifyConfigNode(
-            (DefaultConfiguration) children[1], "PackageHtmlCheck", 0, atts);
+            (DefaultConfiguration) children[1], "PackageHtml", 0, atts);
         verifyConfigNode(
-            (DefaultConfiguration) children[2], "TranslationCheck", 0, atts);
+            (DefaultConfiguration) children[2], "Translation", 0, atts);
         atts.put("testName", "testValue");
         verifyConfigNode(
             (DefaultConfiguration) children[0],
@@ -132,7 +132,7 @@ public class ConfigurationLoaderTest extends TestCase
         atts.put("format", "System.out.println");
         verifyConfigNode(
             (DefaultConfiguration) grandchildren[grandchildren.length - 1],
-            "GenericIllegalRegexpCheck",
+            "GenericIllegalRegexp",
             0,
             atts);
         atts.clear();
@@ -140,7 +140,7 @@ public class ConfigurationLoaderTest extends TestCase
         atts.put("allowLineBreaks", "true");
         verifyConfigNode(
             (DefaultConfiguration) grandchildren[6],
-            "NoWhitespaceAfterCheck",
+            "NoWhitespaceAfter",
             0,
             atts);
     }

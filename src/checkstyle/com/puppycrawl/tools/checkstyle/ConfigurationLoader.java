@@ -93,7 +93,7 @@ class ConfigurationLoader
             throws SAXException
     {
         // TODO: debug logging for support puposes
-        if (aQName.equals("config")) {
+        if (aQName.equals("module")) {
             //create configuration
             final String name = aAtts.getValue("name");
             final DefaultConfiguration conf = new DefaultConfiguration(name);
@@ -134,7 +134,7 @@ class ConfigurationLoader
                            String aLocalName,
                            String aQName)
     {
-        if (aQName.equals("config")) {
+        if (aQName.equals("module")) {
             mConfigStack.pop();
         }
     }

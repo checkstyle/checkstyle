@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE config PUBLIC
+<!DOCTYPE module PUBLIC
     "-//Puppy Crawl//DTD Check Configuration 1.0//EN"
     "http://www.puppycrawl.com/dtds/configuration_1_0.dtd">
 
-<config name="configuration">
+<module name="Checker">
     <property name="tabWidth" valu="4"/>
-</config>
+</module>
