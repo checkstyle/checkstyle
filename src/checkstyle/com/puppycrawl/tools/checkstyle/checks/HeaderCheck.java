@@ -40,7 +40,8 @@ import org.apache.commons.beanutils.ConversionException;
  */
 public class HeaderCheck extends Check
 {
-    private static int[] EMPTY_INT_ARRAY = new int[0];
+    /** empty array to avoid instantiations */
+    private static final int[] EMPTY_INT_ARRAY = new int[0];
 
     /** the lines of the header file */
     private String[] mHeaderLines = null;
@@ -102,6 +103,7 @@ public class HeaderCheck extends Check
 
     /**
      * Set the header file to check against.
+     * @param aFileName the file that contains the header to check against.
      * @throws org.apache.commons.beanutils.ConversionException if
      * the file cannot be loaded
      */
@@ -149,6 +151,10 @@ public class HeaderCheck extends Check
         Arrays.sort(mIgnoreLines);
     }
 
+    /**
+     * Return the header lines to check against.
+     * @return the header lines to check against.
+     */
     protected String[] getHeaderLines()
     {
         return mHeaderLines;

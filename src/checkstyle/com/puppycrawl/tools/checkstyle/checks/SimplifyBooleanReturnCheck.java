@@ -29,6 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * Checks for overly complicated boolean return statements.
  *
  * Idea shamelessly stolen from the equivalent PMD rule (pmd.sourceforge.net).
+ *
+ * @author Lars Kühne
  */
 public class SimplifyBooleanReturnCheck extends Check
 {
@@ -62,6 +64,26 @@ public class SimplifyBooleanReturnCheck extends Check
         }
     }
 
+    /**
+     * Returns if an AST is a return statment with a boolean literal
+     * or a compound statement that contains only such a return statement.
+     *
+     * Returns <code>true</code> iff aAST represents
+     * <br>
+     * <pre>
+     * return true/false;
+     * <pre>
+     * or
+     * <br>
+     * <pre>
+     * {
+     *   return true/false;
+     * }
+     * <pre>
+     *
+     * @param aAST the sytax tree to check
+     * @return if aAST is a return statment with a boolean literal.
+     */
     private boolean returnsOnlyBooleanLiteral(AST aAST)
     {
         if (isBooleanLiteralReturnStatement(aAST)) {
@@ -72,6 +94,18 @@ public class SimplifyBooleanReturnCheck extends Check
         return isBooleanLiteralReturnStatement(firstStmnt);
     }
 
+    /**
+     * Returns if an AST is a return statment with a boolean literal.
+     *
+     * Returns <code>true</code> iff aAST represents
+     * <br>
+     * <pre>
+     * return true/false;
+     * <pre>
+     *
+     * @param aAST the sytax tree to check
+     * @return if aAST is a return statment with a boolean literal.
+     */
     private boolean isBooleanLiteralReturnStatement(AST aAST)
     {
         if (aAST.getType() != JavaTokenTypes.LITERAL_return) {

@@ -40,6 +40,8 @@ import antlr.collections.AST;
  * the public member regular expression.
  * </p>
  * Rationale: Enforce encapsulation.
+ *
+ * @author Lars Kühne
  */
 public class VisibilityModifierCheck
         extends Check
@@ -50,7 +52,8 @@ public class VisibilityModifierCheck
     /** whether package visible members are allowed */
     private boolean mPackageAllowed = false;
 
-    // TODO: Now that EJB 1.1 is becoming obsolete (is it?) we should change the default to "^$"
+    // TODO: we should change the default to "^$"
+    // as EJB 1.1 is becoming obsolete (is it?)
     /** pattern for public members that should be ignored */
     private String mPublicMemberPattern = "^f[A-Z][a-zA-Z0-9]*$";
 
@@ -144,7 +147,8 @@ public class VisibilityModifierCheck
                 || mods.contains("static") && mods.contains("final")
                 || "package".equals(variableScope) && isPackageAllowed()
                 || "protected".equals(variableScope) && isProtectedAllowed()
-                || "public".equals(variableScope) && getPublicMemberRegexp().match(varName)))
+                || "public".equals(variableScope)
+                   && getPublicMemberRegexp().match(varName)))
         {
             log(varNameAST.getLineNo(), varNameAST.getColumnNo(),
                     "variable.notPrivate", varName);
@@ -191,8 +195,8 @@ public class VisibilityModifierCheck
     }
 
     /**
-     * Returns the set of modifier Strings for a VARIABLE_DEF AST
-     * @param variableDefAST
+     * Returns the set of modifier Strings for a VARIABLE_DEF AST.
+     * @param variableDefAST AST for a vraiable definition
      * @return the set of modifier Strings for variableDefAST
      */
     private Set getModifiers(DetailAST variableDefAST)

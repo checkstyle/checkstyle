@@ -310,7 +310,6 @@ public class CheckerTest
     public void testIgnoreAccess()
         throws Exception
     {
-        mProps.setProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP, "^r[A-Z]");
         mProps.setProperty(Defn.ALLOW_PROTECTED_PROP, "true");
         mProps.setProperty(Defn.ALLOW_PACKAGE_PROP, "true");
         final Checker c = createChecker();
