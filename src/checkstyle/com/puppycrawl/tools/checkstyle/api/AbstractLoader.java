@@ -46,10 +46,6 @@ import org.xml.sax.helpers.DefaultHandler;
 public abstract class AbstractLoader
     extends DefaultHandler
 {
-    /** SAX2 feature ID for namespace URI availability */
-    private static final String NAMESPACES_FEATURE_ID =
-        "http://xml.org/sax/features/namespaces";
-
     /** maps public id to resolve to esource name for the DTD */
     private final Map mPublicIdToResourceNameMap;
     /** parser to read XML files **/
@@ -82,9 +78,6 @@ public abstract class AbstractLoader
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(true);
         mParser = factory.newSAXParser().getXMLReader();
-
-        //namespace URIs will be available
-        mParser.setFeature(NAMESPACES_FEATURE_ID, true);
         mParser.setContentHandler(this);
         mParser.setEntityResolver(this);
         mParser.setErrorHandler(this);
