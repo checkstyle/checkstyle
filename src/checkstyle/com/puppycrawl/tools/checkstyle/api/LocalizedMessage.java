@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-// TODO: check that this class is in the right package
-// as soon as architecture has settled. At the time of writing
-// this class is not necessary as a part of the public api
-
 import java.util.ResourceBundle;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -30,7 +26,7 @@ import java.util.HashMap;
 import java.text.MessageFormat;
 
 /**
- * Represents message that can be localised. The translations come from
+ * Represents a message that can be localised. The translations come from
  * message.properties files. The underlying implementation uses
  * java.text.MessageFormat.
  *
