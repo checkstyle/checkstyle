@@ -191,7 +191,7 @@ public class RequireThisCheck extends Check
      */
     private void processIDENT(DetailAST aAST)
     {
-        int parentType = aAST.getParent().getType();
+        final int parentType = aAST.getParent().getType();
 
         // let's check method calls
         if (parentType == TokenTypes.METHOD_CALL) {

@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class HideUtilityClassConstructorCheck extends Check
 {
@@ -44,7 +44,7 @@ public class HideUtilityClassConstructorCheck extends Check
     /** @see Check */
     public void visitToken(DetailAST aAST)
     {
-        DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
+        final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
         DetailAST child = (DetailAST) objBlock.getFirstChild();
         boolean hasMethod = false;
         boolean hasNonStaticMethod = false;

@@ -47,7 +47,7 @@ public class AssignHandler extends BlockParentHandler
      */
     public void checkIndentation()
     {
-        IndentLevel expectedLevel = getChildrenExpectedLevel();
+        final IndentLevel expectedLevel = getChildrenExpectedLevel();
 
         // check indentation of assign if it starts line
         DetailAST assign = getMainAst();

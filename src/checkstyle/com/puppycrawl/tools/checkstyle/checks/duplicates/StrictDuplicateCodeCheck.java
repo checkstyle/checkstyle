@@ -83,9 +83,9 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         /** @see ChecksumGenerator#convertLines */
         public long[] convertLines(String[] aOriginalLines)
         {
-            long[] checkSums = new long[aOriginalLines.length];
+            final long[] checkSums = new long[aOriginalLines.length];
             for (int i = 0; i < aOriginalLines.length; i++) {
-                String line = aOriginalLines[i].trim();
+                final String line = aOriginalLines[i].trim();
                 checkSums[i] = calcChecksum(line);
             }
             return checkSums;
@@ -106,8 +106,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             // sufficiently improbable to get false alarms
             long result = 0;
             for (int i = 0; i < aLine.length(); i++) {
-                long c = aLine.charAt(i);
-                long idx = i;
+                final long c = aLine.charAt(i);
+                final long idx = i;
                 result += bigPrime * idx + c;
             }
             return result;
@@ -208,7 +208,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
      */
     public synchronized void process(File[] aFiles)
     {
-        long start = System.currentTimeMillis();
+        final long start = System.currentTimeMillis();
         mLoc = 0;
         mDuplicates = 0;
         mFiles = filter(aFiles);
@@ -221,9 +221,11 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 
         for (int i = 0; i < mFiles.length; i++) {
             try {
-                File file = mFiles[i];
-                String[] lines = Utils.getLines(file.getPath(), getCharset());
-                ChecksumGenerator transformer = findChecksumGenerator(file);
+                final File file = mFiles[i];
+                final String[] lines =
+                    Utils.getLines(file.getPath(), getCharset());
+                final ChecksumGenerator transformer =
+                    findChecksumGenerator(file);
                 mLineChecksums[i] = transformer.convertLines(lines);
             }
             catch (IOException ex) {
@@ -237,9 +239,9 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         }
         fillSortedRelevantChecksums();
 
-        long endReading = System.currentTimeMillis();
+        final long endReading = System.currentTimeMillis();
         findDuplicates();
-        long endSearching = System.currentTimeMillis();
+        final long endSearching = System.currentTimeMillis();
 
         dumpStats(start, endReading, endSearching);
 
@@ -294,8 +296,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     {
         for (int i = 0; i < mLineChecksums.length; i++) {
             int count = 0;
-            long[] checksums = mLineChecksums[i];
-            long[] relevant = new long[checksums.length];
+            final long[] checksums = mLineChecksums[i];
+            final long[] relevant = new long[checksums.length];
             for (int j = 0; j < checksums.length; j++) {
                 long checksum = checksums[j];
                 if (checksum != IGNORE) {
@@ -333,7 +335,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             final String path = mFiles[i].getPath();
 
             getMessageCollector().reset();
-            MessageDispatcher dispatcher = getMessageDispatcher();
+            final MessageDispatcher dispatcher = getMessageDispatcher();
             dispatcher.fireFileStarted(path);
 
             mLoc += mLineChecksums[i].length;

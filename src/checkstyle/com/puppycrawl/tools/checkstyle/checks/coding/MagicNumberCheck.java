@@ -87,7 +87,7 @@ public class MagicNumberCheck extends Check
             return;
         }
 
-        DetailAST constantDefAST = findContainingConstantDef(aAST);
+        final DetailAST constantDefAST = findContainingConstantDef(aAST);
 
         if (constantDefAST == null) {
             reportMagicNumber(aAST);
@@ -95,7 +95,7 @@ public class MagicNumberCheck extends Check
         else {
             DetailAST ast = aAST.getParent();
             while (ast != constantDefAST) {
-                int type = ast.getType();
+                final int type = ast.getType();
                 if (Arrays.binarySearch(ALLOWED_PATH_TOKENTYPES, type) < 0) {
                     reportMagicNumber(aAST);
                     break;

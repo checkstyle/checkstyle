@@ -49,8 +49,8 @@ public class ArrayInitHandler extends BlockParentHandler
      */
     public IndentLevel getLevelImpl()
     {
-        DetailAST parentAST = getMainAst().getParent();
-        int type = parentAST.getType();
+        final DetailAST parentAST = getMainAst().getParent();
+        final int type = parentAST.getType();
         if (type == TokenTypes.LITERAL_NEW || type == TokenTypes.ASSIGN) {
             // note: assumes new or assignment is line to align with
             return new IndentLevel(getLineStart(parentAST));
@@ -133,12 +133,12 @@ public class ArrayInitHandler extends BlockParentHandler
         // new int[] {1, 2,
         //     3};
 
-        IndentLevel expectedIndent = super.getChildrenExpectedLevel();
+        final IndentLevel expectedIndent = super.getChildrenExpectedLevel();
 
         final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
         if (hasCurlys() && firstLine == getLCurly().getLineNo()) {
             final int lcurlyPos = expandedTabsColumnNo(getLCurly());
-            int firstChildPos =
+            final int firstChildPos =
                 getNextFirstNonblankOnLineAfter(firstLine, lcurlyPos);
             if (firstChildPos >= 0) {
                 expectedIndent.addAcceptedIndent(firstChildPos);

@@ -197,10 +197,11 @@ public final class JUnitTestCaseCheck extends Check
      */
     private boolean isPublicAndStatic(DetailAST aAST)
     {
-        DetailAST modifiersAST = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        DetailAST publicAST =
+        final DetailAST modifiersAST =
+            aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST publicAST =
             modifiersAST.findFirstToken(TokenTypes.LITERAL_PUBLIC);
-        DetailAST staticAST =
+        final DetailAST staticAST =
             modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC);
 
         return (publicAST != null) && (staticAST != null);
@@ -213,8 +214,9 @@ public final class JUnitTestCaseCheck extends Check
      */
     private boolean isStatic(DetailAST aAST)
     {
-        DetailAST modifiersAST = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        DetailAST staticAST =
+        final DetailAST modifiersAST =
+            aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST staticAST =
             modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC);
 
         return (staticAST != null);

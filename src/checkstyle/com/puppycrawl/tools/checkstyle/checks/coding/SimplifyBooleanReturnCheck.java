@@ -67,8 +67,8 @@ public class SimplifyBooleanReturnCheck
 
         // skip '(' and ')'
         // TODO: Introduce helpers in DetailAST
-        AST condition = aAST.getFirstChild().getNextSibling();
-        AST thenStatement = condition.getNextSibling().getNextSibling();
+        final AST condition = aAST.getFirstChild().getNextSibling();
+        final AST thenStatement = condition.getNextSibling().getNextSibling();
 
         if (returnsOnlyBooleanLiteral(thenStatement)
             && returnsOnlyBooleanLiteral(elseStatement))
@@ -103,7 +103,7 @@ public class SimplifyBooleanReturnCheck
             return true;
         }
 
-        AST firstStmnt = aAST.getFirstChild();
+        final AST firstStmnt = aAST.getFirstChild();
         return isBooleanLiteralReturnStatement(firstStmnt);
     }
 

@@ -70,8 +70,8 @@ public class MultipleStringLiteralsCheck extends Check
             hitList = new ArrayList();
             mStringMap.put(currentString, hitList);
         }
-        int line = aAST.getLineNo();
-        int col = aAST.getColumnNo();
+        final int line = aAST.getLineNo();
+        final int col = aAST.getColumnNo();
         hitList.add(new StringInfo(line, col));
     }
 
@@ -93,8 +93,9 @@ public class MultipleStringLiteralsCheck extends Check
             if (hits.size() > mAllowedDuplicates) {
                 final StringInfo firstFinding = (StringInfo) hits.get(0);
                 final int line = firstFinding.getLine();
-                int col = firstFinding.getCol();
-                Object[] args = new Object[]{key, new Integer(hits.size())};
+                final int col = firstFinding.getCol();
+                final Object[] args =
+                    new Object[]{key, new Integer(hits.size())};
                 log(line, col, "multiple.string.literal", args);
             }
         }
