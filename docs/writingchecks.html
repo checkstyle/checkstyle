@@ -524,7 +524,7 @@
                   // errors in the same file
 
                   // fire the errors for this file to the AuditListeners
-                  dispatcher.fireErrors(path, getMessageCollector.getMessages());
+                  dispatcher.fireErrors(path, getMessageCollector().getMessages());
 
                   // signal end of file to AuditListeners
                   dispatcher.fireFileFinished(path);
