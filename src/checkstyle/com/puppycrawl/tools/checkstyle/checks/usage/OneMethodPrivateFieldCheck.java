@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.SymTabAST;
  * <pre>
  * &lt;module name="usage.OneMethodPrivateField"/&gt;
  * </pre>
- * <p>
+ *
  * @author Rick Giles
  */
 public class OneMethodPrivateFieldCheck

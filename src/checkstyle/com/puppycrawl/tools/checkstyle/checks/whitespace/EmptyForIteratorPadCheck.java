@@ -43,7 +43,7 @@ for (Iterator foo = very.long.line.iterator();
  * <pre>
  * &lt;module name="EmptyForIteratorPad"/&gt;
  * </pre>
- * <p>
+ *
  * @author Rick Giles
  * @version 1.0
  */
