@@ -9,8 +9,7 @@ public class AvoidStarImportTest
         throws Exception
     {
         final DefaultConfiguration checkConfig =
-            new DefaultConfiguration("test");
-        checkConfig.addAttribute("classname", AvoidStarImport.class.getName());
+            createCheckConfig(AvoidStarImport.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputImport.java");
         final String[] expected = {

@@ -33,6 +33,14 @@ public abstract class BaseCheckTestCase
     protected final PrintStream mStream = new PrintStream(mBAOS);
     protected final Properties mProps = new Properties();
 
+    public static DefaultConfiguration createCheckConfig(Class aClazz)
+    {
+        final DefaultConfiguration checkConfig =
+            new DefaultConfiguration("test");
+        checkConfig.addAttribute("classname", aClazz.getName());
+        return checkConfig;
+    }
+
     protected Checker createChecker(Configuration aConfig)
         throws Exception
     {
