@@ -75,14 +75,14 @@ compilationUnit
 // Package statement: "package" followed by an identifier.
 packageDefinition
 	options {defaultErrorHandler = true;} // let ANTLR handle errors
-	:	p:"package"^ {#p.setType(PACKAGE_DEF);} identifier SEMI!
+	:	p:"package"^ {#p.setType(PACKAGE_DEF);} identifier SEMI
 	;
 
 
 // Import statement: import followed by a package or class name
 importDefinition
 	options {defaultErrorHandler = true;}
-	:	i:"import"^ {#i.setType(IMPORT);} identifierStar SEMI!
+	:	i:"import"^ {#i.setType(IMPORT);} identifierStar SEMI
 	;
 
 // A type definition in a file is either a class or interface definition.
@@ -92,7 +92,7 @@ typeDefinition
 		( classDefinition[#m]
 		| interfaceDefinition[#m]
 		)
-	|	SEMI!
+	|	SEMI
 	;
 
 /** A declaration is the creation of a reference or primitive-type variable
@@ -224,7 +224,7 @@ interfaceDefinition![DetailAST modifiers]
 // That's about it (until you see what a field is...)
 classBlock
 	:	LCURLY
-			( field | SEMI! )*
+			( field | SEMI )*
 		RCURLY
 		{#classBlock = #([OBJBLOCK, "OBJBLOCK"], #classBlock);}
 	;
@@ -319,14 +319,14 @@ explicitConstructorInvocation
 				// it sees this( or super(
 				generateAmbigWarnings=false;
 			}
-		:	"this"! lp1:LPAREN^ argList RPAREN SEMI!
+		:	"this"! lp1:LPAREN^ argList RPAREN SEMI
 			{#lp1.setType(CTOR_CALL);}
 
-	    |   "super"! lp2:LPAREN^ argList RPAREN SEMI!
+	    |   "super"! lp2:LPAREN^ argList RPAREN SEMI
 			{#lp2.setType(SUPER_CTOR_CALL);}
 
 			// (new Outer()).super()  (create enclosing instance)
-		|	primaryExpression DOT! "super"! lp3:LPAREN^ argList RPAREN SEMI!
+		|	primaryExpression DOT! "super"! lp3:LPAREN^ argList RPAREN SEMI
 			{#lp3.setType(SUPER_CTOR_CALL);}
 		)
     ;
@@ -457,12 +457,12 @@ traditionalStatement
 	// statements.  Must backtrack to be sure.  Could use a semantic
 	// predicate to test symbol table to see what the type was coming
 	// up, but that's pretty hard without a symbol table ;)
-	|	(declaration)=> declaration SEMI!
+	|	(declaration)=> declaration SEMI
 
 	// An expression statement.  This could be a method call,
 	// assignment statement, or any other expression evaluated for
 	// side-effects.
-	|	expression SEMI!
+	|	expression SEMI
 
 	// class definition
 	|	m:modifiers! classDefinition[#m]
@@ -486,8 +486,8 @@ traditionalStatement
 	// For statement
 	|	"for"^
 			LPAREN
-				forInit SEMI!   // initializer
-				forCond	SEMI!   // condition test
+				forInit SEMI   // initializer
+				forCond	SEMI   // condition test
 				forIter         // updater
 			RPAREN
 			statement                     // statement to loop over
@@ -496,16 +496,16 @@ traditionalStatement
 	|	"while"^ LPAREN expression RPAREN statement
 
 	// do-while statement
-	|	"do"^ statement "while"! LPAREN expression RPAREN SEMI!
+	|	"do"^ statement "while"! LPAREN expression RPAREN SEMI
 
 	// get out of a loop (or switch)
-	|	"break"^ (IDENT)? SEMI!
+	|	"break"^ (IDENT)? SEMI
 
 	// do next iteration of a loop
-	|	"continue"^ (IDENT)? SEMI!
+	|	"continue"^ (IDENT)? SEMI
 
 	// Return an expression
-	|	"return"^ (expression)? SEMI!
+	|	"return"^ (expression)? SEMI
 
 	// switch/case statement
 	|	"switch"^ LPAREN expression RPAREN LCURLY
@@ -516,7 +516,7 @@ traditionalStatement
 	|	tryBlock
 
 	// throw an exception
-	|	"throw"^ expression SEMI!
+	|	"throw"^ expression SEMI
 
 	// synchronize a statement
 	|	"synchronized"^ LPAREN expression RPAREN compoundStatement
