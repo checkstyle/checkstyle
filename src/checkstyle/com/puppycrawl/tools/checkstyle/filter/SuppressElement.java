@@ -22,19 +22,20 @@ import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditEventFilter;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * <p>
- * This filter denies audit events according to file, check, line, and
- * column.
+ * This filter denies AuditEvents according to file, check, line, and
+ * column. It is neutral on Objects that are not AuditEvents.
  * </p>
  * @author Rick Giles
  */
 public class SuppressElement
-    extends AuditEventFilter
+    extends AutomaticBean
+    implements Filter 
 {
     /** hash function multiplicand */
     private static final int HASH_MULT = 29;
@@ -114,6 +115,10 @@ public class SuppressElement
     /** @see com.puppycrawl.tools.checkstyle.api.Filter */
     public int decide(Object aObject)
     {
+        if (!(aObject instanceof AuditEvent)) {
+            return Filter.NEUTRAL;
+        }
+
         final AuditEvent event = (AuditEvent) aObject;
 
         // file and check match?

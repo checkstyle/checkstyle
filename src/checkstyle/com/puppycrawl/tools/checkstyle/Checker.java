@@ -24,7 +24,6 @@ import java.util.Iterator;
 import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditEventFilter;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -192,8 +191,8 @@ public class Checker extends AutomaticBean
                 final FileSetCheck fsc = (FileSetCheck) child;
                 addFileSetCheck(fsc);
             }
-            else if (child instanceof AuditEventFilter) {
-                final AuditEventFilter filter = (AuditEventFilter) child;
+            else if (child instanceof Filter) {
+                final Filter filter = (Filter) child;
                 addFilter(filter);
             }
             else if (child instanceof AuditListener) {

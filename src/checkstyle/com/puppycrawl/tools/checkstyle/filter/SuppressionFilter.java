@@ -19,19 +19,22 @@
 package com.puppycrawl.tools.checkstyle.filter;
 
 import com.puppycrawl.tools.checkstyle.SuppressionsLoader;
-import com.puppycrawl.tools.checkstyle.api.AuditEventFilter;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterChain;
 
 /**
  * <p>
- * This filter suppresses audit events according to file, check, line, and
+ * This filter suppresses AuditEvents according to file, check, line, and
  * column, as specified in a suppression file.
+ * It is neutral on Objects that are not AuditEvents.
  * </p>
  * @author Rick Giles
  */
 public class SuppressionFilter
-    extends AuditEventFilter
+    extends AutomaticBean
+    implements Filter
 {
     /** chain of individual suppresses */
     private FilterChain mFilterChain = new FilterChain();
