@@ -4,9 +4,9 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 /**
- * Enter a description of class AllTests.java.
+ * Enter a description of class AllTests1.java.
  * @author Rick Giles
- * @version 13-Nov-2002
+ * @version 14-Nov-2002
  */
 public class AllTests {
 
@@ -24,6 +24,8 @@ public class AllTests {
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
         suite.addTest(new TestSuite(FileLengthCheckTest.class));
         suite.addTest(new TestSuite(GenericIllegalRegexpCheckTest.class));
+        suite.addTest(new TestSuite(GlobalPropertiesSerializationTest.class));
+        suite.addTest(new TestSuite(GlobalPropertiesTest.class));
         suite.addTest(new TestSuite(HeaderCheckTest.class));
         suite.addTest(new TestSuite(HiddenFieldCheckTest.class));
         suite.addTest(new TestSuite(IllegalImportCheckTest.class));
@@ -46,6 +48,7 @@ public class AllTests {
         suite.addTest(new TestSuite(NoWhitespaceBeforeCheckTest.class));
         suite.addTest(new TestSuite(OperatorWrapCheckTest.class));
         suite.addTest(new TestSuite(OtherLeftCurlyCheckTest.class));
+        suite.addTest(new TestSuite(PackageHtmlCheckTest.class));
         suite.addTest(new TestSuite(PackageNameCheckTest.class));
         suite.addTest(new TestSuite(ParameterNameCheckTest.class));
         suite.addTest(new TestSuite(ParameterNumberCheckTest.class));
@@ -69,8 +72,7 @@ public class AllTests {
         suite.addTest(new TestSuite(VisibilityModifierCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(WhitespaceAroundTest.class));
-        suite.addTest(new TestSuite(GlobalPropertiesSerializationTest.class));
-        suite.addTest(new TestSuite(GlobalPropertiesTest.class));
+        suite.addTest(new TestSuite(OptionTest.class));
         //$JUnit-END$
         return suite;
     }
