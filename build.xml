@@ -113,8 +113,9 @@
            destdir="target/checkstyle"
            deprecation="on" debug="on"
            classpathref="build.classpath" />
-    <copy file="src/checkstyle/checkstyletask.properties"
-          todir="target/checkstyle"/>
+    <copy todir="target/checkstyle">
+      <fileset dir="src/checkstyle" includes="**/*.properties"/>
+    </copy>
   </target>
 
   <!-- Compiles only the test code. Input files are excluded from
