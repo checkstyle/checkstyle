@@ -24,8 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks the placement of right curly braces.
- * The policy to verify is specified using the {@link RightCurlyOption} class and
- * defaults to {@link RightCurlyOption#SAME}.
+ * The policy to verify is specified using the {@link RightCurlyOption} class
+ * and defaults to {@link RightCurlyOption#SAME}.
  * </p>
  * <p> By default the check will check the following tokens:
  *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},

@@ -49,22 +49,23 @@ import org.apache.commons.beanutils.ConversionException;
  * dates. For example, consider the following header:</p>
  *
  * <pre>
- * line 1: ///////////////////////////////////////////////////////////////////////
- * line 2: // checkstyle: Checks Java source code for adherence to a set of rules.
- * line 3: // Copyright (C) 2001  Oliver Burn
- * line 4: ///////////////////////////////////////////////////////////////////////
+ * line 1: ////////////////////////////////////////////////////////////////////
+ * line 2: // checkstyle:
+ * line 3: // Checks Java source code for adherence to a set of rules.
+ * line 4: // Copyright (C) 2001  Oliver Burn
+ * line 5: ////////////////////////////////////////////////////////////////////
  * </pre>
  *
  * <p>Since the year information will change over time, you can tell checkstyle
- * to ignore line 3 by setting property ignoreLines to <strong>3</strong>.</p>
+ * to ignore line 4 by setting property ignoreLines to <strong>4</strong>.</p>
  * <p>
  * An example of how to configure the check to use header file
- * &quot;java.header&quot; and ignore lines 3 and 5 is:
+ * &quot;java.header&quot; and ignore lines 2, 3, and 4 is:
  * </p>
  * <pre>
  * &lt;config name="HeaderCheck"&gt;
  *    &lt;property name="headerFile" value="java.header"/&gt;
- *    &lt;property name="ignoreLines" value="3, 5"/&gt;
+ *    &lt;property name="ignoreLines" value="2, 3, 4"/&gt;
  * &lt;/config&gt;
  * </pre>
  * @author Lars Kühne

@@ -62,7 +62,8 @@ import org.apache.commons.beanutils.ConversionException;
  * &lt;/config&gt;
  * </pre>
  * <p> An example of how to configure the check to ignore lines that begin with
- * &quot; * &quot;, such as within a Javadoc comment, is:
+ * &quot; * &quot;, followed by just one word, such as within a Javadoc comment,
+ * is:
  * </p>
  * <pre>
  * &lt;config name="LineLengthCheck"&gt;

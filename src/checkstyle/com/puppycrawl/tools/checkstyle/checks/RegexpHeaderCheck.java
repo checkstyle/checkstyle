@@ -41,23 +41,24 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  *
  * <pre>
  * line 1: /{71}
- * line 2: // checkstyle: Checks Java source code for adherence to a set of rules\.
- * line 3: // Copyright \(C\) \d\d\d\d  Oliver Burn
- * line 4: // Last modification by \$Author.*\$
- * line 5: /{71}
+ * line 2: // checkstyle:
+ * line 3: // Checks Java source code for adherence to a set of rules\.
+ * line 4: // Copyright \(C\) \d\d\d\d  Oliver Burn
+ * line 5: // Last modification by \$Author.*\$
+ * line 6: /{71}
  * </pre>
  *
- * <p>Lines 1 and 5 demonstrate a more compact notation for 71 '/'
- * characters. Line 3 enforces that the copyright notice includes a four digit
- * year. Line 4 is an example how to enforce revision control keywords in a file
+ * <p>Lines 1 and 6 demonstrate a more compact notation for 71 '/'
+ * characters. Line 4 enforces that the copyright notice includes a four digit
+ * year. Line 5 is an example how to enforce revision control keywords in a file
  * header.</p>
  * An example of how to configure the check to use header file
- * &quot;java.header&quot; and ignore lines 3 and 5 is:
+ * &quot;java.header&quot; and ignore lines 4 and 5 is:
  * </p>
  * <pre>
  * &lt;config name="RegexpHeaderCheck"&gt;
  *    &lt;property name="headerFile" value="java.header"/&gt;
- *    &lt;property name="ignoreLines" value="3, 5"/&gt;
+ *    &lt;property name="ignoreLines" value="4, 5"/&gt;
  * &lt;/config&gt;
  * </pre>
  *

@@ -33,7 +33,7 @@
         <config name="JavadocVariableCheck"/>
 
         <config name="LineLengthCheck">
-            <property name="ignorePattern" value="^ *\* *[^ ]+"/>
+            <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
         </config>
 
         <config name="LocalFinalVariableNameCheck"/>

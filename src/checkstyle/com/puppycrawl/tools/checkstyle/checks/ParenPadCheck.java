@@ -51,8 +51,9 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * </p>
  * <pre>
  * &lt;config name="ParenPadCheck"&gt;
- * &lt;property name="tokens" value="CTOR_CALL, METHOD_CALL, SUPER_CTOR_CALL"/&gt;
- *    &lt;property name="option" value="space"/&gt;
+ *     &lt;property name="tokens"
+ *               value="CTOR_CALL, METHOD_CALL, SUPER_CTOR_CALL"/&gt;
+ *     &lt;property name="option" value="space"/&gt;
  * &lt;/config&gt;
  * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
