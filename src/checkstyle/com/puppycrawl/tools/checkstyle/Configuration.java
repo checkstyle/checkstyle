@@ -147,6 +147,8 @@ public class Configuration
     private boolean mIgnoreWhitespace = false;
     /** whether to ignore cast whitespace **/
     private boolean mIgnoreCastWhitespace = false;
+    /** whether to ignore paren whitespace **/
+    private boolean mIgnoreParenWhitespace = false;
     /** whether to ignore braces **/
     private boolean mIgnoreBraces = false;
     /** whether to ignore 'public' keyword in interface definitions **/
@@ -239,6 +241,10 @@ public class Configuration
         setIgnoreWhitespace(getBooleanProperty(aProps,
                                                IGNORE_WHITESPACE_PROP,
                                                mIgnoreWhitespace));
+        setIgnoreParenWhitespace(
+            getBooleanProperty(aProps,
+                               IGNORE_PAREN_WHITESPACE_PROP,
+                               mIgnoreParenWhitespace));
         setIgnoreCastWhitespace(getBooleanProperty(aProps,
                                                    IGNORE_CAST_WHITESPACE_PROP,
                                                    mIgnoreCastWhitespace));
@@ -529,6 +535,12 @@ public class Configuration
         return mIgnoreCastWhitespace;
     }
 
+    /** @return whether to ignore checks for whitespace around parenthesis **/
+    public boolean isIgnoreParenWhitespace()
+    {
+        return mIgnoreParenWhitespace;
+    }
+
     /** @return whether to ignore checks for braces **/
     public boolean isIgnoreBraces()
     {
@@ -815,6 +827,12 @@ public class Configuration
     public void setIgnoreCastWhitespace(boolean aTo)
     {
         mIgnoreCastWhitespace = aTo;
+    }
+
+    /** @param aTo whether to ignore whitespace around parenthesis */
+    public void setIgnoreParenWhitespace(boolean aTo)
+    {
+        mIgnoreParenWhitespace = aTo;
     }
 
     /**

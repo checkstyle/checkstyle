@@ -647,7 +647,7 @@ class Verifier
      */
     void verifyLParen(int aLineNo, int aColNo)
     {
-        if (mConfig.isIgnoreWhitespace()) {
+        if (mConfig.isIgnoreWhitespace() || mConfig.isIgnoreParenWhitespace()) {
             return;
         }
 
@@ -667,7 +667,7 @@ class Verifier
      */
     void verifyRParen(int aLineNo, int aColNo)
     {
-        if (mConfig.isIgnoreWhitespace()) {
+        if (mConfig.isIgnoreWhitespace() || mConfig.isIgnoreParenWhitespace()) {
             return;
         }
 

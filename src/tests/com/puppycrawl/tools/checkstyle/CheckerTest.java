@@ -88,6 +88,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setIgnoreCastWhitespace(false);
+        mConfig.setIgnoreParenWhitespace(false);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -153,10 +154,11 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
-    public void testWhitespaceCastOff()
+    public void testWhitespaceCastParenOff()
         throws Exception
     {
         mConfig.setIgnoreCastWhitespace(true);
+        mConfig.setIgnoreParenWhitespace(true);
         final Checker c = createChecker();
         final String filepath = getPath("InputWhitespace.java");
         assertNotNull(c);
@@ -182,13 +184,9 @@ public class CheckerTest
             filepath + ":37: 'synchronized' is not followed by whitespace.",
             filepath + ":39: 'try' is not followed by whitespace.",
             filepath + ":41: 'catch' is not followed by whitespace.",
-            filepath + ":58: '(' is followed by whitespace.",
-            filepath + ":58: ')' is preceeded by whitespace.",
             filepath + ":58: 'if' is not followed by whitespace.",
             filepath + ":59: '{' should be on the previous line.",
             filepath + ":63: '{' should be on the previous line.",
-            filepath + ":74: '(' is followed by whitespace.",
-            filepath + ":74: ')' is preceeded by whitespace.",
             filepath + ":75: '{' should be on the previous line.",
             filepath + ":76: 'return' is not followed by whitespace.",
             filepath + ":79: '{' should be on the previous line.",
