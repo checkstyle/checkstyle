@@ -97,10 +97,10 @@ class Comment implements TextBlock
         // compute a single number for start and end
         // to simpify conditional logic
         final long multiplier = Integer.MAX_VALUE;
-        final long thisStart = ((long) mFirstLine) * multiplier + mFirstCol;
-        final long thisEnd = ((long) mLastLine) * multiplier + mLastCol;
-        final long inStart = ((long) aStartLineNo) * multiplier + aStartColNo;
-        final long inEnd = ((long) aEndLineNo) * multiplier + aEndColNo;
+        final long thisStart = mFirstLine * multiplier + mFirstCol;
+        final long thisEnd = mLastLine * multiplier + mLastCol;
+        final long inStart = aStartLineNo * multiplier + aStartColNo;
+        final long inEnd = aEndLineNo * multiplier + aEndColNo;
 
         return ((thisStart < inStart) && (inStart < thisEnd))
             || ((thisStart < inEnd) && (inEnd < thisEnd));
