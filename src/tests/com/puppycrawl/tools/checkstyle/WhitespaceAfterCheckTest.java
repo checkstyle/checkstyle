@@ -25,7 +25,6 @@ public class WhitespaceAfterCheckTest
 
     public void testCast() throws Exception
     {
-        mCheckConfig.addTokens("TYPECAST");
         final Checker c = createChecker(mCheckConfig);
         final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
