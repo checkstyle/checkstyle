@@ -143,6 +143,7 @@
            destdir="target/checkstyle"
            deprecation="on" debug="on"
            classpathref="build.classpath"
+           encoding="iso-8859-1"
            includeAntRuntime="false"/>
 
     <propertyfile file="target/checkstyle/checkstylecompilation.properties">
