@@ -48,6 +48,12 @@ public class ArrayTypeStyleCheck extends Check
         if (typeAST.getType() != TokenTypes.TYPE) {
             return;
         }
+        final DetailAST declAST = typeAST.getParent();
+        if (declAST.getType() == TokenTypes.METHOD_DEF) {
+            // Do not check method's return type.
+            // We have no alternatives here.
+            return;
+        }
 
         final DetailAST variableAST = (DetailAST) typeAST.getNextSibling();
         if (variableAST != null) {
