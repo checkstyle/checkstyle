@@ -1,22 +1,24 @@
-2001-12-20  Oliver Burn  <oliver@cortexebusiness.com.au>
+2001-12-20  Oliver Burn  <checkstyle@puppycrawl.com>
+
+	* prj.el: Included patch to make paths relative. From Lars kuehne.
 
 	* build.xml:
 	Included patch to fail build if unit tests fail, and also format the
 	unit test results. From Lars kuehne.
 
-2001-12-11  Oliver Burn  <oliver@cortexebusiness.com.au>
+2001-12-11  Oliver Burn  <checkstyle@puppycrawl.com>
 
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.tree.g:
 	Included patch to check for whitespace around return statements.
 	From Lars kuehne [ lars _DOT_ kuehne _AT_ ppi _DOT_ de ].
 
-2001-12-03  Oliver Burn  <oliver@cortexebusiness.com.au>
+2001-12-03  Oliver Burn  <checkstyle@puppycrawl.com>
 
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/VerifierImpl.java:
 	Included patch to ignore blank lines between Javadoc and the
 	declaration. From Lars kuehne [ lars _DOT_ kuehne _AT_ ppi _DOT_ de ].
 
-2001-11-26  Oliver Burn  <oliver@cortexebusiness.com.au>
+2001-11-26  Oliver Burn  <checkstyle@puppycrawl.com>
 
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.g
 	* src/checkstyle/com/puppycrawl/tools/checkstyle/java.tree.g:
