@@ -9,8 +9,8 @@ public class EmptyBlockCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(EmptyBlockCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(EmptyBlockCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {
@@ -30,9 +30,9 @@ public class EmptyBlockCheckTest
     public void testText()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(EmptyBlockCheck.class.getName());
-        checkConfig.addProperty("option", BlockOption.TEXT.toString());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(EmptyBlockCheck.class);
+        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {
@@ -48,9 +48,9 @@ public class EmptyBlockCheckTest
     public void testStatement()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(EmptyBlockCheck.class.getName());
-        checkConfig.addProperty("option", BlockOption.STMT.toString());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(EmptyBlockCheck.class);
+        checkConfig.addAttribute("option", BlockOption.STMT.toString());
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSemantic.java");
         final String[] expected = {

@@ -9,9 +9,9 @@ public class ConstantNameCheckTest
     public void testIllegalRegexp()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ConstantNameCheck.class.getName());
-        checkConfig.addProperty("format", "\\");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ConstantNameCheck.class);
+        checkConfig.addAttribute("format", "\\");
         try {
             createChecker(checkConfig);
             fail();
@@ -24,8 +24,8 @@ public class ConstantNameCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ConstantNameCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ConstantNameCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputSimple.java");
         final String[] expected = {
@@ -38,8 +38,8 @@ public class ConstantNameCheckTest
     public void testInterface()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(ConstantNameCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ConstantNameCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputInner.java");
         final String[] expected = {
