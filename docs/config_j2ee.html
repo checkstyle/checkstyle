@@ -232,26 +232,16 @@
         <li class="body">
           The return type of all <span class="code">create&lt;METHOD&gt;(...)</span> 
           methods is not <span class="code">void</span>, because the return type must be 
-          the entity bean's local interface.
+          the bean's local interface.
         </li>
         <li class="body">
           The throws clause of all <span class="code">create&lt;METHOD&gt;(...)</span> 
           methods defines the <span class="code">javax.ejb.CreateException</span>.
         </li>
-        <li class="body">
-          The return type of all <span class="code">find&lt;METHOD&gt;(...)</span> 
-          methods is not <span class="code">void</span>, because the return type must be 
-          the entity bean's local interface.
-        </li>
-        <li class="body">
-          The throws clause of all <span class="code">find&lt;METHOD&gt;(...)</span> 
-          methods defines the <span class="code">javax.ejb.FinderException</span>.
-        </li>
-        <li class="body">There is exactly one <span class="code">findByPrimaryKey(primaryKey)</span> method.</li>
       <li class="body">The throws clause of all methods does not define the <span class="code">java.rmi.RemoteException</span>.</li>
       </ul>
  <p class="body">
- Reference: Enterprise JavaBeansTM Specification,Version 2.0, section 9.6.
+ Reference: Enterprise JavaBeansTM Specification,Version 2.0, sections 6.4 and 9.6.
  </p>
       <h4>Example</h4>
       <p class="body">
@@ -354,26 +344,16 @@
         <li class="body">
           The return type of all <span class="code">create&lt;METHOD&gt;(...)</span> 
           methods is not <span class="code">void</span>, because the return type must be 
-          the entity bean's local interface.
+          the bean's remote interface.
         </li>
         <li class="body">
           The throws clause of all <span class="code">create&lt;METHOD&gt;(...)</span> 
           methods defines the <span class="code">javax.ejb.CreateException</span>.
         </li>
-        <li class="body">
-          The return type of all <span class="code">find&lt;METHOD&gt;(...)</span> 
-          methods is not <span class="code">void</span>, because the return type must be 
-          the entity bean's local interface.
-        </li>
-        <li class="body">
-          The throws clause of all <span class="code">find&lt;METHOD&gt;(...)</span> 
-          methods defines the <span class="code">javax.ejb.FinderException</span>.
-        </li>
-        <li class="body">There is exactly one <span class="code">findByPrimaryKey(primaryKey)</span> method.</li>
       <li class="body">The throws clause of all methods defines the <span class="code">java.rmi.RemoteException</span>.</li>
       </ul>
  <p class="body">
- Reference: Enterprise JavaBeansTM Specification,Version 2.0, section 9.5.
+ Reference: Enterprise JavaBeansTM Specification,Version 2.0, sections 6.3 and 9.5.
  </p>
       <h4>Example</h4>
       <p class="body">

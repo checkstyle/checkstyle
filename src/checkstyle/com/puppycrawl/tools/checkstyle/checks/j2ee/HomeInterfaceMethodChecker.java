@@ -28,9 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public abstract class HomeInterfaceMethodChecker
     extends MethodChecker
 {
-    /** true if the home interface defines method findByPrimaryKey */
-    private boolean mHasFindByPrimaryKey;
-
     /**
      * Constructs a method checker for a home interface check.
      * @param aCheck the home interface check.
@@ -38,25 +35,6 @@ public abstract class HomeInterfaceMethodChecker
     public HomeInterfaceMethodChecker(AbstractInterfaceCheck aCheck)
     {
         super(aCheck);
-    }
-
-    /**
-     *
-     * @see com.puppycrawl.tools.checkstyle.checks.j2ee.MethodChecker
-     */
-    public void checkMethods(DetailAST aAST)
-    {
-        mHasFindByPrimaryKey = false;
-
-        super.checkMethods(aAST);
-
-        if (!mHasFindByPrimaryKey) {
-            final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-            final String name = nameAST.getText();
-            final String arg = "Home interface '" + name + "'";
-            log(aAST, "missingmethod.bean",
-                new Object[] {arg, "findByPrimaryKey()"});
-        }
     }
 
     /**
@@ -72,40 +50,6 @@ public abstract class HomeInterfaceMethodChecker
         if (name.startsWith("create")) {
             checkCreateMethod(aMethodAST);
         }
-        else if (name.startsWith("find")) {
-            checkFindMethod(aMethodAST);
-        }
-    }
-
-    /**
-     * Checks find&lt;METHOD&gt;(...) method requirements..
-     * @param aMethodAST the finder method definition AST.
-     */
-    protected void checkFindMethod(DetailAST aMethodAST)
-    {
-        // there must be only one findByPrimaryKey method with one parameter
-        final DetailAST nameAST = aMethodAST.findFirstToken(TokenTypes.IDENT);
-        final String name = nameAST.getText();
-        if (name.equals("findByPrimaryKey")) {
-            if (mHasFindByPrimaryKey) {
-                logName(aMethodAST, "findbyprimarykey.bean", new Object[] {});
-            }
-            mHasFindByPrimaryKey = true;
-            final DetailAST paramAST =
-                aMethodAST.findFirstToken(TokenTypes.PARAMETERS);
-            final int paramCount = paramAST.getChildCount();
-            if (paramCount != 1) {
-                logName(aMethodAST, "paramcount.bean", new Object[] {"1"});
-            }
-        }
-
-        // return type is the entity bean’s remote or local interface
-        if (Utils.isVoid(aMethodAST)) {
-            logName(aMethodAST, "voidmethod.bean", new Object[] {});
-        }
-
-        // every find method throws a javax.ejb.FindException
-        checkThrows(aMethodAST, "javax.ejb.FinderException");
     }
 
     /**
