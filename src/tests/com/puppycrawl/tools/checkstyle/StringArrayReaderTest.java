@@ -70,4 +70,28 @@ public class StringArrayReaderTest
         catch (IOException ex) {
         }
     }
+
+    public void testNoLineBreakCharArray()
+    {
+        final StringArrayReader o =
+            new StringArrayReader(new String[] {"a", "bc"});
+        try {
+            char[] a = new char[1];
+            o.read(a, 0, 1);
+            int nl1 = o.read();
+            assertEquals('\n', nl1);
+            char[] b = new char[1];
+            int count = o.read(b, 0, 1);
+            assertEquals(1, count);
+            assertEquals('b', b[0]);
+            int c = o.read();
+            assertEquals('c', c);
+            int nl2 = o.read();
+            assertEquals('\n', nl2);
+            int eof = o.read();
+            assertEquals(-1, eof);
+        }
+        catch (IOException ex) {
+        }
+    }
 }
