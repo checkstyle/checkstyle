@@ -52,6 +52,25 @@
         <li>
           <a href="#UpperEll">UpperEll</a>
         </li>
+        <li>
+          <a href="#AvoidInlineConditionals">AvoidInlineConditionals</a>
+        </li>
+        <hr/><font color="red">docs missing for:</font>
+        <li>
+          <a href="#InterfaceIsType">InterfaceIsType</a>
+        </li>
+        <li>
+          <a href="#HideUtilityClassConstructor">HideUtilityClassConstructor</a>
+        </li>
+        <li>
+          <a href="#DesignForInheritance">DesignForInheritance</a>
+        </li>
+        <li>
+          <a href="#ArrayTypeStyle">ArrayTypeStyle</a>
+        </li>
+        <li>
+          <a href="#FinalParameters">FinalParameters</a>
+        </li>
       </ul>
     </td>
     <!--Content-->
@@ -477,6 +496,41 @@ like <span class="code">1</span>.
       <a href="config.html#treewalker">TreeWalker</a>
       
       </p>
+
+      <!-- --> <a name="AvoidInlineConditionals"></a> <h2>AvoidInlineConditionals</h2> <h4>Description</h4>
+      <p class="body">
+      Detects inline conditionals.
+
+      An example inline conditional is this:
+      </p>
+      <pre class="body"	>
+String a = getParameter("a");
+String b = (a==null || a.length<1) ? null : a.substring(1);
+      </pre>
+      <p class="body">
+      Rationale: Some developers find inline conditionals hard to read,
+      so their company's coding standards forbids them.
+      </p>
+      <p class="body">
+	  Rationale: Some developers find inline conditionals hard to read,
+      so their company's coding standards forbids them.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
       </td>
   </tr>
 </table>
