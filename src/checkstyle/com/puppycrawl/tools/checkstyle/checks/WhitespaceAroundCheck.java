@@ -23,7 +23,72 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * Checks for whitespace around a token.
+ * <p>
+ * Checks that a token is surrounded by whitespace.
+ * </p>
+ * <p> By default the check will check the following operators:
+ *  {@link TokenTypes#ASSERT ASSERT},
+ *  {@link TokenTypes#ASSIGN ASSIGN},
+ *  {@link TokenTypes#BAND BAND},
+ *  {@link TokenTypes#BAND_ASSIGN BAND_ASSIGN},
+ *  {@link TokenTypes#BOR BOR},
+ *  {@link TokenTypes#BOR_ASSIGN BOR_ASSIGN},
+ *  {@link TokenTypes#BSR BSR},
+ *  {@link TokenTypes#BSR_ASSIGN BSR_ASSIGN},
+ *  {@link TokenTypes#BXOR BXOR},
+ *  {@link TokenTypes#BXOR_ASSIGN BXOR_ASSIGN},
+ *  {@link TokenTypes#COLON COLON},
+ *  {@link TokenTypes#DIV DIV},
+ *  {@link TokenTypes#DIV_ASSIGN DIV_ASSIGN},
+ *  {@link TokenTypes#EQUAL EQUAL},
+ *  {@link TokenTypes#GE GE},
+ *  {@link TokenTypes#GT GT},
+ *  {@link TokenTypes#LAND LAND},
+ *  {@link TokenTypes#LCURLY LCURLY},
+ *  {@link TokenTypes#LE LE},
+ *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
+ *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
+ *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
+ *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
+ *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
+ *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
+ *  {@link TokenTypes#LITERAL_RETURN LITERAL_RETURN},
+ *  {@link TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED},
+ *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY},
+ *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE},
+ *  {@link TokenTypes#LOR LOR},
+ *  {@link TokenTypes#LT LT},
+ *  {@link TokenTypes#MINUS MINUS},
+ *  {@link TokenTypes#MINUS_ASSIGN MINUS_ASSIGN},
+ *  {@link TokenTypes#MOD MOD},
+ *  {@link TokenTypes#MOD_ASSIGN MOD_ASSIGN},
+ *  {@link TokenTypes#NOT_EQUAL NOT_EQUAL},
+ *  {@link TokenTypes#PLUS PLUS},
+ *  {@link TokenTypes#PLUS_ASSIGN PLUS_ASSIGN},
+ *  {@link TokenTypes#QUESTION QUESTION},
+ *  {@link TokenTypes#RCURLY RCURLY},
+ *  {@link TokenTypes#SL SL},
+ *  {@link TokenTypes#SLIST SLIST},
+ *  {@link TokenTypes#SL_ASSIGN SL_ASSIGN},
+ *  {@link TokenTypes#SR SR},
+ *  {@link TokenTypes#SR_ASSIGN SR_ASSIGN},
+ *  {@link TokenTypes#STAR STAR},
+ *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN}.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="WhitespaceAroundCheck"/&gt;
+ * </pre> 
+ * <p> An example of how to configure the check for whitespace only around
+ * assignment operators is:
+ * </p>
+ * <pre>
+ * &lt;config name="WhitespaceAroundCheck"&gt;
+ *     &lt;property name="tokens" value="ASSIGN, DIV_ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN, STAR_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN, SL_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, BAND_ASSIGN"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
