@@ -22,7 +22,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
- * Abstract class for checks for Left Curly placement.
+ * Abstract class for checks that verify the placement of a left curly
+ * brace. It provides the support for setting the maximum line length and the
+ * policy to verify. The default policy is EOL. It also provides the method to
+ * verify the placement.
+ *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
@@ -33,7 +37,7 @@ public abstract class AbstractLeftCurlyCheck
     private int mMaxLineLength = 80;
 
     /**
-     * Sets the left curly otion to eol.
+     * Creates a default instance and sets the policy to EOL.
      */
     public AbstractLeftCurlyCheck()
     {

@@ -22,25 +22,60 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents the options for placing the left curly brace '{'.
+ * Represents the options for placing the left curly brace <code>'{'</code>.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: LeftCurlyOption.java,v 1.4 2002-11-14 15:59:49 rickgiles Exp $
+ * @version $Id: LeftCurlyOption.java,v 1.5 2002-11-26 06:25:10 oburn Exp $
  */
 public final class LeftCurlyOption
     extends AbstractOption
 {
     /** maps from a string representation to an option */
     private static final Map STR_TO_OPT = new HashMap();
-    
-    /** represents placing the brace at the end of line **/
-    public static final LeftCurlyOption EOL = new LeftCurlyOption("eol");
+
     /**
-     * represents placing on the end of the line if it fits on the first line,
-     * otherwise placing on a new line.
+     * Represents the policy for placing the brace at the end of line. For
+     * example:
+     * <pre>
+     * if (condition) {
+     *     ...
+     * </pre>
+     **/
+    public static final LeftCurlyOption EOL = new LeftCurlyOption("eol");
+
+    /**
+     * Represents the policy that if the brace will fit on the first line of
+     * the statement, taking into account maximum line length, then apply
+     * <code>EOL</code> rule. Otherwise apply the <code>NL</code>
+     * rule. <code>NLOW</code> is a mnemonic for "new line on wrap".
+     *
+     * <p> For the example above Checkstyle will enforce:
+     *
+     * <pre>
+     * if (condition) {
+     *     ...
+     * </pre>
+     *
+     * But for a statement spanning multiple lines, Checkstyle will enforce:
+     *
+     * <pre>
+     * if (condition1 && condition2 &&
+     *     condition3 && condition4)
+     * {
+     *     ...
+     * </pre>
      **/
     public static final LeftCurlyOption NLOW = new LeftCurlyOption("nlow");
-    /** represents placing on a new line **/
+
+    /**
+     * Represents the policy that the brace must always be on a new line. For
+     * example:
+     * <pre>
+     * if (condition)
+     * {
+     *     ...
+     * </pre>
+     */
     public static final LeftCurlyOption NL = new LeftCurlyOption("nl");
 
     /**
@@ -51,7 +86,7 @@ public final class LeftCurlyOption
     {
         super(aStrRep);
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
     protected Map getStrToOpt()
     {
