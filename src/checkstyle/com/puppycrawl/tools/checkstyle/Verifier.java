@@ -177,7 +177,6 @@ class Verifier
      **/
     LocalizedMessage[] getMessages()
     {
-        checkImports();
         return mMessages.getMessages();
     }
 
@@ -1394,24 +1393,6 @@ class Verifier
         return (i == -1) ? aType : aType.substring(i + 1);
     }
 
-    /** Check the imports that are unused or unrequired. **/
-    private void checkImports()
-    {
-        if (mConfig.isIgnoreImports()) {
-            return;
-        }
-
-        // Loop checking imports
-        final Iterator it = mImports.iterator();
-        while (it.hasNext()) {
-            final LineText imp = (LineText) it.next();
-
-            if (isIllegalImport(imp.getText())) {
-                mMessages.add(imp.getLineNo(), "import.illegal", imp.getText());
-            }
-        }
-    }
-
     /**
      * Checks is an import statement is referenced.
      * @param aImp the import parameter, e.g. "javax.swing.JButton".
@@ -1428,23 +1409,6 @@ class Verifier
         return
             mReferenced.contains(basename(impText))
             || mReferenced.contains(impText);
-    }
-
-    /**
-     * Checks if an import is from a package that must not be used.
-     * @param aImportText the argument of the import keyword
-     * @return if <code>aImportText</code> contains an illegal package prefix
-     */
-    private boolean isIllegalImport(String aImportText)
-    {
-        final Iterator it = mConfig.getIllegalImports().iterator();
-        while (it.hasNext()) {
-            final String illegalPkgName = (String) it.next();
-            if (aImportText.startsWith(illegalPkgName + ".")) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

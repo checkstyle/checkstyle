@@ -712,19 +712,6 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
-    public void testImport()
-        throws Exception
-    {
-        mProps.setProperty(Defn.IGNORE_IMPORT_LENGTH_PROP, "true");
-        final Checker c = createChecker();
-        final String filepath = getPath("InputImport.java");
-        assertNotNull(c);
-        final String[] expected = {
-            filepath + ":15: Import from illegal package - sun.net.ftpclient.FtpClient.",
-        };
-        verify(c, filepath, expected);
-    }
-
     public void testPackageHtml()
         throws Exception
     {
@@ -828,7 +815,6 @@ public class CheckerTest
         mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.STMT.toString());
         mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.STMT.toString());
         mProps.setProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.STMT.toString());
-        mProps.setProperty(Defn.IGNORE_IMPORTS_PROP, "true");
         mProps.setProperty(
                 Defn.ILLEGAL_INSTANTIATIONS_PROP,
                 "java.lang.Boolean,"
@@ -867,7 +853,6 @@ public class CheckerTest
         mProps.setProperty(Defn.TRY_BLOCK_PROP, BlockOption.TEXT.toString());
         mProps.setProperty(Defn.CATCH_BLOCK_PROP, BlockOption.TEXT.toString());
         mProps.setProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.TEXT.toString());
-        mProps.setProperty(Defn.IGNORE_IMPORTS_PROP, "true");
         mProps.setProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP, "");
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");

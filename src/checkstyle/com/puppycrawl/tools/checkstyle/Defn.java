@@ -72,10 +72,6 @@ public interface Defn
     String REQUIRE_PACKAGE_HTML_PROP = "checkstyle.require.packagehtml";
     /** property name for requiring a version tag **/
     String REQUIRE_VERSION_PROP = "checkstyle.require.version";
-    /** property name for ignoring import statements **/
-    String IGNORE_IMPORTS_PROP = "checkstyle.ignore.imports";
-    /** property name for illegal import statements **/
-    String ILLEGAL_IMPORTS_PROP = "checkstyle.illegal.imports";
     /** property name for illegal instantiations **/
     String ILLEGAL_INSTANTIATIONS_PROP = "checkstyle.illegal.instantiations";
     /** property name for the line length check exclusion pattern **/
@@ -130,7 +126,6 @@ public interface Defn
             ALLOW_TABS_PROP,
             IGNORE_BRACES_PROP,
             IGNORE_CAST_WHITESPACE_PROP,
-            IGNORE_IMPORTS_PROP,
             IGNORE_IMPORT_LENGTH_PROP,
             IGNORE_PUBLIC_IN_INTERFACE_PROP,
             IGNORE_WHITESPACE_PROP,
@@ -194,7 +189,6 @@ public interface Defn
      **/
     String[] ALL_STRING_SET_PROPS = new String[]
         {
-            ILLEGAL_IMPORTS_PROP,
             ILLEGAL_INSTANTIATIONS_PROP,
         };
 }
