@@ -85,6 +85,28 @@ specifies the format for parameter names. The property type is
 <span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
 
 
+<h2>Format of package names</h2>
+
+<p>The property <span class="code">checkstyle.pattern.package</span> specifies
+the format for class and interface names. The property type is
+<a href="property_types.html#regexp">regular expression</a> and defaults to
+<span class="code">^[a-z]+(\.[a-zA-Z_][a-zA-Z_0-9]*)*$</span>.</p>
+
+<div class="tip">
+<h4 class="tip">Tip</h4>
+
+<p>
+The default value of <span class="code">checkstyle.pattern.package</span>
+has been chosen to match the requirements in the
+<a href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169">
+Java Language specification</a> and the Sun coding conventions.
+However both underscores and uppercase letters are rather uncommon, so most projects
+should probably use
+<span class="code">checkstyle.pattern.package=^[a-z]+(\.[a-z][a-z0-9]*)*$</span>
+</p>
+</div>
+
+
 <h2>Format of type names</h2>
 
 <p>The property <span class="code">checkstyle.pattern.type</span> specifies
