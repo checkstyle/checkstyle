@@ -2,23 +2,18 @@
 
 <document>
 
- <properties>
-  <title>Available Checks</title>
-  <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
- </properties>
+  <properties>
+    <title>Available Checks</title>
+    <author email="checkstyle-devel@lists.sourceforge.net">Checkstyle Development Team</author>
+  </properties>
 
- <body>
-
-
-      <p>
-      Checkstyle provides many checks that you can apply to your
-      source code...
-      </p>
-
-
-
- </body>
- </document>
+  <body>
+    <p>
+      Checkstyle provides many checks that you can apply to your source
+      code...
+    </p>
+  </body>
+</document>
 
 
 
