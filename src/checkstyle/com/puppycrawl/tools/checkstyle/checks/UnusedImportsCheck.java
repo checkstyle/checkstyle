@@ -70,9 +70,6 @@ public class UnusedImportsCheck
                     imp.getColumnNo(),
                     "import.unused", imp.getText());
             }
-//          else if (isIllegalImport(imp.getText())) {
-//              mMessages.add(imp.getLineNo(), "import.illegal", imp.getText());
-//          }
         }
     }
 
