@@ -4,7 +4,9 @@
 package com.puppycrawl.tools.checkstyle.bcel.classfile;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.bcel.Repository;
 import org.apache.bcel.classfile.Field;
@@ -30,29 +32,46 @@ public class JavaClassDefinition
     private Map mFieldDefs;
 
     /**
-     * Creates a JavaClassDefinition from a JavaClass.
+     * Creates a JavaClassDefinition from a JavaClass. The fields and
+     * methods of the JavaClassDefinition are those whose scopes are
+     * in restricted sets of Scopes.
      * @param aJavaClass the JavaClass for the definition.
+     * @param aFieldScopes the restricted set of field scopes.
+     * @param aMethodScopes the restriced set of method scopes.
      */
-    public JavaClassDefinition(JavaClass aJavaClass)
+    public JavaClassDefinition(
+        JavaClass aJavaClass,
+        Set aFieldScopes,
+        Set aMethodScopes)
     {
         mJavaClass = aJavaClass;
 
-        // store method definitions
+        // create method definitions, restricted by scope
         final Method[] methods = aJavaClass.getMethods();
+        final Set methodSet = new HashSet();
         mMethodDefs = new MethodDefinition[methods.length];
         for (int i = 0; i < methods.length; i++) {
-            mMethodDefs[i] = new MethodDefinition(methods[i]);
+            if (Utils.inScope(methods[i], aMethodScopes)) {
+                methodSet.add(new MethodDefinition(methods[i]));
+            }
         }
+        mMethodDefs =
+            (MethodDefinition[]) methodSet.toArray(
+                new MethodDefinition[methodSet.size()]);
 
-        // store field definitions
+        // create field definitions, restricted by scope
         final Field[] fields = aJavaClass.getFields();
         mFieldDefs = new HashMap(fields.length);
         for (int i = 0; i < fields.length; i++) {
-            mFieldDefs.put(fields[i].getName(), new FieldDefinition(fields[i]));
+            if (Utils.inScope(fields[i], aFieldScopes)) {
+                mFieldDefs.put(
+                    fields[i].getName(),
+                    new FieldDefinition(fields[i]));
+            }
         }
     }
 
-    /**
+   /**
      * Gets the JavaClass for this definition.
      * @return the JavaClass
      */
@@ -135,31 +154,31 @@ public class JavaClassDefinition
     public boolean hasReference(
         MethodDefinition aMethodDef,
         ReferenceDAO aReferenceDAO)
-     {
-         final String methodName = aMethodDef.getName();
-         final Type[] argTypes = aMethodDef.getArgumentTypes();
-        
-         // search the inheritance hierarchy
-         JavaClass currentJavaClass = getJavaClass();
-         while (currentJavaClass != null) {
-             final JavaClassDefinition javaClassDef =
-                 aReferenceDAO.findJavaClassDef(currentJavaClass);
-             if (javaClassDef != null) {
-                 final MethodDefinition methodDef =
-                     javaClassDef.findNarrowestMethod(
-                         getJavaClass().getClassName(),
-                         methodName,
-                         argTypes);
-                 if ((methodDef != null)
+    {
+        final String methodName = aMethodDef.getName();
+        final Type[] argTypes = aMethodDef.getArgumentTypes();
+
+        // search the inheritance hierarchy
+        JavaClass currentJavaClass = getJavaClass();
+        while (currentJavaClass != null) {
+            final JavaClassDefinition javaClassDef =
+                aReferenceDAO.findJavaClassDef(currentJavaClass);
+            if (javaClassDef != null) {
+                final MethodDefinition methodDef =
+                    javaClassDef.findNarrowestMethod(
+                        getJavaClass().getClassName(),
+                        methodName,
+                        argTypes);
+                if ((methodDef != null)
                     && (methodDef.hasReference(getJavaClass())))
-                 {
-                     return true;
-                 }
-             }
-             currentJavaClass = currentJavaClass.getSuperClass();
-         }       
-         return false;
-     }
+                {
+                    return true;
+                }
+            }
+            currentJavaClass = currentJavaClass.getSuperClass();
+        }
+        return false;
+    }
 
     /** @see java.lang.Object#toString() */
     public String toString()

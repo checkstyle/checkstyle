@@ -21,24 +21,26 @@ import com.puppycrawl.tools.checkstyle.bcel.generic.InvokeReference;
  */
 public class ReferenceDAO
 {
-    /** maps a JavaClass to a JavaClassDefinition */
-    private Map mJavaClasses = null;
-
     /**
      * Creates a <code>ReferenceDAO</code> from a set of JavaClasses.
      * @param aJavaClasses the set of JavaClasses for this DAO.
+     * @param aFieldScopes the scopes for field references.
+     * @param aMethodScopes the scopes for method references.
      */
-    public ReferenceDAO(Set aJavaClasses)
+    public ReferenceDAO(Set aJavaClasses, Set aFieldScopes, Set aMethodScopes)
     {
         mJavaClasses = new HashMap(aJavaClasses.size());
         final Iterator it = aJavaClasses.iterator();
         while (it.hasNext()) {
             final JavaClass javaClass = (JavaClass) it.next();
             final JavaClassDefinition javaClassDef =
-                new JavaClassDefinition(javaClass);
+                new JavaClassDefinition(javaClass, aFieldScopes, aMethodScopes);
             mJavaClasses.put(javaClass, javaClassDef);
         }
     }
+
+    /** maps a JavaClass to a JavaClassDefinition */
+    private Map mJavaClasses = null;
 
     /**
      * Finds the JavaClassDefinition for a given JavaClass.
