@@ -50,7 +50,7 @@ class ConfigurationLoader
     /** parser to read XML files **/
     private final XMLReader mParser;
     /** the loaded global properties **/
-    private final Properties mProps = new Properties(); 
+    private final Properties mProps = new Properties();
     /** the loaded configurations **/
     private final ArrayList mCheckConfigs = new ArrayList();
     /** the loaded configuration **/
@@ -127,8 +127,8 @@ class ConfigurationLoader
                 for (Enumeration enum = mOverrideProps.keys();
                       enum.hasMoreElements();)
                 {
-                    final String key = (String)enum.nextElement();
-                    final String value = (String)mOverrideProps.get(key);
+                    final String key = (String) enum.nextElement();
+                    final String value = (String) mOverrideProps.get(key);
                     mProps.setProperty(key, value);
                 }
             }
@@ -139,13 +139,13 @@ class ConfigurationLoader
         else if ("property".equals(aQName)) {
             final String name = aAtts.getValue("name");
             String value = aAtts.getValue("value");
-            
+
             if (value == null) {
                 //try global
                 String globalKey = aAtts.getValue("from-global");
-                value = (String) mProps.get(globalKey); 
+                value = (String) mProps.get(globalKey);
             }
-                
+
             if (mIsInGlobalElement) {
                 mProps.setProperty(name, value);
             }
@@ -200,7 +200,7 @@ class ConfigurationLoader
             throw new CheckstyleException("unable to read " + aConfigFname);
         }
     }
-    
+
     /**
      * Returns the check configurations in a specified file.
      * @param aConfigFname name of config file
@@ -246,7 +246,7 @@ class ConfigurationLoader
     private Configuration getConfiguration()
         throws IOException, FileNotFoundException, RESyntaxException
     {
-        final GlobalProperties globalProps = 
+        final GlobalProperties globalProps =
             new GlobalProperties(mProps, System.out);
         final CheckConfiguration[] checkConfigs =
             (CheckConfiguration[]) mCheckConfigs.toArray(

@@ -36,8 +36,9 @@ public class WhitespaceAfterCheck
     public int[] getDefaultTokens()
     {
         return new int[] {
-            TokenTypes.COMMA,            // ','
-            TokenTypes.SEMI,             // ';'
+            TokenTypes.COMMA,
+            TokenTypes.SEMI,
+            TokenTypes.TYPECAST,
         };
     }
 
@@ -47,7 +48,6 @@ public class WhitespaceAfterCheck
         return new int[] {
             TokenTypes.COMMA,            // ','
             TokenTypes.SEMI,             // ';'
-            TokenTypes.TYPECAST,
         };
     }
 
