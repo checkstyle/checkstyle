@@ -16,4 +16,17 @@ public class ReturnCountCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputReturnCount.java"), expected);
     }
+
+    public void testFormat() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ReturnCountCheck.class);
+        checkConfig.addAttribute("format", "^$");
+        final String[] expected = {
+            "5:5: Return count is 7 (max allowed is 2).",
+            "18:5: Return count is 7 (max allowed is 2).",
+            "35:17: Return count is 6 (max allowed is 2).",
+        };
+        verify(checkConfig, getPath("coding" + File.separator + "InputReturnCount.java"), expected);
+    }
 }
