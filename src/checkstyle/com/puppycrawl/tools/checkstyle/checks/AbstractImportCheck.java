@@ -33,9 +33,6 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 public abstract class AbstractImportCheck
     extends Check
 {
-    /** key to store name of import as */
-    private static final String TEXT_KEY = "name";
-
     /**
      * Return the name of the import associated with a specifed DetailAST.
      *
@@ -44,13 +41,6 @@ public abstract class AbstractImportCheck
      */
     protected FullIdent getImportText(DetailAST aAST)
     {
-        FullIdent text = (FullIdent) getTokenContext().get(TEXT_KEY);
-        if (text != null) {
-            return text;
-        }
-
-        text = FullIdent.createFullIdent((DetailAST) aAST.getFirstChild());
-        getTokenContext().put(TEXT_KEY, text);
-        return text;
+        return FullIdent.createFullIdent((DetailAST) aAST.getFirstChild());
     }
 }
