@@ -118,6 +118,10 @@ final class FinalEntityBean
         return (this);
     }
     
+    static int sInt1;
+    
+    static final int sInt2 = 0;
+    
     /**
      * @see javax.ejb.EntityBean#setEntityContext(javax.ejb.EntityContext)
      */
