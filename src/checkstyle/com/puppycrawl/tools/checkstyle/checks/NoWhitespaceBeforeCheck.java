@@ -64,7 +64,6 @@ public class NoWhitespaceBeforeCheck
                final String[] lines = getLines();
         final String line = lines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
-        final int after = aAST.getColumnNo() + aAST.getText().length();
 
         if ((before < 0) || Character.isWhitespace(line.charAt(before))) {
             boolean flag = !mAllowLineBreaks;
