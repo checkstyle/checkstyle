@@ -57,7 +57,7 @@ public abstract class AbstractFileSetCheck
     {
         Set directories = new HashSet();
         for (int i = 0; i < aFiles.length; i++) {
-            File file = aFiles[i];
+            File file = aFiles[i].getAbsoluteFile();
             if (file.getName().endsWith(".java")) {
                 File dir = file.getParentFile();
                 directories.add(dir); // duplicates are handled automatically
