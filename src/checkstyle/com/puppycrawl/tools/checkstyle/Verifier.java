@@ -296,17 +296,6 @@ class Verifier
                     }
                 }
             }
-            else {
-                // These are the non-static variables
-                if (Scope.PRIVATE.equals(variableScope)
-                    || (mConfig.isAllowPackage() && isPckg)
-                    || (mConfig.isAllowProtected() && isProt))
-                {
-//                    checkVariable(aVar,
-//                                  mConfig.getMemberRegexp(),
-//                                  mConfig.getMemberPat());
-                }
-            }
         }
     }
 
