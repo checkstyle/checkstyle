@@ -413,9 +413,9 @@ public class CheckerTest
         final String filepath = getPath("InputModifier.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":14:1: 'final' modifier out of order with the JLS suggestions.",
-            filepath + ":18:5: 'private' modifier out of order with the JLS suggestions.",
-            filepath + ":24:5: 'private' modifier out of order with the JLS suggestions.",
+            filepath + ":14:10: 'final' modifier out of order with the JLS suggestions.",
+            filepath + ":18:12: 'private' modifier out of order with the JLS suggestions.",
+            filepath + ":24:14: 'private' modifier out of order with the JLS suggestions.",
             filepath + ":32:9: redundant 'public' modifier.",
         };
         verify(c, filepath, expected);
