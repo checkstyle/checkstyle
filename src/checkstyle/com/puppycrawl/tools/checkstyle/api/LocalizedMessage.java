@@ -25,6 +25,8 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.ResourceBundle;
 import java.util.Locale;
 import java.util.MissingResourceException;
+import java.util.Map;
+import java.util.HashMap;
 import java.text.MessageFormat;
 
 /**
@@ -33,13 +35,21 @@ import java.text.MessageFormat;
  * java.text.MessageFormat.
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
+ * @author lkuehne
  * @version 1.0
  */
-public class LocalizedMessage
+public final class LocalizedMessage
     implements Comparable
 {
     /** the locale to localise messages to **/
     private static Locale sLocale = Locale.getDefault();
+
+    /**
+     * A cache that maps bundle names to RessourceBundles.
+     * Avoids repetitive calls to ResourceBundle.getBundle().
+     * TODO: Clear before method termination.
+     */
+    private static Map sBundleCache = new HashMap();
 
     /** the line number **/
     private final int mLineNo;
@@ -102,8 +112,7 @@ public class LocalizedMessage
             // Configuration object. This is because the class loader in the
             // Configuration is specified by the user for resolving custom
             // classes.
-            final ResourceBundle bundle =
-                    ResourceBundle.getBundle(mBundle, sLocale);
+            final ResourceBundle bundle = getBundle(mBundle);
             final String pattern = bundle.getString(mKey);
             return MessageFormat.format(pattern, mArgs);
         }
@@ -113,6 +122,21 @@ public class LocalizedMessage
             // the author's original message
             return MessageFormat.format(mKey, mArgs);
         }
+    }
+
+    /**
+     * Find a ResourceBundle for a given bundle name.
+     * @param aBundleName the bundle name
+     * @return a ResourceBundle
+     */
+    private static ResourceBundle getBundle(String aBundleName)
+    {
+        ResourceBundle bundle = (ResourceBundle) sBundleCache.get(aBundleName);
+        if (bundle == null) {
+            bundle = ResourceBundle.getBundle(aBundleName, sLocale);
+            sBundleCache.put(aBundleName, bundle);
+        }
+        return bundle;
     }
 
     /** @return the line number **/
