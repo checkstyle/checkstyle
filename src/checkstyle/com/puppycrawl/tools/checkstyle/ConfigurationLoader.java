@@ -27,6 +27,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.Utils;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -35,9 +37,8 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
-// TODO: Fix the loader so it doesn't validate the document
 /**
- * Describe class <code>ConfigurationLoader</code> here.
+ * Loads a configuration from a configuration XML file.
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
@@ -49,7 +50,7 @@ class ConfigurationLoader
     private Properties mOverrideProps = new Properties();
     /** parser to read XML files **/
     private final XMLReader mParser;
-    /** the loaded configuration **/
+    /** the loaded configurations **/
     private Stack mConfigStack = new Stack();
     /** the Configuration that is beeing built */
     private Configuration mConfiguration = null;
@@ -62,7 +63,9 @@ class ConfigurationLoader
     private ConfigurationLoader()
         throws ParserConfigurationException, SAXException
     {
-        mParser = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+        final SAXParserFactory factory = SAXParserFactory.newInstance();
+        factory.setValidating(false);
+        mParser = factory.newSAXParser().getXMLReader();
         mParser.setContentHandler(this);
     }
 
@@ -91,36 +94,59 @@ class ConfigurationLoader
             throws SAXException
     {
         // TODO: debug logging for support puposes
-        DefaultConfiguration conf = new DefaultConfiguration(aQName);
-        final int attCount = aAtts.getLength();
-        for (int i = 0; i < attCount; i++) {
-            String name = aAtts.getQName(i);
-            String value = aAtts.getValue(i);
-
-            // expand properties
-            if (value.startsWith("${") && value.endsWith("}")) {
-                String propName = value.substring(2, value.length() - 1);
-                value = mOverrideProps.getProperty(propName);
-                if (value == null) {
-                    throw new SAXException(
-                            "missing external property " + propName);
-                }
+        if (aQName.equals("config")) {
+            //create configuration
+            final String name = aAtts.getValue("name");
+            if (name == null) {
+                throw new SAXException("missing config name");
+            }
+            final DefaultConfiguration conf = new DefaultConfiguration(name);
+            if (mConfiguration == null) {
+                mConfiguration = conf;
             }
 
-            conf.addAttribute(name, value);
+            //add configuration to it's parent
+            if (!mConfigStack.isEmpty()) {
+                DefaultConfiguration top =
+                        (DefaultConfiguration) mConfigStack.peek();
+                top.addChild(conf);
+            }
+            
+            mConfigStack.push(conf);
         }
-
-        if (mConfiguration == null) {
-            mConfiguration = conf;
+        else if (aQName.equals("property")) {
+            
+            //extract name and value
+            final String name = aAtts.getValue("name");
+            if (name == null) {
+                throw new SAXException("missing property name");
+            }            
+            String value = aAtts.getValue("value");
+            if (value == null) {
+                throw new SAXException("missing value for property " + name);
+            }
+                
+            // expand properties
+            if (mOverrideProps != null) {
+                try {
+                    value = Utils.replaceProperties(value, mOverrideProps);
+                }
+                catch (CheckstyleException ex) {
+                    throw new SAXException(ex.getMessage());
+                }
+            }
+            
+            //add to attributes of configuration
+            if (!mConfigStack.isEmpty()) {
+                DefaultConfiguration top =
+                        (DefaultConfiguration) mConfigStack.peek();
+                top.addAttribute(name, value);
+            }
+            else {
+                throw new SAXException(
+                            "property " + name + "has no config parent");
+            }               
         }
-
-        if (!mConfigStack.isEmpty()) {
-            DefaultConfiguration top =
-                    (DefaultConfiguration) mConfigStack.peek();
-            top.addChild(conf);
-        }
-
-        mConfigStack.push(conf);
     }
 
     /** @see org.xml.sax.helpers.DefaultHandler **/
@@ -128,7 +154,9 @@ class ConfigurationLoader
                            String aLocalName,
                            String aQName)
     {
-        mConfigStack.pop();
+        if (aQName.equals("config")) {
+            mConfigStack.pop();
+        }
     }
 
     /**
