@@ -42,6 +42,8 @@ class MyModifierSet
     private final List mModifiers = new ArrayList();
     /** the first line of the modifiers **/
     private int mFirstLineNo = Integer.MAX_VALUE;
+    /** the first column of the modifiers **/
+    private int mFirstColNo = 0;
 
     /**
      * Adds a modifier to the set.
@@ -51,6 +53,7 @@ class MyModifierSet
     {
         if (aMCA.getLineNo() < mFirstLineNo) {
             mFirstLineNo = aMCA.getLineNo();
+            mFirstColNo = aMCA.getColumnNo();
         }
 
         mModifiers.add(aMCA.getText());
@@ -66,6 +69,12 @@ class MyModifierSet
     int getFirstLineNo()
     {
         return mFirstLineNo;
+    }
+
+    /** @return the column number of the first modifier **/
+    int getFirstColNo()
+    {
+        return mFirstColNo;
     }
 
     /** @return whether the set contains a "static". **/

@@ -288,16 +288,16 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":8: type is missing a Javadoc comment.",
-            filepath + ":11: variable 'mMissingJavadoc' missing Javadoc.",
+            filepath + ":11:17: variable 'mMissingJavadoc' missing Javadoc.",
             filepath + ":14: method is missing a Javadoc comment.",
             filepath + ":18: Unused @param tag for 'unused'.",
             filepath + ":24: Expected an @return tag.",
             filepath + ":33: Expected an @return tag.",
-            filepath + ":40: Expected @throws tag for 'Exception'.",
-            filepath + ":49: Expected @throws tag for 'Exception'.",
+            filepath + ":40:16: Expected @throws tag for 'Exception'.",
+            filepath + ":49:16: Expected @throws tag for 'Exception'.",
             filepath + ":53: Unused @throws tag for 'WrongException'.",
-            filepath + ":55: Expected @throws tag for 'Exception'.",
-            filepath + ":55: Expected @throws tag for 'NullPointerException'.",
+            filepath + ":55:16: Expected @throws tag for 'Exception'.",
+            filepath + ":55:27: Expected @throws tag for 'NullPointerException'.",
             filepath + ":60: Expected @param tag for 'aOne'.",
             filepath + ":68: Expected @param tag for 'aOne'.",
             filepath + ":72: Unused @param tag for 'WrongParam'.",
@@ -323,17 +323,17 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":14: type is missing a Javadoc comment.",
-            filepath + ":17: variable 'fData' missing Javadoc.",
+            filepath + ":17:20: variable 'fData' missing Javadoc.",
             filepath + ":21: type is missing a Javadoc comment.",
-            filepath + ":24: variable 'data' missing Javadoc.",
+            filepath + ":24:16: variable 'data' missing Javadoc.",
             filepath + ":24:16: variable 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":27: type is missing a Javadoc comment.",
-            filepath + ":30: variable 'rData' missing Javadoc.",
-            filepath + ":30: variable 'rData' must be private and have accessor methods.",
-            filepath + ":33: variable 'protectedVariable' must be private and have accessor methods.",
-            filepath + ":36: variable 'packageVariable' must be private and have accessor methods.",
-            filepath + ":41: variable 'sWeird' must be private and have accessor methods.",
-            filepath + ":43: variable 'sWeird2' must be private and have accessor methods.",
+            filepath + ":30:24: variable 'rData' missing Javadoc.",
+            filepath + ":30:24: variable 'rData' must be private and have accessor methods.",
+            filepath + ":33:27: variable 'protectedVariable' must be private and have accessor methods.",
+            filepath + ":36:17: variable 'packageVariable' must be private and have accessor methods.",
+            filepath + ":41:29: variable 'sWeird' must be private and have accessor methods.",
+            filepath + ":43:19: variable 'sWeird2' must be private and have accessor methods.",
         };
         verify(c, filepath, expected);
     }
@@ -349,13 +349,13 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":14: type is missing a Javadoc comment.",
-            filepath + ":17: variable 'fData' missing Javadoc.",
-            filepath + ":17: variable 'fData' must be private and have accessor methods.",
+            filepath + ":17:20: variable 'fData' missing Javadoc.",
+            filepath + ":17:20: variable 'fData' must be private and have accessor methods.",
             filepath + ":21: type is missing a Javadoc comment.",
-            filepath + ":24: variable 'data' missing Javadoc.",
+            filepath + ":24:16: variable 'data' missing Javadoc.",
             filepath + ":24:16: variable 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":27: type is missing a Javadoc comment.",
-            filepath + ":30: variable 'rData' missing Javadoc.",
+            filepath + ":30:24: variable 'rData' missing Javadoc.",
         };
         verify(c, filepath, expected);
     }
@@ -381,13 +381,13 @@ public class CheckerTest
             filepath + ":25:29: variable 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":30:24: variable 'badStatic' must match pattern '^s[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":35:17: variable 'badMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
-            filepath + ":39: variable 'mNumCreated2' must be private and have accessor methods.",
+            filepath + ":39:19: variable 'mNumCreated2' must be private and have accessor methods.",
             filepath + ":42:40: ',' needs to be followed by whitespace.",
-            filepath + ":49: variable 'sTest1' must be private and have accessor methods.",
-            filepath + ":51: variable 'sTest3' must be private and have accessor methods.",
-            filepath + ":53: variable 'sTest2' must be private and have accessor methods.",
-            filepath + ":56: variable 'mTest1' must be private and have accessor methods.",
-            filepath + ":58: variable 'mTest2' must be private and have accessor methods.",
+            filepath + ":49:23: variable 'sTest1' must be private and have accessor methods.",
+            filepath + ":51:26: variable 'sTest3' must be private and have accessor methods.",
+            filepath + ":53:16: variable 'sTest2' must be private and have accessor methods.",
+            filepath + ":56:9: variable 'mTest1' must be private and have accessor methods.",
+            filepath + ":58:16: variable 'mTest2' must be private and have accessor methods.",
             filepath + ":71: parameter 'badFormat1' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":71: parameter 'badFormat2' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":71:30: ',' needs to be followed by whitespace.",
@@ -413,10 +413,10 @@ public class CheckerTest
         final String filepath = getPath("InputModifier.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":14: 'final' modifier out of order with the JLS suggestions.",
-            filepath + ":18: 'private' modifier out of order with the JLS suggestions.",
-            filepath + ":24: 'private' modifier out of order with the JLS suggestions.",
-            filepath + ":32: redundant 'public' modifier.",
+            filepath + ":14:1: 'final' modifier out of order with the JLS suggestions.",
+            filepath + ":18:5: 'private' modifier out of order with the JLS suggestions.",
+            filepath + ":24:5: 'private' modifier out of order with the JLS suggestions.",
+            filepath + ":32:9: redundant 'public' modifier.",
         };
         verify(c, filepath, expected);
     }
@@ -430,22 +430,22 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":7: type is missing a Javadoc comment.",
             filepath + ":9: type is missing a Javadoc comment.",
-            filepath + ":11: variable 'CONST' missing Javadoc.",
+            filepath + ":11:16: variable 'CONST' missing Javadoc.",
             filepath + ":12: method is missing a Javadoc comment.",
             filepath + ":14: type is missing a Javadoc comment.",
-            filepath + ":16: variable 'mData' missing Javadoc.",
+            filepath + ":16:25: variable 'mData' missing Javadoc.",
             filepath + ":18: method is missing a Javadoc comment.",
             filepath + ":25: method is missing a Javadoc comment.",
             filepath + ":34: type is missing a Javadoc comment.",
-            filepath + ":36: variable 'mDiff' missing Javadoc.",
+            filepath + ":36:21: variable 'mDiff' missing Javadoc.",
             filepath + ":38: method is missing a Javadoc comment.",
-            filepath + ":43: variable 'mSize' missing Javadoc.",
-            filepath + ":44: variable 'mLen' missing Javadoc.",
-            filepath + ":44: variable 'mLen' must be private and have accessor methods.",
-            filepath + ":45: variable 'mDeer' missing Javadoc.",
-            filepath + ":45: variable 'mDeer' must be private and have accessor methods.",
-            filepath + ":46: variable 'aFreddo' missing Javadoc.",
-            filepath + ":46: variable 'aFreddo' must be private and have accessor methods.",
+            filepath + ":43:17: variable 'mSize' missing Javadoc.",
+            filepath + ":44:9: variable 'mLen' missing Javadoc.",
+            filepath + ":44:9: variable 'mLen' must be private and have accessor methods.",
+            filepath + ":45:19: variable 'mDeer' missing Javadoc.",
+            filepath + ":45:19: variable 'mDeer' must be private and have accessor methods.",
+            filepath + ":46:16: variable 'aFreddo' missing Javadoc.",
+            filepath + ":46:16: variable 'aFreddo' must be private and have accessor methods.",
             filepath + ":49: method is missing a Javadoc comment.",
             filepath + ":54: method is missing a Javadoc comment.",
             filepath + ":59: method is missing a Javadoc comment.",
@@ -467,9 +467,9 @@ public class CheckerTest
         final String filepath = getPath("InputPublicOnly.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":44: variable 'mLen' must be private and have accessor methods.",
-            filepath + ":45: variable 'mDeer' must be private and have accessor methods.",
-            filepath + ":46: variable 'aFreddo' must be private and have accessor methods.",
+            filepath + ":44:9: variable 'mLen' must be private and have accessor methods.",
+            filepath + ":45:19: variable 'mDeer' must be private and have accessor methods.",
+            filepath + ":46:16: variable 'aFreddo' must be private and have accessor methods.",
         };
         verify(c, filepath, expected);
     }
@@ -484,11 +484,11 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":7: type is missing a Javadoc comment.",
-            filepath + ":44: variable 'mLen' must be private and have accessor methods.",
-            filepath + ":45: variable 'mDeer' missing Javadoc.",
-            filepath + ":45: variable 'mDeer' must be private and have accessor methods.",
-            filepath + ":46: variable 'aFreddo' missing Javadoc.",
-            filepath + ":46: variable 'aFreddo' must be private and have accessor methods.",
+            filepath + ":44:9: variable 'mLen' must be private and have accessor methods.",
+            filepath + ":45:19: variable 'mDeer' missing Javadoc.",
+            filepath + ":45:19: variable 'mDeer' must be private and have accessor methods.",
+            filepath + ":46:16: variable 'aFreddo' missing Javadoc.",
+            filepath + ":46:16: variable 'aFreddo' must be private and have accessor methods.",
             filepath + ":59: method is missing a Javadoc comment.",
             filepath + ":64: method is missing a Javadoc comment.",
             filepath + ":79: method is missing a Javadoc comment.",
@@ -509,8 +509,8 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":7: type is missing a Javadoc comment.",
             filepath + ":38: type is missing a Javadoc comment.",
-            filepath + ":40: variable 'CA' missing Javadoc.",
-            filepath + ":41: variable 'CB' missing Javadoc.",
+            filepath + ":40:23: variable 'CA' missing Javadoc.",
+            filepath + ":41:16: variable 'CB' missing Javadoc.",
             filepath + ":43: method is missing a Javadoc comment.",
             filepath + ":44: method is missing a Javadoc comment."
         };
