@@ -48,7 +48,7 @@ public abstract class AbstractOptionCheck
      */
     public void setOption(String aOption)
     {
-        mOption = AbstractOption.decode(aOption);
+        mOption = mOption.decode(aOption);
         if (mOption == null) {
             throw new ConversionException("unable to parse " + aOption);
         }

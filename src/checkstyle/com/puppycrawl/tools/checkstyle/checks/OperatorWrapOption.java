@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents the options for wrapping on an operator.
  *
@@ -27,6 +30,14 @@ package com.puppycrawl.tools.checkstyle.checks;
 public final class OperatorWrapOption
     extends AbstractOption
 {
+    /** maps from a string representation to an option */
+    private static final Map STR_TO_OPT = new HashMap();
+    
+    /** require that the operator is on a new line **/
+    public static final OperatorWrapOption NL = new OperatorWrapOption("nl");
+    /** require that the operator is at the end of the line **/
+    public static final OperatorWrapOption EOL = new OperatorWrapOption("eol");
+    
     /**
      * Creates a new <code>OperatorWrapOption</code> instance.
      *
@@ -36,9 +47,10 @@ public final class OperatorWrapOption
     {
         super(aStrRep);
     }
-
-    /** require that the operator is on a new line **/
-    public static final OperatorWrapOption NL = new OperatorWrapOption("nl");
-    /** require that the operator is at the end of the line **/
-    public static final OperatorWrapOption EOL = new OperatorWrapOption("eol");
+    
+    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
+    protected Map getStrToOpt()
+    {
+        return STR_TO_OPT;
+    }
 }
