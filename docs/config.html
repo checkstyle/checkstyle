@@ -35,6 +35,9 @@
           <a href="#treewalker">TreeWalker Checks</a>
         </li>
         <li>
+          <a href="#packagenames">Packages</a>
+        </li>
+        <li>
           <a href="#xml">XML Details</a>
         </li>
       </ul>
@@ -126,8 +129,9 @@
           </pre>
           Checkstyle applies packages <span class="code">
         com.puppycrawl.tools.checkstyle</span> and <span class="code">
-        com.puppycrawl.tools.checkstyle.checks</span> by default. You can also specify 
-        packages when you invoke Checkstyle at the <a href="cmdline.html">command line</a>, 
+        com.puppycrawl.tools.checkstyle.checks</span> by default. You can also specify other 
+        packages in a <a href="#packagenames"><em>package names XML document</em></a>
+          when you invoke Checkstyle at the <a href="cmdline.html">command line</a>, 
         and when you run a <a href="anttask.html">Checkstyle task</a> in ant.
         </li>
         <li>
@@ -294,10 +298,49 @@
           <a href="config_misc.html">Miscellaneous Checks</a>
         </li>
       </ul>
+      <a name="packagenames"></a>
+      <h2>Packages</h2>
+      <p class="body">
+      Checkstyle loads a module class according to the <span class="code">name</span>
+      of a <span class="code">module</span> element, and automatically appends pre-specified
+      package prefixes to that <span class="code">name</span> in its search for a loadable class. 
+      By default, Checkstyle applies packages <span class="code">
+        com.puppycrawl.tools.checkstyle</span> and <span class="code">
+        com.puppycrawl.tools.checkstyle.checks</span>. To specify other packages to apply, 
+        create a <em>package names XML document</em> in a file, and provide that file as a
+        <a href="cmdline.html">command line</a> option or as a
+         property of an <a href="anttask.html">ant Checkstyle task</a>.
+        </p>
+         <p class="body">
+         A <em>package names XML document</em> specifies a list of package names. Here is the root of the
+         default Checkstyle package names XML document for packages <span class="code">
+        com.puppycrawl.tools.checkstyle</span> and <span class="code">
+        com.puppycrawl.tools.checkstyle.checks</span>:
+         </p>
+         <pre  class="body">
+&lt;checkstyle-packages&gt;
+  &lt;package name=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+    &lt;package name=&quot;checks&quot;/&gt;
+  &lt;/package&gt;
+&lt;/checkstyle-packages&gt;
+         </pre>
+         <p class="body">
+         Notice that the packages are specified recursively - a child
+         <span class="code">package</span> element is
+         a subpackage of its parent <span class="code">package</span> element.   
+         </p>
+<div class="tip">
+  <h4 class="tip">Important</h4>
+
+         If you provide a package names XML document for your own modules and still need to use 
+         Checkstyle modules, you must include <span class="code">package</span> elements for
+         Checkstyle&apos;s packages.
+</div>
       <a name="xml"></a>
       <h2>XML Details</h2>
+      <h4>Configuration XML Document</h4>
       <p class="body">
-      The following is a DTD for a configuration XML document specifies the hierarchy of modules 
+      The following DTD for a configuration XML document specifies the hierarchy of modules 
       and their properties:
       </p>
       <pre class="body">
@@ -332,6 +375,30 @@
       For a complete example of a configuration XML document, examine file <span class="code">docs/checkstyle_checks.xml</span>
       that the Checkstyle team uses to validate the Checkstyle source code.
       </p>
+      <h4>Package Names XML Document</h4>
+      <p class="body">
+      This is a DTD for a package names XML document:
+      </p>
+      <pre class="body">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;!ELEMENT checkstyle-packages (package)*&gt;
+
+&lt;!ELEMENT package (package)*&gt;
+&lt;!ATTLIST package name NMTOKEN #REQUIRED&gt;
+      </pre>
+      <p class="body">
+      Checkstyle also validates a package names XML document when it loads the document.
+      To validate against the above package names DTD,
+      include the following document type declaration in
+      your package names XML document:
+      </p>
+      <pre class="body">
+    &lt;!DOCTYPE checkstyle-packages PUBLIC
+    &quot;-//Puppy Crawl//DTD Package Names 1.0//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/packages_1_0.dtd&quot;&gt;
+    </pre>
+      <p class="body">
     </td>
   </tr>
 </table>
