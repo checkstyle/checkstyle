@@ -189,7 +189,7 @@ public final class FileContents implements CommentListener
      * @return the Javadoc comment, or <code>null</code> if none
      * @param aLineNo the line number to check before
      **/
-    public Comment getJavadocBefore(int aLineNo)
+    public TextBlock getJavadocBefore(int aLineNo)
     {
         // Lines start at 1 to the callers perspective, so need to take off 2
         int lineNo = aLineNo - 2;

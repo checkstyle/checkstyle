@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.api;
  *
  * @author o_sukhodolsky
  */
-public class Comment
+class Comment implements TextBlock
 {
     /** text of the comment. */
     private final String[] mText;
@@ -60,7 +60,7 @@ public class Comment
      * Returns number of fist line of the comment.
      * @return number of fist line of the comment
      */
-    public final int getFirstLineNo()
+    public final int getStartLineNo()
     {
         return mFirstLine;
     }
@@ -69,7 +69,7 @@ public class Comment
      * Returns number of last line of the comment.
      * @return number of last line of the comment
      */
-    public final int getLastLineNo()
+    public final int getEndLineNo()
     {
         return mLastLine;
     }

@@ -18,16 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.api.Comment;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,6 +25,15 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
 import org.apache.regexp.RE;
 
 /**
@@ -285,7 +284,7 @@ public class JavadocMethodCheck
 
             if (surroundingScope.isIn(mScope)) {
                 final FileContents contents = getFileContents();
-                final Comment cmt =
+                final TextBlock cmt =
                     contents.getJavadocBefore(aAST.getLineNo());
 
                 if (cmt == null) {
@@ -305,7 +304,7 @@ public class JavadocMethodCheck
      * @param aAST the token for the method
      * @param aComment the Javadoc comment
      */
-    private void checkComment(DetailAST aAST, Comment aComment)
+    private void checkComment(DetailAST aAST, TextBlock aComment)
     {
         final List tags = getMethodTags(aComment);
         // Check for only one @see tag
@@ -335,11 +334,11 @@ public class JavadocMethodCheck
      * @return the tags found
      * @param aComment the Javadoc comment
      */
-    private List getMethodTags(Comment aComment)
+    private List getMethodTags(TextBlock aComment)
     {
         final String[] lines = aComment.getText();
         final List tags = new ArrayList();
-        int currentLine = aComment.getFirstLineNo() - 1;
+        int currentLine = aComment.getStartLineNo() - 1;
 
         for (int i = 0; i < lines.length; i++) {
             currentLine++;

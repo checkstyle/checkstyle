@@ -18,15 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Stack;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
-import java.util.Stack;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
@@ -117,7 +117,7 @@ public class JavadocStyleCheck
                     || surroundingScope.isIn(mScope))
                 {
                     final FileContents contents = getFileContents();
-                    final Comment cmt =
+                    final TextBlock cmt =
                         contents.getJavadocBefore(aAST.getLineNo());
 
                     checkComment(cmt);
@@ -131,10 +131,10 @@ public class JavadocStyleCheck
      *
      * @param aComment the source lines that make up the Javadoc comment.
      *
-     * @see #checkFirstSentence(Comment)
-     * @see #checkHtml(Comment)
+     * @see #checkFirstSentence(TextBlock)
+     * @see #checkHtml(TextBlock)
      */
-    private void checkComment(Comment aComment)
+    private void checkComment(TextBlock aComment)
     {
         if (aComment == null) {
             return;
@@ -158,7 +158,7 @@ public class JavadocStyleCheck
      *
      * @param aComment the source lines that make up the Javadoc comment.
      */
-    private void checkFirstSentence(Comment aComment)
+    private void checkFirstSentence(TextBlock aComment)
     {
         final String commentText = getCommentText(aComment.getText());
 
@@ -166,7 +166,7 @@ public class JavadocStyleCheck
             && !getEndOfSentenceRE().match(commentText)
             && !"{@inheritDoc}".equals(commentText))
         {
-            log(aComment.getFirstLineNo(), "javadoc.noperiod");
+            log(aComment.getStartLineNo(), "javadoc.noperiod");
         }
     }
 
@@ -271,12 +271,12 @@ public class JavadocStyleCheck
      * tag or a close tage that has no previous open tag.  This code was
      * primarily copied from the DocCheck checkHtml method.
      *
-     * @param aComment the <code>Comment</code> which represents
+     * @param aComment the <code>TextBlock</code> which represents
      *                 the Javadoc comment.
      */
-    private void checkHtml(Comment aComment)
+    private void checkHtml(TextBlock aComment)
     {
-        final int lineno = aComment.getFirstLineNo();
+        final int lineno = aComment.getStartLineNo();
         final Stack htmlStack = new Stack();
         final String[] text = aComment.getText();
 
