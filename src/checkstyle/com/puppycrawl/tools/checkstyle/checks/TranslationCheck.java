@@ -211,8 +211,10 @@ public class TranslationCheck extends AbstractFileSetCheck
                 for (Iterator it = keysClone.iterator(); it.hasNext();) {
                     Object[] key = new Object[]{it.next()};
                     LocalizedMessage[] errors = new LocalizedMessage[1];
-                    final String bundle =
-                        getClass().getPackage().getName() + ".messages";
+                    final String className = getClass().getName();
+                    final int pkgEndIndex = className.lastIndexOf('.');
+                    final String pkgName = className.substring(0, pkgEndIndex);
+                    final String bundle = pkgName + ".messages";
                     errors[0] = new LocalizedMessage(
                             0, bundle, "translation.missingKey", key);
                     getMessageDispatcher().fireErrors(path, errors);
