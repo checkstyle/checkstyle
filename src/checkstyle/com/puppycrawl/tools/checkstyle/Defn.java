@@ -31,8 +31,6 @@ public interface Defn
 
     /** property name for allowing protected data **/
     String TAB_WIDTH_PROP = "checkstyle.tab.width";
-    /** property name for requiring package documentation */
-    String REQUIRE_PACKAGE_HTML_PROP = "checkstyle.require.packagehtml";
     /** property name for cache file **/
     String CACHE_FILE_PROP = "checkstyle.cache.file";
 
@@ -43,12 +41,6 @@ public interface Defn
     String LOCALE_LANGUAGE_PROP = "checkstyle.locale.language";
     /** property name for the locale country for reporting **/
     String LOCALE_COUNTRY_PROP = "checkstyle.locale.country";
-
-    /** All the properties that are a boolean. They all must default to false */
-    String[] ALL_BOOLEAN_PROPS = new String[]
-        {
-            REQUIRE_PACKAGE_HTML_PROP,
-        };
 
     /** All the integer properties */
     String[] ALL_INT_PROPS = new String[]

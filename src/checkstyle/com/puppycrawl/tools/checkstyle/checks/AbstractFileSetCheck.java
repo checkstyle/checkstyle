@@ -27,9 +27,10 @@ import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 /**
  * Provides common functionality for many FileSetChecks.
  * TODO: maybe this should be a public class and go into the api package?
+ * TODO: shouldn't be public if it stays in this package
  * @author lkuehne
  */
-abstract class AbstractFileSetCheck implements FileSetCheck
+public abstract class AbstractFileSetCheck implements FileSetCheck
 {
     /**
      * Does nothing.

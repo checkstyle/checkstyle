@@ -151,12 +151,6 @@ public class Configuration
         return mGlobalProps.getTabWidth();
     }
 
-    /** @return whether javadoc package documentation is required */
-    boolean isRequirePackageHtml()
-    {
-        return mGlobalProps.isRequirePackageHtml();
-    }
-
     /** @return the File of the cache file **/
     String getCacheFile()
     {
