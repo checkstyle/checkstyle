@@ -39,9 +39,9 @@
       headerFile</span> specifies a file that contains the required header.
       </p>
       <p class="body">
-      Property <span class="code">ignoreLines</span> specifies the line numbers to 
-      ignore when matching lines in a header file. This property is very useful for 
-      supporting headers that contain copyright dates. For example, consider the 
+      Property <span class="code">ignoreLines</span> specifies the line numbers to
+      ignore when matching lines in a header file. This property is very useful for
+      supporting headers that contain copyright dates. For example, consider the
       following header:
       </p>
       <pre class="body">
@@ -52,7 +52,7 @@ line 4: // Copyright (C) 2002  Oliver Burn
 line 5: ////////////////////////////////////////////////////////////////////
       </pre>
       <p class="body">
-      Since the year information will change over time, you can tell Checkstyle to 
+      Since the year information will change over time, you can tell Checkstyle to
       ignore line 4 by setting property <span class="code">ignoreLines</span> to <span class="code">
       4</span>.
       </p>
@@ -80,7 +80,7 @@ line 5: ////////////////////////////////////////////////////////////////////
 
       <h4>Example</h4>
       <p class="body">
-      To configure the check to use header file <span class="code">&quot;java.header&quot;</span> 
+      To configure the check to use header file <span class="code">&quot;java.header&quot;</span>
       and ignore lines <span class="code">2</span>, <span class="code">3</span>, and <span class="code">
       4</span>:
       </p>
@@ -100,12 +100,12 @@ line 5: ////////////////////////////////////////////////////////////////////
       </p>
       <a name="RegexpHeader"></a> <h2>RegexpHeader</h2> <h4>Description</h4>
       <p class="body">
-      Checks the header of a source file against a header file that contains a <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">regular 
+      Checks the header of a source file against a header file that contains a <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">regular
       expression</a> for each line of the source header.
       </p>
       <p class="body">
-      Rationale: In some projects <a href="#Header">checking against a fixed header</a> 
-      is not sufficient, e.g. the header might require a copyright line where the year 
+      Rationale: In some projects <a href="#Header">checking against a fixed header</a>
+      is not sufficient, e.g. the header might require a copyright line where the year
       information is not static.
       </p>
       <p class="body">
@@ -118,7 +118,7 @@ line  3: ^// Checks Java source code for adherence to a set of rules\.$
 line  4: ^// Copyright \(C\) \d\d\d\d  Oliver Burn$
 line  5: ^// Last modification by \$Author.*\$$
 line  6: ^/{71}$
-line  7: 
+line  7:
 line  8: ^package
 line  9:
 line 10: ^import
@@ -190,7 +190,7 @@ line 14: ^ \*/
 <hr />
 <div><a href="index.html">Back to the Checkstyle Home Page</a></div>
 <p class="copyright">
-Copyright &copy; 2002-2003 Oliver Burn. All rights Reserved.
+Copyright &copy; 2002-2004 Oliver Burn. All rights Reserved.
 </p>
 
 </body>
