@@ -43,7 +43,6 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  *  {@link TokenTypes#METHOD_CALL METHOD_CALL},
  *  {@link TokenTypes#RPAREN RPAREN},
  *  {@link TokenTypes#SUPER_CTOR_CALL SUPER_CTOR_CALL},
- *  {@link TokenTypes#TYPECAST TYPECAST}.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -83,7 +82,6 @@ public class ParenPadCheck
                           TokenTypes.LPAREN,
                           TokenTypes.CTOR_CALL,
                           TokenTypes.SUPER_CTOR_CALL,
-                          TokenTypes.TYPECAST, // TODO: treat this?
                           TokenTypes.METHOD_CALL,
         };
     }
@@ -91,11 +89,15 @@ public class ParenPadCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() == TokenTypes.RPAREN) {
-            processRight(aAST);
-        }
-        else {
+        // Strange logic in this method to guard against checking RPAREN tokens
+        // that are associated with a TYPECAST token.
+        if (aAST.getType() != TokenTypes.RPAREN) {
             processLeft(aAST);
+        }
+        else if ((aAST.getParent() == null)
+                 || (aAST.getParent().getType() != TokenTypes.TYPECAST))
+        {
+            processRight(aAST);
         }
     }
 
