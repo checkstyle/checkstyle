@@ -23,7 +23,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-
+/**
+ * Checks for overly complicated boolean expressions. Currently finds code like
+ * <code>if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
+ * etc.
+ *
+ * <p>
+ * Rationale: Complex boolean logic makes code hard to understand and maintain.
+ * </p>
+ *
+ * @author lkuehne
+ */
 public class SimplifyBooleanExpressionCheck
         extends Check
 {
