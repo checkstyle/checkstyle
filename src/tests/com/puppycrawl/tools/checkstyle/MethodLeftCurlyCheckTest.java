@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.checks.MethodLeftCurlyCheck;
+import com.puppycrawl.tools.checkstyle.checks.LeftCurlyOption;
 
 public class MethodLeftCurlyCheckTest
     extends BaseCheckTestCase

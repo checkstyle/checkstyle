@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.Serializable;
 import java.io.ObjectStreamException;
@@ -27,9 +27,10 @@ import java.util.HashMap;
  * Represents the options for placing the left curly brace '{'.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: LeftCurlyOption.java,v 1.7 2002-10-13 12:46:33 oburn Exp $
+ * @version $Id: LeftCurlyOption.java,v 1.1 2002-10-13 12:53:20 oburn Exp $
  */
-public final class LeftCurlyOption implements Serializable
+public final class LeftCurlyOption
+    implements Serializable
 {
     /** maps from a string representation to an option **/
     private static final Map STR_TO_OPT = new HashMap();
@@ -69,7 +70,7 @@ public final class LeftCurlyOption implements Serializable
         return (LeftCurlyOption) STR_TO_OPT.get(aStrRep.trim().toLowerCase());
     }
 
-    /** @see Object **/
+    /** @see java.lang.Object **/
     public String toString()
     {
         return mStrRep;
@@ -81,7 +82,7 @@ public final class LeftCurlyOption implements Serializable
      * Serialization Specification for details.
      *
      * @return the serialization replacement object
-     * @throws ObjectStreamException if a deserialization error occurs
+     * @throws java.io.ObjectStreamException if a deserialization error occurs
      */
     private Object readResolve() throws ObjectStreamException
     {
