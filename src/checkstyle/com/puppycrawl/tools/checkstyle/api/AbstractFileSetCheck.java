@@ -78,17 +78,18 @@ public abstract class AbstractFileSetCheck
      */
     protected final File[] filter(File[] aFiles)
     {
-        if (mFileExtensions == null || mFileExtensions.length == 0) {
+        if ((mFileExtensions == null) || (mFileExtensions.length == 0)) {
             return aFiles;
         }
-        ArrayList files = new ArrayList(aFiles.length);
+        
+        final ArrayList files = new ArrayList(aFiles.length);
         for (int i = 0; i < aFiles.length; i++) {
-            File file = aFiles[i];
-            final String fileName = file.getName();
+            final File f = aFiles[i];
+            final String fileName = f.getName();
             for (int j = 0; j < mFileExtensions.length; j++) {
-                String fileExtension = mFileExtensions[j];
+                final String fileExtension = mFileExtensions[j];
                 if (fileName.endsWith(fileExtension)) {
-                    files.add(file);
+                    files.add(f);
                 }
             }
         }
@@ -107,9 +108,10 @@ public abstract class AbstractFileSetCheck
             mFileExtensions = null;
             return;
         }
+        
         mFileExtensions = new String[aExtensions.length];
         for (int i = 0; i < aExtensions.length; i++) {
-            String extension = aExtensions[i];
+            final String extension = aExtensions[i];
             if (extension.startsWith(".")) {
                 mFileExtensions[i] = extension;
             }
@@ -149,10 +151,12 @@ public abstract class AbstractFileSetCheck
     protected final void log(int aLineNo, int aColNo,
         String aKey, Object[] aArgs)
     {
-        getMessageCollector().add(new LocalizedMessage(
-            aLineNo, aColNo, getMessageBundle(),
-            aKey, aArgs, getSeverityLevel()));
+        getMessageCollector().add(
+            new LocalizedMessage(aLineNo,
+                                 aColNo,
+                                 getMessageBundle(),
+                                 aKey,
+                                 aArgs,
+                                 getSeverityLevel()));
     }
-
-
 }
