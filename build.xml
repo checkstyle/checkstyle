@@ -123,6 +123,12 @@
            destdir="target/checkstyle"
            deprecation="on" debug="on"
            classpathref="build.classpath" />
+
+    <propertyfile file="target/checkstyle/checkstylecompilation.properties">
+       <entry key="checkstyle.compile.version" value="${version}"/>
+       <entry key="checkstyle.compile.timestamp" type="date" value="now" pattern="E MMMM dd yyyy, HH:mm z"/>
+    </propertyfile>
+
     <copy todir="target/checkstyle">
       <fileset dir="src/checkstyle" includes="**/*.properties"/>
       <fileset dir="src/checkstyle" includes="**/*.xml"/>
@@ -139,6 +145,7 @@
       <fileset dir="src/checkstyle" includes="**/messages.properties"/>
       <mapper type="glob" from="*messages.properties" to="*messages_en.properties"/>
     </copy>
+
   </target>
 
   <target name="compile.testinputs" description="Compile test inputs">
