@@ -1,56 +1,117 @@
 <?xml version="1.0"?>
 
-<configuration>
+<!--
 
-  <check classname="com.puppycrawl.tools.checkstyle.checks.AvoidStarImport"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.FileLengthCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck">
-    <property name="format" value="System.out.println"/>
-  </check>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.HeaderCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.HiddenFieldCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalImportCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.IllegalInstantiationCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.InnerAssignmentCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.JavadocVariableCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.LineLengthCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.LocalFinalVariableNameCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.LocalVariableNameCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.MemberNameCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLeftCurlyCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLengthCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.MethodNameCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.ModifierCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.NeedBracesCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.PackageNameCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNumberCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.ParenPadCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.PublicMemberNameCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.RedundantImportCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.RedundantModifierCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.RegexpHeaderCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanExpressionCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanReturnCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.StaticVariableNameCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.TabCharacterCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.TypeLeftCurlyCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.TypeNameCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.UnusedImportsCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.UpperEllCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.VisibilityModifierCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.WhitespaceAfterCheck"/>
-  <check classname="com.puppycrawl.tools.checkstyle.checks.WhitespaceAroundCheck"/>
+  a Checkstyle configuration that checks the sun coding conventions from
 
-</configuration>
+  the Java Language Specification at
+  http://java.sun.com/docs/books/jls/second_edition/html/index.html
+
+  the Sun Code Conventions at
+  http://java.sun.com/docs/codeconv/
+
+  the Javadoc guidelines at
+  http://java.sun.com/j2se/javadoc/writingdoccomments/index.html
+
+  the JDK Api documentation
+  http://java.sun.com/j2se/docs/api/index.html
+
+  some best practices
+
+-->
+
+<module name="Checker">
+
+  <module name="TreeWalker">
+
+    <!--                         code conventions -->
+
+    <!-- naming conventions -->
+    <module name="ConstantName"/>
+    <module name="MethodName"/>
+    <module name="LocalFinalVariableName"/>
+    <module name="LocalVariableName"/>
+    <module name="MemberName"/>
+    <module name="ParameterName"/>
+    <module name="TypeName"/>
+    <module name="StaticVariableName"/>
+    <module name="PackageName"/>
+
+    <!-- code layout -->
+    <module name="RightCurly"/>
+    <module name="MethodLeftCurly"/>
+    <module name="NeedBraces"/>
+    <module name="OperatorWrap"/>
+    <module name="OtherLeftCurly"/>
+    <module name="TypeLeftCurly"/>
+
+    <!-- standard whitespace settings -->
+    <module name="ParenPad"/>
+    <module name="NoWhitespaceAfter"/>
+    <module name="NoWhitespaceBefore"/>
+    <module name="WhitespaceAfter"/>
+    <module name="WhitespaceAround"/>
+
+
+
+    <!--                       JavaDoc guidelines -->
+    <module name="JavadocMethod"/>
+    <module name="JavadocType"/>
+    <module name="JavadocVariable"/>
+
+
+
+    <!--                                        JLS -->
+    <module name="RedundantModifier"/>
+    <module name="Modifier"/>
+    <module name="UpperEll"/>
+
+
+
+    <!--                                    Api Doc -->
+
+    <!-- override hashCode whenever you override equals() -->
+    <module name="EqualsHashCode"/>
+
+    <!-- don't create new instances of Boolean,
+         use Boolean.TRUE/FALSE or Boolean.valueOf() instead -->
+    <module name="IllegalInstantiation">
+      <property name="" value="java.lang.Boolean"/>
+    </module>
+
+
+
+    <!--                             best practices -->
+
+    <!-- don't allow empty blocks (in particular catch blocks) -->
+    <module name="EmptyBlock"/>
+
+    <!-- avoid inner assignments -->
+    <module name="InnerAssignment"/>
+
+    <!-- don't allow imports from the sun.* package hierarchy -->
+    <module name="IllegalImport"/>
+
+    <!-- don't allow public members -->
+    <module name="VisibilityModifier"/>
+
+    <!-- simplify your code -->
+    <module name="RedundantImport"/>
+    <module name="UnusedImports"/>
+    <module name="SimplifyBooleanExpression"/>
+    <module name="SimplifyBooleanReturn"/>
+
+    <!-- flag reminder comments -->
+    <module name="TodoComment"/>
+
+    <!-- length limits -->
+    <module name="LineLength"/>
+    <module name="MethodLength"/>
+    <module name="FileLength"/>
+
+  </module>
+
+  <!-- enforce package documentation -->
+  <module name="PackageHtml">
+
+</module>
