@@ -31,7 +31,7 @@ public class CheckerTest
 
     private final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
     private final PrintStream mStream = new PrintStream(mBAOS);
-    private final Configuration mConfig = new Configuration();
+    private Configuration mConfig = null;
 
     public CheckerTest(String name)
     {
@@ -41,6 +41,7 @@ public class CheckerTest
     protected void setUp()
         throws Exception
     {
+        mConfig = new Configuration();
         mConfig.setHeaderFile(getPath("java.header"));
     }
 
@@ -525,6 +526,20 @@ public class CheckerTest
         verify(c, filepath, expected);
     }
 
+    public void testRegexpHeader()
+        throws Exception
+    {
+        final Checker c = createChecker();
+        mConfig.setHeaderLinesRegexp(true);
+        mConfig.setHeaderFile(getPath("regexp.header"));
+        final String filepath = getPath("InputScopeAnonInner.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":3: Line does not match expected header line of '// Created: 2002'.",
+        };
+        verify(c, filepath, expected);
+    }
+
     public void testImport()
         throws Exception
     {
@@ -550,8 +565,6 @@ public class CheckerTest
     public void testPackageHtml()
         throws Exception
     {
-        final boolean savedRequirePackageHtml = mConfig.isRequirePackageHtml();
-        final Scope savedDocScope = mConfig.getJavadocScope();
         mConfig.setRequirePackageHtml(true);
         mConfig.setJavadocScope(Scope.PRIVATE);
         final Checker c = createChecker();
@@ -562,7 +575,5 @@ public class CheckerTest
             packageHtmlPath + ":0: missing package documentation file.",
         };
         verify(c, filepath, expected);
-        mConfig.setRequirePackageHtml(savedRequirePackageHtml);
-        mConfig.setJavadocScope(savedDocScope);
     }
 }
