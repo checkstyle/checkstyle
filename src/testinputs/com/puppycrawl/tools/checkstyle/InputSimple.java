@@ -4,7 +4,7 @@
 // Ignore error
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
-
+import java.io.*;
 /**
  * Contains simple mistakes:
  * - Long lines
