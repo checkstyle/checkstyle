@@ -15,6 +15,7 @@ public class AllTests {
 
         suite.addTest(new TestSuite(AbstractViolationReporterTest.class));
         suite.addTest(new TestSuite(DetailASTTest.class));
+        suite.addTest(new TestSuite(TokenTypesTest.class));
 
         return suite;
     }
