@@ -6,6 +6,8 @@
   <property file="checkstyle.buildproperties" />
   <property file="${user.home}/checkstyle.buildproperties" />
 
+  <property name="ant.jar" value="${ant.home}/lib/ant.jar" />
+  <property name="crimson.jar" value="${ant.home}/lib/crimson.jar" />
   <property name="antlr.jar" value="lib/antlr.jar" />
   <property name="regexp.jar" value="lib/jakarta-regexp-1.3.jar" />
   <property name="junit.jar" value="lib/junit.jar" />
@@ -20,7 +22,7 @@
   <property name="testreport.dir" value="target/testreports"/>
   <property name="dist.dir" value="target/dist"/>
 
-  <property name="version" value="3.2" />
+  <property name="version" value="3.3" />
 
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
@@ -29,7 +31,7 @@
     <pathelement location="${cli.jar}" />
     <pathelement location="${beanutils.jar}" />
     <pathelement location="${logging.jar}" />
-    <pathelement location="${ant.home}/lib/ant.jar" />
+    <pathelement location="${ant.jar}" />
   </path>
 
   <path id="run.classpath">
@@ -40,7 +42,7 @@
 
   <!-- add classes to generate Javadoc -->
   <path id="javadoc.classpath">
-    <pathelement location="${ant.home}/lib/crimson.jar" />
+    <pathelement location="${crimson.jar}" />
     <path refid="run.classpath" />
   </path>
 
@@ -537,7 +539,8 @@
              Windowtitle="Checkstyle API"
              classpathref="javadoc.classpath"
              Use="true"
-             Footer="&lt;a target=&quot;_top&quot; href=&quot;./{@docRoot}/../index.html&quot;&gt;Back to the Checkstyle Home Page&lt;/a&gt;" />
+             Footer="&lt;a target=&quot;_top&quot; href=&quot;./{@docRoot}/../index.html&quot;&gt;Back to the Checkstyle Home Page&lt;/a&gt;" >
+    </javadoc>
     <move toDir="src/checkstyle">
       <fileset dir="src/checkstyle" includes="**/*.HIDING" />
       <mapper type="glob" from="*.HIDING" to="*"/>
