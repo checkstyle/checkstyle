@@ -29,6 +29,7 @@
 	<li><a href="#overview">Overview</a></li>
 	<li><a href="#features">Features</a></li>
 	<li><a href="#download">Download</a></li>
+	<li><a href="#upgrading">Upgrading</a></li>
 	<li><a href="java.header">License</a></li>
 	<li><a href="#related">Related Tools</a></li>
       </ul>
@@ -112,6 +113,38 @@
       <p class="body">
         If you want to live on the bleeding edge, you can <a href="http://sourceforge.net/cvs/?group_id=29721">checkout the current development code from CVS</a> and compile yourself.
       </p>
+
+      <a name="upgrading"></a>
+      <h2>Upgrading to release 2.4</h2>
+
+      <p class="body">As of release 2.4 Checkstyle can only be configured by
+      properties. The major impact is to the ANT task as many arguments have
+      been removed. It is still possible to customise Checkstyle via ANT task,
+      but the technique has changed. For example the following call with
+      Checkstyle 2.3: </p>
+
+<pre>
+    &lt;checkstyle cacheFile="target/checkstyle.cache"
+                headerFile="dev/header.txt"
+                properties="dev/checkstyle.config"&gt;
+      &lt;fileset dir="src" includes="**/*.java"/&gt;
+    &lt;/checkstyle&gt;
+</pre>
+
+      <p class="body">has the equivalent call with Checkstyle 2.4:</p>
+<pre>
+    &lt;checkstyle properties="dev/checkstyle.config"&gt;
+      &lt;fileset dir="src" includes="**/*.java"/&gt;
+      &lt;property key="checkstyle.cache.file"
+                file="target/checkstyle.cache"/&gt;
+      &lt;property key="checkstyle.header.file"
+                file="dev/header.txt"/&gt;
+    &lt;/checkstyle&gt;
+</pre>
+
+      <p class="body">See the documentation for the <a href="anttask.html">ANT
+      Task</a> for more examples.</p>
+
 
       <a  name="related"></a>
       <h2>Related Tools</h2>
