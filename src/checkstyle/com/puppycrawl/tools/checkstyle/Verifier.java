@@ -250,7 +250,9 @@ class Verifier
 
         final String[] jd = getJavadocBefore(aSig.getFirstLineNo() - 1);
         if (jd == null) {
-            log(aSig.getFirstLineNo(), "method is missing a Javadoc comment.");
+            log(aSig.getFirstLineNo(),
+                aSig.getFirstColNo(),
+                "method is missing a Javadoc comment.");
         }
         else {
             final List tags = getMethodTags(jd, aSig.getFirstLineNo() - 1);
@@ -941,7 +943,7 @@ class Verifier
     private void checkParameter(LineText aParam)
     {
         if (!mConfig.getParamRegexp().match(aParam.getText())) {
-            log(aParam.getLineNo(),
+            log(aParam.getLineNo(), aParam.getColumnNo(),
                 "parameter '" + aParam.getText() +
                 "' must match pattern '" + mConfig.getParamPat() + "'.");
         }
@@ -1094,7 +1096,7 @@ class Verifier
         final ListIterator paramIt = aParams.listIterator();
         while (paramIt.hasNext()) {
             final LineText param = (LineText) paramIt.next();
-            log(param.getLineNo(),
+            log(param.getLineNo(), param.getColumnNo(),
                 "Expected @param tag for '" + param.getText() + "'.");
         }
     }

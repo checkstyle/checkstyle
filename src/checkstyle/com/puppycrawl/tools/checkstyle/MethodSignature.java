@@ -94,9 +94,29 @@ class MethodSignature
     /** @return the first line of the method signature **/
     int getFirstLineNo()
     {
-        return (mModSet.size() > 0)
-            ? mModSet.getFirstLineNo()
-            : mName.getLineNo();
+        if (mModSet.size() > 0) {
+            return mModSet.getFirstLineNo();
+        }
+        else if (mReturnType != null) {
+            return mReturnType.getLineNo();
+        }
+        else {
+            return mName.getLineNo();
+        }
+    }
+
+    /** @return the first column of the method signature **/
+    int getFirstColNo()
+    {
+        if (mModSet.size() > 0) {
+            return mModSet.getFirstColNo();
+        }
+        else if (mReturnType != null) {
+            return mReturnType.getColumnNo();
+        }
+        else {
+            return mName.getColumnNo();
+        }
     }
 
     /** @return the return type **/
@@ -106,7 +126,6 @@ class MethodSignature
     }
 
     /**
-     * Set the return type
      * @param aReturnType the return type
      */
     void setReturnType(MyCommonAST aReturnType)

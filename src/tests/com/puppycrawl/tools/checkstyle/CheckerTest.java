@@ -289,7 +289,7 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":8: type is missing a Javadoc comment.",
             filepath + ":11:17: variable 'mMissingJavadoc' missing Javadoc.",
-            filepath + ":14: method is missing a Javadoc comment.",
+            filepath + ":14:5: method is missing a Javadoc comment.",
             filepath + ":18: Unused @param tag for 'unused'.",
             filepath + ":24: Expected an @return tag.",
             filepath + ":33: Expected an @return tag.",
@@ -298,17 +298,17 @@ public class CheckerTest
             filepath + ":53: Unused @throws tag for 'WrongException'.",
             filepath + ":55:16: Expected @throws tag for 'Exception'.",
             filepath + ":55:27: Expected @throws tag for 'NullPointerException'.",
-            filepath + ":60: Expected @param tag for 'aOne'.",
-            filepath + ":68: Expected @param tag for 'aOne'.",
+            filepath + ":60:22: Expected @param tag for 'aOne'.",
+            filepath + ":68:22: Expected @param tag for 'aOne'.",
             filepath + ":72: Unused @param tag for 'WrongParam'.",
-            filepath + ":73: Expected @param tag for 'aOne'.",
-            filepath + ":73: Expected @param tag for 'aTwo'.",
+            filepath + ":73:23: Expected @param tag for 'aOne'.",
+            filepath + ":73:33: Expected @param tag for 'aTwo'.",
             filepath + ":78: Unused @param tag for 'Unneeded'.",
             filepath + ":79: Unused Javadoc tag.",
             filepath + ":87: Duplicate @return tag.",
-            filepath + ":109: Expected @param tag for 'aOne'.",
-            filepath + ":109: Expected @param tag for 'aFour'.",
-            filepath + ":109: Expected @param tag for 'aFive'.",
+            filepath + ":109:23: Expected @param tag for 'aOne'.",
+            filepath + ":109:55: Expected @param tag for 'aFour'.",
+            filepath + ":109:66: Expected @param tag for 'aFive'.",
             filepath + ":129:5: '{' should be on the previous line.",
         };
 
@@ -388,10 +388,10 @@ public class CheckerTest
             filepath + ":53:16: variable 'sTest2' must be private and have accessor methods.",
             filepath + ":56:9: variable 'mTest1' must be private and have accessor methods.",
             filepath + ":58:16: variable 'mTest2' must be private and have accessor methods.",
-            filepath + ":71: parameter 'badFormat1' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
-            filepath + ":71: parameter 'badFormat2' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
+            filepath + ":71:19: parameter 'badFormat1' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":71:30: ',' needs to be followed by whitespace.",
-            filepath + ":72: parameter 'badFormat3' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
+            filepath + ":71:34: parameter 'badFormat2' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
+            filepath + ":72:25: parameter 'badFormat3' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":80: method length is 20 lines (max allowed is 19).",
             filepath + ":103: constructor length is 10 lines (max allowed is 9).",
             filepath + ":119:13: variable 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -431,14 +431,14 @@ public class CheckerTest
             filepath + ":7: type is missing a Javadoc comment.",
             filepath + ":9: type is missing a Javadoc comment.",
             filepath + ":11:16: variable 'CONST' missing Javadoc.",
-            filepath + ":12: method is missing a Javadoc comment.",
+            filepath + ":12:9: method is missing a Javadoc comment.",
             filepath + ":14: type is missing a Javadoc comment.",
             filepath + ":16:25: variable 'mData' missing Javadoc.",
-            filepath + ":18: method is missing a Javadoc comment.",
-            filepath + ":25: method is missing a Javadoc comment.",
+            filepath + ":18:13: method is missing a Javadoc comment.",
+            filepath + ":25:13: method is missing a Javadoc comment.",
             filepath + ":34: type is missing a Javadoc comment.",
             filepath + ":36:21: variable 'mDiff' missing Javadoc.",
-            filepath + ":38: method is missing a Javadoc comment.",
+            filepath + ":38:9: method is missing a Javadoc comment.",
             filepath + ":43:17: variable 'mSize' missing Javadoc.",
             filepath + ":44:9: variable 'mLen' missing Javadoc.",
             filepath + ":44:9: variable 'mLen' must be private and have accessor methods.",
@@ -446,15 +446,15 @@ public class CheckerTest
             filepath + ":45:19: variable 'mDeer' must be private and have accessor methods.",
             filepath + ":46:16: variable 'aFreddo' missing Javadoc.",
             filepath + ":46:16: variable 'aFreddo' must be private and have accessor methods.",
-            filepath + ":49: method is missing a Javadoc comment.",
-            filepath + ":54: method is missing a Javadoc comment.",
-            filepath + ":59: method is missing a Javadoc comment.",
-            filepath + ":64: method is missing a Javadoc comment.",
-            filepath + ":69: method is missing a Javadoc comment.",
-            filepath + ":74: method is missing a Javadoc comment.",
-            filepath + ":79: method is missing a Javadoc comment.",
-            filepath + ":84: method is missing a Javadoc comment.",
-            filepath + ":94: Expected @param tag for 'aA'."
+            filepath + ":49:5: method is missing a Javadoc comment.",
+            filepath + ":54:5: method is missing a Javadoc comment.",
+            filepath + ":59:5: method is missing a Javadoc comment.",
+            filepath + ":64:5: method is missing a Javadoc comment.",
+            filepath + ":69:5: method is missing a Javadoc comment.",
+            filepath + ":74:5: method is missing a Javadoc comment.",
+            filepath + ":79:5: method is missing a Javadoc comment.",
+            filepath + ":84:5: method is missing a Javadoc comment.",
+            filepath + ":94:32: Expected @param tag for 'aA'."
         };
         verify(c, filepath, expected);
     }
@@ -489,10 +489,10 @@ public class CheckerTest
             filepath + ":45:19: variable 'mDeer' must be private and have accessor methods.",
             filepath + ":46:16: variable 'aFreddo' missing Javadoc.",
             filepath + ":46:16: variable 'aFreddo' must be private and have accessor methods.",
-            filepath + ":59: method is missing a Javadoc comment.",
-            filepath + ":64: method is missing a Javadoc comment.",
-            filepath + ":79: method is missing a Javadoc comment.",
-            filepath + ":84: method is missing a Javadoc comment."
+            filepath + ":59:5: method is missing a Javadoc comment.",
+            filepath + ":64:5: method is missing a Javadoc comment.",
+            filepath + ":79:5: method is missing a Javadoc comment.",
+            filepath + ":84:5: method is missing a Javadoc comment."
         };
         verify(c, filepath, expected);
     }
@@ -511,8 +511,8 @@ public class CheckerTest
             filepath + ":38: type is missing a Javadoc comment.",
             filepath + ":40:23: variable 'CA' missing Javadoc.",
             filepath + ":41:16: variable 'CB' missing Javadoc.",
-            filepath + ":43: method is missing a Javadoc comment.",
-            filepath + ":44: method is missing a Javadoc comment."
+            filepath + ":43:9: method is missing a Javadoc comment.",
+            filepath + ":44:9: method is missing a Javadoc comment."
         };
         verify(c, filepath, expected);
     }
@@ -573,14 +573,14 @@ public class CheckerTest
         final String filepath = getPath("InputScopeAnonInner.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":26: method is missing a Javadoc comment.",
+            filepath + ":26:9: method is missing a Javadoc comment.",
             filepath + ":37:34: '(' is followed by whitespace.",
-            filepath + ":39: method is missing a Javadoc comment.",
+            filepath + ":39:17: method is missing a Javadoc comment.",
             filepath + ":39:42: '(' is followed by whitespace.",
             filepath + ":39:57: ')' is preceeded by whitespace.",
             filepath + ":43:14: ')' is preceeded by whitespace.",
             filepath + ":51:34: '(' is followed by whitespace.",
-            filepath + ":53: method is missing a Javadoc comment.",
+            filepath + ":53:17: method is missing a Javadoc comment.",
             filepath + ":53:42: '(' is followed by whitespace.",
             filepath + ":53:57: ')' is preceeded by whitespace.",
             filepath + ":57:14: ')' is preceeded by whitespace.",
