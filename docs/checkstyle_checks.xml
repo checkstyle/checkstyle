@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!DOCTYPE configuration SYSTEM "configuration.dtd">
 
 <configuration>
 
@@ -40,21 +41,22 @@
     <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck"/>
 
-<!-- Dot operator -->
- <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheck">
-     <tokens>
+    <!-- Dot operator -->
+    <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheck">
+        <tokens>
            DOT
-      </tokens>
-      <set-property name="allowLineBreaks" value="true"/>
-  </check>
- <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck">
-     <tokens>
+        </tokens>
+        <set-property name="allowLineBreaks" value="true"/>
+    </check>
+    <check classname="com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck">
+        <tokens>
            DOT
-      </tokens>
-      <set-property name="allowLineBreaks" value="true"/>
- </check>
+        </tokens>
+        <set-property name="allowLineBreaks" value="true"/>
+    </check>
 
  
+
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck">
