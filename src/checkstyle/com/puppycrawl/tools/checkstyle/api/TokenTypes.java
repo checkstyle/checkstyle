@@ -1196,9 +1196,47 @@ public final class TokenTypes
      **/
     public static final int LITERAL_NATIVE = 66;
     /**
-     * The <code>synchronized</code> keyword.
+     * The <code>synchronized</code> keyword.  This may be used as a
+     * modifier of a method or in the definition of a synchronized
+     * block.
+     *
+     * <p>For example:</p>
+     *
+     * <pre>
+     * synchronized(this)
+     * {
+     *   x++;
+     * }
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * +--LITERAL_SYNCHRONIZED (synchronized)
+     *     |
+     *     +--LPAREN (()
+     *     +--EXPR
+     *         |
+     *         +--LITERAL_THIS (this)
+     *     +--RPAREN ())
+     *     +--SLIST ({)
+     *         |
+     *         +--EXPR
+     *             |
+     *             +--POST_INC (++)
+     *                 |
+     *                 +--IDENT (x)
+     *         +--SEMI (;)
+     *         +--RCURLY (})
+     * +--RCURLY (})
+     * </pre>
      *
      * @see #MODIFIERS
+     * @see #LPAREN
+     * @see #EXPR
+     * @see #RPAREN
+     * @see #SLIST
+     * @see #RCURLY
      **/
     public static final int LITERAL_SYNCHRONIZED = 67;
     /**
@@ -2177,7 +2215,7 @@ public final class TokenTypes
      * The <code>~</code> (bitwise complement) operator.
      *
      * @see <a target="_top"
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5017>Java
+     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5017">Java
      * Language Specification, &sect;15.15.5</a>
      * @see #EXPR
      **/
