@@ -42,7 +42,7 @@ public class FinalParametersCheck extends Check
     {
         // don't flag interfaces
         final DetailAST container = aAST.getParent().getParent();
-        if (container.getType() != TokenTypes.CLASS_DEF) {
+        if (container.getType() == TokenTypes.INTERFACE_DEF) {
             return;
         }
 
