@@ -43,12 +43,12 @@ public final class Utils
     /** Map of all created regular expressions **/
     private static final Map CREATED_RES = new HashMap();
 
-    ///CLOVER:ON
+    ///CLOVER:OFF
     /** stop instances being created **/
     private Utils()
     {
     }
-    ///CLOVER:OFF
+    ///CLOVER:ON
 
     /**
      * Returns whether the specified string contains only whitespace up to the
