@@ -106,6 +106,15 @@
     <td>Ignore the placement of the brace.</td>
   </tr>
   <tr>
+    <td><span class="code">eol</span></td>
+    <td>The brace must always be on the end of the line. For example:
+<pre>
+    if (condition) {
+        ...
+</pre>
+      This is the default value.
+  </tr>
+  <tr>
     <td><span class="code">nl</span></td>
     <td>The brace must always be on a new line. For example:
 <pre>
@@ -114,15 +123,6 @@
         ...
 </pre>
     </td>
-  </tr>
-  <tr>
-    <td><span class="code">eol</span></td>
-    <td>The brace must always be on the end of the line. For example:
-<pre>
-    if (condition) {
-        ...
-</pre>
-      This is the default value.
   </tr>
   <tr>
     <td><span class="code">nlow</span></td>
@@ -142,7 +142,42 @@
   </tr>
 </table>
 
-<p><a name="lcurlyother"></a>The check can be tailored for types, methods and others. What is included in others are the keywords <span class="code">switch</span>, <span class="code">while</span>, <span class="code">for</span>, <span class="code">do</span>, <span class="code">if</span>, <span class="code">else</span>, <span class="code">synchronized</span>, <span class="code">try</span>, <span class="code">catch</span>, <span class="code">finally</span>, <span class="code">static</span>.</p>
+<p><a name="lcurlyother"></a>The check can be tailored for types, methods and others. What is included in others are the keywords <span class="code">switch</span>, <span class="code">while</span>, <span class="code">for</span>, <span class="code">do</span>, <span class="code">if</span>, <span class="code">else</span>, <span class="code">synchronized</span>, <span class="code">try</span>, <span class="code">catch</span>, <span class="code">finally</span> and <span class="code">static</span>.</p>
+
+<p><a name="rcurly"></a>There is also a check for the correct placement of right curly braces <span class="code">'}'</span> with the keywords <span class="code">else</span>, <span class="code">catch</span> and <span class="code">finally</span>. The check can be configured with the following options:</p>
+<a name="rcurlyopt"></a>
+<table border="1" summary="right curly options">
+  <tr class="header">
+    <td>Option</td>
+    <td>Definition</td>
+  </tr>
+  <tr>
+    <td><span class="code">ignore</span></td>
+    <td>Ignore the placement of the brace.</td>
+  </tr>
+  <tr>
+    <td><span class="code">same</span></td>
+    <td>The brace must be on the same line as the next statement. For example:
+<pre>
+    try {
+        ...
+    } finally {
+</pre>
+      This is the default value.
+    </td>
+  </tr>
+  <tr>
+    <td><span class="code">alone</span></td>
+    <td>The brace must be alone on the line. For example:
+<pre>
+    try {
+        ...
+    }
+    finally {
+</pre>
+  </tr>
+</table>
+
 
 <h3><a name="length">Long Lines</a></h3>
 <p>Checks for lines that are longer than a specified length. The default is <span class="default">&quot;80&quot;</span>. This can be turned off for <code>import</code> statements.</p>
