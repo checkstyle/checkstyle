@@ -726,6 +726,10 @@ public class Configuration
     private void setHeaderFile(String aFileName)
         throws FileNotFoundException, IOException
     {
+        // TODO: Need to fix bug that relative paths are not handled. Need to
+        // be given an absolute path to add to paths. This is needed for
+        // all properties that specified paths (headerFile, baseDir).
+
         // Handle a missing property, or an empty one
         if ((aFileName == null) || (aFileName.trim().length() == 0)) {
             return;
