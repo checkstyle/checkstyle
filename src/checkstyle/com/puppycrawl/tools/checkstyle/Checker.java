@@ -307,7 +307,7 @@ public class Checker extends AutomaticBean
         }
     }
 
-    /** @see PackageNamesBean */
+    /** @see com.puppycrawl.tools.checkstyle.api.PackageNamesBean */
     public void setPackageNames(String[] aPackageNames)
     {
         mPackageNames = aPackageNames;
