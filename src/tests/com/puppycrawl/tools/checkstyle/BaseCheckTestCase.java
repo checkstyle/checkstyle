@@ -113,7 +113,9 @@ public abstract class BaseCheckTestCase
             new LineNumberReader(new InputStreamReader(bais));
 
         for (int i = 0; i < aExpected.length; i++) {
-            assertEquals(aMessageFileName + ":" + aExpected[i], lnr.readLine());
+            final String expected = aMessageFileName + ":" + aExpected[i];
+            final String actual = lnr.readLine();
+            assertEquals(expected, actual);
         }
         assertEquals(aExpected.length, errs);
         aC.destroy();
