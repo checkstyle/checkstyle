@@ -85,7 +85,7 @@ public class CovariantEqualsCheck extends Check
                 }
                 child = (DetailAST) child.getNextSibling();
             }
-    
+
             // report equals method definitions
             if (!mHasEqualsObject) {
                 final Iterator it = mEqualsMethods.iterator();
