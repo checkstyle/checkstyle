@@ -63,8 +63,7 @@ public class AvoidNestedBlocksCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getParent().getType() == TokenTypes.SLIST) {
-            // TODO: i18n
-            log(aAST.getLineNo(), aAST.getColumnNo(), "Avoid nested blocks");
+            log(aAST.getLineNo(), aAST.getColumnNo(), "block.nested");
         }
     }
 
