@@ -215,7 +215,7 @@ public final class TreeWalker
 
         try {
             getMessageDispatcher().fireFileStarted(fileName);
-            final String[] lines = Utils.getLines(fileName);
+            final String[] lines = Utils.getLines(fileName, getCharset());
             final FileContents contents = new FileContents(fileName, lines);
             final DetailAST rootAST = TreeWalker.parse(contents);
             walk(rootAST, contents);

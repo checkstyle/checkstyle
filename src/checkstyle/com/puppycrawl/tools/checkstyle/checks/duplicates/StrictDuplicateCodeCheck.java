@@ -225,7 +225,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         for (int i = 0; i < mFiles.length; i++) {
             try {
                 File file = mFiles[i];
-                String[] lines = Utils.getLines(file.getPath());
+                String[] lines = Utils.getLines(file.getPath(), getCharset());
                 ChecksumGenerator transformer = findChecksumGenerator(file);
                 mLineChecksums[i] = transformer.convertLines(lines);
             }
