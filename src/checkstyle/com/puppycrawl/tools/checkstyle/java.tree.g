@@ -408,7 +408,7 @@ primaryExpression
                 (i2:IDENT { firstExprIdent = null;}
                 | arrayIndex
                 | "this"
-                | "class" { if (firstExprIdent != null) { ver.reportReference(firstExprIdent.getText()); } }
+                | "class"
                 |  #( "new" IDENT elist )
 				|   "super"
                 )
