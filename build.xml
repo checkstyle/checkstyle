@@ -15,7 +15,7 @@
   <property name="checkstyle.dir" value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
   <property name="testreport.dir" value="testreports"/>
 
-  <property name="version" value="1.4" />
+  <property name="version" value="2.0" />
 
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
@@ -153,7 +153,6 @@
     <checkstyle headerfile="docs/java.header"
                 ignorebraces="false"
 		cachefile="classes/cachefile"
-                headerignoreline="3"
                 memberPattern="^m[A-Z][a-zA-Z0-9]*$"
                 staticPattern="^s[A-Z][a-zA-Z0-9]*$"
                 paramPattern="^a[A-Z][a-zA-Z0-9]*$">
