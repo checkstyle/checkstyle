@@ -339,7 +339,7 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":8: Missing a Javadoc comment.",
-            filepath + ":11:17: Variable 'mMissingJavadoc' missing Javadoc.",
+            filepath + ":11:17: Missing a Javadoc comment.",
             filepath + ":14:5: Missing a Javadoc comment.",
             filepath + ":18: Unused @param tag for 'unused'.",
             filepath + ":24: Expected an @return tag.",
@@ -377,7 +377,7 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":8: Missing a Javadoc comment.",
-            filepath + ":11:17: Variable 'mMissingJavadoc' missing Javadoc.",
+            filepath + ":11:17: Missing a Javadoc comment.",
             filepath + ":14:5: Missing a Javadoc comment.",
             filepath + ":18: Unused @param tag for 'unused'.",
             filepath + ":24: Expected an @return tag.",
@@ -413,12 +413,12 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":14: Missing a Javadoc comment.",
-            filepath + ":17:20: Variable 'fData' missing Javadoc.",
+            filepath + ":17:20: Missing a Javadoc comment.",
             filepath + ":21: Missing a Javadoc comment.",
-            filepath + ":24:16: Variable 'data' missing Javadoc.",
+            filepath + ":24:16: Missing a Javadoc comment.",
             filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":27: Missing a Javadoc comment.",
-            filepath + ":30:24: Variable 'rData' missing Javadoc.",
+            filepath + ":30:24: Missing a Javadoc comment.",
             filepath + ":30:24: Variable 'rData' must be private and have accessor methods.",
             filepath + ":33:27: Variable 'protectedVariable' must be private and have accessor methods.",
             filepath + ":36:17: Variable 'packageVariable' must be private and have accessor methods.",
@@ -439,13 +439,13 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":14: Missing a Javadoc comment.",
-            filepath + ":17:20: Variable 'fData' missing Javadoc.",
+            filepath + ":17:20: Missing a Javadoc comment.",
             filepath + ":17:20: Variable 'fData' must be private and have accessor methods.",
             filepath + ":21: Missing a Javadoc comment.",
-            filepath + ":24:16: Variable 'data' missing Javadoc.",
+            filepath + ":24:16: Missing a Javadoc comment.",
             filepath + ":24:16: Name 'data' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
             filepath + ":27: Missing a Javadoc comment.",
-            filepath + ":30:24: Variable 'rData' missing Javadoc.",
+            filepath + ":30:24: Missing a Javadoc comment.",
         };
         verify(c, filepath, expected);
     }
@@ -543,21 +543,21 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":7: Missing a Javadoc comment.",
             filepath + ":9: Missing a Javadoc comment.",
-            filepath + ":11:16: Variable 'CONST' missing Javadoc.",
+            filepath + ":11:16: Missing a Javadoc comment.",
             filepath + ":12:9: Missing a Javadoc comment.",
             filepath + ":14: Missing a Javadoc comment.",
-            filepath + ":16:25: Variable 'mData' missing Javadoc.",
+            filepath + ":16:25: Missing a Javadoc comment.",
             filepath + ":18:13: Missing a Javadoc comment.",
             filepath + ":25:13: Missing a Javadoc comment.",
             filepath + ":34: Missing a Javadoc comment.",
-            filepath + ":36:21: Variable 'mDiff' missing Javadoc.",
+            filepath + ":36:21: Missing a Javadoc comment.",
             filepath + ":38:9: Missing a Javadoc comment.",
-            filepath + ":43:17: Variable 'mSize' missing Javadoc.",
-            filepath + ":44:9: Variable 'mLen' missing Javadoc.",
+            filepath + ":43:17: Missing a Javadoc comment.",
+            filepath + ":44:9: Missing a Javadoc comment.",
             filepath + ":44:9: Variable 'mLen' must be private and have accessor methods.",
-            filepath + ":45:19: Variable 'mDeer' missing Javadoc.",
+            filepath + ":45:19: Missing a Javadoc comment.",
             filepath + ":45:19: Variable 'mDeer' must be private and have accessor methods.",
-            filepath + ":46:16: Variable 'aFreddo' missing Javadoc.",
+            filepath + ":46:16: Missing a Javadoc comment.",
             filepath + ":46:16: Variable 'aFreddo' must be private and have accessor methods.",
             filepath + ":49:5: Missing a Javadoc comment.",
             filepath + ":54:5: Missing a Javadoc comment.",
@@ -600,9 +600,9 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":7: Missing a Javadoc comment.",
             filepath + ":44:9: Variable 'mLen' must be private and have accessor methods.",
-            filepath + ":45:19: Variable 'mDeer' missing Javadoc.",
+            filepath + ":45:19: Missing a Javadoc comment.",
             filepath + ":45:19: Variable 'mDeer' must be private and have accessor methods.",
-            filepath + ":46:16: Variable 'aFreddo' missing Javadoc.",
+            filepath + ":46:16: Missing a Javadoc comment.",
             filepath + ":46:16: Variable 'aFreddo' must be private and have accessor methods.",
             filepath + ":59:5: Missing a Javadoc comment.",
             filepath + ":64:5: Missing a Javadoc comment.",
@@ -624,8 +624,8 @@ public class CheckerTest
         final String[] expected = {
             filepath + ":7: Missing a Javadoc comment.",
             filepath + ":38: Missing a Javadoc comment.",
-            filepath + ":40:23: Variable 'CA' missing Javadoc.",
-            filepath + ":41:16: Variable 'CB' missing Javadoc.",
+            filepath + ":40:23: Missing a Javadoc comment.",
+            filepath + ":41:16: Missing a Javadoc comment.",
             filepath + ":43:9: Missing a Javadoc comment.",
             filepath + ":44:9: Missing a Javadoc comment."
         };
