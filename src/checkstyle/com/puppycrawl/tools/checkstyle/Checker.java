@@ -29,6 +29,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Properties;
 import org.apache.regexp.RESyntaxException;
+import java.io.File;
 
 /**
  * This class provides the functionality to check a file.
@@ -40,6 +41,9 @@ class Checker
     /** printstream to log to **/
     private final PrintStream mLog;
 
+    /** cache file **/
+    private final PropertyCacheFile mCache;
+
     /**
      * Constructs the object.
      * @param aConfig contains the configuration to check with
@@ -50,8 +54,15 @@ class Checker
         throws RESyntaxException
     {
         mLog = aLog;
+        mCache = new PropertyCacheFile(aConfig.getCacheFile(), aLog);
         final Verifier v = new VerifierImpl(aConfig);
         VerifierSingleton.setInstance(v);
+    }
+
+    /** Cleans up the object **/
+    void destroy()
+    {
+        mCache.destroy();
     }
 
     /**
@@ -61,6 +72,11 @@ class Checker
      **/
     int process(String aFileName)
     {
+        final long timestamp = new File(aFileName).lastModified();
+        if (mCache.alreadyChecked(aFileName, timestamp)) {
+            return 0;
+        }
+
         LineText[] errors;
         try {
             VerifierSingleton.getInstance().clearMessages();
@@ -88,7 +104,12 @@ class Checker
                              "Got a TokenStreamException -" + te.getMessage())};
         }
 
-        displayErrors(aFileName, errors);
+        if (errors.length == 0) {
+            mCache.checkedOk(aFileName, timestamp);
+        }
+        else {
+            displayErrors(aFileName, errors);
+        }
         return errors.length;
     }
 

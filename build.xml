@@ -120,6 +120,7 @@
     </taskdef>
     <checkstyle headerfile="docs/java.header"
                 ignorebraces="false"
+		cachefile="classes/cachefile"
                 headerignoreline="3">
       <fileset dir="src/checkstyle"
                includes="**/*.java"

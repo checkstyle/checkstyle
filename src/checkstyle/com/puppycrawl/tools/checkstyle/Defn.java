@@ -56,4 +56,6 @@ interface Defn
     String IGNORE_WHITESPACE_PROP = "checkstyle.ignore.whitespace";
     /** property name for ignoring braces **/
     String IGNORE_BRACES_PROP = "checkstyle.ignore.braces";
+    /** property name for cache file **/
+    String CACHE_FILE_PROP = "checkstyle.cache.file";
 }

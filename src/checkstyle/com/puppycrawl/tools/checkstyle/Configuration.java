@@ -104,6 +104,8 @@ class Configuration
     private boolean mIgnoreWhitespace = false;
     /** whether to ignore braces **/
     private boolean mIgnoreBraces = false;
+    /** name of the cache file **/
+    private String mCacheFile = null;
 
     /** the header lines to check for **/
     private String[] mHeaderLines = {};
@@ -157,6 +159,7 @@ class Configuration
         setIgnoreBraces(getBooleanProperty(aProps,
                                            IGNORE_BRACES_PROP,
                                            mIgnoreBraces));
+        setCacheFile(aProps.getProperty(CACHE_FILE_PROP));
         setHeaderIgnoreLineNo(
             getIntProperty(aProps, aLog, HEADER_IGNORE_LINE_PROP,
                            mHeaderIgnoreLineNo));
@@ -327,8 +330,14 @@ class Configuration
         return mHeaderIgnoreLineNo;
     }
 
+    /** @return the name of the cache file **/
+    String getCacheFile()
+    {
+        return mCacheFile;
+    }
+
     ////////////////////////////////////////////////////////////////////////////
-    // Getters
+    // Setters
     ////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -488,6 +497,14 @@ class Configuration
     void setHeaderIgnoreLineNo(int aHeaderIgnoreLineNo)
     {
         mHeaderIgnoreLineNo = aHeaderIgnoreLineNo;
+    }
+
+    /**
+     * @param aCacheFile name of cache file
+     */
+    void setCacheFile(String aCacheFile)
+    {
+        mCacheFile = aCacheFile;
     }
 
     ////////////////////////////////////////////////////////////////////////////
