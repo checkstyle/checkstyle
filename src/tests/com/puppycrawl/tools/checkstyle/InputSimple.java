@@ -151,4 +151,6 @@ strictfp final class InputSimple // illegal order of modifiers for class
 
     /** test illegal constant **/
     private static final int BAD__NAME = 3;
+
+    // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
 }
