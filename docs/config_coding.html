@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Checks for Coding problems</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css"/>
+</head>
+
+<body>
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td><h1>Checks for Coding problems</h1></td>
+    <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
+  </tr>
+</table>
+<!-- content -->
+<table border="0" width="100%" cellpadding="5" summary="body layout">
+  <tr>
+    <!--Left menu-->
+    <td class="menu" valign="top">
+      <ul>
+        <li>
+          <a href="#EqualsHashCode">EqualsHashCode</a>
+        </li>
+        <li>
+          <a href="#HiddenField">HiddenField</a>
+        </li>
+        <li>
+          <a href="#IllegalInstantiation">IllegalInstantiation</a>
+        </li>
+        <li>
+          <a href="#InnerAssignment">InnerAssignment</a>
+        </li>
+        <li>
+          <a href="#MissingSwitchDefault">MissingSwitchDefault</a>
+        </li>
+        <li>
+          <a href="#SimplifyBooleanExpression">SimplifyBooleanExpression</a>
+        </li>
+        <li>
+          <a href="#SimplifyBooleanReturn">SimplifyBooleanReturn</a>
+        </li>
+        <li>
+          <a href="#AvoidInlineConditionals">AvoidInlineConditionals</a>
+        </li>
+        <li>
+          <a href="#DoubleCheckedLocking">DoubleCheckedLocking</a>
+        </li>
+      </ul>
+    </td>
+    <!--Content-->
+    <td class="content" valign="top" align="left">
+      <!-- --> <a name="EqualsHashCode"></a> <h2>EqualsHashCode</h2>
+      <h4>Description</h4>
+      <p class="body">
+      Checks that classes that override <span class="code">equals()</span> also
+      override <span class="code">hashCode()</span>.
+      </p>
+      <p class="body">
+      Rationale: The contract of <span class="code">equals()</span> and <span class="code">
+      hashCode()</span> requires that equal objects have the same hashCode. Hence,
+      whenever you override <span class="code">equals()</span> you must override <span class="code">
+      hashCode()</span> to ensure that your class can be used in collections that are
+      hash based.
+      </p>
+
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;EqualsHashCode&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="HiddenField"></a> <h2>HiddenField</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that a local variable or a parameter does not shadow a field that is
+      defined in the same class.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of tokens PARAMETER_DEF, VARIABLE_DEF</td>
+          <td>PARAMETER_DEF, VARIABLE_DEF</td>
+        </tr>
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;HiddenField&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check so that it checks local variables but not parameters:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;HiddenField&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="IllegalInstantiation"></a> <h2>IllegalInstantiation</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for illegal instantiations where a factory method is preferred.
+      </p>
+      <p class="body">
+      Rationale: Depending on the project, for some classes it might be preferable to
+      create instances through factory methods rather than calling the constructor.
+      </p>
+      <p class="body">
+      A simple example is the <span class="code">java.lang.Boolean</span> class. In
+      order to save memory and CPU cycles, it is preferable to use the predefined
+      constants <span class="code">
+      TRUE</span> and <span class="code">FALSE</span>. Constructor invocations should
+      be replaced by calls to <span class="code">Boolean.valueOf()</span>.
+      </p>
+      <p class="body">
+      Some extremely performance sensitive projects may require the use of factory
+      methods for other classes as well, to enforce the usage of number caches or
+      object pools.
+      </p>
+      <h4>Notes</h4>
+      <p class="body">
+      There is a limitation that it is currently not possible to specify array classes.
+      </p>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>classes</td>
+          <td>classes that should not be instantiated</td>
+          <td><a href="property_types.html#stringSet">String Set</a></td>
+          <td>{}</td>
+        </tr>
+      </table>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check to find instantiations of java.lang.Boolean:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;IllegalInstantiation&quot;&gt;
+    &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+      <!-- --> <a name="InnerAssignment"></a> <h2>InnerAssignment</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for assignments in subexpressions, such as in <span class="code">String s
+      = Integer.toString(i = 2);</span>.
+      </p>
+      <p class="body">
+      Rationale: With the exception of <span class="code">for</span> iterators, all
+      assignments should occur in their own toplevel statement to increase readability.
+      With inner assignments like the above it is difficult to see all places where a
+      variable is set.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>assignments to check</td>
+          <td>subset of tokens ASSIGN, BAND_ASSIGN, BOR_ASSIGN, BSR_ASSIGN, BXOR_ASSIGN,
+          DIV_ASSIGN, MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN, SL_ASSIGN, SR_ASSIGN,
+          STAR_ASSIGN</td>
+          <td>all tokens</td>
+        </tr>
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;InnerAssignment&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check for only <span class="code">=</span>, <span class="code">
+      +=</span>, and <span class="code">-=</span> operators:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;InnerAssignment&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+      <!-- --> <a name="MissingSwitchDefault"></a> <h2>MissingSwitchDefault</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that switch statement has &quot;default&quot; clause.
+      </p>
+      <p class="body">
+      Rationale: It's usually a good idea to introduce a default case
+      in every switch statement. Even if the developer is sure that
+      all currently possible cases are covered, this should be
+      expressed in the default branch, e.g. by using an
+      assertion. This way the code is protected aginst later changes,
+      e.g. introduction of new types in an enumeration type.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="SimplifyBooleanExpression"></a> <h2>SimplifyBooleanExpression</h2>
+      <h4>Description</h4>
+      <p class="body">
+      Checks for overly complicated boolean expressions. Currently finds code like <span class="code">
+      if (b == true)</span>, <span class="code">b || true</span>, <span class="code">!false</span>, etc.
+      </p>
+      <p class="body">
+      Rationale: Complex boolean logic makes code hard to understand and maintain.
+      </p>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;SimplifyBooleanExpression&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="SimplifyBooleanReturn"></a> <h2>SimplifyBooleanReturn</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for overly complicated boolean return statements. For example the following code
+      </p>
+      <pre class="body">
+if (valid())
+    return false;
+else
+    return true;
+      </pre>
+      <p class="body">
+      could be written as
+      </p>
+      <pre class="body">
+return !valid();
+      </pre>
+      <p class="body">
+      The Idea for this Check has been shamelessly stolen
+      from the equivalent <a href="http://pmd.sourceforge.net">PMD</a> rule.
+      </p>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;SimplifyBooleanReturn&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="AvoidInlineConditionals"></a> <h2>AvoidInlineConditionals</h2> <h4>Description</h4>
+      <p class="body">
+      Detects inline conditionals.
+
+      An example inline conditional is this:
+      </p>
+      <pre class="body"	>
+String a = getParameter("a");
+String b = (a==null || a.length&lt;1) ? null : a.substring(1);
+      </pre>
+      <p class="body">
+      Rationale: Some developers find inline conditionals hard to read,
+      so their company's coding standards forbids them.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="DoubleCheckedLocking"></a> <h2>DoubleCheckedLocking</h2> <h4>Description</h4>
+      <p class="body">
+      The &quot;double-checked locking&quot; idiom (DCL) tries to avoid the runtime cost
+      of synchronization. An example that uses the DCL idiom is this:
+      </p>
+      <pre class="body">
+public class MySingleton
+{
+    private static theInstance = null;
+
+    private MySingleton() {}
+
+    public MySingleton getInstance() {
+        if ( theInstance == null ) { // synchronize only if necessary
+            synchronized( MySingleton.class ) {
+                if ( theInstance == null ) {
+                    theInstance = new MySingleton();
+                }
+            }
+        }
+    }
+}
+      </pre>
+      <p class="body">
+      The problem with the DCL idiom in Java is that it just does not work correctly.
+      Using it introduces bugs that are extremely hard to track down and reproduce.
+      The <a href="http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html">
+      &quot;Double-Checked Locking is Broken&quot; Declaration</a> has an in depth explanation
+      of the exact problem which has to do with the semantics of the Java memory model.
+      </p>
+      <p class="body">
+      The DoubleCheckedLocking check will find source code where a test is wrapped in a
+      synchronized block that is wrapped in the same test, like in the example above.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;DoubleCheckedLocking&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+    </td>
+  </tr>
+</table>
+<hr />
+<p class="copyright">
+Copyright &copy; 2002-2003 Oliver Burn. All rights Reserved.
+</p>
+
+</body>
+</html>
