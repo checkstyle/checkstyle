@@ -68,8 +68,6 @@ public class SeverityMatchFilter
         if (mAcceptOnMatch) {
             return result;
         }
-        else {
-            return !result;
-        }
+        return !result;
     }
 }

@@ -74,8 +74,6 @@ public class SuppressionFilter
             final SuppressionFilter other = (SuppressionFilter) aObject;
             return this.mFilters.equals(other.mFilters);
         }
-        else {
-            return false;
-        }
+        return false;
     }
 }

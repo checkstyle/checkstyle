@@ -66,9 +66,7 @@ class IntRangeFilter implements IntFilter
             return (this.mLowerBound.equals(other.mLowerBound)
                 && this.mUpperBound.equals(other.mUpperBound));
         }
-        else {
-            return false;
-        }
+        return false;
     }
     /** @see java.lang.Object#toString() */
     public String toString()

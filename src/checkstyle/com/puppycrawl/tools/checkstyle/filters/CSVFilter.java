@@ -120,8 +120,6 @@ class CSVFilter implements IntFilter
             final CSVFilter other = (CSVFilter) aObject;
             return this.mFilters.equals(other.mFilters);
         }
-        else {
-            return false;
-        }
+        return false;
     }
 }

@@ -209,8 +209,6 @@ public class SuppressElement
             // everything is the same
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 }

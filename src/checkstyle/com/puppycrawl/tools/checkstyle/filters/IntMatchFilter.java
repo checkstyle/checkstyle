@@ -61,8 +61,6 @@ class IntMatchFilter implements IntFilter
             final IntMatchFilter other = (IntMatchFilter) aObject;
             return (this.mMatchValue).equals(other.mMatchValue);
         }
-        else {
-            return false;
-        }
+        return false;
     }
 }
