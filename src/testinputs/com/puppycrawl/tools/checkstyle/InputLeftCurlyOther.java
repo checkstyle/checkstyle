@@ -58,5 +58,17 @@ class InputLeftCurlyOther
 
         this.wait(666
                  ); // Bizarre, but legal
+
+        for (int k = 0; k < 1; k++)
+        {
+            String innerBlockVariable = "";
+        }
+
+    }
+
+    // Test static initialiser
+    static
+    {
+        int x = 1; // should not require any javadoc
     }
 }

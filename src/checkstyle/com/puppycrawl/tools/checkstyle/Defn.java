@@ -81,8 +81,6 @@ public interface Defn
     /** property name for ignoring line length of import statements **/
     String IGNORE_IMPORT_LENGTH_PROP = "checkstyle.ignore.importlength";
 
-    /** property name for lcurly placement for others **/
-    String LCURLY_OTHER_PROP = "checkstyle.lcurly.other";
     /** property name for padding around parenthesis **/
     String PAREN_PAD_PROP = "checkstyle.paren.pad";
 
@@ -156,11 +154,4 @@ public interface Defn
             LOCALE_COUNTRY_PROP,
             LOCALE_LANGUAGE_PROP,
         };
-
-    /** All the LeftCurlyOption properties */
-    String[] ALL_LCURLY_PROPS = new String[]
-        {
-            LCURLY_OTHER_PROP,
-        };
-
 }

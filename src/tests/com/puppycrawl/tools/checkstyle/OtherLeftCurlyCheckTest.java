@@ -27,6 +27,7 @@ public class OtherLeftCurlyCheckTest
             "46:13: '{' should be on the previous line.",
             "52:9: '{' should be on the previous line.",
             "54:13: '{' should be on the previous line.",
+            "63:9: '{' should be on the previous line.",
         };
         verify(c, fname, expected);
     }

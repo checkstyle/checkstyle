@@ -608,7 +608,6 @@ class Verifier
      */
     void verifyLCurlyOther(int aOtherLine, MyCommonAST aBrace)
     {
-        checkLCurly(aOtherLine, aBrace, mConfig.getLCurlyOther());
     }
 
 
@@ -1295,71 +1294,6 @@ class Verifier
     private boolean inMethodBlock()
     {
         return (mMethodBlockLevel > 0);
-    }
-
-    /**
-     * Verify the correct placement of the left curly brace.
-     * @param aStartLine line the construct starts on
-     * @param aBrace location of the brace
-     * @param aOption specifies where the brace should be
-     */
-    private void checkLCurly(int aStartLine,
-                             MyCommonAST aBrace,
-                             LeftCurlyOption aOption)
-    {
-        verifyWSAroundBegin(aBrace.getLineNo(),
-                            aBrace.getColumnNo() + 1,
-                            aBrace.getText());
-        final String braceLine = mLines[aBrace.getLineNo() - 1];
-
-        // calculate the previous line length without trailing whitespace. Need
-        // to handle the case where there is no previous line, cause the line
-        // being check is the first line in the file.
-        final int prevLineLen = (aBrace.getLineNo() == 1)
-            ? mConfig.getMaxLineLength()
-            : Utils.lengthMinusTrailingWhitespace(
-                mLines[aBrace.getLineNo() - 2]);
-
-        // Check for being told to ignore, or have '{}' which is a special case
-        if ((aOption == LeftCurlyOption.IGNORE)
-            || ((braceLine.length() > (aBrace.getColumnNo() + 1))
-                && (braceLine.charAt(aBrace.getColumnNo() + 1) == '}')))
-        {
-            // ignore
-        }
-        else if (aOption == LeftCurlyOption.NL) {
-            if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
-                              "line.new", "{");
-            }
-        }
-        else if (aOption == LeftCurlyOption.EOL) {
-            if (Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)
-                && ((prevLineLen + 2) <= mConfig.getMaxLineLength()))
-            {
-                mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
-                              "line.previous", "{");
-            }
-        }
-        else if (aOption == LeftCurlyOption.NLOW) {
-            if (aStartLine == aBrace.getLineNo()) {
-                // all ok as on the same line
-            }
-            else if ((aStartLine + 1) == aBrace.getLineNo()) {
-                if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                    mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
-                                  "line.new", "{");
-                }
-                else if ((prevLineLen + 2) <= mConfig.getMaxLineLength()) {
-                    mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
-                                  "line.previous", "{");
-                }
-            }
-            else if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
-                              "line.new", "{");
-            }
-        }
     }
 
     /**

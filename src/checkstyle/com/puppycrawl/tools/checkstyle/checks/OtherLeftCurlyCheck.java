@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 public class OtherLeftCurlyCheck
     extends LeftCurlyCheck
 {
-    /** @see Check */
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {JavaTokenTypes.LITERAL_while,
@@ -39,12 +39,13 @@ public class OtherLeftCurlyCheck
                           JavaTokenTypes.LITERAL_do,
                           JavaTokenTypes.LITERAL_if,
                           JavaTokenTypes.LITERAL_else,
+                          JavaTokenTypes.LITERAL_for,
+                          // TODO: need to handle....
+                          //JavaTokenTypes.STATIC_INIT,
         };
-        // STATIC_INIT
-        // "for"
     }
 
-    /** @see Check */
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST startToken = aAST;
@@ -54,6 +55,7 @@ public class OtherLeftCurlyCheck
             case JavaTokenTypes.LITERAL_while:
             case JavaTokenTypes.LITERAL_catch:
             case JavaTokenTypes.LITERAL_synchronized:
+            case JavaTokenTypes.LITERAL_for:
                 brace = Utils.getLastSibling(aAST.getFirstChild());
                 break;
             case JavaTokenTypes.LITERAL_try:
