@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 
 /**
- * Abstract
+ * Abstract base class that provides functionality that is used in import checks.
  */
 public abstract class ImportCheck
     extends Check

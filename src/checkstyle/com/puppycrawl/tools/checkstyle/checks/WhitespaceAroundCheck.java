@@ -27,6 +27,7 @@ public class WhitespaceAroundCheck extends Check
 {
     public int[] getDefaultTokens()
     {
+        // TODO: add all operators
         return new int[] {JavaTokenTypes.ASSIGN};
     }
 
@@ -37,6 +38,7 @@ public class WhitespaceAroundCheck extends Check
         final int before = aAST.getColumnNo() - 1;
         final int after = aAST.getColumnNo() + aAST.getText().length();
 
+        // TODO: i18n
         if ((before >= 0) && !Character.isWhitespace(line.charAt(before))) {
             log(aAST.getLineNo(), "NO LEADING SPACE for " + aAST.getText());
         }

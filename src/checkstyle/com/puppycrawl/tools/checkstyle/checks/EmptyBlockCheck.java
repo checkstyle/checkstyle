@@ -26,6 +26,11 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.JavaTokenTypes;
 
+/**
+ * Check that reports empty if/try/catch/finally blocks.
+ *
+ * @author Lars Kühne
+ */
 public class EmptyBlockCheck extends Check
 {
     private final Set mCheckFor = new HashSet();
@@ -59,6 +64,7 @@ public class EmptyBlockCheck extends Check
             DetailAST parent = aAST.getParent();
             String parentText = parent.getText();
             if (mCheckFor.contains(parentText)) {
+                // TODO: i18n
                 log(aAST.getLineNo(), "empty " + parentText + " block");
             }
         }
