@@ -16,6 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
+
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.FileReader;
@@ -55,7 +56,6 @@ public class HeaderCheck extends Check
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree()
     {
-        System.out.println("HeaderCheck.beginTree");
         if (mHeaderLines != null) {
 
             final String[] lines = getLines();
