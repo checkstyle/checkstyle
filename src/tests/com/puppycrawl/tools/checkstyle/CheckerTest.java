@@ -723,6 +723,7 @@ public class CheckerTest
         mConfig.setLeftCurlyOptionProperty(Defn.LCURLY_METHOD_PROP,
                                            LeftCurlyOption.NL);
         mConfig.setJavadocScope(Scope.NOTHING);
+        mConfig.setBooleanProperty(Defn.ALLOW_TABS_PROP, true);
         final Checker c = createChecker();
         final String filepath = getPath("InputLeftCurlyMethod.java");
         assertNotNull(c);

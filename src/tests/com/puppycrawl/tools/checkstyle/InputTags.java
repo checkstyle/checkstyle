@@ -151,4 +151,13 @@ class InputTags
        throws java.io.IOException
     {
     }
+
+    /** @see Object **/
+    public String toString()
+    {
+        return super.toString();
+    }
+
+    /** getting code coverage up **/
+    static final int serialVersionUID = 666;
 }

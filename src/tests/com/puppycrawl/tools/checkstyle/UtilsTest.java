@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import junit.framework.TestCase;
+import org.apache.regexp.RE;
 
 public class UtilsTest
     extends TestCase
@@ -32,6 +33,10 @@ public class UtilsTest
         assertEquals(0, Utils.lengthMinusTrailingWhitespace(" \t "));
         assertEquals(3, Utils.lengthMinusTrailingWhitespace(" 23"));
         assertEquals(3, Utils.lengthMinusTrailingWhitespace(" 23 \t "));
+
+        final RE r1 = Utils.getRE("a");
+        final RE r2 = Utils.getRE("a");
+        assertEquals(r1, r2);
     }
 
 }
