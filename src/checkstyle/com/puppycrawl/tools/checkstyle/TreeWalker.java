@@ -22,7 +22,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -118,12 +117,6 @@ public final class TreeWalker
     /** context of child components */
     private Context mChildContext;
 
-    /**
-     * HACK - a reference to a private "mParent" field in DetailAST.
-     * Don't do this at home!
-     */
-    private Field mDetailASTmParent;
-
     /** a factory for creating submodules (i.e. the Checks) */
     private ModuleFactory mModuleFactory;
 
@@ -133,21 +126,6 @@ public final class TreeWalker
     public TreeWalker()
     {
         setFileExtensions(new String[]{"java"});
-
-        // TODO: I (lkuehne) can't believe I wrote this! HACK HACK HACK!
-
-        // the parent relationship should really be managed by the DetailAST
-        // itself but ANTLR calls setFirstChild and friends in an
-        // unpredictable way. Introducing this hack for now to make
-        // DetailsAST.setParent() private...
-        try {
-            mDetailASTmParent = DetailAST.class.getDeclaredField("mParent");
-            // this will fail in environments with security managers
-            mDetailASTmParent.setAccessible(true);
-        }
-        catch (NoSuchFieldException e) {
-            mDetailASTmParent = null;
-        }
     }
 
     /** @param aTabWidth the distance between tab stops */
@@ -355,31 +333,12 @@ public final class TreeWalker
 
          // empty files are not flagged by javac, will yield aAST == null
         if (aAST != null) {
-            setParent(aAST, null); // TODO: Manage parent in DetailAST
             process(aAST);
         }
 
         notifyEnd(aAST);
     }
 
-    /**
-     * Sets the parent of an AST.
-     * @param aChildAST the child that gets a new parent
-     * @param aParentAST the new parent
-     */
-    // TODO: remove this method and manage parent in DetailAST
-    private void setParent(DetailAST aChildAST, DetailAST aParentAST)
-    {
-        // HACK
-        try {
-            mDetailASTmParent.set(aChildAST, aParentAST);
-        }
-        catch (IllegalAccessException iae) {
-            // can't happen because method has been made accesible
-            throw new RuntimeException();
-        }
-        // End of HACK
-    }
 
     /**
      * Notify interested checks that about to begin walking a tree.
@@ -423,7 +382,6 @@ public final class TreeWalker
 
         final DetailAST child = (DetailAST) aAST.getFirstChild();
         if (child != null) {
-            setParent(child, aAST); // TODO: Manage parent in DetailAST
             process(child);
         }
 
@@ -431,7 +389,6 @@ public final class TreeWalker
 
         final DetailAST sibling = (DetailAST) aAST.getNextSibling();
         if (sibling != null) {
-            setParent(sibling, aAST.getParent()); // TODO: Manage parent ...
             process(sibling);
         }
 
