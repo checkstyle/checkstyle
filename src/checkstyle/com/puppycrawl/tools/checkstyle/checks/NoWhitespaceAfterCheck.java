@@ -24,11 +24,37 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
+ * <p>
  * Checks that there is no whitespace after a token.
  * More specifically, it checks that it is not followed by whitespace,
  * or (if linebreaks are allowed) all characters on the line after are
- * whitespace.
- *
+ * whitespace. To allow linebreaks afer a token, set property
+ * allowLineBreaks to true.
+ * </p>
+  * <p> By default the check will check the following operators:
+ *  {@link TokenTypes#ARRAY_INIT ARRAY_INIT},
+ *  {@link TokenTypes#BNOT BNOT},
+ *  {@link TokenTypes#DEC DEC},
+ *  {@link TokenTypes#DOT DOT},
+ *  {@link TokenTypes#INC INC},
+ *  {@link TokenTypes#LNOT LNOT},
+ *  {@link TokenTypes#UNARY_MINUS UNARY_MINUS},
+ *  {@link TokenTypes#UNARY_PLUS UNARY_PLUS}.
+ * </p>
+ * <p> 
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="NoWhitespaceAfterCheck"/&gt;
+ * </pre> 
+ * <p> An example of how to configure the check to allow linebreaks after
+ * a {@link TokenTypes#DOT DOT} token is:
+ * <pre>
+ * &lt;config name="NoWhitespaceAfterCheck"&gt;
+ *     &lt;property name="tokens" value="DOT"/&gt;
+ *     &lt;property name="allowLineBreaks" value="true"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  * @author Rick Giles
  * @author lkuehne
  * @version 1.0

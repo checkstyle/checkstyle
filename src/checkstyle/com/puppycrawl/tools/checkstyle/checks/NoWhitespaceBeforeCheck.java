@@ -24,11 +24,33 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that there is no whitespace after a token.
+ * <p>
+ * Checks that there is no whitespace before a token.
  * More specifically, it checks that it is not preceeded with whitespace,
  * or (if linebreaks are allowed) all characters on the line before are
- * whitespace.
- *
+ * whitespace. To allow linebreaks before a token, set property
+ * allowLineBreaks to true.
+ * </p>
+ * <p> By default the check will check the following operators:
+ *  {@link TokenTypes#POST_DEC POST_DEC},
+ *  {@link TokenTypes#POST_INC POST_INC}.
+ * {@link TokenTypes#DOT DOT} is also an acceptable token in a configuration
+ * of this check.
+ * </p>
+ * 
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="NoWhitespaceBeforeCheck"/&gt;
+ * </pre> 
+ * <p> An example of how to configure the check to allow linebreaks before
+ * a {@link TokenTypes#DOT DOT} token is:
+ * <pre>
+ * &lt;config name="NoWhitespaceBeforeCheck"&gt;
+ *     &lt;property name="tokens" value="DOT"/&gt;
+ *     &lt;property name="allowLineBreaks" value="true"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  * @author Rick Giles
  * @author lkuehne
  * @version 1.0

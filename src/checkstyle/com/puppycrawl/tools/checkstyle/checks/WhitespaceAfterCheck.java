@@ -23,8 +23,28 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * Checks for whitespace after a token.
- *
+ * <p>
+ * Checks that a token is followed by whitespace.
+ * </p>
+ * <p> By default the check will check the following tokens:
+ *  {@link TokenTypes#COMMA COMMA},
+ *  {@link TokenTypes#SEMI SEMI},
+ *  {@link TokenTypes#TYPECAST TYPECAST}.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="WhitespaceAfterCheck"/&gt;
+ * </pre> 
+ * <p> An example of how to configure the check for whitespace only after
+ * {@link TokenTypes#COMMA COMMA} and {@link TokenTypes#SEMI SEMI} tokens is:
+ * </p>
+ * <pre>
+ * &lt;config name="WhitespaceAfterCheck"&gt;
+ *     &lt;property name="tokens" value="COMMA, SEMI"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author Rick Giles
  * @version 1.0
