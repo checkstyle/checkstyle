@@ -106,7 +106,7 @@ public final class CheckDocsDoclet
 
         /**
          * The first sentence of the check description.
-         * Checks msut have been registered with {@link #addCheck}.
+         * Checks must have been registered with {@link #addCheck}.
          *
          * @param aCheckName the name of the check, e.g. EmptyStatement
          * @return The first sentence of the check description.
