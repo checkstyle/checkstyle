@@ -65,7 +65,17 @@
       <subsection name="Description">
         <p>
           Checks Javadoc comments for class and interface definitions.
+          By default, does not check for author or version tags.  The
+          scope to verify is specified using the <code>Scope</code>
+          class and defaults to <code>Scope.PRIVATE</code>. To verify
+          another scope, set property scope to one of the
+          <code>Scope</code> constants.  To define the format for an
+          author tag or a version tag, set property authorFormat or
+          versionFormat respectively to a
+          <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
+            regular expression</a>.
         </p>
+
       </subsection>
 
       <subsection name="Properties">
@@ -422,250 +432,252 @@ public int checkReturnTag(final int aTagIndex,
           <a href="config.html#treewalker">TreeWalker</a>
         </p>
       </subsection>
+    </section>
 
-      <section name="JavadocVariable">
-        <subsection name="Description">
-          <p>
-            Checks that variables have Javadoc comments.
-          </p>
-        </subsection>
+    <section name="JavadocVariable">
+      <subsection name="Description">
+        <p>
+          Checks that variables have Javadoc comments.
+        </p>
+      </subsection>
 
-        <subsection name="Properties">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-            </tr>
-            <tr>
-              <td>scope</td>
-              <td>visibility scope where Javadoc comments are checked</td>
-              <td><a href="property_types.html#scope">scope</a></td>
-              <td><span class="default">private</span></td>
-            </tr>
-            <tr>
-              <td>excludeScope</td>
-              <td>visibility scope where Javadoc comments are not checked</td>
-              <td><a href="property_types.html#scope">scope</a></td>
-              <td><span class="default">null</span></td>
-            </tr>
-          </table>
-        </subsection>
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>scope</td>
+            <td>visibility scope where Javadoc comments are checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">private</span></td>
+          </tr>
+          <tr>
+            <td>excludeScope</td>
+            <td>visibility scope where Javadoc comments are not checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">null</span></td>
+          </tr>
+        </table>
+      </subsection>
 
-        <subsection name="Examples">
-          <p>
-            To configure the default check:
-          </p>
-          <source>
+      <subsection name="Examples">
+        <p>
+          To configure the default check:
+        </p>
+        <source>
 &lt;module name="JavadocVariable"/&gt;
-          </source>
+        </source>
 
-          <p>
-            To configure the check for <span
-            class="default">public</span> scope:
-          </p>
-          <source>
+        <p>
+          To configure the check for <span class="default">public</span>
+          scope:
+        </p>
+
+        <source>
 &lt;module name="JavadocVariable"&gt;
    &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
-          </source>
+        </source>
 
-          <p>
-            To configure the check for members which are in <span
-            class="default">private</span>, but not in <span
-            class="default">protected</span> scope:
-          </p>
-          <source>
+        <p>
+          To configure the check for members which are in <span
+          class="default">private</span>, but not in <span
+          class="default">protected</span> scope:
+        </p>
+
+        <source>
 &lt;module name="JavadocVariable"&gt;
    &lt;property name="scope" value="private"/&gt;
    &lt;property name="excludeScope" value="protected"/&gt;
 &lt;/module&gt;
-          </source>
-        </subsection>
+        </source>
+      </subsection>
 
-        <subsection name="Package">
-          <p>
-            com.puppycrawl.tools.checkstyle.checks.javadoc
-          </p>
-        </subsection>
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
 
-        <subsection name="Parent Module">
-          <p>
-            <a href="config.html#treewalker">TreeWalker</a>
-          </p>
-        </subsection>
-      </section>
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
 
-      <section name="JavadocStyle">
-	<subsection name="Description">
-          <p>
-            Validates Javadoc comments to help ensure they are well
-            formed.  The following checks are performed:
-          </p>
+    <section name="JavadocStyle">
+      <subsection name="Description">
+        <p>
+          Validates Javadoc comments to help ensure they are well
+          formed.  The following checks are performed:
+        </p>
 
-          <ul>
-            <li>
-              Ensures the first sentence ends with proper punctuation
-              (That is a period, question mark, or exclamation mark).
-              Javadoc automatically places the first sentence in the
-              method summary table and index.  With out proper
-              punctuation the Javadoc may be malformed.
-            </li>
+        <ul>
+          <li>
+            Ensures the first sentence ends with proper punctuation
+            (That is a period, question mark, or exclamation mark).
+            Javadoc automatically places the first sentence in the
+            method summary table and index.  With out proper punctuation
+            the Javadoc may be malformed.
+          </li>
 
-            <li>
-              Check text for Javadoc statements that do not have any
-              description.  This includes both completely empty Javadoc,
-              and Javadoc with only tags such as @param and
-              @return.
-            </li>
+          <li>
+            Check text for Javadoc statements that do not have any
+            description.  This includes both completely empty Javadoc,
+            and Javadoc with only tags such as @param and @return.
+          </li>
 
-            <li>
-              Check text for incomplete HTML tags.  Verifies that HTML
-              tags have corresponding end tags and issues an "Unclosed
-              HTML tag found:" error if not.  An "Extra HTML tag found:"
-              error is issued if an end tag is found without a previous
-              open tag.
-            </li>
-          </ul>
+          <li>
+            Check text for incomplete HTML tags.  Verifies that HTML
+            tags have corresponding end tags and issues an "Unclosed
+            HTML tag found:" error if not.  An "Extra HTML tag found:"
+            error is issued if an end tag is found without a previous
+            open tag.
+          </li>
+        </ul>
 
-          <p>
-            These checks were patterned after the checks made by the <a
-            href="http://java.sun.com/j2se/javadoc/doccheck/index.html">DocCheck</a>
-            doclet available from Sun.
-          </p>
-        </subsection>
+        <p>
+          These checks were patterned after the checks made by the <a
+          href="http://java.sun.com/j2se/javadoc/doccheck/index.html">DocCheck</a>
+          doclet available from Sun.
+        </p>
+      </subsection>
 
-        <subsection name="Properties">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-            </tr>
-            <tr>
-              <td>scope</td>
-              <td>visibility scope where Javadoc comments are checked</td>
-              <td><a href="property_types.html#scope">scope</a></td>
-              <td><span class="default">private</span></td>
-            </tr>
-            <tr>
-              <td>excludeScope</td>
-              <td>visibility scope where Javadoc comments are not checked</td>
-              <td><a href="property_types.html#scope">scope</a></td>
-              <td><span class="default">null</span></td>
-            </tr>
-            <tr>
-              <td>checkFirstSentence</td>
-              <td>
-                Whether to check the first sentence for proper end of sentence.
-              </td>
-              <td><a href="property_types.html#boolean">boolean</a></td>
-              <td><span class="default">true</span></td>
-            </tr>
-            <tr>
-              <td>checkEmptyJavadoc</td>
-              <td>
-                Whether to check if the Javadoc is missing a describing text.
-              </td>
-              <td><a href="property_types.html#boolean">boolean</a></td>
-              <td><span class="default">false</span></td>
-            </tr>
-            <tr>
-              <td>checkHtml</td>
-              <td>Whether to check for incomplete html tags.</td>
-              <td><a href="property_types.html#boolean">boolean</a></td>
-              <td><span class="default">true</span></td>
-            </tr>
-            <tr>
-              <td>tokens</td>
-              <td>definitions to check</td>
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>scope</td>
+            <td>visibility scope where Javadoc comments are checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">private</span></td>
+          </tr>
+          <tr>
+            <td>excludeScope</td>
+            <td>visibility scope where Javadoc comments are not checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">null</span></td>
+          </tr>
+          <tr>
+            <td>checkFirstSentence</td>
+            <td>
+              Whether to check the first sentence for proper end of sentence.
+            </td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">true</span></td>
+          </tr>
+          <tr>
+            <td>checkEmptyJavadoc</td>
+            <td>
+              Whether to check if the Javadoc is missing a describing text.
+            </td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>checkHtml</td>
+            <td>Whether to check for incomplete html tags.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">true</span></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>definitions to check</td>
 
-              <td>
-                subset of tokens <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-                <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-                <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-                <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-                <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
-              </td>
+            <td>
+              subset of tokens <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a
+                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a
+                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a
+                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a
+                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+            </td>
 
-              <td>
-                <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-                <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-                <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-                <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-                <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
-              </td>
-            </tr>
-          </table>
-        </subsection>
+            <td>
+              <a
+                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a
+                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a
+                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a
+                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a
+                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+            </td>
+          </tr>
+        </table>
+      </subsection>
 
-        <subsection name="Examples">
-          <p>
-            To configure the default check:
-          </p>
+      <subsection name="Examples">
+        <p>
+          To configure the default check:
+        </p>
 
-          <source>
+        <source>
 &lt;module name="JavadocStyle"/&gt;
-          </source>
+        </source>
 
-          <p>
-            To configure the check for <span
-            class="default">public</span> scope:
-          </p>
+        <p>
+          To configure the check for <span class="default">public</span>
+          scope:
+        </p>
 
-          <source>
+        <source>
 &lt;module name="JavadocStyle"&gt;
    &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
-          </source>
+        </source>
 
-          <p>
-            To configure the check for javadoc which is in <span
-            class="default">private</span>, but not in <span
-            class="default">package</span> scope:
-          </p>
+        <p>
+          To configure the check for javadoc which is in <span
+          class="default">private</span>, but not in <span
+          class="default">package</span> scope:
+        </p>
 
-          <source>
+        <source>
 &lt;module name="JavadocStyle"&gt;
    &lt;property name="scope" value="private"/&gt;
    &lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
-          </source>
+        </source>
 
-          <p>
-            To configure the check to turn off first sentence checking:
-          </p>
-          <source>
+        <p>
+          To configure the check to turn off first sentence checking:
+        </p>
+
+        <source>
 &lt;module name="JavadocStyle"&gt;
    &lt;property name="checkFirstSentence" value="false"/&gt;
 &lt;/module&gt;
-          </source>
-        </subsection>
+        </source>
+      </subsection>
 
-        <subsection name="Package">
-          <p>
-            com.puppycrawl.tools.checkstyle.checks
-          </p>
-        </subsection>
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
 
-        <subsection name="Parent Module">
-          <p>
-            <a href="config.html#treewalker">TreeWalker</a>
-          </p>
-        </subsection>
-      </section>
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
     </section>
   </body>
 </document>

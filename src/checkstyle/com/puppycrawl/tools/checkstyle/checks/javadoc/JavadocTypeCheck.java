@@ -33,48 +33,7 @@ import org.apache.regexp.RESyntaxException;
 import java.util.Vector;
 
 /**
- * <p>
  * Checks the Javadoc of a type.
- * By default, does not check for author or version tags.
- * The scope to verify is specified using the {@link Scope} class and
- * defaults to {@link Scope#PRIVATE}. To verify another scope,
- * set property scope to one of the {@link Scope} constants.
- * To define the format for an author tag or a version tag,
- * set property authorFormat or versionFormat respectively to a
- * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
- * regular expression</a>.
- * </p>
- * <p>
- * An example of how to configure the check is:
- * </p>
- * <pre>
- * &lt;module name="JavadocType"/&gt;
- * </pre>
- * <p> An example of how to configure the check for the
- * {@link Scope#PUBLIC} scope is:
- *</p>
- * <pre>
- * &lt;module name="JavadocType"&gt;
- *    &lt;property name="scope" value="public"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p> An example of how to configure the check for an author tag
- *  and a version tag is:
- *</p>
- * <pre>
- * &lt;module name="JavadocType"&gt;
- *    &lt;property name="authorFormat" value="\S"/&gt;
- *    &lt;property name="versionFormat" value="\S"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p> An example of how to configure the check for a
- * CVS revision version tag is:
- *</p>
- * <pre>
- * &lt;module name="JavadocType"&gt;
- *    &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
- * &lt;/module&gt;
- * </pre>
  *
  * @author Oliver Burn
  * @author Michael Tamm

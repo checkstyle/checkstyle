@@ -27,15 +27,8 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
 /**
- * <p>
  * Checks that all packages have a package documentation.
- * </p>
- * <p>
- * An example of how to configure the check is:
- * </p>
- * <pre>
- * &lt;module name="PackageHtml"/&gt;
- * </pre>
+ *
  * @author lkuehne
  */
 public class PackageHtmlCheck extends AbstractFileSetCheck
