@@ -397,7 +397,7 @@ class Verifier
             && (getJavadocBefore(aVar.getStartLineNo() - 1) == null))
         {
             mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                          "variable.missingJavadoc", aVar.getText());
+                          "javadoc.missing");
         }
 
         // Check correct format
