@@ -93,4 +93,8 @@ public class InputJavadocStyleCheck
    {
    }
    
+   /** {@inheritDoc} */
+   public void method9()
+   {
+   }
 }
