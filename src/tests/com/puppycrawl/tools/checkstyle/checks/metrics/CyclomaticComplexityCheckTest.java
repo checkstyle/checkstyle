@@ -22,6 +22,8 @@ public class CyclomaticComplexityCheckTest
             "48:5: Cyclomatic Complexity is 4 (max allowed is 0).",
             "58:5: Cyclomatic Complexity is 4 (max allowed is 0).",
             "67:5: Cyclomatic Complexity is 4 (max allowed is 0).",
+            "76:5: Cyclomatic Complexity is 1 (max allowed is 0).",
+            "79:13: Cyclomatic Complexity is 2 (max allowed is 0).",
         };
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
