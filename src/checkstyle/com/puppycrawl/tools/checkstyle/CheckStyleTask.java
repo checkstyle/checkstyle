@@ -135,7 +135,7 @@ public class CheckStyleTask
     /** @param aIgnore whether max line length should be ignored for
      *                 import statements
      */
-    public void setIgnoreImportLength(boolean aIgnore)
+    public void setIgnoreImportLen(boolean aIgnore)
     {
         mConfig.setIgnoreImportLength(aIgnore);
     }
