@@ -67,13 +67,13 @@ public final class SeverityLevel implements Comparable, Serializable
     public static final SeverityLevel ERROR =
         new SeverityLevel(SEVERITYCODE_ERROR, SEVERITYNAME_ERROR);
 
-    /** map from scope names to the respective Scope */
-    private static final Map NAME_TO_SCOPE = new HashMap();
+    /** map from level names to the respective level */
+    private static final Map NAME_TO_LEVEL = new HashMap();
     static {
-        NAME_TO_SCOPE.put(SEVERITYNAME_IGNORE, IGNORE);
-        NAME_TO_SCOPE.put(SEVERITYNAME_INFO, INFO);
-        NAME_TO_SCOPE.put(SEVERITYNAME_WARNING, WARNING);
-        NAME_TO_SCOPE.put(SEVERITYNAME_ERROR, ERROR);
+        NAME_TO_LEVEL.put(SEVERITYNAME_IGNORE, IGNORE);
+        NAME_TO_LEVEL.put(SEVERITYNAME_INFO, INFO);
+        NAME_TO_LEVEL.put(SEVERITYNAME_WARNING, WARNING);
+        NAME_TO_LEVEL.put(SEVERITYNAME_ERROR, ERROR);
     }
 
     /** the SEVERITYCODE_XYZ value of this severity level. */
@@ -163,7 +163,7 @@ public final class SeverityLevel implements Comparable, Serializable
         final String severityName = aSeverityName.trim().toLowerCase();
 
         final SeverityLevel retVal =
-            (SeverityLevel) NAME_TO_SCOPE.get(severityName);
+            (SeverityLevel) NAME_TO_LEVEL.get(severityName);
         if (retVal == null) {
             throw new IllegalArgumentException(severityName);
         }
