@@ -42,7 +42,7 @@ public class MagicNumberCheckTest
             "112:36: '0x8000000000000000L' is a magic number.",
             "115:37: '020000000000' is a magic number.",
             "116:38: '01000000000000000000000L' is a magic number.",          
-            "131:32: '378' is a magic number.",
+            "131:20: '378' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -81,7 +81,7 @@ public class MagicNumberCheckTest
             "114:38: '01777777777777777777777L' is a magic number.",
             "115:37: '020000000000' is a magic number.",
             "116:38: '01000000000000000000000L' is a magic number.",
-            "131:32: '378' is a magic number.",
+            "131:20: '378' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -148,7 +148,7 @@ public class MagicNumberCheckTest
             "114:38: '01777777777777777777777L' is a magic number.",
             "115:37: '020000000000' is a magic number.",
             "116:38: '01000000000000000000000L' is a magic number.",
-            "131:32: '378' is a magic number.",
+            "131:20: '378' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -186,7 +186,7 @@ public class MagicNumberCheckTest
             "112:36: '0x8000000000000000L' is a magic number.",
             "115:37: '020000000000' is a magic number.",
             "116:38: '01000000000000000000000L' is a magic number.",
-            "131:32: '378' is a magic number.",
+            "131:20: '378' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -221,7 +221,7 @@ public class MagicNumberCheckTest
               "92:14: '0xffffffffL' is a magic number.",
               "100:30: '+3' is a magic number.",
               "101:29: '-2' is a magic number.",
-              "131:32: '378' is a magic number.",
+              "131:20: '378' is a magic number.",
          };
          verify(checkConfig, getPath("InputMagicNumber.java"), expected);
      }
