@@ -285,8 +285,10 @@ public abstract class AbstractClassCouplingCheck extends Check
 
             if (mReferencedClassNames.size() > mMax) {
                 log(mLineNo, mColumnNo, getLogMessageId(),
-                    new Integer(mReferencedClassNames.size()),
-                    new Integer(getMax()));
+                    new Object[] {
+                        new Integer(mReferencedClassNames.size()),
+                        new Integer(getMax()),
+                            mReferencedClassNames.toString(), });
             }
         }
 
