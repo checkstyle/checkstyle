@@ -144,20 +144,24 @@ public class CheckerTest extends TestCase
         c.addFilter(f);
 
         // Let's try fire some events
-        c.fireAuditStarted();
-        assertTrue("Checker.fireAuditStarted() doesn't call filter", f.wasCalled());
+	// we do not call filter in fireAuditStarted() (fix for 1080343)
+//         c.fireAuditStarted();
+//         assertTrue("Checker.fireAuditStarted() doesn't call filter", f.wasCalled());
 
-        f.resetFilter();
-        c.fireAuditFinished();
-        assertTrue("Checker.fireAuditFinished() doesn't call filter", f.wasCalled());
+	// we do not call filter in fireAuditFinished() (fix for 1080343)
+//         f.resetFilter();
+//         c.fireAuditFinished();
+//         assertTrue("Checker.fireAuditFinished() doesn't call filter", f.wasCalled());
 
-        f.resetFilter();
-        c.fireFileStarted("Some File Name");
-        assertTrue("Checker.fireFileStarted() doesn't call filter", f.wasCalled());
+	// we do not call filter in fireFileStarted() (fix for 1080343)
+//         f.resetFilter();
+//         c.fireFileStarted("Some File Name");
+//         assertTrue("Checker.fireFileStarted() doesn't call filter", f.wasCalled());
 
-        f.resetFilter();
-        c.fireFileFinished("Some File Name");
-        assertTrue("Checker.fireFileFinished() doesn't call filter", f.wasCalled());
+	// we do not call filter in fireFileFinished() (fix for 1080343)
+//         f.resetFilter();
+//         c.fireFileFinished("Some File Name");
+//         assertTrue("Checker.fireFileFinished() doesn't call filter", f.wasCalled());
 
         f.resetFilter();
         LocalizedMessage[] msgs = new LocalizedMessage[1];
@@ -178,24 +182,28 @@ public class CheckerTest extends TestCase
         c.removeFilter(f);
 
         // Let's try fire some events
-        c.fireAuditStarted();
-        assertTrue("Checker.fireAuditStarted() doesn't call filter", f2.wasCalled());
-        assertFalse("Checker.fireAuditStarted() does call removed filter", f.wasCalled());
+ 	// we do call filter in fireErrors() only (fix for 1080343)
+// 	c.fireAuditStarted();
+//         assertTrue("Checker.fireAuditStarted() doesn't call filter", f2.wasCalled());
+//         assertFalse("Checker.fireAuditStarted() does call removed filter", f.wasCalled());
 
-        f2.resetFilter();
-        c.fireAuditFinished();
-        assertTrue("Checker.fireAuditFinished() doesn't call filter", f2.wasCalled());
-        assertFalse("Checker.fireAuditFinished() does call removed filter", f.wasCalled());
+ 	// we do call filter in fireErrors() only (fix for 1080343)
+//         f2.resetFilter();
+//         c.fireAuditFinished();
+//         assertTrue("Checker.fireAuditFinished() doesn't call filter", f2.wasCalled());
+//         assertFalse("Checker.fireAuditFinished() does call removed filter", f.wasCalled());
 
-        f2.resetFilter();
-        c.fireFileStarted("Some File Name");
-        assertTrue("Checker.fireFileStarted() doesn't call filter", f2.wasCalled());
-        assertFalse("Checker.fireFileStarted() does call removed filter", f.wasCalled());
+ 	// we do call filter in fireErrors() only (fix for 1080343)
+//         f2.resetFilter();
+//         c.fireFileStarted("Some File Name");
+//         assertTrue("Checker.fireFileStarted() doesn't call filter", f2.wasCalled());
+//         assertFalse("Checker.fireFileStarted() does call removed filter", f.wasCalled());
 
-        f2.resetFilter();
-        c.fireFileFinished("Some File Name");
-        assertTrue("Checker.fireFileFinished() doesn't call filter", f2.wasCalled());
-        assertFalse("Checker.fireFileFinished() does call removed filter", f.wasCalled());
+ 	// we do call filter in fireErrors() only (fix for 1080343)
+//         f2.resetFilter();
+//         c.fireFileFinished("Some File Name");
+//         assertTrue("Checker.fireFileFinished() doesn't call filter", f2.wasCalled());
+//         assertFalse("Checker.fireFileFinished() does call removed filter", f.wasCalled());
 
         f2.resetFilter();
         LocalizedMessage[] msgs = new LocalizedMessage[1];
