@@ -341,6 +341,7 @@
     <mkdir dir="${testreport.dir}"/>
     <property name="testinputs.dir"
               location="src/testinputs/com/puppycrawl/tools/checkstyle"/>
+    <property name="testcases" value="**/*Test.java"/>
 
     <junit printsummary="yes"
            fork="yes"
@@ -352,7 +353,7 @@
       <classpath refid="tests.runpath"/>
       <batchtest todir="${testreport.dir}">
         <fileset dir="src/tests">
-          <include name="**/*Test.java" />
+          <include name="${testcases}" />
         </fileset>
       </batchtest>
     </junit>
