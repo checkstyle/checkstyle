@@ -15,7 +15,7 @@
           any pattern. This is similar to a recursive grep, only that
           it's integrated in checkstyle.
         </p>
-        
+
         <p>
           Rationale: This check can be used to prototype checks and to
           find common bad practice such as calling <span
@@ -24,7 +24,7 @@
           class="code">System.exit()</span>, etc.
         </p>
       </subsection>
-      
+
       <subsection name="Properties">
         <table>
           <tr>
@@ -60,7 +60,7 @@
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check for calls to <span
@@ -73,7 +73,7 @@
     &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
 &lt;/module&gt;
         </source>
-        
+
         <p>
           To configure the check to find trailing whitespace at the end
           of a line:
@@ -96,13 +96,13 @@
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -115,7 +115,7 @@
         <p>
           Checks whether files end with a new line.
         </p>
-        
+
         <p>
           Rationale: Any source files and text files in general should
           end with a newline character, especially when using SCM
@@ -123,7 +123,7 @@
           encounters a file that doesn't end with a newline.
         </p>
       </subsection>
-      
+
       <subsection name="Properties">
         <table>
           <tr>
@@ -142,9 +142,16 @@
             </td>
             <td>system default</td>
           </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of the files to check.</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td>all files</td>
+          </tr>
+
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -152,7 +159,7 @@
         <source>
 &lt;module name=&quot;NewlineAtEndOfFile&quot;/&gt;
         </source>
-        
+
         <p>
           To configure the check to always use Unix-style line separators:
         </p>
@@ -161,14 +168,23 @@
     &lt;property name=&quot;lineSeparator&quot; value=&quot;lf&quot;/&gt;
 &lt;/module&gt;
         </source>
+
+          <p>
+            To configure the check to work only on java, xml and python files:
+          </p>
+          <source>
+&lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, py&quot;/&gt;
+&lt;/module&gt;
+          </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#checker">Checker</a>
@@ -186,7 +202,7 @@
           patterns in Java comments, set property format.
         </p>
       </subsection>
-      
+
       <subsection name="Properties">
         <table>
           <tr>
@@ -203,7 +219,7 @@
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Notes">
         <p>
           Using <span class="code">TODO:</span> comments is a great way
@@ -212,7 +228,7 @@
           them.
         </p>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -220,7 +236,7 @@
         <source>
 &lt;module name=&quot;TodoComment&quot;/&gt;
         </source>
-        
+
         <p>
           To configure the check for comments that contain <span
           class="code">WARNING</span>:
@@ -231,13 +247,13 @@
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -254,7 +270,7 @@
           describing one and the same context are consistent if they
           contain the same keys.
         </p>
-        
+
         <p>
           Consider the following properties file in the same directory:
         </p>
@@ -267,7 +283,7 @@ cancel=Cancel
 hell=Hallo
 ok=OK
         </source>
-        
+
         <p>
           The Translation check will find the typo in the german hello
           key, the missing ok key in the default resource file and the
@@ -280,7 +296,7 @@ messages.properties: Key 'hell' missing.
 messages.properties: Key 'ok' missing.
         </source>
       </subsection>
-      
+
       <subsection name="Properties">
         <table>
           <tr>
@@ -303,7 +319,7 @@ messages.properties: Key 'ok' missing.
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Example">
         <p>
           To configure the check:
@@ -312,13 +328,13 @@ messages.properties: Key 'ok' missing.
 &lt;module name=&quot;Translation&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#checker">Checker</a>
@@ -331,7 +347,7 @@ messages.properties: Key 'ok' missing.
         <p>
           Checks for uncommented main() methods (debugging leftovers).
         </p>
-        
+
         <p>
           Rationale: A main() method is often used for debug
           puposes. When debugging is finished, developers often forget
@@ -341,7 +357,7 @@ messages.properties: Key 'ok' missing.
           removed/commented out of the sources.
         </p>
       </subsection>
-      
+
       <subsection name="Properties">
         <table>
           <tr>
@@ -359,7 +375,7 @@ messages.properties: Key 'ok' missing.
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -367,7 +383,7 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name=&quot;UncommentedMain&quot;/&gt;
         </source>
-        
+
         <p>
           To configure the check to allow main method for all classes
           with &quot;Main&quot; name:
@@ -378,13 +394,13 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -402,12 +418,12 @@ messages.properties: Key 'ok' missing.
           href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">
           Section 3.10.1</a>.
         </p>
-        
+
         <p>
           looks a lot like <span class="code">1</span>.
         </p>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -416,13 +432,13 @@ messages.properties: Key 'ok' missing.
 &lt;module name=&quot;UpperEll&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -457,7 +473,7 @@ messages.properties: Key 'ok' missing.
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check to enforce Java style:
@@ -465,7 +481,7 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name=&quot;ArrayTypeStyle&quot;/&gt;
         </source>
-        
+
         <p>
           To configure the check to enforce C style:
         </p>
@@ -475,13 +491,13 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -497,7 +513,7 @@ messages.properties: Key 'ok' missing.
           keyword does not make sense for interface and abstract method
           parameters as there is no code that could modify the parameter.
         </p>
-        
+
         <p>
           Rationale: Changing the value of parameters during the execution of
           the method's algorithm can be confusing and should be avoided. A
@@ -533,7 +549,7 @@ messages.properties: Key 'ok' missing.
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check to enforce final parameters for methods and
@@ -542,7 +558,7 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name=&quot;FinalParameters&quot;/&gt;
         </source>
-        
+
         <p>
           To configure the check to enforce final parameters only for
           constructors:
@@ -553,13 +569,13 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -572,7 +588,7 @@ messages.properties: Key 'ok' missing.
         <p>
           Checks for restricted tokens beneath other tokens.
         </p>
-        
+
         <p>
           WARNING: This is a very powerful and flexible check, but, at the
           same time, it is low level and very implementation dependent because
@@ -772,13 +788,13 @@ Too many fields within a class:
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -791,7 +807,7 @@ Too many fields within a class:
         <p>
           Checks correct indentation of Java Code.
         </p>
-        
+
         <p>
           The basic idea behind this is that while pretty printers are
           sometimes convienent for bulk reformats of legacy code, they often
@@ -801,7 +817,7 @@ Too many fields within a class:
           just ensure that a minimal set of indentation rules are followed.
         </p>
       </subsection>
-      
+
       <subsection name="Properties">
         <table>
           <tr>
@@ -830,7 +846,7 @@ Too many fields within a class:
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -843,7 +859,7 @@ Too many fields within a class:
           To configure the check to enforce indentation style recommended by
           Sun:
         </p>
-        
+
         <source>
 &lt;module name=&quot;Indentation&quot;&gt;
     &lt;property name=&quot;caseIndent&quot; value=&quot;0&quot;/&gt;
@@ -856,7 +872,7 @@ Too many fields within a class:
           com.puppycrawl.tools.checkstyle.checks.indentation
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -874,13 +890,13 @@ Too many fields within a class:
           <code>Thread.sleep( 10 &lt;some comment here&gt; );</code> Format
           property is intended to deal with the "} // while" example.
         </p>
-        
+
         <p>
           Rationale: Steve McConnel in &quot;Code Complete&quot; suggests that
           endline comments are a bad practice. An end line comment would be
           one that is on the same line as actual code. For example:
         </p>
-        
+
         <source>
 a = b + c;      // Some insightful comment
 d = e / f;        // Another comment for this line
@@ -889,7 +905,7 @@ d = e / f;        // Another comment for this line
         <p>
           Quoting &quot;Code Complete&quot; for the justfication:
         </p>
-        
+
         <ul>
           <li> &quot;The comments have to be aligned so that they do not
           interfere with the visual structure of the code. If you don't align
@@ -944,7 +960,7 @@ d = e / f;        // Another comment for this line
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -962,13 +978,13 @@ d = e / f;        // Another comment for this line
  &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.indentation
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -984,7 +1000,7 @@ d = e / f;        // Another comment for this line
           the pattern is.
         </p>
       </subsection>
-      
+
       <subsection name="Properties">
         <table>
           <tr>
@@ -1001,7 +1017,7 @@ d = e / f;        // Another comment for this line
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           An example of how to configure the check to make sure a copyright
@@ -1013,13 +1029,13 @@ d = e / f;        // Another comment for this line
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>

@@ -15,9 +15,12 @@
       <p>Fixed Bugs:</p>
 
       <ul>
-         <li>The Ant task now always prints a summary line like
-         'Running Checkstyle 4.0 on 339 files' (bug 1099573).</li>
-         
+          <li>The Ant task now always prints a summary line like
+          'Running Checkstyle 4.0 on 339 files' (bug 1099573).</li>
+
+          <li>Added missing documentation for the fileExtensions
+          property of the NewlineAtEndOfFile check (bug 1174751).</li>
+
       </ul>
 
     </section>
@@ -97,7 +100,7 @@
         ClassFanOutComplexity checks (bug 1109205)</li>
 
         <li>Two more annotation-related problems (module Indentation, bug
-        1109214 and module UnnecessaryParentheses, bug 1109238)</li> 
+        1109214 and module UnnecessaryParentheses, bug 1109238)</li>
 
       </ul>
 
