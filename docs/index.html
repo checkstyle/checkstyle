@@ -172,22 +172,22 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
     <td>Example</td>
   </tr>
   <tr>
-    <td><span class="code">static</span> and <span class="code">final</span></td>
+    <td>Constants (<span class="code">static</span> and <span class="code">final</span>)</td>
     <td><span class="code">^[A-Z]([A-Z0-9_]*[A-Z0-9])?$</span><br>The exception to the rule is for <span class="code">serialVersionUID</span>.</td>
     <td><span class="code">public static final int MAX_ROWS = 2;</span></td>
   </tr>
   <tr>
-    <td><span class="code">static</span> only</td>
+    <td>Static variables (<span class="code">static</span> only)</td>
     <td><span class="code">^[a-z][a-zA-Z0-9]*$</span></td>
     <td><span class="code">private static int numCreated = 0;</span></td>
   </tr>
   <tr>
-    <td>non <span class="code">static</span></td>
+    <td>Members (non <span class="code">static</span>)</td>
     <td><span class="code">^[a-z][a-zA-Z0-9]*$</span></td>
     <td><span class="code">private int mySize = 0;</span></td>
   </tr>
   <tr>
-    <td>non <span class="code">static public</span></td>
+    <td>Public members (non <span class="code">static public</span>)</td>
     <td><span class="code">^f[A-Z][a-zA-Z0-9]*$</span></td>
     <td><span class="code">public int fCMPField;</span></td>
   </tr>
