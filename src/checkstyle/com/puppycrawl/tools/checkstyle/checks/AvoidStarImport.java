@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 
 /**
- * Check that finds import statement that use the * notation.
+ * Check that finds import statements that use the * notation.
  *
  * <p> Rationale: Importing all classes from a package leads to tight coupling
  * between packages and might lead to problems when a new version of a library
