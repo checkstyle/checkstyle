@@ -13,76 +13,100 @@ specified naming conventions which are specifed as regular expressions. The
 excellent <a href="http://jakarta.apache.org/regexp">Jakarta Regexp</a>
 library is used by Checkstyle.</p>
 
-<h2>Format of variable names</h2>
+<h2>Format of members</h2>
 
 <p>The property <span class="code">checkstyle.pattern.member</span> specifies
-the format for members (non <span class="code">static</span>). Defaults to
-<span class="code">^[a-z][a-zA-Z0-9]*$</span>. An example is:</p>
+the format for members (non <span class="code">static</span>).
+The property type is
+<a href="property_types.html#regexp">regular expression</a> and defaults to
+<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
+
+<p>An example is:</p>
 
 <pre>
     private int mySize = 0;
 </pre>
 
+<p>The property <span class="code">checkstyle.pattern.publicmember</span>
+specifies the format for public members (non
+<span class="code">static public</span>). The property type is
+<a href="property_types.html#regexp">regular expression</a> and defaults to
+<span class="code">^f[A-Z][a-zA-Z0-9]*$</span>.</p>
+
+<div class="tip">
+<h4 class="tip">Tip</h4>
+
+<p>This is useful for the fields required for Container Managed Persistence
+(CMP) Enterprise JavaBeans 1.1. An example is:</p>
+
+<pre>
+    public int fCMPField;
+</pre>
+</div>
+
+
+<h2>Format of constants</h2>
 
 <p>The property <span class="code">checkstyle.pattern.const</span> specifies
-the format for constants (<span class="code">static</span> and <span
-class="code">final</span>). Defaults to <span
-class="code">^[A-Z](_?[A-Z0-9]+)*$</span>. The exception to the rule is for
-<span class="code">serialVersionUID</span>. An example is:</p>
+the format for constants (<span class="code">static</span> and
+<span class="code">final</span>). The property type is
+<a href="property_types.html#regexp">regular expression</a> and defaults to
+<span class="code">^[A-Z](_?[A-Z0-9]+)*$</span>.</p>
+
+<p>The exception to the rule is <span class="code">serialVersionUID</span>. An
+example is:</p>
 
 <pre>
     public static final int MAX_ROWS = 2;
 </pre>
 
 
+<h2>Format of statics</h2>
+
 <p>The property <span class="code">checkstyle.pattern.static</span> specifies
-the format for static variables (<span class="code">static</span>
-only). Defaults to <span class="code">^[a-z][a-zA-Z0-9]*$</span>. An example
-is:</p>
+the format for static variables (<span class="code">static</span> only).
+The property type is
+<a href="property_types.html#regexp">regular expression</a> and defaults to
+<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
+
+<p>An example is:</p>
 
 <pre>
     private static int numCreated = 0;
 </pre>
 
 
-<p>The property <span class="code">checkstyle.pattern.publicmember</span>
-specifies the format for public members (non <span
-class="code">static public</span>). Defaults to <span
-class="code">^f[A-Z][a-zA-Z0-9]*$</span>. This is useful for the fields
-required for Container Managed Persistence (CMP) Enterprise JavaBeans 1.1. An
-example is:</p>
-
-<pre>
-    public int fCMPField;
-</pre>
-
 
 <h2>Format of parameter names</h2>
 
 <p>The property <span class="code">checkstyle.pattern.parameter</span>
-specifies the format for parameter names. The default is <span
-class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
+specifies the format for parameter names. The property type is
+<a href="property_types.html#regexp">regular expression</a> and defaults to
+<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
 
 
 <h2>Format of type names</h2>
 
 <p>The property <span class="code">checkstyle.pattern.type</span> specifies
-the format for class and interface names. The default is <span
-class="code">^[A-Z][a-zA-Z0-9]*$</span>.</p>
+the format for class and interface names. The property type is
+<a href="property_types.html#regexp">regular expression</a> and defaults to
+<span class="code">^[A-Z][a-zA-Z0-9]*$</span>.</p>
 
 
 <h2>Format of method names</h2>
 
 <p>The property <span class="code">checkstyle.pattern.method</span> specifies
-the format for method names. The default is <span
-class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
+the format for method names. The property type is
+<a href="property_types.html#regexp">regular expression</a> and defaults to
+<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
 
 
 <h2>Format of local variable names</h2>
 
 <p>The property <span class="code">checkstyle.pattern.localvar</span>
-specifies the format for local variables. The default is <span
-class="code">^[a-z][a-zA-Z0-9]*$</span>. An example is:</p>
+specifies the format for local variables. The property type is
+<a href="property_types.html#regexp">regular expression</a> and defaults to
+<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
 
 <pre>
     int localInt = 3;
@@ -90,8 +114,9 @@ class="code">^[a-z][a-zA-Z0-9]*$</span>. An example is:</p>
 
 
 <p>The property <span class="code">checkstyle.pattern.localfinalvar</span>
-specifies the format for final local variables. The default is <span
-class="code">^[a-z][a-zA-Z0-9]*$</span>. An example is:</p>
+specifies the format for final local variables. The property type is
+<a href="property_types.html#regexp">regular expression</a> and defaults to
+<span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
 
 <pre>
     final int finalLocalInt = 3;

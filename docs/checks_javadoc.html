@@ -16,27 +16,40 @@
   <li>method</li>
 </ul>
 
-<p>The property <span class="code">checkstyle.javadoc.scope</span> controls the visibility scope where Javadoc comments are checked. For example, you can check Javadoc code only for <span class="code">public</span> and <span class="code">protected</span> variables, methods, interfaces and class definitions. Scoping rules apply, in the above example a public method in a package visible class is not checked.</p>
+<p>The property <span class="code">checkstyle.javadoc.scope</span> controls
+the visibility scope where Javadoc comments are checked. The property type is
+<a href="property_types.html#scope">scope</a> and defaults to
+<span class="default">private</span>.</p>
 
-<p>Valid values for <span class="code">checkstyle.javadoc.scope</span> are:</p>
-<ul>
-  <li><span class="default">&quot;nothing&quot;</span>
-  <li><span class="default">&quot;public&quot;</span>
-  <li><span class="default">&quot;protected&quot;</span>
-  <li><span class="default">&quot;package&quot;</span>
-  <li><span class="default">&quot;private&quot;</span> (default value)
-  <li><span class="default">&quot;anoninner&quot;</span>
-</ul>
+<p>For example, you can check Javadoc comments only for <span
+class="code">public</span> and <span class="code">protected</span> definitions
+by setting the property to <span class="default">protected</span>. Scoping
+rules apply, so a <span class="code">public</span> method in a package visible
+class is not checked.</p>
+
 
 <h2>package.html check</h2>
-<p>The property <span class="code">checkstyle.require.packagehtml</span> controls whether to require that a <span class="code">package.html</span> file exists for each package. The property type is boolean and defaults to <span class="default">false</span>.</p>
+
+<p>The property <span class="code">checkstyle.require.packagehtml</span>
+controls whether to require that a <span class="code">package.html</span> file
+exists for each package. The property type is
+<a href="property_types.html#boolean">boolean</a> and defaults to
+<span class="default">false</span>.</p>
 
 
 <h2>Class/Interface Javadoc checks</h2>
 
-<p>The property <span class="code">checkstyle.require.version</span> controls whether to require an <span class="default">@version</span> tag to be defined for class and interface Javadoc comments. The property is boolean and defaults to <span class="default">&quot;false&quot;</span>.</p>
+<p>The property <span class="code">checkstyle.require.version</span> controls
+whether to require an <span class="default">@version</span> tag to be defined
+for class and interface Javadoc comments. The property type is
+<a href="property_types.html#boolean">boolean</a> and defaults to
+<span class="default">false</span>.</p>
 
-<p>The property <span class="code">checkstyle.allow.noauthor</span> controls whether to allow no <span class="default">@author</span> tag to be defined for class and interface Javadoc comments. The property is boolean and defaults to <span class="default">&quot;false&quot;</span>.</p>
+<p>The property <span class="code">checkstyle.allow.noauthor</span> controls
+whether to allow no <span class="default">@author</span> tag to be defined for
+class and interface Javadoc comments.  The property type is
+<a href="property_types.html#boolean">boolean</a> and defaults to
+<span class="default">false</span>.</p>
 
 <hr>
 <h2>Method Javadoc checks</h2>
@@ -63,11 +76,29 @@
                               int aLineNo)
 </pre>
 
-<p>By default an unused <span class="code">@throws</span> tag is reported as error. The property <span class="code">checkstyle.javadoc.checkUnusedThrows</span> controls checking to determine if the exception is a subclass of <span class="code">java.lang.RuntimeException</span>. This supports the convention in the <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html#throwstag">Sun Javadoc Guidelines</a> and the "Effective Java" book. The property is boolean and defaults to <span class="default">false</span>. The classpath may need to be configured to locate the class information..</p>
+<p>The property <span class="code">checkstyle.javadoc.checkUnusedThrows</span>
+controls whether to check if an undocumented exception is a subclass of
+<span class="code">java.lang.RuntimeException</span>.  The property type is
+<a href="property_types.html#boolean">boolean</a> and defaults to
+<span class="default">false</span>.</p>
+
+<p>This supports the convention in
+the <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html#throwstag">Sun Javadoc Guidelines</a>
+and the "Effective Java" book.</p>
+
+<p>The classpath may need to be configured to locate the class
+information. The classpath configuration is dependent on the mechanism used to
+invoke Checkstyle.</p>
 
 <div class="tip">
 <h4 class="tip">Tip</h4>
-<p>It can be extremely painful writing or duplicating Javadoc for a method required for an interface. Hence checkstyle supports using the convention of using a single <span class="code">@see</span> tag instead of all the other tags. For example, if the previous method was implementing a method required by the <span class="code">com.puppycrawl.tools.checkstyle.Verifier</span> interface, then the Javadoc could be done as:</p>
+
+<p>It can be extremely painful writing or duplicating Javadoc for a method
+required for an interface. Hence checkstyle supports using the convention of
+using a single <span class="code">@see</span> tag instead of all the other
+tags. For example, if the previous method was implementing a method required
+by the <span class="code">com.puppycrawl.tools.checkstyle.Verifier</span>
+interface, then the Javadoc could be done as:</p>
 
 <pre>
     /** @see com.puppycrawl.tools.checkstyle.Verifier **/
