@@ -363,6 +363,25 @@ line 5: /{71}
 <p>Lines 1 and 5 demonstrate a more compact notation for 71 '/' characters. Line 3 enforces that the copyright notice includes a four digit year. Line 4 is an example how to enforce revision control keywords in a file header.</p>
 </div>
 
+<h3>Exception handling</h3>
+<p>Checks for empty catch blocks</p>
+
+<div class="tip">
+<h4 class="tip">Tip</h4>
+<p>In some (rare!) situations an empty catch block might be OK. You can turn off the warning for that particular exception by placing an empty statement (a semicolon) inside the catch block. A comment should explain why it's OK to ignore the exception:</p>
+
+<pre>
+try {
+  // paint
+} catch (SomeException ex) {
+  ; // it's OK to ignore ex here because we'll repaint in 2 nanoseconds
+}
+</pre>
+
+<p>Currently the comment is not enforced but that might change in future versions.</p>
+</div>
+
+
 <!-- formatters -->
 <h2>Output Format</h2>
 <p>The Checkstyle engine has a flexible output mechanism inspired by ANT. <a href="api/com/puppycrawl/tools/checkstyle/AuditEvent.html">AuditEvent</a> objects are generated (for found errors) and are consumed by listeners that implement the <a href="api/com/puppycrawl/tools/checkstyle/AuditListener.html">AuditListener</a> interface. The standard distribution comes with the following listeners:</p>

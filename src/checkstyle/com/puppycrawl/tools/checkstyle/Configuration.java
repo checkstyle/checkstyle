@@ -190,6 +190,8 @@ public class Configuration
     /** how to pad parenthesis **/
     private PadOption mParenPadOption = PadOption.NOSPACE;
 
+    /** whether to allow emtpy exception handlers **/
+    private boolean mAllowEmptyCatch = false;
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -287,6 +289,8 @@ public class Configuration
                                                PAREN_PAD_PROP,
                                                PadOption.NOSPACE,
                                                aLog));
+        setAllowEmptyCatch(getBooleanProperty(
+            aProps, ALLOW_EMPTY_CATCH_PROP, mAllowEmptyCatch));
     }
 
     /**
@@ -1011,6 +1015,18 @@ public class Configuration
     public void setParenPadOption(PadOption aTo)
     {
         mParenPadOption = aTo;
+    }
+
+    /** @return whether empty catch blocks are allowed */
+    public boolean isAllowEmptyCatch()
+    {
+        return mAllowEmptyCatch;
+    }
+
+    /** @param aAllowEmptyCatch whether empty catch blocks are allowed */
+    public void setAllowEmptyCatch(boolean aAllowEmptyCatch)
+    {
+        mAllowEmptyCatch = aAllowEmptyCatch;
     }
 
     ////////////////////////////////////////////////////////////////////////////

@@ -66,6 +66,7 @@ tokens {
     private static final MyCommonAST[] sIgnoreAST = new MyCommonAST[2];
     private static LineText sLastIdentifier;
     private static final int[] sIgnoreType = new int[1];
+    private static final boolean[] sIgnoreIsEmpty = new boolean[1];
 
     // Constants to indicate statement type. Numbers are delibrately weird
     private static int STMT_OTHER = 0;
@@ -346,7 +347,7 @@ field!
                     ver.reportStartMethodBlock();
                 }
 				(
-                    s2:compoundStatement[stmtBraces]
+                    s2:compoundStatement[stmtBraces, sIgnoreIsEmpty]
                     {
                         ver.verifyLCurlyMethod(msig.getFirstLineNo(), stmtBraces[0]);
                         ver.verifyMethodLength(
@@ -371,7 +372,7 @@ field!
 		)
 
     // "static { ... }" class initializer
-	|	st:"static" {ver.reportStartMethodBlock();} s3:compoundStatement[stmtBraces]
+	|	st:"static" {ver.reportStartMethodBlock();} s3:compoundStatement[stmtBraces, sIgnoreIsEmpty]
         {
             #field = #(#[STATIC_INIT,"STATIC_INIT"], s3);
             ver.reportEndMethodBlock();
@@ -379,7 +380,7 @@ field!
         }
 
     // "{ ... }" instance initializer
-	|	{ver.reportStartMethodBlock();} s4:compoundStatement[sIgnoreAST] {ver.reportEndMethodBlock();}
+	|	{ver.reportStartMethodBlock();} s4:compoundStatement[sIgnoreAST, sIgnoreIsEmpty] {ver.reportEndMethodBlock();}
 		{#field = #(#[INSTANCE_INIT,"INSTANCE_INIT"], s4);}
 	;
 
@@ -527,10 +528,13 @@ parameterModifier
 //   As a completely indepdent braced block of code inside a method
 //      it starts a new scope for variable definitions
 
-compoundStatement[MyCommonAST[] aCurlies]
+compoundStatement[MyCommonAST[] aCurlies, boolean[] aIsEmpty]
+{
+    aIsEmpty[0] = true;
+}
 	:	lc:LCURLY^  {#lc.setType(SLIST); aCurlies[0] = #lc;}
 			// include the (possibly-empty) list of statements
-			(statement[sIgnoreType, sIgnoreAST])*
+			(statement[sIgnoreType, sIgnoreAST] {aIsEmpty[0] = false;})*
 		rc:RCURLY!  { aCurlies[1] = #rc; }
 	;
 
@@ -551,7 +555,7 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
     stmtType[0] = STMT_OTHER;
 }
 	// A list of statements in curly braces -- start a new scope!
-	:	compoundStatement[aCurlies] { aType[0] = STMT_COMPOUND; }
+	:	compoundStatement[aCurlies, sIgnoreIsEmpty] { aType[0] = STMT_COMPOUND; }
 
 	// declarations are ambiguous with "ID DOT" relative to expression
 	// statements.  Must backtrack to be sure.  Could use a semantic
@@ -676,7 +680,7 @@ traditionalStatement[int[] aType, MyCommonAST[] aCurlies]
 	|	"throw"^ expression SEMI!
 
 	// synchronize a statement
-	|	ss:"synchronized"^ LPAREN! expression RPAREN! compoundStatement[stmtBraces]
+	|	ss:"synchronized"^ LPAREN! expression RPAREN! compoundStatement[stmtBraces, sIgnoreIsEmpty]
         {
             ver.verifyWSAroundBegin(ss.getLine(), ss.getColumn(), ss.getText());
             ver.verifyLCurlyOther(ss.getLine(), stmtBraces[0]);
@@ -736,8 +740,9 @@ tryBlock
 {
     final MyCommonAST[] stmtBraces = new MyCommonAST[2];
     final MethodSignature ignoreMS = new MethodSignature();
+    final boolean[] isEmpty = new boolean[1];
 }
-	:	t:"try"^ compoundStatement[stmtBraces]
+	:	t:"try"^ compoundStatement[stmtBraces, sIgnoreIsEmpty]
         {
             ver.verifyWSAroundBegin(t.getLine(), t.getColumn(), t.getText());
             ver.verifyLCurlyOther(t.getLine(), stmtBraces[0]);
@@ -745,17 +750,18 @@ tryBlock
 
         (
             c:"catch"^ { ver.verifyRCurly(stmtBraces[1], c.getLine()); }
-            LPAREN! parameterDeclaration[ignoreMS] RPAREN! compoundStatement[stmtBraces]
+            LPAREN! parameterDeclaration[ignoreMS] RPAREN! compoundStatement[stmtBraces, isEmpty]
             {
                 ver.verifyWSAroundBegin(
                     c.getLine(), c.getColumn(), c.getText());
+                ver.reportCatchBlock(c.getLine(), c.getColumn(), isEmpty[0]);
                 ver.verifyLCurlyOther(c.getLine(), stmtBraces[0]);
             }
         )*
 
         (
             f:"finally"^ { ver.verifyRCurly(stmtBraces[1], f.getLine()); }
-            compoundStatement[stmtBraces]
+            compoundStatement[stmtBraces, sIgnoreIsEmpty]
             { ver.verifyLCurlyOther(f.getLine(), stmtBraces[0]); }
         )?
 	;
@@ -1050,7 +1056,7 @@ primaryExpression
  *
  */
 newExpression
-	:	"new"^ type
+	:	n:"new"^ t:type {ver.reportInstantiation(#n, sLastIdentifier);}
 		(	LPAREN! argList RPAREN! ({ver.reportStartTypeBlock(Scope.ANONINNER, false);}  classBlock[-1]  {ver.reportEndTypeBlock();})?
 
 			//java 1.1
