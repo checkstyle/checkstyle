@@ -18,26 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import antlr.RecognitionException;
-import antlr.TokenStreamException;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import org.apache.regexp.RESyntaxException;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
+
+import antlr.RecognitionException;
+import antlr.TokenStreamException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -158,16 +154,10 @@ public class Checker
      *
      * @param aConfig the configuration to use
      * @param aConfigs the configuation of the checks to use
-     * @throws ClassNotFoundException if an error occurs
-     * @throws InstantiationException if an error occurs
-     * @throws IllegalAccessException if an error occurs
-     * @throws InvocationTargetException if an error occurs
-     * @throws NoSuchMethodException if an error occurs
+     * @throws CheckstyleException if an error occurs
      */
     public Checker(Configuration aConfig, CheckConfiguration[] aConfigs)
-        throws ClassNotFoundException, InstantiationException,
-               IllegalAccessException, InvocationTargetException,
-               NoSuchMethodException
+        throws CheckstyleException
     {
         mConfig = aConfig;
         mCache = new PropertyCacheFile(aConfig);
@@ -186,22 +176,10 @@ public class Checker
     /**
      * Constructs the object.
      * @param aConfig contains the configuration to check with
-     * @throws RESyntaxException unable to create a regexp object
-     * @throws IOException if an error occurs
-     * @throws ParserConfigurationException if an error occurs
-     * @throws SAXException if an error occurs
-     * @throws ClassNotFoundException if an error occurs
-     * @throws InstantiationException if an error occurs
-     * @throws IllegalAccessException if an error occurs
-     * @throws InvocationTargetException if an error occurs
-     * @throws NoSuchMethodException if an error occurs
+     * @throws CheckstyleException if an error occurs
      */
     public Checker(Configuration aConfig)
-        throws RESyntaxException, IOException,
-        ParserConfigurationException, SAXException,
-        ClassNotFoundException, InstantiationException,
-        IllegalAccessException, InvocationTargetException,
-        NoSuchMethodException
+        throws CheckstyleException
     {
         // TODO: delete this method eventually
         this(aConfig, new CheckConfiguration[0]);

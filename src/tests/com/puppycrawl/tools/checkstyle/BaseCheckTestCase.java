@@ -3,19 +3,14 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
-import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.TestCase;
-import org.apache.regexp.RESyntaxException;
-import org.xml.sax.SAXException;
 
 public abstract class BaseCheckTestCase
     extends TestCase
@@ -43,9 +38,7 @@ public abstract class BaseCheckTestCase
     }
 
     protected Checker createChecker(CheckConfiguration aCheckConfig)
-        throws RESyntaxException, FileNotFoundException, IOException,
-        ParserConfigurationException, SAXException, ClassNotFoundException,
-        InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException
+        throws Exception
     {
         final Checker c = new Checker(new Configuration(mProps, mStream),
                                       new CheckConfiguration[] {aCheckConfig});
