@@ -54,14 +54,14 @@ public class NeedBracesCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST sListAST = aAST.findFirstToken(TokenTypes.SLIST);
+        final DetailAST slistAST = aAST.findFirstToken(TokenTypes.SLIST);
         boolean isElseIf = false;
         if ((aAST.getType() == TokenTypes.LITERAL_ELSE)
             && (aAST.findFirstToken(TokenTypes.LITERAL_IF) != null))
         {
             isElseIf = true;
         }
-        if (sListAST == null && !isElseIf) {
+        if ((slistAST == null) && !isElseIf) {
             log(aAST.getLineNo(), "needBraces", aAST.getText());
         }
     }
