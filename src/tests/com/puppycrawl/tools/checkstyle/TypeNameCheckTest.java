@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.TypeNameCheck;
 public class TypeNameCheckTest
     extends BaseCheckTestCase
 {
-    public TypeNameCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testSpecified()
         throws Exception
     {

@@ -4,13 +4,8 @@ import com.puppycrawl.tools.checkstyle.checks.FileLengthCheck;
 import org.apache.commons.beanutils.ConversionException;
 
 public class FileLengthCheckTest
-        extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public FileLengthCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     private void runIt(String aMax, String[] aExpected) throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();

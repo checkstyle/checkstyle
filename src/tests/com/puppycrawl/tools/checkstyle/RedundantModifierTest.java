@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.RedundantModifierCheck;
 public class RedundantModifierTest
     extends BaseCheckTestCase
 {
-    public RedundantModifierTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt()
             throws Exception
     {

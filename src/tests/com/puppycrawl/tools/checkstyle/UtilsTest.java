@@ -7,11 +7,6 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 public class UtilsTest
     extends TestCase
 {
-    public UtilsTest(String name)
-    {
-        super(name);
-    }
-
     /**
      * Test Utils.countCharInString.
      */

@@ -6,11 +6,6 @@ import com.puppycrawl.tools.checkstyle.checks.BlockOption;
 public class EmptyBlockCheckTest
     extends BaseCheckTestCase
 {
-    public EmptyBlockCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testDefault()
         throws Exception
     {

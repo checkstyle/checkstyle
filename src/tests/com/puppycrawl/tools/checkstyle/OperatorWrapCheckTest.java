@@ -7,12 +7,7 @@ public class OperatorWrapCheckTest
     extends BaseCheckTestCase
 {
     private CheckConfiguration checkConfig;
-    
-    public OperatorWrapCheckTest(String aName)
-    {
-        super(aName);
-    }
-    
+
     public void setUp() {
         checkConfig = new CheckConfiguration();
         checkConfig.setClassname(OperatorWrapCheck.class.getName());
@@ -45,7 +40,7 @@ public class OperatorWrapCheckTest
         };
         verify(c, fname, expected);
     }
-    
+
     public void testAssignEOL()
         throws Exception
     {
@@ -57,5 +52,5 @@ public class OperatorWrapCheckTest
             "33:13: '=' should be on the previous line.",
         };
         verify(c, fname, expected);
-    }    
+    }
 }

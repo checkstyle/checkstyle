@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.TabCharacterCheck;
 public class TabCharacterCheckTest
         extends BaseCheckTestCase
 {
-    public TabCharacterCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt() throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();

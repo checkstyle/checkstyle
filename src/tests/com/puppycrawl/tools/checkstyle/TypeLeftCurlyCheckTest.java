@@ -6,11 +6,6 @@ import com.puppycrawl.tools.checkstyle.checks.LeftCurlyOption;
 public class TypeLeftCurlyCheckTest
     extends BaseCheckTestCase
 {
-    public TypeLeftCurlyCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testDefault()
         throws Exception
     {

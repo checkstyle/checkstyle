@@ -3,13 +3,8 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.checks.UpperEllCheck;
 
 public class UpperEllCheckTest
-extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public UpperEllCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testWithChecker()
         throws Exception
     {

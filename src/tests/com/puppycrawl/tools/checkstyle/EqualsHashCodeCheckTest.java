@@ -3,13 +3,8 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.checks.EqualsHashCodeCheck;
 
 public class EqualsHashCodeCheckTest
-        extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public EqualsHashCodeCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt() throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();

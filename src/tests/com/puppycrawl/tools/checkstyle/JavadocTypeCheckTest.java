@@ -13,11 +13,6 @@ import com.puppycrawl.tools.checkstyle.checks.JavadocTypeCheck;
  */
 public class JavadocTypeCheckTest extends BaseCheckTestCase
 {
-    public JavadocTypeCheckTest(String arg0)
-    {
-        super(arg0);
-    }
-
     public void testTags() throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();

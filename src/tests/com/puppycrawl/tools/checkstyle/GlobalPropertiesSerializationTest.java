@@ -13,11 +13,6 @@ import org.apache.regexp.RE;
 public class GlobalPropertiesSerializationTest
     extends TestCase
 {
-    public GlobalPropertiesSerializationTest(String name)
-    {
-        super(name);
-    }
-
     /**
      * Copy mConfig using in-memory serialization
      * @param aConfig the original

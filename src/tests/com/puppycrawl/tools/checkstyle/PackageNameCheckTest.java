@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.PackageNameCheck;
 public class PackageNameCheckTest
     extends BaseCheckTestCase
 {
-    public PackageNameCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testSpecified()
         throws Exception
     {

@@ -7,11 +7,6 @@ import java.util.Properties;
 public class GlobalPropertiesTest
     extends TestCase
 {
-    public GlobalPropertiesTest(String name)
-    {
-        super(name);
-    }
-
     public void test1() throws Exception
     {
         final Properties p = new Properties();

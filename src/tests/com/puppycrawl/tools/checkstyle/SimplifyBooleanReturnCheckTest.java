@@ -12,11 +12,6 @@ import com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanReturnCheck;
 public class SimplifyBooleanReturnCheckTest
     extends BaseCheckTestCase
 {
-    public SimplifyBooleanReturnCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt()
             throws Exception
     {

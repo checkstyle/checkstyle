@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.RedundantImportCheck;
 public class RedundantImportCheckTest
     extends BaseCheckTestCase
 {
-    public RedundantImportCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testWithChecker()
         throws Exception
     {

@@ -5,11 +5,6 @@ import com.puppycrawl.tools.checkstyle.checks.StaticVariableNameCheck;
 public class StaticVariableNameCheckTest
     extends BaseCheckTestCase
 {
-    public StaticVariableNameCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testSpecified()
         throws Exception
     {

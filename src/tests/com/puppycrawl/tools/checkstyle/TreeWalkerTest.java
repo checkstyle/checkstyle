@@ -14,11 +14,6 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 public class TreeWalkerTest
     extends TestCase
 {
-    public TreeWalkerTest(String s)
-    {
-        super(s);
-    }
-
     public void testCreate()
     {
         new TreeWalker(new LocalizedMessages(), 8);

@@ -9,11 +9,6 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 public class LocalizedMessageTest
     extends TestCase
 {
-    public LocalizedMessageTest(String name)
-    {
-        super(name);
-    }
-
     protected void setUp() throws Exception
     {
         LocalizedMessage.setLocale(Locale.ENGLISH);

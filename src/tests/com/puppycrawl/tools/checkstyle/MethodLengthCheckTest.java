@@ -22,11 +22,6 @@ import com.puppycrawl.tools.checkstyle.checks.MethodLengthCheck;
 
 public class MethodLengthCheckTest extends BaseCheckTestCase
 {
-    public MethodLengthCheckTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testIt() throws Exception
     {
         final CheckConfiguration checkConfig = new CheckConfiguration();

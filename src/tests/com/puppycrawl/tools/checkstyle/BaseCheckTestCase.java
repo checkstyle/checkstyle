@@ -32,11 +32,6 @@ public abstract class BaseCheckTestCase
     private final PrintStream mStream = new PrintStream(mBAOS);
     protected final Properties mProps = new Properties();
 
-    public BaseCheckTestCase(String aName)
-    {
-        super(aName);
-    }
-
     protected Checker createChecker(CheckConfiguration aCheckConfig)
         throws Exception
     {

@@ -3,13 +3,8 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.checks.AvoidStarImport;
 
 public class AvoidStarImportTest
-extends BaseCheckTestCase
+    extends BaseCheckTestCase
 {
-    public AvoidStarImportTest(String aName)
-    {
-        super(aName);
-    }
-
     public void testWithChecker()
         throws Exception
     {
