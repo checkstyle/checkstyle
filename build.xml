@@ -281,6 +281,7 @@
     <mkdir dir="target/style/frames"/>
     <mkdir dir="target/style/noframes"/>
     <mkdir dir="target/style/simple"/>
+    <mkdir dir="target/style/csv"/>
     <style basedir="target"
            destdir="target/style/noframes"
            includes="cs_errors.xml"
@@ -293,6 +294,9 @@
            destdir="target/style/simple"
            includes="cs_errors.xml"
            style="contrib/checkstyle-simple.xsl"/>
+    <style out="target/style/csv/report-csv.txt"
+           in="target/cs_errors.xml"
+           style="contrib/checkstyle-csv.xsl"/>
   </target>
 
   <!-- Targets to verify that JUnit is in the classpath -->
@@ -610,6 +614,24 @@
 
   <target name="require.ant15" depends="check.ant15" unless="have.ant15">
     <fail message="Need at least version 1.5 of ANT - you have ${ant.version}"/>
+  </target>
+
+  <target name="checkstyle.run" depends="compile.checkstyle"
+          description="Runs checkstyle.">
+    <taskdef name="checkstyle"
+             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+      <classpath refid="run.classpath"/>
+    </taskdef>
+    <delete file="target/cachefile" />
+
+    <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
+    <property name="check.config" location="docs/checkstyle_checks.xml"/>
+    <property name="translation.severity" value="error"/>
+    <checkstyle config="${custom.config}" file="${file.to.check}">
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="target/cs_errors.xml"/>
+      <classpath refid="run.classpath"/>
+    </checkstyle>
   </target>
 
 </project>
