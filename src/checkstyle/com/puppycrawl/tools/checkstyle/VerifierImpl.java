@@ -86,48 +86,8 @@ class VerifierImpl
     /** the identifiers used **/
     private final Set mReferenced = new HashSet();
 
-    /** pattern to match parameters **/
-    private final String mParamPat;
-    /** regexp to match parameters **/
-    private final RE mParamRegexp;
-
-    /** pattern to match static variables **/
-    private final String mStaticPat;
-    /** regexp to match static variables **/
-    private final RE mStaticRegexp;
-
-    /** pattern to match static final variables **/
-    private final String mStaticFinalPat;
-    /** regexp to match static final variables **/
-    private final RE mStaticFinalRegexp;
-
-    /** pattern to match member variables **/
-    private final String mMemberPat;
-    /** regexp to match member variables **/
-    private final RE mMemberRegexp;
-
-    /** pattern to match type names **/
-    private final String mTypePat;
-    /** regexp to match type names **/
-    private final RE mTypeRegexp;
-
-    /** the maximum line length **/
-    private final int mMaxLineLength;
-    /** whether to allow tabs **/
-    private final boolean mAllowTabs;
-    /** whether to allow protected data **/
-    private final boolean mAllowProtected;
-    /** whether to allow having no author tag **/
-    private final boolean mAllowNoAuthor;
-    /** whether to relax javadoc checking **/
-    private final boolean mRelaxJavadoc;
-    /** whether to process imports **/
-    private final boolean mCheckImports;
-
-    /** the header lines to check for **/
-    private final String[] mHeaderLines;
-    /** line number to ignore in header **/
-    private final int mHeaderIgnoreLineNo;
+    /** configuration for checking **/
+    private final Configuration mConfig;
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructor methods
@@ -135,56 +95,12 @@ class VerifierImpl
 
     /**
      * Constructs the object.
-     * @param aParamPat pattern to match against parameters
-     * @param aStaticPat pattern to match against static variables
-     * @param aStaticFinalPat pattern to match against static final variables
-     * @param aMemberPat pattern to match against member variables
-     * @param aTypePat pattern to match against type names
-     * @param aMaxLineLength max line length allowed
-     * @param aAllowTabs specifies if tabs are allowed
-     * @param aAllowProtected specifies if protected data is allowed
-     * @param aAllowNoAuthor specifies if allowed to have no author tag
-     * @param aRelaxJavadoc specifies if to relax Javadoc checking
-     * @param aCheckImports specifies whether to check import statements
-     * @param aHeaderLines the header lines to check for
-     * @param aHeaderIgnoreLineNo the line to ignore in the header
-     * @throws RESyntaxException error creating a regexp object
+     * @param aConfig the configuration to use for checking
      **/
-    VerifierImpl(String aParamPat,
-                 String aStaticPat,
-                 String aStaticFinalPat,
-                 String aMemberPat,
-                 String aTypePat,
-                 int aMaxLineLength,
-                 boolean aAllowTabs,
-                 boolean aAllowProtected,
-                 boolean aAllowNoAuthor,
-                 boolean aRelaxJavadoc,
-                 boolean aCheckImports,
-                 String[] aHeaderLines,
-                 int aHeaderIgnoreLineNo)
-        throws RESyntaxException
+    VerifierImpl(Configuration aConfig)
     {
-        mParamPat = aParamPat;
-        mParamRegexp = new RE(aParamPat);
-        mStaticPat = aStaticPat;
-        mStaticRegexp = new RE(aStaticPat);
-        mStaticFinalPat = aStaticFinalPat;
-        mStaticFinalRegexp = new RE(aStaticFinalPat);
-        mMemberPat = aMemberPat;
-        mMemberRegexp = new RE(aMemberPat);
-        mTypePat = aTypePat;
-        mTypeRegexp = new RE(aTypePat);
-        mMaxLineLength = aMaxLineLength;
-        mAllowTabs = aAllowTabs;
-        mAllowProtected = aAllowProtected;
-        mAllowNoAuthor = aAllowNoAuthor;
-        mRelaxJavadoc = aRelaxJavadoc;
-        mCheckImports = aCheckImports;
-        mHeaderLines = aHeaderLines;
-        mHeaderIgnoreLineNo = aHeaderIgnoreLineNo;
+        mConfig = aConfig;
     }
-
 
     ////////////////////////////////////////////////////////////////////////////
     // Interface Verifier methods
@@ -216,11 +132,12 @@ class VerifierImpl
 
         // Iterate over the lines looking for long lines and tabs
         for (int i = 0; i < mLines.length; i++) {
-            if (mLines[i].length() > mMaxLineLength) {
+            if (mLines[i].length() > mConfig.getMaxLineLength()) {
                 log(i + 1,
-                    "line longer than " + mMaxLineLength + " characters");
+                    "line longer than " + mConfig.getMaxLineLength() +
+                    " characters");
             }
-            if (!mAllowTabs && (mLines[i].indexOf('\t') != -1)) {
+            if (!mConfig.isAllowTabs() && (mLines[i].indexOf('\t') != -1)) {
                 log(i + 1, "line contains a tab character");
             }
         }
@@ -254,7 +171,7 @@ class VerifierImpl
             //    o in an interface block (all methods must have javadoc); OR
             //    o method is protected or public.
             if (!inMethodBlock() &&
-                (!mRelaxJavadoc || inInterfaceBlock() ||
+                (!mConfig.isRelaxJavadoc() || inInterfaceBlock() ||
                  (aMods.containsProtected() || aMods.containsPublic())))
             {
                 log(lineNo, "method is missing a Javadoc comment.");
@@ -297,15 +214,16 @@ class VerifierImpl
             // demand that types have Javadoc, so ignore mRelaxJavadoc
             log(lineNo, "type is missing a Javadoc comment.");
         }
-        else if (!mAllowNoAuthor && (MATCH_JAVADOC_AUTHOR.grep(jd).length == 0))
+        else if (!mConfig.isAllowNoAuthor() &&
+                 (MATCH_JAVADOC_AUTHOR.grep(jd).length == 0))
         {
             log(lineNo, "type Javadoc comment is missing an @author tag.");
         }
 
-        if (!mTypeRegexp.match(aType.getText())) {
+        if (!mConfig.getTypeRegexp().match(aType.getText())) {
             log(aType.getLineNo(),
                 "type name '" + aType.getText() +
-                "' must match pattern '" + mTypePat + "'.");
+                "' must match pattern '" + mConfig.getTypePat() + "'.");
         }
     }
 
@@ -314,7 +232,7 @@ class VerifierImpl
     public void verifyVariable(MyVariable aVar, boolean aInInterface)
     {
         if (getJavadocBefore(aVar.getLineNo() - 1) == null) {
-            if (!mRelaxJavadoc || inInterfaceBlock() ||
+            if (!mConfig.isRelaxJavadoc() || inInterfaceBlock() ||
                 (aVar.getModifierSet().containsProtected() ||
                  aVar.getModifierSet().containsPublic()))
             {
@@ -328,8 +246,8 @@ class VerifierImpl
             // The only declarations allowed in interfaces are all static final,
             // even if not declared that way.
             checkVariable(aVar,
-                          mStaticFinalRegexp,
-                          mStaticFinalPat);
+                          mConfig.getStaticFinalRegexp(),
+                          mConfig.getStaticFinalPat());
         }
         else {
             final MyModifierSet mods = aVar.getModifierSet();
@@ -339,13 +257,15 @@ class VerifierImpl
                     // Serialization. Cannot enforce rules on it. :-)
                     if (!"serialVersionUID".equals(aVar.getText())) {
                         checkVariable(aVar,
-                                      mStaticFinalRegexp,
-                                      mStaticFinalPat);
+                                      mConfig.getStaticFinalRegexp(),
+                                      mConfig.getStaticFinalPat());
                     }
                 }
                 else {
                     if (mods.containsPrivate()) {
-                        checkVariable(aVar, mStaticRegexp, mStaticPat);
+                        checkVariable(aVar,
+                                      mConfig.getStaticRegexp(),
+                                      mConfig.getStaticPat());
                 }
                     else {
                         log(aVar.getLineNo(),
@@ -357,9 +277,11 @@ class VerifierImpl
             else {
                 // These are the non-static variables
                 if (mods.containsPrivate() ||
-                    (mAllowProtected && mods.containsProtected()))
+                    (mConfig.isAllowProtected() && mods.containsProtected()))
                 {
-                    checkVariable(aVar, mMemberRegexp, mMemberPat);
+                    checkVariable(aVar,
+                                  mConfig.getMemberRegexp(),
+                                  mConfig.getMemberPat());
                 }
                 else {
                     log(aVar.getLineNo(),
@@ -373,10 +295,10 @@ class VerifierImpl
     /** @see Verifier **/
     public void verifyParameter(LineText aParam)
     {
-        if (!mParamRegexp.match(aParam.getText())) {
+        if (!mConfig.getParamRegexp().match(aParam.getText())) {
             log(aParam.getLineNo(),
                 "parameter '" + aParam.getText() +
-                "' must match pattern '" + mParamPat + "'.");
+                "' must match pattern '" + mConfig.getParamPat() + "'.");
         }
     }
 
@@ -463,7 +385,7 @@ class VerifierImpl
     /** @see Verifier **/
     public void reportImport(int aLineNo, String aType)
     {
-        if (mCheckImports) {
+        if (mConfig.isCheckImports()) {
             // Check for a duplicate import
             final Iterator it = mImports.iterator();
             while (it.hasNext()) {
@@ -488,7 +410,7 @@ class VerifierImpl
     /** @see Verifier **/
     public void reportStarImport(int aLineNo, String aPkg)
     {
-        if (mCheckImports) {
+        if (mConfig.isCheckImports()) {
             log(aLineNo, "Avoid using the '.*' form of import.");
         }
     }
@@ -763,17 +685,17 @@ class VerifierImpl
     /** checks that a file contains a valid header **/
     private void checkHeader()
     {
-        if (mHeaderLines.length > mLines.length) {
+        if (mConfig.getHeaderLines().length > mLines.length) {
             log(1, "Missing a header - not enough lines in file.");
         }
         else {
-            for (int i = 0; i < mHeaderLines.length; i++) {
-                if ((i != (mHeaderIgnoreLineNo - 1)) &&
-                    !mHeaderLines[i].equals(mLines[i]))
+            for (int i = 0; i < mConfig.getHeaderLines().length; i++) {
+                if ((i != (mConfig.getHeaderIgnoreLineNo() - 1)) &&
+                    !mConfig.getHeaderLines()[i].equals(mLines[i]))
                 {
                     log(i + 1,
                         "Line does not match expected header line of '" +
-                        mHeaderLines[i] + "'.");
+                        mConfig.getHeaderLines()[i] + "'.");
                     break; // stop checking
                 }
             }
@@ -793,7 +715,7 @@ class VerifierImpl
     /** Check the imports that are unused or unrequired. **/
     private void checkImports()
     {
-        if (!mCheckImports) {
+        if (!mConfig.isCheckImports()) {
             return;
         }
 
