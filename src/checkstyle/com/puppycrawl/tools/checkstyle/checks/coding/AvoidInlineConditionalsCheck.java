@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * so their company's coding standards forbids them.
  *
  * @author lkuehne
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.1 $
  */
 public class AvoidInlineConditionalsCheck extends Check
 {

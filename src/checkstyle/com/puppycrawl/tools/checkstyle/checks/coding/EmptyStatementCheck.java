@@ -16,7 +16,8 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+
+package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -24,60 +25,28 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * <p>
- * Checks for overly complicated boolean expressions. Currently finds code like
- * <code>if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
- * etc.
- * </p>
- * <p>
- * Rationale: Complex boolean logic makes code hard to understand and maintain.
+ * Check that finds empty statements.
  * </p>
  * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="SimplifyBooleanExpression"/&gt;
+ * &lt;module name="EmptyStatement"/&gt;
  * </pre>
- * @author lkuehne
+ * @author Rick Giles
+ * @version 1.0
  */
-public class SimplifyBooleanExpressionCheck
-        extends Check
+public class EmptyStatementCheck extends Check
 {
-    /** @see Check */
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
-    }
-
-    /**
-     * Prevent user from changing tokens in the configuration.
-     * @see com.puppycrawl.tools.checkstyle.api.Check
-     */
-    public int[] getAcceptableTokens()
-    {
-        return new int[] {};
-    }
-
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public int[] getRequiredTokens()
-    {
-        return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
+        return new int[] {TokenTypes.EMPTY_STAT};
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST parent = aAST.getParent();
-        switch (parent.getType()) {
-        case TokenTypes.NOT_EQUAL:
-        case TokenTypes.EQUAL:
-        case TokenTypes.LNOT:
-        case TokenTypes.LOR:
-        case TokenTypes.LAND:
-            log(parent.getLineNo(), parent.getColumnNo(),
-                "simplify.expression");
-            break;
-        default:
-            break;
-        }
+        log(aAST.getLineNo(), aAST.getColumnNo(), "empty.statement");
     }
 }
