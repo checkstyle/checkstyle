@@ -59,7 +59,7 @@ public final class SeverityLevel implements Comparable, Serializable
     public static final SeverityLevel INFO =
         new SeverityLevel(SEVERITYCODE_INFO, SEVERITYNAME_INFO);
 
-    /** Severity level: warning */
+    /** Severity level: warning. */
     public static final SeverityLevel WARNING =
         new SeverityLevel(SEVERITYCODE_WARNING, SEVERITYNAME_WARNING);
 

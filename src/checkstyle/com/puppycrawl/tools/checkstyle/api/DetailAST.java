@@ -77,7 +77,7 @@ public final class DetailAST
     }
 
     /**
-     * Sets this AST's first Child
+     * Sets this AST's first Child.
      * @param aAST the new first child
      */
     public void setFirstChild(AST aAST)
@@ -90,7 +90,7 @@ public final class DetailAST
     }
 
     /**
-     * Sets AST's next sibling
+     * Sets AST's next sibling.
      * @param aAST the new next sibling
      */
     public void setNextSibling(AST aAST)
@@ -102,7 +102,7 @@ public final class DetailAST
     }
 
     /**
-     * Adds new child to AST
+     * Adds new child to AST.
      * @param aAST the new child
      */
     public void addChild(AST aAST)
@@ -151,7 +151,7 @@ public final class DetailAST
     }
 
     /**
-     * Returns the parent token
+     * Returns the parent token.
      * @return the parent token
      */
     public DetailAST getParent()

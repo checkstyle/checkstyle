@@ -41,14 +41,14 @@ public final class LocalizedMessages
             mMessages.toArray(new LocalizedMessage[mMessages.size()]);
     }
 
-    /** Reset the object **/
+    /** Reset the object. **/
     public void reset()
     {
         mMessages.clear();
     }
 
     /**
-     * Logs a message to be reported
+     * Logs a message to be reported.
      * @param aMsg the message to log
      **/
     public void add(LocalizedMessage aMsg)

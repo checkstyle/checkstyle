@@ -34,6 +34,9 @@
           <li>
             <a href="#JavadocVariable">JavadocVariable</a>
           </li>
+          <li>
+            <a href="#JavadocStyle">JavadocStyle</a>
+          </li>
         </ul>
       </td>
       <!--Content-->
@@ -380,6 +383,125 @@ convention of using a
         <h4>Package</h4>
         <p class="body">
         com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+        <h4>Parent Module</h4>
+        <p class="body">
+        <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+
+
+	<a name="JavadocStyle"></a>
+	<h2>JavadocStyle</h2>
+	<h4>Description</h4>
+
+	<p class="body">
+        Validates Javadoc comments to help ensure they are well formed.
+        The following checks are performed:
+	</p>
+
+        <ul>
+
+          <li> Ensures the first sentence ends with proper punctuation (That
+	  is a period, question mark, or exclaimation mark).  Javadoc
+          automatically places the first sentence in the method summary table
+          and index.  With out proper punctuation the Javadoc may be
+          malformed.
+	  </li>
+
+          <li> Check text for incomplete HTML tags.  Verifies that HTML tags
+          have corresponding end tags and issues an "Unclosed HTML tag found:"
+          error if not.  An "Extra HTML tag found:" error is issued if an end
+          tag is found without a previous open tag.</li>
+
+        </ul>
+
+        <p>These checks were patterned after the checks made by the <a
+        href="http://java.sun.com/j2se/javadoc/doccheck/index.html">DocCheck</a>
+        doclet available from Sun. </p>
+
+        <h4>Properties</h4>
+
+	<table width="100%" border="1" cellpadding="5" class="body">
+	  <tr class="header">
+	    <th>name</th>
+	    <th>description</th>
+	    <th>type</th>
+	    <th>default value</th>
+	  </tr>
+	  <tr>
+	    <td>scope</td>
+	    <td>visibility scope where Javadoc comments are checked</td>
+	    <td><a href="property_types.html#scope">scope</a></td>
+            <td><span class="default">private</span></td>
+          </tr>
+          <tr>
+            <td>checkFirstSentence</td>
+            <td>Whether to check the first sentence for proper end of sentence.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">true</span></td>
+          </tr>
+          <tr>
+            <td>checkHtml</td>
+            <td>Whether to check for incomplete html tags.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">true</span></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>definitions to check</td>
+
+            <td>subset of tokens
+            <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+            <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+            <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+            <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+			</td>
+            <td>
+            <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+            <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+            <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+            <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+            </td>
+
+          </tr>
+        </table>
+
+        <h4>Examples</h4>
+
+	<p class="body">
+        To configure the default check:
+        </p>
+
+	<pre class="body">
+&lt;module name="JavadocStyle"/&gt;
+        </pre>
+
+	<p  class="body">
+        To configure the check for <span class="default">public</span> scope:
+        </p>
+
+	<pre  class="body">
+&lt;module name="JavadocStyle"&gt;
+   &lt;property name="scope" value="public"/&gt;
+&lt;/module&gt;
+        </pre>
+
+	<p class="body">
+        To configure the check to turn off first sentence checking:
+        </p>
+        <pre class="body">
+&lt;module name="JavadocStyle"&gt;
+   &lt;property name="checkFirstSentence" value="false"/&gt;
+&lt;/module&gt;
+        </pre>
+
+	<p class="body">
+
+        <h4>Package</h4>
+        <p class="body">
+        com.puppycrawl.tools.checkstyle.checks
         </p>
         <h4>Parent Module</h4>
         <p class="body">

@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * are <a href="http://java.sun.com/products/jdk/faq/faq-sun-packages.html">
  * not 100% Pure Java</a>.
  * </p>
+ * <p>
  * To reject other packages, set property illegalPkgs to a comma-separated
  * list of the illegal packages.
  * </p>

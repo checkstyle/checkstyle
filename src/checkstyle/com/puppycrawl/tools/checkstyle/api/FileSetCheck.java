@@ -51,6 +51,6 @@ public interface FileSetCheck
      */
     void process(File[] aFiles);
 
-    /** Cleans up the object **/
+    /** Cleans up the object. **/
     void destroy();
 }

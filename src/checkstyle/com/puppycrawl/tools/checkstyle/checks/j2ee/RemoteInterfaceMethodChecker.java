@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.j2ee;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * Checks methods of a remote interface
+ * Checks methods of a remote interface.
  * @author Rick Giles
  */
 public class RemoteInterfaceMethodChecker

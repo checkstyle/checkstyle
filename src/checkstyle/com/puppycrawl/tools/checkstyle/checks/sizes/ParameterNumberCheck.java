@@ -57,7 +57,7 @@ public class ParameterNumberCheck
     private int mMax = DEFAULT_MAX_PARAMETERS;
 
     /**
-     * Sets the maximum number of allowed parameters
+     * Sets the maximum number of allowed parameters.
      * @param aMax the max allowed parameters
      */
     public void setMax(int aMax)

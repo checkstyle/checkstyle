@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *       is called</LI>
  *   <LI>now all the repetitous code which checks for BOL, if curlys are on
  *       same line, etc. can be collapsed into  the superclass</LI>
- * </OL>
+ * </UL>
  *
  * @author jrichard
  */

@@ -36,7 +36,7 @@ public interface Configuration extends Serializable
     String[] getAttributeNames();
 
     /**
-     * The attribute value for an attribute name
+     * The attribute value for an attribute name.
      * @param aName the attribute name
      * @return the value that is associated with aName
      * @throws CheckstyleException if aName is not a valid attribute name

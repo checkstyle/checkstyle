@@ -9,6 +9,10 @@
 
     <property name="severity" value="error"/>
 
+    <module name="filter.SuppressionFilter">
+        <property name="file" value="${checkstyle.suppressions.file}"/>
+    </module>
+
     <module name="PackageHtml"/>
 
     <module name="Translation">
@@ -46,6 +50,9 @@
             <property name="allowThrowsTagsForSubclasses" value="true"/>
         </module>
         <module name="JavadocVariable"/>
+        <module name="JavadocStyle">
+            <property name="scope" value="public"/>
+        </module>
 
         <module name="LeftCurly">
             <property name="tokens" value="CLASS_DEF,INTERFACE_DEF,METHOD_DEF,CTOR_DEF"/>

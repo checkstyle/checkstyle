@@ -125,7 +125,7 @@ public class Checker extends AutomaticBean
     private Context mChildContext;
 
     /** The audit event filter chain */
-    private FilterChain mFilterChain = new FilterChain();
+    private final FilterChain mFilterChain = new FilterChain();
 
     /**
      * The severity level of any violations found by submodules.
@@ -232,14 +232,14 @@ public class Checker extends AutomaticBean
         mFilterChain.addFilter(aFilter);
     }
 
-    /** Cleans up the object **/
+    /** Cleans up the object. **/
     public void destroy()
     {
         mListeners.clear();
     }
 
     /**
-     * Add the listener that will be used to receive events from the audit
+     * Add the listener that will be used to receive events from the audit.
      * @param aListener the nosy thing
      */
     public void addListener(AuditListener aListener)
@@ -321,7 +321,7 @@ public class Checker extends AutomaticBean
     }
 
     /**
-     * notify all listeners about the beginning of a file audit
+     * Notify all listeners about the beginning of a file audit.
      * @param aFileName the file to be audited
      */
     public void fireFileStarted(String aFileName)
@@ -338,7 +338,7 @@ public class Checker extends AutomaticBean
     }
 
     /**
-     * notify all listeners about the end of a file audit
+     * Notify all listeners about the end of a file audit.
      * @param aFileName the audited file
      */
     public void fireFileFinished(String aFileName)

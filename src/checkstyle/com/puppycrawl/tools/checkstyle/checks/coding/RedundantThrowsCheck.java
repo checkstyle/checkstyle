@@ -58,7 +58,7 @@ public class RedundantThrowsCheck
     private boolean mAllowSubclasses = false;
 
     /**
-     * Getter for allowUnchecked property
+     * Getter for allowUnchecked property.
      * @param aAllowUnchecked whether unchecked excpetions in throws
      *                         are allowed or not
      */
@@ -68,7 +68,7 @@ public class RedundantThrowsCheck
     }
 
     /**
-     * Getter for allowSubclasses property
+     * Getter for allowSubclasses property.
      * @param aAllowSubclasses whether subclass of another declared
      *                         exception is allowed in throws clause
      */

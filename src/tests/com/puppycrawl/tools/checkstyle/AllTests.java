@@ -60,6 +60,7 @@ import com.puppycrawl.tools.checkstyle.checks.j2ee.SessionBeanCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.j2ee.ThisParameterCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.j2ee.ThisReturnCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.PackageHtmlCheckTest;
@@ -142,6 +143,7 @@ public class AllTests {
         suite.addTest(new TestSuite(InnerAssignmentCheckTest.class));
         suite.addTest(new TestSuite(InterfaceIsTypeCheckTest.class));
         suite.addTest(new TestSuite(JavadocMethodCheckTest.class));
+        suite.addTest(new TestSuite(JavadocStyleCheckTest.class));
         suite.addTest(new TestSuite(JavadocTypeCheckTest.class));
         suite.addTest(new TestSuite(JavadocVariableCheckTest.class));
         suite.addTest(new TestSuite(LineLengthCheckTest.class));

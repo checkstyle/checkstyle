@@ -30,7 +30,7 @@ public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
     /** default allowed nesting depth */
     private static final int DEFAULT_MAX = 1;
 
-    /** Creates new check instance with default allowed nesting depth */
+    /** Creates new check instance with default allowed nesting depth. */
     public NestedTryDepthCheck()
     {
         super(DEFAULT_MAX);

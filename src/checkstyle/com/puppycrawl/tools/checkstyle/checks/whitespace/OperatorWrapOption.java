@@ -34,9 +34,9 @@ public final class OperatorWrapOption
     /** maps from a string representation to an option */
     private static final Map STR_TO_OPT = new HashMap();
 
-    /** require that the operator is on a new line **/
+    /** Require that the operator is on a new line. */
     public static final OperatorWrapOption NL = new OperatorWrapOption("nl");
-    /** require that the operator is at the end of the line **/
+    /** Require that the operator is at the end of the line. */
     public static final OperatorWrapOption EOL = new OperatorWrapOption("eol");
 
     /**

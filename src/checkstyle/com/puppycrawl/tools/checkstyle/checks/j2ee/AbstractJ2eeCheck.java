@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Abstract class for J2ee component checking
+ * Abstract class for J2ee component checking.
  * @author Rick Giles
  */
 public abstract class AbstractJ2eeCheck

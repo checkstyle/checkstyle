@@ -518,7 +518,7 @@ public final class TokenTypes
      * <p>For example:</p>
      * <pre>
      * implements Serializable, Comparable
-     * <pre>
+     * </pre>
      * <p>parses as:</p>
      * <pre>
      * +--IMPLEMENTS_CLAUSE

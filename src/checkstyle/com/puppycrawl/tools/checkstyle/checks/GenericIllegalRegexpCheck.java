@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * bad pratice such as calling
  * ex.printStacktrace(), System.out.println(), System.exit(), etc.
  * </p>
+ * <p>
  * An example of how to configure the check for calls to
  * <code>System.out.println</code> is:
  * </p>
@@ -55,7 +56,7 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
     private boolean mIgnoreCase = false;
 
     /**
-     * Setter for message property
+     * Setter for message property.
      * @param aMessage custom message which should be used
      *                 to report about violations.
      */

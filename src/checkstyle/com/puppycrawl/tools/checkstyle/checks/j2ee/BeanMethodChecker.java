@@ -22,7 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Root class for bean method checks
+ * Root class for bean method checks.
  * @author Rick Giles
  */
 public abstract class BeanMethodChecker
