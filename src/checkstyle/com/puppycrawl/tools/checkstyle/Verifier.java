@@ -1303,7 +1303,7 @@ class Verifier
             // Handle extra JavadocTag.
             if (!found) {
                 boolean reqd = true;
-                if (mConfig.isEnableCheckUnusedThrows()) {
+                if (mConfig.isCheckUnusedThrows()) {
                     final ClassResolver cr = new ClassResolver(
                         mConfig.getClassLoader(), mPkgName, mImports);
                     try {

@@ -484,7 +484,7 @@ public class Configuration
     }
 
     /** @return whether to check unused @throws **/
-    public boolean isEnableCheckUnusedThrows()
+    public boolean isCheckUnusedThrows()
     {
         return getBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP);
     }
