@@ -32,7 +32,7 @@ import org.apache.regexp.RESyntaxException;
  * Represents the configuration that checkstyle uses when checking.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  **/
-class Configuration
+public class Configuration
     implements Defn
 {
     ////////////////////////////////////////////////////////////////////////////
