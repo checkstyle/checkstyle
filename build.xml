@@ -17,7 +17,7 @@
   <property name="testreport.dir" value="target/testreports"/>
   <property name="dist.dir" value="target/dist"/>
 
-  <property name="version" value="2.4" />
+  <property name="version" value="3.0" />
 
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
@@ -76,7 +76,7 @@
           description="Checks whether the grammar file is newer that the generated code">
     <uptodate property="uptodate.antlr"
               targetfile="${checkstyle.dir}/GeneratedJava14Lexer.java" >
-      <srcfiles dir= "${checkstyle.dir}" includes="java_new.g,java.g,java14.g"/>
+      <srcfiles dir= "${checkstyle.dir}" includes="java_new.g,java14_new.g,java.g,java14.g"/>
     </uptodate>
   </target>
 
@@ -85,12 +85,20 @@
   <!-- which creates lots of problems. -->
   <target name="build.antlr" depends="check.antlr" unless="uptodate.antlr"
           description="Conditionally compiles the grammar files">
-    <java classname="antlr.Tool"
-          classpath="${antlr-tools.jar}"
-          fork="yes"
-          dir="${checkstyle.dir}">
-      <arg value="java_new.g" />
-    </java>
+      <java classname="antlr.Tool"
+            classpath="${antlr-tools.jar}"
+            fork="yes"
+            dir="${checkstyle.dir}">
+        <arg value="java_new.g" />
+      </java>
+      <java classname="antlr.Tool"
+            classpath="${antlr-tools.jar}"
+            fork="yes"
+            dir="${checkstyle.dir}">
+        <arg value="-glib" />
+        <arg value="java_new.g" />
+        <arg value="java14_new.g" />
+      </java>
     <java classname="antlr.Tool"
           classpath="${antlr-tools.jar}"
           fork="yes"
