@@ -592,7 +592,23 @@
       <a name="auditlisteners"></a>
       <h2>AuditListeners</h2>
       <p class="body">
-      <em>TODO</em>
+      In addition to an audit reporter for text or XML output, a Checker can have
+      <a href="writinglisteners.html">custom AuditListeners</a>
+      that handle audit events. In order to use a custom listener, add a Checker</span> 
+      submodule for the listener and its properties.
+      For example, to configure a <span class="code">Checker</span>  
+      so that it uses custom listener <a href="writinglisteners.html#writing">VerboseListener</a> to print audit messages
+      to a file named &quot;audit.txt&quot;, include the following module in the
+      configuration file:
+      </p>
+
+      <pre class="body">     
+    &lt;module name=&quot;com.mycompany.listeners.VerboseListener&quot;&gt;
+        &lt;property name=&quot;file&quot; value=&quot;audit.txt&quot;/&gt;
+    &lt;/module&gt;
+      </pre>
+
+
       </p>
       <a name="packagenames"></a>
       <h2>Packages</h2>

@@ -94,76 +94,107 @@
       <a name="writing"></a> <h2>Writing Listeners</h2>
 
       <p class="body">
+      A custom listener is an implementation of the <a href="api/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a> 
+      interface. If the listener has properties that can be set from a configuration, the listener must extend
+     <a href="api/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>.
+     An <span class="code">AutomaticBean</span> uses JavaBean introspection to set JavaBean properties.
+      </p>
+      <p class="body">
       The custom listener that we demonstrate here is a verbose listener that simply 
-      prints each event notification to standard output, and reports the number of 
-      errors per audited file and the total number of errors.
+      prints each event notification to an output stream, and reports the number of 
+      errors per audited file and the total number of errors. The default output stream is
+      <span class="code">System.out</span>. In order to enable the specification of output to a file
+      through property <span class="code">file</span>, 
+      the class extends <span class="code">AutomaticBean</span> and defines method
+      <span class="code">setFile(String)</span>.
       </p>
 
-      <pre>
-      package com.mycompany.listeners;
-      
-      import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-      import com.puppycrawl.tools.checkstyle.api.AuditListener;
-      import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-      
-      public class VerboseListener implements AuditListener
-      {
-          private int mTotalErrors;
-      
-          private int mErrors;
-      
-          public void auditStarted(AuditEvent aEvt)
-          {
-              mTotalErrors = 0;
-              System.out.println("Audit started.");
-          }
-      
-          public void auditFinished(AuditEvent aEvt)
-          {
-              System.out.println("Audit finished. Total errors: " + mTotalErrors);
-          }
-      
-          public void fileStarted(AuditEvent aEvt)
-          {
-              mErrors = 0;
-              System.out.println(
-                  "Started checking file '" + aEvt.getFileName() + "'.");
-          }
-      
-          public void fileFinished(AuditEvent aEvt)
-          {
-              System.out.println("Finished checking file '" + aEvt.getFileName()
-                  + "'. Errors: " + mErrors);
-          }
-      
-          public void addError(AuditEvent aEvt)
-          {
-              printEvent(aEvt);
-              if (SeverityLevel.ERROR.equals(aEvt.getSeverityLevel())) {
-                  mErrors++;
-                  mTotalErrors++;
-              }
-          }
-      
-          public void addException(AuditEvent aEvt, Throwable aThrowable)
-          {
-              printEvent(aEvt);
-              aThrowable.printStackTrace(System.out);
-              mErrors++;
-              mTotalErrors++;
-          }
-      
-          private void printEvent(AuditEvent aEvt)
-          {
-              System.out.println("Logging error -"
-                  + " file: '" + aEvt.getFileName() + "'"
-                  + " line: " + aEvt.getLine()
-                  + " column: " + aEvt.getColumn()
-                  + " severity: " + aEvt.getSeverityLevel()
-                  + " message: " + aEvt.getMessage()
-                  + " source: " + aEvt.getSourceName());
-          }
-      }
+      <pre class="body">
+package com.mycompany.listeners;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+public class VerboseListener
+    extends AutomaticBean
+    implements AuditListener
+{
+    private PrintWriter mWriter = new PrintWriter(System.out);
+    private boolean mCloseOut = false;
+    private int mTotalErrors;
+    private int mErrors;
+
+    public void setFile(String aFileName)
+        throws FileNotFoundException
+    {
+        final OutputStream out = new FileOutputStream(aFileName);
+        mWriter = new PrintWriter(out);
+        mCloseOut = true;
+    }
+
+    public void auditStarted(AuditEvent aEvt)
+    {
+        mTotalErrors = 0;
+        mWriter.println("Audit started.");
+    }
+    
+    public void auditFinished(AuditEvent aEvt)
+    {
+        mWriter.println("Audit finished. Total errors: " + mTotalErrors);
+        mWriter.flush();
+        if (mCloseOut) {
+            mWriter.close();
+        }
+    }
+
+    public void fileStarted(AuditEvent aEvt)
+    {
+        mErrors = 0;
+        mWriter.println(
+            "Started checking file '" + aEvt.getFileName() + "'.");
+    }
+
+    public void fileFinished(AuditEvent aEvt)
+    {
+        mWriter.println("Finished checking file '" + aEvt.getFileName()
+            + "'. Errors: " + mErrors);
+    }
+
+    public void addError(AuditEvent aEvt)
+    {
+        printEvent(aEvt);
+        if (SeverityLevel.ERROR.equals(aEvt.getSeverityLevel())) {
+            mErrors++;
+            mTotalErrors++;
+        }
+    }
+
+    public void addException(AuditEvent aEvt, Throwable aThrowable)
+    {
+        printEvent(aEvt);
+        aThrowable.printStackTrace(System.out);
+        mErrors++;
+        mTotalErrors++;
+    }
+
+    private void printEvent(AuditEvent aEvt)
+    {
+        mWriter.println("Logging error -"
+            + " file: '" + aEvt.getFileName() + "'"
+            + " line: " + aEvt.getLine()
+            + " column: " + aEvt.getColumn()
+            + " severity: " + aEvt.getSeverityLevel()
+            + " message: " + aEvt.getMessage()
+            + " source: " + aEvt.getSourceName());
+    }
+}
     </pre>
       <p class="body">
       A listener that filters error events could perform the filtering in methods <span class="code"> 
@@ -176,25 +207,18 @@
       <a name="using"></a> <h2>Using Listeners</h2>
 
       <p class="body">
-      You can use custom listeners with the <a href="cmdline.html">command line tool</a> 
-      and with a <a href="anttask.html">checkstyle ANT task<a>. When Checkstyle 
-      performs an audit, it attaches listener instances to its audit <span class="code"> 
-      Checker</span>. Hence the <span class="code">.class</span> file for each custom 
-      listener must be available through the classpath.
+      To incorporate a custom listener in the set of listeners for a <span class="code">Checker</span>,
+      include a module element for the listener in the
+      <a href="config.html#auditlisteners">configuration file<a>. For example, to configure a <span class="code">Checker</span>  
+      so that it uses custom listener <span class="code">VerboseListener</span> to print audit messages
+      to a file named &quot;audit.txt&quot;, include the following module in the
+      configuration file:
       </p>
-      <p class="body">
-      To use custom listeners with the command line tool, provide a comma-delimited 
-      list of listener classnames in the -l option. For example, suppose that the <span class="code">. 
-      class</span> file for <span class="code">com.mycompany.listeners.VerboseListener</span> 
-      is in jar file <span class="code">mycompanylisteners.jar</span>. To use <span class="code"> 
-      VerboseListener</span> and configuration file <span class="code">checks.xml</span>, 
-      give a command like the following:
-      </p>
-      <pre>
-      java -classpath mycompanylisteners.jar \
-           -jar checkstyle-all-@CHECKSTYLE_VERSION@.jar \
-           -l com.mycompany.listeners.VerboseListener \
-           -c checks.xml -r src
+
+      <pre class="body">     
+    &lt;module name=&quot;com.mycompany.listeners.VerboseListener&quot;&gt;
+        &lt;property name=&quot;file&quot; value=&quot;audit.txt&quot;/&gt;
+    &lt;/module&gt;
       </pre>
 
       <p class="body">
@@ -212,19 +236,6 @@
       Logging error - file: 'VerboseListener.java' line: 23 ...
       Finished checking file 'VerboseListener.java'. Errors: 1
       Audit finished. Total errors: 1
-  </pre>
-      <p class="body">
-      To use a custom listener in a checkstyle ant task, define a nested <span class="code">&lt; 
-      listener&gt;</span> element with a <span class="code">classname</span> property 
-      whose value is the listener&#39;s classname. For example, to run checkstyle with 
-      configuration file <span class="code">checks.xml</span> and listener <span class="code"> 
-      com.mycompany.listeners.VerboseListener</span> on a fileset:
-      </p>
-      <pre>
-      &lt;checkstyle config=&quot;checks.xml&quot;&gt;
-        &lt;fileset dir=&quot;src&quot; includes=&quot;**/*.java&quot;/&gt;
-        &lt;listener classname=&quot;com.mycompany.listeners.VerboseListener&quot;/&gt;
-      &lt;/checkstyle&gt;
   </pre>
 
       <a name="examples"></a> <h2>Examples</h2>

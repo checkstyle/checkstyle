@@ -87,9 +87,6 @@ public class CheckStyleTask
     /** the name of the properties file */
     private File mPropertiesFile;
 
-    /** custom listeners to add to Checker */
-    private final List mCustomListeners = new ArrayList();
-
     ////////////////////////////////////////////////////////////////////////////
     // Setters for ANT specific attributes
     ////////////////////////////////////////////////////////////////////////////
@@ -136,15 +133,6 @@ public class CheckStyleTask
     public void addProperty(Property aProperty)
     {
         mOverrideProps.add(aProperty);
-    }
-
-    /**
-     * Add a custom listener.
-     * @param aListener the listener to add
-     */
-    public void addListener(Listener aListener)
-    {
-        mCustomListeners.add(aListener);
     }
 
     /**
@@ -380,10 +368,9 @@ public class CheckStyleTask
         IllegalAccessException, IOException
     {
         final int formatterCount = Math.max(1, mFormatters.size());
-        final int listenerCount = mCustomListeners.size();
 
         final AuditListener[] listeners =
-            new AuditListener[formatterCount + listenerCount];
+            new AuditListener[formatterCount];
 
         // formatters
         if (mFormatters.size() == 0) {
@@ -397,39 +384,7 @@ public class CheckStyleTask
                 listeners[i] = f.createListener(this);
             }
         }
-        //custom listeners
-        for (int i = 0; i < listenerCount; i++) {
-            final Listener listener = (Listener) mCustomListeners.get(i);
-            listeners[formatterCount + i] = createCustomListener(listener);
-        }
         return listeners;
-    }
-    /**
-     * Creates an audit listener for a custom listener.
-     * @param aListener custom listener
-     * @return an audit listener
-     */
-    private AuditListener createCustomListener(Listener aListener)
-    {
-        final String classname = aListener.getClassname();
-
-        // use the task classpath property
-        final ClassLoader loader =
-            new AntClassLoader(getClass().getClassLoader(), getProject(),
-                 mClasspath, true);
-
-        AuditListener listener = null;
-        try {
-            final Class listenerClass =
-                Class.forName(classname, true, loader);
-            listener =
-                (AuditListener) listenerClass.newInstance();
-        }
-        catch (Exception e) {
-            throw new BuildException("Unable to create listener '"
-                + classname + "': " + e);
-        }
-        return listener;
     }
 
     /**
