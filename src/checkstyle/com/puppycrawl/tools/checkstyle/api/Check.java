@@ -47,6 +47,8 @@ public abstract class Check
     private Map mTreeContext;
     /** the context for a check across a token. */
     private Map mTokenContext;
+    /** the tab with for column reporting */
+    private int mTabWidth = 8; // meaningful default
 
     /**
      * Returns the default token a check is interested in. Only used if the
@@ -182,7 +184,7 @@ public abstract class Check
      * Returns the lines associated with the tree.
      * @return the file contents
      */
-    protected final String[] getLines()
+    public final String[] getLines()
     {
         return (String[]) getTreeContext().get(LINES_ATTRIBUTE);
     }
@@ -196,11 +198,26 @@ public abstract class Check
         getTreeContext().put(FILENAME_ATTRIBUTE, aFilename);
     }
 
+    /** @return the tab width to report errors with */
+    public int getTabWidth()
+    {
+        return mTabWidth;
+    }
+
+    /**
+     * Set the tab width to report errors with
+     * @param aTabWidth an <code>int</code> value
+     */
+    public void setTabWidth(int aTabWidth)
+    {
+        mTabWidth = aTabWidth;
+    }
+
     /**
      * Returns the filename associated with the tree.
      * @return the file name
      */
-    protected final String getFilename()
+    public final String getFilename()
     {
         return (String) getTreeContext().get(FILENAME_ATTRIBUTE);
     }
@@ -211,7 +228,7 @@ public abstract class Check
      * @param aLine the line number where the error was found
      * @param aKey the message that describes the error
      */
-    protected final void log(int aLine, String aKey)
+    public final void log(int aLine, String aKey)
     {
         log(aLine, aKey, EMPTY_OBJECT_ARRAY);
     }
@@ -227,7 +244,8 @@ public abstract class Check
      */
     protected final void log(int aLine, String aKey, Object aArgs[])
     {
-        log(aLine, 0, aKey, aArgs);
+        mMessages.add(new LocalizedMessage(
+                aLine, getResourceBundle(), aKey, aArgs));
     }
 
 
@@ -323,12 +341,10 @@ public abstract class Check
      */
     public void log(int aLineNo, int aColNo, String aKey, Object[] aArgs)
     {
-        // TODO: need to fix this ugly hack below!!!!!!
-        final int col = aColNo + 1;
-//        final int col = 1 + Utils.lengthExpandedTabs(
-//            mLines[aLineNo - 1], aColNo, mTabWidth);
+        final int col = 1 + Utils.lengthExpandedTabs(
+            getLines()[aLineNo - 1], aColNo, getTabWidth());
         mMessages.add(new LocalizedMessage(
-                aLineNo, col, getResourceBundle(), aKey, aArgs));
+            aLineNo, col, getResourceBundle(), aKey, aArgs));
     }
 
 

@@ -32,7 +32,7 @@ public class WhitespaceAroundCheck
     {
         return new int[] {
             QUESTION,          // '?'
-            // COLON,             // ':' TODO: dont flag after "case"
+            COLON,             // ':' TODO: dont flag after "case"
             ASSIGN,            // '='
             EQUAL,             // "=="
             NOT_EQUAL,         // "!="
@@ -64,15 +64,16 @@ public class WhitespaceAroundCheck
             BAND,              // '&'
             BAND_ASSIGN,       // "&="
             LAND,              // "&&"
-            LITERAL_if,
-            LITERAL_else,
-            LITERAL_for,
-            LITERAL_do,
-            LITERAL_return,
-            LITERAL_try,
             LITERAL_catch,
+            LITERAL_do,
+            LITERAL_else,
             LITERAL_finally,
+            LITERAL_for,
+            LITERAL_if,
+            LITERAL_return,
             LITERAL_synchronized,
+            LITERAL_try,
+            LITERAL_while,
             ASSERT                // TODO: why is it not LITERAL_assert?
                                   // maybe it's a bug in the grammar?
         };

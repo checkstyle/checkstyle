@@ -655,7 +655,7 @@ assignmentExpression
 // conditional test (level 12)
 conditionalExpression
 	:	logicalOrExpression
-		( QUESTION^ assignmentExpression COLON! conditionalExpression )?
+		( QUESTION^ assignmentExpression COLON conditionalExpression )?
 	;
 
 

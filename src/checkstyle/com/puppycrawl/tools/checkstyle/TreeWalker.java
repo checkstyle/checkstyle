@@ -52,6 +52,8 @@ class TreeWalker
     private final Set mAllChecks = new HashSet();
     /** collects the error messages */
     private final LocalizedMessages mMessages;
+    /** the tab width for error reporting */
+    private final int mTabWidth;
 
     // initialise the constants
     static {
@@ -82,9 +84,10 @@ class TreeWalker
      *
      * @param aMessages used to collect messages
      */
-    public TreeWalker(LocalizedMessages aMessages)
+    public TreeWalker(LocalizedMessages aMessages, int aTabWidth)
     {
         mMessages = aMessages;
+        mTabWidth = aTabWidth;
     }
 
     /**
@@ -109,6 +112,7 @@ class TreeWalker
     void registerCheck(Check aCheck, CheckConfiguration aConfig)
     {
         aCheck.setMessages(mMessages);
+        aCheck.setTabWidth(mTabWidth);
         if (!aConfig.getTokens().isEmpty()) {
             final Iterator it = aConfig.getTokens().iterator();
             while (it.hasNext()) {

@@ -49,7 +49,7 @@ statement
 
 // assert statement, available since JDK 1.4
 assertStatement
-	:	ASSERT^ expression ( COLON! expression )? SEMI!
+	:	ASSERT^ expression ( COLON expression )? SEMI!
 	;
 
 class Java14Lexer extends JavaLexer;

@@ -23,7 +23,7 @@ public class FileLengthCheckTest
     public void testAlarm() throws Exception
     {
         final String[] expected = {
-            "1:1: File length is 198 lines (max allowed is 20)."
+            "1: File length is 198 lines (max allowed is 20)."
         };
         runIt("20", expected);
     }
