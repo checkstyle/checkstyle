@@ -23,8 +23,30 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that instance variable names conform to a specified format.
- *
+ * <p>
+ * Checks that instance variable names conform to a format specified
+ * by the format property. The format is a
+ * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
+ * regular expression</a>
+ * and defaults to
+ * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="MemberNameCheck"/&gt;
+ * </pre> 
+ * <p>
+ * An example of how to configure the check for names that begin with
+ * &quot;m&quot;, followed by an upper case letter, and then letters and
+ * digits is:
+ * </p>
+ * <pre>
+ * &lt;config name="MemberNameCheck"/&gt;
+ *    &lt;property name="format" value="^m[A-Z][a-zA-Z0-9]*$"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  * @author Rick Giles
  * @version 1.0
  */

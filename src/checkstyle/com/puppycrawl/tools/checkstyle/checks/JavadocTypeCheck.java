@@ -37,10 +37,10 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * The scope to verify is specified using the {@link Scope} class and
  * defaults to {@link Scope#PRIVATE}. To verify another scope,
  * set property scope to one of the {@link Scope} constants.
- * To define the format for an author tag or a version tag
+ * To define the format for an author tag or a version tag,
  * set property authorFormat or versionFormat respectively to a 
- * regular expression
- * (http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html). 
+ * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
+ * regular expression</a>. 
  * </p>
  * <p>
  * An example of how to configure the check is:
