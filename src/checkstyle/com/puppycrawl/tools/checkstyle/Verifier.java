@@ -1011,16 +1011,22 @@ class Verifier
         {
             for (int i = 0; i < mConfig.getHeaderLines().length; i++)
             {
-                String headerLine = mConfig.getHeaderLines()[i];
+                // skip lines we are meant to ignore
+                if (i == (mConfig.getHeaderIgnoreLineNo() - 1)) {
+                    continue;
+                }
+
+                final String headerLine = mConfig.getHeaderLines()[i];
 
                 // TODO: RE creation should be cached to avoid
-                // re-compilation when multiple files are checked
-                boolean match =
+                // re-compilation when multiple files are checked. Will wait
+                // until this is shown to be a performance problem.
+                final boolean match =
                     mConfig.getHeaderLinesRegexp() ?
                     createRE(headerLine).match(mLines[i]) :
                     headerLine.equals(mLines[i]);
 
-                if ((i != (mConfig.getHeaderIgnoreLineNo() - 1)) && !match)
+                if (!match)
                 {
                     log(i + 1,
                         "Line does not match expected header line of '" +
