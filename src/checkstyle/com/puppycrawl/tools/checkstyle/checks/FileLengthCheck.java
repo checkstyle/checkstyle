@@ -29,7 +29,27 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * Therefore long classes should usually be refactored into several
  * individual classes that focus on a specific task.
  * </p>
- *
+ * <p>
+ * The default maximum file length is 2000 lines. To change the maximum
+ * number of lines, set property max.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.FileLengthCheck"/&gt;
+ * </pre>
+ * <p>
+ * An example of how to configure the check so that it accepts files with at
+ * most 1500 lines is:
+ * </p>
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.FileLengthCheck"&gt;
+ *    &lt;property name="max" value="1500"/&gt;
+ * &lt;/check&gt;
+ * </pre>
  * @author Lars Kühne
  */
 public class FileLengthCheck extends Check
