@@ -169,5 +169,16 @@ class StaticMethods
         // local variables of static initializers don't hide instance fields.
         int notHidden;
     }
+
+    private int x;
+    private static int y;
+    static class Inner {
+        void useX(int x) {
+            x++;
+        }
+        void useX(int y) {
+            y++;
+        }
+    }
 }
 

@@ -92,6 +92,7 @@
     <delete includeemptydirs="true">
       <fileset dir="docs/api" includes="**" excludes=".cvsignore,CVS/**"/>
     </delete>
+    <delete file="velocity.log" />
   </target>
 
   <!-- -->

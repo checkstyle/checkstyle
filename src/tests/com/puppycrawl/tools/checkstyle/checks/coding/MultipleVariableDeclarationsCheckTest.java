@@ -14,11 +14,11 @@ public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestCase
 
         final String[] expected = {
             "3:5: Each variable declaration must be in its own statement.",
-            "4:5: Only one varibale definition per line allowed.",
+            "4:5: Only one variable definition per line allowed.",
             "7:9: Each variable declaration must be in its own statement.",
-            "8:9: Only one varibale definition per line allowed.",
-            "12:5: Only one varibale definition per line allowed.",
-            "15:5: Only one varibale definition per line allowed.",
+            "8:9: Only one variable definition per line allowed.",
+            "12:5: Only one variable definition per line allowed.",
+            "15:5: Only one variable definition per line allowed.",
             "20:14: Each variable declaration must be in its own statement.",
         };
 
