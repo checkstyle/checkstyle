@@ -115,13 +115,13 @@ public class CheckerTest
             filepath + ":58: '(' is followed by whitespace.",
             filepath + ":58: ')' is preceeded by whitespace.",
             filepath + ":58: 'if' is not followed by whitespace.",
-            filepath + ":59: '{' should be on the previous line.",
-            filepath + ":63: '{' should be on the previous line.",
+            filepath + ":59:9: '{' should be on the previous line.",
+            filepath + ":63:9: '{' should be on the previous line.",
             filepath + ":74: '(' is followed by whitespace.",
             filepath + ":74: ')' is preceeded by whitespace.",
-            filepath + ":75: '{' should be on the previous line.",
+            filepath + ":75:9: '{' should be on the previous line.",
             filepath + ":76: 'return' is not followed by whitespace.",
-            filepath + ":79: '{' should be on the previous line.",
+            filepath + ":79:9: '{' should be on the previous line.",
             filepath + ":88: cast needs to be followed by whitespace.",
             filepath + ":97: '?' is not preceeded with whitespace.",
             filepath + ":97: '?' is not followed by whitespace.",
@@ -183,11 +183,11 @@ public class CheckerTest
             filepath + ":39: 'try' is not followed by whitespace.",
             filepath + ":41: 'catch' is not followed by whitespace.",
             filepath + ":58: 'if' is not followed by whitespace.",
-            filepath + ":59: '{' should be on the previous line.",
-            filepath + ":63: '{' should be on the previous line.",
-            filepath + ":75: '{' should be on the previous line.",
+            filepath + ":59:9: '{' should be on the previous line.",
+            filepath + ":63:9: '{' should be on the previous line.",
+            filepath + ":75:9: '{' should be on the previous line.",
             filepath + ":76: 'return' is not followed by whitespace.",
-            filepath + ":79: '{' should be on the previous line.",
+            filepath + ":79:9: '{' should be on the previous line.",
             filepath + ":97: '?' is not preceeded with whitespace.",
             filepath + ":97: '?' is not followed by whitespace.",
             filepath + ":97: ':' is not preceeded with whitespace.",
@@ -226,10 +226,10 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":13: type Javadoc comment is missing an @author tag.",
-            filepath + ":59: '{' should be on the previous line.",
-            filepath + ":63: '{' should be on the previous line.",
-            filepath + ":75: '{' should be on the previous line.",
-            filepath + ":79: '{' should be on the previous line.",
+            filepath + ":59:9: '{' should be on the previous line.",
+            filepath + ":63:9: '{' should be on the previous line.",
+            filepath + ":75:9: '{' should be on the previous line.",
+            filepath + ":79:9: '{' should be on the previous line.",
         };
         verify(c, filepath, expected);
     }
@@ -309,7 +309,7 @@ public class CheckerTest
             filepath + ":109: Expected @param tag for 'aOne'.",
             filepath + ":109: Expected @param tag for 'aFour'.",
             filepath + ":109: Expected @param tag for 'aFive'.",
-            filepath + ":129: '{' should be on the previous line.",
+            filepath + ":129:5: '{' should be on the previous line.",
         };
 
         verify(c, filepath, expected);
@@ -396,9 +396,9 @@ public class CheckerTest
             filepath + ":103: constructor length is 10 lines (max allowed is 9).",
             filepath + ":119: variable 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":123: variable 'CDE' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            filepath + ":127: '{' should be on the previous line.",
+            filepath + ":127:9: '{' should be on the previous line.",
             filepath + ":130: variable 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            filepath + ":131: '{' should be on the previous line.",
+            filepath + ":131:9: '{' should be on the previous line.",
             filepath + ":132: variable 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":137:10: method name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":142: variable 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
@@ -596,8 +596,8 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             filepath + ":1: Missing a header - not enough lines in file.",
-            filepath + ":1: type name 'inputHeader' must match pattern '^[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":1: type is missing a Javadoc comment.",
+            filepath + ":1:48: type name 'inputHeader' must match pattern '^[A-Z][a-zA-Z0-9]*$'.",
         };
         verify(c, filepath, expected);
     }
@@ -693,9 +693,9 @@ public class CheckerTest
         final String filepath = getPath("InputLeftCurlyMethod.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":14: '{' should be on a new line.",
-            filepath + ":21: '{' should be on a new line.",
-            filepath + ":34: '{' should be on a new line.",
+            filepath + ":14:39: '{' should be on a new line.",
+            filepath + ":21:20: '{' should be on a new line.",
+            filepath + ":34:31: '{' should be on a new line.",
         };
         verify(c, filepath, expected);
     }
@@ -709,19 +709,19 @@ public class CheckerTest
         final String filepath = getPath("InputLeftCurlyOther.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":19: '{' should be on the previous line.",
-            filepath + ":21: '{' should be on the previous line.",
-            filepath + ":23: '{' should be on the previous line.",
-            filepath + ":25: '}' should be on the same line.",
-            filepath + ":28: '}' should be on the same line.",
-            filepath + ":30: '{' should be on the previous line.",
-            filepath + ":34: '{' should be on the previous line.",
-            filepath + ":40: '}' should be on the same line.",
-            filepath + ":42: '{' should be on the previous line.",
-            filepath + ":44: '}' should be on the same line.",
-            filepath + ":46: '{' should be on the previous line.",
-            filepath + ":52: '{' should be on the previous line.",
-            filepath + ":54: '{' should be on the previous line.",
+            filepath + ":19:9: '{' should be on the previous line.",
+            filepath + ":21:13: '{' should be on the previous line.",
+            filepath + ":23:17: '{' should be on the previous line.",
+            filepath + ":25:17: '}' should be on the same line.",
+            filepath + ":28:17: '}' should be on the same line.",
+            filepath + ":30:17: '{' should be on the previous line.",
+            filepath + ":34:17: '{' should be on the previous line.",
+            filepath + ":40:13: '}' should be on the same line.",
+            filepath + ":42:13: '{' should be on the previous line.",
+            filepath + ":44:13: '}' should be on the same line.",
+            filepath + ":46:13: '{' should be on the previous line.",
+            filepath + ":52:9: '{' should be on the previous line.",
+            filepath + ":54:13: '{' should be on the previous line.",
         };
         verify(c, filepath, expected);
     }
