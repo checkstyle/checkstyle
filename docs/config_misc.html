@@ -371,10 +371,33 @@
       </p>
       <!-- --> <a name="Translation"></a> <h2>Translation</h2> <h4>Description</h4>
       <p class="body">
-      A <a href="config.html#overview">FileSetCheck</a> that ensure the correct 
-      translation of code by checking property files for consistency regarding their 
-      keys. Two property files describing one and the same context are consistent if 
+      A <a href="config.html#overview">FileSetCheck</a> that ensures the correct
+      translation of code by checking property files for consistency regarding their
+      keys. Two property files describing one and the same context are consistent if
       they contain the same keys.
+      </p>
+      <p class="body">
+      Consider the following properties file in the same directory:
+
+      <pre>
+      #messages.properties
+      hello=Hello
+      cancel=Cancel
+
+      #messages_de.properties
+      hell=Hallo
+      ok=OK
+      </pre>
+      <p class="body">
+      The Translation check will find the typo in the german hello key, the
+      missing ok key in the default resource file and the missing cancel key
+      in the german resource file:
+      <pre>
+      messages_de.properties: Key 'hello' missing.
+      messages_de.properties: Key 'cancel' missing.
+      messages.properties: Key 'hell' missing.
+      messages.properties: Key 'ok' missing.
+      </pre>
       </p>
       <h4>Example</h4>
       <p class="body">
