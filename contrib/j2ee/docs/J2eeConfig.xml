@@ -22,6 +22,5 @@
          <module name="j2ee.SessionBean"/>
          <module name="j2ee.ThisParameter"/>
          <module name="j2ee.ThisReturn"/>
-         -->
     </module>
 </module>
