@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.usage;
 
 import java.awt.Rectangle;
 
-/** Test input for unread parameter check */
+/** Test input for unused field check */
 public class InputUnusedField
 {
     private int mReadPrimitive;

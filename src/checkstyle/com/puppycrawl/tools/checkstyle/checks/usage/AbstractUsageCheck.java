@@ -193,9 +193,6 @@ public abstract class AbstractUsageCheck
         while (it.hasNext()) {
             final DetailAST nameAST = (DetailAST) it.next();
             if (getReferenceCount(nameAST) == 1) {
-                final SymTabAST symTabAST =
-                    ASTManager.getInstance().get(nameAST);
-                final String fileName = symTabAST.getFile().getAbsolutePath();
                 log(
                     nameAST.getLineNo(),
                     nameAST.getColumnNo(),
