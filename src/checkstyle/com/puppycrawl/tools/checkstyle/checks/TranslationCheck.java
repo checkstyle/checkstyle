@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.Defn;
  * </p>
  * <pre>
  * &lt;module name="Translation"/&gt;
- * </pre>  
+ * </pre>
  * @author Alexandra Bunge
  * @author lkuehne
  */
@@ -69,24 +69,22 @@ public class TranslationCheck extends AbstractFileSetCheck
 
     /**
      * Gets the basename (the unique prefix) of a property file. For example
-     * "messages" is the basename of "messages.properties",
-     * "messages_de_AT.properties", "messages_en.properties", etc.
+     * "xyz/messages" is the basename of "xyz/messages.properties",
+     * "xyz/messages_de_AT.properties", "xyz/messages_en.properties", etc.
      *
      * @param aFile the file
      * @return the extracted basename
      */
-    private static String extractBaseName(File aFile)
+    private static String extractPropertyIdentifier(final File aFile)
     {
-        String fileName = aFile.getPath();
-        int k = fileName.indexOf("_");
-        if (k != -1) {
-            return fileName.substring(0, k);
-        }
-        else {
-            return fileName.substring(0, fileName.indexOf("."));
-        }
+        final String filePath = aFile.getPath();
+        final int dirNameEnd = filePath.lastIndexOf(File.separatorChar);
+        final int baseNameStart = dirNameEnd + 1;
+        final int underscoreIdx = filePath.indexOf('_', baseNameStart);
+        final int dotIdx = filePath.indexOf('.', baseNameStart);
+        final int cutoffIdx = (underscoreIdx != -1) ? underscoreIdx : dotIdx;
+        return filePath.substring(0, cutoffIdx);
     }
-
 
     /**
      * Arranges a set of property files by their prefix.
@@ -101,12 +99,12 @@ public class TranslationCheck extends AbstractFileSetCheck
 
         for (Iterator iterator = aPropFiles.iterator(); iterator.hasNext();) {
             File file = (File) iterator.next();
-            String baseName = extractBaseName(file);
+            String identifier = extractPropertyIdentifier(file);
 
-            Set fileSet = (Set) propFileMap.get(baseName);
+            Set fileSet = (Set) propFileMap.get(identifier);
             if (fileSet == null) {
                 fileSet = new HashSet();
-                propFileMap.put(baseName, fileSet);
+                propFileMap.put(identifier, fileSet);
             }
             fileSet.add(file);
         }
