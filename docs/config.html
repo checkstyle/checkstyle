@@ -23,38 +23,132 @@
     <td class="menu" valign="top">
       <ul>
         <li>
-          <a href="#Overview">Overview</a>
+          <a href="#overview">Overview</a>
         </li>
         <li>
-          <a href="#Properties">Properties</a>
+          <a href="#<modules">Modules</a>
         </li>
         <li>
-          <a href="#Modules">Modules</a>
+          <a href="#properties">Properties</a>
         </li>
         <li>
-          <a href="#TreeWalker">TreeWalker Checks</a>
+          <a href="#treewalker">TreeWalker Checks</a>
         </li>
         <li>
-          <a href="#Tokens">Tokens</a>
+          <a href="#tokens">Tokens</a>
+        </li>
+        <li>
+          <a href="#xml">XML</a>
         </li>
       </ul>
     </td>
     <!--Content-->
     <td class="content" valign="top" align="left">
 
-      <a name="Overview"></a> <h2>Overview</h2>
+      <a name="overview"></a> <h2>Overview</h2>
       <p class="body">
-      Opt-in policy. XML config file & module hierarchy. How config names are resolved. Properties.
+      A Checkstyle configuration specifies which <em>modules</em> to plug in and apply to Java 
+      source files. Modules are structured in a tree whose root is the <em>Checker</em> 
+      module. The next level of modules contains <em>FileSetChecks</em>- modules that 
+      take a set of input files and fire error messages. Many checks are submodules of 
+      the <em>TreeWalker</em> FileSetCheck module. The TreeWalker operates by 
+      seperately transforming each of the Java source files into an abstract syntax 
+      tree and then handing the result over to each of its submodules which in turn 
+      have a look at certain aspects of the tree.
       </p>
-      <a name="Properties"></a> <h2>Properties</h2>
       <p class="body">
-      Contexts. Property Expansion.
+      Checkstyle obtains a configuration from an XML document whose elements specify 
+      the configuration&apos;s hierarchy of modules and their properties. You provide 
+      a file that contains the configuration document when you invoke Checkstyle at 
+      the <a href="cmdline.html">command line</a>, and when you run a <a href="anttask.html">Checkstyle 
+      task</a> in ant.
       </p>
-      <a name="Modules"></a> <h2>Modules</h2>
+      <a name="modules"></a> <h2>Modules</h2>
       <p class="body">
-      PackageHtmlCheck, TranlationCheck, TreeWalker. TreeWalker checks. Repeated modules with different properties.
+      A <span class="code">module</span> element in the configuration XML document 
+      specifies a module identified by the element&apos;s <span class="code">name</span> 
+      attribute.
       </p>
-      <a name="TreeWalker"></a> <h2>TreeWalker Checks</h2>
+      <p class="body">
+      Here is a fragment of a typical configuration document:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;module name=&quot;PackageHtml&quot;/&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;module name=&quot;AvoidStarImport&quot;/&gt;
+        &lt;module name=&quot;ConstantName&quot;/&gt;
+        &lt;module name=&quot;EmptyBlock&quot;/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+      </pre>
+      <p class="body">
+      In this configuration:
+      </p>
+      <ul class="body">
+        <li>
+          Root module <span class="code">Checker</span> has child FileSetChecks <span class="code">
+          PackageHtml</span> and <span class="code">TreeWalker</span>. (Module <a href="config_javadoc.html">
+          <span class="code">PackageHtml</span></a> checks that all packages have package 
+          documentation.)
+        </li>
+        <li>
+          Module <span class="code">TreeWalker</span> has submodules
+          <span class="code">AvoidStarImport</span>,
+          <span class="code">ConstantName</span>, and
+          <span class="code">EmptyBlock</span>. 
+          (Modules
+          <a href="config_import.html"><span class="code">AvoidStarImport</span></a>,
+          <a href="config_naming.html"><span class="code">ConstantName</span></a>, and
+          <a href="config_blocks.html"><span class="code">EmptyBlock</span></a>
+          check that a Java source file has no star imports, has 
+      valid constant names, and has no empty blocks, respectively.)
+        </li>
+      </ul>
+      <p class ="body">
+      For each configuration module, Checkstyle loads a class identified by the 
+      <span class="code">name</span> attribute of the <span class="code">module</span>. 
+      There are several rules for loading a module's class:
+      <ol class="body">
+        <li>
+          Load a class directly according to a package-qualified <span class="code">name</span>,
+          such as loading class <span class="code">com.puppycrawl.tools.checkstyle.TreeWalker</span>
+          for element
+          <pre class="body">
+    &lt;module name=&quot;com.puppycrawl.tools.checkstyle.TreeWalker&quot;&gt;
+          </pre>
+          This is useful for plugging third-party modules into a configuration.
+        </li>
+        <li>
+          Load a class of a pre-specified package, such as loading class
+          <span class="code">com.puppycrawl.tools.checkstyle.checks.AvoidStarImport</span>
+          for element
+          <pre class="body">
+        &lt;module name=&quot;AvoidStarImport&quot;/&gt;
+          </pre>
+          Checkstyle applies packages <span class="code">
+        com.puppycrawl.tools.checkstyle</span> and <span class="code">
+        com.puppycrawl.tools.checkstyle.checks</span> by default. You can also specify 
+        packages when you invoke Checkstyle at the <a href="cmdline.html">command line</a>, 
+        and when you run a <a href="anttask.html">Checkstyle task</a> in ant.
+        </li>
+        <li>
+          Apply the above rules to <span class="code">name</span> 
+          concatenated with <span class="code">&quot;Check&quot;</span>,
+          such as loading class
+          <span class="code">com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck</span> for element
+          <pre class="body">
+        &lt;module name=&quot;ConstantName&quot;/&gt;
+          </pre>
+        </li>
+      </ol>
+      <a name="properties"></a> <h2>Properties</h2>
+      <p class="body">
+      Child <span class="code">property</span> elements of a <span class="code">module</span>
+      specify a module&apos;s properties.
+      Contexts. Property Expansion.Repeated modules with different properties.
+      </p>
+      <a name="treewalker"></a> <h2>TreeWalker Checks</h2>
       <p class="body">
       Lead-in paragraph.
       </p>
@@ -91,9 +185,13 @@
           <a href="config_misc.html">Miscellaneous Checks</a>
         </li>
       </ul>
-      <a name="Tokens"></a> <h2>Tokens</h2>
+      <a name="tokens"></a> <h2>Tokens</h2>
       <p class="body">
-      What is a token? Default tokens. Acceptable tokens. 
+      What is a token? Default tokens. Acceptable tokens.
+      </p>
+      <a name="xml"></a> <h2>XML</h2>
+      <p class="body">
+      DTD. DOCTYPE.
       </p>
     </td>
   </tr>
