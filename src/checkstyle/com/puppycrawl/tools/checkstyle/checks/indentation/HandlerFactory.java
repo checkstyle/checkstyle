@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -59,14 +58,13 @@ public class HandlerFactory
             mTypeHandlers.put(new Integer(aType), ctor);
         }
         catch (NoSuchMethodException e) {
-            System.out.println("couldn't find ctor for " + aHandlerClass);
-            System.out.println("methods are: " + Arrays.asList(
-                aHandlerClass.getConstructors()).toString());
-            e.printStackTrace();
+            throw new RuntimeException("couldn't find ctor for "
+                                       + aHandlerClass);
         }
         catch (SecurityException e) {
-            System.out.println("couldn't find ctor for " + aHandlerClass);
-            e.printStackTrace();
+            throw new RuntimeException("couldn't find ctor for "
+                                       + aHandlerClass,
+                                       e);
         }
     }
 
@@ -157,21 +155,20 @@ public class HandlerFactory
             }
         }
         catch (InstantiationException e) {
-            System.out.println("couldn't instantiate constructor for "
-                + aAst);
-            e.printStackTrace();
+            throw new RuntimeException("couldn't instantiate constructor for "
+                                       + aAst, e);
         }
         catch (IllegalAccessException e) {
-            System.out.println("couldn't access constructor for " + aAst);
-            e.printStackTrace();
+            throw new RuntimeException("couldn't access constructor for "
+                                       + aAst,
+                                       e);
         }
         catch (InvocationTargetException e) {
-            System.out.println("couldn't instantiate constructor for "
-                + aAst);
-            e.printStackTrace();
+            throw new RuntimeException("couldn't instantiate constructor for "
+                                       + aAst, e);
         }
         if (expHandler == null) {
-            System.err.println("no handler for type " + type);
+            throw new RuntimeException("no handler for type " + type);
         }
         return expHandler;
     }
