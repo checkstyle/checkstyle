@@ -185,24 +185,15 @@ class Verifier
 
     /**
      * Verify that a valid Javadoc comment exists for the method.
-     * @param aMods the set of modifiers for the method
-     * @param aReturnType the AST node representing the return type
      * @param aSig the method signature
      **/
-    void verifyMethod(MyModifierSet aMods,
-                      MyCommonAST aReturnType,
-                      MethodSignature aSig)
+    void verifyMethod(MethodSignature aSig)
     {
-        // Calculate line number. Unfortunately aReturnType does not contain a
-        // valid line number
-        final int lineNo = (aMods.size() > 0)
-            ? aMods.getFirstLineNo()
-            : aSig.getLineNo();
-
         // no need to check constructor names
-        if (aReturnType != null &&
-            !mConfig.getMethodRegexp().match(aSig.getName())) {
-            log(lineNo,
+        if (!aSig.isConstructor() &&
+            !mConfig.getMethodRegexp().match(aSig.getName()))
+        {
+            log(aSig.getLineNo(),
                 "method name '" + aSig.getName() +
                 "' must match pattern '" + mConfig.getMethodPat() + "'.");
         }
@@ -213,31 +204,28 @@ class Verifier
         }
 
         // now check the javadoc
-        final Scope methodScope =
-            inInterfaceBlock() ? Scope.PUBLIC : aMods.getVisibilityScope();
+        final Scope methodScope = inInterfaceBlock()
+            ? Scope.PUBLIC
+            : aSig.getModSet().getVisibilityScope();
 
         if (!inCheckScope(methodScope)) {
             return; // no need to really check anything
         }
 
-        final boolean isFunction = (aReturnType == null)
-            ? false
-            : !"void".equals(aReturnType.getText().trim());
-
-        final String[] jd = getJavadocBefore(lineNo - 1);
+        final String[] jd = getJavadocBefore(aSig.getLineNo() - 1);
         if (jd == null) {
-            log(lineNo, "method is missing a Javadoc comment.");
+            log(aSig.getLineNo(), "method is missing a Javadoc comment.");
         }
         else {
-            final List tags = getMethodTags(jd, lineNo - 1);
+            final List tags = getMethodTags(jd, aSig.getLineNo() - 1);
             // Check for only one @see tag
             if ((tags.size() != 1) ||
                 !((JavadocTag) tags.get(0)).isSeeTag())
             {
                 checkParamTags(tags, aSig.getParams());
                 checkThrowsTags(tags, aSig.getThrows());
-                if (isFunction) {
-                    checkReturnTag(tags, lineNo);
+                if (aSig.isFunction()) {
+                    checkReturnTag(tags, aSig.getLineNo());
                 }
 
                 // Dump out all unused tags
