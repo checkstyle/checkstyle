@@ -42,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.Context;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -111,14 +112,11 @@ public final class TreeWalker
     /** cache file **/
     private PropertyCacheFile mCache = new PropertyCacheFile(null, null);
 
-    /**
-     * the global configuration.
-     * TODO: should only know the treewalker part of the config
-     */
-    private Configuration mConfig;
-
     /** class loader to resolve classes with. **/
     private ClassLoader mClassLoader;
+
+    /** context of child components */
+    private Context mChildContext;
 
     /**
      * Creates a new <code>TreeWalker</code> instance.
@@ -137,7 +135,8 @@ public final class TreeWalker
     /** @param aFileName the cache file */
     public void setCacheFile(String aFileName)
     {
-        mCache = new PropertyCacheFile(mConfig, aFileName);
+        final Configuration configuration = getConfiguration();
+        mCache = new PropertyCacheFile(configuration, aFileName);
     }
 
     // TODO: Call from contextualize
@@ -148,35 +147,39 @@ public final class TreeWalker
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Configurable */
-    public void configure(Configuration aConfiguration)
-            throws CheckstyleException
+    public void finishLocalSetup()
     {
-        super.configure(aConfiguration);
-        mConfig = aConfiguration;
-
         DefaultContext checkContext = new DefaultContext();
         checkContext.add("classLoader", mClassLoader);
         checkContext.add("messages", mMessages);
         // TODO: hmmm.. this looks less than elegant
         checkContext.add("tabWidth", String.valueOf(mTabWidth));
 
+        mChildContext = checkContext;
+    }
+
+    /**
+     * Instantiates, configures and registers a Check that is specified
+     * in the provided configuration.
+     * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean
+     */
+    public void setupChild(Configuration aChildConf)
+            throws CheckstyleException
+    {
         // TODO: improve the error handing
-        Configuration[] checkConfigs = aConfiguration.getChildren();
-        for (int i = 0; i < checkConfigs.length; i++) {
-            final Configuration config = checkConfigs[i];
-            // IMPORTANT! Need to use the same class loader that created this
-            // class. Otherwise can get ClassCastException problems.
-            final String name = config.getName();
-            final String[] packageNames = getPackageNames();
-            final Check check =
-                    (Check) PackageObjectFactory.makeObject(
+
+        // IMPORTANT! Need to use the same class loader that created this
+        // class. Otherwise can get ClassCastException problems.
+        final String name = aChildConf.getName();
+        final String[] packageNames = getPackageNames();
+        final Check check =
+                (Check) PackageObjectFactory.makeObject(
                         packageNames, this.getClass().getClassLoader(), name);
 
-            check.contextualize(checkContext);
-            check.configure(config);
+        check.contextualize(mChildContext);
+        check.configure(aChildConf);
 
-            registerCheck(check);
-        }
+        registerCheck(check);
     }
 
     /**

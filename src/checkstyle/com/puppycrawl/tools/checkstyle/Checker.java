@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.PackageNamesBean;
+import com.puppycrawl.tools.checkstyle.api.Context;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -117,6 +118,9 @@ public class Checker extends AutomaticBean
      */
     private String[] mPackageNames;
 
+    /** the context of all child components */
+    private Context mChildContext;
+
     /**
      * Creates a new <code>Checker</code> instance.
      * The instance needs to be contextualized and configured.
@@ -130,37 +134,42 @@ public class Checker extends AutomaticBean
     }
 
     /** @see AutomaticBean */
-    public void configure(Configuration aConfig)
+    public void finishLocalSetup()
             throws CheckstyleException
     {
-        super.configure(aConfig);
-
         final Locale locale = new Locale(mLocaleLanguage, mLocaleCountry);
         LocalizedMessage.setLocale(locale);
 
         final DefaultContext context = new DefaultContext();
         context.add("classLoader", mLoader);
-        final Configuration[] fileSetChecks = aConfig.getChildren();
-        for (int i = 0; i < fileSetChecks.length; i++) {
-            final Configuration fscConf = fileSetChecks[i];
-            final String name = fscConf.getName();
-            try {
-                final FileSetCheck fsc =
+        mChildContext = context;
+    }
+
+    /**
+     * Instantiates, configures and registers a FileSetCheck
+     * that is specified in the provided configuration.
+     * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean
+     */
+    protected void setupChild(Configuration aChildConf)
+            throws CheckstyleException
+    {
+        final String name = aChildConf.getName();
+        try {
+            final FileSetCheck fsc =
                     (FileSetCheck) PackageObjectFactory.makeObject(
-                        getPackageNames(),
-                        getClass().getClassLoader(),
-                        name);
-                fsc.setPackageNames(getPackageNames());
-                fsc.contextualize(context);
-                fsc.configure(fscConf);
-                addFileSetCheck(fsc);
-            }
-            catch (Exception ex) {
-                // TODO i18n
-                throw new CheckstyleException(
-                        "cannot initialize filesetcheck with name "
-                        + name + " - " + ex.getMessage());
-            }
+                            getPackageNames(),
+                            getClass().getClassLoader(),
+                            name);
+            fsc.setPackageNames(getPackageNames());
+            fsc.contextualize(mChildContext);
+            fsc.configure(aChildConf);
+            addFileSetCheck(fsc);
+        }
+        catch (Exception ex) {
+            // TODO i18n
+            throw new CheckstyleException(
+                    "cannot initialize filesetcheck with name "
+                    + name + " - " + ex.getMessage());
         }
     }
 
