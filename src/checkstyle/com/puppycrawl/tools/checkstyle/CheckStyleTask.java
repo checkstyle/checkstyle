@@ -294,7 +294,7 @@ public class CheckStyleTask
 
             log("Running Checkstyle " + version
                     + " on " + files.length + " files", Project.MSG_INFO);
-            log("Using configuration" + mConfigLocation, Project.MSG_VERBOSE);
+            log("Using configuration " + mConfigLocation, Project.MSG_VERBOSE);
 
             final int numErrs = c.process(files);
             final int numWarnings = warningCounter.getCount();
