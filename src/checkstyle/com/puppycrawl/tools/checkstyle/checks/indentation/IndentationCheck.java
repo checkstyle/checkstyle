@@ -103,10 +103,10 @@ import org.apache.commons.collections.ArrayStack;
  * </pre>
  *
  * @author jrichard
+ * @author o_sukhodolsky
  */
 
-public class IndentationCheck
-    extends Check
+public class IndentationCheck extends Check
 {
     /** Default indentation amount - based on Sun */
     private static final int DEFAULT_INDENTATION = 4;
@@ -115,7 +115,7 @@ public class IndentationCheck
     private int mBasicOffset = DEFAULT_INDENTATION;
 
     /** how much to indent a case label */
-    private int mCaseIndentationAmount = mBasicOffset;
+    private int mCaseIndentationAmount = DEFAULT_INDENTATION;
 
     /** how far brace should be indented when on next line */
     private int mBraceAdjustment = 0;
@@ -136,9 +136,9 @@ public class IndentationCheck
      *
      * @param aBasicOffset   the number of tabs or spaces to indent
      */
-    public void setBasicOffset(int aBasicOffset)
+    public void setBasicOffset(String aBasicOffset)
     {
-        mBasicOffset = aBasicOffset;
+        mBasicOffset = Integer.parseInt(aBasicOffset);
     }
 
     /**
@@ -146,9 +146,9 @@ public class IndentationCheck
      *
      * @return the number of tabs or spaces to indent
      */
-    public int getBasicOffset()
+    public String getBasicOffset()
     {
-        return mBasicOffset;
+        return String.valueOf(mBasicOffset);
     }
 
     /**
@@ -156,9 +156,9 @@ public class IndentationCheck
      *
      * @param aAdjustmentAmount   the brace offset
      */
-    public void setBraceAdjustment(int aAdjustmentAmount)
+    public void setBraceAdjustment(String aAdjustmentAmount)
     {
-        mBraceAdjustment = aAdjustmentAmount;
+        mBraceAdjustment = Integer.parseInt(aAdjustmentAmount);
     }
 
     /**
@@ -166,9 +166,9 @@ public class IndentationCheck
      *
      * @return the positive offset to adjust braces
      */
-    public int getBraceAdjustement()
+    public String getBraceAdjustement()
     {
-        return mBraceAdjustment;
+        return String.valueOf(mBraceAdjustment);
     }
 
     /**
@@ -176,9 +176,9 @@ public class IndentationCheck
      *
      * @param aAmount   the case indentation level
      */
-    public void setCaseIndent(int aAmount)
+    public void setCaseIndent(String aAmount)
     {
-        mCaseIndentationAmount = aAmount;
+        mCaseIndentationAmount = Integer.parseInt(aAmount);
     }
 
     /**
@@ -186,9 +186,9 @@ public class IndentationCheck
      *
      * @return the case indentation level
      */
-    public int getCaseIndent()
+    public String getCaseIndent()
     {
-        return mCaseIndentationAmount;
+        return String.valueOf(mCaseIndentationAmount);
     }
 
     /**
