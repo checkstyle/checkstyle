@@ -178,6 +178,30 @@ public class OperatorWrapCheck
         final int colNo = aAST.getColumnNo();
         final int lineNo = aAST.getLineNo();
         final String currentLine = getLines()[lineNo - 1];
+
+        // GT/LT aren't operators if they're part of type arguments or parameters
+        if ((aAST.getType() == TokenTypes.GT || aAST.getType() == TokenTypes.LT) &&
+            (aAST.getParent().getType() == TokenTypes.TYPE_ARGUMENTS
+            || aAST.getParent().getType() == TokenTypes.TYPE_PARAMETERS))
+        {
+            return;
+        }
+
+        //QUESTION is not an operator if it's part of a type argument
+        if (aAST.getType() == TokenTypes.QUESTION &&
+            aAST.getParent().getType() == TokenTypes.TYPE_ARGUMENT)
+        {
+            return;
+        }
+
+        //BAND is not an operator if it's part of a type argument
+        if (aAST.getType() == TokenTypes.BAND &&
+            (aAST.getParent().getType() == TokenTypes.TYPE_UPPER_BOUNDS
+            || aAST.getParent().getType() == TokenTypes.TYPE_LOWER_BOUNDS))
+        {
+            return;
+        }
+
         // TODO: Handle comments before and after operator
         // Check if rest of line is whitespace, and not just the operator
         // by itself. This last bit is to handle the operator on a line by

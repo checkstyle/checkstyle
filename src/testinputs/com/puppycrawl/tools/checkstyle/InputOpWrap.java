@@ -6,7 +6,7 @@ package com.puppycrawl.tools.checkstyle;
 
 /**
  * Test case for detecting operator wrapping.
- * @author Lars Kühne
+ * @author Lars Kï¿½hne
  **/
 class InputOpWrap
 {
@@ -33,5 +33,18 @@ class InputOpWrap
             = 0; //error when checking assignment operators with EOL wrap option
         int y =
             0;
+    }
+    
+    <
+        T extends Comparable &
+        java.io.Serializable
+    >
+    void testGenerics1()
+    {
+        Comparable
+            <
+            String
+            >
+            c = new String(); 
     }
 }
