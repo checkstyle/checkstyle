@@ -67,13 +67,13 @@ public class CheckStyleTask
     private String mConfigLocation;
 
     /** contains package names */
-    private File mPackageNamesFile = null;
+    private File mPackageNamesFile;
 
     /** whether to fail build on violations */
     private boolean mFailOnViolation = true;
 
     /** property to set on violations */
-    private String mFailureProperty = null;
+    private String mFailureProperty;
 
     /** contains the filesets to process */
     private final List mFileSets = new ArrayList();
@@ -455,9 +455,9 @@ public class CheckStyleTask
     public static class Formatter
     {
         /** the formatter type */
-        private FormatterType mFormatterType = null;
+        private FormatterType mFormatterType;
         /** the file to output to */
-        private File mToFile = null;
+        private File mToFile;
 
         /**
          * Set the type of the formatter.

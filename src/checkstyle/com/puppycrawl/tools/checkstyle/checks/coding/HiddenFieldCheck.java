@@ -82,13 +82,13 @@ public class HiddenFieldCheck
     private LinkedList mFieldsStack = new LinkedList();
 
     /** the regexp to match against */
-    private RE mRegexp = null;
+    private RE mRegexp;
 
     /** controls whether to check the parameter of a property setter method */
-    private boolean mIgnoreSetter = false;
+    private boolean mIgnoreSetter;
 
     /** controls whether to check the parameter of a constructor */
-    private boolean mIgnoreConstructorParameter = false;
+    private boolean mIgnoreConstructorParameter;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()

@@ -61,7 +61,7 @@ public class NoWhitespaceBeforeCheck
     extends Check
 {
     /** Whether whitespace is allowed if the AST is at a linebreak */
-    private boolean mAllowLineBreaks = false;
+    private boolean mAllowLineBreaks;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()

@@ -89,7 +89,7 @@ public class AvoidNestedBlocksCheck extends Check
      * Whether nested blocks are allowed if they are the
      * only child of a switch case.
      */
-    private boolean mAllowInSwitchCase = false;
+    private boolean mAllowInSwitchCase;
 
     /** @see Check */
     public int[] getDefaultTokens()

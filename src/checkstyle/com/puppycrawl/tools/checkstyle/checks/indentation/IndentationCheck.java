@@ -118,7 +118,7 @@ public class IndentationCheck extends Check
     private int mCaseIndentationAmount = DEFAULT_INDENTATION;
 
     /** how far brace should be indented when on next line */
-    private int mBraceAdjustment = 0;
+    private int mBraceAdjustment;
 
     /** handlers currently in use */
     private ArrayStack mHandlers = new ArrayStack();

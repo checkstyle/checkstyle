@@ -53,7 +53,7 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
     private String mMessage = "";
 
     /** case insensitive? **/
-    private boolean mIgnoreCase = false;
+    private boolean mIgnoreCase;
 
     /**
      * Setter for message property.

@@ -46,10 +46,10 @@ public class VisibilityModifierCheck
     extends Check
 {
     /** whether protected members are allowed */
-    private boolean mProtectedAllowed = false;
+    private boolean mProtectedAllowed;
 
     /** whether package visible members are allowed */
-    private boolean mPackageAllowed = false;
+    private boolean mPackageAllowed;
 
     /**
      * pattern for public members that should be ignored.  Note:
@@ -61,7 +61,7 @@ public class VisibilityModifierCheck
     private String mPublicMemberPattern = "^serialVersionUID$";
 
     /** regexp for public members that should be ignored */
-    private RE mPublicMemberRE = null;
+    private RE mPublicMemberRE;
 
     /** Create an instance. */
     public VisibilityModifierCheck()

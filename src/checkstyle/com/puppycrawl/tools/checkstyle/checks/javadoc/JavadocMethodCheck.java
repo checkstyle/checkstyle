@@ -143,35 +143,35 @@ public class JavadocMethodCheck
      * are not declared if they are a subclass of
      * java.lang.RuntimeException.
      **/
-    private boolean mAllowUndeclaredRTE = false;
+    private boolean mAllowUndeclaredRTE;
 
     /**
      * controls whether to allow documented exceptions that
      * are subclass of one of declared exception.
      * Defaults to false (backward compatibility).
      **/
-    private boolean mAllowThrowsTagsForSubclasses = false;
+    private boolean mAllowThrowsTagsForSubclasses;
 
     /**
      * controls whether to ignore errors when a method has parameters
      * but does not have matching param tags in the javadoc.
      * Defaults to false.
      **/
-    private boolean mAllowMissingParamTags = false;
+    private boolean mAllowMissingParamTags;
 
     /**
      * controls whether to ignore errors when a method declares that
      * it throws exceptions but does not have matching throws tags
      * in the javadoc. Defaults to false.
      **/
-    private boolean mAllowMissingThrowsTags = false;
+    private boolean mAllowMissingThrowsTags;
 
     /**
      * controls whether to ignore errors when a method returns
      * non-void type but does not have a return tag in the javadoc.
      * Defaults to false.
      **/
-    private boolean mAllowMissingReturnTag = false;
+    private boolean mAllowMissingReturnTag;
 
     /**
      * Set the scope.

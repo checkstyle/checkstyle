@@ -290,9 +290,9 @@ field!
 			|	v:variableDefinitions[#mods,#t] s6:SEMI
 //				{#field = #(#[VARIABLE_DEF,"VARIABLE_DEF"], v);}
 				{
-                    #field = #v;
-                    #v.addChild(#s6);
-                }
+                                    #field = #v;
+                                    #v.addChild(#s6);
+                                }
 			)
 		)
 

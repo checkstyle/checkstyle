@@ -56,7 +56,7 @@ public final class DetailAST
      * Token 'x' (where x is an int) is in this branch
      * if mBranchTokenTypes.get(x) is true.
      */
-    private BitSet mBranchTokenTypes = null;
+    private BitSet mBranchTokenTypes;
 
     /** @see antlr.CommonAST **/
     public void initialize(Token aTok)

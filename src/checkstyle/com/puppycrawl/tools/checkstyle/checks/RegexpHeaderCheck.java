@@ -67,7 +67,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 public class RegexpHeaderCheck extends HeaderCheck
 {
     /** the compiled regular expressions */
-    private RE[] mHeaderRegexps = null;
+    private RE[] mHeaderRegexps;
 
     /**
      * Sets the file that contains the header to check against.

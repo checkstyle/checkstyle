@@ -67,7 +67,7 @@ public class IllegalInstantiationCheck
     private final Set mIllegalClasses = new HashSet();
 
     /** name of the package */
-    private String mPkgName = null;
+    private String mPkgName;
 
     /** the imports for the file */
     private final Set mImports = new HashSet();

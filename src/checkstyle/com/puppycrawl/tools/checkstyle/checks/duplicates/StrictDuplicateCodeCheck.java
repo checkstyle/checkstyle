@@ -172,10 +172,10 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     private int mLoc;
 
     /** number of chache misses */
-    private long mCacheMisses = 0;
+    private long mCacheMisses;
 
     /** number of cache hits */
-    private long mCacheHits = 0;
+    private long mCacheHits;
 
     /** Creates a new instance of this class. */
     public StrictDuplicateCodeCheck()

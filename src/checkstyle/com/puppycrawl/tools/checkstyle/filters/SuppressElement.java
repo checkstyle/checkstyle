@@ -55,16 +55,16 @@ public class SuppressElement
     private String mCheckPattern;
 
     /** line number filter */
-    private CSVFilter mLineFilter = null;
+    private CSVFilter mLineFilter;
 
     /** CSV for line number filter */
-    private String mLinesCSV = null;
+    private String mLinesCSV;
 
     /** column number filter */
-    private CSVFilter mColumnFilter = null;
+    private CSVFilter mColumnFilter;
 
     /** CSV for column number filter */
-    private String mColumnsCSV = null;
+    private String mColumnsCSV;
 
     /**
      * Constructs a <code>SuppressElement</code> for a

@@ -143,14 +143,14 @@ public final class ConfigurationLoader
     }
 
     /** the SAX document handler */
-    private InternalLoader mSaxHandler = null;
+    private InternalLoader mSaxHandler;
 
     /** property resolver **/
     private final PropertyResolver mOverridePropsResolver;
     /** the loaded configurations **/
     private final Stack mConfigStack = new Stack();
     /** the Configuration that is being built */
-    private Configuration mConfiguration = null;
+    private Configuration mConfiguration;
 
 
     /**
