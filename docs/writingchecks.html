@@ -140,7 +140,8 @@
       source file. To run it type
       </p>
       <pre>
-      java -classpath checkstyle-all-@CHECKSTYLE_VERSION@.jar com.puppycrawl.tools.checkstyle.gui.Main
+      java -classpath checkstyle-all-@CHECKSTYLE_VERSION@.jar \
+              com.puppycrawl.tools.checkstyle.gui.Main
       </pre>
       <p class="body">
       on the command line. Click the button at the bottom of the frame
@@ -268,7 +269,8 @@
         {
           int methodDefs = ast.getChildCount(TokenTypes.METHOD_DEF);
           if (methodDefs > max) {
-            log(ast.getLineNo(), "too many methods, only " + max + " are allowed");
+            log(ast.getLineNo(),
+                "too many methods, only " + max + " are allowed");
           }
         }
       }
@@ -415,7 +417,9 @@
       e.g. <span class="code">mycompanychecks.jar</span>. Then run:
       </p>
       <pre>
-      java -classpath mycompanychecks.jar -jar checkstyle-all-@CHECKSTYLE_VERSION@ -c config.xml -r .
+      java -classpath mycompanychecks.jar \
+           -jar checkstyle-all-@CHECKSTYLE_VERSION@ \
+           -c config.xml -r .
       </pre>
 
       <p class="body">
