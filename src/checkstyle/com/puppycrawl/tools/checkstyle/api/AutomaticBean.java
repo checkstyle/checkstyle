@@ -168,7 +168,7 @@ public class AutomaticBean implements Configurable, Contextualizable
             }
             catch (InvocationTargetException e) {
                 throw new CheckstyleException(
-                    "Cannot set property '" + key + "' in module"
+                    "Cannot set property '" + key + "' in module "
                     + aConfiguration.getName() + " to '" + value
                     + "': " + e.getTargetException().getMessage());
             }
