@@ -43,4 +43,8 @@ public class InputSetterGetter
         return 666;
     }
 
+    public boolean isSomething()
+    {
+        return false;
+    }
 }

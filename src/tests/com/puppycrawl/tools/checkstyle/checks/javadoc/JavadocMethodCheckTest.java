@@ -10,7 +10,8 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
 {
     public void testTags() throws Exception
     {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
         final String[] expected = {
             "14:5: Missing a Javadoc comment.",
             "18: Unused @param tag for 'unused'.",
@@ -137,7 +138,8 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
 
     public void testScopeAnonInnerPrivate() throws Exception
     {
-        final DefaultConfiguration checkConfig = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
         checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
         final String[] expected = {};
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
@@ -324,7 +326,8 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "26:5: Missing a Javadoc comment.",
             "30:5: Missing a Javadoc comment.",
             "35:5: Missing a Javadoc comment.",
-            "41:5: Missing a Javadoc comment.", };
+            "41:5: Missing a Javadoc comment.",
+            "46:5: Missing a Javadoc comment.", };
         verify(checkConfig, getPath("javadoc" + File.separator
                                     + "InputSetterGetter.java"), expected);
     }

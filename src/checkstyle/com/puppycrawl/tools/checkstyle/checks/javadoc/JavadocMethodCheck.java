@@ -812,10 +812,11 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             return false;
         }
 
-        // Check the name matches format getX...
+        // Check the name matches format of getX or isX. Technically I should
+        // check that the format isX is only used with a boolean type.
         final DetailAST type = aAST.findFirstToken(TokenTypes.TYPE);
         final String name = type.getNextSibling().getText();
-        if (!name.matches("^get[A-Z].*")) { // Depends on JDK 1.4
+        if (!name.matches("^(is|get)[A-Z].*")) { // Depends on JDK 1.4
             return false;
         }
 
