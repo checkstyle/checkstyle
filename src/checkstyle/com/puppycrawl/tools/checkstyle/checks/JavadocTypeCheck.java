@@ -83,11 +83,19 @@ public class JavadocTypeCheck
 {
     /** the scope to check for */
     private Scope mScope = Scope.PRIVATE;
-    /** compiled regexp to match author tag **/ 
-    private RE mAuthorRE = null;
+    /** compiled regexp to match author tag **/
+    private RE mAuthorTagRE = null;
+    /** compiled regexp to match author tag content **/
+    private RE mAuthorFormatRE = null;
     /** compiled regexp to match version tag **/
-    private RE mVersionRE = null;
-    
+    private RE mVersionTagRE = null;
+    /** compiled regexp to match version tag content **/
+    private RE mVersionFormatRE = null;
+    /** regexp to match author tag content */
+    private String mAuthorFormat;
+    /** regexp to match version tag content */
+    private String mVersionFormat;
+
     /**
      * Sets the scope to check.
      * @param aFrom string to set scope from
@@ -106,7 +114,9 @@ public class JavadocTypeCheck
         throws ConversionException
     {      
         try {
-            mAuthorRE = Utils.getRE("@author\\s+" + aFormat);
+            mAuthorTagRE = Utils.getRE("@author\\s+(.*$)");
+            mAuthorFormat = aFormat;
+            mAuthorFormatRE = Utils.getRE(aFormat);
         }
         catch (RESyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
@@ -114,7 +124,7 @@ public class JavadocTypeCheck
     }
     
     /**
-     * Set the ignore pattern.
+     * Set the version format pattern.
      * @param aFormat a <code>String</code> value
      * @throws ConversionException unable to parse aFormat
      */
@@ -122,7 +132,9 @@ public class JavadocTypeCheck
         throws ConversionException
     {
         try {
-            mVersionRE = Utils.getRE("@version\\s+" + aFormat);
+            mVersionTagRE = Utils.getRE("@version\\s+(.*$)");
+            mVersionFormat = aFormat;
+            mVersionFormatRE = Utils.getRE(aFormat);
         }
         catch (RESyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
@@ -147,30 +159,49 @@ public class JavadocTypeCheck
             final Scope surroundingScope = ScopeUtils.getSurroundingScope(aAST);
             if ((surroundingScope == null) || surroundingScope.isIn(mScope)) {
                 final FileContents contents = getFileContents();
+                final int lineNo = aAST.getLineNo();
                 final String[] cmt =
-                    contents.getJavadocBefore(aAST.getLineNo());
+                    contents.getJavadocBefore(lineNo);
                 if (cmt == null) {
-                    log(aAST.getLineNo(), "javadoc.missing");
+                    log(lineNo, "javadoc.missing");
                 }
                 else if (ScopeUtils.isOuterMostType(aAST)) {
                     // don't check author/version for inner classes
-                    if ((mAuthorRE != null)
-                        && (mAuthorRE.grep(cmt).length == 0))
-                    {
-                        // TODO: better error message
-                        log(aAST.getLineNo(), "type.missingTag", "@author");
-                    }
-
-                    if ((mVersionRE != null)
-                        && (mVersionRE.grep(cmt).length == 0))
-                    {
-                        // TODO: better error message
-                        log(aAST.getLineNo(), "type.missingTag", "@version");
-                    }
-
+                    checkTag(lineNo, cmt, "@author",
+                            mAuthorTagRE, mAuthorFormatRE, mAuthorFormat);
+                    checkTag(lineNo, cmt, "@version",
+                            mVersionTagRE, mVersionFormatRE, mVersionFormat);
                 }
             }
         }
+    }
+
+    private void checkTag(
+            int aLineNo, String[] aCmt,
+            String aTag, RE aTagRE, RE aFormatRE, String aFormat)
+    {
+        if (aTagRE == null) {
+            return;
+        }
+
+        int tagCount = 0;
+        for (int i = 0; i < aCmt.length; i++) {
+            final String s = aCmt[i];
+            if (aTagRE.match(s)) {
+                tagCount += 1;
+                final int contentStart = aTagRE.getParenStart(1);
+                final String content = s.substring(contentStart);
+                if (!aFormatRE.match(content))
+                {
+                    log(aLineNo, "type.tagFormat", aTag, aFormat);
+                }
+
+            }
+        }
+        if (tagCount == 0) {
+            log(aLineNo, "type.missingTag", aTag);
+        }
+
     }
 
 }
