@@ -600,4 +600,23 @@
         </java>
     </target>
 
+    <!-- Targets to verify that Xerces is in the classpath -->
+    <target name="check.xerces"
+            description="Checks whether xerces is in the classpath">
+      <condition property="have.xerces">
+          <available classname="org.apache.xerces.parsers.SAXParser"/>
+      </condition>
+    </target>
+
+    <target name="require.xerces" depends="check.xerces" unless="have.xerces"
+            description="Fails if xerces is not present in the classpath">
+      <fail message="Need to have Xerces-J in your CLASSPATH to run the tests. You can download it from http://xml.apache.org/."/>
+    </target>
+
+    <target name="validate.xml"
+            depends="require.xerces"
+            description="Validates checkstyle XML file">
+        <xmlvalidate file="docs/checkstyle_checks.xml"/>
+    </target>
+
 </project>
