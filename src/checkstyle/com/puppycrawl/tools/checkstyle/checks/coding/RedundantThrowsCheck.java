@@ -83,6 +83,7 @@ public class RedundantThrowsCheck
         return new int[] {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
+            TokenTypes.CLASS_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
         };
@@ -136,7 +137,8 @@ public class RedundantThrowsCheck
     private void checkException(FullIdent aExc, List aKnownExcs)
     {
         // Let's try to load class.
-        final ClassInfo newClassInfo = new ClassInfo(aExc);
+        final ClassInfo newClassInfo =
+            new ClassInfo(aExc, getCurrentClassName());
 
         if (!mAllowUnchecked) {
             if (isUnchecked(newClassInfo.getClazz())) {

@@ -43,6 +43,9 @@ public abstract class AbstractTypeAwareCheck
     /** full identifier for package of the method **/
     private FullIdent mPackageFullIdent;
 
+    /** Name of current class. */
+    private String mCurrentClass;
+
     /** <code>ClassResolver</code> instance for current tree. */
     private ClassResolver mClassResolver;
 
@@ -59,6 +62,7 @@ public abstract class AbstractTypeAwareCheck
         mPackageFullIdent = FullIdent.createFullIdent(null);
         mImports.clear();
         mClassResolver = null;
+        mCurrentClass = "";
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -70,8 +74,25 @@ public abstract class AbstractTypeAwareCheck
         else if (aAST.getType() == TokenTypes.IMPORT) {
             processImport(aAST);
         }
+        else if (aAST.getType() == TokenTypes.CLASS_DEF) {
+            processClass(aAST);
+        }
         else {
             processAST(aAST);
+        }
+    }
+
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public final void leaveToken(DetailAST aAST)
+    {
+        if (aAST.getType() == TokenTypes.CLASS_DEF) {
+            int dotIdx = mCurrentClass.lastIndexOf(".");
+            if (dotIdx == -1) {
+                mCurrentClass = "";
+            }
+            else {
+                mCurrentClass = mCurrentClass.substring(0, dotIdx);
+            }
         }
     }
 
@@ -171,13 +192,15 @@ public abstract class AbstractTypeAwareCheck
     /**
      * Attempts to resolve the Class for a specified name.
      * @param aClassName name of the class to resolve
+     * @param aCurrentClass name of surrounding class.
      * @return the resolved class or <code>null</code>
      *          if unable to resolve the class.
      */
-    protected final Class resolveClass(String aClassName)
+    protected final Class resolveClass(String aClassName,
+                                       String aCurrentClass)
     {
         try {
-            return getClassResolver().resolve(aClassName);
+            return getClassResolver().resolve(aClassName, aCurrentClass);
         }
         catch (ClassNotFoundException e) {
             return null;
@@ -187,11 +210,13 @@ public abstract class AbstractTypeAwareCheck
     /**
      * Tries to load class. Logs error if unable.
      * @param aIdent name of class which we try to load.
+     * @param aCurrentClass name of surrounding class.
      * @return <code>Class</code> for a ident.
      */
-    protected final Class tryLoadClass(FullIdent aIdent)
+    protected final Class tryLoadClass(FullIdent aIdent,
+                                       String aCurrentClass)
     {
-        final Class clazz = resolveClass(aIdent.getText());
+        final Class clazz = resolveClass(aIdent.getText(), aCurrentClass);
         if (clazz == null) {
             logLoadError(aIdent);
         }
@@ -229,6 +254,26 @@ public abstract class AbstractTypeAwareCheck
     }
 
     /**
+     * Processes class definition.
+     * @param aAST class defition to process.
+     */
+    private void processClass(DetailAST aAST)
+    {
+        final DetailAST ident = aAST.findFirstToken(TokenTypes.IDENT);
+        mCurrentClass += ("".equals(mCurrentClass) ? "" : "$")
+            + ident.getText();
+    }
+
+    /**
+     * Returns current class.
+     * @return name of current class.
+     */
+    protected final String getCurrentClassName()
+    {
+        return mCurrentClass;
+    }
+
+    /**
      * Contains class's <code>FullIdent</code>
      * and <code>Class</code> object if we can load it.
      */
@@ -238,36 +283,24 @@ public abstract class AbstractTypeAwareCheck
         private FullIdent mName;
         /** <code>Class</code> object of this class if it's loadable. */
         private Class mClass;
+        /** name of surrundeing class. */
+        private String mCurrentClass;
         /** is class loadable. */
         private boolean mIsLoadable;
 
         /**
          * Creates new instance of of class information object.
          * @param aName <code>FullIdent</code> associated with new object.
-         * @param aClass <code>Class</code> associated with new object
-         *               or null id class is not loadable.
+         * @param aCurrentClass name of current surrounding class.
          */
-        public ClassInfo(FullIdent aName, Class aClass)
-        {
-            if (aName == null && aClass == null) {
-                throw new NullPointerException(
-                    "ClassInfo's name or class should be non-null");
-            }
-            mName = aName;
-            setClazz(aClass);
-        }
-
-        /**
-         * Creates new instance of of class information object.
-         * @param aName <code>FullIdent</code> associated with new object.
-         */
-        public ClassInfo(FullIdent aName)
+        public ClassInfo(FullIdent aName, String aCurrentClass)
         {
             if (aName == null) {
                 throw new NullPointerException(
                     "ClassInfo's name should be non-null");
             }
             mName = aName;
+            mCurrentClass = aCurrentClass;
             mIsLoadable = true;
         }
 
@@ -287,7 +320,8 @@ public abstract class AbstractTypeAwareCheck
         public final Class getClazz()
         {
             if (isLoadable() && mClass == null) {
-                setClazz(AbstractTypeAwareCheck.this.tryLoadClass(getName()));
+                setClazz(AbstractTypeAwareCheck.this.
+                         tryLoadClass(getName(), mCurrentClass));
             }
             return mClass;
         }

@@ -60,14 +60,25 @@ public class ClassResolver
      * - enclosing package
      * - star imports
      * @param aName name of the class to resolve
+     * @param aCurrentClass name of current class (for inner classes).
      * @return the resolved class
      * @throws ClassNotFoundException if unable to resolve the class
      */
-    public Class resolve(String aName) throws ClassNotFoundException
+    public Class resolve(String aName, String aCurrentClass)
+        throws ClassNotFoundException
     {
         // See if the class is full qualified
         if (isLoadable(aName)) {
             return safeLoad(aName);
+        }
+        //Perhaps it's fullyqualified inner class
+        int dotIdx = aName.lastIndexOf(".");
+        if (dotIdx != -1) {
+            final String cn = aName.substring(0, dotIdx) + "$"
+                + aName.substring(dotIdx + 1);
+            if (isLoadable(cn)) {
+                return safeLoad(cn);
+            }
         }
 
         // try matching explicit imports
@@ -100,6 +111,15 @@ public class ClassResolver
             final String fqn = mPkg + "." + aName;
             if (isLoadable(fqn)) {
                 return safeLoad(fqn);
+            }
+        }
+
+        //inner class of this class???
+        if (!"".equals(aCurrentClass)) {
+            final String innerClass = ((mPkg != null) ? (mPkg + ".") : "")
+                + aCurrentClass + "$" + aName;
+            if (isLoadable(innerClass)) {
+                return safeLoad(innerClass);
             }
         }
 

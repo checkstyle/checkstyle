@@ -146,14 +146,25 @@ checkstyle-user</a>).</li>
          <li class="body">Documentation error for naming convention checks
          (bug 987503).</li>
 
-	 <li class="body">FinalParametersCheck checks parameters of
-	 abstract methods.
-          (bug 1002849).</li>
+         <li class="body">FinalParametersCheck checks parameters of
+         abstract methods. (bug 1002849).</li>
 
-	  <li>Bug in ClassResolver where it was mismatching imports -
-	  example would match SecurityDataException when looking for
-	  DataException. Bug was visible in RedundantThrows check (no
-	  known bug).</li>
+         <li class="body">Bug in ClassResolver where it was
+         mismatching imports - example would match
+         SecurityDataException when looking for DataException. Bug was
+         visible in RedundantThrows check (no known bug).</li> 
+
+         <li class="body">Fixed HiddenFieldCheck to correctly handle
+         static inner classes (bug 1032426).</li>
+
+         <li class="body">Fixed misspelling of variable (patch
+         1032618 contibuted by Paul Wagland).</li>
+
+         <li class="body">Fixed ClassResolver to handle exceptions
+         which are inner for current class (bug 945149).</li>
+
+         <li class="body">Fixed ClassResolver to handle
+         fully-qualified inner classes (bug 1037667).</li>
 
       </ul>
 

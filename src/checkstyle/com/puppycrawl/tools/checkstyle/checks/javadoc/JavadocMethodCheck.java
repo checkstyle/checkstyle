@@ -254,6 +254,7 @@ public class JavadocMethodCheck
         return new int[] {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
+            TokenTypes.CLASS_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
@@ -276,6 +277,7 @@ public class JavadocMethodCheck
         return new int[] {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
+            TokenTypes.CLASS_DEF,
         };
     }
 
@@ -472,7 +474,8 @@ public class JavadocMethodCheck
                     || (child.getType() == TokenTypes.DOT))
                 {
                     final ExceptionInfo ei =
-                        new ExceptionInfo(FullIdent.createFullIdent(child));
+                        new ExceptionInfo(FullIdent.createFullIdent(child),
+                                          getCurrentClassName());
                     retVal.add(ei);
                 }
                 child = (DetailAST) child.getNextSibling();
@@ -673,7 +676,8 @@ public class JavadocMethodCheck
      */
     private Class loadClassForTag(JavadocTag aTag)
     {
-        Class clazz = resolveClass(aTag.getArg1());
+        final String currentClassName = "";
+        Class clazz = resolveClass(aTag.getArg1(), currentClassName);
         if (clazz == null) {
             log(aTag.getLineNo(), "javadoc.classInfo",
                 "@throws", aTag.getArg1());
@@ -700,10 +704,11 @@ public class JavadocMethodCheck
         /**
          * Creates new instance for <code>FullIdent</code>.
          * @param aIdent <code>FullIdent</code> of the exception
+         * @param aCurrentClass name of current class.
          */
-        ExceptionInfo(FullIdent aIdent)
+        ExceptionInfo(FullIdent aIdent, String aCurrentClass)
         {
-            super(aIdent);
+            super(aIdent, aCurrentClass);
         }
         /** Mark that the exception has associated throws tag */
         final void setFound()

@@ -19,8 +19,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.HashSet;
-import java.util.ListIterator;
-import java.util.LinkedList;
 import java.util.Set;
 
 import org.apache.commons.beanutils.ConversionException;
@@ -77,8 +75,9 @@ public class HiddenFieldCheck
     extends Check
 {
     /** stack of sets of field names,
-     * one for each class of a set of nested classes */
-    private LinkedList mFieldsStack = new LinkedList();
+     * one for each class of a set of nested classes.
+     */
+    private FieldFrame mCurrentFrame;
 
     /** the regexp to match against */
     private RE mRegexp;
@@ -123,7 +122,7 @@ public class HiddenFieldCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree(DetailAST aRootAST)
     {
-        mFieldsStack.clear();
+        mCurrentFrame = new FieldFrame(null, true);
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -144,7 +143,8 @@ public class HiddenFieldCheck
                 (typeMods == null)
                     ? false
                     : typeMods.branchContains(TokenTypes.LITERAL_STATIC);
-            final FieldFrame frame = new FieldFrame(isStaticInnerType);
+            final FieldFrame frame =
+                new FieldFrame(mCurrentFrame, isStaticInnerType);
 
             //add fields to container
             final DetailAST objBlock =
@@ -168,7 +168,8 @@ public class HiddenFieldCheck
                     child = (DetailAST) child.getNextSibling();
                 }
             }
-            mFieldsStack.addLast(frame); //push container
+            // push container
+            mCurrentFrame = frame;
         }
         else {
             //must be VARIABLE_DEF or PARAMETER_DEF
@@ -184,7 +185,7 @@ public class HiddenFieldCheck
             || (aAST.getType() == TokenTypes.ENUM_CONSTANT_DEF))
         {
             //pop
-            mFieldsStack.removeLast();
+            mCurrentFrame = mCurrentFrame.getParent();
         }
     }
 
@@ -204,21 +205,14 @@ public class HiddenFieldCheck
                 final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
                 final String name = nameAST.getText();
                 boolean inStatic = inStatic(aAST);
-                final ListIterator it =
-                    mFieldsStack.listIterator(mFieldsStack.size());
-                while (it.hasPrevious()) {
-                    final FieldFrame frame = (FieldFrame) it.previous();
-                    inStatic |= frame.isStaticType();
-                    if ((frame.containsStaticField(name)
-                        || (!inStatic && frame.containsInstanceField(name)))
-                        && ((mRegexp == null) || (!getRegexp().match(name)))
-                        && !isIgnoredSetterParam(aAST, name)
-                        && !isIgnoredConstructorParam(aAST))
-                    {
-                        log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                            "hidden.field", name);
-                        break;
-                    }
+                if ((mCurrentFrame.containsStaticField(name)
+                     || (!inStatic(aAST)
+                         && mCurrentFrame.containsInstanceField(name)))
+                    && ((mRegexp == null) || (!getRegexp().match(name)))
+                    && !isIgnoredSetterParam(aAST, name)
+                    && !isIgnoredConstructorParam(aAST))
+                {
+                    log(nameAST, "hidden.field", name);
                 }
             }
         }
@@ -362,6 +356,9 @@ public class HiddenFieldCheck
         /** is this a static inner type */
         private boolean mStaticType;
 
+        /** parent frame. */
+        private FieldFrame mParent;
+
         /** set of instance field names */
         private Set mInstanceFields = new HashSet();
 
@@ -370,9 +367,11 @@ public class HiddenFieldCheck
 
         /** Creates new frame.
          * @param aStaticType is this a static inner type (class or enum).
+         * @param aParent parent frame.
          */
-        public FieldFrame(boolean aStaticType)
+        public FieldFrame(FieldFrame aParent, boolean aStaticType)
         {
+            mParent = aParent;
             mStaticType = aStaticType;
         }
 
@@ -409,7 +408,14 @@ public class HiddenFieldCheck
          */
         public boolean containsInstanceField(String aField)
         {
-            return mInstanceFields.contains(aField);
+            if (mInstanceFields.contains(aField)) {
+                return true;
+            }
+            if (mStaticType) {
+                return false;
+            }
+
+            return (mParent != null) && mParent.containsInstanceField(aField);
         }
 
         /**
@@ -419,7 +425,20 @@ public class HiddenFieldCheck
          */
         public boolean containsStaticField(String aField)
         {
-            return mStaticFields.contains(aField);
+            if (mStaticFields.contains(aField)) {
+                return true;
+            }
+
+            return (mParent != null) && mParent.containsStaticField(aField);
+        }
+
+        /**
+         * Getter for parent frame.
+         * @return parent frame.
+         */
+        public FieldFrame getParent()
+        {
+            return mParent;
         }
     }
 }
