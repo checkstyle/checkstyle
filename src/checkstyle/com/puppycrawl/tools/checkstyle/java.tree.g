@@ -164,7 +164,7 @@ ctorDef
    MyModifierSet mods;
    MethodSignature ms;
 }
-   :  #(CTOR_DEF mods=modifiers ms=methodHead {ver.reportStartMethodBlock();} ctorSList {ver.reportEndMethodBlock();})
+   :  #(CTOR_DEF mods=modifiers ms=methodHead ctorSList )
       {
          ver.verifyMethodJavadoc(mods, null, ms);
       }
@@ -186,7 +186,7 @@ methodDef
    MyModifierSet mods;
    MethodSignature ms;
 }
-   :  #(METHOD_DEF mods=modifiers ts:typeSpec ms=methodHead {ver.reportStartMethodBlock();} (slist)? {ver.reportEndMethodBlock();} )
+   :  #(METHOD_DEF mods=modifiers ts:typeSpec ms=methodHead (slist)? )
       {
          ver.verifyMethodJavadoc(mods, ts, ms);
       }

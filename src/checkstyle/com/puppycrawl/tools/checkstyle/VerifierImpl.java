@@ -70,9 +70,6 @@ class VerifierImpl
     /** stack tracking the visibility scope currently in **/
     private final Stack mInScope = new Stack();
 
-    /** tracks the level of block definitions for methods **/
-    private int mMethodBlockLevel = 0;
-
     /** the messages being logged **/
     private final List mMessages = new ArrayList();
 
@@ -134,7 +131,6 @@ class VerifierImpl
         mPkgName = null;
         mInInterface.clear();
         mInScope.clear();
-        mMethodBlockLevel = 0;
         mMessages.clear();
         mComments.clear();
         mImports.clear();
@@ -562,18 +558,6 @@ class VerifierImpl
     }
 
     /** @see Verifier **/
-    public void reportStartMethodBlock()
-    {
-        mMethodBlockLevel++;
-    }
-
-    /** @see Verifier **/
-    public void reportEndMethodBlock()
-    {
-        mMethodBlockLevel--;
-    }
-
-    /** @see Verifier **/
     public void reportIdentifier(MyCommonAST aAST)
     {
         //System.out.println("Just got reported = " + aAST);
@@ -939,12 +923,6 @@ class VerifierImpl
     {
         return (!mInInterface.empty() &&
                 Boolean.TRUE.equals(mInInterface.peek()));
-    }
-
-    /** @return whether currently in a method block **/
-    private boolean inMethodBlock()
-    {
-        return (mMethodBlockLevel > 0);
     }
 
     /**

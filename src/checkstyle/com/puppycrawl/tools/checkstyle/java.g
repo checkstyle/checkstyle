@@ -103,8 +103,9 @@ importDefinition
 // A type definition in a file is either a class or interface definition.
 typeDefinition
 	options {defaultErrorHandler = true;}
-	:	m:modifiers!
-		( classDefinition[#m]
+{ MyModifierSet modSet = new MyModifierSet(); }
+	:	m:modifiers[modSet]!
+		( classDefinition[#m, modSet]
 		| interfaceDefinition[#m]
 		)
 	|	SEMI!
@@ -114,7 +115,7 @@ typeDefinition
  *  Create a separate Type/Var tree for each var in the var list.
  */
 declaration!
-	:	m:modifiers t:typeSpec[false] v:variableDefinitions[#m,#t]
+	:	m:modifiers[new MyModifierSet()] t:typeSpec[false] v:variableDefinitions[#m,#t]
 		{#declaration = #v;}
 	;
 
@@ -195,8 +196,8 @@ identifierStar
 //   place of a call to modifiers, but I thought it was a good idea to keep
 //   this rule separate so they can easily be collected in a Vector if
 //   someone so desires
-modifiers
-	:	( modifier )*
+modifiers[MyModifierSet mms]
+	:	( m:modifier {mms.addModifier(#m);} )*
 		{#modifiers = #([MODIFIERS, "MODIFIERS"], #modifiers);}
 	;
 
@@ -218,16 +219,21 @@ modifier
 	;
 
 // Definition of a Java class
-classDefinition![MyCommonAST modifiers]
+classDefinition![MyCommonAST modifiers, MyModifierSet modSet]
 	:	"class" IDENT
 		// it _might_ have a superclass...
 		sc:superClassClause
 		// it might implement some interfaces...
 		ic:implementsClause
 		// now parse the body of the class
+        {
+            System.out.println(">>> enter class block");
+            System.out.println("modSet = " + modSet);
+        }
 		cb:classBlock
 		{#classDefinition = #(#[CLASS_DEF,"CLASS_DEF"],
 							   modifiers,IDENT,sc,ic,cb);}
+        {System.out.println("-------<<< leave class block");}
 	;
 
 superClassClause!
@@ -241,9 +247,11 @@ interfaceDefinition![MyCommonAST modifiers]
 		// it might extend some other interfaces
 		ie:interfaceExtends
 		// now parse the body of the interface (looks like a class...)
+        {System.out.println("------->>> enter interface block");}
 		cb:classBlock
 		{#interfaceDefinition = #(#[INTERFACE_DEF,"INTERFACE_DEF"],
 									modifiers,IDENT,ie,cb);}
+        {System.out.println("-------<<< leave interface block");}
 	;
 
 
@@ -280,12 +288,13 @@ implementsClause
 //   for example), and if this grammar were used for a compiler there would
 //   need to be some semantic checks to make sure we're doing the right thing...
 field!
+{ MyModifierSet modSet = new MyModifierSet(); }
 	:	// method, constructor, or variable declaration
-		mods:modifiers
+		mods:modifiers[modSet]
 		(	h:ctorHead s:constructorBody // constructor
 			{#field = #(#[CTOR_DEF,"CTOR_DEF"], mods, h, s);}
 
-		|	cd:classDefinition[#mods]       // inner class
+		|	cd:classDefinition[#mods, modSet]       // inner class
 			{#field = #cd;}
 
 		|	id:interfaceDefinition[#mods]   // inner interface
@@ -470,6 +479,7 @@ compoundStatement
 
 
 statement
+{ MyModifierSet modSet = new MyModifierSet(); }
 	// A list of statements in curly braces -- start a new scope!
 	:	compoundStatement
 
@@ -485,7 +495,7 @@ statement
 	|	expression SEMI!
 
 	// class definition
-	|	m:modifiers! classDefinition[#m]
+	|	m:modifiers[modSet]! classDefinition[#m, modSet]
 
 	// Attach a label to the front of a statement
 	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement
