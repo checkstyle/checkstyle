@@ -839,7 +839,7 @@ assignmentExpression
 // conditional test (level 12)
 conditionalExpression
 	:	logicalOrExpression
-		( QUESTION^ assignmentExpression c:COLON {ver.verifyWSAroundBegin(c.getLine(), c.getColumn(), c.getText());} conditionalExpression )?
+		( QUESTION^ assignmentExpression c:COLON {ver.verifyOpBegin(c.getLine(), c.getColumn(), c.getText());} conditionalExpression )?
 	;
 
 
