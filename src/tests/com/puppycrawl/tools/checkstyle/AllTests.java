@@ -20,7 +20,6 @@ public class AllTests {
         //$JUnit-BEGIN$
         suite.addTest(new TestSuite(AvoidStarImportTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
-        suite.addTest(new TestSuite(ConfigurationSerializationTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
         suite.addTest(new TestSuite(EmptyBlockCheckTest.class));
         suite.addTest(new TestSuite(EqualsHashCodeCheckTest.class));
