@@ -38,9 +38,9 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * defaults to {@link Scope#PRIVATE}. To verify another scope,
  * set property scope to one of the {@link Scope} constants.
  * To define the format for an author tag or a version tag,
- * set property authorFormat or versionFormat respectively to a 
+ * set property authorFormat or versionFormat respectively to a
  * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
- * regular expression</a>. 
+ * regular expression</a>.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * <pre>
  * &lt;module name="JavadocType"/&gt;
  * </pre>
- * <p> An example of how to configure the check for the 
+ * <p> An example of how to configure the check for the
  * {@link Scope#PUBLIC} scope is:
  *</p>
  * <pre>
@@ -112,7 +112,7 @@ public class JavadocTypeCheck
      */
     public void setAuthorFormat(String aFormat)
         throws ConversionException
-    {      
+    {
         try {
             mAuthorTagRE = Utils.getRE("@author\\s+(.*$)");
             mAuthorFormat = aFormat;
@@ -122,7 +122,7 @@ public class JavadocTypeCheck
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
-    
+
     /**
      * Set the version format pattern.
      * @param aFormat a <code>String</code> value

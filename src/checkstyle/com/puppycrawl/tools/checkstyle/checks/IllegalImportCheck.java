@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * not 100% Pure Java</a>.
  * </p>
  * To reject other packages, set property illegalPkgs to a comma-separated
- * list of the illegal packages.  
+ * list of the illegal packages.
  * </p>
  * <p>
  * An example of how to configure the check is:

@@ -38,7 +38,7 @@ public class DefaultLogger
 {
     /** cushion for avoiding StringBuffer.expandCapacity */
     private static final int BUFFER_CUSHION = 12;
-    
+
     /** where to write info messages **/
     private final PrintWriter mInfoWriter;
     /** close info stream after use */

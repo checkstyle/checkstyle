@@ -66,7 +66,7 @@ public class HiddenFieldCheck
             TokenTypes.CLASS_DEF,
         };
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getAcceptableTokens()
     {
@@ -75,7 +75,7 @@ public class HiddenFieldCheck
             TokenTypes.PARAMETER_DEF,
         };
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getRequiredTokens()
     {
@@ -107,8 +107,8 @@ public class HiddenFieldCheck
                     fieldSet.add(name);
                 }
                 child = (DetailAST) child.getNextSibling();
-            }                
-            mFieldsStack.addLast(fieldSet); //push container              
+            }
+            mFieldsStack.addLast(fieldSet); //push container
         }
         else {
             //must be VARIABLE_DEF or PARAMETER_DEF

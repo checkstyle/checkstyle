@@ -39,10 +39,10 @@ public class XMLLogger
 {
     /** decimal radix */
     private static final int BASE_10 = 10;
-        
+
     /** hex radix */
     private static final int BASE_16 = 16;
-        
+
     /** close output stream in auditFinished */
     private boolean mCloseStream;
 

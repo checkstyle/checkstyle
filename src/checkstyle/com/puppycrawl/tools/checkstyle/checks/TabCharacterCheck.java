@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  * <pre>
  * &lt;module name="TabCharacter"/&gt;
- * </pre> 
+ * </pre>
  * @author Lars Kühne
  */
 public class TabCharacterCheck

@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="RightCurly"/&gt;
- * </pre> 
+ * </pre>
  * <p>
  * An example of how to configure the check with policy
  * {@link RightCurlyOption#ALONE} for <code>else</code> tokens is:
@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     &lt;property name="tokens" value="LITERAL_ELSE"/&gt;
  *     &lt;property name="option" value="alone"/&gt;
  * &lt;/module&gt;
- * </pre> 
+ * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author lkuehne
  * @version 1.0
@@ -57,12 +57,12 @@ public class RightCurlyCheck
 {
     /**
      * Sets the right curly option to same.
-     */  
+     */
     public RightCurlyCheck()
     {
         super(RightCurlyOption.SAME);
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {

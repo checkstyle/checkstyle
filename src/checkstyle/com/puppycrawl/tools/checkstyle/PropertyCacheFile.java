@@ -194,10 +194,10 @@ final class PropertyCacheFile
 
     /** mask for last byte */
     private static final int MASK_0X0F = 0x0F;
-    
+
     /** bit shift */
     private static final int SHIFT_4 = 4;
-    
+
     /**
      * Hex-encodes a byte array.
      * @param aByteArray the byte array

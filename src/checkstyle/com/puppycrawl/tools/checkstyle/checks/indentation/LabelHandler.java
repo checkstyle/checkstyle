@@ -27,32 +27,32 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class LabelHandler extends ExpressionHandler 
+public class LabelHandler extends ExpressionHandler
 {
     /**
      * The types of expressions that are children of a label.
      */
     private final int[] mLabelChildren = new int[] {
-        TokenTypes.IDENT, 
+        TokenTypes.IDENT,
     };
 
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aExpr          the abstract syntax tree
      * @param aParent        the parent handler
      */
     public LabelHandler(IndentationCheck aIndentCheck,
-        DetailAST aExpr, ExpressionHandler aParent) 
+        DetailAST aExpr, ExpressionHandler aParent)
     {
         super(aIndentCheck, "label", aExpr, aParent);
     }
 
     /**
      * Compute the indentation amount for this handler.
-     * 
+     *
      * @return the expected indentation amount
      */
     public int getLevelImpl()
@@ -64,7 +64,7 @@ public class LabelHandler extends ExpressionHandler
     /**
      * Check the indentation of the label.
      */
-    private void checkLabel() 
+    private void checkLabel()
     {
         checkChildren(getMainAst(), mLabelChildren, getLevel(), true, false);
     }
@@ -72,11 +72,11 @@ public class LabelHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         checkLabel();
         // need to check children (like 'block' parents do)
-        DetailAST parent = (DetailAST) 
+        DetailAST parent = (DetailAST)
             getMainAst().getFirstChild().getNextSibling();
         checkExpressionSubtree(parent, getLevel()
             + getIndentCheck().getIndentationAmount(), true, false);

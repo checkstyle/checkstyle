@@ -33,27 +33,27 @@ public class CaseHandler extends ExpressionHandler
      * The child elements of a case expression.
      */
     private final int[] mCaseChildren = new int[] {
-        TokenTypes.LITERAL_CASE, 
+        TokenTypes.LITERAL_CASE,
         TokenTypes.LITERAL_DEFAULT
     };
 
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aExpr          the abstract syntax tree
      * @param aParent        the parent handler
      */
     public CaseHandler(IndentationCheck aIndentCheck,
-        DetailAST aExpr, ExpressionHandler aParent) 
+        DetailAST aExpr, ExpressionHandler aParent)
     {
         super(aIndentCheck, "case", aExpr, aParent);
     }
 
     /**
      * Compute the indentation amount for this handler.
-     * 
+     *
      * @return the expected indentation amount
      */
     public int getLevelImpl()
@@ -64,21 +64,21 @@ public class CaseHandler extends ExpressionHandler
     /**
      * Check the indentation of the case statement.
      */
-    private void checkCase() 
+    private void checkCase()
     {
         checkChildren(getMainAst(), mCaseChildren, getLevel(), true, false);
     }
 
-    /** 
+    /**
      * Indentation level suggested for a child element. Children don't have
      * to respect this, but most do.
      *
      * @param aChild  child AST (so suggestion level can differ based on child
      *                  type)
-     * 
+     *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild) 
+    public int suggestedChildLevel(ExpressionHandler aChild)
     {
         return getLevel();
     }
@@ -86,7 +86,7 @@ public class CaseHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         checkCase();
     }

@@ -80,7 +80,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  * <pre>
  * &lt;module name="WhitespaceAround"/&gt;
- * </pre> 
+ * </pre>
  * <p> An example of how to configure the check for whitespace only around
  * assignment operators is:
  * </p>
@@ -177,7 +177,7 @@ public class WhitespaceAroundCheck
         {
             return;
         }
-        
+
         final String[] lines = getLines();
         final String line = lines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;

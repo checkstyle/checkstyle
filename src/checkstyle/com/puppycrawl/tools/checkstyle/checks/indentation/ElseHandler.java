@@ -32,13 +32,13 @@ public class ElseHandler extends BlockParentHandler
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public ElseHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
         super(aIndentCheck, "else", aAst, aParent);
     }
@@ -46,7 +46,7 @@ public class ElseHandler extends BlockParentHandler
     /**
      * Check the indent of the top level token.
      */
-    protected void checkToplevelToken() 
+    protected void checkToplevelToken()
     {
         // check if else is nested with rcurly of if:
         //
@@ -57,8 +57,8 @@ public class ElseHandler extends BlockParentHandler
             DetailAST slist = ifAST.findFirstToken(TokenTypes.SLIST);
             if (slist != null) {
                 DetailAST lcurly = slist.getLastChild();
-                if (lcurly != null 
-                    && lcurly.getLineNo() == getMainAst().getLineNo()) 
+                if (lcurly != null
+                    && lcurly.getLineNo() == getMainAst().getLineNo())
                 {
                     // indentation checked as part of LITERAL IF check
                     return;
@@ -70,10 +70,10 @@ public class ElseHandler extends BlockParentHandler
 
     /**
      * Get the child element that is not a list of statements.
-     * 
+     *
      * @return the non-list child element
      */
-    protected DetailAST getNonlistChild() 
+    protected DetailAST getNonlistChild()
     {
         return (DetailAST) getMainAst().getFirstChild();
     }

@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="StaticVariableName"/&gt;
- * </pre> 
+ * </pre>
  * <p>
  * An example of how to configure the check for names that begin with
  * a lower case letter, followed by letters, digits, and underscores is:

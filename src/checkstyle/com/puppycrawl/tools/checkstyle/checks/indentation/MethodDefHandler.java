@@ -27,29 +27,29 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class MethodDefHandler extends BlockParentHandler 
+public class MethodDefHandler extends BlockParentHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public MethodDefHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
-        super(aIndentCheck, (aAst.getType() == TokenTypes.CTOR_DEF) 
+        super(aIndentCheck, (aAst.getType() == TokenTypes.CTOR_DEF)
             ? "ctor def" : "method def", aAst, aParent);
     }
 
     /**
      * There is no top level expression for this handler.
-     * 
+     *
      * @return null
      */
-    protected DetailAST getToplevelAST() 
+    protected DetailAST getToplevelAST()
     {
         // we check this stuff ourselves below
         return null;
@@ -58,7 +58,7 @@ public class MethodDefHandler extends BlockParentHandler
     /**
      * Check the indentation of the method name.
      */
-    private void checkIdent() 
+    private void checkIdent()
     {
         DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
         int columnNo = expandedTabsColumnNo(ident);
@@ -70,20 +70,20 @@ public class MethodDefHandler extends BlockParentHandler
     /**
      * Check the indentation of the throws clause.
      */
-    private void checkThrows() 
+    private void checkThrows()
     {
-        DetailAST throwsAst = 
+        DetailAST throwsAst =
             getMainAst().findFirstToken(TokenTypes.LITERAL_THROWS);
         if (throwsAst == null) {
             return;
         }
 
         int columnNo = expandedTabsColumnNo(throwsAst);
-        int expectedColumnNo = 
+        int expectedColumnNo =
             getLevel() + getIndentCheck().getIndentationAmount();
 
-        if (startsLine(throwsAst) 
-            && columnNo != expectedColumnNo) 
+        if (startsLine(throwsAst)
+            && columnNo != expectedColumnNo)
         {
             logError(throwsAst, "throws", columnNo, expectedColumnNo);
         }
@@ -92,7 +92,7 @@ public class MethodDefHandler extends BlockParentHandler
     /**
      * Check the indentation of the method type.
      */
-    private void checkType() 
+    private void checkType()
     {
         DetailAST ident = getMainAst().findFirstToken(TokenTypes.TYPE);
         int columnNo = expandedTabsColumnNo(ident);
@@ -104,7 +104,7 @@ public class MethodDefHandler extends BlockParentHandler
     /**
      * Check the indentation of the method parameters.
      */
-    private void checkParameters() 
+    private void checkParameters()
     {
         DetailAST params = getMainAst().findFirstToken(TokenTypes.PARAMETERS);
         checkExpressionSubtree(params, getLevel());
@@ -113,7 +113,7 @@ public class MethodDefHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         checkModifiers();
         checkIdent();

@@ -27,7 +27,7 @@ public final class Defn
     /**
      * Do no allow <code>Defn</code> instances to be created.
      **/
-    private Defn() 
+    private Defn()
     {
     }
 

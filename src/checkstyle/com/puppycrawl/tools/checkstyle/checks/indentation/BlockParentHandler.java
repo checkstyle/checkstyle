@@ -31,47 +31,47 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  * <UL>
  *   <LI>template method to get the lcurly</LI>
  *   <LI>template method to get the rcurly</LI>
- *   <LI>if curlys aren't present, then template method to get expressions 
+ *   <LI>if curlys aren't present, then template method to get expressions
  *       is called</LI>
- *   <LI>now all the repetitous code which checks for BOL, if curlys are on 
+ *   <LI>now all the repetitous code which checks for BOL, if curlys are on
  *       same line, etc. can be collapsed into  the superclass</LI>
  * </OL>
  *
  * @author jrichard
  */
-public class BlockParentHandler extends ExpressionHandler 
+public class BlockParentHandler extends ExpressionHandler
 {
     /**
      * Children checked by parent handlers.
      */
     private static final int[] CHECKED_CHILDREN = new int[] {
-        TokenTypes.VARIABLE_DEF, 
-        TokenTypes.EXPR, 
-        TokenTypes.OBJBLOCK, 
+        TokenTypes.VARIABLE_DEF,
+        TokenTypes.EXPR,
+        TokenTypes.OBJBLOCK,
         TokenTypes.LITERAL_BREAK
     };
 
     /**
      * Construct an instance of this handler with the given indentation check,
      * name, abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aName          the name of the handler
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public BlockParentHandler(IndentationCheck aIndentCheck,
-        String aName, DetailAST aAst, ExpressionHandler aParent) 
+        String aName, DetailAST aAst, ExpressionHandler aParent)
     {
         super(aIndentCheck, aName, aAst, aParent);
     }
 
     /**
      * Get the top level expression being managed by this handler.
-     * 
+     *
      * @return the top level expression
      */
-    protected DetailAST getToplevelAST() 
+    protected DetailAST getToplevelAST()
     {
         return getMainAst();
     }
@@ -79,12 +79,12 @@ public class BlockParentHandler extends ExpressionHandler
     /**
      * Check the indent of the top level token.
      */
-    protected void checkToplevelToken() 
+    protected void checkToplevelToken()
     {
         DetailAST toplevel = getToplevelAST();
 
-        if (toplevel == null 
-            || expandedTabsColumnNo(toplevel) == getLevel()) 
+        if (toplevel == null
+            || expandedTabsColumnNo(toplevel) == getLevel())
         {
             return;
         }
@@ -96,40 +96,40 @@ public class BlockParentHandler extends ExpressionHandler
 
     /**
      * Determines if the top level token must start the line.
-     * 
+     *
      * @return true
      */
-    protected boolean toplevelMustStartLine() 
+    protected boolean toplevelMustStartLine()
     {
         return true;
     }
 
     /**
      * Determines if this block expression has curly braces.
-     * 
+     *
      * @return true if curly braces are present, false otherwise
      */
-    protected boolean hasCurlys() 
+    protected boolean hasCurlys()
     {
         return (getLCurly() != null) && (getRCurly() != null);
     }
 
     /**
      * Get the left curly brace portion of the expression we are handling.
-     * 
+     *
      * @return the left curly brace expression
      */
-    protected DetailAST getLCurly() 
+    protected DetailAST getLCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.SLIST);
     }
 
     /**
      * Get the right curly brace portion of the expression we are handling.
-     * 
+     *
      * @return the right curly brace expression
      */
-    protected DetailAST getRCurly() 
+    protected DetailAST getRCurly()
     {
         DetailAST slist = getMainAst().findFirstToken(TokenTypes.SLIST);
         if (slist == null) {
@@ -142,15 +142,15 @@ public class BlockParentHandler extends ExpressionHandler
     /**
      * Check the indentation of the left curly brace.
      */
-    protected void checkLCurly() 
+    protected void checkLCurly()
     {
-        // the lcurly can either be at the correct indentation, or nested 
+        // the lcurly can either be at the correct indentation, or nested
         // with a previous expression
         DetailAST lcurly = getLCurly();
 
         if (lcurly == null
             || expandedTabsColumnNo(lcurly) == curlyLevel()
-            || !startsLine(lcurly)) 
+            || !startsLine(lcurly))
         {
             return;
         }
@@ -160,7 +160,7 @@ public class BlockParentHandler extends ExpressionHandler
 
     /**
      * Get the expected indentation level for the curly braces.
-     * 
+     *
      * @return the curly brace indentation level
      */
     private int curlyLevel()
@@ -170,20 +170,20 @@ public class BlockParentHandler extends ExpressionHandler
 
     /**
      * Determines if the right curly brace must be at the start of the line.
-     * 
+     *
      * @return true
      */
-    protected boolean rcurlyMustStart() 
+    protected boolean rcurlyMustStart()
     {
         return true;
     }
 
     /**
      * Determines if child elements within the expression may be nested.
-     * 
+     *
      * @return false
      */
-    protected boolean childrenMayNest() 
+    protected boolean childrenMayNest()
     {
         return false;
     }
@@ -191,16 +191,16 @@ public class BlockParentHandler extends ExpressionHandler
     /**
      * Check the indentation of the right curly brace.
      */
-    protected void checkRCurly() 
+    protected void checkRCurly()
     {
-        // the rcurly can either be at the correct indentation, or 
+        // the rcurly can either be at the correct indentation, or
         // on the same line as the lcurly
         DetailAST lcurly = getLCurly();
         DetailAST rcurly = getRCurly();
         if (rcurly == null
             || expandedTabsColumnNo(rcurly) == curlyLevel()
             || (!rcurlyMustStart() && !startsLine(rcurly))
-            || areOnSameLine(rcurly, lcurly)) 
+            || areOnSameLine(rcurly, lcurly))
         {
             return;
         }
@@ -209,10 +209,10 @@ public class BlockParentHandler extends ExpressionHandler
 
     /**
      * Get the child element that is not a list of statements.
-     * 
+     *
      * @return the non-list child element
      */
-    protected DetailAST getNonlistChild() 
+    protected DetailAST getNonlistChild()
     {
         return (DetailAST) getMainAst().findFirstToken(
             TokenTypes.RPAREN).getNextSibling();
@@ -221,7 +221,7 @@ public class BlockParentHandler extends ExpressionHandler
     /**
      * Check the indentation level of a child that is not a list of statements.
      */
-    private void checkNonlistChild() 
+    private void checkNonlistChild()
     {
         // TODO: look for SEMI and check for it here?
         DetailAST nonlist = getNonlistChild();
@@ -235,30 +235,30 @@ public class BlockParentHandler extends ExpressionHandler
 
     /**
      * Get the child element representing the list of statements.
-     * 
+     *
      * @return the statement list child
      */
-    protected DetailAST getListChild() 
+    protected DetailAST getListChild()
     {
         return getMainAst().findFirstToken(TokenTypes.SLIST);
     }
 
     /**
      * Get the right parenthesis portion of the expression we are handling.
-     * 
+     *
      * @return the right parenthis expression
      */
-    protected DetailAST getRParen() 
+    protected DetailAST getRParen()
     {
         return getMainAst().findFirstToken(TokenTypes.RPAREN);
     }
 
     /**
      * Get the left parenthesis portion of the expression we are handling.
-     * 
+     *
      * @return the left parenthis expression
      */
-    protected DetailAST getLParen() 
+    protected DetailAST getLParen()
     {
         return getMainAst().findFirstToken(TokenTypes.LPAREN);
     }
@@ -266,20 +266,20 @@ public class BlockParentHandler extends ExpressionHandler
     /**
      * Check the indentation of the right parenthesis.
      */
-    protected void checkRParen() 
+    protected void checkRParen()
     {
-        // the rcurly can either be at the correct indentation, or on 
+        // the rcurly can either be at the correct indentation, or on
         // the same line as the lcurly
         final DetailAST rparen = getRParen();
 
-        // TODO: perhaps the handler should allow to place 
+        // TODO: perhaps the handler should allow to place
         // rparen at indentation of lparen plus 1
         // if (test1
         //     || test2
         //     )
         if (rparen == null
-            || expandedTabsColumnNo(rparen) == getLevel() 
-            || !startsLine(rparen)) 
+            || expandedTabsColumnNo(rparen) == getLevel()
+            || !startsLine(rparen))
         {
             return;
         }
@@ -291,12 +291,12 @@ public class BlockParentHandler extends ExpressionHandler
      */
     protected void checkLParen()
     {
-        // the rcurly can either be at the correct indentation, or on the 
+        // the rcurly can either be at the correct indentation, or on the
         // same line as the lcurly
         DetailAST lparen = getLParen();
-        if (lparen == null 
-            || expandedTabsColumnNo(lparen) == getLevel() 
-            || !startsLine(lparen)) 
+        if (lparen == null
+            || expandedTabsColumnNo(lparen) == getLevel()
+            || !startsLine(lparen))
         {
             return;
         }
@@ -306,7 +306,7 @@ public class BlockParentHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         checkToplevelToken();
         // seperate to allow for eventual configuration
@@ -318,17 +318,17 @@ public class BlockParentHandler extends ExpressionHandler
         }
         DetailAST listChild = getListChild();
         if (listChild != null) {
-            final int expectedLevel = 
+            final int expectedLevel =
                 getLevel() + getIndentCheck().getIndentationAmount();
             // NOTE: switch statements usually don't have curlys
             if (!hasCurlys() || !areOnSameLine(getLCurly(), getRCurly())) {
-                checkChildren(listChild, 
-                              CHECKED_CHILDREN, 
+                checkChildren(listChild,
+                              CHECKED_CHILDREN,
                               expectedLevel,
-                              true, 
+                              true,
                               childrenMayNest());
             }
-        } 
+        }
         else {
             checkNonlistChild();
         }

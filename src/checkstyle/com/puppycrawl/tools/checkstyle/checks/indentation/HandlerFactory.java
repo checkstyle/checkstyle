@@ -35,20 +35,20 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class HandlerFactory 
+public class HandlerFactory
 {
     /**
      * Registered handlers.
      */
     private Map mTypeHandlers = new HashMap();
 
-    /** 
+    /**
      * registers a handler
      *
      * @param aType   type from TokenTypes
      * @param aHandlerClass  the handler to register
      */
-    private void register(int aType, Class aHandlerClass) 
+    private void register(int aType, Class aHandlerClass)
     {
         try {
             Constructor ctor = aHandlerClass.getConstructor(new Class[] {
@@ -57,13 +57,13 @@ public class HandlerFactory
                 ExpressionHandler.class     // parent
             });
             mTypeHandlers.put(new Integer(aType), ctor);
-        } 
+        }
         catch (NoSuchMethodException e) {
             System.out.println("couldn't find ctor for " + aHandlerClass);
             System.out.println("methods are: " + Arrays.asList(
                 aHandlerClass.getConstructors()).toString());
             e.printStackTrace();
-        } 
+        }
         catch (SecurityException e) {
             System.out.println("couldn't find ctor for " + aHandlerClass);
             e.printStackTrace();
@@ -105,18 +105,18 @@ public class HandlerFactory
      * @param aType type from TokenTypes
      * @return true if handler is registered, false otherwise
      */
-    public boolean isHandledType(int aType) 
+    public boolean isHandledType(int aType)
     {
         Set typeSet = mTypeHandlers.keySet();
         return typeSet.contains(new Integer(aType));
     }
 
-    /** 
+    /**
      * gets list of registered handler types
      *
      * @return int[] of TokenType types
      */
-    public int[] getHandledTypes() 
+    public int[] getHandledTypes()
     {
         Set typeSet = mTypeHandlers.keySet();
         int[] types = new int[typeSet.size()];
@@ -128,17 +128,17 @@ public class HandlerFactory
         return types;
     }
 
-    /** 
+    /**
      * Get the handler for an AST.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           ast to handle
      * @param aParent        the handler parent of this AST
-     * 
+     *
      * @return the ExpressionHandler for aAst
      */
     public ExpressionHandler getHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
         int type = aAst.getType();
 
@@ -155,18 +155,18 @@ public class HandlerFactory
                     }
                 );
             }
-        } 
+        }
         catch (InstantiationException e) {
-            System.out.println("couldn't instantiate constructor for " 
+            System.out.println("couldn't instantiate constructor for "
                 + aAst);
             e.printStackTrace();
-        } 
+        }
         catch (IllegalAccessException e) {
             System.out.println("couldn't access constructor for " + aAst);
             e.printStackTrace();
-        } 
+        }
         catch (InvocationTargetException e) {
-            System.out.println("couldn't instantiate constructor for " 
+            System.out.println("couldn't instantiate constructor for "
                 + aAst);
             e.printStackTrace();
         }

@@ -71,7 +71,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  * </p>
  * <pre>
  * &lt;module name="OperatorWrap"/&gt;
- * </pre> 
+ * </pre>
  * <p> An example of how to configure the check for assignment operators at the
  * end of a line is:
  * </p>
@@ -91,7 +91,7 @@ public class OperatorWrapCheck
 {
     /**
      * Sets the operator wrap option to new line.
-     */  
+     */
     public OperatorWrapCheck()
     {
         super(OperatorWrapOption.NL);

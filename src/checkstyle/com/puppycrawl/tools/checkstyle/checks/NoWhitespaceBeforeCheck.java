@@ -38,12 +38,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@link TokenTypes#DOT DOT} is also an acceptable token in a configuration
  * of this check.
  * </p>
- * 
+ *
  * An example of how to configure the check is:
  * </p>
  * <pre>
  * &lt;module name="NoWhitespaceBefore"/&gt;
- * </pre> 
+ * </pre>
  * <p> An example of how to configure the check to allow linebreaks before
  * a {@link TokenTypes#DOT DOT} token is:
  * <pre>
@@ -71,7 +71,7 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.POST_DEC,
         };
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getAcceptableTokens()
     {

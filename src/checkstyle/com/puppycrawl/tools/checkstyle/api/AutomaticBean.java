@@ -292,7 +292,7 @@ public class AutomaticBean
  * http://cvs.apache.org/viewcvs/jakarta-commons/beanutils/src/java/org/apache/commons/beanutils/converters/StringArrayConverter.java
  * because that implementation fails to convert array of tokens with elements
  * containing an underscore, "_" :(
- * 
+ *
  * @author Rick Giles
  */
 

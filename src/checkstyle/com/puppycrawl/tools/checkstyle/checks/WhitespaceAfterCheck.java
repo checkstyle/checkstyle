@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  * <pre>
  * &lt;module name="WhitespaceAfter"/&gt;
- * </pre> 
+ * </pre>
  * <p> An example of how to configure the check for whitespace only after
  * {@link TokenTypes#COMMA COMMA} and {@link TokenTypes#SEMI SEMI} tokens is:
  * </p>
@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class WhitespaceAfterCheck
     extends Check
-{   
+{
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -85,7 +85,7 @@ public class WhitespaceAfterCheck
             targetAST.getColumnNo() + targetAST.getText().length();
 
         if (after < line.length()) {
-            
+
             final char charAfter = line.charAt(after);
             if ((targetAST.getType() == TokenTypes.SEMI)
                 && ((charAfter == ';') || (charAfter == ')')))
@@ -103,7 +103,7 @@ public class WhitespaceAfterCheck
                     {
                         return;
                     }
-                }   
+                }
                 log(targetAST.getLineNo(),
                     targetAST.getColumnNo() + targetAST.getText().length(),
                     "ws.notFollowed",

@@ -32,9 +32,9 @@ import java.util.Set;
  */
 public abstract class Check extends AbstractViolationReporter
 {
-    /** default tab width for column reporting */ 
+    /** default tab width for column reporting */
     private static final int DEFAULT_TAB_WIDTH = 8;
-    
+
     /** the current file contents */
     private FileContents mFileContents = null;
 

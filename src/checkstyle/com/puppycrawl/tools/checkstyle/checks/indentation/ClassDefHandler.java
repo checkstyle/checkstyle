@@ -27,29 +27,29 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class ClassDefHandler extends BlockParentHandler 
+public class ClassDefHandler extends BlockParentHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public ClassDefHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
-        super(aIndentCheck, aAst.getType() == TokenTypes.CLASS_DEF 
+        super(aIndentCheck, aAst.getType() == TokenTypes.CLASS_DEF
             ? "class def" : "interface def", aAst, aParent);
     }
 
     /**
      * Get the left curly brace portion of the expression we are handling.
-     * 
+     *
      * @return the left curly brace expression
      */
-    protected DetailAST getLCurly() 
+    protected DetailAST getLCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)
             .findFirstToken(TokenTypes.LCURLY);
@@ -57,10 +57,10 @@ public class ClassDefHandler extends BlockParentHandler
 
     /**
      * Get the right curly brace portion of the expression we are handling.
-     * 
+     *
      * @return the right curly brace expression
      */
-    protected DetailAST getRCurly() 
+    protected DetailAST getRCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)
             .findFirstToken(TokenTypes.RCURLY);
@@ -68,10 +68,10 @@ public class ClassDefHandler extends BlockParentHandler
 
     /**
      * There is no top level expression for this handler.
-     * 
+     *
      * @return null
      */
-    protected DetailAST getToplevelAST() 
+    protected DetailAST getToplevelAST()
     {
         return null;
         // note: ident checked by hand in check indentation;
@@ -79,10 +79,10 @@ public class ClassDefHandler extends BlockParentHandler
 
     /**
      * Get the child element representing the list of statements.
-     * 
+     *
      * @return the statement list child
      */
-    protected DetailAST getListChild() 
+    protected DetailAST getListChild()
     {
         return getMainAst().findFirstToken(TokenTypes.OBJBLOCK);
     }
@@ -90,7 +90,7 @@ public class ClassDefHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         // TODO: still need to better deal with the modifiers and "class"
         checkModifiers();
@@ -98,7 +98,7 @@ public class ClassDefHandler extends BlockParentHandler
         LineSet lines = new LineSet();
 
         // checks that line with class name starts at correct indentation,
-        //  and following lines (in implements and extends clauses) are 
+        //  and following lines (in implements and extends clauses) are
         //  indented at least one level
         DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
         int lineStart = getLineStart(ident);

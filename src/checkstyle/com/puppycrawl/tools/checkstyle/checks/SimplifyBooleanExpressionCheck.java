@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  * <pre>
  * &lt;module name="SimplifyBooleanExpression"/&gt;
- * </pre> 
+ * </pre>
  * @author lkuehne
  */
 public class SimplifyBooleanExpressionCheck
@@ -56,7 +56,7 @@ public class SimplifyBooleanExpressionCheck
     {
         return new int[] {};
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getRequiredTokens()
     {

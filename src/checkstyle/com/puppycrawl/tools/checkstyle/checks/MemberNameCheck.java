@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="MemberName"/&gt;
- * </pre> 
+ * </pre>
  * <p>
  * An example of how to configure the check for names that begin with
  * &quot;m&quot;, followed by an upper case letter, and then letters and

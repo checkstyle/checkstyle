@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="JavadocVariable"/&gt;
  * </pre>
- * <p> An example of how to configure the check for the 
+ * <p> An example of how to configure the check for the
  * {@link Scope#PUBLIC} scope is:
  *</p>
  * <pre>

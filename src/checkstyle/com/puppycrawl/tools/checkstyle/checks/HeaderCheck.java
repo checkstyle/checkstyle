@@ -40,7 +40,7 @@ import org.apache.commons.beanutils.ConversionException;
  * since usually the header contains copyright information.
  * </p>
  * <p> The header contents are specified in the file identified by property
- * headerFile. 
+ * headerFile.
  * </p>
  * <p>Property ignoreLines specifies the line numbers to ignore when
  * matching lines in a header file.

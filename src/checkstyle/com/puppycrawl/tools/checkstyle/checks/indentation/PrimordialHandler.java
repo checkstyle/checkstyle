@@ -25,11 +25,11 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class PrimordialHandler extends ExpressionHandler 
+public class PrimordialHandler extends ExpressionHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      */
     public PrimordialHandler(IndentationCheck aIndentCheck)
@@ -40,31 +40,31 @@ public class PrimordialHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         // nothing to check
     }
 
-    /** 
+    /**
      * Indentation level suggested for a child element. Children don't have
      * to respect this, but most do.
      *
      * @param aChild  child AST (so suggestion level can differ based on child
      *                  type)
-     * 
+     *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild) 
+    public int suggestedChildLevel(ExpressionHandler aChild)
     {
         return 0;
     }
 
     /**
      * Compute the indentation amount for this handler.
-     * 
+     *
      * @return the expected indentation amount
      */
-    public int getLevelImpl() 
+    public int getLevelImpl()
     {
         return 0;
     }

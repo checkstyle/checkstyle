@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="LocalFinalVariableName"/&gt;
- * </pre> 
+ * </pre>
  * <p>
  * An example of how to configure the check for names that are only upper case
  * letters and digits is:

@@ -27,73 +27,73 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class ObjectBlockHandler extends BlockParentHandler 
+public class ObjectBlockHandler extends BlockParentHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public ObjectBlockHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
         super(aIndentCheck, "object def", aAst, aParent);
     }
 
     /**
      * There is no top level expression for this handler.
-     * 
+     *
      * @return null
      */
-    protected DetailAST getToplevelAST() 
+    protected DetailAST getToplevelAST()
     {
         return null;
     }
 
     /**
      * Get the left curly brace portion of the expression we are handling.
-     * 
+     *
      * @return the left curly brace expression
      */
-    protected DetailAST getLCurly() 
+    protected DetailAST getLCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.LCURLY);
     }
 
     /**
      * Get the right curly brace portion of the expression we are handling.
-     * 
+     *
      * @return the right curly brace expression
      */
-    protected DetailAST getRCurly() 
+    protected DetailAST getRCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
     }
 
     /**
      * Get the child element representing the list of statements.
-     * 
+     *
      * @return the statement list child
      */
-    protected DetailAST getListChild() 
+    protected DetailAST getListChild()
     {
         return getMainAst();
     }
 
     /**
      * Compute the indentation amount for this handler.
-     * 
+     *
      * @return the expected indentation amount
      */
-    public int getLevelImpl() 
+    public int getLevelImpl()
     {
         DetailAST parentAST = getMainAst().getParent();
         if (parentAST.getType() != TokenTypes.LITERAL_NEW) {
             return getParent().getLevel();
-        } 
+        }
         else {
             return getLineStart(parentAST);
         }
@@ -102,11 +102,11 @@ public class ObjectBlockHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
-        // if we have a class or interface as a parent, don't do anything, 
-        // as this is checked by class def; so 
-        // only do this if we have a new for a parent (anonymous inner 
+        // if we have a class or interface as a parent, don't do anything,
+        // as this is checked by class def; so
+        // only do this if we have a new for a parent (anonymous inner
         // class)
         DetailAST parentAST = getMainAst().getParent();
         if (parentAST.getType() != TokenTypes.LITERAL_NEW) {

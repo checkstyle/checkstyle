@@ -48,12 +48,12 @@ import org.apache.regexp.RE;
  * <p>
  * Error messages about parameters for which no param tags are
  * present can be suppressed by defining property
- * <code>allowMissingParamTags</code>. 
- * Error messages about exceptions which are declared to be thrown, 
- * but for which no throws tag is present can be suppressed by 
- * defining property <code>allowMissingThrowsTags</code>. 
- * Error messages about methods which return non-void but for 
- * which no return tag is present can be suppressed by defining 
+ * <code>allowMissingParamTags</code>.
+ * Error messages about exceptions which are declared to be thrown,
+ * but for which no throws tag is present can be suppressed by
+ * defining property <code>allowMissingThrowsTags</code>.
+ * Error messages about methods which return non-void but for
+ * which no return tag is present can be suppressed by defining
  * property <code>allowMissingReturnTag</code>.
  * </p>
  * <p>
@@ -168,7 +168,7 @@ public class JavadocMethodCheck
 
     /**
      * controls whether to ignore errors when a method declares that
-     * it throws exceptions but does not have matching throws tags 
+     * it throws exceptions but does not have matching throws tags
      * in the javadoc. Defaults to false.
      **/
     private boolean mAllowMissingThrowsTags = false;
@@ -223,7 +223,7 @@ public class JavadocMethodCheck
 
     /**
      * controls whether to allow a method which declares that
-     * it throws exceptions to omit matching throws tags 
+     * it throws exceptions to omit matching throws tags
      * in the javadoc. Defaults to false.
      * @param aFlag a <code>Boolean</code> value
      */
@@ -492,7 +492,7 @@ public class JavadocMethodCheck
                 if ((child.getType() == TokenTypes.IDENT)
                     || (child.getType() == TokenTypes.DOT))
                 {
-                    final ExceptionInfo ei = 
+                    final ExceptionInfo ei =
                         new ExceptionInfo(FullIdent.createFullIdent(child));
                     retVal.add(ei);
                 }
@@ -691,7 +691,7 @@ public class JavadocMethodCheck
                         final Class documentedClass = cr.resolve(documentedEx);
                         try {
                             final Class declaredClass = cr.resolve(declaredEx);
-                            found = 
+                            found =
                                 declaredClass.isAssignableFrom(documentedClass);
                             if (found) {
                                 ei.setFound();
@@ -776,7 +776,7 @@ final class ExceptionInfo
     /** does the exception have throws tag associated with. */
     private boolean mFound;
 
-    /** 
+    /**
      * Creates new instance for <code>FullIdent</code>.
      * @param aIdent <code>FullIdent</code> of the exception
      */

@@ -56,7 +56,7 @@ public class FileLengthCheck extends Check
 {
     /** default maximum number of lines */
     private static final int DEFAULT_MAX_LINES = 2000;
-    
+
     /** the maximum number of lines */
     private int mMaxFileLength = DEFAULT_MAX_LINES;
 

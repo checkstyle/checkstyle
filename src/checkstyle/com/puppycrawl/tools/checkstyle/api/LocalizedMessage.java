@@ -41,7 +41,7 @@ public final class LocalizedMessage
 {
     /** hash function multiplicand */
     private static final int HASH_MULT = 29;
-    
+
     /** the locale to localise messages to **/
     private static Locale sLocale = Locale.getDefault();
 
@@ -71,7 +71,7 @@ public final class LocalizedMessage
 
     /** name of the resource bundle to get messages from **/
     private final String mBundle;
-    
+
     /** name of the source for this LocalizedMessage */
     private final String mSourceName;
 
@@ -187,7 +187,7 @@ public final class LocalizedMessage
     {
         this(aLineNo, aColNo, aBundle, aKey, aArgs, aSeverityLevel, "");
     }
-    
+
     /**
      * Creates a new <code>LocalizedMessage</code> instance.
      *
@@ -207,7 +207,7 @@ public final class LocalizedMessage
     {
         this(aLineNo, 0, aBundle, aKey, aArgs, aSeverityLevel, aSourceName);
     }
-    
+
     /**
      * Creates a new <code>LocalizedMessage</code> instance. The column number
      * defaults to 0.
@@ -222,7 +222,7 @@ public final class LocalizedMessage
     {
         this(aLineNo, 0, aBundle, aKey, aArgs);
     }
-    
+
     /**
      * Creates a new <code>LocalizedMessage</code> instance. The column number
      * defaults to 0.
@@ -329,7 +329,7 @@ public final class LocalizedMessage
     {
         return mSourceName;
     }
-    
+
     /** @param aLocale the locale to use for localization **/
     public static void setLocale(Locale aLocale)
     {

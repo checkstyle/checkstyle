@@ -27,36 +27,36 @@ import com.puppycrawl.tools.checkstyle.checks.IndentationCheck;
  *
  * @author jrichard
  */
-public class IfHandler extends BlockParentHandler 
+public class IfHandler extends BlockParentHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
-     * 
+     *
      * @param aIndentCheck   the indentation check
      * @param aAst           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public IfHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent) 
+        DetailAST aAst, ExpressionHandler aParent)
     {
         super(aIndentCheck, "if", aAst, aParent);
     }
 
-    /** 
+    /**
      * Indentation level suggested for a child element. Children don't have
      * to respect this, but most do.
      *
      * @param aChild  child AST (so suggestion level can differ based on child
      *                  type)
-     * 
+     *
      * @return suggested indentation for child
      */
-    public int suggestedChildLevel(ExpressionHandler aChild) 
+    public int suggestedChildLevel(ExpressionHandler aChild)
     {
         if (aChild instanceof ElseHandler) {
             return getLevel();
-        } 
+        }
         else {
             return super.suggestedChildLevel(aChild);
         }
@@ -64,14 +64,14 @@ public class IfHandler extends BlockParentHandler
 
     /**
      * Compute the indentation amount for this handler.
-     * 
+     *
      * @return the expected indentation amount
      */
-    public int getLevelImpl() 
+    public int getLevelImpl()
     {
         if (isElseIf()) {
             return getParent().getLevel();
-        } 
+        }
         else {
             return super.getLevelImpl();
         }
@@ -79,10 +79,10 @@ public class IfHandler extends BlockParentHandler
 
     /**
      * Determines if this 'if' statement is part of an 'else' clause.
-     * 
+     *
      * @return true if this 'if' is part of an 'else', false otherwise
      */
-    private boolean isElseIf() 
+    private boolean isElseIf()
     {
         // check if there is an 'else' and an 'if' on the same line
         DetailAST parent = getMainAst().getParent();
@@ -93,7 +93,7 @@ public class IfHandler extends BlockParentHandler
     /**
      * Check the indentation of the top level token.
      */
-    protected void checkToplevelToken() 
+    protected void checkToplevelToken()
     {
         if (isElseIf()) {
             return;
@@ -105,11 +105,11 @@ public class IfHandler extends BlockParentHandler
     /**
      * Check the indentation of the conditional expression.
      */
-    private void checkCondExpr() 
+    private void checkCondExpr()
     {
-        DetailAST condAst = (DetailAST) 
+        DetailAST condAst = (DetailAST)
             getMainAst().findFirstToken(TokenTypes.LPAREN).getNextSibling();
-        int expectedLevel = 
+        int expectedLevel =
             getLevel() + getIndentCheck().getIndentationAmount();
         checkExpressionSubtree(condAst, expectedLevel, false, false);
     }
@@ -117,7 +117,7 @@ public class IfHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
-    public void checkIndentation() 
+    public void checkIndentation()
     {
         super.checkIndentation();
         checkCondExpr();

@@ -34,10 +34,10 @@ public final class PadOption
 {
     /** maps from a string representation to an option */
     private static final Map STR_TO_OPT = new HashMap();
-    
+
     /**
      * Represents no spacing following a left parenthesis
-     * or preceeding a right one. 
+     * or preceeding a right one.
      */
     public static final PadOption NOSPACE = new PadOption("nospace");
     /**
@@ -54,10 +54,10 @@ public final class PadOption
     {
         super(aStrRep);
     }
-    
+
     /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
     protected Map getStrToOpt()
     {
         return STR_TO_OPT;
-    }  
+    }
 }
