@@ -18,6 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.HashMap;
+import java.util.Map;
+import org.apache.regexp.RE;
+import org.apache.regexp.RESyntaxException;
+
 /**
  * Contains utility methods.
  *
@@ -26,6 +31,9 @@ package com.puppycrawl.tools.checkstyle;
  */
 final class Utils
 {
+    /** Map of all created regular expressions **/
+    private static final Map CREATED_RES = new HashMap();
+
     /** stop instances being created **/
     private Utils()
     {
@@ -89,5 +97,24 @@ final class Utils
             }
         }
         return len;
+    }
+
+    /**
+     * This is a factory method to return an RE object for the specified
+     * regular expression. This method is not MT safe, but neither are the
+     * returned RE objects.
+     * @return an RE object for the supplied pattern
+     * @param aPattern the regular expression pattern
+     * @throws RESyntaxException an invalid pattern was supplied
+     **/
+    static RE getRE(String aPattern)
+        throws RESyntaxException
+    {
+        RE retVal = (RE) CREATED_RES.get(aPattern);
+        if (retVal == null) {
+            retVal = new RE(aPattern);
+            CREATED_RES.put(aPattern, retVal);
+        }
+        return retVal;
     }
 }
