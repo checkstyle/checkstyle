@@ -271,7 +271,9 @@
     </section>
 
     <section name="scope">
-      <p>This property represents a Java scope. The valid options are:</p>
+      <p>This property represents a Java scope. The scope is treated
+      inclusevly (as javadoc does): 'package' means all 'package', 'protected'
+      and 'public' methods/fields/classes. The valid options are:</p>
 
       <ul>
         <li><span class="default">nothing</span></li>
