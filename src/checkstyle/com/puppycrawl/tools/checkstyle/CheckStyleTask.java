@@ -44,6 +44,7 @@ import org.apache.tools.ant.types.FileSet;
 public class CheckStyleTask
     extends Task
 {
+    // TODO: support setting a CLASSPATH.
     /** poor man's enum for an xml formatter **/
     private static final String E_XML = "xml";
     /** poor man's enum for an plain formatter **/
