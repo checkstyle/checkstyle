@@ -19,9 +19,8 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.Serializable;
-import java.io.ObjectStreamException;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a Java visibility scope.
@@ -175,9 +174,8 @@ public final class Scope implements Comparable, Serializable
      * Serialization Specification for details.
      *
      * @return the serialization replacement object
-     * @throws ObjectStreamException if a deserialization error occurs
      */
-    private Object readResolve() throws ObjectStreamException
+    private Object readResolve()
     {
         return getInstance(mName);
     }
