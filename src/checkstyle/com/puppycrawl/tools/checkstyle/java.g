@@ -314,7 +314,7 @@ field!
             {
                 msig.setThrows(exs);
                 msig.setLineNo(#h.getLineNo());
-                ver.verifyMethodJavadoc(modSet, null, msig);
+                ver.verifyMethod(modSet, null, msig);
                 ver.reportStartMethodBlock();
             } 
             s:constructorBody // constructor
@@ -342,7 +342,7 @@ field!
                 {
                     msig.setThrows(exs);
                     msig.setLineNo(#t.getLineNo());
-                    ver.verifyMethodJavadoc(modSet, #t, msig);
+                    ver.verifyMethod(modSet, #t, msig);
                     ver.reportStartMethodBlock();
                 } 
 				( s2:compoundStatement {ver.verifyMethodLength(#s2.getLineNo(), sCompoundLength);} | SEMI )
