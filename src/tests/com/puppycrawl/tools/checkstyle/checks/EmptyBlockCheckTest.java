@@ -1,7 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.EmptyBlockCheck;
-import com.puppycrawl.tools.checkstyle.checks.BlockOption;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class EmptyBlockCheckTest
     extends BaseCheckTestCase
@@ -11,8 +11,6 @@ public class EmptyBlockCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyBlockCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSemantic.java");
         final String[] expected = {
             "52:65: Must have at least one statement.",
             "54:41: Must have at least one statement.",
@@ -24,7 +22,7 @@ public class EmptyBlockCheckTest
             "79:13: Must have at least one statement.",
             "82:17: Must have at least one statement.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     public void testText()
@@ -33,8 +31,6 @@ public class EmptyBlockCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSemantic.java");
         final String[] expected = {
             "52:65: Empty catch block.",
             "72:52: Empty catch block.",
@@ -42,7 +38,7 @@ public class EmptyBlockCheckTest
             "75:13: Empty try block.",
             "77:17: Empty finally block.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     public void testStatement()
@@ -51,8 +47,6 @@ public class EmptyBlockCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.STMT.toString());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSemantic.java");
         final String[] expected = {
             "52:65: Must have at least one statement.",
             "54:41: Must have at least one statement.",
@@ -64,6 +58,6 @@ public class EmptyBlockCheckTest
             "79:13: Must have at least one statement.",
             "82:17: Must have at least one statement.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 }
