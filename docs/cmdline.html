@@ -104,12 +104,8 @@ This command line tool is included in the checkstyle distribution.</p>
     <td valign="top">Specifies the line in the header to ignore when comparing. Default it to not ignore any line.</td>
   </tr>
   <tr>
-    <td valign="top">checkstyle.javadoc.relax</td> 
-    <td valign="top">Specifies whether to relax checking Javadoc comments. Defaults to <span class="default">&quot;no&quot;</span>.</td>
-  </tr>
-  <tr>
-    <td valign="top">checkstyle.javadoc.ignore</td> 
-    <td valign="top">Specifies whether to completely ignore checking Javadoc comments. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+    <td valign="top">checkstyle.javadoc.scope</td> 
+    <td valign="top">Specifies the visibility scope where javadoc comments are checked. Valid values are <span class="default">&quot;nothing&quot;</span>, <span class="default">&quot;public&quot;</span>, <span class="default">&quot;protected&quot;</span>, <span class="default">&quot;package&quot;</span>, <span class="default">&quot;private&quot;</span> and <span class="default">&quot;anoninner&quot;</span>. Defaults to <span class="default">&quot;private&quot;</span>.</td>
   </tr>
   <tr>
     <td valign="top">checkstyle.ignore.imports</td> 
@@ -128,6 +124,10 @@ This command line tool is included in the checkstyle distribution.</p>
     <td valign="top">Specifies the name of a file that can be used to cache details of files that pass checkstyle. This can signicantly increase the speed of checkstyle on successive runs.</td>
   </tr>
 </table>
+
+<p>
+Older versions of the checkstyle task supported the boolean parameters checkstyle.javadoc.relax and checkstyle.javadoc.ignore. These parameters have been removed because they were conflicting with each other and the semantics of relaxJavadoc was not specified. The two parameters have been replaced by the checkstyle.javadoc.scope parameter. Instead of checkstyle.javadoc.ignore=true you can now use checkstyle.javadoc.scope=nothing. The behaviour of checkstyle.javadoc.relax=true is roughly the same as checkstyle.javadoc.scope=protected.
+</p>
 
 <h3>Examples</h3>
 <p><b>Run checkstyle on a file</b></p>
