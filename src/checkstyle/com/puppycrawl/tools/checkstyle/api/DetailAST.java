@@ -161,13 +161,6 @@ public class DetailAST
         return mColumnNo;
     }
 
-    /** @return a string representation of the object **/
-    public String toString()
-    {
-        return super.toString() + " {line = " + getLineNo() + ", col = "
-            + getColumnNo() + "}";
-    }
-
     /** @return the last child node */
     public DetailAST getLastChild()
     {
