@@ -80,14 +80,13 @@ public class JavadocMethodCheck
 
    /**
     * the pattern to match the first line of a multi-line Javadoc
-    * tag that takes an argument. Javadoc with no arguments isn't
-    * allowed to go over multiple lines.
+    * tag that takes an argument.
     **/
-    private static final String MATCH_JAVADOC_MULTILINE_START_PAT =
+    private static final String MATCH_JAVADOC_ARG_MULTILINE_START_PAT =
         "@(throws|exception|param)\\s+(\\S+)\\s*$";
     /** compiled regexp to match first part of multilineJavadoc tags **/
-    private static final RE MATCH_JAVADOC_MULTILINE_START =
-        Utils.createRE(MATCH_JAVADOC_MULTILINE_START_PAT);
+    private static final RE MATCH_JAVADOC_ARG_MULTILINE_START =
+        Utils.createRE(MATCH_JAVADOC_ARG_MULTILINE_START_PAT);
 
     /** the pattern that looks for a continuation of the comment **/
     private static final String MATCH_JAVADOC_MULTILINE_CONT_PAT =
@@ -102,10 +101,19 @@ public class JavadocMethodCheck
 
     /** the pattern to match Javadoc tags with no argument **/
     private static final String MATCH_JAVADOC_NOARG_PAT =
-        "@(return|see|author)\\s+\\S";
+        "@(return|see)\\s+\\S";
     /** compiled regexp to match Javadoc tags with no argument **/
     private static final RE MATCH_JAVADOC_NOARG =
         Utils.createRE(MATCH_JAVADOC_NOARG_PAT);
+   /**
+    * the pattern to match the first line of a multi-line Javadoc
+    * tag that takes no argument.
+    **/
+    private static final String MATCH_JAVADOC_NOARG_MULTILINE_START_PAT =
+        "@(return|see)\\s*$";
+    /** compiled regexp to match first part of multilineJavadoc tags **/
+    private static final RE MATCH_JAVADOC_NOARG_MULTILINE_START =
+        Utils.createRE(MATCH_JAVADOC_NOARG_MULTILINE_START_PAT);
 
     /** the pattern to match Javadoc tags with no argument and {} **/
     private static final String MATCH_JAVADOC_NOARG_CURLY_PAT =
@@ -313,9 +321,9 @@ public class JavadocMethodCheck
                 tags.add(new JavadocTag(currentLine,
                                         MATCH_JAVADOC_NOARG_CURLY.getParen(1)));
             }
-            else if (MATCH_JAVADOC_MULTILINE_START.match(aLines[i])) {
-                final String p1 = MATCH_JAVADOC_MULTILINE_START.getParen(1);
-                final String p2 = MATCH_JAVADOC_MULTILINE_START.getParen(2);
+            else if (MATCH_JAVADOC_ARG_MULTILINE_START.match(aLines[i])) {
+                final String p1 = MATCH_JAVADOC_ARG_MULTILINE_START.getParen(1);
+                final String p2 = MATCH_JAVADOC_ARG_MULTILINE_START.getParen(2);
 
                 // Look for the rest of the comment if all we saw was
                 // the tag and the name. Stop when we see '*/' (end of
@@ -330,6 +338,27 @@ public class JavadocMethodCheck
                             && !lFin.equals(END_JAVADOC))
                         {
                             tags.add(new JavadocTag(currentLine, p1, p2));
+                        }
+                    }
+                    remIndex++;
+                }
+            }
+            else if (MATCH_JAVADOC_NOARG_MULTILINE_START.match(aLines[i])) {
+                final String p1 = MATCH_JAVADOC_NOARG_MULTILINE_START.getParen(1);
+
+                // Look for the rest of the comment if all we saw was
+                // the tag and the name. Stop when we see '*/' (end of
+                // Javadoc, '@' (start of next tag), or anything that's
+                // not whitespace or '*' characters.
+                int remIndex = i + 1;
+                while (remIndex < aLines.length) {
+                    if (MATCH_JAVADOC_MULTILINE_CONT.match(aLines[remIndex])) {
+                        remIndex = aLines.length;
+                        String lFin = MATCH_JAVADOC_MULTILINE_CONT.getParen(1);
+                        if (!lFin.equals(NEXT_TAG)
+                            && !lFin.equals(END_JAVADOC))
+                        {
+                            tags.add(new JavadocTag(currentLine, p1));
                         }
                     }
                     remIndex++;
