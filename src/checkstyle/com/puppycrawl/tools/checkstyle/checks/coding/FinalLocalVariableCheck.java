@@ -24,6 +24,7 @@ import java.util.Stack;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -105,6 +106,9 @@ public class FinalLocalVariableCheck extends Check
             break;
 
         case TokenTypes.PARAMETER_DEF:
+            if (ScopeUtils.inInterfaceBlock(aAST)) {
+                break;
+            }
         case TokenTypes.VARIABLE_DEF:
             if (aAST.getParent().getType() != TokenTypes.OBJBLOCK) {
                 insertVariable(aAST);
