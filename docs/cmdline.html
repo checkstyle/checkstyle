@@ -3,21 +3,19 @@
 <html>
 <head>
   <title>checkstyle Command Line</title>
-  <style>
-    span.default {white-space: nowrap;font-family: monospace;font-size: x-small;}
-  </style>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
 <body>
-<h2><a name="checkstyle">checkstyle Command Line</a></h2>
-<h3>Description</h3>
+<h1><a name="checkstyle">checkstyle Command Line</a></h1>
+<h2>Description</h2>
 
 <p>This document describes how to run checkstyle using the command line tool. The latest version of checkstyle can be found at 
 <a href="http://checkstyle.sourceforge.net">http://checkstyle.sourceforge.net</a>.
 This command line tool is included in the checkstyle distribution.</p>
 
 
-<h3>Installation</h3>
+<h2>Installation</h2>
 <p>The easiest way is to include <span class="default">checkstyle-all-1.4.jar</span> in the classpath. This contains all the classes required to run checkstyle. Alternatively, you must include the following in the classpath:</p>
 <ol>
   <li><span class="default">checkstyle-1.4.jar</span></li>
@@ -26,7 +24,7 @@ This command line tool is included in the checkstyle distribution.</p>
 </ol>
 
 
-<h3>Usage</h3>
+<h2>Usage</h2>
 <p>The command line usage is:</p>
 <pre>
   java -D&lt;property&gt;=&lt;value&gt;  \
@@ -44,7 +42,7 @@ This command line tool is included in the checkstyle distribution.</p>
 <p>The default behaviour of checkstyle can be changed by setting system properties using the <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to java. The following table describes what properties can be set:</p>
 
 <table border="1" cellpadding="2" cellspacing="0">
-  <tr>
+  <tr class="header">
     <td valign="top"><b>Property</b></td>
     <td valign="top"><b>Description</b></td>
   </tr>
@@ -142,7 +140,7 @@ This command line tool is included in the checkstyle distribution.</p>
 Older versions of the checkstyle task supported the boolean parameters checkstyle.javadoc.relax and checkstyle.javadoc.ignore. These parameters have been removed because they were conflicting with each other and the semantics of relaxJavadoc was not specified. The two parameters have been replaced by the checkstyle.javadoc.scope parameter. Instead of checkstyle.javadoc.ignore=true you can now use checkstyle.javadoc.scope=nothing. The behaviour of checkstyle.javadoc.relax=true is roughly the same as checkstyle.javadoc.scope=protected.
 </p>
 
-<h3>Examples</h3>
+<h2>Examples</h2>
 <p><b>Run checkstyle on a file</b></p>
 <pre>
   java  com.puppycrawl.tools.checkstyle.Main  Check.java
