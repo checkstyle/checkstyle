@@ -42,8 +42,27 @@
         <a name="PackageHtml"></a> <h2>PackageHtml</h2> <h4>Description</h4>
         <p class="body">
         Checks that a <span class="code">package.html</span> file exists for each
-        package.
+        package. More specifically, checks that each java file has a package.html sibling.
         </p>
+
+      <h4 class="body">Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>fileExtensions</td>
+          <td>file type extension to identify java files. Setting this property is
+              typically only required if your java source files are preprocessed
+              and the original files do not have the extension
+              <span class="code">.java</span></td>
+          <td><a href="property_types.html#stringSet">String Set</a></td>
+          <td><span class="default">java</span></td>
+        </tr>
+      </table>
 
         <h4>Example</h4>
         <p class="body">
