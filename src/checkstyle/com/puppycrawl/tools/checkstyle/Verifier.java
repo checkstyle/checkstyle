@@ -208,10 +208,4 @@ interface Verifier
 
     /** Report that the parser is leaving a type block. **/
     void reportEndTypeBlock();
-
-    /**
-     * Report the location of a reference to an identifier
-     * @param aAST details of the identifier
-     */
-    void reportIdentifier(MyCommonAST aAST);
 }

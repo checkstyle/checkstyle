@@ -173,10 +173,11 @@ builtInType
 //   and expand its name by adding dots and following IDENTS
 identifier
 	:	i1:IDENT
-        {ver.reportReference(i1.getText());
+        {
+            ver.reportReference(i1.getText());
             sLastIdentifier = new LineText(i1.getLine(), i1.getText());
         }
-            ( DOT^ i2:IDENT {sLastIdentifier.appendText("." + i2.getText());} )*
+        ( DOT^ i2:IDENT {sLastIdentifier.appendText("." + i2.getText());} )*
 	;
 
 identifierStar
