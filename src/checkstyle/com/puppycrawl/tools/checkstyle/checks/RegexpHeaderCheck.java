@@ -94,9 +94,6 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     /** the compiled regular expressions */
     private RE[] mHeaderRegexps;
 
-    /** number of current template line. */
-    private int mCurrentLineNo;
-
     /**
      * @param aLineNo a line number
      * @return if <code>aLineNo</code> is one of the repeat header lines.

@@ -167,7 +167,7 @@ public final class CheckUtils
         switch (aType) {
         case TokenTypes.NUM_FLOAT:
         case TokenTypes.NUM_DOUBLE:
-            result = (double) Double.parseDouble(aText);
+            result = Double.parseDouble(aText);
             break;
         case TokenTypes.NUM_INT:
         case TokenTypes.NUM_LONG:

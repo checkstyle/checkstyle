@@ -98,11 +98,11 @@ public class FallThroughCheck extends Check
         case TokenTypes.LITERAL_FOR:
         case TokenTypes.LITERAL_WHILE:
         case TokenTypes.LITERAL_DO:
-            return checkLoop(aAST, aUseBreak, aUseContinue);
+            return checkLoop(aAST);
         case TokenTypes.LITERAL_TRY:
             return checkTry(aAST, aUseBreak, aUseContinue);
         case TokenTypes.LITERAL_SWITCH:
-            return checkSwitch(aAST, aUseBreak, aUseContinue);
+            return checkSwitch(aAST, aUseContinue);
         default:
             return false;
         }
@@ -156,12 +156,9 @@ public class FallThroughCheck extends Check
      * Checks if a given loop terminated by return, throw or,
      * if allowed break, continue.
      * @param aAST loop to check
-     * @param aUseBreak should we consider break as terminator.
-     * @param aUseContinue should we consider continue as terminator.
      * @return true if loop is terminated.
      */
-    private boolean checkLoop(final DetailAST aAST, boolean aUseBreak,
-                              boolean aUseContinue)
+    private boolean checkLoop(final DetailAST aAST)
     {
         DetailAST loopBody = null;
         if (aAST.getType() == TokenTypes.LITERAL_DO) {
@@ -208,12 +205,10 @@ public class FallThroughCheck extends Check
      * Checks if a given switch terminated by return, throw or,
      * if allowed break, continue.
      * @param aAST loop to check
-     * @param aUseBreak should we consider break as terminator.
      * @param aUseContinue should we consider continue as terminator.
      * @return true if switch is terminated.
      */
-    private boolean checkSwitch(final DetailAST aAST, boolean aUseBreak,
-                                boolean aUseContinue)
+    private boolean checkSwitch(final DetailAST aAST, boolean aUseContinue)
     {
         DetailAST caseGroup = aAST.findFirstToken(TokenTypes.CASE_GROUP);
         boolean isTerminated = (caseGroup != null);

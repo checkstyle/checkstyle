@@ -262,8 +262,7 @@ public abstract class AbstractClassCouplingCheck extends Check
          */
         private void addReferencedClassName(DetailAST aAST)
         {
-            final String className =
-                FullIdent.createFullIdent((DetailAST) aAST).getText();
+            final String className = FullIdent.createFullIdent(aAST).getText();
             addReferencedClassName(className);
         }
 
