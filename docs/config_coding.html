@@ -61,6 +61,9 @@
         <li>
           <a href="#SimplifyBooleanReturn">SimplifyBooleanReturn</a>
         </li>
+        <li>
+          <a href="#StringLiteralEquality">StringLiteralEquality</a>
+        </li>
       </ul>
     </td>
     <!--Content-->
@@ -625,6 +628,36 @@ return !valid();
       <p class="body">
       <a href="config.html#treewalker">TreeWalker</a>
       </p>
+
+      <!-- --> <a name="StringLiteralEquality"></a> <h2>StringLiteralEquality</h2>
+      <h4>Description</h4>
+      <p class="body">
+      Checks that string literals are not used with
+      <code>==</code> or <code>!=</code>.
+      </p>
+
+      <p class="body">
+      Rationale: Novice Java programmers often use code like
+      <code>if&nbsp;(x&nbsp;==&nbsp;&quot;something&quot;)</code> when they mean
+      <code>if&nbsp;(&quot;something&quot;.equals(x))</code>.
+      </p>
+
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;StringLiteralEquality&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
     </td>
   </tr>
 </table>
