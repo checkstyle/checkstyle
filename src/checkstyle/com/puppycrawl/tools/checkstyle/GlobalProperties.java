@@ -24,15 +24,12 @@ import java.io.ObjectInputStream;
 import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
-
-import org.apache.regexp.RESyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import org.apache.regexp.RESyntaxException;
 
 /**
  * Represents the global properties that checkstyle uses when checking. A
@@ -53,9 +50,6 @@ public class GlobalProperties
      **/
     private transient ClassLoader mLoader =
         Thread.currentThread().getContextClassLoader();
-
-    /** set of boolean properties **/
-    private final Set mBooleanProps = new HashSet();
 
     /** map of int properties **/
     private final Map mIntProps = new HashMap();
@@ -88,11 +82,6 @@ public class GlobalProperties
     public GlobalProperties(Properties aProps, PrintStream aLog)
         throws RESyntaxException, FileNotFoundException, IOException
     {
-        // Initialise the general properties
-        for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
-            setBooleanProperty(aProps, Defn.ALL_BOOLEAN_PROPS[i]);
-        }
-
         for (int i = 0; i < Defn.ALL_INT_PROPS.length; i++) {
             setIntProperty(aProps, aLog, Defn.ALL_INT_PROPS[i]);
         }
@@ -153,11 +142,6 @@ public class GlobalProperties
     {
         final Properties retVal = new Properties();
 
-        for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
-            final String key = Defn.ALL_BOOLEAN_PROPS[i];
-            retVal.put(key, String.valueOf(getBooleanProperty(key)));
-        }
-
         for (int i = 0; i < Defn.ALL_INT_PROPS.length; i++) {
             final String key = Defn.ALL_INT_PROPS[i];
             Utils.addObjectString(retVal, key,
@@ -196,31 +180,10 @@ public class GlobalProperties
         return getIntProperty(Defn.TAB_WIDTH_PROP);
     }
 
-    /** @return whether javadoc package documentation is required */
-    boolean isRequirePackageHtml()
-    {
-        return getBooleanProperty(Defn.REQUIRE_PACKAGE_HTML_PROP);
-    }
-
     /** @return the File of the cache file **/
     String getCacheFile()
     {
         return getStringProperty(Defn.CACHE_FILE_PROP);
-    }
-
-    /**
-     * Set the boolean property.
-     * @param aName name of the property. Should be defined in Defn.
-     * @param aTo the value to set
-     */
-    private void setBooleanProperty(String aName, boolean aTo)
-    {
-        if (aTo) {
-            mBooleanProps.add(aName);
-        }
-        else {
-            mBooleanProps.remove(aName);
-        }
     }
 
     /**
@@ -296,34 +259,6 @@ public class GlobalProperties
                         + ", defaulting to "
                         + getIntProperty(aName)
                         + ".");
-            }
-        }
-    }
-
-
-    /**
-     * @param aName name of the boolean property
-     * @return return whether a specified property is set
-     */
-    private boolean getBooleanProperty(String aName)
-    {
-        return mBooleanProps.contains(aName);
-    }
-
-    /**
-     * Set a boolean property from a property set.
-     * @param aProps the properties set to extract property from
-     * @param aName name of the property to extract
-     */
-    private void setBooleanProperty(Properties aProps, String aName)
-    {
-        String strRep = aProps.getProperty(aName);
-        if (strRep != null) {
-            strRep = strRep.toLowerCase().trim();
-            if (strRep.equals("true") || strRep.equals("yes")
-                || strRep.equals("on"))
-            {
-                setBooleanProperty(aName, true);
             }
         }
     }
