@@ -116,9 +116,6 @@
           and the left parenthesis of the parameter list.  (module
           MethodParamPad, request 843254)</li>
 
-          <li class="body">All comments are wrapped in TextBlocks
-          (request 885993).</li>
-
           <li class="body">Added check to forbid endline
           comments. (module TrailingComment, request 744970)</li>
 
@@ -128,9 +125,6 @@
           <li class="body">Added check to verify padding in empty for loop
           initializers. (module EmptyForInitializerPad, part of fix for
           bug 895072)</li>
-
-          <li class="body">Added programmatic access to token type
-          documentation (request 724871)</li>
 
           <li class="body">Added checkEmptyJavadoc property to JavadocStyle
           check, contributed by Daniel Grenner (request 849056, patch 903597)
@@ -142,8 +136,9 @@
           <li class="body">Added attribute 'default' to configuration
           &lt;property&gt; tags, improves usability for centralized
           configuration files. This change triggered a new version of the
-          configuration DTD but your old configuration files will
-          still work.</li>
+          configuration DTD. Your old configuration files will still work,
+          but if you want to use the new 'default' attribute you need to
+          upgrade your configuration file to DTD version 1.2.</li>
 
           <li class="body">Ignore comments in GenericIllegalRegexp check,
           contributed by Daniel Grenner (request 680988, patch 902109).
@@ -155,7 +150,7 @@
           check to check only private and static methods (request 787683)</li>
 
           <li class="body">Added excludeScope property to
-          Javadoc(Method|Bariable|Type|Style) checks (request
+          Javadoc(Method|Variable|Type|Style) checks (request
           846108)</li>
 
         </ul>
@@ -236,6 +231,19 @@
           and the first semicolon any more.
           To enforce your coding rules for such code, you need to use
           the EmptyForInitializerPad check.</li>
+
+        </ul>
+
+      <p class="body">
+        API changes:
+      </p>
+        <ul>
+
+          <li class="body">Added programmatic access to token type
+          documentation (request 724871)</li>
+
+          <li class="body">All comments are wrapped in TextBlocks
+          (request 885993).</li>
 
         </ul>
 
