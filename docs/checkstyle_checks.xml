@@ -31,7 +31,10 @@
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.LocalFinalVariableNameCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.LocalVariableNameCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.MemberNameCheck"/>
+
+    <check classname="com.puppycrawl.tools.checkstyle.checks.MemberNameCheck">
+        <property name="format" value="^m[A-Z][a-zA-Z0-9]*$"/>
+    </check>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.MethodLeftCurlyCheck">
         <property name="option" value="nl"/>
@@ -58,7 +61,7 @@
         <property name="allowLineBreaks" value="true"/>
     </check>
 
- 
+
 
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.OperatorWrapCheck"/>
@@ -68,11 +71,17 @@
         </tokens>
         <property name="option" value="eol"/>
     </check>
+
     <check classname="com.puppycrawl.tools.checkstyle.checks.OtherLeftCurlyCheck">
         <property name="option" value="nlow"/>
     </check>
+
     <check classname="com.puppycrawl.tools.checkstyle.checks.PackageNameCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck"/>
+
+    <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNameCheck">
+        <property name="format" value="^a[A-Z][a-zA-Z0-9]*$"/>
+    </check>
+
     <check classname="com.puppycrawl.tools.checkstyle.checks.ParameterNumberCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.ParenPadCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.PublicMemberNameCheck"/>
@@ -86,7 +95,11 @@
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanExpressionCheck"/>
     <check classname="com.puppycrawl.tools.checkstyle.checks.SimplifyBooleanReturnCheck"/>
-    <check classname="com.puppycrawl.tools.checkstyle.checks.StaticVariableNameCheck"/>
+
+    <check classname="com.puppycrawl.tools.checkstyle.checks.StaticVariableNameCheck">
+        <property name="format" value="^s[A-Z][a-zA-Z0-9]*$"/>
+    </check>
+
     <check classname="com.puppycrawl.tools.checkstyle.checks.TabCharacterCheck"/>
 
     <check classname="com.puppycrawl.tools.checkstyle.checks.TypeLeftCurlyCheck">
