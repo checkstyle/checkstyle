@@ -10,7 +10,7 @@
   <property name="antlr.jar" value="lib/antlr.jar" />
   <property name="antlr-tools.jar" value="lib/antlr-tools.jar" />
   <property name="regexp.jar" value="lib/jakarta-regexp-1.2.jar" />
-  <property name="junit.jar" value="c:/apps/junit3.7/junit.jar" />
+  <property name="junit.jar" value="lib/junit.jar" />
 
   <property name="checkstyle.dir" value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
   <property name="testreport.dir" value="testreports"/>
