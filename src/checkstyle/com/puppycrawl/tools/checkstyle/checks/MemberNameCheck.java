@@ -71,10 +71,8 @@ public class MemberNameCheck
         DetailAST modifiersAST = aAST.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStatic = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
-        final boolean isPublic = (modifiersAST != null)
-            && modifiersAST.branchContains(TokenTypes.LITERAL_PUBLIC);
 
-        return (!isStatic && !isPublic && !ScopeUtils.inInterfaceBlock(aAST)
+        return (!isStatic && !ScopeUtils.inInterfaceBlock(aAST)
             && !ScopeUtils.inCodeBlock(aAST));
     }
 }

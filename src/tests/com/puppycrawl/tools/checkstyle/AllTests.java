@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.checks.PackageNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.ParameterNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.ParameterNumberCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.ParenPadCheckTest;
-import com.puppycrawl.tools.checkstyle.checks.PublicMemberNameCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.RedundantImportCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.RedundantModifierTest;
 import com.puppycrawl.tools.checkstyle.checks.RightCurlyCheckTest;
@@ -108,7 +107,6 @@ public class AllTests {
         suite.addTest(new TestSuite(ParameterNameCheckTest.class));
         suite.addTest(new TestSuite(ParameterNumberCheckTest.class));
         suite.addTest(new TestSuite(ParenPadCheckTest.class));
-        suite.addTest(new TestSuite(PublicMemberNameCheckTest.class));
         suite.addTest(new TestSuite(RedundantImportCheckTest.class));
         suite.addTest(new TestSuite(RedundantModifierTest.class));
         suite.addTest(new TestSuite(RightCurlyCheckTest.class));

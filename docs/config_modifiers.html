@@ -124,10 +124,12 @@ Language specification, section 9.4</a>).
 
       <a name="VisibilityModifier"></a><h2>VisibilityModifier</h2>
       <p class="body">
-      Checks visibility of class members. Only static final members may be public;
-      other class members must be private unless property <span class="code">
-      protectedAllowed</span> or <span class="code">packageAllowed</span> is set.
+      Checks visibility of class members. Only static final members
+      may be public; other class members must be private unless
+      property <span class="code">protectedAllowed</span> or <span
+      class="code">packageAllowed</span> is set.
       </p>
+
       <p class="body">
       Public members are not flagged if the name matches the public
       member regular expression (contains <span
@@ -136,7 +138,7 @@ Language specification, section 9.4</a>).
       class="code">"^f[A-Z][a-zA-Z0-9]*$"</span> in the default
       pattern to allow CMP for EJB 1.1 with the default settings.
       With EJB 2.0 it is not longer necessary to have public access
-      for persistent fields.
+      for persistent fields, hence the default has been changed.
       </p>
       <p class="body">
       Rationale: Enforce encapsulation.
@@ -167,7 +169,7 @@ Language specification, section 9.4</a>).
           <td>publicMemberPattern</td>
           <td>pattern for public members that should be ignored</td>
           <td><a href="property_types.html#regexp">regular expression</a></td>
-          <td><span class="default">^f[A-Z][a-zA-Z0-9]*$</span></td>
+          <td><span class="default">^serialVersionUID$</span></td>
         </tr>
       </table>
       <h4>Examples</h4>
