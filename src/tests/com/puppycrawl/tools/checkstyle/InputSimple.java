@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-strictfp final class InputSimple // illegal order of modifiers for class
+final class InputSimple
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->	<-
@@ -138,19 +138,9 @@ strictfp final class InputSimple // illegal order of modifiers for class
     {
     }
 
-    /** check illegal order of modifiers for variables */
-    static private boolean sModifierOrderVar = false;
-
-    /**
-       check illegal order of modifiers for methods, make sure that the
-       first and last modifier from the JLS sequence is used.
-     */
-    strictfp private void doStuff()
-    {
-    }
-
     /** test illegal constant **/
     private static final int BAD__NAME = 3;
 
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
+
 }

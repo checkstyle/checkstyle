@@ -378,9 +378,8 @@ public class CheckerTest
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
         final String[] expected = {
-            filepath + ":1: file length is 156 lines (max allowed is 20).",
+            filepath + ":1: file length is 146 lines (max allowed is 20).",
             filepath + ":3: Line does not match expected header line of '// Created: 2001'.",
-            filepath + ":16: 'final' modifier out of order with the JLS suggestions.",
             filepath + ":18: line longer than 80 characters",
             filepath + ":19: line contains a tab character",
             filepath + ":25: variable 'badConstant' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
@@ -406,9 +405,22 @@ public class CheckerTest
             filepath + ":131: '{' should be on the previous line.",
             filepath + ":132: variable 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":137: method name 'ALL_UPPERCASE_METHOD' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            filepath + ":142: 'private' modifier out of order with the JLS suggestions.",
-            filepath + ":148: 'private' modifier out of order with the JLS suggestions.",
-            filepath + ":153: variable 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
+            filepath + ":142: variable 'BAD__NAME' must match pattern '^[A-Z](_?[A-Z0-9]+)*$'.",
+        };
+        verify(c, filepath, expected);
+    }
+
+    public void testModifierChecks()
+        throws Exception
+    {
+        final Checker c = createChecker();
+        final String filepath = getPath("InputModifier.java");
+        assertNotNull(c);
+        final String[] expected = {
+            filepath + ":14: 'final' modifier out of order with the JLS suggestions.",
+            filepath + ":18: 'private' modifier out of order with the JLS suggestions.",
+            filepath + ":24: 'private' modifier out of order with the JLS suggestions.",
+            filepath + ":32: redundant 'public' modifier.",
         };
         verify(c, filepath, expected);
     }
@@ -494,6 +506,7 @@ public class CheckerTest
         throws Exception
     {
         mConfig.setJavadocScope(Scope.PUBLIC);
+        mConfig.setIgnorePublicInInterface(true);
         final Checker c = createChecker();
         final String filepath = getPath("InputScopeInnerInterfaces.java");
         assertNotNull(c);
