@@ -30,7 +30,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.FilterChain;
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.filters.SuppressElement;
 
 /**
@@ -52,7 +52,7 @@ public final class SuppressionsLoader
      * the filter chain to return in getAFilterChain(),
      * configured during parsing
      */
-    private final FilterChain mFilterChain = new FilterChain();
+    private final FilterSet mFilterChain = new FilterSet();
 
     /**
      * Creates a new <code>SuppressionsLoader</code> instance.
@@ -69,7 +69,7 @@ public final class SuppressionsLoader
      * Returns the loaded filter chain.
      * @return the loaded filter chain.
      */
-    public FilterChain getFilterChain()
+    public FilterSet getFilterChain()
     {
         return mFilterChain;
     }
@@ -116,7 +116,7 @@ public final class SuppressionsLoader
      * @return the filter chain of suppression elements specified in the file.
      * @throws CheckstyleException if an error occurs.
      */
-    public static FilterChain loadSuppressions(String aFilename)
+    public static FilterSet loadSuppressions(String aFilename)
         throws CheckstyleException
     {
         FileReader reader = null;
@@ -138,7 +138,7 @@ public final class SuppressionsLoader
      * @return the filter chain of suppression elements in aSource.
      * @throws CheckstyleException if an error occurs.
      */
-    private static FilterChain loadSuppressions(
+    private static FilterSet loadSuppressions(
             InputSource aSource, String aSourceName)
         throws CheckstyleException
     {

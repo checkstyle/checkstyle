@@ -41,14 +41,9 @@ public class IntMatchFilter
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Filter */
-    public int decide(Object aObject)
+    public boolean accept(Object aObject)
     {
-        if ((mMatchValue.equals(aObject))) {
-            return Filter.ACCEPT;
-        }
-        else {
-            return Filter.NEUTRAL;
-        }
+        return mMatchValue.equals(aObject);
     }
 
     /** @see java.lang.Object#toString() */

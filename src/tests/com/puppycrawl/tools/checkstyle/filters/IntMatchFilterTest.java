@@ -10,9 +10,9 @@ public class IntMatchFilterTest extends TestCase
     public void testDecide()
     {
         final Filter filter = new IntMatchFilter(0);
-        assertEquals("less than", Filter.NEUTRAL, filter.decide(new Integer(-1)));
-        assertEquals("equal", Filter.ACCEPT, filter.decide(new Integer(0)));
-        assertEquals("greater than", Filter.NEUTRAL, filter.decide(new Integer(1)));
+        assertFalse("less than", filter.accept(new Integer(-1)));
+        assertTrue("equal", filter.accept(new Integer(0)));
+        assertFalse("greater than", filter.accept(new Integer(1)));
     }
     
     public void testEquals()

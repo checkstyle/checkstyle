@@ -4,35 +4,35 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 
 import junit.framework.TestCase;
 
-/** Tests IntMatchFilter */
+/** Tests IntRangeFilter */
 public class IntRangeFilterTest extends TestCase
 {
     public void testDecide()
     {
         final Filter filter = new IntRangeFilter(0, 10);
-        assertEquals("less than", Filter.NEUTRAL, filter.decide(new Integer(-1)));
-        assertEquals("in range", Filter.ACCEPT, filter.decide(new Integer(0)));
-        assertEquals("in range", Filter.ACCEPT, filter.decide(new Integer(5)));
-        assertEquals("in range", Filter.ACCEPT, filter.decide(new Integer(10)));
-        assertEquals("greater than", Filter.NEUTRAL, filter.decide(new Integer(11)));
+        assertFalse("less than", filter.accept(new Integer(-1)));
+        assertTrue("in range", filter.accept(new Integer(0)));
+        assertTrue("in range", filter.accept(new Integer(5)));
+        assertTrue("in range", filter.accept(new Integer(10)));
+        assertFalse("greater than", filter.accept(new Integer(11)));
     }
     
     public void testDecideSingle()
     {
         final Filter filter = new IntRangeFilter(0, 0);
-        assertEquals("less than", Filter.NEUTRAL, filter.decide(new Integer(-1)));
-        assertEquals("in range", Filter.ACCEPT, filter.decide(new Integer(0)));
-        assertEquals("greater than", Filter.NEUTRAL, filter.decide(new Integer(1)));
+        assertFalse("less than", filter.accept(new Integer(-1)));
+        assertTrue("in range", filter.accept(new Integer(0)));
+        assertFalse("greater than", filter.accept(new Integer(1)));
     }
 
     public void testDecideEmpty()
     {
         final Filter filter = new IntRangeFilter(10, 0);
-        assertEquals("out", Filter.NEUTRAL, filter.decide(new Integer(-1)));
-        assertEquals("out", Filter.NEUTRAL, filter.decide(new Integer(0)));
-        assertEquals("out", Filter.NEUTRAL, filter.decide(new Integer(5)));
-        assertEquals("out", Filter.NEUTRAL, filter.decide(new Integer(10)));
-        assertEquals("out", Filter.NEUTRAL, filter.decide(new Integer(11)));
+        assertFalse("out", filter.accept(new Integer(-1)));
+        assertFalse("out", filter.accept(new Integer(0)));
+        assertFalse("out", filter.accept(new Integer(5)));
+        assertFalse("out", filter.accept(new Integer(10)));
+        assertFalse("out", filter.accept(new Integer(11)));
     }
     
     public void testEquals()
