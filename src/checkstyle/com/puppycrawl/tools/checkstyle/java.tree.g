@@ -343,7 +343,10 @@ stat
    |  #("return" (expression)? )
    |  #("switch" expression (caseGroup)*)
    |  #("throw" expression)
-   |  #("synchronized" expression stat)
+   |  #(ss:"synchronized" expression stat)
+      {
+        ver.verifySurroundingWS(ss);
+      }
    |  tryBlock
    |  slist // nested SLIST
    |  EMPTY_STAT
@@ -359,7 +362,10 @@ tryBlock
 
 handler
 { Object ignore;}
-	:	#( "catch" ignore=parameterDef slist )
+	:	#( cc:"catch" ignore=parameterDef slist )
+      {
+        ver.verifySurroundingWS(cc);
+      }
 	;
 
 elist

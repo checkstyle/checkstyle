@@ -28,4 +28,15 @@ class InputWhitespace
         b = b ++; // Ignore 1
         b = ++ b; // Ignore 1
     }
+
+    /** method **/
+    void method2()
+    {
+        synchronized(this) {
+        }
+        try{
+        }
+        catch(RuntimeException e){
+        }
+    }
 }
