@@ -25,6 +25,10 @@ package com.puppycrawl.tools.checkstyle;
  **/
 public interface Defn
 {
+    // TODO: Change to a class - follow the advice of Bloch.
+    /** name of resource bundle for Checkstyle */
+    String CHECKSTYLE_BUNDLE = "com.puppycrawl.tools.checkstyle.messages";
+
     /** property name for the to-do pattern **/
     String TODO_PATTERN_PROP = "checkstyle.pattern.todo";
     /** property name for the parameter pattern **/
