@@ -23,18 +23,26 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Check;
 
 /**
+ * <p>Checks that long constants are defined with an upper ell.
+ * That is <span class="code">'L'</span> and not
+ * <span class="code">'l'</span>. This is in accordance to the Java Language
+ * Specification, <a href=
+"http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282"
+ * >Section 3.10.1</a>.
+ * </p>
  * <p>
- * Checks that long constants are defined with an uppper ell. That is 'L' and
- * not 'l'.
+ * Rationale: The letter <span class="code">l</span> looks a lot
+ * like the number <span class="code">1</span>.
  * </p>
- * <p> Rationale: The letter l looks a lot like 1.
+ * <h4>Examples</h4>
+ * <p class="body">
+ * To configure the check:
+ *
  * </p>
- * <p>
- * An example of how to configure the check is:
- * </p>
- * <pre>
- * &lt;module name="UpperEll"/&gt;
+ * <pre class="body">
+ * &lt;module name=&quot;UpperEll&quot;/&gt;
  * </pre>
+ *
  * @author Oliver Burn
  * @version 1.0
  */
