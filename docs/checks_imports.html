@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Checks for imports</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+<body>
+<h1>Checks for imports</h1>
+
+<p>The property <span class="code">checkstyle.ignore.imports</span> controls
+whether to check import statements. The property type is <a
+href="property_types.html#boolean">boolean</a> and defaults to <span
+class="default">false</span>.</p>
+
+<p>Checkstyle uses a simple but very reliable algorithm to report on unused import statements. An import statement is considered unused if:</p>
+
+<ul>
+  <li>It is not referenced in the file. The algorithm does not support
+  wild-card imports like <span class="code">import java.io.*;</span>. Most
+  IDE's provide very sophisticated checks for imports that handle wild-card
+  imports.</li>
+
+  <li>It is a duplicate of another import. This is when a class is imported
+  more than once.</li>
+
+  <li>The class imported is from the <span class="code">java.lang</span>
+  package. For example importing <span
+  class="code">java.lang.String</span>.</li>
+
+  <li>The class imported is from the same package.</li>
+</ul>
+
+
+<p>The property <span class="code">checkstyle.illegal.imports</span> contains
+the set of import illegal package prefixes for import statements. The property
+type is <a href="property_types.html#stringSet">string set</a> and defaults to
+<span class="code">sun</span> since programs that contain direct calls to the
+<span class="code">sun.*</span> packages are <a
+href="http://java.sun.com/products/jdk/faq/faq-sun-packages.html">not 100%
+Pure Java</a>.</p>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Property Types</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+<body>
+<h1>Property Types</h1>
+
+<p>Checkstyle is configured using properties, which are string
+representations. This document describes how these string representations are
+mapped to typed properties.</p>
+
+<h2><a name="boolean">Boolean</a></h2>
+
+<p>This property represents a boolean. The default value is <span
+class="code">false</span>. The following string representations will map to
+<span class="code">true</span>:</p>
+
+<ul>
+  <li><span class="code">yes</span></li>
+  <li><span class="code">true</span></li>
+  <li><span class="code">on</span></li>
+</ul>
+
+<p>Anything else will map to <span class="code">false</span>.</p>
+
+
+<h2><a name="stringSet">String Set</a></h2>
+
+<p>This property represents a set of strings. The string representation is
+parsed as a set of comma (',') separated strings.</p>
+
+
+<h2><a name="integer">Integer</a></h2>
+
+<p>This property represents an integer. The string representation is parsed
+using the <span class="code">java.lang.Integer</span> class.</p>
+
+
+<h2><a name="regexp">Regular Expression</a></h2>
+
+<p>This property represents a regular expression. The string representation is
+parsed using the excellent <a href="http://jakarta.apache.org/regexp">Jakarta
+Regexp</a> library.</p>
+
+
+</body>
+</html>

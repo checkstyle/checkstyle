@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Modifier Checks</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+<body>
+<h1>Modifier Checks</h1>
+
+<h2>Modifier Order</h2>
+
+<p>Checkstyle checks that the order of modifiers conforms to the suggestions in the <a href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">Java Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>. The correct order is:</p>
+
+<ol>
+  <li><span class="code">public</span></li>
+  <li><span class="code">protected</span></li>
+  <li><span class="code">private</span></li>
+  <li><span class="code">abstract</span></li>
+  <li><span class="code">static</span></li>
+  <li><span class="code">final</span></li>
+  <li><span class="code">transient</span></li>
+  <li><span class="code">volatile</span></li>
+  <li><span class="code">synchronized</span></li>
+  <li><span class="code">native</span></li>
+  <li><span class="code">strictfp</span></li>
+</ol>
+
+
+<h2>Redundant Modifiers</h2>
+
+<p>Checkstyle checks that method declarations in interfaces do not include the
+<span class="code">abstract</span> modifier (see the <a
+href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java
+Language specification, section 9.4</a>).</p>
+
+<p>The property <span class="code">checkstyle.ignore.public.in.interface</span>
+defines whether to ignore the <span class="code">public</span> modifier in
+interface definitions (see the
+<a href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java Language specification, section 9.4)</a>). The property type is
+<a href="property_types.html#boolean">boolean</a> and defaults to
+<span class="code">false</span>.</p>
+
+
+<h2>Visibility Modifiers</h2>
+
+<p>Checkstyle checks for class data members that are not declared
+<span class="code">private</span>. It also checks for
+<span class="code">static</span> non-<span class="code">final</span> data
+members that are not declared as <code>private</code>.</p>
+
+<p>The property <span class="code">checkstyle.allow.protected</span> defines
+whether to allow <span class="code">protected</span> class data members. The
+property type is <a href="property_types.html#boolean">boolean</a> and
+defaults to <span class="code">false</span>.</p>
+
+<p>The property <span class="code">checkstyle.allow.package</span> defines
+whether to allow package protected class data members. The property type is
+<a href="property_types.html#boolean">boolean</a> and defaults to
+<span class="code">false</span>.</p>
+
+
+<p>The property <span class="code">checkstyle.pattern.publicmember</span>
+defines the format for <span class="code">public</span> class data members
+that are allowed to be <span class="code">public</span>. The property type is
+<a href="property_types.html#regexp">regular expression</a> and defaults to
+<span class="code">^f[A-Z][a-zA-Z0-9]*$</span>.</p>
+
+<div class="tip">
+<h4 class="tip">Tip</h4>
+
+<p>Container Managed Persistence EJBs require (in the EJB 1.1 specification)
+that managed fields are declared <span class="code">public</span>. This will
+cause Checkstyle to complain that the fields should be declared <span
+class="code">private</span>. The property
+<span class="code">checkstyle.pattern.publicmember</span> is ideal for this
+situation.</p>
+
+</div>
+
+</body>
+</html>
