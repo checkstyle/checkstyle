@@ -30,6 +30,8 @@ import com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheckTe
 import com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.RedundantThrowsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheckTest;
@@ -131,6 +133,8 @@ public class AllTests {
         suite.addTest(new TestSuite(MethodNameCheckTest.class));
         suite.addTest(new TestSuite(ModifierOrderCheckTest.class));
         suite.addTest(new TestSuite(NeedBracesCheckTest.class));
+        suite.addTest(new TestSuite(NestedIfDepthCheckTest.class));
+        suite.addTest(new TestSuite(NestedTryDepthCheckTest.class));
         suite.addTest(new TestSuite(NewlineAtEndOfFileCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceAfterCheckTest.class));
         suite.addTest(new TestSuite(NoWhitespaceBeforeCheckTest.class));

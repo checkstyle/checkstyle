@@ -120,6 +120,14 @@
         <module name="ArrayTrailingComma"/>
 
         <!-- Generates quite a few errors -->
-        <!-- module name="CyclomaticComplexity"/ -->
+        <module name="CyclomaticComplexity">
+            <property name="severity" value="ignore"/>
+        </module>
+
+        <module name="NestedIfDepth">
+            <property name="max" value="3"/>
+        </module>
+
+        <module name="NestedTryDepth"/>
     </module>
 </module>

@@ -56,6 +56,12 @@
           <a href="#MissingSwitchDefault">MissingSwitchDefault</a>
         </li>
         <li>
+          <a href="#NestedIfDepth">NestedIfDepth</a>
+        </li>
+        <li>
+          <a href="#NestedTryDepth">NestedTryDepth</a>
+        </li>
+        <li>
           <a href="#RedundantThrows">RedundantThrows</a>
         </li>
         <li>
@@ -681,6 +687,98 @@ return !valid();
       </p>
       <pre class="body">
 &lt;module name=&quot;StringLiteralEquality&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="NestedIfDepth"></a> <h2>NestedIfDepth</h2>
+      <h4>Description</h4>
+      <p class="body">
+      Restricts nested if-else blocks to a specified depth (default = 1).
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>allowed nesting depth</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td><span class="default">1</span></td>
+        </tr>
+      </table>
+
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NestedIfDepth&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to allow nesting depth 3:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NestedIfDepth&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="NestedTryDepth"></a> <h2>NestedTryDepth</h2>
+      <h4>Description</h4>
+      <p class="body">
+      Restricts nested if-else blocks to a specified depth (default = 1).
+      </p>
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>allowed nesting depth</td>
+          <td><a href="property_types.html#integer">Integer</a></td>
+          <td><span class="default">1</span></td>
+        </tr>
+      </table>
+
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NestedTryDepth&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check to allow nesting depth 3:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;NestedTryDepth&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+&lt;/module&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
