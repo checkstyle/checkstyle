@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<digester-rules>
+<!-- This form of rule is also accepted
+   <pattern value="configuration">
+   	<config-create-rule
+    	  shortname="configuration"
+          classname="com.puppycrawl.tools.checkstyle.Configuration" />
+   </pattern>
+   -->
+
+  	<config-create-rule
+  		  pattern="configuration"
+          classname="com.puppycrawl.tools.checkstyle.Configuration" />
+         
+	<config-create-rule
+  		  pattern="*/TreeWalker"
+          classname="com.puppycrawl.tools.checkstyle.TreeWalker" />
+         
+	<config-create-rule
+  		  pattern="*/AvoidStarImport"
+          classname="com.puppycrawl.tools.checkstyle.AvoidStarImport" />
+                     
+	<config-create-rule
+  		  pattern="*/MemberNameCheck"
+          classname="com.puppycrawl.tools.checkstyle.MemberNameCheck" />
+
+</digester-rules>
