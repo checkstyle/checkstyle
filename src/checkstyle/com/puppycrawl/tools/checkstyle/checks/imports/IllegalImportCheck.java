@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractImportCheck;
 
 /**
  * <p>
@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractImportCheck;
  * @version 1.0
  */
 public class IllegalImportCheck
-    extends AbstractImportCheck
+    extends Check
 {
     /** list of illegal packages */
     private String[] mIllegalPkgs;
@@ -86,7 +86,7 @@ public class IllegalImportCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-        final FullIdent imp = getImportText(aAST);
+        final FullIdent imp = FullIdent.createFullIdentBelow(aAST);
         if (isIllegalImport(imp.getText())) {
             log(aAST.getLineNo(),
                 aAST.getColumnNo(),

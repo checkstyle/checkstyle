@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -25,16 +26,13 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.AbstractImportCheck;
 import com.puppycrawl.tools.checkstyle.checks.ClassResolver;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
-
 import org.apache.regexp.RE;
 
 /**
@@ -83,7 +81,7 @@ import org.apache.regexp.RE;
  * @version 1.1
  */
 public class JavadocMethodCheck
-    extends AbstractImportCheck
+    extends Check
 {
 
        // {{{ Data declarations
@@ -317,7 +315,7 @@ public class JavadocMethodCheck
      */
     private void processImport(DetailAST aAST)
     {
-        final FullIdent name = getImportText(aAST);
+        final FullIdent name = FullIdent.createFullIdentBelow(aAST);
         if (name != null) {
             mImports.add(name.getText());
         }

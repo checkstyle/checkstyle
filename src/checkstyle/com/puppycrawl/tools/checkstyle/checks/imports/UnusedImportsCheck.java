@@ -18,15 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.AbstractImportCheck;
-
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Iterator;
+import java.util.Set;
 
 /**
  * <p>
@@ -42,7 +41,7 @@ import java.util.Iterator;
  * @version 1.0
  */
 public class UnusedImportsCheck
-    extends AbstractImportCheck
+    extends Check
 {
     /** flag to indicate when time to start collecting references */
     private boolean mCollect;
@@ -129,7 +128,7 @@ public class UnusedImportsCheck
      */
     private void processImport(DetailAST aAST)
     {
-        final FullIdent name = getImportText(aAST);
+        final FullIdent name = FullIdent.createFullIdentBelow(aAST);
         if ((name != null) && !name.getText().endsWith(".*")) {
             mImports.add(name);
         }

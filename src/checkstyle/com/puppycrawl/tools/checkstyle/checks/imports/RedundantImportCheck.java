@@ -19,14 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.checks.AbstractImportCheck;
-
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.HashSet;
 
 /**
  * <p>
@@ -50,7 +49,7 @@ import java.util.HashSet;
  * @version 1.0
  */
 public class RedundantImportCheck
-    extends AbstractImportCheck
+    extends Check
 {
     /** name of package in file */
     private String mPkgName;
@@ -78,7 +77,7 @@ public class RedundantImportCheck
             mPkgName = FullIdent.createFullIdent(nameAST).getText();
         }
         else {
-            final FullIdent imp = getImportText(aAST);
+            final FullIdent imp = FullIdent.createFullIdentBelow(aAST);
             if (fromPackage(imp.getText(), "java.lang")) {
                 log(aAST.getLineNo(), aAST.getColumnNo(), "import.lang",
                     imp.getText());

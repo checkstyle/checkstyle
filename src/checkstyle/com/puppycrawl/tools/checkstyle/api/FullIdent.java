@@ -110,6 +110,16 @@ public final class FullIdent
     }
 
     /**
+     * Creates a new FullIdent starting from the child of the specified node.
+     * @param aAST the parent node from where to start from
+     * @return a <code>FullIdent</code> value
+     */
+    public static FullIdent createFullIdentBelow(DetailAST aAST)
+    {
+        return createFullIdent((DetailAST) aAST.getFirstChild());
+    }
+
+    /**
      * Recursively extract a FullIdent.
      *
      * @param aFull the FullIdent to add to
