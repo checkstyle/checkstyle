@@ -5,28 +5,13 @@
 <!-- Checkstyle XML Style Sheet by Stephane Bailliez <sbailliez@apache.org>         -->
 <!-- Part of the Checkstyle distribution found at http://checkstyle.sourceforge.net -->
 <!-- Usage (generates checkstyle_report.html):                                      -->
-<!--    <checkstyle                                                                 -->
-<!--            allowTabs="true"                                                    -->
-<!--            allowProtected="false"                                              -->
-<!--            allowNoAuthor="false"                                               -->
-<!--            maxLineLen="132"                                                    -->
-<!--            memberPattern="."                                                   -->
-<!--            publicMemberPattern="^[a-z][a-zA-Z0-9]*$"                           -->
-<!--            paramPattern="^[a-z][a-zA-Z0-9]*$"                                  -->
-<!--            constPattern="^[A-Z][A-Z0-9_]*$"                                    -->
-<!--            staticPattern="^[a-z][a-zA-Z0-9]*$"                                 -->
-<!--            typePattern="^[A-Z][a-zA-Z0-9]*$"                                   -->
-<!--            ignoreImports="true"                                                -->
-<!--            ignoreWhitespace="true"                                             -->
-<!--            ignoreBraces="false"                                                -->
-<!--            failOnViolation="false">                                            -->
-<!--        <fileset dir="${src.dir}" includes="**/*.java"/>                        -->
-<!--        <formatter type="plain"/>                                               -->
-<!--        <formatter type="xml" toFile="${doc.dir}/checkstyle_report.xml"/>       -->
+<!--    <checkstyle failonviolation="false" config="${check.config}">               -->
+<!--      <fileset dir="${src.dir}" includes="**/*.java"/>                          -->
+<!--      <formatter type="xml" toFile="${doc.dir}/checkstyle_report.xml"/>         -->
 <!--    </checkstyle>                                                               -->
 <!--    <style basedir="${doc.dir}" destdir="${doc.dir}"                            -->
 <!--            includes="checkstyle_report.xml"                                    -->
-<!--            style="${doc.dir}/checkstyle-noframes.xsl"/>                        -->
+<!--            style="${doc.dir}/checkstyle-noframes-sorted.xsl"/>                 -->
 
 <xsl:template match="checkstyle">
 	<html>
