@@ -160,6 +160,7 @@ public final class Main
     /**
      * Loads properties from a File.
      * @param aFile the properties file
+     * @return the properties in aFile
      */
     private static Properties loadProperties(File aFile)
     {
