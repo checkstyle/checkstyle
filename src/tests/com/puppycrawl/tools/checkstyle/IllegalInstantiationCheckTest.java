@@ -7,10 +7,11 @@ public class IllegalInstantiationCheckTest
 {
     public void testIt() throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(IllegalInstantiationCheck.class.getName());
-        checkConfig.addProperty("classes",
-                "java.lang.Boolean,"
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(IllegalInstantiationCheck.class);
+        checkConfig.addAttribute(
+            "classes",
+            "java.lang.Boolean,"
                 + "com.puppycrawl.tools.checkstyle.InputModifier,"
                 + "java.io.File,"
                 + "java.awt.Color");

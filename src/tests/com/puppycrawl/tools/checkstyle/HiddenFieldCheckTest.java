@@ -8,9 +8,9 @@ public class HiddenFieldCheckTest
     public void testNoParameters()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(HiddenFieldCheck.class.getName());
-        checkConfig.addProperty("checkParameters", "false");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HiddenFieldCheck.class);
+        checkConfig.addAttribute("checkParameters", "false");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputHiddenField.java");
         final String[] expected = {
@@ -32,8 +32,8 @@ public class HiddenFieldCheckTest
     public void testDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(HiddenFieldCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HiddenFieldCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputHiddenField.java");
         final String[] expected = {
@@ -61,8 +61,8 @@ public class HiddenFieldCheckTest
     public void testReordered()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(HiddenFieldCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HiddenFieldCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputHiddenFieldReorder.java");
         final String[] expected = {

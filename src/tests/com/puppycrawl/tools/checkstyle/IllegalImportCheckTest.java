@@ -8,9 +8,9 @@ extends BaseCheckTestCase
     public void testWithSupplied()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(IllegalImportCheck.class.getName());
-        checkConfig.addProperty("illegalPkgs", "java.io");
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(IllegalImportCheck.class);
+        checkConfig.addAttribute("illegalPkgs", "java.io");
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputImport.java");
         final String[] expected = {
@@ -22,8 +22,8 @@ extends BaseCheckTestCase
     public void testWithDefault()
         throws Exception
     {
-        final CheckConfiguration checkConfig = new CheckConfiguration();
-        checkConfig.setClassname(IllegalImportCheck.class.getName());
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(IllegalImportCheck.class);
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("InputImport.java");
         final String[] expected = {
