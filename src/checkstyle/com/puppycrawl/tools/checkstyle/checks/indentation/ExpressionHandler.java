@@ -130,7 +130,8 @@ public abstract class ExpressionHandler
     protected final void logError(DetailAST aAst, String aSubtypeName,
                                   int aActualLevel, IndentLevel aExpectedLevel)
     {
-        String typeStr = (aSubtypeName == "" ? "" : (" " + aSubtypeName));
+        String typeStr =
+            (aSubtypeName.length() == 0 ? "" : (" " + aSubtypeName));
         Object[] args = new Object[] {
             mTypeName + typeStr,
             new Integer(aActualLevel),
