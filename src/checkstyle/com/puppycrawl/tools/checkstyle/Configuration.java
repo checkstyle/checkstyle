@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -53,44 +52,30 @@ public class Configuration
     // Constants
     ////////////////////////////////////////////////////////////////////////////
 
-    /** the pattern to match against to-do lines **/
-    private static final String TODO_PATTERN = "TODO:";
-    /** the pattern to match against parameter names **/
-    private static final String PARAMETER_PATTERN = "^[a-z][a-zA-Z0-9]*$";
-    /** the pattern to match against static names **/
-    private static final String STATIC_PATTERN = "^[a-z][a-zA-Z0-9]*$";
-    /** the pattern to match against constant names **/
-    private static final String CONST_PATTERN = "^[A-Z](_?[A-Z0-9]+)*$";
-    /** the pattern to match against member names **/
-    private static final String MEMBER_PATTERN = "^[a-z][a-zA-Z0-9]*$";
-    /** the pattern to match against public member names **/
-    private static final String PUBLIC_MEMBER_PATTERN = "^f[A-Z][a-zA-Z0-9]*$";
-    /** the pattern to match against type names **/
-    private static final String TYPE_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
-    /** the pattern to match against method local variables **/
-    private static final String LOCAL_VAR_PATTERN = "^[a-z][a-zA-Z0-9]*$";
-    /** the pattern to match against method local final variables **/
-    private static final String LOCAL_FINAL_VAR_PATTERN = "^[a-z][a-zA-Z0-9]*$";
-    /** the pattern to match against method names **/
-    private static final String METHOD_PATTERN = "^[a-z][a-zA-Z0-9]*$";
-    /** the pattern to exclude from line length checks **/
-    private static final String IGNORE_LINE_LENGTH_PATTERN = "^$";
-    /** the maximum line length **/
-    private static final int MAX_LINE_LENGTH = 80;
-    /** the maximum method length **/
-    private static final int MAX_METHOD_LENGTH = 150;
-    /** the maximum constructor length **/
-    private static final int MAX_CONSTRUCTOR_LENGTH = 150;
-    /** the maximum file length **/
-    private static final int MAX_FILE_LENGTH = 2000;
-    /** the maximum number parameters **/
-    private static final int MAX_PARAMETERS = 7;
     /** the set of illegal imports (comma separated package prefixes) **/
     private static final String ILLEGAL_IMPORTS = "sun";
     /** the set of illegal instantiations (comma separated class names) **/
     private static final String ILLEGAL_INSTANTIATIONS = "";
-    /** the number of spaces that are represented by one tab character **/
-    private static final int TAB_WIDTH = 8;
+
+    /** pattern defaults **/
+    private static final Map PATTERN_DEFAULTS = new HashMap();
+    static {
+        PATTERN_DEFAULTS.put(Defn.TODO_PATTERN_PROP, "TODO:");
+        PATTERN_DEFAULTS.put(Defn.PARAMETER_PATTERN_PROP,
+                             "^[a-z][a-zA-Z0-9]*$");
+        PATTERN_DEFAULTS.put(Defn.STATIC_PATTERN_PROP, "^[a-z][a-zA-Z0-9]*$");
+        PATTERN_DEFAULTS.put(Defn.CONST_PATTERN_PROP, "^[A-Z](_?[A-Z0-9]+)*$");
+        PATTERN_DEFAULTS.put(Defn.MEMBER_PATTERN_PROP, "^[a-z][a-zA-Z0-9]*$");
+        PATTERN_DEFAULTS.put(Defn.PUBLIC_MEMBER_PATTERN_PROP,
+                             "^f[A-Z][a-zA-Z0-9]*$");
+        PATTERN_DEFAULTS.put(Defn.TYPE_PATTERN_PROP, "^[A-Z][a-zA-Z0-9]*$");
+        PATTERN_DEFAULTS.put(Defn.LOCAL_VAR_PATTERN_PROP,
+                             "^[a-z][a-zA-Z0-9]*$");
+        PATTERN_DEFAULTS.put(Defn.LOCAL_FINAL_VAR_PATTERN_PROP,
+                             "^[a-z][a-zA-Z0-9]*$");
+        PATTERN_DEFAULTS.put(Defn.METHOD_PATTERN_PROP, "^[a-z][a-zA-Z0-9]*$");
+        PATTERN_DEFAULTS.put(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP, "^$");
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     // Member variables
@@ -98,15 +83,11 @@ public class Configuration
 
     /** visibility scope where Javadoc is checked **/
     private Scope mJavadocScope = Scope.PRIVATE;
-    /** illegal imports **/
-    private final HashSet mIllegalImports = new HashSet();
-    /** illegal instantiations **/
-    private final HashSet mIllegalInstantiations = new HashSet();
 
+    /** the name of the header file **/
+    private String mHeaderFile;
     /** the header lines to check for **/
-    private String[] mHeaderLines = {};
-    /** line numbers to ignore in header **/
-    private TreeSet mHeaderIgnoreLineNo = new TreeSet();
+    private transient String[] mHeaderLines = {};
 
     /**
      * class loader to resolve classes with. Needs to be transient as unable
@@ -114,6 +95,9 @@ public class Configuration
      **/
     private transient ClassLoader mLoader =
         Thread.currentThread().getContextClassLoader();
+
+    /** the lines in the header to ignore */
+    private TreeSet mHeaderIgnoreLineNo = new TreeSet();
 
     /** where to place right curlies  **/
     private RightCurlyOption mRCurly = RightCurlyOption.SAME;
@@ -125,24 +109,31 @@ public class Configuration
     /** set of boolean properties **/
     private final Set mBooleanProps = new HashSet();
 
+    /** map of Set properties **/
+    private final Map mStringSetProps = new HashMap();
+    {
+        setStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP, ILLEGAL_IMPORTS);
+        setStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP,
+                             ILLEGAL_INSTANTIATIONS);
+    }
+
     /** map of int properties **/
     private final Map mIntProps = new HashMap();
     {
-        // Set up all the default values
-        mIntProps.put(Defn.MAX_LINE_LENGTH_PROP, new Integer(MAX_LINE_LENGTH));
-        mIntProps.put(Defn.MAX_METHOD_LENGTH_PROP,
-                      new Integer(MAX_METHOD_LENGTH));
-        mIntProps.put(Defn.MAX_CONSTRUCTOR_LENGTH_PROP,
-                      new Integer(MAX_CONSTRUCTOR_LENGTH));
-        mIntProps.put(Defn.MAX_FILE_LENGTH_PROP, new Integer(MAX_FILE_LENGTH));
-        mIntProps.put(Defn.MAX_PARAMETERS_PROP, new Integer(MAX_PARAMETERS));
-        mIntProps.put(Defn.TAB_WIDTH_PROP, new Integer(TAB_WIDTH));
+        mIntProps.put(Defn.MAX_LINE_LENGTH_PROP, new Integer(80));
+        mIntProps.put(Defn.MAX_METHOD_LENGTH_PROP, new Integer(150));
+        mIntProps.put(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, new Integer(150));
+        mIntProps.put(Defn.MAX_FILE_LENGTH_PROP, new Integer(2000));
+        mIntProps.put(Defn.MAX_PARAMETERS_PROP, new Integer(7));
+        mIntProps.put(Defn.TAB_WIDTH_PROP, new Integer(8));
     }
+
 
     /** map of all the pattern properties **/
     private final Map mPatterns = new HashMap();
     /** map of all the corresponding RE objects for pattern properties **/
     private transient Map mRegexps = new HashMap();
+
     /** map of all the BlockOption properties **/
     private final Map mBlockProps = new HashMap();
     {
@@ -150,9 +141,11 @@ public class Configuration
         mBlockProps.put(Defn.CATCH_BLOCK_PROP, BlockOption.TEXT);
         mBlockProps.put(Defn.FINALLY_BLOCK_PROP, BlockOption.STMT);
     }
+
     /** map of all the LeftCurlyOption properties **/
     private final Map mLCurliesProps = new HashMap();
     {
+
         mLCurliesProps.put(Defn.LCURLY_METHOD_PROP, LeftCurlyOption.EOL);
         mLCurliesProps.put(Defn.LCURLY_TYPE_PROP, LeftCurlyOption.EOL);
         mLCurliesProps.put(Defn.LCURLY_OTHER_PROP, LeftCurlyOption.EOL);
@@ -183,82 +176,51 @@ public class Configuration
     public Configuration(Properties aProps, PrintStream aLog)
         throws RESyntaxException, FileNotFoundException, IOException
     {
-        setPatternProperty(aProps, Defn.TODO_PATTERN_PROP, TODO_PATTERN);
-        setPatternProperty(aProps, Defn.PARAMETER_PATTERN_PROP,
-                           PARAMETER_PATTERN);
-        setPatternProperty(aProps, Defn.STATIC_PATTERN_PROP, STATIC_PATTERN);
-        setPatternProperty(aProps, Defn.CONST_PATTERN_PROP, CONST_PATTERN);
-        setPatternProperty(aProps, Defn.MEMBER_PATTERN_PROP, MEMBER_PATTERN);
-        setPatternProperty(aProps, Defn.PUBLIC_MEMBER_PATTERN_PROP,
-                           PUBLIC_MEMBER_PATTERN);
-        setPatternProperty(aProps, Defn.TYPE_PATTERN_PROP, TYPE_PATTERN);
-        setPatternProperty(aProps, Defn.LOCAL_VAR_PATTERN_PROP,
-                           LOCAL_VAR_PATTERN);
-        setPatternProperty(aProps, Defn.LOCAL_FINAL_VAR_PATTERN_PROP,
-                           LOCAL_FINAL_VAR_PATTERN);
-        setPatternProperty(aProps, Defn.METHOD_PATTERN_PROP, METHOD_PATTERN);
-        setPatternProperty(aProps, Defn.IGNORE_LINE_LENGTH_PATTERN_PROP,
-                           IGNORE_LINE_LENGTH_PATTERN);
-        setIntProperty(aProps, aLog, Defn.MAX_LINE_LENGTH_PROP,
-                       MAX_LINE_LENGTH);
-        setIntProperty(aProps, aLog, Defn.MAX_METHOD_LENGTH_PROP,
-                       MAX_METHOD_LENGTH);
-        setIntProperty(aProps, aLog, Defn.MAX_CONSTRUCTOR_LENGTH_PROP,
-                       MAX_CONSTRUCTOR_LENGTH);
-        setIntProperty(aProps, aLog, Defn.MAX_FILE_LENGTH_PROP,
-                       MAX_FILE_LENGTH);
-
-        setBooleanProperty(aProps, Defn.ALLOW_TABS_PROP);
-        setIntProperty(aProps, aLog, Defn.TAB_WIDTH_PROP, TAB_WIDTH);
-        setBooleanProperty(aProps, Defn.ALLOW_PROTECTED_PROP);
-        setBooleanProperty(aProps, Defn.ALLOW_PACKAGE_PROP);
-        setBooleanProperty(aProps, Defn.ALLOW_NO_AUTHOR_PROP);
-        setBooleanProperty(aProps, Defn.REQUIRE_VERSION_PROP);
+        // Init the special properties
+        setHeaderIgnoreLines(aProps.getProperty(Defn.HEADER_IGNORE_LINE_PROP));
+        setRCurly(getRightCurlyOptionProperty(
+                      aProps, Defn.RCURLY_PROP, RightCurlyOption.SAME, aLog));
         setJavadocScope(
             Scope.getInstance(aProps.getProperty(Defn.JAVADOC_CHECKSCOPE_PROP,
                                                  Scope.PRIVATE.getName())));
-        setBooleanProperty(aProps, Defn.REQUIRE_PACKAGE_HTML_PROP);
-        setBooleanProperty(aProps, Defn.IGNORE_IMPORTS_PROP);
-        setIllegalImports(
-            aProps.getProperty(Defn.ILLEGAL_IMPORTS_PROP, ILLEGAL_IMPORTS));
-        setIllegalInstantiations(
-            aProps.getProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP,
-                               ILLEGAL_INSTANTIATIONS));
-        setBooleanProperty(aProps, Defn.IGNORE_WHITESPACE_PROP);
-        setBooleanProperty(aProps, Defn.IGNORE_CAST_WHITESPACE_PROP);
-        setBooleanProperty(aProps, Defn.IGNORE_BRACES_PROP);
-        setBooleanProperty(aProps, Defn.IGNORE_LONG_ELL_PROP);
-        setBooleanProperty(aProps, Defn.IGNORE_PUBLIC_IN_INTERFACE_PROP);
-        setStringProperty(aProps, Defn.CACHE_FILE_PROP);
-        setStringProperty(aProps, Defn.LOCALE_LANGUAGE_PROP);
-        setStringProperty(aProps, Defn.LOCALE_COUNTRY_PROP);
-        setBooleanProperty(aProps, Defn.IGNORE_IMPORT_LENGTH_PROP);
-        setHeaderIgnoreLines(aProps.getProperty(Defn.HEADER_IGNORE_LINE_PROP));
-        setBooleanProperty(aProps, Defn.HEADER_LINES_REGEXP_PROP);
-        setBooleanProperty(aProps, Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP);
-
-        final String fname = aProps.getProperty(Defn.HEADER_FILE_PROP);
-        if (fname != null) {
-            setHeaderFile(fname);
-        }
-
-        setLeftCurlyOptionProperty(aProps, Defn.LCURLY_METHOD_PROP, aLog);
-        setLeftCurlyOptionProperty(aProps, Defn.LCURLY_TYPE_PROP, aLog);
-        setLeftCurlyOptionProperty(aProps, Defn.LCURLY_OTHER_PROP, aLog);
-        setRCurly(getRightCurlyOptionProperty(
-                      aProps, Defn.RCURLY_PROP, RightCurlyOption.SAME, aLog));
-        setBlockOptionProperty(aProps, Defn.TRY_BLOCK_PROP, aLog);
-        setBlockOptionProperty(aProps, Defn.CATCH_BLOCK_PROP, aLog);
-        setBlockOptionProperty(aProps, Defn.FINALLY_BLOCK_PROP, aLog);
         setParenPadOption(getPadOptionProperty(aProps,
                                                Defn.PAREN_PAD_PROP,
                                                PadOption.NOSPACE,
                                                aLog));
-        setStringProperty(aProps, Defn.BASEDIR_PROP);
         setWrapOpOption(getWrapOpOptionProperty(aProps,
                                                 Defn.WRAP_OP_PROP,
                                                 WrapOpOption.NL,
                                                 aLog));
+        setHeaderFile(aProps.getProperty(Defn.HEADER_FILE_PROP));
+
+        // Initialise the general properties
+        for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
+            setBooleanProperty(aProps, Defn.ALL_BOOLEAN_PROPS[i]);
+        }
+
+        for (int i = 0; i < Defn.ALL_PATTERN_PROPS.length; i++) {
+            setPatternProperty(aProps, Defn.ALL_PATTERN_PROPS[i]);
+        }
+
+        for (int i = 0; i < Defn.ALL_INT_PROPS.length; i++) {
+            setIntProperty(aProps, aLog, Defn.ALL_INT_PROPS[i]);
+        }
+
+        for (int i = 0; i < Defn.ALL_BLOCK_PROPS.length; i++) {
+            setBlockOptionProperty(aProps, Defn.ALL_BLOCK_PROPS[i], aLog);
+        }
+
+        for (int i = 0; i < Defn.ALL_STRING_PROPS.length; i++) {
+            setStringProperty(aProps, Defn.ALL_STRING_PROPS[i]);
+        }
+
+        for (int i = 0; i < Defn.ALL_LCURLY_PROPS.length; i++) {
+            setLeftCurlyOptionProperty(aProps, Defn.ALL_LCURLY_PROPS[i], aLog);
+        }
+
+        for (int i = 0; i < Defn.ALL_STRING_SET_PROPS.length; i++) {
+            setStringSetProperty(aProps, Defn.ALL_STRING_SET_PROPS[i]);
+        }
     }
 
     /**
@@ -267,23 +229,12 @@ public class Configuration
      */
     public Configuration()
     {
-        setIllegalImports(ILLEGAL_IMPORTS);
-        setIllegalInstantiations(ILLEGAL_INSTANTIATIONS);
         try {
-            setPatternProperty(Defn.TODO_PATTERN_PROP, TODO_PATTERN);
-            setPatternProperty(Defn.PARAMETER_PATTERN_PROP, PARAMETER_PATTERN);
-            setPatternProperty(Defn.STATIC_PATTERN_PROP, STATIC_PATTERN);
-            setPatternProperty(Defn.CONST_PATTERN_PROP, CONST_PATTERN);
-            setPatternProperty(Defn.MEMBER_PATTERN_PROP, MEMBER_PATTERN);
-            setPatternProperty(Defn.PUBLIC_MEMBER_PATTERN_PROP,
-                               PUBLIC_MEMBER_PATTERN);
-            setPatternProperty(Defn.TYPE_PATTERN_PROP, TYPE_PATTERN);
-            setPatternProperty(Defn.LOCAL_VAR_PATTERN_PROP, LOCAL_VAR_PATTERN);
-            setPatternProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP,
-                               LOCAL_FINAL_VAR_PATTERN);
-            setPatternProperty(Defn.METHOD_PATTERN_PROP, METHOD_PATTERN);
-            setPatternProperty(Defn.IGNORE_LINE_LENGTH_PATTERN_PROP,
-                               IGNORE_LINE_LENGTH_PATTERN);
+            for (int i = 0; i < Defn.ALL_PATTERN_PROPS.length; i++) {
+                setPatternProperty(
+                    Defn.ALL_PATTERN_PROPS[i],
+                    (String) PATTERN_DEFAULTS.get(Defn.ALL_PATTERN_PROPS[i]));
+            }
         }
         catch (RESyntaxException ex) {
             ex.printStackTrace();
@@ -308,6 +259,8 @@ public class Configuration
         // initialize the transient fields
         mLoader = Thread.currentThread().getContextClassLoader();
         mRegexps = new HashMap();
+        // reset the header file to re-read the lines
+        setHeaderFile(mHeaderFile);
         try {
             // Loop on the patterns creating the RE's
             final Iterator keys = mPatterns.keySet().iterator();
@@ -328,6 +281,63 @@ public class Configuration
     ////////////////////////////////////////////////////////////////////////////
     // Getters
     ////////////////////////////////////////////////////////////////////////////
+
+    /** @return a Properties object representing the current configuration.
+     * The returned object can be used to recreate the configuration.
+     * Tip: used on a default object returns all the default objects. */
+    public Properties getProperties()
+    {
+        final Properties retVal = new Properties();
+
+        Utils.addSetString(retVal, Defn.HEADER_IGNORE_LINE_PROP,
+                           mHeaderIgnoreLineNo);
+        Utils.addObjectString(retVal, Defn.RCURLY_PROP, mRCurly.toString());
+        Utils.addObjectString(retVal, Defn.JAVADOC_CHECKSCOPE_PROP,
+                              mJavadocScope.getName());
+        Utils.addObjectString(retVal, Defn.PAREN_PAD_PROP,
+                              mParenPadOption.toString());
+        Utils.addObjectString(retVal, Defn.WRAP_OP_PROP,
+                              mWrapOpOption.toString());
+        Utils.addObjectString(retVal, Defn.HEADER_FILE_PROP, mHeaderFile);
+
+        for (int i = 0; i < Defn.ALL_BOOLEAN_PROPS.length; i++) {
+            final String key = Defn.ALL_BOOLEAN_PROPS[i];
+            retVal.put(key, Boolean.toString(getBooleanProperty(key)));
+        }
+
+        for (int i = 0; i < Defn.ALL_PATTERN_PROPS.length; i++) {
+            final String key = Defn.ALL_PATTERN_PROPS[i];
+            Utils.addObjectString(retVal, key, getPatternProperty(key));
+        }
+
+        for (int i = 0; i < Defn.ALL_INT_PROPS.length; i++) {
+            final String key = Defn.ALL_INT_PROPS[i];
+            Utils.addObjectString(retVal, key,
+                                  Integer.toString(getIntProperty(key)));
+        }
+
+        for (int i = 0; i < Defn.ALL_BLOCK_PROPS.length; i++) {
+            final String key = Defn.ALL_BLOCK_PROPS[i];
+            Utils.addObjectString(retVal, key, getBlockOptionProperty(key));
+        }
+
+        for (int i = 0; i < Defn.ALL_STRING_PROPS.length; i++) {
+            final String key = Defn.ALL_STRING_PROPS[i];
+            Utils.addObjectString(retVal, key, getStringProperty(key));
+        }
+
+        for (int i = 0; i < Defn.ALL_LCURLY_PROPS.length; i++) {
+            final String key = Defn.ALL_LCURLY_PROPS[i];
+            Utils.addObjectString(retVal, key, getLeftCurlyOptionProperty(key));
+        }
+
+        for (int i = 0; i < Defn.ALL_STRING_SET_PROPS.length; i++) {
+            final String key = Defn.ALL_STRING_SET_PROPS[i];
+            Utils.addSetString(retVal, key, getStringSetProperty(key));
+        }
+
+        return retVal;
+    }
 
     /** @return the class loader **/
     public ClassLoader getClassLoader()
@@ -560,13 +570,13 @@ public class Configuration
     /** @return Set of pkg prefixes that are illegal in import statements */
     public Set getIllegalImports()
     {
-        return mIllegalImports;
+        return getStringSetProperty(Defn.ILLEGAL_IMPORTS_PROP);
     }
 
     /** @return Set of classes where calling a constructor is illegal */
     public Set getIllegalInstantiations()
     {
-        return mIllegalInstantiations;
+        return getStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP);
     }
 
     /** @return pattern to exclude from line lengh checking **/
@@ -659,27 +669,20 @@ public class Configuration
     }
 
     /**
-     * @param aPkgPrefixList comma separated list of package prefixes
+     * Sets a String Set property. It the aFrom String is parsed for Strings
+     * separated by ",".
+     *
+     * @param aName name of the property to set
+     * @param aFrom the String to parse
      */
-    public void setIllegalImports(String aPkgPrefixList)
+    public void setStringSetProperty(String aName, String aFrom)
     {
-        mIllegalImports.clear();
-        final StringTokenizer st = new StringTokenizer(aPkgPrefixList, ",");
-        while (st.hasMoreTokens()) {
-            mIllegalImports.add(st.nextToken());
+        final Set s = new TreeSet();
+        final StringTokenizer tok = new StringTokenizer(aFrom, ",");
+        while (tok.hasMoreTokens()) {
+            s.add(tok.nextToken());
         }
-    }
-
-    /**
-     * @param aClassList comma separated list of fully qualified class names
-     */
-    public void setIllegalInstantiations(String aClassList)
-    {
-        mIllegalInstantiations.clear();
-        final StringTokenizer st = new StringTokenizer(aClassList, ",");
-        while (st.hasMoreTokens()) {
-            mIllegalInstantiations.add(st.nextToken());
-        }
+        mStringSetProps.put(aName, s);
     }
 
     /**
@@ -723,6 +726,10 @@ public class Configuration
     public void setHeaderFile(String aFileName)
         throws FileNotFoundException, IOException
     {
+        if (aFileName == null) {
+            return;
+        }
+
         final LineNumberReader lnr =
             new LineNumberReader(new FileReader(aFileName));
         final ArrayList lines = new ArrayList();
@@ -734,6 +741,7 @@ public class Configuration
             lines.add(l);
         }
         mHeaderLines = (String[]) lines.toArray(new String[0]);
+        mHeaderFile = aFileName;
     }
 
     /**
@@ -903,15 +911,14 @@ public class Configuration
      *    then a default value is used.
      * @param aProps the properties set to use
      * @param aName the name of the property to parse
-     * @param aDefault the default value to use.
      * @throws RESyntaxException if an error occurs
      */
-    private void setPatternProperty(Properties aProps,
-                                    String aName,
-                                    String aDefault)
+    private void setPatternProperty(Properties aProps, String aName)
         throws RESyntaxException
     {
-        setPatternProperty(aName, aProps.getProperty(aName, aDefault));
+        setPatternProperty(
+            aName,
+            aProps.getProperty(aName, (String) PATTERN_DEFAULTS.get(aName)));
     }
 
     /**
@@ -955,24 +962,28 @@ public class Configuration
      * @param aProps the properties set to use
      * @param aLog where to log errors to
      * @param aName the name of the property to parse
-     * @param aDefault the default value to use.
      */
-    private void setIntProperty(Properties aProps, PrintStream aLog,
-                                String aName, int aDefault)
+    private void setIntProperty(Properties aProps,
+                                PrintStream aLog,
+                                String aName)
     {
-        int val = aDefault;
         final String strRep = aProps.getProperty(aName);
         if (strRep != null) {
             try {
-                val = Integer.parseInt(strRep);
+                final int val = Integer.parseInt(strRep);
+                setIntProperty(aName, val);
             }
             catch (NumberFormatException nfe) {
-                aLog.println("Unable to parse " + aName
-                             + " property with value " + strRep
-                             + ", defaulting to " + aDefault + ".");
+                aLog.println(
+                    "Unable to parse "
+                        + aName
+                        + " property with value "
+                        + strRep
+                        + ", defaulting to "
+                        + getIntProperty(aName)
+                        + ".");
             }
         }
-        setIntProperty(aName, val);
     }
 
     /**
@@ -1133,6 +1144,28 @@ public class Configuration
             {
                 setBooleanProperty(aName, true);
             }
+        }
+    }
+
+    /**
+     * @param aName name of the Set property
+     * @return return whether a specified property is set
+     */
+    private Set getStringSetProperty(String aName)
+    {
+        return (Set) mStringSetProps.get(aName);
+    }
+
+    /**
+     * Set a Set property from a property set.
+     * @param aProps the properties set to extract property from
+     * @param aName name of the property to extract
+     */
+    private void setStringSetProperty(Properties aProps, String aName)
+    {
+        final String strRep = aProps.getProperty(aName);
+        if (strRep != null) {
+            setStringSetProperty(aName, strRep);
         }
     }
 

@@ -869,11 +869,12 @@ public class CheckerTest
         mConfig.setBlockOptionProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.STMT);
         mConfig.setBooleanProperty(Defn.IGNORE_IMPORTS_PROP, true);
         mConfig.setBooleanProperty(Defn.IGNORE_LONG_ELL_PROP, false);
-        mConfig.setIllegalInstantiations(
-            "java.lang.Boolean," +
-            "com.puppycrawl.tools.checkstyle.InputModifier," +
-            "java.io.File," +
-            "java.awt.Color");
+        mConfig.setStringSetProperty(
+            Defn.ILLEGAL_INSTANTIATIONS_PROP,
+            "java.lang.Boolean,"
+            + "com.puppycrawl.tools.checkstyle.InputModifier,"
+            + "java.io.File,"
+            + "java.awt.Color");
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");
         assertNotNull(c);
@@ -909,7 +910,7 @@ public class CheckerTest
         mConfig.setBlockOptionProperty(Defn.FINALLY_BLOCK_PROP, BlockOption.TEXT);
         mConfig.setBooleanProperty(Defn.IGNORE_IMPORTS_PROP, true);
         mConfig.setBooleanProperty(Defn.IGNORE_LONG_ELL_PROP, true);
-        mConfig.setIllegalInstantiations("");
+        mConfig.setStringSetProperty(Defn.ILLEGAL_INSTANTIATIONS_PROP, "");
         final Checker c = createChecker();
         final String filepath = getPath("InputSemantic.java");
         assertNotNull(c);
