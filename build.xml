@@ -70,14 +70,30 @@
   <!-- ANTLR targets -->
   <!-- -->
 
-  <target name="antlr">
-    <antlr target="${checkstyle.dir}/java.g" dir="${checkstyle.dir}" />
+  <!-- Checks whether the grammar file is newer that the generated code -->
+  <target name="check.antlr">
+    <uptodate property="uptodate.antlr"
+              targetfile="${checkstyle.dir}/GeneratedJavaLexer.java" >
+      <srcfiles dir= "${checkstyle.dir}" includes="java.g"/>
+    </uptodate>
+  </target>
+
+  <!-- Conditionally will compile the grammar. Deliberately do not use the -->
+  <!-- <antlr> task as it required the ANTLR classes to be in the classpath -->
+  <!-- which creates lots of problems. -->
+  <target name="build.antlr" depends="check.antlr" unless="uptodate.antlr">
+    <java classname="antlr.Tool"
+          classpath="${antlr.home}"
+          fork="yes"
+          dir="${checkstyle.dir}">
+      <arg value="java.g" />
+    </java>
   </target>
 
   <!-- -->
   <!-- COMPILE TARGETS -->
   <!-- -->
-  <target name="compile.checkstyle" depends="antlr">
+  <target name="compile.checkstyle" depends="build.antlr">
     <mkdir dir="classes/checkstyle" />
     <depend srcdir="src/checkstyle" destdir="classes/checkstyle" closure="yes"/>
     <javac srcdir="src/checkstyle"
@@ -111,7 +127,7 @@
   </target>
 
   <target name="checkstyle.simple" depends="compile.tests">
-    <taskdef name="checkstyle" reverseloader="true"
+    <taskdef name="checkstyle"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
@@ -119,7 +135,7 @@
   </target>
 
   <target name="checkstyle.import" depends="compile.tests">
-      <taskdef name="checkstyle" reverseloader="true"
+      <taskdef name="checkstyle"
 	       classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
 	  <classpath refid="run.classpath"/>
       </taskdef>
@@ -130,7 +146,7 @@
   </target>
 
   <target name="checkstyle.checkstyle" depends="compile.checkstyle">
-    <taskdef name="checkstyle" reverseloader="true"
+    <taskdef name="checkstyle"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
@@ -150,7 +166,7 @@
   </target>
 
   <target name="checkstyle.noargs" depends="compile.checkstyle">
-    <taskdef name="checkstyle" reverseloader="true"
+    <taskdef name="checkstyle"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
