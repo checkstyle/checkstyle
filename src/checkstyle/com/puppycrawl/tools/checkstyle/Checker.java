@@ -86,49 +86,6 @@ public class Checker
         }
     }
 
-    /**
-     * Overrides ANTLR error reporting so we completely control
-     * checkstyle's output during parsing.
-     *
-     * @see SilentJava14Recognizer
-     */
-    private class SilentJavaRecognizer extends GeneratedJavaRecognizer
-    {
-        /**
-         * Creates a new <code>SilentJavaRecognizer</code> instance.
-         *
-         * @param aLexer the tokenstream the recognizer operates on.
-         */
-        private SilentJavaRecognizer(GeneratedJavaLexer aLexer)
-        {
-            super(aLexer);
-        }
-
-        /**
-         * Parser error-reporting function, does nothing.
-         * @param aRex the exception to be reported
-         */
-        public void reportError(RecognitionException aRex)
-        {
-        }
-
-        /**
-         * Parser error-reporting function, does nothing.
-         * @param aMsg the error message
-         */
-        public void reportError(String aMsg)
-        {
-        }
-
-        /**
-         * Parser warning-reporting function, does nothing.
-         * @param aMsg the error message
-         */
-        public void reportWarning(String aMsg)
-        {
-        }
-    }
-
     /** configuration */
     private final Configuration mConfig;
 
