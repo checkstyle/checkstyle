@@ -96,7 +96,7 @@ public class RequireThisCheck extends Check
         return mCheckMethods;
     }
 
-    /** Stack of varibale declaration frames. */
+    /** Stack of variable declaration frames. */
     private FrameStack mFrames;
 
     /** Creates new instance of the check. */

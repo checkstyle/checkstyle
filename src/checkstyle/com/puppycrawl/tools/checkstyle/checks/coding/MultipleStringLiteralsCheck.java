@@ -135,7 +135,7 @@ public class MultipleStringLiteralsCheck extends Check
         }
 
         /**
-         * The columen where a string was found.
+         * The column where a string was found.
          * @return int Column of the string.
          */
         private int getCol()
