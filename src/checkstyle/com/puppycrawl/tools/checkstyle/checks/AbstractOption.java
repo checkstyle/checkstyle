@@ -43,7 +43,7 @@ public abstract class AbstractOption
     protected AbstractOption(String aStrRep)
     {
         mStrRep = aStrRep.trim().toLowerCase();
-        Map strToOpt = getStrToOpt();
+        final Map strToOpt = getStrToOpt();
         strToOpt.put(mStrRep, this);
     }
 
@@ -62,7 +62,7 @@ public abstract class AbstractOption
      */
     public AbstractOption decode(String aStrRep)
     {
-        Map strToOpt = getStrToOpt();
+        final Map strToOpt = getStrToOpt();
         return (AbstractOption) strToOpt.get(aStrRep.trim().toLowerCase());
     }
 
