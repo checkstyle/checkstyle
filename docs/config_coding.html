@@ -44,6 +44,9 @@
           <a href="#EqualsHashCode">EqualsHashCode</a>
         </li>
         <li>
+          <a href="#FinalLocalVariable">FinalLocalVariable</a>
+        </li>
+        <li>
           <a href="#HiddenField">HiddenField</a>
         </li>
         <li>
@@ -300,6 +303,58 @@ public class MySingleton
       </p>
       <pre class="body">
 &lt;module name=&quot;EqualsHashCode&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="FinalLocalVariable"></a> <h2>FinalLocalVariable</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that local variables that never have their values changed
+      are declared final. The check can be configured to also check that
+      unchanged parameters are declared final.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of tokens <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a></td>
+          <td>
+          <a
+          href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a></td>
+        </tr>
+
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;FinalLocalVariable&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check so that it checks local variables and parameters:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;HiddenField&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;PARAMETER_DEF&quot;/&gt;
+&lt;/module&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
