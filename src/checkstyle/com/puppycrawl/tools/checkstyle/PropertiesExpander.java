@@ -28,18 +28,23 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  *
  * @author lkuehne
  */
-public final class PropertiesExpander implements PropertyResolver
+public final class PropertiesExpander
+    implements PropertyResolver
 {
     /** the underlying Properties object. */
-    private Properties mProperties = null;
+    private final Properties mProperties;
 
     /**
      * Creates a new PropertiesExpander.
      * @param aProperties the underlying properties to use for
      * property resolution.
+     * @throws IllegalArgumentException indicates null was passed
      */
     public PropertiesExpander(Properties aProperties)
     {
+        if (aProperties == null) {
+            throw new IllegalArgumentException("cannot pass null");
+        }
         mProperties = aProperties;
     }
 
@@ -50,9 +55,9 @@ public final class PropertiesExpander implements PropertyResolver
     public String resolve(String aPropertyName)
         throws CheckstyleException
     {
-        if (mProperties == null || !mProperties.containsKey(aPropertyName)) {
-            throw new CheckstyleException("Property ${"
-                + aPropertyName + "} has not been set");
+        if (!mProperties.containsKey(aPropertyName)) {
+            throw new CheckstyleException(
+                "Property ${" + aPropertyName + "} has not been set");
         }
 
         return mProperties.getProperty(aPropertyName);
