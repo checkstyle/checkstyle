@@ -1,65 +1,419 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>Miscellaneous Checks</title>
-  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <link rel="stylesheet" type="text/css" href="mystyle.css"/>
 </head>
 
 <body>
-<h1>Miscellaneous Checks</h1>
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td><h1>Miscellaneous Checks</h1></td>
+    <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
+  </tr>
+</table>
+<!-- content -->
+<table border="0" width="100%" cellpadding="5" summary="body layout">
+  <tr>
+    <!--Left menu-->
+    <td class="menu" valign="top">
+      <ul>
+        <li>
+          <a href="#EqualsHashCode">EqualsHashCode</a>
+        </li>
+        <li>
+          <a href="#GenericIllegalRegexp">GenericIllegalRegexp</a>
+        </li>
+        <li>
+          <a href="#HiddenField">HiddenField</a>
+        </li>
+        <li>
+          <a href="#IllegalInstantiation">IllegalInstantiation</a>
+        </li>
+        <li>
+          <a href="#InnerAssignment">InnerAssignment</a>
+        </li>
+        <li>
+          <a href="#SimplifyBooleanExpression">SimplifyBooleanExpression</a>
+        </li>
+        <li>
+          <a href="#SimplifyBooleanReturn">SimplifyBooleanReturn</a>
+        </li>
+        <li>
+          <a href="#TodoComment">TodoComment</a>
+        </li>
+        <li>
+          <a href="#Translation">Translation</a>
+        </li>
+        <li>
+          <a href="#UpperEll">UpperEll</a>
+        </li>
+      </ul>
+    </td>
+    <!--Content-->
+    <td class="content" valign="top" align="left"><a name="EqualsHashCode"></a> <h2>EqualsHashCode</h2>
+      <h4>Description</h4>
+      <p class="body">
+      Checks that classes that override <span class="code">equals()</span> also 
+      override <span class="code">hashCode()</span>.
+      </p>
+      <p class="body">
+      Rationale: The contract of <span class="code">equals()</span> and <span class="code">
+      hashCode()</span> requires that equal objects have the same hashCode. Hence, 
+      whenever you override <span class="code">equals()</span> you must override <span class="code">
+      hashCode()</span> to ensure that your class can be used in collections that are 
+      hash based.
+      </p>
 
-<h2>To-do comments</h2>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;EqualsHashCode&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <!-- --> <a name="GenericIllegalRegexp"></a> <h2>GenericIllegalRegexp</h2> <h4>Description</h4>
+      <p class="body">
+      A generic check for code problems - the user can search for any pattern. This is 
+      similar to a recursive grep, only that it's integrated in checkstyle.
+      </p>
+      <p class="body">
+      Rationale: This check can be used to prototype checks and to find common bad 
+      practice such as calling <span class="code">ex.printStacktrace()</span>, <span class="code">
+      System.out.println()</span>, <span class="code">System.exit()</span>, etc.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>format</td>
+          <td>illegal pattern</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td><span class="default">^$</span> (empty)</td>
+        </tr>
+      </table>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check for calls to <span class="code">System.out.println</span>:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;GenericIllegalRegexp&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <!-- --> <a name="HiddenField"></a> <h2>HiddenField</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that a local variable or a parameter does not shadow a field that is 
+      defined in the same class.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>subset of tokens PARAMETER_DEF, VARIABLE_DEF</td>
+          <td>PARAMETER_DEF, VARIABLE_DEF</td>
+        </tr>
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;HiddenField&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check so that it checks local variables but not parameters:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;HiddenField&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <!-- --> <a name="IllegalInstantiation"></a> <h2>IllegalInstantiation</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for illegal instantiations where a factory method is preferred.
+      </p>
+      <p class="body">
+      Rationale: Depending on the project, for some classes it might be preferable to 
+      create instances through factory methods rather than calling the constructor.
+      </p>
+      <p class="body">
+      A simple example is the <span class="code">java.lang.Boolean</span> class. In 
+      order to save memory and CPU cycles, it is preferable to use the predefined 
+      constants <span class="code">
+      TRUE</span> and <span class="code">FALSE</span>. Constructor invocations should 
+      be replaced by calls to <span class="code">Boolean.valueOf()</span>.
+      </p>
+      <p class="body">
+      Some extremely performance sensitive projects may require the use of factory 
+      methods for other classes as well, to enforce the usage of number caches or 
+      object pools.
+      </p>
+      <h4>Notes</h4>
+      <p class="body">
+      There is a limitation that it is currently not possible to specify array classes.
+      </p>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;IllegalInstantiation&quot;/&gt;
+      </pre>
 
-<p>The property <span class="code">checkstyle.pattern.todo</span> specifies
-the pattern to match for to-do comments. The property type is
-<a href="property_types.html#regexp">regular expression</a> and defaults to
-<span class="default">TODO:</span>.</p>
-
-<div class="tip">
-<h4 class="tip">Tip</h4>
-
-<p>Using to-do comments is a great way to keep track of tasks that need to be
-done. By having them reported by Checkstyle makes it very hard to forget about
-them.</p>
-
-</div>
-
-
-<h2>Integer Literals</h2>
-
-<p>The property <span class="code">checkstyle.ignore.longell</span> specifies
-whether to not require that long integer literals use an uppercase
-<span class="code">L</span>. For example <span class="code">40L</span> instead
-of <span class="code">40l</span>. This is in accordance to the Java Language
-Specification,
-<a href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">Section 3.10.1</a>.
-The property type is <a href="property_types.html#boolean">boolean</a> and
-defaults to <span class="default">false</span>.</p>
-
-
-<h2>illegal Instantiations</h2>
-
-<p>The property <span class="code">checkstyle.illegal.instantiations</span>
-contains the set of classes that should not be instantiated directly. The
-property type is <a href="property_types.html#stringSet">string set</a> and
-defaults to an empty set.</p>
-
-<div class="tip">
-<h4 class="tip">Tip</h4>
-
-<p>A common mistake is to create new instances of <span
-class="code">java.lang.Boolean</span> instead of using the constants <span
-class="code">TRUE</span> and <span class="code">FALSE</span> or the <span
-class="code">Boolean.valueOf()</span> factory methods. This increases the
-program's memory requirements and wastes CPU cycles during memory allocation
-and garbage collection.</p> <p>To find this error automatically, include <span
-class="code">java.lang.Boolean</span> in the list of illegal
-instantiations.</p>
-
-</div>
-
-<hr>
-<p align="center">Copyright &copy; 2002 Oliver Burn. All rights Reserved.</p>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <!-- --> <a name="InnerAssignment"></a> <h2>InnerAssignment</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for assignments in subexpressions, such as in <span class="code">String s
+      = Integer.toString(i = 2);</span>.
+      </p>
+      <p class="body">
+      Rationale: With the exception of <span class="code">for</span> iterators, all 
+      assignments should occur in their own toplevel statement to increase readability. 
+      With inner assignments like the above it is difficult to see all places where a 
+      variable is set.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>tokens</td>
+          <td>assignments to check</td>
+          <td>subset of tokens ASSIGN, BAND_ASSIGN, BOR_ASSIGN, BSR_ASSIGN, BXOR_ASSIGN, 
+          DIV_ASSIGN, MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN, SL_ASSIGN, SR_ASSIGN, 
+          STAR_ASSIGN</td>
+          <td>all tokens</td>
+        </tr>
+      </table>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;InnerAssignment&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check for only <span class="code">=</span>, <span class="code">
+      +=</span>, and <span class="code">-=</span> operators:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;InnerAssignment&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <!-- --> <a name="SimplifyBooleanExpression"></a> <h2>SimplifyBooleanExpression</h2>
+      <h4>Description</h4>
+      <p class="body">
+      Checks for overly complicated boolean expressions. Currently finds code like <span class="code">
+      if (b == true)</span>, <span class="code">b || true</span>, <span class="code">!false</span>, etc.
+      </p>
+      <p class="body">
+      Rationale: Complex boolean logic makes code hard to understand and maintain.
+      </p>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;SimplifyBooleanExpression&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <!-- --> <a name="SimplifyBooleanReturn"></a> <h2>SimplifyBooleanReturn</h2> <h4>Description</h4>
+      <p class="body">
+      Checks for overly complicated boolean return statements. Idea shamelessly stolen 
+      from the equivalent <a href="http://pmd.sourceforge.net">PMD rule</a>.
+      </p>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;SimplifyBooleanReturn&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <!-- --> <a name="TodoComment"></a> <h2>TodoComment</h2> <h4>Description</h4>
+      <p class="body">
+      A check for <span class="code">TODO:</span> comments. Actually it is a generic <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">regular 
+      expression</a> matcher on Java comments. To check for other patterns in Java 
+      comments, set property format.
+      </p>
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>format</td>
+          <td>pattern to check</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td><span class="default">TODO:</span></td>
+        </tr>
+      </table>
+      <h4>Notes</h4>
+      <p class="body">
+      Using <span class="code">TODO:</span> comments is a great way to keep track of 
+      tasks that need to be done. Having them reported by Checkstyle makes it very 
+      hard to forget about them.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;TodoComment&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check for comments that contain <span class="code">WARNING</span>:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;TodoComment&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;WARNING&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      </p>
+      <!-- --> <a name="Translation"></a> <h2>Translation</h2> <h4>Description</h4>
+      <p class="body">
+      A <a href="config.html#overview">FileSetCheck</a> that ensure the correct 
+      translation of code by checking property files for consistency regarding their 
+      keys. Two property files describing one and the same context are consistent if 
+      they contain the same keys.
+      </p>
+      <h4>Example</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;Translation&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      Checker
+      </p>
+      <!-- --> <a name="UpperEll"></a> <h2>UpperEll</h2> <h4>Description</h4>
+      <p class="body">
+      Checks that long constants are defined with an upper ell. That is <span class="code">' 
+      L'</span> and
+not <span class="code">'l'</span>. This is in accordance to the Java Language 
+Specification, <a href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282"> 
+Section
+      3.10.1</a>.
+</p>
+<p class="body"> Rationale: The letter <span class="code">l</span> looks a lot 
+like <span class="code">1</span>.
+      </p>
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      
+      </p>
+      <pre class="body">
+&lt;module name=&quot;UpperEll&quot;/&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks
+      
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      TreeWalker
+      
+      </p>
+      </td>
+  </tr>
+</table>
+<hr />
+<p>
+Copyright &copy; 2002 Oliver Burn. All rights Reserved.
+</p>
 
 </body>
 </html>
