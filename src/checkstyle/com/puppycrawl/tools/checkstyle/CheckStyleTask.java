@@ -258,10 +258,10 @@ public class CheckStyleTask
         mFailOnViolation = aFail;
     }
 
-    /** @param aNum **/
-    public void setHeaderIgnoreLine(int aNum)
+    /** @param aList Comma separated list of line numbers **/
+    public void setHeaderIgnoreLine(String aList)
     {
-        mConfig.setHeaderIgnoreLineNo(aNum);
+        mConfig.setHeaderIgnoreLines(aList);
     }
 
     /** @param aJavadocScope visibility scope where Javadoc is checked **/

@@ -25,6 +25,8 @@ import java.io.LineNumberReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.StringTokenizer;
+import java.util.TreeSet;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
@@ -145,8 +147,8 @@ public class Configuration
     private String[] mHeaderLines = {};
     /** interpret the header lines as RE */
     private boolean mHeaderLinesRegexp = false;
-    /** line number to ignore in header **/
-    private int mHeaderIgnoreLineNo = -1;
+    /** line numbers to ignore in header **/
+    private TreeSet mHeaderIgnoreLineNo = new TreeSet();
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -216,9 +218,7 @@ public class Configuration
         setCacheFile(aProps.getProperty(CACHE_FILE_PROP));
         setIgnoreImportLength(getBooleanProperty(
             aProps, IGNORE_IMPORT_LENGTH_PROP, mIgnoreImportLength));
-        setHeaderIgnoreLineNo(
-            getIntProperty(aProps, aLog, HEADER_IGNORE_LINE_PROP,
-                           mHeaderIgnoreLineNo));
+        setHeaderIgnoreLines(aProps.getProperty(HEADER_IGNORE_LINE_PROP));
         setHeaderLinesRegexp(getBooleanProperty(
             aProps, HEADER_LINES_REGEXP_PROP, mHeaderLinesRegexp));
 
@@ -457,10 +457,32 @@ public class Configuration
         return mHeaderLinesRegexp;
     }
 
-    /** @return line number to ignore in header **/
+    /**
+     * This method is being kept for API backwards compatibility with
+     * Checkstyle version below <code>2.1</code>.
+     * @return the first line number to ignore in header
+     * @deprecated use isHeaderIgnoreLineNo(int) instead
+     **/
     public int getHeaderIgnoreLineNo()
     {
-        return mHeaderIgnoreLineNo;
+        if (mHeaderIgnoreLineNo.isEmpty())
+        {
+            return -1;
+        }
+        else
+        {
+            Integer firstLine = (Integer) mHeaderIgnoreLineNo.first();
+            return firstLine.intValue();
+        }
+    }
+
+    /**
+     * @param aLineNo a line number
+     * @return if <code>aLineNo</code> is one of the ignored header lines.
+     */
+    public boolean isHeaderIgnoreLineNo(int aLineNo)
+    {
+        return mHeaderIgnoreLineNo.contains(new Integer(aLineNo));
     }
 
     /** @return the name of the cache file **/
@@ -709,11 +731,34 @@ public class Configuration
     }
 
     /**
+     * This method is being kept for API backwards compatibility with
+     * Checkstyle version below <code>2.1</code>.
      * @param aHeaderIgnoreLineNo line number to ignore in header
+     * @deprecated use setHeaderIgnoreLines(String) instead
      */
     public void setHeaderIgnoreLineNo(int aHeaderIgnoreLineNo)
     {
-        mHeaderIgnoreLineNo = aHeaderIgnoreLineNo;
+        setHeaderIgnoreLines(String.valueOf(aHeaderIgnoreLineNo));
+    }
+
+    /**
+     * @param aList comma separated list of line numbers to ignore in header.
+     */
+    public void setHeaderIgnoreLines(String aList)
+    {
+        mHeaderIgnoreLineNo.clear();
+
+        if (aList == null)
+        {
+            return;
+        }
+
+        final StringTokenizer tokens = new StringTokenizer(aList, ",");
+        while (tokens.hasMoreTokens())
+        {
+            final String ignoreLine = tokens.nextToken();
+            mHeaderIgnoreLineNo.add(new Integer(ignoreLine));
+        }
     }
 
     /**
