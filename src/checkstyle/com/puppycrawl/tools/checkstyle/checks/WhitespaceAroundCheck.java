@@ -35,40 +35,24 @@ public class WhitespaceAroundCheck
     public int[] getDefaultTokens()
     {
         return new int[] {
-            TokenTypes.RCURLY,            // '}'
-            TokenTypes.QUESTION,          // '?'
-            TokenTypes.COLON,             // ':' TODO: dont flag after "case"
-            TokenTypes.ASSIGN,            // '='
-            TokenTypes.EQUAL,             // "=="
-            TokenTypes.NOT_EQUAL,         // "!="
-            TokenTypes.DIV,               // '/'
-            TokenTypes.DIV_ASSIGN,        // "/="
-            TokenTypes.PLUS,              //' +' (unaray plus is UNARY_PLUS)
-            TokenTypes.PLUS_ASSIGN,       // "+="
-            TokenTypes.MINUS,             // '-' (unary minus is UNARY_MINUS)
-            TokenTypes.MINUS_ASSIGN,      //"-="
-            TokenTypes.STAR,              // '*'
-            TokenTypes.STAR_ASSIGN,       // "*="
-            TokenTypes.MOD,               // '%'
-            TokenTypes.MOD_ASSIGN,        // "%="
-            TokenTypes.SR,                // ">>"
-            TokenTypes.SR_ASSIGN,         // ">>="
-            TokenTypes.BSR,               // ">>>"
-            TokenTypes.BSR_ASSIGN,        // ">>>="
-            TokenTypes.GE,                // ">="
-            TokenTypes.GT,                // ">"
-            TokenTypes.SL,                // "<<"
-            TokenTypes.SL_ASSIGN,         // "<<="
-            TokenTypes.LE,                // "<="
-            TokenTypes.LT,                // '<'
-            TokenTypes.BXOR,              // '^'
-            TokenTypes.BXOR_ASSIGN,       // "^="
-            TokenTypes.BOR,               // '|'
-            TokenTypes.BOR_ASSIGN,        // "|="
-            TokenTypes.LOR,               // "||"
-            TokenTypes.BAND,              // '&'
-            TokenTypes.BAND_ASSIGN,       // "&="
-            TokenTypes.LAND,              // "&&"
+            TokenTypes.ASSIGN,
+            TokenTypes.BAND,
+            TokenTypes.BAND_ASSIGN,
+            TokenTypes.BOR,
+            TokenTypes.BOR_ASSIGN,
+            TokenTypes.BSR,
+            TokenTypes.BSR_ASSIGN,
+            TokenTypes.BXOR,
+            TokenTypes.BXOR_ASSIGN,
+            TokenTypes.COLON, // TODO: dont flag after "case"
+            TokenTypes.DIV,
+            TokenTypes.DIV_ASSIGN,
+            TokenTypes.EQUAL,
+            TokenTypes.GE,
+            TokenTypes.GT,
+            TokenTypes.LAND,
+            TokenTypes.LCURLY,
+            TokenTypes.LE,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_ELSE,
@@ -79,6 +63,23 @@ public class WhitespaceAroundCheck
             TokenTypes.LITERAL_SYNCHRONIZED,
             TokenTypes.LITERAL_TRY,
             TokenTypes.LITERAL_WHILE,
+            TokenTypes.LOR,
+            TokenTypes.LT,
+            TokenTypes.MINUS,
+            TokenTypes.MINUS_ASSIGN,
+            TokenTypes.MOD,
+            TokenTypes.MOD_ASSIGN,
+            TokenTypes.NOT_EQUAL,
+            TokenTypes.PLUS,
+            TokenTypes.PLUS_ASSIGN,
+            TokenTypes.QUESTION,
+            TokenTypes.RCURLY,
+            TokenTypes.SL,
+            TokenTypes.SL_ASSIGN,
+            TokenTypes.SR,
+            TokenTypes.SR_ASSIGN,
+            TokenTypes.STAR,
+            TokenTypes.STAR_ASSIGN,
             TokenTypes.ASSERT     // TODO: why is it not LITERAL_assert?
                                   // maybe it's a bug in the grammar?
         };
@@ -100,7 +101,7 @@ public class WhitespaceAroundCheck
         {
             return;
         }
-        
+
         final String[] lines = getLines();
         final String line = lines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
@@ -125,7 +126,7 @@ public class WhitespaceAroundCheck
                 aAST.getLineNo(),
                 aAST.getColumnNo() + aAST.getText().length(),
                 "ws.notFollowed",
-                new Object[] { aAST.getText()});
+                new Object[] {aAST.getText()});
         }
     }
 }

@@ -37,25 +37,13 @@ public class NoWhitespaceAfterCheck
     extends Check
 {
     /** Whether whitespace is allowed if the AST is at a linebreak */
-    private boolean mAllowLineBreaks = false;
+    private boolean mAllowLineBreaks = true;
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {
-            TokenTypes.INC,
-            TokenTypes.DEC,
-            TokenTypes.UNARY_MINUS,
-            TokenTypes.UNARY_PLUS,
-            TokenTypes.BNOT,
-            TokenTypes.LNOT,
-        };
-    }
-    
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public int[] getAcceptableTokens()
-    {
-        return new int[] {
+            TokenTypes.ARRAY_INIT,
             TokenTypes.INC,
             TokenTypes.DEC,
             TokenTypes.UNARY_MINUS,
@@ -65,7 +53,7 @@ public class NoWhitespaceAfterCheck
             TokenTypes.DOT,
         };
     }
-
+    
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
