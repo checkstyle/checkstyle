@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<configuration tabWidth="4" basedir="${checkstyle.basedir}">
+    <TreeWalker>
+        <AvoidStarImport/>
+        <MemberNameCheck
+        	format="^m_[a-zA-Z0-9]*$"/>
+        <ConstantNameCheck/>
+        <EmptyBlockCheck/>
+        <EqualsHashCodeCheck/>
+        <FileLengthCheck/>
+        <NoWhitespaceAfterCheck
+            tokens="DOT"
+            allowLineBreaks="true"/>
+        <GenericIllegalRegexpCheck
+          format="System.out.println"/>
+    </TreeWalker>
+    <PackageHtmlCheck/>
+    <TranslationCheck/>
+</configuration>
