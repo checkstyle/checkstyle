@@ -225,6 +225,21 @@ line 4: ///////////////////////////////////////////////////////////////////////
 <p>Since the year information will change over time, you can tell checkstyle to ignore line 3.</p>
 </div>
 
+<br>
+<div class="tip">  
+<h4 class="tip">Tip</h4>
+<p>Checkstyle also supports interpreting each header line as a regular expression. For example, consider the following header when regular expression checking is turned on:</p>
+
+<pre>
+line 1: /{71}
+line 2: // checkstyle: Checks Java source code for adherence to a set of rules\.
+line 3: // Copyright \(C\) \d\d\d\d  Oliver Burn
+line 4: // Last modification by \$Author.*\$
+line 5: /{71}
+</pre>
+
+<p>Lines 1 and 5 demonstrate a more compact notation for 71 '/' characters. Line 3 enforces that the copyright notice includes a four digit year. Line 4 is an example how to enforce revision control keywords in a file header.</p>
+</div>
 
 <!-- formatters -->
 <h2>Output Format</h2>

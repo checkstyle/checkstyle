@@ -60,6 +60,8 @@ interface Defn
     String HEADER_FILE_PROP = "checkstyle.header.file";
     /** property name for line in header file to ignore **/
     String HEADER_IGNORE_LINE_PROP = "checkstyle.header.ignoreline";
+    /** property name for header file line interpretation as regexps */
+    String HEADER_LINES_REGEXP_PROP = "checkstyle.header.regexp";
     /** property name for visibility scope where Javadoc is checked **/
     String JAVADOC_CHECKSCOPE_PROP = "checkstyle.javadoc.scope";
     /** property name for requiring package documentation */

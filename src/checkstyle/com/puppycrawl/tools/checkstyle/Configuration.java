@@ -143,6 +143,8 @@ public class Configuration
 
     /** the header lines to check for **/
     private String[] mHeaderLines = {};
+    /** interpret the header lines as RE */
+    private boolean mHeaderLinesRegexp = false;
     /** line number to ignore in header **/
     private int mHeaderIgnoreLineNo = -1;
 
@@ -217,6 +219,8 @@ public class Configuration
         setHeaderIgnoreLineNo(
             getIntProperty(aProps, aLog, HEADER_IGNORE_LINE_PROP,
                            mHeaderIgnoreLineNo));
+        setHeaderLinesRegexp(getBooleanProperty(
+            aProps, HEADER_LINES_REGEXP_PROP, mHeaderLinesRegexp));
 
         final String fname = aProps.getProperty(HEADER_FILE_PROP);
         if (fname != null) {
@@ -444,6 +448,13 @@ public class Configuration
     public String[] getHeaderLines()
     {
         return mHeaderLines;
+    }
+
+
+    /** @return if lines in header file are regular expressions */
+    public boolean getHeaderLinesRegexp()
+    {
+        return mHeaderLinesRegexp;
     }
 
     /** @return line number to ignore in header **/
@@ -687,6 +698,14 @@ public class Configuration
             lines.add(l);
         }
         mHeaderLines = (String[]) lines.toArray(new String[0]);
+    }
+
+    /**
+     * @param aHeaderLinesRegexp lines in header file are regular expressions
+     */
+    public void setHeaderLinesRegexp(boolean aHeaderLinesRegexp)
+    {
+        mHeaderLinesRegexp = aHeaderLinesRegexp;
     }
 
     /**

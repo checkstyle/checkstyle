@@ -246,6 +246,12 @@ public class CheckStyleTask
         }
     }
 
+    /** @param aIsRegexp whether to interpret header lines as regexp */
+    public void setHeaderLinesRegexp(boolean aIsRegexp)
+    {
+        mConfig.setHeaderLinesRegexp(aIsRegexp);
+    }
+
     /** @param aFail whether to fail if a violation is found **/
     public void setFailOnViolation(boolean aFail)
     {

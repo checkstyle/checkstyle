@@ -1003,13 +1003,24 @@ class Verifier
     /** checks that a file contains a valid header **/
     private void checkHeader()
     {
-        if (mConfig.getHeaderLines().length > mLines.length) {
+        if (mConfig.getHeaderLines().length > mLines.length)
+        {
             log(1, "Missing a header - not enough lines in file.");
         }
-        else {
-            for (int i = 0; i < mConfig.getHeaderLines().length; i++) {
-                if ((i != (mConfig.getHeaderIgnoreLineNo() - 1)) &&
-                    !mConfig.getHeaderLines()[i].equals(mLines[i]))
+        else
+        {
+            for (int i = 0; i < mConfig.getHeaderLines().length; i++)
+            {
+                String headerLine = mConfig.getHeaderLines()[i];
+
+                // TODO: RE creation should be cached to avoid
+                // re-compilation when multiple files are checked
+                boolean match =
+                    mConfig.getHeaderLinesRegexp() ?
+                    createRE(headerLine).match(mLines[i]) :
+                    headerLine.equals(mLines[i]);
+
+                if ((i != (mConfig.getHeaderIgnoreLineNo() - 1)) && !match)
                 {
                     log(i + 1,
                         "Line does not match expected header line of '" +
