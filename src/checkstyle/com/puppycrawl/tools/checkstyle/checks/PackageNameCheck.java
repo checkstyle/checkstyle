@@ -23,7 +23,29 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks the naming of packages.
+ * <p>
+ * Checks that package names conform to a format specified
+ * by the format property. The format is a
+ * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
+ * regular expression</a>
+ * and defaults to
+ * <strong>^[a-z]+(\\.[a-zA-Z_][a-zA-Z_0-9]*)*$</strong>.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="PackageNameCheck"/&gt;
+ * </pre> 
+ * <p>
+ * An example of how to configure the check for package names that begin with
+ * <code>com.puppycrawl.tools.checkstyle</code> is:
+ * </p>
+ * <pre>
+ * &lt;config name="PackageNameCheck"/&gt;
+ *    &lt;property name="format" value="^com\.puppycrawl\.tools\.checkstyle(\\.[a-zA-Z_][a-zA-Z_0-9]*)*$"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
