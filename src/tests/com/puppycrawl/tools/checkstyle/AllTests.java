@@ -21,6 +21,7 @@ import com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheckTest;
+import com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.DoubleCheckedLockingCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheckTest;
 import com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheckTest;
@@ -98,6 +99,7 @@ public class AllTests {
         suite.addTest(new TestSuite(ArrayTrailingCommaCheckTest.class));
         suite.addTest(new TestSuite(ConfigurationLoaderTest.class));
         suite.addTest(new TestSuite(ConstantNameCheckTest.class));
+        suite.addTest(new TestSuite(CovariantEqualsCheckTest.class));
         suite.addTest(new TestSuite(CyclomaticComplexityCheckTest.class));
         suite.addTest(new TestSuite(DesignForExtensionCheckTest.class));
         suite.addTest(new TestSuite(DoubleCheckedLockingCheckTest.class));
