@@ -29,6 +29,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.Hashtable;
+import java.net.URL;
 
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import org.apache.tools.ant.AntClassLoader;
@@ -61,7 +62,7 @@ public class CheckStyleTask
     private String mFileName;
 
     /** config file containing configuration */
-    private File mConfigFile;
+    private String mConfigLocation;
 
     /** contains package names */
     private File mPackageNamesFile = null;
@@ -159,7 +160,27 @@ public class CheckStyleTask
     /** @param aFile the configuration file to use */
     public void setConfig(File aFile)
     {
-        mConfigFile = aFile;
+        setConfigLocation(aFile.getAbsolutePath());
+    }
+
+    /** @param aURL the URL of the configuration to use */
+    public void setConfigURL(URL aURL)
+    {
+        setConfigLocation(aURL.toExternalForm());
+    }
+
+    /**
+     * Sets the location of the configuration.
+     * @param aLocation the location, which is either a
+     */
+    private void setConfigLocation(String aLocation)
+    {
+        if (mConfigLocation != null) {
+            throw new BuildException(
+                "Attributes 'config' and 'configURL' "
+                + "must not be set at the same time");
+        }
+        mConfigLocation = aLocation;
     }
 
     /** @param aFile the package names file to use */
@@ -201,7 +222,7 @@ public class CheckStyleTask
                 getLocation());
         }
 
-        if (mConfigFile == null) {
+        if (mConfigLocation == null) {
             throw new BuildException("Must specify 'config'.", getLocation());
         }
 
@@ -212,7 +233,7 @@ public class CheckStyleTask
                 final Properties props = createOverridingProperties();
                 final Configuration config =
                     ConfigurationLoader.loadConfiguration(
-                        mConfigFile.getAbsolutePath(), props);
+                        mConfigLocation, props);
 
                 DefaultContext context = new DefaultContext();
                 ClassLoader loader =
@@ -529,4 +550,5 @@ public class CheckStyleTask
             setValue(aValue.getAbsolutePath());
         }
     }
+
 }
