@@ -32,6 +32,9 @@
           <a href="#CovariantEquals">CovariantEquals</a>
         </li>
         <li>
+          <a href="#DeclarationOrder">DeclarationOrder</a>
+        </li>
+        <li>
           <a href="#DoubleCheckedLocking">DoubleCheckedLocking</a>
         </li>
         <li>
@@ -1250,6 +1253,41 @@ return !valid();
 &lt;module name=&quot;IllegalType&quot;&gt;
     &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;getInstance&quot;/&gt;
 &lt;/module&gt;
+      </pre>
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.coding
+      </p>
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+      <!-- --> <a name="DeclarationOrder"></a> <h2>DeclarationOrder</h2> <h4>Description</h4>
+      <p class="body">
+      According to
+      <a
+      href="http://java.sun.com/docs/codeconv/html/CodeConventions.doc2.html#1852">
+      Code Conventions for the Java Programming Language</a>
+      , the parts of a class or interface declaration should appear in the
+      following order
+
+      <li> Class (static) variables. First the public class variables, then
+           the protected, then package level (no access modifier), and then
+           the private. </li>
+      <li> Instance variables. First the public class variables, then
+           the protected, then package level (no access modifier), and then
+           the private. </li>
+      <li> Constructors </li>
+      <li> Methods </li>
+      </p>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;DeclarationOrder&quot;/&gt;
       </pre>
       <h4>Package</h4>
       <p class="body">
