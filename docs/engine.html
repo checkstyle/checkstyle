@@ -20,7 +20,7 @@
 </ul>
 
 <!-- System requirements -->
-<h2>system requirements</h2>
+<h2>System Requirements</h2>
 <p>To run checkstyle you will need:</p>
 <ul>
   <li>JRE 1.2 or later</li>
@@ -30,13 +30,17 @@
 
 <p>Checkstyle has been tested using:</p>
 <ul>
-  <li>JRE1.4beta3 on Red Hat Linux 7.2</li>
+  <li>JRE1.4.0 on Red Hat Linux 7.2</li>
   <li>JRE1.3.1 on Windows NT 4, Windows 2000, Windows XP</li>
   <li>JRE1.2.2 on Windows 2000</li>
 </ul>
 
 
 <h2>What checkstyle checks</h2>
+
+<p>Checkstyle operates on a set of syntactically correct Java files. Checkstyle will report syntax errors, but the focus of the tool is not to provide perfect error messages for Java syntax errors - we leave that to the compiler vendors.</p>
+
+<p>For each Java file, Checkstyle will check the following:</p>
 
 <h3><a name="imports">Imports</a></h3>
 <p>Checks for import statements that are not used. It will warn about wild-card imports like <span class="code">import java.io.*;</span>. It will also warn about duplicate import statements.</p>
