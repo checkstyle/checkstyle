@@ -46,7 +46,7 @@ public class CheckerTest
         mConfig.setRCurly(RightCurlyOption.ALONE);
     }
 
-    protected String getPath(String aFilename)
+    static String getPath(String aFilename)
         throws IOException
     {
         final File f = new File(System.getProperty("tests.dir"), aFilename);
@@ -151,6 +151,7 @@ public class CheckerTest
             filepath + ":156:21: ':' is not followed by whitespace.",
         };
         verify(c, filepath, expected);
+        c.destroy();
     }
 
     public void testWhitespaceCastParenOff()
