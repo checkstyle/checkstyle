@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2002  Oliver Burn
+// Copyright (C) 2001-2003  Oliver Burn
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * conventions, fallback strategies, etc.
  *
  * @author lkuehne
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public interface ModuleFactory
 {
