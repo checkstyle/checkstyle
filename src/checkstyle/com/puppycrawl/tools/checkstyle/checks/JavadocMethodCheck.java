@@ -36,7 +36,32 @@ import java.util.Set;
 import org.apache.regexp.RE;
 
 /**
+ * <p>
  * Checks the Javadoc of a method or constructor.
+ * By default, does not check for unused throws.
+ * To check for unused throws, set property checkUnusedThrows to true.
+ * The scope to verify is specified using the {@link Scope} class and
+ * defaults to {@link Scope#PRIVATE}. To verify another scope,
+ * set property scope to one of the {@link Scope#} constants.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * TODO: re-visit after configuration format settled.
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck"/&gt;
+ * </pre>
+ * <p> An example of how to configure the check to check for unused imports 
+ * and for the {@link Scope#PUBLIC} scope is:
+ *</p>
+ * <pre>
+ * &lt;check
+ *    classname="com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck"&gt;
+ *    &lt;property name="scope" value="public"/&gt;
+ *    &lt;property name="checkUnusedThrows" value="true"/&gt;
+ * &lt;/check&gt;
+ * </pre>
  *
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @author Rick Giles
