@@ -23,6 +23,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.ArrayList;
+import java.io.IOException;
+import java.io.LineNumberReader;
+import java.io.FileReader;
 
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
@@ -157,5 +161,29 @@ public final class Utils
             }
         }
         aProps.put(aKey, buf.toString());
+    }
+
+    /**
+     * Loads the contents of a file in a String array.
+     * @return the lines in the file
+     * @param aFileName the name of the file to load
+     * @throws IOException error occurred
+     **/
+    public static String[] getLines(String aFileName)
+        throws IOException
+    {
+        System.out.println("aFileName = " + aFileName);
+        final LineNumberReader lnr =
+            new LineNumberReader(new FileReader(aFileName));
+        final ArrayList lines = new ArrayList();
+        while (true) {
+            final String l = lnr.readLine();
+            if (l == null) {
+                break;
+            }
+            lines.add(l);
+        }
+
+        return (String[]) lines.toArray(new String[0]);
     }
 }
