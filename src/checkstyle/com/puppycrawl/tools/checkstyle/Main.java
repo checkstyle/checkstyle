@@ -35,6 +35,8 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
 /**
  * Wrapper command line program for the Checker.
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>

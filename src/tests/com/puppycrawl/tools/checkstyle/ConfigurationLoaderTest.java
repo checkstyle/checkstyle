@@ -2,6 +2,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.util.Properties;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.AvoidStarImport;
 import com.puppycrawl.tools.checkstyle.checks.RightCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.RightCurlyOption;
