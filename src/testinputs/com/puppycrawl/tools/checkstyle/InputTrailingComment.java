@@ -17,5 +17,7 @@ public class InputTrailingComment {
     /* c-style 1 */ /*c-style 2 */
 
     void method2(long ms /* we should ignore this */) {
+        /* comment before text */int z;
+        /* int y */int y/**/;
     }
 }

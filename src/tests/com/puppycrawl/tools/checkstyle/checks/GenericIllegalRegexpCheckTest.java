@@ -68,4 +68,143 @@ public class GenericIllegalRegexpCheckTest
         final String[] expectedFalse = {};
         verify(checkConfigFalse, getPath("InputSemantic.java"), expectedFalse);
     }
+
+    public void testIgnoreCommentsCppStyle()
+            throws Exception
+    {
+        // See if the comment is removed properly
+        final String illegal = "don't use trailing comments";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    public void testIgnoreCommentsFalseCppStyle()
+            throws Exception
+    {
+        // See if the comment is removed properly
+        final String illegal = "don't use trailing comments";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "false");
+        final String[] expected = {
+            "2: Line matches the illegal pattern '" + illegal + "'."
+        };
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    public void testIgnoreCommentsCStyle()
+            throws Exception
+    {
+        // See if the comment is removed properly
+        final String illegal = "c-style 1";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    public void testIgnoreCommentsFalseCStyle()
+            throws Exception
+    {
+        final String illegal = "c-style 1";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "false");
+        final String[] expected = {
+            "17: Line matches the illegal pattern '" + illegal + "'."
+        };
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    public void testIgnoreCommentsMultipleCStyle()
+            throws Exception
+    {
+        // See if a second comment on the same line is removed properly
+        final String illegal = "c-style 2";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    public void testIgnoreCommentsMultiLine()
+            throws Exception
+    {
+        final String illegal = "Let's check multi-line comments";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    public void testIgnoreCommentsInlineStart()
+            throws Exception
+    {
+        final String illegal = "long ms /";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    public void testIgnoreCommentsInlineEnd()
+            throws Exception
+    {
+        final String illegal = "int z";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
+        final String[] expected = {
+            "20: Line matches the illegal pattern '" + illegal + "'."
+        };
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+    
+    public void testIgnoreCommentsInlineMiddle()
+            throws Exception
+    {
+        final String illegal = "int y";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
+        final String[] expected = {
+            "21: Line matches the illegal pattern '" + illegal + "'."
+        };
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    public void testIgnoreCommentsNoSpaces()
+            throws Exception
+    {
+        // make sure the comment is not turned into spaces
+        final String illegal = "long ms  ";
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(GenericIllegalRegexpCheck.class);
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("ignoreComments", "true");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
 }

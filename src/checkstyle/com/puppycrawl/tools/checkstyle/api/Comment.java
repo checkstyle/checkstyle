@@ -102,4 +102,29 @@ class Comment implements TextBlock
     {
         return mLastCol;
     }
+
+    /**
+     * Checks if this comment intersects with a specified
+     * part of the file.
+     *
+     * @param aStartLineNo the starting line number in the file
+     * @param aStartColNo the starting column number in the file
+     * @param aEndLineNo the ending line number in the file
+     * @param aEndColNo the ending column number in the file
+     * @return true if the positions intersects with this comment.
+     **/
+    public boolean intersects(int aStartLineNo, int aStartColNo,
+                              int aEndLineNo, int aEndColNo)
+    {
+        // compute a single number for start and end
+        // to simpify conditional logic
+        final long multiplier = Integer.MAX_VALUE;
+        final long thisStart = ((long) mFirstLine) * multiplier + mFirstCol;
+        final long thisEnd = ((long) mLastLine) * multiplier + mLastCol;
+        final long inStart = ((long) aStartLineNo) * multiplier + aStartColNo;
+        final long inEnd = ((long) aEndLineNo) * multiplier + aEndColNo;
+
+        return ((thisStart < inStart) && (inStart < thisEnd))
+            || ((thisStart < inEnd) && (inEnd < thisEnd));
+    }
 }
