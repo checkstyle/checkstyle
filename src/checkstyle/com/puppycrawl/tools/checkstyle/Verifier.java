@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import antlr.Token;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -42,11 +41,6 @@ import org.apache.regexp.RESyntaxException;
  **/
 class Verifier
 {
-    // TODO: Need to refactor this file!!! It is just to big. First thing is
-    // to create a class for collecting errors, and get rid of all those log()
-    // methods. then should start spliting out helper classes for things like
-    // Javadoc.
-
     // {{{ Data declarations
     /** the pattern to match Javadoc tags that take an argument **/
     private static final String MATCH_JAVADOC_ARG_PAT
@@ -113,7 +107,7 @@ class Verifier
     private int mMethodBlockLevel = 0;
 
     /** the messages being logged **/
-    private final List mMessages = new ArrayList();
+    private final LocalizedMessages mMessages;
 
     /** the lines of the file being checked **/
     private String[] mLines;
@@ -149,6 +143,7 @@ class Verifier
     Verifier(Configuration aConfig)
     {
         mConfig = aConfig;
+        mMessages = new LocalizedMessages(mConfig.getTabWidth());
     }
 
     // }}}
@@ -165,19 +160,17 @@ class Verifier
     LocalizedMessage[] getMessages()
     {
         checkImports();
-        Collections.sort(mMessages);
-        return (LocalizedMessage[])
-            mMessages.toArray(new LocalizedMessage[mMessages.size()]);
+        return mMessages.getMessages();
     }
 
-    /** Clears the list of error messages. Use before processing a file. **/
-    void clearMessages()
+    /** Resets the verifier. Use before processing a file. **/
+    void reset()
     {
         mLines = null;
         mPkgName = null;
         mInInterface.clear();
         mInScope.clear();
-        mMessages.clear();
+        mMessages.reset();
         mComments.clear();
         mImports.clear();
         mReferenced.clear();
@@ -191,6 +184,7 @@ class Verifier
     void setLines(String[] aLines)
     {
         mLines = aLines;
+        mMessages.setLines(mLines);
 
         checkHeader();
 
@@ -207,28 +201,27 @@ class Verifier
                 && !(mConfig.isIgnoreImportLength()
                      && line.trim().startsWith("import")))
             {
-                log(i + 1, "maxLineLen",
-                    new Integer(mConfig.getMaxLineLength()));
+                mMessages.add(i + 1, "maxLineLen",
+                              new Integer(mConfig.getMaxLineLength()));
             }
 
             // Check for tabs
             if (!mConfig.isAllowTabs()) {
                 final int tabPosition = mLines[i].indexOf('\t');
                 if (tabPosition != -1) {
-                    log(i + 1, tabPosition, "containsTab");
+                    mMessages.add(i + 1, tabPosition, "containsTab");
                 }
             }
         }
 
         // Check excessive number of lines
         if (mLines.length > mConfig.getMaxFileLength()) {
-            log(1, "maxLen",
-                "file",
-                new Integer(mLines.length),
-                new Integer(mConfig.getMaxFileLength()));
+            mMessages.add(1, "maxLen",
+                          "file",
+                          new Integer(mLines.length),
+                          new Integer(mConfig.getMaxFileLength()));
         }
     }
-
 
     /**
      * Verify that a valid Javadoc comment exists for the method.
@@ -240,12 +233,12 @@ class Verifier
         if (!aSig.isConstructor()
             && !mConfig.getMethodRegexp().match(aSig.getName().getText()))
         {
-            log(aSig.getName().getLineNo(),
-                aSig.getName().getColumnNo(),
-                "name.invalidPattern",
-                "method",
-                aSig.getName().getText(),
-                mConfig.getMethodPat());
+            mMessages.add(aSig.getName().getLineNo(),
+                          aSig.getName().getColumnNo(),
+                          "name.invalidPattern",
+                          "method",
+                          aSig.getName().getText(),
+                          mConfig.getMethodPat());
         }
 
         // Always verify the parameters are ok
@@ -258,24 +251,24 @@ class Verifier
 
         // Check for to many parameters
         if (aSig.getParams().size() > mConfig.getMaxParameters()) {
-            log(aSig.getFirstLineNo(),
-                aSig.getFirstColNo(),
-                "maxParam", new Integer(mConfig.getMaxParameters()));
+            mMessages.add(aSig.getFirstLineNo(),
+                          aSig.getFirstColNo(),
+                          "maxParam", new Integer(mConfig.getMaxParameters()));
         }
         // JLS, chapter 9.4 - public in interface is strongly discouraged
         if (!mConfig.isIgnorePublicInInterface() && inInterfaceBlock()
             && aSig.getModSet().containsPublic())
         {
-            log(aSig.getModSet().getFirstLineNo(),
-                aSig.getModSet().getFirstColNo(),
-                "redundantModifier", "public");
+            mMessages.add(aSig.getModSet().getFirstLineNo(),
+                          aSig.getModSet().getFirstColNo(),
+                          "redundantModifier", "public");
         }
 
         // Check for redunant abstract
         if (inInterfaceBlock() && aSig.getModSet().containsAbstract()) {
-            log(aSig.getModSet().getFirstLineNo(),
-                aSig.getModSet().getFirstColNo(),
-                "redundantModifier", "abstract");
+            mMessages.add(aSig.getModSet().getFirstLineNo(),
+                          aSig.getModSet().getFirstColNo(),
+                          "redundantModifier", "abstract");
         }
         // now check the javadoc
         final Scope methodScope = inInterfaceBlock()
@@ -288,9 +281,9 @@ class Verifier
 
         final String[] jd = getJavadocBefore(aSig.getFirstLineNo() - 1);
         if (jd == null) {
-            log(aSig.getFirstLineNo(),
-                aSig.getFirstColNo(),
-                "javadoc.missing", "method");
+            mMessages.add(aSig.getFirstLineNo(),
+                          aSig.getFirstColNo(),
+                          "javadoc.missing", "method");
         }
         else {
             final List tags = getMethodTags(jd, aSig.getFirstLineNo() - 1);
@@ -309,7 +302,8 @@ class Verifier
                 while (it.hasNext()) {
                     final JavadocTag jt = (JavadocTag) it.next();
                     if (!jt.isSeeTag()) {
-                        log(jt.getLineNo(), "javadoc.unusedTagGeneral");
+                        mMessages.add(jt.getLineNo(),
+                                      "javadoc.unusedTagGeneral");
                     }
                 }
             }
@@ -325,9 +319,9 @@ class Verifier
     void verifyType(MyModifierSet aMods, MyCommonAST aType)
     {
         if (!mConfig.getTypeRegexp().match(aType.getText())) {
-            log(aType.getLineNo(), aType.getColumnNo(),
-                "name.invalidPattern",
-                "type", aType.getText(), mConfig.getTypePat());
+            mMessages.add(aType.getLineNo(), aType.getColumnNo(),
+                          "name.invalidPattern",
+                          "type", aType.getText(), mConfig.getTypePat());
         }
 
         // Always check that the order of modifiers follows the JLS suggestion
@@ -349,14 +343,14 @@ class Verifier
 
         final String[] jd = getJavadocBefore(lineNo - 1);
         if (jd == null) {
-            log(lineNo, "javadoc.missing", "type");
+            mMessages.add(lineNo, "javadoc.missing", "type");
         }
         else if (!mConfig.isAllowNoAuthor()
                  && (mInScope.size() == 0)
                  // don't check author for inner classes
                  && (MATCH_JAVADOC_AUTHOR.grep(jd).length == 0))
         {
-            log(lineNo, "type.missingAuthorTag");
+            mMessages.add(lineNo, "type.missingAuthorTag");
         }
     }
 
@@ -385,8 +379,8 @@ class Verifier
         if (inCheckScope(variableScope)
             && (getJavadocBefore(aVar.getStartLineNo() - 1) == null))
         {
-            log(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                "variable.missingJavadoc", aVar.getText());
+            mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
+                          "variable.missingJavadoc", aVar.getText());
         }
 
         // Check correct format
@@ -424,8 +418,8 @@ class Verifier
                                       mConfig.getStaticPat());
                     }
                     else {
-                        log(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                            "variable.notPrivate", aVar.getText());
+                        mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
+                                      "variable.notPrivate", aVar.getText());
                     }
                 }
             }
@@ -446,8 +440,8 @@ class Verifier
                     // silently allow
                 }
                 else {
-                    log(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                        "variable.notPrivate", aVar.getText());
+                    mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
+                                  "variable.notPrivate", aVar.getText());
                 }
             }
         }
@@ -462,7 +456,7 @@ class Verifier
     void reportNeedBraces(Token aStmt)
     {
         if (!mConfig.isIgnoreBraces()) {
-            log(aStmt.getLine(), "needBraces", aStmt.getText());
+            mMessages.add(aStmt.getLine(), "needBraces", aStmt.getText());
         }
     }
 
@@ -496,13 +490,13 @@ class Verifier
         final int after = aColNo + aText.length() - 1;
 
         if ((before >= 0) && !Character.isWhitespace(line.charAt(before))) {
-            log(aLineNo, before + 1, "ws.notPreceeded", aText);
+            mMessages.add(aLineNo, before + 1, "ws.notPreceeded", aText);
         }
 
         if ((after < line.length())
             && !Character.isWhitespace(line.charAt(after)))
         {
-            log(aLineNo, after, "ws.notFollowed", aText);
+            mMessages.add(aLineNo, after, "ws.notFollowed", aText);
         }
     }
 
@@ -522,7 +516,8 @@ class Verifier
         if ((after >= line.length())
             || Character.isWhitespace(line.charAt(after)))
         {
-            log(aAST.getLineNo(), after, "ws.followed", aAST.getText());
+            mMessages.add(aAST.getLineNo(), after,
+                          "ws.followed", aAST.getText());
         }
     }
 
@@ -540,7 +535,8 @@ class Verifier
         final String line = mLines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
         if ((before < 0) || Character.isWhitespace(line.charAt(before))) {
-            log(aAST.getLineNo(), before, "ws.preceeded", aAST.getText());
+            mMessages.add(aAST.getLineNo(), before,
+                          "ws.preceeded", aAST.getText());
         }
     }
 
@@ -567,8 +563,8 @@ class Verifier
             // verify all characters before '.' are whitespace
             for (int i = 0; i < before; i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
-                    log(aAST.getLineNo(), aAST.getColumnNo() - 1,
-                        "ws.preceeded", ".");
+                    mMessages.add(aAST.getLineNo(), aAST.getColumnNo() - 1,
+                                  "ws.preceeded", ".");
                     break;
                 }
             }
@@ -581,7 +577,7 @@ class Verifier
         {
             for (int i = after + 1; i < line.length(); i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
-                    log(aAST.getLineNo(), after, "ws.followed", ".");
+                    mMessages.add(aAST.getLineNo(), after, "ws.followed", ".");
                     break;
                 }
             }
@@ -621,9 +617,9 @@ class Verifier
     void verifyMethodLength(int aLineNo, int aLength)
     {
         if (aLength > mConfig.getMaxMethodLength()) {
-            log(aLineNo, "maxLen", "method",
-                new Integer(aLength),
-                new Integer(mConfig.getMaxMethodLength()));
+            mMessages.add(aLineNo, "maxLen", "method",
+                          new Integer(aLength),
+                          new Integer(mConfig.getMaxMethodLength()));
         }
     }
 
@@ -677,12 +673,14 @@ class Verifier
         if ((mConfig.getRCurly() == RightCurlyOption.SAME)
             && (aBrace.getLineNo() != aStartLine))
         {
-            log(aBrace.getLineNo(), aBrace.getColumnNo(), "line.same", "}");
+            mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
+                          "line.same", "}");
         }
         else if ((mConfig.getRCurly() == RightCurlyOption.ALONE)
                    && (aBrace.getLineNo() == aStartLine))
         {
-            log(aBrace.getLineNo(), aBrace.getColumnNo(), "line.alone", "}");
+            mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
+                          "line.alone", "}");
         }
     }
 
@@ -703,7 +701,7 @@ class Verifier
         final int after = aColNo - 1;
         if (after < line.length()) {
             if (Character.isWhitespace(line.charAt(after))) {
-                log(aLineNo, after, "ws.followed", "(");
+                mMessages.add(aLineNo, after, "ws.followed", "(");
             }
         }
     }
@@ -727,7 +725,7 @@ class Verifier
             if (Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line))
             {
-                log(aLineNo, before, "ws.preceeded", ")");
+                mMessages.add(aLineNo, before, "ws.preceeded", ")");
             }
         }
     }
@@ -741,9 +739,9 @@ class Verifier
     void verifyConstructorLength(int aLineNo, int aLength)
     {
         if (aLength > mConfig.getMaxConstructorLength()) {
-            log(aLineNo, "maxLen", "constructor",
-                new Integer(aLength),
-                new Integer(mConfig.getMaxConstructorLength()));
+            mMessages.add(aLineNo, "maxLen", "constructor",
+                          new Integer(aLength),
+                          new Integer(mConfig.getMaxConstructorLength()));
         }
     }
 
@@ -757,7 +755,7 @@ class Verifier
     {
         final String cmt = mLines[aStartLineNo - 1].substring(aStartColNo);
         if (mConfig.getTodoRegexp().match(cmt)) {
-            log(aStartLineNo, "todo.match", mConfig.getTodoPat());
+            mMessages.add(aStartLineNo, "todo.match", mConfig.getTodoPat());
         }
     }
 
@@ -782,7 +780,8 @@ class Verifier
         // Check for to-do comments
         for (int i = 0; i < cc.length; i++) {
             if (mConfig.getTodoRegexp().match(cc[i])) {
-                log(aStartLineNo + i, "todo.match", mConfig.getTodoPat());
+                mMessages.add(aStartLineNo + i, "todo.match",
+                              mConfig.getTodoPat());
             }
         }
     }
@@ -833,8 +832,8 @@ class Verifier
             while (it.hasNext()) {
                 final LineText lt = (LineText) it.next();
                 if (aType.equals(lt.getText())) {
-                    log(aLineNo, "import.duplicate",
-                        new Integer(lt.getLineNo()));
+                    mMessages.add(aLineNo, "import.duplicate",
+                                  new Integer(lt.getLineNo()));
                 }
             }
         }
@@ -851,7 +850,7 @@ class Verifier
     void reportStarImport(int aLineNo, String aPkg)
     {
         if (!mConfig.isIgnoreImports()) {
-            log(aLineNo, "import.avoidStar");
+            mMessages.add(aLineNo, "import.avoidStar");
         }
         mImports.add(new LineText(aLineNo, aPkg));
     }
@@ -941,7 +940,7 @@ class Verifier
         final int colNo = aNewAST.getColumnNo();
         final String fqClassName = getIllegalInstantiation(typeName);
         if (fqClassName != null) {
-            log(lineNo, colNo, "instantiation.avoid", fqClassName);
+            mMessages.add(lineNo, colNo, "instantiation.avoid", fqClassName);
         }
     }
 
@@ -977,7 +976,7 @@ class Verifier
             && (mLines[aLineNo - 1].substring(aColNo + aText.length() - 1)
                 .trim().length() == 0))
         {
-            log(aLineNo, aColNo - 1, "line.new", aText);
+            mMessages.add(aLineNo, aColNo - 1, "line.new", aText);
         }
     }
 
@@ -991,7 +990,7 @@ class Verifier
         if (!mConfig.isIgnoreLongEll()
             && (mLines[aLineNo - 1].charAt(aColNo) == 'l'))
         {
-            log(aLineNo, aColNo, "upperEll");
+            mMessages.add(aLineNo, aColNo, "upperEll");
         }
     }
 
@@ -1059,151 +1058,6 @@ class Verifier
         return retVal;
     }
 
-    // TODO: Need to refactor all those log() calls!!
-
-    /**
-     * Logs a message to be reported
-     * @param aMsg the message to log
-     **/
-    private void log(LocalizedMessage aMsg)
-    {
-        mMessages.add(aMsg);
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArgs arguments for message
-     */
-    private void log(int aLineNo, String aKey, Object[] aArgs)
-    {
-        log(new LocalizedMessage(aLineNo, 0, aKey, aArgs));
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     */
-    private void log(int aLineNo, String aKey)
-    {
-        log(aLineNo, aKey, new Object[0]);
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     */
-    private void log(int aLineNo, String aKey, Object aArg0)
-    {
-        log(aLineNo, aKey, new Object[] {aArg0});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     * @param aArg1 second argument
-     */
-    private void log(int aLineNo, String aKey, Object aArg0, Object aArg1)
-    {
-        log(aLineNo, aKey, new Object[] {aArg0, aArg1});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     * @param aArg1 second argument
-     * @param aArg2 third argument
-     */
-    private void log(int aLineNo, String aKey,
-                     Object aArg0, Object aArg1, Object aArg2)
-    {
-        log(aLineNo, aKey, new Object[] {aArg0, aArg1, aArg2});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArgs arguments for message
-     */
-    private void log(int aLineNo, int aColNo, String aKey, Object[] aArgs)
-    {
-        final int col = 1 + Utils.lengthExpandedTabs(
-            mLines[aLineNo - 1], aColNo, mConfig.getTabWidth());
-        log(new LocalizedMessage(aLineNo, col, aKey, aArgs));
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     */
-    private void log(int aLineNo, int aColNo, String aKey)
-    {
-        log(aLineNo, aColNo, aKey, new Object[0]);
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     */
-    private void log(int aLineNo, int aColNo, String aKey, Object aArg0)
-    {
-        log(aLineNo, aColNo, aKey, new Object[] {aArg0});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     * @param aArg1 second argument
-     */
-    private void log(int aLineNo, int aColNo, String aKey,
-                     Object aArg0, Object aArg1)
-    {
-        log(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     * @param aArg1 second argument
-     * @param aArg2 third argument
-     */
-    private void log(int aLineNo, int aColNo, String aKey,
-                     Object aArg0, Object aArg1, Object aArg2)
-    {
-        log(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1, aArg2});
-    }
-
     /**
      * Checks that a variable confirms to a specified regular expression. Logs
      * a message if it does not.
@@ -1214,9 +1068,9 @@ class Verifier
     private void checkVariable(MyVariable aVar, RE aRegexp, String aPattern)
     {
         if (!aRegexp.match(aVar.getText())) {
-            log(aVar.getLineNo(), aVar.getColumnNo() - 1,
-                "name.invalidPattern",
-                "variable", aVar.getText(), aPattern);
+            mMessages.add(aVar.getLineNo(), aVar.getColumnNo() - 1,
+                          "name.invalidPattern",
+                          "variable", aVar.getText(), aPattern);
         }
     }
 
@@ -1228,9 +1082,9 @@ class Verifier
     private void checkParameter(LineText aParam)
     {
         if (!mConfig.getParamRegexp().match(aParam.getText())) {
-            log(aParam.getLineNo(), aParam.getColumnNo(),
-                "name.invalidPattern",
-                "parameter", aParam.getText(), mConfig.getParamPat());
+            mMessages.add(aParam.getLineNo(), aParam.getColumnNo(),
+                          "name.invalidPattern",
+                          "parameter", aParam.getText(), mConfig.getParamPat());
         }
     }
 
@@ -1383,8 +1237,8 @@ class Verifier
 
             // Handle extra JavadocTag
             if (!found) {
-                log(tag.getLineNo(), "javadoc.unusedTag",
-                    "@param", tag.getArg1());
+                mMessages.add(tag.getLineNo(), "javadoc.unusedTag",
+                              "@param", tag.getArg1());
             }
         }
 
@@ -1392,8 +1246,8 @@ class Verifier
         final ListIterator paramIt = aParams.listIterator();
         while (paramIt.hasNext()) {
             final LineText param = (LineText) paramIt.next();
-            log(param.getLineNo(), param.getColumnNo(),
-                "javadoc.expectedTag", "@param", param.getText());
+            mMessages.add(param.getLineNo(), param.getColumnNo(),
+                          "javadoc.expectedTag", "@param", param.getText());
         }
     }
 
@@ -1413,7 +1267,7 @@ class Verifier
             final JavadocTag jt = (JavadocTag) it.next();
             if (jt.isReturnTag()) {
                 if (found) {
-                    log(jt.getLineNo(), "javadoc.return.duplicate");
+                    mMessages.add(jt.getLineNo(), "javadoc.return.duplicate");
                 }
                 found = true;
                 it.remove();
@@ -1422,7 +1276,7 @@ class Verifier
 
         // Handle there being no @return tags
         if (!found) {
-            log(aLineNo, "javadoc.return.expected");
+            mMessages.add(aLineNo, "javadoc.return.expected");
         }
     }
 
@@ -1471,14 +1325,14 @@ class Verifier
                             && !Error.class.isAssignableFrom(clazz);
                     }
                     catch (ClassNotFoundException e) {
-                        log(tag.getLineNo(), "javadoc.classInfo",
-                            "@throws", tag.getArg1());
+                        mMessages.add(tag.getLineNo(), "javadoc.classInfo",
+                                      "@throws", tag.getArg1());
                     }
                 }
 
                 if (reqd) {
-                    log(tag.getLineNo(), "javadoc.unusedTag",
-                        "@throws", tag.getArg1());
+                    mMessages.add(tag.getLineNo(), "javadoc.unusedTag",
+                                  "@throws", tag.getArg1());
                 }
             }
         }
@@ -1487,8 +1341,8 @@ class Verifier
         final ListIterator throwIt = aThrows.listIterator();
         while (throwIt.hasNext()) {
             final LineText t = (LineText) throwIt.next();
-            log(t.getLineNo(), t.getColumnNo() - 1, "javadoc.expectedTag",
-                "@throws", t.getText());
+            mMessages.add(t.getLineNo(), t.getColumnNo() - 1,
+                          "javadoc.expectedTag", "@throws", t.getText());
         }
     }
 
@@ -1497,7 +1351,7 @@ class Verifier
     private void checkHeader()
     {
         if (mConfig.getHeaderLines().length > mLines.length) {
-            log(1, "header.missing");
+            mMessages.add(1, "header.missing");
         }
         else {
             for (int i = 0; i < mConfig.getHeaderLines().length; i++) {
@@ -1514,13 +1368,13 @@ class Verifier
                         : headerLine.equals(mLines[i]);
 
                     if (!match) {
-                        log(i + 1, "header.mismatch",
-                            mConfig.getHeaderLines()[i]);
+                        mMessages.add(i + 1, "header.mismatch",
+                                      mConfig.getHeaderLines()[i]);
                         break; // stop checking
                     }
                 }
                 catch (RESyntaxException e) {
-                    log(i + 1, "regexp.parseError", headerLine);
+                    mMessages.add(i + 1, "regexp.parseError", headerLine);
                 }
             }
         }
@@ -1536,8 +1390,8 @@ class Verifier
     {
         final MyCommonAST error = aModSet.checkOrderSuggestedByJLS();
         if (error != null) {
-            log(error.getLineNo(), error.getColumnNo(),
-                "mod.order", error.getText());
+            mMessages.add(error.getLineNo(), error.getColumnNo(),
+                          "mod.order", error.getText());
         }
     }
 
@@ -1564,16 +1418,16 @@ class Verifier
             final LineText imp = (LineText) it.next();
 
             if (fromPackage(imp.getText(), "java.lang")) {
-                log(imp.getLineNo(), "import.lang");
+                mMessages.add(imp.getLineNo(), "import.lang");
             }
             else if (fromPackage(imp.getText(), mPkgName)) {
-                log(imp.getLineNo(), "import.same");
+                mMessages.add(imp.getLineNo(), "import.same");
             }
             else if (!isReferencedImport(imp)) {
-                log(imp.getLineNo(), "import.unused", imp.getText());
+                mMessages.add(imp.getLineNo(), "import.unused", imp.getText());
             }
             else if (isIllegalImport(imp.getText())) {
-                log(imp.getLineNo(), "import.illegal", imp.getText());
+                mMessages.add(imp.getLineNo(), "import.illegal", imp.getText());
             }
         }
     }
@@ -1756,16 +1610,16 @@ class Verifier
         }
         else if (aOption == LeftCurlyOption.NL) {
             if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                    "line.new", "{");
+                mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
+                              "line.new", "{");
             }
         }
         else if (aOption == LeftCurlyOption.EOL) {
             if (Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)
                 && ((prevLineLen + 2) <= mConfig.getMaxLineLength()))
             {
-                log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                    "line.previous", "{");
+                mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
+                              "line.previous", "{");
             }
         }
         else if (aOption == LeftCurlyOption.NLOW) {
@@ -1774,17 +1628,17 @@ class Verifier
             }
             else if ((aStartLine + 1) == aBrace.getLineNo()) {
                 if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                    log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                        "line.new", "{");
+                    mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
+                                  "line.new", "{");
                 }
                 else if ((prevLineLen + 2) <= mConfig.getMaxLineLength()) {
-                    log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                        "line.previous", "{");
+                    mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
+                                  "line.previous", "{");
                 }
             }
             else if (!Utils.whitespaceBefore(aBrace.getColumnNo(), braceLine)) {
-                log(aBrace.getLineNo(), aBrace.getColumnNo(),
-                    "line.new", "{");
+                mMessages.add(aBrace.getLineNo(), aBrace.getColumnNo(),
+                              "line.new", "{");
             }
         }
     }
@@ -1811,7 +1665,8 @@ class Verifier
             && !Character.isWhitespace(line.charAt(aColNo))
             && (aAllow.indexOf(line.charAt(aColNo)) == -1))
         {
-            log(aLineNo, aColNo, "ws.notFollowed", aConstruct.getText());
+            mMessages.add(aLineNo, aColNo,
+                          "ws.notFollowed", aConstruct.getText());
         }
     }
 
@@ -1826,8 +1681,8 @@ class Verifier
                     MyCommonAST[] aBraces, boolean aNoStmt)
     {
         if (aNoStmt && (aOption == BlockOption.STMT)) {
-            log(aBraces[0].getLineNo(), aBraces[0].getColumnNo(),
-                "block.noStmt");
+            mMessages.add(aBraces[0].getLineNo(), aBraces[0].getColumnNo(),
+                          "block.noStmt");
         }
         else if (aOption == BlockOption.TEXT) {
             if (aBraces[0].getLineNo() == aBraces[1].getLineNo()) {
@@ -1836,8 +1691,9 @@ class Verifier
                     .substring(aBraces[0].getColumnNo() + 1,
                                aBraces[1].getColumnNo());
                 if (txt.trim().length() == 0) {
-                    log(aBraces[0].getLineNo(), aBraces[0].getColumnNo(),
-                        "block.empty", aType);
+                    mMessages.add(aBraces[0].getLineNo(),
+                                  aBraces[0].getColumnNo(),
+                                  "block.empty", aType);
                 }
             }
             else {
@@ -1863,8 +1719,9 @@ class Verifier
                     }
 
                     if (isBlank) {
-                        log(aBraces[0].getLineNo(), aBraces[0].getColumnNo(),
-                            "block.empty", aType);
+                        mMessages.add(aBraces[0].getLineNo(),
+                                      aBraces[0].getColumnNo(),
+                                      "block.empty", aType);
                     }
                 }
             }
