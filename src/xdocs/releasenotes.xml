@@ -69,6 +69,9 @@
         <li>ModifiedControlVariable check changed to work with for-each
         correctly (1101851)</li>
 
+        <li>Annotations and enums are classes too and should be treated so by
+        ClassFanOutComplexity checks (bug 1109205)</li>
+
       </ul>
 
 

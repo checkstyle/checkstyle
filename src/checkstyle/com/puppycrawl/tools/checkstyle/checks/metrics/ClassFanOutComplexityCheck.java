@@ -46,9 +46,11 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
             TokenTypes.TYPE,
             TokenTypes.LITERAL_NEW,
             TokenTypes.LITERAL_THROWS,
+            TokenTypes.ANNOTATION_DEF,
         };
     }
 

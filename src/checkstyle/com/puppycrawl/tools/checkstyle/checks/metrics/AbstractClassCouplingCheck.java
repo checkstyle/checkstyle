@@ -129,6 +129,8 @@ public abstract class AbstractClassCouplingCheck extends Check
             break;
         case TokenTypes.CLASS_DEF:
         case TokenTypes.INTERFACE_DEF:
+        case TokenTypes.ANNOTATION_DEF:
+        case TokenTypes.ENUM_DEF:
             visitClassDef(aAST);
             break;
         case TokenTypes.TYPE:
@@ -151,6 +153,8 @@ public abstract class AbstractClassCouplingCheck extends Check
         switch (aAST.getType()) {
         case TokenTypes.CLASS_DEF:
         case TokenTypes.INTERFACE_DEF:
+        case TokenTypes.ANNOTATION_DEF:
+        case TokenTypes.ENUM_DEF:
             leaveClassDef();
             break;
         default:

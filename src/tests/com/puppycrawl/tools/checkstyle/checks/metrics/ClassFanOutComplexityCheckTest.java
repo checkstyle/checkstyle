@@ -18,4 +18,15 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestCase {
 
         verify(checkConfig, getPath("metrics" + File.separator +"ClassCouplingCheckTestInput.java"), expected);
     }
+
+    public void test15() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(ClassFanOutComplexityCheck.class);
+
+        checkConfig.addAttribute("max", "0");
+
+        String[] expected = {
+        };
+
+        verify(checkConfig, getPath("Input15Extensions.java"), expected);
+    }
 }
