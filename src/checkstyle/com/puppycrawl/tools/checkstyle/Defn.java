@@ -43,10 +43,6 @@ public interface Defn
     String LOCAL_VAR_PATTERN_PROP = "checkstyle.pattern.localvar";
     /** property name for the method local final variable pattern **/
     String LOCAL_FINAL_VAR_PATTERN_PROP = "checkstyle.pattern.localfinalvar";
-    /** property name for the maximum line length **/
-    String MAX_LINE_LENGTH_PROP = "checkstyle.maxlinelen";
-    /** property name for length of methods **/
-    String MAX_METHOD_LENGTH_PROP = "checkstyle.maxmethodlen";
     /** property name for length of constructors **/
     String MAX_CONSTRUCTOR_LENGTH_PROP = "checkstyle.maxconstructorlen";
     /** property name for allowing protected data **/
@@ -121,8 +117,6 @@ public interface Defn
     String[] ALL_INT_PROPS = new String[]
         {
             MAX_CONSTRUCTOR_LENGTH_PROP,
-            MAX_LINE_LENGTH_PROP,
-            MAX_METHOD_LENGTH_PROP,
             TAB_WIDTH_PROP,
         };
 

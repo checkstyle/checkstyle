@@ -330,7 +330,6 @@ public class CheckerTest
     public void testSimple()
         throws Exception
     {
-        mProps.setProperty(Defn.MAX_METHOD_LENGTH_PROP, "19");
         mProps.setProperty(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, "9");
         mProps.setProperty(Defn.STATIC_PATTERN_PROP, "^s[A-Z][a-zA-Z0-9]*$");
         mProps.setProperty(Defn.MEMBER_PATTERN_PROP, "^m[A-Z][a-zA-Z0-9]*$");
@@ -346,7 +345,6 @@ public class CheckerTest
             filepath + ":35:17: Name 'badMember' must match pattern '^m[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":42:40: ',' is not followed by whitespace.",
             filepath + ":71:30: ',' is not followed by whitespace.",
-            filepath + ":80: Method length is 20 lines (max allowed is 19).",
             filepath + ":103: Constructor length is 10 lines (max allowed is 9).",
             filepath + ":119:13: Name 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             filepath + ":122:19: Name 'cde' must match pattern '[A-Z]+'.",

@@ -87,8 +87,6 @@ public class Configuration
     /** map of int properties **/
     private final Map mIntProps = new HashMap();
     {
-        mIntProps.put(Defn.MAX_LINE_LENGTH_PROP, new Integer(80));
-        mIntProps.put(Defn.MAX_METHOD_LENGTH_PROP, new Integer(150));
         mIntProps.put(Defn.MAX_CONSTRUCTOR_LENGTH_PROP, new Integer(150));
         mIntProps.put(Defn.TAB_WIDTH_PROP, new Integer(8));
     }
@@ -375,18 +373,6 @@ public class Configuration
     RE getLocalFinalVarRegexp()
     {
         return getRegexpProperty(Defn.LOCAL_FINAL_VAR_PATTERN_PROP);
-    }
-
-    /** @return the maximum line length **/
-    int getMaxLineLength()
-    {
-        return getIntProperty(Defn.MAX_LINE_LENGTH_PROP);
-    }
-
-    /** @return the maximum method length **/
-    int getMaxMethodLength()
-    {
-        return getIntProperty(Defn.MAX_METHOD_LENGTH_PROP);
     }
 
     /** @return the maximum constructor length **/
