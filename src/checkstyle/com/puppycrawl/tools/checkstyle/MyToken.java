@@ -26,9 +26,9 @@ package com.puppycrawl.tools.checkstyle;
 final class MyToken
 {
     /** represents a semi-colon **/
-    static final MyToken SEMI_COLON = new MyToken("';'");
+    static final MyToken SEMI_COLON = new MyToken(";");
     /** represents a comma **/
-    static final MyToken COMMA = new MyToken("','");
+    static final MyToken COMMA = new MyToken(",");
     /** represents a type cast **/
     static final MyToken CAST = new MyToken("cast");
 

@@ -178,7 +178,7 @@ public class Checker
             stripped = aFileName.substring(basedir.length() + skipSep);
         }
 
-        LineText[] errors;
+        LocalizedMessage[] errors;
         try {
             fireFileStarted(stripped);
             final String[] lines = getLines(aFileName);
@@ -218,21 +218,23 @@ public class Checker
             errors = VerifierSingleton.getInstance().getMessages();
         }
         catch (FileNotFoundException fnfe) {
-            errors = new LineText[] {new LineText(0, "File not found!")};
+            errors = new LocalizedMessage[] {
+                new LocalizedMessage(0, "general.fileNotFound", null)};
         }
         catch (IOException ioe) {
-            errors = new LineText[] {
-                new LineText(0, "Got an IOException -" + ioe.getMessage())};
+            errors = new LocalizedMessage[] {
+                new LocalizedMessage(0, "general.exception",
+                                     new String[] {ioe.getMessage()})};
         }
         catch (RecognitionException re) {
-            errors = new LineText[] {
-                new LineText(0,
-                             "Got a RecognitionException -" + re.getMessage())};
+            errors = new LocalizedMessage[] {
+                new LocalizedMessage(0, "general.exception",
+                                     new String[] {re.getMessage()})};
         }
         catch (TokenStreamException te) {
-            errors = new LineText[] {
-                new LineText(0,
-                             "Got a TokenStreamException -" + te.getMessage())};
+            errors = new LocalizedMessage[] {
+                new LocalizedMessage(0, "general.exception",
+                                     new String[] {te.getMessage()})};
         }
 
         if (errors.length == 0) {
@@ -268,9 +270,9 @@ public class Checker
                 final String docFile = packageDoc.toString();
                 fireFileStarted(docFile);
                 if (!packageDoc.exists()) {
-                    final LineText error =
-                        new LineText(0, "missing package documentation file.");
-                    fireErrors(docFile, new LineText[]{error});
+                    final LocalizedMessage error =
+                        new LocalizedMessage(0, "javadoc.packageHtml", null);
+                    fireErrors(docFile, new LocalizedMessage[]{error});
                     packageHtmlErrors++;
                 }
                 fireFileFinished(docFile);
@@ -359,14 +361,14 @@ public class Checker
      * @param aFileName the audited file
      * @param aErrors the audit errors from the file
      */
-    protected void fireErrors(String aFileName, LineText[] aErrors)
+    protected void fireErrors(String aFileName, LocalizedMessage[] aErrors)
     {
         for (int i = 0; i < aErrors.length; i++) {
             final AuditEvent evt =
                 new AuditEvent(this, aFileName,
                                aErrors[i].getLineNo(),
                                aErrors[i].getColumnNo(),
-                               aErrors[i].getText());
+                               aErrors[i].getMessage());
             final Iterator it = mListeners.iterator();
             while (it.hasNext()) {
                 final AuditListener listener = (AuditListener) it.next();
