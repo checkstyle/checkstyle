@@ -253,13 +253,6 @@ class Verifier
     void verifyVariable(MyVariable aVar)
     {
         if (inMethodBlock()) {
-            if (aVar.getModifierSet().containsFinal()) {
-            }
-            else {
-                checkVariable(aVar,
-                              mConfig.getLocalVarRegexp(),
-                              mConfig.getLocalVarPat());
-            }
             return;
         }
 
