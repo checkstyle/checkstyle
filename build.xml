@@ -378,6 +378,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
 
     <junit printsummary="yes"
            fork="yes"
+           forkmode="perBatch"
            haltonfailure="no"
            showoutput="yes"
            failureProperty="tests.have.failed">
