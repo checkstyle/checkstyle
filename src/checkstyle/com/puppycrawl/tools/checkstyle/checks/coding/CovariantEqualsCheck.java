@@ -70,32 +70,34 @@ public class CovariantEqualsCheck extends Check
 
         // examine method definitions for equals methods
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
-        DetailAST child = (DetailAST) objBlock.getFirstChild();
-        while (child != null) {
-            if (child.getType() == TokenTypes.METHOD_DEF) {
-                if (isEqualsMethod(child)) {
-                    if (hasObjectParameter(child)) {
-                        mHasEqualsObject = true;
-                    }
-                    else {
-                        mEqualsMethods.add(child);
+        if (objBlock != null) {
+            DetailAST child = (DetailAST) objBlock.getFirstChild();
+            while (child != null) {
+                if (child.getType() == TokenTypes.METHOD_DEF) {
+                    if (isEqualsMethod(child)) {
+                        if (hasObjectParameter(child)) {
+                            mHasEqualsObject = true;
+                        }
+                        else {
+                            mEqualsMethods.add(child);
+                        }
                     }
                 }
+                child = (DetailAST) child.getNextSibling();
             }
-            child = (DetailAST) child.getNextSibling();
-        }
-
-        // report equals method definitions
-        if (!mHasEqualsObject) {
-            final Iterator it = mEqualsMethods.iterator();
-            while (it.hasNext()) {
-                final DetailAST equalsAST = (DetailAST) it.next();
-                final DetailAST nameNode =
-                    equalsAST.findFirstToken(TokenTypes.IDENT);
-                log(
-                    nameNode.getLineNo(),
-                    nameNode.getColumnNo(),
-                    "covariant.equals");
+    
+            // report equals method definitions
+            if (!mHasEqualsObject) {
+                final Iterator it = mEqualsMethods.iterator();
+                while (it.hasNext()) {
+                    final DetailAST equalsAST = (DetailAST) it.next();
+                    final DetailAST nameNode =
+                        equalsAST.findFirstToken(TokenTypes.IDENT);
+                    log(
+                        nameNode.getLineNo(),
+                        nameNode.getColumnNo(),
+                        "covariant.equals");
+                }
             }
         }
     }

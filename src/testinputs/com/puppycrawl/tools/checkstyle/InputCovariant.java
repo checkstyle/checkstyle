@@ -85,6 +85,11 @@ class Anonymous
     {
         return false;
     }
+    
+    public void method()
+    {
+        Double d = new Double(1);
+    }
 }
 
 abstract class InputCovariant5
