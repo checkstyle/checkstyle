@@ -1,5 +1,3 @@
 checkstyle.ipr
 checkstyle.iws
-classes
-dist
-testreports
+target
