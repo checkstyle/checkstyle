@@ -411,7 +411,7 @@ public class CheckStyleTask
     /** @param aEnable whether to check if unused @throws are a
      *                 RuntimeException
      **/
-    public void setEnableCheckUnusedThrows(final boolean aEnable)
+    public void setCheckUnusedThrows(final boolean aEnable)
     {
         setBooleanProperty(Defn.JAVADOC_CHECK_UNUSED_THROWS_PROP, aEnable);
     }
