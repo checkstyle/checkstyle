@@ -108,6 +108,7 @@ public class AllTests {
         suite.addTest(new TestSuite(OtherLeftCurlyCheckTest.class));
         suite.addTest(new TestSuite(PackageHtmlCheckTest.class));
         suite.addTest(new TestSuite(PackageNameCheckTest.class));
+        suite.addTest(new TestSuite(PackageObjectFactoryTest.class));
         suite.addTest(new TestSuite(ParameterNameCheckTest.class));
         suite.addTest(new TestSuite(ParameterNumberCheckTest.class));
         suite.addTest(new TestSuite(ParenPadCheckTest.class));
