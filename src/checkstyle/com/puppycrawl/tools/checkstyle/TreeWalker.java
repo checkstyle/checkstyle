@@ -201,6 +201,8 @@ public final class TreeWalker
             walk(rootAST, contents);
         }
         catch (FileNotFoundException fnfe) {
+            // TODO: this dependency on the checkstyle package is not good. It
+            // introduces a circular dependency between packages.
             mMessages.add(new LocalizedMessage(0, Defn.CHECKSTYLE_BUNDLE,
                                                "general.fileNotFound", null));
         }
