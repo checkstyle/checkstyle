@@ -21,8 +21,29 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that method names conform to a specified format.
- *
+ * <p>
+ * Checks that method names conform to a format specified
+ * by the format property. The format is a
+ * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
+ * regular expression</a>
+ * and defaults to
+ * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="MethodNameCheck"/&gt;
+ * </pre> 
+ * <p>
+ * An example of how to configure the check for names that begin with
+ * a lower case letter, followed by letters, digits, and underscores is:
+ * </p>
+ * <pre>
+ * &lt;config name="MethodNameCheck"/&gt;
+ *    &lt;property name="format" value="^^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */

@@ -23,14 +23,33 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks for long methods.
- *
  * <p>
- * Rationale: If a mthod becomes very long it is hard to understand.
+ * Checks for long methods.
+ * </p>
+ * <p>
+ * Rationale: If a method becomes very long it is hard to understand.
  * Therefore long methods should usually be refactored into several
  * individual methods that focus on a specific task.
  * </p>
- *
+ *<p>
+ * The default maximum method length is 150 lines. To change the maximum
+ * number of lines, set property max.
+ * </p>
+ * <p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="MethodLengthCheck"/&gt;
+ * </pre>
+ * <p>
+ * An example of how to configure the check so that it accepts methods with at
+ * most 60 lines is:
+ * </p>
+ * <pre>
+ * &lt;config name="MethodLengthCheck"&gt;
+ *    &lt;property name="max" value="60"/&gt;
+ * &lt;/config&gt;
+ * </pre>
  * @author Lars Kühne
  */
 public class MethodLengthCheck extends Check
@@ -64,7 +83,7 @@ public class MethodLengthCheck extends Check
     }
 
     /**
-     * @param aLength the maximum length of a Java source file
+     * @param aLength the maximum length of a method.
      */
     public void setMax(int aLength)
     {

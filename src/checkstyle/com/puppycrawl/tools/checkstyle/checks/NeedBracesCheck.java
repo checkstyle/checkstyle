@@ -25,14 +25,28 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- *  Checks for missing braces {}'s for the following constructs:
- * <ul>
- * <li>if/else</li>
- * <li>while</li>
- * <li>for</li>
- * <li>do/while</li>
- * </ul>
- *
+ * <p>
+ * Checks for braces around code blocks.
+ * </p>
+ * <p> By default the check will check the following blocks:
+ *  {@link TokenTypes#LITERAL_DO LITERAL_DO},
+ *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
+ *  {@link TokenTypes#LITERAL_FOR LITERAL_FOR},
+ *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
+ *  {@link TokenTypes#LITERAL_WHILE LITERAL_WHILE}.
+ * </p>
+ * An example of how to configure the check is:
+ * </p>
+ * <pre>
+ * &lt;config name="NeedBracesCheck"/&gt;
+ * </pre> 
+ * <p> An example of how to configure the check for <code>if</code> and
+ * <code>else</code> blocks is:
+ * <pre>
+ * &lt;config name="NeedBracesCheck"&gt;
+ *     &lt;property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/&gt;
+ * &lt;/config&gt;
+ * </pre> 
  * @author Rick Giles
  * @version 1.0
  */
