@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
-import antlr.collections.AST;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -135,8 +134,12 @@ public class Checker
             VerifierSingleton.getInstance().clearMessages();
             VerifierSingleton.getInstance().setLines(lines);
             final Reader sar = new StringArrayReader(lines);
-            final AST ast = getAST(aFileName, sar);
-            processAST(ast);
+            final GeneratedJavaLexer jl = new GeneratedJavaLexer(sar);
+            jl.setFilename(aFileName);
+            final GeneratedJavaRecognizer jr = new GeneratedJavaRecognizer(jl);
+            jr.setFilename(aFileName);
+            jr.setASTNodeClass(MyCommonAST.class.getName());
+            jr.compilationUnit();
             errors = VerifierSingleton.getInstance().getMessages();
         }
         catch (FileNotFoundException fnfe) {
@@ -189,43 +192,6 @@ public class Checker
         }
 
         return (String[]) lines.toArray(new String[0]);
-    }
-
-    /**
-     * Parses and returns the AST for a file.
-     * @param aFileName name of file read
-     * @param aReader the Reader to generate the AST
-     * @return the AST
-     * @exception FileNotFoundException error occurred
-     * @exception RecognitionException error occurred
-     * @exception TokenStreamException error occurred
-     *
-     */
-    private AST getAST(String aFileName, Reader aReader)
-        throws FileNotFoundException, RecognitionException, TokenStreamException
-    {
-        // Create the lexer/parser stuff
-        final GeneratedJavaLexer jl = new GeneratedJavaLexer(aReader);
-        jl.setFilename(aFileName);
-        final GeneratedJavaRecognizer jr = new GeneratedJavaRecognizer(jl);
-        jr.setFilename(aFileName);
-        jr.setASTNodeClass(MyCommonAST.class.getName());
-
-        // Parse the file
-        jr.compilationUnit();
-        return jr.getAST();
-    }
-
-    /**
-     * Processes an AST for errors.
-     * @param aAST the AST to process
-     * @throws RecognitionException error occurred
-     **/
-    private void processAST(AST aAST)
-        throws RecognitionException
-    {
-        final GeneratedJavaTreeParser jtp = new GeneratedJavaTreeParser();
-        jtp.compilationUnit(aAST);
     }
 
     /** notify all listeners about the audit start */
