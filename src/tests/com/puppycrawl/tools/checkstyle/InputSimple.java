@@ -71,4 +71,40 @@ class InputSimple
     {
         return 0;
     }
+
+    /** method that is 20 lines long **/
+    private void longMethod()
+    {
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+    }
+
+    /** constructor that is 10 lines long **/
+    private InputSimple()
+    {
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+        // a line
+    }
 }

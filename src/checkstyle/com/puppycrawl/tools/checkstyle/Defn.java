@@ -38,6 +38,10 @@ interface Defn
     String TYPE_PATTERN_PROP = "checkstyle.pattern.type";
     /** property name for the maximum line length **/
     String MAX_LINE_LENGTH_PROP = "checkstyle.maxlinelen";
+    /** property name for length of methods **/
+    String MAX_METHOD_LENGTH_PROP = "checkstyle.maxmethodlen";
+    /** property name for length of constructors **/
+    String MAX_CONSTRUCTOR_LENGTH_PROP = "checkstyle.maxconstructorlen";
     /** property name for allowing tabs **/
     String ALLOW_TABS_PROP = "checkstyle.allow.tabs";
     /** property name for allowing protected data **/

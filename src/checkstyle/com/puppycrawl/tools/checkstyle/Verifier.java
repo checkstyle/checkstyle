@@ -113,6 +113,20 @@ interface Verifier
     void verifyWSAfterCast(int aLineNo, int aColNo);
 
     /**
+     * Verify that a method length is ok.
+     * @param aLineNo line the method block starts at
+     * @param aLength the length of the method block
+     */
+    void verifyMethodLength(int aLineNo, int aLength);
+
+    /**
+     * Verify that a constructor length is ok.
+     * @param aLineNo line the constructor block starts at
+     * @param aLength the length of the constructor block
+     */
+    void verifyConstructorLength(int aLineNo, int aLength);
+
+    /**
      * Report the location of a C++ comment.
      * @param aLineNo the line number
      * @param aColNo the column number

@@ -49,7 +49,7 @@ compilationUnit
 
 packageDefinition
 { LineText nm; }
-   : #( PACKAGE_DEF nm=identifier { ver.reportPackageName(nm.getText()); } )
+   : #( PACKAGE_DEF nm=identifier )
    ;
 
 importDefinition

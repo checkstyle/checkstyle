@@ -238,6 +238,8 @@ public class CheckerTest
     public void testSimple()
         throws Exception
     {
+        mConfig.setMaxMethodLength(19);
+        mConfig.setMaxConstructorLength(9);
         final Checker c = createChecker();
         final String filepath = getPath("InputSimple.java");
         assertNotNull(c);
@@ -256,7 +258,9 @@ public class CheckerTest
             filepath + ":54: variable 'mTest2' must be private and have accessor methods.",
             filepath + ":67: parameter 'badFormat1' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
             filepath + ":68: parameter 'badFormat2' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
-            filepath + ":69: parameter 'badFormat3' must match pattern '^a[A-Z][a-zA-Z0-9]*$'."
+            filepath + ":69: parameter 'badFormat3' must match pattern '^a[A-Z][a-zA-Z0-9]*$'.",
+            filepath + ":77: method length is 20 lines (max allowed is 19).",
+            filepath + ":100: constructor length is 10 lines (max allowed is 9).",
         };
         verify(c, filepath, expected);
     }
