@@ -174,6 +174,9 @@
 <p>Verifies that the format of local variables conform to a specified regular expression. The default is <span class="code">^[a-z][a-zA-Z0-9]*$</span>.</p>
 
 
+<h3>Modifiers</h3>
+<p>Checks that the order of modifiers conforms to the suggestions in the <a href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">Java Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>. The correct order is <code>public protected private abstract static final transient volatile synchronized native strictfp</code>.</p>
+
 <h3>Visibility Modifiers</h3>
 <p>Checks for data members that are not declared <code>private</code>. Also finds <code>static</code> non-<code>final</code> data members that are not declared as <code>private</code>.</p>
 

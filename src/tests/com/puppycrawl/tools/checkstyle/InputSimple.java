@@ -9,11 +9,11 @@ package com.puppycrawl.tools.checkstyle;
  * Contains simple mistakes:
  * - Long lines
  * - Tabs
- * - Format of variables
- * - Format of parameters
+ * - Format of variables and parameters
+ * - Order of modifiers
  * @author Oliver Burn
  **/
-class InputSimple
+strictfp final class InputSimple // illegal order of modifiers for class
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->	<-
@@ -135,6 +135,17 @@ class InputSimple
 
     /** test method pattern */
     void ALL_UPPERCASE_METHOD()
+    {
+    }
+
+    /** check illegal order of modifiers for variables */
+    static private boolean sModifierOrderVar = false;
+
+    /**
+       check illegal order of modifiers for methods, make sure that the
+       first and last modifier from the JLS sequence is used.
+     */
+    strictfp private void doStuff()
     {
     }
 }
