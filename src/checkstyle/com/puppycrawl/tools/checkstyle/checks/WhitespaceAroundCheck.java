@@ -65,7 +65,7 @@ public class WhitespaceAroundCheck extends Check implements Java14TokenTypes
             LITERAL_else,
             LITERAL_for,
             LITERAL_do,
-            // LITERAL_return,    // TODO: "return;" is OK, return(2) is not
+            LITERAL_return,
             LITERAL_try,
             LITERAL_catch,
             LITERAL_finally,
@@ -88,7 +88,8 @@ public class WhitespaceAroundCheck extends Check implements Java14TokenTypes
         }
 
         if ((after < line.length())
-            && !Character.isWhitespace(line.charAt(after)))
+            && !Character.isWhitespace(line.charAt(after))
+            && !(aAST.getType() == LITERAL_return && aAST.getFirstChild() == null))
         {
             log(aAST.getLineNo(), aAST.getColumnNo() + aAST.getText().length(),
                     "ws.notFollowed", new Object[]{aAST.getText()});
