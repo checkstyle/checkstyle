@@ -85,4 +85,16 @@ class Outer3
             public int mInner = mField0;
         }
     }
+    
+    /** tests NPE with dotted class name (bug 842781) */
+     public void dotted()
+     {
+         java.lang.Thread th
+             = new java.lang.Thread() {
+                 public void run() {
+                     ;
+                 }
+             };
+         th.start();
+     }
 }
