@@ -592,7 +592,7 @@ public class Configuration
     /** @return whether to check unused fields **/
     boolean isCheckUnusedFields()
     {
-        return getBooleanProperty(Defn.FIELDS_CHECK_UNUSED_PROP);
+        return getBooleanProperty(Defn.CHECK_UNUSED_FIELDS_PROP);
     }
 
     /** @return Set of pkg prefixes that are illegal in import statements */
