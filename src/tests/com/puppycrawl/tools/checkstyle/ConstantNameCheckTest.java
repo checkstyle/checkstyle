@@ -1,5 +1,6 @@
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck;
 
 public class ConstantNameCheckTest

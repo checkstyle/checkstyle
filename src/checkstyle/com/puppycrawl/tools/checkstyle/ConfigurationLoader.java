@@ -35,6 +35,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
 // TODO: Fix the loader so it doesn't validate the document
 /**
  * Describe class <code>ConfigurationLoader</code> here.

@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.Serializable;
 
-import com.puppycrawl.tools.checkstyle.CheckstyleException;
 
 /**
  * A Configuration is used to configure a Configurable component.

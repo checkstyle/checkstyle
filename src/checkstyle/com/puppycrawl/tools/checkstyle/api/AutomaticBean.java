@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.lang.reflect.InvocationTargetException;
 
-import com.puppycrawl.tools.checkstyle.CheckstyleException;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.BooleanConverter;

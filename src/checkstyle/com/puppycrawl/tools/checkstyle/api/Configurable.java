@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.puppycrawl.tools.checkstyle.CheckstyleException;
-
 /**
  * A component that can be configured.
  * The general idea of Configuration/Configurable was taken from

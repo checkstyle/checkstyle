@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.api;
 
 /**
  * Represents an error condition within Checkstyle.
@@ -24,14 +24,14 @@ package com.puppycrawl.tools.checkstyle;
  * @author <a href="mailto:checkstyle@puppycrawl.com">Oliver Burn</a>
  * @version 1.0
  */
-class CheckstyleException extends Exception
+public class CheckstyleException extends Exception
 {
     /**
      * Creates a new <code>CheckstyleException</code> instance.
      *
      * @param aMessage a <code>String</code> value
      */
-    CheckstyleException(String aMessage)
+    public CheckstyleException(String aMessage)
     {
         super(aMessage);
     }
