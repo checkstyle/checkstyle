@@ -210,7 +210,11 @@ public final class TreeWalker
     {
         // TODO: improve the error handing
         final String name = aChildConf.getName();
-        final Check c = (Check) mModuleFactory.createModule(name);
+        final Object module = mModuleFactory.createModule(name);
+        if (!(module instanceof Check)) {
+            throw new CheckstyleException(name + " is not a Check");
+        }
+        final Check c = (Check) module;
         c.contextualize(mChildContext);
         c.configure(aChildConf);
         c.init();
