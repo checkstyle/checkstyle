@@ -313,6 +313,10 @@ class VerifierImpl
                                 String aConstruct,
                                 int aLineNo)
     {
+        if (mConfig.isIgnoreBraces()) {
+            return;
+        }
+
         if (!"{".equals(aText) && !(aAllowIf && "if".equals(aText))) {
             log(aLineNo, "'" + aConstruct + "' construct must use '{}'s.");
         }
