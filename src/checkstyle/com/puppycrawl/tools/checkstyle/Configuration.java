@@ -310,18 +310,6 @@ public class Configuration
         return getIntProperty(Defn.TAB_WIDTH_PROP);
     }
 
-    /** @return whether to allow protected data **/
-    boolean isAllowProtected()
-    {
-        return getBooleanProperty(Defn.ALLOW_PROTECTED_PROP);
-    }
-
-    /** @return whether to allow package data **/
-    boolean isAllowPackage()
-    {
-        return getBooleanProperty(Defn.ALLOW_PACKAGE_PROP);
-    }
-
     /** @return visibility scope where Javadoc is checked **/
     Scope getJavadocScope()
     {

@@ -426,9 +426,6 @@ variableDefinitions[MyCommonAST mods, MyCommonAST t, MyModifierSet modSet]
 variableDeclarator![MyCommonAST mods, MyCommonAST t, MyModifierSet modSet]
 	:	id:IDENT d:declaratorBrackets[t] v:varInitializer
 		{#variableDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], mods, #(#[TYPE,"TYPE"],d), id, v);}
-        {
-            ver.verifyVariable(new MyVariable(new LineText(id.getLine(), id.getColumn(), id.getText()), modSet));
-        }
 	;
 
 declaratorBrackets[MyCommonAST typ]
