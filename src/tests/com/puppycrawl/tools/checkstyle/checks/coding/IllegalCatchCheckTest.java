@@ -7,7 +7,7 @@ import java.io.File;
 
 public class IllegalCatchCheckTest extends BaseCheckTestCase
 {
-    public void test() throws Exception
+    public void testDefault() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
 
@@ -16,6 +16,22 @@ public class IllegalCatchCheckTest extends BaseCheckTestCase
             "7:11: Catching 'Exception' is not allowed.",
             "8:11: Catching 'Throwable' is not allowed.",
             "14:11: Catching 'java.lang.RuntimeException' is not allowed.",
+            "15:11: Catching 'java.lang.Exception' is not allowed.",
+            "16:11: Catching 'java.lang.Throwable' is not allowed.",
+        };
+
+        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck.java"), expected);
+    }
+
+    public void testIllegalClassNames() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
+        checkConfig.addAttribute("illegalClassNames", 
+                                 "java.lang.Error, java.lang.Exception, java.lang.Throwable");
+
+        String[] expected = {
+            "7:11: Catching 'Exception' is not allowed.",
+            "8:11: Catching 'Throwable' is not allowed.",
             "15:11: Catching 'java.lang.Exception' is not allowed.",
             "16:11: Catching 'java.lang.Throwable' is not allowed.",
         };

@@ -41,14 +41,13 @@ public final class IllegalCatchCheck extends Check
     /** Creates new instance of the check. */
     public IllegalCatchCheck()
     {
-        mIllegalClassNames.add("Exception");
-        mIllegalClassNames.add("Error");
-        mIllegalClassNames.add("RuntimeException");
-        mIllegalClassNames.add("Throwable");
-        mIllegalClassNames.add("java.lang.Error");
-        mIllegalClassNames.add("java.lang.Exception");
-        mIllegalClassNames.add("java.lang.RuntimeException");
-        mIllegalClassNames.add("java.lang.Throwable");
+        setIllegalClassNames(new String[] {"Exception", "Error",
+                                           "RuntimeException", "Throwable",
+                                           "java.lang.Error",
+                                           "java.lang.Exception",
+                                           "java.lang.RuntimeException",
+                                           "java.lang.Throwable",
+        });
     }
 
     /** @see Check */
@@ -86,5 +85,23 @@ public final class IllegalCatchCheck extends Check
     private boolean isIllegalClassName(String aIdent)
     {
         return mIllegalClassNames.contains(aIdent);
+    }
+
+    /**
+     * Set the list of illegal exception classes.
+     * @param aClassNames array of illegal exception classes
+     */
+    public void setIllegalClassNames(String[] aClassNames)
+    {
+        mIllegalClassNames.clear();
+        for (int i = 0; i < aClassNames.length; i++) {
+            String name = aClassNames[i];
+            mIllegalClassNames.add(name);
+            int lastDot = name.lastIndexOf(".");
+            if (lastDot > 0 && lastDot < (name.length() - 1)) {
+                String shortName = name.substring(name.lastIndexOf(".") + 1);
+                mIllegalClassNames.add(shortName);
+            }
+        }
     }
 }
