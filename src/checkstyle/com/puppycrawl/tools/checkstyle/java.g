@@ -538,6 +538,7 @@ statement[int[] aType, MyCommonAST[] aCurlies]
 {
     final MyModifierSet modSet = new MyModifierSet();
     final int[] stmtType = new int[1];
+    final MyCommonAST[] stmtBraces = new MyCommonAST[2];
     stmtType[0] = STMT_OTHER;
 }
 	// A list of statements in curly braces -- start a new scope!
@@ -561,12 +562,15 @@ statement[int[] aType, MyCommonAST[] aCurlies]
 	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement[sIgnoreType, sIgnoreAST]
 
 	// If-else statement
-	|	ii:"if"^ LPAREN! expression RPAREN! statement[stmtType, sIgnoreAST]
+	|	ii:"if"^ LPAREN! expression RPAREN! statement[stmtType, stmtBraces]
         {
             aType[0] = STMT_IF;
             ver.verifyWSAroundBegin(ii.getLine(), ii.getColumn(), ii.getText());
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(ii);
+            }
+            else {
+                ver.verifyLCurlyOther(ii.getLine(), stmtBraces[0]);
             }
         }
 		(
@@ -604,11 +608,14 @@ statement[int[] aType, MyCommonAST[] aCurlies]
         }
 
 	// While statement
-	|	ww:"while"^ LPAREN! expression RPAREN! statement[stmtType, sIgnoreAST]
+	|	ww:"while"^ LPAREN! expression RPAREN! statement[stmtType, stmtBraces]
         {
             ver.verifyWSAroundBegin(ww.getLine(), ww.getColumn(), ww.getText());
             if (stmtType[0] != STMT_COMPOUND) {
                 ver.reportNeedBraces(ww);
+            }
+            else {
+                ver.verifyLCurlyOther(ww.getLine(), stmtBraces[0]);
             }
         }
 

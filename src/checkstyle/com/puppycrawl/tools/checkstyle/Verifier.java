@@ -315,8 +315,7 @@ class Verifier
      **/
     void verifyVariable(MyVariable aVar)
     {
-        if (inMethodBlock())
-        {
+        if (inMethodBlock()) {
             checkVariable(aVar,
                           mConfig.getLocalVarRegexp(),
                           mConfig.getLocalVarPat());
@@ -1075,8 +1074,7 @@ class Verifier
     /** checks that a file contains a valid header **/
     private void checkHeader()
     {
-        if (mConfig.getHeaderLines().length > mLines.length)
-        {
+        if (mConfig.getHeaderLines().length > mLines.length) {
             log(1, "Missing a header - not enough lines in file.");
         }
         else
@@ -1098,8 +1096,7 @@ class Verifier
                     createRE(headerLine).match(mLines[i]) :
                     headerLine.equals(mLines[i]);
 
-                if (!match)
-                {
+                if (!match) {
                     log(i + 1,
                         "Line does not match expected header line of '" +
                         mConfig.getHeaderLines()[i] + "'.");

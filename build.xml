@@ -160,6 +160,7 @@
                     staticPattern="^s[A-Z][a-zA-Z0-9]*$"
                     paramPattern="^a[A-Z][a-zA-Z0-9]*$"
                     lcurlyMethod="nl"
+                    lcurlyOther="nlow"
                     lcurlyType="nl">
             <fileset dir="src/checkstyle"
                      includes="**/*.java"
