@@ -88,4 +88,7 @@ class InputSemantic
             ; // statement
         }
     }
+
+    /** test **/
+    private static final long IGNORE = 666l + 666L;
 }

@@ -597,6 +597,18 @@ public class CheckStyleTask
             });
     }
 
+    /** @param aIgnore whether to ignore long 'L' **/
+    public void setIgnoreLongEll(final boolean aIgnore)
+    {
+        mOptionMemory.add(new Runnable()
+            {
+                public void run()
+                {
+                    mConfig.setIgnoreLongEll(aIgnore);
+                }
+            });
+    }
+
     /** @param aIgnore whether to ignore 'public' in interfaces **/
     public void setIgnorePublicInInterface(final boolean aIgnore)
     {

@@ -166,6 +166,8 @@ public class Configuration
     private boolean mIgnoreOpWrap = false;
     /** whether to ignore braces **/
     private boolean mIgnoreBraces = false;
+    /** whether to ignore long 'L' **/
+    private boolean mIgnoreLongEll = false;
     /** whether to ignore 'public' keyword in interface definitions **/
     private boolean mIgnorePublicInInterface = false;
     /** name of the cache file **/
@@ -274,6 +276,9 @@ public class Configuration
         setIgnoreBraces(getBooleanProperty(aProps,
                                            IGNORE_BRACES_PROP,
                                            mIgnoreBraces));
+        setIgnoreLongEll(getBooleanProperty(aProps,
+                                            IGNORE_LONG_ELL_PROP,
+                                            mIgnoreLongEll));
         setIgnorePublicInInterface(getBooleanProperty(
             aProps, IGNORE_PUBLIC_IN_INTERFACE_PROP, mIgnorePublicInInterface));
         setCacheFile(aProps.getProperty(CACHE_FILE_PROP));
@@ -610,6 +615,12 @@ public class Configuration
         return mIgnoreBraces;
     }
 
+    /** @return whether to ignore long 'L' **/
+    public boolean isIgnoreLongEll()
+    {
+        return mIgnoreLongEll;
+    }
+
     /** @return whether to ignore 'public' keyword in interface definitions **/
     public boolean isIgnorePublicInInterface()
     {
@@ -918,6 +929,14 @@ public class Configuration
     public void setIgnoreBraces(boolean aTo)
     {
         mIgnoreBraces = aTo;
+    }
+
+    /**
+     * @param aTo whether to ignore long 'L'
+     */
+    public void setIgnoreLongEll(boolean aTo)
+    {
+        mIgnoreLongEll = aTo;
     }
 
     /**
