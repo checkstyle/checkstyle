@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Metrics Checks</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css"/>
+</head>
+
+<body>
+<!-- The header -->
+<table border="0" width="100%" summary="header layout">
+  <tr>
+    <td><h1>Metrics Checks</h1></td>
+    <td align="right"><img src="logo.png" alt="Checkstyle Logo"/></td>
+  </tr>
+</table>
+<!-- content -->
+<table border="0" width="100%" cellpadding="5" summary="body layout">
+  <tr>
+    <!--Left menu-->
+    <td class="menu" valign="top">
+      <ul>
+        <li>
+          <a href="#CyclomaticComplexity">CyclomaticComplexity</a>
+        </li>
+      </ul>
+    </td>
+    <!--Content-->
+    <td class="content" valign="top" align="left">
+
+      <!-- --><a name="CyclomaticComplexity"></a> <h2>CyclomaticComplexity</h2>
+      <h4>Description</h4>
+
+      <p class="body">
+Checks cyclomatic complexity against a specified limit. The complexity is
+measured by the number of
+      <span CLASS="code">if</span>,
+      <span CLASS="code">while</span>,
+      <span CLASS="code">do</span>,
+      <span CLASS="code">for</span>,
+      <span CLASS="code">?:</span>,
+      <span CLASS="code">catch</span>,
+      <span CLASS="code">switch</span>,
+      <span CLASS="code">case</span> statements, and operators
+      <span CLASS="code">&&</span> and <span CLASS="code">||</span> (plus one) in the body of a
+constructor, method, static initializer, or instance initializer.
+      It is a measure of the minimum number of possible paths through the
+source and therefore the number of required tests. Generally 1-4 is
+considered good, 5-7 ok, 8-10 consider re-factoring, and 11+ re-factor now!
+      </p>
+
+
+      <h4>Properties</h4>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>max</td>
+          <td>the maximum threshold allowed</td>
+          <td><a href="property_types.html#integer">integer</a></td>
+          <td><span class="default">10</span></td>
+        </tr>
+      </table>
+
+      <h4>Examples</h4>
+      <p class="body">
+      To configure the check:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;CyclomaticComplexity&quot;/&gt;
+      </pre>
+      <p class="body">
+      To configure the check with a threshold of 7:
+      </p>
+      <pre class="body">
+&lt;module name=&quot;CyclomaticComplexity&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;7&quot;/&gt;
+&lt;/module&gt;
+      
+      </pre>
+
+      <h4>Package</h4>
+      <p class="body">
+      com.puppycrawl.tools.checkstyle.checks.metrics
+      </p>
+
+      <h4>Parent Module</h4>
+      <p class="body">
+      <a href="config.html#treewalker">TreeWalker</a>
+      </p>
+
+
+
+    </td>
+  </tr>
+</table>
+<hr />
+<div><a href="index.html">Back to the Checkstyle Home Page</a></div>
+<p class="copyright">
+Copyright &copy; 2002-2003 Oliver Burn. All rights Reserved.
+</p>
+
+</body>
+</html>
