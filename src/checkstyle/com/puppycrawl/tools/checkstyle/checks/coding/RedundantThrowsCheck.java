@@ -125,8 +125,19 @@ public class RedundantThrowsCheck
      */
     private void checkException(FullIdent aExc, List aKnownExcs)
     {
+        // Let's trye to load class.
+        Class excClass = null;
+
+        if (!mAllowUnchecked || !mAllowSubclasses) {
+            excClass = resolveClass(aExc.getText());
+            if (excClass == null) {
+                log(aExc.getLineNo(), aExc.getColumnNo(),
+                    "redundant.throws.classInfo", aExc.getText());
+            }
+        }
+
         if (!mAllowUnchecked) {
-            if (isUnchecked(aExc)) {
+            if (isUnchecked(excClass)) {
                 log(aExc.getLineNo(), aExc.getColumnNo(),
                     "redundant.throws.unchecked", aExc.getText());
             }
@@ -134,20 +145,22 @@ public class RedundantThrowsCheck
 
         boolean shouldAdd = true;
         for (Iterator known = aKnownExcs.iterator(); known.hasNext();) {
-            final FullIdent fi = (FullIdent) known.next();
+            final ClassInfo ci = (ClassInfo) known.next();
+            final FullIdent fi = ci.getName();
+
             if (isSameType(fi.getText(), aExc.getText())) {
                 shouldAdd = false;
                 log(aExc.getLineNo(), aExc.getColumnNo(),
                     "redundant.throws.duplicate", aExc.getText());
             }
             else if (!mAllowSubclasses) {
-                if (isSubclass(fi, aExc)) {
+                if (isSubclass(ci.getClazz(), excClass)) {
                     known.remove();
                     log(fi.getLineNo(), fi.getColumnNo(),
                         "redundant.throws.subclass",
                         fi.getText(), aExc.getText());
                 }
-                else if (isSubclass(aExc, fi)) {
+                else if (isSubclass(excClass, ci.getClazz())) {
                     shouldAdd = false;
                     log(aExc.getLineNo(), aExc.getColumnNo(),
                         "redundant.throws.subclass",
@@ -157,7 +170,7 @@ public class RedundantThrowsCheck
         }
 
         if (shouldAdd) {
-            aKnownExcs.add(aExc);
+            aKnownExcs.add(new ClassInfo(aExc, excClass));
         }
     }
 }
