@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Set;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.regexp.RE;
@@ -128,7 +129,7 @@ public class HiddenFieldCheck
     {
         if (aAST.getType() == TokenTypes.CLASS_DEF) {
             //find and push fields
-            final HashSet fieldSet = new HashSet(); //fields container
+            final FieldFrame frame = new FieldFrame();
             //add fields to container
             final DetailAST objBlock =
                 aAST.findFirstToken(TokenTypes.OBJBLOCK);
@@ -137,11 +138,18 @@ public class HiddenFieldCheck
                 if (child.getType() == TokenTypes.VARIABLE_DEF) {
                     final String name =
                         child.findFirstToken(TokenTypes.IDENT).getText();
-                    fieldSet.add(name);
+                    final DetailAST mods =
+                        child.findFirstToken(TokenTypes.MODIFIERS);
+                    if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
+                        frame.addStaticField(name);
+                    }
+                    else {
+                        frame.addInstanceField(name);
+                    }
                 }
                 child = (DetailAST) child.getNextSibling();
             }
-            mFieldsStack.addLast(fieldSet); //push container
+            mFieldsStack.addLast(frame); //push container
         }
         else {
             //must be VARIABLE_DEF or PARAMETER_DEF
@@ -173,10 +181,12 @@ public class HiddenFieldCheck
                 //local variable or parameter. Does it shadow a field?
                 final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
                 final String name = nameAST.getText();
+                final boolean inStatic = inStatic(aAST);
                 final Iterator it = mFieldsStack.iterator();
                 while (it.hasNext()) {
-                    final HashSet aFieldsSet = (HashSet) it.next();
-                    if (aFieldsSet.contains(name)
+                    final FieldFrame frame = (FieldFrame) it.next();
+                    if ((frame.containsStaticField(name)
+                        || (!inStatic && frame.containsInstanceField(name)))
                         && ((mRegexp == null) || (!getRegexp().match(name)))
                         && !isIgnoredSetterParam(aAST, name)
                         && !isIgnoredConstructorParam(aAST))
@@ -188,6 +198,30 @@ public class HiddenFieldCheck
                 }
             }
         }
+    }
+
+    /**
+     * Determines whether an AST node is in a static method or static
+     * initializer.
+     * @param aAST the node to check.
+     * @return true if aAST is in a static method or a static block;
+     */
+    private boolean inStatic(DetailAST aAST)
+    {
+        DetailAST parent = aAST.getParent();
+        while (parent != null) {
+            switch (parent.getType()) {
+            case TokenTypes.STATIC_INIT:
+                return true;
+            case TokenTypes.METHOD_DEF:
+                final DetailAST mods =
+                    parent.findFirstToken(TokenTypes.MODIFIERS);
+                return mods.branchContains(TokenTypes.LITERAL_STATIC);
+            default:
+                parent = parent.getParent();
+            }
+        }
+        return false;
     }
 
     /**
@@ -290,5 +324,59 @@ public class HiddenFieldCheck
     public RE getRegexp()
     {
         return mRegexp;
+    }
+
+    /**
+     * Holds the names of static and instance fields of a class.
+     * @author Rick Giles
+     * Describe class FieldFrame
+     * @author Rick Giles
+     * @version Oct 26, 2003
+     */
+    private class FieldFrame
+    {
+        /** set of instance field names */
+        private Set mInstanceFields = new HashSet();
+
+        /** set of static field names */
+        private Set mStaticFields = new HashSet();
+
+        /**
+         * Adds an instance field to this FieldFrame.
+         * @param aField  the name of the instance field.
+         */
+        public void addInstanceField(String aField)
+        {
+            mInstanceFields.add(aField);
+        }
+
+        /**
+         * Adds a static field to this FieldFrame.
+         * @param aField  the name of the instance field.
+         */
+        public void addStaticField(String aField)
+        {
+            mStaticFields.add(aField);
+        }
+
+        /**
+         * Determines whether this FieldFrame contains an instance field.
+         * @param aField the field to check.
+         * @return true if this FieldFrame contains instance field aField.
+         */
+        public boolean containsInstanceField(String aField)
+        {
+            return mInstanceFields.contains(aField);
+        }
+
+        /**
+         * Determines whether this FieldFrame contains a static field.
+         * @param aField the field to check.
+         * @return true if this FieldFrame contains static field aField.
+         */
+        public boolean containsStaticField(String aField)
+        {
+            return mStaticFields.contains(aField);
+        }
     }
 }
