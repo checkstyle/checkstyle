@@ -131,7 +131,7 @@ public class CheckStyleTask
     public Path createClasspath()
     {
         if (mClasspath == null) {
-            mClasspath = new Path(project);
+            mClasspath = new Path(getProject());
         }
         return mClasspath.createPath();
     }
@@ -160,11 +160,13 @@ public class CheckStyleTask
         }
         catch (FileNotFoundException e) {
             throw new BuildException(
-                "Could not find Properties file '" + aProps + "'", e, location);
+                "Could not find Properties file '" + aProps + "'",
+                e, getLocation());
         }
         catch (Exception e) {
             throw new BuildException(
-                "Error loading Properties file '" + aProps + "'", e, location);
+                "Error loading Properties file '" + aProps + "'",
+                e, getLocation());
         }
     }
 
@@ -426,7 +428,7 @@ public class CheckStyleTask
     {
         if (!aBasedir.isDirectory()) {
             throw new BuildException("basedir must specify a directory.",
-                                     location);
+                                     getLocation());
         }
         setStringProperty(Defn.BASEDIR_PROP, aBasedir.getAbsolutePath());
     }
@@ -537,12 +539,13 @@ public class CheckStyleTask
         if ((mFileName == null) && (mFileSets.size() == 0)) {
             throw new BuildException(
                 "Must specify atleast one of 'file' or nested 'fileset'.",
-                location);
+                getLocation());
         }
 
         // setup the classloader
         if (mClasspath != null) {
-            mConfig.setClassLoader(new AntClassLoader(project, mClasspath));
+            mConfig.setClassLoader(
+                new AntClassLoader(getProject(), mClasspath));
         }
         // Create the checker
         Checker c = null;
@@ -571,7 +574,7 @@ public class CheckStyleTask
 
             if ((numErrs > 0) && mFailOnViolation) {
                 throw new BuildException("Got " + numErrs + " errors.",
-                                         location);
+                                         getLocation());
             }
         }
         finally {
@@ -757,7 +760,7 @@ public class CheckStyleTask
         final RightCurlyOption opt = RightCurlyOption.decode(aFrom);
         if (opt == null) {
             throw new BuildException("Unable to parse '" + aFrom + "'.",
-                                     location);
+                                     getLocation());
         }
         return opt;
     }
@@ -773,7 +776,7 @@ public class CheckStyleTask
         final PadOption opt = PadOption.decode(aFrom);
         if (opt == null) {
             throw new BuildException("Unable to parse '" + aFrom + "'.",
-                                     location);
+                                     getLocation());
         }
         return opt;
     }
@@ -789,7 +792,7 @@ public class CheckStyleTask
         final WrapOpOption opt = WrapOpOption.decode(aFrom);
         if (opt == null) {
             throw new BuildException("Unable to parse '" + aFrom + "'.",
-                                     location);
+                                     getLocation());
         }
         return opt;
     }
@@ -892,7 +895,7 @@ public class CheckStyleTask
         final BlockOption opt = BlockOption.decode(aTo);
         if (opt == null) {
             throw new BuildException("Unable to parse '" + aTo + "'.",
-                                     location);
+                                     getLocation());
         }
 
         mOptionMemory.add(new Runnable()
@@ -916,7 +919,7 @@ public class CheckStyleTask
         final LeftCurlyOption opt = LeftCurlyOption.decode(aTo);
         if (opt == null) {
             throw new BuildException("Unable to parse '" + aTo + "'.",
-                                     location);
+                                     getLocation());
         }
         mOptionMemory.add(new Runnable()
             {
