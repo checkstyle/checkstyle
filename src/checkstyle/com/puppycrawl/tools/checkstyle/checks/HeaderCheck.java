@@ -80,7 +80,7 @@ public class HeaderCheck
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
     /** the lines of the header file */
-    private String[] mHeaderLines = null;
+    private String[] mHeaderLines;
 
     /** the header lines to ignore in the check, sorted */
     private int[] mIgnoreLines = EMPTY_INT_ARRAY;

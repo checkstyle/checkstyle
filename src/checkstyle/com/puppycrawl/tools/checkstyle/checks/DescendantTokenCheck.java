@@ -167,13 +167,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class DescendantTokenCheck extends Check
 {
      /** minimum  depth */
-    private int mMinimumDepth = 0;
+    private int mMinimumDepth;
 
     /** maximum depth */
     private int mMaximumDepth = Integer.MAX_VALUE;
 
     /** minimum number */
-    private int mMinimumNumber = 0;
+    private int mMinimumNumber;
 
     /** maximum number */
     private int mMaximumNumber = Integer.MAX_VALUE;

@@ -49,13 +49,13 @@ public class RedundantThrowsCheck
      * whether unchecked exceptions in throws
      * are allowed or not
      */
-    private boolean mAllowUnchecked = false;
+    private boolean mAllowUnchecked;
 
     /**
      * whether subclass of another declared
      * exception is allowed in throws clause
      */
-    private boolean mAllowSubclasses = false;
+    private boolean mAllowSubclasses;
 
     /**
      * Getter for allowUnchecked property.

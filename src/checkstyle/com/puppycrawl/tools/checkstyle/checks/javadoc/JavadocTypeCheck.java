@@ -84,13 +84,13 @@ public class JavadocTypeCheck
     /** the scope to check for */
     private Scope mScope = Scope.PRIVATE;
     /** compiled regexp to match author tag **/
-    private RE mAuthorTagRE = null;
+    private RE mAuthorTagRE;
     /** compiled regexp to match author tag content **/
-    private RE mAuthorFormatRE = null;
+    private RE mAuthorFormatRE;
     /** compiled regexp to match version tag **/
-    private RE mVersionTagRE = null;
+    private RE mVersionTagRE;
     /** compiled regexp to match version tag content **/
-    private RE mVersionFormatRE = null;
+    private RE mVersionFormatRE;
     /** regexp to match author tag content */
     private String mAuthorFormat;
     /** regexp to match version tag content */

@@ -32,7 +32,7 @@ public abstract class AbstractFileSetCheck
     implements FileSetCheck
 {
     /** The dispatcher errors are fired to. */
-    private MessageDispatcher mDispatcher = null;
+    private MessageDispatcher mDispatcher;
 
     /** the file extensions that are accepted by this filter */
     private String[] mFileExtensions = {};

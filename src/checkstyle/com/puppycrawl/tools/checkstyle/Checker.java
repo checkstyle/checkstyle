@@ -54,7 +54,7 @@ public class Checker extends AutomaticBean
     private class ErrorCounter implements AuditListener
     {
         /** keeps track of the number of errors */
-        private int mCount = 0;
+        private int mCount;
 
         /** @see AuditListener */
         public void addError(AuditEvent aEvt)
@@ -334,8 +334,8 @@ public class Checker extends AutomaticBean
         if (!onNetWare) {
             if (!aPath.startsWith(File.separator)
                 && !(aPath.length() >= 2
-                && Character.isLetter(aPath.charAt(0))
-                && colon == 1))
+                     && Character.isLetter(aPath.charAt(0))
+                     && colon == 1))
             {
                 String msg = aPath + " is not an absolute path";
                 throw new IllegalArgumentException(msg);

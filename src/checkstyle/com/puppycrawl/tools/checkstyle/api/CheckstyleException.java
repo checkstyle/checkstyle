@@ -27,7 +27,7 @@ package com.puppycrawl.tools.checkstyle.api;
 public class CheckstyleException extends Exception
 {
     /** the cause of this exception */
-    private Throwable mCause = null;
+    private Throwable mCause;
 
     /**
      * Creates a new <code>CheckstyleException</code> instance.

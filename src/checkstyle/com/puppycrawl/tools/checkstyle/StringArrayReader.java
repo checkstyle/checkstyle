@@ -37,16 +37,16 @@ final class StringArrayReader extends Reader
     private final String[] mUnderlyingArray;
 
     /** the index of the currently read String */
-    private int mArrayIdx = 0;
+    private int mArrayIdx;
 
     /** the index of the next character to be read */
-    private int mStringIdx = 0;
+    private int mStringIdx;
 
     /** flag to tell whether an implicit newline has to be reported */
-    private boolean mUnreportedNewline = false;
+    private boolean mUnreportedNewline;
 
     /** flag to tell if the reader has been closed */
-    private boolean mClosed = false;
+    private boolean mClosed;
 
     /**
      * Creates a new StringArrayReader.

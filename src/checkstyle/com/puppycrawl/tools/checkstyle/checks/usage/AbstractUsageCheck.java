@@ -42,7 +42,7 @@ public abstract class AbstractUsageCheck
     extends Check
 {
     /** the regexp to match against */
-    private RE mRegexp = null;
+    private RE mRegexp;
     /** the format string of the regexp */
     private String mIgnoreFormat;
 

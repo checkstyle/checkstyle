@@ -36,7 +36,7 @@ public abstract class Check extends AbstractViolationReporter
     private static final int DEFAULT_TAB_WIDTH = 8;
 
     /** the current file contents */
-    private FileContents mFileContents = null;
+    private FileContents mFileContents;
 
     /** the tokens the check is interested in */
     private final Set mTokens = new HashSet();

@@ -132,5 +132,6 @@
             <property name="max" value="3"/>
         </module>
         <module name="NestedTryDepth"/>
+        <module name="ExplicitInitialization"/>
     </module>
 </module>

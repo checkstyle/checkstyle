@@ -41,7 +41,7 @@ public abstract class AbstractTypeAwareCheck
     private Set mImports = new HashSet();
 
     /** full identifier for package of the method **/
-    private FullIdent mPackageFullIdent = null;
+    private FullIdent mPackageFullIdent;
 
     /** <code>ClassResolver</code> instance for current tree. */
     private ClassResolver mClassResolver;
