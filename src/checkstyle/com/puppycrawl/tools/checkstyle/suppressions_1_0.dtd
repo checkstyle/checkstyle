@@ -12,5 +12,5 @@
 <!ELEMENT suppress EMPTY>
 <!ATTLIST suppress files CDATA #REQUIRED
                    checks CDATA #REQUIRED
-		   lines CDATA #IMPLIED
-		   columns CDATA #IMPLIED>
+                   lines CDATA #IMPLIED
+                   columns CDATA #IMPLIED>
