@@ -52,7 +52,6 @@ public class CheckerTest
                            LeftCurlyOption.NLOW.toString());
         mProps.setProperty(Defn.LCURLY_TYPE_PROP,
                            LeftCurlyOption.NL.toString());
-        mProps.setProperty(Defn.RCURLY_PROP, RightCurlyOption.ALONE.toString());
         mProps.setProperty(Defn.ALLOW_NO_AUTHOR_PROP, Boolean.TRUE.toString());
         mProps.setProperty(Defn.LOCALE_COUNTRY_PROP,
                            Locale.ENGLISH.getCountry());
@@ -665,7 +664,6 @@ public class CheckerTest
         throws Exception
     {
         mProps.setProperty(Defn.JAVADOC_CHECKSCOPE_PROP, Scope.NOTHING.getName());
-        mProps.setProperty(Defn.RCURLY_PROP, RightCurlyOption.SAME.toString());
         final Checker c = createChecker();
         final String filepath = getPath("InputLeftCurlyOther.java");
         assertNotNull(c);
@@ -673,13 +671,9 @@ public class CheckerTest
             filepath + ":19:9: '{' should be on the previous line.",
             filepath + ":21:13: '{' should be on the previous line.",
             filepath + ":23:17: '{' should be on the previous line.",
-            filepath + ":25:17: '}' should be on the same line.",
-            filepath + ":28:17: '}' should be on the same line.",
             filepath + ":30:17: '{' should be on the previous line.",
             filepath + ":34:17: '{' should be on the previous line.",
-            filepath + ":40:13: '}' should be on the same line.",
             filepath + ":42:13: '{' should be on the previous line.",
-            filepath + ":44:13: '}' should be on the same line.",
             filepath + ":46:13: '{' should be on the previous line.",
             filepath + ":52:9: '{' should be on the previous line.",
             filepath + ":54:13: '{' should be on the previous line.",

@@ -33,6 +33,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.checks.RightCurlyOption;
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
 
@@ -79,8 +80,6 @@ public class Configuration
     private transient ClassLoader mLoader =
         Thread.currentThread().getContextClassLoader();
 
-    /** where to place right curlies  **/
-    private RightCurlyOption mRCurly = RightCurlyOption.SAME;
     /** how to pad parenthesis **/
     private PadOption mParenPadOption = PadOption.NOSPACE;
     /** how to wrap operators **/
@@ -148,8 +147,6 @@ public class Configuration
         throws RESyntaxException, FileNotFoundException, IOException
     {
         // Init the special properties
-        setRCurly(getRightCurlyOptionProperty(
-                      aProps, Defn.RCURLY_PROP, RightCurlyOption.SAME, aLog));
         setJavadocScope(
             Scope.getInstance(aProps.getProperty(Defn.JAVADOC_CHECKSCOPE_PROP,
                                                  Scope.PRIVATE.getName())));
@@ -267,7 +264,6 @@ public class Configuration
     {
         final Properties retVal = new Properties();
 
-        Utils.addObjectString(retVal, Defn.RCURLY_PROP, mRCurly.toString());
         Utils.addObjectString(retVal, Defn.JAVADOC_CHECKSCOPE_PROP,
                               mJavadocScope.getName());
         Utils.addObjectString(retVal, Defn.PAREN_PAD_PROP,
@@ -574,18 +570,6 @@ public class Configuration
     LeftCurlyOption getLCurlyOther()
     {
         return getLeftCurlyOptionProperty(Defn.LCURLY_OTHER_PROP);
-    }
-
-    /** @return the right curly placement option **/
-    RightCurlyOption getRCurly()
-    {
-        return mRCurly;
-    }
-
-    /** @param aTo set the right curly placement option **/
-    private void setRCurly(RightCurlyOption aTo)
-    {
-        mRCurly = aTo;
     }
 
     /** @return the try block option **/

@@ -30,6 +30,7 @@ import java.io.FileReader;
 
 import org.apache.regexp.RE;
 import org.apache.regexp.RESyntaxException;
+import antlr.collections.AST;
 
 /**
  * Contains utility methods.
@@ -172,7 +173,6 @@ public final class Utils
     public static String[] getLines(String aFileName)
         throws IOException
     {
-        System.out.println("aFileName = " + aFileName);
         final LineNumberReader lnr =
             new LineNumberReader(new FileReader(aFileName));
         final ArrayList lines = new ArrayList();
@@ -185,5 +185,16 @@ public final class Utils
         }
 
         return (String[]) lines.toArray(new String[0]);
+    }
+
+    public static DetailAST getLastSibling(final AST aAST)
+    {
+        AST retVal = aAST;
+        AST nextSibling = retVal.getNextSibling();
+        while (nextSibling != null) {
+            retVal = nextSibling;
+            nextSibling = nextSibling.getNextSibling();
+        }
+        return (DetailAST) retVal;
     }
 }

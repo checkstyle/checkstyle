@@ -79,6 +79,7 @@ public class TreeViewer
         AST r = factory.create(0,"AST ROOT");
         r.setFirstChild(t);
         final ASTFrame frame = new ASTFrame("Java AST", r);
+        frame.setSize(400, 600);
         frame.setVisible(true);
         frame.addWindowListener(
             new WindowAdapter() {

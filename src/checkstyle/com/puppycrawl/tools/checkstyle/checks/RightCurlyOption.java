@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.Serializable;
 import java.io.ObjectStreamException;
@@ -27,7 +27,7 @@ import java.util.HashMap;
  * Represents the options for placing the right curly brace '}'.
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
- * @version $Id: RightCurlyOption.java,v 1.4 2002-06-06 11:45:40 oburn Exp $
+ * @version $Id: RightCurlyOption.java,v 1.1 2002-10-07 09:17:15 oburn Exp $
  */
 public final class RightCurlyOption implements Serializable
 {
@@ -67,7 +67,7 @@ public final class RightCurlyOption implements Serializable
         return (RightCurlyOption) STR_TO_OPT.get(aStrRep.trim().toLowerCase());
     }
 
-    /** @see Object **/
+    /** @see java.lang.Object **/
     public String toString()
     {
         return mStrRep;
@@ -79,7 +79,7 @@ public final class RightCurlyOption implements Serializable
      * Serialization Specification for details.
      *
      * @return the serialization replacement object
-     * @throws ObjectStreamException if a deserialization error occurs
+     * @throws java.io.ObjectStreamException if a deserialization error occurs
      */
     private Object readResolve() throws ObjectStreamException
     {
