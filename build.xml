@@ -76,7 +76,7 @@
           description="Checks whether the grammar file is newer that the generated code">
     <uptodate property="uptodate.antlr"
               targetfile="${checkstyle.dir}/GeneratedJava14Lexer.java" >
-      <srcfiles dir= "${checkstyle.dir}" includes="java.g,java14.g"/>
+      <srcfiles dir= "${checkstyle.dir}" includes="java_new.g,java.g,java14.g"/>
     </uptodate>
   </target>
 
@@ -85,6 +85,12 @@
   <!-- which creates lots of problems. -->
   <target name="build.antlr" depends="check.antlr" unless="uptodate.antlr"
           description="Conditionally compiles the grammar files">
+    <java classname="antlr.Tool"
+          classpath="${antlr-tools.jar}"
+          fork="yes"
+          dir="${checkstyle.dir}">
+      <arg value="java_new.g" />
+    </java>
     <java classname="antlr.Tool"
           classpath="${antlr-tools.jar}"
           fork="yes"
@@ -220,7 +226,7 @@
     <checkstyle properties="docs/checkstyle.rules">
       <fileset dir="src/checkstyle"
                includes="**/*.java"
-               excludes="**/Generated*.java"/>
+               excludes="**/Generated*.java,**/Java*.java"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>

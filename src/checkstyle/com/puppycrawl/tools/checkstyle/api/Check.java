@@ -170,6 +170,24 @@ public abstract class Check
         return (String[]) getTreeContext().get(LINES_ATTRIBUTE);
     }
 
+    /**
+     * Set the name of the file associated with the tree.
+     * @param aFilename the file name
+     */
+    public void setFilename(String aFilename)
+    {
+        getTreeContext().put(FILENAME_ATTRIBUTE, aFilename);
+    }
+
+    /**
+     * Returns the filename associated with the tree.
+     * @return the file name
+     */
+    public String getFilename()
+    {
+        return (String) getTreeContext().get(FILENAME_ATTRIBUTE);
+    }
+
     /** @see needs to be fixed */
     public void log(int aLine, String aMessage)
     {
