@@ -543,6 +543,9 @@ statement
 
 	// empty statement
 	|	s:SEMI {#s.setType(EMPTY_STAT);}
+
+	// assert statement
+	|	"assert"^ expression (COLON^ expression)? SEMI!
 	;
 
 
