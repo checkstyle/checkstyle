@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.LineLengthCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class LineLengthCheckTest extends BaseCheckTestCase
 {
@@ -11,12 +12,10 @@ public class LineLengthCheckTest extends BaseCheckTestCase
             createCheckConfig(LineLengthCheck.class);
         checkConfig.addAttribute("max", "80");
         checkConfig.addAttribute("ignorePattern",  "^.*is OK.*regexp.*$");
-        final Checker c = createChecker(checkConfig);
-        final String filepath = getPath("InputSimple.java");
         final String[] expected = {
             "18: Line is longer than 80 characters.",
             "145: Line is longer than 80 characters.",
         };
-        verify(c, filepath, expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 }

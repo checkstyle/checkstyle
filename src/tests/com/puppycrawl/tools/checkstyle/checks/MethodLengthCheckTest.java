@@ -16,9 +16,10 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.MethodLengthCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class MethodLengthCheckTest extends BaseCheckTestCase
 {
@@ -27,22 +28,18 @@ public class MethodLengthCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputSimple.java");
         final String[] expected = {
             "79:5: Method length is 20 lines (max allowed is 19)."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
     public void testAbstract() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodLengthCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputModifier.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputModifier.java"), expected);
     }
 }

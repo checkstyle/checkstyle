@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.NoWhitespaceBeforeCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NoWhitespaceBeforeCheckTest
     extends BaseCheckTestCase
@@ -13,20 +14,16 @@ public class NoWhitespaceBeforeCheckTest
 
     public void testDefault() throws Exception
     {
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
             "30:14: '++' is preceeded with whitespace.",
             "30:21: '--' is preceeded with whitespace.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
     public void testDot() throws Exception
     {
         checkConfig.addAttribute("tokens", "DOT");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
             "5:12: '.' is preceeded with whitespace.",
             "6:4: '.' is preceeded with whitespace.",
@@ -34,7 +31,7 @@ public class NoWhitespaceBeforeCheckTest
             "135:12: '.' is preceeded with whitespace.",
             "136:10: '.' is preceeded with whitespace.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
 
@@ -42,14 +39,12 @@ public class NoWhitespaceBeforeCheckTest
     {
         checkConfig.addAttribute("tokens", "DOT");
         checkConfig.addAttribute("allowLineBreaks", "yes");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
             "5:12: '.' is preceeded with whitespace.",
             "129:17: '.' is preceeded with whitespace.",
             "136:10: '.' is preceeded with whitespace.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
 }

@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.NoWhitespaceAfterCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NoWhitespaceAfterCheckTest
     extends BaseCheckTestCase
@@ -15,8 +16,6 @@ public class NoWhitespaceAfterCheckTest
     public void testDefault() throws Exception
     {
         checkConfig.addAttribute("allowLineBreaks", "false");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
             "5:14: '.' is followed by whitespace.",
             "6:12: '.' is followed by whitespace.",
@@ -30,20 +29,18 @@ public class NoWhitespaceAfterCheckTest
             "132:11: '.' is followed by whitespace.",
             "136:12: '.' is followed by whitespace."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
     public void testDotAllowLineBreaks() throws Exception
     {
         checkConfig.addAttribute("tokens", "DOT");
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputWhitespace.java");
         final String[] expected = {
             "5:14: '.' is followed by whitespace.",
             "129:24: '.' is followed by whitespace.",
             "136:12: '.' is followed by whitespace."
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
 }

@@ -1,6 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.checks.ModifierCheck;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ModifierCheckTest
     extends BaseCheckTestCase
@@ -9,14 +10,11 @@ public class ModifierCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ModifierCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String filepath = getPath("InputModifier.java");
-        assertNotNull(c);
         final String[] expected = {
             "14:10: 'final' modifier out of order with the JLS suggestions.",
             "18:12: 'private' modifier out of order with the JLS suggestions.",
             "24:14: 'private' modifier out of order with the JLS suggestions.",
         };
-        verify(c, filepath, expected);
+        verify(checkConfig, getPath("InputModifier.java"), expected);
     }
 }

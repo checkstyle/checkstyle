@@ -1,7 +1,8 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.checks.JavadocVariableCheck;
 
 
 public class JavadocVariableCheckTest
@@ -12,12 +13,10 @@ public class JavadocVariableCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputTags.java");
         final String[] expected = {
             "11:5: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputTags.java"), expected);
     }
 
     public void testAnother()
@@ -25,14 +24,12 @@ public class JavadocVariableCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputInner.java");
         final String[] expected = {
             "17:9: Missing a Javadoc comment.",
             "24:9: Missing a Javadoc comment.",
             "30:13: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputInner.java"), expected);
     }
 
     public void testAnother2()
@@ -41,11 +38,9 @@ public class JavadocVariableCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputInner.java");
         final String[] expected = {
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputInner.java"), expected);
     }
 
     public void testAnother3()
@@ -53,8 +48,6 @@ public class JavadocVariableCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputPublicOnly.java");
         final String[] expected = {
             "11:9: Missing a Javadoc comment.",
             "16:13: Missing a Javadoc comment.",
@@ -64,7 +57,7 @@ public class JavadocVariableCheckTest
             "45:5: Missing a Javadoc comment.",
             "46:5: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
     public void testAnother4()
         throws Exception
@@ -72,11 +65,9 @@ public class JavadocVariableCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
-        final Checker c = createChecker(checkConfig);
-        final String fname = getPath("InputPublicOnly.java");
         final String[] expected = {
             "46:5: Missing a Javadoc comment.",
         };
-        verify(c, fname, expected);
+        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
 }
