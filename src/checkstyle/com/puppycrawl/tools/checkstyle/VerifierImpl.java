@@ -264,9 +264,10 @@ class VerifierImpl
         else {
             final MyModifierSet mods = aVar.getModifierSet();
 
-            if (mods.containsPrivate()) {
-                System.out.println("Need to check for " + aVar.getText());
-            }
+            // Logic to detect unused variables
+            //if (mods.containsPrivate()) {
+            //    System.out.println("Need to check for " + aVar.getText());
+            //}
 
             // Checks for Javadoc
             if (mods.containsStatic()) {
@@ -300,6 +301,11 @@ class VerifierImpl
                     checkVariable(aVar,
                                   mConfig.getMemberRegexp(),
                                   mConfig.getMemberPat());
+                }
+                else if (mods.containsPublic() &&
+                         mConfig.getPublicMemberRegexp().match(aVar.getText()))
+                {
+                    // silently allow
                 }
                 else {
                     log(aVar.getLineNo(),

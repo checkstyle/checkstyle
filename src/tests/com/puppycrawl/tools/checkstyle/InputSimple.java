@@ -49,9 +49,9 @@ class InputSimple
     static int sTest2;
 
     /** should be private **/
-    public int mTest1;
+    int mTest1;
     /** should be private **/
-    int mTest2;
+    public int mTest2;
 
     //
     // Parameter name format tests

@@ -47,6 +47,8 @@ class Configuration
     private static final String CONST_PATTERN = "^[A-Z]([A-Z0-9_]*[A-Z0-9])?$";
     /** the pattern to match against member names **/
     private static final String MEMBER_PATTERN = "^m[A-Z][a-zA-Z0-9]*$";
+    /** the pattern to match against public member names **/
+    private static final String PUBLIC_MEMBER_PATTERN = "^f[A-Z][a-zA-Z0-9]*$";
     /** the pattern to match against type names **/
     private static final String TYPE_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
     /** The maximum line length **/
@@ -75,6 +77,11 @@ class Configuration
     private String mMemberPat;
     /** regexp to match member variables **/
     private RE mMemberRegexp;
+
+    /** pattern to match public member variables **/
+    private String mPublicMemberPat;
+    /** regexp to match public member variables **/
+    private RE mPublicMemberRegexp;
 
     /** pattern to match type names **/
     private String mTypePat;
@@ -127,6 +134,8 @@ class Configuration
                                              CONST_PATTERN));
         setMemberPat(aProps.getProperty(MEMBER_PATTERN_PROP,
                                         MEMBER_PATTERN));
+        setPublicMemberPat(aProps.getProperty(PUBLIC_MEMBER_PATTERN_PROP,
+                                              PUBLIC_MEMBER_PATTERN));
         setTypePat(aProps.getProperty(TYPE_PATTERN_PROP,
                                       TYPE_PATTERN));
         setMaxLineLength(getIntProperty(
@@ -172,6 +181,7 @@ class Configuration
             setStaticPat(STATIC_PATTERN);
             setStaticFinalPat(CONST_PATTERN);
             setMemberPat(MEMBER_PATTERN);
+            setPublicMemberPat(PUBLIC_MEMBER_PATTERN);
             setTypePat(TYPE_PATTERN);
         }
         catch (RESyntaxException ex) {
@@ -231,6 +241,18 @@ class Configuration
     RE getMemberRegexp()
     {
         return mMemberRegexp;
+    }
+
+    /** @return pattern to match public member variables **/
+    String getPublicMemberPat()
+    {
+        return mPublicMemberPat;
+    }
+
+    /** @return regexp to match public member variables **/
+    RE getPublicMemberRegexp()
+    {
+        return mPublicMemberRegexp;
     }
 
     /** @return pattern to match type names **/
@@ -351,6 +373,17 @@ class Configuration
     {
         mMemberRegexp = new RE(aMemberPat);
         mMemberPat = aMemberPat;
+    }
+
+    /**
+     * @param aPublicMemberPat pattern to match public member variables
+     * @throws RESyntaxException if an error occurs
+     */
+    void setPublicMemberPat(String aPublicMemberPat)
+        throws RESyntaxException
+    {
+        mPublicMemberRegexp = new RE(aPublicMemberPat);
+        mPublicMemberPat = aPublicMemberPat;
     }
 
     /**

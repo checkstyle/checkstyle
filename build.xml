@@ -13,7 +13,7 @@
   <property name="antlr.home" value="c:/apps/antlr-2.7.1" />
   <property name="regexp.jar" value="c:/apps/jakarta-regexp-1.2/jakarta-regexp-1.2.jar" />
   <property name="checkstyle.dir" value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
-  <property name="version" value="1.2" />
+  <property name="version" value="1.3" />
 
   <path id="build.classpath">
     <pathelement location="${antlr.home}" />
@@ -101,7 +101,7 @@
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
       <classpath refid="run.classpath"/>
     </taskdef>
-    <checkstyle file="src/tests/com/puppycrawl/tools/checkstyle/InputSimple.java" />
+    <checkstyle file="src/tests/com/puppycrawl/tools/checkstyle/InputSimple.java" publicMemberPattern="."/>
   </target>
 
   <target name="checkstyle.import" depends="compile.tests">
@@ -172,7 +172,8 @@
          basedir="dist/checkstyle-${version}/tmp" />
     <delete dir="dist/checkstyle-${version}/tmp" />
     <!-- copy documentation -->
-    <copy todir="dist/checkstyle-${version}">
+    <filter token="@@VERSION@@" value="${version}"/>
+    <copy todir="dist/checkstyle-${version}" filtering="true">
       <fileset dir=".">
         <exclude name="**/RCS" />
         <exclude name="*.xml" />

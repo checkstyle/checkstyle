@@ -169,6 +169,11 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
     <td><span class="code">^m[A-Z][a-zA-Z0-9]*$</span></td>
     <td><span class="code">private int mNumCreated = 0;</span></td>
   </tr>
+  <tr>
+    <td>non <span class="code">static public</span></td>
+    <td><span class="code">^f[A-Z][a-zA-Z0-9]*$</span></td>
+    <td><span class="code">public int fCMPField;</span></td>
+  </tr>
 </table>
 
 
@@ -184,6 +189,11 @@ div.tip {margin-left : 5%;margin-right : 5%;padding-left: 2%; padding-right: 2%;
 <p>Checks for data members that are not declared <code>private</code>. Also finds <code>static</code> non-<code>final</code> data members that are not declared as <code>private</code>.</p>
 
 <p>Note: you can turn on allowing <code>protected</code> data members.</p>
+
+<div class="tip">  
+<h4 class="tip">Tip</h4>
+<p>Container Managed Persistence EJBs require that managed fields are declared <span class="code">public</span>. This will cause checkstyle to complain that the fields should be declared <span class="code">private</span>. Hence checkstyle supports ignoring <span class="code">public</span> that match a specified regular expression. The default is <span class="code">^f[A-Z][a-zA-Z0-9]*$</span>.</p>
+</div>
 
 <h3>White space</h3>
 <p>Checks for the following use of white space:</p>

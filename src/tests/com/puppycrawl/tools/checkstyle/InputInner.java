@@ -14,7 +14,7 @@ class InputInner
     class InnerInner2
     {
         // Ignore
-        public int data;
+        public int fData;
     }
 
     // Ignore - 2 errors
@@ -27,7 +27,7 @@ class InputInner
         class InnerInterfaceInnerClass
         {
             // Ignore - need Javadoc and made private
-            int data;
+            public int rData;
         }
     }
 }

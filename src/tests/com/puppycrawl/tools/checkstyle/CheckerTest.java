@@ -155,14 +155,32 @@ public class CheckerTest
         assertNotNull(c);
         final String[] expected = {
             "InputInner.java:14: type is missing a Javadoc comment.",
-            "InputInner.java:17: variable 'data' missing Javadoc.",
-            "InputInner.java:17: variable 'data' must be private and have accessor methods.",
+            "InputInner.java:17: variable 'fData' missing Javadoc.",
             "InputInner.java:21: type is missing a Javadoc comment.",
             "InputInner.java:24: variable 'data' missing Javadoc.",
             "InputInner.java:24: variable 'data' must match pattern '^[A-Z]([A-Z0-9_]*[A-Z0-9])?$'.",
             "InputInner.java:27: type is missing a Javadoc comment.",
-            "InputInner.java:30: variable 'data' missing Javadoc.",
-            "InputInner.java:30: variable 'data' must be private and have accessor methods."
+            "InputInner.java:30: variable 'rData' missing Javadoc.",
+            "InputInner.java:30: variable 'rData' must be private and have accessor methods."
+        };
+        verify(c, "InputInner.java", expected);
+    }
+
+    public void testIgnorePublic()
+        throws Exception
+    {
+        mConfig.setPublicMemberPat("^r[A-Z]");
+        final Checker c = new Checker(mConfig, mStream);
+        assertNotNull(c);
+        final String[] expected = {
+            "InputInner.java:14: type is missing a Javadoc comment.",
+            "InputInner.java:17: variable 'fData' missing Javadoc.",
+            "InputInner.java:17: variable 'fData' must be private and have accessor methods.",
+            "InputInner.java:21: type is missing a Javadoc comment.",
+            "InputInner.java:24: variable 'data' missing Javadoc.",
+            "InputInner.java:24: variable 'data' must match pattern '^[A-Z]([A-Z0-9_]*[A-Z0-9])?$'.",
+            "InputInner.java:27: type is missing a Javadoc comment.",
+            "InputInner.java:30: variable 'rData' missing Javadoc.",
         };
         verify(c, "InputInner.java", expected);
     }

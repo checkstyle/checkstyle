@@ -99,6 +99,18 @@ public class CheckStyleTask
         }
     }
 
+    /** @param aPat pattern for public member variables **/
+    public void setPublicMemberPattern(String aPat)
+    {
+        try {
+            mConfig.setPublicMemberPat(aPat);
+        }
+        catch (RESyntaxException ex) {
+            throw new BuildException("Unable to parse publicmemberpattern - " +
+                                     ex.getMessage());
+        }
+    }
+
     /** @param aPat pattern for parameters **/
     public void setParamPattern(String aPat)
     {
