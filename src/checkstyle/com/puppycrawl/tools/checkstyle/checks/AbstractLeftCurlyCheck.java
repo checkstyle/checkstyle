@@ -30,7 +30,11 @@ public abstract class AbstractLeftCurlyCheck
         super(LeftCurlyOption.EOL);
     }
 
-    /** @see the hack above */
+    /**
+     * Sets the maximum line length used in calculating the placement of the
+     * left curly brace.
+     * @param aMaxLineLength the max allowed line length
+     */
     public void setMaxLineLength(int aMaxLineLength)
     {
         mMaxLineLength = aMaxLineLength;
