@@ -31,14 +31,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class TypeLeftCurlyCheck
     extends LeftCurlyCheck
 {
-    /** @see Check */
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.INTERFACE_DEF,
                           TokenTypes.CLASS_DEF};
     }
 
-    /** @see Check */
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST brace =
