@@ -27,17 +27,27 @@ class Comment implements TextBlock
 {
     /** text of the comment. */
     private final String[] mText;
-    /** number of first line of the commen. */
+
+    /** number of first line of the comment. */
     private final int mFirstLine;
-    /** number of last line of the commen. */
+
+    /** number of last line of the comment. */
     private final int mLastLine;
+
+    /** number of first column of the comment. */
+    private final int mFirstCol;
+
+    /** number of last column of the comment. */
+    private final int mLastCol;
 
     /**
      * Creates new instance.
      * @param aText the lines that make up the comment.
+     * @param aFirstCol number of the first column of the comment.
      * @param aLastLine number of the last line of the comment.
      */
-    public Comment(final String[] aText, final int aLastLine)
+    public Comment(final String[] aText, final int aFirstCol,
+            final int aLastLine)
     {
         mText = new String[aText.length];
         for (int i = 0; i < mText.length; i++) {
@@ -45,6 +55,8 @@ class Comment implements TextBlock
         }
         mFirstLine = aLastLine - mText.length + 1;
         mLastLine = aLastLine;
+        mFirstCol = aFirstCol;
+        mLastCol = mText[mText.length - 1].length() - 1;
     }
 
     /**
@@ -72,5 +84,21 @@ class Comment implements TextBlock
     public final int getEndLineNo()
     {
         return mLastLine;
+    }
+
+    /**
+     * @see TextBlock
+     */
+    public int getStartColNo()
+    {
+        return mFirstCol;
+    }
+
+    /**
+     * @see TextBlock
+     */
+    public int getEndColNo()
+    {
+        return mLastCol;
     }
 }
