@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @version 1.0
  */
 public class OtherLeftCurlyCheck
-    extends LeftCurlyCheck
+    extends AbstractLeftCurlyCheck
 {
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
