@@ -55,10 +55,11 @@ class InputBraces
         }
 
         // Invalid
-        for (int i = 1; i < 5; i++);
+        for (int i = 1;i < 5;i++);
         for (int i = 1; i < 5; i++)
             testFor();
-        for (int i = 1; i < 5; i++)
+        for (int i = 1; i < 5;
+             i++)
             if (i > 2)
                 testFor();
     }

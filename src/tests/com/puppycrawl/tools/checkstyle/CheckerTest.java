@@ -133,20 +133,22 @@ public class CheckerTest
             filepath + ":42: 'while' construct must use '{}'s.",
             filepath + ":44: 'while' construct must use '{}'s.",
             filepath + ":45: 'if' construct must use '{}'s.",
+            filepath + ":58: ';' needs to be followed by whitespace.",
+            filepath + ":58: ';' needs to be followed by whitespace.",
             filepath + ":58: 'for' construct must use '{}'s.",
             filepath + ":58: ';' is not preceeded with whitespace.",
             filepath + ":59: 'for' construct must use '{}'s.",
             filepath + ":61: 'for' construct must use '{}'s.",
-            filepath + ":62: 'if' construct must use '{}'s.",
-            filepath + ":81: 'if' construct must use '{}'s.",
-            filepath + ":81: ';' is not preceeded with whitespace.",
+            filepath + ":63: 'if' construct must use '{}'s.",
             filepath + ":82: 'if' construct must use '{}'s.",
-            filepath + ":84: 'if' construct must use '{}'s.",
-            filepath + ":84: 'else' construct must use '{}'s.",
-            filepath + ":88: 'if' construct must use '{}'s.",
-            filepath + ":93: 'else' construct must use '{}'s.",
-            filepath + ":98: 'if' construct must use '{}'s.",
-            filepath + ":99: 'if' construct must use '{}'s."
+            filepath + ":82: ';' is not preceeded with whitespace.",
+            filepath + ":83: 'if' construct must use '{}'s.",
+            filepath + ":85: 'if' construct must use '{}'s.",
+            filepath + ":85: 'else' construct must use '{}'s.",
+            filepath + ":89: 'if' construct must use '{}'s.",
+            filepath + ":94: 'else' construct must use '{}'s.",
+            filepath + ":99: 'if' construct must use '{}'s.",
+            filepath + ":100: 'if' construct must use '{}'s."
         };
         verify(c, filepath, expected);
     }
@@ -159,8 +161,10 @@ public class CheckerTest
         final String filepath = getPath("InputBraces.java");
         final String[] expected = {
             filepath + ":41: ';' is not preceeded with whitespace.",
+            filepath + ":58: ';' needs to be followed by whitespace.",
+            filepath + ":58: ';' needs to be followed by whitespace.",
             filepath + ":58: ';' is not preceeded with whitespace.",
-            filepath + ":81: ';' is not preceeded with whitespace.",
+            filepath + ":82: ';' is not preceeded with whitespace.",
         };
         verify(c, filepath, expected);
     }
