@@ -671,4 +671,16 @@ public class CheckerTest
         };
         verify(c, filepath, expected);
     }
+
+    public void testAssertIdentifier()
+        throws Exception
+    {
+        mConfig.setJavadocScope(Scope.NOTHING);
+        final Checker c = createChecker();
+        final String filepath = getPath("InputAssertIdentifier.java");
+        assertNotNull(c);
+        final String[] expected = {
+        };
+        verify(c, filepath, expected);
+    }
 }
