@@ -48,6 +48,7 @@ public class AllTests {
         suite.addTest(new TestSuite(StringLiteralEqualityCheckTest.class));
         suite.addTest(new TestSuite(SuperCloneCheckTest.class));
         suite.addTest(new TestSuite(SuperFinalizeCheckTest.class));
+        suite.addTest(new TestSuite(UnnecessaryParenthesesCheckTest.class));
 
         return suite;
     }
