@@ -18,36 +18,43 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.io.File;
-import java.util.Iterator;
 import java.util.Set;
+import java.util.HashSet;
+import java.io.File;
+
+import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 
 /**
- * Checks that all packages have a package documentation.
+ * Provides common functionality for many FileSetChecks.
+ * TODO: maybe this should be a public class and go into the api package?
  * @author lkuehne
  */
-public class PackageHtmlCheck extends AbstractFileSetCheck
+abstract class AbstractFileSetCheck implements FileSetCheck
 {
     /**
-     * Checks that each java file in the fileset has a package.html sibling.
-     * @param aFiles a set of files
-     * @return the number of missing package.html files
+     * Does nothing.
+     * @see FileSetCheck
      */
-    public int process(File[] aFiles)
+    public void destroy()
     {
-        int missing = 0;
-        Set directories = getParentDirs(aFiles);
-        for (Iterator it = directories.iterator(); it.hasNext();) {
-            File dir = (File) it.next();
-            File packageHtml = new File(dir, "package.html");
-            // TODO: fireFileStarted
-            if (!packageHtml.exists()) {
-                // TODO: log error
-                System.out.println("package.html missing");
-                missing += 1;
-            }
-            // TODO: fireFileFinished
-        }
-        return missing;
     }
+
+    /**
+     * Returns the set of directories for a set of files.
+     * @param aFiles s set of files
+     * @return the set of parent directories of the given files
+     */
+    protected Set getParentDirs(File[] aFiles) {
+        Set directories = new HashSet();
+        for (int i = 0; i < aFiles.length; i++) {
+            File file = aFiles[i];
+            if (file.getName().endsWith(".java")) {
+                File dir = file.getParentFile();
+                directories.add(dir); // duplicates are handled automatically
+            }
+        }
+        return directories;
+    }
+
+
 }
