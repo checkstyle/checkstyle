@@ -26,6 +26,9 @@ package com.puppycrawl.tools.checkstyle.api;
  */
 public class CheckstyleException extends Exception
 {
+    /** the cause of this exception */
+    private Throwable mCause = null;
+
     /**
      * Creates a new <code>CheckstyleException</code> instance.
      *
@@ -35,4 +38,48 @@ public class CheckstyleException extends Exception
     {
         super(aMessage);
     }
+
+    /**
+     * Creates a new <code>CheckstyleException</code> instance
+     * that was caused by another exception.
+     *
+     * @param aMessage a message that explains this exception
+     * @param aCause the Exception that is wrapped by this exception
+     */
+    public CheckstyleException(String aMessage, Throwable aCause)
+    {
+        super(aMessage);
+        initCause(aCause);
+    }
+
+    /**
+     * Initializes the cause of this exception.
+     * In JDK 1.4 (and later) the cause is printed as part of
+     * the exception stacktrace.
+     *
+     * @param aCause the exception that caused this
+     * CheckstyleException to be thrown
+     * @return a reference to this CheckstyleException instance
+     */
+    public synchronized Throwable initCause(Throwable aCause)
+    {
+        if (mCause != null) {
+            throw new IllegalStateException();
+        }
+        if (mCause == this) {
+            throw new IllegalArgumentException();
+        }
+
+        mCause = aCause;
+        return this;
+    }
+
+    /**
+     * @return the cause of this exception, might be <code>null</code>.
+     */
+    public Throwable getCause()
+    {
+        return mCause;
+    }
+
 }

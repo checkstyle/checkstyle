@@ -116,15 +116,15 @@ class PackageObjectFactory implements ModuleFactory
         }
         catch (ClassNotFoundException e) {
             throw new CheckstyleException(
-                "Unable to find class for " + aClassName);
+                "Unable to find class for " + aClassName, e);
         }
         catch (InstantiationException e) {
             throw new CheckstyleException(
-                "Unable to instantiate " + aClassName);
+                "Unable to instantiate " + aClassName, e);
         }
         catch (IllegalAccessException e) {
             throw new CheckstyleException(
-                "Unable to instantiate " + aClassName);
+                "Unable to instantiate " + aClassName, e);
         }
     }
 
@@ -151,7 +151,7 @@ class PackageObjectFactory implements ModuleFactory
             }
             catch (CheckstyleException ex2) {
                 throw new CheckstyleException(
-                    "Unable to instantiate " + aName);
+                    "Unable to instantiate " + aName, ex2);
             }
         }
     }

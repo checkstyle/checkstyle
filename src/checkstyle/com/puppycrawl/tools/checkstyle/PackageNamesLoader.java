@@ -163,7 +163,8 @@ public class PackageNamesLoader
             reader = new FileReader(aFilename);
         }
         catch (FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + aFilename);
+            throw new CheckstyleException(
+                "unable to find " + aFilename, e);
         }
         final InputSource source = new InputSource(reader);
         return loadModuleFactory(source, aFilename);
@@ -186,17 +187,17 @@ public class PackageNamesLoader
             return nameLoader.getModuleFactory();
         }
         catch (FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + aSourceName);
+            throw new CheckstyleException("unable to find " + aSourceName, e);
         }
         catch (ParserConfigurationException e) {
-            throw new CheckstyleException("unable to parse " + aSourceName);
+            throw new CheckstyleException("unable to parse " + aSourceName, e);
         }
         catch (SAXException e) {
             throw new CheckstyleException("unable to parse "
-                    + aSourceName + " - " + e.getMessage());
+                    + aSourceName + " - " + e.getMessage(), e);
         }
         catch (IOException e) {
-            throw new CheckstyleException("unable to read " + aSourceName);
+            throw new CheckstyleException("unable to read " + aSourceName, e);
         }
     }
 }

@@ -295,7 +295,7 @@ public final class TreeWalker
                 }
                 catch (IllegalArgumentException ex) {
                     throw new CheckstyleException("illegal token \""
-                        + token + "\" in check " + aCheck);
+                        + token + "\" in check " + aCheck, ex);
                 }
             }
         }
