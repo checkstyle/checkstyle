@@ -543,6 +543,7 @@ public class CheckerTest
         final Checker c = createChecker();
         mConfig.setHeaderLinesRegexp(true);
         mConfig.setHeaderFile(getPath("regexp.header"));
+        mConfig.setHeaderIgnoreLines("4,5");
         final String filepath = getPath("InputScopeAnonInner.java");
         assertNotNull(c);
         final String[] expected = {

@@ -1054,7 +1054,7 @@ class Verifier
             for (int i = 0; i < mConfig.getHeaderLines().length; i++)
             {
                 // skip lines we are meant to ignore
-                if (i == (mConfig.getHeaderIgnoreLineNo() - 1)) {
+                if (mConfig.isHeaderIgnoreLineNo(i + 1)) {
                     continue;
                 }
 
