@@ -169,4 +169,14 @@ class InputWhitespace
             }
         };
     }
+
+    /** rfe 521323, detect whitespace before ';' */
+    void rfe521323()
+    {
+        doStuff() ;
+        //       ^ whitespace
+        for (int i = 0 ; i < 5; i++) {
+            //        ^ whitespace
+        }
+    }
 }

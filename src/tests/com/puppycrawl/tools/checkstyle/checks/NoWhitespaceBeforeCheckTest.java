@@ -17,6 +17,8 @@ public class NoWhitespaceBeforeCheckTest
         final String[] expected = {
             "30:14: '++' is preceeded with whitespace.",
             "30:21: '--' is preceeded with whitespace.",
+            "176:18: ';' is preceeded with whitespace.",
+            "178:23: ';' is preceeded with whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }

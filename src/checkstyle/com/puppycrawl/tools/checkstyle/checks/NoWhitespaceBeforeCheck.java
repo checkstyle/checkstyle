@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * allowLineBreaks to true.
  * </p>
  * <p> By default the check will check the following operators:
+ *  {@link TokenTypes#SEMI SEMI},
  *  {@link TokenTypes#POST_DEC POST_DEC},
  *  {@link TokenTypes#POST_INC POST_INC}.
  * {@link TokenTypes#DOT DOT} is also an acceptable token in a configuration
@@ -65,6 +66,7 @@ public class NoWhitespaceBeforeCheck
     public int[] getDefaultTokens()
     {
         return new int[] {
+            TokenTypes.SEMI,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
         };
@@ -74,6 +76,7 @@ public class NoWhitespaceBeforeCheck
     public int[] getAcceptableTokens()
     {
         return new int[] {
+            TokenTypes.SEMI,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
             TokenTypes.DOT,
@@ -83,7 +86,7 @@ public class NoWhitespaceBeforeCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
-               final String[] lines = getLines();
+        final String[] lines = getLines();
         final String line = lines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
 
