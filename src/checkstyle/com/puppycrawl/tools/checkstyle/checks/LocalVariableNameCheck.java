@@ -43,7 +43,7 @@ public class LocalVariableNameCheck
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.check.AbstractNameCheck */
+    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractNameCheck */
     protected final boolean mustCheckName(DetailAST aAST)
     {
         final DetailAST modifiersAST =
