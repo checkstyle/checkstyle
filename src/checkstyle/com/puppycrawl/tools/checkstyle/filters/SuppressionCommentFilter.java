@@ -193,7 +193,7 @@ public class SuppressionCommentFilter
             if (mLine == other.mLine) {
                 return mColumn - other.mColumn;
             }
-            
+
             return (mLine - other.mLine);
         }
 

@@ -74,7 +74,11 @@ public class ClassResolver
         Iterator it = mImports.iterator();
         while (it.hasNext()) {
             final String imp = (String) it.next();
-            if (imp.endsWith(aName)) {
+            // Very important to add the "." in the check below. Otherwise you
+            // when checking for "DataException", it will match on
+            // "SecurityDataException". This has been the cause of a very
+            // difficult bug to resolve!
+            if (imp.endsWith("." + aName)) {
                 if (isLoadable(imp)) {
                     return safeLoad(imp);
                 }
