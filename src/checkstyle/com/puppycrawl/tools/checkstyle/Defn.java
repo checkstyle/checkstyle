@@ -81,9 +81,6 @@ public interface Defn
     /** property name for ignoring line length of import statements **/
     String IGNORE_IMPORT_LENGTH_PROP = "checkstyle.ignore.importlength";
 
-    /** property name for padding around parenthesis **/
-    String PAREN_PAD_PROP = "checkstyle.paren.pad";
-
     /** property name for try block options **/
     String TRY_BLOCK_PROP = "checkstyle.block.try";
     /** property name for catch block options **/
