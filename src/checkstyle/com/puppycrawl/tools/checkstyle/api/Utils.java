@@ -227,8 +227,8 @@ public final class Utils
             if (fragment == null) {
                 final String propertyName = (String) j.next();
                 if (!aProps.containsKey(propertyName)) {
-                    throw new CheckstyleException(
-                            "Property ${" + propertyName + "} has not been set");
+                    throw new CheckstyleException("Property ${"
+                        + propertyName + "} has not been set");
                 }
                 fragment = (aProps.containsKey(propertyName))
                     ? (String) aProps.get(propertyName)
