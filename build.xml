@@ -571,7 +571,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
           <exclude name="**/Generated*.java" />
           <exclude name="**/Generated*.txt" />
           <exclude name="**/gui/*.java" />
-          <exclude name="**/checks/*.java"/>
+          <exclude name="**/checks/**"/>
           <exclude name="**/usage/transmogrify/*.java" />
           <exclude name="**/*.properties" />
           <exclude name="**/*.g" />
