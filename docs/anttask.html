@@ -63,6 +63,13 @@ This task is included in the checkstyle distribution.</p>
     <td align="center" valign="top">No</td>
   </tr>
   <tr>
+    <td valign="top">ignoreImportLen</td> 
+    <td valign="top">Specifies whether to ignore the maximum line length for <span class="code">import</span> statements. Defaults to <span class="default">&quot;false&quot;</span>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+
+
+  <tr>
     <td valign="top">memberPattern</td> 
     <td valign="top">Specifies the regular expression to match against member variables. Default value is defined <a href="index.html#varformat">here</a>.</td>
     <td align="center" valign="top">No</td>
@@ -108,6 +115,11 @@ This task is included in the checkstyle distribution.</p>
     <td align="center" valign="top">No</td>
   </tr>
   <tr>
+    <td valign="top">ignoreJavadoc</td> 
+    <td valign="top">Specifies whether to completely ignore checking Javadoc comments. Defaults to <span class="default">&quot;false&quot;</span>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
     <td valign="top">ignoreImports</td> 
     <td valign="top">Specifies whether to ignore checking import statements. Defaults to <span class="default">&quot;false&quot;</span>.</td>
     <td align="center" valign="top">No</td>
@@ -125,6 +137,11 @@ This task is included in the checkstyle distribution.</p>
   <tr>
     <td valign="top">failOnViolation</td> 
     <td valign="top">Specifies whether the build will continue even if there are violations. Defaults to <span class="default">&quot;true&quot;</span>.</td>
+    <td align="center" valign="top">No</td>
+  </tr>
+  <tr>
+    <td valign="top">cacheFile</td> 
+    <td valign="top">Specifies the name of a file that can be used to cache details of files that pass checkstyle. This can signicantly increase the speed of checkstyle on successive runs.</td>
     <td align="center" valign="top">No</td>
   </tr>
 </table>

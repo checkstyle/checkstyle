@@ -55,6 +55,10 @@ This command line tool is included in the checkstyle distribution.</p>
     <td valign="top">checkstyle.maxlinelen</td> 
     <td valign="top">Specifies the maximum line length. Default value is defined <a href="index.html#length">here</a>.</td>
   </tr>
+ <tr>
+    <td valign="top">checkstyle.ignore.importlength</td> 
+    <td valign="top">Specifies whether to ignore the maximum line length for <span class="code">import</span> statements. Defaults to <span class="default">&quot;false&quot;</span>.</td>
+  </tr>
   <tr>
     <td valign="top">checkstyle.pattern.member</td> 
     <td valign="top">Specifies the regular expression to match against member variables. Default value is defined <a href="index.html#varformat">here</a>.</td>
@@ -92,6 +96,10 @@ This command line tool is included in the checkstyle distribution.</p>
     <td valign="top">Specifies whether to relax checking Javadoc comments. Defaults to <span class="default">&quot;no&quot;</span>.</td>
   </tr>
   <tr>
+    <td valign="top">checkstyle.javadoc.ignore</td> 
+    <td valign="top">Specifies whether to completely ignore checking Javadoc comments. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+  </tr>
+  <tr>
     <td valign="top">checkstyle.ignore.imports</td> 
     <td valign="top">Specifies whether to ignore checking import statements. Defaults to <span class="default">&quot;no&quot;</span>.</td>
   </tr>
@@ -102,6 +110,10 @@ This command line tool is included in the checkstyle distribution.</p>
   <tr>
     <td valign="top">checkstyle.ignore.braces</td> 
     <td valign="top">Specifies whether to ignore checking braces. Defaults to <span class="default">&quot;no&quot;</span>.</td>
+  </tr>
+  <tr>
+    <td valign="top">checkstyle.cache.file</td> 
+    <td valign="top">Specifies the name of a file that can be used to cache details of files that pass checkstyle. This can signicantly increase the speed of checkstyle on successive runs.</td>
   </tr>
 </table>
 
