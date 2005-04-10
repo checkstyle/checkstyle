@@ -29,7 +29,7 @@
               <item name="Javadoc Comments"   href="/config_javadoc.html"/>
               <item name="Naming Conventions" href="/config_naming.html"/>
               <item name="Headers"            href="/config_header.html"/>
-              <item name="Imports"            href="/config_import.html"/>
+              <item name="Imports"            href="/config_imports.html"/>
               <item name="Size Violations"    href="/config_sizes.html"/>
               <item name="Whitespace"         href="/config_whitespace.html"/>
               <item name="Modifiers"          href="/config_modifier.html"/>
