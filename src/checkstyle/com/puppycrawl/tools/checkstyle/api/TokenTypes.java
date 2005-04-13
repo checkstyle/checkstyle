@@ -3120,7 +3120,7 @@ public final class TokenTypes
      *     +--IDENT (Blah)
      *     +--TYPE_PARAMETERS
      *         |
-     *         +--LT (<)
+     *         +--GENERIC_START (<)
      *         +--TYPE_PARAMETER
      *             |
      *             +--IDENT (A)
@@ -3128,7 +3128,7 @@ public final class TokenTypes
      *         +--TYPE_PARAMETER
      *             |
      *             +--IDENT (B)
-     *         +--GT (>)
+     *         +--GENERIC_END (>)
      *     +--OBJBLOCK
      *         |
      *         +--LCURLY ({)
@@ -3140,8 +3140,8 @@ public final class TokenTypes
      *
      * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
-     * @see #LT
-     * @see #GT
+     * @see #GENERIC_START
+     * @see #GENERIC_END
      * @see #TYPE_PARAMETER
      * @see #COMMA
      */
@@ -3180,9 +3180,9 @@ public final class TokenTypes
 
     /**
      * A list of type arguments to a type reference or
-     * a method/ctor invocation. Children are LT, at least one
+     * a method/ctor invocation. Children are GENERIC_START, at least one
      * TYPE_ARGUMENT, zero or more of a COMMAs followed by a single
-     * TYPE_ARGUMENT, and a final GT.
+     * TYPE_ARGUMENT, and a final GENERIC_END.
      *
      * <p>For example:</p>
      *
@@ -3204,17 +3204,17 @@ public final class TokenTypes
      *             |
      *             +--TYPE_ARGUMENTS
      *                 |
-     *                 +--LT (<)
+     *                 +--GENERIC_START (<)
      *                 +--TYPE_ARGUMENT
      *                     |
      *                     +--WILDCARD_TYPE (?)
-     *                 +--GT (>)
+     *                 +--GENERIC_END (>)
      *     +--IDENT (a)
      *     +--SEMI (;)
      * </pre>
      *
-     * @see #LT
-     * @see #GT
+     * @see #GENERIC_START
+     * @see #GENERIC_END
      * @see #TYPE_ARGUMENT
      * @see #COMMA
      */
@@ -3309,6 +3309,21 @@ public final class TokenTypes
      */
     public static final int ELLIPSIS = GeneratedJavaTokenTypes.ELLIPSIS;
 
+    /**
+     * '&' symbol when used in a generic upper or lower bounds constrain
+     * e.g. Comparable<? extends Serializable, CharSequence>.
+     */
+    public static final int TYPE_EXTENSION_AND = GeneratedJavaTokenTypes.TYPE_EXTENSION_AND;
+
+    /**
+     * '<' symbol signifying the start of type arguments or type parameters.
+     */
+    public static final int GENERIC_START = GeneratedJavaTokenTypes.GENERIC_START;
+
+    /**
+     * '>' symbol signifying the end of type arguments or type parameters.
+     */
+    public static final int GENERIC_END = GeneratedJavaTokenTypes.GENERIC_END;
 
     ////////////////////////////////////////////////////////////////////////
     // The interesting code goes here

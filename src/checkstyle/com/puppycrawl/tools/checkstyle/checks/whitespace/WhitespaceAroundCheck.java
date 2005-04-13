@@ -74,6 +74,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *  {@link TokenTypes#SR_ASSIGN SR_ASSIGN},
  *  {@link TokenTypes#STAR STAR},
  *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN}.
+ *  {@link TokenTypes#LITERAL_ASSERT LITERAL_ASSERT}.
+ *  {@link TokenTypes#GENERIC_START GENERIC_START}.
+ *  {@link TokenTypes#GENERIC_END GENERIC_END}.
+ *  {@link TokenTypes#TYPE_EXTENSION_AND TYPE_EXTENSION_AND}.
+ *  {@link TokenTypes#WILDCARD_TYPE WILDCARD_TYPE}.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -148,6 +153,10 @@ public class WhitespaceAroundCheck
             TokenTypes.STAR,
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LITERAL_ASSERT,
+            TokenTypes.GENERIC_START,
+            TokenTypes.GENERIC_END,
+            TokenTypes.TYPE_EXTENSION_AND,
+            TokenTypes.WILDCARD_TYPE,
         };
     }
 

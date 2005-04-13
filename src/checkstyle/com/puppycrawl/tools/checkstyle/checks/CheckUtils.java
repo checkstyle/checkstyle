@@ -280,35 +280,4 @@ public final class CheckUtils
 
         return currentNode;
     }
-
-    /**
-     * Tests whether {@link TokenTypes.LT LT}, {@link TokenTypes.GT GT},
-     * {@link TokenTypes.QUESTION QUESTION} or {@link TokenTypes.BAND BAND}
-     * token types are part of a generic declaration or not (in which case they
-     * are operators).
-     * @param aNode the token node
-     * @return true if {@link TokenTypes.LT LT}, {@link TokenTypes.GT GT},
-     *         {@link TokenTypes.QUESTION QUESTION} or
-     *         {@link TokenTypes.BAND BAND}
-     *         tokens and is part of a generic declaration, false otherwise
-     *
-     */
-    public static boolean isOperatorTokenPartOfGenericDeclaration(
-        final DetailAST aNode)
-    {
-        int type = aNode.getType();
-        int parentType = aNode.getParent().getType();
-
-        // Comparable < String >
-        if (((type == TokenTypes.GT) || (type == TokenTypes.LT))
-            && ((parentType == TokenTypes.TYPE_ARGUMENTS)
-                || (parentType == TokenTypes.TYPE_PARAMETERS)))
-        {
-            return true;
-        }
-        // Comparable < ? extends Serializable & CharSequence >
-        return (type == TokenTypes.BAND)
-            && ((parentType == TokenTypes.TYPE_UPPER_BOUNDS)
-                || (parentType == TokenTypes.TYPE_LOWER_BOUNDS));
-    }
 }

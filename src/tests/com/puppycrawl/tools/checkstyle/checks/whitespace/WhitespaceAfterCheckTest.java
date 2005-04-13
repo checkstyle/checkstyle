@@ -48,4 +48,14 @@ public class WhitespaceAfterCheckTest
         };
         verify(mCheckConfig, getPath("InputForWhitespace.java"), expected);
     }
+
+    public void testTypeArgumentAndParameterCommas() throws Exception
+    {
+        final String[] expected = {
+            "11:21: ',' is not followed by whitespace.",
+            "11:23: ',' is not followed by whitespace.",
+            "11:41: ',' is not followed by whitespace.",
+        };
+        verify(mCheckConfig, getPath("InputGenerics.java"), expected);
+    }
 }

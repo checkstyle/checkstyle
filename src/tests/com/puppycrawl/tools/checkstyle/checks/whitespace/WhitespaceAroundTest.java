@@ -80,4 +80,25 @@ public class WhitespaceAroundTest
         };
         verify(checkConfig, getPath("InputBraces.java"), expected);
     }
+
+    public void testGenericsTokensAreFlagged()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(WhitespaceAroundCheck.class);
+        final String[] expected = {
+            "6:27: '<' is not preceded with whitespace.",
+            "6:28: '<' is not followed by whitespace.",
+            "6:51: '<' is not preceded with whitespace.",
+            "6:52: '<' is not followed by whitespace.",
+            "6:52: '?' is not preceded with whitespace.",
+            "6:53: '>' is not preceded with whitespace.",
+            "6:53: '?' is not followed by whitespace.",
+            "6:54: '>' is not followed by whitespace.",
+            "6:67: '&' is not preceded with whitespace.",
+            "6:68: '&' is not followed by whitespace.",
+            "6:69: '>' is not preceded with whitespace.",
+        };
+        verify(checkConfig, getPath("InputGenerics.java"), expected);
+    }
 }

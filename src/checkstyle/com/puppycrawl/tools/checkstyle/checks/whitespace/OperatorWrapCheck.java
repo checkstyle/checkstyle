@@ -24,7 +24,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
-import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 
 /**
  * <p>
@@ -184,13 +183,10 @@ public class OperatorWrapCheck
         // Check if rest of line is whitespace, and not just the operator
         // by itself. This last bit is to handle the operator on a line by
         // itself.
-        if (CheckUtils.isOperatorTokenPartOfGenericDeclaration(aAST)) {
-            return;
-        }
-        else if (wOp == OperatorWrapOption.NL
-                && !text.equals(currentLine.trim())
-                && (currentLine.substring(colNo + text.length())
-                    .trim().length() == 0))
+        if (wOp == OperatorWrapOption.NL
+            && !text.equals(currentLine.trim())
+            && (currentLine.substring(colNo + text.length())
+                .trim().length() == 0))
         {
             log(lineNo, colNo, "line.new", text);
         }

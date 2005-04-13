@@ -429,6 +429,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
            haltonfailure="no"
            showoutput="yes"
            failureProperty="tests.have.failed">
+      <!--<jvmarg line="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"/>-->
       <jvmarg value="-Dtestinputs.dir=${testinputs.dir}"/>
       <formatter type="xml" />
       <classpath refid="tests.runpath"/>

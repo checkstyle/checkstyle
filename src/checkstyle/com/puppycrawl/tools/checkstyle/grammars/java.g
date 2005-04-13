@@ -85,6 +85,7 @@ tokens {
 	ANNOTATION_DEF; ANNOTATIONS; ANNOTATION; ANNOTATION_MEMBER_VALUE_PAIR; ANNOTATION_FIELD_DEF;
 	ANNOTATION_ARRAY_INIT; TYPE_ARGUMENTS; TYPE_ARGUMENT; TYPE_PARAMETERS;
 	TYPE_PARAMETER; WILDCARD_TYPE; TYPE_UPPER_BOUNDS; TYPE_LOWER_BOUNDS; AT; ELLIPSIS;
+	GENERIC_START; GENERIC_END; TYPE_EXTENSION_AND;
 }
 
 {
@@ -138,7 +139,7 @@ tokens {
     private DetailAST emitSingleGt()
     {
         gtToReconcile -= 1;
-        CommonToken gtToken = new CommonToken(GT, ">");
+        CommonToken gtToken = new CommonToken(GENERIC_END, ">");
         gtToken.setLine(currentGtSequence.getLineNo());
         gtToken.setColumn(currentGtSequence.getColumnNo() + (currentGtSequence.getText().length() - gtToReconcile));
         return (DetailAST)astFactory.create(gtToken);
@@ -270,7 +271,7 @@ typeArguments[boolean addImagNode]
 {int currentLtLevel = 0;}
     :
         {currentLtLevel = ltCounter;}
-        LT {ltCounter++;}
+        lt:LT {#lt.setType(GENERIC_START); ;ltCounter++;}
         typeArgument[addImagNode]
         (options{greedy=true;}: // match as many as possible
             // If there are any '>' to reconcile
@@ -543,7 +544,7 @@ typeParameters
 {int currentLtLevel = 0;}
     :
         {currentLtLevel = ltCounter;}
-        LT {ltCounter++;}
+        lt:LT {#lt.setType(GENERIC_START); ltCounter++;}
         typeParameter (COMMA typeParameter)*
         (typeArgumentsOrParametersEnd)?
 
@@ -574,7 +575,7 @@ typeParameter
 typeParameterBounds
     :
         "extends"! classOrInterfaceType[true]
-        (BAND classOrInterfaceType[true])*
+        (b:BAND {#b.setType(TYPE_EXTENSION_AND);} classOrInterfaceType[true])*
         {#typeParameterBounds = #(#[TYPE_UPPER_BOUNDS,"TYPE_UPPER_BOUNDS"], #typeParameterBounds);}
     ;
 
