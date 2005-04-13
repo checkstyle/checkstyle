@@ -3313,12 +3313,14 @@ public final class TokenTypes
      * '&' symbol when used in a generic upper or lower bounds constrain
      * e.g. Comparable<? extends Serializable, CharSequence>.
      */
-    public static final int TYPE_EXTENSION_AND = GeneratedJavaTokenTypes.TYPE_EXTENSION_AND;
+    public static final int TYPE_EXTENSION_AND =
+        GeneratedJavaTokenTypes.TYPE_EXTENSION_AND;
 
     /**
      * '<' symbol signifying the start of type arguments or type parameters.
      */
-    public static final int GENERIC_START = GeneratedJavaTokenTypes.GENERIC_START;
+    public static final int GENERIC_START =
+        GeneratedJavaTokenTypes.GENERIC_START;
 
     /**
      * '>' symbol signifying the end of type arguments or type parameters.
