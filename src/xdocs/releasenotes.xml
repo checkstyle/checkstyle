@@ -21,6 +21,8 @@
           <li>Added missing documentation for the fileExtensions
           property of the NewlineAtEndOfFile check (bug 1174751).</li>
 
+          <li>Fixed bug #1098126 in UnusedImport check.</li>
+
       </ul>
 
     </section>
