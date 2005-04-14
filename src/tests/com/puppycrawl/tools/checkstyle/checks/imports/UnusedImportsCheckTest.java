@@ -20,6 +20,8 @@ public class UnusedImportsCheckTest
             "20:8: Unused import - javax.swing.JToggleButton.",
             "22:8: Unused import - javax.swing.BorderFactory.",
             "27:15: Unused import - java.io.File.createTempFile.",
+            "29:8: Unused import - java.awt.Component.",
+            "30:8: Unused import - java.awt.Label.",
         };
         verify(checkConfig, getPath("InputImport.java"), expected);
     }

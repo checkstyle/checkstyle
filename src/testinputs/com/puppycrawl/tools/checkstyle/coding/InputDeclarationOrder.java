@@ -51,7 +51,7 @@ public class InputDeclarationOrder
     }
 
     //  error ctors before methods
-    public TestMemberVariableOrderCheck()
+    public InputDeclarationOrder()
     {
         final String foo = ERROR;
         foo += ERROR1;

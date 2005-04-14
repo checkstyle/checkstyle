@@ -14,5 +14,5 @@ public class InputIllegalType {
     private class NotAnAbstractClass {}
 
     private java.util.Hashtable table1() { return null; }
-    private Hashtable table2() {  null; }
+    private Hashtable table2() { return null; }
 }

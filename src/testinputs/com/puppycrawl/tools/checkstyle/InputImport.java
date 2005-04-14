@@ -26,6 +26,8 @@ import static javax.swing.WindowConstants.*;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
 import static sun.net.ftpclient.FtpClient.*;
+import java.awt.Component;
+import java.awt.Label;
 
 /**
  * Test case for imports
@@ -62,4 +64,9 @@ class InputImport
 
     /** usage of inner class in constructor, fully qualified */
     private Object mUse6 = new javax.swing.JToggleButton.ToggleButtonModel();
+
+    /** we use class name as member's name. */
+    private int Component;
+
+    public void Label() {}
 }

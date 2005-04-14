@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -42,15 +42,16 @@ import java.util.Set;
  * Compatible with Java 1.5 source.
  *
  * @author Oliver Burn
- * @version 1.0
+ * @version 1.1
  */
-public class UnusedImportsCheck
-    extends Check
+public class UnusedImportsCheck extends DeclarationCollector
 {
     /** flag to indicate when time to start collecting references */
     private boolean mCollect;
+
     /** set of the imports */
     private final Set mImports = new HashSet();
+
     /** set of references - possibly to imports or other things */
     private final Set mReferenced = new HashSet();
 
@@ -59,15 +60,16 @@ public class UnusedImportsCheck
     {
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
+        super.beginTree(aRootAST);
         mCollect = false;
         mImports.clear();
         mReferenced.clear();
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void finishTree(DetailAST aRootAST)
     {
         // loop over all the imports to see if referenced.
@@ -83,23 +85,35 @@ public class UnusedImportsCheck
         }
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
-            TokenTypes.IMPORT,
-            TokenTypes.STATIC_IMPORT,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.ENUM_DEF,
             TokenTypes.IDENT,
+            TokenTypes.IMPORT,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.PARAMETER_DEF,
+            TokenTypes.SLIST,
+            TokenTypes.STATIC_IMPORT,
+            TokenTypes.VARIABLE_DEF,
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
+    public int[] getRequiredTokens()
+    {
+        return getDefaultTokens();
+    }
+
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
+        super.visitToken(aAST);
         if (aAST.getType() == TokenTypes.IDENT) {
             if (mCollect) {
                 processIdent(aAST);
@@ -126,16 +140,15 @@ public class UnusedImportsCheck
      */
     private void processIdent(DetailAST aAST)
     {
-        // TODO: should be a lot smarter in selection. Currently use
-        // same algorithm as real checkstyle
         final DetailAST parent = aAST.getParent();
-        if (parent.getType() == TokenTypes.DOT) {
-            if (aAST.getNextSibling() != null) {
+        final int parentType = parent.getType();
+        if (parentType != TokenTypes.DOT
+            && parentType != TokenTypes.METHOD_DEF
+            || parentType == TokenTypes.DOT && aAST.getNextSibling() != null)
+        {
+            if (!isDeclared(aAST.getText())) {
                 mReferenced.add(aAST.getText());
             }
-        }
-        else {
-            mReferenced.add(aAST.getText());
         }
     }
 
