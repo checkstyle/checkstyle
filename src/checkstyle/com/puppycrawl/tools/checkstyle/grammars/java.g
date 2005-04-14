@@ -601,7 +601,7 @@ annotationField!
 
 				rt:declaratorBrackets[#t]
 
-                ( d:"default" amvi:annotationMemberValueInitializer )?
+                ( d:annotationDefault )?
 
 				s:SEMI
 
@@ -613,7 +613,6 @@ annotationField!
                          LPAREN,
                          RPAREN,
                          d,
-                         amvi,
                          s
                          );}
 			|	v:variableDefinitions[#mods,#t] s6:SEMI
@@ -623,6 +622,10 @@ annotationField!
 				}
 			)
 		)
+    ;
+
+annotationDefault
+    : "default"^ annotationMemberValueInitializer
     ;
 
 // This is the body of an enum. You can have zero or more enum constants

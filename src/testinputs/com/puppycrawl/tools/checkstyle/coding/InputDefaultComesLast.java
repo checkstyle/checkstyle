@@ -26,3 +26,8 @@ public class InputDefaultComesLast
         }
     }
 }
+
+@interface InputDefaultComesLastAnnotation
+{
+    int blag() default 1;
+}

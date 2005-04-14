@@ -66,14 +66,19 @@ public class DefaultComesLastCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         final DetailAST defaultGroupAST = aAST.getParent();
-        final DetailAST switchAST = defaultGroupAST.getParent();
-        final DetailAST lastGroupAST =
-            switchAST.getLastChild().getPreviousSibling();
-
-        if (defaultGroupAST.getLineNo() != lastGroupAST.getLineNo()
-            || defaultGroupAST.getColumnNo() != lastGroupAST.getColumnNo())
+        //default keywords used in annotations too - not what we're
+        //interested in
+        if (defaultGroupAST.getType() != TokenTypes.ANNOTATION_FIELD_DEF)
         {
-            log(aAST, "default.comes.last");
+            final DetailAST switchAST = defaultGroupAST.getParent();
+            final DetailAST lastGroupAST =
+                switchAST.getLastChild().getPreviousSibling();
+
+            if (defaultGroupAST.getLineNo() != lastGroupAST.getLineNo()
+                || defaultGroupAST.getColumnNo() != lastGroupAST.getColumnNo())
+            {
+                log(aAST, "default.comes.last");
+            }
         }
     }
 }
