@@ -101,3 +101,29 @@ interface InputCovariant6
 {
     public boolean equals(InputCovariant5 aInputCovariant5);
 }
+
+class InputGenericCovariant7
+{
+    public <A> boolean equals(InputGenericCovariant7 aInputCovariant7)
+    {
+        return true;
+    }
+
+    public <A> boolean equals(Object aObject)
+    {
+        return false;
+    }
+}
+
+class InputGenericCovariant8
+{
+    public <A> boolean equals(InputGenericCovariant8 aInputCovariant8)
+    {
+        return true;
+    }
+
+    public boolean equals(Object aObject)
+    {
+        return false;
+    }
+}
