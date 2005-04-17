@@ -58,3 +58,13 @@ enum InputExplicitInit3 {
     int TOKEN_second = 0x01;
     int TOKEN_third = 0x02;
 }
+
+class ForEach {
+    public ForEach(Collection<String> strings)
+    {
+        for(String s : strings) //this should not even be checked
+        {
+
+        }
+    }
+}
