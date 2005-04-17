@@ -32,3 +32,29 @@ interface interface1{
     int TOKEN_second = 0x01;
     int TOKEN_third = 0x02;
 }
+
+class InputExplicitInit2 {
+    private Bar<String> bar = null;
+    private Bar<String>[] barArray = null;
+}
+
+enum InputExplicitInit3 {
+    A,
+    B
+    {
+        private int x = 0;
+        private Bar<String> bar = null;
+        private Bar<String>[] barArray = null;
+        private int y = 1;
+    };
+    private int x = 0;
+    private Bar<String> bar = null;
+    private Bar<String>[] barArray = null;
+    private int y = 1;
+}
+
+@interface annotation1{
+    int TOKEN_first = 0x00;
+    int TOKEN_second = 0x01;
+    int TOKEN_third = 0x02;
+}
