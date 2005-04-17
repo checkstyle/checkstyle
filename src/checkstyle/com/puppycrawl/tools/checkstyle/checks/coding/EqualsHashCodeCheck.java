@@ -78,8 +78,8 @@ public class EqualsHashCodeCheck
     public void visitToken(DetailAST aAST)
     {
         final DetailAST modifiers = (DetailAST) aAST.getFirstChild();
-        final AST type = modifiers.getNextSibling();
-        final AST methodName = type.getNextSibling();
+        final AST type = aAST.findFirstToken(TokenTypes.TYPE);
+        final AST methodName = aAST.findFirstToken(TokenTypes.IDENT);
         final DetailAST parameters = aAST.findFirstToken(TokenTypes.PARAMETERS);
 
         if (type.getFirstChild().getType() == TokenTypes.LITERAL_BOOLEAN

@@ -13,6 +13,7 @@ public class EqualsHashCodeCheckTest
         final String[] expected = {
             "126:9: Definition of 'equals()' without corresponding definition of 'hashCode()'.",
             "163:13: Definition of 'equals()' without corresponding definition of 'hashCode()'.",
+            "191:9: Definition of 'equals()' without corresponding definition of 'hashCode()'.",
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }

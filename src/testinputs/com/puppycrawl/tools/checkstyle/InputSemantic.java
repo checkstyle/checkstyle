@@ -177,4 +177,21 @@ class InputSemantic
     // empty instance initializer
     {
     }
+
+    public class EqualsVsHashCode5
+    {
+        public <A> boolean equals(int a) // wrong arg type, don't flag even with generics
+        {
+            return a == 1;
+        }
+    }
+
+    public class EqualsVsHashCode6
+    {
+        public <A> boolean equals(Comparable<A> a) // flag, weven with generics
+        {
+            return true;
+        }
+    }
+
 }
