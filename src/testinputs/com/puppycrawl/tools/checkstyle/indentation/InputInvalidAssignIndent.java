@@ -5,9 +5,9 @@ public class InputInvalidAssignIndent
         String line = mIndentCheck[
           getLineNo()];
         String line1 =
-          getLineNo();
+          getLine();
         line1 =
-          getLineNo();
+          getLine();
         int i 
          =
           1;
@@ -17,4 +17,11 @@ public class InputInvalidAssignIndent
         // TODO: add more testing
     }
 
+    private String[] mIndentCheck = null;
+    int getLineNo() {
+        return 1;
+    }
+    String getLine() {
+        return "";
+    }
 }

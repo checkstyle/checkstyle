@@ -1,4 +1,4 @@
-public class test {
+public class InputMissingSwitchDefault {
     public void foo() {
         int i = 1;
         switch (i) {

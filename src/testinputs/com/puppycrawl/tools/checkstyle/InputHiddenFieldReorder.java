@@ -93,7 +93,7 @@ interface NothingHiddenReorder
     public void noShadow(int notHidden);
 }
 
-enum HiddenEnum
+enum HiddenEnum1
 {
     A(129),
     B(283),
@@ -115,7 +115,7 @@ enum HiddenEnum
     /**
      * ctor parameter hides member
      */
-    HiddenEnum(int hidden)
+    HiddenEnum1(int hidden)
     {
     }
 

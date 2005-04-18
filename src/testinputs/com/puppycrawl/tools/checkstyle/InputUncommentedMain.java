@@ -26,7 +26,7 @@ class Main
     }
 }
 
-class test1
+class UncommentedMainTest1
 {
     // one more uncommented main
     public static void main(java.lang.String[] args)
@@ -35,7 +35,7 @@ class test1
     }
 }
 
-class test2
+class UncommentedMainTest2
 {
     // wrong arg type
     public static void main(int args)
@@ -44,7 +44,7 @@ class test2
     }
 }
 
-class test3
+class UncommentedMainTest3
 {
     // no-public main
     static void main(String[] args)
@@ -53,7 +53,7 @@ class test3
     }
 }
 
-class test4
+class UncommentedMainTest4
 {
     // non-static main
     public void main(String[] args)
@@ -62,7 +62,7 @@ class test4
     }
 }
 
-class test5
+class UncommentedMainTest5
 {
     // wrong return type
     public static int main(String[] args)
@@ -72,7 +72,7 @@ class test5
     }
 }
 
-class test6
+class UncommentedMainTest6
 {
     // too many params
     public static void main(String[] args, int param)
@@ -81,7 +81,7 @@ class test6
     }
 }
 
-class test7
+class UncommentedMainTest7
 {
     // main w/o params
     public static void main()

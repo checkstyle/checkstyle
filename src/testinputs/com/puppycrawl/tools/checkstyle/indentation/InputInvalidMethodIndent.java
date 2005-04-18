@@ -5,7 +5,7 @@
  */
 
 package com.puppycrawl.tools.checkstyle.indentation;
-
+import java.util.Arrays;
 /**
  *
  * @author  jrichard
@@ -116,7 +116,7 @@ public class InputInvalidMethodIndent {
           new String("type"));
 
         
-        String blah = (String) System.getProperty(
+        String blah1 = (String) System.getProperty(
           new String("type")
       );
         

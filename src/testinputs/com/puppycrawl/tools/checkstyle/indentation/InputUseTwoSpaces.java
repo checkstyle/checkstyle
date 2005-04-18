@@ -10,10 +10,10 @@ package com.puppycrawl.tools.checkstyle.indentation;
  *
  * @author  jrichard
  */
-public class InputUseTabs {
+public class InputUseTwoSpaces {
     
   /** Creates a new instance of InputUseTabs */
-  public InputUseTabs() {
+  public InputUseTwoSpaces() {
     boolean test = true;
     if (test)
     {
@@ -27,7 +27,7 @@ public class InputUseTabs {
     
 }
 
-public class Test {
+class Test {
   public static void main(String[] args) {
     System.out.println(" Hello" +
       new Object() {

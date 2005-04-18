@@ -212,7 +212,7 @@ class InputSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum
+enum MyEnum1
 {
     /** ABC constant */
     ABC,

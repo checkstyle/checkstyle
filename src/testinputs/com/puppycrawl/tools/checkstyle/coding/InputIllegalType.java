@@ -1,13 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.HashTable;
+import java.util.Hashtable;
 
 public class InputIllegalType {
     private AbstractClass a = null;
     private NotAnAbstractClass b = null;
 
-    private au.com.redhillconsulting.jamaica.tools.checkstyle.InputIllegalType.AbstractClass c = null;
-    private au.com.redhillconsulting.jamaica.tools.checkstyle.InputIllegalType.NotAnAbstractClass d = null;
+    private com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass c = null;
+    private com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.NotAnAbstractClass d = null;
 
     private abstract class AbstractClass {}
 

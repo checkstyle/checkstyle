@@ -74,7 +74,7 @@ abstract class Operation2 implements Evaluatable
     public static final Operation2 PLUS =
 	new Operation2("+")
 	{
-	    double eval(double a, double b)
+	    public double eval(double a, double b)
 	    {
 		return a + b;
 	    }
@@ -83,7 +83,7 @@ abstract class Operation2 implements Evaluatable
     public static final Operation2 MINUS =
 	new Operation2("-")
 	{
-	    double eval(double a, double b)
+	    public double eval(double a, double b)
 	    {
 		return a - b;
 	    }

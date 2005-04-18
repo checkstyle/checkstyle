@@ -22,7 +22,7 @@ public class NoWhitespaceBeforeCheckTest
             "185:18: ';' is preceded with whitespace.",
             "187:27: ';' is preceded with whitespace.",
             "195:26: ';' is preceded with whitespace.",
-            "208:15: ';' is preceded with whitespace.",
+            "211:15: ';' is preceded with whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }

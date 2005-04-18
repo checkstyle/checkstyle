@@ -47,7 +47,7 @@ class InputDoubleCheckedLocking
         {
             synchronized (InputDoubleCheckedLocking.class)
             {
-                if (one == "one")
+                if (one == Integer.valueOf(2))
                 {
                     one = new Integer(1);
                 }

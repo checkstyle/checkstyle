@@ -53,7 +53,7 @@ public class InputDeclarationOrder
     //  error ctors before methods
     public InputDeclarationOrder()
     {
-        final String foo = ERROR;
+        String foo = ERROR;
         foo += ERROR1;
         foo += WARNING;
         int fooInt = mMaxInitVars;
@@ -63,7 +63,7 @@ public class InputDeclarationOrder
 
     public static int getFoo2()
     {
-        return mFoo;
+        return 13;
     }
 
     public int getFoo()
@@ -71,9 +71,9 @@ public class InputDeclarationOrder
         return mFoo;
     }
 
-    private static int getFoo2()
+    private static int getFoo21()
     {
-        return mFoo;
+        return 14;
     }
 
     // error member variables should be before methods or ctors
@@ -151,7 +151,7 @@ enum InputDeclarationOrderEnum
     //  error ctors before methods
     InputDeclarationOrderEnum()
     {
-        final String foo = ERROR;
+        String foo = ERROR;
         foo += ERROR1;
         foo += WARNING;
         int fooInt = mMaxInitVars;
@@ -161,7 +161,7 @@ enum InputDeclarationOrderEnum
 
     public static int getFoo2()
     {
-        return mFoo;
+        return 2;
     }
 
     public int getFoo()
@@ -169,9 +169,9 @@ enum InputDeclarationOrderEnum
         return mFoo;
     }
 
-    private static int getFoo2()
+    private static int getFoo21()
     {
-        return mFoo;
+        return 1;
     }
 
     // error member variables should be before methods or ctors

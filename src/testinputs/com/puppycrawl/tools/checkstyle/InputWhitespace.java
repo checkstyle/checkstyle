@@ -196,6 +196,9 @@ class InputWhitespace
             //           ^ whitespace
         };
     }
+
+    void doStuff() {
+    }
 }
 
 /**
@@ -232,5 +235,9 @@ class SpecialCasesInForLoop
         for (int anInt : getSomeInts()) {
             //Should be ignored
         }
+    }
+
+    int[] getSomeInts() {
+        return null;
     }
 }

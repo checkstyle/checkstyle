@@ -42,21 +42,3 @@ class InnerFinalize
         }
     }
 }
-
-enum MyEnum
-{
-    ; //No constants, just for the fun of it
-    public void finalize() throws Throwable
-    {
-        super.finalize();
-    }
-}
-
-enum MyEnum2
-{
-    ; //No constants, just for the fun of it
-    public void finalize() throws Throwable
-    {
-        //No super.finalize()
-    }
-}

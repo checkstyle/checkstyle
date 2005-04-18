@@ -13,7 +13,7 @@ public class ExplicitInitializationCheckTest extends BaseCheckTestCase
             createCheckConfig(ExplicitInitializationCheck.class);
         final String[] expected = {
             "2:17: Variable 'x' explicitly initialized to '0' (default value for its type).",
-            "3:17: Variable 'bar' explicitly initialized to 'null' (default value for its type).",
+            "3:20: Variable 'bar' explicitly initialized to 'null' (default value for its type).",
             "7:18: Variable 'y4' explicitly initialized to '0' (default value for its type).",
             "8:21: Variable 'b1' explicitly initialized to 'false' (default value for its type).",
             "12:22: Variable 'str1' explicitly initialized to 'null' (default value for its type).",

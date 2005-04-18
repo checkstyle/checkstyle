@@ -3,7 +3,7 @@
 // Created: 2003
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
-
+import java.io.Serializable;
 class InputModifiedControl
 {
     int k;

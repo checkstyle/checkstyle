@@ -11,17 +11,17 @@ public class FinalParametersCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalParametersCheck.class);
         final String[] expected = {
-            "22:26: Parameter s should be final.",
-            "37:26: Parameter i should be final.",
-            "42:26: Parameter s should be final.",
-            "52:17: Parameter s should be final.",
-            "68:17: Parameter s should be final.",
-            "74:17: Parameter s should be final.",
-            "89:38: Parameter e should be final.",
-            "92:36: Parameter e should be final.",
-            "109:18: Parameter aParam should be final.",
-            "112:18: Parameter args should be final.",
-            "115:18: Parameter args should be final.",
+            "23:26: Parameter s should be final.",
+            "38:26: Parameter i should be final.",
+            "43:26: Parameter s should be final.",
+            "53:17: Parameter s should be final.",
+            "69:17: Parameter s should be final.",
+            "75:17: Parameter s should be final.",
+            "90:45: Parameter e should be final.",
+            "93:36: Parameter e should be final.",
+            "110:18: Parameter aParam should be final.",
+            "113:18: Parameter args should be final.",
+            "116:18: Parameter args should be final.",
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
@@ -33,9 +33,9 @@ public class FinalParametersCheckTest extends BaseCheckTestCase
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "CTOR_DEF");
         final String[] expected = {
-            "22:26: Parameter s should be final.",
-            "37:26: Parameter i should be final.",
-            "42:26: Parameter s should be final.",
+            "23:26: Parameter s should be final.",
+            "38:26: Parameter i should be final.",
+            "43:26: Parameter s should be final.",
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
@@ -47,14 +47,14 @@ public class FinalParametersCheckTest extends BaseCheckTestCase
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "METHOD_DEF");
         final String[] expected = {
-            "52:17: Parameter s should be final.",
-            "68:17: Parameter s should be final.",
-            "74:17: Parameter s should be final.",
-            "89:38: Parameter e should be final.",
-            "92:36: Parameter e should be final.",
-            "109:18: Parameter aParam should be final.",
-            "112:18: Parameter args should be final.",
-            "115:18: Parameter args should be final.",
+            "53:17: Parameter s should be final.",
+            "69:17: Parameter s should be final.",
+            "75:17: Parameter s should be final.",
+            "90:45: Parameter e should be final.",
+            "93:36: Parameter e should be final.",
+            "110:18: Parameter aParam should be final.",
+            "113:18: Parameter args should be final.",
+            "116:18: Parameter args should be final.",
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
@@ -66,9 +66,9 @@ public class FinalParametersCheckTest extends BaseCheckTestCase
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_CATCH");
         final String[] expected = {
-            "124:16: Parameter e should be final.",
-            "127:16: Parameter npe should be final.",
-            "130:16: Parameter e should be final.",
+            "125:16: Parameter npe should be final.",
+            "131:16: Parameter e should be final.",
+            "134:16: Parameter e should be final.",
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
@@ -80,8 +80,8 @@ public class FinalParametersCheckTest extends BaseCheckTestCase
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "FOR_EACH_CLAUSE");
         final String[] expected = {
-            "149:13: Parameter s should be final.",
-            "157:13: Parameter s should be final.",
+            "150:13: Parameter s should be final.",
+            "158:13: Parameter s should be final.",
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }

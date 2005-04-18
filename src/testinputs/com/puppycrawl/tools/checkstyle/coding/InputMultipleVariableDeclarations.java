@@ -13,8 +13,8 @@ public class InputMultipleVariableDeclarations
         strings[];
     //both definitions is wrapped
     java.lang.
-        String string; java.lang.String
-            strings[];
+        String string1; java.lang.String
+            strings1[];
 
     void method2() {
         for (int i=0, j=0; i < 10; i++, j--) {

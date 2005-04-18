@@ -68,18 +68,18 @@ public class InputValidDotIndent {
         Class c = javax.swing.
             plaf.metal.MetalButtonUI.class;
         
-        Class c = javax.swing
+        Class c1 = javax.swing
             .plaf.metal.MetalButtonUI.class;
         
-        Class c = javax.swing
+        Class c2 = javax.swing
             .plaf.metal.
                 MetalButtonUI.class;
 
-        Class c = javax.swing
+        Class c3 = javax.swing
             .plaf.metal
                 .MetalButtonUI.class;
 
-        Class c = javax.
+        Class c4 = javax.
             swing.plaf.metal.
                 MetalButtonUI.class;
 

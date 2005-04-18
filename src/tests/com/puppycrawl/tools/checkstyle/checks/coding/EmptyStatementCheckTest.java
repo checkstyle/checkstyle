@@ -15,7 +15,7 @@ public class EmptyStatementCheckTest
         final String[] expected = {
            "12:7: Empty statement.",
            "17:7: Empty statement.",
-           "22:15: Empty statement.",
+           "22:19: Empty statement.",
            "26:10: Empty statement.",
            "29:16: Empty statement.",
            "33:10: Empty statement.",

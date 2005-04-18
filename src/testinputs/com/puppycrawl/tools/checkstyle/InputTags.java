@@ -5,7 +5,7 @@
 package com.puppycrawl.tools.checkstyle;
 import java.io.IOException;
 // Tests for Javadoc tags.
-class InputTags
+class InputTags1
 {
     // Invalid - should be Javadoc
     private int mMissingJavadoc;
@@ -293,7 +293,7 @@ class InputTags
      *
      * @return 1
      */
-    public int foo(Bar _arg) {
+    public int foo(Object _arg) {
 
         return 1;
     }
@@ -337,12 +337,12 @@ enum InputTagsEnum
 /**
  * Some javadoc.
  */
-public class MyClass {
+public class InputTags {
 
     /**
      * Constructor.
      */
-    public MyClass() {
+    public InputTags() {
     }
 
    /**

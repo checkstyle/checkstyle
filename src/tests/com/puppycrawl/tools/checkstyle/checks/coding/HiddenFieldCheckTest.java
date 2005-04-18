@@ -73,7 +73,7 @@ public class HiddenFieldCheckTest
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
-    
+
     /** tests ignoreFormat property */
     public void testIgnoreFormat()
         throws Exception
@@ -186,7 +186,7 @@ public class HiddenFieldCheckTest
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
-       
+
     /** Test against a class with field declarations in different order */
     public void testReordered()
         throws Exception
@@ -211,7 +211,7 @@ public class HiddenFieldCheckTest
             "77:17: 'hidden' hides a field.",
             "83:13: 'hidden' hides a field.",
             "105:17: 'hidden' hides a field.",
-            "118:20: 'hidden' hides a field.",
+            "118:21: 'hidden' hides a field.",
             "125:13: 'hidden' hides a field.",
             "131:13: 'hiddenStatic' hides a field.",
         };

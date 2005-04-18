@@ -20,8 +20,8 @@ class InputNestedBlocks
 
         // if (condition that is not important anymore)
         { // nested block, should be marked
-            int x = 1;
-            int y = x;
+            int z = 1;
+            int y = z;
         }
 
         if (x == 1)

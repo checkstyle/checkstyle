@@ -10,7 +10,6 @@ public class InputRequireThis {
         i++;
         this.i = i;
         method1();
-        j--; // unhandled for now
         try {
             this.method1();
         }

@@ -1,6 +1,6 @@
 public class InputFallThrough
 {
-    void method(int i, int j) {
+    void method(int i, int j, boolean cond) {
         while (true) {
             switch (i) {
             case 0: // no problem
@@ -54,7 +54,7 @@ public class InputFallThrough
                     return;
                 } while(true);
             case 16:
-                for (int j = 0; j < 10; j++) {
+                for (int j1 = 0; j1 < 10; j1++) {
                     System.err.println("something");
                     return;
                 }
@@ -62,7 +62,7 @@ public class InputFallThrough
                 while (true)
                     throw new RuntimeException("");
             case 18:
-                while(false) {
+                while(cond) {
                     break;
                 }
             case 19: //fall through!!!

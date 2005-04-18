@@ -176,7 +176,7 @@ class StaticMethods
         void useX(int x) {
             x++;
         }
-        void useX(int y) {
+        void useY(int y) {
             y++;
         }
     }

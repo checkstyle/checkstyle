@@ -63,16 +63,16 @@ strictfp final class InputModifier // illegal order of modifiers for class
         abstract void c();
 
         /** redundant 'public' modifier */
-        public float PI_PUBLIC = 3.14;
+        public float PI_PUBLIC = (float) 3.14;
 
-        /** redundant 'abstract' modifier */
-        abstract float PI_ABSTRACT = 3.14;
+        /** redundant 'abstract' modifier (field can not be absract)*/
+//        abstract float PI_ABSTRACT = (float) 3.14;
 
         /** redundant 'final' modifier */
-        final float PI_FINAL = 3.14;
+        final float PI_FINAL = (float) 3.14;
 
         /** all OK */
-        float PI_OK = 3.14;
+        float PI_OK = (float) 3.14;
     }
     
     /** redundant 'final' modifier */
@@ -119,4 +119,7 @@ interface InnerImplementation
     String s4 = "";
     public String blah();
     abstract String blah2();
+}
+
+@interface MyAnnotation2 {
 }

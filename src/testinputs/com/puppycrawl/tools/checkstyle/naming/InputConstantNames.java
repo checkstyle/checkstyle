@@ -1,3 +1,5 @@
+import java.io.ObjectStreamField;
+
 public class InputConstantNames
 {
     private static final long serialVersionUID = 1L; //should be ignored

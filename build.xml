@@ -180,9 +180,9 @@
     <mkdir dir="target/testinputs" />
     <depend srcdir="src/testinputs" destdir="target/testinputs" closure="yes"/>
     <!-- start of a change to turn on compilation of all input files -->
-    <!-- under JDK1.4. -->
+    <!-- under JDK1.5. -->
     <property name="testExcludes"
-              value="**/InputWhitespace.java,**/InputImport.java"/>
+              value="**/grammars/*,**/j2ee/*,**/InputAssertIdentifier.java,**/InputSimple.java,**/InputTags.java,**/InputJUnitTest.java,**/InputValidMethodIndent.java,**/InputSetterGetter.java,**/InputImport.java,**/InputUnusedMethod.java"/>
     <javac srcdir="src/testinputs"
            destdir="target/testinputs"
            deprecation="on" debug="on"

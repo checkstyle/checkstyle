@@ -12,7 +12,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestCase {
         String[] expected = {
             "6:13: Declaring variables, return values or parameters of type 'AbstractClass' is not allowed.",
             "9:13: Declaring variables, return values or parameters of type "
-                + "'au.com.redhillconsulting.jamaica.tools.checkstyle.InputIllegalType.AbstractClass'"
+                + "'com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass'"
                 + " is not allowed.",
             "16:13: Declaring variables, return values or parameters of type 'java.util.Hashtable' is not allowed.",
             "17:13: Declaring variables, return values or parameters of type 'Hashtable' is not allowed.",
@@ -28,7 +28,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestCase {
         String[] expected = {
             "6:13: Declaring variables, return values or parameters of type 'AbstractClass' is not allowed.",
             "9:13: Declaring variables, return values or parameters of type "
-                + "'au.com.redhillconsulting.jamaica.tools.checkstyle.InputIllegalType.AbstractClass'"
+                + "'com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass'"
                 + " is not allowed.",
             "16:13: Declaring variables, return values or parameters of type 'java.util.Hashtable' is not allowed.",
         };

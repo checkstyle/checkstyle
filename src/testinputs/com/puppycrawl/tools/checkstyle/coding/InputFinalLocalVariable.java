@@ -12,9 +12,9 @@ public class InputFinalLocalVariable
             public void run()
             {
             }
-        };       
+        };
     }
-    
+
     public InputFinalLocalVariable()
     {
         int i = 0;
@@ -39,7 +39,7 @@ public class InputFinalLocalVariable
             {
                 int q = 0;
             }
-        };       
+        };
     }
 
     public void method(int aArg, final int aFinal, int aArg2)
@@ -77,7 +77,7 @@ public class InputFinalLocalVariable
                     public void run()
                     {
                     }
-                };       
+                };
             }
         }
     }
@@ -90,7 +90,7 @@ public class InputFinalLocalVariable
             k++;
             aBool = false;
         }
-        
+
         int l = 0;
         {
             int weird = 0;
@@ -131,9 +131,13 @@ class Blah
 {
     static
     {
-        for(int a : some.getInts())
+        for(int a : getInts())
         {
 
         }
+    }
+
+    static int[] getInts() {
+        return null;
     }
 }

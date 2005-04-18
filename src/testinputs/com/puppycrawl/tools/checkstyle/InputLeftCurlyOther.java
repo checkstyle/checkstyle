@@ -65,7 +65,7 @@ class InputLeftCurlyOther
         }
 
         // test input for bug reported by Joe Comuzzi
-        if (System.currentMillis() > 1000)
+        if (System.currentTimeMillis() > 1000)
             return 1;
         else
             return 2;
@@ -80,9 +80,8 @@ class InputLeftCurlyOther
 
 
     public enum GreetingsEnum
-    { 
-        HELLO, 
+    {
+        HELLO,
         GOODBYE
     };
-    
 }

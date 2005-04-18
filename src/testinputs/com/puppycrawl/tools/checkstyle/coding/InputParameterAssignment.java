@@ -17,6 +17,6 @@ public class InputParameterAssignment {
     }
 
     void foo3(String field, int field1) {
-        this.field = (field1 += field.length);
+        this.field = (field1 += field.length());
     }
 }

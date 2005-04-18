@@ -17,7 +17,7 @@ public class InputValidCommaIndent {
     }
    
     public void method1(int x, int y, int z) {
-        boolean test;        
+        boolean test = true;        
         int i, j = 2, 
             k = 4,
             l,

@@ -1,6 +1,6 @@
 public class InputExplicitInit {
     private int x = 0;
-    private Bar bar = null;
+    private Object bar = null;
     private int y = 1;
     private long y1 = 1 - 1;
     private long y3;
@@ -23,7 +23,7 @@ public class InputExplicitInit {
 
     void method() {
         int xx = 0;
-        Strign s = null;
+        String s = null;
     }
 }
 

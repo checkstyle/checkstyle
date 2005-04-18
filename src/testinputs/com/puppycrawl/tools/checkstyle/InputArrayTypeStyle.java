@@ -38,6 +38,7 @@ public class InputArrayTypeStyle
 
         public Test[] getNewTest()
         {
+            return null;
         }
     }
 }

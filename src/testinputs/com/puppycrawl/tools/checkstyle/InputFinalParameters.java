@@ -5,7 +5,8 @@
 package com.puppycrawl.tools.checkstyle;
 
 import javax.swing.AbstractAction;
-import java.awt.event.Actionevent;
+import javax.swing.Action;
+import java.awt.event.ActionEvent;
 
 /**
  * Test case for detecting missing final parameters.
@@ -86,7 +87,7 @@ class InputFinalParameters
     {
         Action a = new AbstractAction()
             {
-                void actionPerformed(ActionEvent e)
+                public void actionPerformed(ActionEvent e)
                 {
                 }
                 void somethingElse(@MyAnnotation ActionEvent e)
@@ -96,7 +97,7 @@ class InputFinalParameters
 
         Action b = new AbstractAction()
             {
-                void actionPerformed(final ActionEvent e)
+                public void actionPerformed(final ActionEvent e)
                 {
                 }
                 void somethingElse(@MyAnnotation final ActionEvent e)
@@ -121,16 +122,16 @@ class InputFinalParameters
         try {
             System.err.println("");
         }
-        catch (RuntimeException e) {
-            e.printStackTrace();
-        }
         catch (java.lang.NullPointerException npe) {
             npe.printStackTrace();
         }
-        catch (@MyAnnotation NoClassDefFoundError e) {
+        catch (@MyAnnotation final ClassCastException e) {
             e.printStackTrace();
         }
-        catch (@MyAnnotation final ClassCastException e) {
+        catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+        catch (@MyAnnotation NoClassDefFoundError e) {
             e.printStackTrace();
         }
     }
@@ -163,4 +164,12 @@ class Foo
 
         }
     }
+
+    private String[] someExpression()
+    {
+        return null;
+    }
+}
+
+@interface MyAnnotation {
 }

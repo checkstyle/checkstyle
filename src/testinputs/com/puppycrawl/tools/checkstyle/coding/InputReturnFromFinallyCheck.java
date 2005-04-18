@@ -1,6 +1,6 @@
 package  com.puppycrawl.tools.checkstyle.coding;
 
-public class ReturnFromFinallyCheckTestInput {
+public class InputReturnFromFinallyCheck {
     public void foo() {
         try {
             System.currentTimeMillis();
