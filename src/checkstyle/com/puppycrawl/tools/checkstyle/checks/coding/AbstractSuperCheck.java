@@ -150,8 +150,14 @@ public abstract class AbstractSuperCheck
             return false;
         }
 
-        // same name of method?
-        final AST sibling = aAST.getNextSibling();
+        // same name of method
+        AST sibling = aAST.getNextSibling();
+        // ignore type parameters
+        if ((sibling != null)
+            && (sibling.getType() == TokenTypes.TYPE_ARGUMENTS))
+        {
+            sibling = sibling.getNextSibling();
+        }
         if ((sibling == null) || (sibling.getType() != TokenTypes.IDENT)) {
             return false;
         }

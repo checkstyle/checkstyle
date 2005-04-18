@@ -44,3 +44,30 @@ class InnerClone
         return null;
     }
 }
+
+// This could not pass as valid semantically but tests that
+// type arguments are ignored when checking super calls
+class CloneWithTypeArguments
+{
+    public <T> Object clone()
+    {
+        super.<T>clone();
+    }
+}
+
+class CloneWithTypeArgumentsAndNoSuper
+{
+    public <T> Object clone()
+    {
+        return null;
+    }
+}
+
+//Check that super keword isn't snagged here
+class MyClassWithGenericSuperMethod
+{
+    void someMethod(java.util.List<? super java.util.Map> l)
+    {
+
+    }
+}
