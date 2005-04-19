@@ -53,7 +53,10 @@ public abstract class DeclarationCollector extends Check
             this.mFrames.current().addName(nameAST.getText());
             break;
         }
-        case TokenTypes.CLASS_DEF : {
+        case TokenTypes.CLASS_DEF :
+        case TokenTypes.INTERFACE_DEF :
+        case TokenTypes.ENUM_DEF :
+        case TokenTypes.ANNOTATION_DEF : {
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
             this.mFrames.current().addName(nameAST.getText());
             this.mFrames.enter(new ClassFrame());
