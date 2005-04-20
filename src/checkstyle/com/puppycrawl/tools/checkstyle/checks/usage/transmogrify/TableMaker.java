@@ -720,13 +720,21 @@ public void processAssert(SymTabAST tree) {
     BlockDef block = makeBlock((SymTabAST)tree);
 
     symbolTable.pushScope( block );
-    walkTree(tree.findFirstToken(TokenTypes.FOR_INIT), false);
-    walkTree(tree.findFirstToken(TokenTypes.FOR_CONDITION), false);
+    SymTabAST body;
+    SymTabAST forEach = tree.findFirstToken(TokenTypes.FOR_EACH_CLAUSE);
+    if (forEach != null) {
+        walkTree(forEach, false);
+        body = (SymTabAST)forEach.getNextSibling();
+    }
+    else {
+        walkTree(tree.findFirstToken(TokenTypes.FOR_INIT), false);
+        walkTree(tree.findFirstToken(TokenTypes.FOR_CONDITION), false);
 
-    SymTabAST forIter = tree.findFirstToken(TokenTypes.FOR_ITERATOR);
-    walkTree(forIter, false);
+        SymTabAST forIter = tree.findFirstToken(TokenTypes.FOR_ITERATOR);
+        walkTree(forIter, false);
+        body = (SymTabAST)forIter.getNextSibling();
+    }
 
-    SymTabAST body = (SymTabAST)forIter.getNextSibling();
     //handle Checkstyle grammar
     if (body.getType() == TokenTypes.RPAREN) {
         body = (SymTabAST) body.getNextSibling();

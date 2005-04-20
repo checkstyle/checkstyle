@@ -1061,9 +1061,14 @@ traditionalForClause
 
 forEachClause
     :
-        p:parameterDeclaration COLON expression
+        forEachDeclarator COLON expression
         {#forEachClause = #(#[FOR_EACH_CLAUSE,"FOR_EACH_CLAUSE"], #forEachClause);}
     ;
+
+forEachDeclarator!
+	:	m:modifiers t:typeSpec[false] id:IDENT d:declaratorBrackets[#t]
+		{#forEachDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], m, #(#[TYPE,"TYPE"],d), id);}
+	;
 
 elseStatement
     : "else"^ statement

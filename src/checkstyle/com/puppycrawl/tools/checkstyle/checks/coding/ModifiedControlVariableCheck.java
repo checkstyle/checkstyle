@@ -215,7 +215,7 @@ public final class ModifiedControlVariableCheck extends Check
     private void leaveForEach(DetailAST aForEach)
     {
         final DetailAST paramDef =
-            aForEach.findFirstToken(TokenTypes.PARAMETER_DEF);
+            aForEach.findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST paramName = paramDef.findFirstToken(TokenTypes.IDENT);
         mCurrentVariables.push(paramName.getText());
     }

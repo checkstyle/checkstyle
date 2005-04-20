@@ -14,6 +14,8 @@ public class RequireThisCheckTest extends BaseCheckTestCase
         final String[] expected = {
             "6:9: Reference to instance variable 'i' needs \"this.\".",
             "12:9: Method call to 'method1' needs \"this.\".",
+            "26:9: Reference to instance variable 'i' needs \"this.\".",
+            "51:9: Reference to instance variable 'z' needs \"this.\".",
 //              "13:9: Unable find where 'j' is declared.",
         };
         verify(checkConfig,
@@ -41,6 +43,8 @@ public class RequireThisCheckTest extends BaseCheckTestCase
         checkConfig.addAttribute("checkMethods", "false");
         final String[] expected = {
             "6:9: Reference to instance variable 'i' needs \"this.\".",
+            "26:9: Reference to instance variable 'i' needs \"this.\".",
+            "51:9: Reference to instance variable 'z' needs \"this.\".",
 //              "13:9: Unable find where 'j' is declared.",
         };
         verify(checkConfig,

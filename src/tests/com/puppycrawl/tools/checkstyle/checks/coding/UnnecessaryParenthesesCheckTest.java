@@ -62,6 +62,7 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestCase {
             "78:19: Unnecessary parentheses around assignment right-hand side.",
             "80:11: Unnecessary parentheses around assignment right-hand side.",
             "80:16: Unnecessary parentheses around literal '3'.",
+            "81:27: Unnecessary parentheses around assignment right-hand side.",
         };
 
         verify(checkConfig, getPath(TEST_FILE), expected);

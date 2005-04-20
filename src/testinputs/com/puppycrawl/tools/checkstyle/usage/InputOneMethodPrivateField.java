@@ -98,3 +98,17 @@ class Outer3
          th.start();
      }
 }
+
+/** Tests NPE with foreach statements (bug 1109222) */
+class Outer4
+{
+    private int[] mField;
+
+    private void method()
+    {
+        for (int someInt : mField)
+        {
+            someInt = someInt ^ 2;
+        }
+    }
+}

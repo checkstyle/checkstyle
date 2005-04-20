@@ -15,6 +15,7 @@ public class LocalVariableNameCheckTest
             "119:13: Name 'ABC' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "130:18: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "132:20: Name 'InnerBlockVariable' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "207:21: Name 'O' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

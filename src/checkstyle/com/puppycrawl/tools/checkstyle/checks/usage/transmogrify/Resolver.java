@@ -329,40 +329,50 @@ public class Resolver extends DefinitionTraverser {
     private void handleFor(BlockDef block) {
         SymTabAST node = block.getTreeNode();
 
-        SymTabAST init = node.findFirstToken(TokenTypes.FOR_INIT);
-        // only need to handle the elist case.  if the init node is a variable
-        // definition, the variable def will be handled later on in the resolution
-        if (init.getFirstChild() != null) {
-            if (init.getFirstChild().getType() == TokenTypes.ELIST) {
+        SymTabAST body;
+        SymTabAST forEach = node.findFirstToken(TokenTypes.FOR_EACH_CLAUSE);
+        if (forEach == null) {
+            SymTabAST init = node.findFirstToken(TokenTypes.FOR_INIT);
+            // only need to handle the elist case.  if the init node is a variable
+            // definition, the variable def will be handled later on in the resolution
+            if (init.getFirstChild() != null) {
+                if (init.getFirstChild().getType() == TokenTypes.ELIST) {
+                    resolveExpression(
+                        (SymTabAST) (init.getFirstChild()),
+                        block,
+                        null,
+                        true);
+                }
+            }
+
+            SymTabAST cond = node.findFirstToken(TokenTypes.FOR_CONDITION);
+            if (cond.getFirstChild() != null) {
                 resolveExpression(
-                    (SymTabAST) (init.getFirstChild()),
+                    (SymTabAST) (cond.getFirstChild()),
                     block,
                     null,
                     true);
             }
-        }
 
-        SymTabAST cond = node.findFirstToken(TokenTypes.FOR_CONDITION);
-        if (cond.getFirstChild() != null) {
+            SymTabAST iterator = node.findFirstToken(TokenTypes.FOR_ITERATOR);
+            if (iterator.getFirstChild() != null) {
+                resolveExpression(
+                    (SymTabAST) (iterator.getFirstChild()),
+                    block,
+                    null,
+                    true);
+            }
+            body = (SymTabAST) (iterator.getNextSibling());
+        }
+        else {
             resolveExpression(
-                (SymTabAST) (cond.getFirstChild()),
+                (SymTabAST) (forEach.findFirstToken(TokenTypes.EXPR)),
                 block,
                 null,
                 true);
+            body = (SymTabAST) (forEach.getNextSibling());
         }
-
-        SymTabAST iterator = node.findFirstToken(TokenTypes.FOR_ITERATOR);
-        if (iterator.getFirstChild() != null) {
-            resolveExpression(
-                (SymTabAST) (iterator.getFirstChild()),
-                block,
-                null,
-                true);
-        }
-
         //could be an SLIST, EXPR or an EMPTY_STAT
-        SymTabAST body = (SymTabAST) (iterator.getNextSibling());
-        // handle Checkstyle grammar
         if (body.getType() == TokenTypes.RPAREN) {
             body = (SymTabAST) body.getNextSibling();
         }

@@ -20,7 +20,8 @@ public class OneMethodPrivateFieldCheckTest
             "13:17: Field 'mField2' is used in only one method.",
             "47:17: Field 'mField0' is used in only one method.",
             "48:17: Field 'mField1' is used in only one method.",
-            "49:17: Field 'mField2' is used in only one method.",           
+            "49:17: Field 'mField2' is used in only one method.",
+            "105:19: Field 'mField' is used in only one method.",
         };
         verify(checkConfig, getPath("usage/InputOneMethodPrivateField.java"), expected);
     }
@@ -37,7 +38,8 @@ public class OneMethodPrivateFieldCheckTest
                 "11:17: Field 'mField0' is used in only one method.",
                 "12:17: Field 'mField1' is used in only one method.",
                 "47:17: Field 'mField0' is used in only one method.",
-                "48:17: Field 'mField1' is used in only one method.",           
+                "48:17: Field 'mField1' is used in only one method.",
+                "105:19: Field 'mField' is used in only one method.",
              };
             verify(checkConfig, getPath("usage/InputOneMethodPrivateField.java"), expected);
         }

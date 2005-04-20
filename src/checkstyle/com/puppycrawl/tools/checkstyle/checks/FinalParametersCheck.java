@@ -121,7 +121,7 @@ public class FinalParametersCheck extends Check
      */
     private void visitForEachClause(final DetailAST aForEachClause)
     {
-        checkParam(aForEachClause.findFirstToken(TokenTypes.PARAMETER_DEF));
+        checkParam(aForEachClause.findFirstToken(TokenTypes.VARIABLE_DEF));
     }
 
     /**
