@@ -26,6 +26,9 @@
           <li>Fixed bug #1185722 (DeclarationCollector.leaveToken unbalanced
           with visitToken)</li>
 
+          <li>Fixed NPE in AbstractUsageCheck when we process an empty
+          file (bug 1165855)</li>
+
       </ul>
 
     </section>

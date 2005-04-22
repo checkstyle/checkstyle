@@ -86,7 +86,7 @@ class SerializableTest implements java.io.Serializable
     }
 }
 
-class BadSerializableTest implements java.io.Serializable
+class BadSerializableTest1 implements java.io.Serializable
 {
     private void writeObject(Object out) throws java.io.IOException
     {
@@ -100,15 +100,7 @@ class BadSerializableTest implements java.io.Serializable
     {
     }
 
-    private int writeObject(java.io.ObjectOutputStream out) throws java.io.IOException
-    {
-    }
-
     private void readObject(java.io.ObjectInputStream in) throws java.io.IOException
-    {
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws ClassNotFoundException
     {
     }
 
@@ -116,18 +108,9 @@ class BadSerializableTest implements java.io.Serializable
     {
     }
 
-    private int readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException
-    {
-    }
-
     private int writeReplace() throws java.io.ObjectStreamException
     {
         return 1;
-    }
-
-    private java.lang.Object writeReplace()
-    {
-        return new SerializableTest();
     }
 
     private Object writeReplace(int i) throws java.io.ObjectStreamException
@@ -140,13 +123,33 @@ class BadSerializableTest implements java.io.Serializable
         return 1;
     }
 
+    private Object readResolve(int i) throws java.io.ObjectStreamException
+    {
+        return new SerializableTest();
+    }
+}
+
+class BadSerializableTest2 implements java.io.Serializable
+{
+    private int writeObject(java.io.ObjectOutputStream out) throws java.io.IOException
+    {
+        return 1;
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws ClassNotFoundException
+    {
+    }
+
     private Object readResolve()
     {
         return new SerializableTest();
     }
+}
 
-    private Object readResolve(int i) throws java.io.ObjectStreamException
+class BadSerializableTest3 implements java.io.Serializable
+{
+    private int readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException
     {
-        return new SerializableTest();
+        return 1;
     }
 }

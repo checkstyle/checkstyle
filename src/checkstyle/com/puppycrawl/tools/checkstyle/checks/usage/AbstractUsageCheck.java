@@ -108,6 +108,10 @@ public abstract class AbstractUsageCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void finishTree(DetailAST aAST)
     {
+        if (aAST == null) {
+            // we have nothing to check
+            return;
+        }
         try {
             final Set nodes = getASTManager().getCheckNodes(this);
             if (nodes != null) {

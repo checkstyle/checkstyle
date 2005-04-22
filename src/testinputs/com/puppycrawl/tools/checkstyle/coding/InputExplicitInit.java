@@ -60,11 +60,14 @@ enum InputExplicitInit3 {
 }
 
 class ForEach {
-    public ForEach(Collection<String> strings)
+    public ForEach(java.util.Collection<String> strings)
     {
         for(String s : strings) //this should not even be checked
         {
 
         }
     }
+}
+
+class Bar<T> {
 }

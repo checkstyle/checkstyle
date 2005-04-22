@@ -51,7 +51,7 @@ class CloneWithTypeArguments
 {
     public <T> Object clone()
     {
-        super.<T>clone();
+        return super.<T>clone();
     }
 }
 

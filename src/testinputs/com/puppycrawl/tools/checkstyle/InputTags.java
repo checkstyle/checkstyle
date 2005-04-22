@@ -269,7 +269,7 @@ class InputTags1
 
     /** {@inheritDoc} */
     int method26()
-    {
+    { return 0;
     }
 
     /** 
@@ -277,7 +277,7 @@ class InputTags1
      * @return something very important.
      */
     int method27(int aParam)
-    {
+    { return 0;
     }
 
     /** 
@@ -285,7 +285,7 @@ class InputTags1
      * {@inheritDoc}
      */
     int method28(int aParam)
-    {
+    { return 0;
     }
 
     /**
@@ -358,4 +358,11 @@ public class InputTags {
     {
         return null;
     }
+}
+
+/**
+ *  Added to make this file compilable.
+ */
+class WrongException extends RuntimeException
+{
 }
