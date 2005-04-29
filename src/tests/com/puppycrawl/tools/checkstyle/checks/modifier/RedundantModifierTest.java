@@ -16,7 +16,7 @@ public class RedundantModifierTest
             "57:9: Redundant 'public' modifier.",
             "63:9: Redundant 'abstract' modifier.",
             "66:9: Redundant 'public' modifier.",
-            "69:9: Redundant 'abstract' modifier.",
+            //"69:9: Redundant 'abstract' modifier.",
             "72:9: Redundant 'final' modifier.",
             "79:13: Redundant 'final' modifier.",
             "88:12: Redundant 'final' modifier.",
