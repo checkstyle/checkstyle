@@ -28,10 +28,8 @@ import java.util.ArrayList;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
 
 /**
  * Abstract super class for header checks.
@@ -104,9 +102,7 @@ public abstract class AbstractHeaderCheck extends Check
 
         checkHeaderNotInitialized();
 
-        // in JDK 1.4 we'd simply do aHeader.replaceAll("\\\\n", "\n");
-        final RE re = Utils.getRE("\\\\n");
-        final String headerExpandedNewLines = re.subst(aHeader, "\n");
+        final String headerExpandedNewLines = aHeader.replaceAll("\\\\n", "\n");
 
         final Reader headerReader = new StringReader(headerExpandedNewLines);
         try {
