@@ -69,3 +69,61 @@ public class InputValidBlockIndent {
     
     
 }
+
+public enum EquivalenceTester {
+    /**
+     * An equivalence tester that decides based on {@link Object#equals(Object) equals}.
+     */
+    OBJECT_ATTRIBUTES {
+        /**
+         * {@inheritDoc}
+         */
+        public boolean areEqual( final Object first, final Object second ) {
+            return Objects.areEqual( first, second );
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public int hashCode( final Object target ) {
+            return Objects.nullSafeHashCode( target );
+        }
+    },
+
+    /**
+     * An equivalence tester that decides based on {@code ==}.
+     */
+    OBJECT_IDENTITIES
+    {
+        /**
+         * {@inheritDoc}
+         */
+        public boolean areEqual( final Object first, final Object second ) {
+            return first == second;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public int hashCode( final Object target ) {
+            return System.identityHashCode( target );
+        }
+    };
+
+    /**
+     * Tells whether the two given objects are considered equivalent.
+     *
+     * @param first first comparand
+     * @param second second comparand
+     * @return whether {@code first} and {@code second} are considered equivalent
+     */
+    public abstract boolean areEqual( Object first, Object second );
+
+    /**
+     * Computes a hash code for the given object.
+     *
+     * @param target object to compute a hash for
+     * @return the computed hash
+     */
+    public abstract int hashCode( Object target );
+}
