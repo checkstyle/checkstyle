@@ -70,3 +70,15 @@ public abstract class InputDesignForExtension
         }
     }
 }
+
+// enums should be skipped
+enum TEnum
+{
+    FIRST,
+    SECOND;
+
+    public int value()
+    {
+        return 3;
+    }
+}

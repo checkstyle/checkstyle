@@ -10,6 +10,17 @@
 
   <body>
 
+    <section name="Release 4.0">
+      <p>Fixed Bugs:</p>
+
+      <ul>
+          <li>DesignForExtension check skips enums now (they are final
+          :). (bug# 1194470)</li>
+
+      </ul>
+
+    </section>
+
     <section name="Release 4.0 Beta 2">
 
       <p>Dependencies:</p>
