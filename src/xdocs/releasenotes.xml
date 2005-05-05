@@ -17,8 +17,8 @@
           <li>DesignForExtension check skips enums now (they are final
           :). (bug# 1194470)</li>
 
-          <li>One more fix for Indentation check and enums (bug
-          1193850)</li>
+          <li>Indentation check now works better with enums and
+          for-each statements (bugs 1193850 and 1193855)</li>
 
       </ul>
 

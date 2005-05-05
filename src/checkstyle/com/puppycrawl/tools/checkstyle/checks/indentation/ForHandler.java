@@ -50,13 +50,23 @@ public class ForHandler extends BlockParentHandler
         IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
 
         DetailAST init = getMainAst().findFirstToken(TokenTypes.FOR_INIT);
-        checkExpressionSubtree(init, expected, false, false);
+        if (init != null) {
+            checkExpressionSubtree(init, expected, false, false);
 
-        DetailAST cond = getMainAst().findFirstToken(TokenTypes.FOR_CONDITION);
-        checkExpressionSubtree(cond, expected, false, false);
+            DetailAST cond =
+                getMainAst().findFirstToken(TokenTypes.FOR_CONDITION);
+            checkExpressionSubtree(cond, expected, false, false);
 
-        DetailAST iter = getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR);
-        checkExpressionSubtree(iter, expected, false, false);
+            DetailAST iter =
+                getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR);
+            checkExpressionSubtree(iter, expected, false, false);
+        }
+        // for each
+        else {
+            DetailAST forEach =
+                getMainAst().findFirstToken(TokenTypes.FOR_EACH_CLAUSE);
+            checkExpressionSubtree(forEach, expected, false, false);
+        }
     }
 
     /**

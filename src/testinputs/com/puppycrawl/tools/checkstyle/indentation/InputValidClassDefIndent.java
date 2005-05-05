@@ -127,3 +127,13 @@ final class InputValidClassDefIndent6 extends java.awt.event.MouseAdapter implem
         return 1;
     }
 }
+
+class HashingContainer<K, V> {
+//     @Deprecated
+    public Object[] table;
+
+    @Override
+    public String toString() {
+        return "";
+    }
+}

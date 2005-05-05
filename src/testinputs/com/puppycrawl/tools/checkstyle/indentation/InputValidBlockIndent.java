@@ -70,7 +70,7 @@ public class InputValidBlockIndent {
     
 }
 
-public enum EquivalenceTester {
+enum EquivalenceTester {
     /**
      * An equivalence tester that decides based on {@link Object#equals(Object) equals}.
      */
@@ -79,14 +79,14 @@ public enum EquivalenceTester {
          * {@inheritDoc}
          */
         public boolean areEqual( final Object first, final Object second ) {
-            return Objects.areEqual( first, second );
+            return true;
         }
 
         /**
          * {@inheritDoc}
          */
         public int hashCode( final Object target ) {
-            return Objects.nullSafeHashCode( target );
+            return 1;
         }
     },
 

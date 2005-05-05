@@ -17,7 +17,7 @@ public class InputValidForIndent {
     }
     
     
-    private void method1()
+    private void method1(int[] indices)
     {
         for (int i=0; i<10; i++) 
             System.getProperty("foo");
@@ -73,6 +73,13 @@ public class InputValidForIndent {
         ) {
             System.getProperty("foo");
         }
-        
+
+        for ( final int index : indices ) {
+            System.err.println(index);
+        }
+        for ( final int index : indices )
+        {
+            System.err.println(index);
+        }
     }
 }
