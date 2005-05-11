@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
-import org.apache.regexp.RESyntaxException;
+import java.util.regex.PatternSyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -12,13 +12,13 @@ import junit.framework.TestCase;
 public class SeverityMatchFilterTest extends TestCase
 {
     private SeverityMatchFilter filter;
-    
+
     public void setUp()
-        throws RESyntaxException
+        throws PatternSyntaxException
     {
         filter = new SeverityMatchFilter();
     }
-    
+
     public void testDefault()
     {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
@@ -31,9 +31,9 @@ public class SeverityMatchFilterTest extends TestCase
         level = SeverityLevel.INFO;
         message = new LocalizedMessage(0, 0, "", "", null, level, this.getClass());
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", message);
-        assertFalse("level:" + level, filter.accept(ev3));        
+        assertFalse("level:" + level, filter.accept(ev3));
     }
-    
+
     public void testSeverity()
     {
         filter.setSeverity("info");
@@ -48,9 +48,9 @@ public class SeverityMatchFilterTest extends TestCase
         level = SeverityLevel.INFO;
         message = new LocalizedMessage(0, 0, "", "", null, level, this.getClass());
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", message);
-        assertTrue("level:" + level, filter.accept(ev3));        
+        assertTrue("level:" + level, filter.accept(ev3));
     }
-    
+
     public void testAcceptOnMatch()
     {
         filter.setSeverity("info");
@@ -66,6 +66,6 @@ public class SeverityMatchFilterTest extends TestCase
         level = SeverityLevel.INFO;
         message = new LocalizedMessage(0, 0, "", "", null, level, this.getClass());
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", message);
-        assertFalse("level:" + level, filter.accept(ev3));        
+        assertFalse("level:" + level, filter.accept(ev3));
     }
 }

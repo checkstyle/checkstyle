@@ -58,7 +58,7 @@ public abstract class AbstractNameCheck
     {
         if (mustCheckName(aAST)) {
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-            if (!getRegexp().match(nameAST.getText())) {
+            if (!getRegexp().matcher(nameAST.getText()).find()) {
                 log(nameAST.getLineNo(),
                     nameAST.getColumnNo(),
                     "name.invalidPattern",

@@ -22,8 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
+
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -83,7 +85,7 @@ public class LineLengthCheck extends Check
     private int mMax = DEFAULT_MAX_COLUMNS;
 
     /** the regexp when long lines are ignored */
-    private RE mIgnorePattern;
+    private Pattern mIgnorePattern;
 
     /**
      * Creates a new <code>LineLengthCheck</code> instance.
@@ -110,7 +112,9 @@ public class LineLengthCheck extends Check
                 line, line.length(), getTabWidth());
 
 
-            if (realLength > mMax && !mIgnorePattern.match(line)) {
+            if (realLength > mMax
+                && !mIgnorePattern.matcher(line).find())
+            {
                 log(i + 1, "maxLineLen", new Integer(mMax));
             }
         }
@@ -133,9 +137,9 @@ public class LineLengthCheck extends Check
         throws ConversionException
     {
         try {
-            mIgnorePattern = Utils.getRE(aFormat);
+            mIgnorePattern = Utils.getPattern(aFormat);
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }

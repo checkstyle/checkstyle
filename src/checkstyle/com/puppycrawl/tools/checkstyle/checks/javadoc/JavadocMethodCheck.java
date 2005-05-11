@@ -25,7 +25,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
-import org.apache.regexp.RE;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import antlr.collections.AST;
 
@@ -53,8 +54,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     private static final String MATCH_JAVADOC_ARG_PAT =
         "@(throws|exception|param)\\s+(\\S+)\\s+\\S";
     /** compiled regexp to match Javadoc tags that take an argument * */
-    private static final RE MATCH_JAVADOC_ARG = Utils
-        .createRE(MATCH_JAVADOC_ARG_PAT);
+    private static final Pattern MATCH_JAVADOC_ARG = Utils
+        .createPattern(MATCH_JAVADOC_ARG_PAT);
 
     /**
      * the pattern to match the first line of a multi-line Javadoc tag that
@@ -63,15 +64,15 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     private static final String MATCH_JAVADOC_ARG_MULTILINE_START_PAT =
         "@(throws|exception|param)\\s+(\\S+)\\s*$";
     /** compiled regexp to match first part of multilineJavadoc tags * */
-    private static final RE MATCH_JAVADOC_ARG_MULTILINE_START = Utils
-        .createRE(MATCH_JAVADOC_ARG_MULTILINE_START_PAT);
+    private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START = Utils
+        .createPattern(MATCH_JAVADOC_ARG_MULTILINE_START_PAT);
 
     /** the pattern that looks for a continuation of the comment * */
     private static final String MATCH_JAVADOC_MULTILINE_CONT_PAT =
         "(\\*/|@|[^\\s\\*])";
     /** compiled regexp to look for a continuation of the comment * */
-    private static final RE MATCH_JAVADOC_MULTILINE_CONT = Utils
-        .createRE(MATCH_JAVADOC_MULTILINE_CONT_PAT);
+    private static final Pattern MATCH_JAVADOC_MULTILINE_CONT = Utils
+        .createPattern(MATCH_JAVADOC_MULTILINE_CONT_PAT);
     /** Multiline finished at end of comment * */
     private static final String END_JAVADOC = "*/";
     /** Multiline finished at next Javadoc * */
@@ -81,8 +82,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     private static final String MATCH_JAVADOC_NOARG_PAT =
         "@(return|see)\\s+\\S";
     /** compiled regexp to match Javadoc tags with no argument * */
-    private static final RE MATCH_JAVADOC_NOARG = Utils
-        .createRE(MATCH_JAVADOC_NOARG_PAT);
+    private static final Pattern MATCH_JAVADOC_NOARG = Utils
+        .createPattern(MATCH_JAVADOC_NOARG_PAT);
     /**
      * the pattern to match the first line of a multi-line Javadoc tag that
      * takes no argument.
@@ -90,15 +91,15 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     private static final String MATCH_JAVADOC_NOARG_MULTILINE_START_PAT =
         "@(return|see)\\s*$";
     /** compiled regexp to match first part of multilineJavadoc tags * */
-    private static final RE MATCH_JAVADOC_NOARG_MULTILINE_START = Utils
-        .createRE(MATCH_JAVADOC_NOARG_MULTILINE_START_PAT);
+    private static final Pattern MATCH_JAVADOC_NOARG_MULTILINE_START = Utils
+        .createPattern(MATCH_JAVADOC_NOARG_MULTILINE_START_PAT);
 
     /** the pattern to match Javadoc tags with no argument and {} * */
     private static final String MATCH_JAVADOC_NOARG_CURLY_PAT =
         "\\{\\s*@(inheritDoc)\\s*\\}";
     /** compiled regexp to match Javadoc tags with no argument and {} * */
-    private static final RE MATCH_JAVADOC_NOARG_CURLY = Utils
-        .createRE(MATCH_JAVADOC_NOARG_CURLY_PAT);
+    private static final Pattern MATCH_JAVADOC_NOARG_CURLY = Utils
+        .createPattern(MATCH_JAVADOC_NOARG_CURLY_PAT);
 
     /** the visibility scope where Javadoc comments are checked * */
     private Scope mScope = Scope.PRIVATE;
@@ -386,22 +387,31 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
         for (int i = 0; i < lines.length; i++) {
             currentLine++;
-            if (MATCH_JAVADOC_ARG.match(lines[i])) {
+            Matcher javadocArgMatcher = MATCH_JAVADOC_ARG.matcher(lines[i]);
+            Matcher javadocNoargMatcher =
+                MATCH_JAVADOC_NOARG.matcher(lines[i]);
+            Matcher noargCurlyMatcher =
+                MATCH_JAVADOC_NOARG_CURLY.matcher(lines[i]);
+            Matcher argMultilineStart =
+                MATCH_JAVADOC_ARG_MULTILINE_START.matcher(lines[i]);
+            Matcher noargMultilineStart =
+                MATCH_JAVADOC_NOARG_MULTILINE_START.matcher(lines[i]);
+            if (javadocArgMatcher.find()) {
                 tags.add(new JavadocTag(currentLine,
-                                        MATCH_JAVADOC_ARG.getParen(1),
-                                        MATCH_JAVADOC_ARG.getParen(2)));
+                                        javadocArgMatcher.group(1),
+                                        javadocArgMatcher.group(2)));
             }
-            else if (MATCH_JAVADOC_NOARG.match(lines[i])) {
+            else if (javadocNoargMatcher.find()) {
                 tags.add(new JavadocTag(currentLine,
-                                        MATCH_JAVADOC_NOARG.getParen(1)));
+                                        javadocNoargMatcher.group(1)));
             }
-            else if (MATCH_JAVADOC_NOARG_CURLY.match(lines[i])) {
+            else if (noargCurlyMatcher.find()) {
                 tags.add(new JavadocTag(currentLine,
-                                        MATCH_JAVADOC_NOARG_CURLY.getParen(1)));
+                                        noargCurlyMatcher.group(1)));
             }
-            else if (MATCH_JAVADOC_ARG_MULTILINE_START.match(lines[i])) {
-                final String p1 = MATCH_JAVADOC_ARG_MULTILINE_START.getParen(1);
-                final String p2 = MATCH_JAVADOC_ARG_MULTILINE_START.getParen(2);
+            else if (argMultilineStart.find()) {
+                final String p1 = argMultilineStart.group(1);
+                final String p2 = argMultilineStart.group(2);
 
                 // Look for the rest of the comment if all we saw was
                 // the tag and the name. Stop when we see '*/' (end of
@@ -409,9 +419,11 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 // not whitespace or '*' characters.
                 int remIndex = i + 1;
                 while (remIndex < lines.length) {
-                    if (MATCH_JAVADOC_MULTILINE_CONT.match(lines[remIndex])) {
+                    Matcher multilineCont =
+                        MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remIndex]);
+                    if (multilineCont.find()) {
                         remIndex = lines.length;
-                        String lFin = MATCH_JAVADOC_MULTILINE_CONT.getParen(1);
+                        String lFin = multilineCont.group(1);
                         if (!lFin.equals(NEXT_TAG) && !lFin.equals(END_JAVADOC))
                         {
                             tags.add(new JavadocTag(currentLine, p1, p2));
@@ -420,9 +432,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                     remIndex++;
                 }
             }
-            else if (MATCH_JAVADOC_NOARG_MULTILINE_START.match(lines[i])) {
-                final String p1 = MATCH_JAVADOC_NOARG_MULTILINE_START
-                    .getParen(1);
+            else if (noargMultilineStart.find()) {
+                final String p1 = noargMultilineStart.group(1);
 
                 // Look for the rest of the comment if all we saw was
                 // the tag and the name. Stop when we see '*/' (end of
@@ -430,9 +441,11 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 // not whitespace or '*' characters.
                 int remIndex = i + 1;
                 while (remIndex < lines.length) {
-                    if (MATCH_JAVADOC_MULTILINE_CONT.match(lines[remIndex])) {
+                    Matcher multilineCont =
+                        MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remIndex]);
+                    if (multilineCont.find()) {
                         remIndex = lines.length;
-                        String lFin = MATCH_JAVADOC_MULTILINE_CONT.getParen(1);
+                        String lFin = multilineCont.group(1);
                         if (!lFin.equals(NEXT_TAG) && !lFin.equals(END_JAVADOC))
                         {
                             tags.add(new JavadocTag(currentLine, p1));

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -14,7 +15,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 import junit.framework.TestCase;
-import org.apache.regexp.RE;
 
 /**
  * Enter a description of class XMLLoggerTest.java.
@@ -198,8 +198,8 @@ public class XMLLoggerTest extends TestCase
         assertEquals("first line.",
                      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                      lines[0]);
-        RE checkstyleOpenTag = Utils.getRE("^<checkstyle version=\".*\">$");
-        assertTrue("second line.", checkstyleOpenTag.match(lines[1]));
+        Pattern checkstyleOpenTag = Utils.getPattern("^<checkstyle version=\".*\">$");
+        assertTrue("second line.", checkstyleOpenTag.matcher(lines[1]).matches());
         for (int i = 0; i < aExpectedLines.length; i++) {
             assertEquals("line " + i + ".", aExpectedLines[i], lines[i + 2]);
         }

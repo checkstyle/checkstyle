@@ -18,7 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import org.apache.regexp.RE;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -129,7 +130,7 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
                 foundMatch = findNonCommentMatch(line, i + 1, 0);
             }
             else {
-                foundMatch = getRegexp().match(line);
+                foundMatch = getRegexp().matcher(line).find();
             }
             if (foundMatch) {
                 if ("".equals(mMessage)) {
@@ -152,12 +153,13 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
     private boolean findNonCommentMatch(
             String aLine, int aLineNumber, int aStartPosition)
     {
-        final RE regexp = getRegexp();
-        final boolean foundMatch = regexp.match(aLine, aStartPosition);
+        final Pattern pattern = getRegexp();
+        final Matcher matcher = pattern.matcher(aLine);
+        final boolean foundMatch = matcher.find(aStartPosition);
         if (foundMatch) {
             // match is found, check for intersection with comment
-            final int startCol = regexp.getParenStart(0);
-            final int endCol = regexp.getParenEnd(0);
+            final int startCol = matcher.start(0);
+            final int endCol = matcher.end(0);
             final FileContents fileContents = getFileContents();
             if (fileContents.hasIntersectionWithComment(aLineNumber,
                 startCol, aLineNumber, endCol))
@@ -178,18 +180,16 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
     }
 
     /** @return the regexp to match against */
-    public RE getRegexp()
+    public Pattern getRegexp()
     {
-        final RE regexp = super.getRegexp();
+        Pattern regexp = super.getRegexp();
 
         // we should explicitly set match flags because
-        // we caching RE and another check (or instance
+        // we caching Pattern and another check (or instance
         // of this check could change match flags.
         if (mIgnoreCase) {
-            regexp.setMatchFlags(RE.MATCH_CASEINDEPENDENT);
-        }
-        else {
-            regexp.setMatchFlags(RE.MATCH_NORMAL);
+            regexp =
+                Pattern.compile(regexp.pattern(), Pattern.CASE_INSENSITIVE);
         }
         return regexp;
     }

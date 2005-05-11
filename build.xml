@@ -35,7 +35,7 @@
 
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
-    <pathelement location="${regexp.jar}" />
+<!--    <pathelement location="${regexp.jar}" />-->
     <pathelement location="${collections.jar}" />
     <pathelement location="${cli.jar}" />
     <pathelement location="${beanutils.jar}" />

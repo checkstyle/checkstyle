@@ -104,6 +104,6 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
      */
     private boolean isMatchingClassName(String aClassName)
     {
-        return getRegexp().match(aClassName);
+        return getRegexp().matcher(aClassName).find();
     }
 }

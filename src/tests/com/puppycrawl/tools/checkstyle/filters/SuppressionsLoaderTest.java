@@ -4,7 +4,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.filters.SuppressElement;
 import junit.framework.TestCase;
-import org.apache.regexp.RESyntaxException;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * Tests SuppressionsLoader.
@@ -23,7 +23,7 @@ public class SuppressionsLoaderTest extends TestCase
     }
 
     public void testMultipleSuppression()
-        throws CheckstyleException, RESyntaxException
+        throws CheckstyleException, PatternSyntaxException
     {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(

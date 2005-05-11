@@ -131,6 +131,6 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
      */
     private boolean isExceptionClass(String aClassName)
     {
-        return getRegexp().match(aClassName);
+        return getRegexp().matcher(aClassName).find();
     }
 }

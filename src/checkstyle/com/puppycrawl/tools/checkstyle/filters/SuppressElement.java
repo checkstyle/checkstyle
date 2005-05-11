@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.filters;
 
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -42,13 +42,13 @@ public class SuppressElement
     private static final int HASH_MULT = 29;
 
     /** the regexp to match file names against */
-    private RE mFileRegexp;
+    private Pattern mFileRegexp;
 
     /** the pattern for file names*/
     private String mFilePattern;
 
     /** the regexp to match check names against */
-    private RE mCheckRegexp;
+    private Pattern mCheckRegexp;
 
     /** the pattern for check class names*/
     private String mCheckPattern;
@@ -70,15 +70,15 @@ public class SuppressElement
      * file name pattern and and a check class pattern.
      * @param aFiles regular expression for names of filtered files.
      * @param aChecks regular expression for filtered check classes.
-     * @throws RESyntaxException if there is an error.
+     * @throws PatternSyntaxException if there is an error.
      */
     public SuppressElement(String aFiles, String aChecks)
-        throws RESyntaxException
+        throws PatternSyntaxException
     {
         mFilePattern = aFiles;
-        mFileRegexp = Utils.getRE(aFiles);
+        mFileRegexp = Utils.getPattern(aFiles);
         mCheckPattern = aChecks;
-        mCheckRegexp = Utils.getRE(aChecks);
+        mCheckRegexp = Utils.getPattern(aChecks);
     }
 
     /**
@@ -118,9 +118,9 @@ public class SuppressElement
     {
         // file and check match?
         if ((aEvent.getFileName() == null)
-            || !mFileRegexp.match(aEvent.getFileName())
+            || !mFileRegexp.matcher(aEvent.getFileName()).find()
             || (aEvent.getLocalizedMessage() == null)
-            || !mCheckRegexp.match(aEvent.getSourceName()))
+            || !mCheckRegexp.matcher(aEvent.getSourceName()).find())
         {
             return true;
         }

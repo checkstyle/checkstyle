@@ -20,6 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -27,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
+
 import antlr.collections.AST;
 
 /**
@@ -59,15 +60,15 @@ public class VisibilityModifierCheck
      * With EJB 2.0 it is not longer necessary to have public access
      * for persistent fields.
      */
-    private String mPublicMemberPattern = "^serialVersionUID$";
+    private String mPublicMemberFormat = "^serialVersionUID$";
 
     /** regexp for public members that should be ignored */
-    private RE mPublicMemberRE;
+    private Pattern mPublicMemberPattern;
 
     /** Create an instance. */
     public VisibilityModifierCheck()
     {
-        setPublicMemberPattern(mPublicMemberPattern);
+        setPublicMemberPattern(mPublicMemberFormat);
     }
 
     /** @return whether protected members are allowed */
@@ -107,10 +108,10 @@ public class VisibilityModifierCheck
     public void setPublicMemberPattern(String aPattern)
     {
         try {
-            mPublicMemberRE = Utils.getRE(aPattern);
-            mPublicMemberPattern = aPattern;
+            mPublicMemberPattern = Utils.getPattern(aPattern);
+            mPublicMemberFormat = aPattern;
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aPattern, e);
         }
     }
@@ -118,9 +119,9 @@ public class VisibilityModifierCheck
     /**
      * @return the regexp for public members to ignore.
      */
-    private RE getPublicMemberRegexp()
+    private Pattern getPublicMemberRegexp()
     {
-        return mPublicMemberRE;
+        return mPublicMemberPattern;
     }
 
     /** @see Check */
@@ -153,7 +154,7 @@ public class VisibilityModifierCheck
                 || "package".equals(variableScope) && isPackageAllowed()
                 || "protected".equals(variableScope) && isProtectedAllowed()
                 || "public".equals(variableScope)
-                   && getPublicMemberRegexp().match(varName)))
+                   && getPublicMemberRegexp().matcher(varName).find()))
         {
             log(varNameAST.getLineNo(), varNameAST.getColumnNo(),
                     "variable.notPrivate", varName);

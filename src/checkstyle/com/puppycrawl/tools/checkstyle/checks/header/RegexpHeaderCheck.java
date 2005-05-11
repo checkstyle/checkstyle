@@ -19,9 +19,9 @@
 package com.puppycrawl.tools.checkstyle.checks.header;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
 import org.apache.commons.beanutils.ConversionException;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -46,7 +46,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     private int[] mMultiLines = EMPTY_INT_ARRAY;
 
     /** the compiled regular expressions */
-    private RE[] mHeaderRegexps;
+    private Pattern[] mHeaderRegexps;
 
     /**
      * @param aLineNo a line number
@@ -104,13 +104,13 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     {
         final String[] headerLines = getHeaderLines();
         if (headerLines != null) {
-            mHeaderRegexps = new RE[headerLines.length];
+            mHeaderRegexps = new Pattern[headerLines.length];
             for (int i = 0; i < headerLines.length; i++) {
                 try {
                     // TODO: Not sure if chache in Utils is still necessary
-                    mHeaderRegexps[i] = Utils.getRE(headerLines[i]);
+                    mHeaderRegexps[i] = Utils.getPattern(headerLines[i]);
                 }
-                catch (RESyntaxException ex) {
+                catch (PatternSyntaxException ex) {
                     throw new ConversionException(
                             "line " + i + " in header specification"
                             + " is not a regular expression");
@@ -128,7 +128,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     private boolean isMatch(int aLineNo, int aHeaderLineNo)
     {
         final String line = getLines()[aLineNo];
-        return mHeaderRegexps[aHeaderLineNo].match(line);
+        return mHeaderRegexps[aHeaderLineNo].matcher(line).find();
     }
 
     /** {@inheritDoc} */

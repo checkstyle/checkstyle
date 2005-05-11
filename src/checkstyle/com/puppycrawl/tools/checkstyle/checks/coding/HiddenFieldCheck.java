@@ -20,10 +20,10 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -80,7 +80,7 @@ public class HiddenFieldCheck
     private FieldFrame mCurrentFrame;
 
     /** the regexp to match against */
-    private RE mRegexp;
+    private Pattern mRegexp;
 
     /** controls whether to check the parameter of a property setter method */
     private boolean mIgnoreSetter;
@@ -207,7 +207,8 @@ public class HiddenFieldCheck
                 if ((mCurrentFrame.containsStaticField(name)
                      || (!inStatic(aAST)
                          && mCurrentFrame.containsInstanceField(name)))
-                    && ((mRegexp == null) || (!getRegexp().match(name)))
+                    && ((mRegexp == null)
+                        || (!getRegexp().matcher(name).find()))
                     && !isIgnoredSetterParam(aAST, name)
                     && !isIgnoredConstructorParam(aAST))
                 {
@@ -309,9 +310,9 @@ public class HiddenFieldCheck
         throws ConversionException
     {
         try {
-            mRegexp = Utils.getRE(aFormat);
+            mRegexp = Utils.getPattern(aFormat);
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
@@ -338,7 +339,7 @@ public class HiddenFieldCheck
     }
 
     /** @return the regexp to match against */
-    public RE getRegexp()
+    public Pattern getRegexp()
     {
         return mRegexp;
     }

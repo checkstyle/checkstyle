@@ -26,9 +26,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
 
 /**
  * <p>
@@ -126,7 +126,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck
     /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
-        final RE blankLinePattern = getRegexp();
+        final Pattern blankLinePattern = getRegexp();
         final Map cppComments = getFileContents().getCppComments();
         final Map cComments = getFileContents().getCComments();
         final Set lines = new HashSet();
@@ -157,7 +157,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck
                     }
                 }
             }
-            if (!blankLinePattern.match(lineBefore)) {
+            if (!blankLinePattern.matcher(lineBefore).find()) {
                 log(lineNo.intValue(), "trailing.comments");
             }
         }

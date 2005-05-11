@@ -24,8 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.regex.PatternSyntaxException;
 import javax.xml.parsers.ParserConfigurationException;
-import org.apache.regexp.RESyntaxException;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -92,7 +92,7 @@ public final class SuppressionsLoader
             try {
                 suppress = new SuppressElement(files, checks);
             }
-            catch (RESyntaxException e) {
+            catch (PatternSyntaxException e) {
                 throw new SAXException("invalid files or checks format");
             }
             final String lines = aAtts.getValue("lines");

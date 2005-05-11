@@ -20,8 +20,10 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import org.apache.regexp.RESyntaxException;
-import org.apache.regexp.RE;
+
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -37,7 +39,7 @@ public abstract class AbstractFormatCheck
     extends Check
 {
     /** the regexp to match against */
-    private RE mRegexp;
+    private Pattern mRegexp;
     /** the format string of the regexp */
     private String mFormat;
 
@@ -61,16 +63,16 @@ public abstract class AbstractFormatCheck
         throws ConversionException
     {
         try {
-            mRegexp = Utils.getRE(aFormat);
+            mRegexp = Utils.getPattern(aFormat);
             mFormat = aFormat;
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
 
     /** @return the regexp to match against */
-    public RE getRegexp()
+    public Pattern getRegexp()
     {
         return mRegexp;
     }

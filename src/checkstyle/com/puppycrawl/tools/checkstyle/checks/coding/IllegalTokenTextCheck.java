@@ -79,7 +79,7 @@ public class IllegalTokenTextCheck
     public void visitToken(DetailAST aAST)
     {
         final String text = aAST.getText();
-        if (getRegexp().match(text)) {
+        if (getRegexp().matcher(text).find()) {
             String message = getMessage();
             if ("".equals(message)) {
                 message = "illegal.token.text";

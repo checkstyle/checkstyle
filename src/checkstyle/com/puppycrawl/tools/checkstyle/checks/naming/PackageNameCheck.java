@@ -86,7 +86,7 @@ public class PackageNameCheck
     {
         final DetailAST nameAST = aAST.getLastChild().getPreviousSibling();
         final FullIdent full = FullIdent.createFullIdent(nameAST);
-        if (!getRegexp().match(full.getText())) {
+        if (!getRegexp().matcher(full.getText()).find()) {
             log(full.getLineNo(),
                 full.getColumnNo(),
                 "name.invalidPattern",

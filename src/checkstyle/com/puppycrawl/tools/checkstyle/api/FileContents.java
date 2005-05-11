@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import org.apache.regexp.RE;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +25,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Collection;
 import java.util.Iterator;
+
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
 
@@ -45,8 +45,8 @@ public final class FileContents implements CommentListener
     private static final String MATCH_SINGLELINE_COMMENT_PAT =
         "^\\s*//.*$";
     /** compiled regexp to match a single-line comment line */
-    private static final RE MATCH_SINGLELINE_COMMENT =
-        Utils.createRE(MATCH_SINGLELINE_COMMENT_PAT);
+    private static final Pattern MATCH_SINGLELINE_COMMENT =
+        Pattern.compile(MATCH_SINGLELINE_COMMENT_PAT);
 
     /** the file name */
     private final String mFilename;
@@ -241,7 +241,7 @@ public final class FileContents implements CommentListener
      **/
     public boolean lineIsComment(int aLineNo)
     {
-        return MATCH_SINGLELINE_COMMENT.match(mLines[aLineNo]);
+        return MATCH_SINGLELINE_COMMENT.matcher(mLines[aLineNo]).matches();
     }
 
     /**

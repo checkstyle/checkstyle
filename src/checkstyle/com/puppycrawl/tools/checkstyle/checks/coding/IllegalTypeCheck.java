@@ -173,7 +173,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     private boolean isMatchingClassName(String aClassName)
     {
         return mIllegalClassNames.contains(aClassName)
-            || getRegexp().match(aClassName);
+            || getRegexp().matcher(aClassName).find();
     }
 
     /**

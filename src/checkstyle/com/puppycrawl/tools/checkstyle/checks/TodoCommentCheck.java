@@ -87,7 +87,7 @@ public class TodoCommentCheck
         for (final Iterator it = comments.keySet().iterator(); it.hasNext();) {
             final Integer key = (Integer) it.next();
             final String cmt = ((TextBlock) comments.get(key)).getText()[0];
-            if (getRegexp().match(cmt)) {
+            if (getRegexp().matcher(cmt).find()) {
                 log(key.intValue(), "todo.match", getFormat());
             }
         }
@@ -108,7 +108,7 @@ public class TodoCommentCheck
             while (lineIter.hasNext()) {
                 final String[] cmt = ((TextBlock) lineIter.next()).getText();
                 for (int i = 0; i < cmt.length; i++) {
-                    if (getRegexp().match(cmt[i])) {
+                    if (getRegexp().matcher(cmt[i]).find()) {
                         log(key.intValue() + i, "todo.match", getFormat());
                     }
                 }

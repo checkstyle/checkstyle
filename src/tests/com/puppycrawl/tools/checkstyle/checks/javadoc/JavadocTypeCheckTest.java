@@ -181,7 +181,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("versionFormat", "^[:digit:]+\\.[:digit:]+$");
+        checkConfig.addAttribute("versionFormat", "^\\p{Digit}+\\.\\p{Digit}+$");
         final String[] expected = {
             "22: Type Javadoc comment is missing an @version tag.",
         };

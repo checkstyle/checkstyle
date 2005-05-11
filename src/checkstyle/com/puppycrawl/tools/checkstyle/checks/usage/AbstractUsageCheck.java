@@ -30,9 +30,10 @@ import com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.
     SymbolTableException;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
 
 /**
  * Performs a usage check for fields, methods, parameters, variables.
@@ -42,7 +43,7 @@ public abstract class AbstractUsageCheck
     extends Check
 {
     /** the regexp to match against */
-    private RE mRegexp;
+    private Pattern mRegexp;
     /** the format string of the regexp */
     private String mIgnoreFormat;
 
@@ -63,16 +64,16 @@ public abstract class AbstractUsageCheck
         throws ConversionException
     {
         try {
-            mRegexp = Utils.getRE(aFormat);
+            mRegexp = Utils.getPattern(aFormat);
             mIgnoreFormat = aFormat;
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
 
     /** @return the regexp to match against */
-    public RE getRegexp()
+    public Pattern getRegexp()
     {
         return mRegexp;
     }
@@ -98,8 +99,10 @@ public abstract class AbstractUsageCheck
     {
         if (mustCheckReferenceCount(aAST)) {
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-            RE regexp = getRegexp();
-            if ((regexp == null) || !regexp.match(nameAST.getText())) {
+            Pattern regexp = getRegexp();
+            if ((regexp == null)
+                || !regexp.matcher(nameAST.getText()).find())
+            {
                 getASTManager().registerCheckNode(this, nameAST);
             }
         }

@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
-import org.apache.regexp.RESyntaxException;
+import java.util.regex.PatternSyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -13,7 +13,7 @@ public class SuppressElementTest extends TestCase
     private SuppressElement filter;
     
     public void setUp()
-        throws RESyntaxException
+        throws PatternSyntaxException
     {
         filter = new SuppressElement("Test", "Test");
     }
@@ -57,7 +57,7 @@ public class SuppressElementTest extends TestCase
         assertTrue("Not in 1-9, 1)", filter.accept(ev));
     }
 
-    public void testEquals() throws RESyntaxException
+    public void testEquals() throws PatternSyntaxException
     {
         final SuppressElement filter2 = new SuppressElement("Test", "Test");
         assertEquals("filter, filter2", filter, filter2);

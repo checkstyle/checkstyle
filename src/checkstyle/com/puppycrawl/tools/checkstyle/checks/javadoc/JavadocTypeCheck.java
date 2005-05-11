@@ -27,10 +27,11 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
 
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * Checks the Javadoc of a type.
@@ -47,9 +48,9 @@ public class JavadocTypeCheck
     /** the visibility scope where Javadoc comments shouldn't be checked **/
     private Scope mExcludeScope;
     /** compiled regexp to match author tag content **/
-    private RE mAuthorFormatRE;
+    private Pattern mAuthorFormatPattern;
     /** compiled regexp to match version tag content **/
-    private RE mVersionFormatRE;
+    private Pattern mVersionFormatPattern;
     /** regexp to match author tag content */
     private String mAuthorFormat;
     /** regexp to match version tag content */
@@ -83,9 +84,9 @@ public class JavadocTypeCheck
     {
         try {
             mAuthorFormat = aFormat;
-            mAuthorFormatRE = Utils.getRE(aFormat);
+            mAuthorFormatPattern = Utils.getPattern(aFormat);
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
@@ -100,9 +101,9 @@ public class JavadocTypeCheck
     {
         try {
             mVersionFormat = aFormat;
-            mVersionFormatRE = Utils.getRE(aFormat);
+            mVersionFormatPattern = Utils.getPattern(aFormat);
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
 
@@ -133,9 +134,9 @@ public class JavadocTypeCheck
                 // don't check author/version for inner classes
                 Vector tags = getJavadocTags(cmt);
                 checkTag(lineNo, tags, "author",
-                         mAuthorFormatRE, mAuthorFormat);
+                         mAuthorFormatPattern, mAuthorFormat);
                 checkTag(lineNo, tags, "version",
-                         mVersionFormatRE, mVersionFormat);
+                         mVersionFormatPattern, mVersionFormat);
             }
         }
     }
@@ -171,12 +172,13 @@ public class JavadocTypeCheck
     {
         final String[] text = aCmt.getText();
         Vector tags = new Vector();
-        RE tagRE = Utils.getRE("/\\*{2,}\\s*@([:alpha:]+)\\s");
+        Pattern tagPattern = Utils.getPattern("/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
         for (int i = 0; i < text.length; i++) {
             final String s = text[i];
-            if (tagRE.match(s)) {
-                final String tagName = tagRE.getParen(1);
-                String content = s.substring(tagRE.getParenEnd(0));
+            Matcher tagMatcher = tagPattern.matcher(s);
+            if (tagMatcher.find()) {
+                final String tagName = tagMatcher.group(1);
+                String content = s.substring(tagMatcher.end(1));
                 if (content.endsWith("*/")) {
                     content = content.substring(0, content.length() - 2);
                 }
@@ -184,7 +186,7 @@ public class JavadocTypeCheck
                                         tagName,
                                         content.trim()));
             }
-            tagRE = Utils.getRE("^\\s*\\**\\s*@([:alpha:]+)\\s");
+            tagPattern = Utils.getPattern("^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
         }
         return tags;
     }
@@ -194,13 +196,13 @@ public class JavadocTypeCheck
      * @param aLineNo the line number for the type definition.
      * @param aTags tags from the Javadoc comment for the type definition.
      * @param aTag the required tag name.
-     * @param aFormatRE regexp for the tag value.
+     * @param aFormatPattern regexp for the tag value.
      * @param aFormat pattern for the tag value.
      */
     private void checkTag(int aLineNo, Vector aTags, String aTag,
-                          RE aFormatRE, String aFormat)
+                          Pattern aFormatPattern, String aFormat)
     {
-        if (aFormatRE == null) {
+        if (aFormatPattern == null) {
             return;
         }
 
@@ -209,7 +211,7 @@ public class JavadocTypeCheck
             final JavadocTag tag = (JavadocTag) aTags.get(i);
             if (tag.getTag().equals(aTag)) {
                 tagCount++;
-                if (!aFormatRE.match(tag.getArg1())) {
+                if (!aFormatPattern.matcher(tag.getArg1()).find()) {
                     log(aLineNo, "type.tagFormat", "@" + aTag, aFormat);
                 }
             }

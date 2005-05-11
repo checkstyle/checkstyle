@@ -25,9 +25,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -86,10 +88,10 @@ public class SuppressionCommentFilter
         private boolean mOn;
 
         /** The parsed check regexp, expanded for the text of this tag. */
-        private RE mTagCheckRegexp;
+        private Pattern mTagCheckRegexp;
 
         /** The parsed message regexp, expanded for the text of this tag. */
-        private RE mTagMessageRegexp;
+        private Pattern mTagMessageRegexp;
 
         /**
          * Constructs a tag.
@@ -110,34 +112,34 @@ public class SuppressionCommentFilter
 
             mTagCheckRegexp = mCheckRegexp;
             //Expand regexp for check and message
-            //Does not intern REs with Utils.getRE()
+            //Does not intern Patterns with Utils.getPattern()
             String format = "";
             try {
                 if (aOn) {
                     format =
                         expandFromComment(aText, mCheckFormat, mOnRegexp);
-                    mTagCheckRegexp = new RE(format);
+                    mTagCheckRegexp = Pattern.compile(format);
                     if (mMessageFormat != null) {
                         format =
                             expandFromComment(aText, mMessageFormat, mOnRegexp);
-                        mTagMessageRegexp = new RE(format);
+                        mTagMessageRegexp = Pattern.compile(format);
                     }
                 }
                 else {
                     format =
                         expandFromComment(aText, mCheckFormat, mOffRegexp);
-                    mTagCheckRegexp = new RE(format);
+                    mTagCheckRegexp = Pattern.compile(format);
                     if (mMessageFormat != null) {
                         format =
                             expandFromComment(
                                 aText,
                                 mMessageFormat,
                                 mOffRegexp);
-                        mTagMessageRegexp = new RE(format);
+                        mTagMessageRegexp = Pattern.compile(format);
                     }
                 }
             }
-            catch (RESyntaxException e) {
+            catch (PatternSyntaxException e) {
                 throw new ConversionException(
                     "unable to parse expanded comment " + format,
                     e);
@@ -204,11 +206,15 @@ public class SuppressionCommentFilter
          */
         public boolean isMatch(AuditEvent aEvent)
         {
-            if (mTagCheckRegexp.match(aEvent.getSourceName())) {
+            Matcher tagMatcher =
+                mTagCheckRegexp.matcher(aEvent.getSourceName());
+            if (tagMatcher.find()) {
                 return true;
             }
             if (mTagMessageRegexp != null) {
-                return mTagMessageRegexp.match(aEvent.getMessage());
+                Matcher messageMatcher =
+                    mTagMessageRegexp.matcher(aEvent.getMessage());
+                return messageMatcher.find();
             }
             return false;
         }
@@ -223,18 +229,19 @@ public class SuppressionCommentFilter
         private String expandFromComment(
             String aComment,
             String aString,
-            RE aRegexp)
+            Pattern aRegexp)
         {
+            Matcher matcher = aRegexp.matcher(aComment);
             // Match primarily for effect.
-            if (!aRegexp.match(aComment)) {
+            if (!matcher.find()) {
                 ///CLOVER:OFF
                 return aString;
                 ///CLOVER:ON
             }
             String result = aString;
-            for (int i = 1; i < aRegexp.getParenCount(); i++) {
-                // $n expands comment match like in RE.subst().
-                result = result.replaceAll("\\$" + i, aRegexp.getParen(i));
+            for (int i = 0; i <= matcher.groupCount(); i++) {
+                // $n expands comment match like in Pattern.subst().
+                result = result.replaceAll("\\$" + i, matcher.group(i));
             }
             return result;
         }
@@ -263,16 +270,16 @@ public class SuppressionCommentFilter
     private boolean mCheckCPP = true;
 
     /** Parsed comment regexp that turns checkstyle reporting off. */
-    private RE mOffRegexp;
+    private Pattern mOffRegexp;
 
     /** Parsed comment regexp that turns checkstyle reporting on. */
-    private RE mOnRegexp;
+    private Pattern mOnRegexp;
 
     /** The check format to suppress. */
     private String mCheckFormat;
 
     /** The parsed check regexp. */
-    private RE mCheckRegexp;
+    private Pattern mCheckRegexp;
 
     /** The message format to suppress. */
     private String mMessageFormat;
@@ -311,9 +318,9 @@ public class SuppressionCommentFilter
         throws ConversionException
     {
         try {
-            mOffRegexp = Utils.getRE(aFormat);
+            mOffRegexp = Utils.getPattern(aFormat);
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
@@ -327,9 +334,9 @@ public class SuppressionCommentFilter
         throws ConversionException
     {
         try {
-            mOnRegexp = Utils.getRE(aFormat);
+            mOnRegexp = Utils.getPattern(aFormat);
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
@@ -358,10 +365,10 @@ public class SuppressionCommentFilter
         throws ConversionException
     {
         try {
-            mCheckRegexp = Utils.getRE(aFormat);
+            mCheckRegexp = Utils.getPattern(aFormat);
             mCheckFormat = aFormat;
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
@@ -376,9 +383,9 @@ public class SuppressionCommentFilter
     {
         // check that aFormat parses
         try {
-            Utils.getRE(aFormat);
+            Utils.getPattern(aFormat);
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
         mMessageFormat = aFormat;
@@ -499,11 +506,15 @@ public class SuppressionCommentFilter
      */
     private void tagCommentLine(String aText, int aLine, int aColumn)
     {
-        if (mOffRegexp.match(aText)) {
-            addTag(mOffRegexp.getParen(0), aLine, aColumn, false);
+        Matcher offMatcher = mOffRegexp.matcher(aText);
+        if (offMatcher.find()) {
+            addTag(offMatcher.group(0), aLine, aColumn, false);
         }
-        else if (mOnRegexp.match(aText)) {
-            addTag(mOnRegexp.getParen(0), aLine, aColumn, true);
+        else {
+            Matcher onMatcher = mOnRegexp.matcher(aText);
+            if (onMatcher.find()) {
+                addTag(onMatcher.group(0), aLine, aColumn, true);
+            }
         }
     }
 

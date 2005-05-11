@@ -24,9 +24,10 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
 
 /**
  * Detects uncommented main methods. Basically detects
@@ -46,7 +47,8 @@ public class UncommentedMainCheck
     /** the pattern to exclude classes from the check */
     private String mExcludedClasses = "^$";
     /** compiled regexp to exclude classes from check */
-    private RE mExcludedClassesRE = Utils.createRE(mExcludedClasses);
+    private Pattern mExcludedClassesPattern =
+        Utils.createPattern(mExcludedClasses);
     /** current class name */
     private String mCurrentClass;
     /** current package */
@@ -64,9 +66,9 @@ public class UncommentedMainCheck
     {
         try {
             mExcludedClasses = aExcludedClasses;
-            mExcludedClassesRE = Utils.getRE(mExcludedClasses);
+            mExcludedClassesPattern = Utils.getPattern(mExcludedClasses);
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse "
                                           + mExcludedClasses,
                                           e);
@@ -180,7 +182,7 @@ public class UncommentedMainCheck
      */
     private boolean checkClassName()
     {
-        return !mExcludedClassesRE.match(mCurrentClass);
+        return !mExcludedClassesPattern.matcher(mCurrentClass).find();
     }
 
     /**

@@ -28,10 +28,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -132,19 +132,19 @@ public final class Utils
     }
 
     /**
-     * This is a factory method to return an RE object for the specified
+     * This is a factory method to return an Pattern object for the specified
      * regular expression. This method is not MT safe, but neither are the
-     * returned RE objects.
-     * @return an RE object for the supplied pattern
+     * returned Pattern objects.
+     * @return an Pattern object for the supplied pattern
      * @param aPattern the regular expression pattern
-     * @throws RESyntaxException an invalid pattern was supplied
+     * @throws PatternSyntaxException an invalid pattern was supplied
      **/
-    public static RE getRE(String aPattern)
-        throws RESyntaxException
+    public static Pattern getPattern(String aPattern)
+        throws PatternSyntaxException
     {
-        RE retVal = (RE) CREATED_RES.get(aPattern);
+        Pattern retVal = (Pattern) CREATED_RES.get(aPattern);
         if (retVal == null) {
-            retVal = new RE(aPattern);
+            retVal = Pattern.compile(aPattern);
             CREATED_RES.put(aPattern, retVal);
         }
         return retVal;
@@ -210,16 +210,16 @@ public final class Utils
      * Helper method to create a regular expression.
      * @param aPattern the pattern to match
      * @return a created regexp object
-     * @throws ConversionException if unable to create RE object.
+     * @throws ConversionException if unable to create Pattern object.
      **/
-    public static RE createRE(String aPattern)
+    public static Pattern createPattern(String aPattern)
         throws ConversionException
     {
-        RE retVal = null;
+        Pattern retVal = null;
         try {
-            retVal = getRE(aPattern);
+            retVal = getPattern(aPattern);
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException(
                 "Failed to initialise regexp expression " + aPattern, e);
         }

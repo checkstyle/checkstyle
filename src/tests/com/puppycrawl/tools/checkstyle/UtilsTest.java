@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import junit.framework.TestCase;
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
+import java.util.regex.Pattern;
 
 public class UtilsTest
     extends TestCase
@@ -31,15 +31,15 @@ public class UtilsTest
         assertEquals(3, Utils.lengthMinusTrailingWhitespace(" 23"));
         assertEquals(3, Utils.lengthMinusTrailingWhitespace(" 23 \t "));
 
-        final RE r1 = Utils.getRE("a");
-        final RE r2 = Utils.getRE("a");
+        final Pattern r1 = Utils.getPattern("a");
+        final Pattern r2 = Utils.getPattern("a");
         assertEquals(r1, r2);
     }
 
     public void testBadRegex()
     {
         try {
-            Utils.createRE("[");
+            Utils.createPattern("[");
             fail("expected to get conversion exception");
         }
         catch (ConversionException e) {

@@ -19,8 +19,8 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import org.apache.regexp.RE;
 
+import java.util.regex.Pattern;
 
 /**
  * <p>
@@ -57,12 +57,12 @@ public class RequiredRegexpCheck extends AbstractFormatCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree(DetailAST aRootAST)
     {
-        final RE regexp = getRegexp();
+        final Pattern pattern = getRegexp();
         final String[] lines = getLines();
         for (int i = 0; i < lines.length; i++) {
 
             final String line = lines[i];
-            if (regexp.match(line)) {
+            if (pattern.matcher(line).find()) {
                 return;
             }
         }

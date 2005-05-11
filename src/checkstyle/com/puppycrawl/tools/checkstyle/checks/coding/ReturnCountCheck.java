@@ -141,7 +141,8 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     {
         mContextStack.push(mContext);
         final DetailAST methodNameAST = aAST.findFirstToken(TokenTypes.IDENT);
-        mContext = new Context(!getRegexp().match(methodNameAST.getText()));
+        mContext =
+            new Context(!getRegexp().matcher(methodNameAST.getText()).find());
     }
 
     /**

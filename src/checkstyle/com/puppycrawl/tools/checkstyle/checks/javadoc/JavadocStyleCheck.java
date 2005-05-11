@@ -19,6 +19,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Stack;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -27,8 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
 
 /**
  * Custom Checkstyle Check to validate Javadoc.
@@ -57,7 +57,7 @@ public class JavadocStyleCheck
     private Scope mExcludeScope;
 
     /** Regular expression for matching the end of a sentence. */
-    private RE mEndOfSentenceRE;
+    private Pattern mEndOfSentencePattern;
 
     /**
      * Indicates if the first sentence should be checked for proper end of
@@ -183,7 +183,7 @@ public class JavadocStyleCheck
         final String commentText = getCommentText(aComment.getText());
 
         if ((commentText.length() != 0)
-            && !getEndOfSentenceRE().match(commentText)
+            && !getEndOfSentencePattern().matcher(commentText).find()
             && !"{@inheritDoc}".equals(commentText))
         {
             log(aComment.getStartLineNo(), "javadoc.noperiod");
@@ -466,18 +466,19 @@ public class JavadocStyleCheck
      *
      * @return a regular expression for matching the end of a sentence.
      */
-    private RE getEndOfSentenceRE()
+    private Pattern getEndOfSentencePattern()
     {
-        if (mEndOfSentenceRE == null) {
+        if (mEndOfSentencePattern == null) {
             try {
-                mEndOfSentenceRE = new RE("([.?!][ \t\n\r\f<])|([.?!]$)");
+                mEndOfSentencePattern =
+                    Pattern.compile("([.?!][ \t\n\r\f<])|([.?!]$)");
             }
-            catch (RESyntaxException e) {
+            catch (PatternSyntaxException e) {
                 // This should never occur.
                 e.printStackTrace();
             }
         }
-        return mEndOfSentenceRE;
+        return mEndOfSentencePattern;
     }
 
     /**
