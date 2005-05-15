@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * <p>
  * Checks that package names conform to a format specified
  * by the format property. The format is a
- * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
- * regular expression</a>
+ * {@link java.util.regex.Pattern regular expression}
  * and defaults to
  * <strong>^[a-z]+(\.[a-zA-Z_][a-zA-Z_0-9]*)*$</strong>.
  * </p>

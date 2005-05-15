@@ -27,9 +27,9 @@ import java.util.regex.PatternSyntaxException;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
- * <p> Abstract class for checks that verify strings using a <a
- * href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
- * regular expression</a>.  It provides support for setting the regular
+ * <p> Abstract class for checks that verify strings using a
+ * {@link java.util.regex.Pattern regular expression}.  It
+ * provides support for setting the regular
  * expression using the property name <code>format</code>.  </p>
  *
  * @author Oliver Burn

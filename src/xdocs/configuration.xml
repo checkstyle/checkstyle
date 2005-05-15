@@ -808,7 +808,7 @@
       <h4 class="body">Restrictions</h4>
       <p>
         offCommentFormat and onCommentFormat must have equal <a
-        href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html#getParenCount()">paren
+        href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Matcher.html#groupCount()">paren
         counts</a>.
       </p>
 

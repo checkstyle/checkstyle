@@ -24,9 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Checks that type names conform to a format specified
  * by the format property. The format is a
- * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
- * regular expression</a>
- * and defaults to
+ * {@link java.util.regex.Pattern regular expression} and defaults to
  * <strong>^[A-Z][a-zA-Z0-9]*$</strong>.
  * </p>
  * <p>

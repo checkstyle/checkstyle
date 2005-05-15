@@ -29,9 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 /**
  * <p>
  * A check for TODO comments.
- * Actually it is a generic
- * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
- * regular expression</a> matcher on Java comments.
+ * Actually it is a generic {@link java.util.regex.Pattern regular expression}
+ * matcher on Java comments.
  * To check for other patterns in Java comments, set property format.
  * </p>
  * <p>

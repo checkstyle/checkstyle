@@ -72,7 +72,7 @@
           <code>Scope</code> constants.  To define the format for an
           author tag or a version tag, set property authorFormat or
           versionFormat respectively to a
-          <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
+          <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">
             regular expression</a>.
         </p>
 

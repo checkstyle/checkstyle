@@ -64,8 +64,9 @@
       <source>
 package com.mycompany.filters;
 
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -76,10 +77,10 @@ public class FilesFilter
     extends AutomaticBean
     implements Filter
 {
-    private RE mFileRegexp;
+    private Pattern mFileRegexp;
 
     public FilesFilter()
-        throws RESyntaxException
+        throws PatternSyntaxException
     {
         setFiles("^$");
     }
@@ -87,13 +88,13 @@ public class FilesFilter
     public boolean accept(AuditEvent aEvent)
     {
         final String fileName = aEvent.getFileName();
-        return ((fileName == null) || !mFileRegexp.match(fileName));
+        return ((fileName == null) || !mFileRegexp.matcher(fileName).find());
     }
 
     public void setFiles(String aFilesPattern)
-        throws RESyntaxException
+        throws PatternSyntaxException
     {
-        mFileRegexp = Utils.getRE(aFilesPattern);
+        mFileRegexp = Utils.getPattern(aFilesPattern);
     }
 }
       </source>

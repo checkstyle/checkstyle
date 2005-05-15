@@ -22,6 +22,14 @@
 
       </ul>
 
+      <p>Dependencies:</p>
+
+      <ul>
+          <li>Since Checkstyle now requires Java 1.4, it does not need
+          Jakarta Regexp library any more and uses java.util.regex
+          package from J2SE instead.</li>
+
+      </ul>
     </section>
 
     <section name="Release 4.0 Beta 2">

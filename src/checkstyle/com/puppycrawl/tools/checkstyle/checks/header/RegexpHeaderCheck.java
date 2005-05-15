@@ -30,8 +30,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractHeaderCheck;
 
 /**
  * Checks the header of the source against a header file that contains a
-* <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
- * regular expression</a>
+ * {@link java.util.regex.Pattern regular expression}
  * for each line of the source header.
  *
  * @author Lars Kühne

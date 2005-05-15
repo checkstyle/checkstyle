@@ -26,8 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Checks that instance variable names conform to a format specified
  * by the format property. The format is a
- * <a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">
- * regular expression</a>
+ * {@link java.util.regex.Pattern regular expression}
  * and defaults to
  * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
  * </p>
