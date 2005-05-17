@@ -27,7 +27,11 @@
       <ul>
           <li>Since Checkstyle now requires Java 1.4, it does not need
           Jakarta Regexp library any more and uses java.util.regex
-          package from J2SE instead.</li>
+          package from J2SE instead. The regular expression specifications
+          of these libraries use a slightly different syntax in some 
+          corner cases, e.g. for posix character classes. We expect that
+          these differences are not relevant for the majority of checkstyle
+          users, but please check your configuration.</li>
 
       </ul>
     </section>
