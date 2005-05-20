@@ -20,6 +20,7 @@ header {
 package com.puppycrawl.tools.checkstyle.grammars;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import java.text.MessageFormat;
 import antlr.CommonToken;
 }
 
@@ -1708,6 +1709,53 @@ VOCAB
 	:	'\3'..'\377'
 	;
 
+protected ID_START:
+        '_' | '$' | 
+        (            
+            {Character.isJavaIdentifierStart(LA(1))}?
+            ~(
+                '_' | '$' | '/' | '*' | '0'..'9' | 
+                '.' | '\'' | '\\' | '"' | '\t' | '\n' | 
+                '\r' | ' ' | '\f' | '(' | ')' |
+                '{' | '}' | '[' | ']'| ';' | ',' | '=' |
+                '+' | '~' | '&' | '<' | '>' | '-' | '!' |
+                '^' | '%' | ':' | '?' | '|'| '@'
+            )
+        )
+    ;
+    exception
+    catch[SemanticException ex]
+    {
+            throw new SemanticException(
+                MessageFormat.format(
+                    "Unexpected character {0} in identifier",
+                    new Object[] {"0x" + Integer.toHexString(LA(1))}),
+                getFilename(), getLine(), getColumn());
+    }
+
+protected ID_PART :
+        '_' | '$' | 
+        (
+            {Character.isJavaIdentifierPart(LA(1))}?
+            ~(
+                '_' | '$' | '/' | '*' |
+                '.' | '\'' | '\\' | '"' | '\t' | '\n' | 
+                '\r' | ' ' | '\f' | '(' | ')' |
+                '{' | '}' | '[' | ']'| ';' | ',' | '=' |
+                '+' | '~' | '&' | '<' | '>' | '-' | '!' |
+                '^' | '%' | ':' | '?' | '|' | '@'
+            )
+        )
+        ;
+        exception
+        catch[SemanticException ex]
+        {
+            throw new SemanticException(
+                MessageFormat.format(
+                    "Unexpected character {0} in identifier",
+                    new Object[] {"0x" + Integer.toHexString(LA(1))}),
+                getFilename(), getLine(), getColumn());
+        }
 
 // an identifier.  Note that testLiterals is set to true!  This means
 // that after we match the rule, we look in the literals table to see
@@ -1718,8 +1766,7 @@ VOCAB
 // treatEnumAsKeyword boolean properties on the lexer
 IDENT
 	options {testLiterals=true;}
-	:	('a'..'z'|'A'..'Z'|'_'|'$'| {Character.isJavaIdentifierStart(LA(1))}? '\u0080'..'\uFFFE')
-                ('a'..'z'|'A'..'Z'|'_'|'0'..'9'|'$'| {Character.isJavaIdentifierPart(LA(1))}? '\u0080'..'\uFFFE')*
+	:   ID_START (ID_PART)*
         {
 			if (mTreatAssertAsKeyword && "assert".equals($getText)) {
 				$setType(ASSERT);

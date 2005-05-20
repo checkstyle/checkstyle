@@ -18,7 +18,7 @@ public class GeneratedJava14LexerTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = {
-            "8:10: Got an exception - unexpected char: 0xA9",
+            "8:10: Got an exception - Unexpected character 0xa9 in identifier",
         };
         verify(checkConfig, getPath("grammars/InputGrammar.java"), expected);
     }
