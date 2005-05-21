@@ -28,7 +28,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.usage.transmogrify;
 
-import java.io.File;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -114,7 +113,7 @@ public class ScopeIndex {
     public void addScope(Scope scope) {
 
         final SymTabAST SymTabAST = scope.getTreeNode();
-        final File file = SymTabAST.getFile();
+        SymTabAST.getFile();
         Vector fileVector =
             getFileVector(scope.getTreeNode().getFile().getAbsolutePath());
 

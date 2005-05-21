@@ -258,7 +258,7 @@ public class Resolver extends DefinitionTraverser {
         SymTabAST node = block.getTreeNode();
 
         SymTabAST conditional =
-            (SymTabAST) (node.findFirstToken(TokenTypes.EXPR));
+            (node.findFirstToken(TokenTypes.EXPR));
         resolveExpression(conditional, block, null, true);
 
         SymTabAST message = (SymTabAST) conditional.getNextSibling();
@@ -366,7 +366,7 @@ public class Resolver extends DefinitionTraverser {
         }
         else {
             resolveExpression(
-                (SymTabAST) (forEach.findFirstToken(TokenTypes.EXPR)),
+                (forEach.findFirstToken(TokenTypes.EXPR)),
                 block,
                 null,
                 true);
@@ -394,7 +394,7 @@ public class Resolver extends DefinitionTraverser {
         SymTabAST node = block.getTreeNode();
 
         SymTabAST conditional =
-            (SymTabAST) (node.findFirstToken(TokenTypes.EXPR));
+            (node.findFirstToken(TokenTypes.EXPR));
         resolveExpression(conditional, block, null, true);
 
         SymTabAST body = (SymTabAST) conditional.getNextSibling();
@@ -441,7 +441,7 @@ public class Resolver extends DefinitionTraverser {
         SymTabAST node = block.getTreeNode();
 
         SymTabAST condition =
-            (SymTabAST) (node.findFirstToken(TokenTypes.EXPR));
+            (node.findFirstToken(TokenTypes.EXPR));
         SymTabAST slist = (SymTabAST) (condition.getNextSibling());
         // handle Checkstyle grammar
         if (slist.getType() == TokenTypes.RPAREN) {
@@ -457,7 +457,7 @@ public class Resolver extends DefinitionTraverser {
 
         SymTabAST slist = (SymTabAST) node.getFirstChild();
         SymTabAST condition =
-            (SymTabAST) node.findFirstToken(TokenTypes.EXPR);
+            node.findFirstToken(TokenTypes.EXPR);
 
         handleSList(slist, block);
         resolveExpression(condition, block, null, true);
@@ -1360,7 +1360,7 @@ public class Resolver extends DefinitionTraverser {
         SymTabAST nameNode = (SymTabAST) (constructor.getFirstChild());
         //SymTabAST parametersNode = (SymTabAST) (nameNode.getNextSibling());
         SymTabAST parametersNode =
-            (SymTabAST) constructor.findFirstToken(TokenTypes.ELIST);
+            constructor.findFirstToken(TokenTypes.ELIST);
         SymTabAST nameIdent = null;
         if (nameNode.getType() == TokenTypes.IDENT) {
             nameIdent = nameNode;
@@ -1413,11 +1413,11 @@ public class Resolver extends DefinitionTraverser {
         while (expr != null) {
             if (expr.getType() != TokenTypes.COMMA) {
                 IClass parameter =
-                    (IClass) resolveExpression((SymTabAST) (expr
-                        .getFirstChild()),
-                        location,
-                        context,
-                        referencePhase);
+                    resolveExpression((SymTabAST) (expr
+				    .getFirstChild()),
+				    location,
+				    context,
+				    referencePhase);
                 parameters.add(parameter);
             }
 
@@ -1566,18 +1566,18 @@ public class Resolver extends DefinitionTraverser {
         SymTabAST leftChild = findLeftChild(expression);
         
         IClass leftType =
-            (IClass) (resolveExpression(leftChild,
-                location,
-                context,
-                referencePhase));
+            (resolveExpression(leftChild,
+		    location,
+		    context,
+		    referencePhase));
                 
         SymTabAST rightChild = findRightSibling(leftChild);
 
         IClass rightType =
-                    (IClass) (resolveExpression(rightChild,
-                        location,
-                        context,
-                        referencePhase));
+                    (resolveExpression(rightChild,
+		    location,
+		    context,
+		    referencePhase));
 
         result = binaryResultType(leftType, rightType);
 
@@ -1642,8 +1642,8 @@ public class Resolver extends DefinitionTraverser {
         else {
             result =
                 PrimitiveClasses.binaryPromote(
-                    (ExternalClass) a,
-                    (ExternalClass) b);
+                    a,
+                    b);
         }
 
         return result;

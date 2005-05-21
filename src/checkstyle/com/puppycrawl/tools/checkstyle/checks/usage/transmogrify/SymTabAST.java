@@ -243,7 +243,6 @@ public class SymTabAST
      */
     public Span finishChildren(File file) {
         Span result = null;
-        SymTabAST previousSibling = null;
         SymTabAST current = (SymTabAST) getFirstChild();
 
         if (current == null) {
@@ -263,9 +262,7 @@ public class SymTabAST
                     }
                 }
 
-                SymTabAST temp = current;
                 current = (SymTabAST) current.getNextSibling();
-                previousSibling = temp;
             }
         }
 
@@ -324,29 +321,6 @@ public class SymTabAST
         }
 
         return result;
-    }
-
-    /**
-     * makes a new copy of the current <code>SymTabAST</code>.  Uses the
-     * initialize(AST t) method to copy properties for each cloned node.
-     *
-     * @return <code>SymTabAST</code> a full tree copy of the current tree
-     */
-    private SymTabAST treeCopy()
-    {
-        SymTabAST copyOfThis = SymTabASTFactory.create(getType(), getText());
-        copyOfThis.initialize(this);
-
-        if (getFirstChild() != null) {
-            copyOfThis.setFirstChild(((SymTabAST) getFirstChild()).treeCopy());
-        }
-
-        if (getNextSibling() != null) {
-            copyOfThis.setNextSibling(
-                ((SymTabAST) getNextSibling()).treeCopy());
-        }
-
-        return copyOfThis;
     }
 
     /**

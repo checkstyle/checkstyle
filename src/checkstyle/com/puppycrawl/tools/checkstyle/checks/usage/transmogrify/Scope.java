@@ -49,8 +49,6 @@ import java.util.Vector;
  */
 public abstract class Scope extends Definition {
 
-  private Vector unresolvedStuff = new Vector();
-
   // rename to references?
   protected SortedSet referencesInScope = new TreeSet();
 
