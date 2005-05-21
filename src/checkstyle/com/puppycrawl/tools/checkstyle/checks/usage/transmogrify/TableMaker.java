@@ -138,14 +138,14 @@ public class TableMaker {
       innerClass.finishMakingDefinition();
     }
     else if (def instanceof ClassDef) {
-      new ClassFinisher((ClassDef)def).finish();
+      new ClassFinisher(def).finish();
     }
     else if ( def instanceof VariableDef ) {
-      new VariableFinisher( (VariableDef)def ).finish();
+      new VariableFinisher( def ).finish();
     }
     else if (def instanceof DefaultConstructor) {}
     else if ( def instanceof MethodDef ) {
-      new MethodFinisher( (MethodDef)def ).finish();
+      new MethodFinisher( def ).finish();
     }
     else if (def instanceof BlockDef) {
       SymTabAST firstChild = (SymTabAST)def.getTreeNode().getFirstChild();
@@ -235,13 +235,13 @@ public class TableMaker {
 
     if (tree != null) {
 
-      ((SymTabAST)tree).setScope( symbolTable.getCurrentScope() );
+      tree.setScope( symbolTable.getCurrentScope() );
 
       switch(tree.getType()) {
       case 0:
         processFile(tree);
         if ( tree.getFirstChild().getType() != TokenTypes.PACKAGE_DEF ) {
-          processImplicitPackage( ((SymTabAST)tree).getFile() );
+          processImplicitPackage( tree.getFile() );
         }
 
         walkSiblings((SymTabAST)tree.getFirstChild(), false);
@@ -252,7 +252,7 @@ public class TableMaker {
         break;
 
       case TokenTypes.LITERAL_NEW:
-        SymTabAST symtabTree = (SymTabAST)tree;
+        SymTabAST symtabTree = tree;
         //walk parameters, in case of anonymous inner class
         walkTree(symtabTree.findFirstToken(TokenTypes.ELIST),
           makeAnonymousScopes);
@@ -344,7 +344,7 @@ public class TableMaker {
  * @param tree
  */
 public void processAssert(SymTabAST tree) {
-    BlockDef block = makeBlock((SymTabAST)tree);
+    BlockDef block = makeBlock(tree);
 
     SymTabAST expr = tree.findFirstToken(TokenTypes.EXPR);
     SymTabAST message = (SymTabAST)expr.getNextSibling();
@@ -527,7 +527,7 @@ public void processAssert(SymTabAST tree) {
   public void processLabel(SymTabAST tree) {
     String name = tree.findFirstToken(TokenTypes.IDENT).getText();
     LabelDef label = new LabelDef( name, symbolTable.getCurrentScope(),
-           (SymTabAST)tree );
+           tree );
     symbolTable.defineLabel( label );
 
     walkTree((SymTabAST)tree.getFirstChild().getNextSibling(), false);
@@ -547,7 +547,7 @@ public void processAssert(SymTabAST tree) {
 
     makeClass(name, tree);
     final SymTabAST objblock =
-        (SymTabAST)tree.findFirstToken(TokenTypes.OBJBLOCK);
+        tree.findFirstToken(TokenTypes.OBJBLOCK);
     SymTabAST start = (SymTabAST)objblock.getFirstChild();
     if (start != null) {
         //skip LPAREN
@@ -610,7 +610,7 @@ public void processAssert(SymTabAST tree) {
     VariableDef def = makeVariableDef( tree, symbolTable.getCurrentScope() );
     symbolTable.defineVariable(def);
     SymTabAST assignmentNode
-      = ((SymTabAST)tree).findFirstToken(TokenTypes.ASSIGN);
+      = tree.findFirstToken(TokenTypes.ASSIGN);
     if (assignmentNode != null) {
       walkTree((SymTabAST)assignmentNode.getFirstChild(), false);
     }
@@ -717,7 +717,7 @@ public void processAssert(SymTabAST tree) {
    * @see #walkTree(SymTabAST, boolean)
    */
   public void processFor(SymTabAST tree) {
-    BlockDef block = makeBlock((SymTabAST)tree);
+    BlockDef block = makeBlock(tree);
 
     symbolTable.pushScope( block );
     SymTabAST body;
@@ -753,7 +753,7 @@ public void processAssert(SymTabAST tree) {
    * @see #processElse(SymTabAST)
    */
   public void processIf(SymTabAST tree) {
-    BlockDef block = makeBlock((SymTabAST)tree);
+    BlockDef block = makeBlock(tree);
 
     SymTabAST expr = tree.findFirstToken(TokenTypes.EXPR);
     SymTabAST ifBranch = (SymTabAST)expr.getNextSibling();
@@ -807,7 +807,7 @@ public void processAssert(SymTabAST tree) {
    */
   public void makeElseBlock(SymTabAST tree) {
     if (tree.getType() == TokenTypes.SLIST) {
-      BlockDef block = makeBlock((SymTabAST)tree);
+      BlockDef block = makeBlock(tree);
       symbolTable.pushScope( block );
       walkTree(tree, false);
       symbolTable.popScope();
@@ -824,14 +824,14 @@ public void processAssert(SymTabAST tree) {
    * @return <code>void</code>
    */
   public void processBlock(SymTabAST tree, boolean makeAnonymousScopes) {
-    BlockDef block = makeBlock((SymTabAST)tree);
+    BlockDef block = makeBlock(tree);
     symbolTable.pushScope(block);
     //handle Checkstyle grammar
     SymTabAST child = (SymTabAST)tree.getFirstChild();
     if ((child != null) && (child.getType() == TokenTypes.LPAREN)) {
         child = (SymTabAST) child.getNextSibling();
     }
-    walkSiblings((SymTabAST)child, makeAnonymousScopes);
+    walkSiblings(child, makeAnonymousScopes);
     symbolTable.popScope();
   }
 
