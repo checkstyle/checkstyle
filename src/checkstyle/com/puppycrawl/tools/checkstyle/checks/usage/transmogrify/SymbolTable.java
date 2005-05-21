@@ -57,8 +57,6 @@ public class SymbolTable {
   private ScopeIndex index = new ScopeIndex();
 
   private File currentFile;
-  private int currentLine;
-
   private BaseScope baseScope;
 
   private SymTabAST root;
@@ -197,7 +195,6 @@ public class SymbolTable {
    */
   public void defineMethod(MethodDef method) {
     indexScope(method);
-    final Scope scope = getCurrentScope();
     ((ClassDef)getCurrentScope()).addDefinition(method);
   }
 
