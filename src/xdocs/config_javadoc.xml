@@ -233,7 +233,7 @@
 &lt;module name=&quot;JavadocMethod&quot;&gt;
   &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
   &lt;property name=&quot;allowUndeclaredRTE&quot; value=&quot;true&quot;/&gt;
-   &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </pre>
       </subsection>
@@ -411,7 +411,7 @@ public int checkReturnTag(final int aTagIndex,
 
             or:
             <source>
-/** {@inheritDoc} **/
+/** {@inheritDoc} */
 public int checkReturnTag(final int aTagIndex,
                           JavadocTag[] aTags,
                           int aLineNo)
