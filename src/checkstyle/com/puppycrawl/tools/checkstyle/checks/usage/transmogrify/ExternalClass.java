@@ -316,12 +316,6 @@ public class ExternalClass extends ExternalDefinition implements IClass {
     return result;
   }
 
-  private boolean isPrimitiveCompatibleWith(IClass type) {
-    boolean result = false;
-
-    return result;
-  }
-
   public void addImplementor(ClassDef implementor) {
     _implementors.add(implementor);
   }

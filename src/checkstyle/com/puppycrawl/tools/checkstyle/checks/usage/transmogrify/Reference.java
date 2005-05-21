@@ -51,9 +51,6 @@ public class Reference implements Comparable {
     _occurrence = new Occurrence( _node.getFile(), ASTUtil.getLine(_node), ASTUtil.getColumn(_node) );
   }
 
-  private void method() {
-  }
-
   /**
    * gets the definition associated with this reference
    *

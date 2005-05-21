@@ -45,7 +45,6 @@ import java.util.Vector;
 public class MethodDef extends DefaultScope implements IMethod {
 
   private IClass returnType;
-  private ISignature signature;
   private List exceptions;
 
   private List parameters;
@@ -150,25 +149,6 @@ public class MethodDef extends DefaultScope implements IMethod {
    */
   public IClass[] getExceptions() {
     return (IClass[])exceptions.toArray(new IClass[0]);
-  }
-
-  /**
-   * Returns the parameter of the given name.
-   *
-   * @param name the name of the parameter to retrieve
-   *
-   * @return the parameter of the given name
-   */
-  private VariableDef getParameterByName(String name) {
-    VariableDef result = null;
-
-    for ( int i = 0; i < parameters.size(); i++ ) {
-      if ( name.equals( getParameterAt(i).getName() ) ) {
-        result = getParameterAt(i);
-      }
-    }
-
-    return result;
   }
 
   public String getQualifiedName() {

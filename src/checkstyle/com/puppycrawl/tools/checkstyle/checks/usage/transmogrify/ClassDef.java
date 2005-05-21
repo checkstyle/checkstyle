@@ -39,8 +39,6 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.Vector;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 
 
 /**
@@ -361,9 +359,4 @@ public class ClassDef extends DefaultScope implements IClass {
     public boolean isPrimitive() {
         return false;
     }
-
-    private SymTabAST getObjblock() {
-        return getTreeNode().findFirstToken(TokenTypes.OBJBLOCK);
-    }
-
 }

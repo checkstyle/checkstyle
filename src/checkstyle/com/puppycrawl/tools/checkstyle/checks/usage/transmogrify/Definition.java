@@ -195,9 +195,7 @@ public abstract class Definition implements IDefinition, Comparable {
     if (!(o instanceof Definition)) {
       throw new ClassCastException(o.getClass().getName());
     }
-    else {
-      result = getQualifiedName().compareTo(((Definition)o).getQualifiedName());
-    }
+	result = getQualifiedName().compareTo(((Definition)o).getQualifiedName());
 
     return result;
   }

@@ -112,7 +112,7 @@ public final class ASTManager
 
         // Walk of the complete tree.
         // TODO: This is a hack. Find a better way.
-        final SymbolTable table = new TableMaker(mCompleteTree).getTable();
+        new TableMaker(mCompleteTree).getTable();
     }
 
     /**

@@ -53,7 +53,7 @@ public class ASTUtil {
      * @return int the resulting line number (0 if none is found)
      */
     public static int getLine(SymTabAST tree) {
-        SymTabAST indexedNode = (SymTabAST) tree;
+        SymTabAST indexedNode = tree;
 
         // find a node that actually has line number info
         if (indexedNode.getLineNo() == 0) {
@@ -65,7 +65,7 @@ public class ASTUtil {
 
             if (indexedNode == null) {
                 // we're screwed
-                indexedNode = (SymTabAST) tree;
+                indexedNode = tree;
             }
         }
 
@@ -82,7 +82,7 @@ public class ASTUtil {
      * @return int the resulting line number (0 if none is found)
      */
     public static int getColumn(SymTabAST tree) {
-        SymTabAST indexedNode = (SymTabAST) tree;
+        SymTabAST indexedNode = tree;
 
         // find a node that actually has line number info
         // REDTAG -- a label's ':' is a real token and has (the wrong) column info
@@ -97,37 +97,11 @@ public class ASTUtil {
 
             if (indexedNode == null) {
                 // we're screwed
-                indexedNode = (SymTabAST) tree;
+                indexedNode = tree;
             }
         }
 
         return indexedNode.getColumnNo();
-    }
-
-    /**
-     * Builds a ClassDef based on the the Node of tpye JavaTokenType.TYPE in the
-     * SymTabAST and returns this.
-     *
-     * @see JavaTokenType
-     *
-     * @return ClassDef
-     * @param tree the SymTabAST contaning all Definitions
-     * @param symboloTable contains the info for the defintion being returned
-     */
-    private static ClassDef getType(SymTabAST tree, SymbolTable symbolTable) {
-        // is this referenced correctly?
-
-        ClassDef result = null;
-
-        SymTabAST typeNode = tree.findFirstToken(TokenTypes.TYPE);
-
-        if (typeNode != null) {
-            //result = new DummyClass((SymTabAST)tree,
-            //                        ASTUtil.constructDottedName(typeNode.getFirstChild()),
-            //                        ASTUtil.getOccurrence(typeNode, symbolTable));
-        }
-
-        return result;
     }
 
     /**
