@@ -43,8 +43,8 @@ public class QueryEngine {
   private SymbolTable symbolTable;
   private ScopeIndex index;
 
-  public QueryEngine(SymbolTable symbolTable) {
-    this.symbolTable = symbolTable;
+  public QueryEngine(SymbolTable aSymbolTable) {
+    this.symbolTable = aSymbolTable;
     setIndex();
   }
 

@@ -79,16 +79,16 @@ public class ClassDef extends DefaultScope implements IClass {
         return ++id;
     }
 
-    public void setSuperclass(IClass superclass) {
-        this.superclass = superclass;
+    public void setSuperclass(IClass newSuperclass) {
+        this.superclass = newSuperclass;
     }
 
     public IClass getSuperclass() {
         return superclass;
     }
 
-    public void addUnprocessedImports(Vector imports) {
-        unprocessedImports = (Vector) (imports.clone());
+    public void addUnprocessedImports(Vector aImports) {
+        unprocessedImports = (Vector) (aImports.clone());
     }
 
     public Vector getUnprocessedImports() {
@@ -177,11 +177,11 @@ public class ClassDef extends DefaultScope implements IClass {
         }
 
         if (result == null) {
-            IClass[] interfaces = getInterfaces();
+            IClass[] myInterfaces = getInterfaces();
             for (int index = 0;
-                index < interfaces.length && result == null;
+                index < myInterfaces.length && result == null;
                 index++) {
-                result = interfaces[index].getMethodDefinition(name, signature);
+                result = myInterfaces[index].getMethodDefinition(name, signature);
             }
         }
 

@@ -65,11 +65,11 @@ public class SymbolTable {
 
   /**
    * constructor takes <code>SymTabAST</code>
-   * @param root root of the <code>SymTabAST</code> tree
+   * @param aRoot root of the <code>SymTabAST</code> tree
    */
-  public SymbolTable(SymTabAST root) {
+  public SymbolTable(SymTabAST aRoot) {
     scopes = new Stack();
-    this.root = root;
+    this.root = aRoot;
 
     baseScope = new BaseScope( this );
     pushScope(baseScope);
