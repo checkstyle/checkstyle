@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 
 /**
  * Checks cyclomatic complexity against a specified limit. The complexity is
@@ -57,10 +56,7 @@ public class CyclomaticComplexityCheck
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_FOR,
             TokenTypes.LITERAL_IF,
-            TokenTypes.LITERAL_ELSE,
-            TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_CASE,
-            TokenTypes.LITERAL_TRY,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.QUESTION,
             TokenTypes.LAND,
@@ -71,9 +67,7 @@ public class CyclomaticComplexityCheck
     /** {@inheritDoc} */
     protected final void visitTokenHook(DetailAST aAST)
     {
-        if (!CheckUtils.isElseIf(aAST)) {
-            incrementCurrentValue(1);
-        }
+        incrementCurrentValue(1);
     }
 
     /** {@inheritDoc} */

@@ -20,6 +20,9 @@
           <li>Indentation check now works better with enums and
           for-each statements (bugs 1193850 and 1193855)</li>
 
+          <li>Corrected calculation of Cyclomatic complexity metric
+          (bug 1203536, module CyclomaticComplexity)</li>
+
       </ul>
 
       <p>Dependencies:</p>
