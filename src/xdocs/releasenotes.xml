@@ -23,6 +23,9 @@
           <li>Corrected calculation of Cyclomatic complexity metric
           (bug 1203536, module CyclomaticComplexity)</li>
 
+          <li>SuppressionCommentFilter now silently does nothing if
+          there is no FileContentsHolder (bug 1183749)</li>
+
       </ul>
 
       <p>Dependencies:</p>
