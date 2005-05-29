@@ -1784,6 +1784,8 @@ NUM_INT
       |   (DOT)=>DOT {$setType(DOT);}
       |   (DOUBLE_LITERAL)=>DOUBLE_LITERAL {$setType(NUM_DOUBLE);}
       |   (FLOAT_LITERAL)=>FLOAT_LITERAL {$setType(NUM_FLOAT);}
+      |   (HEX_DOUBLE_LITERAL)=>HEX_DOUBLE_LITERAL {$setType(NUM_DOUBLE);}
+      |   (HEX_FLOAT_LITERAL)=>HEX_FLOAT_LITERAL {$setType(NUM_FLOAT);}
       |   (LONG_LITERAL)=>LONG_LITERAL {$setType(NUM_LONG);}
       |   (INT_LITERAL)=>INT_LITERAL {$setType(NUM_INT);}
       ;
@@ -1834,6 +1836,32 @@ protected DOUBLE_LITERAL
         (EXPONENT)? ('d'|'D')
     ;
 
+protected HEX_FLOAT_LITERAL
+    :   '0' ('x'|'X')
+        (
+            ((HEX_DIGIT)* '.')=>
+            (   (HEX_DIGIT)+ '.' (HEX_DIGIT)*
+            |   '.' (HEX_DIGIT)+
+            )
+        |
+            (HEX_DIGIT)+
+        )
+        BINARY_EXPONENT ('f'|'F')?
+    ;
+
+protected HEX_DOUBLE_LITERAL
+    :   '0' ('x'|'X')
+        (
+            ((HEX_DIGIT)* '.')=>
+            (   (HEX_DIGIT)+ '.' (HEX_DIGIT)*
+            |   '.' (HEX_DIGIT)+
+            )
+        |
+            (HEX_DIGIT)+
+        )
+        BINARY_EXPONENT ('d'|'D')
+    ;
+
 protected ELLIPSIS
     :   ".."
     ;
@@ -1845,10 +1873,20 @@ protected DOT
 // a couple protected methods to assist in matching floating point numbers
 protected
 EXPONENT
-	:	('e'|'E') ('+'|'-')? ('0'..'9')+
+	:	('e'|'E') SIGNED_INTEGER
 	;
+
+protected
+SIGNED_INTEGER
+    :   ('+'|'-')? ('0'..'9')+
+    ;
 
 protected
 FLOAT_SUFFIX
 	:	'f'|'F'|'d'|'D'
 	;
+
+protected
+BINARY_EXPONENT
+    :   ('p'|'P') SIGNED_INTEGER
+    ;
