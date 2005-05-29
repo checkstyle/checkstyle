@@ -1470,11 +1470,11 @@ newArrayDeclarator
 
 constant
 	:	NUM_INT
+	|   NUM_LONG
+	|   NUM_FLOAT
+	|   NUM_DOUBLE
 	|	CHAR_LITERAL
 	|	STRING_LITERAL
-	|	NUM_FLOAT
-	|	NUM_LONG
-	|	NUM_DOUBLE
 	;
 
 
@@ -1777,66 +1777,70 @@ IDENT
         }
 	;
 
+//overriden definition of this lexer rule to recognize the ... token - for
+//variable argument length
+NUM_INT
+      :   (ELLIPSIS)=>ELLIPSIS {$setType(ELLIPSIS);}
+      |   (DOT)=>DOT {$setType(DOT);}
+      |   (DOUBLE_LITERAL)=>DOUBLE_LITERAL {$setType(NUM_DOUBLE);}
+      |   (FLOAT_LITERAL)=>FLOAT_LITERAL {$setType(NUM_FLOAT);}
+      |   (LONG_LITERAL)=>LONG_LITERAL {$setType(NUM_LONG);}
+      |   (INT_LITERAL)=>INT_LITERAL {$setType(NUM_INT);}
+      ;
 
-      //overriden definition of this lexer rule to recognize the ... token - for
-      //variable argument length
-      NUM_INT
-      	{boolean isDecimal=false; Token t=null;}
-          :   '.' {_ttype = DOT;}
-                  (
-                      (('0'..'9')+ (EXPONENT)? (f1:FLOAT_SUFFIX {t=f1;})?
-                      {
-      				if (t != null && t.getText().toUpperCase().indexOf('F')>=0) {
-                      	_ttype = NUM_FLOAT;
-      				}
-      				else {
-                      	_ttype = NUM_DOUBLE; // assume double
-      				}
-      				})
-      				|
-      				// JDK 1.5 token for variable length arguments
-      				(".." {_ttype = ELLIPSIS;})
-                  )?
+protected INT_LITERAL
+    :   (    '0'
+             (  ('x'|'X') (HEX_DIGIT)+
+             |  ('0'..'9')*
+             )
+        // non-zero decimal
+        |	('1'..'9') ('0'..'9')*
+        )
+    ;
 
-      	|	(	'0' {isDecimal = true;} // special case for just '0'
-      			(	('x'|'X')
-      				(											// hex
-      					// the 'e'|'E' and float suffix stuff look
-      					// like hex digits, hence the (...)+ doesn't
-      					// know when to stop: ambig.  ANTLR resolves
-      					// it correctly by matching immediately.  It
-      					// is therefor ok to hush warning.
-      					options {
-      						warnWhenFollowAmbig=false;
-      					}
-      				:	HEX_DIGIT
-      				)+
+protected LONG_LITERAL
+    :    (   '0'
+             (  ('x'|'X') (HEX_DIGIT)+
+             |  ('0'..'9')*
+             )
+         // non-zero decimal
+         |    ('1'..'9') ('0'..'9')*
+         )
+         // long signifier
+         ('l'|'L')
+    ;
 
-      			|	//float or double with leading zero
-      				(('0'..'9')+ ('.'|EXPONENT|FLOAT_SUFFIX)) => ('0'..'9')+
+protected FLOAT_LITERAL
+    :   (
+            (('0'..'9')* '.')=>
+            (   ('0'..'9')+ '.' ('0'..'9')*
+            |   '.' ('0'..'9')+
+            )
+            (EXPONENT)? ('f'|'F')?
+        |
+            ('0'..'9')+ ((EXPONENT ('f'|'F')?) | ('f'|'F'))
+        )
+    ;
 
-      			|	('0'..'7')+									// octal
-      			)?
-      		|	('1'..'9') ('0'..'9')*  {isDecimal=true;}		// non-zero decimal
-      		)
-      		(	('l'|'L') { _ttype = NUM_LONG; }
+protected DOUBLE_LITERAL
+    :   (
+            (('0'..'9')* '.')=>
+            (   ('0'..'9')+ '.' ('0'..'9')*
+            |   '.' ('0'..'9')+
+            )
+        |
+            ('0'..'9')+
+        )
+        (EXPONENT)? ('d'|'D')
+    ;
 
-      		// only check to see if it's a float if looks like decimal so far
-      		|	{isDecimal}?
-                  (   '.' ('0'..'9')* (EXPONENT)? (f2:FLOAT_SUFFIX {t=f2;})?
-                  |   EXPONENT (f3:FLOAT_SUFFIX {t=f3;})?
-                  |   f4:FLOAT_SUFFIX {t=f4;}
-                  )
-                  {
-      			if (t != null && t.getText().toUpperCase() .indexOf('F') >= 0) {
-                      _ttype = NUM_FLOAT;
-      			}
-                  else {
-      	           	_ttype = NUM_DOUBLE; // assume double
-      			}
-      			}
-              )?
-      	;
+protected ELLIPSIS
+    :   ".."
+    ;
+
+protected DOT
+    :   '.'
+    ;
 
 // a couple protected methods to assist in matching floating point numbers
 protected
