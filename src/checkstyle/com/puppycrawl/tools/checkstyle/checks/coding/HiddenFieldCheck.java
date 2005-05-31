@@ -128,53 +128,49 @@ public class HiddenFieldCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
+        if (aAST.getType() == TokenTypes.VARIABLE_DEF
+            || aAST.getType() == TokenTypes.PARAMETER_DEF)
+        {
+            processVariable(aAST);
+            return;
+        }
+
         //A more thorough check of enum constant class bodies is
         //possible (checking for hidden fields against the enum
         //class body in addition to enum constant class bodies)
         //but not attempted as it seems out of the scope of this
         //check.
-        if ((aAST.getType() == TokenTypes.CLASS_DEF)
-            || (aAST.getType() == TokenTypes.ENUM_DEF)
-            || (aAST.getType() == TokenTypes.ENUM_CONSTANT_DEF))
-        {
-            final DetailAST typeMods =
-                aAST.findFirstToken(TokenTypes.MODIFIERS);
-            final boolean isStaticInnerType =
-                (typeMods == null)
-                    ? false
-                    : typeMods.branchContains(TokenTypes.LITERAL_STATIC);
-            final FieldFrame frame =
-                new FieldFrame(mCurrentFrame, isStaticInnerType);
+        final DetailAST typeMods = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final boolean isStaticInnerType =
+            (typeMods == null)
+            ? false
+            : typeMods.branchContains(TokenTypes.LITERAL_STATIC);
+        final FieldFrame frame =
+            new FieldFrame(mCurrentFrame, isStaticInnerType);
 
-            //add fields to container
-            final DetailAST objBlock =
-                aAST.findFirstToken(TokenTypes.OBJBLOCK);
-            // enum constants may not have bodies
-            if (objBlock != null) {
-                DetailAST child = (DetailAST) objBlock.getFirstChild();
-                while (child != null) {
-                    if (child.getType() == TokenTypes.VARIABLE_DEF) {
-                        final String name =
-                            child.findFirstToken(TokenTypes.IDENT).getText();
-                        final DetailAST mods =
-                            child.findFirstToken(TokenTypes.MODIFIERS);
-                        if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
-                            frame.addStaticField(name);
-                        }
-                        else {
-                            frame.addInstanceField(name);
-                        }
+        //add fields to container
+        final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
+        // enum constants may not have bodies
+        if (objBlock != null) {
+            DetailAST child = (DetailAST) objBlock.getFirstChild();
+            while (child != null) {
+                if (child.getType() == TokenTypes.VARIABLE_DEF) {
+                    final String name =
+                        child.findFirstToken(TokenTypes.IDENT).getText();
+                    final DetailAST mods =
+                        child.findFirstToken(TokenTypes.MODIFIERS);
+                    if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
+                        frame.addStaticField(name);
                     }
-                    child = (DetailAST) child.getNextSibling();
+                    else {
+                        frame.addInstanceField(name);
+                    }
                 }
+                child = (DetailAST) child.getNextSibling();
             }
-            // push container
-            mCurrentFrame = frame;
         }
-        else {
-            //must be VARIABLE_DEF or PARAMETER_DEF
-            processVariable(aAST);
-        }
+        // push container
+        mCurrentFrame = frame;
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -197,24 +193,23 @@ public class HiddenFieldCheck
      */
     private void processVariable(DetailAST aAST)
     {
-        if (!ScopeUtils.inInterfaceOrAnnotationBlock(aAST)) {
-            if (ScopeUtils.isLocalVariableDef(aAST)
-                || (aAST.getType() == TokenTypes.PARAMETER_DEF))
-            {
-                //local variable or parameter. Does it shadow a field?
-                final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-                final String name = nameAST.getText();
-                if ((mCurrentFrame.containsStaticField(name)
-                     || (!inStatic(aAST)
-                         && mCurrentFrame.containsInstanceField(name)))
-                    && ((mRegexp == null)
-                        || (!getRegexp().matcher(name).find()))
-                    && !isIgnoredSetterParam(aAST, name)
-                    && !isIgnoredConstructorParam(aAST))
-                {
-                    log(nameAST, "hidden.field", name);
-                }
-            }
+        if (ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
+            || !ScopeUtils.isLocalVariableDef(aAST)
+            && (aAST.getType() != TokenTypes.PARAMETER_DEF))
+        {
+            // do nothing
+            return;
+        }
+        //local variable or parameter. Does it shadow a field?
+        final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
+        final String name = nameAST.getText();
+        if ((mCurrentFrame.containsStaticField(name)
+             || (!inStatic(aAST) && mCurrentFrame.containsInstanceField(name)))
+            && ((mRegexp == null) || (!getRegexp().matcher(name).find()))
+            && !isIgnoredSetterParam(aAST, name)
+            && !isIgnoredConstructorParam(aAST))
+        {
+            log(nameAST, "hidden.field", name);
         }
     }
 
@@ -291,7 +286,7 @@ public class HiddenFieldCheck
      */
     private boolean isIgnoredConstructorParam(DetailAST aAST)
     {
-        if (!(aAST.getType() == TokenTypes.PARAMETER_DEF)
+        if ((aAST.getType() != TokenTypes.PARAMETER_DEF)
             || !mIgnoreConstructorParameter)
         {
             return false;
