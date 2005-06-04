@@ -26,15 +26,18 @@ import java.io.IOException;
  * array element corresponds to one line of text.
  * <p>
  * <strong>Note: This class is not thread safe, concurrent reads might produce
- * unexpected results!</strong> Checkstyle only works with one thread so
+ * unexpected results! </strong> Checkstyle only works with one thread so
  * currently there is no need to introduce synchronization here.
  * </p>
- * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne</a>
+ * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne </a>
  */
 final class StringArrayReader extends Reader
 {
     /** the underlying String array */
     private final String[] mUnderlyingArray;
+
+    /** array containing the length of the strings. */
+    private final int[] mLenghtArray;
 
     /** the index of the currently read String */
     private int mArrayIdx;
@@ -50,7 +53,7 @@ final class StringArrayReader extends Reader
 
     /**
      * Creates a new StringArrayReader.
-     *
+     * 
      * @param aUnderlyingArray the underlying String array.
      */
     StringArrayReader(String[] aUnderlyingArray)
@@ -58,6 +61,13 @@ final class StringArrayReader extends Reader
         final int length = aUnderlyingArray.length;
         mUnderlyingArray = new String[length];
         System.arraycopy(aUnderlyingArray, 0, mUnderlyingArray, 0, length);
+
+		//additionally store the length of the strings
+		//for performance optimization
+        mLenghtArray = new int[length];
+        for (int i = 0; i < length; i++) {
+            mLenghtArray[i] = mUnderlyingArray[i].length();
+        }
     }
 
     /** @see Reader */
@@ -92,13 +102,14 @@ final class StringArrayReader extends Reader
 
             if ((retVal < aLen) && dataAvailable()) {
                 final String currentStr = mUnderlyingArray[mArrayIdx];
-                final int srcEnd = Math.min(currentStr.length(),
+                final int currentLenth = mLenghtArray[mArrayIdx];
+                final int srcEnd = Math.min(currentLenth,
                                             mStringIdx + aLen - retVal);
                 currentStr.getChars(mStringIdx, srcEnd, aCbuf, aOff + retVal);
                 retVal += srcEnd - mStringIdx;
                 mStringIdx = srcEnd;
 
-                if (mStringIdx >= currentStr.length()) {
+                if (mStringIdx >= currentLenth) {
                     mArrayIdx++;
                     mStringIdx = 0;
                     mUnreportedNewline = true;
@@ -117,7 +128,7 @@ final class StringArrayReader extends Reader
         }
 
         if ((mArrayIdx < mUnderlyingArray.length)
-            && (mStringIdx < mUnderlyingArray[mArrayIdx].length()))
+            && (mStringIdx < mLenghtArray[mArrayIdx]))
         {
             // this is the common case,
             // avoid char[] creation in super.read for performance
@@ -140,6 +151,4 @@ final class StringArrayReader extends Reader
             throw new IOException("already closed");
         }
     }
-
-
 }
