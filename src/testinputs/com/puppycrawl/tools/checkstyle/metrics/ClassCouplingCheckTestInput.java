@@ -21,4 +21,16 @@ public class ClassCouplingCheckTestInput {
 
     public void foo() throws NamingException {
     }
+
+}
+
+enum InnerEnum {
+    VALUE1;
+
+    private InnerEnum()
+    {
+        map2 = new HashMap();
+    }
+    private Set map1 = new HashSet();
+    private Map map2;
 }

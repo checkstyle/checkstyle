@@ -47,6 +47,7 @@ public final class ClassDataAbstractionCouplingCheck
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
             TokenTypes.LITERAL_NEW,
         };
     }
