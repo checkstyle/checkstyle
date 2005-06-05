@@ -254,8 +254,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     {
         return new int[] {
             TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
-            TokenTypes.CLASS_DEF, TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF, TokenTypes.ANNOTATION_FIELD_DEF, };
+            TokenTypes.CLASS_DEF, TokenTypes.ENUM_DEF,
+            TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF, };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -270,7 +271,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     public int[] getRequiredTokens()
     {
         return new int[] {
-            TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.CLASS_DEF, };
+            TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
+            TokenTypes.CLASS_DEF, TokenTypes.ENUM_DEF};
     }
 
     /**

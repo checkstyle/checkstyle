@@ -77,7 +77,9 @@ public abstract class AbstractTypeAwareCheck
         else if (aAST.getType() == TokenTypes.IMPORT) {
             processImport(aAST);
         }
-        else if (aAST.getType() == TokenTypes.CLASS_DEF) {
+        else if (aAST.getType() == TokenTypes.CLASS_DEF
+                 || aAST.getType() == TokenTypes.ENUM_DEF)
+        {
             processClass(aAST);
         }
         else {
