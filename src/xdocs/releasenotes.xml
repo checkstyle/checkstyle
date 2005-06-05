@@ -26,6 +26,16 @@
           <li>SuppressionCommentFilter now silently does nothing if
           there is no FileContentsHolder (bug 1183749)</li>
 
+          <li>Java Parser now understands Java 5 hex float syntax
+          (bug 1195818)</li>
+      </ul>
+
+      <p>Other improvements:</p>
+
+      <ul>
+          <li>Improved performance of reading Java files
+          (patch 1214386, contributed by Lars Koedderitzsch)</li>
+
       </ul>
 
       <p>Dependencies:</p>
@@ -40,6 +50,7 @@
           users, but please check your configuration.</li>
 
       </ul>
+
     </section>
 
     <section name="Release 4.0 Beta 2">
