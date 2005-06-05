@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 
 /**
  * Checks the Javadoc of a method or constructor.
@@ -355,7 +356,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 hasInheritDocTag |= ((JavadocTag) it.next()).isInheritDocTag();
             }
 
-            checkParamTags(tags, getParameters(aAST), !hasInheritDocTag);
+            checkParamTags(tags, aAST, !hasInheritDocTag);
             checkThrowsTags(tags, getThrows(aAST), !hasInheritDocTag);
             if (isFunction(aAST)) {
                 checkReturnTag(tags, aAST.getLineNo(), !hasInheritDocTag);
@@ -512,13 +513,16 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      * Checks a set of tags for matching parameters.
      *
      * @param aTags the tags to check
-     * @param aParams the list of parameters to check
+     * @param aParent the node which takes the parameters
      * @param aReportExpectedTags whether we should report if do not find
      *            expected tag
      */
-    private void checkParamTags(List aTags, List aParams,
+    private void checkParamTags(final List aTags, final DetailAST aParent,
                                 boolean aReportExpectedTags)
     {
+        List params = getParameters(aParent);
+        List typeParams = CheckUtils.getTypeParameters(aParent);
+
         // Loop over the tags, checking to see they exist in the params.
         final ListIterator tagIt = aTags.listIterator();
         while (tagIt.hasNext()) {
@@ -530,9 +534,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
             tagIt.remove();
 
-            // Loop looking for matching param
             boolean found = false;
-            final Iterator paramIt = aParams.iterator();
+
+            // Loop looking for matching param
+            final Iterator paramIt = params.iterator();
             while (paramIt.hasNext()) {
                 final DetailAST param = (DetailAST) paramIt.next();
                 if (param.getText().equals(tag.getArg1())) {
@@ -542,6 +547,23 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 }
             }
 
+            if (tag.getArg1().startsWith("<") && tag.getArg1().endsWith(">")) {
+                // Loop looking for matching type param
+                Iterator typeParamsIt = typeParams.iterator();
+                while (typeParamsIt.hasNext()) {
+                    final DetailAST typeParam = (DetailAST) typeParamsIt.next();
+                    if (typeParam.findFirstToken(TokenTypes.IDENT).getText()
+                        .equals(tag.getArg1().substring(
+                            1, tag.getArg1().length() - 1)))
+                    {
+                        found = true;
+                        typeParamsIt.remove();
+                        break;
+                    }
+                }
+
+            }
+
             // Handle extra JavadocTag
             if (!found) {
                 log(tag.getLineNo(), "javadoc.unusedTag", "@param", tag
@@ -549,13 +571,22 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             }
         }
 
-        // Now dump out all parameters without tags :- unless
+        // Now dump out all type parameters/parameters without tags :- unless
         // the user has chosen to suppress these problems
         if (!mAllowMissingParamTags && aReportExpectedTags) {
-            final Iterator paramIt = aParams.iterator();
+            final Iterator paramIt = params.iterator();
             while (paramIt.hasNext()) {
                 final DetailAST param = (DetailAST) paramIt.next();
                 log(param, "javadoc.expectedTag", "@param", param.getText());
+            }
+
+            final Iterator typeParamsIt = typeParams.iterator();
+            while (typeParamsIt.hasNext()) {
+                final DetailAST typeParam = (DetailAST) typeParamsIt.next();
+                log(typeParam, "javadoc.expectedTag", "@param",
+                    "<"
+                    + typeParam.findFirstToken(TokenTypes.IDENT).getText()
+                    + ">");
             }
         }
     }

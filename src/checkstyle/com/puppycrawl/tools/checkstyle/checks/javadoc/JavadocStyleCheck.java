@@ -303,6 +303,7 @@ public class JavadocStyleCheck
      * tag or a close tage that has no previous open tag.  This code was
      * primarily copied from the DocCheck checkHtml method.
      *
+     * @param aAST the node with the Javadoc
      * @param aComment the <code>TextBlock</code> which represents
      *                 the Javadoc comment.
      */

@@ -53,7 +53,7 @@ final class StringArrayReader extends Reader
 
     /**
      * Creates a new StringArrayReader.
-     * 
+     *
      * @param aUnderlyingArray the underlying String array.
      */
     StringArrayReader(String[] aUnderlyingArray)
@@ -62,8 +62,8 @@ final class StringArrayReader extends Reader
         mUnderlyingArray = new String[length];
         System.arraycopy(aUnderlyingArray, 0, mUnderlyingArray, 0, length);
 
-		//additionally store the length of the strings
-		//for performance optimization
+        //additionally store the length of the strings
+        //for performance optimization
         mLenghtArray = new int[length];
         for (int i = 0; i < length; i++) {
             mLenghtArray[i] = mUnderlyingArray[i].length();

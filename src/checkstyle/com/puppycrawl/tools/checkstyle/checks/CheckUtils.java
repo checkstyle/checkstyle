@@ -286,16 +286,44 @@ public final class CheckUtils
             typeParamNames.add(
                 typeParam.findFirstToken(TokenTypes.IDENT).getText());
 
-            DetailAST sibling = (DetailAST)typeParam.getNextSibling();
+            DetailAST sibling = (DetailAST) typeParam.getNextSibling();
             while (sibling != null) {
                 if (sibling.getType() == TokenTypes.TYPE_PARAMETER) {
                     typeParamNames.add(
                         sibling.findFirstToken(TokenTypes.IDENT).getText());
                 }
-                sibling = (DetailAST)sibling.getNextSibling();
+                sibling = (DetailAST) sibling.getNextSibling();
             }
         }
 
         return typeParamNames;
+    }
+
+    /**
+     * Retrieves the type parameters to the node.
+     * @param aNode the parameterised AST node
+     * @return a list of type parameter names
+     */
+    public static List getTypeParameters(final DetailAST aNode)
+    {
+        DetailAST typeParameters =
+            aNode.findFirstToken(TokenTypes.TYPE_PARAMETERS);
+
+        List typeParams = new ArrayList();
+        if (typeParameters != null) {
+            DetailAST typeParam =
+                typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);
+            typeParams.add(typeParam);
+
+            DetailAST sibling = (DetailAST) typeParam.getNextSibling();
+            while (sibling != null) {
+                if (sibling.getType() == TokenTypes.TYPE_PARAMETER) {
+                    typeParams.add(sibling);
+                }
+                sibling = (DetailAST) sibling.getNextSibling();
+            }
+        }
+
+        return typeParams;
     }
 }

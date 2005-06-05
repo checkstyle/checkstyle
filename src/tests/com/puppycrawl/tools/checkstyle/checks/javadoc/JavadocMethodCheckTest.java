@@ -347,4 +347,14 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("javadoc" + File.separator
                                     + "InputSetterGetter.java"), expected);
     }
+
+    public void testTypeParamsTags() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        final String[] expected = {
+            "26: Unused @param tag for '<BB>'.",
+            "28:13: Expected @param tag for '<Z>'.", };
+        verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
+    }
 }

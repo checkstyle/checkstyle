@@ -26,9 +26,12 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 import org.apache.commons.beanutils.ConversionException;
 
 import java.util.Vector;
+import java.util.List;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -55,6 +58,11 @@ public class JavadocTypeCheck
     private String mAuthorFormat;
     /** regexp to match version tag content */
     private String mVersionFormat;
+    /**
+     * controls whether to ignore errors when a method has type parameters but
+     * does not have matching param tags in the javadoc. Defaults to false.
+     */
+    private boolean mAllowMissingParamTags;
 
     /**
      * Sets the scope to check.
@@ -109,6 +117,17 @@ public class JavadocTypeCheck
 
     }
 
+    /**
+     * Controls whether to allow a type which has type parameters to
+     * omit matching param tags in the javadoc. Defaults to false.
+     *
+     * @param aFlag a <code>Boolean</code> value
+     */
+    public void setAllowMissingParamTags(boolean aFlag)
+    {
+        mAllowMissingParamTags = aFlag;
+    }
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -137,6 +156,18 @@ public class JavadocTypeCheck
                          mAuthorFormatPattern, mAuthorFormat);
                 checkTag(lineNo, tags, "version",
                          mVersionFormatPattern, mVersionFormat);
+
+                List typeParamNames = CheckUtils.getTypeParameterNames(aAST);
+                if (!mAllowMissingParamTags) {
+                    //Check type parameters that should exist, do
+                    for (Iterator typeParamNameIt = typeParamNames.iterator();
+                         typeParamNameIt.hasNext();) {
+                        checkTypeParamTag(
+                            lineNo, tags, (String) typeParamNameIt.next());
+                    }
+                }
+
+                checkUnusedTypeParamTags(tags, typeParamNames);
             }
         }
     }
@@ -221,4 +252,65 @@ public class JavadocTypeCheck
         }
     }
 
+    /**
+     * Verifies that a type definition has the specified param tag for
+     * the specified type parameter name.
+     * @param aLineNo the line number for the type definition.
+     * @param aTags tags from the Javadoc comment for the type definition.
+     * @param aTypeParamName the name of the type parameter
+     */
+    private void checkTypeParamTag(
+        final int aLineNo, final Vector aTags, final String aTypeParamName)
+    {
+        boolean found = false;
+        for (int i = aTags.size() - 1; i >= 0; i--) {
+            final JavadocTag tag = (JavadocTag) aTags.get(i);
+            if (tag.getTag().equals("param")
+                && tag.getArg1() != null
+                && tag.getArg1().indexOf("<" + aTypeParamName + ">") == 0)
+            {
+                found = true;
+            }
+        }
+        if (!found) {
+            log(aLineNo, "type.missingTag", "@param <" + aTypeParamName + ">");
+        }
+    }
+
+    /**
+     * Checks for unused param tags for type parameters.
+     * @param aTags tags from the Javadoc comment for the type definition.
+     * @param aTypeParamNames names of type parameters
+     */
+    private void checkUnusedTypeParamTags(
+        final Vector aTags,
+        final List aTypeParamNames)
+    {
+        Pattern pattern = Utils.getPattern("\\s*<([^>])+>.*");
+        for (int i = aTags.size() - 1; i >= 0; i--) {
+            final JavadocTag tag = (JavadocTag) aTags.get(i);
+            if (tag.getTag().equals("param")) {
+
+                if (tag.getArg1() != null) {
+
+                    Matcher matcher = pattern.matcher(tag.getArg1());
+                    String typeParamName = null;
+
+                    if (matcher.matches()) {
+                        typeParamName = matcher.group(1).trim();
+                        if (!aTypeParamNames.contains(typeParamName)) {
+                            log(tag.getLineNo(), "javadoc.unusedTag",
+                                "@param", "<" + typeParamName + ">");
+                        }
+                    }
+                    else {
+                        log(tag.getLineNo(), "javadoc.unusedTagGeneral");
+                    }
+                }
+                else {
+                    log(tag.getLineNo(), "javadoc.unusedTagGeneral");
+                }
+            }
+        }
+    }
 }

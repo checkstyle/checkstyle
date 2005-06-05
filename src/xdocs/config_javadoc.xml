@@ -75,7 +75,11 @@
           <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">
             regular expression</a>.
         </p>
-
+        <p>
+          Error messages about type parameters for which no param tags are
+          present can be suppressed by defining property
+          <code>allowMissingParamTags</code>.
+        </p>
       </subsection>
 
       <subsection name="Properties">
@@ -110,6 +114,13 @@
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><span class="default">null</span> (tag not required)</td>
           </tr>
+            <tr>
+              <td>allowMissingParamTags</td>
+              <td>whether to ignore errors when a class has type parameters
+              but does not have matching param tags in the javadoc.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><span class="default">false</span></td>
+            </tr>
           <tr>
             <td>tokens</td>
             <td>definitions to check</td>
@@ -203,7 +214,8 @@
         </p>
 
         <p>
-          Error messages about parameters for which no param tags are
+          Error messages about parameters and type parameters
+          for which no param tags are
           present can be suppressed by defining property
           <code>allowMissingParamTags</code>. Error messages about
           exceptions which are declared to be thrown, but for which no
