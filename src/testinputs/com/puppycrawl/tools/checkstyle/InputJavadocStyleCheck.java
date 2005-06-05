@@ -245,4 +245,31 @@ public class InputJavadocStyleCheck
          */
         value2,
     }
+
+    /**
+    * A test class.
+    * @param <T> this is NOT an unclosed T tag
+    * @author <a href="mailto:foo@nomail.com">Foo Bar</a>
+    */
+    public class Test<T>
+    {
+        /**
+        * Retrieves X.
+        * @return a value
+        */
+        public T getX()
+        {
+            return null;
+        }
+
+        /**
+        * Retrieves Y.
+        * @param <V> this is not an unclosed V tag
+        * @return a value
+        */
+        public <V> V getY()
+        {
+            return null;
+        }
+    }
 }

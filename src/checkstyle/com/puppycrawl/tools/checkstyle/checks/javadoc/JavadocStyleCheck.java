@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Stack;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -29,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 
 /**
  * Custom Checkstyle Check to validate Javadoc.
@@ -105,7 +107,7 @@ public class JavadocStyleCheck
             final TextBlock cmt =
                 contents.getJavadocBefore(aAST.getLineNo());
 
-            checkComment(cmt);
+            checkComment(aAST, cmt);
         }
     }
 
@@ -145,12 +147,13 @@ public class JavadocStyleCheck
     /**
      * Performs the various checks agains the Javadoc comment.
      *
+     * @param aAST the AST of the element being documented
      * @param aComment the source lines that make up the Javadoc comment.
      *
      * @see #checkFirstSentence(TextBlock)
-     * @see #checkHtml(TextBlock)
+     * @see #checkHtml(DetailAST, TextBlock)
      */
-    private void checkComment(TextBlock aComment)
+    private void checkComment(final DetailAST aAST, final TextBlock aComment)
     {
         if (aComment == null) {
             return;
@@ -161,7 +164,7 @@ public class JavadocStyleCheck
         }
 
         if (mCheckHtml) {
-            checkHtml(aComment);
+            checkHtml(aAST, aComment);
         }
 
         if (mCheckEmptyJavadoc) {
@@ -303,11 +306,13 @@ public class JavadocStyleCheck
      * @param aComment the <code>TextBlock</code> which represents
      *                 the Javadoc comment.
      */
-    private void checkHtml(TextBlock aComment)
+    private void checkHtml(final DetailAST aAST, final TextBlock aComment)
     {
         final int lineno = aComment.getStartLineNo();
         final Stack htmlStack = new Stack();
         final String[] text = aComment.getText();
+        final List typeParameters =
+            CheckUtils.getTypeParameterNames(aAST);
 
         TagParser parser = null;
         parser = new TagParser(text, lineno);
@@ -348,7 +353,10 @@ public class JavadocStyleCheck
         String lastFound = ""; // Skip multiples, like <b>...<b>
         for (int i = 0; i < htmlStack.size(); i++) {
             final HtmlTag htag = (HtmlTag) htmlStack.elementAt(i);
-            if (!isSingleTag(htag) && !htag.getId().equals(lastFound)) {
+            if (!isSingleTag(htag)
+                && !htag.getId().equals(lastFound)
+                && !typeParameters.contains(htag.getId()))
+            {
                 log(htag.getLineno(), htag.getPosition(), UNCLOSED_HTML, htag);
                 lastFound = htag.getId();
             }

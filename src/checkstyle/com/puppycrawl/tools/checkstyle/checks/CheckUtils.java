@@ -22,6 +22,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Contains utility methods for the checks.
  *
@@ -69,21 +72,6 @@ public final class CheckUtils
         final DetailAST paramsNode = aAST.findFirstToken(TokenTypes.PARAMETERS);
         return (paramsNode.getChildCount() == 1);
     }
-
-//    public static boolean isFinal(DetailAST detailAST) {
-//        DetailAST modifiersAST =
-    //detailAST.findFirstToken(TokenTypes.MODIFIERS);
-//
-//        return modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
-//    }
-//
-//    public static boolean isInObjBlock(DetailAST detailAST) {
-//        return detailAST.getParent().getType() == TokenTypes.OBJBLOCK;
-//    }
-//
-//    public static String getIdentText(DetailAST detailAST) {
-//        return detailAST.findFirstToken(TokenTypes.IDENT).getText();
-//    }
 
     /**
      * Returns whether a token represents an ELSE as part of an ELSE / IF set.
@@ -279,5 +267,35 @@ public final class CheckUtils
         }
 
         return currentNode;
+    }
+
+    /**
+     * Retrieves the names of the type parameters to the node.
+     * @param aNode the parameterised AST node
+     * @return a list of type parameter names
+     */
+    public static List getTypeParameterNames(final DetailAST aNode)
+    {
+        DetailAST typeParameters =
+            aNode.findFirstToken(TokenTypes.TYPE_PARAMETERS);
+
+        List typeParamNames = new ArrayList();
+        if (typeParameters != null) {
+            DetailAST typeParam =
+                typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);
+            typeParamNames.add(
+                typeParam.findFirstToken(TokenTypes.IDENT).getText());
+
+            DetailAST sibling = (DetailAST)typeParam.getNextSibling();
+            while (sibling != null) {
+                if (sibling.getType() == TokenTypes.TYPE_PARAMETER) {
+                    typeParamNames.add(
+                        sibling.findFirstToken(TokenTypes.IDENT).getText());
+                }
+                sibling = (DetailAST)sibling.getNextSibling();
+            }
+        }
+
+        return typeParamNames;
     }
 }
