@@ -146,6 +146,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         checkConfig.addAttribute("authorFormat", "0*");
         final String[] expected = {
             "22: Type Javadoc comment is missing an @author tag.",
+            "58: Type Javadoc comment is missing an @author tag.",
+            "94: Type Javadoc comment is missing an @author tag.",
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
@@ -160,6 +162,12 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
             "13: Type Javadoc tag @author must match pattern 'ABC'.",
             "22: Type Javadoc comment is missing an @author tag.",
             "31: Type Javadoc tag @author must match pattern 'ABC'.",
+            "49: Type Javadoc tag @author must match pattern 'ABC'.",
+            "58: Type Javadoc comment is missing an @author tag.",
+            "67: Type Javadoc tag @author must match pattern 'ABC'.",
+            "85: Type Javadoc tag @author must match pattern 'ABC'.",
+            "94: Type Javadoc comment is missing an @author tag.",
+            "103: Type Javadoc tag @author must match pattern 'ABC'.",
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
@@ -184,6 +192,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         checkConfig.addAttribute("versionFormat", "^\\p{Digit}+\\.\\p{Digit}+$");
         final String[] expected = {
             "22: Type Javadoc comment is missing an @version tag.",
+            "58: Type Javadoc comment is missing an @version tag.",
+            "94: Type Javadoc comment is missing an @version tag.",
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
@@ -199,6 +209,14 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
             "22: Type Javadoc comment is missing an @version tag.",
             "31: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
             "40: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
+            "49: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
+            "58: Type Javadoc comment is missing an @version tag.",
+            "67: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
+            "76: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
+            "85: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
+            "94: Type Javadoc comment is missing an @version tag.",
+            "103: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
+            "112: Type Javadoc tag @version must match pattern '\\$Revision.*\\$'.",
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
