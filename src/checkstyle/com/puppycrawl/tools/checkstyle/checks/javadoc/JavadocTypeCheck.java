@@ -161,7 +161,8 @@ public class JavadocTypeCheck
                 if (!mAllowMissingParamTags) {
                     //Check type parameters that should exist, do
                     for (Iterator typeParamNameIt = typeParamNames.iterator();
-                         typeParamNameIt.hasNext();) {
+                         typeParamNameIt.hasNext();)
+                    {
                         checkTypeParamTag(
                             lineNo, tags, (String) typeParamNameIt.next());
                     }
