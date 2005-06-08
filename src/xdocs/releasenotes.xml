@@ -10,6 +10,14 @@
 
   <body>
 
+    <section name="Release 4.0 Beta 4">
+      <p>Fixed Bugs:</p>
+
+      <ul>
+        <li>Fix critical bug in the grammar (bug 1216844)</li>
+      </ul>
+    </section>
+
     <section name="Release 4.0 Beta 3">
       <p>Fixed Bugs:</p>
 
@@ -44,7 +52,7 @@
           <li>Since Checkstyle now requires Java 1.4, it does not need
           Jakarta Regexp library any more and uses java.util.regex
           package from J2SE instead. The regular expression specifications
-          of these libraries use a slightly different syntax in some 
+          of these libraries use a slightly different syntax in some
           corner cases, e.g. for posix character classes. We expect that
           these differences are not relevant for the majority of checkstyle
           users, but please check your configuration.</li>

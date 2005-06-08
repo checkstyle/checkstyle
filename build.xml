@@ -30,7 +30,7 @@
   <property name="xdocs.src" value="src/xdocs"/>
   <property name="xdocs.dest" value="target/docs"/>
   <property name="checkstyle.minimum.javaversion" value="1.4" />
-  <property name="version" value="4.0-beta3" />
+  <property name="version" value="4.0-beta4" />
 
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
