@@ -1863,7 +1863,7 @@ protected HEX_DOUBLE_LITERAL
     ;
 
 protected ELLIPSIS
-    :   ".."
+    :   "..."
     ;
 
 protected DOT
