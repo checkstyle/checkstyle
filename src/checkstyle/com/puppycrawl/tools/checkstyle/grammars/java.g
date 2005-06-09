@@ -1487,7 +1487,7 @@ options {
 	exportVocab=GeneratedJava; // call the vocabulary "Java"
 	testLiterals=false;        // don't automatically test for literals
 	k=4;                       // four characters of lookahead
-	charVocabulary='\u0003'..'\uFFFE';
+	charVocabulary='\u0000'..'\uFFFE';
 	// without inlining some bitset tests, couldn't do unicode;
 	// I need to make ANTLR generate smaller bitsets; see
 	// bottom of JavaLexer.java

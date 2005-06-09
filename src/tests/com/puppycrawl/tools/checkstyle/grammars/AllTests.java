@@ -17,6 +17,7 @@ public class AllTests {
         suite.addTest(new TestSuite(GeneratedJava14LexerTest.class));
         suite.addTest(new TestSuite(Post13KeywordsAsIdentifiersOKTest.class));
         suite.addTest(new TestSuite(HexFloatsTest.class));
+        suite.addTest(new TestSuite(EmbeddedNullCharTest.class));
         //$JUnit-END$
         return suite;
     }
