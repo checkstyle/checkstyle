@@ -18,6 +18,7 @@ public class AllTests {
         suite.addTest(new TestSuite(Post13KeywordsAsIdentifiersOKTest.class));
         suite.addTest(new TestSuite(HexFloatsTest.class));
         suite.addTest(new TestSuite(EmbeddedNullCharTest.class));
+        suite.addTest(new TestSuite(VarargTest.class));
         //$JUnit-END$
         return suite;
     }
