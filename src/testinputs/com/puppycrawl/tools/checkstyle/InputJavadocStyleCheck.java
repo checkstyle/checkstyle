@@ -251,7 +251,7 @@ public class InputJavadocStyleCheck
     * @param <T> this is NOT an unclosed T tag
     * @author <a href="mailto:foo@nomail.com">Foo Bar</a>
     */
-    public class Test<T>
+    public class TestClass<T>
     {
         /**
         * Retrieves X.

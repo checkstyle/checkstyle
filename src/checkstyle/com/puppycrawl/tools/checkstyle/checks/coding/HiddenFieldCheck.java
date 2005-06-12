@@ -88,6 +88,9 @@ public class HiddenFieldCheck
     /** controls whether to check the parameter of a constructor */
     private boolean mIgnoreConstructorParameter;
 
+    /** controls whether to check the parameter of abstract methods. */
+    private boolean mIgnoreAbstractMethods;
+
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
@@ -207,7 +210,8 @@ public class HiddenFieldCheck
              || (!inStatic(aAST) && mCurrentFrame.containsInstanceField(name)))
             && ((mRegexp == null) || (!getRegexp().matcher(name).find()))
             && !isIgnoredSetterParam(aAST, name)
-            && !isIgnoredConstructorParam(aAST))
+            && !isIgnoredConstructorParam(aAST)
+            && !isIgnoredParamOfAbstractMethod(aAST))
         {
             log(nameAST, "hidden.field", name);
         }
@@ -297,6 +301,29 @@ public class HiddenFieldCheck
     }
 
     /**
+     * Decides whether to ignore an AST node that is the parameter of an
+     * abstract method.
+     * @param aAST the AST to check.
+     * @return true if aAST should be ignored because check property
+     * ignoreAbstactMethods is true and aAST is a parameter of abstract
+     * methods.
+     */
+    private boolean isIgnoredParamOfAbstractMethod(DetailAST aAST)
+    {
+        if (aAST.getType() != TokenTypes.PARAMETER_DEF
+            || !mIgnoreAbstractMethods)
+        {
+            return false;
+        }
+        final DetailAST method = aAST.getParent().getParent();
+        if (method.getType() != TokenTypes.METHOD_DEF) {
+            return false;
+        }
+        final DetailAST mods = method.findFirstToken(TokenTypes.MODIFIERS);
+        return (mods != null && mods.branchContains(TokenTypes.ABSTRACT));
+    }
+
+    /**
      * Set the ignore format to the specified regular expression.
      * @param aFormat a <code>String</code> value
      * @throws ConversionException unable to parse aFormat
@@ -331,6 +358,17 @@ public class HiddenFieldCheck
         boolean aIgnoreConstructorParameter)
     {
         mIgnoreConstructorParameter = aIgnoreConstructorParameter;
+    }
+
+    /**
+     * Set whether to ignore parameters of abstract methods.
+     * @param aIgnoreAbstractMethods decide whether to ignore
+     * parameters of abstract methods.
+     */
+    public void setIgnoreAbstractMethods(
+        boolean aIgnoreAbstractMethods)
+    {
+        mIgnoreAbstractMethods = aIgnoreAbstractMethods;
     }
 
     /** @return the regexp to match against */

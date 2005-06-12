@@ -10,6 +10,17 @@
 
   <body>
 
+    <section name="Release 4.0 Beta 5">
+      <p>Fixed Bugs:</p>
+
+      <ul>
+        <li>HiddenField can be configured to ignore parameters of
+        abstract methods (property ignoreAbstractMethods, bug
+        1084512)</li>
+
+      </ul>
+    </section>
+
     <section name="Release 4.0 Beta 4">
       <p>Fixed Bugs:</p>
 

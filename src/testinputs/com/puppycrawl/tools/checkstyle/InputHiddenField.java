@@ -224,8 +224,8 @@ enum HiddenEnum
     }
 }
 
-// perhaps we should ignore this
-// abstract class InputHiddenFieldBug1084512 {
-//     String x;
-//     public abstract void methodA(String x);
-// }
+// we should ignore this if user wants (ignoreAbstractMethods is true)
+abstract class InputHiddenFieldBug1084512 {
+    String x;
+    public abstract void methodA(String x);
+}

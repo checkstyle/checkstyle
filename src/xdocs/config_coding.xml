@@ -389,6 +389,7 @@ public class MySingleton
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>
+
           <tr>
             <td>ignoreSetter</td>
             <td>
@@ -400,6 +401,14 @@ public class MySingleton
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>
+
+          <tr>
+            <td>ignoreAbstractMethods</td>
+            <td>Controls whether to ignore parameters of abstract methods.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+
         </table>
       </subsection>
 

@@ -109,6 +109,6 @@ enum InputJavadocEnum2
 * @author ABC
 * @version 1.1
 */
-@interface InputJavadocInterfaceType
+@interface InputJavadocInterfaceType1
 {
 }

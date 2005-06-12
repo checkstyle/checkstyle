@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle;
  * @author Nobody
  * @version 1.0
  */
-public class InputTypeArgTags<A,B,C extends Comparable>
+public class InputTypeParamsTags<A,B,C extends Comparable>
 {
     /**
      * Some explanation.
