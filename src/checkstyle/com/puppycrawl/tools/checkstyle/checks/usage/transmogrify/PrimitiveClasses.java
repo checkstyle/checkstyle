@@ -33,14 +33,14 @@ import java.util.List;
 
 public class PrimitiveClasses {
 
-  public static ExternalClass BOOLEAN = new ExternalClass(Boolean.TYPE);
-  public static ExternalClass CHAR = new ExternalClass(Character.TYPE);
-  public static ExternalClass BYTE = new ExternalClass(Byte.TYPE);
-  public static ExternalClass SHORT = new ExternalClass(Short.TYPE);
-  public static ExternalClass INT = new ExternalClass(Integer.TYPE);
-  public static ExternalClass LONG = new ExternalClass(Long.TYPE);
-  public static ExternalClass FLOAT = new ExternalClass(Float.TYPE);
-  public static ExternalClass DOUBLE = new ExternalClass(Double.TYPE);
+  public static final ExternalClass BOOLEAN = new ExternalClass(Boolean.TYPE);
+  public static final ExternalClass CHAR = new ExternalClass(Character.TYPE);
+  public static final ExternalClass BYTE = new ExternalClass(Byte.TYPE);
+  public static final ExternalClass SHORT = new ExternalClass(Short.TYPE);
+  public static final ExternalClass INT = new ExternalClass(Integer.TYPE);
+  public static final ExternalClass LONG = new ExternalClass(Long.TYPE);
+  public static final ExternalClass FLOAT = new ExternalClass(Float.TYPE);
+  public static final ExternalClass DOUBLE = new ExternalClass(Double.TYPE);
 
   private static List order;
 

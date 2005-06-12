@@ -18,6 +18,8 @@
         abstract methods (property ignoreAbstractMethods, bug
         1084512)</li>
 
+        <li>Applied patch 1079192 (thanks to Dave Brosius)</li>
+
       </ul>
     </section>
 
