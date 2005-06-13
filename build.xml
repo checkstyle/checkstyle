@@ -61,6 +61,7 @@
 
   <path id="tests.runpath">
     <pathelement location="target/tests" />
+    <pathelement location="target/testinputs" />
     <pathelement path="${clover.lib}/clover.jar"/>
     <pathelement path="${xerces.jar}"/>
     <pathelement path="${xml-apis.jar}"/>
