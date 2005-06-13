@@ -90,7 +90,9 @@ public abstract class AbstractTypeAwareCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public final void leaveToken(DetailAST aAST)
     {
-        if (aAST.getType() == TokenTypes.CLASS_DEF) {
+        if (aAST.getType() == TokenTypes.CLASS_DEF
+            || aAST.getType() == TokenTypes.ENUM_DEF)
+        {
             // perhaps it was inner class
             int dotIdx = mCurrentClass.lastIndexOf("$");
             if (dotIdx == -1) {
@@ -105,6 +107,21 @@ public abstract class AbstractTypeAwareCheck
                 mCurrentClass = mCurrentClass.substring(0, dotIdx);
             }
         }
+        else if (aAST.getType() != TokenTypes.PACKAGE_DEF
+                 && aAST.getType() != TokenTypes.IMPORT)
+        {
+            leaveAST(aAST);
+        }
+    }
+
+    /**
+     * Called when exiting an AST. A no-op by default, extending classes
+     * may choose to override this to augment their processing.
+     * @param aAST the AST we are departing. Guaranteed to not be PACKAGE_DEF,
+     *             CLASS_DEF, or IMPORT
+     */
+    protected void leaveAST(DetailAST aAST)
+    {
     }
 
     /**

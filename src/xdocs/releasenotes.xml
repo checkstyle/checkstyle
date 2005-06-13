@@ -23,6 +23,8 @@
         <li>One more bug fixed in type aware checks (RedundantThrows
         and JavadocMethod checks) (bug 1168408)</li>
 
+        <li>Applied patch 1045127 (thanks to Paul Constantinides)</li>
+
       </ul>
     </section>
 
