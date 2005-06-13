@@ -42,8 +42,7 @@ import java.util.List;
  * </pre>
  * @author o_sukhodolsky
  */
-public class RedundantThrowsCheck
-    extends AbstractTypeAwareCheck
+public class RedundantThrowsCheck extends AbstractTypeAwareCheck
 {
     /**
      * whether unchecked exceptions in throws

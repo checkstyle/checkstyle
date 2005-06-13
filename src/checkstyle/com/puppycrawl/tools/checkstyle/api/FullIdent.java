@@ -141,4 +141,11 @@ public final class FullIdent
             aFull.append(aAST);
         }
     }
+
+    /** {@inheritDoc} */
+    public String toString()
+    {
+        return getText() + "[" + getLineNo() + "x" + getColumnNo() + "]";
+    }
+
 }

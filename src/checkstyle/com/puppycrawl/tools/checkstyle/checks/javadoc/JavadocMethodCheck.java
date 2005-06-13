@@ -737,8 +737,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      */
     private Class loadClassForTag(JavadocTag aTag)
     {
-        final String currentClassName = "";
-        Class clazz = resolveClass(aTag.getArg1(), currentClassName);
+        Class clazz = resolveClass(aTag.getArg1(), getCurrentClassName());
         if (clazz == null) {
             log(aTag.getLineNo(), "javadoc.classInfo", "@throws", aTag
                 .getArg1());

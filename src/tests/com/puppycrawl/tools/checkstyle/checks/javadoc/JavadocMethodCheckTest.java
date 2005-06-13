@@ -353,4 +353,30 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "28:13: Expected @param tag for '<Z>'.", };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }
+
+    public void test_1168408_1() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("javadoc/Test1.java"), expected);
+    }
+
+    public void test_1168408_2() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("javadoc/Test2.java"), expected);
+    }
+
+    public void test_1168408_3() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
+        checkConfig.addAttribute("allowUndeclaredRTE", "true");
+        final String[] expected = {};
+        verify(checkConfig, getPath("javadoc/Test3.java"), expected);
+    }
 }

@@ -91,8 +91,14 @@ public abstract class AbstractTypeAwareCheck
     public final void leaveToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.CLASS_DEF) {
-            int dotIdx = mCurrentClass.lastIndexOf(".");
+            // perhaps it was inner class
+            int dotIdx = mCurrentClass.lastIndexOf("$");
             if (dotIdx == -1) {
+                // perhaps just a class
+                dotIdx = mCurrentClass.lastIndexOf(".");
+            }
+            if (dotIdx == -1) {
+                // looks like a topmost class
                 mCurrentClass = "";
             }
             else {

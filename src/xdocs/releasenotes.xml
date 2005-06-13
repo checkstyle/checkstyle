@@ -20,6 +20,9 @@
 
         <li>Applied patch 1079192 (thanks to Dave Brosius)</li>
 
+        <li>One more bug fixed in type aware checks (RedundantThrows
+        and JavadocMethod checks) (bug 1168408)</li>
+
       </ul>
     </section>
 
