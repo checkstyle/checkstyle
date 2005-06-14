@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * so their company's coding standards forbids them.
  *
  * @author lkuehne
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class AvoidInlineConditionalsCheck extends Check
 {
@@ -57,7 +57,6 @@ public class AvoidInlineConditionalsCheck extends Check
         // the only place a QUESTION token can occur is in inline conditionals
         // so no need to do any further tricks here - pretty trivial Check!
 
-        log(aAST.getLineNo(), aAST.getColumnNo(),
-            "Avoid inline conditionals.");
+        log(aAST.getLineNo(), aAST.getColumnNo(), "inline.conditional.avoid");
     }
 }
