@@ -17,6 +17,8 @@ public class ParenPadCheckTest
             "74:13: '(' is followed by whitespace.",
             "74:18: ')' is preceded with whitespace.",
             "232:27: ')' is preceded with whitespace.",
+            "241:24: '(' is followed by whitespace.",
+            "241:30: ')' is preceded with whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }

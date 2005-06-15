@@ -48,8 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  * @version 1.0
  */
-public class TypecastParenPadCheck
-    extends AbstractParenPadCheck
+public class TypecastParenPadCheck extends AbstractParenPadCheck
 {
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getRequiredTokens()
@@ -72,7 +71,9 @@ public class TypecastParenPadCheck
             processLeft(aAST);
         }
         else if ((aAST.getParent() != null)
-                && (aAST.getParent().getType() == TokenTypes.TYPECAST))
+                 && (aAST.getParent().getType() == TokenTypes.TYPECAST)
+                 && (aAST.getParent().findFirstToken(TokenTypes.RPAREN)
+                     == aAST))
         {
             processRight(aAST);
         }

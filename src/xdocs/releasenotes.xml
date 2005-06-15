@@ -25,6 +25,9 @@
 
         <li>Applied patch 1045127 (thanks to Paul Constantinides)</li>
 
+        <li>TypecastParenPad and ParenPad are now smarter in detecting
+        if paren is part of typecast (bug 1217798)</li>
+
       </ul>
     </section>
 

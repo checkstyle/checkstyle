@@ -238,6 +238,7 @@ class SpecialCasesInForLoop
     }
 
     int[] getSomeInts() {
+        int i = (int) ( 2 / 3 );
         return null;
     }
 }

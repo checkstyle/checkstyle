@@ -31,6 +31,8 @@ public class TypecastParenPadCheckTest
             "88:20: ')' is not preceded with whitespace.",
             "90:14: '(' is not followed by whitespace.",
             "90:20: ')' is not preceded with whitespace.",
+            "241:18: '(' is not followed by whitespace.",
+            "241:21: ')' is not preceded with whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
