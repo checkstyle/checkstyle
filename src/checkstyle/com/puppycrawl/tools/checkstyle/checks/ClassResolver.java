@@ -71,7 +71,7 @@ public class ClassResolver
         if (isLoadable(aName)) {
             return safeLoad(aName);
         }
-        //Perhaps it's fullyqualified inner class
+        //Perhaps it's fully-qualified inner class
         int dotIdx = aName.lastIndexOf(".");
         if (dotIdx != -1) {
             final String cn = aName.substring(0, dotIdx) + "$"
@@ -107,7 +107,7 @@ public class ClassResolver
         }
 
         // See if in the package
-        if (mPkg != null) {
+        if (!"".equals(mPkg)) {
             final String fqn = mPkg + "." + aName;
             if (isLoadable(fqn)) {
                 return safeLoad(fqn);
@@ -116,7 +116,7 @@ public class ClassResolver
 
         //inner class of this class???
         if (!"".equals(aCurrentClass)) {
-            final String innerClass = ((mPkg != null) ? (mPkg + ".") : "")
+            final String innerClass = (!"".equals(mPkg) ? (mPkg + ".") : "")
                 + aCurrentClass + "$" + aName;
             if (isLoadable(innerClass)) {
                 return safeLoad(innerClass);

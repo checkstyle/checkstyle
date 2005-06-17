@@ -116,13 +116,11 @@ final class InputValidClassDefIndent6 extends java.awt.event.MouseAdapter implem
                 11, 11),
             10, 10,
             10);
-          
-        
     }
-    
+
     private void myfunc2(int a, int b, int c, int d, int e, int f, int g) {
     }
-    
+
     private int myfunc3(int a, int b, int c, int d) {
         return 1;
     }
