@@ -17,8 +17,8 @@
   <property name="collections.jar" value="lib/commons-collections.jar" />
   <property name="cli.jar" value="lib/commons-cli.jar" />
   <property name="logging.jar" value="lib/commons-logging.jar" />
-  <property name="clover.lib" location="/apps/clover-1.1.1/lib"/>
   <property name="tools.jar" value="${java.home}/../lib/tools.jar" />
+  <property name="emma.enabled" value="true" />
 
   <property name="checkstyle.dir"
             value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
@@ -60,11 +60,13 @@
   </path>
 
   <path id="tests.runpath">
+    <!-- Need the instrumented classes first -->
+    <pathelement location="target/emma/classes" />
     <pathelement location="target/tests" />
     <pathelement location="target/testinputs" />
-    <pathelement path="${clover.lib}/clover.jar"/>
     <pathelement path="${xerces.jar}"/>
     <pathelement path="${xml-apis.jar}"/>
+    <pathelement location="lib/emma.jar"/>
     <path refid="tests.buildpath" />
   </path>
 
@@ -98,7 +100,7 @@
   <!-- -->
 
   <!-- Checks whether the grammar file is newer that the generated code -->
-  <target name="check.antlr"
+  <target name="-check.antlr"
           description="Checks whether the grammar file is newer that the generated code">
     <uptodate property="uptodate.antlr"
               targetfile="${checkstyle.grammar.dir}/GeneratedJavaLexer.java" >
@@ -109,7 +111,7 @@
   <!-- Conditionally will compile the grammar. Deliberately do not use the -->
   <!-- antlr task as it requirs the ANTLR classes to be in the classpath -->
   <!-- which creates lots of problems. -->
-  <target name="build.antlr" depends="check.antlr" unless="uptodate.antlr"
+  <target name="build.antlr" depends="-check.antlr" unless="uptodate.antlr"
           description="Conditionally compiles the grammar files">
     <java classname="antlr.Tool"
           classpath="${antlr.jar}"
@@ -139,8 +141,8 @@
            includeAntRuntime="false"/>
 
     <propertyfile file="target/checkstyle/checkstylecompilation.properties">
-       <entry key="checkstyle.compile.version" value="${version}"/>
-       <entry key="checkstyle.compile.timestamp" type="date" value="now" pattern="E MMMM dd yyyy, HH:mm z"/>
+      <entry key="checkstyle.compile.version" value="${version}"/>
+      <entry key="checkstyle.compile.timestamp" type="date" value="now" pattern="E MMMM dd yyyy, HH:mm z"/>
     </propertyfile>
 
     <native2ascii src="src/checkstyle"
@@ -187,28 +189,25 @@
            source="${checkstyle.testinputs.minimum.javaversion}"
            target="${checkstyle.testinputs.minimum.javaversion}"
            includeAntRuntime="false">
-        <exclude name="**/j2ee/*" />
-        <exclude name="**/InputAssertIdentifier.java" />
-        <exclude name="**/InputClone.java" />
-        <exclude name="**/InputCovariant.java" />
-        <exclude name="**/InputGrammar.java" />
-        <exclude name="**/InputImport.java" />
-        <exclude name="**/InputJUnitTest.java" />
-        <exclude name="**/InputSetterGetter.java" />
-        <exclude name="**/InputSimple.java" />
-        <exclude name="**/InputValidMethodIndent.java" />
-        <exclude name="**/Post13KeywordsAsIdentifiersOK.java" />
+      <exclude name="**/j2ee/*" />
+      <exclude name="**/InputAssertIdentifier.java" />
+      <exclude name="**/InputClone.java" />
+      <exclude name="**/InputCovariant.java" />
+      <exclude name="**/InputGrammar.java" />
+      <exclude name="**/InputImport.java" />
+      <exclude name="**/InputJUnitTest.java" />
+      <exclude name="**/InputSetterGetter.java" />
+      <exclude name="**/InputSimple.java" />
+      <exclude name="**/InputValidMethodIndent.java" />
+      <exclude name="**/Post13KeywordsAsIdentifiersOK.java" />
     </javac>
   </target>
 
   <!-- Compiles only the test code. Input files are excluded from
        compilation, they contain code like assert statements
        that does not compile on all JDKs -->
-  <target name="compile.tests" depends="compile.checkstyle"
+  <target name="compile.tests" depends="compile.checkstyle, setup.emma"
           description="Compiles the test code">
-
-    <!-- don't instrument the tests -->
-    <property name="clover.enable" value="false"/>
 
     <mkdir dir="target/tests" />
     <depend srcdir="src/tests" destdir="target/tests" closure="yes"/>
@@ -220,6 +219,22 @@
            source="${checkstyle.minimum.javaversion}"
            target="${checkstyle.minimum.javaversion}"
            includeAntRuntime="false"/>
+
+    <!-- now instrument the classes -->
+    <mkdir dir="target/emma/classes"/>
+    <emma enabled="${emma.enabled}">
+      <instr destdir="target/emma/classes"
+             metadatafile="target/emma/metadata.emma"
+             >
+        <instrpath>
+          <pathelement location="target/checkstyle"/>
+        </instrpath>
+        <filter excludes="com.puppycrawl.tools.checkstyle.doclets.*"/>
+        <filter excludes="com.puppycrawl.tools.checkstyle.gui.*"/>
+        <filter excludes="com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.*"/>
+        <filter excludes="com.puppycrawl.tools.checkstyle.grammars.*"/>
+      </instr>
+    </emma>
   </target>
 
   <!-- -->
@@ -330,19 +345,19 @@
   </target>
 
   <!-- Targets to verify that JUnit is in the classpath -->
-  <target name="check.junit"
+  <target name="-check.junit"
           description="Checks whether JUnit is in the classpath">
     <available property="have.junit"
                classname="junit.framework.TestListener"/>
   </target>
 
-  <target name="require.junit" depends="check.junit" unless="have.junit"
+  <target name="-require.junit" depends="-check.junit" unless="have.junit"
           description="Fails if JUnit is not present in the classpath">
     <fail message="Need to have JUnit in your CLASSPATH to run the tests. Consider using the one in the lib directory."/>
   </target>
 
   <!-- Targets to verify that Xalan is in the classpath -->
-  <target name="check.xalan"
+  <target name="-check.xalan"
           description="Checks whether xalan is in the classpath">
     <condition property="have.xalan">
       <or>
@@ -374,7 +389,7 @@
     </condition>
   </target>
 
-  <target name="require.xalan" depends="check.xalan" unless="have.xalan"
+  <target name="-require.xalan" depends="-check.xalan" unless="have.xalan"
           description="Fails if xalan is not present in the classpath">
     <fail>
 Need to have Xalan in your CLASSPATH to run the tests.
@@ -386,7 +401,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
 
   <!-- To run the tests need Xalan in the classpath -->
   <target name="run.tests"
-          depends="compile.tests,require.ant15,require.junit,require.xalan,compile.testinputs"
+          depends="compile.tests,-require.ant15,-require.junit,-require.xalan,compile.testinputs"
           description="Runs the tests for checkstyle">
 
     <mkdir dir="${testreport.dir}"/>
@@ -400,7 +415,15 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
            haltonfailure="no"
            showoutput="yes"
            failureProperty="tests.have.failed">
-      <jvmarg value="-Dtestinputs.dir=${testinputs.dir}"/>
+
+      <sysproperty key="testinputs.dir" value="${testinputs.dir}"/>
+
+      <sysproperty key="emma.coverage.out.file"
+                   file="${emma.coverage.out.file}"
+                   />
+      <sysproperty key="emma.coverage.out.merge"
+                   value="true" />
+
       <formatter type="xml" />
       <classpath refid="tests.runpath"/>
       <batchtest todir="${testreport.dir}">
@@ -420,50 +443,16 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <property name="report"
               value="${basedir}/${testreport.dir}/index.html"/>
 
-    <fail if="tests.have.failed"
-          message="Unit tests failed - Report is available in ${report}"/>
-  </target>
-
-  <!-- To run the tests need Xalan in the classpath -->
-  <target name="run.test.suite"
-          depends="compile.tests,require.ant15,require.junit,require.xalan,compile.testinputs"
-          description="Runs the tests for checkstyle as a test suite">
-
-    <mkdir dir="${testreport.dir}"/>
-    <property name="testinputs.dir"
-              location="src/testinputs/com/puppycrawl/tools/checkstyle"/>
-    <property name="testcases"
-              value="com/puppycrawl/tools/checkstyle/AllTests.java"/>
-
-    <junit printsummary="yes"
-           fork="yes"
-           haltonfailure="no"
-           showoutput="yes"
-           failureProperty="tests.have.failed">
-      <!--<jvmarg line="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"/>-->
-      <jvmarg value="-Dtestinputs.dir=${testinputs.dir}"/>
-      <formatter type="xml" />
-      <classpath refid="tests.runpath"/>
-      <batchtest todir="${testreport.dir}">
-        <fileset dir="src/tests">
-          <include name="${testcases}" />
-        </fileset>
-      </batchtest>
-    </junit>
-
-    <junitreport todir="${testreport.dir}">
-      <fileset dir="${testreport.dir}">
-        <include name="TEST-*.xml"/>
-      </fileset>
-      <report todir="${testreport.dir}"/>
-    </junitreport>
-
-    <property name="report"
-              value="${basedir}/${testreport.dir}/index.html"/>
+    <!-- generate the emma report -->
+    <emma enabled="${emma.enabled}">
+      <report sourcepath="src/checkstyle">
+        <fileset dir="target/emma" includes="*.emma"/>
+        <html outfile="${emma.report.dir}/index.html"/>
+      </report>
+    </emma>
 
     <fail if="tests.have.failed"
           message="Unit tests failed - Report is available in ${report}"/>
-
   </target>
 
   <!-- -->
@@ -585,24 +574,24 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
              useExternalFile="yes"
              encoding="iso-8859-1"
              failonerror="yes" >
-        <link packagelistLoc="${basedir}/config/jdk-package-list"
+      <link packagelistLoc="${basedir}/config/jdk-package-list"
               offline="yes"
               href="http://java.sun.com/j2se/1.4.2/docs/api/" />
-        <link packagelistLoc="${basedir}/config/antlr-package-list"
+      <link packagelistLoc="${basedir}/config/antlr-package-list"
               offline="yes"
               href="http://www.antlr.org/javadoc/" />
-        <fileset dir="src/checkstyle">
-          <exclude name="**/Generated*.java" />
-          <exclude name="**/Generated*.txt" />
-          <exclude name="**/gui/*.java" />
-          <exclude name="**/checks/**"/>
-          <exclude name="**/usage/transmogrify/*.java" />
-          <exclude name="**/*.properties" />
-          <exclude name="**/*.g" />
-          <exclude name="**/*.dtd" />
-          <exclude name="**/*.xml" />
-          <exclude name="**/*.html" />
-        </fileset>
+      <fileset dir="src/checkstyle">
+        <exclude name="**/Generated*.java" />
+        <exclude name="**/Generated*.txt" />
+        <exclude name="**/gui/*.java" />
+        <exclude name="**/checks/**"/>
+        <exclude name="**/usage/transmogrify/*.java" />
+        <exclude name="**/*.properties" />
+        <exclude name="**/*.g" />
+        <exclude name="**/*.dtd" />
+        <exclude name="**/*.xml" />
+        <exclude name="**/*.html" />
+      </fileset>
     </javadoc>
   </target>
 
@@ -666,49 +655,25 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <property name="translation.severity" value="ignore"/>
   </target>
 
-  <target name="gump" depends="gump.setup,build.bindist,build.srcdist,run.test.suite"
+  <target name="gump" depends="gump.setup,build.bindist,build.srcdist,run.tests"
           description="Runs the test for GUMP testing"/>
-
-  <!-- Added for Clover testing -->
-  <property name="clover.excludes"
-            value="**/CheckStyleTas*,**/Generated*.java,**/Java*Recognizer.java,**/Java*Lexer.java,**/Java*TokenTypes.java,**/gui/*"/>
-
-  <target name="with.clover">
-    <taskdef resource="clovertasks"/>
-    <mkdir dir="target/clover/db"/>
-    <mkdir dir="target/clover/html"/>
-    <clover-setup initString="target/clover/db/csdb"/>
-    <property name="clover.html.dir" location="target/clover/html"/>
-  </target>
-
-  <target name="clover.report" depends="with.clover">
-    <clover-report>
-      <current outfile="${clover.html.dir}" title="Checkstyle Project">
-          <format type="html"/>
-      </current>
-    </clover-report>
-  </target>
-
-  <target name="clover.viewer" depends="with.clover">
-    <clover-view/>
-  </target>
 
 
   <!-- Targets to verify that Xerces is in the classpath -->
-  <target name="check.xerces"
+  <target name="-check.xerces"
           description="Checks whether xerces is in the classpath">
     <condition property="have.xerces">
       <available classname="org.apache.xerces.parsers.SAXParser"/>
     </condition>
   </target>
 
-  <target name="require.xerces" depends="check.xerces" unless="have.xerces"
+  <target name="-require.xerces" depends="-check.xerces" unless="have.xerces"
           description="Fails if xerces is not present in the classpath">
     <fail message="Need to have Xerces-J in your CLASSPATH to run the tests. You can download it from http://xml.apache.org/."/>
   </target>
 
   <target name="validate.xml"
-          depends="require.xerces"
+          depends="-require.xerces"
           description="Validates checkstyle XML file">
     <xmlvalidate file="checkstyle_checks.xml">
       <xmlcatalog>
@@ -720,7 +685,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
   </target>
 
   <!-- Targets to verify that ANT version if at least 1.5 -->
-  <target name="check.ant15">
+  <target name="-check.ant15">
     <echo>version is ${ant.version}</echo>
     <condition property="have.ant15">
       <not>
@@ -732,7 +697,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     </condition>
   </target>
 
-  <target name="require.ant15" depends="check.ant15" unless="have.ant15">
+  <target name="-require.ant15" depends="-check.ant15" unless="have.ant15">
     <fail message="Need at least version 1.5 of ANT - you have ${ant.version}"/>
   </target>
 
@@ -752,6 +717,19 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
       <formatter type="xml" toFile="target/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
     </checkstyle>
+  </target>
+
+  <target name="setup.emma">
+    <taskdef resource="emma_ant.properties">
+      <classpath>
+        <fileset dir="lib" includes="emma*.jar"/>
+      </classpath>
+    </taskdef>
+
+    <property name="emma.coverage.out.file"
+              value="${basedir}/target/emma/coverage.emma"/>
+    <property name="emma.report.dir" value="${basedir}/target/emma/report"/>
+    <mkdir dir="${emma.report.dir}"/>
   </target>
 
 </project>

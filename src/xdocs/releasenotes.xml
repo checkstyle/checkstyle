@@ -29,6 +29,15 @@
         if paren is part of typecast (bug 1217798)</li>
 
       </ul>
+
+      <p>Other improvements:</p>
+
+      <ul>
+        <li>
+          Introduced the EMMA code coverage tool. A report is produced
+          as a result of running the unit tests.
+        </li>
+      </ul>
     </section>
 
     <section name="Release 4.0 Beta 4">

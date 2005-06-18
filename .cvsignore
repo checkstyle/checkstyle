@@ -5,6 +5,7 @@
 .checkstyle
 .classpath
 .project
+.settings
 bin
 checkstyle.buildproperties
 checkstyle.ipr
