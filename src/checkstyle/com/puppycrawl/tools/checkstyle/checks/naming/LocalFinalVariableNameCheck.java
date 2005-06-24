@@ -25,7 +25,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks that local final variable names conform to a format specified
- * by the format property. The format is a
+ * by the format property. A catch parameter is considered to be
+ * a local variable.The format is a
  * {@link java.util.regex.Pattern regular expression} and defaults to
  * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
  * </p>
@@ -60,7 +61,10 @@ public class LocalFinalVariableNameCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+        return new int[] {
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.PARAMETER_DEF,
+        };
     }
 
     /** @see com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck */

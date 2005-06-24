@@ -58,7 +58,8 @@
         </tr>
         <tr>
           <td><span class="code">LocalFinalVariableName</span></td>
-          <td>local, <span class="code">final</span> variables</td>
+          <td>local, <span class="code">final</span> variables, including
+              <span class="code">catch</span> parameters</td>
           <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
         </tr>
         <tr>

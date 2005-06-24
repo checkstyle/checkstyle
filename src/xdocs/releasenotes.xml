@@ -28,6 +28,9 @@
         <li>TypecastParenPad and ParenPad are now smarter in detecting
         if paren is part of typecast (bug 1217798)</li>
 
+        <li>LocalFinalVariable now also checks catch parameters (bug
+        1223290)</li>
+
       </ul>
 
       <p>Other improvements:</p>
