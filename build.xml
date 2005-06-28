@@ -31,7 +31,7 @@
   <property name="xdocs.dest" value="target/docs"/>
   <property name="checkstyle.minimum.javaversion" value="1.4" />
   <property name="checkstyle.testinputs.minimum.javaversion" value="1.5" />
-  <property name="version" value="4.0-beta4" />
+  <property name="version" value="4.0-beta5" />
 
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
@@ -231,7 +231,6 @@
         </instrpath>
         <filter excludes="com.puppycrawl.tools.checkstyle.doclets.*"/>
         <filter excludes="com.puppycrawl.tools.checkstyle.gui.*"/>
-        <filter excludes="com.puppycrawl.tools.checkstyle.checks.usage.transmogrify.*"/>
         <filter excludes="com.puppycrawl.tools.checkstyle.grammars.*"/>
       </instr>
     </emma>
@@ -464,11 +463,11 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <mkdir dir="${dist.dir}/checkstyle-${version}" />
     <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-${version}.jar"
          basedir="target/checkstyle"
-         excludes="**/usage/**, **/j2ee/**"
+         excludes="**/j2ee/**"
          manifest="config/manifest.mf" />
     <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-optional-${version}.jar"
          basedir="target/checkstyle"
-         includes="**/usage/**, **/j2ee/**"/>
+         includes="**/j2ee/**"/>
     <!-- copy the JARS and make a mega JAR out of them -->
     <copy file="${antlr.jar}" todir="${dist.dir}/checkstyle-${version}" />
     <copy file="${beanutils.jar}" todir="${dist.dir}/checkstyle-${version}" />
@@ -585,7 +584,6 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
         <exclude name="**/Generated*.txt" />
         <exclude name="**/gui/*.java" />
         <exclude name="**/checks/**"/>
-        <exclude name="**/usage/transmogrify/*.java" />
         <exclude name="**/*.properties" />
         <exclude name="**/*.g" />
         <exclude name="**/*.dtd" />

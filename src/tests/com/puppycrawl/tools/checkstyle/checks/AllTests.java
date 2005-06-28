@@ -39,7 +39,6 @@ public class AllTests {
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.metrics.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.naming.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.sizes.AllTests.suite());
-        suite.addTest(com.puppycrawl.tools.checkstyle.checks.usage.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.whitespace.AllTests.suite());
 
         return suite;

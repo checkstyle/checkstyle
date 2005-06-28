@@ -40,6 +40,12 @@
           Introduced the EMMA code coverage tool. A report is produced
           as a result of running the unit tests.
         </li>
+
+        <li>
+          Retired the usage checks to the contrib directory. If there is
+          interest in the future they may be promoted back into the
+          optional set of checks.
+        </li>
       </ul>
     </section>
 

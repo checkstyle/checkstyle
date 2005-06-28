@@ -19,7 +19,6 @@ import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
-import com.puppycrawl.tools.checkstyle.checks.usage.UnusedParameterCheck;
 
 public class SuppressionCommentFilterTest
     extends BaseCheckTestCase
@@ -37,8 +36,6 @@ public class SuppressionCommentFilterTest
         "38:17: Name 'R' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "39:30: Name 's' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         "43:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "47:34: Unused parameter 'aInt'.",
-        "51:34: Unused parameter 'aInt'.",
         "64:23: Catching 'Exception' is not allowed.",
         "71:11: Catching 'Exception' is not allowed.",
     };
@@ -55,7 +52,7 @@ public class SuppressionCommentFilterTest
     //Supress all checks between default comments
     public void testDefault() throws Exception
     {
-        final DefaultConfiguration filterConfig = 
+        final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         final String[] suppressed = {
             "16:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -68,7 +65,7 @@ public class SuppressionCommentFilterTest
 
     public void testCheckC() throws Exception
     {
-        final DefaultConfiguration filterConfig = 
+        final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkC", "false");
         final String[] suppressed = {
@@ -81,7 +78,7 @@ public class SuppressionCommentFilterTest
 
     public void testCheckCPP() throws Exception
     {
-        final DefaultConfiguration filterConfig = 
+        final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkCPP", "false");
         final String[] suppressed = {
@@ -93,7 +90,7 @@ public class SuppressionCommentFilterTest
     //Supress all checks between CS_OFF and CS_ON
     public void testOffFormat() throws Exception
     {
-        final DefaultConfiguration filterConfig = 
+        final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("offCommentFormat", "CS_OFF");
         filterConfig.addAttribute("onCommentFormat", "CS_ON");
@@ -107,10 +104,10 @@ public class SuppressionCommentFilterTest
     }
 
     //Test supression of checks of only one type
-    //Supress only ConstantNameCheck between CS_OFF and CS_ON 
+    //Supress only ConstantNameCheck between CS_OFF and CS_ON
     public void testOffFormatCheck() throws Exception
     {
-        final DefaultConfiguration filterConfig = 
+        final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("offCommentFormat", "CS_OFF");
         filterConfig.addAttribute("onCommentFormat", "CS_ON");
@@ -125,7 +122,7 @@ public class SuppressionCommentFilterTest
     public void testExpansion()
             throws Exception
     {
-        final DefaultConfiguration filterConfig = 
+        final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("offCommentFormat", "CSOFF\\: ([\\w\\|]+)");
         filterConfig.addAttribute("onCommentFormat", "CSON\\: ([\\w\\|]+)");
@@ -141,7 +138,7 @@ public class SuppressionCommentFilterTest
     public void testMessage()
             throws Exception
     {
-        final DefaultConfiguration filterConfig = 
+        final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("onCommentFormat", "UNUSED ON\\: (\\w+)");
         filterConfig.addAttribute("offCommentFormat", "UNUSED OFF\\: (\\w+)");
@@ -170,13 +167,12 @@ public class SuppressionCommentFilterTest
     protected Checker createChecker(Configuration aFilterConfig)
             throws CheckstyleException
     {
-        final DefaultConfiguration checkerConfig = 
+        final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
         final DefaultConfiguration checksConfig = createCheckConfig(TreeWalker.class);
         checksConfig.addChild(createCheckConfig(FileContentsHolder.class));
         checksConfig.addChild(createCheckConfig(MemberNameCheck.class));
         checksConfig.addChild(createCheckConfig(ConstantNameCheck.class));
-        checksConfig.addChild(createCheckConfig(UnusedParameterCheck.class));
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
         if (aFilterConfig != null) {
