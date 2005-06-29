@@ -515,6 +515,8 @@ public class CheckStyleTask
         private FormatterType mFormatterType;
         /** the file to output to */
         private File mToFile;
+        /** Whether or not the write to the named file. */
+        private boolean mUseFile = true;
 
         /**
          * Set the type of the formatter.
@@ -537,6 +539,15 @@ public class CheckStyleTask
         public void setTofile(File aTo)
         {
             mToFile = aTo;
+        }
+
+        /**
+         * Sets whether or not we write to a file if it is provided.
+         * @param aUse whether not not to use provided file.
+         */
+        public void setUseFile(boolean aUse)
+        {
+            mUseFile = aUse;
         }
 
         /**
@@ -564,7 +575,7 @@ public class CheckStyleTask
         private AuditListener createDefaultLogger(Task aTask)
             throws IOException
         {
-            if (mToFile == null) {
+            if (mToFile == null || !mUseFile) {
                 return new DefaultLogger(
                     new LogOutputStream(aTask, Project.MSG_DEBUG), true,
                     new LogOutputStream(aTask, Project.MSG_ERR), true);
@@ -580,7 +591,7 @@ public class CheckStyleTask
         private AuditListener createXMLLogger(Task aTask)
             throws IOException
         {
-            if (mToFile == null) {
+            if (mToFile == null || !mUseFile) {
                 return new XMLLogger(
                     new LogOutputStream(aTask, Project.MSG_INFO), true);
             }

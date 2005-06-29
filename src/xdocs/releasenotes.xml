@@ -11,6 +11,12 @@
   <body>
 
     <section name="Release 4.0 Beta 5">
+      <p>New features:</p>
+
+      <ul>
+        <li>Added useFile property of ant task (patch 916971)</li>
+      </ul>
+
       <p>Fixed Bugs:</p>
 
       <ul>
@@ -30,6 +36,10 @@
 
         <li>LocalFinalVariable now also checks catch parameters (bug
         1223290)</li>
+
+        <li>Applied patch 1061458, hope this helps users who use
+        checkstyle with JRokit (thank to Ville Skytta for
+        contribution)</li>
 
       </ul>
 

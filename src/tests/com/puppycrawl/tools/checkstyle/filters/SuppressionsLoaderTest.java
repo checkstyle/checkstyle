@@ -80,9 +80,9 @@ public class SuppressionsLoaderTest extends TestCase
                 "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_bad_int.xml");
         }
         catch (CheckstyleException ex) {
-            assertEquals(
-                "number format exception src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_bad_int.xml - For input string: \"a\"",
-                ex.getMessage());
+            assertTrue(
+                ex.getMessage(),
+                ex.getMessage().startsWith("number format exception src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_bad_int.xml - "));
         }
     }
 }

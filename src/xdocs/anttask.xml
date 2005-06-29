@@ -247,6 +247,12 @@
           </td>
           <td>No</td>
         </tr>
+        <tr>
+          <td>useFile</td>
+          <td>Boolean that determines whether output should be sent to
+          a file.  Default is <span class="default">true</span>.</td>
+          <td>No</td>
+        </tr>
       </table>
 
       <p>
