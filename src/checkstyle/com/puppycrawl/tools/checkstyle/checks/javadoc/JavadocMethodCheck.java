@@ -140,7 +140,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     private boolean mAllowMissingReturnTag;
 
     /**
-     * Controls whether to ignoreerrors when there is no javadoc. Defaults to
+     * Controls whether to ignore errors when there is no javadoc. Defaults to
      * false.
      */
     private boolean mAllowMissingJavadoc;
