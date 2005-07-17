@@ -91,6 +91,15 @@ public final class DefaultConfiguration implements Configuration
     }
 
     /**
+     * Removes a child of this configuration.
+     * @param aConfiguration the child configuration to remove.
+     */
+    public void removeChild(final Configuration aConfiguration)
+    {
+        mChildren.remove(aConfiguration);
+    }
+
+    /**
      * Adds an attribute to this configuration.
      * @param aName the name of the attribute.
      * @param aValue the value of the attribute.

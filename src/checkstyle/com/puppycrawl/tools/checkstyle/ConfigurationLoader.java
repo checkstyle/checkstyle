@@ -36,6 +36,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -93,6 +95,8 @@ public final class ConfigurationLoader
         private static final String VALUE = "value";
         /** default attribute */
         private static final String DEFAULT = "default";
+        /** name of the severity property */
+        private static final String SEVERITY = "severity";
 
         /**
          * Creates a new InternalLoader.
@@ -102,7 +106,7 @@ public final class ConfigurationLoader
         private InternalLoader()
             throws SAXException, ParserConfigurationException
         {
-//            super(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
+            // super(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
             super(createIdToResourceNameMap());
         }
 
@@ -156,9 +160,34 @@ public final class ConfigurationLoader
         public void endElement(String aNamespaceURI,
                                String aLocalName,
                                String aQName)
+            throws SAXException
         {
             if (aQName.equals(MODULE)) {
-                mConfigStack.pop();
+
+                Configuration recentModule = (Configuration) mConfigStack.pop();
+
+                // remove modules with severity ignore if these modules should
+                // be omitted
+                SeverityLevel level = null;
+                try {
+                    final String severity = recentModule.getAttribute(SEVERITY);
+                    level = SeverityLevel.getInstance(severity);
+                }
+                catch (CheckstyleException e) {
+                    //severity not set -> ignore
+                    ;
+                }
+
+                // omit this module if these should be omitted and the module
+                // has the severity 'ignore'
+                final boolean omitModule = mOmitIgnoredModules
+                    && SeverityLevel.IGNORE.equals(level);
+
+                if (omitModule && !mConfigStack.isEmpty()) {
+                    final DefaultConfiguration parentModule =
+                        (DefaultConfiguration) mConfigStack.peek();
+                    parentModule.removeChild(recentModule);
+                }
             }
         }
 
@@ -174,6 +203,9 @@ public final class ConfigurationLoader
     /** the Configuration that is being built */
     private Configuration mConfiguration;
 
+    /** flags if modules with the severity 'ignore' should be omitted. */
+    private boolean mOmitIgnoredModules;
+
     /**
      * Creates mapping between local resources and dtd ids.
      * @return map between local resources and dtd ids.
@@ -187,18 +219,21 @@ public final class ConfigurationLoader
         return map;
     }
 
-
     /**
      * Creates a new <code>ConfigurationLoader</code> instance.
      * @param aOverrideProps resolver for overriding properties
+     * @param aOmitIgnoredModules <code>true</code> if ignored modules should be
+     *         omitted
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */
-    private ConfigurationLoader(PropertyResolver aOverrideProps)
+    private ConfigurationLoader(final PropertyResolver aOverrideProps,
+                                final boolean aOmitIgnoredModules)
         throws ParserConfigurationException, SAXException
     {
         mSaxHandler = new InternalLoader();
         mOverridePropsResolver = aOverrideProps;
+        mOmitIgnoredModules = aOmitIgnoredModules;
     }
 
     /**
@@ -219,7 +254,6 @@ public final class ConfigurationLoader
         mSaxHandler.parseInputSource(inputSource);
     }
 
-
     /**
      * Returns the module configurations in a specified file.
      * @param aConfig location of config file, can be either a URL or a filename
@@ -227,13 +261,32 @@ public final class ConfigurationLoader
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
+    public static Configuration loadConfiguration(String aConfig,
+            PropertyResolver aOverridePropsResolver) throws CheckstyleException
+    {
+        return loadConfiguration(aConfig, aOverridePropsResolver, false);
+    }
+
+    /**
+     * Returns the module configurations in a specified file.
+     *
+     * @param aConfig location of config file, can be either a URL or a filename
+     * @param aOverridePropsResolver overriding properties
+     * @param aOmitIgnoredModules <code>true</code> if modules with severity
+     *            'ignore' should be omitted, <code>false</code> otherwise
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
     public static Configuration loadConfiguration(
-        String aConfig, PropertyResolver aOverridePropsResolver)
+        String aConfig,
+        PropertyResolver aOverridePropsResolver,
+        boolean aOmitIgnoredModules)
         throws CheckstyleException
     {
         try {
             final ConfigurationLoader loader =
-                new ConfigurationLoader(aOverridePropsResolver);
+                new ConfigurationLoader(aOverridePropsResolver,
+                                        aOmitIgnoredModules);
             // figure out if this is a File or a URL
             InputStream configStream;
             try {
@@ -418,5 +471,4 @@ public final class ConfigurationLoader
             aFragments.add(aValue.substring(prev));
         }
     }
-
 }

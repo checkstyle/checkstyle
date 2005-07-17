@@ -15,8 +15,16 @@
 
       <ul>
         <li>Added useFile property of ant task (patch 916971)</li>
-        <li>Documented new tokens which is checked by WhitespaceAround
-        (bug 1233425)</li>
+
+        <li>
+          Documented new tokens which is checked by WhitespaceAround
+          (bug 1233425)
+        </li>
+
+        <li>
+          Added patch (id 1193251) to suppress processing of checks with
+          'ignore' severity. From Lars Koedderitzsch.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

@@ -331,7 +331,7 @@ public class CheckStyleTask
             final Properties props = createOverridingProperties();
             final Configuration config =
                 ConfigurationLoader.loadConfiguration(
-                    mConfigLocation, new PropertiesExpander(props));
+                    mConfigLocation, new PropertiesExpander(props), true);
 
             final DefaultContext context = new DefaultContext();
             final ClassLoader loader =
