@@ -22,36 +22,24 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Handler for method definitions.
+ * Handler for member definitions.
  *
- * @author jrichard
+ * @author o_sukhodolsky
  */
-public class MethodDefHandler extends BlockParentHandler
+public class MemberDefHandler extends ExpressionHandler
 {
     /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
      * @param aIndentCheck   the indentation check
-     * @param aAst           the abstract syntax tree
+     * @param aAST           the abstract syntax tree
      * @param aParent        the parent handler
      */
-    public MethodDefHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent)
+    public MemberDefHandler(IndentationCheck aIndentCheck,
+        DetailAST aAST, ExpressionHandler aParent)
     {
-        super(aIndentCheck, (aAst.getType() == TokenTypes.CTOR_DEF)
-            ? "ctor def" : "method def", aAst, aParent);
-    }
-
-    /**
-     * There is no top level expression for this handler.
-     *
-     * @return null
-     */
-    protected DetailAST getToplevelAST()
-    {
-        // we check this stuff ourselves below
-        return null;
+        super(aIndentCheck, "member def", aAST, aParent);
     }
 
     /**
@@ -67,28 +55,6 @@ public class MethodDefHandler extends BlockParentHandler
     }
 
     /**
-     * Check the indentation of the throws clause.
-     */
-    private void checkThrows()
-    {
-        DetailAST throwsAst =
-            getMainAst().findFirstToken(TokenTypes.LITERAL_THROWS);
-        if (throwsAst == null) {
-            return;
-        }
-
-        int columnNo = expandedTabsColumnNo(throwsAst);
-        IndentLevel expectedColumnNo =
-            new IndentLevel(getLevel(), getBasicOffset());
-
-        if (startsLine(throwsAst)
-            && !expectedColumnNo.accept(columnNo))
-        {
-            logError(throwsAst, "throws", columnNo, expectedColumnNo);
-        }
-    }
-
-    /**
      * Check the indentation of the method type.
      */
     private void checkType()
@@ -97,17 +63,8 @@ public class MethodDefHandler extends BlockParentHandler
         DetailAST ident = ExpressionHandler.getFirstToken(type);
         int columnNo = expandedTabsColumnNo(ident);
         if (startsLine(ident) && !getLevel().accept(columnNo)) {
-            logError(ident, "return type", columnNo);
+            logError(ident, "type", columnNo);
         }
-    }
-
-    /**
-     * Check the indentation of the method parameters.
-     */
-    private void checkParameters()
-    {
-        DetailAST params = getMainAst().findFirstToken(TokenTypes.PARAMETERS);
-        checkExpressionSubtree(params, getLevel(), false, false);
     }
 
     /**
@@ -116,17 +73,13 @@ public class MethodDefHandler extends BlockParentHandler
     public void checkIndentation()
     {
         checkModifiers();
+        checkType();
         checkIdent();
-        checkThrows();
-        if (getMainAst().getType() != TokenTypes.CTOR_DEF) {
-            checkType();
-        }
-        checkParameters();
+    }
 
-        if (getLCurly() == null) {
-            // asbtract method def -- no body
-            return;
-        }
-        super.checkIndentation();
+    /** {@inheritDoc} */
+    public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
+    {
+        return getLevel();
     }
 }

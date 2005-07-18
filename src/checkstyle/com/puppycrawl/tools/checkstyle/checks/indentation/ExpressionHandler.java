@@ -190,6 +190,31 @@ public abstract class ExpressionHandler
     }
 
     /**
+     * Searchs in given sub-tree (including given node) for the token
+     * which represents first symbol for this sub-tree in file.
+     * @param aAST a root of sub-tree in which the search shoul be performed.
+     * @return a token which occurs first in the file.
+     */
+    static DetailAST getFirstToken(DetailAST aAST)
+    {
+        DetailAST first = aAST;
+        DetailAST child = (DetailAST) aAST.getFirstChild();
+
+        while (child != null) {
+            DetailAST toTest = getFirstToken(child);
+            if (toTest.getLineNo() < first.getLineNo()
+                || (toTest.getLineNo() == first.getLineNo()
+                    && toTest.getColumnNo() < first.getColumnNo()))
+            {
+                first = toTest;
+            }
+            child = (DetailAST) child.getNextSibling();
+        }
+
+        return first;
+    }
+
+    /**
      * Get the start of the line for the given expression.
      *
      * @param aAst   the expression to find the start of the line for

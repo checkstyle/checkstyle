@@ -20,6 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import org.apache.commons.collections.ArrayStack;
 
@@ -240,6 +242,13 @@ public class IndentationCheck extends Check
      */
     public void visitToken(DetailAST aAST)
     {
+        if (aAST.getType() == TokenTypes.VARIABLE_DEF
+            && ScopeUtils.isLocalVariableDef(aAST))
+        {
+            // we have handler only for members
+            return;
+        }
+
         ExpressionHandler handler = mHandlerFactory.getHandler(this, aAST,
             (ExpressionHandler) mHandlers.peek());
         mHandlers.push(handler);
@@ -251,6 +260,12 @@ public class IndentationCheck extends Check
      */
     public void leaveToken(DetailAST aAST)
     {
+        if (aAST.getType() == TokenTypes.VARIABLE_DEF
+            && ScopeUtils.isLocalVariableDef(aAST))
+        {
+            // we have handler only for members
+            return;
+        }
         mHandlers.pop();
     }
 

@@ -54,6 +54,15 @@ public class BlockParentHandler extends ExpressionHandler
     };
 
     /**
+     * Returns array of token types which should be checked among childrens.
+     * @return array of token types to check.
+     */
+    protected int[] getCheckedChildren()
+    {
+        return CHECKED_CHILDREN;
+    }
+
+    /**
      * Construct an instance of this handler with the given indentation check,
      * name, abstract syntax tree, and parent handler.
      *
@@ -333,7 +342,7 @@ public class BlockParentHandler extends ExpressionHandler
             // NOTE: switch statements usually don't have curlys
             if (!hasCurlys() || !areOnSameLine(getLCurly(), getRCurly())) {
                 checkChildren(listChild,
-                              CHECKED_CHILDREN,
+                              getCheckedChildren(),
                               getChildrenExpectedLevel(),
                               true,
                               childrenMayNest());

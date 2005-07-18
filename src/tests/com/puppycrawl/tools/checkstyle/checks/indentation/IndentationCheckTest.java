@@ -110,6 +110,7 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "158: method def throws at indentation level 6 not at correct indentation, 8",
             "164: method def child at indentation level 4 not at correct indentation, 8",
             "169: method def child at indentation level 4 not at correct indentation, 8",
+            "173: method def return type at indentation level 0 not at correct indentation, 4",
         };
         verify(c, fname, expected);
     }
@@ -180,11 +181,11 @@ public class IndentationCheckTest extends BaseCheckTestCase {
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("indentation/InputInvalidArrayInitIndent.java");
         final String[] expected = {
-            "17: class def child at indentation level 2 not at correct indentation, 4",
-            "18: class def child at indentation level 6 not at correct indentation, 4",
-            "20: class def child at indentation level 2 not at correct indentation, 4",
+            "17: member def type at indentation level 2 not at correct indentation, 4",
+            "18: member def type at indentation level 6 not at correct indentation, 4",
+            "20: member def type at indentation level 2 not at correct indentation, 4",
             "22: array initialization rcurly at indentation level 6 not at correct indentation, 2",
-            "24: class def child at indentation level 6 not at correct indentation, 4",
+            "24: member def type at indentation level 6 not at correct indentation, 4",
             "25: array initialization child at indentation level 8 not at correct indentation, 10",
             "26: array initialization rcurly at indentation level 4 not at correct indentation, 6",
             "29: array initialization child at indentation level 9 not at correct indentation, 8",
@@ -196,8 +197,8 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "48: array initialization child at indentation level 20 not at correct indentation, [8, 31]",
             "49: array initialization child at indentation level 4 not at correct indentation, [8, 31]",
             "54: array initialization child at indentation level 6 not at correct indentation, 8",
-            "59: class def child at indentation level 2 not at correct indentation, 4",
-            "61: class def child at indentation level 6 not at correct indentation, 4",
+            "59: member def type at indentation level 2 not at correct indentation, 4",
+            "61: member def type at indentation level 6 not at correct indentation, 4",
             "62: array initialization rcurly at indentation level 2 not at correct indentation, 6",
             "65: array initialization child at indentation level 6 not at correct indentation, 8",
             "72: array initialization child at indentation level 10 not at correct indentation, 12",
@@ -292,16 +293,17 @@ public class IndentationCheckTest extends BaseCheckTestCase {
             "85: class def ident at indentation level 6 not at correct indentation, 4",
             "88: class def child at indentation level 2 not at correct indentation, 4",
             "88: class def ident at indentation level 2 not at correct indentation, 4",
-            "92: class def child at indentation level 6 not at correct indentation, 8",
-            "98: class def child at indentation level 10 not at correct indentation, 12",
-            "103: class def child at indentation level 6 not at correct indentation, 8",
+            "92: member def modifier at indentation level 6 not at correct indentation, 8",
+            "93: member def type at indentation level 12 not at correct indentation, 8",
+            "98: member def type at indentation level 10 not at correct indentation, 8",
+            "103: member def modifier at indentation level 6 not at correct indentation, 8",
             "108: class def rcurly at indentation level 6 not at correct indentation, 4",
             "110: class def ident at indentation level 6 not at correct indentation, 4",
             "116: class def child at indentation level 6 not at correct indentation, 8",
             "116: class def ident at indentation level 6 not at correct indentation, 8",
             "119: class def ident at indentation level 10 not at correct indentation, 8",
             "121: class def rcurly at indentation level 10 not at correct indentation, 8",
-            "124: class def child at indentation level 10 not at correct indentation, 12",
+            "124: member def type at indentation level 10 not at correct indentation, 12",
             "129: method def child at indentation level 10 not at correct indentation, 8",
             "138: object def lcurly at indentation level 6 not at correct indentation, [8, 12]",
 

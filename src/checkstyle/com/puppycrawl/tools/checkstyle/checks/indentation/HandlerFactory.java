@@ -114,6 +114,7 @@ public class HandlerFactory
         register(TokenTypes.BAND_ASSIGN, AssignHandler.class);
         register(TokenTypes.BXOR_ASSIGN, AssignHandler.class);
         register(TokenTypes.BOR_ASSIGN, AssignHandler.class);
+        register(TokenTypes.VARIABLE_DEF, MemberDefHandler.class);
     }
 
     /**

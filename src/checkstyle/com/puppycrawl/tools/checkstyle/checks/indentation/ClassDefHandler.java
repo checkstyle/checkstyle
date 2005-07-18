@@ -122,4 +122,18 @@ public class ClassDefHandler extends BlockParentHandler
 
         super.checkIndentation();
     }
+
+    /** {@inheritDoc} */
+    protected int[] getCheckedChildren()
+    {
+        return new int[] {
+            TokenTypes.EXPR,
+            TokenTypes.OBJBLOCK,
+            TokenTypes.LITERAL_BREAK,
+            TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_THROW,
+            TokenTypes.LITERAL_CONTINUE,
+        };
+    }
+
 }

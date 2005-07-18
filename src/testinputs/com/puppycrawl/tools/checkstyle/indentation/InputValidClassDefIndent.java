@@ -65,7 +65,7 @@ final class InputValidClassDefIndent6 extends java.awt.event.MouseAdapter implem
     
     class foo3 { 
         public 
-            int x; 
+        int x; 
     }
 
     
@@ -127,7 +127,7 @@ final class InputValidClassDefIndent6 extends java.awt.event.MouseAdapter implem
 }
 
 class HashingContainer<K, V> {
-//     @Deprecated
+    @Deprecated
     public Object[] table;
 
     @Override

@@ -168,4 +168,11 @@ public class InputInvalidMethodIndent {
         // thow invorrectly indented
     throw new RuntimeException("");
     }
+
+    public
+int[]
+    method9()
+    {
+        return null;
+    }
 }

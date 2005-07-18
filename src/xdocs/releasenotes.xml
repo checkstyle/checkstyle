@@ -51,6 +51,9 @@
         checkstyle with JRokit (thank to Ville Skytta for
         contribution)</li>
 
+        <li>Changed way how to IndentationCheck handles fields in
+        class (bug 1193848)</li>
+
       </ul>
 
       <p>Other improvements:</p>
