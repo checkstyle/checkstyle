@@ -54,6 +54,9 @@
         <li>Changed way how to IndentationCheck handles fields in
         class (bug 1193848)</li>
 
+        <li>Fixed problem with cache file (patch 1012389) thanks to
+        Dave Wood.</li>
+
       </ul>
 
       <p>Other improvements:</p>

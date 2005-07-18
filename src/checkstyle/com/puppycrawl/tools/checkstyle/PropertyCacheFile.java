@@ -29,6 +29,7 @@ import java.util.Properties;
 import java.security.MessageDigest;
 
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * This class maintains a persistent store of the files that have
@@ -66,13 +67,14 @@ final class PropertyCacheFile
         final String fileName = aFileName;
         if (fileName != null) {
             FileInputStream inStream = null;
+            // get the current config so if the file isn't found
+            // the first time the hash will be added to output file
+            final String currentConfigHash = getConfigHashCode(aCurrentConfig);
             try {
                 inStream = new FileInputStream(fileName);
                 mDetails.load(inStream);
                 final String cachedConfigHash =
                     mDetails.getProperty(CONFIG_HASH_KEY);
-                final String currentConfigHash =
-                    getConfigHashCode(aCurrentConfig);
                 setInActive = false;
                 if ((cachedConfigHash == null)
                     || !cachedConfigHash.equals(currentConfigHash))
@@ -85,11 +87,12 @@ final class PropertyCacheFile
             catch (FileNotFoundException e) {
                 // Ignore, the cache does not exist
                 setInActive = false;
+                // put the hash in the file if the file is going to be created
+                mDetails.put(CONFIG_HASH_KEY, currentConfigHash);
             }
             catch (IOException e) {
-                // TODO: use logger
-                System.out.println("Unable to open cache file, ignoring.");
-                e.printStackTrace(System.out);
+                Utils.getExceptionLogger()
+                    .debug("Unable to open cache file, ignoring.", e);
             }
             finally {
                 if (inStream != null) {
@@ -97,9 +100,8 @@ final class PropertyCacheFile
                         inStream.close();
                     }
                     catch (IOException ex) {
-                        // TODO: use logger
-                        System.out.println("Unable to close cache file.");
-                        ex.printStackTrace(System.out);
+                        Utils.getExceptionLogger()
+                            .debug("Unable to close cache file.", ex);
                     }
                 }
             }
@@ -117,8 +119,8 @@ final class PropertyCacheFile
                 mDetails.store(out, null);
             }
             catch (IOException e) {
-                System.out.println("Unable to save cache file");
-                e.printStackTrace(System.out);
+                Utils.getExceptionLogger()
+                    .debug("Unable to save cache file.", e);
             }
             finally {
                 if (out != null) {
@@ -127,8 +129,8 @@ final class PropertyCacheFile
                         out.close();
                     }
                     catch (IOException ex) {
-                        System.out.println("Unable to close cache file");
-                        ex.printStackTrace(System.out);
+                        Utils.getExceptionLogger()
+                            .debug("Unable to close cache file.", ex);
                     }
                 }
             }
@@ -184,7 +186,8 @@ final class PropertyCacheFile
             return hexEncode(md.digest());
         }
         catch (Exception ex) { // IO, NoSuchAlgorithm
-            ex.printStackTrace();
+            Utils.getExceptionLogger()
+                .debug("Unable to calculate hashcode.", ex);
             return "ALWAYS FRESH: " + System.currentTimeMillis();
         }
     }
