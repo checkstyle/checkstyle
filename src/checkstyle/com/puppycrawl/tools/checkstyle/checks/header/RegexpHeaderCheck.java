@@ -98,7 +98,10 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
         initHeaderRegexps();
     }
 
-    /** Initializes {@link #mHeaderRegexps} from {@link #mHeaderLines}. */
+    /**
+     * Initializes {@link #mHeaderRegexps} from
+     * {@link AbstractHeaderCheck#getHeaderLines()}.
+     */
     private void initHeaderRegexps()
     {
         final String[] headerLines = getHeaderLines();

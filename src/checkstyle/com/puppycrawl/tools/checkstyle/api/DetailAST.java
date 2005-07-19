@@ -33,7 +33,7 @@ import antlr.collections.AST;
  * @author Oliver Burn
  * @author lkuehne
  * @version 1.0
- * @see <a target="_top" href="http://www.antlr.org/">ANTLR Website</a>
+ * @see <a href="http://www.antlr.org/">ANTLR Website</a>
  */
 public final class DetailAST
     extends CommonAST

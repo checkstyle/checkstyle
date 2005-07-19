@@ -187,7 +187,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck#process
+     * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck#process
      */
     public synchronized void process(File[] aFiles)
     {

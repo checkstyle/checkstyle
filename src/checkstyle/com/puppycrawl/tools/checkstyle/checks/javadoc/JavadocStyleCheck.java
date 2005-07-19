@@ -176,7 +176,7 @@ public class JavadocStyleCheck
      * Checks that the first sentence ends with proper puctuation.  This method
      * uses a regular expression that checks for the presence of a period,
      * question mark, or exclaimation mark followed either by whitespace, an
-     * HTML element, or the end of string. This method ignores {@inheritDoc}
+     * HTML element, or the end of string. This method ignores {_AT_inheritDoc}
      * comments.
      *
      * @param aComment the source lines that make up the Javadoc comment.

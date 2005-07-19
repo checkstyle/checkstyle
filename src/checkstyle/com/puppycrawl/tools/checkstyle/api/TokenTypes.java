@@ -75,7 +75,7 @@ public final class TokenTypes
      * modifiers element is always present even though it may have no
      * children.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">Java
      * Language Specification, Chapter 8</a>
      * @see #LITERAL_PUBLIC
@@ -280,7 +280,7 @@ public final class TokenTypes
      * may appear in class and enum definitions.  This token will be a child
      * of the object block of the declaring type.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#246032">Java
      * Language Specification&sect;8.6</a>
      * @see #SLIST
@@ -295,7 +295,7 @@ public final class TokenTypes
      * or enum declaration (interfaces cannot have static initializers).  The
      * first and only child is a statement list.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#39245">Java
      * Language Specification, &sect;8.7</a>
      * @see #SLIST
@@ -358,7 +358,7 @@ public final class TokenTypes
      *         +--RCURLY (})
      * </pre>
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">Java
      * Language Specification, Chapter 8</a>
      * @see #MODIFIERS
@@ -398,7 +398,7 @@ public final class TokenTypes
      *         +--RCURLY (})
      * </pre>
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/interfaces.doc.html">Java
      * Language Specification, Chapter 9</a>
      * @see #MODIFIERS
@@ -444,7 +444,7 @@ public final class TokenTypes
      *     +--SEMI (;)
      * </pre>
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#26619">Java
      * Language Specification &sect;7.4</a>
      * @see #DOT
@@ -486,7 +486,7 @@ public final class TokenTypes
      * expression specifying the length of the array or an array
      * initialization block.</p>
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/arrays.doc.html">Java
      * Language Specification Chapter 10</a>
      * @see #TYPE
@@ -618,7 +618,7 @@ public final class TokenTypes
      *     +--EMPTY_STAT (;)
      * </pre>
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#78993">Java
      * Language Specification, &sect;14.7</a>
      * @see #SLIST
@@ -650,7 +650,7 @@ public final class TokenTypes
      *         +--ELIST
      *         +--RPAREN ())
      * </pre>
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#238146">Java
      * Language Specification, &sect;15.16</a>
      * @see #EXPR
@@ -688,7 +688,7 @@ public final class TokenTypes
     /**
      * The <code>++</code> (postfix increment) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#39438">Java
      * Language Specification, &sect;15.14.1</a>
      * @see #EXPR
@@ -698,7 +698,7 @@ public final class TokenTypes
     /**
      * The <code>--</code> (postfix decrement) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#4987">Java
      * Language Specification, &sect;15.14.2</a>
      * @see #EXPR
@@ -901,7 +901,7 @@ public final class TokenTypes
      *     +--SEMI (;)
      * </pre>
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#70209">Java
      * Language Specification &sect;7.5</a>
      * @see #DOT
@@ -914,7 +914,7 @@ public final class TokenTypes
     /**
      * The <code>+</code> (unary plus) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#24924">Java
      * Language Specification, &sect;15.15.3</a>
      * @see #EXPR
@@ -923,7 +923,7 @@ public final class TokenTypes
     /**
      * The <code>-</code> (unary minus) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#236345">Java
      * Language Specification, &sect;15.15.4</a>
      * @see #EXPR
@@ -1032,7 +1032,7 @@ public final class TokenTypes
      * <code>SLIST</code> for a <code>for</code> or <code>while</code>
      * loop body.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#5970">Java
      * Language Specification, &sect;14.6</a>
      * @see #LITERAL_FOR
@@ -1219,10 +1219,10 @@ public final class TokenTypes
     /**
      * The <code>*</code> (multiplication or wildcard) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#26725">Java
      * Language Specification, &sect;7.5.2</a>
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5036">Java
      * Language Specification, &sect;15.17.1</a>
      * @see #EXPR
@@ -1453,7 +1453,7 @@ public final class TokenTypes
     /**
      * The <code>=</code> (assignment) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5295">Java
      * Language Specification, &sect;15.26.1</a>
      * @see #EXPR
@@ -1463,7 +1463,7 @@ public final class TokenTypes
      * The <code>throws</code> keyword.  The children are a number of
      * one or more identifiers separated by commas.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#78323">Java
      * Language Specification, &sect;8.4.4</a>
      * @see #IDENT
@@ -1864,7 +1864,7 @@ public final class TokenTypes
      *     +--RCURLY (})
      * </pre>
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#35518">Java
      * Language Specification, &sect;14.10</a>
      * @see #LPAREN
@@ -1882,7 +1882,7 @@ public final class TokenTypes
      * The <code>throw</code> keyword.  The first child is an
      * expression that evaluates to a <code>Throwable</code> instance.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#237350">Java
      * Language Specification, &sect;14.17</a>
      * @see #SLIST
@@ -1991,7 +1991,7 @@ public final class TokenTypes
      * +--RCURLY (})
      * </pre>
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#79311">Java
      * Language Specification, &sect;14.19</a>
      * @see #SLIST
@@ -2023,7 +2023,7 @@ public final class TokenTypes
     /**
      * The <code>+=</code> (addition assignment) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
@@ -2032,7 +2032,7 @@ public final class TokenTypes
     /**
      * The <code>-=</code> (subtraction assignment) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
@@ -2043,7 +2043,7 @@ public final class TokenTypes
     /**
      * The <code>*=</code> (multiplication assignment) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
@@ -2052,7 +2052,7 @@ public final class TokenTypes
     /**
      * The <code>/=</code> (division assignment) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
@@ -2061,7 +2061,7 @@ public final class TokenTypes
     /**
      * The <code>%=</code> (remainder assignment) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
@@ -2071,7 +2071,7 @@ public final class TokenTypes
      * The <code>&gt;&gt;=</code> (signed right shift assignment)
      * operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
@@ -2081,7 +2081,7 @@ public final class TokenTypes
      * The <code>&gt;&gt;&gt;=</code> (unsigned right shift assignment)
      * operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
@@ -2090,7 +2090,7 @@ public final class TokenTypes
     /**
      * The <code>&lt;&lt;=</code> (left shift assignment) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
@@ -2099,7 +2099,7 @@ public final class TokenTypes
     /**
      * The <code>&amp;=</code> (bitwise AND assignment) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
@@ -2108,7 +2108,7 @@ public final class TokenTypes
     /**
      * The <code>^=</code> (bitwise exclusive OR assignment) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
@@ -2117,7 +2117,7 @@ public final class TokenTypes
     /**
      * The <code>|=</code> (bitwise OR assignment) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5304">Java
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
@@ -2149,7 +2149,7 @@ public final class TokenTypes
      *     +--STRING_LITERAL ("s")
      * </pre>
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#290293">Java
      * Language Specification, &sect;15.25</a>
      * @see #EXPR
@@ -2159,7 +2159,7 @@ public final class TokenTypes
     /**
      * The <code>||</code> (conditional OR) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#54532">Java
      * Language Specification, &sect;15.24</a>
      * @see #EXPR
@@ -2168,7 +2168,7 @@ public final class TokenTypes
     /**
      * The <code>&&</code> (conditional AND) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5247">Java
      * Language Specification, &sect;15.23</a>
      * @see #EXPR
@@ -2177,7 +2177,7 @@ public final class TokenTypes
     /**
      * The <code>|</code> (bitwise OR) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5233">Java
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
@@ -2186,7 +2186,7 @@ public final class TokenTypes
     /**
      * The <code>^</code> (bitwise exclusive OR) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5233">Java
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
@@ -2195,7 +2195,7 @@ public final class TokenTypes
     /**
      * The <code>&</code> (bitwise AND) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5233">Java
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
@@ -2242,7 +2242,7 @@ public final class TokenTypes
      * object reference or something that evaluates to an object
      * reference.  The second child is a reference type.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#80289">Java
      * Language Specification, &sect;15.20.2</a>
      * @see #EXPR
@@ -2258,7 +2258,7 @@ public final class TokenTypes
     /**
      * The <code>&lt;&lt;</code> (shift left) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5121">Java
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
@@ -2267,7 +2267,7 @@ public final class TokenTypes
     /**
      * The <code>&gt;&gt;</code> (signed shift right) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5121">Java
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
@@ -2276,7 +2276,7 @@ public final class TokenTypes
     /**
      * The <code>&gt;&gt;&gt;</code> (unsigned shift right) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5121">Java
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
@@ -2285,7 +2285,7 @@ public final class TokenTypes
     /**
      * The <code>+</code> (addition) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#15746">Java
      * Language Specification, &sect;15.18</a>
      * @see #EXPR
@@ -2294,7 +2294,7 @@ public final class TokenTypes
     /**
      * The <code>-</code> (subtraction) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#15746">Java
      * Language Specification, &sect;15.18</a>
      * @see #EXPR
@@ -2303,7 +2303,7 @@ public final class TokenTypes
     /**
      * The <code>/</code> (division) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5047">Java
      * Language Specification, &sect;15.17.2</a>
      * @see #EXPR
@@ -2312,7 +2312,7 @@ public final class TokenTypes
     /**
      * The <code>%</code> (remainder) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#24956">Java
      * Language Specification, &sect;15.17.3</a>
      * @see #EXPR
@@ -2321,7 +2321,7 @@ public final class TokenTypes
     /**
      * The <code>++</code> (prefix increment) operator.
      *
-     * @see <a target="top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#39547">Java
      * Language Specification, &sect;15.15.1</a>
      * @see #EXPR
@@ -2331,7 +2331,7 @@ public final class TokenTypes
     /**
      * The <code>--</code> (prefix decrement) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#239136">Java
      * Language Specification, &sect;15.15.2</a>
      * @see #EXPR
@@ -2341,7 +2341,7 @@ public final class TokenTypes
     /**
      * The <code>~</code> (bitwise complement) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#5017">Java
      * Language Specification, &sect;15.15.5</a>
      * @see #EXPR
@@ -2350,7 +2350,7 @@ public final class TokenTypes
     /**
      * The <code>&#33;</code> (logical complement) operator.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#13350">Java
      * Language Specification, &sect;15.15.6</a>
      * @see #EXPR
@@ -2359,7 +2359,7 @@ public final class TokenTypes
     /**
      * The <code>true</code> keyword.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#49652">Java
      * Language Specification, &sect;3.10.3</a>
      * @see #EXPR
@@ -2371,7 +2371,7 @@ public final class TokenTypes
     /**
      * The <code>false</code> keyword.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#49652">Java
      * Language Specification, &sect;3.10.3</a>
      * @see #EXPR
@@ -2383,7 +2383,7 @@ public final class TokenTypes
     /**
      * The <code>null</code> keyword.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#230717">Java
      * Language Specification, &sect;3.10.7</a>
      * @see #EXPR
@@ -2528,7 +2528,7 @@ public final class TokenTypes
      * An integer literal.  These may be specified in decimal,
      * hexadecimal, or octal form.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">Java
      * Language Specification, &sect;3.10.1</a>
      * @see #EXPR
@@ -2539,7 +2539,7 @@ public final class TokenTypes
      * A character literal.  This is a (possibly escaped) character
      * enclosed in single quotes.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#100960">Java
      * Language Specification, &sect;3.10.4</a>
      * @see #EXPR
@@ -2551,7 +2551,7 @@ public final class TokenTypes
      * A string literal.  This is a sequence of (possibly escaped)
      * characters enclosed in double quotes.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#101084">Java
      * Language Specification, &sect;3.10.5</a>
      * @see #EXPR
@@ -2563,7 +2563,7 @@ public final class TokenTypes
      * A single precision floating point literal.  This is a floating
      * point number with an <code>F</code> or <code>f</code> suffix.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#230798">Java
      * Language Specification, &sect;3.10.2</a>
      * @see #EXPR
@@ -2575,7 +2575,7 @@ public final class TokenTypes
      * literals, but they have an <code>L</code> or <code>l</code>
      * (ell) suffix.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">Java
      * Language Specification, &sect;3.10.1</a>
      * @see #EXPR
@@ -2587,7 +2587,7 @@ public final class TokenTypes
      * point number with an optional <code>D</code> or <code>d</code>
      * suffix.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#230798">Java
      * Language Specification, &sect;3.10.2</a>
      * @see #EXPR
@@ -2597,7 +2597,7 @@ public final class TokenTypes
     /* *
      * This token does not appear in the tree.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#95710">Java
      * Language Specification, &sect;3.6</a>
      * @see FileContents
@@ -2606,7 +2606,7 @@ public final class TokenTypes
     /* *
      * This token does not appear in the tree.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48125">Java
      * Language Specification, &sect;3.7</a>
      * @see FileContents
@@ -2615,7 +2615,7 @@ public final class TokenTypes
     /* *
      * This token does not appear in the tree.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48125">Java
      * Language Specification, &sect;3.7</a>
      * @see FileContents
@@ -2624,7 +2624,7 @@ public final class TokenTypes
     /* *
      * This token does not appear in the tree.
      *
-     * @see <a target="_top"
+     * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#101089">Java
      * Language Specification, &sect;3.10.6</a>
      * @see #CHAR_LITERAL
@@ -2706,7 +2706,7 @@ public final class TokenTypes
      *     +--SEMI (;)
      * </pre>
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #LITERAL_STATIC
      * @see #DOT
@@ -2778,7 +2778,7 @@ public final class TokenTypes
      *         +--RCURLY (})
      * </pre>
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #ENUM
@@ -2848,7 +2848,7 @@ public final class TokenTypes
      *         +--RCURLY (})
      * </pre>
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATIONS
      * @see #MODIFIERS
@@ -2908,7 +2908,7 @@ public final class TokenTypes
      *         +--RCURLY (})
      * </pre>
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #LITERAL_INTERFACE
@@ -2949,7 +2949,7 @@ public final class TokenTypes
      *     +--SEMI (;)
      * </pre>
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #TYPE
@@ -2988,7 +2988,7 @@ public final class TokenTypes
      *     +--SEMI (;)
      * </pre>
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATION
      * @see #AT
@@ -3038,7 +3038,7 @@ public final class TokenTypes
      *     +--RPAREN ())
      * </pre>
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #IDENT
@@ -3052,7 +3052,7 @@ public final class TokenTypes
      * Its children are the name of the member, the assignment literal
      * and the (compile-time constant conditional expression) value.
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATION
      * @see #IDENT
@@ -3085,7 +3085,7 @@ public final class TokenTypes
      *     +--RCURLY (})
      * </pre>
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATION
      * @see #IDENT
@@ -3138,7 +3138,7 @@ public final class TokenTypes
      *     +--RCURLY (})
      * </pre>
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #GENERIC_START
      * @see #GENERIC_END
@@ -3169,7 +3169,7 @@ public final class TokenTypes
      *         +--IDENT (Collection)
      * </pre>
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #IDENT
      * @see #WILDCARD_TYPE
@@ -3243,7 +3243,7 @@ public final class TokenTypes
      *         +--IDENT (List)
      * </pre>
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #WILDCARD_TYPE
      * @see #TYPE_UPPER_BOUNDS
@@ -3255,7 +3255,7 @@ public final class TokenTypes
     /**
      * The type that refers to all types. This node has no children.
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #TYPE_ARGUMENT
      * @see #TYPE_UPPER_BOUNDS
@@ -3269,7 +3269,7 @@ public final class TokenTypes
      * This node has one child - the type that is being used for
      * the bounding.
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #TYPE_PARAMETER
      * @see #TYPE_ARGUMENT
@@ -3282,7 +3282,7 @@ public final class TokenTypes
      * A lower bounds on a wildcard type argument. This node has one child
      *  - the type that is being used for the bounding.
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #TYPE_ARGUMENT
      * @see #WILDCARD_TYPE
@@ -3295,7 +3295,7 @@ public final class TokenTypes
      * to the interface literal signifying the definition of an annotation
      * declaration.
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      */
     public static final int AT = GeneratedJavaTokenTypes.AT;
@@ -3304,7 +3304,7 @@ public final class TokenTypes
      * A triple dot for variable-length parameters. This token only ever occurs
      * in a parameter declaration immediately after the type of the parameter.
      *
-     * @see <a target="_top" href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      */
     public static final int ELLIPSIS = GeneratedJavaTokenTypes.ELLIPSIS;

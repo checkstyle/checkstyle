@@ -192,7 +192,7 @@ class FileDrop
      * from the all children. You should call this if you add and remove
      * components after you've set up the drag-and-drop.
      * This will recursively unregister all components contained within
-     * <var>c</var> if <var>c</var> is a {@link .Container}.
+     * <var>c</var> if <var>c</var> is a {@link Container}.
      *
      * @param c The component to unregister as a drop target
      * @since 1.0
