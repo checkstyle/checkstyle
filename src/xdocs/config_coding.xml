@@ -1099,13 +1099,13 @@ return !valid();
         <source>
 if (x == &quot;something&quot;)
         </source>
-        
+
         <p>when they mean</p>
         <source>
 if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
-      
+
       <subsection name="Example">
         <p>
           To configure the check:
@@ -1114,13 +1114,13 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;StringLiteralEquality&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1151,7 +1151,7 @@ if (&quot;something&quot;.equals(x))
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Example">
         <p>
           To configure the check:
@@ -1159,7 +1159,7 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;NestedIfDepth&quot;/&gt;
         </source>
-        
+
         <p>
           To configure the check to allow nesting depth 3:
         </p>
@@ -1169,13 +1169,13 @@ if (&quot;something&quot;.equals(x))
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1206,7 +1206,7 @@ if (&quot;something&quot;.equals(x))
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Example">
         <p>
           To configure the check:
@@ -1214,7 +1214,7 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;NestedTryDepth&quot;/&gt;
         </source>
-        
+
         <p>
           To configure the check to allow nesting depth 3:
         </p>
@@ -1224,13 +1224,13 @@ if (&quot;something&quot;.equals(x))
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1244,13 +1244,13 @@ if (&quot;something&quot;.equals(x))
           Checks that an overriding <span class="code">clone()</span> method
           invokes <span class="code">super.clone()</span>.
         </p>
-        
+
         <p>
           Reference: <a
           href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Object.html#clone()">Object.clone()</a>.
         </p>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1259,13 +1259,13 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;SuperClone&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1279,14 +1279,14 @@ if (&quot;something&quot;.equals(x))
           Checks that an overriding <span class="code">finalize()</span>
           method invokes <span class="code">super.finalize()</span>.
         </p>
-        
+
         <p>
           Reference: <a
           href="http://java.sun.com/docs/books/tutorial/java/data/garbagecollection.html">Cleaning
           Up Unused Objects</a>.
         </p>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1295,27 +1295,27 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;SuperFinalize&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
-      
+
     <section name="IllegalCatch">
       <subsection name="Description">
         <p>
           Catching java.lang.Exception, java.lang.Error or
           java.lang.RuntimeException is almost never acceptable.
         </p>
-          
+
         <p>
           Rationale: Junior developers often simply catch Exception in an
           attempt to handle multiple exception classes. This unfortunately
@@ -1340,7 +1340,7 @@ if (&quot;something&quot;.equals(x))
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1349,13 +1349,62 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;IllegalCatch&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="IllegalThrows">
+      <subsection name="Description">
+        <p>
+          This check can be used to ensure that types are not declared
+          to be thrown. Declaring to throw java.lang.Error or
+          java.lang.RuntimeException is almost never acceptable.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>illegalClassNames</td>
+            <td>throw class names to reject</td>
+            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><span class="default">&quot;java.lang.Throwable,
+            java.lang.RuntimeException&quot;</span></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalThrows&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1368,13 +1417,13 @@ if (&quot;something&quot;.equals(x))
         <p>
           Ensure a class is has a package declaration.
         </p>
-        
+
         <p>
           Rationale: Classes that live in the null package cannot be
           imported. Many novice developers are not aware of this.
         </p>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1383,13 +1432,13 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;PackageDeclaration&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1404,12 +1453,12 @@ if (&quot;something&quot;.equals(x))
           have no arguments, return void and are either public or
           protected.
         </p>
-        
+
         <p>
           Also ensures that suite() is named correctly, have no arguments,
           return junit.framewotk.Test, public and static.
         </p>
-        
+
         <p>
           Rationale: often times developers will misname one or more of these
           methods and not realise that the method is not being called.
@@ -1424,13 +1473,13 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;JUnitTestCase&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1473,7 +1522,7 @@ if (&quot;something&quot;.equals(x))
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check so that it doesn't allow more than three
@@ -1485,7 +1534,7 @@ if (&quot;something&quot;.equals(x))
     &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
         </source>
-        
+
         <p>
           To configure the check so that it doesn't allow more than three
           return statements per method for all methods:
@@ -1497,13 +1546,13 @@ if (&quot;something&quot;.equals(x))
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1525,7 +1574,7 @@ if (&quot;something&quot;.equals(x))
           implementations of interfaces and as such are not types themsleves.
         </p>
       </subsection>
-      
+
       <subsection name="Properties">
         <table>
           <tr>
@@ -1578,7 +1627,7 @@ if (&quot;something&quot;.equals(x))
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check so that it ignore getInstance() method:
@@ -1589,13 +1638,13 @@ if (&quot;something&quot;.equals(x))
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1628,7 +1677,7 @@ if (&quot;something&quot;.equals(x))
           <li> Methods </li>
         </ol>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1637,13 +1686,13 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;DeclarationOrder&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1661,7 +1710,7 @@ if (&quot;something&quot;.equals(x))
           would give the best of both worlds.
         </p>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1670,20 +1719,20 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;ParameterAssignment&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
-    
+
     <section name="ExplicitInitialization">
       <subsection name="Description">
         <p>
@@ -1693,7 +1742,7 @@ if (&quot;something&quot;.equals(x))
           class="code">char</span> and <span class="code">false</span> for
           <span class="code">boolean</span>.
         </p>
-          
+
         <p>
           Rationale: each instance variable gets initialized twice, to the
           same value.  Java initializes each instance variable to its default
@@ -1705,7 +1754,7 @@ if (&quot;something&quot;.equals(x))
           initializes instance variables to default values.
         </p>
       </subsection>
-        
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1714,13 +1763,13 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;ExplicitInitialization&quot;/&gt;
         </source>
       </subsection>
-        
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1735,7 +1784,7 @@ if (&quot;something&quot;.equals(x))
           <span class="code">case</span>s in a <span
           class="code">switch</span> statement.
         </p>
-        
+
         <p>
           Rationale: Java allows <span class="code">default</span> anywhere
           within the <span class="code">switch</span> statement. But it is
@@ -1743,7 +1792,7 @@ if (&quot;something&quot;.equals(x))
           class="code">case</span>.
         </p>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1752,13 +1801,13 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;DefaultComesLast&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1773,7 +1822,7 @@ if (&quot;something&quot;.equals(x))
           rely on the default one.
         </p>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1782,13 +1831,13 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;MissingCtor&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1806,13 +1855,13 @@ if (&quot;something&quot;.equals(x))
           class="code">throw</span> or <span class="code">continue</span>
           statement.
         </p>
-        
+
         <p>
           Note: the check works in assumption that there is no unreachable
           code in the <span class="code">case</span>.
         </p>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1821,13 +1870,13 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;FallThrough&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1841,13 +1890,13 @@ if (&quot;something&quot;.equals(x))
           Checks for multiple occurrences of the same string literal within a
           single file.
         </p>
-        
+
         <p>
           Rationale: Code duplication makes maintenance more difficult, so it
           can be better to replace the multiple occurrences with a constant.
         </p>
       </subsection>
-      
+
       <subsection name="Properties">
         <table>
           <tr>
@@ -1867,7 +1916,7 @@ if (&quot;something&quot;.equals(x))
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1875,7 +1924,7 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
         </source>
-        
+
         <p>
           To configure the check so that it allows two occurrences of each
           string:
@@ -1886,13 +1935,13 @@ if (&quot;something&quot;.equals(x))
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1906,7 +1955,7 @@ if (&quot;something&quot;.equals(x))
           Checks that each variable declaration is in its own statement and on
           its own line.
         </p>
-        
+
         <p>
           Rationale: <a
           href="http://java.sun.com/docs/codeconv/html/CodeConventions.doc5.html#2991">
@@ -1914,7 +1963,7 @@ if (&quot;something&quot;.equals(x))
           declarations should be one per line/statement.
         </p>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1923,13 +1972,13 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;MultipleVariableDeclarations&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -1946,7 +1995,7 @@ if (&quot;something&quot;.equals(x))
           &quot;this.methodName(args)&quot;.
         </p>
       </subsection>
-      
+
       <subsection name="Properties">
         <table>
           <tr>
@@ -1969,7 +2018,7 @@ if (&quot;something&quot;.equals(x))
           </tr>
         </table>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the default check:
@@ -1977,7 +2026,7 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;RequireThis&quot;/&gt;
         </source>
-        
+
         <p>
           To configure to check <code>this</code> qualifier for fields only:
         </p>
@@ -1987,13 +2036,13 @@ if (&quot;something&quot;.equals(x))
 &lt;/module&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
@@ -2007,7 +2056,7 @@ if (&quot;something&quot;.equals(x))
           Checks for the use of unnecessary parentheses.
         </p>
       </subsection>
-      
+
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -2016,13 +2065,13 @@ if (&quot;something&quot;.equals(x))
 &lt;module name=&quot;UnnecessaryParentheses&quot;/&gt;
         </source>
       </subsection>
-      
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
-      
+
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>

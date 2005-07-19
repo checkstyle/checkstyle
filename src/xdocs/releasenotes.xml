@@ -25,6 +25,10 @@
           Added patch (id 1193251) to suppress processing of checks with
           'ignore' severity. From Lars Koedderitzsch.
         </li>
+
+        <li>
+          Added IllegalThrowsCheck to detect illegal throw declarations.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

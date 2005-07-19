@@ -21,22 +21,20 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 
 /**
- * Catching java.lang.Exception, java.lang.Error or java.lang.RuntimeException
+ * Throwing java.lang.Error or java.lang.RuntimeException
  * is almost never acceptable.
- * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
+ * @author Oliver Burn
  */
-public final class IllegalCatchCheck extends AbstractIllegalCheck
+public final class IllegalThrowsCheck extends AbstractIllegalCheck
 {
     /** Creates new instance of the check. */
-    public IllegalCatchCheck()
+    public IllegalThrowsCheck()
     {
-        super(new String[] {"Exception", "Error",
+        super(new String[] {"Error",
                             "RuntimeException", "Throwable",
                             "java.lang.Error",
-                            "java.lang.Exception",
                             "java.lang.RuntimeException",
                             "java.lang.Throwable",
         });
@@ -45,7 +43,7 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
     /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.LITERAL_CATCH};
+        return new int[] {TokenTypes.LITERAL_THROWS};
     }
 
     /** {@inheritDoc} */
@@ -57,13 +55,16 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
     /** {@inheritDoc} */
     public void visitToken(DetailAST aDetailAST)
     {
-        final DetailAST paramDef =
-            aDetailAST.findFirstToken(TokenTypes.PARAMETER_DEF);
-        final DetailAST excType = paramDef.findFirstToken(TokenTypes.TYPE);
-        final FullIdent ident = CheckUtils.createFullType(excType);
+        DetailAST token = (DetailAST) aDetailAST.getFirstChild();
+        while (token != null) {
+            if (token.getType() != TokenTypes.COMMA) {
+                final FullIdent ident = FullIdent.createFullIdent(token);
+                if (isIllegalClassName(ident.getText())) {
+                    log(token, "illegal.throw", ident.getText());
+                }
+            }
 
-        if (isIllegalClassName(ident.getText())) {
-            log(aDetailAST, "illegal.catch", ident.getText());
+            token = (DetailAST) token.getNextSibling();
         }
     }
 }

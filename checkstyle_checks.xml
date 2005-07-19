@@ -37,8 +37,10 @@
           <property name="headerFile" value="${checkstyle.header.file}"/>
         </module>
 
+        <!-- module name="IllegalCatch"/ -->
         <module name="IllegalImport"/>
         <module name="IllegalInstantiation"/>
+        <module name="IllegalThrows"/>
         <module name="InnerAssignment"/>
         <module name="JavadocType">
             <property name="authorFormat" value="\S"/>
