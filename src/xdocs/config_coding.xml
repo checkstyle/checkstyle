@@ -1384,8 +1384,10 @@ if (&quot;something&quot;.equals(x))
             <td>illegalClassNames</td>
             <td>throw class names to reject</td>
             <td><a href="property_types.html#stringSet">list of strings</a></td>
-            <td><span class="default">&quot;java.lang.Throwable,
-            java.lang.RuntimeException&quot;</span></td>
+            <td>
+              <span class="default">&quot;java.lang.Throwable,
+              java.lang.Error, java.lang.RuntimeException&quot;</span>
+            </td>
           </tr>
         </table>
       </subsection>
