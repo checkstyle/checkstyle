@@ -61,6 +61,8 @@
         <li>Fixed problem with cache file (patch 1012389) thanks to
         Dave Wood.</li>
 
+        <li>Fixed example for FinalLocalVariable (bug 1241722)</li>
+
       </ul>
 
       <p>Other improvements:</p>

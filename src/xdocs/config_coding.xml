@@ -323,8 +323,7 @@ public class MySingleton
         </p>
         <source>
 &lt;module name=&quot;FinalLocalVariable&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;PARAMETER_DEF&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,PARAMETER_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
