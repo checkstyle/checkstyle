@@ -43,6 +43,8 @@ public class FinalLocalVariableCheckTest
         
         final String[] expected = {
             "45:28: Variable 'aArg' should be declared final.",
+            "149:36: Variable '_o' should be declared final.",
+            "154:37: Variable '_o1' should be declared final.",
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariable.java"), expected);
     }

@@ -141,3 +141,18 @@ class Blah
         return null;
     }
 }
+
+class test_1241722
+{
+    private Object o_;
+
+    public void doSomething(Object _o)
+    {
+        System.out.println(_o);
+    }
+
+    public void doSomething2(Object _o1)
+    {
+        o_ = _o1;
+    }
+}

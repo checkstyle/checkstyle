@@ -138,7 +138,11 @@ public class FinalLocalVariableCheck extends Check
                 || (TokenTypes.BOR_ASSIGN   == parentType)
                 || (TokenTypes.BAND_ASSIGN  == parentType))
             {
-                removeVariable(aAST);
+                // TODO: is there better way to check is aAST
+                // in left part of assignment?
+                if (aAST.getParent().getFirstChild() == aAST) {
+                    removeVariable(aAST);
+                }
             }
             break;
 
