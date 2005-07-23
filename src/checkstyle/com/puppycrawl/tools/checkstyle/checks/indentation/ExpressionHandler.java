@@ -606,4 +606,49 @@ public abstract class ExpressionHandler
     {
         return getIndentCheck().getBraceAdjustement();
     }
+
+    /**
+     * Check the indentation of the right parenthesis.
+     * @param aRparen parenthesis to check
+     * @param aLparen left parenthesis associated with aRparen
+     */
+    protected final void checkRParen(DetailAST aLparen, DetailAST aRparen)
+    {
+        // no paren - no check :)
+        if (aRparen == null) {
+            return;
+        }
+
+        // the rcurly can either be at the correct indentation,
+        // or not first on the line ...
+        final int rparenLevel = expandedTabsColumnNo(aRparen);
+        if (getLevel().accept(rparenLevel) || !startsLine(aRparen)) {
+            return;
+        }
+
+        // or has <lparen level> + 1 indentation
+        final int lparenLevel = expandedTabsColumnNo(aLparen);
+        if (rparenLevel == (lparenLevel + 1)) {
+            return;
+        }
+
+        logError(aRparen, "rparen", rparenLevel);
+    }
+
+    /**
+     * Check the indentation of the left parenthesis.
+     * @param aLparen parenthesis to check
+     */
+    protected final void checkLParen(final DetailAST aLparen)
+    {
+        // the rcurly can either be at the correct indentation, or on the
+        // same line as the lcurly
+        if (aLparen == null
+            || getLevel().accept(expandedTabsColumnNo(aLparen))
+            || !startsLine(aLparen))
+        {
+            return;
+        }
+        logError(aLparen, "lparen", expandedTabsColumnNo(aLparen));
+    }
 }

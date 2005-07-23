@@ -49,9 +49,9 @@ public class NewHandler extends ExpressionHandler
         DetailAST type = (DetailAST) getMainAst().getFirstChild();
         checkExpressionSubtree(type, getLevel(), false, false);
 
-        checkLParen();
-        DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         DetailAST lparen = getMainAst().findFirstToken(TokenTypes.LPAREN);
+        DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
+        checkLParen(lparen);
 
         if (rparen == null || lparen == null
             || rparen.getLineNo() == lparen.getLineNo())
@@ -74,7 +74,7 @@ public class NewHandler extends ExpressionHandler
             new IndentLevel(getLevel(), getBasicOffset()),
             false, true);
 
-        checkRParen();
+        checkRParen(lparen, rparen);
     }
 
     /** {@inheritDoc} */
@@ -82,53 +82,10 @@ public class NewHandler extends ExpressionHandler
     {
         // if our expression isn't first on the line, just use the start
         // of the line
-        int lineStart = getLineStart(getMainAst());
-        if (lineStart != getMainAst().getColumnNo()) {
-            return new IndentLevel(lineStart);
+        if (getLineStart(getMainAst()) != getMainAst().getColumnNo()) {
+            return new IndentLevel(getLineStart(getMainAst()));
         }
         return super.getLevelImpl();
-    }
-
-    /**
-     * Check the indentation of the left parenthesis.
-     */
-    private void checkLParen()
-    {
-        final DetailAST lparen =
-            getMainAst().findFirstToken(TokenTypes.LPAREN);
-
-        if (lparen == null) {
-            return;
-        }
-
-        final int columnNo = expandedTabsColumnNo(lparen);
-
-        if (getLevel().accept(columnNo) || !startsLine(lparen)) {
-            return;
-        }
-
-        logError(lparen, "lparen", columnNo);
-    }
-
-    /**
-     * Check the indentation of the right parenthesis.
-     */
-    private void checkRParen()
-    {
-        // the rparen can either be at the correct indentation, or on
-        // the same line as the lparen
-        final DetailAST rparen =
-            getMainAst().findFirstToken(TokenTypes.RPAREN);
-        if (rparen == null) {
-            return;
-        }
-        final int columnNo = expandedTabsColumnNo(rparen);
-
-        if (getLevel().accept(columnNo) || !startsLine(rparen)) {
-            return;
-        }
-
-        logError(rparen, "rparen", columnNo);
     }
 
     /** {@inheritDoc} */

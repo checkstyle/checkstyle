@@ -47,39 +47,6 @@ public class MethodCallHandler extends ExpressionHandler
     }
 
     /**
-     * Check the indentation of the left parenthesis.
-     */
-    private void checkLParen()
-    {
-        final DetailAST lparen = getMainAst();
-        final int columnNo = expandedTabsColumnNo(lparen);
-
-        if (getLevel().accept(columnNo) || !startsLine(lparen)) {
-            return;
-        }
-
-        logError(lparen, "lparen", columnNo);
-    }
-
-    /**
-     * Check the indentation of the right parenthesis.
-     */
-    private void checkRParen()
-    {
-        // the rparen can either be at the correct indentation, or on
-        // the same line as the lparen
-        final DetailAST rparen =
-            getMainAst().findFirstToken(TokenTypes.RPAREN);
-        final int columnNo = expandedTabsColumnNo(rparen);
-
-        if (getLevel().accept(columnNo) || !startsLine(rparen)) {
-            return;
-        }
-
-        logError(rparen, "rparen", columnNo);
-    }
-
-    /**
      * Compute the indentation amount for this handler.
      *
      * @return the expected indentation amount
@@ -199,29 +166,30 @@ public class MethodCallHandler extends ExpressionHandler
         DetailAST methodName = (DetailAST) getMainAst().getFirstChild();
         checkExpressionSubtree(methodName, getLevel(), false, false);
 
-        checkLParen();
-        DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         DetailAST lparen = getMainAst();
+        DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
+        checkLParen(lparen);
 
-        if (rparen.getLineNo() != lparen.getLineNo()) {
-
-            // if this method name is on the same line as a containing
-            // method, don't indent, this allows expressions like:
-            //    method("my str" + method2(
-            //        "my str2"));
-            // as well as
-            //    method("my str" +
-            //        method2(
-            //            "my str2"));
-            //
-
-            checkExpressionSubtree(
-                getMainAst().findFirstToken(TokenTypes.ELIST),
-                new IndentLevel(getLevel(), getBasicOffset()),
-                false, true);
-
-            checkRParen();
+        if (rparen.getLineNo() == lparen.getLineNo()) {
+            return;
         }
+
+        // if this method name is on the same line as a containing
+        // method, don't indent, this allows expressions like:
+        //    method("my str" + method2(
+        //        "my str2"));
+        // as well as
+        //    method("my str" +
+        //        method2(
+        //            "my str2"));
+        //
+
+        checkExpressionSubtree(
+            getMainAst().findFirstToken(TokenTypes.ELIST),
+            new IndentLevel(getLevel(), getBasicOffset()),
+            false, true);
+
+        checkRParen(lparen, rparen);
     }
 
     /**

@@ -279,60 +279,14 @@ public class BlockParentHandler extends ExpressionHandler
     }
 
     /**
-     * Check the indentation of the right parenthesis.
-     */
-    protected void checkRParen()
-    {
-        final DetailAST rparen = getRParen();
-
-        // no paren - no check :)
-        if (rparen == null) {
-            return;
-        }
-
-        // the rcurly can either be at the correct indentation,
-        // or not first on the line ...
-        final int rparenLevel = expandedTabsColumnNo(rparen);
-        if (getLevel().accept(rparenLevel) || !startsLine(rparen)) {
-            return;
-        }
-
-        // or has <lparen level> + 1 indentation
-        final DetailAST lparen = getLParen();
-        final int lparenLevel = expandedTabsColumnNo(lparen);
-        if (rparenLevel == (lparenLevel + 1)) {
-            return;
-        }
-
-        logError(rparen, "rparen", expandedTabsColumnNo(rparen));
-    }
-
-    /**
-     * Check the indentation of the left parenthesis.
-     */
-    protected void checkLParen()
-    {
-        // the rcurly can either be at the correct indentation, or on the
-        // same line as the lcurly
-        DetailAST lparen = getLParen();
-        if (lparen == null
-            || getLevel().accept(expandedTabsColumnNo(lparen))
-            || !startsLine(lparen))
-        {
-            return;
-        }
-        logError(lparen, "lparen", expandedTabsColumnNo(lparen));
-    }
-
-    /**
      * Check the indentation of the expression we are handling.
      */
     public void checkIndentation()
     {
         checkToplevelToken();
         // seperate to allow for eventual configuration
-        checkLParen();
-        checkRParen();
+        checkLParen(getLParen());
+        checkRParen(getLParen(), getRParen());
         if (hasCurlys()) {
             checkLCurly();
             checkRCurly();
