@@ -55,7 +55,7 @@ public class CaseHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
-    public IndentLevel getLevelImpl()
+    protected IndentLevel getLevelImpl()
     {
         return new IndentLevel(getParent().getLevel(),
                                getIndentCheck().getCaseIndent());

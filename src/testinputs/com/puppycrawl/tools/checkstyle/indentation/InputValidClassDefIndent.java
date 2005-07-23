@@ -124,6 +124,23 @@ final class InputValidClassDefIndent6 extends java.awt.event.MouseAdapter implem
     private int myfunc3(int a, int b, int c, int d) {
         return 1;
     }
+
+    /** The less than or equal operator. */
+    public static final Operator LT_OR_EQUAL =
+        new Operator(
+            "<=",
+            new OperatorHelper()
+            {
+                public boolean compare(int value1, int value2)
+                {
+                    return (value1 <= value2);
+                }
+
+                public boolean compare(Comparable obj1, Comparable obj2)
+                {
+                    return (obj1.compareTo(obj2) <= 0);
+                }
+            });
 }
 
 class HashingContainer<K, V> {
@@ -134,4 +151,12 @@ class HashingContainer<K, V> {
     public String toString() {
         return "";
     }
+}
+
+class Operator {
+    public Operator(String str, OperatorHelper handler) {
+    }
+}
+
+class OperatorHelper {
 }

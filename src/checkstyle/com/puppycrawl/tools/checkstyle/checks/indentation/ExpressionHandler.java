@@ -472,16 +472,16 @@ public abstract class ExpressionHandler
      * Get the column number for the start of a given expression, expanding
      * tabs out into spaces in the process.
      *
-     * @param aAst   the expression to find the start of
+     * @param aAST   the expression to find the start of
      *
      * @return the column number for the start of the expression
      */
-    protected final int expandedTabsColumnNo(DetailAST aAst)
+    protected final int expandedTabsColumnNo(DetailAST aAST)
     {
         String line =
-            mIndentCheck.getLines()[aAst.getLineNo() - 1];
+            mIndentCheck.getLines()[aAST.getLineNo() - 1];
 
-        return Utils.lengthExpandedTabs(line, aAst.getColumnNo(),
+        return Utils.lengthExpandedTabs(line, aAST.getColumnNo(),
             mIndentCheck.getIndentationTabWidth());
     }
 

@@ -62,7 +62,7 @@ public class PrimordialHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
-    public IndentLevel getLevelImpl()
+    protected IndentLevel getLevelImpl()
     {
         return new IndentLevel(0);
     }

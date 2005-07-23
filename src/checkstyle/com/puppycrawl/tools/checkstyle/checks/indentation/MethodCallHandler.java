@@ -33,16 +33,16 @@ public class MethodCallHandler extends ExpressionHandler
      * abstract syntax tree, and parent handler.
      *
      * @param aIndentCheck   the indentation check
-     * @param aAst           the abstract syntax tree
+     * @param aAST           the abstract syntax tree
      * @param aParent        the parent handler
      */
     public MethodCallHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent)
+        DetailAST aAST, ExpressionHandler aParent)
     {
         super(aIndentCheck,
-            aAst.getType() == TokenTypes.CTOR_CALL
-                ? "ctor call" : "method call",
-            aAst,
+            aAST.getType() == TokenTypes.METHOD_CALL
+                ? "method call" : "ctor call",
+            aAST,
             aParent);
     }
 
@@ -51,14 +51,10 @@ public class MethodCallHandler extends ExpressionHandler
      */
     private void checkLParen()
     {
-        DetailAST lparen = getMainAst();
-        int columnNo = expandedTabsColumnNo(lparen);
+        final DetailAST lparen = getMainAst();
+        final int columnNo = expandedTabsColumnNo(lparen);
 
-        if (getLevel().accept(columnNo)) {
-            return;
-        }
-
-        if (!startsLine(lparen)) {
+        if (getLevel().accept(columnNo) || !startsLine(lparen)) {
             return;
         }
 
@@ -72,16 +68,14 @@ public class MethodCallHandler extends ExpressionHandler
     {
         // the rparen can either be at the correct indentation, or on
         // the same line as the lparen
-        DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
-        int columnNo = expandedTabsColumnNo(rparen);
+        final DetailAST rparen =
+            getMainAst().findFirstToken(TokenTypes.RPAREN);
+        final int columnNo = expandedTabsColumnNo(rparen);
 
-        if (getLevel().accept(columnNo)) {
+        if (getLevel().accept(columnNo) || !startsLine(rparen)) {
             return;
         }
 
-        if (!startsLine(rparen)) {
-            return;
-        }
         logError(rparen, "rparen", columnNo);
     }
 
@@ -90,7 +84,7 @@ public class MethodCallHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
-    public IndentLevel getLevelImpl()
+    protected IndentLevel getLevelImpl()
     {
         // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start

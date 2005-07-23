@@ -87,7 +87,7 @@ public class ObjectBlockHandler extends BlockParentHandler
      *
      * @return the expected indentation amount
      */
-    public IndentLevel getLevelImpl()
+    protected IndentLevel getLevelImpl()
     {
         DetailAST parentAST = getMainAst().getParent();
         IndentLevel indent = getParent().getLevel();

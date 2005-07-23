@@ -47,7 +47,7 @@ public class ArrayInitHandler extends BlockParentHandler
      *
      * @return the expected indentation amount
      */
-    public IndentLevel getLevelImpl()
+    protected IndentLevel getLevelImpl()
     {
         final DetailAST parentAST = getMainAst().getParent();
         final int type = parentAST.getType();

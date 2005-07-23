@@ -56,7 +56,7 @@
         contribution)</li>
 
         <li>Changed way how to IndentationCheck handles fields in
-        class (bug 1193848)</li>
+        classes and operator new (bug 1193848, 1232822)</li>
 
         <li>Fixed problem with cache file (patch 1012389) thanks to
         Dave Wood.</li>

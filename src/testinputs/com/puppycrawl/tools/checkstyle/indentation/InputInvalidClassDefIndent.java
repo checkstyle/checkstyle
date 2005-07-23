@@ -126,7 +126,7 @@ final class InputValidClassDefIndent6 extends java.awt.event.MouseAdapter implem
             int func() { return 3; }
         }
 
-          new JButton().addActionListener(new ActionListener()   // TODO: this is not caught yet
+          new JButton().addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
                 

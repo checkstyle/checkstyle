@@ -54,7 +54,7 @@ public class LabelHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
-    public IndentLevel getLevelImpl()
+    protected IndentLevel getLevelImpl()
     {
         return new IndentLevel(super.getLevelImpl(), -getBasicOffset());
     }

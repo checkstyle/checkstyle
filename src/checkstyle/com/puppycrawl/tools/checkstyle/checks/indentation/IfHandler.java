@@ -64,7 +64,7 @@ public class IfHandler extends BlockParentHandler
      *
      * @return the expected indentation amount
      */
-    public IndentLevel getLevelImpl()
+    protected IndentLevel getLevelImpl()
     {
         if (isIfAfterElse()) {
             return getParent().getLevel();
