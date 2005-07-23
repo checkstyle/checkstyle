@@ -125,12 +125,31 @@ public final class TreeWalker
     /** a factory for creating submodules (i.e. the Checks) */
     private ModuleFactory mModuleFactory;
 
+    /** contrals whether we should use recursive or iterative
+     * algorithm for tree processing.
+     */
+    private final boolean mRecursive;
+
     /**
      * Creates a new <code>TreeWalker</code> instance.
      */
     public TreeWalker()
     {
         setFileExtensions(new String[]{"java"});
+        // Tree walker can use two possible algorithms for
+        // tree processing (iterative and recursive.
+        // Recursive is default for now.
+        String recursive =
+            System.getProperty("checkstyle.use.recursive.algorithm", "true");
+        mRecursive = "true".equals(recursive);
+        if (mRecursive) {
+            Utils.getExceptionLogger()
+                .debug("TreeWalker uses recursive algorithm");
+        }
+        else {
+            Utils.getExceptionLogger()
+                .debug("TreeWalker uses iterative algorithm");
+        }
     }
 
     /** @param aTabWidth the distance between tab stops */
@@ -389,7 +408,12 @@ public final class TreeWalker
 
          // empty files are not flagged by javac, will yield aAST == null
         if (aAST != null) {
-            process(aAST);
+            if (useRecursiveAlgorithm()) {
+                processRec(aAST);
+            }
+            else {
+                processIter(aAST);
+            }
         }
 
         notifyEnd(aAST);
@@ -426,9 +450,10 @@ public final class TreeWalker
 
     /**
      * Recursively processes a node calling interested checks at each node.
+     * Uses recursive algorithm.
      * @param aAST the node to start from
      */
-    private void process(DetailAST aAST)
+    private void processRec(DetailAST aAST)
     {
         if (aAST == null) {
             return;
@@ -438,16 +463,15 @@ public final class TreeWalker
 
         final DetailAST child = (DetailAST) aAST.getFirstChild();
         if (child != null) {
-            process(child);
+            processRec(child);
         }
 
         notifyLeave(aAST);
 
         final DetailAST sibling = (DetailAST) aAST.getNextSibling();
         if (sibling != null) {
-            process(sibling);
+            processRec(sibling);
         }
-
     }
 
     /**
@@ -570,4 +594,34 @@ public final class TreeWalker
         super.destroy();
     }
 
+    /**
+     * @return true if we should use recursive algorithm
+     *         for tree processing, false for iterative one.
+     */
+    private boolean useRecursiveAlgorithm()
+    {
+        return mRecursive;
+    }
+
+    /**
+     * Processes a node calling interested checks at each node.
+     * Uses iterative algorithm.
+     * @param aRoot the root of tree for process
+     */
+    private void processIter(DetailAST aRoot)
+    {
+        DetailAST curNode = aRoot;
+        while (curNode != null) {
+            notifyVisit(curNode);
+            DetailAST toVisit = (DetailAST) curNode.getFirstChild();
+            while (curNode != null && toVisit == null) {
+                notifyLeave(curNode);
+                toVisit = (DetailAST) curNode.getNextSibling();
+                if (toVisit == null) {
+                    curNode = curNode.getParent();
+                }
+            }
+            curNode = toVisit;
+        }
+    }
 }

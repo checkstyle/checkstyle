@@ -17,7 +17,8 @@ public class SuppressionsLoaderTest extends TestCase
     {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(
-                "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_none.xml");
+                System.getProperty("testinputs.dir")
+                + "/suppressions_none.xml");
         final FilterSet fc2 = new FilterSet();
         assertEquals(fc, fc2);
     }
@@ -27,7 +28,8 @@ public class SuppressionsLoaderTest extends TestCase
     {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(
-                "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_multiple.xml");
+                System.getProperty("testinputs.dir")
+                + "/suppressions_multiple.xml");
         final FilterSet fc2 = new FilterSet();
         SuppressElement se0 = new SuppressElement("file0", "check0");
         fc2.addFilter(se0);
@@ -47,13 +49,14 @@ public class SuppressionsLoaderTest extends TestCase
     public void testNoFile()
         throws CheckstyleException
     {
+        final String fn = System.getProperty("testinputs.dir")
+            + "/suppressions_no_file.xml";
         try {
-            SuppressionsLoader.loadSuppressions(
-                "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_file.xml");
+            SuppressionsLoader.loadSuppressions(fn);
         }
         catch (CheckstyleException ex) {
             assertEquals(
-                "unable to parse src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_file.xml - Attribute \"files\" is required and must be specified for element type \"suppress\".",
+                "unable to parse " + fn + " - Attribute \"files\" is required and must be specified for element type \"suppress\".",
                 ex.getMessage());
         }
     }
@@ -61,13 +64,14 @@ public class SuppressionsLoaderTest extends TestCase
     public void testNoCheck()
         throws CheckstyleException
     {
+        final String fn = System.getProperty("testinputs.dir")
+            + "/suppressions_no_check.xml";
         try {
-            SuppressionsLoader.loadSuppressions(
-                "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_check.xml");
+            SuppressionsLoader.loadSuppressions(fn);
         }
         catch (CheckstyleException ex) {
             assertEquals(
-                "unable to parse src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_no_check.xml - Attribute \"checks\" is required and must be specified for element type \"suppress\".",
+                "unable to parse " + fn + " - Attribute \"checks\" is required and must be specified for element type \"suppress\".",
                 ex.getMessage());
         }
     }
@@ -75,14 +79,15 @@ public class SuppressionsLoaderTest extends TestCase
     public void testBadInt()
         throws CheckstyleException
     {
+        final String fn = System.getProperty("testinputs.dir")
+            + "/suppressions_bad_int.xml";
         try {
-            SuppressionsLoader.loadSuppressions(
-                "src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_bad_int.xml");
+            SuppressionsLoader.loadSuppressions(fn);
         }
         catch (CheckstyleException ex) {
             assertTrue(
                 ex.getMessage(),
-                ex.getMessage().startsWith("number format exception src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_bad_int.xml - "));
+                ex.getMessage().startsWith("number format exception " + fn + " - "));
         }
     }
 }

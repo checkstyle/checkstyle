@@ -42,7 +42,8 @@ public class PackageNamesLoaderTest extends TestCase
     {
         final ModuleFactory moduleFactory =
             PackageNamesLoader.loadModuleFactory(
-                "src/checkstyle/com/puppycrawl/tools/checkstyle/checkstyle_packages.xml");
+                System.getProperty("checkstyle.root")
+                + "/src/checkstyle/com/puppycrawl/tools/checkstyle/checkstyle_packages.xml");
         validateFactory(moduleFactory);
     }
 

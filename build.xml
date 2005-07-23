@@ -32,6 +32,8 @@
   <property name="checkstyle.minimum.javaversion" value="1.4" />
   <property name="checkstyle.testinputs.minimum.javaversion" value="1.5" />
   <property name="version" value="4.0-beta5" />
+  <property name="testcases" value="**/*Test.java"/>
+
 
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
@@ -405,8 +407,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
 
     <mkdir dir="${testreport.dir}"/>
     <property name="testinputs.dir"
-              location="src/testinputs/com/puppycrawl/tools/checkstyle"/>
-    <property name="testcases" value="**/*Test.java"/>
+              location="${basedir}/src/testinputs/com/puppycrawl/tools/checkstyle"/>
 
     <junit printsummary="yes"
            fork="yes"
@@ -416,6 +417,9 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
            failureProperty="tests.have.failed">
 
       <sysproperty key="testinputs.dir" value="${testinputs.dir}"/>
+      <sysproperty key="checkstyle.use.recursive.algorithm"
+                   value="${checkstyle.use.recursive.algorithm}"/>
+      <sysproperty key="checkstyle.root" value="${basedir}" />
 
       <sysproperty key="emma.coverage.out.file"
                    file="${emma.coverage.out.file}"
