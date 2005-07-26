@@ -64,6 +64,9 @@
         <li>Fixed example for FinalLocalVariable snf the check itself
         (bug 1241722)</li>
 
+        <li>Fixed implementation of DetailAST so getPreviousSibling()
+        works for all nodes in AST tree (bug 1244994)</li>
+
       </ul>
 
       <p>Other improvements:</p>

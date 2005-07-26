@@ -35,8 +35,7 @@ import antlr.collections.AST;
  * @version 1.0
  * @see <a href="http://www.antlr.org/">ANTLR Website</a>
  */
-public final class DetailAST
-    extends CommonAST
+public final class DetailAST extends CommonAST
 {
     /** constant to indicate if not calculated the child count */
     private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
@@ -50,6 +49,8 @@ public final class DetailAST
     private int mChildCount = NOT_INITIALIZED;
     /** the parent token */
     private DetailAST mParent;
+    /** previous sibling */
+    private DetailAST mPreviousSibling;
 
     /**
      * All token types in this branch.
@@ -99,6 +100,18 @@ public final class DetailAST
         if (aAST != null && mParent != null) {
             ((DetailAST) aAST).setParent(mParent);
         }
+        if (aAST != null) {
+            ((DetailAST) aAST).setPreviousSibling(this);
+        }
+    }
+
+    /**
+     * Sets previous sibling.
+     * @param aAST a previous sibling
+     */
+    void setPreviousSibling(DetailAST aAST)
+    {
+        mPreviousSibling = aAST;
     }
 
     /**
@@ -110,6 +123,7 @@ public final class DetailAST
         super.addChild(aAST);
         if (aAST != null) {
             ((DetailAST) aAST).setParent(this);
+            ((DetailAST) getFirstChild()).setParent(this);
         }
     }
 
@@ -147,6 +161,7 @@ public final class DetailAST
         final DetailAST nextSibling = (DetailAST) getNextSibling();
         if (nextSibling != null) {
             nextSibling.setParent(aParent);
+            nextSibling.setPreviousSibling(this);
         }
     }
 
@@ -262,20 +277,7 @@ public final class DetailAST
      */
     public DetailAST getPreviousSibling()
     {
-        final DetailAST parent = getParent();
-        if (parent == null) {
-            return null;
-        }
-
-        AST ast = parent.getFirstChild();
-        while (ast != null) {
-            AST nextSibling = ast.getNextSibling();
-            if (this == nextSibling) {
-                return (DetailAST) ast;
-            }
-            ast = nextSibling;
-        }
-        return null;
+        return mPreviousSibling;
     }
 
     /**

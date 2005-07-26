@@ -235,8 +235,7 @@ public final class TreeWalker
             getMessageDispatcher().fireFileStarted(fileName);
             final String[] lines = Utils.getLines(fileName, getCharset());
             final FileContents contents = new FileContents(fileName, lines);
-            final DetailAST rootAST =
-                TreeWalker.parse(contents);
+            final DetailAST rootAST = TreeWalker.parse(contents);
             walk(rootAST, contents);
         }
         catch (FileNotFoundException fnfe) {
@@ -406,7 +405,7 @@ public final class TreeWalker
         getMessageCollector().reset();
         notifyBegin(aAST, aContents);
 
-         // empty files are not flagged by javac, will yield aAST == null
+        // empty files are not flagged by javac, will yield aAST == null
         if (aAST != null) {
             if (useRecursiveAlgorithm()) {
                 processRec(aAST);
@@ -515,8 +514,7 @@ public final class TreeWalker
      * @throws RecognitionException if parsing failed
      * @return the root of the AST
      */
-    public static DetailAST parse(
-        FileContents aContents)
+    public static DetailAST parse(FileContents aContents)
         throws RecognitionException, TokenStreamException
     {
         DetailAST rootAST = null;
