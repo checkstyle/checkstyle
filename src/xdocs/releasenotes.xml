@@ -29,6 +29,12 @@
         <li>
           Added IllegalThrowsCheck to detect illegal throw declarations.
         </li>
+
+        <li>
+          Added ImportControlCheck to controls what packages can be
+          imported in each package. Useful for ensuring that application
+          layering is not violated.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

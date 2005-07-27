@@ -27,7 +27,25 @@ import org.apache.commons.beanutils.ConversionException;
 
 /**
  * Check that controls what packages can be imported in each package. Useful
- * for ensuring that application layering is not violated.
+ * for ensuring that application layering is not violated. Ideas on how the
+ * check can be improved include support for:
+ * <ul>
+ * <li>Having guards for importing of classes.
+ *
+ * <li>Guards that only apply locally. That is, the Guard does not apply to
+ *     subpackages. For example, allow the package "com.foo" to import the
+ *     package "java.swing", but not allow subpackages like "com.foo.bar".
+ *     Currently you can work around this by having disallow guards specified
+ *     in the subpackages.
+ *
+ * <li>Guards that match packages exactly. For example, only match imports
+ *     from the "com.foo" package, and not from subpackages like
+ *     "com.foo.bar".
+ *
+ * <li>Change the default policy that if a package being checked does not
+ *     match any guards, then it is allowed. Currently defaults to disallowed.
+ *
+ * </ul>
  * @author Oliver Burn
  */
 public class ImportControlCheck extends Check
