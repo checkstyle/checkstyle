@@ -8,7 +8,6 @@ import java.io.IOException;
 
 /**
  * @author Michael Studman
- * @see
  */
 public class Post13KeywordsAsIdentifiersOKTest
     extends BaseCheckTestCase

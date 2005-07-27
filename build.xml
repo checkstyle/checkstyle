@@ -297,6 +297,7 @@
       <classpath refid="run.classpath"/>
       <property key="checkstyle.cache.file" file="target/cachefile"/>
       <property key="checkstyle.header.file" file="java.header"/>
+      <property key="checkstyle.importcontrol.file" file="import-control.xml"/>
       <property key="checkstyle.suppressions.file"
                 file="suppressions.xml"/>
     </checkstyle>
@@ -321,6 +322,7 @@
       <classpath refid="run.classpath"/>
       <property key="checkstyle.cache.file" file="target/cachefile"/>
       <property key="checkstyle.header.file" file="java.header"/>
+      <property key="checkstyle.importcontrol.file" file="import-control.xml"/>
       <property key="checkstyle.suppressions.file"
                 file="suppressions.xml"/>
     </checkstyle>

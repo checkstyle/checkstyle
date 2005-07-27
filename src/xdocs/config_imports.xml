@@ -309,5 +309,105 @@
         </p>
       </subsection>
     </section>
+
+    <section name="ImportControl">
+      <subsection name="Description">
+        <p>
+          Check that controls what packages can be imported in each
+          package. Useful for ensuring that application layering rules
+          are not violated, especially on large projects.
+        </p>
+
+        <p>
+          The following DTD is for a import control XML document.
+        </p>
+
+        <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;!ELEMENT import-control ((allow|disallow)*,subpackage*)&gt;
+
+&lt;!ATTLIST import-control
+  pkg NMTOKEN #REQUIRED&gt;
+
+&lt;!ELEMENT subpackage ((allow|disallow)*,subpackage*)&gt;
+
+&lt;!ATTLIST subpackage
+  name NMTOKEN #REQUIRED&gt;
+
+&lt;!ELEMENT allow EMPTY&gt;
+
+&lt;!ATTLIST allow
+  pkg NMTOKEN #REQUIRED&gt;
+
+&lt;!ELEMENT disallow EMPTY&gt;
+
+&lt;!ATTLIST disallow
+  pkg NMTOKEN #REQUIRED&gt;
+        </pre>
+
+        <p>
+          The check validates a XML document when it loads the document.
+          To validate against the above DTD, include the following
+          document type declaration in your XML document:
+        </p>
+
+        <pre>
+&lt;!DOCTYPE import-control PUBLIC
+    &quot;-//Puppy Crawl//DTD Import Control 1.0//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/import_control_1_0.dtd&quot;&gt;
+        </pre>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>file</td>
+            <td>
+              name of the file containing the import control configuration.
+            </td>
+            <td><a href="property_types.html#string">string</a></td>
+            <td><span class="default">null</span></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Example">
+        <p>
+          To configure the check using a import control file called
+          &quot;import-control.xml&quot;, then have the following:
+        </p>
+
+        <source>
+&lt;module name=&quot;ImportControl&quot;>
+    &lt;property name=&quot;file&quot; value=&quot;import-control.xml&quot;/>
+&lt;/module>
+        </source>
+
+        <p>
+          For an example import control file, look at the file called
+          &quot;import-control.xml&quot; which is part of the Checkstyle
+          distribution.
+        </p>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
   </body>
 </document>

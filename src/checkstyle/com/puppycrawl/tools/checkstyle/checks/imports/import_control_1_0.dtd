@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT import-control ((allow|disallow)*,subpackage*)>
+
+<!ATTLIST import-control
+  pkg NMTOKEN #REQUIRED>
+
+<!ELEMENT subpackage ((allow|disallow)*,subpackage*)>
+
+<!ATTLIST subpackage
+  name NMTOKEN #REQUIRED>
+
+<!ELEMENT allow EMPTY>
+
+<!ATTLIST allow
+  pkg NMTOKEN #REQUIRED>
+
+<!ELEMENT disallow EMPTY>
+
+<!ATTLIST disallow
+  pkg NMTOKEN #REQUIRED>

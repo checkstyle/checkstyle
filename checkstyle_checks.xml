@@ -38,6 +38,9 @@
         </module>
 
         <!-- module name="IllegalCatch"/ -->
+        <module name="ImportControl">
+          <property name="file" value="${checkstyle.importcontrol.file}"/>
+        </module>
         <module name="IllegalImport"/>
         <module name="IllegalInstantiation"/>
         <module name="IllegalThrows"/>

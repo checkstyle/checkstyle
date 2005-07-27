@@ -14,4 +14,13 @@
     <suppress checks="MagicNumber"
               files="JavadocMethodCheck.java"
               lines="759,791,816"/>
+    <suppress checks="ImportControl"
+              files="NewlineAtEndOfFileCheck.java"
+              lines="26"/>
+    <suppress checks="ImportControl"
+              files="TranslationCheck.java"
+              lines="34"/>
+    <suppress checks="ImportControl"
+              files="SuppressionCommentFilter.java"
+              lines="40"/>
 </suppressions>

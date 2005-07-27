@@ -1,0 +1,99 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2005  Oliver Burn
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
+package com.puppycrawl.tools.checkstyle.checks.imports;
+
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import org.apache.commons.beanutils.ConversionException;
+
+/**
+ * Check that controls what packages can be imported in each package. Useful
+ * for ensuring that application layering is not violated.
+ * @author Oliver Burn
+ */
+public class ImportControlCheck extends Check
+{
+    /** The root package controller. */
+    private PkgControl mRoot;
+    /**
+     * The package controller for the current file. Used for performance
+     * optimisation.
+     */
+    private PkgControl mCurrentLeaf;
+
+    /** {@inheritDoc} */
+    public int[] getDefaultTokens()
+    {
+        return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
+                          TokenTypes.STATIC_IMPORT, };
+    }
+
+    /** {@inheritDoc} */
+    public void visitToken(final DetailAST aAST)
+    {
+        if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
+            final DetailAST nameAST = aAST.getLastChild().getPreviousSibling();
+            final FullIdent full = FullIdent.createFullIdent(nameAST);
+            if (mRoot == null) {
+                log(nameAST, "import.control.missing.file");
+            }
+            else {
+                mCurrentLeaf = mRoot.locateFinest(full.getText());
+            }
+        }
+        else if (mCurrentLeaf != null) {
+            final FullIdent imp;
+            if (aAST.getType() == TokenTypes.IMPORT) {
+                imp = FullIdent.createFullIdentBelow(aAST);
+            }
+            else {
+                imp = FullIdent.createFullIdent((DetailAST) aAST
+                        .getFirstChild().getNextSibling());
+            }
+            final AccessResult access = mCurrentLeaf.checkAccess(imp.getText());
+            if (!AccessResult.ALLOWED.equals(access)) {
+                log(aAST, "import.control.disallowed", imp.getText());
+            }
+        }
+    }
+
+    /**
+     * Set the parameter for the file containing the import control
+     * configuration. It will cause the file to be loaded.
+     * @param aName the name of the file to load.
+     * @throws ConversionException on error loading the file.
+     */
+    public void setFile(final String aName)
+    {
+        // Handle empty param
+        if ((aName == null) || (aName.trim().length() == 0)) {
+            return;
+        }
+
+        try {
+            mRoot = ImportControlLoader.load(aName);
+        }
+        catch (CheckstyleException ex) {
+            throw new ConversionException("Unable to load " + aName, ex);
+        }
+    }
+}
