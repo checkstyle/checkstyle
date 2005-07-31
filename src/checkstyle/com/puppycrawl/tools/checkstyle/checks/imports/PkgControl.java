@@ -117,12 +117,13 @@ class PkgControl
      * its parent looking for a match. This will recurse looking for match.
      * If there is no clear result then {@link AccessResult#UNKNOWN} is
      * returned.
-     * @param aForPkg the package to check on.
+     * @param aForImport the package to check on.
+     * @param aInPkg the package doing the import.
      * @return an {@link AccessResult}.
      */
-    AccessResult checkAccess(final String aForPkg)
+    AccessResult checkAccess(final String aForImport, final String aInPkg)
     {
-        AccessResult retVal = localCheckAccess(aForPkg);
+        AccessResult retVal = localCheckAccess(aForImport, aInPkg);
         if (retVal != AccessResult.UNKNOWN) {
             return retVal;
         }
@@ -131,21 +132,27 @@ class PkgControl
             return AccessResult.DISALLOWED;
         }
 
-        return mParent.checkAccess(aForPkg);
+        return mParent.checkAccess(aForImport, aInPkg);
     }
 
     /**
      * Checks whether any of the guards for this node control access to
      * a specified package.
-     * @param aForPkg the package to check.
+     * @param aForImport the package to check.
+     * @param aInPkg the package doing the import.
      * @return an {@link AccessResult}.
      */
-    private AccessResult localCheckAccess(final String aForPkg)
+    private AccessResult localCheckAccess(final String aForImport,
+        final String aInPkg)
     {
         final Iterator it = mGuards.iterator();
         while (it.hasNext()) {
             final Guard g = (Guard) it.next();
-            final AccessResult result = g.verify(aForPkg);
+            // Check if a Guard is only meant to be applied locally.
+            if (g.isLocalOnly() && !mFullPackage.equals(aInPkg)) {
+                continue;
+            }
+            final AccessResult result = g.verifyImport(aForImport, aInPkg);
             if (result != AccessResult.UNKNOWN) {
                 return result;
             }

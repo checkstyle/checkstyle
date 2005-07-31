@@ -28,29 +28,96 @@ class Guard
     private final boolean mAllowed;
     /** Package to control access to. */
     private final String mPkgName;
+    /** Package to control access to. */
+    private final String mClassName;
+
+    /**
+     * Indicates if must be an exact match. Only valid if guard using a
+     * package.
+     */
+    private final boolean mExactMatch;
+    /** Indicates if the guard only applies to this package. */
+    private final boolean mLocalOnly;
 
     /**
      * Constructs an instance.
-     * @param aAllowed whether the package is allowed.
-     * @param aPkgName the package name.
+     * @param aAllow whether to allow access.
+     * @param aLocalOnly whether guard is to be applied locally only
+     * @param aPkgName the package to apply guard on.
+     * @param aExactMatch whether the package must match exactly.
      */
-    Guard(final boolean aAllowed, final String aPkgName)
+    Guard(final boolean aAllow, final boolean aLocalOnly,
+        final String aPkgName, final boolean aExactMatch)
     {
-        mAllowed = aAllowed;
+        mAllowed = aAllow;
+        mLocalOnly = aLocalOnly;
         mPkgName = aPkgName;
+        mClassName = null;
+        mExactMatch = aExactMatch;
+    }
+
+    /**
+     * Constructs an instance.
+     * @param aAllow whether to allow access.
+     * @param aLocalOnly whether guard is to be applied locally only
+     * @param aClassName the class to apply guard on.
+     */
+    Guard(final boolean aAllow, final boolean aLocalOnly,
+        final String aClassName)
+    {
+        mAllowed = aAllow;
+        mLocalOnly = aLocalOnly;
+        mPkgName = null;
+        mClassName = aClassName;
+        mExactMatch = true; // not used.
     }
 
     /**
      * Verifies whether a package name be used.
-     * @param aName the package to check.
+     * @param aForImport the package to check.
+     * @param aInPkg the package doing the import.
      * @return a result {@link AccessResult} indicating whether it can be used.
      */
-    AccessResult verify(final String aName)
+    AccessResult verifyImport(final String aForImport, final String aInPkg)
     {
-        assert aName != null;
-        if (!aName.startsWith(mPkgName + ".")) {
-            return AccessResult.UNKNOWN;
+        assert aForImport != null;
+        if (mClassName != null) {
+            final boolean classMatch = mClassName.equals(aForImport);
+            return calculateResult(classMatch);
         }
-        return mAllowed ? AccessResult.ALLOWED : AccessResult.DISALLOWED;
+
+        // Must be checking a package. First check that we actually match
+        // the package. Then check if matched and we must be an exact match.
+        // In this case, the text after the first "." must not contain
+        // another "." as this indicates that it is not an exact match.
+        assert mPkgName != null;
+        //boolean pkgMatch = aForImport.startsWith(mPkgName + ".");
+        boolean pkgMatch = aForImport.startsWith(mPkgName + ".");
+        if (pkgMatch && mExactMatch) {
+            pkgMatch = (aForImport.indexOf('.', (mPkgName.length() + 1)) == -1);
+        }
+        return calculateResult(pkgMatch);
+    }
+
+    /**
+     * @return returns whether the guard is to only be applied locally.
+     */
+    boolean isLocalOnly()
+    {
+        return mLocalOnly;
+    }
+
+    /**
+     * Returns the appropriate {@link AccessResult} based on whether there
+     * was a match and if the guard is to allow access.
+     * @param aMatched indicates whether there was a match.
+     * @return An appropriate {@link AccessResult}.
+     */
+    private AccessResult calculateResult(final boolean aMatched)
+    {
+        if (aMatched) {
+            return mAllowed ? AccessResult.ALLOWED : AccessResult.DISALLOWED;
+        }
+        return AccessResult.UNKNOWN;
     }
 }

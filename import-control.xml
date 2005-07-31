@@ -15,23 +15,24 @@
   <allow pkg="org.apache.commons.logging"/>
   <allow pkg="org.xml.sax"/>
 
-  <!-- Want to be local -->
-  <allow pkg="com.puppycrawl.tools.checkstyle.grammars"/>
-  <allow pkg="java.security"/>
-  <allow pkg="org.apache.commons.cli"/>
-  <allow pkg="org.apache.tools.ant"/>
+  <!-- The local ones -->
+  <allow pkg="com.puppycrawl.tools.checkstyle.grammars" local-only="selected"/>
+  <allow class="java.security.MessageDigest" local-only="selected"/>
+  <allow pkg="org.apache.commons.cli" local-only="selected"/>
+  <allow pkg="org.apache.tools.ant" local-only="selected"/>
 
   <subpackage name="api">
     <allow pkg="java.beans"/>
     <allow pkg="java.lang.reflect"/>
     <allow pkg="java.text"/>
-    <disallow pkg="org.apache.tools.ant"/>
+    <allow class="com.puppycrawl.tools.checkstyle.grammars.CommentListener"
+           local-only="selected"/>
+    <allow class="com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes"
+           local-only="selected"/>
   </subpackage>
 
   <subpackage name="checks">
     <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
-    <disallow pkg="org.apache.tools.ant"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.grammars"/>
 
     <subpackage name="indentation">
       <allow pkg="java.lang.reflect"/>
@@ -42,25 +43,14 @@
 
   <subpackage name="doclets">
     <allow pkg="com.sun.javadoc"/>
-    <disallow pkg="org.apache.tools.ant"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.grammars"/>
   </subpackage>
 
   <subpackage name="filters">
     <allow pkg="java.lang.ref"/>
-    <disallow pkg="org.apache.tools.ant"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.grammars"/>
-  </subpackage>
-  
-  <subpackage name="grammars">
-    <disallow pkg="org.apache.tools.ant"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.grammars"/>
   </subpackage>
 
   <subpackage name="gui">
     <allow pkg="java.awt"/>
     <allow pkg="javax.swing"/>
-    <disallow pkg="org.apache.tools.ant"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.grammars"/>
   </subpackage>
 </import-control>

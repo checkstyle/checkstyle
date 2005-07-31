@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml encoding="UTF-8"?>
 
 <!ELEMENT import-control ((allow|disallow)*,subpackage*)>
 
@@ -10,12 +10,16 @@
 <!ATTLIST subpackage
   name NMTOKEN #REQUIRED>
 
-<!ELEMENT allow EMPTY>
+<!ENTITY % attlist.guard "
+  pkg NMTOKEN #IMPLIED
+  exact-match (selected) #IMPLIED
+  class NMTOKEN #IMPLIED
+  local-only (selected) #IMPLIED">
 
+<!ELEMENT allow EMPTY>
 <!ATTLIST allow
-  pkg NMTOKEN #REQUIRED>
+  %attlist.guard;>
 
 <!ELEMENT disallow EMPTY>
-
 <!ATTLIST disallow
-  pkg NMTOKEN #REQUIRED>
+  %attlist.guard;>

@@ -13,11 +13,11 @@ public class PkgControlTest extends TestCase
     protected void setUp() throws Exception
     {
         super.setUp();
-        pcRoot.addGuard(new Guard(false, "org.springframework"));
-        pcRoot.addGuard(new Guard(false, "org.hibernate"));
-        pcRoot.addGuard(new Guard(true, "org.apache.commons"));
+        pcRoot.addGuard(new Guard(false, false, "org.springframework", false));
+        pcRoot.addGuard(new Guard(false, false, "org.hibernate", false));
+        pcRoot.addGuard(new Guard(true, false, "org.apache.commons", false));
 
-        pcCommon.addGuard(new Guard(true, "org.hibernate"));
+        pcCommon.addGuard(new Guard(true, false, "org.hibernate", false));
     }
 
     public void testFullPkg()
@@ -37,17 +37,19 @@ public class PkgControlTest extends TestCase
 
     public void testCheckAccess()
     {
-        assertEquals(AccessResult.DISALLOWED, pcCommon
-                .checkAccess("org.springframework.something"));
+        assertEquals(AccessResult.DISALLOWED, pcCommon.checkAccess(
+                "org.springframework.something",
+                "com.kazgroup.courtlink.common"));
         assertEquals(AccessResult.ALLOWED, pcCommon
-                .checkAccess("org.apache.commons.something"));
-        assertEquals(AccessResult.DISALLOWED, pcCommon
-                .checkAccess("org.apache.commons"));
-        assertEquals(AccessResult.ALLOWED, pcCommon
-                .checkAccess("org.hibernate.something"));
-        assertEquals(AccessResult.DISALLOWED, pcCommon
-                .checkAccess("com.badpackage.something"));
-        assertEquals(AccessResult.DISALLOWED, pcRoot
-                .checkAccess("org.hibernate.something"));
+                .checkAccess("org.apache.commons.something",
+                        "com.kazgroup.courtlink.common"));
+        assertEquals(AccessResult.DISALLOWED, pcCommon.checkAccess(
+                "org.apache.commons", "com.kazgroup.courtlink.common"));
+        assertEquals(AccessResult.ALLOWED, pcCommon.checkAccess(
+                "org.hibernate.something", "com.kazgroup.courtlink.common"));
+        assertEquals(AccessResult.DISALLOWED, pcCommon.checkAccess(
+                "com.badpackage.something", "com.kazgroup.courtlink.common"));
+        assertEquals(AccessResult.DISALLOWED, pcRoot.checkAccess(
+                "org.hibernate.something", "com.kazgroup.courtlink"));
     }
 }

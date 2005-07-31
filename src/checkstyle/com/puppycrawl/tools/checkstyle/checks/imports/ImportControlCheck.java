@@ -52,6 +52,9 @@ public class ImportControlCheck extends Check
 {
     /** The root package controller. */
     private PkgControl mRoot;
+    /** The package doing the import. */
+    private String mInPkg;
+
     /**
      * The package controller for the current file. Used for performance
      * optimisation.
@@ -75,7 +78,8 @@ public class ImportControlCheck extends Check
                 log(nameAST, "import.control.missing.file");
             }
             else {
-                mCurrentLeaf = mRoot.locateFinest(full.getText());
+                mInPkg = full.getText();
+                mCurrentLeaf = mRoot.locateFinest(mInPkg);
             }
         }
         else if (mCurrentLeaf != null) {
@@ -87,7 +91,8 @@ public class ImportControlCheck extends Check
                 imp = FullIdent.createFullIdent((DetailAST) aAST
                         .getFirstChild().getNextSibling());
             }
-            final AccessResult access = mCurrentLeaf.checkAccess(imp.getText());
+            final AccessResult access = mCurrentLeaf.checkAccess(imp.getText(),
+                    mInPkg);
             if (!AccessResult.ALLOWED.equals(access)) {
                 log(aAST, "import.control.disallowed", imp.getText());
             }

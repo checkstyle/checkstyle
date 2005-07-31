@@ -59,7 +59,9 @@ final class ImportControlLoader extends AbstractLoader
 
     /** {@inheritDoc} */
     public void startElement(final String aNamespaceURI,
-        final String aLocalName, final String aQName, final Attributes aAtts)
+                             final String aLocalName,
+                             final String aQName,
+                             final Attributes aAtts)
         throws SAXException
     {
         if (aQName.equals("import-control")) {
@@ -73,9 +75,25 @@ final class ImportControlLoader extends AbstractLoader
         }
         else if (aQName.equals("allow") || aQName.equals("disallow")) {
             assert mStack.size() > 0;
-            final String pkg = safeGet(aAtts, "pkg");
+            // Need to handle either "pkg" or "class" attribute.
+            // May have "exact-match" for "pkg"
+            // May have "local-only"
+            final boolean isAllow = aQName.equals("allow");
+            final boolean isLocalOnly = (aAtts.getValue("local-only") != null);
+            final String pkg = aAtts.getValue("pkg");
+            final Guard g;
+            if (pkg != null) {
+                final boolean exactMatch =
+                    (aAtts.getValue("exact-match") != null);
+                g = new Guard(isAllow, isLocalOnly, pkg, exactMatch);
+            }
+            else {
+                final String clazz = safeGet(aAtts, "class");
+                g = new Guard(isAllow, isLocalOnly, clazz);
+            }
+
             final PkgControl pc = (PkgControl) mStack.peek();
-            pc.addGuard(new Guard(aQName.equals("allow"), pkg));
+            pc.addGuard(g);
         }
     }
 

@@ -6,13 +6,38 @@ import junit.framework.TestCase;
 
 public class GuardTest extends TestCase
 {
-    public void testGuard()
+    public void testPkgGuard1()
     {
-        final Guard g = new Guard(true, "pkg");
+        final Guard g = new Guard(true, false, "pkg", false);
         assertNotNull(g);
-        assertEquals(AccessResult.UNKNOWN, g.verify("asda"));
-        assertEquals(AccessResult.UNKNOWN, g.verify("p"));
-        assertEquals(AccessResult.ALLOWED, g.verify("pkg.a"));
-        assertEquals(AccessResult.UNKNOWN, g.verify("pkg"));
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda", "ignored"));
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("p", "ignored"));
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("pkga", "ignored"));
+        assertEquals(AccessResult.ALLOWED, g.verifyImport("pkg.a", "ignored"));
+        assertEquals(AccessResult.ALLOWED, g.verifyImport("pkg.a.b", "ignored"));
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("pkg", "ignored"));
+    }
+
+    public void testPkgGuard2()
+    {
+        final Guard g = new Guard(true, false, "pkg", true);
+        assertNotNull(g);
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda", "ignored"));
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("p", "ignored"));
+        assertEquals(AccessResult.ALLOWED, g.verifyImport("pkg.a", "ignored"));
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("pkg.a.b", "ignored"));
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("pkg", "ignored"));
+    }
+
+    public void testClassGuard()
+    {
+        final Guard g = new Guard(true, false, "pkg.a");
+        assertNotNull(g);
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("asda", "ignored"));
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("p", "ignored"));
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("pkga", "ignored"));
+        assertEquals(AccessResult.ALLOWED, g.verifyImport("pkg.a", "ignored"));
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("pkg.a.b", "ignored"));
+        assertEquals(AccessResult.UNKNOWN, g.verifyImport("pkg", "ignored"));
     }
 }
