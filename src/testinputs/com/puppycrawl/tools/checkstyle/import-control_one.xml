@@ -5,6 +5,7 @@
 
 <import-control pkg="com.puppycrawl.tools.checkstyle">
   <allow class="java.awt.Image"/>
+  <allow class="java.awt.Button.ABORT"/>
   <allow class="java.io.File" local-only="selected"/>
   <subpackage name="imports">
     <allow pkg="javax.swing"/>

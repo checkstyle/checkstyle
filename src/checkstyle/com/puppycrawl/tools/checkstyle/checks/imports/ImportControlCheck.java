@@ -80,6 +80,9 @@ public class ImportControlCheck extends Check
             else {
                 mInPkg = full.getText();
                 mCurrentLeaf = mRoot.locateFinest(mInPkg);
+                if (mCurrentLeaf == null) {
+                    log(nameAST, "import.control.unknown.pkg");
+                }
             }
         }
         else if (mCurrentLeaf != null) {
@@ -88,6 +91,7 @@ public class ImportControlCheck extends Check
                 imp = FullIdent.createFullIdentBelow(aAST);
             }
             else {
+                // know it is a static import
                 imp = FullIdent.createFullIdent((DetailAST) aAST
                         .getFirstChild().getNextSibling());
             }
