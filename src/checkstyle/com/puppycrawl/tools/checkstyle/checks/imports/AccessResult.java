@@ -75,7 +75,7 @@ final class AccessResult
     private AccessResult(final int aCode, final String aLabel)
     {
         mCode = aCode;
-        mLabel = aLabel;
+        mLabel = aLabel.trim();
     }
 
     /**
@@ -121,7 +121,7 @@ final class AccessResult
     public static AccessResult getInstance(String aName)
     {
         // canonicalize argument
-        final String arName = aName.trim().toLowerCase();
+        final String arName = aName.trim();
 
         final AccessResult retVal = (AccessResult) NAME_TO_LEVEL.get(arName);
         if (retVal == null) {
