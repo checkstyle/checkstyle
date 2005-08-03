@@ -52,4 +52,9 @@ public class PkgControlTest extends TestCase
         assertEquals(AccessResult.DISALLOWED, pcRoot.checkAccess(
                 "org.hibernate.something", "com.kazgroup.courtlink"));
     }
+    
+    public void testUnknownPkg()
+    {
+        assertNull(pcRoot.locateFinest("net.another"));
+    }
 }
