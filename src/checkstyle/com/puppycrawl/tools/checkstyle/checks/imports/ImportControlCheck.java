@@ -57,6 +57,12 @@ public class ImportControlCheck extends Check
     }
 
     /** {@inheritDoc} */
+    public void beginTree(final DetailAST aRootAST)
+    {
+        mCurrentLeaf = null;
+    }
+
+    /** {@inheritDoc} */
     public void visitToken(final DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
