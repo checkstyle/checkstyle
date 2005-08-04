@@ -313,38 +313,16 @@
     <section name="ImportControl">
       <subsection name="Description">
         <p>
-          Check that controls what packages can be imported in each
-          package. Useful for ensuring that application layering rules
-          are not violated, especially on large projects.
+          Controls what can be imported in each package. Useful for
+          ensuring that application layering rules are not violated,
+          especially on large projects.
         </p>
 
         <p>
-          The following DTD is for a import control XML document.
+          The DTD for a import control XML document is at <a
+          href="http://www.puppycrawl.com/dtds/import_control_1_0.dtd">http://www.puppycrawl.com/dtds/import_control_1_0.dtd</a>. It
+          contains documentation on each of the elements and attributes.
         </p>
-
-        <pre>
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-
-&lt;!ELEMENT import-control ((allow|disallow)*,subpackage*)&gt;
-
-&lt;!ATTLIST import-control
-  pkg NMTOKEN #REQUIRED&gt;
-
-&lt;!ELEMENT subpackage ((allow|disallow)*,subpackage*)&gt;
-
-&lt;!ATTLIST subpackage
-  name NMTOKEN #REQUIRED&gt;
-
-&lt;!ELEMENT allow EMPTY&gt;
-
-&lt;!ATTLIST allow
-  pkg NMTOKEN #REQUIRED&gt;
-
-&lt;!ELEMENT disallow EMPTY&gt;
-
-&lt;!ATTLIST disallow
-  pkg NMTOKEN #REQUIRED&gt;
-        </pre>
 
         <p>
           The check validates a XML document when it loads the document.
@@ -391,9 +369,9 @@
         </source>
 
         <p>
-          For an example import control file, look at the file called
-          &quot;import-control.xml&quot; which is part of the Checkstyle
-          distribution.
+          For an example import control file, look at the file called <a
+          href="http://cvs.sourceforge.net/viewcvs.py/checkstyle/checkstyle/import-control.xml?view=markup">import-control.xml</a>
+          which is part of the Checkstyle distribution.
         </p>
       </subsection>
 

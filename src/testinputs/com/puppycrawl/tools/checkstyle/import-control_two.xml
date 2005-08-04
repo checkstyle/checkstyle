@@ -5,10 +5,10 @@
 
 <import-control pkg="com.puppycrawl.tools.checkstyle">
   <allow class="java.awt.Image"/>
-  <allow class="java.io.File" local-only="selected"/>
+  <allow class="java.io.File" local-only="true"/>
   <subpackage name="imports">
-    <disallow class="java.awt.Image" local-only="selected"/>
-    <allow pkg="javax.swing" exact-match="selected"/>
-    <allow pkg="java.io" exact-match="selected" local-only="selected"/>
+    <disallow class="java.awt.Image" local-only="true"/>
+    <allow pkg="javax.swing" exact-match="true"/>
+    <allow pkg="java.io" exact-match="true" local-only="true"/>
   </subpackage>
 </import-control>

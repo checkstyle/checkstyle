@@ -5,10 +5,10 @@
 
 <import-control pkg="com">
   <allow class="some.class"/>
-  <disallow class="another.class" local-only="selected"/>
+  <disallow class="another.class" local-only="true"/>
   <allow pkg="some.pkg"/>
-  <disallow pkg="another.pkg" local-only="selected"/>
-  <disallow pkg="and.another.pkg" exact-match="selected"/>
+  <disallow pkg="another.pkg" local-only="true"/>
+  <disallow pkg="and.another.pkg" exact-match="true"/>
   <subpackage name="puppycrawl">
     <disallow pkg="some.pkg"/>
     <disallow class="some.class"/>
