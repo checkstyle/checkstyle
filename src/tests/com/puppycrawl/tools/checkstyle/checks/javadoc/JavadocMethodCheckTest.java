@@ -14,32 +14,35 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             createCheckConfig(JavadocMethodCheck.class);
         final String[] expected = {
             "14:5: Missing a Javadoc comment.",
-            "18: Unused @param tag for 'unused'.",
-            "24: Expected an @return tag.", "33: Expected an @return tag.",
+            "18:9: Unused @param tag for 'unused'.",
+            "24: Expected an @return tag.",
+            "33: Expected an @return tag.",
             "40:16: Expected @throws tag for 'Exception'.",
             "49:16: Expected @throws tag for 'Exception'.",
-            "53: Unused @throws tag for 'WrongException'.",
+            "53:9: Unused @throws tag for 'WrongException'.",
             "55:16: Expected @throws tag for 'Exception'.",
             "55:27: Expected @throws tag for 'NullPointerException'.",
             "60:22: Expected @param tag for 'aOne'.",
             "68:22: Expected @param tag for 'aOne'.",
-            "72: Unused @param tag for 'WrongParam'.",
+            "72:9: Unused @param tag for 'WrongParam'.",
             "73:23: Expected @param tag for 'aOne'.",
             "73:33: Expected @param tag for 'aTwo'.",
-            "78: Unused @param tag for 'Unneeded'.",
-            "79: Unused Javadoc tag.", "87: Duplicate @return tag.",
+            "78:8: Unused @param tag for 'Unneeded'.",
+            "79: Unused Javadoc tag.",
+            "87:8: Duplicate @return tag.",
             "109:23: Expected @param tag for 'aOne'.",
             "109:55: Expected @param tag for 'aFour'.",
             "109:66: Expected @param tag for 'aFive'.",
-            "178: Unused @throws tag for 'ThreadDeath'.",
-            "179: Unused @throws tag for 'ArrayStoreException'.",
-            "236: Unused @throws tag for 'java.io.FileNotFoundException'.",
-            "254: Unused @throws tag for 'java.io.FileNotFoundException'.",
+            "178:8: Unused @throws tag for 'ThreadDeath'.",
+            "179:8: Unused @throws tag for 'ArrayStoreException'.",
+            "236:8: Unused @throws tag for 'java.io.FileNotFoundException'.",
+            "254:8: Unused @throws tag for 'java.io.FileNotFoundException'.",
             "256:28: Expected @throws tag for 'IOException'.",
-            "262: Unused @param tag for 'aParam'.",
+            "262:8: Unused @param tag for 'aParam'.",
             "320:9: Missing a Javadoc comment.",
             "329:5: Missing a Javadoc comment.",
-            "333: Unused Javadoc tag.", };
+            "333: Unused Javadoc tag.",
+        };
 
         verify(checkConfig, getPath("InputTags.java"), expected);
     }
@@ -51,7 +54,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {
             "14:5: Missing a Javadoc comment.",
-            "18: Unused @param tag for 'unused'.",
+            "18:9: Unused @param tag for 'unused'.",
             "24: Expected an @return tag.",
             "33: Expected an @return tag.",
             "40:16: Expected @throws tag for 'Exception'.",
@@ -60,18 +63,19 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "55:27: Expected @throws tag for 'NullPointerException'.",
             "60:22: Expected @param tag for 'aOne'.",
             "68:22: Expected @param tag for 'aOne'.",
-            "72: Unused @param tag for 'WrongParam'.",
+            "72:9: Unused @param tag for 'WrongParam'.",
             "73:23: Expected @param tag for 'aOne'.",
             "73:33: Expected @param tag for 'aTwo'.",
-            "78: Unused @param tag for 'Unneeded'.",
-            "79: Unused Javadoc tag.", "87: Duplicate @return tag.",
+            "78:8: Unused @param tag for 'Unneeded'.",
+            "79: Unused Javadoc tag.",
+            "87:8: Duplicate @return tag.",
             "109:23: Expected @param tag for 'aOne'.",
             "109:55: Expected @param tag for 'aFour'.",
             "109:66: Expected @param tag for 'aFive'.",
-            "236: Unused @throws tag for 'java.io.FileNotFoundException'.",
-            "254: Unused @throws tag for 'java.io.FileNotFoundException'.",
+            "236:8: Unused @throws tag for 'java.io.FileNotFoundException'.",
+            "254:8: Unused @throws tag for 'java.io.FileNotFoundException'.",
             "256:28: Expected @throws tag for 'IOException'.",
-            "262: Unused @param tag for 'aParam'.",
+            "262:8: Unused @param tag for 'aParam'.",
             "320:9: Missing a Javadoc comment.",
             "329:5: Missing a Javadoc comment.",
             "333: Unused Javadoc tag.", };
@@ -171,7 +175,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         final String[] expected = {
             "14:5: Missing a Javadoc comment.",
-            "18: Unused @param tag for 'unused'.",
+            "18:9: Unused @param tag for 'unused'.",
             "24: Expected an @return tag.",
             "33: Expected an @return tag.",
             "40:16: Expected @throws tag for 'Exception'.",
@@ -180,18 +184,19 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "55:27: Expected @throws tag for 'NullPointerException'.",
             "60:22: Expected @param tag for 'aOne'.",
             "68:22: Expected @param tag for 'aOne'.",
-            "72: Unused @param tag for 'WrongParam'.",
+            "72:9: Unused @param tag for 'WrongParam'.",
             "73:23: Expected @param tag for 'aOne'.",
             "73:33: Expected @param tag for 'aTwo'.",
-            "78: Unused @param tag for 'Unneeded'.",
-            "79: Unused Javadoc tag.", "87: Duplicate @return tag.",
+            "78:8: Unused @param tag for 'Unneeded'.",
+            "79: Unused Javadoc tag.",
+            "87:8: Duplicate @return tag.",
             "109:23: Expected @param tag for 'aOne'.",
             "109:55: Expected @param tag for 'aFour'.",
             "109:66: Expected @param tag for 'aFive'.",
-            "178: Unused @throws tag for 'ThreadDeath'.",
-            "179: Unused @throws tag for 'ArrayStoreException'.",
+            "178:8: Unused @throws tag for 'ThreadDeath'.",
+            "179:8: Unused @throws tag for 'ArrayStoreException'.",
             "256:28: Expected @throws tag for 'IOException'.",
-            "262: Unused @param tag for 'aParam'.",
+            "262:8: Unused @param tag for 'aParam'.",
             "320:9: Missing a Javadoc comment.",
             "329:5: Missing a Javadoc comment.",
             "333: Unused Javadoc tag.", };
@@ -349,7 +354,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocMethodCheck.class);
         final String[] expected = {
-            "26: Unused @param tag for '<BB>'.",
+            "26:8: Unused @param tag for '<BB>'.",
             "28:13: Expected @param tag for '<Z>'.", };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }
@@ -378,5 +383,53 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {};
         verify(checkConfig, getPath("javadoc/Test3.java"), expected);
+    }
+
+    public void test_generics_1() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
+        checkConfig.addAttribute("allowUndeclaredRTE", "true");
+        final String[] expected = {
+            "15:34: Expected @throws tag for 'RE'.",
+            "23:37: Expected @throws tag for 'RE'.",
+            "31:13: Expected @param tag for '<NPE>'.",
+            "38:12: Unused @throws tag for 'E'.",
+            "41:38: Expected @throws tag for 'RuntimeException'.",
+            "42:13: Expected @throws tag for 'java.lang.RuntimeException'.",
+        };
+        verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
+    }
+
+    public void test_generics_2() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
+        final String[] expected = {
+            "15:34: Expected @throws tag for 'RE'.",
+            "23:37: Expected @throws tag for 'RE'.",
+            "31:13: Expected @param tag for '<NPE>'.",
+            "38:12: Unused @throws tag for 'E'.",
+            "41:38: Expected @throws tag for 'RuntimeException'.",
+            "42:13: Expected @throws tag for 'java.lang.RuntimeException'.",
+        };
+        verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
+    }
+
+    public void test_generics_3() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocMethodCheck.class);
+        final String[] expected = {
+            "6:8: Unused @throws tag for 'RE'.",
+            "15:34: Expected @throws tag for 'RE'.",
+            "31:13: Expected @param tag for '<NPE>'.",
+            "38:12: Unused @throws tag for 'E'.",
+            "41:38: Expected @throws tag for 'RuntimeException'.",
+            "42:13: Expected @throws tag for 'java.lang.RuntimeException'.",
+        };
+        verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
 }

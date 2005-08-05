@@ -267,14 +267,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             TokenTypes.ANNOTATION_FIELD_DEF, };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
-    public int[] getRequiredTokens()
-    {
-        return new int[] {
-            TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
-            TokenTypes.CLASS_DEF, TokenTypes.ENUM_DEF, };
-    }
-
     /**
      * Checks Javadoc comments for a method or constructor.
      *
@@ -305,7 +297,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      *
      * @param aIdent class name for which we can no load class.
      */
-    protected final void logLoadError(FullIdent aIdent)
+    protected final void logLoadError(Token aIdent)
     {
         logLoadErrorImpl(aIdent.getLineNo(), aIdent.getColumnNo(),
                          "javadoc.classInfo",
@@ -400,21 +392,37 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             Matcher noargMultilineStart =
                 MATCH_JAVADOC_NOARG_MULTILINE_START.matcher(lines[i]);
             if (javadocArgMatcher.find()) {
-                tags.add(new JavadocTag(currentLine,
+                int col = javadocArgMatcher.start(1) - 1;
+                if (i == 0) {
+                    col += aComment.getStartColNo();
+                }
+                tags.add(new JavadocTag(currentLine, col,
                                         javadocArgMatcher.group(1),
                                         javadocArgMatcher.group(2)));
             }
             else if (javadocNoargMatcher.find()) {
-                tags.add(new JavadocTag(currentLine,
+                int col = javadocNoargMatcher.start(1) - 1;
+                if (i == 0) {
+                    col += aComment.getStartColNo();
+                }
+                tags.add(new JavadocTag(currentLine, col,
                                         javadocNoargMatcher.group(1)));
             }
             else if (noargCurlyMatcher.find()) {
-                tags.add(new JavadocTag(currentLine,
+                int col = noargCurlyMatcher.start(1) - 1;
+                if (i == 0) {
+                    col += aComment.getStartColNo();
+                }
+                tags.add(new JavadocTag(currentLine, col,
                                         noargCurlyMatcher.group(1)));
             }
             else if (argMultilineStart.find()) {
                 final String p1 = argMultilineStart.group(1);
                 final String p2 = argMultilineStart.group(2);
+                int col = argMultilineStart.start(1) - 1;
+                if (i == 0) {
+                    col += aComment.getStartColNo();
+                }
 
                 // Look for the rest of the comment if all we saw was
                 // the tag and the name. Stop when we see '*/' (end of
@@ -429,7 +437,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                         String lFin = multilineCont.group(1);
                         if (!lFin.equals(NEXT_TAG) && !lFin.equals(END_JAVADOC))
                         {
-                            tags.add(new JavadocTag(currentLine, p1, p2));
+                            tags.add(new JavadocTag(currentLine, col, p1, p2));
                         }
                     }
                     remIndex++;
@@ -437,6 +445,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             }
             else if (noargMultilineStart.find()) {
                 final String p1 = noargMultilineStart.group(1);
+                int col = noargMultilineStart.start(1) - 1;
+                if (i == 0) {
+                    col += aComment.getStartColNo();
+                }
 
                 // Look for the rest of the comment if all we saw was
                 // the tag and the name. Stop when we see '*/' (end of
@@ -451,7 +463,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                         String lFin = multilineCont.group(1);
                         if (!lFin.equals(NEXT_TAG) && !lFin.equals(END_JAVADOC))
                         {
-                            tags.add(new JavadocTag(currentLine, p1));
+                            tags.add(new JavadocTag(currentLine, col, p1));
                         }
                     }
                     remIndex++;
@@ -500,9 +512,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 if ((child.getType() == TokenTypes.IDENT)
                     || (child.getType() == TokenTypes.DOT))
                 {
+                    FullIdent fi = FullIdent.createFullIdent(child);
                     final ExceptionInfo ei =
-                        new ExceptionInfo(FullIdent.createFullIdent(child),
-                                          getCurrentClassName());
+                        new ExceptionInfo(new Token(fi), getCurrentClassName());
                     retVal.add(ei);
                 }
                 child = (DetailAST) child.getNextSibling();
@@ -568,8 +580,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
             // Handle extra JavadocTag
             if (!found) {
-                log(tag.getLineNo(), "javadoc.unusedTag", "@param", tag
-                    .getArg1());
+                log(tag.getLineNo(), tag.getColumnNo(),
+                    "javadoc.unusedTag", "@param", tag.getArg1());
             }
         }
 
@@ -633,7 +645,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             final JavadocTag jt = (JavadocTag) it.next();
             if (jt.isReturnTag()) {
                 if (found) {
-                    log(jt.getLineNo(), "javadoc.return.duplicate");
+                    log(jt.getLineNo(), jt.getColumnNo(),
+                        "javadoc.return.duplicate");
                 }
                 found = true;
                 it.remove();
@@ -672,14 +685,16 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
             // Loop looking for matching throw
             final String documentedEx = tag.getArg1();
+            Token token = new Token(tag.getArg1(), tag.getLineNo(),
+                                    tag.getColumnNo());
+            ClassInfo documentedCI =
+                createClassInfo(token, getCurrentClassName());
             boolean found = foundThrows.contains(documentedEx);
-            Class documentedClass = null;
-            boolean classLoaded = false;
 
             final ListIterator throwIt = aThrows.listIterator();
             while (!found && throwIt.hasNext()) {
                 final ExceptionInfo ei = (ExceptionInfo) throwIt.next();
-                final FullIdent fi = ei.getName();
+                final Token fi = ei.getName();
                 final String declaredEx = fi.getText();
 
                 if (isSameType(declaredEx, documentedEx)) {
@@ -688,11 +703,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                     foundThrows.add(documentedEx);
                 }
                 else if (mAllowThrowsTagsForSubclasses) {
-                    if (!classLoaded) {
-                        documentedClass = loadClassForTag(tag);
-                        classLoaded = true;
-                    }
-                    found = isSubclass(documentedClass, ei.getClazz());
+                    found = isSubclass(documentedCI.getClazz(), ei.getClazz());
                 }
             }
 
@@ -700,16 +711,13 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             if (!found) {
                 boolean reqd = true;
                 if (mAllowUndeclaredRTE) {
-                    if (!classLoaded) {
-                        documentedClass = loadClassForTag(tag);
-                        classLoaded = true;
-                    }
-                    reqd = !isUnchecked(documentedClass);
+                    reqd = !isUnchecked(documentedCI.getClazz());
                 }
 
                 if (reqd) {
-                    log(tag.getLineNo(), "javadoc.unusedTag", "@throws", tag
-                        .getArg1());
+                    log(tag.getLineNo(), tag.getColumnNo(),
+                        "javadoc.unusedTag", "@throws", tag.getArg1());
+
                 }
             }
         }
@@ -721,28 +729,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             while (throwIt.hasNext()) {
                 final ExceptionInfo ei = (ExceptionInfo) throwIt.next();
                 if (!ei.isFound()) {
-                    final FullIdent fi = ei.getName();
+                    final Token fi = ei.getName();
                     log(fi.getLineNo(), fi.getColumnNo(),
                         "javadoc.expectedTag", "@throws", fi.getText());
                 }
             }
         }
-    }
-
-    /**
-     * Tries to load class for throws tag. Logs error if unable.
-     *
-     * @param aTag name of class which we try to load.
-     * @return <code>Class</code> for the tag.
-     */
-    private Class loadClassForTag(JavadocTag aTag)
-    {
-        Class clazz = resolveClass(aTag.getArg1(), getCurrentClassName());
-        if (clazz == null) {
-            log(aTag.getLineNo(), "javadoc.classInfo", "@throws", aTag
-                .getArg1());
-        }
-        return clazz;
     }
 
     /**
@@ -858,20 +850,22 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     }
 
     /** Stores useful information about declared exception. */
-    class ExceptionInfo extends ClassInfo
+    private class ExceptionInfo
     {
         /** does the exception have throws tag associated with. */
         private boolean mFound;
+        /** class information associated with this exception. */
+        private ClassInfo mClassInfo;
 
         /**
          * Creates new instance for <code>FullIdent</code>.
          *
-         * @param aIdent <code>FullIdent</code> of the exception
+         * @param aIdent the exception
          * @param aCurrentClass name of current class.
          */
-        ExceptionInfo(FullIdent aIdent, String aCurrentClass)
+        ExceptionInfo(Token aIdent, String aCurrentClass)
         {
-            super(aIdent, aCurrentClass);
+            mClassInfo = createClassInfo(aIdent, aCurrentClass);
         }
 
         /** Mark that the exception has associated throws tag */
@@ -884,6 +878,18 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         final boolean isFound()
         {
             return mFound;
+        }
+
+        /** @return exception's name */
+        final Token getName()
+        {
+            return mClassInfo.getName();
+        }
+
+        /** @return class for this exception */
+        final Class getClazz()
+        {
+            return mClassInfo.getClazz();
         }
     }
 }

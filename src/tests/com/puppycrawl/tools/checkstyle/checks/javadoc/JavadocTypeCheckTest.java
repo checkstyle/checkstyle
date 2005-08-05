@@ -280,7 +280,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "7: Unused @param tag for '<D>'.",
+            "7:4: Unused @param tag for '<D>'.",
             "11: Type Javadoc comment is missing an @param <C> tag.",
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
@@ -291,7 +291,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("allowMissingParamTags", "true");
         final String[] expected = {
-            "7: Unused @param tag for '<D>'.",
+            "7:4: Unused @param tag for '<D>'.",
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }

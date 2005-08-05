@@ -26,6 +26,8 @@ class JavadocTag
 {
     /** the line number of the tag **/
     private final int mLineNo;
+    /** the column number of the tag **/
+    private int mColumnNo;
     /** the tag string **/
     private final String mTag;
     /** an optional first argument. For example the parameter name. **/
@@ -34,12 +36,14 @@ class JavadocTag
     /**
      * Constructs the object.
      * @param aLine the line number of the tag
+     * @param aColumn the column number of the tag
      * @param aTag the tag string
      * @param aArg1 the tag argument
      **/
-    JavadocTag(int aLine, String aTag, String aArg1)
+    JavadocTag(int aLine, int aColumn, String aTag, String aArg1)
     {
         mLineNo = aLine;
+        mColumnNo = aColumn;
         mTag = aTag;
         mArg1 = aArg1;
     }
@@ -47,11 +51,12 @@ class JavadocTag
     /**
      * Constructs the object.
      * @param aLine the line number of the tag
+     * @param aColumn the column number of the tag
      * @param aTag the tag string
      **/
-    JavadocTag(int aLine, String aTag)
+    JavadocTag(int aLine, int aColumn, String aTag)
     {
-        this(aLine, aTag, null);
+        this(aLine, aColumn, aTag, null);
     }
 
     /** @return the tag string **/
@@ -72,11 +77,17 @@ class JavadocTag
         return mLineNo;
     }
 
+    /** @return the column number */
+    int getColumnNo()
+    {
+        return mColumnNo;
+    }
+
     /** @return a string representation of the object **/
     public String toString()
     {
         return "{Tag = '" + getTag() + "', lineNo = " + getLineNo()
-            + ", Arg1 = '" + getArg1() + "'}";
+            + ", columnNo=" + mColumnNo + ", Arg1 = '" + getArg1() + "'}";
     }
 
     /** @return whether the tag is an 'author' tag **/

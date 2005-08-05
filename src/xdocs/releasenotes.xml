@@ -73,6 +73,9 @@
         <li>Fixed implementation of DetailAST so getPreviousSibling()
         works for all nodes in AST tree (bug 1244994)</li>
 
+        <li>Now type-aware check know more about generics (bug 1249707,
+        modules: RedundantThrows and JavadocMethodCheck)</li>
+
       </ul>
 
       <p>Other improvements:</p>

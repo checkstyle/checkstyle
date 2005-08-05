@@ -116,10 +116,9 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
      * Logs error if unable to load class information.
      * @param aIdent class name for which we can no load class.
      */
-    protected final void logLoadError(FullIdent aIdent)
+    protected final void logLoadError(Token aIdent)
     {
-        logLoadErrorImpl(aIdent.getLineNo(),
-                         aIdent.getColumnNo(),
+        logLoadErrorImpl(aIdent.getLineNo(), aIdent.getColumnNo(),
                          "redundant.throws.classInfo",
                          new Object[] {aIdent.getText()});
     }
@@ -140,7 +139,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
     {
         // Let's try to load class.
         final ClassInfo newClassInfo =
-            new ClassInfo(aExc, getCurrentClassName());
+            createClassInfo(new Token(aExc), getCurrentClassName());
 
         if (!mAllowUnchecked) {
             if (isUnchecked(newClassInfo.getClazz())) {
@@ -152,7 +151,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
         boolean shouldAdd = true;
         for (Iterator known = aKnownExcs.iterator(); known.hasNext();) {
             final ClassInfo ci = (ClassInfo) known.next();
-            final FullIdent fi = ci.getName();
+            final Token fi = ci.getName();
 
             if (isSameType(fi.getText(), aExc.getText())) {
                 shouldAdd = false;

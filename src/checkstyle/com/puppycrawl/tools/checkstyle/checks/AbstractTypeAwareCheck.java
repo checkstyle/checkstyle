@@ -25,7 +25,10 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
 
 /**
  * Abstract class that endeavours to maintain type information for the Java
@@ -35,8 +38,7 @@ import java.util.Set;
  * @author Oliver Burn
  * @version 1.0
  */
-public abstract class AbstractTypeAwareCheck
-    extends Check
+public abstract class AbstractTypeAwareCheck extends Check
 {
     /** imports details **/
     private Set mImports = new HashSet();
@@ -50,12 +52,26 @@ public abstract class AbstractTypeAwareCheck
     /** <code>ClassResolver</code> instance for current tree. */
     private ClassResolver mClassResolver;
 
+    /** Stack of maps for type params. */
+    private Vector mTypeParams = new Vector();
+
     /**
      * Called to process an AST when visiting it.
      * @param aAST the AST to process. Guaranteed to not be PACKAGE_DEF or
      *             IMPORT tokens.
      */
     protected abstract void processAST(DetailAST aAST);
+
+    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    public final int[] getRequiredTokens()
+    {
+        return new int[] {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+        };
+    }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void beginTree(DetailAST aRootAST)
@@ -66,6 +82,7 @@ public abstract class AbstractTypeAwareCheck
         mImports.add("java.lang.*");
         mClassResolver = null;
         mCurrentClass = "";
+        mTypeParams.clear();
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
@@ -83,6 +100,9 @@ public abstract class AbstractTypeAwareCheck
             processClass(aAST);
         }
         else {
+            if (aAST.getType() == TokenTypes.METHOD_DEF) {
+                processTypeParams(aAST);
+            }
             processAST(aAST);
         }
     }
@@ -106,6 +126,10 @@ public abstract class AbstractTypeAwareCheck
             else {
                 mCurrentClass = mCurrentClass.substring(0, dotIdx);
             }
+            mTypeParams.remove(mTypeParams.size() - 1);
+        }
+        else if (aAST.getType() == TokenTypes.METHOD_DEF) {
+            mTypeParams.remove(mTypeParams.size() - 1);
         }
         else if (aAST.getType() != TokenTypes.PACKAGE_DEF
                  && aAST.getType() != TokenTypes.IMPORT)
@@ -241,8 +265,7 @@ public abstract class AbstractTypeAwareCheck
      * @param aCurrentClass name of surrounding class.
      * @return <code>Class</code> for a ident.
      */
-    protected final Class tryLoadClass(FullIdent aIdent,
-                                       String aCurrentClass)
+    protected final Class tryLoadClass(Token aIdent, String aCurrentClass)
     {
         final Class clazz = resolveClass(aIdent.getText(), aCurrentClass);
         if (clazz == null) {
@@ -256,7 +279,7 @@ public abstract class AbstractTypeAwareCheck
      * Abstract, should be overrided in subclasses.
      * @param aIdent class name for which we can no load class.
      */
-    protected abstract void logLoadError(FullIdent aIdent);
+    protected abstract void logLoadError(Token aIdent);
 
     /**
      * Common implementation for logLoadError() method.
@@ -301,14 +324,51 @@ public abstract class AbstractTypeAwareCheck
     }
 
     /**
+     * Process type params (if any) for given class, enum or method.
+     * @param aAST class, enum or method to process.
+     */
+    private void processTypeParams(DetailAST aAST)
+    {
+        final DetailAST typeParams =
+            aAST.findFirstToken(TokenTypes.TYPE_PARAMETERS);
+
+        Map paramsMap = new HashMap();
+        mTypeParams.add(paramsMap);
+
+        if (typeParams == null) {
+            return;
+        }
+
+        for (DetailAST child = (DetailAST) typeParams.getFirstChild();
+             child != null;
+             child = (DetailAST) child.getNextSibling())
+        {
+            if (child.getType() == TokenTypes.TYPE_PARAMETER) {
+                DetailAST param = child;
+                String alias = param.findFirstToken(TokenTypes.IDENT).getText();
+                DetailAST bounds =
+                    param.findFirstToken(TokenTypes.TYPE_UPPER_BOUNDS);
+                if (bounds != null) {
+                    FullIdent name = FullIdent.createFullIdentBelow(bounds);
+                    ClassInfo ci =
+                        createClassInfo(new Token(name), getCurrentClassName());
+                    paramsMap.put(alias, ci);
+                }
+            }
+        }
+    }
+
+    /**
      * Processes class definition.
-     * @param aAST class defition to process.
+     * @param aAST class definition to process.
      */
     private void processClass(DetailAST aAST)
     {
         final DetailAST ident = aAST.findFirstToken(TokenTypes.IDENT);
         mCurrentClass += ("".equals(mCurrentClass) ? "" : "$")
             + ident.getText();
+
+        processTypeParams(aAST);
     }
 
     /**
@@ -321,54 +381,107 @@ public abstract class AbstractTypeAwareCheck
     }
 
     /**
-     * Contains class's <code>FullIdent</code>
-     * and <code>Class</code> object if we can load it.
+     * Creates class info for given name.
+     * @param aName name of type.
+     * @param aSurroundingClass name of surrounding class.
+     * @return class infor for given name.
      */
-    protected class ClassInfo
+    protected final ClassInfo createClassInfo(final Token aName,
+                                              final String aSurroundingClass)
+    {
+        ClassInfo ci = findClassAlias(aName.getText());
+        if (ci != null) {
+            return new ClassAlias(aName, ci);
+        }
+        return new RegularClass(aName, aSurroundingClass, this);
+    }
+
+    /**
+     * Looking if a given name is alias.
+     * @param aName given name
+     * @return ClassInfo for alias if it exists, null otherwise
+     */
+    protected final ClassInfo findClassAlias(final String aName)
+    {
+        ClassInfo ci = null;
+        for (int i = mTypeParams.size() - 1; i >= 0; i--) {
+            Map paramMap = (Map) mTypeParams.get(i);
+            ci = (ClassInfo) paramMap.get(aName);
+            if (ci != null) {
+                break;
+            }
+        }
+        return ci;
+    }
+
+    /**
+     * Contains class's <code>Token</code>.
+     */
+    protected abstract static class ClassInfo
     {
         /** <code>FullIdent</code> associated with this class. */
-        private FullIdent mName;
-        /** <code>Class</code> object of this class if it's loadable. */
-        private Class mClass;
-        /** name of surrounding class. */
-        private String mSurroundingClass;
-        /** is class loadable. */
-        private boolean mIsLoadable;
+        private final Token mName;
+
+        /** @return class name */
+        public final Token getName()
+        {
+            return mName;
+        }
+
+        /** @return <code>Class</code> associated with an object. */
+        public abstract Class getClazz();
 
         /**
-         * Creates new instance of of class information object.
-         * @param aName <code>FullIdent</code> associated with new object.
-         * @param aSurroundingClass name of current surrounding class.
+         * Creates new instance of class inforamtion object.
+         * @param aName token which represents class name.
          */
-        public ClassInfo(final FullIdent aName, final String aSurroundingClass)
+        protected ClassInfo(final Token aName)
         {
             if (aName == null) {
                 throw new NullPointerException(
                     "ClassInfo's name should be non-null");
             }
             mName = aName;
-            mSurroundingClass = aSurroundingClass;
-            mIsLoadable = true;
         }
+    }
 
-        /** @return class name */
-        public final FullIdent getName()
+    /** Represents regular classes/enumes. */
+    private static final class RegularClass extends ClassInfo
+    {
+        /** name of surrounding class. */
+        private String mSurroundingClass;
+        /** is class loadable. */
+        private boolean mIsLoadable = true;
+        /** <code>Class</code> object of this class if it's loadable. */
+        private Class mClass;
+        /** the check we use to resolve classes. */
+        private final AbstractTypeAwareCheck mCheck;
+
+        /**
+         * Creates new instance of of class information object.
+         * @param aName <code>FullIdent</code> associated with new object.
+         * @param aSurroundingClass name of current surrounding class.
+         * @param aCheck the check we use to load class.
+         */
+        private RegularClass(final Token aName,
+                             final String aSurroundingClass,
+                             final AbstractTypeAwareCheck aCheck)
         {
-            return mName;
+            super(aName);
+            mSurroundingClass = aSurroundingClass;
+            mCheck = aCheck;
         }
-
         /** @return if class is loadable ot not. */
-        public final boolean isLoadable()
+        private boolean isLoadable()
         {
             return mIsLoadable;
         }
 
         /** @return <code>Class</code> associated with an object. */
-        public final Class getClazz()
+        public Class getClazz()
         {
             if (isLoadable() && mClass == null) {
-                setClazz(AbstractTypeAwareCheck.this.
-                         tryLoadClass(getName(), mSurroundingClass));
+                setClazz(mCheck.tryLoadClass(getName(), mSurroundingClass));
             }
             return mClass;
         }
@@ -377,10 +490,98 @@ public abstract class AbstractTypeAwareCheck
          * Associates <code> Class</code> with an object.
          * @param aClass <code>Class</code> to associate with.
          */
-        public final void setClazz(Class aClass)
+        private void setClazz(Class aClass)
         {
             mClass = aClass;
             mIsLoadable = (mClass != null);
+        }
+
+        /** {@inheritDoc} */
+        public String toString()
+        {
+            return "RegularClass[name=" + getName()
+                + ", in class=" + mSurroundingClass
+                + ", loadable=" + mIsLoadable
+                + ", class=" + mClass + "]";
+        }
+    }
+
+    /** Represents type param which is "alias" for real type. */
+    private static class ClassAlias extends ClassInfo
+    {
+        /** Class information associated with the alias. */
+        private final ClassInfo mClassInfo;
+
+        /**
+         * Creates nnew instance of the class.
+         * @param aName token which represents name of class alias.
+         * @param aClassInfo class information associated with the alias.
+         */
+        ClassAlias(final Token aName, ClassInfo aClassInfo)
+        {
+            super(aName);
+            mClassInfo = aClassInfo;
+        }
+
+        /** {@inheritDoc} */
+        public final Class getClazz()
+        {
+            return mClassInfo.getClazz();
+        }
+    }
+
+    /**
+     * Represents text element with location in the text.
+     */
+    protected static class Token
+    {
+        /** token's column number. */
+        private final int mColumn;
+        /** token's line number. */
+        private final int mLine;
+        /** token's text. */
+        private final String mText;
+
+        /**
+         * Creates token.
+         * @param aText token's text
+         * @param aLine token's line number
+         * @param aColumn token's column number
+         */
+        public Token(String aText, int aLine, int aColumn)
+        {
+            mText = aText;
+            mLine = aLine;
+            mColumn = aColumn;
+        }
+
+        /**
+         * Converts FullIdent to Token.
+         * @param aFullIdent full ident to convert.
+         */
+        public Token(FullIdent aFullIdent)
+        {
+            mText = aFullIdent.getText();
+            mLine = aFullIdent.getLineNo();
+            mColumn = aFullIdent.getColumnNo();
+        }
+
+        /** @return line number of the token */
+        public int getLineNo()
+        {
+            return mLine;
+        }
+
+        /** @return column number of the token */
+        public int getColumnNo()
+        {
+            return mColumn;
+        }
+
+        /** @return text of the token */
+        public String getText()
+        {
+            return mText;
         }
     }
 }

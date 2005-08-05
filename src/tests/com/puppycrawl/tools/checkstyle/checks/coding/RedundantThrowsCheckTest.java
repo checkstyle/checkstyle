@@ -92,4 +92,24 @@ public class RedundantThrowsCheckTest
         final String[] expected = {};
         verify(checkConfig, getPath("javadoc/BadCls.java"), expected);
     }
+
+    public void test_generics_params() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RedundantThrowsCheck.class);
+        final String[] expected = {
+            "15:34: Redundant throws: 'RE' is unchecked exception.",
+            "23:37: Redundant throws: 'RE' is subclass of 'E'.",
+            "23:37: Redundant throws: 'RE' is unchecked exception.",
+            "31:69: Redundant throws: 'NPE' is subclass of 'RE'.",
+            "31:69: Redundant throws: 'NPE' is unchecked exception.",
+            "31:74: Redundant throws: 'RE' is unchecked exception.",
+            "41:38: Redundant throws: 'RuntimeException' is subclass of 'RE'.",
+            "41:38: Redundant throws: 'RuntimeException' is unchecked exception.",
+            "41:56: Redundant throws: 'RE' is subclass of 'java.lang.RuntimeException'.",
+            "41:56: Redundant throws: 'RE' is unchecked exception.",
+            "42:13: Redundant throws: 'java.lang.RuntimeException' is unchecked exception.",
+        };
+        verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
+    }
 }

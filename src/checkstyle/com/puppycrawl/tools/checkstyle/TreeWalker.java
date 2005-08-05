@@ -48,6 +48,9 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
  * checks at each each node.
@@ -125,10 +128,14 @@ public final class TreeWalker
     /** a factory for creating submodules (i.e. the Checks) */
     private ModuleFactory mModuleFactory;
 
-    /** contrals whether we should use recursive or iterative
+    /** controls whether we should use recursive or iterative
      * algorithm for tree processing.
      */
     private final boolean mRecursive;
+
+    /** logger for debug purpose */
+    private static Log sLog =
+        LogFactory.getLog("com.puppycrawl.tools.checkstyle.TreeWalker");
 
     /**
      * Creates a new <code>TreeWalker</code> instance.
@@ -143,12 +150,10 @@ public final class TreeWalker
             System.getProperty("checkstyle.use.recursive.algorithm", "true");
         mRecursive = "true".equals(recursive);
         if (mRecursive) {
-            Utils.getExceptionLogger()
-                .debug("TreeWalker uses recursive algorithm");
+            sLog.debug("TreeWalker uses recursive algorithm");
         }
         else {
-            Utils.getExceptionLogger()
-                .debug("TreeWalker uses iterative algorithm");
+            sLog.debug("TreeWalker uses iterative algorithm");
         }
     }
 

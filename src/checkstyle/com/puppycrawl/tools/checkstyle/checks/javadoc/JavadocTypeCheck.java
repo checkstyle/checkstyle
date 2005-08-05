@@ -214,9 +214,12 @@ public class JavadocTypeCheck
                 if (content.endsWith("*/")) {
                     content = content.substring(0, content.length() - 2);
                 }
-                tags.add(new JavadocTag(aCmt.getStartLineNo() + i,
-                                        tagName,
-                                        content.trim()));
+                int col = tagMatcher.start(1) - 1;
+                if (i == 0) {
+                    col += aCmt.getStartColNo();
+                }
+                tags.add(new JavadocTag(aCmt.getStartLineNo() + i, col,
+                                        tagName, content.trim()));
             }
             tagPattern = Utils.getPattern("^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
         }
@@ -300,16 +303,19 @@ public class JavadocTypeCheck
                     if (matcher.matches()) {
                         typeParamName = matcher.group(1).trim();
                         if (!aTypeParamNames.contains(typeParamName)) {
-                            log(tag.getLineNo(), "javadoc.unusedTag",
+                            log(tag.getLineNo(), tag.getColumnNo(),
+                                "javadoc.unusedTag",
                                 "@param", "<" + typeParamName + ">");
                         }
                     }
                     else {
-                        log(tag.getLineNo(), "javadoc.unusedTagGeneral");
+                        log(tag.getLineNo(), tag.getColumnNo(),
+                            "javadoc.unusedTagGeneral");
                     }
                 }
                 else {
-                    log(tag.getLineNo(), "javadoc.unusedTagGeneral");
+                    log(tag.getLineNo(), tag.getColumnNo(),
+                        "javadoc.unusedTagGeneral");
                 }
             }
         }
