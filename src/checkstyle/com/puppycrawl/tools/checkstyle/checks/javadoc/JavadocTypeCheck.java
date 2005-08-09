@@ -290,7 +290,7 @@ public class JavadocTypeCheck
         final Vector aTags,
         final List aTypeParamNames)
     {
-        Pattern pattern = Utils.getPattern("\\s*<([^>])+>.*");
+        Pattern pattern = Utils.getPattern("\\s*<([^>]+)>.*");
         for (int i = aTags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = (JavadocTag) aTags.get(i);
             if (tag.getTag().equals("param")) {

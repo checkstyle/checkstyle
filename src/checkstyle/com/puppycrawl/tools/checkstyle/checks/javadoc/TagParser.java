@@ -166,7 +166,9 @@ class TagParser
                && ((text.charAt(column) >= 'A'
                     && text.charAt(column) <= 'Z')
                    || (text.charAt(column) >= 'a'
-                       && text.charAt(column) <= 'z')))
+                       && text.charAt(column) <= 'z')
+                   || (text.charAt(column) >= '0'
+                       && text.charAt(column) <= '9')))
         {
             column++;
         }
