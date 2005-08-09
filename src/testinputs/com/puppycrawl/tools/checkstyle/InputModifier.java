@@ -26,27 +26,27 @@ strictfp final class InputModifier // illegal order of modifiers for class
     }
 
     /** Single annotation without other modifiers */
-    @MyAnnotation void someMethod()
+    @MyAnnotation2 void someMethod()
     {
     }
 
     /** Illegal order of annotation - must come first */
-    private @MyAnnotation void someMethod2()
+    private @MyAnnotation2 void someMethod2()
     {
     }
 
     /** Annotation in middle of other modifiers otherwise in correct order */
-    private @MyAnnotation strictfp void someMethod3()
+    private @MyAnnotation2 strictfp void someMethod3()
     {
     }
 
     /** Correct order */
-    @MyAnnotation private strictfp void someMethod4()
+    @MyAnnotation2 private strictfp void someMethod4()
     {
     }
 
     /** Annotation in middle of other modifiers otherwise in correct order */
-    @MyAnnotation private static @MyAnnotation2 strictfp void someMethod5()
+    @MyAnnotation2 private static @MyAnnotation4 strictfp void someMethod5()
     {
     }
 
@@ -74,7 +74,7 @@ strictfp final class InputModifier // illegal order of modifiers for class
         /** all OK */
         float PI_OK = (float) 3.14;
     }
-    
+
     /** redundant 'final' modifier */
     private final void method()
     {
@@ -122,4 +122,7 @@ interface InnerImplementation
 }
 
 @interface MyAnnotation2 {
+}
+
+@interface MyAnnotation4 {
 }

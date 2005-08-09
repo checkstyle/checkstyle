@@ -30,12 +30,12 @@ class InputFinalParameters
     }
 
     /** final param constructor with annotation */
-    InputFinalParameters(final @MyAnnotation Class i)
+    InputFinalParameters(final @MyAnnotation3 Class i)
     {
     }
 
     /** non-final param constructor with annotation*/
-    InputFinalParameters(@MyAnnotation Boolean i)
+    InputFinalParameters(@MyAnnotation3 Boolean i)
     {
     }
 
@@ -60,13 +60,13 @@ class InputFinalParameters
     }
 
     /** final param method with annotation **/
-    void method(@MyAnnotation final Object s)
+    void method(@MyAnnotation3 final Object s)
     {
 
     }
 
     /** non-final param method with annotation **/
-    void method(@MyAnnotation Class s)
+    void method(@MyAnnotation3 Class s)
     {
 
     }
@@ -90,7 +90,7 @@ class InputFinalParameters
                 public void actionPerformed(ActionEvent e)
                 {
                 }
-                void somethingElse(@MyAnnotation ActionEvent e)
+                void somethingElse(@MyAnnotation3 ActionEvent e)
                 {
                 }
             };
@@ -100,7 +100,7 @@ class InputFinalParameters
                 public void actionPerformed(final ActionEvent e)
                 {
                 }
-                void somethingElse(@MyAnnotation final ActionEvent e)
+                void somethingElse(@MyAnnotation3 final ActionEvent e)
                 {
                 }
             };
@@ -125,13 +125,13 @@ class InputFinalParameters
         catch (java.lang.NullPointerException npe) {
             npe.printStackTrace();
         }
-        catch (@MyAnnotation final ClassCastException e) {
+        catch (@MyAnnotation3 final ClassCastException e) {
             e.printStackTrace();
         }
         catch (RuntimeException e) {
             e.printStackTrace();
         }
-        catch (@MyAnnotation NoClassDefFoundError e) {
+        catch (@MyAnnotation3 NoClassDefFoundError e) {
             e.printStackTrace();
         }
     }
@@ -155,11 +155,11 @@ class Foo
         {
 
         }
-        for(@MyAnnotation String s : someExpression())
+        for(@MyAnnotation3 String s : someExpression())
         {
 
         }
-        for(@MyAnnotation final String s : someExpression())
+        for(@MyAnnotation3 final String s : someExpression())
         {
 
         }
@@ -171,5 +171,5 @@ class Foo
     }
 }
 
-@interface MyAnnotation {
+@interface MyAnnotation3 {
 }

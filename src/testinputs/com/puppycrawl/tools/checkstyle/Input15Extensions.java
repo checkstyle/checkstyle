@@ -1,11 +1,11 @@
 // someexamples of 1.5 extensions
 
-@interface MyAnnotation {
+@interface MyAnnotation1 {
     String name();
     int version();
 }
 
-@MyAnnotation(name = "ABC", version = 1)
+@MyAnnotation1(name = "ABC", version = 1)
 public class Input15Extensions
 {
 
