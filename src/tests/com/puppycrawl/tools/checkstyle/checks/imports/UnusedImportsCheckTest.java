@@ -25,4 +25,14 @@ public class UnusedImportsCheckTest
         };
         verify(checkConfig, getPath("InputImport.java"), expected);
     }
+
+    public void testAnnotations()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(UnusedImportsCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("package-info.java"), expected);
+    }
 }

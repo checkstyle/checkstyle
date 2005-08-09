@@ -89,6 +89,7 @@ public class UnusedImportsCheck extends DeclarationCollector
     public int[] getDefaultTokens()
     {
         return new int[] {
+            TokenTypes.PACKAGE_DEF,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.CTOR_DEF,
@@ -128,7 +129,8 @@ public class UnusedImportsCheck extends DeclarationCollector
         else if ((aAST.getType() == TokenTypes.CLASS_DEF)
             || (aAST.getType() == TokenTypes.INTERFACE_DEF)
             || (aAST.getType() == TokenTypes.ENUM_DEF)
-            || (aAST.getType() == TokenTypes.ANNOTATION_DEF))
+            || (aAST.getType() == TokenTypes.ANNOTATION_DEF)
+            || (aAST.getType() == TokenTypes.PACKAGE_DEF))
         {
             mCollect = true;
         }
