@@ -192,7 +192,6 @@
            target="${checkstyle.testinputs.minimum.javaversion}"
            includeAntRuntime="false">
       <exclude name="**/j2ee/*" />
-      <exclude name="**/MyAnnotation.java" />
       <exclude name="**/InputAssertIdentifier.java" />
       <exclude name="**/InputClone.java" />
       <exclude name="**/InputCovariant.java" />
