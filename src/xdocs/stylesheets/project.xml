@@ -42,8 +42,7 @@
           </item>
 
           <item name="Optional Checks" href="/optional.html">
-              <item name="Usage Checks" href="/config_usage.html"/>
-              <item name="J2EE Checks" href="/config_j2ee.html"/>
+            <item name="J2EE Checks" href="/config_j2ee.html"/>
           </item>
       </item>
 

@@ -10,6 +10,27 @@
 
   <body>
 
+    <section name="Release 4.0?">
+      <p>New features:</p>
+
+      <ul>
+        <li>TBD</li>
+      </ul>
+
+      <p>Fixed Bugs:</p>
+
+      <ul>
+        <li>Removed all reference to the usage checks (bug 1256662).</li>
+      </ul>
+
+      <p>Other improvements:</p>
+
+      <ul>
+        <li>TBD</li>
+      </ul>
+
+    </section>
+
     <section name="Release 4.0 Beta 5">
       <p>New features:</p>
 

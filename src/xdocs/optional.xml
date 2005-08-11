@@ -20,7 +20,6 @@
 
       <ul>
         <li><a href="config_j2ee.html">J2EE Requirements</a></li>
-        <li><a href="config_usage.html">Usage</a></li>
       </ul>
     </section>
 
@@ -32,11 +31,11 @@
         of an optional Check module must include the appropriate package
         name prefix. For example, this is a configuration fragment for
         Check <span
-        class="code">com.puppycrawl.tools.checkstyle.checks.usage.UnusedLocalVariable</span>:
+        class="code">com.puppycrawl.tools.checkstyle.checks.j2ee.EntityBean</span>:
       </p>
 
       <source>
-&lt;module name=&quot;usage.UnusedLocalVariable&quot;/&gt;
+&lt;module name=&quot;j2ee.EntityBean&quot;/&gt;
       </source>
 
       <p>
