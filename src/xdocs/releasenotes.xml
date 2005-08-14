@@ -14,7 +14,8 @@
       <p>New features:</p>
 
       <ul>
-        <li>TBD</li>
+        <li>PropertyCacheFile & StringArrayReader are public now (bug
+        1257344)</li>
       </ul>
 
       <p>Fixed Bugs:</p>
@@ -23,7 +24,7 @@
         <li>Removed all reference to the usage checks (bug
         1256662).</li>
 
-        <li>RequireThis now handle inner enums better (bug 1257599)</li>
+        <li>RequireThis now handles inner enums better (bug 1257599)</li>
 
       </ul>
 

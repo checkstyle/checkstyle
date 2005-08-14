@@ -29,9 +29,9 @@ import java.io.IOException;
  * unexpected results! </strong> Checkstyle only works with one thread so
  * currently there is no need to introduce synchronization here.
  * </p>
- * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne </a>
+ * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne</a>
  */
-final class StringArrayReader extends Reader
+public final class StringArrayReader extends Reader
 {
     /** the underlying String array */
     private final String[] mUnderlyingArray;

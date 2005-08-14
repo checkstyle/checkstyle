@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  *
  * @author Oliver Burn
  */
-final class PropertyCacheFile
+public final class PropertyCacheFile
 {
     /**
      * The property key to use for storing the hashcode of the
