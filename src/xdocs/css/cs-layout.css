@@ -1,0 +1,40 @@
+.csTopBar {
+	height:80px;
+}
+
+.csLeft {
+	float:left;
+	position:relative;
+}
+
+.csRight {
+	position:relative;
+	float:right;
+	display:inline;
+	margin:0;
+	text-align:right;
+}
+
+
+.csMiddleContainer {}
+.csLeftBar {
+	top:80px;
+	position:absolute;
+	left:0;
+	margin:0;
+	padding:0;
+}
+
+/* positioning the left bar (width:13em) */
+.csLeftBar,
+.csLeftBarContents /* needed for Explorer 5.0 */ {
+	width:13em;
+}
+
+.csMain {
+	margin-left:13em;
+}
+
+.csBottomBar {
+	margin:0 0 0 13.5em; /* add small margin for content offset */
+}

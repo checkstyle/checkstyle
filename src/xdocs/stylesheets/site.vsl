@@ -53,13 +53,16 @@
 #end
 
 #macro ( td $value $trclass)
+<td class="$!trclass"
 #if ($value.getAttributeValue("colspan"))
-#set ($colspan = $value.getAttributeValue("colspan"))
+    #set ($colspan = $value.getAttributeValue("colspan"))
+    colspan="${value.getAttributeValue("colspan")}"
 #end
 #if ($value.getAttributeValue("rowspan"))
-#set ($rowspan = $value.getAttributeValue("rowspan"))
+    #set ($rowspan = $value.getAttributeValue("rowspan"))
+    rowspan="${value.getAttributeValue("rowspan")}"
 #end
-<td class="$!trclass" colspan="$!colspan" rowspan="$!rowspan">
+>
         #if ($value.getText().length() != 0 || $value.hasChildren())
         $value.getContent()
         #else
@@ -69,13 +72,16 @@
 #end
 
 #macro ( th $value)
+<th valign="top" align="left"
 #if ($value.getAttributeValue("colspan"))
-#set ($colspan = $value.getAttributeValue("colspan"))
+    #set ($colspan = $value.getAttributeValue("colspan"))
+    colspan="${value.getAttributeValue("colspan")}"
 #end
 #if ($value.getAttributeValue("rowspan"))
-#set ($rowspan = $value.getAttributeValue("rowspan"))
+    #set ($rowspan = $value.getAttributeValue("rowspan"))
+    rowspan="${value.getAttributeValue("rowspan")}"
 #end
-<th colspan="$!colspan" rowspan="$!rowspan" valign="top" align="left">
+>
         #if ($value.getText().length() != 0 || $value.hasChildren())
         $value.getContent()
         #else
@@ -84,17 +90,17 @@
 </th>
 #end
 
-#macro ( projectanchor $name $value )
+#macro ( projectanchor $name $value $indent)
 #if ($value.startsWith("http://"))
-    <a href="$value">$name</a>
+    <a href="$value">${indent}$name</a>
 #else
-    <a href="$relativePath$value">$name</a>
+    <a href="$relativePath$value">${indent}$name</a>
 #end
 #end
 
 #macro ( metaauthor $author $email )
-            <meta name="author" value="$author">
-            <meta name="email" value="$email">
+            <meta name="author" content="$author">
+            <meta name="email" content="$email">
 #end
 
 #macro ( image $value )
@@ -161,7 +167,7 @@
 ##          section macro
 ## ================================
 #macro ( section $section)
-  <a name="$section.getAttributeValue("name")"></a>
+  <a id="$section.getAttributeValue("name")"></a>
   <h2>$section.getAttributeValue("name")</h2>
         #foreach ( $items in $section.getChildren() )
             #if ($items.getName().equals("img"))
@@ -182,73 +188,57 @@
 ##  make navigation bar
 ## ===================================
 
-#macro ( makeNavigationMenu $menu )
-  <ul>
+#macro ( makeNavigationMenu $menu $indentStr)
   #foreach ( $item in $menu.getChildren() )
       #set ($name = $item.getAttributeValue("name"))
       #if ( $name.equalsIgnoreCase($docname) )
-          <li><b>#projectanchor($name $item.getAttributeValue("href"))</b></li>
+          <li><b>#projectanchor($name $item.getAttributeValue("href") ${indentStr})</b></li>
       #else
-          <li>#projectanchor($name $item.getAttributeValue("href"))</li>
+          <li>#projectanchor($name $item.getAttributeValue("href") ${indentStr})</li>
       #end
       #if ( $name.equalsIgnoreCase($docname) )
-          <ul class="sectionquicklink">
           #foreach ( $candidate in $root.getChild("body").getChildren() )
               #if ($candidate.getName().equals("section"))
                   #set ($sectionName = $candidate.getAttributeValue("name"))
-                  <li><a href="#$sectionName">$sectionName</a></li>
+                  <li><a href="#$sectionName">${indentStr}&nbsp;&nbsp;&nbsp;$sectionName</a></li>
               #end
           #end
-          </ul>
       #end
-      #makeNavigationMenu ($item )
+      #makeNavigationMenu ($item "${indentStr}&nbsp;&nbsp;&nbsp;")
   #end
-  </ul>
+
 #end
 
 #macro ( makeNavigationBar )
   <!-- ============================================================ -->
-  <table id="navbar" border="0" cellspacing="0" cellpadding="0">
-    #set ($menus = $project.getChild("body").getChildren("menu"))
-    #set ($docname = $root.getChild("properties").getChild("title").getText())
+  <!-- start makeNavigationBar -->
+  #set ($menus = $project.getChild("body").getChildren("menu"))
+  #set ($docname = $root.getChild("properties").getChild("title").getText())
+
+  <ul>
     #foreach ( $menu in $menus )
-       <tr >
-       	 <td class="navbarHeader">
-           <strong>$menu.getAttributeValue("name")</strong>
-         </td>
-       </tr>
-       <tr >
-       	 <td class="navbarItem">
-           #makeNavigationMenu ($menu)
-         </td>
-       </tr>
-
+      <li>
+        <strong>$menu.getAttributeValue("name")</strong>
+      </li>
+      #makeNavigationMenu ($menu "")
     #end
-  </table>
+  </ul>
 
+  <ul>
+    <li>
+      <strong>Hosted by:</strong>
+      <div align="center">
+        <p><a href="http://sourceforge.net">
+        <img src="http://sourceforge.net/sflogo.php?group_id=29721&amp;type=1" width="88" height="31" alt="SourceForge Logo"/></a>
+         </p>
+       </div>
+    </li>
+  </ul>
+
+  <!-- end makeNavigationBar -->
+  <!-- ============================================================ -->
 #end
 
-## ====================================
-##      getProjectImage
-## ====================================
-#macro (getProjectImage)
-    <td align="left">
-       <h1>$root.getChild("properties").getChild("title").getText()</h1>
-    </td>
-    <td align="right">
-      #set ( $logoString = $project.getChild("logo").getAttributeValue("href") )
-      #if ( $logoString.startsWith("/") )
-      	<a href="$project.getAttributeValue("href")">
-      	  <img src="$logoString"
-      	       alt="$project.getChild("logo").getText()" border="0"/>
-      	</a>
-      #else
-      	<a href="$project.getAttributeValue("href")">
-      	  <img src="$logoString" alt="$project.getChild("logo").getText()" border="0"/>
-      	</a>
-      #end
-    </td>
-#end
 
 #macro (printMeta $metaElement)
 <meta #set ($attribs = $metaElement.getAttributes())
@@ -260,94 +250,84 @@
     <!-- GENERATED FILE, DO NOT EDIT, EDIT THE XML FILE IN xdocs INSTEAD! -->
     <!-- Main Page Section -->
     <!-- ====================================================================== -->
-    <html>
-        <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
 
-            #set ($authors = $root.getChild("properties").getChildren("author"))
-            #foreach ( $au in $authors )
-                #metaauthor ( $au.getText() $au.getAttributeValue("email") )
-            #end
+    #set ($authors = $root.getChild("properties").getChildren("author"))
+    #foreach ( $au in $authors )
+      #metaauthor ( $au.getText() $au.getAttributeValue("email") )
+    #end
 
-           #set ($metas = $root.getChildren("meta"))
+    #set ($metas = $root.getChildren("meta"))
 
-            ##    Parse meta directives such as
-            ##    <meta name="keyword" content="jakarta, java"/>
-            #foreach ($meta in $metas) #printMeta($meta) #end
+    ##    Parse meta directives such as
+    ##    <meta name="keyword" content="jakarta, java"/>
+    #foreach ($meta in $metas) #printMeta($meta) #end
 
-            ##    Support for <base> tags.
-            #if ($root.getChild("properties").getChild("base"))
-              #set ($url = $root.getChild("properties").getChild("base").getAttributeValue("href"))
-              <base href="$url"/>
-            #end
+    ##    Support for <base> tags.
+    #if ($root.getChild("properties").getChild("base"))
+      #set ($url = $root.getChild("properties").getChild("base").getAttributeValue("href"))
+      <base href="$url"/>
+    #end
 
-            <link href="$relativePath/css/site.css" rel="stylesheet" type="text/css"/>
+    <title>$project.getChild("title").getText() - $root.getChild("properties").getChild("title").getText()</title>
 
-            <title>$project.getChild("title").getText() - $root.getChild("properties").getChild("title").getText()</title>
-        </head>
+    <style type="text/css" media="all">
+      @import url("$relativePath/css/cs-layout.css");
+      @import url("$relativePath/css/cs-style.css");
+    </style>
+  </head>
 
-        <body bgcolor="$bodybg" text="$bodyfg" link="$bodylink">
-           <!-- START Header table -->
-           <table border="0" cellspacing="0" width="98%">
-                <!-- TOP IMAGE -->
-                <tr>
-                    #getProjectImage()
-                </tr>
-            </table>
-           <!-- END Header table -->
+  <body>
+    <div class="csTopBar">
+      <div class="csTopBarContents">
+        <div class="csLeft">
+          <h1>$root.getChild("properties").getChild("title").getText()</h1>
+        </div>
+        <div class="csRight">
+          <a href="http://checkstyle.sourceforge.net/">
+            <img src="images/logo.png" alt="Checkstyle Logo" height="70"/>
+          </a>
+        </div>
+      </div>
+    </div>
 
-           <!-- START main table -->
-            <table id="main" border="0" width="98%" cellspacing="2" cellpadding="0">
-                <tr><td colspan="2">
-                    <hr noshade="" size="1"/>
-                </td></tr>
 
-                <tr>
-                    <!-- LEFT SIDE NAVIGATION -->
-                    <td id="navbar" valign="top">
-                    #makeNavigationBar()
+    <div class="csMiddleContainer">
+      <div class="csLeftBar">
+        <div class="csLeftBarContents">
+          #makeNavigationBar()
+        </div>
+      </div>
 
-  <p>Hosted by:</p>
-  <div align="center">
-    <p><a href="http://sourceforge.net">
-      <img src="http://sourceforge.net/sflogo.php?group_id=29721&amp;type=1" width="88" height="31" alt="SourceForge Logo"/></a>
-    </p>
-  </div>
+      <div class="csMain">
+      #foreach ( $item in $root.getChild("body").getChildren() )
+        #if ($item.getName().equals("img"))
+          #image ($item)
+        #elseif ($item.getName().equals("section"))
+          #section ($item)
+        #elseif ($item.getName().equals("source"))
+          #source ($item)
+        #elseif ($item.getName().equals("table"))
+          #table ($item)
+        #elseif ($item.getName().equals("subsection"))
+          #subsection ($item)
+        #else
+         $item
+        #end
+      #end
+      </div>
+    </div>
 
-                    </td>
-                    <td id="mainContents" align="left" valign="top">
-	               #foreach ( $item in $root.getChild("body").getChildren() )
-                         #if ($item.getName().equals("img"))
-                           #image ($item)
-                         #elseif ($item.getName().equals("section"))
-                           #section ($item)
-                         #elseif ($item.getName().equals("source"))
-                           #source ($item)
-                         #elseif ($item.getName().equals("table"))
-                           #table ($item)
-                         #elseif ($item.getName().equals("subsection"))
-                           #subsection ($item)
-                         #else
-                          $item
-                         #end
-                       #end
+    <div class="csBottomBar">
+      <div class="csBottomBarContents">
+        Copyright &copy; 2001-2005, Oliver Burn
+      </div>
+    </div>
+  </body>
+</html>
 
-                    </td>
-                </tr>
-
-                <!-- FOOTER -->
-                <tr><td colspan="2">
-                    <hr noshade="" size="1"/>
-                </td></tr>
-                <tr><td colspan="2">
-                    <div align="center"><font color="$bodylink" size="-1"><em>
-                    Copyright &#169; 2001-2005, Oliver Burn
-                    </em></font></div>
-                </td></tr>
-            </table>
-           <!-- END main table -->
-        </body>
-    </html>
 #end
 
 

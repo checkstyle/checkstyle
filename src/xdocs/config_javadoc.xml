@@ -230,9 +230,9 @@
           An example of how to configure the check is:
         </p>
 
-        <pre>
+        <source>
 &lt;module name=&quot;JavadocMethod&quot;/&gt;
-        </pre>
+        </source>
 
         <p>
           An example of how to configure the check to check to allow
@@ -241,13 +241,13 @@
           param tags is:
         </p>
 
-        <pre>
+        <source>
 &lt;module name=&quot;JavadocMethod&quot;&gt;
   &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
   &lt;property name=&quot;allowUndeclaredRTE&quot; value=&quot;true&quot;/&gt;
   &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
-        </pre>
+        </source>
       </subsection>
 
       <subsection name="Properties">
@@ -414,20 +414,20 @@ public boolean isSomething()
             com.puppycrawl.tools.checkstyle.Verifier</span> interface,
             then the Javadoc could be done as:
 
-            <source>
+            <pre>
 /** @see com.puppycrawl.tools.checkstyle.Verifier **/
 public int checkReturnTag(final int aTagIndex,
                           JavadocTag[] aTags,
                           int aLineNo)
-            </source>
+            </pre>
 
             or:
-            <source>
+            <pre>
 /** {@inheritDoc} */
 public int checkReturnTag(final int aTagIndex,
                           JavadocTag[] aTags,
                           int aLineNo)
-            </source>
+            </pre>
 
           </li>
         </ul>
