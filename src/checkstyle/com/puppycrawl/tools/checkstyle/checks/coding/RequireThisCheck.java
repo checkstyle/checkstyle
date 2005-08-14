@@ -175,6 +175,8 @@ public class RequireThisCheck extends DeclarationCollector
             || parentType == TokenTypes.CTOR_DEF
             || parentType == TokenTypes.METHOD_DEF
             || parentType == TokenTypes.CLASS_DEF
+            || parentType == TokenTypes.ENUM_DEF
+            || parentType == TokenTypes.INTERFACE_DEF
             || parentType == TokenTypes.PARAMETER_DEF)
         {
             // it's being declared; no problem

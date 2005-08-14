@@ -19,3 +19,19 @@ enum Enum1
         return ""; //some custom implementation
     }
 }
+
+interface TestRequireThisEnum
+{
+    enum DAY_OF_WEEK
+    {
+        SUNDAY,
+        MONDAY,
+        TUESDAY,
+        WEDNESDAY,
+        THURSDAY,
+        FRIDAY,
+        SATURDAY
+    }
+}
+
+

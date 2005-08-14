@@ -51,4 +51,12 @@ public class RequireThisCheckTest extends BaseCheckTestCase
                getPath("coding" + File.separator + "InputRequireThis.java"),
                expected);
     }
+
+    public void testGenerics() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RequireThisCheck.class);
+        final String[] expected = {};
+        verify(checkConfig, getPath("Input15Extensions.java"), expected);
+    }
 }

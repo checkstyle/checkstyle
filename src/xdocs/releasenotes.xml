@@ -20,7 +20,11 @@
       <p>Fixed Bugs:</p>
 
       <ul>
-        <li>Removed all reference to the usage checks (bug 1256662).</li>
+        <li>Removed all reference to the usage checks (bug
+        1256662).</li>
+
+        <li>RequireThis now handle inner enums better (bug 1257599)</li>
+
       </ul>
 
       <p>Other improvements:</p>
