@@ -31,7 +31,7 @@ import java.io.IOException;
  * </p>
  * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne</a>
  */
-public final class StringArrayReader extends Reader
+final class StringArrayReader extends Reader
 {
     /** the underlying String array */
     private final String[] mUnderlyingArray;
