@@ -172,6 +172,15 @@ public class OperatorWrapCheck
     /** @see com.puppycrawl.tools.checkstyle.api.Check */
     public void visitToken(DetailAST aAST)
     {
+        if (aAST.getType() == TokenTypes.COLON) {
+            DetailAST parent = aAST.getParent();
+            if (parent.getType() == TokenTypes.LITERAL_DEFAULT
+                || parent.getType() == TokenTypes.LITERAL_CASE)
+            {
+                //we do not want to check colon for cases and defaults
+                return;
+            }
+        }
         final AbstractOption wOp = getAbstractOption();
 
         final String text = aAST.getText();

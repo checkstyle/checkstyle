@@ -162,7 +162,7 @@ public class FallThroughCheck extends Check
     {
         DetailAST loopBody = null;
         if (aAST.getType() == TokenTypes.LITERAL_DO) {
-            final DetailAST lparen = aAST.findFirstToken(TokenTypes.LPAREN);
+            final DetailAST lparen = aAST.findFirstToken(TokenTypes.DO_WHILE);
             loopBody = lparen.getPreviousSibling();
         }
         else {

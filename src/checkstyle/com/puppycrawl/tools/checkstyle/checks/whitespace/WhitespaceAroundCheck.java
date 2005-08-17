@@ -115,7 +115,7 @@ public class WhitespaceAroundCheck
             TokenTypes.BSR_ASSIGN,
             TokenTypes.BXOR,
             TokenTypes.BXOR_ASSIGN,
-            TokenTypes.COLON, // TODO: dont flag after "case"
+            TokenTypes.COLON,
             TokenTypes.DIV,
             TokenTypes.DIV_ASSIGN,
             TokenTypes.EQUAL,
@@ -183,6 +183,14 @@ public class WhitespaceAroundCheck
         // Check for an SLIST that has a parent CASE_GROUP. It is not a '{'.
         if ((type == TokenTypes.SLIST)
             && (parentType == TokenTypes.CASE_GROUP))
+        {
+            return;
+        }
+
+        //we do not want to check colon for cases and defaults
+        if (type == TokenTypes.COLON
+            && (parentType == TokenTypes.LITERAL_DEFAULT
+                || parentType == TokenTypes.LITERAL_CASE))
         {
             return;
         }

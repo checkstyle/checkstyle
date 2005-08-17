@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001 - 2004  Oliver Burn
+// Copyright (C) 2001 - 2005  Oliver Burn
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -87,6 +87,11 @@ tokens {
 	ANNOTATION_ARRAY_INIT; TYPE_ARGUMENTS; TYPE_ARGUMENT; TYPE_PARAMETERS;
 	TYPE_PARAMETER; WILDCARD_TYPE; TYPE_UPPER_BOUNDS; TYPE_LOWER_BOUNDS; AT; ELLIPSIS;
 	GENERIC_START; GENERIC_END; TYPE_EXTENSION_AND;
+
+    // token which was not included to grammar initially
+    // we need to put it to the end to maintain binary compatibility
+    // with previous versions
+    DO_WHILE;
 }
 
 {
@@ -238,7 +243,7 @@ typeSpec[boolean addImagNode]
 // - generic type arguments after
 classTypeSpec[boolean addImagNode]
 	:   classOrInterfaceType[addImagNode]
-        (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK!)*
+        (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
 		{
 			if ( addImagNode ) {
 				#classTypeSpec = #(#[TYPE,"TYPE"], #classTypeSpec);
@@ -317,25 +322,18 @@ protected typeArgumentsOrParametersEnd!
     ;
 
 typeArgumentBounds[boolean addImagNode]
-    {boolean isUpperBounds = false;}
     :
-        ( "extends"! {isUpperBounds=true;} | "super"! ) classOrInterfaceType[addImagNode]
-		{
-		    if (isUpperBounds)
-		    {
-		        #typeArgumentBounds = #(#[TYPE_UPPER_BOUNDS,"TYPE_UPPER_BOUNDS"], #typeArgumentBounds);
-		    }
-		    else
-		    {
-		        #typeArgumentBounds = #(#[TYPE_LOWER_BOUNDS,"TYPE_LOWER_BOUNDS"], #typeArgumentBounds);
-		    }
-		}
+        (
+            e:"extends"^ {#e.setType(TYPE_UPPER_BOUNDS); }
+          | s:"super"^ { #s.setType(TYPE_LOWER_BOUNDS); }
+        )
+        classOrInterfaceType[addImagNode]
     ;
 
 // A builtin type array specification is a builtin type with brackets afterwards
 builtInTypeArraySpec[boolean addImagNode]
 	:	builtInType
-	    (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK!)+
+	    (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)+
 		{
 			if ( addImagNode ) {
 				#builtInTypeArraySpec = #(#[TYPE,"TYPE"], #builtInTypeArraySpec);
@@ -346,7 +344,7 @@ builtInTypeArraySpec[boolean addImagNode]
 // A builtin type specification is a builtin type with possible brackets
 // afterwards (which would make it an array type).
 builtInTypeSpec[boolean addImagNode]
-	:	builtInType (lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK!)*
+	:	builtInType (lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
 		{
 			if ( addImagNode ) {
 				#builtInTypeSpec = #(#[TYPE,"TYPE"], #builtInTypeSpec);
@@ -505,9 +503,9 @@ classDefinition![AST modifiers]
 							   modifiers, c, IDENT, tp, sc, ic, cb);}
     ;
 
-superClassClause!
-	:	( "extends" c:classOrInterfaceType[false] )?
-		{#superClassClause = #(#[EXTENDS_CLAUSE,"EXTENDS_CLAUSE"],c);}
+superClassClause
+	:	( e:"extends"^ {#e.setType(EXTENDS_CLAUSE);}
+          c:classOrInterfaceType[false] )?
 	;
 
 // Definition of a Java Interface
@@ -575,9 +573,9 @@ typeParameter
 
 typeParameterBounds
     :
-        "extends"! classOrInterfaceType[true]
+        e:"extends"^ classOrInterfaceType[true]
         (b:BAND {#b.setType(TYPE_EXTENSION_AND);} classOrInterfaceType[true])*
-        {#typeParameterBounds = #(#[TYPE_UPPER_BOUNDS,"TYPE_UPPER_BOUNDS"], #typeParameterBounds);}
+        {#e.setType(TYPE_UPPER_BOUNDS);}
     ;
 
 // This is the body of an annotation. You can have annotation fields and extra semicolons,
@@ -719,20 +717,17 @@ classBlock
 // An interface can extend several other interfaces...
 interfaceExtends
 	:	(
-		e:"extends"!
-		classOrInterfaceType[false] ( COMMA classOrInterfaceType[false] )*
+		e:"extends"^ {#e.setType(EXTENDS_CLAUSE);} 
+        classOrInterfaceType[false] ( COMMA classOrInterfaceType[false] )*
 		)?
-		{#interfaceExtends = #(#[EXTENDS_CLAUSE,"EXTENDS_CLAUSE"],
-							#interfaceExtends);}
 	;
 
 // A class can implement several interfaces...
 implementsClause
 	:	(
-			i:"implements"! classOrInterfaceType[false] ( COMMA classOrInterfaceType[false] )*
+			i:"implements"^ {#i.setType(IMPLEMENTS_CLAUSE);}
+            classOrInterfaceType[false] ( COMMA classOrInterfaceType[false] )*
 		)?
-		{#implementsClause = #(#[IMPLEMENTS_CLAUSE,"IMPLEMENTS_CLAUSE"],
-								 #implementsClause);}
 	;
 
    // Now the various things that can be defined inside a class or interface...
@@ -853,7 +848,7 @@ variableDeclarator![AST mods, AST t]
 
 declaratorBrackets[AST typ]
 	:	{#declaratorBrackets=typ;}
-		(lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK!)*
+		(lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
 	;
 
 varInitializer
@@ -1014,7 +1009,7 @@ traditionalStatement
 	|	"while"^ LPAREN expression RPAREN statement
 
 	// do-while statement
-	|	"do"^ statement "while"! LPAREN expression RPAREN SEMI
+	|	"do"^ statement w:"while" {#w.setType(DO_WHILE);} LPAREN expression RPAREN SEMI
 
 	// get out of a loop (or switch)
 	|	"break"^ (IDENT)? SEMI
@@ -1091,7 +1086,7 @@ casesGroup
 	;
 
 aCase
-	:	("case"^ expression | "default") COLON!
+	:	("case"^ expression | "default"^) COLON
 	;
 
 caseSList
@@ -1335,11 +1330,11 @@ postfixExpression
 			// is the _last_ qualifier.
 
 			// allow ClassName[].class
-		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR);} RBRACK! )+
+		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR);} RBRACK )+
 			DOT^ "class"
 
 			// an array indexing operation
-		|	lb:LBRACK^ {#lb.setType(INDEX_OP);} expression RBRACK!
+		|	lb:LBRACK^ {#lb.setType(INDEX_OP);} expression RBRACK
 
 			// method invocation
 			// The next line is not strictly proper; it allows x(3)(4) or
@@ -1375,7 +1370,7 @@ primaryExpression
 	|	"super"
 		// look for int.class and int[].class
 	|	builtInType
-		( lbt:LBRACK^ {#lbt.setType(ARRAY_DECLARATOR);} RBRACK! )*
+		( lbt:LBRACK^ {#lbt.setType(ARRAY_DECLARATOR);} RBRACK )*
 		DOT^ "class"
 	;
 
@@ -1464,7 +1459,7 @@ newArrayDeclarator
 		:
 			lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);}
 				(expression)?
-			RBRACK!
+			RBRACK
 		)+
 	;
 

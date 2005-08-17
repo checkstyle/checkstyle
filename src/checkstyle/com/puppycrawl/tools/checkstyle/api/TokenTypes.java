@@ -1128,13 +1128,13 @@ public final class TokenTypes
      * @see #ARRAY_DECLARATOR
      **/
     //public static final int LBRACK = GeneratedJavaTokenTypes.LBRACK;
-    /* *
-     * This token does not appear in the tree.
+    /**
+     * <code>[</code>
      *
      * @see #INDEX_OP
      * @see #ARRAY_DECLARATOR
      **/
-    //public static final int RBRACK = GeneratedJavaTokenTypes.RBRACK;
+    public static final int RBRACK = GeneratedJavaTokenTypes.RBRACK;
     /**
      * The <code>void</code> keyword.
      *
@@ -1737,6 +1737,11 @@ public final class TokenTypes
      * @see #SEMI
      **/
     public static final int LITERAL_DO = GeneratedJavaTokenTypes.LITERAL_do;
+    /**
+     * Literal <code>while</code> in do-while loop.
+     * @see #LITERAL_DO
+     */
+    public static final int DO_WHILE = GeneratedJavaTokenTypes.DO_WHILE;
     /**
      * The <code>break</code> keyword.  The first child is an optional
      * identifier and the last child is a semicolon.
