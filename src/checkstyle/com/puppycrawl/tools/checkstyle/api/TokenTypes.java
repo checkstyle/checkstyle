@@ -1129,7 +1129,7 @@ public final class TokenTypes
      **/
     //public static final int LBRACK = GeneratedJavaTokenTypes.LBRACK;
     /**
-     * The <code>[</code> symbol.
+     * The <code>]</code> symbol.
      *
      * @see #INDEX_OP
      * @see #ARRAY_DECLARATOR
