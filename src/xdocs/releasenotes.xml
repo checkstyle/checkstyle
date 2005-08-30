@@ -25,6 +25,9 @@
 
         <li>RequireThis now handles inner enums better (bug 1257599)</li>
 
+        <li>Fixed package name for modifiers checks in documentation
+        (bug 1275988)</li>
+
       </ul>
 
       <p>Other improvements:</p>

@@ -63,7 +63,7 @@
       </subsection>
 
       <subsection name="Package">
-        <p> com.puppycrawl.tools.checkstyle.checks </p>
+        <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
       </subsection>
 
       <subsection name="Parent Module">
@@ -154,7 +154,7 @@
       </subsection>
 
       <subsection name="Package">
-        <p> com.puppycrawl.tools.checkstyle.checks </p>
+        <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
       </subsection>
 
       <subsection name="Parent Module">
