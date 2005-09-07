@@ -92,9 +92,7 @@ public class MethodParamPadCheck
     public void visitToken(DetailAST aAST)
     {
         final DetailAST parenAST;
-        if ((aAST.getType() == TokenTypes.METHOD_CALL)
-            || (aAST.getType() == TokenTypes.SUPER_CTOR_CALL))
-        {
+        if ((aAST.getType() == TokenTypes.METHOD_CALL)) {
             parenAST = aAST;
         }
         else {
@@ -109,29 +107,20 @@ public class MethodParamPadCheck
         int identLineNo = -1;
         int identColumnNo = -1;
         final String identText;
-        if (aAST.getType() == TokenTypes.SUPER_CTOR_CALL) {
-            identText = "super";
-            final String parenLine = lines[parenAST.getLineNo() - 1];
-            final int superIndex =
-                parenLine.lastIndexOf("super", parenAST.getColumnNo());
-            if (superIndex != -1) {
-                identLineNo = aAST.getLineNo();
-                identColumnNo = superIndex;
-            }
+        final DetailAST identAST;
+        final DetailAST dotAST = aAST.findFirstToken(TokenTypes.DOT);
+        if (dotAST != null) {
+            identAST = dotAST.getLastChild();
+        }
+        else if (aAST.getType() == TokenTypes.SUPER_CTOR_CALL) {
+            identAST = aAST;
         }
         else {
-            final DetailAST identAST;
-            final DetailAST dotAST = aAST.findFirstToken(TokenTypes.DOT);
-            if (dotAST != null) {
-                identAST = dotAST.getLastChild();
-            }
-            else {
-                identAST = aAST.findFirstToken(TokenTypes.IDENT);
-            }
-            identLineNo = identAST.getLineNo();
-            identColumnNo = identAST.getColumnNo();
-            identText = identAST.getText();
+            identAST = aAST.findFirstToken(TokenTypes.IDENT);
         }
+        identLineNo = identAST.getLineNo();
+        identColumnNo = identAST.getColumnNo();
+        identText = identAST.getText();
 
         if (identLineNo == parenAST.getLineNo()) {
             final int after = identColumnNo + identText.length();

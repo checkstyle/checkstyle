@@ -1077,8 +1077,9 @@ public final class TokenTypes
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--CTOR_CALL (()
+     * +--CTOR_CALL (this)
      *     |
+     *     +--LPAREN (()
      *     +--ELIST
      *         |
      *         +--EXPR

@@ -815,16 +815,16 @@ explicitConstructorInvocation
 			}
 		:
 			(typeArguments[false])?
-			(	"this"! lp1:LPAREN^ argList RPAREN SEMI
-				{#lp1.setType(CTOR_CALL);}
+			(	t:"this"^ LPAREN argList RPAREN SEMI
+				{#t.setType(CTOR_CALL);}
 
-			|   "super"! lp2:LPAREN^ argList RPAREN SEMI
-					{#lp2.setType(SUPER_CTOR_CALL);}
+			|   s:"super"^ LPAREN argList RPAREN SEMI
+                {#s.setType(SUPER_CTOR_CALL);}
 			)
 
 		|	// (new Outer()).super()  (create enclosing instance)
-			primaryExpression DOT! (typeArguments[false])? "super"! lp3:LPAREN^ argList RPAREN SEMI
-			{#lp3.setType(SUPER_CTOR_CALL);}
+			primaryExpression DOT (typeArguments[false])? s1:"super"^ LPAREN argList RPAREN SEMI
+			{#s1.setType(SUPER_CTOR_CALL);}
 		)
     ;
 

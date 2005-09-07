@@ -14,7 +14,9 @@
       <p>New features:</p>
 
       <ul>
-        <li>TBD</li>
+        <li>One more change for grammar: now CTOR_CALL and
+        SUPER_CTOR_CALL nodes represents "this" and "super" keywords
+        from these statements.</li>
       </ul>
 
       <p>Fixed Bugs:</p>
