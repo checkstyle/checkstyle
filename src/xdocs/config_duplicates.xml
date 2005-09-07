@@ -14,6 +14,7 @@ more code needs to be tested, etc.
 <p>
 There are many trade-offs when writing a duplicate code detection tool.
 Some of the conflicting goals are:
+</p>
 <ul>
 <li>Fast</li>
 <li>Low memory usage</li>
@@ -21,7 +22,7 @@ Some of the conflicting goals are:
 <li>Support multiple/arbitrary languages (Java, JSP, C++, ...)</li>
 <li>Support Fuzzy matches (comments, whitespace, linebreaks, variable renaming, etc.)</li>
 </ul>
-</p>
+
 <p>
 The check provided here, StrictDuplicateCode, is fast enough to facilitate checking very large code
 bases in acceptable time (minutes). It consumes very little memory, false
