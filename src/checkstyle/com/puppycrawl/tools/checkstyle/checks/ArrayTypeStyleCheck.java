@@ -62,10 +62,7 @@ public class ArrayTypeStyleCheck extends Check
                 || (variableAST.getColumnNo() > aAST.getColumnNo());
 
             if (isJavaStyle != mJavaStyle) {
-                log(
-                    aAST.getLineNo(),
-                    aAST.getColumnNo(),
-                    "Array brackets at illegal position.");
+                log(aAST.getLineNo(), aAST.getColumnNo(), "array.type.style");
             }
         }
     }

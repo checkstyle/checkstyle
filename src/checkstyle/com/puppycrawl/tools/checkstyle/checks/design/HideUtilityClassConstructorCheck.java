@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class HideUtilityClassConstructorCheck extends Check
 {
@@ -88,9 +88,7 @@ public class HideUtilityClassConstructorCheck extends Check
         if (extendsJLO
                 && hasMethod && !hasNonStaticMethod && hasAccessibleCtor)
         {
-            log(aAST.getLineNo(), aAST.getColumnNo(),
-                "Utility classes should not have "
-                + "a public or default constructor.");
+            log(aAST.getLineNo(), aAST.getColumnNo(), "hide.utility.class");
         }
     }
 }
