@@ -30,6 +30,9 @@
         <li>Fixed package name for modifiers checks in documentation
         (bug 1275988)</li>
 
+        <li>MagicNumber allows use numeric constants in enum constant
+        definition (bug 1284682)</li>
+
       </ul>
 
       <p>Other improvements:</p>

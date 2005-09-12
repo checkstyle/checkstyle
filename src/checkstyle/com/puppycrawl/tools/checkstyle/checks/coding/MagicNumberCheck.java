@@ -116,7 +116,8 @@ public class MagicNumberCheck extends Check
     {
         DetailAST varDefAST = aAST;
         while (varDefAST != null
-                && varDefAST.getType() != TokenTypes.VARIABLE_DEF)
+                && varDefAST.getType() != TokenTypes.VARIABLE_DEF
+                && varDefAST.getType() != TokenTypes.ENUM_CONSTANT_DEF)
         {
             varDefAST = varDefAST.getParent();
         }
@@ -127,7 +128,9 @@ public class MagicNumberCheck extends Check
         }
 
         // implicit constant?
-        if (ScopeUtils.inInterfaceOrAnnotationBlock(varDefAST)) {
+        if (ScopeUtils.inInterfaceOrAnnotationBlock(varDefAST)
+            || varDefAST.getType() == TokenTypes.ENUM_CONSTANT_DEF)
+        {
             return varDefAST;
         }
 
