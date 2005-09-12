@@ -33,6 +33,10 @@
         <li>MagicNumber allows use numeric constants in enum constant
         definition (bug 1284682)</li>
 
+        <li>Fixed i18n problems in ArrayTypeStyle,
+        HideUtilityClassConstructor and  AvoidInlineConditionals(bug
+        1262825)</li>
+
       </ul>
 
       <p>Other improvements:</p>
