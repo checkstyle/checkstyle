@@ -3,7 +3,7 @@
   <!-- set global properties for this build -->
   <!-- Give user a chance to override without editing this file -->
   <!-- (and without typing -D each time it compiles it) -->
-  <property name="target.dir" value="target" />
+  <property name="target.dir" value="${basedir}/target" />
   <property file="checkstyle.buildproperties" />
   <property file="${user.home}/checkstyle.buildproperties" />
 
