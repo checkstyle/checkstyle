@@ -47,26 +47,5 @@
       </p>
     </section>
 
-    <section name="Usage">
-      <p>
-        Optional checks are distributed in jar file <span
-        class="code">checkstyle-optional-@CHECKSTYLE_VERSION@.jar</span>
-        and, in order to use an optional check, this jar file must be in
-        the classpath.  For example, this is a command to run Checkstyle
-        with a configuration that contains optional checks:
-      </p>
-
-      <source>
-java -classpath checkstyle-optional-@CHECKSTYLE_VERSION@.jar:checkstyle-all-@CHECKSTYLE_VERSION@.jar \
-    com.puppycrawl.tools.checkstyle.Main \
-    -c config.xml -r .
-      </source>
-
-      <p>
-        Please consult <a href="cmdline.html">Command Line</a> and <a
-        href="anttask.html">ANT Task</a> documentation for further usage
-        information.
-      </p>
-    </section>
   </body>
 </document>
