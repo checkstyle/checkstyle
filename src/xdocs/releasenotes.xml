@@ -10,6 +10,30 @@
 
   <body>
 
+    <section name="Release 4.0 Beta OR Release Candidate">
+      <p>New features:</p>
+
+      <ul>
+        <li>
+	  Added Spanish translation of messages. Thanks to Ricardo Mones
+          (patch 1250329).
+	</li>
+      </ul>
+
+      <p>Fixed Bugs:</p>
+
+      <ul>
+        <li>TBD</li>
+      </ul>
+
+      <p>Other improvements:</p>
+
+      <ul>
+        <li>TBD</li>
+      </ul>
+
+    </section>
+
     <section name="Release 4.0 Beta 6">
       <p>New features:</p>
 
