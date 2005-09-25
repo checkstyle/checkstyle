@@ -52,8 +52,7 @@ import org.apache.tools.ant.types.Reference;
  * of the task for usage.
  * @author Oliver Burn
  */
-public class CheckStyleTask
-    extends Task
+public class CheckStyleTask extends Task
 {
     /** poor man's enum for an xml formatter */
     private static final String E_XML = "xml";
@@ -220,9 +219,8 @@ public class CheckStyleTask
     private void setConfigLocation(String aLocation)
     {
         if (mConfigLocation != null) {
-            throw new BuildException(
-                "Attributes 'config' and 'configURL' "
-                + "must not be set at the same time");
+            throw new BuildException("Attributes 'config' and 'configURL' "
+                    + "must not be set at the same time");
         }
         mConfigLocation = aLocation;
     }
@@ -256,24 +254,40 @@ public class CheckStyleTask
      * System.out. Will fail if any errors occurred.
      * @throws BuildException an error occurred
      */
-    public void execute()
-        throws BuildException
+    public void execute() throws BuildException
+    {
+        final ClassLoader loader = Thread.currentThread()
+                .getContextClassLoader();
+        try {
+            Thread.currentThread().setContextClassLoader(
+                    getClass().getClassLoader());
+            realExecute();
+        }
+        finally {
+            Thread.currentThread().setContextClassLoader(loader);
+        }
+    }
+
+    /**
+     * Helper implementation to perform execution.
+     */
+    private void realExecute()
     {
         // output version info in debug mode
-        final ResourceBundle compilationProperties =
-            ResourceBundle.getBundle("checkstylecompilation");
-        final String version =
-            compilationProperties.getString("checkstyle.compile.version");
-        final String compileTimestamp =
-            compilationProperties.getString("checkstyle.compile.timestamp");
+        final ResourceBundle compilationProperties = ResourceBundle
+                .getBundle("checkstylecompilation");
+        final String version = compilationProperties
+                .getString("checkstyle.compile.version");
+        final String compileTimestamp = compilationProperties
+                .getString("checkstyle.compile.timestamp");
         log("checkstyle version " + version, Project.MSG_VERBOSE);
         log("compiled on " + compileTimestamp, Project.MSG_VERBOSE);
 
         // Check for no arguments
         if ((mFileName == null) && (mFileSets.size() == 0)) {
             throw new BuildException(
-                "Must specify atleast one of 'file' or nested 'fileset'.",
-                getLocation());
+                    "Must specify atleast one of 'file' or nested 'fileset'.",
+                    getLocation());
         }
 
         if (mConfigLocation == null) {
@@ -286,14 +300,14 @@ public class CheckStyleTask
             c = createChecker();
 
             final SeverityLevelCounter warningCounter =
-                    new SeverityLevelCounter(SeverityLevel.WARNING);
+                new SeverityLevelCounter(SeverityLevel.WARNING);
             c.addListener(warningCounter);
 
             // Process the files
             final File[] files = scanFileSets();
 
-            log("Running Checkstyle " + version
-                    + " on " + files.length + " files", Project.MSG_INFO);
+            log("Running Checkstyle " + version + " on " + files.length
+                    + " files", Project.MSG_INFO);
             log("Using configuration " + mConfigLocation, Project.MSG_VERBOSE);
 
             final int numErrs = c.process(files);
@@ -307,10 +321,8 @@ public class CheckStyleTask
             }
 
             if (!ok && mFailOnViolation) {
-                throw new BuildException(
-                        "Got " + numErrs + " errors and "
-                        + numWarnings + " warnings.",
-                                         getLocation());
+                throw new BuildException("Got " + numErrs + " errors and "
+                        + numWarnings + " warnings.", getLocation());
             }
         }
         finally {
@@ -329,22 +341,20 @@ public class CheckStyleTask
         Checker c = null;
         try {
             final Properties props = createOverridingProperties();
-            final Configuration config =
-                ConfigurationLoader.loadConfiguration(
+            final Configuration config = ConfigurationLoader.loadConfiguration(
                     mConfigLocation, new PropertiesExpander(props), true);
 
             final DefaultContext context = new DefaultContext();
-            final ClassLoader loader =
-                new AntClassLoader(getProject(), mClasspath);
+            final ClassLoader loader = new AntClassLoader(getProject(),
+                    mClasspath);
             context.add("classloader", loader);
 
             c = new Checker();
 
             //load the set of package names
             if (mPackageNamesFile != null) {
-                final ModuleFactory moduleFactory =
-                    PackageNamesLoader.loadModuleFactory(
-                        mPackageNamesFile.getAbsolutePath());
+                final ModuleFactory moduleFactory = PackageNamesLoader
+                        .loadModuleFactory(mPackageNamesFile.getAbsolutePath());
                 c.setModuleFactory(moduleFactory);
             }
             c.contextualize(context);
@@ -357,12 +367,13 @@ public class CheckStyleTask
             }
         }
         catch (Exception e) {
-            throw new BuildException(
-                "Unable to create a Checker: " + e.getMessage(), e);
+            throw new BuildException("Unable to create a Checker: "
+                    + e.getMessage(), e);
         }
 
         return c;
     }
+
     /**
      * Create the Properties object based on the arguments specified
      * to the ANT task.
@@ -381,14 +392,12 @@ public class CheckStyleTask
                 retVal.load(inStream);
             }
             catch (FileNotFoundException e) {
-                throw new BuildException(
-                    "Could not find Properties file '" + mPropertiesFile + "'",
-                    e, getLocation());
+                throw new BuildException("Could not find Properties file '"
+                        + mPropertiesFile + "'", e, getLocation());
             }
             catch (IOException e) {
-                throw new BuildException(
-                    "Error loading Properties file '" + mPropertiesFile + "'",
-                    e, getLocation());
+                throw new BuildException("Error loading Properties file '"
+                        + mPropertiesFile + "'", e, getLocation());
             }
             finally {
                 try {
@@ -397,10 +406,8 @@ public class CheckStyleTask
                     }
                 }
                 catch (IOException e) {
-                    throw new BuildException(
-                        "Error closing Properties file '"
-                        + mPropertiesFile + "'",
-                        e, getLocation());
+                    throw new BuildException("Error closing Properties file '"
+                            + mPropertiesFile + "'", e, getLocation());
                 }
             }
         }
@@ -430,19 +437,17 @@ public class CheckStyleTask
      * @throws IllegalAccessException if an error occurs
      * @throws IOException if an error occurs
      */
-    protected AuditListener[] getListeners()
-        throws ClassNotFoundException, InstantiationException,
-        IllegalAccessException, IOException
+    protected AuditListener[] getListeners() throws ClassNotFoundException,
+            InstantiationException, IllegalAccessException, IOException
     {
         final int formatterCount = Math.max(1, mFormatters.size());
 
-        final AuditListener[] listeners =
-            new AuditListener[formatterCount];
+        final AuditListener[] listeners = new AuditListener[formatterCount];
 
         // formatters
         if (mFormatters.size() == 0) {
-            final OutputStream debug =
-                new LogOutputStream(this, Project.MSG_DEBUG);
+            final OutputStream debug = new LogOutputStream(this,
+                    Project.MSG_DEBUG);
             final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
             listeners[0] = new DefaultLogger(debug, true, err, true);
         }
@@ -475,12 +480,11 @@ public class CheckStyleTask
 
             final String[] names = ds.getIncludedFiles();
             log(i + ") Adding " + names.length + " files from directory "
-                + ds.getBasedir(),
-                Project.MSG_VERBOSE);
+                    + ds.getBasedir(), Project.MSG_VERBOSE);
 
             for (int j = 0; j < names.length; j++) {
-                final String pathname =
-                    ds.getBasedir() + File.separator + names[j];
+                final String pathname = ds.getBasedir() + File.separator
+                        + names[j];
                 list.add(new File(pathname));
             }
         }
@@ -492,8 +496,7 @@ public class CheckStyleTask
      * Poor mans enumeration for the formatter types.
      * @author Oliver Burn
      */
-    public static class FormatterType
-        extends EnumeratedAttribute
+    public static class FormatterType extends EnumeratedAttribute
     {
         /** my possible values */
         private static final String[] VALUES = {E_XML, E_PLAIN};
@@ -556,11 +559,10 @@ public class CheckStyleTask
          * @return a listener
          * @throws IOException if an error occurs
          */
-        public AuditListener createListener(Task aTask)
-            throws IOException
+        public AuditListener createListener(Task aTask) throws IOException
         {
             if ((mFormatterType != null)
-                && E_XML.equals(mFormatterType.getValue()))
+                    && E_XML.equals(mFormatterType.getValue()))
             {
                 return createXMLLogger(aTask);
             }
@@ -577,8 +579,8 @@ public class CheckStyleTask
         {
             if (mToFile == null || !mUseFile) {
                 return new DefaultLogger(
-                    new LogOutputStream(aTask, Project.MSG_DEBUG), true,
-                    new LogOutputStream(aTask, Project.MSG_ERR), true);
+                    new LogOutputStream(aTask, Project.MSG_DEBUG),
+                    true, new LogOutputStream(aTask, Project.MSG_ERR), true);
             }
             return new DefaultLogger(new FileOutputStream(mToFile), true);
         }
@@ -588,12 +590,11 @@ public class CheckStyleTask
          * @param aTask the task to possibly log to
          * @throws IOException if an error occurs
          */
-        private AuditListener createXMLLogger(Task aTask)
-            throws IOException
+        private AuditListener createXMLLogger(Task aTask) throws IOException
         {
             if (mToFile == null || !mUseFile) {
-                return new XMLLogger(
-                    new LogOutputStream(aTask, Project.MSG_INFO), true);
+                return new XMLLogger(new LogOutputStream(aTask,
+                        Project.MSG_INFO), true);
             }
             return new XMLLogger(new FileOutputStream(mToFile), true);
         }

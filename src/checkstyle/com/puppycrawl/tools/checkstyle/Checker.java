@@ -113,8 +113,8 @@ public class Checker extends AutomaticBean
         LocalizedMessage.setLocale(locale);
 
         if (mModuleFactory == null) {
-            mModuleFactory = PackageNamesLoader.loadModuleFactory(
-                    this.getClass().getClassLoader());
+            mModuleFactory = PackageNamesLoader.loadModuleFactory(Thread
+                    .currentThread().getContextClassLoader());
         }
 
         final DefaultContext context = new DefaultContext();

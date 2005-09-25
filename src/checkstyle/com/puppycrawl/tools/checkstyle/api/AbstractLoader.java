@@ -103,8 +103,10 @@ public abstract class AbstractLoader
         if (mPublicIdToResourceNameMap.keySet().contains(aPublicId)) {
             final String dtdResourceName =
                     (String) mPublicIdToResourceNameMap.get(aPublicId);
-            final InputStream dtdIS = getClass().getClassLoader()
-                .getResourceAsStream(dtdResourceName);
+            final ClassLoader loader =
+                Thread.currentThread().getContextClassLoader();
+            final InputStream dtdIS =
+                loader.getResourceAsStream(dtdResourceName);
             if (dtdIS == null) {
                 throw new SAXException(
                     "Unable to load internal dtd " + dtdResourceName);

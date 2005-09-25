@@ -19,8 +19,9 @@ public class PackageNamesLoaderTest extends TestCase
     public void testDefault()
         throws CheckstyleException
     {
-        ModuleFactory moduleFactory = PackageNamesLoader.loadModuleFactory(
-            this.getClass().getClassLoader());
+        ModuleFactory moduleFactory = PackageNamesLoader
+                .loadModuleFactory(Thread.currentThread()
+                        .getContextClassLoader());
         validateFactory(moduleFactory);
     }
 

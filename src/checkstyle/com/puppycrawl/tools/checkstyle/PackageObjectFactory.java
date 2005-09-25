@@ -31,13 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  */
 class PackageObjectFactory implements ModuleFactory
 {
-    /**
-     * The class loader to use for creating Objects.
-     * Note: This is currently not configurable, we always use the
-     * classloader that created Checkstyle.
-     */
-    private ClassLoader mLoader = this.getClass().getClassLoader();
-
     /** a list of package names to prepend to class names */
     private List mPackages = new ArrayList();
 
@@ -111,7 +104,9 @@ class PackageObjectFactory implements ModuleFactory
         throws CheckstyleException
     {
         try {
-            final Class clazz = Class.forName(aClassName, true, mLoader);
+            final ClassLoader loader = Thread.currentThread()
+                    .getContextClassLoader();
+            final Class clazz = Class.forName(aClassName, true, loader);
             return clazz.newInstance();
         }
         catch (ClassNotFoundException e) {

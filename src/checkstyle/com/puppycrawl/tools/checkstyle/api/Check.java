@@ -47,9 +47,11 @@ public abstract class Check extends AbstractViolationReporter
     /** the tab width for column reporting */
     private int mTabWidth = DEFAULT_TAB_WIDTH; // meaningful default
 
-    /** current class loader */
-    private ClassLoader mLoader =
-        Thread.currentThread().getContextClassLoader();
+    /**
+     * The class loader to load external classes. Not initialised as this must
+     * be set by my creator.
+     */
+    private ClassLoader mLoader;
 
     /**
      * Returns the default token a check is interested in. Only used if the

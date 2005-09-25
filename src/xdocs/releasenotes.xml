@@ -18,6 +18,12 @@
 	  Added Spanish translation of messages. Thanks to Ricardo Mones
           (patch 1250329).
 	</li>
+	<li>
+	  Made the Class Loader used to load infrastructure classes and
+          resources come from <code>Thread.currentThread()
+          .getContextClassLoader()</code>. Done as a result of patch
+          1273903 from Lars Koedderitzsch.
+	</li>
       </ul>
 
       <p>Fixed Bugs:</p>
