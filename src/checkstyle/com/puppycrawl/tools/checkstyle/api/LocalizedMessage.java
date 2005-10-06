@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -50,7 +51,8 @@ public final class LocalizedMessage
      * Avoids repetitive calls to ResourceBundle.getBundle().
      * TODO: The cache should be cleared at some point.
      */
-    private static Map sBundleCache = new HashMap();
+    private static Map sBundleCache =
+        Collections.synchronizedMap(new HashMap());
 
     /** the line number **/
     private final int mLineNo;
@@ -72,8 +74,8 @@ public final class LocalizedMessage
     /** name of the resource bundle to get messages from **/
     private final String mBundle;
 
-    /** name of the source for this LocalizedMessage */
-    private final String mSourceName;
+    /** class of the source for this LocalizedMessage */
+    private final Class mSourceClass;
 
     /** @see Object#equals */
     public boolean equals(Object aObject)
@@ -147,7 +149,7 @@ public final class LocalizedMessage
         mArgs = aArgs;
         mBundle = aBundle;
         mSeverityLevel = aSeverityLevel;
-        mSourceName = aSourceClass.getName();
+        mSourceClass = aSourceClass;
     }
 
     /**
@@ -237,18 +239,24 @@ public final class LocalizedMessage
     }
 
     /**
-     * Find a ResourceBundle for a given bundle name.
+     * Find a ResourceBundle for a given bundle name. Uses the classloader
+     * of the class emitting this message, to be sure to get the correct
+     * bundle.
      * @param aBundleName the bundle name
      * @return a ResourceBundle
      */
-    private static ResourceBundle getBundle(String aBundleName)
+    private ResourceBundle getBundle(String aBundleName)
     {
-        ResourceBundle bundle = (ResourceBundle) sBundleCache.get(aBundleName);
-        if (bundle == null) {
-            bundle = ResourceBundle.getBundle(aBundleName, sLocale);
-            sBundleCache.put(aBundleName, bundle);
+        synchronized (sBundleCache) {
+            ResourceBundle bundle = (ResourceBundle) sBundleCache
+                    .get(aBundleName);
+            if (bundle == null) {
+                bundle = ResourceBundle.getBundle(aBundleName, sLocale,
+                        mSourceClass.getClassLoader());
+                sBundleCache.put(aBundleName, bundle);
+            }
+            return bundle;
         }
-        return bundle;
     }
 
     /** @return the line number **/
@@ -283,7 +291,7 @@ public final class LocalizedMessage
     /** @return the name of the source for this LocalizedMessage */
     public String getSourceName()
     {
-        return mSourceName;
+        return mSourceClass.getName();
     }
 
     /** @param aLocale the locale to use for localization **/
