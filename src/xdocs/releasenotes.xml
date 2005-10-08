@@ -43,7 +43,12 @@
       <p>Other improvements:</p>
 
       <ul>
-        <li>TBD</li>
+        <li>
+          Applied patch 1292684 from Maarten Coene to fix the generated
+          HTML reports that are not correct if you include the
+          TreeWalker and the StrictDuplicateCode modules in the same
+          configuration. Patch effects checkstyle-noframes-sorted.xsl.
+        </li>
       </ul>
 
     </section>
