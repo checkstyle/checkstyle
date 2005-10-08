@@ -102,7 +102,7 @@ final class ImportControlLoader extends AbstractLoader
         final String aQName)
     {
         if (aQName.equals("subpackage")) {
-            assert mStack.size() > 2;
+            assert mStack.size() > 1;
             mStack.pop();
         }
     }
