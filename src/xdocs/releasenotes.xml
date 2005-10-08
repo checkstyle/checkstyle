@@ -15,6 +15,10 @@
 
       <ul>
         <li>
+          Added support for property <i>ignoreStringsRegexp</i> to
+          <i>MultipleStringLiterals</i> check. Patch 1254918 from taab.
+        </li>
+        <li>
 	  Added Spanish translation of messages. Thanks to Ricardo Mones
           (patch 1250329).
 	</li>

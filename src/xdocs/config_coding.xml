@@ -1915,6 +1915,14 @@ if (&quot;something&quot;.equals(x))
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>1</td>
           </tr>
+          <tr>
+            <td>ignoreStringsRegexp</td>
+            <td>
+              regexp pattern for ignored strings (with quotation marks)
+            </td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">^""$</span> (ignore empty strings)</td>
+          </tr>
         </table>
       </subsection>
 
@@ -1933,6 +1941,15 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
     &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check so that it ignores ", " and empty strings:
+        </p>
+        <source>
+&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+    &lt;property name=&quot;allowedDuplicates&quot; value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

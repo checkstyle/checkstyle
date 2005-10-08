@@ -22,10 +22,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Checks for multiple occurrences of the same string literal within a
@@ -55,6 +57,41 @@ public class MultipleStringLiteralsCheck extends Check
         mAllowedDuplicates = aAllowedDuplicates;
     }
 
+    /**
+     * regexp pattern for ignored strings
+     */
+    private String mIgnoreStringsRegexp;
+
+    /**
+     * Pattern for matching ignored strings.
+     */
+    private Pattern mPattern;
+
+    /**
+     * Construct an instance with default values.
+     */
+    public MultipleStringLiteralsCheck()
+    {
+        setIgnoreStringsRegexp("^\"\"$");
+    }
+
+    /**
+     * Sets regexp pattern for ignored strings.
+     * @param aIgnoreStringsRegexp regexp pattern for ignored strings
+     */
+    public void setIgnoreStringsRegexp(String aIgnoreStringsRegexp)
+    {
+        mIgnoreStringsRegexp = aIgnoreStringsRegexp;
+        if ((mIgnoreStringsRegexp != null)
+            && (mIgnoreStringsRegexp.length() > 0))
+        {
+            mPattern = Utils.getPattern(mIgnoreStringsRegexp);
+        }
+        else {
+            mPattern = null;
+        }
+    }
+
     /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
@@ -65,14 +102,16 @@ public class MultipleStringLiteralsCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         final String currentString = aAST.getText();
-        ArrayList hitList = (ArrayList) mStringMap.get(currentString);
-        if (hitList == null) {
-            hitList = new ArrayList();
-            mStringMap.put(currentString, hitList);
+        if ((mPattern == null) || !mPattern.matcher(currentString).find()) {
+            ArrayList hitList = (ArrayList) mStringMap.get(currentString);
+            if (hitList == null) {
+                hitList = new ArrayList();
+                mStringMap.put(currentString, hitList);
+            }
+            final int line = aAST.getLineNo();
+            final int col = aAST.getColumnNo();
+            hitList.add(new StringInfo(line, col));
         }
-        final int line = aAST.getLineNo();
-        final int col = aAST.getColumnNo();
-        hitList.add(new StringInfo(line, col));
     }
 
     /** {@inheritDoc} */
@@ -143,4 +182,5 @@ public class MultipleStringLiteralsCheck extends Check
             return mCol;
         }
     }
+
 }

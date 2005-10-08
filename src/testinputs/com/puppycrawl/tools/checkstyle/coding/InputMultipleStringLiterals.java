@@ -5,6 +5,10 @@ public class InputMultipleStringLiterals
     String m = "StringContents";
     String m1 = "SingleString";
     String m2 = "DoubleString" + "DoubleString";
+    String m3 = "" + "";
+    String m4 = "" + "";
+    String debugStr = ", " + ", " + ", ";
+
     void method1() {
         String a1 = "StringContents";
         System.out.println("StringContents");
