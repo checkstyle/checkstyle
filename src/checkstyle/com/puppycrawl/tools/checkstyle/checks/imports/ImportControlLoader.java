@@ -20,8 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
@@ -115,14 +115,14 @@ final class ImportControlLoader extends AbstractLoader
      */
     static PkgControl load(final String aFilename) throws CheckstyleException
     {
-        FileReader reader = null;
+        FileInputStream fis = null;
         try {
-            reader = new FileReader(aFilename);
+            fis = new FileInputStream(aFilename);
         }
         catch (FileNotFoundException e) {
             throw new CheckstyleException("unable to find " + aFilename, e);
         }
-        final InputSource source = new InputSource(reader);
+        final InputSource source = new InputSource(fis);
         return load(source, aFilename);
     }
 

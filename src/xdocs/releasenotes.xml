@@ -41,7 +41,10 @@
       <p>Fixed Bugs:</p>
 
       <ul>
-        <li>TBD</li>
+        <li>
+	  Fixed encoding problems when parsing XML because was using
+	  FileReader instead of FileInputStream. Bug 1320132.
+	</li>
       </ul>
 
       <p>Other improvements:</p>

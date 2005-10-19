@@ -18,16 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
-
-import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -157,15 +156,15 @@ public final class PackageNamesLoader
     public static ModuleFactory loadModuleFactory(String aFilename)
         throws CheckstyleException
     {
-        FileReader reader = null;
+        FileInputStream fis = null;
         try {
-            reader = new FileReader(aFilename);
+            fis = new FileInputStream(aFilename);
         }
         catch (FileNotFoundException e) {
             throw new CheckstyleException(
                 "unable to find " + aFilename, e);
         }
-        final InputSource source = new InputSource(reader);
+        final InputSource source = new InputSource(fis);
         return loadModuleFactory(source, aFilename);
     }
 

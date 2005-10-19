@@ -21,8 +21,8 @@ package com.puppycrawl.tools.checkstyle.filters;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.regex.PatternSyntaxException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -116,15 +116,15 @@ public final class SuppressionsLoader
     public static FilterSet loadSuppressions(String aFilename)
         throws CheckstyleException
     {
-        FileReader reader = null;
+        FileInputStream fis = null;
         try {
-            reader = new FileReader(aFilename);
+            fis = new FileInputStream(aFilename);
         }
         catch (FileNotFoundException e) {
             throw new CheckstyleException(
                 "unable to find " + aFilename, e);
         }
-        final InputSource source = new InputSource(reader);
+        final InputSource source = new InputSource(fis);
         return loadSuppressions(source, aFilename);
     }
 
