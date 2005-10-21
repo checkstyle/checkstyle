@@ -160,7 +160,7 @@ line 14: ^ \*/
           characters. Line 4 enforces that the copyright notice includes a
           four digit year. Line 5 is an example how to enforce revision
           control keywords in a file header. Lines 12-14 is a template for
-          javadoc (line 13 is so complecated to remove conflict with and of
+          javadoc (line 13 is so complicated to remove conflict with and of
           javadoc comment).
         </p>
       </subsection>
