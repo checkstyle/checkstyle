@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.text.MessageFormat;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 
 /**
