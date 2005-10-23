@@ -93,25 +93,25 @@ class InputSemantic
     /** test **/
     private static final long IGNORE = 666l + 666L;
 
-    void innerAssignments()
-    {
-        int a;
-        int b;
-        int c;
 
-        a = b = c = 1; // flag two inner assignments
 
-        String s = Integer.toString(b = 2); // flag inner assignment
 
-        Integer i = new Integer(a += 5); // flag inner assigment
 
-        c = b++; // common practice, don't flag
-                 // even though technically an assigment to b
 
-        for (int j = 0; j < 6; j += 2) { // common practice, don't flag
-            a += j;
-        }
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public class EqualsVsHashCode1
     {
