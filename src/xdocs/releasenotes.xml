@@ -42,9 +42,13 @@
 
       <ul>
         <li>
-	  Fixed encoding problems when parsing XML because was using
-	  FileReader instead of FileInputStream. Bug 1320132.
-	</li>
+          Fixed encoding problems when parsing XML because was using
+          FileReader instead of FileInputStream. Bug 1320132.
+        </li>
+        <li>
+          The InnerAssignment check didn't find all instances of inner
+          assignments. Bug 1195047.
+        </li>
       </ul>
 
       <p>Other improvements:</p>
