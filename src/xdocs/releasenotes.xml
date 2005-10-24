@@ -57,6 +57,10 @@
           recent grammar change (one which was about
           (SUPER_)CTOR_CALL) (bug 1322879).
         </li>
+        <li>
+          Fixed bug in logic JavadocStyle check uses to get
+          main-section of javadoc (bug 1291847).
+        </li>
       </ul>
 
       <p>Other improvements:</p>

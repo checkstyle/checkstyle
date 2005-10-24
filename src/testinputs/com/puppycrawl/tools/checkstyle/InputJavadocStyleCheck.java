@@ -272,4 +272,19 @@ public class InputJavadocStyleCheck
             return null;
         }
     }
+
+    /**
+     * Checks if the specified IClass needs to be
+     * annotated with the @Type annotation.
+     */
+    public void foo_1291847_1() {
+    }
+
+    /**
+     * Returns the string containing the properties of
+     * <code>@Type</code> annotation.
+     */
+    public void foo_1291847_2() {
+    }
+
 }

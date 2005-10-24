@@ -222,24 +222,13 @@ public class JavadocStyleCheck
             final int textStart = findTextStart(line);
 
             if (textStart != -1) {
-                // Look for Javadoc tag that's not an inline tag
-                // it can appear within the comment text.
-                // Inline tags are denoted by curly braces: {@tag}
-                final int ndx = line.indexOf('@');
-                if ((ndx != -1)
-                    && (ndx == 0 || line.charAt(ndx - 1) != '{'))
-                {
-                    foundTag = true;
-                    line = line.substring(0, ndx);
+                if (line.charAt(textStart) == '@') {
+                    //we have found the tag section
+                    break;
                 }
-
                 buffer.append(line.substring(textStart));
                 trimTail(buffer);
                 buffer.append('\n');
-
-                if (foundTag) {
-                    break;
-                }
             }
         }
 
