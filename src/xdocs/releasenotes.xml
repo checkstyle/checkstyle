@@ -52,6 +52,11 @@
         <li>
           Fixed typo in grammar (bug 1335088)
         </li>
+        <li>
+          Fixed ParenPad check problem which was caused by one of
+          recent grammar change (one which was about
+          (SUPER_)CTOR_CALL) (bug 1322879).
+        </li>
       </ul>
 
       <p>Other improvements:</p>

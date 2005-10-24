@@ -79,4 +79,13 @@ public class MethodParamPadCheckTest
         };
         verify(checkConfig, getPath("whitespace/InputMethodParamPad.java"), expected);
     }
+
+    public void test1322879() throws Exception
+    {
+        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
+               expected);
+    }
 }

@@ -101,4 +101,14 @@ public class WhitespaceAroundTest
         };
         verify(checkConfig, getPath("InputGenerics.java"), expected);
     }
+
+    public void test1322879() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(WhitespaceAroundCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
+               expected);
+    }
 }

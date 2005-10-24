@@ -36,4 +36,15 @@ public class TypecastParenPadCheckTest
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
+
+    public void test1322879() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TypecastParenPadCheck.class);
+        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
+               expected);
+    }
 }

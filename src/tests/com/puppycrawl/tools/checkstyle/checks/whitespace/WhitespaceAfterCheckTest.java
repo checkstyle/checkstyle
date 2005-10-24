@@ -58,4 +58,12 @@ public class WhitespaceAfterCheckTest
         };
         verify(mCheckConfig, getPath("InputGenerics.java"), expected);
     }
+
+    public void test1322879() throws Exception
+    {
+        final String[] expected = {
+        };
+        verify(mCheckConfig, getPath("whitespace/InputWhitespaceAround.java"),
+               expected);
+    }
 }
