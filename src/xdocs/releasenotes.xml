@@ -49,6 +49,9 @@
           The InnerAssignment check didn't find all instances of inner
           assignments. Bug 1195047.
         </li>
+        <li>
+          Fixed typo in grammar (bug 1335088)
+        </li>
       </ul>
 
       <p>Other improvements:</p>

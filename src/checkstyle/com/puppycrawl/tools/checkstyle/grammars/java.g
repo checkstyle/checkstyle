@@ -439,10 +439,10 @@ annotations
     ;
 
 annotationArguments
-    :   annotationMemberValueInitializer | anntotationMemberValuePairs
+    :   annotationMemberValueInitializer | annotationMemberValuePairs
     ;
 
-anntotationMemberValuePairs
+annotationMemberValuePairs
     :   annotationMemberValuePair ( COMMA annotationMemberValuePair )*
     ;
 
