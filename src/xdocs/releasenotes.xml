@@ -61,6 +61,10 @@
           Fixed bug in logic JavadocStyle check uses to get
           main-section of javadoc (bug 1291847).
         </li>
+        <li>
+          Three more fixes for Indentation check (bugs 1251988,
+          1260079, 1336737).
+        </li>
       </ul>
 
       <p>Other improvements:</p>

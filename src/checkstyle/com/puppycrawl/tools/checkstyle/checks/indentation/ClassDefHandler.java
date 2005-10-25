@@ -37,10 +37,14 @@ public class ClassDefHandler extends BlockParentHandler
      * @param aParent        the parent handler
      */
     public ClassDefHandler(IndentationCheck aIndentCheck,
-        DetailAST aAst, ExpressionHandler aParent)
+                           DetailAST aAst,
+                           ExpressionHandler aParent)
     {
-        super(aIndentCheck, aAst.getType() == TokenTypes.CLASS_DEF
-            ? "class def" : "interface def", aAst, aParent);
+        super(aIndentCheck,
+              (aAst.getType() == TokenTypes.CLASS_DEF)
+              ? "class def" : ((aAst.getType() == TokenTypes.ENUM_DEF)
+                               ? "enum def" : "interface def"),
+              aAst, aParent);
     }
 
     /**

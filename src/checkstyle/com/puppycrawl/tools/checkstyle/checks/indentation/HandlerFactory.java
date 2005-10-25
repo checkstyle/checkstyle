@@ -94,6 +94,7 @@ public class HandlerFactory
         register(TokenTypes.METHOD_DEF, MethodDefHandler.class);
         register(TokenTypes.CTOR_DEF, MethodDefHandler.class);
         register(TokenTypes.CLASS_DEF, ClassDefHandler.class);
+        register(TokenTypes.ENUM_DEF, ClassDefHandler.class);
         register(TokenTypes.OBJBLOCK, ObjectBlockHandler.class);
         register(TokenTypes.INTERFACE_DEF, ClassDefHandler.class);
         register(TokenTypes.IMPORT, ImportHandler.class);
@@ -102,6 +103,7 @@ public class HandlerFactory
         register(TokenTypes.CTOR_CALL, MethodCallHandler.class);
         register(TokenTypes.LABELED_STAT, LabelHandler.class);
         register(TokenTypes.STATIC_INIT, StaticInitHandler.class);
+        register(TokenTypes.INSTANCE_INIT, SlistHandler.class);
         register(TokenTypes.ASSIGN, AssignHandler.class);
         register(TokenTypes.PLUS_ASSIGN, AssignHandler.class);
         register(TokenTypes.MINUS_ASSIGN, AssignHandler.class);
@@ -159,6 +161,12 @@ public class HandlerFactory
     public ExpressionHandler getHandler(IndentationCheck aIndentCheck,
         DetailAST aAst, ExpressionHandler aParent)
     {
+        ExpressionHandler handler =
+            (ExpressionHandler) mCreatedHandlers.get(aAst);
+        if (handler != null) {
+            return handler;
+        }
+
         if (aAst.getType() == TokenTypes.METHOD_CALL) {
             return createMethodCallHandler(aIndentCheck, aAst, aParent);
         }
@@ -213,18 +221,12 @@ public class HandlerFactory
     ExpressionHandler createMethodCallHandler(IndentationCheck aIndentCheck,
         DetailAST aAst, ExpressionHandler aParent)
     {
-        ExpressionHandler handler =
-            (ExpressionHandler) mCreatedHandlers.get(aAst);
-        if (handler != null) {
-            return handler;
-        }
-
         DetailAST ast = (DetailAST) aAst.getFirstChild();
         while (ast != null && ast.getType() == TokenTypes.DOT) {
             ast = (DetailAST) ast.getFirstChild();
         }
-        if (ast != null && ast.getType() == TokenTypes.METHOD_CALL) {
-            aParent = createMethodCallHandler(aIndentCheck, ast, aParent);
+        if (ast != null && isHandledType(ast.getType())) {
+            aParent = getHandler(aIndentCheck, ast, aParent);
             mCreatedHandlers.put(ast, aParent);
         }
         return new MethodCallHandler(aIndentCheck, aAst, aParent);

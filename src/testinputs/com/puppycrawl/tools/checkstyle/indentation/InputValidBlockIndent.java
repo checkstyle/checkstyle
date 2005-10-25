@@ -127,3 +127,39 @@ enum EquivalenceTester {
      */
     public abstract int hashCode( Object target );
 }
+
+class bug1251988
+{
+    private int a;
+
+    // non static initializer
+    {
+        if (a == 1)
+        {
+        }
+    }
+}
+
+class bug1260079
+{
+    public bug1260079()
+    {
+        new Thread()
+        {
+            public void run()
+            {
+                System.out.println("ran");
+            }
+        }.start();
+    }
+}
+
+class bug1336737 {
+    private static enum Command {
+        IMPORT("import"),
+        LIST("list");
+        private final String c;
+        Command(String c) { this.c = c; }
+        public String toString() { return c; }
+    }
+}
