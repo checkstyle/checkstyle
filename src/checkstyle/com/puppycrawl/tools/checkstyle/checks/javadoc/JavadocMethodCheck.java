@@ -279,10 +279,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             final TextBlock cmt = contents.getJavadocBefore(aAST.getLineNo());
 
             if (cmt == null) {
-                if (!mAllowMissingJavadoc
-                    && !(mAllowMissingPropertyJavadoc
-                         && (isSetterMethod(aAST) || isGetterMethod(aAST))))
-                {
+                if (!isMissingJavadocAllowed(aAST)) {
                     log(aAST, "javadoc.missing");
                 }
             }
@@ -847,6 +844,24 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         }
 
         return true;
+    }
+
+     /**
+      * The JavadocMethodCheck is about to report a missing Javadoc.
+      * This hook can be used by derived classes to allow a missing javadoc
+      * in some situations.  The default implementation checks
+      * <code>allowMissingJavadoc</code> and
+      * <code>allowMissingPropertyJavadoc</code> properties, do not forget
+      * to call <code>super.isMissingJavadocAllowed(aAST)</code> in case
+      * you want to keep this logic.
+      * @param aAST the tree node for the method or constructor.
+      * @return True if this method or constructor doesn't need Javadoc.
+      */
+    protected boolean isMissingJavadocAllowed(DetailAST aAST)
+    {
+        return mAllowMissingJavadoc
+            || (mAllowMissingPropertyJavadoc
+                && (isSetterMethod(aAST) || isGetterMethod(aAST)));
     }
 
     /** Stores useful information about declared exception. */
