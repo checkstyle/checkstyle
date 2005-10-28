@@ -6,8 +6,8 @@ package com.puppycrawl.tools.checkstyle.bcel.checks;
 import org.apache.bcel.classfile.FieldOrMethod;
 import org.apache.bcel.classfile.JavaClass;
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.regexp.RE;
-import org.apache.regexp.RESyntaxException;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -28,10 +28,10 @@ public abstract class AbstractReferenceCheck
     private Scope mScope = Scope.PRIVATE;
 
     /** the regexp to match class names against */
-    private RE mIgnoreClassNameRegexp;
+    private Pattern mIgnoreClassNameRegexp;
 
     /** the regexp to match names against */
-    private RE mIgnoreNameRegexp;
+    private Pattern mIgnoreNameRegexp;
 
     /**
      * Creates a <code>AbstractReferenceCheck</code>.
@@ -62,8 +62,8 @@ public abstract class AbstractReferenceCheck
     {
         final String fieldOrMethodName = aFieldOrMethod.getName();
         return (!equalScope(aFieldOrMethod)
-            || mIgnoreClassNameRegexp.match(aClassName)
-            || mIgnoreNameRegexp.match(fieldOrMethodName));
+                || mIgnoreClassNameRegexp.matcher(aClassName).matches()
+            || mIgnoreNameRegexp.matcher(fieldOrMethodName).matches());
     }
 
     /**
@@ -100,9 +100,9 @@ public abstract class AbstractReferenceCheck
         throws ConversionException
     {
         try {
-            mIgnoreClassNameRegexp = Utils.getRE(aFormat);
+            mIgnoreClassNameRegexp = Utils.getPattern(aFormat);
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
@@ -116,9 +116,9 @@ public abstract class AbstractReferenceCheck
         throws ConversionException
     {
         try {
-            mIgnoreNameRegexp = Utils.getRE(aFormat);
+            mIgnoreNameRegexp = Utils.getPattern(aFormat);
         }
-        catch (RESyntaxException e) {
+        catch (PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }

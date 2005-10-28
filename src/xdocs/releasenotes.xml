@@ -65,6 +65,10 @@
           Three more fixes for Indentation check (bugs 1251988,
           1260079, 1336737).
         </li>
+        <li>
+          Fixed problem in Comment.hasIntersectionWithComment() (patch
+          1339523 from Richard Schulte).
+        </li>
       </ul>
 
       <p>Other improvements:</p>
@@ -75,6 +79,10 @@
           HTML reports that are not correct if you include the
           TreeWalker and the StrictDuplicateCode modules in the same
           configuration. Patch effects checkstyle-noframes-sorted.xsl.
+        </li>
+        <li>
+          Applied patch 1340300 from David Dodini to update bcel
+          checks to be compilable with current Checkstyle's API.
         </li>
       </ul>
 

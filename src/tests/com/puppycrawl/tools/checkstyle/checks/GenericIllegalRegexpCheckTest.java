@@ -33,8 +33,7 @@ public class GenericIllegalRegexpCheckTest
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
-    
-    
+
     public void testIgnoreCaseTrue()
             throws Exception
     {
@@ -60,7 +59,7 @@ public class GenericIllegalRegexpCheckTest
         final String[] expectedTrue = {
             "69: Line matches the illegal pattern '" + illegal + "'."};
         verify(checkConfigTrue, getPath("InputSemantic.java"), expectedTrue);
-        
+
         final DefaultConfiguration checkConfigFalse =
             createCheckConfig(GenericIllegalRegexpCheck.class);
         checkConfigFalse.addAttribute("format", illegal);
@@ -179,9 +178,8 @@ public class GenericIllegalRegexpCheckTest
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
-    
-    public void testIgnoreCommentsInlineMiddle()
-            throws Exception
+
+    public void testIgnoreCommentsInlineMiddle() throws Exception
     {
         final String illegal = "int y";
         final DefaultConfiguration checkConfig =

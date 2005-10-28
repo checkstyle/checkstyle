@@ -159,7 +159,7 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
         if (foundMatch) {
             // match is found, check for intersection with comment
             final int startCol = matcher.start(0);
-            final int endCol = matcher.end(0);
+            final int endCol = matcher.end(0) - 1;
             final FileContents fileContents = getFileContents();
             if (fileContents.hasIntersectionWithComment(aLineNumber,
                 startCol, aLineNumber, endCol))

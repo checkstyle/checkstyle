@@ -39,7 +39,6 @@
   <property name="version" value="4.0-beta7" />
   <property name="testcases" value="**/*Test.java"/>
 
-
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
     <pathelement location="${collections.jar}" />
@@ -162,7 +161,6 @@
       <fileset dir="src/checkstyle" includes="**/*.xml"/>
       <fileset dir="src/checkstyle" includes="**/*.dtd"/>
     </copy>
-
 
     <!-- fix for bug #594469:
          create a copy of the english property file, necessary to run
@@ -741,4 +739,35 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <mkdir dir="${emma.report.dir}"/>
   </target>
 
+  <!-- contrib related targets -->
+  <property name="bcel.dest" value="${target.dir}/bcel" />
+  <property name="bcel.src" value="contrib/bcel/src/checkstyle/" />
+
+  <path id="bcel.classpath">
+    <pathelement location="${bcel.jar}" />
+    <path refid="run.classpath" />
+  </path>
+
+  <target name="compile.bcel" depends="compile.checkstyle"
+          description="Compiles bcel-checks">
+    <echo message="${bcel.jar}" />
+    <mkdir dir="${bcel.dest}" />
+    <depend srcdir="${bcel.src}"
+            destdir="${bcel.dest}" closure="yes"/>
+    <javac srcdir="${bcel.src}"
+           destdir="${bcel.dest}"
+           includes="**/*.java"
+           deprecation="on" debug="on"
+           source="${checkstyle.minimum.javaversion}"
+           target="${checkstyle.minimum.javaversion}"
+           classpathref="bcel.classpath"
+           encoding="iso-8859-1"
+           includeAntRuntime="false"/>
+
+    <copy todir="${bcel.dest}">
+      <fileset dir="${bcel.src}" includes="**/*.properties"/>
+      <fileset dir="${bcel.src}" includes="**/*.xml"/>
+      <fileset dir="${bcel.src}" includes="**/*.dtd"/>
+    </copy>
+  </target>
 </project>

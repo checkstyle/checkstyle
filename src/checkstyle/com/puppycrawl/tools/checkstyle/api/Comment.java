@@ -102,7 +102,13 @@ class Comment implements TextBlock
         final long inStart = aStartLineNo * multiplier + aStartColNo;
         final long inEnd = aEndLineNo * multiplier + aEndColNo;
 
-        return ((thisStart < inStart) && (inStart < thisEnd))
-            || ((thisStart < inEnd) && (inEnd < thisEnd));
+        return !((thisEnd < inStart) || (inEnd < thisStart));
+    }
+
+    /** {@inheritDoc} */
+    public String toString()
+    {
+        return "Comment[" + mFirstLine + ":" + mFirstCol + "-"
+            + mLastLine + ":" + mLastCol + "]";
     }
 }
