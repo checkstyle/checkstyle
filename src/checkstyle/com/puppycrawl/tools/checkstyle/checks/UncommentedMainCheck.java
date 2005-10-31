@@ -75,7 +75,7 @@ public class UncommentedMainCheck
         }
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -85,13 +85,13 @@ public class UncommentedMainCheck
         };
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
         mPackage = FullIdent.createFullIdent(null);
@@ -99,7 +99,7 @@ public class UncommentedMainCheck
         mClassDepth = 0;
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void leaveToken(DetailAST aAst)
     {
         if (aAst.getType() == TokenTypes.CLASS_DEF) {
@@ -110,7 +110,7 @@ public class UncommentedMainCheck
         }
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAst)
     {
         switch (aAst.getType()) {

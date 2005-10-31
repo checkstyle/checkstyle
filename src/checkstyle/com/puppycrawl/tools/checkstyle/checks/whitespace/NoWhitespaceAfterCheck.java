@@ -66,7 +66,7 @@ public class NoWhitespaceAfterCheck
     /** Whether whitespace is allowed if the AST is at a linebreak */
     private boolean mAllowLineBreaks = true;
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -81,7 +81,7 @@ public class NoWhitespaceAfterCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final String[] lines = getLines();

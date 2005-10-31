@@ -44,7 +44,7 @@ public final class SeverityLevelCounter implements AuditListener
         mLevel = aLevel;
     }
 
-    /** @see AuditListener */
+    /** {@inheritDoc} */
     public void addError(AuditEvent aEvt)
     {
         if (mLevel.equals(aEvt.getSeverityLevel())) {
@@ -52,7 +52,7 @@ public final class SeverityLevelCounter implements AuditListener
         }
     }
 
-    /** @see AuditListener */
+    /** {@inheritDoc} */
     public void addException(AuditEvent aEvt, Throwable aThrowable)
     {
         if (SeverityLevel.ERROR.equals(mLevel)) {
@@ -60,23 +60,23 @@ public final class SeverityLevelCounter implements AuditListener
         }
     }
 
-    /** @see AuditListener */
+    /** {@inheritDoc} */
     public void auditStarted(AuditEvent aEvt)
     {
         mCount = 0;
     }
 
-    /** @see AuditListener */
+    /** {@inheritDoc} */
     public void fileStarted(AuditEvent aEvt)
     {
     }
 
-    /** @see AuditListener */
+    /** {@inheritDoc} */
     public void auditFinished(AuditEvent aEvt)
     {
     }
 
-    /** @see AuditListener */
+    /** {@inheritDoc} */
     public void fileFinished(AuditEvent aEvt)
     {
     }

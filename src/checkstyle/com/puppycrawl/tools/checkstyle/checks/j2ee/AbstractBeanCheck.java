@@ -39,7 +39,7 @@ public abstract class AbstractBeanCheck
     extends AbstractJ2eeCheck
 {
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public int[] getDefaultTokens()
     {
@@ -47,7 +47,7 @@ public abstract class AbstractBeanCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public int[] getRequiredTokens()
     {

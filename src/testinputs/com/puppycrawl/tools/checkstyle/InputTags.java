@@ -152,7 +152,7 @@ class InputTags1
     {
     }
 
-    /** @see Object **/
+    /** {@inheritDoc} **/
     public String toString()
     {
         return super.toString();

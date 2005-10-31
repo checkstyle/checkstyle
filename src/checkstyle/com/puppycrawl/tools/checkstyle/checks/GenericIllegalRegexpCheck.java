@@ -111,13 +111,13 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
         super("$^"); // the empty language
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
         final String[] lines = getLines();

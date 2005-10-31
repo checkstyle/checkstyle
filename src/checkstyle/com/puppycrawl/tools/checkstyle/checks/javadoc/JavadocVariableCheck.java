@@ -60,7 +60,7 @@ public class JavadocVariableCheck
         mExcludeScope = Scope.getInstance(aScope);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -69,7 +69,7 @@ public class JavadocVariableCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (shouldCheck(aAST)) {

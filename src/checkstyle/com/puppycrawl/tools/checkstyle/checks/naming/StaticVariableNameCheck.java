@@ -56,13 +56,13 @@ public class StaticVariableNameCheck
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck */
+    /** {@inheritDoc} */
     protected final boolean mustCheckName(DetailAST aAST)
     {
         DetailAST modifiersAST = aAST.findFirstToken(TokenTypes.MODIFIERS);

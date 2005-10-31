@@ -113,7 +113,7 @@ public class SuppressElement
         }
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Filter */
+    /** {@inheritDoc} */
     public boolean accept(AuditEvent aEvent)
     {
         // file and check match?
@@ -148,7 +148,7 @@ public class SuppressElement
         return true;
     }
 
-    /** @see java.lang.Object#toString() */
+    /** {@inheritDoc} */
     public String toString()
     {
         return "SupressElement[files=" + mFilePattern + ",checks="
@@ -156,7 +156,7 @@ public class SuppressElement
             + mColumnsCSV + "]";
     }
 
-    /** @see java.lang.Object#hashCode() */
+    /** {@inheritDoc} */
     public int hashCode()
     {
         int result = HASH_MULT * mFilePattern.hashCode()
@@ -170,7 +170,7 @@ public class SuppressElement
         return result;
     }
 
-    /** @see java.lang.Object#equals(java.lang.Object) */
+    /** {@inheritDoc} */
     public boolean equals(Object aObject)
     {
         if (aObject instanceof SuppressElement) {

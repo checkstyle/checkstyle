@@ -69,7 +69,7 @@ public class MagicNumberCheck extends Check
     /** the numbers to ignore in the check, sorted */
     private double[] mIgnoreNumbers = {-1, 0, 1, 2};
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -80,7 +80,7 @@ public class MagicNumberCheck extends Check
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (inIgnoreList(aAST)) {

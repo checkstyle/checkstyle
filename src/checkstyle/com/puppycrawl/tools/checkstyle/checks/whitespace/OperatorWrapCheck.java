@@ -99,7 +99,7 @@ public class OperatorWrapCheck
         super(OperatorWrapOption.NL);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -128,7 +128,7 @@ public class OperatorWrapCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getAcceptableTokens()
     {
         return new int[] {
@@ -169,7 +169,7 @@ public class OperatorWrapCheck
 
         };
     }
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.COLON) {

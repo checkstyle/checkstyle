@@ -71,7 +71,7 @@ public final class SuppressionsLoader
         return mFilterChain;
     }
 
-    /** @see org.xml.sax.helpers.DefaultHandler **/
+    /** {@inheritDoc} **/
     public void startElement(String aNamespaceURI,
                              String aLocalName,
                              String aQName,

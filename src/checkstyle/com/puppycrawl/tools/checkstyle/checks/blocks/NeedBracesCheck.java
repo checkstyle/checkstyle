@@ -53,10 +53,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Rick Giles
  * @version 1.0
  */
-public class NeedBracesCheck
-    extends Check
+public class NeedBracesCheck extends Check
 {
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -68,7 +67,7 @@ public class NeedBracesCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST slistAST = aAST.findFirstToken(TokenTypes.SLIST);

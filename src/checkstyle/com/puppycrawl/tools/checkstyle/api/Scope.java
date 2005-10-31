@@ -101,7 +101,7 @@ public final class Scope implements Comparable, Serializable
     private final String mName;
 
     /**
-     * @see Object
+     * {@inheritDoc}
      */
     public String toString()
     {
@@ -117,7 +117,7 @@ public final class Scope implements Comparable, Serializable
     }
 
     /**
-     * @see Comparable
+     * {@inheritDoc}
      */
     public int compareTo(Object aObject)
     {

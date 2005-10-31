@@ -249,7 +249,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         mAllowMissingPropertyJavadoc = aFlag;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -259,7 +259,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             TokenTypes.ANNOTATION_FIELD_DEF, };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getAcceptableTokens()
     {
         return new int[] {
@@ -332,9 +332,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     {
         final List tags = getMethodTags(aComment);
 
-        // Check for only one @see or inheritDoc tag
+        // Check for only one inheritDoc tag
         if ((tags.size() == 1)
-            && ((JavadocTag) tags.get(0)).isSeeOrInheritDocTag())
+            && ((JavadocTag) tags.get(0)).isInheritDocTag())
         {
             return;
         }
@@ -423,7 +423,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
                 // Look for the rest of the comment if all we saw was
                 // the tag and the name. Stop when we see '*/' (end of
-                // Javadoc, '@' (start of next tag), or anything that's
+                // Javadoc), '@' (start of next tag), or anything that's
                 // not whitespace or '*' characters.
                 int remIndex = i + 1;
                 while (remIndex < lines.length) {
@@ -449,7 +449,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
                 // Look for the rest of the comment if all we saw was
                 // the tag and the name. Stop when we see '*/' (end of
-                // Javadoc, '@' (start of next tag), or anything that's
+                // Javadoc), '@' (start of next tag), or anything that's
                 // not whitespace or '*' characters.
                 int remIndex = i + 1;
                 while (remIndex < lines.length) {

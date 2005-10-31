@@ -48,7 +48,7 @@ public class FinalLocalVariableCheck extends Check
     private Stack mScopeStack = new Stack();
 
     /**
-     * @see Check#getDefaultTokens()
+     * {@inheritDoc}
      */
     public int[] getDefaultTokens()
     {
@@ -65,7 +65,7 @@ public class FinalLocalVariableCheck extends Check
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getAcceptableTokens()
     {
         return new int[] {
@@ -74,7 +74,7 @@ public class FinalLocalVariableCheck extends Check
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return new int[] {
@@ -90,7 +90,7 @@ public class FinalLocalVariableCheck extends Check
     }
 
     /**
-     * @see Check#visitToken(DetailAST)
+     * {@inheritDoc}
      */
     public void visitToken(DetailAST aAST)
     {
@@ -198,7 +198,7 @@ public class FinalLocalVariableCheck extends Check
     }
 
     /**
-     * @see Check#leaveToken(DetailAST)
+     * {@inheritDoc}
      */
     public void leaveToken(DetailAST aAST)
     {

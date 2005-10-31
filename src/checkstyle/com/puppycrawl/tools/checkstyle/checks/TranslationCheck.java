@@ -252,6 +252,7 @@ public class TranslationCheck
      * Two property files which have the same prefix should use the same
      * keys. If this is not the case the missing keys are reported.
      *
+     * @param aFiles {@inheritDoc}
      * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
      */
     public void process(File[] aFiles)

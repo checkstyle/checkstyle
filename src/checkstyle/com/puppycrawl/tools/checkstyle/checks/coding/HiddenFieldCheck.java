@@ -91,7 +91,7 @@ public class HiddenFieldCheck
     /** controls whether to check the parameter of abstract methods. */
     private boolean mIgnoreAbstractMethods;
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -103,7 +103,7 @@ public class HiddenFieldCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getAcceptableTokens()
     {
         return new int[] {
@@ -112,7 +112,7 @@ public class HiddenFieldCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return new int[] {
@@ -122,13 +122,13 @@ public class HiddenFieldCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
         mCurrentFrame = new FieldFrame(null, true);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.VARIABLE_DEF
@@ -176,7 +176,7 @@ public class HiddenFieldCheck
         mCurrentFrame = frame;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void leaveToken(DetailAST aAST)
     {
         if ((aAST.getType() == TokenTypes.CLASS_DEF)

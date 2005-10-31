@@ -50,14 +50,14 @@ public final class DefaultConfiguration implements Configuration
         mName = aName;
     }
 
-    /** @see Configuration */
+    /** {@inheritDoc} */
     public String[] getAttributeNames()
     {
         final Set keySet = mAttributeMap.keySet();
         return (String[]) keySet.toArray(new String[keySet.size()]);
     }
 
-    /** @see Configuration */
+    /** {@inheritDoc} */
     public String getAttribute(String aName) throws CheckstyleException
     {
         if (!mAttributeMap.containsKey(aName)) {
@@ -68,14 +68,14 @@ public final class DefaultConfiguration implements Configuration
         return (String) mAttributeMap.get(aName);
     }
 
-    /** @see Configuration */
+    /** {@inheritDoc} */
     public Configuration[] getChildren()
     {
         return (Configuration[]) mChildren.toArray(
             new Configuration[mChildren.size()]);
     }
 
-    /** @see Configuration */
+    /** {@inheritDoc} */
     public String getName()
     {
         return mName;

@@ -77,7 +77,7 @@ public final class LocalizedMessage
     /** class of the source for this LocalizedMessage */
     private final Class mSourceClass;
 
-    /** @see Object#equals */
+    /** {@inheritDoc} */
     public boolean equals(Object aObject)
     {
         if (this == aObject) {
@@ -110,7 +110,7 @@ public final class LocalizedMessage
     }
 
     /**
-     * @see Object#hashCode
+     * {@inheritDoc}
      */
     public int hashCode()
     {
@@ -304,7 +304,7 @@ public final class LocalizedMessage
     // Interface Comparable methods
     ////////////////////////////////////////////////////////////////////////////
 
-    /** @see java.lang.Comparable **/
+    /** {@inheritDoc} */
     public int compareTo(Object aOther)
     {
         final LocalizedMessage lt = (LocalizedMessage) aOther;

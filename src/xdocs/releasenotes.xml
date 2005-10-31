@@ -73,6 +73,11 @@
           Fixed problem in Comment.hasIntersectionWithComment() (patch
           1339523 from Richard Schulte).
         </li>
+        <li>
+          Now javadoc method should not contain only @see tag (but
+          could contain only {@ingeritDoc} tag) (bug 1290379, module
+          JavadocMethod)
+        </li>
       </ul>
 
       <p>Other improvements:</p>

@@ -48,7 +48,7 @@ public final class CheckDocsDoclet
      */
     private static class ClassDocByCheckNameComparator implements Comparator
     {
-        /** @see Comparator#compare */
+        /** {@inheritDoc} */
         public int compare(Object aObject1, Object aObject2)
         {
             final ClassDoc classDoc1 = (ClassDoc) aObject1;

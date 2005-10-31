@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class SimplifyBooleanExpressionCheck
         extends Check
 {
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
@@ -51,19 +51,20 @@ public class SimplifyBooleanExpressionCheck
     /**
      * Prevent user from changing tokens in the configuration.
      * @see com.puppycrawl.tools.checkstyle.api.Check
+     * @return an empty array.
      */
     public int[] getAcceptableTokens()
     {
         return new int[] {};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST parent = aAST.getParent();

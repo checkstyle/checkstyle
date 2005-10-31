@@ -61,20 +61,20 @@ public class EqualsHashCodeCheck
     private final Set mObjBlockWithHashCode = new HashSet();
 
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
         mObjBlockEquals.clear();
         mObjBlockWithHashCode.clear();
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST modifiers = (DetailAST) aAST.getFirstChild();
@@ -125,7 +125,7 @@ public class EqualsHashCodeCheck
     }
 
     /**
-     * @see Check
+     * {@inheritDoc}
      */
     public void finishTree(DetailAST aRootAST)
     {

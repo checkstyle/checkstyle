@@ -56,7 +56,7 @@ public class IllegalTokenCheck
     extends Check
 {
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public int[] getDefaultTokens()
     {
@@ -68,7 +68,7 @@ public class IllegalTokenCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public int[] getAcceptableTokens()
     {
@@ -91,7 +91,7 @@ public class IllegalTokenCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void visitToken(DetailAST aAST)
     {

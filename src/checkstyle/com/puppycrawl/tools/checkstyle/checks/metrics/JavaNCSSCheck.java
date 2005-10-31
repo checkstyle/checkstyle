@@ -60,7 +60,7 @@ public class JavaNCSSCheck extends Check
     private Stack mCounters;
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check#getDefaultTokens()
+     * {@inheritDoc}
      */
     public int[] getDefaultTokens()
     {
@@ -97,7 +97,7 @@ public class JavaNCSSCheck extends Check
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check#getRequiredTokens()
+     * {@inheritDoc}
      */
     public int[] getRequiredTokens()
     {
@@ -134,7 +134,7 @@ public class JavaNCSSCheck extends Check
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void beginTree(DetailAST aRootAST)
     {
@@ -145,7 +145,7 @@ public class JavaNCSSCheck extends Check
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void visitToken(DetailAST aAST)
     {
@@ -172,7 +172,7 @@ public class JavaNCSSCheck extends Check
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void leaveToken(DetailAST aAST)
     {
@@ -204,7 +204,7 @@ public class JavaNCSSCheck extends Check
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void finishTree(DetailAST aRootAST)
     {

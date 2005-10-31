@@ -63,13 +63,13 @@ public class AnonInnerLengthCheck extends Check
     /** maximum number of lines */
     private int mMax = DEFAULT_MAX;
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_NEW};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST openingBrace = aAST.findFirstToken(TokenTypes.OBJBLOCK);

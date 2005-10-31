@@ -51,19 +51,19 @@ public class CovariantEqualsCheck extends Check
     /** true if class defines method equals(java.lang.Object) */
     private boolean mHasEqualsObject;
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         mEqualsMethods.clear();

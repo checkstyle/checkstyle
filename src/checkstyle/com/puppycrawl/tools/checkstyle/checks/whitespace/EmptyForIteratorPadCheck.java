@@ -58,14 +58,14 @@ public class EmptyForIteratorPadCheck
         super(PadOption.NOSPACE);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.FOR_ITERATOR,
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getChildCount() == 0) {

@@ -83,7 +83,7 @@ public final class SeverityLevel implements Comparable, Serializable
     private final String mName;
 
     /**
-     * @see Object
+     * {@inheritDoc}
      */
     public String toString()
     {
@@ -99,7 +99,7 @@ public final class SeverityLevel implements Comparable, Serializable
     }
 
     /**
-     * @see Comparable
+     * {@inheritDoc}
      */
     public int compareTo(Object aObject)
     {

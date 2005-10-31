@@ -54,17 +54,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class DesignForExtensionCheck extends Check
 {
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         // nothing to do for Interfaces

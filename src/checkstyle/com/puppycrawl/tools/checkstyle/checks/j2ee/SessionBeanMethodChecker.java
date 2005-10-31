@@ -42,8 +42,7 @@ public class SessionBeanMethodChecker
     }
 
     /**
-     *
-     * @see com.puppycrawl.tools.checkstyle.checks.j2ee.MethodChecker
+     * {@inheritDoc}
      */
     public void checkMethods(DetailAST aAST)
     {
@@ -64,8 +63,7 @@ public class SessionBeanMethodChecker
     }
 
     /**
-     *
-     * @see com.puppycrawl.tools.checkstyle.checks.j2ee.BeanMethodChecker
+     * {@inheritDoc}
      */
     protected void checkCreateMethod(DetailAST aMethodAST)
     {

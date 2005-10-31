@@ -58,13 +58,13 @@ public class ParameterNameCheck
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.PARAMETER_DEF};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck */
+    /** {@inheritDoc} */
     protected boolean mustCheckName(DetailAST aAST)
     {
         return !(

@@ -410,7 +410,7 @@ public class SuppressionCommentFilter
         mCheckC = aCheckC;
     }
 
-    /** @see Filter */
+    /** {@inheritDoc} */
     public boolean accept(AuditEvent aEvent)
     {
         if (aEvent.getLocalizedMessage() == null) {

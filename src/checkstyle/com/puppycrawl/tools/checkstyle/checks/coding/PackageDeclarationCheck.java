@@ -34,25 +34,25 @@ public final class PackageDeclarationCheck extends Check
     /** is package defined. */
     private boolean mDefined;
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.PACKAGE_DEF};
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aAST)
     {
         mDefined = false;
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void finishTree(DetailAST aAST)
     {
         if (!mDefined) {
@@ -60,7 +60,7 @@ public final class PackageDeclarationCheck extends Check
         }
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         mDefined = true;

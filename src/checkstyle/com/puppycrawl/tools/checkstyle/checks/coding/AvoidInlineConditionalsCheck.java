@@ -35,23 +35,23 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * so their company's coding standards forbids them.
  *
  * @author lkuehne
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class AvoidInlineConditionalsCheck extends Check
 {
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.QUESTION};
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         // the only place a QUESTION token can occur is in inline conditionals

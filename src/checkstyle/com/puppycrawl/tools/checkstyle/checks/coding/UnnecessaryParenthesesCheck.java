@@ -94,7 +94,7 @@ public class UnnecessaryParenthesesCheck extends Check
     /** Depth of nested assignments.  Normally this will be 0 or 1. */
     private int mAssignDepth;
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int [] {
@@ -123,7 +123,7 @@ public class UnnecessaryParenthesesCheck extends Check
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final int type = aAST.getType();
@@ -167,7 +167,7 @@ public class UnnecessaryParenthesesCheck extends Check
         }
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void leaveToken(DetailAST aAST)
     {
         final int type = aAST.getType();

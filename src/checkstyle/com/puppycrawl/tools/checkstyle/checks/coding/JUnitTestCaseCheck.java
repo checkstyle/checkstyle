@@ -44,19 +44,19 @@ public final class JUnitTestCaseCheck extends Check
     /** <code>suite()</code> method name. */
     private static final String SUITE_METHOD_NAME = "suite";
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {

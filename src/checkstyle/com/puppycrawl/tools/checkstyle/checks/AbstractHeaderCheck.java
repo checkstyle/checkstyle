@@ -159,6 +159,7 @@ public abstract class AbstractHeaderCheck extends Check
 
     /**
      * Checks that required args were specified.
+     * @throws CheckstyleException {@inheritDoc}
      * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean#finishLocalSetup
      */
     protected final void finishLocalSetup() throws CheckstyleException

@@ -78,13 +78,13 @@ public class ModifierOrderCheck
         "transient", "volatile", "synchronized", "native", "strictfp",
     };
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.MODIFIERS};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final List mods = new ArrayList();

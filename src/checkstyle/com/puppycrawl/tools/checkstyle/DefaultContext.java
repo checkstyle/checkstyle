@@ -33,13 +33,13 @@ public final class DefaultContext implements Context
     /** stores the context entries */
     private final Map mEntries = new HashMap();
 
-    /** @see Context */
+    /** {@inheritDoc} */
     public Object get(String aKey)
     {
         return mEntries.get(aKey);
     }
 
-    /** @see Context */
+    /** {@inheritDoc} */
     public String[] getAttributeNames()
     {
         final Set keySet = mEntries.keySet();

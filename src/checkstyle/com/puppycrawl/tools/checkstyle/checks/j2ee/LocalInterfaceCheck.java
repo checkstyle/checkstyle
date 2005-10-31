@@ -37,7 +37,7 @@ public class LocalInterfaceCheck
         setMethodChecker(new LocalInterfaceMethodChecker(this));
     }
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void visitToken(DetailAST aAST)
     {

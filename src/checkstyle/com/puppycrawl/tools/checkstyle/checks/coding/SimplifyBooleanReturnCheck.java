@@ -41,13 +41,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class SimplifyBooleanReturnCheck
     extends Check
 {
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_IF};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         // LITERAL_IF has the following four or five children:

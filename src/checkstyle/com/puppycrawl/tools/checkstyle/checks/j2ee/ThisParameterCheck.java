@@ -34,7 +34,7 @@ public class ThisParameterCheck
     extends Check
 {
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public int[] getDefaultTokens()
     {
@@ -42,7 +42,7 @@ public class ThisParameterCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public int[] getRequiredTokens()
     {
@@ -50,7 +50,7 @@ public class ThisParameterCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void visitToken(DetailAST aAST)
     {

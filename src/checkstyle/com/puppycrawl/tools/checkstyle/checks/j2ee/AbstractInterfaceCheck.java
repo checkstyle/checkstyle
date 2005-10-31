@@ -28,7 +28,7 @@ public class AbstractInterfaceCheck
     extends AbstractJ2eeCheck
 {
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public int[] getDefaultTokens()
     {
@@ -36,7 +36,7 @@ public class AbstractInterfaceCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public int[] getRequiredTokens()
     {

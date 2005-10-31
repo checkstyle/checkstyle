@@ -77,10 +77,7 @@ public class JavadocStyleCheck
      */
     private boolean mCheckEmptyJavadoc;
 
-    /**
-     * The default tokens this Check is used for.
-     * @see com.puppycrawl.tools.checkstyle.api.Check#getDefaultTokens()
-     */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -96,10 +93,7 @@ public class JavadocStyleCheck
         };
     }
 
-    /**
-     * Called to process a token.
-     * @see com.puppycrawl.tools.checkstyle.api.Check
-     */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (shouldCheck(aAST)) {
@@ -280,6 +274,10 @@ public class JavadocStyleCheck
                 aBuffer.deleteCharAt(i);
                 aBuffer.deleteCharAt(i - 1);
                 i--;
+                while (aBuffer.charAt(i - 1) == '*') {
+                    aBuffer.deleteCharAt(i - 1);
+                    i--;
+                }
             }
             else {
                 break;

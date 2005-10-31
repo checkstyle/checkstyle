@@ -501,7 +501,7 @@ public class CheckStyleTask extends Task
         /** my possible values */
         private static final String[] VALUES = {E_XML, E_PLAIN};
 
-        /** @see EnumeratedAttribute */
+        /** {@inheritDoc} */
         public String[] getValues()
         {
             return VALUES;

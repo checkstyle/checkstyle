@@ -67,8 +67,7 @@ public abstract class AbstractOption
     }
 
     /**
-     * Returns the string representation of this AbstractOption.
-     * @see java.lang.Object
+     * {@inheritDoc}
      **/
     public String toString()
     {

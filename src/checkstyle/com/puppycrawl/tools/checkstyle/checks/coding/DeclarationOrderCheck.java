@@ -86,7 +86,7 @@ public class DeclarationOrderCheck extends Check
         private Scope mDeclarationAccess = Scope.PUBLIC;
     }
 
-    /** @see Check#getDefaultTokens() */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -97,7 +97,7 @@ public class DeclarationOrderCheck extends Check
         };
     }
 
-    /** @see Check#visitToken(DetailAST) */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final int parentType = aAST.getParent().getType();
@@ -176,7 +176,7 @@ public class DeclarationOrderCheck extends Check
         }
     }
 
-    /** @see Check#leaveToken(DetailAST) */
+    /** {@inheritDoc} */
     public void leaveToken(DetailAST aAST)
     {
         switch(aAST.getType()) {

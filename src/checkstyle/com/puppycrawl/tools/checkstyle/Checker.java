@@ -105,9 +105,8 @@ public class Checker extends AutomaticBean
         addListener(mCounter);
     }
 
-    /** @see AutomaticBean */
-    public void finishLocalSetup()
-        throws CheckstyleException
+    /** {@inheritDoc} */
+    public void finishLocalSetup() throws CheckstyleException
     {
         final Locale locale = new Locale(mLocaleLanguage, mLocaleCountry);
         LocalizedMessage.setLocale(locale);
@@ -129,6 +128,8 @@ public class Checker extends AutomaticBean
      * Instantiates, configures and registers a child AbstractFilter
      * or FileSetCheck
      * that is specified in the provided configuration.
+     * @param aChildConf {@inheritDoc}
+     * @throws CheckstyleException {@inheritDoc}
      * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean
      */
     protected void setupChild(Configuration aChildConf)

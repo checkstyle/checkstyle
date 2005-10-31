@@ -48,8 +48,7 @@ public class EntityBeanMethodChecker
     }
 
     /**
-     *
-     * @see com.puppycrawl.tools.checkstyle.checks.j2ee.MethodChecker
+     * {@inheritDoc}
      */
     public void checkMethods(DetailAST aAST)
     {
@@ -99,8 +98,7 @@ public class EntityBeanMethodChecker
     }
 
     /**
-     *
-     * @see com.puppycrawl.tools.checkstyle.checks.j2ee.MethodChecker
+     * {@inheritDoc}
      */
     public void checkMethod(DetailAST aMethodAST)
     {
@@ -118,8 +116,7 @@ public class EntityBeanMethodChecker
     }
 
     /**
-     *
-     * @see com.puppycrawl.tools.checkstyle.checks.j2ee.BeanMethodChecker
+     * {@inheritDoc}
      */
     protected void checkCreateMethod(DetailAST aMethodAST)
     {

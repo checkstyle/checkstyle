@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class WhitespaceAfterCheck
     extends Check
 {
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -65,7 +65,7 @@ public class WhitespaceAfterCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final String[] lines = getLines();

@@ -123,7 +123,7 @@ public class ArrayInitHandler extends BlockParentHandler
         return getMainAst();
     }
 
-    /** @see BlockParentHandler */
+    /** {@inheritDoc} */
     protected IndentLevel getChildrenExpectedLevel()
     {
         // now we accept

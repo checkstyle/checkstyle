@@ -92,13 +92,13 @@ public class AvoidNestedBlocksCheck extends Check
      */
     private boolean mAllowInSwitchCase;
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.SLIST};
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST parent = aAST.getParent();

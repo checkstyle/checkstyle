@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class FinalParametersCheck extends Check
 {
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -55,7 +55,7 @@ public class FinalParametersCheck extends Check
         };
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         // don't flag interfaces

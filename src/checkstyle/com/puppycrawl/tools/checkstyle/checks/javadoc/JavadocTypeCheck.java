@@ -128,7 +128,7 @@ public class JavadocTypeCheck
         mAllowMissingParamTags = aFlag;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -139,7 +139,7 @@ public class JavadocTypeCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (shouldCheck(aAST)) {

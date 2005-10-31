@@ -124,13 +124,13 @@ public class VisibilityModifierCheck
         return mPublicMemberPattern;
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if ((aAST.getType() != TokenTypes.VARIABLE_DEF)

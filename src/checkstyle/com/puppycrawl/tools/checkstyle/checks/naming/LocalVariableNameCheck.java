@@ -58,7 +58,7 @@ public class LocalVariableNameCheck
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -67,7 +67,7 @@ public class LocalVariableNameCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck */
+    /** {@inheritDoc} */
     protected final boolean mustCheckName(DetailAST aAST)
     {
         final DetailAST modifiersAST =

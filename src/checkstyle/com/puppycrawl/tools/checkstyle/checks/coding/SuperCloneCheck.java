@@ -37,12 +37,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * </pre>
  * @author Rick Giles
  */
-public class SuperCloneCheck
-        extends AbstractSuperCheck
+public class SuperCloneCheck extends AbstractSuperCheck
 {
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck
+     * {@inheritDoc}
      */
     protected String getMethodName()
     {

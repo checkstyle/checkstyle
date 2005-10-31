@@ -74,7 +74,7 @@ public final class PackageNamesLoader
         super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
     }
 
-    /** @see org.xml.sax.helpers.DefaultHandler **/
+    /** {@inheritDoc} */
     public void startElement(String aNamespaceURI,
                              String aLocalName,
                              String aQName,
@@ -118,7 +118,7 @@ public final class PackageNamesLoader
         return mModuleFactory;
     }
 
-    /** @see org.xml.sax.helpers.DefaultHandler **/
+    /** {@inheritDoc} */
     public void endElement(String aNamespaceURI,
                            String aLocalName,
                            String aQName)

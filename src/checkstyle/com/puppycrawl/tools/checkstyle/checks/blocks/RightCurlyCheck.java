@@ -65,7 +65,7 @@ public class RightCurlyCheck
         super(RightCurlyOption.SAME);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -75,7 +75,7 @@ public class RightCurlyCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         // Attempt to locate the tokens to do the check

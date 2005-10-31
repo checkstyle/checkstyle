@@ -86,7 +86,7 @@ public class XMLLogger
         }
     }
 
-    /** @see AuditListener **/
+    /** {@inheritDoc} */
     public void auditStarted(AuditEvent aEvt)
     {
         mWriter.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
@@ -99,7 +99,7 @@ public class XMLLogger
         mWriter.println("<checkstyle version=\"" + version + "\">");
     }
 
-    /** @see AuditListener **/
+    /** {@inheritDoc} */
     public void auditFinished(AuditEvent aEvt)
     {
         mWriter.println("</checkstyle>");
@@ -111,19 +111,19 @@ public class XMLLogger
         }
     }
 
-    /** @see AuditListener **/
+    /** {@inheritDoc} */
     public void fileStarted(AuditEvent aEvt)
     {
         mWriter.println("<file name=\"" + aEvt.getFileName() + "\">");
     }
 
-    /** @see AuditListener **/
+    /** {@inheritDoc} */
     public void fileFinished(AuditEvent aEvt)
     {
         mWriter.println("</file>");
     }
 
-    /** @see AuditListener **/
+    /** {@inheritDoc} */
     public void addError(AuditEvent aEvt)
     {
         if (!SeverityLevel.IGNORE.equals(aEvt.getSeverityLevel())) {
@@ -143,7 +143,7 @@ public class XMLLogger
         }
     }
 
-    /** @see AuditListener **/
+    /** {@inheritDoc} */
     public void addException(AuditEvent aEvt, Throwable aThrowable)
     {
         final StringWriter sw = new StringWriter();

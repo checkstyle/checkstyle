@@ -50,7 +50,7 @@ public final class ExecutableStatementCountCheck
         setMax(DEFAULT_MAX);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check#getDefaultTokens() */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -62,7 +62,7 @@ public final class ExecutableStatementCountCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check#getRequiredTokens() */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return new int[] {TokenTypes.SLIST};
@@ -86,14 +86,14 @@ public final class ExecutableStatementCountCheck
         mMax = aMax;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
         mContext = null;
         mContextStack.clear();
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -111,7 +111,7 @@ public final class ExecutableStatementCountCheck
         }
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {

@@ -40,13 +40,13 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class ArrayTrailingCommaCheck extends Check
 {
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.ARRAY_INIT};
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aArrayInit)
     {
         final DetailAST rcurly = aArrayInit.findFirstToken(TokenTypes.RCURLY);

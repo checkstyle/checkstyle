@@ -138,6 +138,8 @@ public class AutomaticBean
      * is called for each {@link Configuration#getChildren child Configuration}
      * of <code>aConfiguration</code>.
      *
+     * @param aConfiguration {@inheritDoc}
+     * @throws CheckstyleException {@inheritDoc}
      * @see Configurable
      */
     public final void configure(Configuration aConfiguration)
@@ -210,6 +212,8 @@ public class AutomaticBean
 
     /**
      * Implements the Contextualizable interface using bean introspection.
+     * @param aContext {@inheritDoc}
+     * @throws CheckstyleException {@inheritDoc}
      * @see Contextualizable
      */
     public final void contextualize(Context aContext)

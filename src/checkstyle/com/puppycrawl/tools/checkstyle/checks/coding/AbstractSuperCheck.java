@@ -93,7 +93,7 @@ public abstract class AbstractSuperCheck
     /** stack of methods */
     private final LinkedList mMethodStack = new LinkedList();
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -109,8 +109,7 @@ public abstract class AbstractSuperCheck
     protected abstract String getMethodName();
 
     /**
-     *
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void beginTree(DetailAST aRootAST)
     {
@@ -119,7 +118,7 @@ public abstract class AbstractSuperCheck
 
     /**
      *
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void visitToken(DetailAST aAST)
     {
@@ -191,8 +190,7 @@ public abstract class AbstractSuperCheck
     }
 
     /**
-     *
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void leaveToken(DetailAST aAST)
     {

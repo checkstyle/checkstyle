@@ -63,7 +63,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
      */
     private class TextfileChecksumGenerator implements ChecksumGenerator
     {
-        /** @see ChecksumGenerator#convertLines */
+        /** {@inheritDoc} */
         public long[] convertLines(String[] aOriginalLines)
         {
             final long[] checkSums = new long[aOriginalLines.length];
@@ -187,7 +187,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck#process
+     * {@inheritDoc}
      */
     public synchronized void process(File[] aFiles)
     {

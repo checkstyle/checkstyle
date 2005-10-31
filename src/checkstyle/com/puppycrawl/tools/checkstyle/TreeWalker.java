@@ -203,7 +203,7 @@ public final class TreeWalker
     /**
      * Instantiates, configures and registers a Check that is specified
      * in the provided configuration.
-     * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean
+     * {@inheritDoc}
      */
     public void setupChild(Configuration aChildConf)
         throws CheckstyleException
@@ -574,7 +574,7 @@ public final class TreeWalker
         return (DetailAST) parser.getAST();
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
+    /** {@inheritDoc} */
     public void process(File[] aFiles)
     {
         final File[] javaFiles = filter(aFiles);

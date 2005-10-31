@@ -68,7 +68,7 @@ public class EmptyBlockCheck
         super(BlockOption.STMT);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -88,7 +88,7 @@ public class EmptyBlockCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST slistAST = aAST.findFirstToken(TokenTypes.SLIST);

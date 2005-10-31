@@ -62,7 +62,7 @@ public abstract class AbstractTypeAwareCheck extends Check
      */
     protected abstract void processAST(DetailAST aAST);
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public final int[] getRequiredTokens()
     {
         return new int[] {
@@ -73,7 +73,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
         mPackageFullIdent = FullIdent.createFullIdent(null);
@@ -85,7 +85,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         mTypeParams.clear();
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public final void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
@@ -107,7 +107,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         }
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public final void leaveToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.CLASS_DEF

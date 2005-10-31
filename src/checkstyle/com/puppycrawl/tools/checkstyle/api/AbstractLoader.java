@@ -128,19 +128,19 @@ public abstract class AbstractLoader
         }
     }
 
-    /** @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException) */
+    /** {@inheritDoc} */
     public void warning(SAXParseException aEx) throws SAXException
     {
         throw aEx;
     }
 
-    /** @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException) */
+    /** {@inheritDoc} */
     public void error(SAXParseException aEx) throws SAXException
     {
         throw aEx;
     }
 
-    /** @see org.xml.sax.ErrorHandler#fatalError */
+    /** {@inheritDoc} */
     public void fatalError(SAXParseException aEx) throws SAXException
     {
         throw aEx;

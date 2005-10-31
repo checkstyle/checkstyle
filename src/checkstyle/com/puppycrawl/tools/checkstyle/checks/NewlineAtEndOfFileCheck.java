@@ -67,7 +67,7 @@ public class NewlineAtEndOfFileCheck
         LineSeparatorOption.SYSTEM;
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck#process
+     * {@inheritDoc}
      */
     public void process(File[] aFiles)
     {

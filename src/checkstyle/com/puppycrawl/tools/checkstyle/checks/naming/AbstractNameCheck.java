@@ -53,7 +53,7 @@ public abstract class AbstractNameCheck
         return true;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (mustCheckName(aAST)) {

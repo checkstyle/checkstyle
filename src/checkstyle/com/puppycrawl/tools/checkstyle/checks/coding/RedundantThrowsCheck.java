@@ -76,7 +76,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
         mAllowSubclasses = aAllowSubclasses;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {

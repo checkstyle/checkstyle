@@ -33,7 +33,7 @@ public class ThisReturnCheck
     extends Check
 {
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public int[] getDefaultTokens()
     {
@@ -41,7 +41,7 @@ public class ThisReturnCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public int[] getRequiredTokens()
     {
@@ -49,7 +49,7 @@ public class ThisReturnCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void visitToken(DetailAST aAST)
     {

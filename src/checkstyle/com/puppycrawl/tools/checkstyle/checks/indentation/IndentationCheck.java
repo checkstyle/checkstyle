@@ -228,7 +228,7 @@ public class IndentationCheck extends Check
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void beginTree(DetailAST aAst)
     {
@@ -238,7 +238,7 @@ public class IndentationCheck extends Check
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void visitToken(DetailAST aAST)
     {
@@ -261,7 +261,7 @@ public class IndentationCheck extends Check
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void leaveToken(DetailAST aAST)
     {

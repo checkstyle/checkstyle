@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public final class InterfaceIsTypeCheck
         extends Check
@@ -47,19 +47,19 @@ public final class InterfaceIsTypeCheck
     /** flag to control whether marker interfaces are allowed. */
     private boolean mAllowMarkerInterfaces = true;
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.INTERFACE_DEF};
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST objBlock =

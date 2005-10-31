@@ -31,17 +31,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class HideUtilityClassConstructorCheck extends Check
 {
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF};
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);

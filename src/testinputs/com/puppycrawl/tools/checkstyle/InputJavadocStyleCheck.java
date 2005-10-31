@@ -93,7 +93,7 @@ public class InputJavadocStyleCheck
    {
    }
    
-   /** {@inheritDoc} */
+   /** {@inheritDoc} **/
    public void method9()
    {
    }

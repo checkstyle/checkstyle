@@ -63,7 +63,7 @@ public class RedundantImportCheck
     /** set of static imports */
     private final Set mStaticImports = new HashSet();
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
         mPkgName = null;
@@ -71,7 +71,7 @@ public class RedundantImportCheck
         mStaticImports.clear();
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[]
@@ -80,7 +80,7 @@ public class RedundantImportCheck
          TokenTypes.PACKAGE_DEF, };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.PACKAGE_DEF) {

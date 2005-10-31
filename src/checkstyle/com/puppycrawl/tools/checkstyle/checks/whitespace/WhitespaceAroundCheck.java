@@ -102,7 +102,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class WhitespaceAroundCheck
     extends Check
 {
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -160,7 +160,7 @@ public class WhitespaceAroundCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final int type = aAST.getType();

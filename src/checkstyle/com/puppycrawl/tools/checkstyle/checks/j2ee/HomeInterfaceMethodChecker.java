@@ -38,8 +38,7 @@ public abstract class HomeInterfaceMethodChecker
     }
 
     /**
-     *
-     * @see com.puppycrawl.tools.checkstyle.checks.j2ee.MethodChecker
+     * {@inheritDoc}
      */
     public void checkMethod(DetailAST aMethodAST)
     {

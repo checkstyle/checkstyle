@@ -74,13 +74,13 @@ public class PackageNameCheck
         super("^[a-z]+(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$");
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.PACKAGE_DEF};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST nameAST = aAST.getLastChild().getPreviousSibling();

@@ -41,19 +41,19 @@ public class FileContentsHolder
         return (FileContents) FILE_CONTENTS.get();
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check#getDefaultTokens() */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
         FILE_CONTENTS.set(getFileContents());
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void finishTree(DetailAST aRootAST)
     {
         // This seems like the right thing to do, but is called before

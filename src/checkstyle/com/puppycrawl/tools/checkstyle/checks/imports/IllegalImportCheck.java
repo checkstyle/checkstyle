@@ -81,13 +81,13 @@ public class IllegalImportCheck
         mIllegalPkgs = aFrom;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final FullIdent imp;

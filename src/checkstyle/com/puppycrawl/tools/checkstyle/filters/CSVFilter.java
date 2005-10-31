@@ -101,19 +101,19 @@ class CSVFilter implements IntFilter
         return false;
     }
 
-    /** @see java.lang.Object#toString() */
+    /** {@inheritDoc} */
     public String toString()
     {
         return mFilters.toString();
     }
 
-    /** @see java.lang.Object#hashCode() */
+    /** {@inheritDoc} */
     public int hashCode()
     {
         return mFilters.hashCode();
     }
 
-    /** @see java.lang.Object#equals(java.lang.Object) */
+    /** {@inheritDoc} */
     public boolean equals(Object aObject)
     {
         if (aObject instanceof CSVFilter) {

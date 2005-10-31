@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 public class RedundantModifierCheck
     extends Check
 {
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -42,13 +42,13 @@ public class RedundantModifierCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return new int[] {};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (ScopeUtils.inInterfaceOrAnnotationBlock(aAST)) {

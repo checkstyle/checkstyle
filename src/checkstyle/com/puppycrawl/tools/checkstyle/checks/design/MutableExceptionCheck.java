@@ -52,19 +52,19 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
         super(DEFAULT_FORMAT);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -79,7 +79,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
         }
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {

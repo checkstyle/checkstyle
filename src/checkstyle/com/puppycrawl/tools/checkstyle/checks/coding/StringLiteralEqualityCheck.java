@@ -37,13 +37,13 @@ import antlr.collections.AST;
  */
 public class StringLiteralEqualityCheck extends Check
 {
-    /** @see Check#getDefaultTokens */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.EQUAL, TokenTypes.NOT_EQUAL};
     }
 
-    /** @see Check#visitToken */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         // no need to check for nulls here, == and != always have two children

@@ -88,6 +88,7 @@ public class DefaultLogger
     /**
      * Print an Emacs compliant line on the error stream.
      * If the column number is non zero, then also display it.
+     * @param aEvt {@inheritDoc}
      * @see AuditListener
      **/
     public void addError(AuditEvent aEvt)
@@ -116,7 +117,7 @@ public class DefaultLogger
         }
     }
 
-    /** @see AuditListener **/
+    /** {@inheritDoc} */
     public void addException(AuditEvent aEvt, Throwable aThrowable)
     {
         synchronized (mErrorWriter) {
@@ -125,23 +126,23 @@ public class DefaultLogger
         }
     }
 
-    /** @see AuditListener **/
+    /** {@inheritDoc} */
     public void auditStarted(AuditEvent aEvt)
     {
         mInfoWriter.println("Starting audit...");
     }
 
-    /** @see AuditListener **/
+    /** {@inheritDoc} */
     public void fileFinished(AuditEvent aEvt)
     {
     }
 
-    /** @see AuditListener **/
+    /** {@inheritDoc} */
     public void fileStarted(AuditEvent aEvt)
     {
     }
 
-    /** @see AuditListener **/
+    /** {@inheritDoc} */
     public void auditFinished(AuditEvent aEvt)
     {
         mInfoWriter.println("Audit done.");

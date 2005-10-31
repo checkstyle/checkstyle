@@ -55,7 +55,7 @@ public class MethodNameCheck
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF};

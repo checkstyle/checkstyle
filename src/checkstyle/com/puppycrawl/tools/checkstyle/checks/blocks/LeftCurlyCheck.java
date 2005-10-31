@@ -91,7 +91,7 @@ public class LeftCurlyCheck
         mMaxLineLength = aMaxLineLength;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -117,7 +117,7 @@ public class LeftCurlyCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST startToken;

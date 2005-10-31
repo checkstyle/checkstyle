@@ -56,7 +56,7 @@ public class TypeNameCheck
         super("^[A-Z][a-zA-Z0-9]*$");
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF,

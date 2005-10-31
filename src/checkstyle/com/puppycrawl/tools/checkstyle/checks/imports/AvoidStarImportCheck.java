@@ -57,7 +57,7 @@ public class AvoidStarImportCheck
     /** the packages to exempt from this check. */
     private String[] mExcludes = new String[0];
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.IMPORT};
@@ -80,7 +80,7 @@ public class AvoidStarImportCheck
         }
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final FullIdent name = FullIdent.createFullIdentBelow(aAST);

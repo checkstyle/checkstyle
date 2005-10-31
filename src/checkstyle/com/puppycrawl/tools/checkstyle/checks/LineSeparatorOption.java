@@ -82,7 +82,7 @@ public final class LineSeparatorOption extends AbstractOption
         return mLineSeparator.length();
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
+    /** {@inheritDoc} */
     protected Map getStrToOpt()
     {
         return STR_TO_OPT;

@@ -45,20 +45,20 @@ class IntRangeFilter implements IntFilter
         mUpperBound = new Integer(aUpperBound);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.filters.IntFilter */
+    /** {@inheritDoc} */
     public boolean accept(Integer aInt)
     {
         return ((mLowerBound.compareTo(aInt) <= 0)
             && (mUpperBound.compareTo(aInt) >= 0));
     }
 
-    /** @see java.lang.Object#hashCode() */
+    /** {@inheritDoc} */
     public int hashCode()
     {
         return HASH_MULT * mLowerBound.intValue() + mUpperBound.intValue();
     }
 
-    /** @see java.lang.Object#equals(java.lang.Object) */
+    /** {@inheritDoc} */
     public boolean equals(Object aObject)
     {
         if (aObject instanceof IntRangeFilter) {
@@ -68,7 +68,7 @@ class IntRangeFilter implements IntFilter
         }
         return false;
     }
-    /** @see java.lang.Object#toString() */
+    /** {@inheritDoc} */
     public String toString()
     {
         return "IntRangeFilter[" + mLowerBound + "," + mUpperBound + "]";

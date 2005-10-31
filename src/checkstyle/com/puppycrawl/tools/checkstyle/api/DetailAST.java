@@ -59,7 +59,7 @@ public final class DetailAST extends CommonAST
      */
     private BitSet mBranchTokenTypes;
 
-    /** @see antlr.CommonAST **/
+    /** {@inheritDoc} */
     public void initialize(Token aTok)
     {
         super.initialize(aTok);
@@ -67,7 +67,7 @@ public final class DetailAST extends CommonAST
         mColumnNo = aTok.getColumn() - 1; // expect columns to start @ 0
     }
 
-    /** @see antlr.CommonAST **/
+    /** {@inheritDoc} */
     public void initialize(AST aAST)
     {
         final DetailAST da = (DetailAST) aAST;

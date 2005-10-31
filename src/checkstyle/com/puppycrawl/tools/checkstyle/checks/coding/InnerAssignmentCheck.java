@@ -91,7 +91,7 @@ public class InnerAssignmentCheck
         Arrays.sort(COMPARISON_TYPES);
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -110,7 +110,7 @@ public class InnerAssignmentCheck
         };
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (isInContext(aAST, ALLOWED_ASSIGMENT_CONTEXT)) {

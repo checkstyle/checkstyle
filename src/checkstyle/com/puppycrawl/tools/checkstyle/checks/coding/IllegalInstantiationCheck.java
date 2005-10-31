@@ -78,7 +78,7 @@ public class IllegalInstantiationCheck
     /** the instantiations in the file */
     private final Set mInstantiations = new HashSet();
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -92,13 +92,14 @@ public class IllegalInstantiationCheck
     /**
      * Prevent user from changing tokens in the configuration.
      * @see com.puppycrawl.tools.checkstyle.api.Check
+     * @return empty array to not allow user to change configuration.
      */
     public int[] getAcceptableTokens()
     {
         return new int[] {};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
         return new int[] {
@@ -108,7 +109,7 @@ public class IllegalInstantiationCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
         super.beginTree(aRootAST);
@@ -118,7 +119,7 @@ public class IllegalInstantiationCheck
         mClassNames.clear();
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -140,7 +141,7 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check#finishTree
+     * {@inheritDoc}
      */
     public void finishTree(DetailAST aRootAST)
     {

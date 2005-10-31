@@ -49,25 +49,25 @@ public class SuppressionFilter
         mFilters = SuppressionsLoader.loadSuppressions(aFileName);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Filter */
+    /** {@inheritDoc} */
     public boolean accept(AuditEvent aEvent)
     {
         return mFilters.accept(aEvent);
     }
 
-    /** @see java.lang.Object#toString() */
+    /** {@inheritDoc} */
     public String toString()
     {
         return mFilters.toString();
     }
 
-    /** @see java.lang.Object#hashCode() */
+    /** {@inheritDoc} */
     public int hashCode()
     {
         return mFilters.hashCode();
     }
 
-    /** @see java.lang.Object#equals(java.lang.Object) */
+    /** {@inheritDoc} */
     public boolean equals(Object aObject)
     {
         if (aObject instanceof SuppressionFilter) {

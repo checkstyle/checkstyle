@@ -110,7 +110,7 @@ public final class ConfigurationLoader
             super(createIdToResourceNameMap());
         }
 
-        /** @see org.xml.sax.helpers.DefaultHandler **/
+        /** {@inheritDoc} **/
         public void startElement(String aNamespaceURI,
                                  String aLocalName,
                                  String aQName,
@@ -156,7 +156,7 @@ public final class ConfigurationLoader
             }
         }
 
-        /** @see org.xml.sax.helpers.DefaultHandler **/
+        /** {@inheritDoc} **/
         public void endElement(String aNamespaceURI,
                                String aLocalName,
                                String aQName)

@@ -53,12 +53,12 @@ import com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck;
 public class IllegalTokenTextCheck
     extends GenericIllegalRegexpCheck
 {
-    /**  @see com.puppycrawl.tools.checkstyle.api.Check */
+    /**  {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getAcceptableTokens()
     {
         // Any tokens set by property 'tokens' are acceptable
@@ -74,7 +74,7 @@ public class IllegalTokenTextCheck
         return result;
     }
     /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check
+     * {@inheritDoc}
      */
     public void visitToken(DetailAST aAST)
     {

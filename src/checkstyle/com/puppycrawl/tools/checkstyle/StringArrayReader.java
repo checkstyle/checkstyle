@@ -82,7 +82,7 @@ final class StringArrayReader extends Reader
         return (mUnderlyingArray.length > mArrayIdx);
     }
 
-    /** @see Reader */
+    /** {@inheritDoc} */
     public int read(char[] aCbuf, int aOff, int aLen) throws IOException
     {
         ensureOpen();
@@ -119,7 +119,7 @@ final class StringArrayReader extends Reader
         return retVal;
     }
 
-    /** @see Reader */
+    /** {@inheritDoc} */
     public int read() throws IOException
     {
         if (mUnreportedNewline) {

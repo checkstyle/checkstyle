@@ -194,13 +194,13 @@ public class DescendantTokenCheck extends Check
      */
     private int[] mCounts = new int[0];
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check#getDefaultTokens() */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
-    /**  @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         //reset counts
@@ -266,7 +266,7 @@ public class DescendantTokenCheck extends Check
         }
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getAcceptableTokens()
     {
         // Any tokens set by property 'tokens' are acceptable

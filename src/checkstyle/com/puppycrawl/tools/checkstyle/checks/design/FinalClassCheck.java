@@ -41,16 +41,16 @@ import java.util.Stack;
 public class FinalClassCheck
     extends Check
 {
-    /** keeps ClassDesc objects for stack of declared classes */
+    /** Keeps ClassDesc objects for stack of declared classes. */
     private final Stack mClasses = new Stack();
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
@@ -75,7 +75,7 @@ public class FinalClassCheck
         }
     }
 
-    /** @see Check */
+    /** {@inheritDoc} */
     public void leaveToken(DetailAST aAST)
     {
         if (aAST.getType() != TokenTypes.CLASS_DEF) {

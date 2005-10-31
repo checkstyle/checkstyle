@@ -47,8 +47,7 @@ public final class PropertiesExpander
     }
 
     /**
-     * Resolves a property through the underlying Properties object.
-     * @see PropertyResolver#resolve
+     * {@inheritDoc}
      */
     public String resolve(String aPropertyName)
     {

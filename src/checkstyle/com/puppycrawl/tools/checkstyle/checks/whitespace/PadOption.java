@@ -56,7 +56,7 @@ public final class PadOption
         super(aStrRep);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.checks.AbstractOption */
+    /** {@inheritDoc} */
     protected Map getStrToOpt()
     {
         return STR_TO_OPT;

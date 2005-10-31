@@ -36,25 +36,25 @@ class IntMatchFilter implements IntFilter
         mMatchValue = new Integer(aMatchValue);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.filters.IntFilter */
+    /** {@inheritDoc} */
     public boolean accept(Integer aInt)
     {
         return mMatchValue.equals(aInt);
     }
 
-    /** @see java.lang.Object#toString() */
+    /** {@inheritDoc} */
     public String toString()
     {
         return "IntMatchFilter[" + mMatchValue + "]";
     }
 
-    /** @see java.lang.Object#hashCode() */
+    /** {@inheritDoc} */
     public int hashCode()
     {
         return mMatchValue.hashCode();
     }
 
-    /** @see java.lang.Object#equals(java.lang.Object) */
+    /** {@inheritDoc} */
     public boolean equals(Object aObject)
     {
         if (aObject instanceof IntMatchFilter) {

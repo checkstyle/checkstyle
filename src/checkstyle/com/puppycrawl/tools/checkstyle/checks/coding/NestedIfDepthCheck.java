@@ -38,13 +38,13 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
         super(DEFAULT_MAX);
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_IF};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -56,7 +56,7 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
         }
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {

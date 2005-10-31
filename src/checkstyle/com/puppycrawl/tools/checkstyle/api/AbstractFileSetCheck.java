@@ -75,7 +75,7 @@ public abstract class AbstractFileSetCheck
         mCharset = aCharset;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
+    /** {@inheritDoc} */
     public final void setMessageDispatcher(MessageDispatcher aDispatcher)
     {
         mDispatcher = aDispatcher;
@@ -166,7 +166,7 @@ public abstract class AbstractFileSetCheck
     /**
      * Adds a violation message to the
      * {@link #getMessageCollector message collector}.
-     * @see AbstractViolationReporter#log(int, String, Object[])
+     * {@inheritDoc}
      */
     protected final void log(int aLine, String aKey, Object aArgs[])
     {
@@ -176,7 +176,7 @@ public abstract class AbstractFileSetCheck
     /**
      * Adds a violation message to the
      * {@link #getMessageCollector message collector}.
-     * @see AbstractViolationReporter#log(int, int, String, Object[])
+     * {@inheritDoc}
      */
     protected final void log(int aLineNo, int aColNo,
                              String aKey, Object[] aArgs)

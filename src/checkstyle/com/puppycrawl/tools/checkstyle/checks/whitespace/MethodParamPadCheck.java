@@ -76,7 +76,7 @@ public class MethodParamPadCheck
      * linebreak */
     private boolean mAllowLineBreaks;
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -88,7 +88,7 @@ public class MethodParamPadCheck
         };
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST parenAST;

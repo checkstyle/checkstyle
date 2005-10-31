@@ -46,16 +46,15 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * @author Oliver Burn
  * @version 1.0
  */
-public class UpperEllCheck
-    extends Check
+public class UpperEllCheck extends Check
 {
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.NUM_LONG};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getText().endsWith("l")) {

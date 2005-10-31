@@ -42,8 +42,7 @@ public class BeanManagedMethodChecker
     }
 
     /**
-     *
-     * @see com.puppycrawl.tools.checkstyle.checks.j2ee.MethodChecker
+     * {@inheritDoc}
      */
     public void checkMethods(DetailAST aAST)
     {
@@ -59,8 +58,7 @@ public class BeanManagedMethodChecker
     }
 
     /**
-     *
-     * @see com.puppycrawl.tools.checkstyle.checks.j2ee.MethodChecker
+     * {@inheritDoc}
      */
     public void checkMethod(DetailAST aMethodAST)
     {

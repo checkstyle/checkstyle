@@ -55,13 +55,13 @@ public class MissingSwitchDefaultCheck extends DescendantTokenCheck
         setMinimumMessage("missing.switch.default");
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.LITERAL_SWITCH};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getAcceptableTokens()
     {
         return getDefaultTokens();

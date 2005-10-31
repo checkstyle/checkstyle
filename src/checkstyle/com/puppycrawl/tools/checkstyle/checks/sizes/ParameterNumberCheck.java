@@ -65,13 +65,13 @@ public class ParameterNumberCheck
         mMax = aMax;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Check */
+    /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
