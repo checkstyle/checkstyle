@@ -13,7 +13,7 @@
               lines="176"/>
     <suppress checks="MagicNumber"
               files="JavadocMethodCheck.java"
-              lines="751,783,808"/>
+              lines="748,780,805"/>
     <suppress checks="ImportControl"
               files="NewlineAtEndOfFileCheck.java"
               lines="26"/>

@@ -84,6 +84,9 @@
           Applied patch 1340300 from David Dodini to update bcel
           checks to be compilable with current Checkstyle's API.
         </li>
+        <li>
+          Added antlib.xml to support new cool feature of Ant.
+        </li>
       </ul>
 
     </section>

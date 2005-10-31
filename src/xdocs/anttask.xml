@@ -79,6 +79,27 @@
       <source>
 &lt;taskdef resource=&quot;checkstyletask.properties&quot;/&gt;
       </source>
+
+      <p>
+        Or if you use Ant 1.6 and later and assuming that Checkstyle
+        is in the library search path, then you may use antlib feature
+        of Ant (see <a
+        href="http://ant.apache.org/manual/CoreTypes/antlib.html"
+        >http://ant.apache.org/manual/CoreTypes/antlib.html</a>
+        for more details).  For example:
+      </p>
+
+      <source>
+&lt;project name="foo" ...
+         xmlns:cs="antlib:com.puppycrawl.tools.checkstyle"&gt;
+...
+  &lt;cs:checkstyle&gt;
+  ...
+  &lt;/cs:checkstyle&gt;
+...
+&lt;/project&gt;
+      </source>
+
     </section>
 
     <section name="Parameters">
