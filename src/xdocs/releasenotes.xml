@@ -36,6 +36,10 @@
           classloader of this class can be used to load the correct
           resource bundle. Patch 1309516 from Ralf (rakus).
         </li>
+        <li>
+          FallThrough check now can check last case group (property
+          checkLastCaseGroup, bug 1245942).
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

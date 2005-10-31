@@ -58,7 +58,7 @@ public class ParenPadCheckTest
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
-    
+
     public void testDefaultForIterator()
         throws Exception
     {

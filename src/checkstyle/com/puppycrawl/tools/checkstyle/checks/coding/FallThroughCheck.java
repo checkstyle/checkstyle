@@ -38,6 +38,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class FallThroughCheck extends Check
 {
+    /** Do we need to check last case group. */
+    private boolean mCheckLastGroup;
+
     /** Creates new instance of the check. */
     public FallThroughCheck()
     {
@@ -56,19 +59,35 @@ public class FallThroughCheck extends Check
         return getDefaultTokens();
     }
 
+    /**
+     * Configures whether we need to check last case group or not.
+     * @param aValue new value of the property.
+     */
+    public void setCheckLastCaseGroup(boolean aValue)
+    {
+        mCheckLastGroup = aValue;
+    }
+
     /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
         final DetailAST nextGroup = (DetailAST) aAST.getNextSibling();
-        if (nextGroup == null || nextGroup.getType() != TokenTypes.CASE_GROUP) {
-            // last group we shouldn't check it
+        final boolean isLastGroup =
+            (nextGroup == null || nextGroup.getType() != TokenTypes.CASE_GROUP);
+        if (isLastGroup && !mCheckLastGroup) {
+            // we do not need to check last group
             return;
         }
 
         final DetailAST slist = aAST.findFirstToken(TokenTypes.SLIST);
 
         if (!isTerminated(slist, true, true)) {
-            log(nextGroup, "fall.through");
+            if (!isLastGroup) {
+                log(nextGroup, "fall.through");
+            }
+            else {
+                log(aAST, "fall.through.last");
+            }
         }
     }
 

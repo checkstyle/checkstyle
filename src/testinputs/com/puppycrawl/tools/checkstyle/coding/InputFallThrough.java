@@ -108,7 +108,7 @@ public class InputFallThrough
                     return;
                 default:
                     return;
-                }                
+                }
             case 24:
                 switch (j) {
                 case 1:
@@ -117,7 +117,7 @@ public class InputFallThrough
                     break;
                 default:
                     return;
-                }                
+                }
             default: //fall through!!!
                 // this is the last label
                 i++;
