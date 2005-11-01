@@ -899,7 +899,17 @@ for (Iterator foo = very.long.line.iterator();
     <section name="WhitespaceAround">
       <subsection name="Description">
         <p>
-          Checks that a token is surrounded by whitespace.
+        Checks that a token is surrounded by whitespace.  Empty constructor and
+        method bodies (blocks) of the form
+        </p>
+        <p>
+        <pre>public MyClass() {}      // empty constructor
+public void func() {}    // empty method</pre>
+        </p>
+        <p>
+        may optionally be exempted from the policy using the <span class="code">
+        allowEmptyMethods</span> and <span class="code">allowEmptyConstructors
+        </span> properties.
         </p>
       </subsection>
 
@@ -1020,6 +1030,18 @@ for (Iterator foo = very.long.line.iterator();
               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#WILDCARD_TYPE">WILDCARD_TYPE</a>
             </td>
             <td>all tokens</td>
+          </tr>
+          <tr>
+            <td>allowEmptyConstructors</td>
+            <td>allow empty constructor bodies</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>allowEmptyMethods</td>
+            <td>allow empty method bodies</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
           </tr>
         </table>
       </subsection>

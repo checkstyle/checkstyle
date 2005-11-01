@@ -40,6 +40,12 @@
           FallThrough check now can check last case group (property
           checkLastCaseGroup, bug 1245942).
         </li>
+        <li>
+          Applied patch 906531 (WhitespaceAround allows empty
+          method/ctor bodies.) Thanks to Eric Roe (module
+          WhitespaceAround, properties allowEmptyCtors and
+          allowEmptyMethods).
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

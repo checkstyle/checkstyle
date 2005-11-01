@@ -110,4 +110,10 @@ class InputBraces
         for (;;) {
         }
     }
+
+    /** Empty constructor block. **/
+    public InputBraces() {}
+    
+    /** Empty method block. **/
+    public void emptyImplementation() {}
 }

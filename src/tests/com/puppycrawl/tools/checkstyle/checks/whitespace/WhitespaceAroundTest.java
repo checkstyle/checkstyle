@@ -6,11 +6,16 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 public class WhitespaceAroundTest
     extends BaseCheckTestCase
 {
+    DefaultConfiguration checkConfig;
+
+    public void setUp()
+    {
+        checkConfig = createCheckConfig(WhitespaceAroundCheck.class);
+    }
+
     public void testIt()
         throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(WhitespaceAroundCheck.class);
         final String[] expected = {
             "16:22: '=' is not preceded with whitespace.",
             "16:23: '=' is not followed by whitespace.",
@@ -54,8 +59,6 @@ public class WhitespaceAroundTest
     public void testIt2()
         throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(WhitespaceAroundCheck.class);
         final String[] expected = {
             "153:27: '=' is not followed by whitespace.",
             "154:27: '=' is not followed by whitespace.",
@@ -70,13 +73,27 @@ public class WhitespaceAroundTest
     public void testIt3()
         throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(WhitespaceAroundCheck.class);
         final String[] expected = {
             "41:14: 'while' is not followed by whitespace.",
             "58:12: 'for' is not followed by whitespace.",
             // + ":58:23: ';' is not followed by whitespace.",
             //  + ":58:29: ';' is not followed by whitespace.",
+            "115:27: '{' is not followed by whitespace.",
+            "115:27: '}' is not preceded with whitespace.",
+            "118:40: '{' is not followed by whitespace.",
+            "118:40: '}' is not preceded with whitespace.",
+        };
+        verify(checkConfig, getPath("InputBraces.java"), expected);
+    }
+
+    public void testIt4()
+        throws Exception
+    {
+        checkConfig.addAttribute("allowEmptyMethods", "true");
+        checkConfig.addAttribute("allowEmptyConstructors", "true");
+        final String[] expected = {
+            "41:14: 'while' is not followed by whitespace.",
+            "58:12: 'for' is not followed by whitespace.",
         };
         verify(checkConfig, getPath("InputBraces.java"), expected);
     }
@@ -84,8 +101,6 @@ public class WhitespaceAroundTest
     public void testGenericsTokensAreFlagged()
         throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(WhitespaceAroundCheck.class);
         final String[] expected = {
             "6:27: '<' is not preceded with whitespace.",
             "6:28: '<' is not followed by whitespace.",
@@ -104,8 +119,6 @@ public class WhitespaceAroundTest
 
     public void test1322879() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(WhitespaceAroundCheck.class);
         final String[] expected = {
         };
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),

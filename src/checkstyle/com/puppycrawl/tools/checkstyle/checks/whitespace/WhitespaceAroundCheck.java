@@ -95,13 +95,37 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *               value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,MOD_ASSIGN,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * In addition, this check can be configured to allow empty method and/or
+ * constructor bodies.  For example, a method with an empty body might look
+ * like:
+ * </p>
+ * <p>
+ * <pre>    public void doSomething(int val) {}</pre>
+ * </p>
+ * <p>
+ * To configure the check to allow empty method blocks use
+ * </p>
+ * <p>
+ * <pre>   &lt;property name="allowEmptyMethods" value="true" /&gt;</pre>
+ * </p>
+ * <p>
+ * To configure the check to allow empty constructor blocks use
+ * </p>
+ * <p>
+ * <pre>   &lt;property name="allowEmptyConstructors" value="true" /&gt;</pre>
+ * </p>
  *
  * @author Oliver Burn
  * @version 1.0
  */
-public class WhitespaceAroundCheck
-    extends Check
+public class WhitespaceAroundCheck extends Check
 {
+    /** Whether or not empty constructor bodies are allowed. */
+    private boolean mAllowEmptyCtors;
+    /** Whether or not empty method bodies are allowed. */
+    private boolean mAllowEmptyMethods;
+
     /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
@@ -160,6 +184,24 @@ public class WhitespaceAroundCheck
         };
     }
 
+    /**
+     * Sets whether or now empty method bodies are allowed.
+     * @param aAllow <code>true</code> to allow empty method bodies.
+     */
+    public void setAllowEmptyMethods(boolean aAllow)
+    {
+        mAllowEmptyMethods = aAllow;
+    }
+
+    /**
+     * Sets whether or now empty constructor bodies are allowed.
+     * @param aAllow <code>true</code> to allow empty constructor bodies.
+     */
+    public void setAllowEmptyConstructors(boolean aAllow)
+    {
+        mAllowEmptyCtors = aAllow;
+    }
+
     /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
@@ -195,6 +237,13 @@ public class WhitespaceAroundCheck
             return;
         }
 
+        // Check for allowed empty method or ctor blocks.
+        if (emptyMethodBlockCheck(aAST, parentType)
+            || emptyCtorBlockCheck(aAST, parentType))
+        {
+            return;
+        }
+
         final String[] lines = getLines();
         final String line = lines[aAST.getLineNo() - 1];
         final int before = aAST.getColumnNo() - 1;
@@ -226,5 +275,62 @@ public class WhitespaceAroundCheck
                 "ws.notFollowed",
                 new Object[] {aAST.getText()});
         }
+    }
+
+    /**
+     * Test if the given <code>DetailAST</code> is part of an allowed empty
+     * method block.
+     * @param aAST the <code>DetailAST</code> to test.
+     * @param aParentType the token type of <code>aAST</code>'s parent.
+     * @return <code>true</code> if <code>aAST</code> makes up part of an
+     *         allowed empty method block.
+     */
+    private boolean emptyMethodBlockCheck(DetailAST aAST, int aParentType)
+    {
+        return mAllowEmptyMethods
+            && emptyBlockCheck(aAST, aParentType, TokenTypes.METHOD_DEF);
+    }
+
+    /**
+     * Test if the given <code>DetailAST</code> is part of an allowed empty
+     * constructor (ctor) block.
+     * @param aAST the <code>DetailAST</code> to test.
+     * @param aParentType the token type of <code>aAST</code>'s parent.
+     * @return <code>true</code> if <code>aAST</code> makes up part of an
+     *         allowed empty constructor block.
+     */
+    private boolean emptyCtorBlockCheck(DetailAST aAST, int aParentType)
+    {
+        return mAllowEmptyCtors
+            && emptyBlockCheck(aAST, aParentType, TokenTypes.CTOR_DEF);
+    }
+
+    /**
+     * Test if the given <code>DetailAST</code> is part of an empty block.
+     * An example empty block might look like the following
+     * <p>
+     * <pre>   public void myMethod(int val) {}</pre>
+     * <p>
+     * In the above, the method body is an empty block ("{}").
+     *
+     * @param aAST the <code>DetailAST</code> to test.
+     * @param aParentType the token type of <code>aAST</code>'s parent.
+     * @param aMatch the parent token type we're looking to match.
+     * @return <code>true</code> if <code>aAST</code> makes up part of an
+     *         empty block contained under a <code>aMatch</code> token type
+     *         node.
+     */
+    private boolean emptyBlockCheck(DetailAST aAST, int aParentType, int aMatch)
+    {
+        final int type = aAST.getType();
+        if (type == TokenTypes.RCURLY) {
+            DetailAST grandParent = aAST.getParent().getParent();
+            return aParentType == TokenTypes.SLIST
+                && grandParent.getType() == aMatch;
+        }
+
+        return type == TokenTypes.SLIST
+            && aParentType == aMatch
+            && aAST.getFirstChild().getType() == TokenTypes.RCURLY;
     }
 }
