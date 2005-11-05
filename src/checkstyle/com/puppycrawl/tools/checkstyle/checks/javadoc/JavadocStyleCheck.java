@@ -209,8 +209,6 @@ public class JavadocStyleCheck
     private String getCommentText(String[] aComments)
     {
         final StringBuffer buffer = new StringBuffer();
-        boolean foundTag = false;
-
         for (int i = 0; i < aComments.length; i++) {
             String line = aComments[i];
             final int textStart = findTextStart(line);
