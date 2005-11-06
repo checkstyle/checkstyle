@@ -23,8 +23,10 @@
 
         <property name="tabWidth" value="4" />
 
-        <module name="GenericIllegalRegexp">
-            <property name="format" value="\s$"/>
+        <module name="Regexp">
+            <property name="format" value="[ \t]+$"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="trailing whitespace"/>
         </module>
 
         <module name="AvoidStarImport"/>

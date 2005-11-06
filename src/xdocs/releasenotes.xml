@@ -14,6 +14,10 @@
       <p>New features:</p>
 
       <ul>
+	<li>
+	  Applied excellent patch 1344344 by sjq to consolidate the
+	  regexp checks into one.
+	</li>
         <li>
           Added support for property <i>ignoreStringsRegexp</i> to
           <i>MultipleStringLiterals</i> check. Patch 1254918 from taab.

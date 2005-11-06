@@ -102,6 +102,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     private static final Pattern MATCH_JAVADOC_NOARG_CURLY = Utils
         .createPattern(MATCH_JAVADOC_NOARG_CURLY_PAT);
 
+    /** Maximum children allowed * */
+    private static final int MAX_CHILDREN = 7;
+
+    /** Maximum children allowed * */
+    private static final int BODY_SIZE = 3;
+
     /** the visibility scope where Javadoc comments are checked * */
     private Scope mScope = Scope.PRIVATE;
 
@@ -745,7 +751,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // is allowed in a proper setter method which does not throw any
         // exceptions.
         if ((aAST.getType() != TokenTypes.METHOD_DEF)
-            || (aAST.getChildCount() != 7))
+            || (aAST.getChildCount() != MAX_CHILDREN))
         {
             return false;
         }
@@ -777,7 +783,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // SEMI
         // RCURLY
         final DetailAST slist = aAST.findFirstToken(TokenTypes.SLIST);
-        if ((slist == null) || (slist.getChildCount() != 3)) {
+        if ((slist == null) || (slist.getChildCount() != BODY_SIZE)) {
             return false;
         }
 
@@ -802,7 +808,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // is allowed in a proper getter method which does not throw any
         // exceptions.
         if ((aAST.getType() != TokenTypes.METHOD_DEF)
-            || (aAST.getChildCount() != 7))
+            || (aAST.getChildCount() != MAX_CHILDREN))
         {
             return false;
         }
