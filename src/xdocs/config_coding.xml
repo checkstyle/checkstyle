@@ -1851,12 +1851,40 @@ if (&quot;something&quot;.equals(x))
         <p>
           Checks for fall through in <span class="code">switch</span>
           statements Finds locations where a <span class="code">case</span>
-          contains<br/> Java code - but lacks a <span
+          contains Java code - but lacks a <span
           class="code">break</span>, <span class="code">return</span>, <span
           class="code">throw</span> or <span class="code">continue</span>
           statement.
         </p>
+        <p>
+          The check honores special comments to supress the warning. By 
+          default the text "fallthru", "fall through", "fallthrough",
+          "falls through" and "fallsthrough" are recognized (case 
+          sensitive). The comment containing this words must be a 
+          one-liner and must be on the last none-empty line before the 
+          <span class="code">case</span> triggering the warning or on 
+          the same line before the <span class="code">case</span> 
+          (urgly, but possible).
+        </p>
+        <source>
+switch (i){
+case 0:
+    i++; // fall through
 
+case 1:
+    i++;
+    // falls through
+case 2: {
+    i++;
+}
+// fallthrough
+case 3:
+    i++;
+/* fallthru */case 4:
+    i++
+    break;
+}
+        </source>
         <p>
           Note: the check works in assumption that there is no unreachable
           code in the <span class="code">case</span>.
@@ -1879,6 +1907,15 @@ if (&quot;something&quot;.equals(x))
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>
+          <tr>
+            <td>reliefPattern</td>
+            <td>
+              Regulare expression to match the relief comment that supresses
+              the warning about a fall through.
+            </td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">fallthru|falls? ?through</span></td>
+          </tr>
         </table>
       </subsection>
 
@@ -1887,6 +1924,14 @@ if (&quot;something&quot;.equals(x))
           To configure the check:
         </p>
         <source>
+&lt;module name=&quot;FallThrough&quot;/&gt;
+        </source>
+        <p>
+          or
+        </p>
+        <source>
+&lt;module name=&quot;FallThrough&quot;&gt;
+    &lt;property name=&quot;reliefPattern&quot; value=&quot;continue in next case&quot;/&gt;
 &lt;module name=&quot;FallThrough&quot;/&gt;
         </source>
       </subsection>

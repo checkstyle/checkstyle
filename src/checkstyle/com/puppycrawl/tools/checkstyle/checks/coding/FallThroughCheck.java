@@ -18,9 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Checks for fall through in switch statements
@@ -28,10 +32,33 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * but lacks a break, return, throw or continue statement.
  *
  * <p>
+ * The check honors special comments to suppress warnings about
+ * the fall through. By default the comments "fallthru",
+ * "fall through", "falls through" and "fallthrough" are recognized.
+ * </p>
+ * <p>
+ * The following fragment of code will NOT trigger the check,
+ * because of the comment "fallthru".
+ * </p>
+ * <pre>
+ * case 3:
+ *     x = 2;
+ *     // fallthru
+ * case 4:
+ * </pre>
+ * <p>
+ * The recognized relief comment can be configured with the property
+ * <code>reliefPattern</code>. Default value of this regular expression
+ * is "fallthru|fall through|fallthrough|falls through".
+ * </p>
+ * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="FallThrough"/&gt;
+ * &lt;module name="FallThrough"&gt;
+ *     &lt;property name=&quot;reliefPattern&quot;
+ *                  value=&quot;Fall Through&quot;/&gt;
+ * &lt;/module&gt;
  * </pre>
  *
  * @author o_sukhodolsky
@@ -40,6 +67,12 @@ public class FallThroughCheck extends Check
 {
     /** Do we need to check last case group. */
     private boolean mCheckLastGroup;
+
+    /** Relief pattern to allow fall throught to the next case branch. */
+    private String mReliefPattern = "fallthru|falls? ?through";
+
+    /** Relief regexp. */
+    private Pattern mRegExp;
 
     /** Creates new instance of the check. */
     public FallThroughCheck()
@@ -60,12 +93,30 @@ public class FallThroughCheck extends Check
     }
 
     /**
+     * Set the relief pattern.
+     *
+     * @param aPattern
+     *            The regular expression pattern.
+     */
+    public void setReliefPattern(String aPattern)
+    {
+        mReliefPattern = aPattern;
+    }
+
+    /**
      * Configures whether we need to check last case group or not.
      * @param aValue new value of the property.
      */
     public void setCheckLastCaseGroup(boolean aValue)
     {
         mCheckLastGroup = aValue;
+    }
+
+    /** {@inheritDoc} */
+    public void init()
+    {
+        super.init();
+        mRegExp = Utils.getPattern(mReliefPattern);
     }
 
     /** {@inheritDoc} */
@@ -82,11 +133,13 @@ public class FallThroughCheck extends Check
         final DetailAST slist = aAST.findFirstToken(TokenTypes.SLIST);
 
         if (!isTerminated(slist, true, true)) {
-            if (!isLastGroup) {
-                log(nextGroup, "fall.through");
-            }
-            else {
-                log(aAST, "fall.through.last");
+            if (!hasFallTruComment(aAST, nextGroup)) {
+                if (!isLastGroup) {
+                    log(nextGroup, "fall.through");
+                }
+                else {
+                    log(aAST, "fall.through.last");
+                }
             }
         }
     }
@@ -192,7 +245,7 @@ public class FallThroughCheck extends Check
     }
 
     /**
-     * Checks if a given try/cath/finally block terminated by return, throw or,
+     * Checks if a given try/catch/finally block terminated by return, throw or,
      * if allowed break, continue.
      * @param aAST loop to check
      * @param aUseBreak should we consider break as terminator.
@@ -243,4 +296,91 @@ public class FallThroughCheck extends Check
         return isTerminated;
     }
 
+    /**
+     * Determines if the fall through case between <code>aCurrentCase</code> and
+     * <code>aNextCase</code> is reliefed by a appropriate comment.
+     *
+     * @param aCurrentCase AST of the case that falls through to the next case.
+     * @param aNextCase AST of the next case.
+     * @return True if a relief comment was found
+     */
+    private boolean hasFallTruComment(DetailAST aCurrentCase,
+            DetailAST aNextCase)
+    {
+
+        final int startLineNo = aCurrentCase.getLineNo();
+        final int startColNo = aCurrentCase.getColumnNo();
+        final int endLineNo = aNextCase.getLineNo();
+        final int endColNo = aNextCase.getColumnNo();
+
+        /*
+         * Remember: The lines number returned from the AST is 1-based, but
+         * the lines number in this array are 0-based. So you will often
+         * see a "lineNo-1" etc.
+         */
+        final String[] lines = getLines();
+
+        /*
+         * Handle:
+         *    case 1:
+         *    /+ FALLTHRU +/ case 2:
+         *    ....
+         * and
+         *    switch(i) {
+         *    default:
+         *    /+ FALLTHRU +/}
+         */
+        String linepart = lines[endLineNo - 1].substring(0, endColNo);
+        if (commentMatch(mRegExp, linepart, endLineNo, 0)) {
+            return true;
+        }
+
+        /*
+         * Handle:
+         *    case 1:
+         *    .....
+         *    // FALLTHRU
+         *    case 2:
+         *    ....
+         * and
+         *    switch(i) {
+         *    default:
+         *    // FALLTHRU
+         *    }
+         */
+        for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
+            if (lines[i].trim().length() != 0) {
+                return commentMatch(mRegExp, lines[i], i + 1, 0);
+            }
+        }
+
+        // Well -- no relief comment found.
+        return false;
+    }
+
+    /**
+     * Does a regular expression match on the given line and checks that a
+     * possible match is within a comment.
+     * @param aPattern The regular expression pattern to use.
+     * @param aLine The line of test to do the match on.
+     * @param aLineNo The line number in the file.
+     * @param aStartColNo Column on that the regexp matching starts.
+     * @return True if a match was found inside a comment.
+     */
+    private boolean commentMatch(Pattern aPattern, String aLine, int aLineNo,
+                                 int aStartColNo)
+    {
+        Matcher matcher = aPattern.matcher(aLine);
+
+        boolean hit = matcher.find();
+
+        if (hit) {
+            final int startMatch = matcher.start();
+            // -1 because it returns the char position beyond the match
+            final int endMatch = matcher.end() - 1;
+            return getFileContents().hasIntersectionWithComment(aLineNo,
+                    startMatch, aLineNo, endMatch);
+        }
+        return false;
+    }
 }

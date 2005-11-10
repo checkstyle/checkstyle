@@ -11,9 +11,6 @@
     <suppress checks="MagicNumber"
               files="UnusedPrivateMethodCheck.java"
               lines="176"/>
-    <suppress checks="MagicNumber"
-              files="JavadocMethodCheck.java"
-              lines="748,780,805"/>
     <suppress checks="ImportControl"
               files="NewlineAtEndOfFileCheck.java"
               lines="26"/>

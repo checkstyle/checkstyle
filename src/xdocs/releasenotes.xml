@@ -14,10 +14,10 @@
       <p>New features:</p>
 
       <ul>
-	<li>
-	  Applied excellent patch 1344344 by sjq to consolidate the
-	  regexp checks into one.
-	</li>
+        <li>
+          Applied excellent patch 1344344 by sjq to consolidate the
+          regexp checks into one.
+        </li>
         <li>
           Added support for property <i>ignoreStringsRegexp</i> to
           <i>MultipleStringLiterals</i> check. Patch 1254918 from taab.
@@ -49,6 +49,11 @@
           method/ctor bodies.) Thanks to Eric Roe (module
           WhitespaceAround, properties allowEmptyCtors and
           allowEmptyMethods).
+        </li>
+        <li>
+          FallThrough check can be configured to ignore fall-thoughs
+          if there is a relief comment, thanks to  Ralf (aka rakus)
+          for a great patch (rfe 1345691, patch 1348873)
         </li>
       </ul>
 
