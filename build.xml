@@ -36,7 +36,7 @@
   <property name="xdocs.dest" value="${target.dir}/docs"/>
   <property name="checkstyle.minimum.javaversion" value="1.4" />
   <property name="checkstyle.testinputs.minimum.javaversion" value="1.5" />
-  <property name="version" value="4.0-beta7" />
+  <property name="version" value="4.0" />
   <property name="testcases" value="**/*Test.java"/>
 
   <path id="build.classpath">
