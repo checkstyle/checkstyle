@@ -10,13 +10,19 @@
 
   <body>
 
-    <section name="Release 4.0 Beta OR Release Candidate">
+    <section name="Release 4.0">
       <p>New features:</p>
 
       <ul>
         <li>
-          Applied excellent patch 1344344 by sjq to consolidate the
-          regexp checks into one.
+          Applied patch 1344344 by sjq to provide the new
+	  <a href="config_misc.html#Regexp">Regexp</a> check that can
+          provide the functionality of the following
+          checks: <a
+          href="config_header.html#RegexpHeader">RegexpHeader</a>, <a
+          href="config_misc.html#GenericIllegalRegexp">GenericIllegalRegexp</a>
+          and <a
+          href="config_misc.html#RequiredRegexp">RequiredRegexp</a>.
         </li>
         <li>
           Added support for property <i>ignoreStringsRegexp</i> to
