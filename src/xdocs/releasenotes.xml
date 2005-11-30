@@ -10,13 +10,24 @@
 
   <body>
 
+    <section name="Release 4.1">
+      <p>Fixed Bugs:</p>
+
+      <ul>
+        <li>Documentation for JavadocMethod check corrected to
+        indicate that after fix for 1290379 javadoc which contains
+        only @see tag is not valid any more (bug 1369615)
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 4.0">
       <p>New features:</p>
 
       <ul>
         <li>
           Applied patch 1344344 by sjq to provide the new
-	  <a href="config_misc.html#Regexp">Regexp</a> check that can
+          <a href="config_misc.html#Regexp">Regexp</a> check that can
           provide the functionality of the following
           checks: <a
           href="config_header.html#RegexpHeader">RegexpHeader</a>, <a

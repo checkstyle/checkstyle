@@ -406,7 +406,6 @@ public boolean isSomething()
             It can be extremely painful writing or duplicating Javadoc
             for a method required for an interface. Hence checkstyle
             supports using the convention of using a single <span
-            class="code">@see</span> or <span
             class="code">{@inheritDoc}</span> tag instead of all the
             other tags. For example, if the <a
             href="#checkReturnTag">above method</a> was implementing a
@@ -414,14 +413,6 @@ public boolean isSomething()
             com.puppycrawl.tools.checkstyle.Verifier</span> interface,
             then the Javadoc could be done as:
 
-            <pre>
-/** @see com.puppycrawl.tools.checkstyle.Verifier **/
-public int checkReturnTag(final int aTagIndex,
-                          JavadocTag[] aTags,
-                          int aLineNo)
-            </pre>
-
-            or:
             <pre>
 /** {@inheritDoc} */
 public int checkReturnTag(final int aTagIndex,
