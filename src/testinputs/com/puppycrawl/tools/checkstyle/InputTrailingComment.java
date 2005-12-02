@@ -20,4 +20,8 @@ public class InputTrailingComment {
         /* comment before text */int z;
         /* int y */int y/**/;
     }
+
+    /**
+     * comment with trailing space 
+     */
 }

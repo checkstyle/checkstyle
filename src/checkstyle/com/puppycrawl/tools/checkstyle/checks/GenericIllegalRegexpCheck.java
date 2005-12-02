@@ -22,7 +22,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 
 /**
  * <p>
@@ -156,27 +155,29 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
         final Pattern pattern = getRegexp();
         final Matcher matcher = pattern.matcher(aLine);
         final boolean foundMatch = matcher.find(aStartPosition);
-        if (foundMatch) {
-            // match is found, check for intersection with comment
-            final int startCol = matcher.start(0);
-            final int endCol = matcher.end(0) - 1;
-            final FileContents fileContents = getFileContents();
-            if (fileContents.hasIntersectionWithComment(aLineNumber,
-                startCol, aLineNumber, endCol))
-            {
-                // was part of comment
-                if (endCol < aLine.length()) {
-                    // check if the expression is on the rest of the line
-                    return findNonCommentMatch(aLine, aLineNumber, endCol);
-                }
-                // end of line reached
-                return false;
-            }
-            // not intersecting with comment
-            return true;
+        if (!foundMatch) {
+            return false;
         }
-        // no match is found
-        return false;
+        // match is found, check for intersection with comment
+        final int startCol = matcher.start(0);
+        final int endCol = matcher.end(0);
+        // Note that Matcher.end(int) returns he offset AFTER the
+        // last matched character, but hasIntersectionWithComment()
+        // needs column number of the last character.
+        // So we need to use (endCol - 1) here.
+        final boolean intersectsWithComment = getFileContents()
+            .hasIntersectionWithComment(aLineNumber, startCol,
+                                        aLineNumber, endCol - 1);
+        if (intersectsWithComment) {
+            if (endCol < aLine.length()) {
+                // check if the expression is on the rest of the line
+                return findNonCommentMatch(aLine, aLineNumber, endCol);
+            }
+            // end of line reached
+            return false;
+        }
+        // not intersecting with comment
+        return true;
     }
 
     /** @return the regexp to match against */

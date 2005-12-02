@@ -18,6 +18,10 @@
         indicate that after fix for 1290379 javadoc which contains
         only @see tag is not valid any more (bug 1369615)
         </li>
+        <li>Fixed StackOverflowError in GenericIllegalRegexp check
+        which may occur if ignoreComments is true and there is an
+        illegal match in comment at the end of line. (bug 1371588)
+        </li>
       </ul>
     </section>
 
