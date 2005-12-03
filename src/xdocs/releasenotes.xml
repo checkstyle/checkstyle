@@ -22,6 +22,12 @@
         which may occur if ignoreComments is true and there is an
         illegal match in comment at the end of line. (bug 1371588)
         </li>
+        <li>InnerAssignment now ignores assignments in
+        annotations. (bug 1369425)
+        </li>
+        <li>Applied patch from Ralf (rakus) to remove javadoc's
+        complainings. (patch 1352862)
+        </li>
       </ul>
     </section>
 

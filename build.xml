@@ -175,6 +175,7 @@
     <javadoc sourcefiles="src/checkstyle/com/puppycrawl/tools/checkstyle/api/TokenTypes.java"
              classpathref="javadoc.classpath"
              encoding="iso-8859-1"
+             source="${checkstyle.minimum.javaversion}"
              failonerror="yes">
       <doclet name="com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet"
               path="${checkstyle.dest}">
@@ -581,6 +582,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
              Footer="&lt;a target=&quot;_top&quot; href=&quot;./{@docRoot}/../index.html&quot;&gt;Back to the Checkstyle Home Page&lt;/a&gt;"
              useExternalFile="yes"
              encoding="iso-8859-1"
+             source="${checkstyle.minimum.javaversion}"
              failonerror="yes" >
       <link packagelistLoc="${basedir}/config/jdk-package-list"
               offline="yes"
@@ -622,6 +624,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
 
     <javadoc sourcepath="src/checkstyle" destdir="${target.dir}/xdocs"
              classpathref="build.classpath"
+             source="${checkstyle.minimum.javaversion}"
              failonerror="yes">
       <doclet name="com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet"
               path="${checkstyle.dest}">

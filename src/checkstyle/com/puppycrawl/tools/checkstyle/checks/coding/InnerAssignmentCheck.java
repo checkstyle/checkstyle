@@ -53,6 +53,7 @@ public class InnerAssignmentCheck
         {TokenTypes.VARIABLE_DEF},
         {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_INIT},
         {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_ITERATOR},
+        {TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR},
     };
 
     /**
@@ -72,7 +73,7 @@ public class InnerAssignmentCheck
      * towards the root.
      */
     private static final int[][] ALLOWED_ASSIGMENT_IN_COMPARISON_CONTEXT = {
-        {TokenTypes.EXPR, TokenTypes.LITERAL_WHILE},
+        {TokenTypes.EXPR, TokenTypes.LITERAL_WHILE, },
     };
 
     /**
