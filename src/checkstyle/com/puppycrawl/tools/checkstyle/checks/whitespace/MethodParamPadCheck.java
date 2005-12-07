@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 
 /**
@@ -102,46 +103,25 @@ public class MethodParamPadCheck
                 return;
             }
         }
-        int parenColumnNo = parenAST.getColumnNo();
-        final String[] lines = getLines();
-        int identLineNo = -1;
-        int identColumnNo = -1;
-        final String identText;
-        final DetailAST identAST;
-        final DetailAST dotAST = aAST.findFirstToken(TokenTypes.DOT);
-        if (dotAST != null) {
-            identAST = dotAST.getLastChild();
-        }
-        else if (aAST.getType() == TokenTypes.SUPER_CTOR_CALL) {
-            identAST = aAST;
+
+        final String line = getLines()[parenAST.getLineNo() - 1];
+        if (Utils.whitespaceBefore(parenAST.getColumnNo(), line)) {
+            if (!mAllowLineBreaks) {
+                log(parenAST, "line.previous", parenAST.getText());
+            }
         }
         else {
-            identAST = aAST.findFirstToken(TokenTypes.IDENT);
-        }
-        identLineNo = identAST.getLineNo();
-        identColumnNo = identAST.getColumnNo();
-        identText = identAST.getText();
-
-        if (identLineNo == parenAST.getLineNo()) {
-            final int after = identColumnNo + identText.length();
-            final String line = lines[identLineNo - 1];
+            final int before = parenAST.getColumnNo() - 1;
             if ((PadOption.NOSPACE == getAbstractOption())
-                && (Character.isWhitespace(line.charAt(after))))
+                && (Character.isWhitespace(line.charAt(before))))
             {
-                log(identLineNo, after, "ws.followed", identText);
+                log(parenAST , "ws.preceded", parenAST.getText());
             }
             else if ((PadOption.SPACE == getAbstractOption())
-                     && !Character.isWhitespace(line.charAt(after)))
+                     && !Character.isWhitespace(line.charAt(before)))
             {
-                log(identLineNo, after, "ws.notFollowed", identText);
+                log(parenAST, "ws.notPreceded", parenAST.getText());
             }
-        }
-        else if (!mAllowLineBreaks) {
-            log(
-                parenAST.getLineNo(),
-                parenColumnNo,
-                "line.previous",
-                parenAST.getText());
         }
     }
 

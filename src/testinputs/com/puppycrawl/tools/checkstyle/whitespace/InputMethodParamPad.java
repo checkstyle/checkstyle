@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.checkstyle.whitespace;
-
+import java.util.Vector;
 /** Test input for MethodDefPadCheck */
 public class InputMethodParamPad
 {
@@ -66,5 +66,7 @@ public class InputMethodParamPad
     public void newArray()
     {
         int[] a = new int[]{0, 1};
+        java.util.Vector<String> v = new java.util.Vector<String>();
+        java.util.Vector<String> v1 = new Vector<String>();
     }
 }

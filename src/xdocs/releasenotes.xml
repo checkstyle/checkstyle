@@ -28,6 +28,11 @@
         <li>Applied patch from Ralf (rakus) to remove javadoc's
         complainings. (patch 1352862)
         </li>
+        Fixed StringIndexOutOfBoundsException which MethodParamPad may
+        throws if someone tries to create object of generic class
+        (with any params) (bug 1374792).
+        <li>
+        </li>
       </ul>
     </section>
 
