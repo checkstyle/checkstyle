@@ -7,6 +7,7 @@
   <property file="checkstyle.buildproperties" />
   <property file="${user.home}/checkstyle.buildproperties" />
 
+  <property name="version" value="4.1" />
   <property name="ant.jar" value="${ant.home}/lib/ant.jar" />
   <property name="xerces.jar" value="${ant.home}/lib/xercesImpl.jar" />
   <property name="xml-apis.jar" value="${ant.home}/lib/xml-apis.jar" />
@@ -36,7 +37,6 @@
   <property name="xdocs.dest" value="${target.dir}/docs"/>
   <property name="checkstyle.minimum.javaversion" value="1.4" />
   <property name="checkstyle.testinputs.minimum.javaversion" value="1.5" />
-  <property name="version" value="4.0" />
   <property name="testcases" value="**/*Test.java"/>
 
   <path id="build.classpath">
