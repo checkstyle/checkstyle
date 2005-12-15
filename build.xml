@@ -471,10 +471,15 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
           description="Builds the compressed distribution files">
     <delete dir="${dist.dir}/checkstyle-${version}" />
     <mkdir dir="${dist.dir}/checkstyle-${version}" />
+    <copy file="config/manifest.mf" todir="target">
+      <filterset>
+        <filter token="CHECKSTYLE_VERSION" value="${version}" />
+      </filterset>
+    </copy>
     <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-${version}.jar"
          basedir="${checkstyle.dest}"
          excludes="**/j2ee/**"
-         manifest="config/manifest.mf" />
+         manifest="target/manifest.mf" />
     <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-optional-${version}.jar"
          basedir="${checkstyle.dest}"
          includes="**/j2ee/**"/>
@@ -500,7 +505,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <delete dir="${dist.dir}/checkstyle-${version}/tmp/META-INF" />
     <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-all-${version}.jar"
          basedir="${dist.dir}/checkstyle-${version}/tmp"
-         manifest="config/manifest.mf" />
+         manifest="target/manifest.mf" />
     <delete dir="${dist.dir}/checkstyle-${version}/tmp" />
     <!-- copy stuff without filtering -->
     <copy todir="${dist.dir}/checkstyle-${version}">
