@@ -1,1 +1,6 @@
 Main-Class: com.puppycrawl.tools.checkstyle.Main
+Extension-Name: com.puppycrawl.tools.checkstyle
+Implementation-Version: 4.1
+Implementation-Vendor-Id: com.puppycrawl
+Implementation-URL: http://checkstyle.sourceforge.net/
+Specification-Version: 4.1
