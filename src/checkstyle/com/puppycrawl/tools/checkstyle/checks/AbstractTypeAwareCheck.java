@@ -23,7 +23,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.util.HashSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -149,42 +148,6 @@ public abstract class AbstractTypeAwareCheck extends Check
     }
 
     /**
-     * Calculate if one type name is a shortname for another type name.
-     * @param aShortName a shorthand, such as <code>IOException</code>
-     * @param aFullName a full name, such as <code>java.io.IOException</code>
-     * @return true iff aShortName represents the same type as aFullName
-     */
-    protected boolean isShortName(String aShortName, String aFullName)
-    {
-        if (aShortName.length() >= aFullName.length()) {
-            return false;
-        }
-
-        final String base = Utils.baseClassname(aFullName);
-        if (aShortName.length() >= aFullName.length()
-                || !base.equals(aShortName))
-        {
-            return false;
-        }
-
-        // check fully qualified import
-        if (mImports.contains(aFullName)) {
-            return true;
-        }
-
-        // check .* import
-        final int endIndex = aFullName.length() - base.length() - 1;
-        final String packageName = aFullName.substring(0, endIndex);
-        final String starImport = packageName + ".*";
-        if (mImports.contains(starImport)) {
-            return true;
-        }
-
-        // check fully qualified class from same package
-        return packageName.equals(mPackageFullIdent.getText());
-    }
-
-    /**
      * Is exception is unchecked (subclass of <code>RuntimeException</code>
      * or <code>Error</code>
      *
@@ -214,21 +177,6 @@ public abstract class AbstractTypeAwareCheck extends Check
             &&  aParent.isAssignableFrom(aChild);
     }
 
-    /**
-     * Return if two Strings represent the same type, inspecting the
-     * import statements if necessary
-     *
-     * @param aFirst first type declared in throws clause
-     * @param aSecond second type declared in thros tag
-     * @return true iff type names represent the same type
-     */
-    protected boolean isSameType(String aFirst, String aSecond)
-    {
-        return aFirst.equals(aSecond)
-                || isShortName(aFirst, aSecond)
-                || isShortName(aSecond, aFirst);
-    }
-
     /** @return <code>ClassResolver</code> for current tree. */
     private ClassResolver getClassResolver()
     {
@@ -248,8 +196,7 @@ public abstract class AbstractTypeAwareCheck extends Check
      * @return the resolved class or <code>null</code>
      *          if unable to resolve the class.
      */
-    protected final Class resolveClass(String aClassName,
-                                       String aCurrentClass)
+    protected final Class resolveClass(String aClassName, String aCurrentClass)
     {
         try {
             return getClassResolver().resolve(aClassName, aCurrentClass);
@@ -528,6 +475,13 @@ public abstract class AbstractTypeAwareCheck extends Check
         {
             return mClassInfo.getClazz();
         }
+
+        /** {@inheritDoc} */
+        public String toString()
+        {
+            return "ClassAlias[alias " + getName()
+                + " for " + mClassInfo + "]";
+        }
     }
 
     /**
@@ -582,6 +536,13 @@ public abstract class AbstractTypeAwareCheck extends Check
         public String getText()
         {
             return mText;
+        }
+
+        /** {@inheritDoc} */
+        public String toString()
+        {
+            return "Token[" + getText() + "(" + getLineNo()
+                + "x" + getColumnNo() + ")]";
         }
     }
 }

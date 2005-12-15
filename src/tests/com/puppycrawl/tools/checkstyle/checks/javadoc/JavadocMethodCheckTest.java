@@ -8,10 +8,15 @@ import java.io.File;
 
 public class JavadocMethodCheckTest extends BaseCheckTestCase
 {
+    private DefaultConfiguration mCheckConfig;
+
+    public void setUp()
+    {
+        mCheckConfig = createCheckConfig(JavadocMethodCheck.class);
+    }
+
     public void testTags() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
         final String[] expected = {
             "14:5: Missing a Javadoc comment.",
             "18:9: Unused @param tag for 'unused'.",
@@ -44,14 +49,12 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "333: Unused Javadoc tag.",
         };
 
-        verify(checkConfig, getPath("InputTags.java"), expected);
+        verify(mCheckConfig, getPath("InputTags.java"), expected);
     }
 
     public void testTagsWithResolver() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("allowUndeclaredRTE", "true");
+        mCheckConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {
             "14:5: Missing a Javadoc comment.",
             "18:9: Unused @param tag for 'unused'.",
@@ -79,13 +82,11 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "320:9: Missing a Javadoc comment.",
             "329:5: Missing a Javadoc comment.",
             "333: Unused Javadoc tag.", };
-        verify(checkConfig, getPath("InputTags.java"), expected);
+        verify(mCheckConfig, getPath("InputTags.java"), expected);
     }
 
     public void testStrictJavadoc() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
         final String[] expected = {
             "12:9: Missing a Javadoc comment.",
             "18:13: Missing a Javadoc comment.",
@@ -100,79 +101,64 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "79:5: Missing a Javadoc comment.",
             "84:5: Missing a Javadoc comment.",
             "94:32: Expected @param tag for 'aA'." };
-        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
+        verify(mCheckConfig, getPath("InputPublicOnly.java"), expected);
     }
 
     public void testNoJavadoc() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.NOTHING.getName());
+        mCheckConfig.addAttribute("scope", Scope.NOTHING.getName());
         final String[] expected = {};
-        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
+        verify(mCheckConfig, getPath("InputPublicOnly.java"), expected);
     }
 
     // pre 1.4 relaxed mode is roughly equivalent with check=protected
     public void testRelaxedJavadoc() throws Exception
     {
-
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
+        mCheckConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
             "59:5: Missing a Javadoc comment.",
             "64:5: Missing a Javadoc comment.",
             "79:5: Missing a Javadoc comment.",
             "84:5: Missing a Javadoc comment." };
-        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
+        verify(mCheckConfig, getPath("InputPublicOnly.java"), expected);
     }
 
     public void testScopeInnerInterfacesPublic() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
+        mCheckConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final String[] expected = {
             "43:9: Missing a Javadoc comment.",
             "44:9: Missing a Javadoc comment." };
-        verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
+        verify(mCheckConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
     public void testScopeAnonInnerPrivate() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
+        mCheckConfig.addAttribute("scope", Scope.PRIVATE.getName());
         final String[] expected = {};
-        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+        verify(mCheckConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
     public void testScopeAnonInnerAnonInner() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.ANONINNER.getName());
+        mCheckConfig.addAttribute("scope", Scope.ANONINNER.getName());
         final String[] expected = {
             "26:9: Missing a Javadoc comment.",
             "39:17: Missing a Javadoc comment.",
             "53:17: Missing a Javadoc comment.", };
-        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+        verify(mCheckConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
     public void testScopeAnonInnerWithResolver() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("allowUndeclaredRTE", "true");
+        mCheckConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {};
-        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+        verify(mCheckConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
     public void testTagsWithSubclassesAllowed() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
+        mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         final String[] expected = {
             "14:5: Missing a Javadoc comment.",
             "18:9: Unused @param tag for 'unused'.",
@@ -200,13 +186,11 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "320:9: Missing a Javadoc comment.",
             "329:5: Missing a Javadoc comment.",
             "333: Unused Javadoc tag.", };
-        verify(checkConfig, getPath("InputTags.java"), expected);
+        verify(mCheckConfig, getPath("InputTags.java"), expected);
     }
 
     public void testScopes() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
         final String[] expected = {
             "8:5: Missing a Javadoc comment.",
             "9:5: Missing a Javadoc comment.",
@@ -244,30 +228,26 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "104:9: Missing a Javadoc comment.",
             "105:9: Missing a Javadoc comment.",
             "106:9: Missing a Javadoc comment.", };
-        verify(checkConfig, getPath("javadoc" + File.separator
+        verify(mCheckConfig, getPath("javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
     }
 
     public void testScopes2() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
+        mCheckConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
             "8:5: Missing a Javadoc comment.",
             "9:5: Missing a Javadoc comment.",
             "19:9: Missing a Javadoc comment.",
             "20:9: Missing a Javadoc comment.", };
-        verify(checkConfig, getPath("javadoc" + File.separator
+        verify(mCheckConfig, getPath("javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
     }
 
     public void testExcludeScope() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
-        checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
+        mCheckConfig.addAttribute("scope", Scope.PRIVATE.getName());
+        mCheckConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
         final String[] expected = {
             "10:5: Missing a Javadoc comment.",
             "11:5: Missing a Javadoc comment.",
@@ -301,24 +281,20 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "104:9: Missing a Javadoc comment.",
             "105:9: Missing a Javadoc comment.",
             "106:9: Missing a Javadoc comment.", };
-        verify(checkConfig, getPath("javadoc" + File.separator
+        verify(mCheckConfig, getPath("javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
     }
 
     public void testAllowMissingJavadoc() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("allowMissingJavadoc", "true");
+        mCheckConfig.addAttribute("allowMissingJavadoc", "true");
         final String[] expected = {};
-        verify(checkConfig, getPath("javadoc" + File.separator
+        verify(mCheckConfig, getPath("javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
     }
 
     public void testSetterGetterOff() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
         final String[] expected = {
             "5:5: Missing a Javadoc comment.",
             "10:5: Missing a Javadoc comment.",
@@ -329,15 +305,13 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "35:5: Missing a Javadoc comment.",
             "41:5: Missing a Javadoc comment.",
             "46:5: Missing a Javadoc comment.", };
-        verify(checkConfig, getPath("javadoc" + File.separator
+        verify(mCheckConfig, getPath("javadoc" + File.separator
                                     + "InputSetterGetter.java"), expected);
     }
 
     public void testSetterGetterOn() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("allowMissingPropertyJavadoc", "true");
+        mCheckConfig.addAttribute("allowMissingPropertyJavadoc", "true");
         final String[] expected = {
             "15:5: Missing a Javadoc comment.",
             "20:5: Missing a Javadoc comment.",
@@ -345,52 +319,42 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "30:5: Missing a Javadoc comment.",
             "35:5: Missing a Javadoc comment.",
             "41:5: Missing a Javadoc comment.", };
-        verify(checkConfig, getPath("javadoc" + File.separator
+        verify(mCheckConfig, getPath("javadoc" + File.separator
                                     + "InputSetterGetter.java"), expected);
     }
 
     public void testTypeParamsTags() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
         final String[] expected = {
             "26:8: Unused @param tag for '<BB>'.",
             "28:13: Expected @param tag for '<Z>'.", };
-        verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
+        verify(mCheckConfig, getPath("InputTypeParamsTags.java"), expected);
     }
 
     public void test_1168408_1() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
         final String[] expected = {};
-        verify(checkConfig, getPath("javadoc/Test1.java"), expected);
+        verify(mCheckConfig, getPath("javadoc/Test1.java"), expected);
     }
 
     public void test_1168408_2() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
         final String[] expected = {};
-        verify(checkConfig, getPath("javadoc/Test2.java"), expected);
+        verify(mCheckConfig, getPath("javadoc/Test2.java"), expected);
     }
 
     public void test_1168408_3() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
-        checkConfig.addAttribute("allowUndeclaredRTE", "true");
+        mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
+        mCheckConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {};
-        verify(checkConfig, getPath("javadoc/Test3.java"), expected);
+        verify(mCheckConfig, getPath("javadoc/Test3.java"), expected);
     }
 
     public void test_generics_1() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
-        checkConfig.addAttribute("allowUndeclaredRTE", "true");
+        mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
+        mCheckConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {
             "15:34: Expected @throws tag for 'RE'.",
             "23:37: Expected @throws tag for 'RE'.",
@@ -399,14 +363,12 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "41:38: Expected @throws tag for 'RuntimeException'.",
             "42:13: Expected @throws tag for 'java.lang.RuntimeException'.",
         };
-        verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
+        verify(mCheckConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
 
     public void test_generics_2() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
+        mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         final String[] expected = {
             "15:34: Expected @throws tag for 'RE'.",
             "23:37: Expected @throws tag for 'RE'.",
@@ -415,13 +377,11 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "41:38: Expected @throws tag for 'RuntimeException'.",
             "42:13: Expected @throws tag for 'java.lang.RuntimeException'.",
         };
-        verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
+        verify(mCheckConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
 
     public void test_generics_3() throws Exception
     {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(JavadocMethodCheck.class);
         final String[] expected = {
             "6:8: Unused @throws tag for 'RE'.",
             "15:34: Expected @throws tag for 'RE'.",
@@ -430,6 +390,14 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
             "41:38: Expected @throws tag for 'RuntimeException'.",
             "42:13: Expected @throws tag for 'java.lang.RuntimeException'.",
         };
-        verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
+        verify(mCheckConfig, getPath("javadoc/TestGenerics.java"), expected);
+    }
+
+    public void test_1379666() throws Exception
+    {
+        mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
+        mCheckConfig.addAttribute("allowUndeclaredRTE", "true");
+        final String[] expected = {};
+        verify(mCheckConfig, getPath("javadoc/Test_1379666.java"), expected);
     }
 }

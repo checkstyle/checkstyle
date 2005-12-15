@@ -153,7 +153,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
             final ClassInfo ci = (ClassInfo) known.next();
             final Token fi = ci.getName();
 
-            if (isSameType(fi.getText(), aExc.getText())) {
+            if (ci.getClazz() == newClassInfo.getClazz()) {
                 shouldAdd = false;
                 log(aExc.getLineNo(), aExc.getColumnNo(),
                     "redundant.throws.duplicate", aExc.getText());

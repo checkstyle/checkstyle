@@ -50,6 +50,7 @@ public class ClassResolver
         mLoader = aLoader;
         mPkg = aPkg;
         mImports = aImports;
+        mImports.add("java.lang.*");
     }
 
     /**
@@ -68,17 +69,9 @@ public class ClassResolver
         throws ClassNotFoundException
     {
         // See if the class is full qualified
-        if (isLoadable(aName)) {
-            return safeLoad(aName);
-        }
-        //Perhaps it's fully-qualified inner class
-        int dotIdx = aName.lastIndexOf(".");
-        if (dotIdx != -1) {
-            final String cn = aName.substring(0, dotIdx) + "$"
-                + aName.substring(dotIdx + 1);
-            if (isLoadable(cn)) {
-                return safeLoad(cn);
-            }
+        Class clazz = resolveQualifiedName(aName);
+        if (clazz != null) {
+            return clazz;
         }
 
         // try matching explicit imports
@@ -90,27 +83,19 @@ public class ClassResolver
             // "SecurityDataException". This has been the cause of a very
             // difficult bug to resolve!
             if (imp.endsWith("." + aName)) {
-                if (isLoadable(imp)) {
-                    return safeLoad(imp);
+                clazz = resolveQualifiedName(imp);
+                if (clazz != null) {
+                    return clazz;
                 }
-                // perhaps this is a import for inner class
-                // let's try load it.
-                final int dot = imp.lastIndexOf(".");
-                if (dot != -1) {
-                    final String innerName = imp.substring(0, dot) + "$"
-                        + imp.substring(dot + 1);
-                    if (isLoadable(innerName)) {
-                        return safeLoad(innerName);
-                    }
-                }
+
             }
         }
 
         // See if in the package
         if (!"".equals(mPkg)) {
-            final String fqn = mPkg + "." + aName;
-            if (isLoadable(fqn)) {
-                return safeLoad(fqn);
+            clazz = resolveQualifiedName(mPkg + "." + aName);
+            if (clazz != null) {
+                return clazz;
             }
         }
 
@@ -123,12 +108,6 @@ public class ClassResolver
             }
         }
 
-        // try "java.lang."
-        final String langClass = "java.lang." + aName;
-        if (isLoadable(langClass)) {
-            return safeLoad(langClass);
-        }
-
         // try star imports
         it = mImports.iterator();
         while (it.hasNext()) {
@@ -136,8 +115,9 @@ public class ClassResolver
             if (imp.endsWith(".*")) {
                 final String fqn = imp.substring(0, imp.lastIndexOf('.') + 1)
                     + aName;
-                if (isLoadable(fqn)) {
-                    return safeLoad(fqn);
+                clazz = resolveQualifiedName(fqn);
+                if (clazz != null) {
+                    return clazz;
                 }
             }
         }
@@ -176,5 +156,35 @@ public class ClassResolver
         // loader. The magic is having the "false" parameter. This means the
         // class will not be initialised. Very, very important.
         return Class.forName(aName, false, mLoader);
+    }
+
+    /**
+     * Tries to resolve a class for fully-specified name.
+     * @param aName a given name of class.
+     * @return Class object for the given name or null.
+     */
+    private Class resolveQualifiedName(final String aName)
+    {
+        try {
+            if (isLoadable(aName)) {
+                return safeLoad(aName);
+            }
+            //Perhaps it's fully-qualified inner class
+            final int dot = aName.lastIndexOf(".");
+            if (dot != -1) {
+                final String innerName =
+                    aName.substring(0, dot) + "$" + aName.substring(dot + 1);
+                if (isLoadable(innerName)) {
+                    return safeLoad(innerName);
+                }
+            }
+        }
+        catch (ClassNotFoundException ex) {
+            // we shouldn't get this exception here,
+            // so this is unexpected runtime exception
+            throw new RuntimeException(ex);
+        }
+
+        return null;
     }
 }

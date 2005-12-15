@@ -700,7 +700,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 final Token fi = ei.getName();
                 final String declaredEx = fi.getText();
 
-                if (isSameType(declaredEx, documentedEx)) {
+                if (documentedCI.getClazz() == ei.getClazz()) {
                     found = true;
                     ei.setFound();
                     foundThrows.add(documentedEx);
