@@ -14,25 +14,32 @@
       <p>Fixed Bugs:</p>
 
       <ul>
-        <li>Documentation for JavadocMethod check corrected to
-        indicate that after fix for 1290379 javadoc which contains
-        only @see tag is not valid any more (bug 1369615)
-        </li>
-        <li>Fixed StackOverflowError in GenericIllegalRegexp check
-        which may occur if ignoreComments is true and there is an
-        illegal match in comment at the end of line. (bug 1371588)
-        </li>
-        <li>InnerAssignment now ignores assignments in
-        annotations. (bug 1369425)
-        </li>
-        <li>Applied patch from Ralf (rakus) to remove javadoc's
-        complainings. (patch 1352862)
-        </li>
-        Fixed StringIndexOutOfBoundsException which MethodParamPad may
-        throws if someone tries to create object of generic class
-        (with any params) (bug 1374792).
         <li>
+	  Documentation for JavadocMethod check corrected to indicate
+          that after fix for 1290379 javadoc which contains only @see
+          tag is not valid any more (bug 1369615)
         </li>
+        <li>
+	  Fixed StackOverflowError in GenericIllegalRegexp check
+          which may occur if ignoreComments is true and there is an
+          illegal match in comment at the end of line. (bug 1371588)
+        </li>
+        <li>
+	  InnerAssignment now ignores assignments in annotations. (bug
+          1369425)
+        </li>
+        <li>
+	  Applied patch from Ralf (rakus) to remove javadoc's
+          complainings. (patch 1352862)
+        </li>
+        <li>
+          Fixed StringIndexOutOfBoundsException which MethodParamPad may
+          throws if someone tries to create object of generic class
+          (with any params) (bug 1374792).
+        </li>
+	<li>
+	  Added information to the manifest file. (bug 1380322).
+	</li>
       </ul>
     </section>
 
