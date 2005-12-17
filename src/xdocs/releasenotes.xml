@@ -14,6 +14,12 @@
 
       <ul>
         <li>
+          First attempt to fix 1000092 (RightCurlyCheck misbehaves for
+          LIT_CATCH).  The check ahs been rewritten to check rcurly
+          after finally and else.  Current behavior is incompatible
+          with previous one.
+        </li>
+        <li>
           Fixed problem in type aware checks with loading
           inner-classes which were referenced as
           &lt;outer_class_name&gt;.&lt;inner_class_name&gt; (bug

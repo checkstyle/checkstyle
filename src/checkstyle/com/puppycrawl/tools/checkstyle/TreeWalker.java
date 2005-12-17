@@ -147,7 +147,7 @@ public final class TreeWalker
         // tree processing (iterative and recursive.
         // Recursive is default for now.
         String recursive =
-            System.getProperty("checkstyle.use.recursive.algorithm", "true");
+            System.getProperty("checkstyle.use.recursive.algorithm", "false");
         mRecursive = "true".equals(recursive);
         if (mRecursive) {
             sLog.debug("TreeWalker uses recursive algorithm");

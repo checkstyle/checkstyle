@@ -69,7 +69,6 @@ class InputLeftCurlyOther
             return 1;
         else
             return 2;
-
     }
 
     // Test static initialiser
@@ -79,9 +78,22 @@ class InputLeftCurlyOther
     }
 
 
+
     public enum GreetingsEnum
     {
         HELLO,
         GOODBYE
     };
+
+    void method2()
+    {
+        boolean flag = true;
+        if (flag) {
+            System.out.println("heh");
+            flag = !flag; } System.err.
+              println("Xe-xe");
+        // it is ok to have rcurly on the same line as previous
+        // statement if lcurly on the same line.
+        if (flag) { System.err.println("it is ok."); }
+    }
 }

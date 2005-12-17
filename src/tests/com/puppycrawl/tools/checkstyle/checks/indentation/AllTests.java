@@ -6,7 +6,7 @@ import junit.framework.TestSuite;
 public class AllTests {
 
     public static void main(String[] args) {
-        junit.textui.TestRunner.run(AllTests.class);
+        junit.textui.TestRunner.run(AllTests.suite());
     }
 
     public static Test suite() {
