@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  {@link TokenTypes#LNOT LNOT},
  *  {@link TokenTypes#UNARY_MINUS UNARY_MINUS},
  *  {@link TokenTypes#UNARY_PLUS UNARY_PLUS}.
+ *  {@link TokenTypes#TYPECAST TYPECAST}.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -60,8 +61,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author lkuehne
  * @version 1.0
  */
-public class NoWhitespaceAfterCheck
-    extends Check
+public class NoWhitespaceAfterCheck extends Check
 {
     /** Whether whitespace is allowed if the AST is at a linebreak */
     private boolean mAllowLineBreaks = true;
@@ -78,15 +78,20 @@ public class NoWhitespaceAfterCheck
             TokenTypes.BNOT,
             TokenTypes.LNOT,
             TokenTypes.DOT,
+            TokenTypes.TYPECAST,
         };
     }
 
     /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
-        final String[] lines = getLines();
-        final String line = lines[aAST.getLineNo() - 1];
-        final int after = aAST.getColumnNo() + aAST.getText().length();
+        DetailAST targetAST = aAST;
+        if (targetAST.getType() == TokenTypes.TYPECAST) {
+            targetAST = targetAST.findFirstToken(TokenTypes.RPAREN);
+        }
+        final String line = getLines()[aAST.getLineNo() - 1];
+        final int after =
+            targetAST.getColumnNo() + targetAST.getText().length();
 
         if (after >= line.length()
             || Character.isWhitespace(line.charAt(after)))
@@ -98,7 +103,8 @@ public class NoWhitespaceAfterCheck
                 }
             }
             if (flag) {
-                log(aAST.getLineNo(), after, "ws.followed", aAST.getText());
+                log(targetAST.getLineNo(), after,
+                    "ws.followed", targetAST.getText());
             }
         }
     }

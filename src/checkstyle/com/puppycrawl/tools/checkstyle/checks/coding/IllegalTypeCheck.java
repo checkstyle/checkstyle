@@ -45,6 +45,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
 {
     /** Default value of pattern for illegal class name. */
     private static final String DEFAULT_FORMAT = "^(.*[\\.])?Abstract.*$";
+    /** Abstract classes legal by default. */
+    private static final String[] DEFAULT_LEGAL_ABSTRACT_NAMES = {};
     /** Types illegal by default. */
     private static final String[] DEFAULT_ILLEGAL_TYPES = {
         "GregorianCalendar",
@@ -71,8 +73,16 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
         "java.util.Vector",
     };
 
+    /** Default ignored method names. */
+    private static final String[] DEFAULT_IGNORED_METHOD_NAMES = {
+        "getInitialContext",
+        "getEnvironment",
+    };
+
     /** illegal classes. */
     private final Set mIllegalClassNames = new HashSet();
+    /** legal abstract classes. */
+    private final Set mLegalAbstractClassNames = new HashSet();
     /** methods which should be ignored. */
     private final Set mIgnoredMethodNames = new HashSet();
 
@@ -81,10 +91,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     {
         super(DEFAULT_FORMAT);
         setIllegalClassNames(DEFAULT_ILLEGAL_TYPES);
-        setIgnoredMethodNames(new String[] {
-            "getInitialContext",
-            "getEnvironment",
-        });
+        setLegalAbstractClassNames(DEFAULT_LEGAL_ABSTRACT_NAMES);
+        setIgnoredMethodNames(DEFAULT_IGNORED_METHOD_NAMES);
     }
 
     /** {@inheritDoc} */
@@ -173,7 +181,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     private boolean isMatchingClassName(String aClassName)
     {
         return mIllegalClassNames.contains(aClassName)
-            || getRegexp().matcher(aClassName).find();
+            || (!mLegalAbstractClassNames.contains(aClassName)
+                && getRegexp().matcher(aClassName).find());
     }
 
     /**
@@ -207,7 +216,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     }
 
     /**
-     * Set the list of illegal variable types.
+     * Get the list of illegal variable types.
      * @return array of illegal variable types
      */
     public String[] getIllegalClassNames()
@@ -228,11 +237,32 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     }
 
     /**
-     * Set the list of ignored method names.
+     * Get the list of ignored method names.
      * @return array of ignored method names
      */
     public String[] getIgnoredMethodNames()
     {
         return (String[]) mIgnoredMethodNames.toArray(new String[0]);
+    }
+
+    /**
+     * Set the list of legal abstract class names.
+     * @param aClassNames array of legal abstract class names
+     */
+    public void setLegalAbstractClassNames(String[] aClassNames)
+    {
+        mLegalAbstractClassNames.clear();
+        for (int i = 0; i < aClassNames.length; i++) {
+            mLegalAbstractClassNames.add(aClassNames[i]);
+        }
+    }
+
+    /**
+     * Get the list of legal abstract class names.
+     * @return array of legal abstract class names
+     */
+    public String[] getLegalAbstractClassNames()
+    {
+        return (String[]) mLegalAbstractClassNames.toArray(new String[0]);
     }
 }

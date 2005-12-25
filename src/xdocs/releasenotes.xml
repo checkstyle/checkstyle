@@ -10,6 +10,24 @@
 
   <body>
     <section name="Release 4.2">
+      <p>New features:</p>
+
+      <ul>
+        <li>
+         NoWhitespaceAfter check now accepts TYPECAST token to check is there
+         is no whitespace after typecast. (rfe 1248106).
+        </li>
+        <li>
+         IllegalType can be configured to accept some abstract classes which
+         matches to regexp of illegal type names (property legalAbstractClassNames,
+         rfe 953266).  Thanks to Paul Guyot (pguyot) for submitting patch.
+        </li>
+        <li>
+          TrailingComment now can be configured to accept some trailing comments
+          (such as NOI18N) (property legalComment, rfe 1385344).
+        </li>
+      </ul>
+
       <p>Fixed Bugs:</p>
 
       <ul>

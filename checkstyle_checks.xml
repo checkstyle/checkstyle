@@ -82,7 +82,9 @@
         <module name="MethodParamPad"/>
         <module name="ModifierOrder"/>
         <module name="NeedBraces"/>
-        <module name="NoWhitespaceAfter"/>
+        <module name="NoWhitespaceAfter">
+            <property name="tokens" value="ARRAY_INIT, BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS" />
+        </module>
 
         <module name="NoWhitespaceBefore"/>
         <module name="NoWhitespaceBefore">

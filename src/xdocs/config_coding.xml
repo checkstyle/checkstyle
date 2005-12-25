@@ -1572,7 +1572,7 @@ if (&quot;something&quot;.equals(x))
         <p>
           Rationale: Helps reduce coupling on concrete classes. In addition
           abstract classes should be thought of a convenience base class
-          implementations of interfaces and as such are not types themsleves.
+          implementations of interfaces and as such are not types themselves.
         </p>
       </subsection>
 
@@ -1615,6 +1615,12 @@ if (&quot;something&quot;.equals(x))
             java.util.TreeMap, java.util.Vector&quot;</td>
           </tr>
           <tr>
+          <td>legalAbstractClassNames</td>
+          <td>abstract classes that may be used as types. </td>
+          <td><a href="property_types.html#stringSet">String Set</a></td>
+          <td></td>
+        </tr>
+        <tr>
             <td>ignoredMethodNames</td>
             <td>methods that should not be checked</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>

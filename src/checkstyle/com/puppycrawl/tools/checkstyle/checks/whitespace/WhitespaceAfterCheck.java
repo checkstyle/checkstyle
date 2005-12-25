@@ -68,7 +68,6 @@ public class WhitespaceAfterCheck
     /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
-        final String[] lines = getLines();
         final Object[] message;
         final DetailAST targetAST;
         if (aAST.getType() == TokenTypes.TYPECAST) {
@@ -80,7 +79,7 @@ public class WhitespaceAfterCheck
             targetAST = aAST;
             message = new Object[]{aAST.getText()};
         }
-        final String line = lines[targetAST.getLineNo() - 1];
+        final String line = getLines()[targetAST.getLineNo() - 1];
         final int after =
             targetAST.getColumnNo() + targetAST.getText().length();
 

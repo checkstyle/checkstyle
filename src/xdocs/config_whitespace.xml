@@ -273,38 +273,42 @@ for (Iterator foo = very.long.line.iterator();
               subset of tokens <a
               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">ARRAY_INIT</a>,
               <a
-               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BNOT">BNOT</a>,
-               <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DEC">DEC</a>,
-                <a
-                 href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
-                 <a
-                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INC">INC</a>,
-                  <a
-                   href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LNOT">LNOT</a>,
-                   <a
-                    href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">UNARY_MINUS</a>,
-                    <a
-            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">UNARY_PLUS</a>
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BNOT">BNOT</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DEC">DEC</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INC">INC</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LNOT">LNOT</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">UNARY_MINUS</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">UNARY_PLUS</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">TYPECAST</a>
             </td>
 
             <td>
               <a
-               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">ARRAY_INIT</a>,
-               <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BNOT">BNOT</a>,
-                <a
-                 href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DEC">DEC</a>,
-                 <a
-                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
-                  <a
-                   href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INC">INC</a>,
-                   <a
-                    href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LNOT">LNOT</a>,
-                    <a
-                     href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">UNARY_MINUS</a>,
-                     <a
-                     href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">UNARY_PLUS</a>
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">ARRAY_INIT</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BNOT">BNOT</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DEC">DEC</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INC">INC</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LNOT">LNOT</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">UNARY_MINUS</a>,
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">UNARY_PLUS</a>
+              <a
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">TYPECAST</a>
             </td>
           </tr>
         </table>

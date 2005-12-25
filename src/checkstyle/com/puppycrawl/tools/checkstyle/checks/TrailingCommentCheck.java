@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
 
@@ -102,6 +104,25 @@ public class TrailingCommentCheck extends AbstractFormatCheck
 {
     /** default format for allowed blank line. */
     private static final String DEFAULT_FORMAT = "^[\\s\\}\\);]*$";
+
+    /** pattern for legal trailing comment. */
+    private Pattern mLegalComment;
+
+    /**
+     * Sets patter for legal trailing comments.
+     * @param aFormat format to set.
+     * @throws ConversionException unable to parse a given format.
+     */
+    public void setLegalComment(final String aFormat)
+        throws ConversionException
+    {
+        try {
+            mLegalComment = Utils.getPattern(aFormat);
+        }
+        catch (PatternSyntaxException e) {
+            throw new ConversionException("unable to parse " + aFormat, e);
+        }
+    }
     /**
      * Creates new instance of the check.
      * @throws ConversionException unable to parse DEFAULT_FORMAT.
@@ -139,14 +160,14 @@ public class TrailingCommentCheck extends AbstractFormatCheck
 
             final String line = getLines()[lineNo.intValue() - 1];
             String lineBefore = "";
+            TextBlock comment = null;
             if (cppComments.containsKey(lineNo)) {
-                final TextBlock comment = (TextBlock) cppComments.get(lineNo);
+                comment = (TextBlock) cppComments.get(lineNo);
                 lineBefore = line.substring(0, comment.getStartColNo());
             }
             else if (cComments.containsKey(lineNo)) {
                 final List commentList = (List) cComments.get(lineNo);
-                final TextBlock comment =
-                    (TextBlock) commentList.get(commentList.size() - 1);
+                comment = (TextBlock) commentList.get(commentList.size() - 1);
                 lineBefore = line.substring(0, comment.getStartColNo());
                 if (comment.getText().length == 1) {
                     final String lineAfter =
@@ -157,9 +178,37 @@ public class TrailingCommentCheck extends AbstractFormatCheck
                     }
                 }
             }
-            if (!blankLinePattern.matcher(lineBefore).find()) {
+            if (comment != null && !blankLinePattern.matcher(lineBefore).find()
+                && !isLegalComment(comment))
+            {
                 log(lineNo.intValue(), "trailing.comments");
             }
         }
+    }
+
+    /**
+     * Checks if given comment is legal (single-line and matches to the
+     * pattern).
+     * @param aComment comment to check.
+     * @return true if the comment if legal.
+     */
+    private boolean isLegalComment(final TextBlock aComment)
+    {
+        if (mLegalComment == null) {
+            return false;
+        }
+        // multi-line comment can not be legal
+        if (aComment.getStartLineNo() != aComment.getEndLineNo()) {
+            return false;
+        }
+        String commentText = aComment.getText()[0];
+        // remove chars which start comment
+        commentText = commentText.substring(2);
+        // if this is a C-style comment we need to remove its end
+        if (commentText.endsWith("*/")) {
+            commentText = commentText.substring(0, commentText.length() - 2);
+        }
+        commentText = commentText.trim();
+        return mLegalComment.matcher(commentText).find();
     }
 }
