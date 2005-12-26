@@ -26,6 +26,10 @@
           TrailingComment now can be configured to accept some trailing comments
           (such as NOI18N) (property legalComment, rfe 1385344).
         </li>
+        <li>
+          Added WriteTag check which outputs a JavaDoc tag as information (patch 902110)
+          Thanks to Daniel Grenner (dgrenner) for contribution.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

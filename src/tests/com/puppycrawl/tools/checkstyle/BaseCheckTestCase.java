@@ -32,7 +32,7 @@ public abstract class BaseCheckTestCase
         public void fileStarted(AuditEvent evt) {}
     }
 
-    private final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
+    protected final ByteArrayOutputStream mBAOS = new ByteArrayOutputStream();
     protected final PrintStream mStream = new PrintStream(mBAOS);
     protected final Properties mProps = new Properties();
 

@@ -334,6 +334,7 @@
     <mkdir dir="${target.dir}/style/noframes"/>
     <mkdir dir="${target.dir}/style/simple"/>
     <mkdir dir="${target.dir}/style/csv"/>
+    <mkdir dir="target/style/author"/>
     <style basedir="${target.dir}"
            destdir="${target.dir}/style/noframes"
            includes="cs_errors.xml"
@@ -349,6 +350,10 @@
     <style out="${target.dir}/style/csv/report-csv.txt"
            in="${target.dir}/cs_errors.xml"
            style="contrib/checkstyle-csv.xsl"/>
+    <style basedir="target"
+           destdir="target/style/author"
+           includes="cs_errors.xml"
+           style="contrib/checkstyle-author.xsl"/>
   </target>
 
   <!-- Targets to verify that JUnit is in the classpath -->

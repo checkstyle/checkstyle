@@ -682,5 +682,109 @@ public int checkReturnTag(final int aTagIndex,
         </p>
       </subsection>
     </section>
+
+    <section name="WriteTag">
+      <subsection name="Description">
+        <p>
+         Outputs a JavaDoc tag as information. Can be used e.g. with the stylesheets
+         that sort the report by author name.
+         To define the format for a tag, set property tagFormat to a regular expression.
+         This check uses two different severity levels. The normal one is used for
+         reporting when the tag is missing. The additional one (tagSeverity) is used
+         for the level of reporting when the tag exists. 
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+	  <tr>
+	    <td>tag</td>
+	    <td>Name of tag</td>
+	    <td><a href="property_types.html#string">String</a></td>
+           <td><span class="default">null</span></td>
+          </tr>
+	  <tr>
+	    <td>tagFormat</td>
+	    <td>Format of tag</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">null</span></td>
+          </tr>
+	  <tr>
+	    <td>tagSeverity</td>
+	    <td>Severity level when tag is found and printed</td>
+	    <td><a href="property_types.html#severity">severity</a></td>
+            <td><span class="default">info</span></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+        An example of how to configure the check for printing author name is:
+        </p>
+
+        <source>
+        &lt;module name="WriteTag"&gt;
+           &lt;property name="tag" value="@author"/&gt;
+           &lt;property name="tagFormat" value="\S"/&gt;
+        &lt;/module&gt;
+        </source>
+
+        <p>
+         An example of how to configure the check to print warnings if an
+         "@incomplete" tag is found, and not print anything if it is not found:
+        </p>
+
+        <source>
+        &lt;module name="WriteTag"&gt;
+           &lt;property name="tag" value="@incomplete"/&gt;
+           &lt;property name="tagFormat" value="\S"/&gt;
+           &lt;property name="severity" value="ignore"/&gt;
+           &lt;property name="tagSeverity" value="warning"/&gt;
+        &lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check for javadoc which is in <span
+          class="default">private</span>, but not in <span
+          class="default">package</span> scope:
+        </p>
+
+        <source>
+&lt;module name="JavadocStyle"&gt;
+   &lt;property name="scope" value="private"/&gt;
+   &lt;property name="excludeScope" value="package"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check to turn off first sentence checking:
+        </p>
+
+        <source>
+&lt;module name="JavadocStyle"&gt;
+   &lt;property name="checkFirstSentence" value="false"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
   </body>
 </document>

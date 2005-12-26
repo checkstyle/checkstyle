@@ -18,6 +18,7 @@ public class AllTests {
         suite.addTest(new TestSuite(JavadocTypeCheckTest.class));
         suite.addTest(new TestSuite(JavadocVariableCheckTest.class));
         suite.addTest(new TestSuite(PackageHtmlCheckTest.class));
+        suite.addTest(new TestSuite(WriteTagCheckTest.class));
 
         return suite;
     }
