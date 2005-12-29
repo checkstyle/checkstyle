@@ -62,6 +62,9 @@ public final class LocalizedMessage
     /** the severity level **/
     private final SeverityLevel mSeverityLevel;
 
+    /** the id of the module generating the message. */
+    private final String mModuleId;
+
     /** the default severity level if one is not specified */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
 
@@ -133,6 +136,7 @@ public final class LocalizedMessage
      * @param aKey the key to locate the translation
      * @param aArgs arguments for the translation
      * @param aSeverityLevel severity level for the message
+     * @param aModuleId the id of the module the message is associated with
      * @param aSourceClass the Class that is the source of the message
      */
     public LocalizedMessage(int aLineNo,
@@ -141,6 +145,7 @@ public final class LocalizedMessage
                             String aKey,
                             Object[] aArgs,
                             SeverityLevel aSeverityLevel,
+                            String aModuleId,
                             Class aSourceClass)
     {
         mLineNo = aLineNo;
@@ -149,6 +154,7 @@ public final class LocalizedMessage
         mArgs = aArgs;
         mBundle = aBundle;
         mSeverityLevel = aSeverityLevel;
+        mModuleId = aModuleId;
         mSourceClass = aSourceClass;
     }
 
@@ -160,6 +166,7 @@ public final class LocalizedMessage
      * @param aBundle resource bundle name
      * @param aKey the key to locate the translation
      * @param aArgs arguments for the translation
+     * @param aModuleId the id of the module the message is associated with
      * @param aSourceClass the Class that is the source of the message
      */
     public LocalizedMessage(int aLineNo,
@@ -167,6 +174,7 @@ public final class LocalizedMessage
                             String aBundle,
                             String aKey,
                             Object[] aArgs,
+                            String aModuleId,
                             Class aSourceClass)
     {
         this(aLineNo,
@@ -175,6 +183,7 @@ public final class LocalizedMessage
              aKey,
              aArgs,
              DEFAULT_SEVERITY,
+             aModuleId,
              aSourceClass);
     }
 
@@ -186,6 +195,7 @@ public final class LocalizedMessage
      * @param aKey the key to locate the translation
      * @param aArgs arguments for the translation
      * @param aSeverityLevel severity level for the message
+     * @param aModuleId the id of the module the message is associated with
      * @param aSourceClass the source class for the message
      */
     public LocalizedMessage(int aLineNo,
@@ -193,9 +203,11 @@ public final class LocalizedMessage
                             String aKey,
                             Object[] aArgs,
                             SeverityLevel aSeverityLevel,
+                            String aModuleId,
                             Class aSourceClass)
     {
-        this(aLineNo, 0, aBundle, aKey, aArgs, aSeverityLevel, aSourceClass);
+        this(aLineNo, 0, aBundle, aKey, aArgs, aSeverityLevel, aModuleId,
+                aSourceClass);
     }
 
     /**
@@ -206,6 +218,7 @@ public final class LocalizedMessage
      * @param aBundle name of a resource bundle that contains error messages
      * @param aKey the key to locate the translation
      * @param aArgs arguments for the translation
+     * @param aModuleId the id of the module the message is associated with
      * @param aSourceClass the name of the source for the message
      */
     public LocalizedMessage(
@@ -213,9 +226,11 @@ public final class LocalizedMessage
         String aBundle,
         String aKey,
         Object[] aArgs,
+        String aModuleId,
         Class aSourceClass)
     {
-        this(aLineNo, 0, aBundle, aKey, aArgs, DEFAULT_SEVERITY, aSourceClass);
+        this(aLineNo, 0, aBundle, aKey, aArgs, DEFAULT_SEVERITY, aModuleId,
+                aSourceClass);
     }
 
     /** @return the translated message **/
@@ -275,6 +290,12 @@ public final class LocalizedMessage
     public SeverityLevel getSeverityLevel()
     {
         return mSeverityLevel;
+    }
+
+    /** @return the module identifier. */
+    public String getModuleId()
+    {
+        return mModuleId;
     }
 
     /**

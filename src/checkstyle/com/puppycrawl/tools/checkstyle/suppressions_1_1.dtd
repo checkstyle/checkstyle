@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Add the following to any file that is to be validated against this DTD:
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+-->
+
+<!ELEMENT suppressions (suppress*)>
+
+<!ELEMENT suppress EMPTY>
+<!ATTLIST suppress files CDATA #REQUIRED
+                   checks CDATA #IMPLIED
+                   id CDATA #IMPLIED
+                   lines CDATA #IMPLIED
+                   columns CDATA #IMPLIED>

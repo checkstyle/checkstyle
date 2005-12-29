@@ -165,6 +165,7 @@ public class NewlineAtEndOfFileCheck
                 Defn.CHECKSTYLE_BUNDLE,
                 key,
                 args,
+                getId(),
                 this.getClass());
         getMessageCollector().add(message);
         Utils.getExceptionLogger().debug("IOException occured.", aEx);

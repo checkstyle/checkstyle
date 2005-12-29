@@ -31,15 +31,19 @@ public class SuppressionsLoaderTest extends TestCase
                 System.getProperty("testinputs.dir")
                 + "/suppressions_multiple.xml");
         final FilterSet fc2 = new FilterSet();
-        SuppressElement se0 = new SuppressElement("file0", "check0");
+        SuppressElement se0 = new SuppressElement("file0");
+        se0.setChecks("check0");
         fc2.addFilter(se0);
-        SuppressElement se1 = new SuppressElement("file1", "check1");
+        SuppressElement se1 = new SuppressElement("file1");
+        se1.setChecks("check1");
         se1.setLines("1,2-3");
         fc2.addFilter(se1);
-        SuppressElement se2 = new SuppressElement("file2", "check2");
+        SuppressElement se2 = new SuppressElement("file2");
+        se2.setChecks("check2");
         se2.setColumns("1,2-3");
         fc2.addFilter(se2);
-        SuppressElement se3 = new SuppressElement("file3", "check3");
+        SuppressElement se3 = new SuppressElement("file3");
+        se3.setChecks("check3");
         se3.setLines("1,2-3");
         se3.setColumns("1,2-3");
         fc2.addFilter(se3);

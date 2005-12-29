@@ -26,13 +26,16 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
- * <p>
- * This filter accepts AuditEvents according to file, check, line, and
- * column conditions. It rejects an AuditEvent if the event's file
- * name and check name match the filter's file name and check name
- * patterns, and the event's line is in the filter's line CSV or the
- * check's columns is in the filter's column CSV.
- * </p>
+ * This filter processes {@link com.puppycrawl.tools.checkstyle.api.AuditEvent}
+ * objects based on the criteria of file, check, module id, line, and
+ * column. It rejects an AuditEvent if the following match:
+ * <ul>
+ *   <li>the event's file name; and
+ *   <li>the check name or the module identifier; and
+ *   <li>(optionally) the event's line is in the filter's line CSV; and
+ *   <li>(optionally) the check's columns is in the filter's column CSV.
+ * </ul>
+ *
  * @author Rick Giles
  */
 public class SuppressElement
@@ -42,16 +45,19 @@ public class SuppressElement
     private static final int HASH_MULT = 29;
 
     /** the regexp to match file names against */
-    private Pattern mFileRegexp;
+    private final Pattern mFileRegexp;
 
     /** the pattern for file names*/
-    private String mFilePattern;
+    private final String mFilePattern;
 
     /** the regexp to match check names against */
     private Pattern mCheckRegexp;
 
     /** the pattern for check class names*/
     private String mCheckPattern;
+
+    /** module id filter. */
+    private String mModuleId;
 
     /** line number filter */
     private CSVFilter mLineFilter;
@@ -67,20 +73,36 @@ public class SuppressElement
 
     /**
      * Constructs a <code>SuppressElement</code> for a
-     * file name pattern and and a check class pattern.
+     * file name pattern. Must either call {@link #setColumns(String)} or
+     * {@link #setModuleId(String)} before using this object.
      * @param aFiles regular expression for names of filtered files.
-     * @param aChecks regular expression for filtered check classes.
      * @throws PatternSyntaxException if there is an error.
      */
-    public SuppressElement(String aFiles, String aChecks)
+    public SuppressElement(String aFiles)
         throws PatternSyntaxException
     {
         mFilePattern = aFiles;
         mFileRegexp = Utils.getPattern(aFiles);
+    }
+
+    /**
+     * Set the check class pattern.
+     * @param aChecks regular expression for filtered check classes.
+     */
+    public void setChecks(final String aChecks)
+    {
         mCheckPattern = aChecks;
         mCheckRegexp = Utils.getPattern(aChecks);
     }
 
+    /**
+     * Set the module id for filtering. Cannot be null.
+     * @param aModuleId the id
+     */
+    public void setModuleId(final String aModuleId)
+    {
+        mModuleId = aModuleId;
+    }
     /**
      * Sets the CSV values and ranges for line number filtering.
      * E.g. "1,7-15,18".
@@ -118,9 +140,12 @@ public class SuppressElement
     {
         // file and check match?
         if ((aEvent.getFileName() == null)
-            || !mFileRegexp.matcher(aEvent.getFileName()).find()
-            || (aEvent.getLocalizedMessage() == null)
-            || !mCheckRegexp.matcher(aEvent.getSourceName()).find())
+                || !mFileRegexp.matcher(aEvent.getFileName()).find()
+                || (aEvent.getLocalizedMessage() == null)
+                || ((mModuleId != null) && !mModuleId.equals(aEvent
+                        .getModuleId()))
+                || ((mCheckRegexp != null) && !mCheckRegexp.matcher(
+                        aEvent.getSourceName()).find()))
         {
             return true;
         }
@@ -159,8 +184,13 @@ public class SuppressElement
     /** {@inheritDoc} */
     public int hashCode()
     {
-        int result = HASH_MULT * mFilePattern.hashCode()
-            + mCheckPattern.hashCode();
+        int result = HASH_MULT * mFilePattern.hashCode();
+        if (mCheckPattern != null) {
+            result = HASH_MULT * result + mCheckPattern.hashCode();
+        }
+        if (mModuleId != null) {
+            result = HASH_MULT * result + mModuleId.hashCode();
+        }
         if (mLinesCSV != null) {
             result = HASH_MULT * result + mLinesCSV.hashCode();
         }
@@ -182,7 +212,22 @@ public class SuppressElement
             }
 
             // same check pattern?
-            if (!this.mCheckPattern.equals(other.mCheckPattern)) {
+            if (mCheckPattern != null) {
+                if (!mCheckPattern.equals(other.mCheckPattern)) {
+                    return false;
+                }
+            }
+            else if (other.mCheckPattern != null) {
+                return false;
+            }
+
+            // same module id?
+            if (mModuleId != null) {
+                if (!mModuleId.equals(other.mModuleId)) {
+                    return false;
+                }
+            }
+            else if (other.mModuleId != null) {
                 return false;
             }
 

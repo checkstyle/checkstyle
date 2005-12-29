@@ -309,7 +309,6 @@ public class FallThroughCheck extends Check
     {
 
         final int startLineNo = aCurrentCase.getLineNo();
-        final int startColNo = aCurrentCase.getColumnNo();
         final int endLineNo = aNextCase.getLineNo();
         final int endColNo = aNextCase.getColumnNo();
 

@@ -252,6 +252,7 @@ public final class TreeWalker
                     Defn.CHECKSTYLE_BUNDLE,
                     "general.fileNotFound",
                     null,
+                    getId(),
                     this.getClass()));
         }
         catch (IOException ioe) {
@@ -262,6 +263,7 @@ public final class TreeWalker
                     Defn.CHECKSTYLE_BUNDLE,
                     "general.exception",
                     new String[] {ioe.getMessage()},
+                    getId(),
                     this.getClass()));
         }
         catch (RecognitionException re) {
@@ -274,6 +276,7 @@ public final class TreeWalker
                     Defn.CHECKSTYLE_BUNDLE,
                     "general.exception",
                     new String[] {re.getMessage()},
+                    getId(),
                     this.getClass()));
         }
         catch (TokenStreamRecognitionException tre) {
@@ -288,6 +291,7 @@ public final class TreeWalker
                         Defn.CHECKSTYLE_BUNDLE,
                         "general.exception",
                         new String[] {re.getMessage()},
+                        getId(),
                         this.getClass()));
             }
             else {
@@ -298,6 +302,7 @@ public final class TreeWalker
                         "general.exception",
                         new String[]
                         {"TokenStreamRecognitionException occured."},
+                        getId(),
                         this.getClass()));
             }
         }
@@ -310,6 +315,7 @@ public final class TreeWalker
                     Defn.CHECKSTYLE_BUNDLE,
                     "general.exception",
                     new String[] {te.getMessage()},
+                    getId(),
                     this.getClass()));
         }
         catch (Throwable err) {
@@ -320,6 +326,7 @@ public final class TreeWalker
                     Defn.CHECKSTYLE_BUNDLE,
                     "general.exception",
                     new String[] {"" + err},
+                    getId(),
                     this.getClass()));
         }
 

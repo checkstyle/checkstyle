@@ -697,8 +697,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             final ListIterator throwIt = aThrows.listIterator();
             while (!found && throwIt.hasNext()) {
                 final ExceptionInfo ei = (ExceptionInfo) throwIt.next();
-                final Token fi = ei.getName();
-                final String declaredEx = fi.getText();
 
                 if (documentedCI.getClazz() == ei.getClazz()) {
                     found = true;

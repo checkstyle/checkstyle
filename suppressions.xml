@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
 <!DOCTYPE suppressions PUBLIC
-    "-//Puppy Crawl//DTD Suppressions 1.0//EN"
-    "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 
 <suppressions>
     <suppress checks="FileLength"
@@ -20,4 +20,7 @@
     <suppress checks="ImportControl"
               files="SuppressionCommentFilter.java"
               lines="40"/>
+    <suppress id="paramNum"
+	      files="LocalizedMessage.java"
+	      lines="142"/>
 </suppressions>

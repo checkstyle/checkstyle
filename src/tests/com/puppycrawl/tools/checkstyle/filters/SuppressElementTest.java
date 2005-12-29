@@ -15,7 +15,8 @@ public class SuppressElementTest extends TestCase
     public void setUp()
         throws PatternSyntaxException
     {
-        filter = new SuppressElement("Test", "Test");
+        filter = new SuppressElement("Test");
+        filter.setChecks("Test");
     }
     
     public void testDecideDefault()
@@ -27,7 +28,7 @@ public class SuppressElementTest extends TestCase
     public void testDecideLocalizedMessage()
     {
         LocalizedMessage message =
-            new LocalizedMessage(0, 0, "", "", null, this.getClass());
+            new LocalizedMessage(0, 0, "", "", null, null, this.getClass());
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         //deny because there are matches on file and check names
         assertFalse("Names match", filter.accept(ev));
@@ -36,7 +37,7 @@ public class SuppressElementTest extends TestCase
     public void testDecideByLine()
     {
         LocalizedMessage message =
-            new LocalizedMessage(10, 10, "", "", null, this.getClass());
+            new LocalizedMessage(10, 10, "", "", null, null, this.getClass());
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         //deny because there are matches on file name, check name, and line
         filter.setLines("1-10");
@@ -48,7 +49,7 @@ public class SuppressElementTest extends TestCase
     public void testDecideByColumn()
     {
         LocalizedMessage message =
-            new LocalizedMessage(10, 10, "", "", null, this.getClass());
+            new LocalizedMessage(10, 10, "", "", null, null, this.getClass());
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         //deny because there are matches on file name, check name, and column
         filter.setColumns("1-10");
@@ -59,9 +60,11 @@ public class SuppressElementTest extends TestCase
 
     public void testEquals() throws PatternSyntaxException
     {
-        final SuppressElement filter2 = new SuppressElement("Test", "Test");
+        final SuppressElement filter2 = new SuppressElement("Test");
+        filter2.setChecks("Test");
         assertEquals("filter, filter2", filter, filter2);
-        final SuppressElement filter3 = new SuppressElement("Test", "Test3");
+        final SuppressElement filter3 = new SuppressElement("Test");
+        filter3.setChecks("Test3");
         assertFalse("filter, filter3", filter.equals(filter3));
         filter.setColumns("1-10");
         assertFalse("filter, filter2", filter.equals(filter2));

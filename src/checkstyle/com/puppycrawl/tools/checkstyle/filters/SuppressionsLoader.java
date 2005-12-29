@@ -24,6 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.Attributes;
@@ -38,12 +40,17 @@ public final class SuppressionsLoader
     extends AbstractLoader
 {
     /** the public ID for the configuration dtd */
-    private static final String DTD_PUBLIC_ID =
+    private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Suppressions 1.0//EN";
-
     /** the resource for the configuration dtd */
-    private static final String DTD_RESOURCE_NAME =
+    private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/suppressions_1_0.dtd";
+    /** the public ID for the configuration dtd */
+    private static final String DTD_PUBLIC_ID_1_1 =
+        "-//Puppy Crawl//DTD Suppressions 1.1//EN";
+    /** the resource for the configuration dtd */
+    private static final String DTD_RESOURCE_NAME_1_1 =
+        "com/puppycrawl/tools/checkstyle/suppressions_1_1.dtd";
 
     /**
      * the filter chain to return in getAFilterChain(),
@@ -59,7 +66,7 @@ public final class SuppressionsLoader
     private SuppressionsLoader()
         throws ParserConfigurationException, SAXException
     {
-        super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
+        super(createIdToResourceNameMap());
     }
 
     /**
@@ -85,12 +92,19 @@ public final class SuppressionsLoader
                 throw new SAXException("missing files attribute");
             }
             final String checks = aAtts.getValue("checks");
-            if (checks == null) {
-                throw new SAXException("missing checks attribute");
+            final String modId = aAtts.getValue("id");
+            if ((checks == null) && (modId == null)) {
+                throw new SAXException("missing checks and id attribute");
             }
             final SuppressElement suppress;
             try {
-                suppress = new SuppressElement(files, checks);
+                suppress = new SuppressElement(files);
+                if (modId != null) {
+                    suppress.setModuleId(modId);
+                }
+                if (checks != null) {
+                    suppress.setChecks(checks);
+                }
             }
             catch (PatternSyntaxException e) {
                 throw new SAXException("invalid files or checks format");
@@ -162,5 +176,17 @@ public final class SuppressionsLoader
             throw new CheckstyleException("number format exception "
                 + aSourceName + " - " + e.getMessage(), e);
         }
+    }
+
+    /**
+     * Creates mapping between local resources and dtd ids.
+     * @return map between local resources and dtd ids.
+     */
+    private static Map createIdToResourceNameMap()
+    {
+        final Map map = new HashMap();
+        map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
+        map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
+        return map;
     }
 }

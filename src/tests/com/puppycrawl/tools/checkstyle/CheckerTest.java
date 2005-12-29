@@ -57,7 +57,7 @@ public class CheckerTest extends TestCase
 
         LocalizedMessage[] msgs = new LocalizedMessage[1];
         msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
-                                       new Object[] {"arg"},
+                                       new Object[] {"arg"}, null,
                                        getClass());
         c.fireErrors("Some File Name", msgs);
 
@@ -90,7 +90,7 @@ public class CheckerTest extends TestCase
         aa.resetListener();
         LocalizedMessage[] msgs = new LocalizedMessage[1];
         msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
-                                       new Object[] {"arg"},
+                                       new Object[] {"arg"}, null,
                                        getClass());
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call listener", aa.wasCalled());
@@ -128,7 +128,7 @@ public class CheckerTest extends TestCase
         aa2.resetListener();
         LocalizedMessage[] msgs = new LocalizedMessage[1];
         msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
-                                       new Object[] {"arg"},
+                                       new Object[] {"arg"}, null,
                                        getClass());
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call listener", aa2.wasCalled());
@@ -166,7 +166,7 @@ public class CheckerTest extends TestCase
         f.resetFilter();
         LocalizedMessage[] msgs = new LocalizedMessage[1];
         msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
-                                       new Object[] {"arg"},
+                                       new Object[] {"arg"}, null,
                                        getClass());
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call filter", f.wasCalled());
@@ -208,7 +208,7 @@ public class CheckerTest extends TestCase
         f2.resetFilter();
         LocalizedMessage[] msgs = new LocalizedMessage[1];
         msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
-                                       new Object[] {"arg"},
+                                       new Object[] {"arg"}, null,
                                        getClass());
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call filter", f2.wasCalled());

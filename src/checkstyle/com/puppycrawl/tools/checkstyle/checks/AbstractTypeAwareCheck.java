@@ -244,6 +244,7 @@ public abstract class AbstractTypeAwareCheck extends Check
                                                     aMsgKey,
                                                     aValues,
                                                     getSeverityLevel(),
+                                                    getId(),
                                                     this.getClass());
         throw new RuntimeException(msg.getMessage());
     }

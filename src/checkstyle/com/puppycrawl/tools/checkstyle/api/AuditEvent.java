@@ -119,6 +119,15 @@ public final class AuditEvent
             : mMessage.getSeverityLevel();
     }
 
+    /**
+     * @return the identifier of the module that generated the event. Can return
+     *         null.
+     */
+    public String getModuleId()
+    {
+        return mMessage.getModuleId();
+    }
+
     /** @return the name of the source for the message **/
     public String getSourceName()
     {
