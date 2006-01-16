@@ -40,6 +40,11 @@
 	  name. See <a href="config.html#Filters">SuppressionFilter</a>
 	  documentation for more.
 	</li>
+
+	<li>
+          Added the style sheet checkstyle-frames.xsl, thanks to Paul
+          King. (Bug 1385095).
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>
