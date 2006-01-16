@@ -62,6 +62,9 @@
           &lt;outer_class_name&gt;.&lt;inner_class_name&gt; (bug
           1379666, modules JavadocMethod and RedundantThrows).
         </li>
+        <li>
+          Fix UTF-8 encoding error in XMLLogger. (bug 1369589).
+        </li>
       </ul>
     </section>
 

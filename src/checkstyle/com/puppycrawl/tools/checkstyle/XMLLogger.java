@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
  * Simple XML logger.
- * It outputs everything in UTF8 (default XML encoding is UTF8) in case
+ * It outputs everything in UTF-8 (default XML encoding is UTF-8) in case
  * we want to localize error messages or simply that filenames are
  * localized and takes care about escaping as well.
 
@@ -77,7 +77,7 @@ public class XMLLogger
     private void setOutputStream(OutputStream aOS)
     {
         try {
-            final OutputStreamWriter osw = new OutputStreamWriter(aOS, "UTF8");
+            final OutputStreamWriter osw = new OutputStreamWriter(aOS, "UTF-8");
             mWriter = new PrintWriter(osw);
         }
         catch (UnsupportedEncodingException e) {
