@@ -2,14 +2,11 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.Checker;
 import java.io.File;
 import java.io.ByteArrayInputStream;
 import java.io.LineNumberReader;
 import java.io.InputStreamReader;
-import java.io.InputStream;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * @author Daniel Grenner
