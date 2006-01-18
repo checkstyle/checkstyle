@@ -92,8 +92,7 @@
   <target name="clean" description="Cleans any directories and generated files">
     <delete>
       <fileset dir="src/checkstyle">
-        <include name="**/Generated*.java"/>
-        <include name="**/Generated*.txt"/>
+        <include name="**/Generated*"/>
         <include name="**/expandedjava*.g"/>
       </fileset>
     </delete>
@@ -551,8 +550,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <mkdir dir="${dist.dir}/checkstyle-src-${version}" />
     <copy todir="${dist.dir}/checkstyle-src-${version}">
       <fileset dir=".">
-        <exclude name="src/checkstyle/**/Generated*.java"/>
-        <exclude name="src/checkstyle/**/Generated*.txt"/>
+        <exclude name="src/checkstyle/**/Generated*"/>
         <include name="*.xml"/>
         <include name="LICENSE*"/>
         <include name="README"/>
@@ -601,15 +599,10 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
               offline="yes"
               href="http://www.antlr.org/javadoc/" />
       <fileset dir="src/checkstyle">
+        <include name="**/*.java"/>
         <exclude name="**/Generated*.java" />
-        <exclude name="**/Generated*.txt" />
         <exclude name="**/gui/*.java" />
         <exclude name="**/checks/**"/>
-        <exclude name="**/*.properties" />
-        <exclude name="**/*.g" />
-        <exclude name="**/*.dtd" />
-        <exclude name="**/*.xml" />
-        <exclude name="**/*.html" />
       </fileset>
     </javadoc>
   </target>

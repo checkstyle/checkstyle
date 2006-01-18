@@ -45,6 +45,10 @@
           Added the style sheet checkstyle-frames.xsl, thanks to Paul
           King. (Bug 1385095).
         </li>
+
+	<li>
+	  Upgraded to ANTLR 2.7.6.
+	</li>
       </ul>
 
       <p>Fixed Bugs:</p>
