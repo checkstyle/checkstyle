@@ -686,12 +686,13 @@ public int checkReturnTag(final int aTagIndex,
     <section name="WriteTag">
       <subsection name="Description">
         <p>
-         Outputs a JavaDoc tag as information. Can be used e.g. with the stylesheets
-         that sort the report by author name.
-         To define the format for a tag, set property tagFormat to a regular expression.
-         This check uses two different severity levels. The normal one is used for
-         reporting when the tag is missing. The additional one (tagSeverity) is used
-         for the level of reporting when the tag exists. 
+         Outputs a JavaDoc tag as information. Can be used e.g. with the
+         stylesheets that sort the report by author name.  To define the
+         format for a tag, set property tagFormat to a regular
+         expression.  This check uses two different severity levels. The
+         normal one is used for reporting when the tag is missing. The
+         additional one (tagSeverity) is used for the level of reporting
+         when the tag exists.
         </p>
       </subsection>
 
@@ -730,10 +731,10 @@ public int checkReturnTag(final int aTagIndex,
         </p>
 
         <source>
-        &lt;module name="WriteTag"&gt;
-           &lt;property name="tag" value="@author"/&gt;
-           &lt;property name="tagFormat" value="\S"/&gt;
-        &lt;/module&gt;
+&lt;module name="WriteTag"&gt;
+   &lt;property name="tag" value="@author"/&gt;
+   &lt;property name="tagFormat" value="\S"/&gt;
+&lt;/module&gt;
         </source>
 
         <p>
@@ -742,34 +743,11 @@ public int checkReturnTag(final int aTagIndex,
         </p>
 
         <source>
-        &lt;module name="WriteTag"&gt;
-           &lt;property name="tag" value="@incomplete"/&gt;
-           &lt;property name="tagFormat" value="\S"/&gt;
-           &lt;property name="severity" value="ignore"/&gt;
-           &lt;property name="tagSeverity" value="warning"/&gt;
-        &lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check for javadoc which is in <span
-          class="default">private</span>, but not in <span
-          class="default">package</span> scope:
-        </p>
-
-        <source>
-&lt;module name="JavadocStyle"&gt;
-   &lt;property name="scope" value="private"/&gt;
-   &lt;property name="excludeScope" value="package"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check to turn off first sentence checking:
-        </p>
-
-        <source>
-&lt;module name="JavadocStyle"&gt;
-   &lt;property name="checkFirstSentence" value="false"/&gt;
+&lt;module name="WriteTag"&gt;
+   &lt;property name="tag" value="@incomplete"/&gt;
+   &lt;property name="tagFormat" value="\S"/&gt;
+   &lt;property name="severity" value="ignore"/&gt;
+   &lt;property name="tagSeverity" value="warning"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
