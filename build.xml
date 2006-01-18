@@ -475,7 +475,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
           description="Builds the compressed distribution files">
     <delete dir="${dist.dir}/checkstyle-${version}" />
     <mkdir dir="${dist.dir}/checkstyle-${version}" />
-    <copy file="config/manifest.mf" todir="target">
+    <copy file="config/manifest.mf" todir="${target.dir}">
       <filterset>
         <filter token="CHECKSTYLE_VERSION" value="${version}" />
       </filterset>
@@ -483,7 +483,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-${version}.jar"
          basedir="${checkstyle.dest}"
          excludes="**/j2ee/**"
-         manifest="target/manifest.mf" />
+         manifest="${target.dir}/manifest.mf" />
     <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-optional-${version}.jar"
          basedir="${checkstyle.dest}"
          includes="**/j2ee/**"/>
@@ -493,24 +493,16 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <copy file="${collections.jar}" todir="${dist.dir}/checkstyle-${version}" />
     <copy file="${cli.jar}" todir="${dist.dir}/checkstyle-${version}" />
     <copy file="${logging.jar}" todir="${dist.dir}/checkstyle-${version}" />
-    <mkdir dir="${dist.dir}/checkstyle-${version}/tmp" />
-    <unjar src="${dist.dir}/checkstyle-${version}/antlr.jar"
-           dest="${dist.dir}/checkstyle-${version}/tmp" />
-    <unjar src="${dist.dir}/checkstyle-${version}/commons-beanutils-core.jar"
-           dest="${dist.dir}/checkstyle-${version}/tmp" />
-    <unjar src="${dist.dir}/checkstyle-${version}/commons-collections.jar"
-           dest="${dist.dir}/checkstyle-${version}/tmp" />
-    <unjar src="${dist.dir}/checkstyle-${version}/commons-cli.jar"
-           dest="${dist.dir}/checkstyle-${version}/tmp" />
-    <unjar src="${dist.dir}/checkstyle-${version}/commons-logging.jar"
-           dest="${dist.dir}/checkstyle-${version}/tmp" />
-    <unjar src="${dist.dir}/checkstyle-${version}/checkstyle-${version}.jar"
-           dest="${dist.dir}/checkstyle-${version}/tmp" />
-    <delete dir="${dist.dir}/checkstyle-${version}/tmp/META-INF" />
     <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-all-${version}.jar"
-         basedir="${dist.dir}/checkstyle-${version}/tmp"
-         manifest="target/manifest.mf" />
-    <delete dir="${dist.dir}/checkstyle-${version}/tmp" />
+    	 manifest="${target.dir}/manifest.mf" 
+    	 filesetmanifest="skip">
+        <zipfileset src="${dist.dir}/checkstyle-${version}/antlr.jar" excludes="META-INF/*"/>
+        <zipfileset src="${dist.dir}/checkstyle-${version}/commons-beanutils-core.jar" excludes="META-INF/*,overview.html"/>
+        <zipfileset src="${dist.dir}/checkstyle-${version}/commons-collections.jar" excludes="META-INF/*"/>
+        <zipfileset src="${dist.dir}/checkstyle-${version}/commons-cli.jar" excludes="META-INF/*"/>
+        <zipfileset src="${dist.dir}/checkstyle-${version}/commons-logging.jar" excludes="META-INF/*"/>
+        <zipfileset src="${dist.dir}/checkstyle-${version}/checkstyle-${version}.jar" excludes="META-INF/*"/>
+    </jar>	
     <!-- copy stuff without filtering -->
     <copy todir="${dist.dir}/checkstyle-${version}">
       <fileset dir=".">
@@ -727,7 +719,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <property name="translation.severity" value="error"/>
     <checkstyle config="${custom.config}" file="${file.to.check}">
       <formatter type="plain"/>
-      <formatter type="xml" toFile="target/cs_errors.xml"/>
+      <formatter type="xml" toFile="${target.dir}/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
     </checkstyle>
   </target>
