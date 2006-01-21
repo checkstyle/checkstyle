@@ -75,10 +75,9 @@ class Guard
     /**
      * Verifies whether a package name be used.
      * @param aForImport the package to check.
-     * @param aInPkg the package doing the import.
      * @return a result {@link AccessResult} indicating whether it can be used.
      */
-    AccessResult verifyImport(final String aForImport, final String aInPkg)
+    AccessResult verifyImport(final String aForImport)
     {
         assert aForImport != null;
         if (mClassName != null) {

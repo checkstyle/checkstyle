@@ -125,8 +125,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
 
     public int getRowCount()
     {
-        final int rowCount = mTree.getRowCount();
-        return rowCount;
+        return mTree.getRowCount();
     }
 
     protected Object nodeForRow(int row)

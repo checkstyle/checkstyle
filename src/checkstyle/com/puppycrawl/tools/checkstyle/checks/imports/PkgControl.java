@@ -152,7 +152,7 @@ class PkgControl
             if (g.isLocalOnly() && !mFullPackage.equals(aInPkg)) {
                 continue;
             }
-            final AccessResult result = g.verifyImport(aForImport, aInPkg);
+            final AccessResult result = g.verifyImport(aForImport);
             if (result != AccessResult.UNKNOWN) {
                 return result;
             }

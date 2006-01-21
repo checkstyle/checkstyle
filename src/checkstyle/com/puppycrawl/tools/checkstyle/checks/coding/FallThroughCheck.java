@@ -330,7 +330,7 @@ public class FallThroughCheck extends Check
          *    /+ FALLTHRU +/}
          */
         String linepart = lines[endLineNo - 1].substring(0, endColNo);
-        if (commentMatch(mRegExp, linepart, endLineNo, 0)) {
+        if (commentMatch(mRegExp, linepart, endLineNo)) {
             return true;
         }
 
@@ -349,7 +349,7 @@ public class FallThroughCheck extends Check
          */
         for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
             if (lines[i].trim().length() != 0) {
-                return commentMatch(mRegExp, lines[i], i + 1, 0);
+                return commentMatch(mRegExp, lines[i], i + 1);
             }
         }
 
@@ -363,11 +363,10 @@ public class FallThroughCheck extends Check
      * @param aPattern The regular expression pattern to use.
      * @param aLine The line of test to do the match on.
      * @param aLineNo The line number in the file.
-     * @param aStartColNo Column on that the regexp matching starts.
      * @return True if a match was found inside a comment.
      */
-    private boolean commentMatch(Pattern aPattern, String aLine, int aLineNo,
-                                 int aStartColNo)
+    private boolean commentMatch(Pattern aPattern, String aLine, int aLineNo
+    )
     {
         Matcher matcher = aPattern.matcher(aLine);
 

@@ -97,9 +97,9 @@ public class RightCurlyCheck extends AbstractOptionCheck
     public void visitToken(DetailAST aAST)
     {
         // Attempt to locate the tokens to do the check
-        DetailAST rcurly = null;
-        DetailAST lcurly = null;
-        DetailAST nextToken = null;
+        DetailAST rcurly;
+        DetailAST lcurly;
+        DetailAST nextToken;
         boolean shouldCheckLastRcurly = false;
 
         switch (aAST.getType()) {

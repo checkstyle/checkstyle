@@ -145,11 +145,10 @@ public class HiddenFieldCheck
         //check.
         final DetailAST typeMods = aAST.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStaticInnerType =
-            (typeMods == null)
-            ? false
-            : typeMods.branchContains(TokenTypes.LITERAL_STATIC);
+                (typeMods != null)
+                        && typeMods.branchContains(TokenTypes.LITERAL_STATIC);
         final FieldFrame frame =
-            new FieldFrame(mCurrentFrame, isStaticInnerType);
+                new FieldFrame(mCurrentFrame, isStaticInnerType);
 
         //add fields to container
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);

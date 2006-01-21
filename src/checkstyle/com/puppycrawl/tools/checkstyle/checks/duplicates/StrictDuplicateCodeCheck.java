@@ -90,8 +90,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             long result = 0;
             for (int i = 0; i < aLine.length(); i++) {
                 final long c = aLine.charAt(i);
-                final long idx = i;
-                result += bigPrime * idx + c;
+                result += bigPrime * i + c;
             }
             return result;
         }

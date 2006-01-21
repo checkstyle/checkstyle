@@ -51,9 +51,7 @@ class Comment implements TextBlock
             final int aLastLine, final int aLastCol)
     {
         mText = new String[aText.length];
-        for (int i = 0; i < mText.length; i++) {
-            mText[i] = aText[i];
-        }
+        System.arraycopy(aText, 0, mText, 0, mText.length);
         mFirstLine = aLastLine - mText.length + 1;
         mLastLine = aLastLine;
         mFirstCol = aFirstCol;

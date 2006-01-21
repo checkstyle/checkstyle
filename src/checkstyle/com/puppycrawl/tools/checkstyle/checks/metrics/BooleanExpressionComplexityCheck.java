@@ -149,7 +149,7 @@ public final class BooleanExpressionComplexityCheck extends Check
     private void visitExpr()
     {
         mContextStack.push(mContext);
-        mContext = new Context(mContext != null ? mContext.isChecking() : true);
+        mContext = new Context(mContext == null || mContext.isChecking());
     }
 
     /**

@@ -101,10 +101,14 @@ public final class CheckDocsDoclet
     private static String getCheckName(final ClassDoc aClassDoc)
     {
         final String strippedClassName = aClassDoc.typeName();
-        final String checkName = strippedClassName.endsWith("Check")
-                ? strippedClassName.substring(
-                        0, strippedClassName.length() - "Check".length())
-                : strippedClassName;
+        final String checkName;
+        if (strippedClassName.endsWith("Check")) {
+            checkName = strippedClassName.substring(
+                    0, strippedClassName.length() - "Check".length());
+        }
+        else {
+            checkName = strippedClassName;
+        }
         return checkName;
     }
 

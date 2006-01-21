@@ -48,9 +48,6 @@ public class CovariantEqualsCheck extends Check
     /** Set of equals method definitions */
     private Set mEqualsMethods = new HashSet();
 
-    /** true if class defines method equals(java.lang.Object) */
-    private boolean mHasEqualsObject;
-
     /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
@@ -67,7 +64,7 @@ public class CovariantEqualsCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         mEqualsMethods.clear();
-        mHasEqualsObject = false;
+        boolean hasEqualsObject = false;
 
         // examine method definitions for equals methods
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
@@ -77,7 +74,7 @@ public class CovariantEqualsCheck extends Check
                 if (child.getType() == TokenTypes.METHOD_DEF) {
                     if (CheckUtils.isEqualsMethod(child)) {
                         if (hasObjectParameter(child)) {
-                            mHasEqualsObject = true;
+                            hasEqualsObject = true;
                         }
                         else {
                             mEqualsMethods.add(child);
@@ -88,7 +85,7 @@ public class CovariantEqualsCheck extends Check
             }
 
             // report equals method definitions
-            if (!mHasEqualsObject) {
+            if (!hasEqualsObject) {
                 final Iterator it = mEqualsMethods.iterator();
                 while (it.hasNext()) {
                     final DetailAST equalsAST = (DetailAST) it.next();

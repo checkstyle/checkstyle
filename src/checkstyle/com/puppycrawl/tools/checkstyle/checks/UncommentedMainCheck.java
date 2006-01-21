@@ -151,7 +151,6 @@ public class UncommentedMainCheck
             mCurrentClass = mPackage.getText() + "." + ident.getText();
             mClassDepth++;
         }
-        return;
     }
 
     /**

@@ -130,7 +130,7 @@ public final class SuppressionsLoader
     public static FilterSet loadSuppressions(String aFilename)
         throws CheckstyleException
     {
-        FileInputStream fis = null;
+        final FileInputStream fis;
         try {
             fis = new FileInputStream(aFilename);
         }

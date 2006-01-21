@@ -42,8 +42,7 @@ public class LineSet
      */
     public Integer getStartColumn(Integer aLineNum)
     {
-        Integer colNum = (Integer) mLines.get(aLineNum);
-        return colNum;
+        return (Integer) mLines.get(aLineNum);
     }
 
     /**

@@ -64,14 +64,13 @@ final class PropertyCacheFile
     PropertyCacheFile(Configuration aCurrentConfig, String aFileName)
     {
         boolean setInActive = true;
-        final String fileName = aFileName;
-        if (fileName != null) {
+        if (aFileName != null) {
             FileInputStream inStream = null;
             // get the current config so if the file isn't found
             // the first time the hash will be added to output file
             final String currentConfigHash = getConfigHashCode(aCurrentConfig);
             try {
-                inStream = new FileInputStream(fileName);
+                inStream = new FileInputStream(aFileName);
                 mDetails.load(inStream);
                 final String cachedConfigHash =
                     mDetails.getProperty(CONFIG_HASH_KEY);
@@ -106,7 +105,7 @@ final class PropertyCacheFile
                 }
             }
         }
-        mDetailsFile = (setInActive) ? null : fileName;
+        mDetailsFile = (setInActive) ? null : aFileName;
     }
 
     /** Cleans up the object and updates the cache file. **/

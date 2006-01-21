@@ -58,11 +58,6 @@ public class MultipleStringLiteralsCheck extends Check
     }
 
     /**
-     * regexp pattern for ignored strings
-     */
-    private String mIgnoreStringsRegexp;
-
-    /**
      * Pattern for matching ignored strings.
      */
     private Pattern mPattern;
@@ -81,11 +76,10 @@ public class MultipleStringLiteralsCheck extends Check
      */
     public void setIgnoreStringsRegexp(String aIgnoreStringsRegexp)
     {
-        mIgnoreStringsRegexp = aIgnoreStringsRegexp;
-        if ((mIgnoreStringsRegexp != null)
-            && (mIgnoreStringsRegexp.length() > 0))
+        if ((aIgnoreStringsRegexp != null)
+            && (aIgnoreStringsRegexp.length() > 0))
         {
-            mPattern = Utils.getPattern(mIgnoreStringsRegexp);
+            mPattern = Utils.getPattern(aIgnoreStringsRegexp);
         }
         else {
             mPattern = null;

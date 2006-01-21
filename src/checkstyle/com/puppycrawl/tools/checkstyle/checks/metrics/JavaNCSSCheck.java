@@ -298,8 +298,8 @@ public class JavaNCSSCheck extends Check
             //the sibling is no COMMA.
             //This is done because multiple assignment on one line are countes
             // as 1
-            countable = prevSibling != null ? TokenTypes.COMMA != prevSibling
-                    .getType() : true;
+            countable = (prevSibling == null)
+                    || (TokenTypes.COMMA != prevSibling.getType());
         }
 
         return countable;
