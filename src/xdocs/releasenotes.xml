@@ -56,7 +56,7 @@
       <ul>
         <li>
           First attempt to fix 1000092 (RightCurlyCheck misbehaves for
-          LIT_CATCH).  The check ahs been rewritten to check rcurly
+          LIT_CATCH).  The check has been rewritten to check rcurly
           after finally and else.  Current behavior is incompatible
           with previous one.
         </li>
@@ -68,6 +68,11 @@
         </li>
         <li>
           Fix UTF-8 encoding error in XMLLogger. (bug 1369589).
+        </li>
+        <li>
+          The new property logLoadErrors of the JavaDocMethod check
+          now allows controlling the behaviour when checkstyle cannot
+          load a class that is referenced in javadoc (bug 1422462).
         </li>
       </ul>
     </section>

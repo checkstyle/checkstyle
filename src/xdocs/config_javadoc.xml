@@ -209,8 +209,8 @@
           declared, set property allowUndeclaredRTE to true. The scope
           to verify is specified using the <code>Scope</code> class and
           defaults to <code>Scope.PRIVATE</code>. To verify another
-          scope, set property scope to one of the <code>Scope</code>
-          constants.
+          scope, set property scope to a different 
+          <a href="property_types.html#scope">scope</a>.
         </p>
 
         <p>
@@ -226,28 +226,6 @@
           <code>allowMissingReturnTag</code>.
         </p>
 
-        <p>
-          An example of how to configure the check is:
-        </p>
-
-        <source>
-&lt;module name=&quot;JavadocMethod&quot;/&gt;
-        </source>
-
-        <p>
-          An example of how to configure the check to check to allow
-          documentation of undeclared RuntimeExceptions and for the
-          <code>Scope.PUBLIC</code> scope, while ignoring any missing
-          param tags is:
-        </p>
-
-        <source>
-&lt;module name=&quot;JavadocMethod&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
-  &lt;property name=&quot;allowUndeclaredRTE&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
       </subsection>
 
       <subsection name="Properties">
@@ -342,6 +320,20 @@ public boolean isSomething()
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>
+          <tr>
+            <td>logLoadErrors</td>
+            <td>This check may needs to load exception classes mentioned in 
+            the @throws tag to check whether they are RuntimeExceptions.
+            If loading the class fails, this property allows to control
+            checkstyle's error handling. If set to false (the default) a 
+            classpath configuration problem is assumed and the TreeWalker
+            stops operating on the class completely.
+            If set to true, checkstyle assumes a typo or refactoring problem in the
+            javadoc and logs the problem in the normal checkstyle report
+            (potentially masking a configuration error).</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
 
           <tr>
             <td>tokens</td>
@@ -378,6 +370,20 @@ public boolean isSomething()
 &lt;module name="JavadocMethod"&gt;
    &lt;property name="scope" value="public"/&gt;
    &lt;property name="allowUndeclaredRTE" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check for for <span class="default">public</span>
+          scope, to allow documentation of undeclared RuntimeExceptions,
+          while ignoring any missing param tags is:
+        </p>
+
+        <source>
+&lt;module name=&quot;JavadocMethod&quot;&gt;
+  &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+  &lt;property name=&quot;allowUndeclaredRTE&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
 

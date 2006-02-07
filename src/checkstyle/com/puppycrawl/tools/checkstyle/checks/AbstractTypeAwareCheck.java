@@ -55,6 +55,31 @@ public abstract class AbstractTypeAwareCheck extends Check
     private Vector mTypeParams = new Vector();
 
     /**
+     * Whether to log class loading errors to the checkstyle report
+     * instead of throwing a RTE.
+     *
+     * Logging errors will avoid stopping checkstyle completely
+     * because of a typo in javadoc. However, with modern IDEs that
+     * support automated refactoring and generate javadoc this will
+     * occur rarely, so by default we assume a configuration problem
+     * in the checkstyle classpath and throw an execption.
+     *
+     * This configuration option was triggered by bug 1422462.
+     */
+    private boolean mLogLoadErrors;
+
+    /**
+     * Controls whether to log class loading errors to the checkstyle report
+     * instead of throwing a RTE.
+     *
+     * @param aLogLoadErrors true if errors should be logged
+     */
+    public final void setLogLoadErrors(boolean aLogLoadErrors)
+    {
+        mLogLoadErrors = aLogLoadErrors;
+    }
+
+    /**
      * Called to process an AST when visiting it.
      * @param aAST the AST to process. Guaranteed to not be PACKAGE_DEF or
      *             IMPORT tokens.
@@ -238,7 +263,9 @@ public abstract class AbstractTypeAwareCheck extends Check
     protected final void logLoadErrorImpl(int aLineNo, int aColumnNo,
                                           String aMsgKey, Object[] aValues)
     {
-        LocalizedMessage msg = new LocalizedMessage(aLineNo,
+        System.out.println(mLogLoadErrors);
+        if (!mLogLoadErrors) {
+            LocalizedMessage msg = new LocalizedMessage(aLineNo,
                                                     aColumnNo,
                                                     getMessageBundle(),
                                                     aMsgKey,
@@ -246,7 +273,9 @@ public abstract class AbstractTypeAwareCheck extends Check
                                                     getSeverityLevel(),
                                                     getId(),
                                                     this.getClass());
-        throw new RuntimeException(msg.getMessage());
+            throw new RuntimeException(msg.getMessage());
+        }
+        log(aLineNo, aColumnNo, aMsgKey, aValues);
     }
 
     /**
