@@ -997,7 +997,7 @@
     &quot;http://www.puppycrawl.com/dtds/packages_1_0.dtd&quot;&gt;
 
 &lt;checkstyle-packages&gt;
-  &lt;package name=&quot;com.mycompany.checks&quot;&gt;
+  &lt;package name=&quot;com.mycompany.checks&quot;/&gt;
   &lt;package name=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
     &lt;package name=&quot;checks&quot;&gt;
       &lt;package name=&quot;blocks&quot;/&gt;
