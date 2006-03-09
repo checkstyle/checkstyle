@@ -12,3 +12,5 @@ checkstyle.ipr
 checkstyle.iws
 devnull
 target
+classes
+checkstyle.iml
