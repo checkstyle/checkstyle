@@ -217,6 +217,10 @@
         <li>
           Added antlib.xml to support new cool feature of Ant.
         </li>
+	<li>
+	  Applied patch 1386388 to enable ConfigurationLoader to load
+	  from InputStream.
+	</li>
       </ul>
 
     </section>

@@ -277,16 +277,12 @@ public final class ConfigurationLoader
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
-    public static Configuration loadConfiguration(
-        String aConfig,
-        PropertyResolver aOverridePropsResolver,
-        boolean aOmitIgnoredModules)
+    public static Configuration loadConfiguration(String aConfig,
+        PropertyResolver aOverridePropsResolver, boolean aOmitIgnoredModules)
         throws CheckstyleException
     {
+        InputStream bufferedStream = null;
         try {
-            final ConfigurationLoader loader =
-                new ConfigurationLoader(aOverridePropsResolver,
-                                        aOmitIgnoredModules);
             // figure out if this is a File or a URL
             InputStream configStream;
             try {
@@ -296,31 +292,72 @@ public final class ConfigurationLoader
             catch (MalformedURLException ex) {
                 configStream = new FileInputStream(aConfig);
             }
-            final InputStream bufferedStream =
-                new BufferedInputStream(configStream);
-            loader.parseInputStream(bufferedStream);
-            bufferedStream.close();
-            return loader.getConfiguration();
+            bufferedStream = new BufferedInputStream(configStream);
+
+            return loadConfiguration(bufferedStream, aOverridePropsResolver,
+                    aOmitIgnoredModules);
         }
         catch (FileNotFoundException e) {
-            throw new CheckstyleException(
-                "unable to find " + aConfig, e);
-        }
-        catch (ParserConfigurationException e) {
-            throw new CheckstyleException(
-                "unable to parse " + aConfig, e);
-        }
-        catch (SAXParseException e) {
-            throw new CheckstyleException("unable to parse "
-                    + aConfig + " - " + e.getMessage() + ":" + e.getLineNumber()
-                    + ":" + e.getColumnNumber(), e);
-        }
-        catch (SAXException e) {
-            throw new CheckstyleException("unable to parse "
-                    + aConfig + " - " + e.getMessage(), e);
+            throw new CheckstyleException("unable to find " + aConfig, e);
         }
         catch (IOException e) {
             throw new CheckstyleException("unable to read " + aConfig, e);
+        }
+        catch (CheckstyleException e) {
+                //wrap again to add file name info
+            throw new CheckstyleException("unable to read " + aConfig + " - "
+                    + e.getMessage(), e);
+        }
+        finally {
+            if (bufferedStream != null) {
+                try {
+                    bufferedStream.close();
+                }
+                catch (IOException e) {
+                    // cannot throw another exception.
+                    ;
+                }
+            }
+        }
+    }
+
+    /**
+     * Returns the module configurations from a specified input stream.
+     * Note that clients are required to close the given stream by themselves
+     *
+     * @param aConfigStream the input stream to the Checkstyle configuration
+     * @param aOverridePropsResolver overriding properties
+     * @param aOmitIgnoredModules <code>true</code> if modules with severity
+     *            'ignore' should be omitted, <code>false</code> otherwise
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static Configuration loadConfiguration(InputStream aConfigStream,
+        PropertyResolver aOverridePropsResolver, boolean aOmitIgnoredModules)
+        throws CheckstyleException
+    {
+        try {
+            final ConfigurationLoader loader =
+                new ConfigurationLoader(aOverridePropsResolver,
+                                        aOmitIgnoredModules);
+            loader.parseInputStream(aConfigStream);
+            return loader.getConfiguration();
+        }
+        catch (ParserConfigurationException e) {
+            throw new CheckstyleException(
+                "unable to parse configuration stream", e);
+        }
+        catch (SAXParseException e) {
+            throw new CheckstyleException("unable to parse configuration stream"
+                    + " - " + e.getMessage() + ":" + e.getLineNumber()
+                    + ":" + e.getColumnNumber(), e);
+        }
+        catch (SAXException e) {
+            throw new CheckstyleException("unable to parse configuration stream"
+                    + " - " + e.getMessage(), e);
+        }
+        catch (IOException e) {
+            throw new CheckstyleException("unable to read from stream", e);
         }
     }
 
