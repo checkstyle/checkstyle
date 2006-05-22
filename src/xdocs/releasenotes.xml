@@ -74,6 +74,9 @@
           now allows controlling the behaviour when checkstyle cannot
           load a class that is referenced in javadoc (bug 1422462).
         </li>
+        <li>
+          Tighten up the allowed use of the {@inheritDoc} tag.
+        </li>
       </ul>
     </section>
 

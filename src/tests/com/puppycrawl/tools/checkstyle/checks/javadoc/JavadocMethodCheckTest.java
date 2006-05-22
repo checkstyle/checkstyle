@@ -400,4 +400,12 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         final String[] expected = {};
         verify(mCheckConfig, getPath("javadoc/Test_1379666.java"), expected);
     }
+
+    public void testInheritDoc() throws Exception
+    {
+        final String[] expected = {
+                "4:5: Invalid use of the {@inheritDoc} tag.",
+                "9:5: Invalid use of the {@inheritDoc} tag.",};
+        verify(mCheckConfig, getPath("javadoc/InputInheritDoc.java"), expected);
+    }
 }
