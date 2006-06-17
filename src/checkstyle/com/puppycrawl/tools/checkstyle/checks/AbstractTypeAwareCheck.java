@@ -80,6 +80,22 @@ public abstract class AbstractTypeAwareCheck extends Check
     }
 
     /**
+     * Whether to show class loading errors in the checkstyle report.
+     * Request ID 1491630
+     */
+    private boolean mSuppressLoadErrors;
+
+    /**
+     * Controls whether to show class loading errors in the checkstyle report.
+     *
+     * @param aSuppressLoadErrors true if errors shouldn't be shown
+     */
+    public final void setSuppressLoadErrors(boolean aSuppressLoadErrors)
+    {
+        mSuppressLoadErrors = aSuppressLoadErrors;
+    }
+
+    /**
      * Called to process an AST when visiting it.
      * @param aAST the AST to process. Guaranteed to not be PACKAGE_DEF or
      *             IMPORT tokens.
@@ -263,7 +279,6 @@ public abstract class AbstractTypeAwareCheck extends Check
     protected final void logLoadErrorImpl(int aLineNo, int aColumnNo,
                                           String aMsgKey, Object[] aValues)
     {
-        System.out.println(mLogLoadErrors);
         if (!mLogLoadErrors) {
             LocalizedMessage msg = new LocalizedMessage(aLineNo,
                                                     aColumnNo,
@@ -275,7 +290,10 @@ public abstract class AbstractTypeAwareCheck extends Check
                                                     this.getClass());
             throw new RuntimeException(msg.getMessage());
         }
-        log(aLineNo, aColumnNo, aMsgKey, aValues);
+
+        if (!mSuppressLoadErrors) {
+            log(aLineNo, aColumnNo, aMsgKey, aValues);
+        }
     }
 
     /**

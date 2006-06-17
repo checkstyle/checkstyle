@@ -958,6 +958,32 @@ for (int i = 0; i &lt; 1; i++) {
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>
+          <tr>
+            <td>logLoadErrors</td>
+            <td>This check may need to load exception classes mentioned in
+            the @throws tag to check whether they are RuntimeExceptions.
+            If loading the class fails, this property allows to control
+            checkstyle's error handling. If set to false (the default) a
+            classpath configuration problem is assumed and the TreeWalker
+            stops operating on the class completely.
+            If set to true, checkstyle assumes a typo or refactoring problem in the
+            javadoc and logs the problem in the normal checkstyle report
+            (potentially masking a configuration error).</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>suppressLoadErrors</td>
+            <td>When logLoadErrors is set to true, the TreeWalker completely
+            processes a class and displays any problems with loading exceptions
+            as checkstyle violations.
+            When this property is set to true, the violations generated when
+            logLoadErrors is set true are suppressed from being reported as
+            violations in the checkstyle report.
+            </td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
         </table>
       </subsection>
 

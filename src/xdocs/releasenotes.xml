@@ -47,6 +47,12 @@
         </li>
 
 	<li>
+          Applied patch (1505376) by Clint Stotesbery to support the
+          suppressLoadErrors property for AbstractTypeAwareCheck (RFE
+          1491630).
+        </li>
+
+	<li>
 	  Upgraded to ANTLR 2.7.6.
 	</li>
       </ul>
