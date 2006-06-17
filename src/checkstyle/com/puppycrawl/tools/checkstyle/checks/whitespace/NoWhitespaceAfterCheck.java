@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  {@link TokenTypes#INC INC},
  *  {@link TokenTypes#LNOT LNOT},
  *  {@link TokenTypes#UNARY_MINUS UNARY_MINUS},
- *  {@link TokenTypes#UNARY_PLUS UNARY_PLUS}.
+ *  {@link TokenTypes#UNARY_PLUS UNARY_PLUS}. It also supports the operator
  *  {@link TokenTypes#TYPECAST TYPECAST}.
  * </p>
  * <p>
@@ -68,6 +68,21 @@ public class NoWhitespaceAfterCheck extends Check
 
     /** {@inheritDoc} */
     public int[] getDefaultTokens()
+    {
+        return new int[] {
+            TokenTypes.ARRAY_INIT,
+            TokenTypes.INC,
+            TokenTypes.DEC,
+            TokenTypes.UNARY_MINUS,
+            TokenTypes.UNARY_PLUS,
+            TokenTypes.BNOT,
+            TokenTypes.LNOT,
+            TokenTypes.DOT,
+        };
+    }
+
+    /** {@inheritDoc} */
+    public int[] getAcceptableTokens()
     {
         return new int[] {
             TokenTypes.ARRAY_INIT,

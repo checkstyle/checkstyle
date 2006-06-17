@@ -23,15 +23,11 @@ public class NoWhitespaceAfterCheckTest
             "29:21: '+' is followed by whitespace.",
             "31:15: '++' is followed by whitespace.",
             "31:22: '--' is followed by whitespace.",
-            "87:28: ')' is followed by whitespace.",
-            "89:23: ')' is followed by whitespace.",
-            "90:21: ')' is followed by whitespace.",
             "111:22: '!' is followed by whitespace.",
             "112:23: '~' is followed by whitespace.",
             "129:24: '.' is followed by whitespace.",
             "132:11: '.' is followed by whitespace.",
             "136:12: '.' is followed by whitespace.",
-            "241:22: ')' is followed by whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -43,6 +39,17 @@ public class NoWhitespaceAfterCheckTest
             "5:14: '.' is followed by whitespace.",
             "129:24: '.' is followed by whitespace.",
             "136:12: '.' is followed by whitespace."
+        };
+        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+    }
+
+    public void testTypecast() throws Exception
+    {
+        checkConfig.addAttribute("tokens", "TYPECAST");
+        final String[] expected = {
+            "87:28: ')' is followed by whitespace.",
+            "89:23: ')' is followed by whitespace.",
+            "241:22: ')' is followed by whitespace.",
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
