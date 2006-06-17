@@ -54,9 +54,6 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
      */
     private String mMessage = "";
 
-    /** case insensitive? **/
-    private boolean mIgnoreCase;
-
     /** Ignore comments in code? **/
     private boolean mIgnoreComments;
 
@@ -90,7 +87,9 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
      */
     public void setIgnoreCase(boolean aCaseInsensitive)
     {
-        mIgnoreCase = aCaseInsensitive;
+        if (aCaseInsensitive) {
+            setCompileFlags(Pattern.CASE_INSENSITIVE);
+        }
     }
 
     /**
@@ -178,20 +177,5 @@ public class GenericIllegalRegexpCheck extends AbstractFormatCheck
         }
         // not intersecting with comment
         return true;
-    }
-
-    /** @return the regexp to match against */
-    public Pattern getRegexp()
-    {
-        Pattern regexp = super.getRegexp();
-
-        // we should explicitly set match flags because
-        // we caching Pattern and another check (or instance
-        // of this check could change match flags.
-        if (mIgnoreCase) {
-            regexp =
-                Pattern.compile(regexp.pattern(), Pattern.CASE_INSENSITIVE);
-        }
-        return regexp;
     }
 }

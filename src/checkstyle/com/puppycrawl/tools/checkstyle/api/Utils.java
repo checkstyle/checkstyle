@@ -133,8 +133,8 @@ public final class Utils
 
     /**
      * This is a factory method to return an Pattern object for the specified
-     * regular expression. This method is not MT safe, but neither are the
-     * returned Pattern objects.
+     * regular expression. It calls {@link #getPattern(String, int)} with the
+     * compile flags defaults to 0.
      * @return an Pattern object for the supplied pattern
      * @param aPattern the regular expression pattern
      * @throws PatternSyntaxException an invalid pattern was supplied
@@ -142,14 +142,30 @@ public final class Utils
     public static Pattern getPattern(String aPattern)
         throws PatternSyntaxException
     {
-        Pattern retVal = (Pattern) CREATED_RES.get(aPattern);
+        return getPattern(aPattern, 0);
+    }
+
+    /**
+     * This is a factory method to return an Pattern object for the specified
+     * regular expression and compile flags.
+     * <p>
+     * This method is not MT safe, but neither are the returned Pattern objects.
+     * @return an Pattern object for the supplied pattern
+     * @param aPattern the regular expression pattern
+     * @param aCompileFlags the compilation flags
+     * @throws PatternSyntaxException an invalid pattern was supplied
+     **/
+    public static Pattern getPattern(String aPattern, int aCompileFlags)
+        throws PatternSyntaxException
+    {
+        final String key = aPattern + ":flags-" + aCompileFlags;
+        Pattern retVal = (Pattern) CREATED_RES.get(key);
         if (retVal == null) {
-            retVal = Pattern.compile(aPattern);
-            CREATED_RES.put(aPattern, retVal);
+            retVal = Pattern.compile(aPattern, aCompileFlags);
+            CREATED_RES.put(key, retVal);
         }
         return retVal;
     }
-
     /**
      * Loads the contents of a file in a String array.
      * @return the lines in the file

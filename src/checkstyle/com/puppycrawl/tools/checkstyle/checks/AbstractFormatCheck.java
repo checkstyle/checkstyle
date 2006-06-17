@@ -38,20 +38,36 @@ import org.apache.commons.beanutils.ConversionException;
 public abstract class AbstractFormatCheck
     extends Check
 {
+    /** the flags to create the regular expression with */
+    private int mCompileFlags;
     /** the regexp to match against */
     private Pattern mRegexp;
     /** the format string of the regexp */
     private String mFormat;
 
     /**
-     * Creates a new <code>AbstractFormatCheck</code> instance.
+     * Creates a new <code>AbstractFormatCheck</code> instance. Defaults the
+     * compile flag to 0 (the default).
      * @param aDefaultFormat default format
      * @throws ConversionException unable to parse aDefaultFormat
      */
     public AbstractFormatCheck(String aDefaultFormat)
         throws ConversionException
     {
-        setFormat(aDefaultFormat);
+        this(aDefaultFormat, 0);
+    }
+
+    /**
+     * Creates a new <code>AbstractFormatCheck</code> instance.
+     * @param aDefaultFormat default format
+     * @param aCompileFlags the Pattern flags to compile the regexp with.
+     * See {@link Pattern#compile(java.lang.String, int)}
+     * @throws ConversionException unable to parse aDefaultFormat
+     */
+    public AbstractFormatCheck(String aDefaultFormat, int aCompileFlags)
+        throws ConversionException
+    {
+        updateRegexp(aDefaultFormat, aCompileFlags);
     }
 
     /**
@@ -59,27 +75,48 @@ public abstract class AbstractFormatCheck
      * @param aFormat a <code>String</code> value
      * @throws ConversionException unable to parse aFormat
      */
-    public void setFormat(String aFormat)
+    public final void setFormat(String aFormat)
         throws ConversionException
     {
-        try {
-            mRegexp = Utils.getPattern(aFormat);
-            mFormat = aFormat;
-        }
-        catch (PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + aFormat, e);
-        }
+        updateRegexp(aFormat, mCompileFlags);
+    }
+
+    /**
+     * Set the compile flags for the regular expression.
+     * @param aCompileFlags the compile flags to use.
+     */
+    public final void setCompileFlags(int aCompileFlags)
+    {
+        updateRegexp(mFormat, aCompileFlags);
     }
 
     /** @return the regexp to match against */
-    public Pattern getRegexp()
+    public final Pattern getRegexp()
     {
         return mRegexp;
     }
 
     /** @return the regexp format */
-    public String getFormat()
+    public final String getFormat()
     {
         return mFormat;
+    }
+
+    /**
+     * Updates the regular expression using the supplied format and compiler
+     * flags. Will also update the member variables.
+     * @param aFormat the format of the regular expression.
+     * @param aCompileFlags the compiler flags to use.
+     */
+    private void updateRegexp(String aFormat, int aCompileFlags)
+    {
+        try {
+            mRegexp = Utils.getPattern(aFormat, aCompileFlags);
+            mFormat = aFormat;
+            mCompileFlags |= aCompileFlags;
+        }
+        catch (PatternSyntaxException e) {
+            throw new ConversionException("unable to parse " + aFormat, e);
+        }
     }
 }

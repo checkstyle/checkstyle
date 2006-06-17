@@ -83,6 +83,9 @@
         <li>
           Tighten up the allowed use of the {@inheritDoc} tag.
         </li>
+	<li>
+	  Stop creating duplicate regular expression patterns.
+	</li>
       </ul>
     </section>
 

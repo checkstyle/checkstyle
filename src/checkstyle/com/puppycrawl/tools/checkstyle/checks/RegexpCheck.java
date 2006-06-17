@@ -97,7 +97,7 @@ public class RegexpCheck extends AbstractFormatCheck
      */
     public RegexpCheck()
     {
-        super("$^"); // the empty language
+        super("$^", Pattern.MULTILINE); // the empty language
     }
 
     /**
@@ -184,12 +184,6 @@ public class RegexpCheck extends AbstractFormatCheck
         mMatchCount = 0;
         mErrorCount = 0;
         findMatch();
-    }
-
-    /** @return the regexp to match against */
-    public Pattern getRegexp()
-    {
-        return Pattern.compile(super.getRegexp().pattern(), Pattern.MULTILINE);
     }
 
     /** recursive method that finds the matches. */

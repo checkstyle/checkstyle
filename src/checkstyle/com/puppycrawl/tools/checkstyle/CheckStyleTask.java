@@ -256,6 +256,7 @@ public class CheckStyleTask extends Task
      */
     public void execute() throws BuildException
     {
+        final long startTime = System.currentTimeMillis();
         final ClassLoader loader = Thread.currentThread()
                 .getContextClassLoader();
         try {
@@ -265,6 +266,9 @@ public class CheckStyleTask extends Task
         }
         finally {
             Thread.currentThread().setContextClassLoader(loader);
+            final long endTime = System.currentTimeMillis();
+            log("Total execution took " + (endTime - startTime) + " ms.",
+                Project.MSG_VERBOSE);
         }
     }
 
@@ -304,13 +308,21 @@ public class CheckStyleTask extends Task
             c.addListener(warningCounter);
 
             // Process the files
+            long startTime = System.currentTimeMillis();
             final File[] files = scanFileSets();
+            long endTime = System.currentTimeMillis();
+            log("To locate the files took " + (endTime - startTime) + " ms.",
+                Project.MSG_VERBOSE);
 
             log("Running Checkstyle " + version + " on " + files.length
                     + " files", Project.MSG_INFO);
             log("Using configuration " + mConfigLocation, Project.MSG_VERBOSE);
 
+            startTime = System.currentTimeMillis();
             final int numErrs = c.process(files);
+            endTime = System.currentTimeMillis();
+            log("To process the files took " + (endTime - startTime) + " ms.",
+                Project.MSG_VERBOSE);
             final int numWarnings = warningCounter.getCount();
             final boolean ok = numErrs <= mMaxErrors
                     && numWarnings <= mMaxWarnings;
