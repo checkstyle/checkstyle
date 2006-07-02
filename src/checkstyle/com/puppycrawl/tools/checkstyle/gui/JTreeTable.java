@@ -218,8 +218,10 @@ public class JTreeTable extends JTable
         {
             if (newRowHeight > 0) {
                 super.setRowHeight(newRowHeight);
-                if (getRowHeight() != newRowHeight) {
-                    setRowHeight(getRowHeight());
+                if ((JTreeTable.this != null) &&
+                    (JTreeTable.this.getRowHeight() != newRowHeight))
+                {
+                    JTreeTable.this.setRowHeight(getRowHeight());
                 }
             }
         }

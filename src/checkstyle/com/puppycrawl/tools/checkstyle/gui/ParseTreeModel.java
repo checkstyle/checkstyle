@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * The model that backs the parse tree in the GUI.
  *
  * @author Lars Kühne
- * @version $Id: ParseTreeModel.java,v 1.5 2004-06-22 11:13:58 rickgiles Exp $
+ * @version $Id: ParseTreeModel.java,v 1.6 2006-07-02 11:52:19 oburn Exp $
  */
 public class ParseTreeModel extends AbstractTreeTableModel
 {
@@ -55,7 +55,6 @@ public class ParseTreeModel extends AbstractTreeTableModel
         DetailAST root = (DetailAST) getRoot();
         root.setFirstChild(parseTree);
         Object[] path = {root};
-
         // no need to setup remaining info, as the call results in a
         // table structure changed event anyway - we just pass nulls
         fireTreeStructureChanged(this, path, null, null);

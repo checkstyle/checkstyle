@@ -55,6 +55,11 @@
 	<li>
 	  Upgraded to ANTLR 2.7.6.
 	</li>
+
+	<li>
+	  GUI now displays a TextArea with the contents of the file
+	  parsed. Based on patch from sermojohn (RFE 1499180).
+	</li>
       </ul>
 
       <p>Fixed Bugs:</p>

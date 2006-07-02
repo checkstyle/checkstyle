@@ -28,9 +28,11 @@ import javax.swing.JFrame;
  */
 public class Main
 {
+    static JFrame frame;
+
     public static void main(String[] args)
     {
-        final JFrame frame = new JFrame("CheckStyle");
+        frame = new JFrame("CheckStyle");
         final ParseTreeInfoPanel panel = new ParseTreeInfoPanel();
         frame.getContentPane().add(panel);
         if (args.length >= 1) {
