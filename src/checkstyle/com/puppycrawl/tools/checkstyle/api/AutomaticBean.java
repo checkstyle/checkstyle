@@ -402,7 +402,7 @@ final class StrArrayConverter extends AbstractArrayConverter
      * @throws NullPointerException
      *             if <code>svalue</code> is <code>null</code>
      */
-    protected List parseElements(String aValue)
+    protected List parseElements(final String aValue)
         throws NullPointerException
     {
         // Validate the passed argument
@@ -411,13 +411,12 @@ final class StrArrayConverter extends AbstractArrayConverter
         }
 
         // Trim any matching '{' and '}' delimiters
-        aValue = aValue.trim();
-
-        if (aValue.startsWith("{") && aValue.endsWith("}")) {
-            aValue = aValue.substring(1, aValue.length() - 1);
+        String str = aValue.trim();
+        if (str.startsWith("{") && str.endsWith("}")) {
+            str = str.substring(1, str.length() - 1);
         }
 
-        final StringTokenizer st = new StringTokenizer(aValue, ",");
+        final StringTokenizer st = new StringTokenizer(str, ",");
         final List retVal = new ArrayList();
 
         while (st.hasMoreTokens()) {
