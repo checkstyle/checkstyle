@@ -312,7 +312,7 @@ final class StrArrayConverter extends AbstractArrayConverter
     /**
      * <p>Model object for type comparisons.</p>
      */
-    private static String[] sModel = new String[0];
+    private static final String[] MODEL = new String[0];
 
     /**
      * Creates a new StrArrayConverter object.
@@ -359,7 +359,7 @@ final class StrArrayConverter extends AbstractArrayConverter
         }
 
         // Deal with the no-conversion-needed case
-        if (sModel.getClass() == aValue.getClass()) {
+        if (MODEL.getClass() == aValue.getClass()) {
             return (aValue);
         }
 

@@ -44,7 +44,7 @@ final class ImportControlLoader extends AbstractLoader
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd";
 
     /** Used to hold the {@link PkgControl} objects. */
-    private Stack mStack = new Stack();
+    private final Stack mStack = new Stack();
 
     /**
      * Constructs an instance.

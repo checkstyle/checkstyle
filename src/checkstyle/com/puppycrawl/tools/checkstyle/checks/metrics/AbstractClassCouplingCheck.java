@@ -45,7 +45,7 @@ public abstract class AbstractClassCouplingCheck extends Check
     private String mPackageName;
 
     /** Stack of contexts. */
-    private Stack mContextStack = new Stack();
+    private final Stack mContextStack = new Stack();
     /** Current context. */
     private Context mContext;
 

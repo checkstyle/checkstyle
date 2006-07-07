@@ -31,7 +31,7 @@ public class LineSet
     /**
      * Maps line numbers to their start column.
      */
-    private SortedMap mLines = new TreeMap();
+    private final SortedMap mLines = new TreeMap();
 
     /**
      * Get the starting column for a given line number.

@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 public class AbstractViolationReporterTest
     extends TestCase
 {
-    private Check emptyCheck = new Check()
+    private final Check emptyCheck = new Check()
     {
         public int[] getDefaultTokens()
         {

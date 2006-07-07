@@ -123,10 +123,10 @@ public class IndentationCheck extends Check
     private int mBraceAdjustment;
 
     /** handlers currently in use */
-    private ArrayStack mHandlers = new ArrayStack();
+    private final ArrayStack mHandlers = new ArrayStack();
 
     /** factory from which handlers are distributed */
-    private HandlerFactory mHandlerFactory = new HandlerFactory();
+    private final HandlerFactory mHandlerFactory = new HandlerFactory();
 
     /** Creates a new instance of IndentationCheck. */
     public IndentationCheck()

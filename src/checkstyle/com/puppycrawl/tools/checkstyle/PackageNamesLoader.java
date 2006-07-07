@@ -61,7 +61,7 @@ public final class PackageNamesLoader
         new PackageObjectFactory();
 
     /** The loaded package names */
-    private Stack mPackageStack = new Stack();
+    private final Stack mPackageStack = new Stack();
 
     /**
      * Creates a new <code>PackageNamesLoader</code> instance.

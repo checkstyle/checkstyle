@@ -32,7 +32,7 @@ import javax.swing.event.EventListenerList;
  */
 public class AbstractCellEditor implements CellEditor
 {
-    private EventListenerList mListenerList = new EventListenerList();
+    private final EventListenerList mListenerList = new EventListenerList();
 
     /** @see CellEditor */
     public Object getCellEditorValue()

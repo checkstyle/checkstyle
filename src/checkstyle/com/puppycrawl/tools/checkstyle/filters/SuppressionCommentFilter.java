@@ -286,7 +286,7 @@ public class SuppressionCommentFilter
 
     //TODO: Investigate performance improvement with array
     /** Tagged comments */
-    private List mTags = new ArrayList();
+    private final List mTags = new ArrayList();
 
     /**
      * References the current FileContents for this filter.

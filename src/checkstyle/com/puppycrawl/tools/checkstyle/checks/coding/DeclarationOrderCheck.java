@@ -72,7 +72,7 @@ public class DeclarationOrderCheck extends Check
      * List of Declaration States. This is necessary due to
      * inner classes that have their own state
      */
-    private Stack mScopeStates = new Stack();
+    private final Stack mScopeStates = new Stack();
 
     /**
      * private class to encapsulate the state

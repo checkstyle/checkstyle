@@ -31,7 +31,7 @@ import java.util.TreeSet;
 public class IndentLevel
 {
     /** set of acceptable indentation levels. */
-    private SortedSet mLevels = new TreeSet();
+    private final SortedSet mLevels = new TreeSet();
 
     /**
      * Creates new instance with one accaptable indentation level.

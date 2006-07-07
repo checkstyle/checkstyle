@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 class PackageObjectFactory implements ModuleFactory
 {
     /** a list of package names to prepend to class names */
-    private List mPackages = new ArrayList();
+    private final List mPackages = new ArrayList();
 
     /**
      * Creates a new <code>PackageObjectFactory</code> instance.

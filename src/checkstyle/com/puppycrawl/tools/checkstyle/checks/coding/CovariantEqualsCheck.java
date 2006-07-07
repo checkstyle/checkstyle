@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 public class CovariantEqualsCheck extends Check
 {
     /** Set of equals method definitions */
-    private Set mEqualsMethods = new HashSet();
+    private final Set mEqualsMethods = new HashSet();
 
     /** {@inheritDoc} */
     public int[] getDefaultTokens()

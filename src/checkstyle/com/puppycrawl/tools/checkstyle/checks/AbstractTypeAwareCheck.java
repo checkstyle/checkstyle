@@ -40,7 +40,7 @@ import java.util.Vector;
 public abstract class AbstractTypeAwareCheck extends Check
 {
     /** imports details **/
-    private Set mImports = new HashSet();
+    private final Set mImports = new HashSet();
 
     /** full identifier for package of the method **/
     private FullIdent mPackageFullIdent;
@@ -52,7 +52,7 @@ public abstract class AbstractTypeAwareCheck extends Check
     private ClassResolver mClassResolver;
 
     /** Stack of maps for type params. */
-    private Vector mTypeParams = new Vector();
+    private final Vector mTypeParams = new Vector();
 
     /**
      * Whether to log class loading errors to the checkstyle report

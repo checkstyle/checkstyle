@@ -34,7 +34,7 @@ import java.util.StringTokenizer;
 class CSVFilter implements IntFilter
 {
     /** filter set */
-    private Set mFilters = new HashSet();
+    private final Set mFilters = new HashSet();
 
     /**
      * Adds a IntFilter to the set.

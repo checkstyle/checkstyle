@@ -134,7 +134,7 @@ public final class TreeWalker
     private final boolean mRecursive;
 
     /** logger for debug purpose */
-    private static Log sLog =
+    private static final Log LOG =
         LogFactory.getLog("com.puppycrawl.tools.checkstyle.TreeWalker");
 
     /**
@@ -150,10 +150,10 @@ public final class TreeWalker
             System.getProperty("checkstyle.use.recursive.algorithm", "false");
         mRecursive = "true".equals(recursive);
         if (mRecursive) {
-            sLog.debug("TreeWalker uses recursive algorithm");
+            LOG.debug("TreeWalker uses recursive algorithm");
         }
         else {
-            sLog.debug("TreeWalker uses iterative algorithm");
+            LOG.debug("TreeWalker uses iterative algorithm");
         }
     }
 

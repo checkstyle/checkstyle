@@ -46,7 +46,7 @@ import javax.swing.event.*;
 public abstract class AbstractTreeTableModel implements TreeTableModel
 {
     private Object mRoot;
-    private EventListenerList mListenerList = new EventListenerList();
+    private final EventListenerList mListenerList = new EventListenerList();
 
     public AbstractTreeTableModel(Object root)
     {

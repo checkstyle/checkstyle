@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class FinalLocalVariableCheck extends Check
 {
     /** Scope Stack */
-    private Stack mScopeStack = new Stack();
+    private final Stack mScopeStack = new Stack();
 
     /**
      * {@inheritDoc}

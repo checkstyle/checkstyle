@@ -51,7 +51,7 @@ public final class LocalizedMessage
      * Avoids repetitive calls to ResourceBundle.getBundle().
      * TODO: The cache should be cleared at some point.
      */
-    private static Map sBundleCache =
+    private static final Map BUNDLE_CACHE =
         Collections.synchronizedMap(new HashMap());
 
     /** the line number **/
@@ -262,13 +262,13 @@ public final class LocalizedMessage
      */
     private ResourceBundle getBundle(String aBundleName)
     {
-        synchronized (sBundleCache) {
-            ResourceBundle bundle = (ResourceBundle) sBundleCache
+        synchronized (BUNDLE_CACHE) {
+            ResourceBundle bundle = (ResourceBundle) BUNDLE_CACHE
                     .get(aBundleName);
             if (bundle == null) {
                 bundle = ResourceBundle.getBundle(aBundleName, sLocale,
                         mSourceClass.getClassLoader());
-                sBundleCache.put(aBundleName, bundle);
+                BUNDLE_CACHE.put(aBundleName, bundle);
             }
             return bundle;
         }

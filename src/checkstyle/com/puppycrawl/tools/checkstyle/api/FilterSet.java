@@ -32,7 +32,7 @@ public class FilterSet
     implements Filter
 {
     /** filter set */
-    private Set mFilters = new HashSet();
+    private final Set mFilters = new HashSet();
 
     /**
      * Adds a Filter to the set.

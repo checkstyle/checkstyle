@@ -392,10 +392,10 @@ public class HiddenFieldCheck
         private FieldFrame mParent;
 
         /** set of instance field names */
-        private Set mInstanceFields = new HashSet();
+        private final Set mInstanceFields = new HashSet();
 
         /** set of static field names */
-        private Set mStaticFields = new HashSet();
+        private final Set mStaticFields = new HashSet();
 
         /** Creates new frame.
          * @param aStaticType is this a static inner type (class or enum).

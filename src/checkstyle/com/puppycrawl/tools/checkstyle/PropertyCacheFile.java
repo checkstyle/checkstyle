@@ -192,7 +192,7 @@ final class PropertyCacheFile
     }
 
     /** hex digits */
-    private static char[] sHexChars = {
+    private static final char[] HEX_CHARS = {
         '0', '1', '2', '3', '4', '5', '6', '7',
         '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
     };
@@ -215,8 +215,8 @@ final class PropertyCacheFile
             final int b = aByteArray[i];
             final int low = b & MASK_0X0F;
             final int high = (b >> SHIFT_4) & MASK_0X0F;
-            buf.append(sHexChars[high]);
-            buf.append(sHexChars[low]);
+            buf.append(HEX_CHARS[high]);
+            buf.append(HEX_CHARS[low]);
         }
         return buf.toString();
     }

@@ -45,7 +45,7 @@ public class HandlerFactory
     /**
      * Registered handlers.
      */
-    private Map mTypeHandlers = new HashMap();
+    private final Map mTypeHandlers = new HashMap();
 
     /**
      * registers a handler
@@ -239,5 +239,5 @@ public class HandlerFactory
     }
 
     /** cache for created method call handlers */
-    private Map mCreatedHandlers = new HashMap();
+    private final Map mCreatedHandlers = new HashMap();
 }
