@@ -77,6 +77,7 @@ public final class Main
             e.printStackTrace();
             usage();
         }
+        assert line != null;
 
         // setup the properties
         final Properties props =
