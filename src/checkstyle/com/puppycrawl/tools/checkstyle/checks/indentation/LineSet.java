@@ -52,7 +52,7 @@ public class LineSet
      */
     public int firstLineCol()
     {
-        Object firstLineKey = mLines.firstKey();
+        final Object firstLineKey = mLines.firstKey();
         return ((Integer) mLines.get(firstLineKey)).intValue();
     }
 

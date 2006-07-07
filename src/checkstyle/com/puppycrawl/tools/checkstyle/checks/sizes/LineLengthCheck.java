@@ -139,7 +139,7 @@ public class LineLengthCheck extends Check
         try {
             mIgnorePattern = Utils.getPattern(aFormat);
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }

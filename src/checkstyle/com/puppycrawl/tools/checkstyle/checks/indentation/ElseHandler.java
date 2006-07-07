@@ -51,11 +51,11 @@ public class ElseHandler extends BlockParentHandler
         //
         //  } else ...
 
-        DetailAST ifAST = getMainAst().getParent();
+        final DetailAST ifAST = getMainAst().getParent();
         if (ifAST != null) {
-            DetailAST slist = ifAST.findFirstToken(TokenTypes.SLIST);
+            final DetailAST slist = ifAST.findFirstToken(TokenTypes.SLIST);
             if (slist != null) {
-                DetailAST lcurly = slist.getLastChild();
+                final DetailAST lcurly = slist.getLastChild();
                 if ((lcurly != null)
                     && (lcurly.getLineNo() == getMainAst().getLineNo()))
                 {

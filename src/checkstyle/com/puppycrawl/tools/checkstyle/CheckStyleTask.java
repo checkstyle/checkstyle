@@ -378,7 +378,7 @@ public class CheckStyleTask extends Task
                 c.addListener(listeners[i]);
             }
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             throw new BuildException("Unable to create a Checker: "
                     + e.getMessage(), e);
         }
@@ -403,11 +403,11 @@ public class CheckStyleTask extends Task
                 inStream = new FileInputStream(mPropertiesFile);
                 retVal.load(inStream);
             }
-            catch (FileNotFoundException e) {
+            catch (final FileNotFoundException e) {
                 throw new BuildException("Could not find Properties file '"
                         + mPropertiesFile + "'", e, getLocation());
             }
-            catch (IOException e) {
+            catch (final IOException e) {
                 throw new BuildException("Error loading Properties file '"
                         + mPropertiesFile + "'", e, getLocation());
             }
@@ -417,7 +417,7 @@ public class CheckStyleTask extends Task
                         inStream.close();
                     }
                 }
-                catch (IOException e) {
+                catch (final IOException e) {
                     throw new BuildException("Error closing Properties file '"
                             + mPropertiesFile + "'", e, getLocation());
                 }
@@ -426,14 +426,14 @@ public class CheckStyleTask extends Task
 
         // override with Ant properties like ${basedir}
         final Hashtable antProps = this.getProject().getProperties();
-        for (Iterator it = antProps.keySet().iterator(); it.hasNext();) {
+        for (final Iterator it = antProps.keySet().iterator(); it.hasNext();) {
             final String key = (String) it.next();
             final String value = String.valueOf(antProps.get(key));
             retVal.put(key, value);
         }
 
         // override with properties specified in subelements
-        for (Iterator it = mOverrideProps.iterator(); it.hasNext();) {
+        for (final Iterator it = mOverrideProps.iterator(); it.hasNext();) {
             final Property p = (Property) it.next();
             retVal.put(p.getKey(), p.getValue());
         }

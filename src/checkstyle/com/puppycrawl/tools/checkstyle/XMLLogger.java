@@ -80,7 +80,7 @@ public class XMLLogger
             final OutputStreamWriter osw = new OutputStreamWriter(aOS, "UTF-8");
             mWriter = new PrintWriter(osw);
         }
-        catch (UnsupportedEncodingException e) {
+        catch (final UnsupportedEncodingException e) {
             // unlikely to happen...
             throw new ExceptionInInitializerError(e);
         }
@@ -221,7 +221,7 @@ public class XMLLogger
                     aEnt.substring(prefixLength, aEnt.length() - 1), radix);
                 return true;
             }
-            catch (NumberFormatException nfe) {
+            catch (final NumberFormatException nfe) {
                 return false;
             }
         }

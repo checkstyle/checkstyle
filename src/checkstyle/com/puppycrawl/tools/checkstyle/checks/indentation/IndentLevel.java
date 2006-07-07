@@ -49,8 +49,8 @@ public class IndentLevel
      */
     public IndentLevel(IndentLevel aBase, int aOffset)
     {
-        for (Iterator iter = aBase.mLevels.iterator(); iter.hasNext();) {
-            int base = ((Integer) iter.next()).intValue();
+        for (final Iterator iter = aBase.mLevels.iterator(); iter.hasNext();) {
+            final int base = ((Integer) iter.next()).intValue();
             mLevels.add(new Integer(base + aOffset));
         }
     }

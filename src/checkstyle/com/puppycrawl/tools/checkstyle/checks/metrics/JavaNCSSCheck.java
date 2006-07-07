@@ -149,7 +149,7 @@ public class JavaNCSSCheck extends Check
      */
     public void visitToken(DetailAST aAST)
     {
-        int tokenType = aAST.getType();
+        final int tokenType = aAST.getType();
 
         if ((TokenTypes.CLASS_DEF == tokenType)
             || (TokenTypes.METHOD_DEF == tokenType)
@@ -164,7 +164,7 @@ public class JavaNCSSCheck extends Check
         //check if token is countable
         if (isCountable(aAST)) {
             //increment the stacked counters
-            int size = mCounters.size();
+            final int size = mCounters.size();
             for (int i = 0; i < size; i++) {
                 ((Counter) mCounters.get(i)).increment();
             }
@@ -176,16 +176,16 @@ public class JavaNCSSCheck extends Check
      */
     public void leaveToken(DetailAST aAST)
     {
-        int tokenType = aAST.getType();
+        final int tokenType = aAST.getType();
         if ((TokenTypes.METHOD_DEF == tokenType)
             || (TokenTypes.CTOR_DEF == tokenType)
             || (TokenTypes.STATIC_INIT == tokenType)
             || (TokenTypes.INSTANCE_INIT == tokenType))
         {
             //pop counter from the stack
-            Counter counter = (Counter) mCounters.pop();
+            final Counter counter = (Counter) mCounters.pop();
 
-            int count = counter.getCount();
+            final int count = counter.getCount();
             if (count > mMethodMax) {
                 log(aAST.getLineNo(), aAST.getColumnNo(), "ncss.method",
                         new Integer(count), new Integer(mMethodMax));
@@ -193,9 +193,9 @@ public class JavaNCSSCheck extends Check
         }
         else if (TokenTypes.CLASS_DEF == tokenType) {
             //pop counter from the stack
-            Counter counter = (Counter) mCounters.pop();
+            final Counter counter = (Counter) mCounters.pop();
 
-            int count = counter.getCount();
+            final int count = counter.getCount();
             if (count > mClassMax) {
                 log(aAST.getLineNo(), aAST.getColumnNo(), "ncss.class",
                         new Integer(count), new Integer(mClassMax));
@@ -209,9 +209,9 @@ public class JavaNCSSCheck extends Check
     public void finishTree(DetailAST aRootAST)
     {
         //pop counter from the stack
-        Counter counter = (Counter) mCounters.pop();
+        final Counter counter = (Counter) mCounters.pop();
 
-        int count = counter.getCount();
+        final int count = counter.getCount();
         if (count > mFileMax) {
             log(aRootAST.getLineNo(), aRootAST.getColumnNo(), "ncss.file",
                     new Integer(count), new Integer(mMethodMax));
@@ -262,7 +262,7 @@ public class JavaNCSSCheck extends Check
     {
         boolean countable = true;
 
-        int tokenType = aAST.getType();
+        final int tokenType = aAST.getType();
 
         //check if an expression is countable
         if (TokenTypes.EXPR == tokenType) {
@@ -287,12 +287,12 @@ public class JavaNCSSCheck extends Check
 
         //count variable defs only if they are direct child to a slist or
         // object block
-        int parentType = aAST.getParent().getType();
+        final int parentType = aAST.getParent().getType();
 
         if ((TokenTypes.SLIST == parentType)
             || (TokenTypes.OBJBLOCK == parentType))
         {
-            DetailAST prevSibling = aAST.getPreviousSibling();
+            final DetailAST prevSibling = aAST.getPreviousSibling();
 
             //is countable if no previous sibling is found or
             //the sibling is no COMMA.
@@ -318,7 +318,7 @@ public class JavaNCSSCheck extends Check
         //count expressions only if they are direct child to a slist (method
         // body, for loop...)
         //or direct child of label,if,else,do,while,for
-        int parentType = aAST.getParent().getType();
+        final int parentType = aAST.getParent().getType();
         switch (parentType) {
         case TokenTypes.SLIST :
         case TokenTypes.LABELED_STAT :
@@ -328,7 +328,7 @@ public class JavaNCSSCheck extends Check
         case TokenTypes.LITERAL_IF :
         case TokenTypes.LITERAL_ELSE :
             //don't count if or loop conditions
-            DetailAST prevSibling = aAST.getPreviousSibling();
+            final DetailAST prevSibling = aAST.getPreviousSibling();
             countable = (prevSibling == null)
                 || (TokenTypes.LPAREN != prevSibling.getType());
             break;

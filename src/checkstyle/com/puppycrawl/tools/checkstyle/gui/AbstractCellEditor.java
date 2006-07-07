@@ -83,7 +83,7 @@ public class AbstractCellEditor implements CellEditor
     protected void fireEditingStopped()
     {
         // Guaranteed to return a non-null array
-        Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = mListenerList.getListenerList();
         // Process the listeners last to first, notifying
         // those that are interested in this event
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
@@ -101,7 +101,7 @@ public class AbstractCellEditor implements CellEditor
     protected void fireEditingCanceled()
     {
         // Guaranteed to return a non-null array
-        Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = mListenerList.getListenerList();
         // Process the listeners last to first, notifying
         // those that are interested in this event
         for (int i = listeners.length - 2; i >= 0; i -= 2) {

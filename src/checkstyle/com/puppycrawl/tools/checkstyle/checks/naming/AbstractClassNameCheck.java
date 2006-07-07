@@ -77,7 +77,8 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
     private void visitClassDef(DetailAST aAST)
     {
         if (isAbstract(aAST)) {
-            String className = aAST.findFirstToken(TokenTypes.IDENT).getText();
+            final String className =
+                aAST.findFirstToken(TokenTypes.IDENT).getText();
 
             if (!isMatchingClassName(className)) {
                 log(aAST.getLineNo(), aAST.getColumnNo(),

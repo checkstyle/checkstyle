@@ -443,14 +443,17 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
         for (int i = 0; i < lines.length; i++) {
             currentLine++;
-            Matcher javadocArgMatcher = MATCH_JAVADOC_ARG.matcher(lines[i]);
-            Matcher javadocNoargMatcher = MATCH_JAVADOC_NOARG.matcher(lines[i]);
-            Matcher noargCurlyMatcher = MATCH_JAVADOC_NOARG_CURLY
-                    .matcher(lines[i]);
-            Matcher argMultilineStart = MATCH_JAVADOC_ARG_MULTILINE_START
-                    .matcher(lines[i]);
-            Matcher noargMultilineStart = MATCH_JAVADOC_NOARG_MULTILINE_START
-                    .matcher(lines[i]);
+            final Matcher javadocArgMatcher =
+                MATCH_JAVADOC_ARG.matcher(lines[i]);
+            final Matcher javadocNoargMatcher =
+                MATCH_JAVADOC_NOARG.matcher(lines[i]);
+            final Matcher noargCurlyMatcher =
+                MATCH_JAVADOC_NOARG_CURLY.matcher(lines[i]);
+            final Matcher argMultilineStart =
+                MATCH_JAVADOC_ARG_MULTILINE_START.matcher(lines[i]);
+            final Matcher noargMultilineStart =
+                MATCH_JAVADOC_NOARG_MULTILINE_START.matcher(lines[i]);
+
             if (javadocArgMatcher.find()) {
                 int col = javadocArgMatcher.start(1) - 1;
                 if (i == 0) {
@@ -489,11 +492,11 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 // not whitespace or '*' characters.
                 int remIndex = i + 1;
                 while (remIndex < lines.length) {
-                    Matcher multilineCont = MATCH_JAVADOC_MULTILINE_CONT
+                    final Matcher multilineCont = MATCH_JAVADOC_MULTILINE_CONT
                             .matcher(lines[remIndex]);
                     if (multilineCont.find()) {
                         remIndex = lines.length;
-                        String lFin = multilineCont.group(1);
+                        final String lFin = multilineCont.group(1);
                         if (!lFin.equals(NEXT_TAG) && !lFin.equals(END_JAVADOC))
                         {
                             tags.add(new JavadocTag(currentLine, col, p1, p2));
@@ -515,11 +518,11 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 // not whitespace or '*' characters.
                 int remIndex = i + 1;
                 while (remIndex < lines.length) {
-                    Matcher multilineCont = MATCH_JAVADOC_MULTILINE_CONT
+                    final Matcher multilineCont = MATCH_JAVADOC_MULTILINE_CONT
                             .matcher(lines[remIndex]);
                     if (multilineCont.find()) {
                         remIndex = lines.length;
-                        String lFin = multilineCont.group(1);
+                        final String lFin = multilineCont.group(1);
                         if (!lFin.equals(NEXT_TAG) && !lFin.equals(END_JAVADOC))
                         {
                             tags.add(new JavadocTag(currentLine, col, p1));
@@ -571,7 +574,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 if ((child.getType() == TokenTypes.IDENT)
                         || (child.getType() == TokenTypes.DOT))
                 {
-                    FullIdent fi = FullIdent.createFullIdent(child);
+                    final FullIdent fi = FullIdent.createFullIdent(child);
                     final ExceptionInfo ei = new ExceptionInfo(new Token(fi),
                             getCurrentClassName());
                     retVal.add(ei);
@@ -593,8 +596,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     private void checkParamTags(final List aTags, final DetailAST aParent,
         boolean aReportExpectedTags)
     {
-        List params = getParameters(aParent);
-        List typeParams = CheckUtils.getTypeParameters(aParent);
+        final List params = getParameters(aParent);
+        final List typeParams = CheckUtils.getTypeParameters(aParent);
 
         // Loop over the tags, checking to see they exist in the params.
         final ListIterator tagIt = aTags.listIterator();
@@ -622,7 +625,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
             if (tag.getArg1().startsWith("<") && tag.getArg1().endsWith(">")) {
                 // Loop looking for matching type param
-                Iterator typeParamsIt = typeParams.iterator();
+                final Iterator typeParamsIt = typeParams.iterator();
                 while (typeParamsIt.hasNext()) {
                     final DetailAST typeParam = (DetailAST) typeParamsIt.next();
                     if (typeParam.findFirstToken(TokenTypes.IDENT).getText()
@@ -744,9 +747,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
             // Loop looking for matching throw
             final String documentedEx = tag.getArg1();
-            Token token = new Token(tag.getArg1(), tag.getLineNo(), tag
+            final Token token = new Token(tag.getArg1(), tag.getLineNo(), tag
                     .getColumnNo());
-            ClassInfo documentedCI = createClassInfo(token,
+            final ClassInfo documentedCI = createClassInfo(token,
                     getCurrentClassName());
             boolean found = foundThrows.contains(documentedEx);
 

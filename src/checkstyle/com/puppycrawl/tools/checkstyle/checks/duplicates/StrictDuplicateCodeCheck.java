@@ -210,7 +210,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
                     findChecksumGenerator(file);
                 mLineChecksums[i] = transformer.convertLines(lines);
             }
-            catch (IOException ex) {
+            catch (final IOException ex) {
                 LOG.error("Cannot access files to check, giving up: "
                         + ex.getMessage(), ex);
                 // TODO: better to throw an exception here?
@@ -281,13 +281,13 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             final long[] checksums = mLineChecksums[i];
             final long[] relevant = new long[checksums.length];
             for (int j = 0; j < checksums.length; j++) {
-                long checksum = checksums[j];
+                final long checksum = checksums[j];
                 if (checksum != IGNORE) {
                     relevant[count++] = checksum;
                 }
             }
             Arrays.sort(relevant, 0, count);
-            long[] result = new long[count];
+            final long[] result = new long[count];
             System.arraycopy(relevant, 0, result, 0, count);
             mSortedRelevantChecksums[i] = result;
         }

@@ -81,7 +81,7 @@ public class IfHandler extends BlockParentHandler
     private boolean isIfAfterElse()
     {
         // check if there is an 'else' and an 'if' on the same line
-        DetailAST parent = getMainAst().getParent();
+        final DetailAST parent = getMainAst().getParent();
         return (parent.getType() == TokenTypes.LITERAL_ELSE)
             && (parent.getLineNo() == getMainAst().getLineNo());
     }
@@ -103,10 +103,10 @@ public class IfHandler extends BlockParentHandler
      */
     private void checkCondExpr()
     {
-        DetailAST condAst = (DetailAST)
+        final DetailAST condAst = (DetailAST)
             getMainAst().findFirstToken(TokenTypes.LPAREN).getNextSibling();
-        IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
-
+        final IndentLevel expected =
+            new IndentLevel(getLevel(), getBasicOffset());
         checkExpressionSubtree(condAst, expected, false, false);
     }
 

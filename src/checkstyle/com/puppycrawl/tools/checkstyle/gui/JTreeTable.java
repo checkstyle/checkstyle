@@ -84,7 +84,7 @@ public class JTreeTable extends JTable
         super.setModel(new TreeTableModelAdapter(treeTableModel, tree));
 
         // Force the JTable and JTree to share their row selection models.
-        ListToTreeSelectionModelWrapper selectionWrapper = new
+        final ListToTreeSelectionModelWrapper selectionWrapper = new
                 ListToTreeSelectionModelWrapper();
         tree.setSelectionModel(selectionWrapper);
         setSelectionModel(selectionWrapper.getListSelectionModel());
@@ -106,7 +106,7 @@ public class JTreeTable extends JTable
             setRowHeight(getRowHeight());
         }
 
-        Action expand = new AbstractAction() {
+        final Action expand = new AbstractAction() {
                 public void actionPerformed(ActionEvent e) {
                     TreePath selected = tree.getSelectionPath();
                     if (tree.isExpanded(selected)) {
@@ -118,8 +118,8 @@ public class JTreeTable extends JTable
                     tree.setSelectionPath(selected);
                 }
             };
-        KeyStroke stroke = KeyStroke.getKeyStroke("ENTER");
-        String command = "expand/collapse";
+        final KeyStroke stroke = KeyStroke.getKeyStroke("ENTER");
+        final String command = "expand/collapse";
         getInputMap().put(stroke, command);
         getActionMap().put(command, expand);
     }
@@ -196,9 +196,9 @@ public class JTreeTable extends JTable
             super.updateUI();
             // Make the tree's cell renderer use the table's cell selection
             // colors.
-            TreeCellRenderer tcr = getCellRenderer();
+            final TreeCellRenderer tcr = getCellRenderer();
             if (tcr instanceof DefaultTreeCellRenderer) {
-                DefaultTreeCellRenderer dtcr = ((DefaultTreeCellRenderer) tcr);
+                final DefaultTreeCellRenderer dtcr = ((DefaultTreeCellRenderer) tcr);
                 // For 1.1 uncomment this, 1.2 has a bug that will cause an
                 // exception to be thrown if the border selection color is
                 // null.
@@ -307,8 +307,8 @@ public class JTreeTable extends JTable
                 for (int counter = getColumnCount() - 1; counter >= 0;
                      counter--) {
                     if (getColumnClass(counter) == TreeTableModel.class) {
-                        MouseEvent me = (MouseEvent) e;
-                        MouseEvent newME = new MouseEvent(tree, me.getID(),
+                        final MouseEvent me = (MouseEvent) e;
+                        final MouseEvent newME = new MouseEvent(tree, me.getID(),
                                 me.getWhen(), me.getModifiers(),
                                 me.getX() - getCellRect(0, counter, true).x,
                                 me.getY(), me.getClickCount(),
@@ -396,14 +396,14 @@ public class JTreeTable extends JTable
                 try {
                     // This is way expensive, ListSelectionModel needs an
                     // enumerator for iterating.
-                    int min = listSelectionModel.getMinSelectionIndex();
-                    int max = listSelectionModel.getMaxSelectionIndex();
+                    final int min = listSelectionModel.getMinSelectionIndex();
+                    final int max = listSelectionModel.getMaxSelectionIndex();
 
                     clearSelection();
                     if ((min != -1) && (max != -1)) {
                         for (int counter = min; counter <= max; counter++) {
                             if (listSelectionModel.isSelectedIndex(counter)) {
-                                TreePath selPath = tree.getPathForRow
+                                final TreePath selPath = tree.getPathForRow
                                         (counter);
 
                                 if (selPath != null) {

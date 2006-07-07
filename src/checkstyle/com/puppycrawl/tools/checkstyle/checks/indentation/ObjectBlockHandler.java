@@ -89,7 +89,7 @@ public class ObjectBlockHandler extends BlockParentHandler
      */
     protected IndentLevel getLevelImpl()
     {
-        DetailAST parentAST = getMainAst().getParent();
+        final DetailAST parentAST = getMainAst().getParent();
         IndentLevel indent = getParent().getLevel();
         if (parentAST.getType() == TokenTypes.LITERAL_NEW) {
             indent.addAcceptedIndent(super.getLevelImpl());
@@ -109,7 +109,7 @@ public class ObjectBlockHandler extends BlockParentHandler
         // as this is checked by class def; so
         // only do this if we have a new for a parent (anonymous inner
         // class)
-        DetailAST parentAST = getMainAst().getParent();
+        final DetailAST parentAST = getMainAst().getParent();
         if (parentAST.getType() != TokenTypes.LITERAL_NEW) {
             return;
         }

@@ -113,7 +113,7 @@ public class ImportControlCheck extends Check
         try {
             mRoot = ImportControlLoader.load(aName);
         }
-        catch (CheckstyleException ex) {
+        catch (final CheckstyleException ex) {
             throw new ConversionException("Unable to load " + aName, ex);
         }
     }

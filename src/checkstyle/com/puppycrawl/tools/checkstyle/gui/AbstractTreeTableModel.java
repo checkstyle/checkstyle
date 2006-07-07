@@ -104,7 +104,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
             Object[] children)
     {
         // Guaranteed to return a non-null array
-        Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = mListenerList.getListenerList();
         TreeModelEvent e = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
@@ -131,7 +131,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
             Object[] children)
     {
         // Guaranteed to return a non-null array
-        Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = mListenerList.getListenerList();
         TreeModelEvent e = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
@@ -158,7 +158,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
             Object[] children)
     {
         // Guaranteed to return a non-null array
-        Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = mListenerList.getListenerList();
         TreeModelEvent e = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
@@ -185,7 +185,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
             Object[] children)
     {
         // Guaranteed to return a non-null array
-        Object[] listeners = mListenerList.getListenerList();
+        final Object[] listeners = mListenerList.getListenerList();
         TreeModelEvent e = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event

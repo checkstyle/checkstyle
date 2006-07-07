@@ -145,7 +145,7 @@ public final class ConfigurationLoader
                     value = replaceProperties(aAtts.getValue(VALUE),
                         mOverridePropsResolver, aAtts.getValue(DEFAULT));
                 }
-                catch (CheckstyleException ex) {
+                catch (final CheckstyleException ex) {
                     throw new SAXException(ex.getMessage());
                 }
 
@@ -164,7 +164,8 @@ public final class ConfigurationLoader
         {
             if (aQName.equals(MODULE)) {
 
-                Configuration recentModule = (Configuration) mConfigStack.pop();
+                final Configuration recentModule =
+                    (Configuration) mConfigStack.pop();
 
                 // remove modules with severity ignore if these modules should
                 // be omitted
@@ -173,7 +174,7 @@ public final class ConfigurationLoader
                     final String severity = recentModule.getAttribute(SEVERITY);
                     level = SeverityLevel.getInstance(severity);
                 }
-                catch (CheckstyleException e) {
+                catch (final CheckstyleException e) {
                     //severity not set -> ignore
                     ;
                 }
@@ -289,7 +290,7 @@ public final class ConfigurationLoader
                 final URL url = new URL(aConfig);
                 configStream = url.openStream();
             }
-            catch (MalformedURLException ex) {
+            catch (final MalformedURLException ex) {
                 configStream = new FileInputStream(aConfig);
             }
             bufferedStream = new BufferedInputStream(configStream);
@@ -297,13 +298,13 @@ public final class ConfigurationLoader
             return loadConfiguration(bufferedStream, aOverridePropsResolver,
                     aOmitIgnoredModules);
         }
-        catch (FileNotFoundException e) {
+        catch (final FileNotFoundException e) {
             throw new CheckstyleException("unable to find " + aConfig, e);
         }
-        catch (IOException e) {
+        catch (final IOException e) {
             throw new CheckstyleException("unable to read " + aConfig, e);
         }
-        catch (CheckstyleException e) {
+        catch (final CheckstyleException e) {
                 //wrap again to add file name info
             throw new CheckstyleException("unable to read " + aConfig + " - "
                     + e.getMessage(), e);
@@ -313,7 +314,7 @@ public final class ConfigurationLoader
                 try {
                     bufferedStream.close();
                 }
-                catch (IOException e) {
+                catch (final IOException e) {
                     // cannot throw another exception.
                     ;
                 }
@@ -343,20 +344,20 @@ public final class ConfigurationLoader
             loader.parseInputStream(aConfigStream);
             return loader.getConfiguration();
         }
-        catch (ParserConfigurationException e) {
+        catch (final ParserConfigurationException e) {
             throw new CheckstyleException(
                 "unable to parse configuration stream", e);
         }
-        catch (SAXParseException e) {
+        catch (final SAXParseException e) {
             throw new CheckstyleException("unable to parse configuration stream"
                     + " - " + e.getMessage() + ":" + e.getLineNumber()
                     + ":" + e.getColumnNumber(), e);
         }
-        catch (SAXException e) {
+        catch (final SAXException e) {
             throw new CheckstyleException("unable to parse configuration stream"
                     + " - " + e.getMessage(), e);
         }
-        catch (IOException e) {
+        catch (final IOException e) {
             throw new CheckstyleException("unable to read from stream", e);
         }
     }

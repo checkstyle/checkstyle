@@ -123,7 +123,7 @@ public abstract class AbstractLoader
             }
             return super.resolveEntity(aPublicId, aSystemId);
         }
-        catch (IOException e) {
+        catch (final IOException e) {
             throw new SAXException("" + e, e);
         }
     }

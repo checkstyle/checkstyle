@@ -149,7 +149,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
         }
 
         boolean shouldAdd = true;
-        for (Iterator known = aKnownExcs.iterator(); known.hasNext();) {
+        for (final Iterator known = aKnownExcs.iterator(); known.hasNext();) {
             final ClassInfo ci = (ClassInfo) known.next();
             final Token fi = ci.getName();
 

@@ -111,7 +111,7 @@ public class VisibilityModifierCheck
             mPublicMemberPattern = Utils.getPattern(aPattern);
             mPublicMemberFormat = aPattern;
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aPattern, e);
         }
     }
@@ -170,7 +170,7 @@ public class VisibilityModifierCheck
     {
         AST ast = aVariableDefAST.getFirstChild();
         while (ast != null) {
-            AST nextSibling = ast.getNextSibling();
+            final AST nextSibling = ast.getNextSibling();
             if (ast.getType() == TokenTypes.TYPE) {
                 return (DetailAST) nextSibling;
             }

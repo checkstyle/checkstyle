@@ -242,7 +242,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         try {
             return getClassResolver().resolve(aClassName, aCurrentClass);
         }
-        catch (ClassNotFoundException e) {
+        catch (final ClassNotFoundException e) {
             return null;
         }
     }
@@ -280,7 +280,7 @@ public abstract class AbstractTypeAwareCheck extends Check
                                           String aMsgKey, Object[] aValues)
     {
         if (!mLogLoadErrors) {
-            LocalizedMessage msg = new LocalizedMessage(aLineNo,
+            final LocalizedMessage msg = new LocalizedMessage(aLineNo,
                                                     aColumnNo,
                                                     getMessageBundle(),
                                                     aMsgKey,
@@ -327,7 +327,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         final DetailAST typeParams =
             aAST.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        Map paramsMap = new HashMap();
+        final Map paramsMap = new HashMap();
         mTypeParams.add(paramsMap);
 
         if (typeParams == null) {
@@ -339,13 +339,15 @@ public abstract class AbstractTypeAwareCheck extends Check
              child = (DetailAST) child.getNextSibling())
         {
             if (child.getType() == TokenTypes.TYPE_PARAMETER) {
-                DetailAST param = child;
-                String alias = param.findFirstToken(TokenTypes.IDENT).getText();
-                DetailAST bounds =
+                final DetailAST param = child;
+                final String alias =
+                    param.findFirstToken(TokenTypes.IDENT).getText();
+                final DetailAST bounds =
                     param.findFirstToken(TokenTypes.TYPE_UPPER_BOUNDS);
                 if (bounds != null) {
-                    FullIdent name = FullIdent.createFullIdentBelow(bounds);
-                    ClassInfo ci =
+                    final FullIdent name =
+                        FullIdent.createFullIdentBelow(bounds);
+                    final ClassInfo ci =
                         createClassInfo(new Token(name), getCurrentClassName());
                     paramsMap.put(alias, ci);
                 }
@@ -384,7 +386,7 @@ public abstract class AbstractTypeAwareCheck extends Check
     protected final ClassInfo createClassInfo(final Token aName,
                                               final String aSurroundingClass)
     {
-        ClassInfo ci = findClassAlias(aName.getText());
+        final ClassInfo ci = findClassAlias(aName.getText());
         if (ci != null) {
             return new ClassAlias(aName, ci);
         }
@@ -400,7 +402,7 @@ public abstract class AbstractTypeAwareCheck extends Check
     {
         ClassInfo ci = null;
         for (int i = mTypeParams.size() - 1; i >= 0; i--) {
-            Map paramMap = (Map) mTypeParams.get(i);
+            final Map paramMap = (Map) mTypeParams.get(i);
             ci = (ClassInfo) paramMap.get(aName);
             if (ci != null) {
                 break;

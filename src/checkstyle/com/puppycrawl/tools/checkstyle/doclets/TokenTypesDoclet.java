@@ -47,17 +47,17 @@ public class TokenTypesDoclet
      */
     public static boolean start(RootDoc aRoot) throws FileNotFoundException
     {
-        String fileName = getDestFileName(aRoot.options());
-        FileOutputStream fos = new FileOutputStream(fileName);
-        PrintStream ps = new PrintStream(fos);
-        ClassDoc[] classes = aRoot.classes();
+        final String fileName = getDestFileName(aRoot.options());
+        final FileOutputStream fos = new FileOutputStream(fileName);
+        final PrintStream ps = new PrintStream(fos);
+        final ClassDoc[] classes = aRoot.classes();
         if ((classes.length != 1) || !classes[0].name().equals("TokenTypes")) {
             final String message =
                 "The doclet should be used for TokenTypes only";
             throw new IllegalArgumentException(message);
         }
 
-        FieldDoc[] fields = classes[0].fields();
+        final FieldDoc[] fields = classes[0].fields();
         for (int j = 0; j < fields.length; j++) {
             final FieldDoc field = fields[j];
             if (field.isStatic() && field.isPublic() && field.isFinal()
@@ -100,7 +100,7 @@ public class TokenTypesDoclet
     {
         boolean foundDestFileOption = false;
         for (int i = 0; i < aOptions.length; i++) {
-            String[] opt = aOptions[i];
+            final String[] opt = aOptions[i];
             if (DEST_FILE_OPT.equals(opt[0])) {
                 if (foundDestFileOption) {
                     aReporter.printError("Only one -destfile option allowed.");
@@ -126,7 +126,7 @@ public class TokenTypesDoclet
     {
         String fileName = null;
         for (int i = 0; i < aOptions.length; i++) {
-            String[] opt = aOptions[i];
+            final String[] opt = aOptions[i];
             if (DEST_FILE_OPT.equals(opt[0])) {
                 fileName = opt[1];
             }

@@ -94,7 +94,7 @@ public class JavadocTypeCheck
             mAuthorFormat = aFormat;
             mAuthorFormatPattern = Utils.getPattern(aFormat);
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
@@ -111,7 +111,7 @@ public class JavadocTypeCheck
             mVersionFormat = aFormat;
             mVersionFormatPattern = Utils.getPattern(aFormat);
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
 
@@ -151,16 +151,19 @@ public class JavadocTypeCheck
             }
             else if (ScopeUtils.isOuterMostType(aAST)) {
                 // don't check author/version for inner classes
-                Vector tags = getJavadocTags(cmt);
+                final Vector tags = getJavadocTags(cmt);
                 checkTag(lineNo, tags, "author",
                          mAuthorFormatPattern, mAuthorFormat);
                 checkTag(lineNo, tags, "version",
                          mVersionFormatPattern, mVersionFormat);
 
-                List typeParamNames = CheckUtils.getTypeParameterNames(aAST);
+                final List typeParamNames =
+                    CheckUtils.getTypeParameterNames(aAST);
+
                 if (!mAllowMissingParamTags) {
                     //Check type parameters that should exist, do
-                    for (Iterator typeParamNameIt = typeParamNames.iterator();
+                    for (final Iterator typeParamNameIt =
+                             typeParamNames.iterator();
                          typeParamNameIt.hasNext();)
                     {
                         checkTypeParamTag(
@@ -203,11 +206,11 @@ public class JavadocTypeCheck
     private Vector getJavadocTags(TextBlock aCmt)
     {
         final String[] text = aCmt.getText();
-        Vector tags = new Vector();
+        final Vector tags = new Vector();
         Pattern tagPattern = Utils.getPattern("/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
         for (int i = 0; i < text.length; i++) {
             final String s = text[i];
-            Matcher tagMatcher = tagPattern.matcher(s);
+            final Matcher tagMatcher = tagPattern.matcher(s);
             if (tagMatcher.find()) {
                 final String tagName = tagMatcher.group(1);
                 String content = s.substring(tagMatcher.end(1));
@@ -290,14 +293,14 @@ public class JavadocTypeCheck
         final Vector aTags,
         final List aTypeParamNames)
     {
-        Pattern pattern = Utils.getPattern("\\s*<([^>]+)>.*");
+        final Pattern pattern = Utils.getPattern("\\s*<([^>]+)>.*");
         for (int i = aTags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = (JavadocTag) aTags.get(i);
             if (tag.getTag().equals("param")) {
 
                 if (tag.getArg1() != null) {
 
-                    Matcher matcher = pattern.matcher(tag.getArg1());
+                    final Matcher matcher = pattern.matcher(tag.getArg1());
                     String typeParamName = null;
 
                     if (matcher.matches()) {

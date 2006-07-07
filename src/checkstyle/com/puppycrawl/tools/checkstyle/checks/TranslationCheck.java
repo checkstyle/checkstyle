@@ -131,7 +131,7 @@ public class TranslationCheck
                 keys.add(e.nextElement());
             }
         }
-        catch (IOException e) {
+        catch (final IOException e) {
             logIOException(e, aFile);
         }
         finally {
@@ -140,7 +140,7 @@ public class TranslationCheck
                     inStream.close();
                 }
             }
-            catch (IOException e) {
+            catch (final IOException e) {
                 logIOException(e, aFile);
             }
         }
@@ -184,7 +184,7 @@ public class TranslationCheck
     {
         final Set fls = aFileMap.entrySet();
 
-        for (Iterator iter = fls.iterator(); iter.hasNext();) {
+        for (final Iterator iter = fls.iterator(); iter.hasNext();) {
             final Map.Entry entry = (Map.Entry) iter.next();
             final File currentFile = (File) entry.getKey();
             final MessageDispatcher dispatcher = getMessageDispatcher();
@@ -198,7 +198,7 @@ public class TranslationCheck
 
             // Remaining elements in the key set are missing in the current file
             if (!keysClone.isEmpty()) {
-                for (Iterator it = keysClone.iterator(); it.hasNext();) {
+                for (final Iterator it = keysClone.iterator(); it.hasNext();) {
                     final Object key = it.next();
                     log(0, "translation.missingKey", key);
                 }
@@ -223,7 +223,8 @@ public class TranslationCheck
     {
         final Set entrySet = aPropFiles.entrySet();
 
-        for (Iterator iterator = entrySet.iterator(); iterator.hasNext();) {
+        for (final Iterator iterator = entrySet.iterator(); iterator.hasNext();)
+        {
             final Map.Entry entry = (Map.Entry) iterator.next();
             final Set files = (Set) entry.getValue();
 
@@ -232,7 +233,7 @@ public class TranslationCheck
                 final Set keys = new HashSet();
                 final Map fileMap = new HashMap();
 
-                for (Iterator iter = files.iterator(); iter.hasNext();) {
+                for (final Iterator iter = files.iterator(); iter.hasNext();) {
                     final File file = (File) iter.next();
                     final Set fileKeys = loadKeys(file);
                     keys.addAll(fileKeys);

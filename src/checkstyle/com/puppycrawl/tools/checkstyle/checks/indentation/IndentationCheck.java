@@ -249,13 +249,13 @@ public class IndentationCheck extends Check
             return;
         }
 
-        ExpressionHandler handler = mHandlerFactory.getHandler(this, aAST,
+        final ExpressionHandler handler = mHandlerFactory.getHandler(this, aAST,
             (ExpressionHandler) mHandlers.peek());
         mHandlers.push(handler);
         try {
             handler.checkIndentation();
         }
-        catch (NullPointerException npe) {
+        catch (final NullPointerException npe) {
             npe.printStackTrace();
         }
     }

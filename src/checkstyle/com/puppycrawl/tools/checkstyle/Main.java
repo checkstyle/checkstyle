@@ -73,7 +73,7 @@ public final class Main
         try {
             line = clp.parse(OPTS, aArgs);
         }
-        catch (ParseException e) {
+        catch (final ParseException e) {
             e.printStackTrace();
             usage();
         }
@@ -107,7 +107,7 @@ public final class Main
                 out = new FileOutputStream(fname);
                 closeOut = true;
             }
-            catch (FileNotFoundException e) {
+            catch (final FileNotFoundException e) {
                 System.out.println("Could not find file: '" + fname + "'");
                 System.exit(1);
             }
@@ -147,7 +147,7 @@ public final class Main
             c.configure(aConfig);
             c.addListener(aNosy);
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             System.out.println("Unable to create Checker: "
                                + e.getMessage());
             e.printStackTrace(System.out);
@@ -226,7 +226,7 @@ public final class Main
             return PackageNamesLoader.loadModuleFactory(
                 aLine.getOptionValue("n"));
         }
-        catch (CheckstyleException e) {
+        catch (final CheckstyleException e) {
             System.out.println("Error loading package names file");
             e.printStackTrace(System.out);
             System.exit(1);
@@ -248,7 +248,7 @@ public final class Main
             return ConfigurationLoader.loadConfiguration(
                     aLine.getOptionValue("c"), new PropertiesExpander(aProps));
         }
-        catch (CheckstyleException e) {
+        catch (final CheckstyleException e) {
             System.out.println("Error loading configuration file");
             e.printStackTrace(System.out);
             System.exit(1);
@@ -305,7 +305,7 @@ public final class Main
             properties.load(fis);
             fis.close();
         }
-        catch (IOException ex) {
+        catch (final IOException ex) {
             System.out.println("Unable to load properties from file: "
                                + aFile.getAbsolutePath());
             ex.printStackTrace(System.out);

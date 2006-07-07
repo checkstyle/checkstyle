@@ -324,7 +324,7 @@ public class WhitespaceAroundCheck extends Check
     {
         final int type = aAST.getType();
         if (type == TokenTypes.RCURLY) {
-            DetailAST grandParent = aAST.getParent().getParent();
+            final DetailAST grandParent = aAST.getParent().getParent();
             return (aParentType == TokenTypes.SLIST)
                 && (grandParent.getType() == aMatch);
         }

@@ -74,10 +74,11 @@ public class LabelHandler extends ExpressionHandler
     {
         checkLabel();
         // need to check children (like 'block' parents do)
-        DetailAST parent = (DetailAST)
+        final DetailAST parent = (DetailAST)
             getMainAst().getFirstChild().getNextSibling();
 
-        IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
+        final IndentLevel expected =
+            new IndentLevel(getLevel(), getBasicOffset());
 
         checkExpressionSubtree(parent, expected, true, false);
     }

@@ -68,7 +68,7 @@ public abstract class AbstractFileSetCheck
         try {
             new String(new byte[] {}, aCharset);
         }
-        catch (UnsupportedEncodingException es) {
+        catch (final UnsupportedEncodingException es) {
             final String message = "unsupported charset: " + es.getMessage();
             throw new UnsupportedEncodingException(message);
         }

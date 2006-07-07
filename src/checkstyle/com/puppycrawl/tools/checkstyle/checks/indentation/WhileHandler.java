@@ -47,9 +47,9 @@ public class WhileHandler extends BlockParentHandler
      */
     private void checkCondExpr()
     {
-        DetailAST condAst = getMainAst().findFirstToken(TokenTypes.EXPR);
-        IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
-
+        final DetailAST condAst = getMainAst().findFirstToken(TokenTypes.EXPR);
+        final IndentLevel expected =
+            new IndentLevel(getLevel(), getBasicOffset());
         checkExpressionSubtree(condAst, expected, false, false);
     }
 

@@ -160,7 +160,7 @@ public class Checker extends AutomaticBean
                     + " is not allowed as a child in Checker");
             }
         }
-        catch (Exception ex) {
+        catch (final Exception ex) {
             // TODO i18n
             throw new CheckstyleException(
                     "cannot initialize module "

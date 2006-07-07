@@ -276,12 +276,12 @@ public final class CheckUtils
      */
     public static List getTypeParameterNames(final DetailAST aNode)
     {
-        DetailAST typeParameters =
+        final DetailAST typeParameters =
             aNode.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        List typeParamNames = new ArrayList();
+        final List typeParamNames = new ArrayList();
         if (typeParameters != null) {
-            DetailAST typeParam =
+            final DetailAST typeParam =
                 typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);
             typeParamNames.add(
                 typeParam.findFirstToken(TokenTypes.IDENT).getText());
@@ -306,12 +306,12 @@ public final class CheckUtils
      */
     public static List getTypeParameters(final DetailAST aNode)
     {
-        DetailAST typeParameters =
+        final DetailAST typeParameters =
             aNode.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        List typeParams = new ArrayList();
+        final List typeParams = new ArrayList();
         if (typeParameters != null) {
-            DetailAST typeParam =
+            final DetailAST typeParam =
                 typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);
             typeParams.add(typeParam);
 

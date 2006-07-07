@@ -139,7 +139,7 @@ public class SuppressionCommentFilter
                     }
                 }
             }
-            catch (PatternSyntaxException e) {
+            catch (final PatternSyntaxException e) {
                 throw new ConversionException(
                     "unable to parse expanded comment " + format,
                     e);
@@ -206,13 +206,13 @@ public class SuppressionCommentFilter
          */
         public boolean isMatch(AuditEvent aEvent)
         {
-            Matcher tagMatcher =
+            final Matcher tagMatcher =
                 mTagCheckRegexp.matcher(aEvent.getSourceName());
             if (tagMatcher.find()) {
                 return true;
             }
             if (mTagMessageRegexp != null) {
-                Matcher messageMatcher =
+                final Matcher messageMatcher =
                     mTagMessageRegexp.matcher(aEvent.getMessage());
                 return messageMatcher.find();
             }
@@ -231,7 +231,7 @@ public class SuppressionCommentFilter
             String aString,
             Pattern aRegexp)
         {
-            Matcher matcher = aRegexp.matcher(aComment);
+            final Matcher matcher = aRegexp.matcher(aComment);
             // Match primarily for effect.
             if (!matcher.find()) {
                 ///CLOVER:OFF
@@ -320,7 +320,7 @@ public class SuppressionCommentFilter
         try {
             mOffRegexp = Utils.getPattern(aFormat);
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
@@ -336,7 +336,7 @@ public class SuppressionCommentFilter
         try {
             mOnRegexp = Utils.getPattern(aFormat);
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
@@ -368,7 +368,7 @@ public class SuppressionCommentFilter
             mCheckRegexp = Utils.getPattern(aFormat);
             mCheckFormat = aFormat;
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
@@ -385,7 +385,7 @@ public class SuppressionCommentFilter
         try {
             Utils.getPattern(aFormat);
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
         mMessageFormat = aFormat;
@@ -447,7 +447,7 @@ public class SuppressionCommentFilter
         Tag result = null;
         // TODO: try binary search if sequential search becomes a performance
         // problem.
-        for (Iterator iter = mTags.iterator(); iter.hasNext();) {
+        for (final Iterator iter = mTags.iterator(); iter.hasNext();) {
             final Tag tag = (Tag) iter.next();
             if ((tag.getLine() > aEvent.getLine())
                 || ((tag.getLine() == aEvent.getLine())
@@ -491,7 +491,7 @@ public class SuppressionCommentFilter
      */
     private void tagSuppressions(Collection aComments)
     {
-        for (Iterator iter = aComments.iterator(); iter.hasNext();) {
+        for (final Iterator iter = aComments.iterator(); iter.hasNext();) {
             final TextBlock comment = (TextBlock) iter.next();
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
@@ -511,12 +511,12 @@ public class SuppressionCommentFilter
      */
     private void tagCommentLine(String aText, int aLine, int aColumn)
     {
-        Matcher offMatcher = mOffRegexp.matcher(aText);
+        final Matcher offMatcher = mOffRegexp.matcher(aText);
         if (offMatcher.find()) {
             addTag(offMatcher.group(0), aLine, aColumn, false);
         }
         else {
-            Matcher onMatcher = mOnRegexp.matcher(aText);
+            final Matcher onMatcher = mOnRegexp.matcher(aText);
             if (onMatcher.find()) {
                 addTag(onMatcher.group(0), aLine, aColumn, true);
             }

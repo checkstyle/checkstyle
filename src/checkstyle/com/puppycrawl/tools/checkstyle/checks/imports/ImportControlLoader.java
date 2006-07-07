@@ -119,7 +119,7 @@ final class ImportControlLoader extends AbstractLoader
         try {
             fis = new FileInputStream(aFilename);
         }
-        catch (FileNotFoundException e) {
+        catch (final FileNotFoundException e) {
             throw new CheckstyleException("unable to find " + aFilename, e);
         }
         final InputSource source = new InputSource(fis);
@@ -141,14 +141,14 @@ final class ImportControlLoader extends AbstractLoader
             loader.parseInputSource(aSource);
             return loader.getRoot();
         }
-        catch (ParserConfigurationException e) {
+        catch (final ParserConfigurationException e) {
             throw new CheckstyleException("unable to parse " + aSourceName, e);
         }
-        catch (SAXException e) {
+        catch (final SAXException e) {
             throw new CheckstyleException("unable to parse " + aSourceName
                     + " - " + e.getMessage(), e);
         }
-        catch (IOException e) {
+        catch (final IOException e) {
             throw new CheckstyleException("unable to read " + aSourceName, e);
         }
     }

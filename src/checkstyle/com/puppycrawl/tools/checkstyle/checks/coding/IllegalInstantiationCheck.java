@@ -145,7 +145,7 @@ public class IllegalInstantiationCheck
      */
     public void finishTree(DetailAST aRootAST)
     {
-        for (Iterator it = mInstantiations.iterator(); it.hasNext();) {
+        for (final Iterator it = mInstantiations.iterator(); it.hasNext();) {
             final DetailAST literalNewAST = (DetailAST) it.next();
             postprocessLiteralNew(literalNewAST);
         }
@@ -271,7 +271,7 @@ public class IllegalInstantiationCheck
                         isSamePackage = true;
                     }
                 }
-                catch (ClassNotFoundException ex) {
+                catch (final ClassNotFoundException ex) {
                     // not a class from the same package
                     isSamePackage = false;
                 }

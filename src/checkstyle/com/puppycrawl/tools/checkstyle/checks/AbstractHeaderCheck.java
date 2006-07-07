@@ -71,7 +71,7 @@ public abstract class AbstractHeaderCheck extends Check
             headerReader = new FileReader(aFileName);
             loadHeader(headerReader);
         }
-        catch (IOException ex) {
+        catch (final IOException ex) {
             throw new ConversionException(
                     "unable to load header file " + aFileName, ex);
         }
@@ -80,7 +80,7 @@ public abstract class AbstractHeaderCheck extends Check
                 try {
                     headerReader.close();
                 }
-                catch (IOException ex) {
+                catch (final IOException ex) {
                     throw new ConversionException(
                             "unable to close header file " + aFileName, ex);
                 }
@@ -108,7 +108,7 @@ public abstract class AbstractHeaderCheck extends Check
         try {
             loadHeader(headerReader);
         }
-        catch (IOException ex) {
+        catch (final IOException ex) {
             throw new ConversionException(
                     "unable to load header", ex);
         }
@@ -116,7 +116,7 @@ public abstract class AbstractHeaderCheck extends Check
             try {
                 headerReader.close();
             }
-            catch (IOException ex) {
+            catch (final IOException ex) {
                 // shouldn't happen with StringReader
                 throw new ConversionException(
                         "unable to close header", ex);

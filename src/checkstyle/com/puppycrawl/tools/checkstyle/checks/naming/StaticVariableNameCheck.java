@@ -65,7 +65,8 @@ public class StaticVariableNameCheck
     /** {@inheritDoc} */
     protected final boolean mustCheckName(DetailAST aAST)
     {
-        DetailAST modifiersAST = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiersAST =
+            aAST.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStatic = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
         final boolean isFinal = (modifiersAST != null)

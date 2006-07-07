@@ -112,7 +112,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
                     // TODO: Not sure if chache in Utils is still necessary
                     mHeaderRegexps[i] = Utils.getPattern(headerLines[i]);
                 }
-                catch (PatternSyntaxException ex) {
+                catch (final PatternSyntaxException ex) {
                     throw new ConversionException(
                             "line " + i + " in header specification"
                             + " is not a regular expression");

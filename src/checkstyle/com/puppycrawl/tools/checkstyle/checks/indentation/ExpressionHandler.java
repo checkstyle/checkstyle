@@ -130,9 +130,9 @@ public abstract class ExpressionHandler
     protected final void logError(DetailAST aAst, String aSubtypeName,
                                   int aActualLevel, IndentLevel aExpectedLevel)
     {
-        String typeStr =
+        final String typeStr =
             ("".equals(aSubtypeName) ? "" : (" " + aSubtypeName));
-        Object[] args = new Object[] {
+        final Object[] args = new Object[] {
             mTypeName + typeStr,
             new Integer(aActualLevel),
             aExpectedLevel,
@@ -153,7 +153,7 @@ public abstract class ExpressionHandler
                                int aActualLevel,
                                IndentLevel aExpectedLevel)
     {
-        Object[] args = new Object[] {
+        final Object[] args = new Object[] {
             mTypeName,
             new Integer(aActualLevel),
             aExpectedLevel,
@@ -201,7 +201,7 @@ public abstract class ExpressionHandler
         DetailAST child = (DetailAST) aAST.getFirstChild();
 
         while (child != null) {
-            DetailAST toTest = getFirstToken(child);
+            final DetailAST toTest = getFirstToken(child);
             if ((toTest.getLineNo() < first.getLineNo())
                 || ((toTest.getLineNo() == first.getLineNo())
                     && (toTest.getColumnNo() < first.getColumnNo())))
@@ -223,7 +223,7 @@ public abstract class ExpressionHandler
      */
     protected final int getLineStart(DetailAST aAst)
     {
-        String line = mIndentCheck.getLines()[aAst.getLineNo() - 1];
+        final String line = mIndentCheck.getLines()[aAst.getLineNo() - 1];
         return getLineStart(line);
     }
 
@@ -281,11 +281,12 @@ public abstract class ExpressionHandler
         }
 
         // check first line
-        int startLine = aLines.firstLine();
-        int endLine = aLines.lastLine();
-        int startCol = aLines.firstLineCol();
+        final int startLine = aLines.firstLine();
+        final int endLine = aLines.lastLine();
+        final int startCol = aLines.firstLineCol();
 
-        int realStartCol = getLineStart(mIndentCheck.getLines()[startLine - 1]);
+        final int realStartCol =
+            getLineStart(mIndentCheck.getLines()[startLine - 1]);
 
         if (realStartCol == startCol) {
             checkSingleLine(startLine, startCol, aIndentLevel,
@@ -309,7 +310,7 @@ public abstract class ExpressionHandler
 
         // check following lines
         for (int i = startLine + 1; i <= endLine; i++) {
-            Integer col = aLines.getStartColumn(new Integer(i));
+            final Integer col = aLines.getStartColumn(new Integer(i));
             // startCol could be null if this line didn't have an
             // expression that was required to be checked (it could be
             // checked by a child expression)
@@ -328,8 +329,8 @@ public abstract class ExpressionHandler
      */
     private void checkSingleLine(int aLineNum, IndentLevel aIndentLevel)
     {
-        String line = mIndentCheck.getLines()[aLineNum - 1];
-        int start = getLineStart(line);
+        final String line = mIndentCheck.getLines()[aLineNum - 1];
+        final int start = getLineStart(line);
         if (aIndentLevel.gt(start)) {
             logChildError(aLineNum, start, aIndentLevel);
         }
@@ -347,8 +348,8 @@ public abstract class ExpressionHandler
     private void checkSingleLine(int aLineNum, int aColNum,
         IndentLevel aIndentLevel, boolean aMustMatch)
     {
-        String line = mIndentCheck.getLines()[aLineNum - 1];
-        int start = getLineStart(line);
+        final String line = mIndentCheck.getLines()[aLineNum - 1];
+        final int start = getLineStart(line);
         // if must match is set, it is an error if the line start is not
         // at the correct indention level; otherwise, it is an only an
         // error if this statement starts the line and it is less than
@@ -370,7 +371,7 @@ public abstract class ExpressionHandler
     protected final int getLineStart(String aLine)
     {
         for (int start = 0; start < aLine.length(); start++) {
-            char c = aLine.charAt(start);
+            final char c = aLine.charAt(start);
 
             if (!Character.isWhitespace(c)) {
                 return Utils.lengthExpandedTabs(
@@ -427,8 +428,8 @@ public abstract class ExpressionHandler
         boolean aAllowNesting
     )
     {
-        LineSet subtreeLines = new LineSet();
-        int firstLine = getFirstLine(Integer.MAX_VALUE, aTree);
+        final LineSet subtreeLines = new LineSet();
+        final int firstLine = getFirstLine(Integer.MAX_VALUE, aTree);
         if (aFirstLineMatches && !aAllowNesting) {
             subtreeLines.addLineAndCol(new Integer(firstLine),
                 getLineStart(mIndentCheck.getLines()[firstLine - 1]));
@@ -452,7 +453,7 @@ public abstract class ExpressionHandler
         // TODO: getLineNo should probably not return < 0, but it is for
         // the interface methods... I should ask about this
 
-        int currLine = aTree.getLineNo();
+        final int currLine = aTree.getLineNo();
         if (currLine < aStartLine) {
             aStartLine = currLine;
         }
@@ -478,7 +479,7 @@ public abstract class ExpressionHandler
      */
     protected final int expandedTabsColumnNo(DetailAST aAST)
     {
-        String line =
+        final String line =
             mIndentCheck.getLines()[aAST.getLineNo() - 1];
 
         return Utils.lengthExpandedTabs(line, aAST.getColumnNo(),
@@ -512,10 +513,10 @@ public abstract class ExpressionHandler
 //              return;
 //          }
 
-        Integer lineNum = new Integer(aTree.getLineNo());
-        Integer colNum = aLines.getStartColumn(lineNum);
+        final Integer lineNum = new Integer(aTree.getLineNo());
+        final Integer colNum = aLines.getStartColumn(lineNum);
 
-        int thisLineColumn = expandedTabsColumnNo(aTree);
+        final int thisLineColumn = expandedTabsColumnNo(aTree);
         if ((colNum == null) || (thisLineColumn < colNum.intValue())) {
             aLines.addLineAndCol(lineNum, thisLineColumn);
         }
@@ -534,7 +535,8 @@ public abstract class ExpressionHandler
      */
     protected final void checkModifiers()
     {
-        DetailAST modifiers = mMainAst.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST modifiers =
+            mMainAst.findFirstToken(TokenTypes.MODIFIERS);
         for (DetailAST modifier = (DetailAST) modifiers.getFirstChild();
              modifier != null;
              modifier = (DetailAST) modifier.getNextSibling())

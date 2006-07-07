@@ -243,7 +243,7 @@ class TagParser
             column = 0;
             if (line < aText.length) {
                 //skip beginning spaces and stars
-                String currentLine = aText[line];
+                final String currentLine = aText[line];
                 while ((column < currentLine.length())
                        && (Character.isWhitespace(currentLine.charAt(column))
                            || (currentLine.charAt(column) == '*')))

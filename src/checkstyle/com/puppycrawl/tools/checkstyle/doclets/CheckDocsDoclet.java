@@ -68,7 +68,7 @@ public final class CheckDocsDoclet
     private static String getDescription(final ClassDoc aClassDoc)
     {
         final Tag[] tags = aClassDoc.firstSentenceTags();
-        StringBuffer buf = new StringBuffer();
+        final StringBuffer buf = new StringBuffer();
         if (tags.length > 0) {
             buf.append(tags[0].text());
         }
@@ -216,7 +216,7 @@ public final class CheckDocsDoclet
     private static String getPageName(ClassDoc aClassDoc)
     {
         final String packageName = aClassDoc.containingPackage().name();
-        String pageName =
+        final String pageName =
                 packageName.substring(packageName.lastIndexOf('.') + 1);
         if ("checks".equals(pageName)) {
             return "misc";
@@ -232,7 +232,7 @@ public final class CheckDocsDoclet
     public static String getDestDir(String[][] aOptions)
     {
         for (int i = 0; i < aOptions.length; i++) {
-            String[] opt = aOptions[i];
+            final String[] opt = aOptions[i];
             if (DEST_DIR_OPT.equalsIgnoreCase(opt[0])) {
                 return opt[1];
             }

@@ -146,7 +146,7 @@ public final class TreeWalker
         // Tree walker can use two possible algorithms for
         // tree processing (iterative and recursive.
         // Recursive is default for now.
-        String recursive =
+        final String recursive =
             System.getProperty("checkstyle.use.recursive.algorithm", "false");
         mRecursive = "true".equals(recursive);
         if (mRecursive) {
@@ -188,7 +188,7 @@ public final class TreeWalker
     /** @see com.puppycrawl.tools.checkstyle.api.Configurable */
     public void finishLocalSetup()
     {
-        DefaultContext checkContext = new DefaultContext();
+        final DefaultContext checkContext = new DefaultContext();
         checkContext.add("classLoader", mClassLoader);
         checkContext.add("messages", getMessageCollector());
         checkContext.add("severity", getSeverity());
@@ -243,7 +243,7 @@ public final class TreeWalker
             final DetailAST rootAST = TreeWalker.parse(contents);
             walk(rootAST, contents);
         }
-        catch (FileNotFoundException fnfe) {
+        catch (final FileNotFoundException fnfe) {
             Utils.getExceptionLogger()
                 .debug("FileNotFoundException occured.", fnfe);
             getMessageCollector().add(
@@ -255,7 +255,7 @@ public final class TreeWalker
                     getId(),
                     this.getClass()));
         }
-        catch (IOException ioe) {
+        catch (final IOException ioe) {
             Utils.getExceptionLogger().debug("IOException occured.", ioe);
             getMessageCollector().add(
                 new LocalizedMessage(
@@ -266,7 +266,7 @@ public final class TreeWalker
                     getId(),
                     this.getClass()));
         }
-        catch (RecognitionException re) {
+        catch (final RecognitionException re) {
             Utils.getExceptionLogger()
                 .debug("RecognitionException occured.", re);
             getMessageCollector().add(
@@ -279,7 +279,7 @@ public final class TreeWalker
                     getId(),
                     this.getClass()));
         }
-        catch (TokenStreamRecognitionException tre) {
+        catch (final TokenStreamRecognitionException tre) {
             Utils.getExceptionLogger()
                 .debug("TokenStreamRecognitionException occured.", tre);
             final RecognitionException re = tre.recog;
@@ -306,7 +306,7 @@ public final class TreeWalker
                         this.getClass()));
             }
         }
-        catch (TokenStreamException te) {
+        catch (final TokenStreamException te) {
             Utils.getExceptionLogger()
                 .debug("TokenStreamException occured.", te);
             getMessageCollector().add(
@@ -318,7 +318,7 @@ public final class TreeWalker
                     getId(),
                     this.getClass()));
         }
-        catch (Throwable err) {
+        catch (final Throwable err) {
             Utils.getExceptionLogger().debug("Throwable occured.", err);
             getMessageCollector().add(
                 new LocalizedMessage(
@@ -366,7 +366,7 @@ public final class TreeWalker
                     }
                     // TODO: else log warning
                 }
-                catch (IllegalArgumentException ex) {
+                catch (final IllegalArgumentException ex) {
                     throw new CheckstyleException("illegal token \""
                         + token + "\" in check " + aCheck, ex);
                 }
@@ -534,11 +534,11 @@ public final class TreeWalker
         try {
             rootAST = parse(aContents, true, true, true);
         }
-        catch (RecognitionException exception) {
+        catch (final RecognitionException exception) {
             try {
                 rootAST = parse(aContents, true, true, false);
             }
-            catch (RecognitionException exception2) {
+            catch (final RecognitionException exception2) {
                 rootAST = parse(aContents, false, false, false);
             }
         }
@@ -596,7 +596,7 @@ public final class TreeWalker
      */
     public void destroy()
     {
-        for (Iterator it = mAllChecks.iterator(); it.hasNext();) {
+        for (final Iterator it = mAllChecks.iterator(); it.hasNext();) {
             final Check c = (Check) it.next();
             c.destroy();
         }

@@ -173,7 +173,7 @@ public class OperatorWrapCheck
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.COLON) {
-            DetailAST parent = aAST.getParent();
+            final DetailAST parent = aAST.getParent();
             if ((parent.getType() == TokenTypes.LITERAL_DEFAULT)
                 || (parent.getType() == TokenTypes.LITERAL_CASE))
             {

@@ -88,13 +88,13 @@ public class ParseTreeInfoPanel extends JPanel
 
         public void actionPerformed(ActionEvent e)
         {
-            JFileChooser fc = new JFileChooser( mLastDirectory );
-            FileFilter filter = new JavaFileFilter();
+            final JFileChooser fc = new JFileChooser( mLastDirectory );
+            final FileFilter filter = new JavaFileFilter();
             fc.setFileFilter(filter);
             final Component parent =
                 SwingUtilities.getRoot(ParseTreeInfoPanel.this);
             fc.showDialog(parent, "Open");
-            File file = fc.getSelectedFile();
+            final File file = fc.getSelectedFile();
             openFile(file, parent);
 
         }
@@ -125,7 +125,7 @@ public class ParseTreeInfoPanel extends JPanel
         {
             if ((files != null) && (files.length > 0))
             {
-                File file = files[0];
+                final File file = files[0];
                 openFile(file, mSp);
             }
         }
@@ -148,7 +148,7 @@ public class ParseTreeInfoPanel extends JPanel
                 mLastDirectory = aFile.getParentFile();
                 reloadAction.setEnabled(true);
 
-                String[] sourceLines = Utils.getLines(aFile.getAbsolutePath());
+                final String[] sourceLines = Utils.getLines(aFile.getAbsolutePath());
                 //clean the text area before inserting the lines of the new file
                 if (mJTextArea.getText().length() != 0) {
                     mJTextArea.replaceRange("", 0, mJTextArea.getText()
@@ -163,12 +163,12 @@ public class ParseTreeInfoPanel extends JPanel
                 // move back to the top of the file
                 mJTextArea.moveCaretPosition(0);
             }
-            catch (IOException ex) {
+            catch (final IOException ex) {
                 showErrorDialog(
                         aParent,
                         "Could not open " + aFile + ": " + ex.getMessage());
             }
-            catch (ANTLRException ex) {
+            catch (final ANTLRException ex) {
                 showErrorDialog(
                         aParent,
                         "Could not parse " + aFile + ": " + ex.getMessage());
@@ -198,7 +198,7 @@ public class ParseTreeInfoPanel extends JPanel
     {
         setLayout(new BorderLayout());
 
-        DetailAST treeRoot = null;
+        final DetailAST treeRoot = null;
         mParseTreeModel = new ParseTreeModel(treeRoot);
         mTreeTable = new JTreeTable(mParseTreeModel);
         final JScrollPane sp = new JScrollPane(mTreeTable);
@@ -227,7 +227,7 @@ public class ParseTreeInfoPanel extends JPanel
             // and then ignoring the object looks strange.
             new FileDrop(sp, new FileDropListener(sp));
         }
-        catch (TooManyListenersException ex)
+        catch (final TooManyListenersException ex)
         {
            showErrorDialog(null, "Cannot initialize Drag and Drop support");
         }
@@ -236,7 +236,7 @@ public class ParseTreeInfoPanel extends JPanel
 
     private void showErrorDialog(final Component parent, final String msg)
     {
-        Runnable showError = new Runnable()
+        final Runnable showError = new Runnable()
         {
             public void run()
             {

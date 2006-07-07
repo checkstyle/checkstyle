@@ -52,7 +52,7 @@ public class PackageHtmlCheck extends AbstractFileSetCheck
     {
         final File[] javaFiles = filter(aFiles);
         final Set directories = getParentDirs(javaFiles);
-        for (Iterator it = directories.iterator(); it.hasNext();) {
+        for (final Iterator it = directories.iterator(); it.hasNext();) {
             final File dir = (File) it.next();
             final File packageHtml = new File(dir, "package.html");
             final MessageDispatcher dispatcher = getMessageDispatcher();

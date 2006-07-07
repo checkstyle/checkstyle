@@ -56,7 +56,8 @@ public class MethodCallHandler extends ExpressionHandler
         // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start
         if (getParent() instanceof MethodCallHandler) {
-            MethodCallHandler container = ((MethodCallHandler) getParent());
+            final MethodCallHandler container =
+                ((MethodCallHandler) getParent());
             if (container != null) {
                 if (areOnSameLine(container.getMainAst(), getMainAst())) {
                     return container.getLevel();
@@ -64,15 +65,15 @@ public class MethodCallHandler extends ExpressionHandler
 
                 // we should increase indentation only if this is the first
                 // chained method call which was moved to the next line
-                DetailAST main = getMainAst();
-                DetailAST dot = (DetailAST) main.getFirstChild();
-                DetailAST target = (DetailAST) dot.getFirstChild();
+                final DetailAST main = getMainAst();
+                final DetailAST dot = (DetailAST) main.getFirstChild();
+                final DetailAST target = (DetailAST) dot.getFirstChild();
 
                 if ((dot.getType() == TokenTypes.DOT)
                     && (target.getType() == TokenTypes.METHOD_CALL))
                 {
-                    DetailAST dot1 = (DetailAST) target.getFirstChild();
-                    DetailAST target1 = (DetailAST) dot1.getFirstChild();
+                    final DetailAST dot1 = (DetailAST) target.getFirstChild();
+                    final DetailAST target1 = (DetailAST) dot1.getFirstChild();
 
                     if ((dot1.getType() == TokenTypes.DOT)
                         && (target1.getType() == TokenTypes.METHOD_CALL))
@@ -96,10 +97,10 @@ public class MethodCallHandler extends ExpressionHandler
 
         // if our expression isn't first on the line, just use the start
         // of the line
-        LineSet lines = new LineSet();
+        final LineSet lines = new LineSet();
         findSubtreeLines(lines, (DetailAST) getMainAst().getFirstChild(), true);
-        int firstCol = lines.firstLineCol();
-        int lineStart = getLineStart(getFirstAst(getMainAst()));
+        final int firstCol = lines.firstLineCol();
+        final int lineStart = getLineStart(getFirstAst(getMainAst()));
         if (lineStart != firstCol) {
             return new IndentLevel(lineStart);
         }
@@ -148,7 +149,7 @@ public class MethodCallHandler extends ExpressionHandler
         //                new String[] {"method"}).toString());
         // will not have the right line num, so just get the child name
 
-        DetailAST first = (DetailAST) getMainAst().getFirstChild();
+        final DetailAST first = (DetailAST) getMainAst().getFirstChild();
         int indentLevel = getLineStart(first);
         if (!areOnSameLine((DetailAST) aChild.getMainAst().getFirstChild(),
                            (DetailAST) getMainAst().getFirstChild()))
@@ -163,11 +164,11 @@ public class MethodCallHandler extends ExpressionHandler
      */
     public void checkIndentation()
     {
-        DetailAST methodName = (DetailAST) getMainAst().getFirstChild();
+        final DetailAST methodName = (DetailAST) getMainAst().getFirstChild();
         checkExpressionSubtree(methodName, getLevel(), false, false);
 
-        DetailAST lparen = getMainAst();
-        DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
+        final DetailAST lparen = getMainAst();
+        final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         checkLParen(lparen);
 
         if (rparen.getLineNo() == lparen.getLineNo()) {

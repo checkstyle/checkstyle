@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * The model that backs the parse tree in the GUI.
  *
  * @author Lars Kühne
- * @version $Id: ParseTreeModel.java,v 1.6 2006-07-02 11:52:19 oburn Exp $
+ * @version $Id: ParseTreeModel.java,v 1.7 2006-07-07 03:44:16 oburn Exp $
  */
 public class ParseTreeModel extends AbstractTreeTableModel
 {
@@ -44,7 +44,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
 
     private static DetailAST createArtificialTreeRoot()
     {
-        ASTFactory factory = new ASTFactory();
+        final ASTFactory factory = new ASTFactory();
         factory.setASTNodeClass(DetailAST.class.getName());
         // TODO: Need to resolve if need a fake root node....
         return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
@@ -52,9 +52,9 @@ public class ParseTreeModel extends AbstractTreeTableModel
 
     void setParseTree(DetailAST parseTree)
     {
-        DetailAST root = (DetailAST) getRoot();
+        final DetailAST root = (DetailAST) getRoot();
         root.setFirstChild(parseTree);
-        Object[] path = {root};
+        final Object[] path = {root};
         // no need to setup remaining info, as the call results in a
         // table structure changed event anyway - we just pass nulls
         fireTreeStructureChanged(this, path, null, null);
@@ -89,7 +89,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
 
     public Object getValueAt(Object node, int column)
     {
-        DetailAST ast = (DetailAST) node;
+        final DetailAST ast = (DetailAST) node;
         switch (column) {
             case 0:
                 return null;
@@ -111,7 +111,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
 
     public Object getChild(Object parent, int index)
     {
-        DetailAST ast = (DetailAST) parent;
+        final DetailAST ast = (DetailAST) parent;
         int i = 0;
         AST child = ast.getFirstChild();
         while (i < index) {
@@ -123,7 +123,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
 
     public int getChildCount(Object parent)
     {
-        DetailAST ast = (DetailAST) parent;
+        final DetailAST ast = (DetailAST) parent;
         return ast.getChildCount();
     }
 

@@ -70,7 +70,7 @@ public class AutomaticBean
      */
     private static BeanUtilsBean createBeanUtilsBean()
     {
-        ConvertUtilsBean cub = new ConvertUtilsBean();
+        final ConvertUtilsBean cub = new ConvertUtilsBean();
 
         // TODO: is there a smarter way to tell beanutils not to use defaults?
 
@@ -147,7 +147,7 @@ public class AutomaticBean
     {
         mConfiguration = aConfiguration;
 
-        BeanUtilsBean beanUtils = createBeanUtilsBean();
+        final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
         // TODO: debug log messages
         final String[] attributes = aConfiguration.getAttributeNames();
@@ -172,28 +172,28 @@ public class AutomaticBean
                 // finally we can set the bean property
                 beanUtils.copyProperty(this, key, value);
             }
-            catch (InvocationTargetException e) {
+            catch (final InvocationTargetException e) {
                 throw new CheckstyleException(
                     "Cannot set property '" + key + "' in module "
                     + aConfiguration.getName() + " to '" + value
                     + "': " + e.getTargetException().getMessage(), e);
             }
-            catch (IllegalAccessException e) {
+            catch (final IllegalAccessException e) {
                 throw new CheckstyleException(
                     "cannot access " + key + " in "
                     + this.getClass().getName(), e);
             }
-            catch (NoSuchMethodException e) {
+            catch (final NoSuchMethodException e) {
                 throw new CheckstyleException(
                     "cannot access " + key + " in "
                     + this.getClass().getName(), e);
             }
-            catch (IllegalArgumentException e) {
+            catch (final IllegalArgumentException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
                     + "' of module " + aConfiguration.getName(), e);
             }
-            catch (ConversionException e) {
+            catch (final ConversionException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
                     + "' of module " + aConfiguration.getName(), e);
@@ -219,7 +219,7 @@ public class AutomaticBean
     public final void contextualize(Context aContext)
         throws CheckstyleException
     {
-        BeanUtilsBean beanUtils = createBeanUtilsBean();
+        final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
         // TODO: debug log messages
         final String[] attributes = aContext.getAttributeNames();
@@ -231,24 +231,24 @@ public class AutomaticBean
             try {
                 beanUtils.copyProperty(this, key, value);
             }
-            catch (InvocationTargetException e) {
+            catch (final InvocationTargetException e) {
                 // TODO: log.debug("The bean " + this.getClass()
                 // + " is not interested in " + value)
                 throw new CheckstyleException("cannot set property "
                     + key + " to value " + value + " in bean "
                     + this.getClass().getName(), e);
             }
-            catch (IllegalAccessException e) {
+            catch (final IllegalAccessException e) {
                 throw new CheckstyleException(
                     "cannot access " + key + " in "
                     + this.getClass().getName(), e);
             }
-            catch (IllegalArgumentException e) {
+            catch (final IllegalArgumentException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
                     + "' of bean " + this.getClass().getName(), e);
             }
-            catch (ConversionException e) {
+            catch (final ConversionException e) {
                 throw new CheckstyleException(
                     "illegal value '" + value + "' for property '" + key
                     + "' of bean " + this.getClass().getName(), e);
@@ -374,7 +374,7 @@ final class StrArrayConverter extends AbstractArrayConverter
             }
             return (results);
         }
-        catch (Exception e) {
+        catch (final Exception e) {
             if (useDefault) {
                 return (defaultValue);
             }

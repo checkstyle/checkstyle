@@ -59,8 +59,8 @@ public class MethodDefHandler extends BlockParentHandler
      */
     private void checkIdent()
     {
-        DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
-        int columnNo = expandedTabsColumnNo(ident);
+        final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
+        final int columnNo = expandedTabsColumnNo(ident);
         if (startsLine(ident) && !getLevel().accept(columnNo)) {
             logError(ident, "", columnNo);
         }
@@ -71,14 +71,14 @@ public class MethodDefHandler extends BlockParentHandler
      */
     private void checkThrows()
     {
-        DetailAST throwsAst =
+        final DetailAST throwsAst =
             getMainAst().findFirstToken(TokenTypes.LITERAL_THROWS);
         if (throwsAst == null) {
             return;
         }
 
-        int columnNo = expandedTabsColumnNo(throwsAst);
-        IndentLevel expectedColumnNo =
+        final int columnNo = expandedTabsColumnNo(throwsAst);
+        final IndentLevel expectedColumnNo =
             new IndentLevel(getLevel(), getBasicOffset());
 
         if (startsLine(throwsAst)
@@ -93,9 +93,9 @@ public class MethodDefHandler extends BlockParentHandler
      */
     private void checkType()
     {
-        DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
-        DetailAST ident = ExpressionHandler.getFirstToken(type);
-        int columnNo = expandedTabsColumnNo(ident);
+        final DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
+        final DetailAST ident = ExpressionHandler.getFirstToken(type);
+        final int columnNo = expandedTabsColumnNo(ident);
         if (startsLine(ident) && !getLevel().accept(columnNo)) {
             logError(ident, "return type", columnNo);
         }
@@ -106,7 +106,8 @@ public class MethodDefHandler extends BlockParentHandler
      */
     private void checkParameters()
     {
-        DetailAST params = getMainAst().findFirstToken(TokenTypes.PARAMETERS);
+        final DetailAST params =
+            getMainAst().findFirstToken(TokenTypes.PARAMETERS);
         checkExpressionSubtree(params, getLevel(), false, false);
     }
 

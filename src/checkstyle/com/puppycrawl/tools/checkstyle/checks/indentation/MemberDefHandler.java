@@ -47,8 +47,8 @@ public class MemberDefHandler extends ExpressionHandler
      */
     private void checkIdent()
     {
-        DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
-        int columnNo = expandedTabsColumnNo(ident);
+        final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
+        final int columnNo = expandedTabsColumnNo(ident);
         if (startsLine(ident) && !getLevel().accept(columnNo)) {
             logError(ident, "", columnNo);
         }
@@ -59,9 +59,9 @@ public class MemberDefHandler extends ExpressionHandler
      */
     private void checkType()
     {
-        DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
-        DetailAST ident = ExpressionHandler.getFirstToken(type);
-        int columnNo = expandedTabsColumnNo(ident);
+        final DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
+        final DetailAST ident = ExpressionHandler.getFirstToken(type);
+        final int columnNo = expandedTabsColumnNo(ident);
         if (startsLine(ident) && !getLevel().accept(columnNo)) {
             logError(ident, "type", columnNo);
         }

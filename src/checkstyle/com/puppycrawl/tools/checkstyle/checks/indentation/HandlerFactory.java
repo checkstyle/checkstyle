@@ -56,7 +56,7 @@ public class HandlerFactory
     private void register(int aType, Class aHandlerClass)
     {
         try {
-            Constructor ctor = aHandlerClass.getConstructor(new Class[] {
+            final Constructor ctor = aHandlerClass.getConstructor(new Class[] {
                 IndentationCheck.class,
                 DetailAST.class,             // current AST
                 ExpressionHandler.class,     // parent
@@ -64,11 +64,11 @@ public class HandlerFactory
             mTypeHandlers.put(new Integer(aType), ctor);
         }
         ///CLOVER:OFF
-        catch (NoSuchMethodException e) {
+        catch (final NoSuchMethodException e) {
             throw new RuntimeException("couldn't find ctor for "
                                        + aHandlerClass);
         }
-        catch (SecurityException e) {
+        catch (final SecurityException e) {
             LOG.debug("couldn't find ctor for " + aHandlerClass, e);
             throw new RuntimeException("couldn't find ctor for "
                                        + aHandlerClass);
@@ -128,7 +128,7 @@ public class HandlerFactory
      */
     public boolean isHandledType(int aType)
     {
-        Set typeSet = mTypeHandlers.keySet();
+        final Set typeSet = mTypeHandlers.keySet();
         return typeSet.contains(new Integer(aType));
     }
 
@@ -139,10 +139,10 @@ public class HandlerFactory
      */
     public int[] getHandledTypes()
     {
-        Set typeSet = mTypeHandlers.keySet();
-        int[] types = new int[typeSet.size()];
+        final Set typeSet = mTypeHandlers.keySet();
+        final int[] types = new int[typeSet.size()];
         int index = 0;
-        for (Iterator i = typeSet.iterator(); i.hasNext(); index++) {
+        for (final Iterator i = typeSet.iterator(); i.hasNext(); index++) {
             types[index] = ((Integer) i.next()).intValue();
         }
 
@@ -161,7 +161,7 @@ public class HandlerFactory
     public ExpressionHandler getHandler(IndentationCheck aIndentCheck,
         DetailAST aAst, ExpressionHandler aParent)
     {
-        ExpressionHandler handler =
+        final ExpressionHandler handler =
             (ExpressionHandler) mCreatedHandlers.get(aAst);
         if (handler != null) {
             return handler;
@@ -171,11 +171,12 @@ public class HandlerFactory
             return createMethodCallHandler(aIndentCheck, aAst, aParent);
         }
 
-        Integer type = new Integer(aAst.getType());
+        final Integer type = new Integer(aAst.getType());
 
         ExpressionHandler expHandler = null;
         try {
-            Constructor handlerCtor = (Constructor) mTypeHandlers.get(type);
+            final Constructor handlerCtor =
+                (Constructor) mTypeHandlers.get(type);
             if (handlerCtor != null) {
                 expHandler = (ExpressionHandler) handlerCtor.newInstance(
                     new Object[] {
@@ -187,17 +188,17 @@ public class HandlerFactory
             }
         }
         ///CLOVER:OFF
-        catch (InstantiationException e) {
+        catch (final InstantiationException e) {
             LOG.debug("couldn't instantiate constructor for " + aAst, e);
             throw new RuntimeException("couldn't instantiate constructor for "
                                        + aAst);
         }
-        catch (IllegalAccessException e) {
+        catch (final IllegalAccessException e) {
             LOG.debug("couldn't access constructor for " + aAst, e);
             throw new RuntimeException("couldn't access constructor for "
                                        + aAst);
         }
-        catch (InvocationTargetException e) {
+        catch (final InvocationTargetException e) {
             LOG.debug("couldn't instantiate constructor for " + aAst, e);
             throw new RuntimeException("couldn't instantiate constructor for "
                                        + aAst);

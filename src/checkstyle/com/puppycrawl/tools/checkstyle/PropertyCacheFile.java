@@ -83,13 +83,13 @@ final class PropertyCacheFile
                     mDetails.put(CONFIG_HASH_KEY, currentConfigHash);
                 }
             }
-            catch (FileNotFoundException e) {
+            catch (final FileNotFoundException e) {
                 // Ignore, the cache does not exist
                 setInActive = false;
                 // put the hash in the file if the file is going to be created
                 mDetails.put(CONFIG_HASH_KEY, currentConfigHash);
             }
-            catch (IOException e) {
+            catch (final IOException e) {
                 Utils.getExceptionLogger()
                     .debug("Unable to open cache file, ignoring.", e);
             }
@@ -98,7 +98,7 @@ final class PropertyCacheFile
                     try {
                         inStream.close();
                     }
-                    catch (IOException ex) {
+                    catch (final IOException ex) {
                         Utils.getExceptionLogger()
                             .debug("Unable to close cache file.", ex);
                     }
@@ -117,7 +117,7 @@ final class PropertyCacheFile
                 out = new FileOutputStream(mDetailsFile);
                 mDetails.store(out, null);
             }
-            catch (IOException e) {
+            catch (final IOException e) {
                 Utils.getExceptionLogger()
                     .debug("Unable to save cache file.", e);
             }
@@ -127,7 +127,7 @@ final class PropertyCacheFile
                         out.flush();
                         out.close();
                     }
-                    catch (IOException ex) {
+                    catch (final IOException ex) {
                         Utils.getExceptionLogger()
                             .debug("Unable to close cache file.", ex);
                     }
@@ -184,7 +184,7 @@ final class PropertyCacheFile
 
             return hexEncode(md.digest());
         }
-        catch (Exception ex) { // IO, NoSuchAlgorithm
+        catch (final Exception ex) { // IO, NoSuchAlgorithm
             Utils.getExceptionLogger()
                 .debug("Unable to calculate hashcode.", ex);
             return "ALWAYS FRESH: " + System.currentTimeMillis();

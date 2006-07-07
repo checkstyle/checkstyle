@@ -197,7 +197,7 @@ public final class Utils
         try {
             lnr = new LineNumberReader(new InputStreamReader(fr, aCharsetName));
         }
-        catch (UnsupportedEncodingException ex) {
+        catch (final UnsupportedEncodingException ex) {
             final String message = "unsupported charset: " + ex.getMessage();
             throw new UnsupportedEncodingException(message);
         }
@@ -214,7 +214,7 @@ public final class Utils
             try {
                 lnr.close();
             }
-            catch (IOException e) {
+            catch (final IOException e) {
                 ; // silently ignore
             }
         }
@@ -235,7 +235,7 @@ public final class Utils
         try {
             retVal = getPattern(aPattern);
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException(
                 "Failed to initialise regexp expression " + aPattern, e);
         }

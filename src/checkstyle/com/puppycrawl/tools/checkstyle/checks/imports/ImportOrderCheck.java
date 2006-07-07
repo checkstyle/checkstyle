@@ -201,8 +201,8 @@ public class ImportOrderCheck extends Check
         }
 
         if (ident != null) {
-            String name = ident.getText();
-            int groupIdx = getGroupNumber(name);
+            final String name = ident.getText();
+            final int groupIdx = getGroupNumber(name);
             final int line = ident.getLineNo();
 
             if (groupIdx > mLastGroup) {

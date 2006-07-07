@@ -123,7 +123,7 @@ class PkgControl
      */
     AccessResult checkAccess(final String aForImport, final String aInPkg)
     {
-        AccessResult retVal = localCheckAccess(aForImport, aInPkg);
+        final AccessResult retVal = localCheckAccess(aForImport, aInPkg);
         if (retVal != AccessResult.UNKNOWN) {
             return retVal;
         }

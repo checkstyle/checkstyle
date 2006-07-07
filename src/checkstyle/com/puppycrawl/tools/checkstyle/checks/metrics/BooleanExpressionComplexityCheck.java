@@ -210,7 +210,7 @@ public final class BooleanExpressionComplexityCheck extends Check
         public void checkCount(DetailAST aAST)
         {
             if (mChecking && (mCount > getMax())) {
-                DetailAST parentAST = aAST.getParent();
+                final DetailAST parentAST = aAST.getParent();
 
                 log(parentAST.getLineNo(), parentAST.getColumnNo(),
                     "booleanExpressionComplexity",

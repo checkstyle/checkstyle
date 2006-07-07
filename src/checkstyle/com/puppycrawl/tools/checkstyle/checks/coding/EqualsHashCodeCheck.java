@@ -130,7 +130,7 @@ public class EqualsHashCodeCheck
     public void finishTree(DetailAST aRootAST)
     {
         final Set equalsDefs = mObjBlockEquals.keySet();
-        for (Iterator it = equalsDefs.iterator(); it.hasNext();) {
+        for (final Iterator it = equalsDefs.iterator(); it.hasNext();) {
             final Object objBlock = it.next();
             if (!mObjBlockWithHashCode.contains(objBlock)) {
                 final DetailAST equalsAST =

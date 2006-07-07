@@ -330,7 +330,7 @@ public class FallThroughCheck extends Check
          *    default:
          *    /+ FALLTHRU +/}
          */
-        String linepart = lines[endLineNo - 1].substring(0, endColNo);
+        final String linepart = lines[endLineNo - 1].substring(0, endColNo);
         if (commentMatch(mRegExp, linepart, endLineNo)) {
             return true;
         }
@@ -369,9 +369,9 @@ public class FallThroughCheck extends Check
     private boolean commentMatch(Pattern aPattern, String aLine, int aLineNo
     )
     {
-        Matcher matcher = aPattern.matcher(aLine);
+        final Matcher matcher = aPattern.matcher(aLine);
 
-        boolean hit = matcher.find();
+        final boolean hit = matcher.find();
 
         if (hit) {
             final int startMatch = matcher.start();

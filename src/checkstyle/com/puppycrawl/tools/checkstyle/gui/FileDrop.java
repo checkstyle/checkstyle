@@ -146,7 +146,7 @@ class FileDrop
         {
             public void hierarchyChanged(HierarchyEvent evt)
             {
-                Component parent = c.getParent();
+                final Component parent = c.getParent();
                 if (parent == null) {
                     c.setDropTarget(null);
                 }
@@ -161,8 +161,8 @@ class FileDrop
         }
 
         if (recursive && (c instanceof Container)) {
-            Container cont = (Container) c;
-            Component[] comps = cont.getComponents();
+            final Container cont = (Container) c;
+            final Component[] comps = cont.getComponents();
             for (int i = 0; i < comps.length; i++)
                 makeDropTarget(comps[i], recursive);
         }
@@ -173,7 +173,7 @@ class FileDrop
     private boolean isDragOk(final DropTargetDragEvent evt)
     {
         boolean ok = false;
-        DataFlavor[] flavors = evt.getCurrentDataFlavors();
+        final DataFlavor[] flavors = evt.getCurrentDataFlavors();
 
         // See if any of the flavors are a file list
         int i = 0;
@@ -216,7 +216,7 @@ class FileDrop
     {
         c.setDropTarget(null);
         if (recursive && (c instanceof Container)) {
-            Component[] comps = ((Container) c).getComponents();
+            final Component[] comps = ((Container) c).getComponents();
             for (int i = 0; i < comps.length; i++) {
                 remove(comps[i], recursive);
             }
@@ -260,7 +260,7 @@ class FileDrop
         {
             if (isDragOk(evt)) {
                 if (mC instanceof JComponent) {
-                    JComponent jc = (JComponent) mC;
+                    final JComponent jc = (JComponent) mC;
                     normalBorder = jc.getBorder();
                     jc.setBorder(mDragBorder);
                 }
@@ -274,14 +274,14 @@ class FileDrop
         public void drop(DropTargetDropEvent evt)
         {
             try {
-                Transferable tr = evt.getTransferable();
+                final Transferable tr = evt.getTransferable();
 
                 if (tr.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
                     evt.acceptDrop(DnDConstants.ACTION_COPY);
 
-                    List fileList = (List) tr.getTransferData(
+                    final List fileList = (List) tr.getTransferData(
                             DataFlavor.javaFileListFlavor);
-                    File[] files = new File[fileList.size()];
+                    final File[] files = new File[fileList.size()];
                     fileList.toArray(files);
 
                     if (mListener != null) {
@@ -294,15 +294,15 @@ class FileDrop
                     evt.rejectDrop();
                 }
             }
-            catch (IOException io) {
+            catch (final IOException io) {
                 evt.rejectDrop();
             }
-            catch (UnsupportedFlavorException ufe) {
+            catch (final UnsupportedFlavorException ufe) {
                 evt.rejectDrop();
             }
             finally {
                 if (mC instanceof JComponent) {
-                    JComponent jc = (JComponent) mC;
+                    final JComponent jc = (JComponent) mC;
                     jc.setBorder(normalBorder);
                 }
             }
@@ -311,7 +311,7 @@ class FileDrop
         public void dragExit(DropTargetEvent evt)
         {
             if (mC instanceof JComponent) {
-                JComponent jc = (JComponent) mC;
+                final JComponent jc = (JComponent) mC;
                 jc.setBorder(normalBorder);
             }
         }

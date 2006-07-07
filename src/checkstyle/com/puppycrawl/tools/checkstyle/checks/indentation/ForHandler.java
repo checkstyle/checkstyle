@@ -47,23 +47,24 @@ public class ForHandler extends BlockParentHandler
      */
     private void checkForParams()
     {
-        IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
+        final IndentLevel expected =
+            new IndentLevel(getLevel(), getBasicOffset());
+        final DetailAST init = getMainAst().findFirstToken(TokenTypes.FOR_INIT);
 
-        DetailAST init = getMainAst().findFirstToken(TokenTypes.FOR_INIT);
         if (init != null) {
             checkExpressionSubtree(init, expected, false, false);
 
-            DetailAST cond =
+            final DetailAST cond =
                 getMainAst().findFirstToken(TokenTypes.FOR_CONDITION);
             checkExpressionSubtree(cond, expected, false, false);
 
-            DetailAST iter =
+            final DetailAST iter =
                 getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR);
             checkExpressionSubtree(iter, expected, false, false);
         }
         // for each
         else {
-            DetailAST forEach =
+            final DetailAST forEach =
                 getMainAst().findFirstToken(TokenTypes.FOR_EACH_CLAUSE);
             checkExpressionSubtree(forEach, expected, false, false);
         }

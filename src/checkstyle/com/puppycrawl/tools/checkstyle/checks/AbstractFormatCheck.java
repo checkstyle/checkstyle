@@ -115,7 +115,7 @@ public abstract class AbstractFormatCheck
             mFormat = aFormat;
             mCompileFlags |= aCompileFlags;
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }

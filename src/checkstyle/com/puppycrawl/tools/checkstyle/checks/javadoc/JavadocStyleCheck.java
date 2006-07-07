@@ -210,7 +210,7 @@ public class JavadocStyleCheck
     {
         final StringBuffer buffer = new StringBuffer();
         for (int i = 0; i < aComments.length; i++) {
-            String line = aComments[i];
+            final String line = aComments[i];
             final int textStart = findTextStart(line);
 
             if (textStart != -1) {
@@ -427,7 +427,7 @@ public class JavadocStyleCheck
             // The loop is needed in case there are unclosed
             // tags on the stack. In that case, the stack would
             // not be empty, but this tag would still be extra.
-            HtmlTag td = (HtmlTag) aHtmlStack.elementAt(i);
+            final HtmlTag td = (HtmlTag) aHtmlStack.elementAt(i);
             if (aToken.equalsIgnoreCase(td.getId())) {
                 isExtra = false;
                 break;
@@ -467,7 +467,7 @@ public class JavadocStyleCheck
                 mEndOfSentencePattern =
                     Pattern.compile("([.?!][ \t\n\r\f<])|([.?!]$)");
             }
-            catch (PatternSyntaxException e) {
+            catch (final PatternSyntaxException e) {
                 // This should never occur.
                 e.printStackTrace();
             }

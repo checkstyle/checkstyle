@@ -91,7 +91,7 @@ public class WriteTagCheck
             mTag = aTag;
             mTagRE = Utils.getPattern(aTag + "\\s+(.*$)");
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aTag, e);
         }
     }
@@ -108,7 +108,7 @@ public class WriteTagCheck
             mTagFormat = aFormat;
             mTagFormatRE = Utils.getPattern(aFormat);
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
@@ -213,7 +213,7 @@ public class WriteTagCheck
      */
     protected final void logTag(int aLine, String aTag, String aTagValue)
     {
-        String originalSeverity = getSeverity();
+        final String originalSeverity = getSeverity();
         setSeverity(mTagSeverityLevel.getName());
 
         log(aLine, "javadoc.writeTag", aTag, aTagValue);

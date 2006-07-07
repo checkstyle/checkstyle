@@ -130,7 +130,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
 
     protected Object nodeForRow(int row)
     {
-        TreePath treePath = mTree.getPathForRow(row);
+        final TreePath treePath = mTree.getPathForRow(row);
         return treePath.getLastPathComponent();
     }
 

@@ -68,7 +68,7 @@ public class UncommentedMainCheck
             mExcludedClasses = aExcludedClasses;
             mExcludedClassesPattern = Utils.getPattern(mExcludedClasses);
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse "
                                           + mExcludedClasses,
                                           e);

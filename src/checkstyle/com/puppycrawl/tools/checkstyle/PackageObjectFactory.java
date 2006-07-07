@@ -75,7 +75,7 @@ class PackageObjectFactory implements ModuleFactory
         try {
             return createObject(aName);
         }
-        catch (CheckstyleException ex) {
+        catch (final CheckstyleException ex) {
             ; // keep looking
         }
 
@@ -86,7 +86,7 @@ class PackageObjectFactory implements ModuleFactory
             try {
                 return createObject(className);
             }
-            catch (CheckstyleException ex) {
+            catch (final CheckstyleException ex) {
                 ; // keep looking
             }
         }
@@ -109,17 +109,17 @@ class PackageObjectFactory implements ModuleFactory
             final Class clazz = Class.forName(aClassName, true, loader);
             return clazz.newInstance();
         }
-        catch (ClassNotFoundException e) {
+        catch (final ClassNotFoundException e) {
             throw new CheckstyleException(
                 "Unable to find class for " + aClassName, e);
         }
-        catch (InstantiationException e) {
+        catch (final InstantiationException e) {
             ///CLOVER:OFF
             throw new CheckstyleException(
                 "Unable to instantiate " + aClassName, e);
             ///CLOVER:ON
         }
-        catch (IllegalAccessException e) {
+        catch (final IllegalAccessException e) {
             ///CLOVER:OFF
             throw new CheckstyleException(
                 "Unable to instantiate " + aClassName, e);
@@ -143,12 +143,12 @@ class PackageObjectFactory implements ModuleFactory
         try {
             return doMakeObject(aName);
         }
-        catch (CheckstyleException ex) {
+        catch (final CheckstyleException ex) {
             //try again with suffix "Check"
             try {
                 return doMakeObject(aName + "Check");
             }
-            catch (CheckstyleException ex2) {
+            catch (final CheckstyleException ex2) {
                 throw new CheckstyleException(
                     "Unable to instantiate " + aName, ex2);
             }

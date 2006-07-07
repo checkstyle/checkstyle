@@ -84,7 +84,7 @@ public class NewlineAtEndOfFileCheck
                     log(0, "noNewlineAtEOF", path);
                 }
             }
-            catch (IOException e) {
+            catch (final IOException e) {
                 ///CLOVER:OFF
                 logIOException(e);
                 ///CLOVER:ON
@@ -94,7 +94,7 @@ public class NewlineAtEndOfFileCheck
                     try {
                         randomAccessFile.close();
                     }
-                    catch (IOException e) {
+                    catch (final IOException e) {
                         ///CLOVER:OFF
                         logIOException(e);
                         ///CLOVER:ON

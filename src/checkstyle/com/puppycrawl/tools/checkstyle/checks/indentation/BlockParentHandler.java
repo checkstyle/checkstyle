@@ -207,9 +207,9 @@ public class BlockParentHandler extends ExpressionHandler
     {
         // the rcurly can either be at the correct indentation, or
         // on the same line as the lcurly
-        DetailAST lcurly = getLCurly();
-        DetailAST rcurly = getRCurly();
-        int rcurlyPos = expandedTabsColumnNo(rcurly);
+        final DetailAST lcurly = getLCurly();
+        final DetailAST rcurly = getRCurly();
+        final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
         if ((rcurly == null)
             || curlyLevel().accept(rcurlyPos)
@@ -238,13 +238,13 @@ public class BlockParentHandler extends ExpressionHandler
     private void checkNonlistChild()
     {
         // TODO: look for SEMI and check for it here?
-        DetailAST nonlist = getNonlistChild();
+        final DetailAST nonlist = getNonlistChild();
         if (nonlist == null) {
             return;
         }
 
-        IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
-
+        final IndentLevel expected =
+            new IndentLevel(getLevel(), getBasicOffset());
         checkExpressionSubtree(nonlist, expected, false, false);
     }
 
@@ -291,7 +291,7 @@ public class BlockParentHandler extends ExpressionHandler
             checkLCurly();
             checkRCurly();
         }
-        DetailAST listChild = getListChild();
+        final DetailAST listChild = getListChild();
         if (listChild != null) {
             // NOTE: switch statements usually don't have curlys
             if (!hasCurlys() || !areOnSameLine(getLCurly(), getRCurly())) {

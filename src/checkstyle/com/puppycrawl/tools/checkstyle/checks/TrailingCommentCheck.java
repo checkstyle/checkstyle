@@ -119,7 +119,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck
         try {
             mLegalComment = Utils.getPattern(aFormat);
         }
-        catch (PatternSyntaxException e) {
+        catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }

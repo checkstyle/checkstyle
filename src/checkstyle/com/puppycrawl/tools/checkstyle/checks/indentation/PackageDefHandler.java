@@ -47,7 +47,7 @@ public class PackageDefHandler extends ExpressionHandler
      */
     public void checkIndentation()
     {
-        int columnNo = expandedTabsColumnNo(getMainAst());
+        final int columnNo = expandedTabsColumnNo(getMainAst());
         if (!getLevel().accept(columnNo)) {
             logError(getMainAst(), "", columnNo);
         }

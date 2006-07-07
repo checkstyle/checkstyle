@@ -106,7 +106,7 @@ public final class SuppressionsLoader
                     suppress.setChecks(checks);
                 }
             }
-            catch (PatternSyntaxException e) {
+            catch (final PatternSyntaxException e) {
                 throw new SAXException("invalid files or checks format");
             }
             final String lines = aAtts.getValue("lines");
@@ -134,7 +134,7 @@ public final class SuppressionsLoader
         try {
             fis = new FileInputStream(aFilename);
         }
-        catch (FileNotFoundException e) {
+        catch (final FileNotFoundException e) {
             throw new CheckstyleException(
                 "unable to find " + aFilename, e);
         }
@@ -159,20 +159,20 @@ public final class SuppressionsLoader
             suppressionsLoader.parseInputSource(aSource);
             return suppressionsLoader.getFilterChain();
         }
-        catch (FileNotFoundException e) {
+        catch (final FileNotFoundException e) {
             throw new CheckstyleException("unable to find " + aSourceName, e);
         }
-        catch (ParserConfigurationException e) {
+        catch (final ParserConfigurationException e) {
             throw new CheckstyleException("unable to parse " + aSourceName, e);
         }
-        catch (SAXException e) {
+        catch (final SAXException e) {
             throw new CheckstyleException("unable to parse "
                     + aSourceName + " - " + e.getMessage(), e);
         }
-        catch (IOException e) {
+        catch (final IOException e) {
             throw new CheckstyleException("unable to read " + aSourceName, e);
         }
-        catch (NumberFormatException e) {
+        catch (final NumberFormatException e) {
             throw new CheckstyleException("number format exception "
                 + aSourceName + " - " + e.getMessage(), e);
         }

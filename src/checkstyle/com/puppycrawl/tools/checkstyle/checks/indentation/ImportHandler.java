@@ -47,9 +47,9 @@ public class ImportHandler extends ExpressionHandler
      */
     public void checkIndentation()
     {
-        int lineStart = getMainAst().getLineNo();
-        DetailAST semi = getMainAst().findFirstToken(TokenTypes.SEMI);
-        int lineEnd = semi.getLineNo();
+        final int lineStart = getMainAst().getLineNo();
+        final DetailAST semi = getMainAst().findFirstToken(TokenTypes.SEMI);
+        final int lineEnd = semi.getLineNo();
 
         if (getMainAst().getLineNo() != lineEnd) {
             checkLinesIndent(lineStart, lineEnd, getLevel());

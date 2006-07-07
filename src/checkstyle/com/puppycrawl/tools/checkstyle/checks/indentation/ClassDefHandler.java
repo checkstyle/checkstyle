@@ -98,26 +98,27 @@ public class ClassDefHandler extends BlockParentHandler
         // TODO: still need to better deal with the modifiers and "class"
         checkModifiers();
 
-        LineSet lines = new LineSet();
+        final LineSet lines = new LineSet();
 
         // checks that line with class name starts at correct indentation,
         //  and following lines (in implements and extends clauses) are
         //  indented at least one level
-        DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
-        int lineStart = getLineStart(ident);
+        final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
+        final int lineStart = getLineStart(ident);
         if (!getLevel().accept(lineStart)) {
             logError(ident, "ident", lineStart);
         }
 
         lines.addLineAndCol(new Integer(ident.getLineNo()), lineStart);
 
-        DetailAST impl = getMainAst().findFirstToken(
+        final DetailAST impl = getMainAst().findFirstToken(
             TokenTypes.IMPLEMENTS_CLAUSE);
         if ((impl != null) && (impl.getFirstChild() != null)) {
             findSubtreeLines(lines, impl, false);
         }
 
-        DetailAST ext = getMainAst().findFirstToken(TokenTypes.EXTENDS_CLAUSE);
+        final DetailAST ext =
+            getMainAst().findFirstToken(TokenTypes.EXTENDS_CLAUSE);
         if ((ext != null) && (ext.getFirstChild() != null)) {
             findSubtreeLines(lines, ext, false);
         }

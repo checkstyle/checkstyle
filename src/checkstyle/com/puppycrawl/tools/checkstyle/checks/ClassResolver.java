@@ -137,7 +137,7 @@ public class ClassResolver
             safeLoad(aName);
             return true;
         }
-        catch (ClassNotFoundException e) {
+        catch (final ClassNotFoundException e) {
             return false;
         }
     }
@@ -179,7 +179,7 @@ public class ClassResolver
                 }
             }
         }
-        catch (ClassNotFoundException ex) {
+        catch (final ClassNotFoundException ex) {
             // we shouldn't get this exception here,
             // so this is unexpected runtime exception
             throw new RuntimeException(ex);

@@ -160,7 +160,7 @@ public class Utils
      */
     public static boolean implementsEntityBean(DetailAST aAST)
     {
-        DetailAST definer = getDefiner(aAST);
+        final DetailAST definer = getDefiner(aAST);
         return ((definer != null)
             && Utils.hasImplements(definer, "javax.ejb.EntityBean"));
     }
@@ -174,7 +174,7 @@ public class Utils
      */
     public static boolean implementsSessionBean(DetailAST aAST)
     {
-        DetailAST definer = getDefiner(aAST);
+        final DetailAST definer = getDefiner(aAST);
         return ((definer != null)
             && Utils.hasImplements(definer, "javax.ejb.SessionBean"));
     }
@@ -188,7 +188,7 @@ public class Utils
      */
     public static boolean isInEJB(DetailAST aAST)
     {
-        DetailAST definer = getDefiner(aAST);
+        final DetailAST definer = getDefiner(aAST);
         return (
             (definer != null)
                 && (Utils.hasImplements(definer, "javax.ejb.SessionBean")

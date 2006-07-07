@@ -57,7 +57,7 @@ public class CatchHandler extends BlockParentHandler
      */
     private void checkCondExpr()
     {
-        DetailAST condAst = (DetailAST)
+        final DetailAST condAst = (DetailAST)
             getMainAst().findFirstToken(TokenTypes.LPAREN).getNextSibling();
         checkExpressionSubtree(condAst, getLevel(), false, false);
     }
