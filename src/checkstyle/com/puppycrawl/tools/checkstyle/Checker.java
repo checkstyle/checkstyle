@@ -297,9 +297,9 @@ public class Checker extends AutomaticBean
 
         if (!onNetWare) {
             if (!aPath.startsWith(File.separator)
-                && !(aPath.length() >= 2
+                && !((aPath.length() >= 2)
                      && Character.isLetter(aPath.charAt(0))
-                     && colon == 1))
+                     && (colon == 1)))
             {
                 final String msg = aPath + " is not an absolute path";
                 throw new IllegalArgumentException(msg);
@@ -318,10 +318,10 @@ public class Checker extends AutomaticBean
         String root = null;
         // Eliminate consecutive slashes after the drive spec
         if ((!onNetWare
-             && aPath.length() >= 2
+             && (aPath.length() >= 2)
              && Character.isLetter(aPath.charAt(0))
-             && aPath.charAt(1) == ':')
-            || (onNetWare && colon > -1))
+             && (aPath.charAt(1) == ':'))
+            || (onNetWare && (colon > -1)))
         {
 
             dosWithDrive = true;
@@ -341,7 +341,7 @@ public class Checker extends AutomaticBean
             final StringBuffer sbPath = new StringBuffer();
             for (int i = colon + 1; i < ca.length; i++) {
                 if ((ca[i] != '\\')
-                    || (ca[i] == '\\' && ca[i - 1] != '\\'))
+                    || ((ca[i] == '\\') && (ca[i - 1] != '\\')))
                 {
                     sbPath.append(ca[i]);
                 }

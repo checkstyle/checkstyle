@@ -134,8 +134,8 @@ public class JavadocStyleCheck
             && ((surroundingScope == null) || surroundingScope.isIn(mScope))
             && ((mExcludeScope == null)
                 || !scope.isIn(mExcludeScope)
-                || (surroundingScope != null)
-                && !surroundingScope.isIn(mExcludeScope));
+                || ((surroundingScope != null)
+                && !surroundingScope.isIn(mExcludeScope)));
     }
 
     /**

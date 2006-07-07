@@ -303,7 +303,7 @@ public abstract class AbstractClassCouplingCheck extends Check
          */
         private boolean isSignificant(String aClassName)
         {
-            return aClassName.length() > 0
+            return (aClassName.length() > 0)
                     && !mIgnoredClassNames.contains(aClassName)
                     && !aClassName.startsWith("java.lang.");
         }

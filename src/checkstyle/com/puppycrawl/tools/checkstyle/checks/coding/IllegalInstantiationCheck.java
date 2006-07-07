@@ -209,8 +209,8 @@ public class IllegalInstantiationCheck
     {
         final DetailAST typeNameAST = (DetailAST) aAST.getFirstChild();
         final AST nameSibling = typeNameAST.getNextSibling();
-        if (nameSibling != null
-                && nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR)
+        if ((nameSibling != null)
+                && (nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR))
         {
             // aAST == "new Boolean[]"
             return;
@@ -288,9 +288,9 @@ public class IllegalInstantiationCheck
 
             // the test is the "no garbage" version of
             // illegal.equals(mPkgName + "." + aClassName)
-            if (mPkgName != null
-                && clsNameLen == illegalLen - pkgNameLen - 1
-                && illegal.charAt(pkgNameLen) == '.'
+            if ((mPkgName != null)
+                && (clsNameLen == illegalLen - pkgNameLen - 1)
+                && (illegal.charAt(pkgNameLen) == '.')
                 && illegal.endsWith(aClassName)
                 && illegal.startsWith(mPkgName))
             {

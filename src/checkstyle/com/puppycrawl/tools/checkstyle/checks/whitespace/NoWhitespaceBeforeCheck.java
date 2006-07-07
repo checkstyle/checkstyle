@@ -107,7 +107,7 @@ public class NoWhitespaceBeforeCheck
 
             boolean flag = !mAllowLineBreaks;
             // verify all characters before '.' are whitespace
-            for (int i = 0; !flag && i < before; i++) {
+            for (int i = 0; !flag && (i < before); i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
                     flag = true;
                 }

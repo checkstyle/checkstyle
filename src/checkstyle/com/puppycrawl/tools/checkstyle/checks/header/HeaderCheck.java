@@ -65,7 +65,7 @@ public class HeaderCheck extends AbstractHeaderCheck
      */
     public void setIgnoreLines(int[] aList)
     {
-        if (aList == null || aList.length == 0) {
+        if ((aList == null) || (aList.length == 0)) {
             mIgnoreLines = EMPTY_INT_ARRAY;
             return;
         }

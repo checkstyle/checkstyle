@@ -257,9 +257,9 @@ public final class CheckUtils
         DetailAST child = (DetailAST) aNode.getFirstChild();
         while (child != null) {
             final DetailAST newNode = getFirstNode(child);
-            if (newNode.getLineNo() < currentNode.getLineNo()
-                || (newNode.getLineNo() == currentNode.getLineNo()
-                    && newNode.getColumnNo() < currentNode.getColumnNo()))
+            if ((newNode.getLineNo() < currentNode.getLineNo())
+                || ((newNode.getLineNo() == currentNode.getLineNo())
+                    && (newNode.getColumnNo() < currentNode.getColumnNo())))
             {
                 currentNode = newNode;
             }

@@ -624,7 +624,7 @@ public final class TreeWalker
         while (curNode != null) {
             notifyVisit(curNode);
             DetailAST toVisit = (DetailAST) curNode.getFirstChild();
-            while (curNode != null && toVisit == null) {
+            while ((curNode != null) && (toVisit == null)) {
                 notifyLeave(curNode);
                 toVisit = (DetailAST) curNode.getNextSibling();
                 if (toVisit == null) {

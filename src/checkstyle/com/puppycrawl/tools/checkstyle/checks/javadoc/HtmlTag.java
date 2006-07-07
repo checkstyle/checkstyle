@@ -58,7 +58,7 @@ class HtmlTag
     HtmlTag(String aId, int aLineNo, int aPosition, boolean aClosedTag,
             boolean aIncomplete, String aText)
     {
-        mId = (!"".equals(aId) && aId.charAt(0) == '/')
+        mId = (!"".equals(aId) && (aId.charAt(0) == '/'))
             ? aId.substring(1) : aId;
         mLineNo = aLineNo;
         mPosition = aPosition;

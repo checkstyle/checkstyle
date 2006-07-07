@@ -82,19 +82,19 @@ public class EqualsHashCodeCheck
         final AST methodName = aAST.findFirstToken(TokenTypes.IDENT);
         final DetailAST parameters = aAST.findFirstToken(TokenTypes.PARAMETERS);
 
-        if (type.getFirstChild().getType() == TokenTypes.LITERAL_BOOLEAN
+        if ((type.getFirstChild().getType() == TokenTypes.LITERAL_BOOLEAN)
                 && "equals".equals(methodName.getText())
                 && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
-                && parameters.getChildCount() == 1
+                && (parameters.getChildCount() == 1)
                 && isObjectParam(parameters.getFirstChild())
             )
         {
             mObjBlockEquals.put(aAST.getParent(), aAST);
         }
-        else if (type.getFirstChild().getType() == TokenTypes.LITERAL_INT
+        else if ((type.getFirstChild().getType() == TokenTypes.LITERAL_INT)
                 && "hashCode".equals(methodName.getText())
                 && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
-                && parameters.getFirstChild() == null) // no params
+                && (parameters.getFirstChild() == null)) // no params
         {
             mObjBlockWithHashCode.add(aAST.getParent());
         }

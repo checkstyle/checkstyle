@@ -68,14 +68,14 @@ public class MethodCallHandler extends ExpressionHandler
                 DetailAST dot = (DetailAST) main.getFirstChild();
                 DetailAST target = (DetailAST) dot.getFirstChild();
 
-                if (dot.getType() == TokenTypes.DOT
-                    && target.getType() == TokenTypes.METHOD_CALL)
+                if ((dot.getType() == TokenTypes.DOT)
+                    && (target.getType() == TokenTypes.METHOD_CALL))
                 {
                     DetailAST dot1 = (DetailAST) target.getFirstChild();
                     DetailAST target1 = (DetailAST) dot1.getFirstChild();
 
-                    if (dot1.getType() == TokenTypes.DOT
-                        && target1.getType() == TokenTypes.METHOD_CALL)
+                    if ((dot1.getType() == TokenTypes.DOT)
+                        && (target1.getType() == TokenTypes.METHOD_CALL))
                     {
                         return container.getLevel();
                     }
@@ -120,7 +120,7 @@ public class MethodCallHandler extends ExpressionHandler
         // call name
 
         DetailAST ast = (DetailAST) aAst.getFirstChild();
-        while (ast != null && ast.getType() == TokenTypes.DOT) {
+        while ((ast != null) && (ast.getType() == TokenTypes.DOT)) {
             ast = (DetailAST) ast.getFirstChild();
         }
 

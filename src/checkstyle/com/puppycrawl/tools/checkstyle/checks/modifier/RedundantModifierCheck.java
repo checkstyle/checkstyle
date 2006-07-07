@@ -63,10 +63,10 @@ public class RedundantModifierCheck
                 // is not a method or annotation field
 
                 final int type = modifier.getType();
-                if (type == TokenTypes.LITERAL_PUBLIC
-                    || type == TokenTypes.ABSTRACT
-                    || type == TokenTypes.LITERAL_STATIC
-                    || type == TokenTypes.FINAL)
+                if ((type == TokenTypes.LITERAL_PUBLIC)
+                    || (type == TokenTypes.ABSTRACT)
+                    || (type == TokenTypes.LITERAL_STATIC)
+                    || (type == TokenTypes.FINAL))
                 {
                     log(modifier.getLineNo(),
                         modifier.getColumnNo(),

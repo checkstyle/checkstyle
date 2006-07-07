@@ -108,8 +108,8 @@ public final class JUnitTestCaseCheck extends Check
             (typeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null);
         final String type = CheckUtils.createFullType(typeAST).getText();
         if (isArray
-            || !"Test".equals(type)
-            && !"junit.framework.Test".equals(type))
+            || (!"Test".equals(type)
+            && !"junit.framework.Test".equals(type)))
         {
             log(aAST, "junit.method.return.type",
                 SUITE_METHOD_NAME, "junit.framework.Test");

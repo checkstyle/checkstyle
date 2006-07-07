@@ -123,7 +123,7 @@ public class ParseTreeInfoPanel extends JPanel
 
         public void filesDropped(File[] files)
         {
-            if (files != null && files.length > 0)
+            if ((files != null) && (files.length > 0))
             {
                 File file = files[0];
                 openFile(file, mSp);

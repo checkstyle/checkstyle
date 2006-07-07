@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class DesignForExtensionCheck extends Check
 {
@@ -92,8 +92,8 @@ public class DesignForExtensionCheck extends Check
         // Note: native methods don't have impl in java code, so
         // implementation can be null even if method not abstract
         final DetailAST implementation = aAST.findFirstToken(TokenTypes.SLIST);
-        if (implementation != null
-            && implementation.getFirstChild().getType() == TokenTypes.RCURLY)
+        if ((implementation != null)
+            && (implementation.getFirstChild().getType() == TokenTypes.RCURLY))
         {
             return;
         }
@@ -102,7 +102,7 @@ public class DesignForExtensionCheck extends Check
         final DetailAST classDef = findContainingClass(aAST);
         final DetailAST classMods =
             classDef.findFirstToken(TokenTypes.MODIFIERS);
-        if (classDef.getType() == TokenTypes.ENUM_DEF
+        if ((classDef.getType() == TokenTypes.ENUM_DEF)
             || classMods.branchContains(TokenTypes.FINAL))
         {
             return;
@@ -148,8 +148,8 @@ public class DesignForExtensionCheck extends Check
     private DetailAST findContainingClass(DetailAST aAST)
     {
         DetailAST searchAST = aAST;
-        while (searchAST.getType() != TokenTypes.CLASS_DEF
-               && searchAST.getType() != TokenTypes.ENUM_DEF)
+        while ((searchAST.getType() != TokenTypes.CLASS_DEF)
+               && (searchAST.getType() != TokenTypes.ENUM_DEF))
         {
             searchAST = searchAST.getParent();
         }

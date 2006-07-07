@@ -174,11 +174,11 @@ public final class ModifiedControlVariableCheck extends Check
      */
     private void checkIdent(DetailAST aAST)
     {
-        if (mCurrentVariables != null && !mCurrentVariables.isEmpty()) {
+        if ((mCurrentVariables != null) && !mCurrentVariables.isEmpty()) {
             final DetailAST identAST = (DetailAST) aAST.getFirstChild();
 
-            if (identAST != null
-                && identAST.getType() == TokenTypes.IDENT
+            if ((identAST != null)
+                && (identAST.getType() == TokenTypes.IDENT)
                 && mCurrentVariables.contains(identAST.getText()))
             {
                 log(aAST.getLineNo(), aAST.getColumnNo(),

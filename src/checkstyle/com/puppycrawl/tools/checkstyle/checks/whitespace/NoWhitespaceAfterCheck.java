@@ -108,11 +108,11 @@ public class NoWhitespaceAfterCheck extends Check
         final int after =
             targetAST.getColumnNo() + targetAST.getText().length();
 
-        if (after >= line.length()
+        if ((after >= line.length())
             || Character.isWhitespace(line.charAt(after)))
         {
             boolean flag = !mAllowLineBreaks;
-            for (int i = after + 1; !flag && i < line.length(); i++) {
+            for (int i = after + 1; !flag && (i < line.length()); i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
                     flag = true;
                 }

@@ -51,7 +51,7 @@ public class TokenTypesDoclet
         FileOutputStream fos = new FileOutputStream(fileName);
         PrintStream ps = new PrintStream(fos);
         ClassDoc[] classes = aRoot.classes();
-        if (classes.length != 1 || !classes[0].name().equals("TokenTypes")) {
+        if ((classes.length != 1) || !classes[0].name().equals("TokenTypes")) {
             final String message =
                 "The doclet should be used for TokenTypes only";
             throw new IllegalArgumentException(message);

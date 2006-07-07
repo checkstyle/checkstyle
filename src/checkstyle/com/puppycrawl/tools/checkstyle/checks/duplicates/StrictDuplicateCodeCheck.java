@@ -390,21 +390,21 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 
         for (int jLine = 0; jLine < jFileLength - mMin; jLine++) {
 
-            if (aI == aJ && aILine == jLine) {
+            if ((aI == aJ) && (aILine == jLine)) {
                 continue;
             }
 
             int equivalent = 0;
-            while (aILine + equivalent < iFileLength
-                    && jLine + equivalent < jFileLength
-                    && mLineChecksums[aI][aILine + equivalent] != IGNORE
-                    && mLineChecksums[aI][aILine + equivalent]
-                       == mLineChecksums[aJ][jLine + equivalent])
+            while ((aILine + equivalent < iFileLength)
+                    && (jLine + equivalent < jFileLength)
+                    && (mLineChecksums[aI][aILine + equivalent] != IGNORE)
+                    && (mLineChecksums[aI][aILine + equivalent]
+                       == mLineChecksums[aJ][jLine + equivalent]))
             {
                 equivalent += 1;
             }
 
-            if ((aI != aJ || aILine < jLine) && equivalent >= mMin) {
+            if (((aI != aJ) || (aILine < jLine)) && (equivalent >= mMin)) {
                 reportDuplicate(equivalent, aILine, mFiles[aJ], jLine);
                 aILine += equivalent; // skip to end of equivalent section
             }

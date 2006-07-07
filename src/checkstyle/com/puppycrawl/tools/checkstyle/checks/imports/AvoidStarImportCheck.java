@@ -86,7 +86,7 @@ public class AvoidStarImportCheck
         final FullIdent name = FullIdent.createFullIdentBelow(aAST);
         if ((name != null) && name.getText().endsWith(".*")) {
             boolean exempt = false;
-            for (int i = 0; i < mExcludes.length && !exempt; i++) {
+            for (int i = 0; (i < mExcludes.length) && !exempt; i++) {
                 if (name.getText().equals(mExcludes[i])) {
                     exempt = true;
                 }

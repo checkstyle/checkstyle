@@ -242,7 +242,7 @@ public class IndentationCheck extends Check
      */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() == TokenTypes.VARIABLE_DEF
+        if ((aAST.getType() == TokenTypes.VARIABLE_DEF)
             && ScopeUtils.isLocalVariableDef(aAST))
         {
             // we have handler only for members
@@ -265,7 +265,7 @@ public class IndentationCheck extends Check
      */
     public void leaveToken(DetailAST aAST)
     {
-        if (aAST.getType() == TokenTypes.VARIABLE_DEF
+        if ((aAST.getType() == TokenTypes.VARIABLE_DEF)
             && ScopeUtils.isLocalVariableDef(aAST))
         {
             // we have handler only for members

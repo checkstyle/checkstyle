@@ -159,7 +159,7 @@ public class JTreeTable extends JTable
     public void setRowHeight(int newRowHeight)
     {
         super.setRowHeight(newRowHeight);
-        if (tree != null && tree.getRowHeight() != newRowHeight) {
+        if ((tree != null) && (tree.getRowHeight() != newRowHeight)) {
             tree.setRowHeight(getRowHeight());
         }
     }
@@ -400,7 +400,7 @@ public class JTreeTable extends JTable
                     int max = listSelectionModel.getMaxSelectionIndex();
 
                     clearSelection();
-                    if (min != -1 && max != -1) {
+                    if ((min != -1) && (max != -1)) {
                         for (int counter = min; counter <= max; counter++) {
                             if (listSelectionModel.isSelectedIndex(counter)) {
                                 TreePath selPath = tree.getPathForRow

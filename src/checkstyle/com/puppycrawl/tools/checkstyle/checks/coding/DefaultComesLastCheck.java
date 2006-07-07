@@ -73,8 +73,9 @@ public class DefaultComesLastCheck extends Check
             final DetailAST lastGroupAST =
                 switchAST.getLastChild().getPreviousSibling();
 
-            if (defaultGroupAST.getLineNo() != lastGroupAST.getLineNo()
-                || defaultGroupAST.getColumnNo() != lastGroupAST.getColumnNo())
+            if ((defaultGroupAST.getLineNo() != lastGroupAST.getLineNo())
+                || (defaultGroupAST.getColumnNo()
+                    != lastGroupAST.getColumnNo()))
             {
                 log(aAST, "default.comes.last");
             }

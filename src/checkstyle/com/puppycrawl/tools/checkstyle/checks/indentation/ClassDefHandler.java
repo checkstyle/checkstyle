@@ -113,12 +113,12 @@ public class ClassDefHandler extends BlockParentHandler
 
         DetailAST impl = getMainAst().findFirstToken(
             TokenTypes.IMPLEMENTS_CLAUSE);
-        if (impl != null && impl.getFirstChild() != null) {
+        if ((impl != null) && (impl.getFirstChild() != null)) {
             findSubtreeLines(lines, impl, false);
         }
 
         DetailAST ext = getMainAst().findFirstToken(TokenTypes.EXTENDS_CLAUSE);
-        if (ext != null && ext.getFirstChild() != null) {
+        if ((ext != null) && (ext.getFirstChild() != null)) {
             findSubtreeLines(lines, ext, false);
         }
 

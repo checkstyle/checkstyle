@@ -324,11 +324,11 @@ public class CheckStyleTask extends Task
             log("To process the files took " + (endTime - startTime) + " ms.",
                 Project.MSG_VERBOSE);
             final int numWarnings = warningCounter.getCount();
-            final boolean ok = numErrs <= mMaxErrors
-                    && numWarnings <= mMaxWarnings;
+            final boolean ok = (numErrs <= mMaxErrors)
+                    && (numWarnings <= mMaxWarnings);
 
             // Handle the return status
-            if (!ok && mFailureProperty != null) {
+            if (!ok && (mFailureProperty != null)) {
                 getProject().setProperty(mFailureProperty, "true");
             }
 
@@ -589,7 +589,7 @@ public class CheckStyleTask extends Task
         private AuditListener createDefaultLogger(Task aTask)
             throws IOException
         {
-            if (mToFile == null || !mUseFile) {
+            if ((mToFile == null) || !mUseFile) {
                 return new DefaultLogger(
                     new LogOutputStream(aTask, Project.MSG_DEBUG),
                     true, new LogOutputStream(aTask, Project.MSG_ERR), true);
@@ -604,7 +604,7 @@ public class CheckStyleTask extends Task
          */
         private AuditListener createXMLLogger(Task aTask) throws IOException
         {
-            if (mToFile == null || !mUseFile) {
+            if ((mToFile == null) || !mUseFile) {
                 return new XMLLogger(new LogOutputStream(aTask,
                         Project.MSG_INFO), true);
             }

@@ -185,7 +185,7 @@ public class WriteTagCheck
                 tagCount += 1;
                 final int contentStart = matcher.start(1);
                 final String content = s.substring(contentStart);
-                if (aFormatRE != null && !aFormatRE.matcher(content).find()) {
+                if ((aFormatRE != null) && !aFormatRE.matcher(content).find()) {
                     log(aLineNo + i - aCmt.length, "type.tagFormat", aTag,
                         aFormat);
                 }

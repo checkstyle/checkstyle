@@ -121,7 +121,7 @@ public class SimplifyBooleanReturnCheck
      */
     private static boolean isBooleanLiteralReturnStatement(AST aAST)
     {
-        if (aAST == null || aAST.getType() != TokenTypes.LITERAL_RETURN) {
+        if ((aAST == null) || (aAST.getType() != TokenTypes.LITERAL_RETURN)) {
             return false;
         }
 

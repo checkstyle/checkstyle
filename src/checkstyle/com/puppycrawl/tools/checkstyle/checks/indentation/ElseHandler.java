@@ -56,8 +56,8 @@ public class ElseHandler extends BlockParentHandler
             DetailAST slist = ifAST.findFirstToken(TokenTypes.SLIST);
             if (slist != null) {
                 DetailAST lcurly = slist.getLastChild();
-                if (lcurly != null
-                    && lcurly.getLineNo() == getMainAst().getLineNo())
+                if ((lcurly != null)
+                    && (lcurly.getLineNo() == getMainAst().getLineNo()))
                 {
                     // indentation checked as part of LITERAL IF check
                     return;

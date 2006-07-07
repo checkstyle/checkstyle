@@ -191,8 +191,8 @@ public class JavadocTypeCheck
             && ((surroundingScope == null) || surroundingScope.isIn(mScope))
             && ((mExcludeScope == null)
                 || !scope.isIn(mExcludeScope)
-                || (surroundingScope != null)
-                && !surroundingScope.isIn(mExcludeScope));
+                || ((surroundingScope != null)
+                && !surroundingScope.isIn(mExcludeScope)));
     }
 
     /**
@@ -270,8 +270,8 @@ public class JavadocTypeCheck
         for (int i = aTags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = (JavadocTag) aTags.get(i);
             if (tag.getTag().equals("param")
-                && tag.getArg1() != null
-                && tag.getArg1().indexOf("<" + aTypeParamName + ">") == 0)
+                && (tag.getArg1() != null)
+                && (tag.getArg1().indexOf("<" + aTypeParamName + ">") == 0))
             {
                 found = true;
             }

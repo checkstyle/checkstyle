@@ -242,8 +242,8 @@ public class UncommentedMainCheck
 
         final DetailAST arrayType = (DetailAST) arrayDecl.getFirstChild();
 
-        if (arrayType.getType() == TokenTypes.IDENT
-            || arrayType.getType() == TokenTypes.DOT)
+        if ((arrayType.getType() == TokenTypes.IDENT)
+            || (arrayType.getType() == TokenTypes.DOT))
         {
             final FullIdent type = FullIdent.createFullIdent(arrayType);
             return ("String".equals(type.getText())

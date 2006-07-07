@@ -222,10 +222,10 @@ public class HandlerFactory
         DetailAST aAst, ExpressionHandler aParent)
     {
         DetailAST ast = (DetailAST) aAst.getFirstChild();
-        while (ast != null && ast.getType() == TokenTypes.DOT) {
+        while ((ast != null) && (ast.getType() == TokenTypes.DOT)) {
             ast = (DetailAST) ast.getFirstChild();
         }
-        if (ast != null && isHandledType(ast.getType())) {
+        if ((ast != null) && isHandledType(ast.getType())) {
             aParent = getHandler(aIndentCheck, ast, aParent);
             mCreatedHandlers.put(ast, aParent);
         }

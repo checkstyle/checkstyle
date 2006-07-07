@@ -134,8 +134,8 @@ public abstract class AbstractTypeAwareCheck extends Check
         else if (aAST.getType() == TokenTypes.IMPORT) {
             processImport(aAST);
         }
-        else if (aAST.getType() == TokenTypes.CLASS_DEF
-                 || aAST.getType() == TokenTypes.ENUM_DEF)
+        else if ((aAST.getType() == TokenTypes.CLASS_DEF)
+                 || (aAST.getType() == TokenTypes.ENUM_DEF))
         {
             processClass(aAST);
         }
@@ -150,8 +150,8 @@ public abstract class AbstractTypeAwareCheck extends Check
     /** {@inheritDoc} */
     public final void leaveToken(DetailAST aAST)
     {
-        if (aAST.getType() == TokenTypes.CLASS_DEF
-            || aAST.getType() == TokenTypes.ENUM_DEF)
+        if ((aAST.getType() == TokenTypes.CLASS_DEF)
+            || (aAST.getType() == TokenTypes.ENUM_DEF))
         {
             // perhaps it was inner class
             int dotIdx = mCurrentClass.lastIndexOf("$");
@@ -171,8 +171,8 @@ public abstract class AbstractTypeAwareCheck extends Check
         else if (aAST.getType() == TokenTypes.METHOD_DEF) {
             mTypeParams.remove(mTypeParams.size() - 1);
         }
-        else if (aAST.getType() != TokenTypes.PACKAGE_DEF
-                 && aAST.getType() != TokenTypes.IMPORT)
+        else if ((aAST.getType() != TokenTypes.PACKAGE_DEF)
+                 && (aAST.getType() != TokenTypes.IMPORT))
         {
             leaveAST(aAST);
         }
@@ -475,7 +475,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         /** @return <code>Class</code> associated with an object. */
         public Class getClazz()
         {
-            if (isLoadable() && mClass == null) {
+            if (isLoadable() && (mClass == null)) {
                 setClazz(mCheck.tryLoadClass(getName(), mSurroundingClass));
             }
             return mClass;

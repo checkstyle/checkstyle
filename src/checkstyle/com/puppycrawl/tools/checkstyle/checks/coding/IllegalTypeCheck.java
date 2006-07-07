@@ -142,7 +142,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     {
         final DetailAST grandParentAST = aAST.getParent().getParent();
 
-        if (grandParentAST.getType() == TokenTypes.METHOD_DEF
+        if ((grandParentAST.getType() == TokenTypes.METHOD_DEF)
             && isCheckedMethod(grandParentAST))
         {
             checkClassName(aAST);
@@ -207,7 +207,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
             final String name = aClassNames[i];
             mIllegalClassNames.add(name);
             final int lastDot = name.lastIndexOf(".");
-            if (lastDot > 0 && lastDot < (name.length() - 1)) {
+            if ((lastDot > 0) && (lastDot < (name.length() - 1))) {
                 final String shortName =
                     name.substring(name.lastIndexOf(".") + 1);
                 mIllegalClassNames.add(shortName);

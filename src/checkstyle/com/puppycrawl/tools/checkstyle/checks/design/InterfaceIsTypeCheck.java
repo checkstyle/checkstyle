@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public final class InterfaceIsTypeCheck
         extends Check
@@ -69,9 +69,9 @@ public final class InterfaceIsTypeCheck
         final DetailAST variableDef =
                 objBlock.findFirstToken(TokenTypes.VARIABLE_DEF);
         final boolean methodRequired =
-                !mAllowMarkerInterfaces || variableDef != null;
+                !mAllowMarkerInterfaces || (variableDef != null);
 
-        if (methodDef == null && methodRequired) {
+        if ((methodDef == null) && methodRequired) {
             log(aAST.getLineNo(), "interface.type");
         }
 

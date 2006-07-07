@@ -114,7 +114,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
      */
     private void visitVariableDef(DetailAST aAST)
     {
-        if (mChecking && aAST.getParent().getType() == TokenTypes.OBJBLOCK) {
+        if (mChecking && (aAST.getParent().getType() == TokenTypes.OBJBLOCK)) {
             final DetailAST modifiersAST =
                 aAST.findFirstToken(TokenTypes.MODIFIERS);
 

@@ -151,11 +151,11 @@ public class JavaNCSSCheck extends Check
     {
         int tokenType = aAST.getType();
 
-        if (TokenTypes.CLASS_DEF == tokenType
-            || TokenTypes.METHOD_DEF == tokenType
-            || TokenTypes.CTOR_DEF == tokenType
-            || TokenTypes.STATIC_INIT == tokenType
-            || TokenTypes.INSTANCE_INIT == tokenType)
+        if ((TokenTypes.CLASS_DEF == tokenType)
+            || (TokenTypes.METHOD_DEF == tokenType)
+            || (TokenTypes.CTOR_DEF == tokenType)
+            || (TokenTypes.STATIC_INIT == tokenType)
+            || (TokenTypes.INSTANCE_INIT == tokenType))
         {
             //add a counter for this class/method
             mCounters.push(new Counter());
@@ -177,10 +177,10 @@ public class JavaNCSSCheck extends Check
     public void leaveToken(DetailAST aAST)
     {
         int tokenType = aAST.getType();
-        if (TokenTypes.METHOD_DEF == tokenType
-            || TokenTypes.CTOR_DEF == tokenType
-            || TokenTypes.STATIC_INIT == tokenType
-            || TokenTypes.INSTANCE_INIT == tokenType)
+        if ((TokenTypes.METHOD_DEF == tokenType)
+            || (TokenTypes.CTOR_DEF == tokenType)
+            || (TokenTypes.STATIC_INIT == tokenType)
+            || (TokenTypes.INSTANCE_INIT == tokenType))
         {
             //pop counter from the stack
             Counter counter = (Counter) mCounters.pop();
@@ -289,8 +289,8 @@ public class JavaNCSSCheck extends Check
         // object block
         int parentType = aAST.getParent().getType();
 
-        if (TokenTypes.SLIST == parentType
-            || TokenTypes.OBJBLOCK == parentType)
+        if ((TokenTypes.SLIST == parentType)
+            || (TokenTypes.OBJBLOCK == parentType))
         {
             DetailAST prevSibling = aAST.getPreviousSibling();
 
@@ -329,8 +329,8 @@ public class JavaNCSSCheck extends Check
         case TokenTypes.LITERAL_ELSE :
             //don't count if or loop conditions
             DetailAST prevSibling = aAST.getPreviousSibling();
-            countable = prevSibling == null
-                || TokenTypes.LPAREN != prevSibling.getType();
+            countable = (prevSibling == null)
+                || (TokenTypes.LPAREN != prevSibling.getType());
             break;
         default :
             countable = false;

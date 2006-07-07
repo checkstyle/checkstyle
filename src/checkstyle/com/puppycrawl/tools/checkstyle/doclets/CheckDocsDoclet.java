@@ -84,7 +84,7 @@ public final class CheckDocsDoclet
     {
         final String openTag = "<p>";
         final int tagLen = openTag.length();
-        if (aText.length() > tagLen
+        if ((aText.length() > tagLen)
                 && aText.substring(0, tagLen).equals(openTag))
         {
             aText.delete(0, tagLen);
@@ -183,7 +183,7 @@ public final class CheckDocsDoclet
                 // allow checks to override pageName when
                 // java package hierarchy is not reflected in doc structure
                 final Tag[] docPageTags = classDoc.tags("checkstyle-docpage");
-                if (docPageTags != null && docPageTags.length > 0) {
+                if ((docPageTags != null) && (docPageTags.length > 0)) {
                     pageName = docPageTags[0].text();
                 }
 

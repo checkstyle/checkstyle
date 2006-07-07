@@ -178,7 +178,8 @@ public class TrailingCommentCheck extends AbstractFormatCheck
                     }
                 }
             }
-            if (comment != null && !blankLinePattern.matcher(lineBefore).find()
+            if ((comment != null)
+                && !blankLinePattern.matcher(lineBefore).find()
                 && !isLegalComment(comment))
             {
                 log(lineNo.intValue(), "trailing.comments");

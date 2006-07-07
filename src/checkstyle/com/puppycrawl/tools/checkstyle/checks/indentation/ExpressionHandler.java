@@ -185,8 +185,8 @@ public abstract class ExpressionHandler
      */
     static boolean areOnSameLine(DetailAST aAst1, DetailAST aAst2)
     {
-        return aAst1 != null && aAst2 != null
-            && aAst1.getLineNo() == aAst2.getLineNo();
+        return (aAst1 != null) && (aAst2 != null)
+            && (aAst1.getLineNo() == aAst2.getLineNo());
     }
 
     /**
@@ -202,9 +202,9 @@ public abstract class ExpressionHandler
 
         while (child != null) {
             DetailAST toTest = getFirstToken(child);
-            if (toTest.getLineNo() < first.getLineNo()
-                || (toTest.getLineNo() == first.getLineNo()
-                    && toTest.getColumnNo() < first.getColumnNo()))
+            if ((toTest.getLineNo() < first.getLineNo())
+                || ((toTest.getLineNo() == first.getLineNo())
+                    && (toTest.getColumnNo() < first.getColumnNo())))
             {
                 first = toTest;
             }
@@ -302,7 +302,7 @@ public abstract class ExpressionHandler
         //       after complete rewriting of checkExpressionSubtree()
 
         if (aFirstLineMatches
-            || (aFirstLine > mMainAst.getLineNo() && shouldIncreaseIndent()))
+            || ((aFirstLine > mMainAst.getLineNo()) && shouldIncreaseIndent()))
         {
             aIndentLevel = new IndentLevel(aIndentLevel, getBasicOffset());
         }
@@ -354,7 +354,7 @@ public abstract class ExpressionHandler
         // error if this statement starts the line and it is less than
         // the correct indentation level
         if (aMustMatch ? !aIndentLevel.accept(start)
-            : aColNum == start && aIndentLevel.gt(start))
+            : (aColNum == start) && aIndentLevel.gt(start))
         {
             logChildError(aLineNum, start, aIndentLevel);
         }
@@ -500,7 +500,7 @@ public abstract class ExpressionHandler
         // the interface methods... I should ask about this
 
         if (getIndentCheck().getHandlerFactory().isHandledType(aTree.getType())
-            || aTree.getLineNo() < 0)
+            || (aTree.getLineNo() < 0))
         {
             return;
         }
@@ -516,7 +516,7 @@ public abstract class ExpressionHandler
         Integer colNum = aLines.getStartColumn(lineNum);
 
         int thisLineColumn = expandedTabsColumnNo(aTree);
-        if (colNum == null || (thisLineColumn < colNum.intValue())) {
+        if ((colNum == null) || (thisLineColumn < colNum.intValue())) {
             aLines.addLineAndCol(lineNum, thisLineColumn);
         }
 
@@ -643,7 +643,7 @@ public abstract class ExpressionHandler
     {
         // the rcurly can either be at the correct indentation, or on the
         // same line as the lcurly
-        if (aLparen == null
+        if ((aLparen == null)
             || getLevel().accept(expandedTabsColumnNo(aLparen))
             || !startsLine(aLparen))
         {

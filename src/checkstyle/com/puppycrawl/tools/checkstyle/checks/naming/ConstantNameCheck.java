@@ -75,9 +75,9 @@ public class ConstantNameCheck
         boolean retVal = false;
 
         DetailAST modifiersAST = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStatic = modifiersAST != null
+        final boolean isStatic = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
-        final boolean isFinal = modifiersAST != null
+        final boolean isFinal = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.FINAL);
 
         if ((isStatic  && isFinal)

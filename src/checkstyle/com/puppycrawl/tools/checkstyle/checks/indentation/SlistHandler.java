@@ -63,10 +63,10 @@ public class SlistHandler extends BlockParentHandler
         //  preceded by a switch
 
         // if our parent is a block handler we want to be transparent
-        if ((getParent() instanceof BlockParentHandler
+        if (((getParent() instanceof BlockParentHandler)
                 && !(getParent() instanceof SlistHandler))
-            || (getParent() instanceof CaseHandler
-                && aChild instanceof SlistHandler))
+            || ((getParent() instanceof CaseHandler)
+                && (aChild instanceof SlistHandler)))
         {
             return getParent().suggestedChildLevel(aChild);
         }

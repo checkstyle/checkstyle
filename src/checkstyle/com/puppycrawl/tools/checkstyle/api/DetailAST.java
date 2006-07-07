@@ -97,7 +97,7 @@ public final class DetailAST extends CommonAST
     public void setNextSibling(AST aAST)
     {
         super.setNextSibling(aAST);
-        if (aAST != null && mParent != null) {
+        if ((aAST != null) && (mParent != null)) {
             ((DetailAST) aAST).setParent(mParent);
         }
         if (aAST != null) {

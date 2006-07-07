@@ -105,9 +105,9 @@ class TagParser
                     (incompleteTag ? "" : getTagId(aText, position));
                 // is this closed tag
                 final boolean closedTag =
-                    (endTag.getLineNo() < nLines && endTag.getColumnNo() > 0
-                     && aText[endTag.getLineNo()]
-                     .charAt(endTag.getColumnNo() - 1) == '/');
+                    ((endTag.getLineNo() < nLines) && (endTag.getColumnNo() > 0)
+                     && (aText[endTag.getLineNo()]
+                     .charAt(endTag.getColumnNo() - 1) == '/'));
                 // add new tag
                 add(new HtmlTag(tagId,
                                 position.getLineNo() + aLineNo,
@@ -132,13 +132,13 @@ class TagParser
         final int column = aPos.getColumnNo() + 1;
         final String text = aText[aPos.getLineNo()];
 
-        return (column < text.length()
+        return (((column < text.length())
                 && (((text.charAt(column) >= 'A')
                      && (text.charAt(column) <= 'Z'))
                     || ((text.charAt(column) >= 'a')
                         && (text.charAt(column) <= 'z'))
-                    || (text.charAt(column) == '/'))
-                || column >= text.length());
+                    || (text.charAt(column) == '/')))
+                || (column >= text.length()));
     }
 
     /**
@@ -162,13 +162,13 @@ class TagParser
         text = text.substring(column).trim();
         column = 0;
 
-        while (column < text.length()
-               && ((text.charAt(column) >= 'A'
-                    && text.charAt(column) <= 'Z')
-                   || (text.charAt(column) >= 'a'
-                       && text.charAt(column) <= 'z')
-                   || (text.charAt(column) >= '0'
-                       && text.charAt(column) <= '9')))
+        while ((column < text.length())
+               && (((text.charAt(column) >= 'A')
+                    && (text.charAt(column) <= 'Z'))
+                   || ((text.charAt(column) >= 'a')
+                       && (text.charAt(column) <= 'z'))
+                   || ((text.charAt(column) >= '0')
+                       && (text.charAt(column) <= '9'))))
         {
             column++;
         }
@@ -198,7 +198,7 @@ class TagParser
     {
         Point to = aFrom;
         to = findChar(aText, '>', to);
-        while (to.getLineNo() < aText.length
+        while ((to.getLineNo() < aText.length)
                && !aText[to.getLineNo()]
                .substring(0, to.getColumnNo()).endsWith("-->"))
         {
@@ -217,8 +217,8 @@ class TagParser
     private Point findChar(String[] aText, char aChar, Point aFrom)
     {
         Point curr = new Point(aFrom.getLineNo(), aFrom.getColumnNo());
-        while (curr.getLineNo() < aText.length
-               && aText[curr.getLineNo()].charAt(curr.getColumnNo()) != aChar)
+        while ((curr.getLineNo() < aText.length)
+               && (aText[curr.getLineNo()].charAt(curr.getColumnNo()) != aChar))
         {
             curr = getNextCharPos(aText, curr);
         }
@@ -237,21 +237,21 @@ class TagParser
     {
         int line = aFrom.getLineNo();
         int column = aFrom.getColumnNo() + 1;
-        while (line < aText.length && column >= aText[line].length()) {
+        while ((line < aText.length) && (column >= aText[line].length())) {
             // go to the next line
             line++;
             column = 0;
             if (line < aText.length) {
                 //skip beginning spaces and stars
                 String currentLine = aText[line];
-                while (column < currentLine.length()
+                while ((column < currentLine.length())
                        && (Character.isWhitespace(currentLine.charAt(column))
-                           || currentLine.charAt(column) == '*'))
+                           || (currentLine.charAt(column) == '*')))
                 {
                     column++;
-                    if (column < currentLine.length()
-                        && currentLine.charAt(column - 1) == '*'
-                        && currentLine.charAt(column) == '/')
+                    if ((column < currentLine.length())
+                        && (currentLine.charAt(column - 1) == '*')
+                        && (currentLine.charAt(column) == '/'))
                     {
                         // this is end of comment
                         column = currentLine.length();

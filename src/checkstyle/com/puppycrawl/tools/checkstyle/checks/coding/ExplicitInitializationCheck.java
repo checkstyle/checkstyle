@@ -80,7 +80,7 @@ public class ExplicitInitializationCheck extends Check
         }
 
         final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers != null
+        if ((modifiers != null)
             && modifiers.branchContains(TokenTypes.FINAL))
         {
             // do not check final variables
@@ -92,24 +92,24 @@ public class ExplicitInitializationCheck extends Check
         final DetailAST exprStart =
             (DetailAST) assign.getFirstChild().getFirstChild();
         if (isObjectType(type)
-            && exprStart.getType() == TokenTypes.LITERAL_NULL)
+            && (exprStart.getType() == TokenTypes.LITERAL_NULL))
         {
             log(ident, "explicit.init", ident.getText(), "null");
         }
 
         final int primitiveType = type.getFirstChild().getType();
-        if (primitiveType == TokenTypes.LITERAL_BOOLEAN
-            && exprStart.getType() == TokenTypes.LITERAL_FALSE)
+        if ((primitiveType == TokenTypes.LITERAL_BOOLEAN)
+            && (exprStart.getType() == TokenTypes.LITERAL_FALSE))
         {
             log(ident, "explicit.init", ident.getText(), "false");
         }
         if (isNumericType(primitiveType) && isZero(exprStart)) {
             log(ident, "explicit.init", ident.getText(), "0");
         }
-        if (primitiveType == TokenTypes.LITERAL_CHAR
+        if ((primitiveType == TokenTypes.LITERAL_CHAR)
             && (isZero(exprStart)
-                || exprStart.getType() == TokenTypes.CHAR_LITERAL
-                && "'\\0'".equals(exprStart.getText())))
+                || ((exprStart.getType() == TokenTypes.CHAR_LITERAL)
+                && "'\\0'".equals(exprStart.getText()))))
         {
             log(ident, "explicit.init", ident.getText(), "\\0");
         }
@@ -123,8 +123,8 @@ public class ExplicitInitializationCheck extends Check
     private boolean isObjectType(DetailAST aType)
     {
         final int type = aType.getFirstChild().getType();
-        return (type == TokenTypes.IDENT || type == TokenTypes.DOT
-                || type == TokenTypes.ARRAY_DECLARATOR);
+        return ((type == TokenTypes.IDENT) || (type == TokenTypes.DOT)
+                || (type == TokenTypes.ARRAY_DECLARATOR));
     }
 
     /**
@@ -135,12 +135,12 @@ public class ExplicitInitializationCheck extends Check
      */
     private boolean isNumericType(int aType)
     {
-        return (aType == TokenTypes.LITERAL_BYTE
-                || aType == TokenTypes.LITERAL_SHORT
-                || aType == TokenTypes.LITERAL_INT
-                || aType == TokenTypes.LITERAL_FLOAT
-                || aType == TokenTypes.LITERAL_LONG
-                || aType == TokenTypes.LITERAL_DOUBLE);
+        return ((aType == TokenTypes.LITERAL_BYTE)
+                || (aType == TokenTypes.LITERAL_SHORT)
+                || (aType == TokenTypes.LITERAL_INT)
+                || (aType == TokenTypes.LITERAL_FLOAT)
+                || (aType == TokenTypes.LITERAL_LONG)
+                || (aType == TokenTypes.LITERAL_DOUBLE));
     }
 
     /**

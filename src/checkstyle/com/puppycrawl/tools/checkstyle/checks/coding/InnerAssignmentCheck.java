@@ -161,7 +161,7 @@ public class InnerAssignmentCheck
         }
         final DetailAST expr = aAST.getParent();
         final AST exprNext = expr.getNextSibling();
-        return exprNext != null && exprNext.getType() == TokenTypes.SEMI;
+        return (exprNext != null) && (exprNext.getType() == TokenTypes.SEMI);
     }
 
     /**
@@ -214,7 +214,7 @@ public class InnerAssignmentCheck
             for (int j = 0; j < len; j++) {
                 current = current.getParent();
                 final int expectedType = aContextSet[i][j];
-                if (current == null || current.getType() != expectedType) {
+                if ((current == null) || (current.getType() != expectedType)) {
                     break;
                 }
                 if (j == len - 1) {

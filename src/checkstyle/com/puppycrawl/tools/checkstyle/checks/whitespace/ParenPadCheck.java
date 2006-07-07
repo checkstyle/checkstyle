@@ -81,8 +81,8 @@ public class ParenPadCheck extends AbstractParenPadCheck
         // Strange logic in this method to guard against checking RPAREN tokens
         // that are associated with a TYPECAST token.
         if (aAST.getType() != TokenTypes.RPAREN) {
-            if (aAST.getType() == TokenTypes.CTOR_CALL
-                || aAST.getType() == TokenTypes.SUPER_CTOR_CALL)
+            if ((aAST.getType() == TokenTypes.CTOR_CALL)
+                || (aAST.getType() == TokenTypes.SUPER_CTOR_CALL))
             {
                 aAST = (DetailAST) aAST.getFirstChild();
             }

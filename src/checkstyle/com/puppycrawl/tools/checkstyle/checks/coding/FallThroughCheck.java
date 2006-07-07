@@ -124,7 +124,8 @@ public class FallThroughCheck extends Check
     {
         final DetailAST nextGroup = (DetailAST) aAST.getNextSibling();
         final boolean isLastGroup =
-            (nextGroup == null || nextGroup.getType() != TokenTypes.CASE_GROUP);
+            ((nextGroup == null)
+             || (nextGroup.getType() != TokenTypes.CASE_GROUP));
         if (isLastGroup && !mCheckLastGroup) {
             // we do not need to check last group
             return;
@@ -197,7 +198,7 @@ public class FallThroughCheck extends Check
             lastStmt = lastStmt.getPreviousSibling();
         }
 
-        return lastStmt != null
+        return (lastStmt != null)
             && isTerminated(lastStmt, aUseBreak, aUseContinue);
     }
 
@@ -217,7 +218,7 @@ public class FallThroughCheck extends Check
         final DetailAST elseStmt = (DetailAST) thenStmt.getNextSibling();
         boolean isTerminated = isTerminated(thenStmt, aUseBreak, aUseContinue);
 
-        if (isTerminated && elseStmt != null) {
+        if (isTerminated && (elseStmt != null)) {
             isTerminated = isTerminated((DetailAST) elseStmt.getFirstChild(),
                                         aUseBreak, aUseContinue);
         }
@@ -265,7 +266,7 @@ public class FallThroughCheck extends Check
                                             aUseBreak, aUseContinue);
 
         DetailAST catchStmt = aAST.findFirstToken(TokenTypes.LITERAL_CATCH);
-        while (catchStmt != null && isTerminated) {
+        while ((catchStmt != null) && isTerminated) {
             final DetailAST catchBody =
                 catchStmt.findFirstToken(TokenTypes.SLIST);
             isTerminated &= isTerminated(catchBody, aUseBreak, aUseContinue);
@@ -285,8 +286,8 @@ public class FallThroughCheck extends Check
     {
         DetailAST caseGroup = aAST.findFirstToken(TokenTypes.CASE_GROUP);
         boolean isTerminated = (caseGroup != null);
-        while (isTerminated && caseGroup != null
-               && caseGroup.getType() != TokenTypes.RCURLY)
+        while (isTerminated && (caseGroup != null)
+               && (caseGroup.getType() != TokenTypes.RCURLY))
         {
             final DetailAST caseBody =
                 caseGroup.findFirstToken(TokenTypes.SLIST);

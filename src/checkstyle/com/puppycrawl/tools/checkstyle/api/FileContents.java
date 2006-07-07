@@ -278,8 +278,9 @@ public final class FileContents implements CommentListener
         {
             final TextBlock comment =
                 (TextBlock) mCPlusPlusComments.get(new Integer(lineNumber));
-            if (comment != null && comment.intersects(aStartLineNo, aStartColNo,
-                aEndLineNo, aEndColNo))
+            if ((comment != null)
+                && comment.intersects(aStartLineNo, aStartColNo,
+                                      aEndLineNo, aEndColNo))
             {
                 return true;
             }

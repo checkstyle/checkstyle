@@ -197,7 +197,7 @@ public class RegexpCheck extends AbstractFormatCheck
         boolean ignore = false;
 
         foundMatch = mMatcher.find();
-        if (!foundMatch && !mIllegalPattern && mMatchCount == 0) {
+        if (!foundMatch && !mIllegalPattern && (mMatchCount == 0)) {
             logMessage(0);
         }
         else if (foundMatch) {

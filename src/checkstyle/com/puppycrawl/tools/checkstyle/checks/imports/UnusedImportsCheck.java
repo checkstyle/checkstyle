@@ -144,9 +144,10 @@ public class UnusedImportsCheck extends DeclarationCollector
     {
         final DetailAST parent = aAST.getParent();
         final int parentType = parent.getType();
-        if (parentType != TokenTypes.DOT
-            && parentType != TokenTypes.METHOD_DEF
-            || parentType == TokenTypes.DOT && aAST.getNextSibling() != null)
+        if (((parentType != TokenTypes.DOT)
+            && (parentType != TokenTypes.METHOD_DEF))
+            || ((parentType == TokenTypes.DOT)
+                && (aAST.getNextSibling() != null)))
         {
             if (!isDeclared(aAST.getText())) {
                 mReferenced.add(aAST.getText());

@@ -82,7 +82,7 @@ public class MemberNameCheck
 
         return (!isStatic && !ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
             && !ScopeUtils.isLocalVariableDef(aAST))
-            && modifiersAST != null
+            && (modifiersAST != null)
             && shouldCheckInScope(modifiersAST);
     }
 
@@ -106,8 +106,9 @@ public class MemberNameCheck
             aModifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
         final boolean isPackage = !(isPublic || isProtected || isPrivate);
 
-        return mApplyToPublic && isPublic || mApplyToProtected && isProtected
-            || mApplyToPackage && isPackage || mApplyToPrivate && isPrivate;
+        return (mApplyToPublic && isPublic)
+            || (mApplyToProtected && isProtected)
+            || (mApplyToPackage && isPackage) || (mApplyToPrivate && isPrivate);
     }
 
     /**

@@ -190,7 +190,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
          */
         public void checkCount(DetailAST aAST)
         {
-            if (mChecking && mCount > getMax()) {
+            if (mChecking && (mCount > getMax())) {
                 log(aAST.getLineNo(), aAST.getColumnNo(), "return.count",
                     new Integer(mCount), new Integer(getMax()));
             }

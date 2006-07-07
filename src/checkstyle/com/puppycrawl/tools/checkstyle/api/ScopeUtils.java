@@ -115,9 +115,9 @@ public final class ScopeUtils
              token = token.getParent())
         {
             final int type = token.getType();
-            if (type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.ANNOTATION_DEF)
+            if ((type == TokenTypes.CLASS_DEF)
+                || (type == TokenTypes.ENUM_DEF)
+                || (type == TokenTypes.ANNOTATION_DEF))
             {
                 break; // in a class, enum or annotation
             }
@@ -150,9 +150,9 @@ public final class ScopeUtils
              token = token.getParent())
         {
             final int type = token.getType();
-            if (type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.INTERFACE_DEF)
+            if ((type == TokenTypes.CLASS_DEF)
+                || (type == TokenTypes.ENUM_DEF)
+                || (type == TokenTypes.INTERFACE_DEF))
             {
                 break; // in a class, enum or interface
             }
@@ -198,9 +198,9 @@ public final class ScopeUtils
              token = token.getParent())
         {
             final int type = token.getType();
-            if (type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.CLASS_DEF)
+            if ((type == TokenTypes.INTERFACE_DEF)
+                || (type == TokenTypes.ANNOTATION_DEF)
+                || (type == TokenTypes.CLASS_DEF))
             {
                 break; // in an interface, annotation or class
             }

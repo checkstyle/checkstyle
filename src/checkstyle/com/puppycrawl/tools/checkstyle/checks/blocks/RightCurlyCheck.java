@@ -147,7 +147,7 @@ public class RightCurlyCheck extends AbstractOptionCheck
                     + TokenTypes.getTokenName(aAST.getType()) + ")");
         }
 
-        if (rcurly == null || rcurly.getType() != TokenTypes.RCURLY) {
+        if ((rcurly == null) || (rcurly.getType() != TokenTypes.RCURLY)) {
             // we need to have both tokens to perform the check
             return;
         }
@@ -189,7 +189,7 @@ public class RightCurlyCheck extends AbstractOptionCheck
     {
         DetailAST next = null;
         DetailAST parent = aAST;
-        while (parent != null && next == null) {
+        while ((parent != null) && (next == null)) {
             next = (DetailAST) parent.getNextSibling();
             parent = parent.getParent();
         }

@@ -112,7 +112,7 @@ public class LineLengthCheck extends Check
                 line, line.length(), getTabWidth());
 
 
-            if (realLength > mMax
+            if ((realLength > mMax)
                 && !mIgnorePattern.matcher(line).find())
             {
                 log(i + 1, "maxLineLen", new Integer(mMax));

@@ -177,7 +177,7 @@ class FileDrop
 
         // See if any of the flavors are a file list
         int i = 0;
-        while (!ok && i < flavors.length) {   // Is the flavor a file list?
+        while (!ok && (i < flavors.length)) {   // Is the flavor a file list?
             if (flavors[i].equals(DataFlavor.javaFileListFlavor))
                 ok = true;
             i++;

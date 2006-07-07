@@ -131,8 +131,8 @@ public class HiddenFieldCheck
     /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
-        if (aAST.getType() == TokenTypes.VARIABLE_DEF
-            || aAST.getType() == TokenTypes.PARAMETER_DEF)
+        if ((aAST.getType() == TokenTypes.VARIABLE_DEF)
+            || (aAST.getType() == TokenTypes.PARAMETER_DEF))
         {
             processVariable(aAST);
             return;
@@ -196,8 +196,8 @@ public class HiddenFieldCheck
     private void processVariable(DetailAST aAST)
     {
         if (ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
-            || !ScopeUtils.isLocalVariableDef(aAST)
-            && (aAST.getType() != TokenTypes.PARAMETER_DEF))
+            || (!ScopeUtils.isLocalVariableDef(aAST)
+            && (aAST.getType() != TokenTypes.PARAMETER_DEF)))
         {
             // do nothing
             return;
@@ -309,7 +309,7 @@ public class HiddenFieldCheck
      */
     private boolean isIgnoredParamOfAbstractMethod(DetailAST aAST)
     {
-        if (aAST.getType() != TokenTypes.PARAMETER_DEF
+        if ((aAST.getType() != TokenTypes.PARAMETER_DEF)
             || !mIgnoreAbstractMethods)
         {
             return false;
@@ -319,7 +319,7 @@ public class HiddenFieldCheck
             return false;
         }
         final DetailAST mods = method.findFirstToken(TokenTypes.MODIFIERS);
-        return (mods != null && mods.branchContains(TokenTypes.ABSTRACT));
+        return ((mods != null) && mods.branchContains(TokenTypes.ABSTRACT));
     }
 
     /**

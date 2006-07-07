@@ -209,7 +209,7 @@ public class WhitespaceAroundCheck extends Check
         final int parentType = aAST.getParent().getType();
 
         // Check for CURLY in array initializer
-        if ((type == TokenTypes.RCURLY || type == TokenTypes.LCURLY)
+        if (((type == TokenTypes.RCURLY) || (type == TokenTypes.LCURLY))
             && (parentType == TokenTypes.ARRAY_INIT))
         {
             return;
@@ -230,9 +230,9 @@ public class WhitespaceAroundCheck extends Check
         }
 
         //we do not want to check colon for cases and defaults
-        if (type == TokenTypes.COLON
-            && (parentType == TokenTypes.LITERAL_DEFAULT
-                || parentType == TokenTypes.LITERAL_CASE))
+        if ((type == TokenTypes.COLON)
+            && ((parentType == TokenTypes.LITERAL_DEFAULT)
+                || (parentType == TokenTypes.LITERAL_CASE)))
         {
             return;
         }
@@ -325,12 +325,12 @@ public class WhitespaceAroundCheck extends Check
         final int type = aAST.getType();
         if (type == TokenTypes.RCURLY) {
             DetailAST grandParent = aAST.getParent().getParent();
-            return aParentType == TokenTypes.SLIST
-                && grandParent.getType() == aMatch;
+            return (aParentType == TokenTypes.SLIST)
+                && (grandParent.getType() == aMatch);
         }
 
-        return type == TokenTypes.SLIST
-            && aParentType == aMatch
-            && aAST.getFirstChild().getType() == TokenTypes.RCURLY;
+        return (type == TokenTypes.SLIST)
+            && (aParentType == aMatch)
+            && (aAST.getFirstChild().getType() == TokenTypes.RCURLY);
     }
 }
