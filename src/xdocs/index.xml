@@ -117,10 +117,10 @@
           <td><a href="http://www.intellij.com/idea/">IntelliJ IDEA</a></td>
           <td>Mark Lussier</td>
           <td>
-            <a href="http://sourceforge.net/projects/jetstyle">JetStyle
+            <a href="http://jetstyle.sourceforge.net/">JetStyle
             Project Page</a>
           </td>
-          <td>Checkstyle 3.4</td>
+          <td></td>
 	</tr>
 	<tr>
           <td><a href="http://www.netbeans.org">NetBeans</a></td>
@@ -189,7 +189,7 @@
           <td><a href="http://maven.apache.org/">Maven</a></td>
           <td>Vincent Massol</td>
           <td>Checkstyle supported out of the box</td>
-          <td><a href="http://maven.apache.org/checkstyle-report.html">example report</a></td>
+          <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/sample-checkstyle.html">example report</a></td>
 	</tr>
       </table>
 
