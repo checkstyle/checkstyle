@@ -13,6 +13,7 @@
   <allow pkg="javax.xml.parsers"/>
   <allow pkg="org.apache.commons.beanutils"/>
   <allow pkg="org.apache.commons.logging"/>
+  <allow pkg="org.apache.commons.collections"/>
   <allow pkg="org.xml.sax"/>
 
   <!-- The local ones -->

@@ -21,10 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks.duplicates;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+
+import org.apache.commons.collections.ReferenceMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -41,17 +44,30 @@ import org.apache.commons.logging.LogFactory;
 public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 {
     /**
-     * Converts each of the original source lines
-     * to a checksum that is checked against to find duplicates.
+     * A prime that is used o calculate checksums of lines and blocks of lines.
+     * Important that it's larger than the length of most lines to avoid hash
+     * collisions.
+     *
+     * For a list of primes see
+     * http://www.utm.edu/research/primes/lists/small/1000.txt
+     */
+    private static final int BIG_PRIME = 317;
+
+    /**
+     * Converts each consecutive block of {@link #mMin} lines of the
+     * original source lines to a checksum that is checked against
+     * to find duplicates.
      */
     private interface ChecksumGenerator
     {
         /**
-         * Convert each of the original source lines
+         * Convert each block of the original source lines
          * to a checksum that is checked against to find duplicates
-         * Typically this involves stripping whitespace.
-         * @param aOriginalLines the original lines as they appear in the source
-         * @return the converted line or null if the line should be ignored
+         *
+         * @param aOriginalLines the original lines as they appear
+         * in the source file
+         *
+         * @return an array of (aOriginalLines.length - mMin + 1) checksums
          */
         long[] convertLines(String[] aOriginalLines);
     }
@@ -59,19 +75,34 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 
     /**
      * Calculates checksums for text files.
-     * Removes leading and trainling whitespace.
      */
     private class TextfileChecksumGenerator implements ChecksumGenerator
     {
         /** {@inheritDoc} */
         public long[] convertLines(String[] aOriginalLines)
         {
-            final long[] checkSums = new long[aOriginalLines.length];
-            for (int i = 0; i < aOriginalLines.length; i++) {
-                final String line = aOriginalLines[i].trim();
+            final int lineCount = aOriginalLines.length;
+            final long[] checkSums = new long[lineCount];
+            for (int i = 0; i < lineCount; i++) {
+                final String line = aOriginalLines[i];
                 checkSums[i] = calcChecksum(line);
             }
-            return checkSums;
+            final int retLen = Math.max(0, lineCount - mMin + 1);
+            final long[] ret = new long[retLen];
+
+            for (int i = 0; i < retLen; i++) {
+                long blockChecksum = 0;
+                for (int j = 0; j < mMin; j++) {
+                    final long checksum = checkSums[i + j];
+                    if (checksum == IGNORE) {
+                        blockChecksum = IGNORE;
+                        break;
+                    }
+                    blockChecksum += (j + 1) * BIG_PRIME * checksum;
+                }
+                ret[i] = blockChecksum;
+            }
+            return ret;
         }
 
         /**
@@ -81,16 +112,12 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
          */
         protected long calcChecksum(String aLine)
         {
-            // important that it's larger than the length of most lines
-            // see http://www.utm.edu/research/primes/lists/small/1000.txt
-            final int bigPrime = 317;
-
             // TODO: Not sure that this algorithm makes it
             // sufficiently improbable to get false alarms
             long result = 0;
             for (int i = 0; i < aLine.length(); i++) {
                 final long c = aLine.charAt(i);
-                result += bigPrime * i + c;
+                result += BIG_PRIME * (i + 1) + c;
             }
             return result;
         }
@@ -139,28 +166,31 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     /** the basedir to strip off in filenames */
     private String mBasedir;
 
-    /** the checksums of all files that are currently checked */
-    private long[][] mLineChecksums;
+    /**
+     * The checksums of all files that are currently checked.
+     * Dimension one: file index
+     * Dimension two: block start line
+     */
+    private long[][] mLineBlockChecksums;
 
-    /** helper to speed up searching algorithm */
+    /**
+     * helper to speed up searching algorithm, holds the checksums from
+     * {@link #mLineBlockChecksums} except {@link #IGNORE}, sorted.
+     */
     private long[][] mSortedRelevantChecksums;
 
     /** files that are currently checked */
     private File[] mFiles;
 
+    /**
+     * A SoftReference cache for the trimmed lines of a file path,
+     */
+    private Map mTrimmedLineCache = new ReferenceMap();
+
     // fields required only for statistics
 
     /** total number of duplicates found */
     private int mDuplicates;
-
-    /** lines of code that have been checked */
-    private int mLoc;
-
-    /** number of chache misses */
-    private long mCacheMisses;
-
-    /** number of cache hits */
-    private long mCacheHits;
 
     /** Creates a new instance of this class. */
     public StrictDuplicateCodeCheck()
@@ -176,6 +206,9 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
      */
     public void setMin(int aMin)
     {
+        if (aMin < 1) {
+            throw new IllegalArgumentException("min must be 1 or higher");
+        }
         mMin = aMin;
     }
 
@@ -191,32 +224,30 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     public synchronized void process(File[] aFiles)
     {
         final long start = System.currentTimeMillis();
-        mLoc = 0;
         mDuplicates = 0;
         mFiles = filter(aFiles);
-        mLineChecksums = new long[mFiles.length][];
+        mLineBlockChecksums = new long[mFiles.length][];
         mSortedRelevantChecksums = new long[mFiles.length][];
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Reading input files");
+            LOG.debug("Reading " + mFiles.length + " input files");
         }
 
         for (int i = 0; i < mFiles.length; i++) {
+            final File file = mFiles[i];
             try {
-                final File file = mFiles[i];
-                final String[] lines =
-                    Utils.getLines(file.getPath(), getCharset());
+                final String[] lines = getTrimmedLines(file);
                 final ChecksumGenerator transformer =
                     findChecksumGenerator(file);
-                mLineChecksums[i] = transformer.convertLines(lines);
+                mLineBlockChecksums[i] = transformer.convertLines(lines);
             }
             catch (final IOException ex) {
-                LOG.error("Cannot access files to check, giving up: "
-                        + ex.getMessage(), ex);
+                LOG.error("Cannot access " + file + " ("
+                          + ex.getMessage() + "), ignoring", ex);
                 // TODO: better to throw an exception here?
                 // it would be best to throw IOException from process(),
                 // but interface definition doesn't allow that...
-                mLineChecksums = new long[0][0];
+                mLineBlockChecksums = new long[0][0];
             }
         }
         fillSortedRelevantChecksums();
@@ -227,7 +258,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 
         dumpStats(start, endReading, endSearching);
 
-        mLineChecksums = null;
+        mLineBlockChecksums = null;
         mSortedRelevantChecksums = null;
     }
 
@@ -254,13 +285,10 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
      */
     private void dumpStats(long aStart, long aEndReading, long aEndSearching)
     {
-        if (LOG.isDebugEnabled()) {
-            final long cacheLookups = mCacheHits + mCacheMisses;
+        if (LOG.isInfoEnabled()) {
             final long initTime = aEndReading - aStart;
             final long workTime = aEndSearching - aEndReading;
-            LOG.debug("cache hits = " + mCacheHits + "/" + cacheLookups);
             LOG.debug("files = " + mFiles.length);
-            LOG.debug("loc = " + mLoc);
             LOG.debug("duplicates = " + mDuplicates);
             LOG.debug("Runtime = " + initTime + " + " + workTime);
         }
@@ -271,14 +299,14 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
      * in sortedRelevantChecksums during the setup phase.
      * That data is later used in a binary search to find out
      * if it is worth investigating a file for duplicates of a block.
-     * If one of the lines in the block does not occur in the other file
+     * If the block's checksum does not occur in the other file
      * at all, we can skip that file quickly.
      */
     private void fillSortedRelevantChecksums()
     {
-        for (int i = 0; i < mLineChecksums.length; i++) {
+        for (int i = 0; i < mLineBlockChecksums.length; i++) {
             int count = 0;
-            final long[] checksums = mLineChecksums[i];
+            final long[] checksums = mLineBlockChecksums[i];
             final long[] relevant = new long[checksums.length];
             for (int j = 0; j < checksums.length; j++) {
                 final long checksum = checksums[j];
@@ -305,22 +333,18 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         }
 
         // It's been a while since my CS degree, but I think this is
-        // somewhere near O(mMax * LOC^2).
+        // somewhere near O(LOC^2).
 
         // It may be possible to do this *much* smarter,
         // but I don't have the Knuth bible at hand right now :-)
 
-        // OK, prepare for some nested loops... :-(
-
         for (int i = 0; i < mFiles.length; i++) {
 
             final String path = mFiles[i].getPath();
-
             getMessageCollector().reset();
             final MessageDispatcher dispatcher = getMessageDispatcher();
             dispatcher.fireFileStarted(path);
 
-            mLoc += mLineChecksums[i].length;
             for (int j = 0; j <= i; j++) {
                 findDuplicatesInFiles(i, j);
             }
@@ -337,79 +361,138 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
      */
     private void findDuplicatesInFiles(int aI, int aJ)
     {
-        final int iFileLength = mLineChecksums[aI].length;
+        final int iBlockCount = mLineBlockChecksums[aI].length;
 
-        // build up some supporting data structures
-        final boolean[] iLineOccurInJ = new boolean[iFileLength];
-        for (int iLine = 0; iLine < iFileLength; iLine++) {
-            iLineOccurInJ[iLine] = (Arrays.binarySearch(
-                mSortedRelevantChecksums[aJ], mLineChecksums[aI][iLine]) >= 0);
-        }
+        // go through all the blocks in iFile and
+        // check if the following mMin lines occur in jFile
+        for (int blockIdx = 0; blockIdx < iBlockCount; blockIdx++) {
 
-        // go through all the lines in iFile and check if the following
-        // mMin lines occur in jFile
-        for (int iLine = 0; iLine < iFileLength - mMin; iLine++) {
-
-            // fast exit if one of the lines does not occur in jFile at all
-            boolean fastExit = false;
-            final int kLimit = iFileLength - iLine;
-            for (int k = 0; k < Math.min(mMin, kLimit); k++) {
-                if (!iLineOccurInJ[iLine + k]) {
-                    fastExit = true;
-                    break;
-                }
-            }
-
-            if (!fastExit) {
-                // all lines do occur -> brute force searching
-                mCacheMisses += 1;
-                iLine = findDuplicateFromLine(aI, aJ, iLine);
-            }
-            else {
-                mCacheHits += 1;
+            // detailed analysis only if the block does occur in jFile at all
+            if (Arrays.binarySearch(
+                    mSortedRelevantChecksums[aJ],
+                    mLineBlockChecksums[aI][blockIdx]) >= 0)
+            {
+                blockIdx = findDuplicateFromLine(aI, aJ, blockIdx);
             }
         }
     }
 
     /**
      * Find and report a duplicate of the code starting from line aILine
-     * in file aI in the file aJ
+     * in file aI in the file aJ. The caller has already ensured that
+     * there are at least mMax duplicate lines, this method mainly analyzes
+     * how far the block of duplicates extends.
+     *
      * @param aI index of file that contains the candidate code
      * @param aJ index of file that is searched for a dup of the candidate
      * @param aILine starting line of the candidate in aI
-     * @return the next line in file i where
+     * @return the next block index in file i where
      * starting to search will make sense
      */
-    private int findDuplicateFromLine(int aI, int aJ, int aILine)
+    private int findDuplicateFromLine(
+        final int aI, final int aJ, final int aILine)
     {
         // Using something more advanced like Boyer-Moore might be a
         // good idea...
 
-        final int iFileLength = mLineChecksums[aI].length;
-        final int jFileLength = mLineChecksums[aJ].length;
+        final long checkSum = mLineBlockChecksums[aI][aILine];
 
-        for (int jLine = 0; jLine < jFileLength - mMin; jLine++) {
+        final int iBlockCount = mLineBlockChecksums[aI].length;
+        final int jBlockCount = mLineBlockChecksums[aJ].length;
 
-            if ((aI == aJ) && (aILine == jLine)) {
+        for (int jBlock = 0; jBlock < jBlockCount; jBlock++) {
+
+            if (aI == aJ && aILine >= jBlock) {
                 continue;
             }
 
-            int equivalent = 0;
-            while ((aILine + equivalent < iFileLength)
-                    && (jLine + equivalent < jFileLength)
-                    && (mLineChecksums[aI][aILine + equivalent] != IGNORE)
-                    && (mLineChecksums[aI][aILine + equivalent]
-                       == mLineChecksums[aJ][jLine + equivalent]))
-            {
-                equivalent += 1;
+            if (mLineBlockChecksums[aJ][jBlock] != checkSum) {
+                continue;
             }
 
-            if (((aI != aJ) || (aILine < jLine)) && (equivalent >= mMin)) {
-                reportDuplicate(equivalent, aILine, mFiles[aJ], jLine);
-                aILine += equivalent; // skip to end of equivalent section
+            int duplicateLines = verifiyDuplicateLines(aI, aJ, aILine, jBlock);
+            if (duplicateLines >= mMin) {
+                reportDuplicate(duplicateLines, aILine, mFiles[aJ], jBlock);
+
+                // skip to end of equivalent section
+                return aILine + duplicateLines;
             }
         }
         return aILine;
+    }
+
+    /**
+     * Verifies the number of lines that are equal.
+     * Note that block checksums might be equal for blocks that in fact
+     * are different, so we must check the actual file content again.
+     *
+     * @param aI file index i
+     * @param aJ file index j
+     * @param aIStartLine start line of potential duplicate code in file i
+     * @param aJStartLine start line of potential duplicate code in file j
+     * @return the number of verified equal lines
+     */
+    private int verifiyDuplicateLines(
+        int aI, int aJ, int aIStartLine, int aJStartLine)
+    {
+        final File iFile = mFiles[aI];
+        final File jFile = mFiles[aJ];
+        try {
+            final String[] iLines = getTrimmedLines(iFile);
+            final String[] jLines = getTrimmedLines(jFile);
+
+            int verified = 0;
+            int i = aIStartLine;
+            int j = aJStartLine;
+            while (i < iLines.length && j < jLines.length
+                && iLines[i++].equals(jLines[j++]))
+            {
+                verified += 1;
+            }
+            return verified;
+        }
+        catch (IOException ex) {
+            LOG.error("Unable to verify potential duplicate for "
+                + iFile + " and " + jFile, ex);
+            return 0;
+        }
+    }
+
+
+    /**
+     * Returns the trimmed lines of a given file.
+     * Caches the results, so when memory is available
+     * we try to avoid reading the file repeatedly.
+     *
+     * @param aFile the file
+     * @return the lines in aFile after applying {@link String#trim()}
+     * @throws IOException if the file content cannot be read
+     */
+    private String[] getTrimmedLines(File aFile) throws IOException
+    {
+        final String path = aFile.getPath();
+        final String[] cachedLines = (String[]) mTrimmedLineCache.get(path);
+        if (cachedLines != null) {
+            return cachedLines;
+        }
+        final String charset = getCharset();
+        final String[] lines = getTrimmed(Utils.getLines(path, charset));
+        mTrimmedLineCache.put(path, lines);
+        return lines;
+    }
+
+    /**
+     * Applies {@link String#trim()} on each String in a given array.
+     * @param aLines the original Strings
+     * @return the converted Strings after applying {@link String#trim()}
+     */
+    private String[] getTrimmed(String[] aLines)
+    {
+        String[] ret = new String[aLines.length];
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = aLines[i].trim();
+        }
+        return ret;
     }
 
     /**

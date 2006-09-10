@@ -9,6 +9,18 @@
   </properties>
 
   <body>
+    <section name="Release 4.3">
+      <p>New features:</p>
+
+      <ul>
+        <li>
+          Major performance improvements in the StrictDuplicateCode check, 
+          especially for large projects. Also, false alarms are no longer
+          possible.
+        </li>
+      </ul>  
+    </section>
+
     <section name="Release 4.2">
       <p>New features:</p>
 

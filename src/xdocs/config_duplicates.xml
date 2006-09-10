@@ -26,7 +26,7 @@ Some of the conflicting goals are:
 <p>
 The check provided here, StrictDuplicateCode, is fast enough to facilitate checking very large code
 bases in acceptable time (minutes). It consumes very little memory, false
-alarms are not impossible but a really rare case. While it supports multiple
+alarms are impossible. While it supports multiple
 languages it does not support fuzzy matches (that's why it's called Strict).
 </p>
 <p>
@@ -57,7 +57,7 @@ Checkstyle plugins for duplicate code detection:
     <td>StrictDuplicateCode</td>
     <td>Medium</td>
     <td>Very Low</td>
-    <td>Possible but very unlikely</td>
+    <td>Impossible</td>
     <td>any language</td>
     <td>No</td>
   </tr>
