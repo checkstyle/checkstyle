@@ -191,15 +191,13 @@
           <td>Checkstyle supported out of the box</td>
           <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/sample-checkstyle.html">example report</a></td>
 	</tr>
+	<tr>
+          <td><a href="http://qalab.sourceforge.net/">QALab</a></td>
+          <td>Benoit Xhenseval</td>
+          <td><a href="http://qalab.sourceforge.net/">QALab Home Page</a></td>
+          <td>Supports tracking Checkstyle statistics over time.</td>
+	</tr>
       </table>
-
-
-      <p>
-        Martin Smith has <a
-        href="http://www.beansmith.com/coding/CheckStyle_SlickEdit.html">written
-        instructions</a> on how to set-up Checkstyle with the <a
-        href="http://www.slickedit.com">SlickEdit</a> editor.
-      </p>
 
       <p>
         If you have written a plugin for other IDEs, please let us know, so we
