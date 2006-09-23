@@ -361,7 +361,9 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
      */
     private void findDuplicatesInFiles(int aI, int aJ)
     {
-        final int iBlockCount = mLineBlockChecksums[aI].length;
+        final long[] iLineBlockChecksums = mLineBlockChecksums[aI];
+        final long[] jSortedBlockChecksums = mSortedRelevantChecksums[aJ];
+        final int iBlockCount = iLineBlockChecksums.length;
 
         // go through all the blocks in iFile and
         // check if the following mMin lines occur in jFile
@@ -369,8 +371,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 
             // detailed analysis only if the block does occur in jFile at all
             if (Arrays.binarySearch(
-                    mSortedRelevantChecksums[aJ],
-                    mLineBlockChecksums[aI][blockIdx]) >= 0)
+                    jSortedBlockChecksums,
+                    iLineBlockChecksums[blockIdx]) >= 0)
             {
                 blockIdx = findDuplicateFromLine(aI, aJ, blockIdx);
             }
