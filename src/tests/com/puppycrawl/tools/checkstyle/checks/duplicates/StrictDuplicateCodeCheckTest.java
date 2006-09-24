@@ -47,4 +47,21 @@ public class StrictDuplicateCodeCheckTest extends BaseCheckTestCase {
         verify(createChecker(checkConfig), checkedFiles, aPath, expected);
     }
 
+    public void failingTestOverlapping() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(StrictDuplicateCodeCheck.class);
+        checkConfig.addAttribute("min", "3");
+        final String path = getPath("duplicates/Overlapping.java");
+        final String[] expected = { 
+                "6: Found duplicate of 3 lines in " + path + ", starting from line 13",
+                "6: Found duplicate of 5 lines in " + path + ", starting from line 25",
+                "7: Found duplicate of 5 lines in " + path + ", starting from line 19",
+                "13: Found duplicate of 3 lines in " + path + ", starting from line 25",
+                "19: Found duplicate of 4 lines in " + path + ", starting from line 26",
+                };
+        final File[] checkedFiles = new File[] { 
+                new File(path),
+                };
+        verify(createChecker(checkConfig), checkedFiles, path, expected);
+    }
 }
