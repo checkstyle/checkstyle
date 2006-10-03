@@ -2,26 +2,26 @@
 
 public class Overlapping {
 
-    public m1() {
+    public void m1() {
         int a = 0;
         int b = 0;
         int c = 0;
         int d = 0;
     }
 
-    public m2() {
+    public void m2() {
         int a = 0;
         int b = 0;
         int c = 0;
     }
 
-    public m3() {
+    public void m3() {
         int b = 0;
         int c = 0;
         int d = 0;
     }
 
-    public m4() {
+    public void m4() {
         int a = 0;
         int b = 0;
         int c = 0;
