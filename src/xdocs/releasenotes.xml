@@ -10,6 +10,15 @@
 
   <body>
     <section name="Release 4.3">
+      <p>Fixed Bugs:</p>
+
+      <ul>
+        <li>
+          The StrictDuplicateCode check didn't report correct results when
+          multiple duplicate code regions were overlapping. (bug 1564465)
+        </li>
+      </ul>
+
       <p>New features:</p>
 
       <ul>

@@ -3,6 +3,7 @@ package com.puppycrawl.tools.checkstyle.checks.duplicates;
 import java.io.File;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -47,7 +48,7 @@ public class StrictDuplicateCodeCheckTest extends BaseCheckTestCase {
         verify(createChecker(checkConfig), checkedFiles, aPath, expected);
     }
 
-    public void failingTestOverlapping() throws Exception
+    public void testOverlapping() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(StrictDuplicateCodeCheck.class);
         checkConfig.addAttribute("min", "3");
@@ -62,6 +63,20 @@ public class StrictDuplicateCodeCheckTest extends BaseCheckTestCase {
         final File[] checkedFiles = new File[] { 
                 new File(path),
                 };
-        verify(createChecker(checkConfig), checkedFiles, path, expected);
+        final Checker checker = createChecker(checkConfig);
+        verify(checker, checkedFiles, path, expected);
+    }
+    
+    public void testWhitespaceIsIgnored() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(StrictDuplicateCodeCheck.class);
+        final String path = getPath("duplicates/LotsOfEmptyLines.java");
+        final String[] expected = { 
+                };
+        final File[] checkedFiles = new File[] { 
+                new File(path),
+                };
+        final Checker checker = createChecker(checkConfig);
+        verify(checker, checkedFiles, path, expected);
     }
 }

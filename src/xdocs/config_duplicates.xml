@@ -55,7 +55,7 @@ Checkstyle plugins for duplicate code detection:
   </tr>
   <tr>
     <td>StrictDuplicateCode</td>
-    <td>Medium</td>
+    <td>High</td>
     <td>Very Low</td>
     <td>Impossible</td>
     <td>any language</td>
