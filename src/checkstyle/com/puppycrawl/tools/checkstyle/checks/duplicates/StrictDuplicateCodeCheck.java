@@ -71,7 +71,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
          *
          * @return an array of (aOriginalLines.length - mMin + 1) checksums
          */
-        long[] convertLines(String[] aOriginalLines);
+        int[] convertLines(String[] aOriginalLines);
     }
 
 
@@ -81,7 +81,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     private class TextfileChecksumGenerator implements ChecksumGenerator
     {
         /** {@inheritDoc} */
-        public long[] convertLines(String[] aOriginalLines)
+        public int[] convertLines(String[] aOriginalLines)
         {
             final int lineCount = aOriginalLines.length;
             final long[] checkSums = new long[lineCount];
@@ -90,10 +90,10 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
                 checkSums[i] = calcChecksum(line);
             }
             final int retLen = Math.max(0, lineCount - mMin + 1);
-            final long[] ret = new long[retLen];
+            final int[] ret = new int[retLen];
 
             for (int i = 0; i < retLen; i++) {
-                long blockChecksum = 0;
+                int blockChecksum = 0;
                 boolean onlyEmptyLines = true;
                 for (int j = 0; j < mMin; j++) {
                     if (aOriginalLines[i + j].length() > 0) {
@@ -116,7 +116,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
          * @param aLine the aLine
          * @return checksum
          */
-        protected long calcChecksum(String aLine)
+        protected int calcChecksum(String aLine)
         {
             final int hashCode = aLine.hashCode();
             if (hashCode == IGNORE) {
@@ -144,7 +144,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
          * @param aLine the aLine
          * @return checksum
          */
-        protected long calcChecksum(String aLine)
+        protected int calcChecksum(String aLine)
         {
             if (aLine.startsWith("import ")) {
                 return IGNORE;
@@ -158,7 +158,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             LogFactory.getLog(StrictDuplicateCodeCheck.class);
 
     /** the checksum value to use for lines that should be ignored */
-    static final long IGNORE = Long.MIN_VALUE;
+    static final int IGNORE = Integer.MIN_VALUE;
 
     /** default value for mMin */
     private static final int DEFAULT_MIN_DUPLICATE_LINES = 12;
@@ -174,7 +174,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
      * Dimension one: file index
      * Dimension two: block start line
      */
-    private long[][] mLineBlockChecksums;
+    private int[][] mLineBlockChecksums;
 
     /**
      * helper to speed up searching algorithm, holds the checksums from
@@ -229,7 +229,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         final long start = System.currentTimeMillis();
         mDuplicates = 0;
         mFiles = filter(aFiles);
-        mLineBlockChecksums = new long[mFiles.length][];
+        mLineBlockChecksums = new int[mFiles.length][];
         mChecksumInfo = new ChecksumInfo[mFiles.length];
 
         if (LOG.isDebugEnabled()) {
@@ -250,7 +250,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
                 // TODO: better to throw an exception here?
                 // it would be best to throw IOException from process(),
                 // but interface definition doesn't allow that...
-                mLineBlockChecksums = new long[0][0];
+                mLineBlockChecksums = new int[0][0];
             }
         }
         fillSortedRelevantChecksums();
@@ -308,7 +308,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     private void fillSortedRelevantChecksums()
     {
         for (int i = 0; i < mLineBlockChecksums.length; i++) {
-            final long[] checksums = mLineBlockChecksums[i];
+            final int[] checksums = mLineBlockChecksums[i];
             mChecksumInfo[i] = new ChecksumInfo(checksums);
         }
     }
@@ -360,7 +360,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             return;
         }
 
-        final long[] iLineBlockChecksums = mLineBlockChecksums[aI];
+        final int[] iLineBlockChecksums = mLineBlockChecksums[aI];
         final int iBlockCount = iLineBlockChecksums.length;
 
         // blocks of duplicate code might be longer than 'min'. We need to
@@ -373,7 +373,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         // check if the following mMin lines occur in jFile
         for (int iLine = 0; iLine < iBlockCount; iLine++) {
 
-            final long iSum = iLineBlockChecksums[iLine];
+            final int iSum = iLineBlockChecksums[iLine];
             int[] jLines = jChecksumInfo.findLinesWithChecksum(iSum);
             // detailed analysis only if the iLine block occurs in jFile at all
             if (jLines.length > 0) {
@@ -403,8 +403,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         // Using something more advanced like Boyer-Moore might be a
         // good idea...
 
-        final long[] iCheckSums = mLineBlockChecksums[aI];
-        final long[] jCheckSums = mLineBlockChecksums[aJ];
+        final int[] iCheckSums = mLineBlockChecksums[aI];
+        final int[] jCheckSums = mLineBlockChecksums[aJ];
 
         final int iBlockCount = iCheckSums.length;
         final int jBlockCount = jCheckSums.length;

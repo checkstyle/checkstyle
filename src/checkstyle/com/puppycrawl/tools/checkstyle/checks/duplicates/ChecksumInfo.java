@@ -38,7 +38,7 @@ final class ChecksumInfo
      * Holds the checksums from the constructor call,
      * except {@link StrictDuplicateCodeCheck#IGNORE}, sorted.
      */
-    private long[] mSortedChecksums;
+    private int[] mSortedChecksums;
 
     /**
      * Reverse mapping from {@link #mSortedChecksums} to the checksums
@@ -54,20 +54,20 @@ final class ChecksumInfo
      * @param aBlockChecksums the block checksums as caculated by
      * the {@link StrictDuplicateCodeCheck}.ChecksumGenerator
      */
-    ChecksumInfo(long[] aBlockChecksums)
+    ChecksumInfo(int[] aBlockChecksums)
     {
         final int csLen = aBlockChecksums.length;
-        final long[] relevant = new long[csLen];
+        final int[] relevant = new int[csLen];
         final int[] reverse = new int[csLen];
         int count = 0;
         for (int j = 0; j < csLen; j++) {
-            final long checksum = aBlockChecksums[j];
+            final int checksum = aBlockChecksums[j];
             if (checksum != StrictDuplicateCodeCheck.IGNORE) {
                 reverse[count] = j;
                 relevant[count++] = checksum;
             }
         }
-        mSortedChecksums = new long[count];
+        mSortedChecksums = new int[count];
         mOrigIdx = new int[count];
         System.arraycopy(relevant, 0, mSortedChecksums, 0, count);
         System.arraycopy(reverse, 0, mOrigIdx, 0, count);
@@ -82,7 +82,7 @@ final class ChecksumInfo
     private void sort()
     {
         // abbreviation for longish field name
-        final long[] arr = mSortedChecksums;
+        final int[] arr = mSortedChecksums;
         final int len = arr.length;
 
         // bubblesort will do for now. It's important that the algorithm
@@ -91,7 +91,7 @@ final class ChecksumInfo
             for (int j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
                 final int k = j - 1;
                 // swap j and k and maintain mOrigIdx
-                final long v = arr[j];
+                final int v = arr[j];
                 arr[j] = arr[k];
                 arr[k] = v;
                 final int z = mOrigIdx[j];
@@ -110,7 +110,7 @@ final class ChecksumInfo
      */
     boolean hasChecksumOverlapsWith(final ChecksumInfo aChecksumInfo)
     {
-        final long[] jSortedrelevantChecksums =
+        final int[] jSortedrelevantChecksums =
             aChecksumInfo.mSortedChecksums;
         final int iLen = mSortedChecksums.length;
         final int jLen = jSortedrelevantChecksums.length;
@@ -143,7 +143,7 @@ final class ChecksumInfo
      * @param aSum the checksum
      * @return sorted line indices
      */
-    int[] findLinesWithChecksum(final long aSum)
+    int[] findLinesWithChecksum(final int aSum)
     {
         int idx = Arrays.binarySearch(mSortedChecksums, aSum);
         if (idx < 0) {
