@@ -110,7 +110,7 @@ line 5: ////////////////////////////////////////////////////////////////////
       </subsection>
 
       <subsection name="Package">
-        <p> com.puppycrawl.tools.checkstyle.checks </p>
+        <p> com.puppycrawl.tools.checkstyle.checks.header </p>
       </subsection>
 
       <subsection name="Parent Module">
@@ -123,7 +123,7 @@ line 5: ////////////////////////////////////////////////////////////////////
     <section name="RegexpHeader">
       <subsection name="Description">
         <p>
-          Checks the header of a source file against a header that contains a
+          Checks the header of a java source file against a header that contains a
           <a
           href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">regular
           expression</a> for each line of the source header.
@@ -242,13 +242,156 @@ line 14: ^ \*/
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.header
         </p>
       </subsection>
 
       <subsection name="Parent Module">
         <p>
           <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="CrossLanguageRegexpHeader">
+      <subsection name="Description">
+        <p>
+          Checks the header of each source file against a header that contains a
+          <a
+          href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">regular
+          expression</a> for each line of the source header.
+        </p>
+
+        <p>
+          This check is very similar to the <a href="#RegexpHeader">RegexpHeader check</a>
+          above. However it has <a href="config.html#checker">Checker</a> as it's parent 
+          module, so it is not limited to java source code, and allows checking headers
+          of other file types as well.
+        </p>
+
+        <p>
+          Different programming languages have different comment synatx rules, but all of them
+          start a comment with a non-word character. Hence you can often use the non-word character
+          class to abstract away the concrete comment syntax and allow checking the header for
+          different languages with a single header definition.
+          For example, consider the following header:
+        </p>
+        <source>
+line 1: ^#!
+line 2: ^&lt;?xml.*$gt$
+line 3: ^\W*$
+line 4: ^\W*Copyright 2006 The Apache Software Foundation or its licensors, as applicable.$
+line 5: ^\W*Licensed under the Apache License, Version 2\.0 \(the "License"\);$
+line 6: ^\W*$  
+        </source>
+
+        <p>
+          Lines 1 and 2 leave room for technical header lines, e.g. the "#!/bin/sh" line in
+          Unix shell scripts, or the xml file header of XML files.
+          Set the multiline property to "1, 2" so these lines can be ignored for file types
+          where they do no apply.
+          Lines 3 throgh 6 define the actual header content. Note how line 5 uses escapes
+          for characters that have special regexp semantics.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>charset</td>
+            <td>name of the file charset</td>
+            <td><a href="property_types.html#string">String</a></td>
+            <td>System property &quot;file.encoding&quot;</td>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extensions to identify the file types to check.
+            Must only contain text files, not binary files like bitmap
+            graphics.</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><span class="default">
+                java, txt, properties, html, jsp, xml, wsdl,
+                idl, c, cc, cpp, cxx, h, cs,
+                sh, py, bat
+            </span></td>
+          </tr>
+          <tr>
+            <td>headerFile</td>
+            <td>name of the file containing the required header</td>
+            <td><a href="property_types.html#string">string</a></td>
+            <td><span class="default">null</span></td>
+          </tr>
+          <tr>
+            <td>header</td>
+            <td>
+              the required header specified inline. Individual header lines
+              must be separated by the string <span
+              class="code">&quot;\n&quot;</span> (even on platforms with a
+              different line separator), and regular expressions must not span
+              multiple lines.
+            </td>
+            <td><a href="property_types.html#string">string</a></td>
+            <td><span class="default">null</span></td>
+          </tr>
+          <tr>
+            <td>multiLines</td>
+            <td>line numbers to repeat (zero or more times)</td>
+            <td><a href="property_types.html#intSet">list of integers</a></td>
+            <td><span class="default">{}</span></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Example">
+        <p>
+          To configure the check to use header file <span
+          class="code">&quot;java.header&quot;</span> and <span
+          class="code">10</span> and <span class="code">13</span> muli-lines:
+        </p>
+        <source>
+&lt;module name=&quot;CrossLanguageRegexpHeader&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;java.header&quot;/&gt;
+    &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check to verify that each file starts with the
+          header
+        </p>
+        <source>
+^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
+^// All rights reserved$
+        </source>
+
+        <p>
+          without the need for an external header file:
+        </p>
+        <source>
+&lt;module name=&quot;CrossLanguageRegexpHeader&quot;&gt;
+  &lt;property
+    name=&quot;header&quot;
+    value=&quot;^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$\n^// All rights reserved$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.header
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#checker">Checker</a>
         </p>
       </subsection>
     </section>

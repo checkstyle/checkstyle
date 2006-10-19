@@ -27,6 +27,10 @@
           especially for large projects. Also, false alarms are no longer
           possible.
         </li>
+        <li>
+          New CrossLanguageRegexpHeader check that allows checking file headers
+          for other languages than Java.
+        </li>
       </ul>  
     </section>
 

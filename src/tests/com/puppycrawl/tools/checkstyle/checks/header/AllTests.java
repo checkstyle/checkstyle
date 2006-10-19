@@ -15,6 +15,7 @@ public class AllTests {
 
         // tests from this package
         suite.addTest(new TestSuite(HeaderCheckTest.class));
+        suite.addTest(new TestSuite(CrossLanguageRegexpHeaderCheckTest.class));
 
         return suite;
     }

@@ -16,17 +16,10 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
+
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import java.util.Arrays;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.AbstractHeaderCheck;
 
 /**
  * Checks the header of the source against a header file that contains a
@@ -38,22 +31,42 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractHeaderCheck;
  */
 public class RegexpHeaderCheck extends AbstractHeaderCheck
 {
-    /** empty array to avoid instantiations. */
-    private static final int[] EMPTY_INT_ARRAY = new int[0];
+    /**
+     * A HeaderViolationMonitor that is used when running a Check,
+     * as a subcomponents of TreeWalker.
+     */
+    private final class CheckViolationMonitor implements HeaderViolationMonitor
+    {
+        /**
+         * {@inheritDoc}
+         */
+        public void reportHeaderMismatch(int aLineNo, String aHeaderLine)
+        {
+            log(aLineNo, "header.mismatch", aHeaderLine);
+        }
 
-    /** the header lines to repeat (0 or more) in the check, sorted. */
-    private int[] mMultiLines = EMPTY_INT_ARRAY;
+        /**
+         * {@inheritDoc}
+         */
+        public void reportHeaderMissing()
+        {
+            log(1, "header.missing");
+        }
+    }
 
-    /** the compiled regular expressions */
-    private Pattern[] mHeaderRegexps;
+
+    /** A delegate for the actual checking functionality. */
+    private RegexpHeaderChecker mRegexpHeaderChecker;
+
 
     /**
-     * @param aLineNo a line number
-     * @return if <code>aLineNo</code> is one of the repeat header lines.
+     * Provides typesafe access to the subclass specific HeaderInfo.
+     *
+     * @return the result of {@link #createHeaderInfo()}
      */
-    private boolean isMultiLine(int aLineNo)
+    protected RegexpHeaderInfo getRegexpHeaderInfo()
     {
-        return (Arrays.binarySearch(mMultiLines, aLineNo + 1) >= 0);
+        return (RegexpHeaderInfo) getHeaderInfo();
     }
 
     /**
@@ -62,115 +75,29 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      */
     public void setMultiLines(int[] aList)
     {
-        if ((aList == null) || (aList.length == 0)) {
-            mMultiLines = EMPTY_INT_ARRAY;
-            return;
-        }
-
-        mMultiLines = new int[aList.length];
-        System.arraycopy(aList, 0, mMultiLines, 0, aList.length);
-        Arrays.sort(mMultiLines);
+        getRegexpHeaderInfo().setMultiLines(aList);
     }
 
     /**
-     * Sets the file that contains the header to check against.
-     * @param aFileName the file that contains the header to check against.
-     * @throws org.apache.commons.beanutils.ConversionException if the file
-     * cannot be loaded or one line is not a regexp.
+     * @see com.puppycrawl.tools.checkstyle.api.Check#init()
      */
-    public void setHeaderFile(String aFileName)
-        throws ConversionException
+    public void init()
     {
-        super.setHeaderFile(aFileName);
-        initHeaderRegexps();
-    }
-
-    /**
-     * Set the header to check against. Individual lines in the header
-     * must be separated by '\n' characters.
-     * @param aHeader header content to check against.
-     * @throws org.apache.commons.beanutils.ConversionException if the header
-     * cannot be loaded or one line is not a regexp.
-     */
-    public void setHeader(String aHeader)
-    {
-        super.setHeader(aHeader);
-        initHeaderRegexps();
-    }
-
-    /**
-     * Initializes {@link #mHeaderRegexps} from
-     * {@link AbstractHeaderCheck#getHeaderLines()}.
-     */
-    private void initHeaderRegexps()
-    {
-        final String[] headerLines = getHeaderLines();
-        if (headerLines != null) {
-            mHeaderRegexps = new Pattern[headerLines.length];
-            for (int i = 0; i < headerLines.length; i++) {
-                try {
-                    // TODO: Not sure if chache in Utils is still necessary
-                    mHeaderRegexps[i] = Utils.getPattern(headerLines[i]);
-                }
-                catch (final PatternSyntaxException ex) {
-                    throw new ConversionException(
-                            "line " + i + " in header specification"
-                            + " is not a regular expression");
-                }
-            }
-        }
-    }
-
-    /**
-     * Checks if a code line matches the required header line.
-     * @param aLineNo the linenumber to check against the header
-     * @param aHeaderLineNo the header line number.
-     * @return true if and only if the line matches the required header line.
-     */
-    private boolean isMatch(int aLineNo, int aHeaderLineNo)
-    {
-        final String line = getLines()[aLineNo];
-        return mHeaderRegexps[aHeaderLineNo].matcher(line).find();
+        super.init();
+        mRegexpHeaderChecker = new RegexpHeaderChecker(
+                getRegexpHeaderInfo(), new CheckViolationMonitor());
     }
 
     /** {@inheritDoc} */
     public void beginTree(DetailAST aRootAST)
     {
-        final int headerSize = getHeaderLines().length;
-        final int fileSize = getLines().length;
+        final String[] lines = getLines();
+        mRegexpHeaderChecker.checkLines(lines);
+    }
 
-        if (headerSize - mMultiLines.length > fileSize) {
-            log(1, "header.missing");
-        }
-        else {
-            int headerLineNo = 0;
-            int i;
-            for (i = 0; (headerLineNo < headerSize) && (i < fileSize); i++) {
-                boolean isMatch = isMatch(i, headerLineNo);
-                while (!isMatch && isMultiLine(headerLineNo)) {
-                    headerLineNo++;
-                    isMatch = (headerLineNo == headerSize)
-                        || isMatch(i, headerLineNo);
-                }
-                if (!isMatch) {
-                    log(i + 1, "header.mismatch",
-                        getHeaderLines()[headerLineNo]);
-                    break; // stop checking
-                }
-                if (!isMultiLine(headerLineNo)) {
-                    headerLineNo++;
-                }
-            }
-            if (i == fileSize) {
-                // if file finished, but we have at least one non-multi-line
-                // header isn't completed
-                for (; headerLineNo < headerSize; headerLineNo++) {
-                    if (!isMultiLine(headerLineNo)) {
-                        log(1, "header.missing");
-                        break;
-                    }
-                }
-            }
-        }
+    /** {@inheritDoc} */
+    protected HeaderInfo createHeaderInfo()
+    {
+        return new RegexpHeaderInfo();
     }
 }

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 import java.util.Arrays;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.checks.AbstractHeaderCheck;
 
 /**
  * Checks the header of the source against a fixed header file.
@@ -89,5 +88,11 @@ public class HeaderCheck extends AbstractHeaderCheck
                 }
             }
         }
+    }
+
+    /** {@inheritDoc} */
+    protected HeaderInfo createHeaderInfo()
+    {
+        return new HeaderInfo();
     }
 }

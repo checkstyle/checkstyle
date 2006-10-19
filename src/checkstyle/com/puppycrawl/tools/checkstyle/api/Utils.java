@@ -273,4 +273,46 @@ public final class Utils
         return stripped;
     }
 
+
+    /**
+     * Filter a set of files by their extension.
+     *
+     * @param aFiles a set of files
+     * @param aFileExtensions a set of file extension, like ".txt" or ".java"
+     * @return aFiles if aFileExtensions is null or empty,
+     * the subset of aFiles that have extensions in aFileExtensions otherwise
+     */
+    public static File[] filterFilesByExtension(
+            File[] aFiles, String[] aFileExtensions)
+    {
+        if ((aFileExtensions == null) || (aFileExtensions.length == 0)) {
+            return aFiles;
+        }
+
+        // normalize extensions so all of them have a leading dot
+        final String[] withDotExtensions = new String[aFileExtensions.length];
+        for (int i = 0; i < aFileExtensions.length; i++) {
+            final String extension = aFileExtensions[i];
+            if (extension.startsWith(".")) {
+                withDotExtensions[i] = extension;
+            }
+            else {
+                withDotExtensions[i] = "." + extension;
+            }
+        }
+
+        final ArrayList files = new ArrayList(aFiles.length);
+        for (int i = 0; i < aFiles.length; i++) {
+            final File f = aFiles[i];
+            final String fileName = f.getName();
+            for (int j = 0; j < withDotExtensions.length; j++) {
+                final String fileExtension = withDotExtensions[j];
+                if (fileName.endsWith(fileExtension)) {
+                    files.add(f);
+                }
+            }
+        }
+        return (File[]) files.toArray(new File[files.size()]);
+    }
+
 }

@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 
 /**
  * Provides common functionality for many FileSetChecks.
@@ -108,22 +107,7 @@ public abstract class AbstractFileSetCheck
      */
     protected final File[] filter(File[] aFiles)
     {
-        if ((mFileExtensions == null) || (mFileExtensions.length == 0)) {
-            return aFiles;
-        }
-
-        final ArrayList files = new ArrayList(aFiles.length);
-        for (int i = 0; i < aFiles.length; i++) {
-            final File f = aFiles[i];
-            final String fileName = f.getName();
-            for (int j = 0; j < mFileExtensions.length; j++) {
-                final String fileExtension = mFileExtensions[j];
-                if (fileName.endsWith(fileExtension)) {
-                    files.add(f);
-                }
-            }
-        }
-        return (File[]) files.toArray(new File[files.size()]);
+        return Utils.filterFilesByExtension(aFiles, mFileExtensions);
     }
 
     /**

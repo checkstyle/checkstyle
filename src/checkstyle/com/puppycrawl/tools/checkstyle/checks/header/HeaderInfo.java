@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.header;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,26 +26,29 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-
 import org.apache.commons.beanutils.ConversionException;
 
 /**
- * Abstract super class for header checks.
- * Provides support for headerFile property.
- * @author o_sukhosolsky
+ * Java Bean that holds header lines.
+ *
+ * @author lkuehne
+ * @author o_sukhodolsky
  */
-public abstract class AbstractHeaderCheck extends Check
+class HeaderInfo
 {
     /** the lines of the header file. */
     private String[] mHeaderLines;
+
+    /** Creates a new instance, without any header lines. */
+    HeaderInfo()
+    {
+    }
 
     /**
      * Return the header lines to check against.
      * @return the header lines to check against.
      */
-    protected String[] getHeaderLines()
+    final String[] getHeaderLines()
     {
         return mHeaderLines;
     }
@@ -55,7 +58,7 @@ public abstract class AbstractHeaderCheck extends Check
      * @param aFileName the file that contains the header to check against.
      * @throws ConversionException if the file cannot be loaded
      */
-    public void setHeaderFile(String aFileName)
+    final void setHeaderFile(String aFileName)
         throws ConversionException
     {
         // Handle empty param
@@ -94,7 +97,7 @@ public abstract class AbstractHeaderCheck extends Check
      * @param aHeader header content to check against.
      * @throws ConversionException if the header cannot be interpreted
      */
-    public void setHeader(String aHeader)
+    final void setHeader(String aHeader)
     {
         if ((aHeader == null) || (aHeader.trim().length() == 0)) {
             return;
@@ -154,26 +157,16 @@ public abstract class AbstractHeaderCheck extends Check
             }
             lines.add(l);
         }
-        mHeaderLines = (String[]) lines.toArray(new String[0]);
+        mHeaderLines = (String[]) lines.toArray(new String[lines.size()]);
+        postprocessHeaderLines();
     }
 
     /**
-     * Checks that required args were specified.
-     * @throws CheckstyleException {@inheritDoc}
-     * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean#finishLocalSetup
+     * Hook method for post processing header lines.
+     * This implementation does nothing.
      */
-    protected final void finishLocalSetup() throws CheckstyleException
+    protected void postprocessHeaderLines()
     {
-        if (mHeaderLines == null) {
-            throw new CheckstyleException(
-                    "property 'headerFile' is missing or invalid in module "
-                    + getConfiguration().getName());
-        }
     }
 
-    /** {@inheritDoc} */
-    public final int[] getDefaultTokens()
-    {
-        return new int[0];
-    }
 }
