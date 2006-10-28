@@ -17,6 +17,12 @@
           The StrictDuplicateCode check didn't report correct results when
           multiple duplicate code regions were overlapping. (bug 1564465)
         </li>
+        <li>
+          Fixed NPE in FallThrough check (bug 1472228)
+        </li>
+        <li>
+          Fixed typo in Command Line example (bug 1464595)
+        </li>
       </ul>
 
       <p>New features:</p>

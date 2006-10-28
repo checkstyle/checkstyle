@@ -395,7 +395,13 @@ public class InputFallThrough
            /* fallthru */ }
        }
     }
-   
-   
 
+    void method1472228(int i) {
+        switch(i) {
+        case 2:
+            // do nothing
+            break;
+        default:
+        }
+    }
 }

@@ -195,10 +195,10 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
           the <span class="code">-jar</span> option. An example would be:
         </p>
 
-        <source>
+        <source><pre>
 java -jar checkstyle-all-@CHECKSTYLE_VERSION@.jar \
      -c docs/sun_checks.xml Check.java
-        </source>
+        </pre></source>
       </div>
     </section>
   </body>

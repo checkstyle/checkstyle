@@ -193,6 +193,11 @@ public class FallThroughCheck extends Check
                                boolean aUseContinue)
     {
         DetailAST lastStmt = aAST.getLastChild();
+        if (lastStmt == null) {
+            // if last case in switch is empty then slist is empty
+            // since this is a last case it is not a fall-through
+            return true;
+        }
 
         if (lastStmt.getType() == TokenTypes.RCURLY) {
             lastStmt = lastStmt.getPreviousSibling();
