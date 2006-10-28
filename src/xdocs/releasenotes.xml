@@ -23,6 +23,10 @@
         <li>
           Fixed typo in Command Line example (bug 1464595)
         </li>
+        <li>
+          RegexpHeader check now correctly report problematic line in
+          file with regexps for header (bug 1455575) 
+        </li>
       </ul>
 
       <p>New features:</p>

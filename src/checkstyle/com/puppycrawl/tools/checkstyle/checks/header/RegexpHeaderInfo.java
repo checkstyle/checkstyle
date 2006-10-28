@@ -97,7 +97,7 @@ final class RegexpHeaderInfo extends HeaderInfo
                 }
                 catch (final PatternSyntaxException ex) {
                     throw new ConversionException(
-                            "line " + i + " in header specification"
+                            "line " + (i + 1) + " in header specification"
                             + " is not a regular expression");
                 }
             }
