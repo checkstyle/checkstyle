@@ -109,15 +109,18 @@ public class Resolver extends DefinitionTraverser {
 
             SymTabAST extendsClause =
                 node.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
-            SymTabAST extendedClassNode =
-                (SymTabAST) extendsClause.getFirstChild();
 
-            while (extendedClassNode != null) {
-                IClass superClass =
-                    resolveClass(extendedClassNode, classDef, null, true);
-                extendedClassNode.setDefinition(superClass, classDef, true);
-                extendedClassNode =
-                    (SymTabAST) extendedClassNode.getNextSibling();
+            if(extendsClause != null) {
+                SymTabAST extendedClassNode =
+                    (SymTabAST) extendsClause.getFirstChild();
+
+                while (extendedClassNode != null) {
+                    IClass superClass =
+                        resolveClass(extendedClassNode, classDef, null, true);
+                    extendedClassNode.setDefinition(superClass, classDef, true);
+                    extendedClassNode =
+                        (SymTabAST) extendedClassNode.getNextSibling();
+                }
             }
 
             SymTabAST implementsNode =

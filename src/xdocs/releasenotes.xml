@@ -27,6 +27,10 @@
           RegexpHeader check now correctly report problematic line in
           file with regexps for header (bug 1455575) 
         </li>
+        <li>
+          Fixed small problem in usage checks (patch 1498920).  Thanks
+          to Chris Povirk (cpovirk) for submitting the patch.
+        </li>
       </ul>
 
       <p>New features:</p>
