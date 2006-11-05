@@ -75,6 +75,7 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
     {
         setFileExtensions(new String[]{
             "java", "txt", "properties", "html", "jsp", "xml", "wsdl",
+            "js", "css",
             "idl", "c", "cc", "cpp", "cxx", "h", "cs",
             "sh", "py", "bat",
         });

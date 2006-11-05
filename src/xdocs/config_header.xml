@@ -317,6 +317,7 @@ line 6: ^\W*$
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><span class="default">
                 java, txt, properties, html, jsp, xml, wsdl,
+                js, css,
                 idl, c, cc, cpp, cxx, h, cs,
                 sh, py, bat
             </span></td>
