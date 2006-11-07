@@ -274,13 +274,14 @@ line 14: ^ \*/
           start a comment with a non-word character. Hence you can often use the non-word character
           class to abstract away the concrete comment syntax and allow checking the header for
           different languages with a single header definition.
-          For example, consider the following header:
+          For example, consider the following header specification (note that this is not
+          the full Apache licence header):
         </p>
         <source>
 line 1: ^#!
-line 2: ^&lt;?xml.*$gt$
+line 2: ^&lt;\?xml.*&gt;$
 line 3: ^\W*$
-line 4: ^\W*Copyright 2006 The Apache Software Foundation or its licensors, as applicable.$
+line 4: ^\W*Copyright 2006 The Apache Software Foundation or its licensors, as applicable\.$
 line 5: ^\W*Licensed under the Apache License, Version 2\.0 \(the "License"\);$
 line 6: ^\W*$  
         </source>
@@ -290,7 +291,7 @@ line 6: ^\W*$
           Unix shell scripts, or the xml file header of XML files.
           Set the multiline property to "1, 2" so these lines can be ignored for file types
           where they do no apply.
-          Lines 3 throgh 6 define the actual header content. Note how line 5 uses escapes
+          Lines 3 throgh 6 define the actual header content. Note how lines 2, 4 and 5 use escapes
           for characters that have special regexp semantics.
         </p>
       </subsection>
@@ -352,13 +353,13 @@ line 6: ^\W*$
       <subsection name="Example">
         <p>
           To configure the check to use header file <span
-          class="code">&quot;java.header&quot;</span> and <span
-          class="code">10</span> and <span class="code">13</span> muli-lines:
+          class="code">&quot;apache.header&quot;</span> and <span
+          class="code">1</span> and <span class="code">2</span> muli-lines:
         </p>
         <source>
 &lt;module name=&quot;CrossLanguageRegexpHeader&quot;&gt;
-    &lt;property name=&quot;headerFile&quot; value=&quot;java.header&quot;/&gt;
-    &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;apache.header&quot;/&gt;
+    &lt;property name=&quot;multiLines&quot; value=&quot;1, 2&quot;/&gt;
 &lt;/module&gt;
         </source>
 
