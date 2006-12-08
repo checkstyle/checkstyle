@@ -31,6 +31,10 @@
           Fixed small problem in usage checks (patch 1498920).  Thanks
           to Chris Povirk (cpovirk) for submitting the patch.
         </li>
+        <li>
+          Fixed incorrect french translation (bug 1611403). Thanks to
+          Fabien Bergeret for providing the correct value.
+        </li>
       </ul>
 
       <p>New features:</p>
