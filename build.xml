@@ -290,7 +290,7 @@
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="checkstyle_checks.xml"/>
-    <property name="translation.severity" value="error"/>
+    <property name="translation.severity" value="ignore"/>
     <checkstyle config="${check.config}">
       <fileset dir="src/checkstyle"
                includes="**/*.java,**/*.properties"
@@ -316,7 +316,7 @@
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="checkstyle_checks.xml"/>
-    <property name="translation.severity" value="error"/>
+    <property name="translation.severity" value="ignore"/>
     <checkstyle failonviolation="false" config="${check.config}">
       <fileset dir="src/checkstyle"
                includes="**/*.java,**/*.properties"
@@ -655,12 +655,13 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
 
   </target>
 
-  <!-- Added for GUMP testing -->
-  <target name="gump.setup" description="Sets up any properties">
-    <property name="translation.severity" value="ignore"/>
+  <target name="report.translation"
+          description="Sets up reporting on translation errors"
+          >
+    <property name="translation.severity" value="error"/>
   </target>
 
-  <target name="gump" depends="gump.setup,build.bindist,build.srcdist,run.tests"
+  <target name="gump" depends="build.bindist,build.srcdist,run.tests"
           description="Runs the test for GUMP testing"/>
 
 
@@ -716,7 +717,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="checkstyle_checks.xml"/>
-    <property name="translation.severity" value="error"/>
+    <property name="translation.severity" value="ignore"/>
     <checkstyle config="${custom.config}" file="${file.to.check}">
       <formatter type="plain"/>
       <formatter type="xml" toFile="${target.dir}/cs_errors.xml"/>
@@ -767,5 +768,31 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
       <fileset dir="${bcel.src}" includes="**/*.xml"/>
       <fileset dir="${bcel.src}" includes="**/*.dtd"/>
     </copy>
+  </target>
+
+  <target name="build.mavenbundles" depends="build.bindist"
+          description="Builds bundles that can be uploaded to Maven's central repository"
+          >
+    <mkdir dir="${dist.dir}/maven-bundles" />
+    <!-- Bundle for checkstyle -->
+    <jar jarfile="${dist.dir}/maven-bundles/checkstyle-${version}-bundle.jar">
+      <fileset dir="${basedir}" includes="pom.xml"/>
+      <fileset dir="${dist.dir}/checkstyle-${version}">
+        <include name="checkstyle-${version}.jar"/>
+      </fileset>
+    </jar>
+    <!-- Bundle for checkstyle-optional -->
+    <mkdir dir="${dist.dir}/maven-bundles/temp" />
+    <!-- Create a temporary copy of the optional pom with another name so that
+         it can be included in the optional-bundle -->
+    <copy file="${basedir}/pom-optional.xml" tofile="${dist.dir}/maven-bundles/temp/pom.xml" />
+    <jar jarfile="${dist.dir}/maven-bundles/checkstyle-optional-${version}-bundle.jar">
+      <fileset dir="${dist.dir}/maven-bundles/temp" includes="pom.xml"/>
+      <fileset dir="${dist.dir}/checkstyle-${version}">
+        <include name="checkstyle-optional-${version}.jar"/>
+      </fileset>
+    </jar>
+    <!-- Remove the temporary directory -->
+    <delete dir="${dist.dir}/maven-bundles/temp"/>
   </target>
 </project>

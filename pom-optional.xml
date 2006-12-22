@@ -1,0 +1,20 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>checkstyle</groupId>
+  <artifactId>checkstyle-optional</artifactId>
+  <version>4.3</version>
+  <packaging>jar</packaging>
+  <name>Checkstyle Optional</name>
+  <url>http://checkstyle.sourceforge.net/</url>
+  <description>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard</description>
+  <scm>
+    <url>http://checkstyle.cvs.sourceforge.net/checkstyle/</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>checkstyle</groupId>
+      <artifactId>checkstyle</artifactId>
+      <version>4.3</version>
+    </dependency>
+  </dependencies>
+</project>

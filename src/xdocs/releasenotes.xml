@@ -25,7 +25,7 @@
         </li>
         <li>
           RegexpHeader check now correctly report problematic line in
-          file with regexps for header (bug 1455575) 
+          file with regexps for header (bug 1455575)
         </li>
         <li>
           Fixed small problem in usage checks (patch 1498920).  Thanks
@@ -41,7 +41,7 @@
 
       <ul>
         <li>
-          Major performance improvements in the StrictDuplicateCode check, 
+          Major performance improvements in the StrictDuplicateCode check,
           especially for large projects. Also, false alarms are no longer
           possible.
         </li>
@@ -49,7 +49,11 @@
           New CrossLanguageRegexpHeader check that allows checking file headers
           for other languages than Java.
         </li>
-      </ul>  
+        <li>
+	  Applied patch 1586411 from Dennis Lundberg (dennislundberg) to
+	  add POM files to the build.
+        </li>
+      </ul>
     </section>
 
     <section name="Release 4.2">
@@ -76,33 +80,33 @@
           information (patch 902110) Thanks to Daniel Grenner (dgrenner)
           for contribution.
         </li>
-	<li>
-	  Support for suppressing audit events based on an identifier
-	  that is assigned to individual modules/checks. This allows for
-	  suppressing at a finer level than the check class
-	  name. See <a href="config.html#Filters">SuppressionFilter</a>
-	  documentation for more.
-	</li>
+        <li>
+          Support for suppressing audit events based on an identifier
+          that is assigned to individual modules/checks. This allows for
+          suppressing at a finer level than the check class
+          name. See <a href="config.html#Filters">SuppressionFilter</a>
+          documentation for more.
+        </li>
 
-	<li>
+        <li>
           Added the style sheet checkstyle-frames.xsl, thanks to Paul
           King. (Bug 1385095).
         </li>
 
-	<li>
+        <li>
           Applied patch (1505376) by Clint Stotesbery to support the
           suppressLoadErrors property for AbstractTypeAwareCheck (RFE
           1491630).
         </li>
 
-	<li>
-	  Upgraded to ANTLR 2.7.6.
-	</li>
+        <li>
+          Upgraded to ANTLR 2.7.6.
+        </li>
 
-	<li>
-	  GUI now displays a TextArea with the contents of the file
-	  parsed. Based on patch from sermojohn (RFE 1499180).
-	</li>
+        <li>
+          GUI now displays a TextArea with the contents of the file
+          parsed. Based on patch from sermojohn (RFE 1499180).
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>
@@ -131,9 +135,9 @@
         <li>
           Tighten up the allowed use of the {@inheritDoc} tag.
         </li>
-	<li>
-	  Stop creating duplicate regular expression patterns.
-	</li>
+        <li>
+          Stop creating duplicate regular expression patterns.
+        </li>
       </ul>
     </section>
 
@@ -277,10 +281,10 @@
         <li>
           Added antlib.xml to support new cool feature of Ant.
         </li>
-	<li>
-	  Applied patch 1386388 to enable ConfigurationLoader to load
-	  from InputStream.
-	</li>
+        <li>
+          Applied patch 1386388 to enable ConfigurationLoader to load
+          from InputStream.
+        </li>
       </ul>
 
     </section>

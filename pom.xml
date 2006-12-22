@@ -1,0 +1,40 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>checkstyle</groupId>
+  <artifactId>checkstyle</artifactId>
+  <version>4.3</version>
+  <packaging>jar</packaging>
+  <name>Checkstyle</name>
+  <url>http://checkstyle.sourceforge.net/</url>
+  <description>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard</description>
+  <scm>
+    <url>http://checkstyle.cvs.sourceforge.net/checkstyle/</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr</artifactId>
+      <version>2.7.6</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils-core</artifactId>
+      <version>1.7.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-cli</groupId>
+      <artifactId>commons-cli</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.0.3</version>
+    </dependency>
+  </dependencies>
+</project>
