@@ -406,9 +406,6 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         final int[] iCheckSums = mLineBlockChecksums[aI];
         final int[] jCheckSums = mLineBlockChecksums[aJ];
 
-        final int iBlockCount = iCheckSums.length;
-        final int jBlockCount = jCheckSums.length;
-
         final long checkSum = iCheckSums[aILine];
 
         final Integer iLine = new Integer(aILine);
