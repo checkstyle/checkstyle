@@ -37,7 +37,7 @@ public class PackageObjectFactoryTest extends TestCase
                         "com.puppycrawl.tools.checkstyle.checks.naming.ConstantName");
         assertNotNull(check);
     }
-    
+
     public void testMakeObectFromList()
         throws CheckstyleException
     {
@@ -47,9 +47,8 @@ public class PackageObjectFactoryTest extends TestCase
                         "puppycrawl.tools.checkstyle.Checker");
         assertNotNull(checker);
     }
-    
+
     public void testMakeObectNoClass()
-        throws CheckstyleException
     {
         try {
             mFactory.createModule("NoClass");

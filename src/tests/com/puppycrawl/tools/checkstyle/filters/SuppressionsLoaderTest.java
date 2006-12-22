@@ -51,7 +51,6 @@ public class SuppressionsLoaderTest extends TestCase
     }
 
     public void testNoFile()
-        throws CheckstyleException
     {
         final String fn = System.getProperty("testinputs.dir")
             + "/suppressions_no_file.xml";
@@ -66,7 +65,6 @@ public class SuppressionsLoaderTest extends TestCase
     }
 
     public void testNoCheck()
-        throws CheckstyleException
     {
         final String fn = System.getProperty("testinputs.dir")
             + "/suppressions_no_check.xml";
@@ -81,7 +79,6 @@ public class SuppressionsLoaderTest extends TestCase
     }
 
     public void testBadInt()
-        throws CheckstyleException
     {
         final String fn = System.getProperty("testinputs.dir")
             + "/suppressions_bad_int.xml";
