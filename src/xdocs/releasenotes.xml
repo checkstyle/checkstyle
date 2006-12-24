@@ -51,7 +51,7 @@
         </li>
         <li>
 	  Applied patch 1586411 from Dennis Lundberg (dennislundberg) to
-	  add POM files to the build.
+	  add Maven POM files to the build.
         </li>
       </ul>
     </section>
