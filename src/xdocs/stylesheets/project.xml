@@ -55,8 +55,8 @@
     </menu>
 
     <menu name="SourceForge">
-      <item name="Forums"
-            href="http://sourceforge.net/forum/?group_id=29721"/>
+      <item name="Mailing Lists"
+            href="http://sourceforge.net/mail/?group_id=29721"/>
 
       <item name="Bug Database"
             href="http://sourceforge.net/tracker/?atid=397078&amp;group_id=29721&amp;func=browse"/>
