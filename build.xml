@@ -9,8 +9,6 @@
 
   <property name="version" value="4.4-SNAPSHOT" />
   <property name="ant.jar" value="${ant.home}/lib/ant.jar" />
-  <property name="xerces.jar" value="${ant.home}/lib/xercesImpl.jar" />
-  <property name="xml-apis.jar" value="${ant.home}/lib/xml-apis.jar" />
   <property name="antlr.jar" value="lib/antlr.jar" />
   <property name="velocity.jar" value="lib/velocity-dep-1.4.jar" />
   <property name="jdom.jar" value="lib/jdom-b9.jar" />
@@ -70,8 +68,6 @@
     <pathelement location="${emma.dest}/classes" />
     <pathelement location="${tests.dest}" />
     <pathelement location="${testinputs.dest}" />
-    <pathelement path="${xerces.jar}"/>
-    <pathelement path="${xml-apis.jar}"/>
     <pathelement location="lib/emma.jar"/>
     <path refid="tests.buildpath" />
   </path>
@@ -665,21 +661,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
           description="Runs the test for GUMP testing"/>
 
 
-  <!-- Targets to verify that Xerces is in the classpath -->
-  <target name="-check.xerces"
-          description="Checks whether xerces is in the classpath">
-    <condition property="have.xerces">
-      <available classname="org.apache.xerces.parsers.SAXParser"/>
-    </condition>
-  </target>
-
-  <target name="-require.xerces" depends="-check.xerces" unless="have.xerces"
-          description="Fails if xerces is not present in the classpath">
-    <fail message="Need to have Xerces-J in your CLASSPATH to run the tests. You can download it from http://xml.apache.org/."/>
-  </target>
-
   <target name="validate.xml"
-          depends="-require.xerces"
           description="Validates checkstyle XML file">
     <xmlvalidate file="checkstyle_checks.xml">
       <xmlcatalog>
