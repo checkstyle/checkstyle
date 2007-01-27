@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2005  Oliver Burn
+// Copyright (C) 2001-2007  Oliver Burn
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
+import java.util.TreeSet;
 
 /**
  * Base class for coupling calculation.
@@ -202,8 +203,11 @@ public abstract class AbstractClassCouplingCheck extends Check
      */
     private class Context
     {
-        /** Set of referenced classes. */
-        private final Set mReferencedClassNames = new HashSet();
+        /**
+         * Set of referenced classes.
+         * Sorted by name for predictable error messages in unit tests.
+         */
+        private final Set mReferencedClassNames = new TreeSet();
         /** Own class name. */
         private final String mClassName;
         /* Location of own class. (Used to log violations) */
