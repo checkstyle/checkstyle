@@ -7,7 +7,7 @@
   <property file="checkstyle.buildproperties" />
   <property file="${user.home}/checkstyle.buildproperties" />
 
-  <property name="version" value="4.3" />
+  <property name="version" value="4.4-SNAPSHOT" />
   <property name="ant.jar" value="${ant.home}/lib/ant.jar" />
   <property name="xerces.jar" value="${ant.home}/lib/xercesImpl.jar" />
   <property name="xml-apis.jar" value="${ant.home}/lib/xml-apis.jar" />
