@@ -9,6 +9,19 @@
   </properties>
 
   <body>
+    <section name="Release 4.4">
+      <p>Fixed Bugs:</p>
+
+      <ul>
+        <li>
+          checkstyle-all.jar contained some classes from jakarta commons-collections twice. (bug 1630361)
+        </li>
+      </ul>
+
+      <p>New features:</p>
+
+    </section>
+
     <section name="Release 4.3">
       <p>Fixed Bugs:</p>
 
