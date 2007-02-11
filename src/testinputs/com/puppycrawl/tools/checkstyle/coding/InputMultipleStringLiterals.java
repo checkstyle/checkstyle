@@ -15,4 +15,16 @@ public class InputMultipleStringLiterals
         // The following is not reported, since it is two string literals.
         String a2 = "String" + "Contents";
     }
+
+    @SuppressWarnings("unchecked")
+    void method2(){}
+
+    @SuppressWarnings("unchecked")
+    void method3(){}
+
+    @SuppressWarnings("unchecked")
+    void method4(){}
+
+    @SuppressWarnings("unchecked")
+    void method5(){}
 }

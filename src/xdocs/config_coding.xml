@@ -2019,6 +2019,23 @@ case 3:
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><span class="default">^""$</span> (ignore empty strings)</td>
           </tr>
+          <tr>
+            <td>ignoreOccurrenceContext</td>
+            <td>
+              Token type names where duplicate strings are ignored even if they don't match
+              ignoredStringsRegexp. This allows you to exclude syntactical contexts like
+              Annotations or static initializers from the check.
+            </td>
+            <td>
+              <a href="property_types.html#stringSet">list</a> of 
+              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">token type</a>
+              names
+            </td>
+            <td>
+              <span class="default">ANNOTATION</span> 
+              (ignore strings inside the context of an annotation)
+            </td>
+          </tr>
         </table>
       </subsection>
 
@@ -2046,6 +2063,17 @@ case 3:
         <source>
 &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
     &lt;property name=&quot;allowedDuplicates&quot; value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check so that it flags duplicate strings in all
+          syntactical contexts, even in annotations like
+          <span class="default">@SuppressWarnings("unchecked")</span>:
+        </p>
+        <source>
+&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+    &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

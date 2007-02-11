@@ -16,6 +16,11 @@
         <li>
           checkstyle-all.jar contained some classes from jakarta commons-collections twice. (bug 1630361)
         </li>
+        <li>
+          Multiple string literal check now ignores annotations by default (bug 1560940).
+          It is possible to retain the old behaviour by setting the new check property
+          ignoreOccurrenceContext to an empty value.
+        </li>
       </ul>
 
       <p>New features:</p>

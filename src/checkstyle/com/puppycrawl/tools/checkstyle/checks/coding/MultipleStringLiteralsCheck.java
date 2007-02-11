@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -42,6 +43,12 @@ public class MultipleStringLiteralsCheck extends Check
      * <String, ArrayList>, with the ArrayList containing StringInfo objects.
      */
     private final HashMap mStringMap = new HashMap();
+
+    /**
+     * Marks the TokenTypes where duplicate strings should be ignored.
+     */
+    private final BitSet mIgnoreOccurrenceContext = new BitSet();
+
     /**
      * The allowed number of string duplicates in a file before an error is
      * generated.
@@ -68,6 +75,7 @@ public class MultipleStringLiteralsCheck extends Check
     public MultipleStringLiteralsCheck()
     {
         setIgnoreStringsRegexp("^\"\"$");
+        mIgnoreOccurrenceContext.set(TokenTypes.ANNOTATION);
     }
 
     /**
@@ -86,6 +94,20 @@ public class MultipleStringLiteralsCheck extends Check
         }
     }
 
+    /**
+     * Adds a set of tokens the check is interested in.
+     * @param aStrRep the string representation of the tokens interested in
+     */
+    public final void setIgnoreOccurrenceContext(String[] aStrRep)
+    {
+        mIgnoreOccurrenceContext.clear();
+        for (int i = 0; i < aStrRep.length; i++) {
+            final String s = aStrRep[i];
+            final int type = TokenTypes.getTokenId(s);
+            mIgnoreOccurrenceContext.set(type);
+        }
+    }
+
     /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
@@ -95,6 +117,9 @@ public class MultipleStringLiteralsCheck extends Check
     /** {@inheritDoc} */
     public void visitToken(DetailAST aAST)
     {
+        if (isInIgnoreOccurrenceContext(aAST)) {
+            return;
+        }
         final String currentString = aAST.getText();
         if ((mPattern == null) || !mPattern.matcher(currentString).find()) {
             ArrayList hitList = (ArrayList) mStringMap.get(currentString);
@@ -106,6 +131,28 @@ public class MultipleStringLiteralsCheck extends Check
             final int col = aAST.getColumnNo();
             hitList.add(new StringInfo(line, col));
         }
+    }
+
+    /**
+     * Analyses the path from the AST root to a given AST for occurrences
+     * of the token types in {@link #mIgnoreOccurrenceContext}.
+     *
+     * @param aAST the node from where to start searching towards the root node
+     * @return whether the path from the root node to aAST contains one of the
+     * token type in {@link #mIgnoreOccurrenceContext}.
+     */
+    private boolean isInIgnoreOccurrenceContext(DetailAST aAST)
+    {
+        for (DetailAST token = aAST;
+             token.getParent() != null;
+             token = token.getParent())
+        {
+            final int type = token.getType();
+            if (mIgnoreOccurrenceContext.get(type)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** {@inheritDoc} */

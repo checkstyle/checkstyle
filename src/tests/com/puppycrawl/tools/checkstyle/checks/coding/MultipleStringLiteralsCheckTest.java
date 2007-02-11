@@ -56,4 +56,21 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestCase
                getPath("coding" + File.separator + "InputMultipleStringLiterals.java"),
                expected);
     }
+
+    public void testItWithoutIgnoringAnnotations() throws Exception
+    {
+        DefaultConfiguration checkConfig =
+            createCheckConfig(MultipleStringLiteralsCheck.class);
+        checkConfig.addAttribute("allowedDuplicates", "3");
+        checkConfig.addAttribute("ignoreOccurrenceContext", "");
+
+        final String[] expected = {
+            "19:23: The String \"unchecked\" appears 4 times in the file.",
+        };
+
+        verify(checkConfig,
+               getPath("coding" + File.separator + "InputMultipleStringLiterals.java"),
+               expected);
+    }
+
 }
