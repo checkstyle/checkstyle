@@ -616,6 +616,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
 
     <javadoc sourcepath="src/checkstyle" destdir="${target.dir}/xdocs"
              classpathref="build.classpath"
+             encoding="iso-8859-1"
              source="${checkstyle.minimum.javaversion}"
              failonerror="yes">
       <doclet name="com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet"
