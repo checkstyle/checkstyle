@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+import java.math.BigInteger;
 import java.util.Stack;
 
 
@@ -34,13 +36,13 @@ public abstract class AbstractComplexityCheck
     extends Check
 {
     /** the initial current value */
-    private static final int INITIAL_VALUE = 1;
+    private static final BigInteger INITIAL_VALUE = BigInteger.ONE;
 
     /** stack of values - all but the current value */
     private final Stack mValueStack = new Stack();
 
     /** the current value */
-    private int mCurrentValue;
+    private BigInteger mCurrentValue = BigInteger.ZERO;
 
     /** threshold to report error for */
     private int mMax;
@@ -139,7 +141,7 @@ public abstract class AbstractComplexityCheck
     /**
      * @return the current value
      */
-    protected final int getCurrentValue()
+    protected final BigInteger getCurrentValue()
     {
         return mCurrentValue;
     }
@@ -148,7 +150,7 @@ public abstract class AbstractComplexityCheck
      * Set the current value
      * @param aValue the new value
      */
-    protected final void setCurrentValue(int aValue)
+    protected final void setCurrentValue(BigInteger aValue)
     {
         mCurrentValue = aValue;
     }
@@ -158,25 +160,24 @@ public abstract class AbstractComplexityCheck
      *
      * @param aBy the amount to increment by
      */
-    protected final void incrementCurrentValue(int aBy)
+    protected final void incrementCurrentValue(BigInteger aBy)
     {
-        setCurrentValue(getCurrentValue() + aBy);
+        setCurrentValue(getCurrentValue().add(aBy));
     }
 
     /** Push the current value on the stack */
     protected final void pushValue()
     {
-        mValueStack.push(new Integer(mCurrentValue));
+        mValueStack.push(mCurrentValue);
         mCurrentValue = INITIAL_VALUE;
     }
 
     /**
      * @return pop a value off the stack and make it the current value
      */
-    protected final int popValue()
+    protected final BigInteger popValue()
     {
-        mCurrentValue = ((Integer) mValueStack.pop()).intValue();
-
+        mCurrentValue = (BigInteger) mValueStack.pop();
         return mCurrentValue;
     }
 
@@ -193,10 +194,11 @@ public abstract class AbstractComplexityCheck
      */
     private void leaveMethodDef(DetailAST aAST)
     {
-        if (mCurrentValue > mMax) {
+        BigInteger max = BigInteger.valueOf(mMax);
+        if (mCurrentValue.compareTo(max) > 0) {
             log(aAST, getMessageID(),
-                new Integer(mCurrentValue),
-                new Integer(mMax));
+                mCurrentValue,
+                max);
         }
         popValue();
     }

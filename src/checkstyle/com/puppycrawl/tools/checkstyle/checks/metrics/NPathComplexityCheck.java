@@ -18,11 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import java.math.BigInteger;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks the npath complexity against a specified limt (default = 200).
+ * Checks the npath complexity against a specified limit (default = 200).
  * The npath metric computes the number of possible execution paths
  * through a function. Similar to the cyclomatic complexity but also
  * takes into account the nesting of conditional statements and
@@ -126,7 +128,8 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
     /** Leaves else, catch or case. */
     private void leaveAddingConditional()
     {
-        setCurrentValue((getCurrentValue() - 1) + popValue());
+        setCurrentValue(
+                getCurrentValue().subtract(BigInteger.ONE).add(popValue()));
     }
 
     /** Visits while, do, for, if, try, ? (in ?::) or switch. */
@@ -138,6 +141,7 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
     /** Leaves while, do, for, if, try, ? (in ?::) or switch. */
     private void leaveMultiplyingConditional()
     {
-        setCurrentValue((getCurrentValue() + 1) * popValue());
+        setCurrentValue(
+                getCurrentValue().add(BigInteger.ONE).multiply(popValue()));
     }
 }

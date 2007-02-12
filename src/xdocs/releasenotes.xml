@@ -21,6 +21,10 @@
           It is possible to retain the old behaviour by setting the new check property
           ignoreOccurrenceContext to an empty value.
         </li>
+        <li>
+          The calculated value of NPath complexity was subject to integer overflow,
+          so complex code was not always flagged (bug 1654769).
+        </li>
       </ul>
 
       <p>New features:</p>

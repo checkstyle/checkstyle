@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import java.math.BigInteger;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -67,7 +69,7 @@ public class CyclomaticComplexityCheck
     /** {@inheritDoc} */
     protected final void visitTokenHook(DetailAST aAST)
     {
-        incrementCurrentValue(1);
+        incrementCurrentValue(BigInteger.ONE);
     }
 
     /** {@inheritDoc} */
