@@ -7,6 +7,12 @@
   <name>Checkstyle</name>
   <url>http://checkstyle.sourceforge.net/</url>
   <description>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard</description>
+  <licenses>
+    <license>
+      <name>GNU Lesser General Public License</name>
+      <url>http://www.gnu.org/licenses/lgpl.txt</url>
+    </license>
+  </licenses>
   <scm>
     <url>http://checkstyle.cvs.sourceforge.net/checkstyle/</url>
   </scm>
