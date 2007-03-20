@@ -24,6 +24,11 @@ public class BooleanExpressionComplexityCheckTestInput {
     }
 
     public boolean equals(Object object) {
-        return (((_a && (_b & _c)) || (_c ^ _d)));
+        return (((_a && (_b & _c)) || (_c ^ _d) || (_a && _d)));
+    }
+    
+    public boolean bitwise()
+    {
+        return (((_a & (_b & _c)) | (_c ^ _d) | (_a & _d)));
     }
 }

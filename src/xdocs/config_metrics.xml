@@ -13,13 +13,22 @@
       <subsection name="Description">
         <p>
           Restrict the number of number of <span
-          class="code">&#x26;&#x26;</span>, <span class="code">||</span>
+          class="code">&#x26;&#x26;</span>, <span class="code">||</span>,
+          <span class="code">&#x26;</span>, <span class="code">|</span>
           and <span class="code">^</span> in an expression.
         </p>
 
         <p>
           Rationale: Too many conditions leads to code that is difficult
           to read and hence debug and maintain.
+        </p>
+
+        <p>
+          Note that the operators <span class="code">&#x26;</span> and
+          <span class="code">|</span> are not only integer bitwise operators, they are also the 
+          <a href="http://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.22.2">
+          non-shortcut versions</a> of the boolean operators
+          <span class="code">&#x26;&#x26;</span> and <span class="code">||</span>.
         </p>
       </subsection>
 
@@ -39,6 +48,25 @@
             </td>
             <td><a href="property_types.html#integer">integer</a></td>
             <td><span class="default">3</span></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>
+              subset of tokens
+              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">LAND</a>,
+              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">BAND</a>,
+              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">LOR</a>,
+              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">BOR</a>,
+              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">BXOR</a>
+            </td>
+            <td>
+              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">LAND</a>,
+              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">BAND</a>,
+              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">LOR</a>,
+              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">BOR</a>,
+              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">BXOR</a>
+            </td>
           </tr>
         </table>
       </subsection>
@@ -60,6 +88,17 @@
     &lt;property name=&quot;max&quot; value=&quot;7&quot;/&gt;
 &lt;/module&gt;
         </source>
+        
+        <p>
+          To configure the check to ignore <span class="code">&#x26;</span> and
+          <span class="code">|</span>:
+        </p>
+        <source>
+&lt;module name="BooleanExpressionComplexity"&gt;
+    &lt;property name="tokens" value="BXOR,LAND,LOR"/&gt;
+&lt;/module&gt;
+        </source>
+        
       </subsection>
 
       <subsection name="Package">

@@ -25,10 +25,19 @@
           The calculated value of NPath complexity was subject to integer overflow,
           so complex code was not always flagged (bug 1654769).
         </li>
+        <li>
+          Fixed misleading documentation for BooleanExpressionComplexity check (bug 1579227).
+        </li>
       </ul>
 
       <p>New features:</p>
 
+      <ul>
+        <li>
+          Allow to control the operator token types in BooleanExpressionComplexity
+          check (in response to bug 1579227).
+        </li>
+      </ul>
     </section>
 
     <section name="Release 4.3">

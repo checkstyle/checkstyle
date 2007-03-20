@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 import java.util.Stack;
 
 /**
- * Restricts nested boolean operators (&amp;&amp;, || and ^) to
+ * Restricts nested boolean operators (&amp;&amp;, ||, &amp;, | and ^) to
  * a specified depth (default = 3).
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
@@ -69,7 +69,11 @@ public final class BooleanExpressionComplexityCheck extends Check
     /** {@inheritDoc} */
     public int[] getRequiredTokens()
     {
-        return getDefaultTokens();
+        return new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.EXPR,
+        };
     }
 
     /**
