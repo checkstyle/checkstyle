@@ -28,6 +28,10 @@
         <li>
           Fixed misleading documentation for BooleanExpressionComplexity check (bug 1579227).
         </li>
+        <li>
+          Fixed Java parser error for array brackets in wildcard generic types (bug 1394014).
+          Thanks to Paul Constantinides for submitting the fix (patch 1422247).
+        </li>
       </ul>
 
       <p>New features:</p>

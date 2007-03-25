@@ -112,7 +112,12 @@ public class WhitespaceAroundTest
             "6:54: '>' is not followed by whitespace.",
             "6:67: '&' is not preceded with whitespace.",
             "6:68: '&' is not followed by whitespace.",
-            "6:69: '>' is not preceded with whitespace.",
+            "6:91: '<' is not preceded with whitespace.",
+            "6:92: '<' is not followed by whitespace.",
+            "6:92: '?' is not preceded with whitespace.",
+            "6:117: '>' is not preceded with whitespace.",
+            "6:118: '>' is not followed by whitespace.",
+            "6:118: '>' is not preceded with whitespace.",
         };
         verify(checkConfig, getPath("InputGenerics.java"), expected);
     }
