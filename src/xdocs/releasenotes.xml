@@ -38,8 +38,12 @@
 
       <ul>
         <li>
-          Allow to control the operator token types in BooleanExpressionComplexity
-          check (in response to bug 1579227).
+          Allow to control the operator token types in
+          BooleanExpressionComplexity check (in response to bug
+          1579227).
+        </li>
+        <li>
+          Added an entry for <tt>Checkstyle-IDEA</tt> on the home page.
         </li>
       </ul>
     </section>

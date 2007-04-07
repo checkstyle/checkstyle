@@ -115,6 +115,14 @@
 	</tr>
 	<tr>
           <td><a href="http://www.intellij.com/idea/">IntelliJ IDEA</a></td>
+          <td>James Shiell</td>
+          <td>
+            <a href="http://code.google.com/p/checkstyle-idea/">Checkstyle-idea Project Page</a>
+          </td>
+          <td>Provides real-time and on-demand scanning.</td>
+	</tr>
+	<tr>
+          <td><a href="http://www.intellij.com/idea/">IntelliJ IDEA</a></td>
           <td>Mark Lussier</td>
           <td>
             <a href="http://jetstyle.sourceforge.net/">JetStyle
