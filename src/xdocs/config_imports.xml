@@ -236,6 +236,8 @@
           imports come in a specific order (e.g., java. comes first,
           javax. comes first, then everything else) and imports within each
           group are in lexicographic order.
+          Static imports must be at the end of a group and in lexicographic
+          order amongst themselves.
         </p>
       </subsection>
 
