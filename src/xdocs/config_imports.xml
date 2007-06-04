@@ -355,6 +355,14 @@
             <td><a href="property_types.html#string">string</a></td>
             <td><span class="default">null</span></td>
           </tr>
+          <tr>
+            <td>url</td>
+            <td>
+              url of the file containing the import control configuration.
+            </td>
+            <td><a href="property_types.html#string">string</a></td>
+            <td><span class="default">null</span></td>
+          </tr>
         </table>
       </subsection>
 

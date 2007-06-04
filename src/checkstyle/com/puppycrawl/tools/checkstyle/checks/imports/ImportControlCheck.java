@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.io.File;
+import java.net.URI;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -98,6 +101,33 @@ public class ImportControlCheck extends Check
     }
 
     /**
+     * Set the parameter for the url containing the import control
+     * configuration. It will cause the url to be loaded.
+     * @param aUrl the url of the file to load.
+     * @throws ConversionException on error loading the file.
+     */
+    public void setUrl(final String aUrl)
+    {
+        // Handle empty param
+        if ((aUrl == null) || (aUrl.trim().length() == 0)) {
+            return;
+        }
+        final URI uri;
+        try {
+            uri = URI.create(aUrl);
+        }
+        catch (final IllegalArgumentException ex) {
+            throw new ConversionException("syntax error in url " + aUrl, ex);
+        }
+        try {
+            mRoot = ImportControlLoader.load(uri);
+        }
+        catch (final CheckstyleException ex) {
+            throw new ConversionException("Unable to load " + aUrl, ex);
+        }
+    }
+
+    /**
      * Set the parameter for the file containing the import control
      * configuration. It will cause the file to be loaded.
      * @param aName the name of the file to load.
@@ -111,7 +141,7 @@ public class ImportControlCheck extends Check
         }
 
         try {
-            mRoot = ImportControlLoader.load(aName);
+            mRoot = ImportControlLoader.load(new File(aName).toURI());
         }
         catch (final CheckstyleException ex) {
             throw new ConversionException("Unable to load " + aName, ex);

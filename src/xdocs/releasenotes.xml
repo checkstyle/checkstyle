@@ -54,6 +54,10 @@
           Set the <tt>failureProperty</tt> with a meaningful message
           (feature request 1725475).
         </li>
+        <li>
+          Add a url option for ImportControl check. Thanks to Benjamin
+          Lerman for the patch 1724683.
+        </li>
       </ul>
     </section>
 

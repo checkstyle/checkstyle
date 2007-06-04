@@ -20,9 +20,10 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.Attributes;
@@ -109,32 +110,35 @@ final class ImportControlLoader extends AbstractLoader
 
     /**
      * Loads the import control file from a file.
-     * @param aFilename the name of the file to load.
+     * @param aUri the uri of the file to load.
      * @return the root {@link PkgControl} object.
      * @throws CheckstyleException if an error occurs.
      */
-    static PkgControl load(final String aFilename) throws CheckstyleException
+    static PkgControl load(final URI aUri) throws CheckstyleException
     {
-        FileInputStream fis = null;
+        InputStream is = null;
         try {
-            fis = new FileInputStream(aFilename);
+            is = aUri.toURL().openStream();
         }
-        catch (final FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + aFilename, e);
+        catch (final MalformedURLException e) {
+            throw new CheckstyleException("syntax error in url " + aUri, e);
         }
-        final InputSource source = new InputSource(fis);
-        return load(source, aFilename);
+        catch (final IOException e) {
+            throw new CheckstyleException("unable to find " + aUri, e);
+        }
+        final InputSource source = new InputSource(is);
+        return load(source, aUri);
     }
 
     /**
      * Loads the import control file from a {@link InputSource}.
      * @param aSource the source to load from.
-     * @param aSourceName name of the source being loaded.
+     * @param aUri uri of the source being loaded.
      * @return the root {@link PkgControl} object.
      * @throws CheckstyleException if an error occurs.
      */
     private static PkgControl load(final InputSource aSource,
-        final String aSourceName) throws CheckstyleException
+        final URI aUri) throws CheckstyleException
     {
         try {
             final ImportControlLoader loader = new ImportControlLoader();
@@ -142,14 +146,14 @@ final class ImportControlLoader extends AbstractLoader
             return loader.getRoot();
         }
         catch (final ParserConfigurationException e) {
-            throw new CheckstyleException("unable to parse " + aSourceName, e);
+            throw new CheckstyleException("unable to parse " + aUri, e);
         }
         catch (final SAXException e) {
-            throw new CheckstyleException("unable to parse " + aSourceName
+            throw new CheckstyleException("unable to parse " + aUri
                     + " - " + e.getMessage(), e);
         }
         catch (final IOException e) {
-            throw new CheckstyleException("unable to read " + aSourceName, e);
+            throw new CheckstyleException("unable to read " + aUri, e);
         }
     }
 
@@ -170,7 +174,7 @@ final class ImportControlLoader extends AbstractLoader
      * @return the value of the attribute.
      * @throws SAXException if the attribute does not exist.
      */
-    private String safeGet(final Attributes aAtts, String aName)
+    private String safeGet(final Attributes aAtts, final String aName)
         throws SAXException
     {
         final String retVal = aAtts.getValue(aName);
