@@ -328,13 +328,17 @@ public class CheckStyleTask extends Task
                     && (numWarnings <= mMaxWarnings);
 
             // Handle the return status
-            if (!ok && (mFailureProperty != null)) {
-                getProject().setProperty(mFailureProperty, "true");
-            }
+            if (!ok) {
+                final String failureMsg =
+                        "Got " + numErrs + " errors and " + numWarnings
+                                + " warnings.";
+                if (mFailureProperty != null) {
+                    getProject().setProperty(mFailureProperty, failureMsg);
+                }
 
-            if (!ok && mFailOnViolation) {
-                throw new BuildException("Got " + numErrs + " errors and "
-                        + numWarnings + " warnings.", getLocation());
+                if (mFailOnViolation) {
+                    throw new BuildException(failureMsg, getLocation());
+                }
             }
         }
         finally {

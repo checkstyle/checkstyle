@@ -14,23 +14,28 @@
 
       <ul>
         <li>
-          checkstyle-all.jar contained some classes from jakarta commons-collections twice. (bug 1630361)
+          checkstyle-all.jar contained some classes from jakarta
+          commons-collections twice. (bug 1630361)
         </li>
         <li>
-          Multiple string literal check now ignores annotations by default (bug 1560940).
-          It is possible to retain the old behaviour by setting the new check property
+          Multiple string literal check now ignores annotations by
+          default (bug 1560940).  It is possible to retain the old
+          behaviour by setting the new check property
           ignoreOccurrenceContext to an empty value.
         </li>
         <li>
-          The calculated value of NPath complexity was subject to integer overflow,
-          so complex code was not always flagged (bug 1654769).
+          The calculated value of NPath complexity was subject to
+          integer overflow, so complex code was not always flagged (bug
+          1654769).
         </li>
         <li>
-          Fixed misleading documentation for BooleanExpressionComplexity check (bug 1579227).
+          Fixed misleading documentation for BooleanExpressionComplexity
+          check (bug 1579227).
         </li>
         <li>
-          Fixed Java parser error for array brackets in wildcard generic types (bug 1394014).
-          Thanks to Paul Constantinides for submitting the fix (patch 1422247).
+          Fixed Java parser error for array brackets in wildcard generic
+          types (bug 1394014).  Thanks to Paul Constantinides for
+          submitting the fix (patch 1422247).
         </li>
       </ul>
 
@@ -44,6 +49,10 @@
         </li>
         <li>
           Added an entry for <tt>Checkstyle-IDEA</tt> on the home page.
+        </li>
+        <li>
+          Set the <tt>failureProperty</tt> with a meaningful message
+          (feature request 1725475).
         </li>
       </ul>
     </section>
