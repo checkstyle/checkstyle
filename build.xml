@@ -334,6 +334,7 @@
     </checkstyle>
     <mkdir dir="${target.dir}/style/frames"/>
     <mkdir dir="${target.dir}/style/noframes"/>
+    <mkdir dir="${target.dir}/style/noframes-sorted"/>
     <mkdir dir="${target.dir}/style/simple"/>
     <mkdir dir="${target.dir}/style/csv"/>
     <mkdir dir="target/style/author"/>
@@ -341,6 +342,10 @@
            destdir="${target.dir}/style/noframes"
            includes="cs_errors.xml"
            style="contrib/checkstyle-noframes.xsl"/>
+    <style basedir="${target.dir}"
+           destdir="${target.dir}/style/noframes-sorted"
+           includes="cs_errors.xml"
+           style="contrib/checkstyle-noframes-sorted.xsl"/>
     <style basedir="${target.dir}"
            destdir="${target.dir}/style/frames"
            includes="cs_errors.xml"
