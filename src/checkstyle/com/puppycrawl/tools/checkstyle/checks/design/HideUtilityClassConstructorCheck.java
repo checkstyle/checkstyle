@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class HideUtilityClassConstructorCheck extends Check
 {
@@ -46,21 +46,29 @@ public class HideUtilityClassConstructorCheck extends Check
     {
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
         DetailAST child = (DetailAST) objBlock.getFirstChild();
-        boolean hasMethod = false;
-        boolean hasNonStaticMethod = false;
+        boolean hasMethodOrField = false;
+        boolean hasNonStaticMethodOrField = false;
         boolean hasDefaultCtor = true;
         boolean hasPublicCtor = false;
 
         while (child != null) {
-            if (child.getType() == TokenTypes.METHOD_DEF) {
-                hasMethod = true;
+            int type = child.getType();
+            if (type == TokenTypes.METHOD_DEF
+                    || type == TokenTypes.VARIABLE_DEF)
+            {
+                hasMethodOrField = true;
                 final DetailAST modifiers =
                     child.findFirstToken(TokenTypes.MODIFIERS);
-                if (!modifiers.branchContains(TokenTypes.LITERAL_STATIC)) {
-                    hasNonStaticMethod = true;
+                boolean isStatic =
+                    modifiers.branchContains(TokenTypes.LITERAL_STATIC);
+                boolean isPrivate =
+                    modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
+
+                if (!isStatic && !isPrivate) {
+                    hasNonStaticMethodOrField = true;
                 }
             }
-            if (child.getType() == TokenTypes.CTOR_DEF) {
+            if (type == TokenTypes.CTOR_DEF) {
                 hasDefaultCtor = false;
                 final DetailAST modifiers =
                     child.findFirstToken(TokenTypes.MODIFIERS);
@@ -85,9 +93,10 @@ public class HideUtilityClassConstructorCheck extends Check
         final boolean extendsJLO = // J.Lo even made it into in our sources :-)
             aAST.findFirstToken(TokenTypes.EXTENDS_CLAUSE) == null;
 
-        if (extendsJLO
-                && hasMethod && !hasNonStaticMethod && hasAccessibleCtor)
-        {
+        final boolean isUtilClass =
+            extendsJLO && hasMethodOrField && !hasNonStaticMethodOrField;
+
+        if (isUtilClass && hasAccessibleCtor) {
             log(aAST.getLineNo(), aAST.getColumnNo(), "hide.utility.class");
         }
     }

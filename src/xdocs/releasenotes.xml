@@ -37,6 +37,10 @@
           types (bug 1394014).  Thanks to Paul Constantinides for
           submitting the fix (patch 1422247).
         </li>
+        <li>
+          Fixed false alarm in HideUtilityClassConstructor check when class
+          has only static methods but contains non static fields (bug 1762702).
+        </li>
       </ul>
 
       <p>New features:</p>

@@ -38,4 +38,13 @@ public class HideUtilityClassConstructorCheckTest
         verify(checkConfig, getPath("design" + File.separator + "InputNonUtilityClass.java"), expected);
     }
 
+    public void testOnlyNonstaticFieldNonUtilClass() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HideUtilityClassConstructorCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("design" + File.separator + "InputRegression1762702.java"), expected);
+    }
+
 }
