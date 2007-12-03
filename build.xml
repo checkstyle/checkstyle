@@ -393,7 +393,10 @@
              work with Xalan XSLTC and/or JDK 1.5 (Ant bug 27541)
              -->
         <and>
-          <equals arg1="${ant.java.version}" arg2="1.5" />
+      	  <or>
+            <equals arg1="${ant.java.version}" arg2="1.5" />
+            <equals arg1="${ant.java.version}" arg2="1.6" />
+          </or>
           <!-- TODO: find a more elegant way to specify *minimum* version -->
           <not>
             <or>
