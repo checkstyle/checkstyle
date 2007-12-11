@@ -19,9 +19,9 @@
       </p>
 
       <p>
-      This document assumes you are working with the CVS version of
+      This document assumes you are working with the SVN version of
       checkstyle and that you are familiar with some standard
-      development tools (<a href="http://www.cvshome.org">CVS</a>,
+      development tools (<a href="http://subversion.tigris.org/">SVN</a>,
       <a href="http://ant.apache.org">Ant</a>, <a
       href="http://www.junit.org">JUnit</a>).
       </p>
@@ -73,9 +73,9 @@
       <p>
       If you have created new files, put them in a tgz file (or zip if you
       are on Windows). If you have changed existing files, create a unified
-      diff using CVS. To do that, open a command line, cd to the home
+      diff using SVN. To do that, open a command line, cd to the home
       directory of checkstyle (where build.xml is located) and execute
-      <span class="code">cvs diff -u &gt; mychanges.patch</span>.
+      <span class="code">svn diff &gt; mychanges.patch</span>.
       </p>
 
       <p>

@@ -380,7 +380,7 @@
 
         <p>
           For an example import control file, look at the file called <a
-          href="http://checkstyle.cvs.sourceforge.net/checkstyle/checkstyle/import-control.xml?view=markup">import-control.xml</a>
+          href="http://checkstyle.svn.sourceforge.net/viewvc/checkstyle/trunk/checkstyle/import-control.xml?view=markup">import-control.xml</a>
           which is part of the Checkstyle distribution.
         </p>
       </subsection>

@@ -69,8 +69,8 @@
       <item name="Project Page"
             href="http://sourceforge.net/projects/checkstyle"/>
 
-      <item name="CVS Repository"
-            href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/checkstyle/"/>
+      <item name="SVN Repository"
+            href="http://checkstyle.svn.sourceforge.net/viewvc/checkstyle/"/>
 
       <item name="Contributing" href="/contributing.html"/>
     </menu>
