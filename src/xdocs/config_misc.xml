@@ -1362,7 +1362,10 @@ import java.util.thing3;
  * Confidential Information and shall use it only in accordance with
  * the terms of the license agreement you entered into with ACME.
  *
- * $Log: not supported by cvs2svn $
+ * $Log: config_misc.xml,v $
+ * Revision 1.7  2007/01/16 12:16:35  oburn
+ * Removing all reference to mailing lists
+ *
  * Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
  * Fix for rfe 1248106 (TYPECAST is now accepted by NoWhitespaceAfter)
  *
@@ -1431,7 +1434,10 @@ public class PID extends StateMachine implements WebObject.Constants {
                 shall not disclose such\n \* Confidential Information and shall 
                 use it only in accordance with\n \* the terms of the license 
                 agreement you entered into with ACME\.\n \*\n 
-                \* \$Log: not supported by cvs2svn $
+                \* \$Log: config_misc.xml,v $
+                \* \Revision 1.7  2007/01/16 12:16:35  oburn
+                \* \Removing all reference to mailing lists
+                \* \
                 \* \Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
                 \* \Fix for rfe 1248106 (TYPECAST is now accepted by NoWhitespaceAfter)
                 \* \

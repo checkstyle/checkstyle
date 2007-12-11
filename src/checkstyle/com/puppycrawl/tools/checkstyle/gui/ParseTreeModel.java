@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * The model that backs the parse tree in the GUI.
  *
  * @author Lars Kühne
- * @version $Id: ParseTreeModel.java,v 1.7 2006-07-07 03:44:16 oburn Exp $
  */
 public class ParseTreeModel extends AbstractTreeTableModel
 {
