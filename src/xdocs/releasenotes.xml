@@ -62,6 +62,9 @@
           Add a url option for ImportControl check. Thanks to Benjamin
           Lerman for the patch 1724683.
         </li>
+        <li>
+          Moved source control over to Subversion.
+        </li>
       </ul>
     </section>
 
