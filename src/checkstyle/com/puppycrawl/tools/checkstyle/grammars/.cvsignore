@@ -1,9 +1,0 @@
-GeneratedJava*.java
-GeneratedJava*.txt
-GeneratedJavaLexer.smap
-GeneratedJavaRecognizer.smap
-Java*Lexer.java
-Java*Recognizer.java
-Java*TokenTypes.java
-Java*TokenTypes.txt
-expandedjava*.g
