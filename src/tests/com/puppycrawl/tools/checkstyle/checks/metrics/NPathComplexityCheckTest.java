@@ -2,6 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import java.text.NumberFormat;
 
 public class NPathComplexityCheckTest extends BaseCheckTestCase {
     public void testCalculation() throws Exception {
@@ -30,8 +31,13 @@ public class NPathComplexityCheckTest extends BaseCheckTestCase {
             createCheckConfig(NPathComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
+
+        final long largerThanMaxInt = 3486784401L;
+        // use i18n for number formating so test wont fail in non-english environments
+        final String expectedComplexity = NumberFormat.getInstance().format(largerThanMaxInt);
+
         String[] expected = {
-            "9:5: NPath Complexity is 3,486,784,401 (max allowed is 0)." // larger than MAXINT
+            "9:5: NPath Complexity is " + expectedComplexity + " (max allowed is 0)."
         };
 
         verify(checkConfig, getPath("ComplexityOverflow.java"), expected);

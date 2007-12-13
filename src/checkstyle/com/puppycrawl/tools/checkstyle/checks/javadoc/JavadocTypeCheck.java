@@ -27,14 +27,13 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-import org.apache.commons.beanutils.ConversionException;
-
-import java.util.Vector;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+import org.apache.commons.beanutils.ConversionException;
 
 /**
  * Checks the Javadoc of a type.
@@ -151,7 +150,7 @@ public class JavadocTypeCheck
             }
             else if (ScopeUtils.isOuterMostType(aAST)) {
                 // don't check author/version for inner classes
-                final Vector tags = getJavadocTags(cmt);
+                final List tags = getJavadocTags(cmt);
                 checkTag(lineNo, tags, "author",
                          mAuthorFormatPattern, mAuthorFormat);
                 checkTag(lineNo, tags, "version",
@@ -203,10 +202,10 @@ public class JavadocTypeCheck
      * @param aCmt teh Javadoc comment to process.
      * @return all standalone tags from the given javadoc.
      */
-    private Vector getJavadocTags(TextBlock aCmt)
+    private List getJavadocTags(TextBlock aCmt)
     {
         final String[] text = aCmt.getText();
-        final Vector tags = new Vector();
+        final List tags = new ArrayList();
         Pattern tagPattern = Utils.getPattern("/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
         for (int i = 0; i < text.length; i++) {
             final String s = text[i];
@@ -237,7 +236,7 @@ public class JavadocTypeCheck
      * @param aFormatPattern regexp for the tag value.
      * @param aFormat pattern for the tag value.
      */
-    private void checkTag(int aLineNo, Vector aTags, String aTag,
+    private void checkTag(int aLineNo, List aTags, String aTag,
                           Pattern aFormatPattern, String aFormat)
     {
         if (aFormatPattern == null) {
@@ -267,7 +266,7 @@ public class JavadocTypeCheck
      * @param aTypeParamName the name of the type parameter
      */
     private void checkTypeParamTag(
-        final int aLineNo, final Vector aTags, final String aTypeParamName)
+        final int aLineNo, final List aTags, final String aTypeParamName)
     {
         boolean found = false;
         for (int i = aTags.size() - 1; i >= 0; i--) {
@@ -290,7 +289,7 @@ public class JavadocTypeCheck
      * @param aTypeParamNames names of type parameters
      */
     private void checkUnusedTypeParamTags(
-        final Vector aTags,
+        final List aTags,
         final List aTypeParamNames)
     {
         final Pattern pattern = Utils.getPattern("\\s*<([^>]+)>.*");
