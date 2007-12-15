@@ -79,15 +79,17 @@ public class ModifierOrderCheck
     };
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.MODIFIERS};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
-        final List mods = new ArrayList();
+        final List<AST> mods = new ArrayList();
         AST modifier = aAST.getFirstChild();
         while (modifier != null) {
             mods.add(modifier);
