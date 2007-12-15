@@ -123,8 +123,8 @@ public final class LocalizedMessage
         result = mLineNo;
         result = HASH_MULT * result + mColNo;
         result = HASH_MULT * result + mKey.hashCode();
-        for (int i = 0; i < mArgs.length; i++) {
-            result = HASH_MULT * result + mArgs[i].hashCode();
+        for (Object element : mArgs) {
+            result = HASH_MULT * result + element.hashCode();
         }
         return result;
     }

@@ -135,8 +135,7 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
             new RegexpHeaderChecker(
                     mHeaderInfo, new FileSetCheckViolationMonitor());
         File[] files = filter(aFiles);
-        for (int i = 0; i < files.length; i++) {
-            final File file = files[i];
+        for (final File file : files) {
             final String path = file.getPath();
             msgDispatcher.fireFileStarted(path);
             try {

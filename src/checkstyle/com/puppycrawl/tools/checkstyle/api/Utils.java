@@ -301,11 +301,9 @@ public final class Utils
         }
 
         final List<File> files = new ArrayList<File>(aFiles.length);
-        for (int i = 0; i < aFiles.length; i++) {
-            final File f = aFiles[i];
+        for (final File f : aFiles) {
             final String fileName = f.getName();
-            for (int j = 0; j < withDotExtensions.length; j++) {
-                final String fileExtension = withDotExtensions[j];
+            for (final String fileExtension : withDotExtensions) {
                 if (fileName.endsWith(fileExtension)) {
                     files.add(f);
                 }

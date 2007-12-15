@@ -21,9 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -255,9 +253,7 @@ class FrameStack
      */
     LexicalFrame findFrame(String aNameToFind)
     {
-        final Iterator<LexicalFrame> it = mFrameList.iterator();
-        while (it.hasNext()) {
-            final LexicalFrame thisFrame = it.next();
+        for (LexicalFrame thisFrame : mFrameList) {
             if (thisFrame.contains(aNameToFind)) {
                 return thisFrame;
             }

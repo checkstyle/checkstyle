@@ -21,15 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -159,10 +156,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck
         lines.addAll(cppComments.keySet());
         lines.addAll(cComments.keySet());
 
-        final Iterator<Integer> linesIter = lines.iterator();
-        while (linesIter.hasNext()) {
-            final Integer lineNo = linesIter.next();
-
+        for (Integer lineNo : lines) {
             final String line = getLines()[lineNo.intValue() - 1];
             String lineBefore = "";
             TextBlock comment = null;

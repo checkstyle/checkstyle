@@ -23,7 +23,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import org.apache.commons.logging.Log;
@@ -141,10 +140,8 @@ public class HandlerFactory
         final Set<Integer> typeSet = mTypeHandlers.keySet();
         final int[] types = new int[typeSet.size()];
         int index = 0;
-        for (final Iterator<Integer> i = typeSet.iterator(); i.hasNext();
-            index++)
-        {
-            types[index] = (i.next()).intValue();
+        for (Integer val : typeSet) {
+            types[index++] = val;
         }
 
         return types;

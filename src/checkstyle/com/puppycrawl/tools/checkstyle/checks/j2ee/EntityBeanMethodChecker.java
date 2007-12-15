@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.j2ee;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Root class for entity bean method checks.
@@ -66,9 +65,7 @@ public class EntityBeanMethodChecker
      */
     protected void checkCreateMatch()
     {
-        final Iterator<DetailAST> it = mEjbCreates.iterator();
-        while (it.hasNext()) {
-            final DetailAST createMethod = it.next();
+        for (DetailAST createMethod : mEjbCreates) {
             final DetailAST nameAST =
                 createMethod.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();

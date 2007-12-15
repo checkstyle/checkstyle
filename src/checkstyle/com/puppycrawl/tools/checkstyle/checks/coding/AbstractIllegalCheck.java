@@ -63,8 +63,7 @@ public abstract class AbstractIllegalCheck extends Check
     {
         assert aClassNames != null;
         mIllegalClassNames.clear();
-        for (int i = 0; i < aClassNames.length; i++) {
-            final String name = aClassNames[i];
+        for (final String name : aClassNames) {
             mIllegalClassNames.add(name);
             final int lastDot = name.lastIndexOf(".");
             if ((lastDot > 0) && (lastDot < (name.length() - 1))) {

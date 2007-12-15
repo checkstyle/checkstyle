@@ -210,8 +210,7 @@ public class JavadocStyleCheck
     private String getCommentText(String[] aComments)
     {
         final StringBuffer buffer = new StringBuffer();
-        for (int i = 0; i < aComments.length; i++) {
-            final String line = aComments[i];
+        for (final String line : aComments) {
             final int textStart = findTextStart(line);
 
             if (textStart != -1) {
@@ -399,12 +398,12 @@ public class JavadocStyleCheck
     private boolean isSingleTag(HtmlTag aTag)
     {
         boolean isSingleTag = false;
-        for (int i = 0; i < SINGLE_TAG.length; i++) {
+        for (String element : SINGLE_TAG) {
             // If its a singleton tag (<p>, <br>, etc.), ignore it
             // Can't simply not put them on the stack, since singletons
             // like <dt> and <dd> (unhappily) may either be terminated
             // or not terminated. Both options are legal.
-            if (aTag.getId().equalsIgnoreCase(SINGLE_TAG[i])) {
+            if (aTag.getId().equalsIgnoreCase(element)) {
                 isSingleTag = true;
             }
         }

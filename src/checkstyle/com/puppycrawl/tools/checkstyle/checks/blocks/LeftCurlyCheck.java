@@ -92,6 +92,7 @@ public class LeftCurlyCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -118,6 +119,7 @@ public class LeftCurlyCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST startToken;

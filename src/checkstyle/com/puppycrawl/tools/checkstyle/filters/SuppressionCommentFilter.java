@@ -29,7 +29,6 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -444,8 +443,7 @@ public class SuppressionCommentFilter
         Tag result = null;
         // TODO: try binary search if sequential search becomes a performance
         // problem.
-        for (final Iterator<Tag> iter = mTags.iterator(); iter.hasNext();) {
-            final Tag tag = iter.next();
+        for (Tag tag : mTags) {
             if ((tag.getLine() > aEvent.getLine())
                 || ((tag.getLine() == aEvent.getLine())
                     && (tag.getColumn() > aEvent.getColumn())))
@@ -473,9 +471,7 @@ public class SuppressionCommentFilter
         if (mCheckC) {
             final Collection<List<TextBlock>> cComments = contents
                     .getCComments().values();
-            final Iterator<List<TextBlock>> iter = cComments.iterator();
-            while (iter.hasNext()) {
-                final List<TextBlock> element = iter.next();
+            for (List<TextBlock> element : cComments) {
                 tagSuppressions(element);
             }
         }
@@ -489,10 +485,7 @@ public class SuppressionCommentFilter
      */
     private void tagSuppressions(Collection<TextBlock> aComments)
     {
-        for (final Iterator<TextBlock> iter = aComments.iterator(); iter
-                .hasNext();)
-        {
-            final TextBlock comment = iter.next();
+        for (TextBlock comment : aComments) {
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
             tagCommentLine(text[0], startLineNo, comment.getStartColNo());

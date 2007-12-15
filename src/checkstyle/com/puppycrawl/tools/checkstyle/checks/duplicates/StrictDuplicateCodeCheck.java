@@ -411,9 +411,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 
         final Integer iLine = new Integer(aILine);
 
-        for (int jLineIdx = 0; jLineIdx < aJLines.length; jLineIdx++) {
-
-            int jLine = aJLines[jLineIdx];
+        for (int jLine : aJLines) {
 
             if (aI == aJ && aILine >= jLine) {
                 continue;

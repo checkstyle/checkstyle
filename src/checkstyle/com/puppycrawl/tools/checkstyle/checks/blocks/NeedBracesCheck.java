@@ -56,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class NeedBracesCheck extends Check
 {
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -68,6 +69,7 @@ public class NeedBracesCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST slistAST = aAST.findFirstToken(TokenTypes.SLIST);

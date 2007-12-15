@@ -58,8 +58,7 @@ public class TokenTypesDoclet
         }
 
         final FieldDoc[] fields = classes[0].fields();
-        for (int j = 0; j < fields.length; j++) {
-            final FieldDoc field = fields[j];
+        for (final FieldDoc field : fields) {
             if (field.isStatic() && field.isPublic() && field.isFinal()
                 && "int".equals((field.type().qualifiedTypeName())))
             {
@@ -99,8 +98,7 @@ public class TokenTypesDoclet
                                        DocErrorReporter aReporter)
     {
         boolean foundDestFileOption = false;
-        for (int i = 0; i < aOptions.length; i++) {
-            final String[] opt = aOptions[i];
+        for (final String[] opt : aOptions) {
             if (DEST_FILE_OPT.equals(opt[0])) {
                 if (foundDestFileOption) {
                     aReporter.printError("Only one -destfile option allowed.");
@@ -125,8 +123,7 @@ public class TokenTypesDoclet
     private static String getDestFileName(String[][] aOptions)
     {
         String fileName = null;
-        for (int i = 0; i < aOptions.length; i++) {
-            final String[] opt = aOptions[i];
+        for (final String[] opt : aOptions) {
             if (DEST_FILE_OPT.equals(opt[0])) {
                 fileName = opt[1];
             }

@@ -3346,9 +3346,7 @@ public final class TokenTypes
     static {
         final Field[] fields = TokenTypes.class.getDeclaredFields();
         String[] tempTokenValueToName = new String[0];
-        for (int i = 0; i < fields.length; i++) {
-            final Field f = fields[i];
-
+        for (final Field f : fields) {
             // Only process the int declarations.
             if (f.getType() != Integer.TYPE) {
                 continue;

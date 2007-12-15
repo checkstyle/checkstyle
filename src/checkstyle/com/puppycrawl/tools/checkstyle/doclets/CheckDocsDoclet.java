@@ -168,9 +168,7 @@ public final class CheckDocsDoclet
 
         Arrays.sort(classDocs, new ClassDocByCheckNameComparator());
 
-        for (int i = 0; i < classDocs.length; i++) {
-
-            final ClassDoc classDoc = classDocs[i];
+        for (final ClassDoc classDoc : classDocs) {
 
             // TODO: introduce a "CheckstyleModule" interface
             // so we can do better in the next line...
@@ -230,8 +228,7 @@ public final class CheckDocsDoclet
      */
     public static String getDestDir(String[][] aOptions)
     {
-        for (int i = 0; i < aOptions.length; i++) {
-            final String[] opt = aOptions[i];
+        for (final String[] opt : aOptions) {
             if (DEST_DIR_OPT.equalsIgnoreCase(opt[0])) {
                 return opt[1];
             }

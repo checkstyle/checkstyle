@@ -55,7 +55,7 @@ import javax.swing.border.Border;
  *      JPanel myPanel = new JPanel();
  *      new FileDrop( myPanel, new FileDrop.Listener()
  *      {   public void filesDropped( java.io.File[] files )
- *          {   
+ *          {
  *              // handle file drop
  *              ...
  *          }   // end filesDropped
@@ -79,7 +79,7 @@ class FileDrop
     // that the panel layout does not change during the DnD operation.
 
     private transient Border normalBorder;
-    private transient DropTargetListener dropListener;
+    private transient final DropTargetListener dropListener;
 
     // TODO: Blue is not a nice color in all LookAndFeels
     /* Default border color */
@@ -163,8 +163,8 @@ class FileDrop
         if (recursive && (c instanceof Container)) {
             final Container cont = (Container) c;
             final Component[] comps = cont.getComponents();
-            for (int i = 0; i < comps.length; i++)
-                makeDropTarget(comps[i], recursive);
+            for (Component element : comps)
+                makeDropTarget(element, recursive);
         }
     }
 
@@ -217,8 +217,8 @@ class FileDrop
         c.setDropTarget(null);
         if (recursive && (c instanceof Container)) {
             final Component[] comps = ((Container) c).getComponents();
-            for (int i = 0; i < comps.length; i++) {
-                remove(comps[i], recursive);
+            for (Component element : comps) {
+                remove(element, recursive);
             }
         }
     }

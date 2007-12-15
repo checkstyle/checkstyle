@@ -22,7 +22,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import java.io.File;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -51,8 +50,7 @@ public class PackageHtmlCheck extends AbstractFileSetCheck
     {
         final File[] javaFiles = filter(aFiles);
         final Set<File> directories = getParentDirs(javaFiles);
-        for (final Iterator<File> it = directories.iterator(); it.hasNext();) {
-            final File dir = it.next();
+        for (File dir : directories) {
             final File packageHtml = new File(dir, "package.html");
             final MessageDispatcher dispatcher = getMessageDispatcher();
             final String path = packageHtml.getPath();
@@ -73,8 +71,8 @@ public class PackageHtmlCheck extends AbstractFileSetCheck
     protected final Set<File> getParentDirs(File[] aFiles)
     {
         final Set<File> directories = new HashSet<File>();
-        for (int i = 0; i < aFiles.length; i++) {
-            final File f = aFiles[i].getAbsoluteFile();
+        for (File element : aFiles) {
+            final File f = element.getAbsoluteFile();
             if (f.getName().endsWith(".java")) {
                 final File dir = f.getParentFile();
                 directories.add(dir); // duplicates are handled automatically

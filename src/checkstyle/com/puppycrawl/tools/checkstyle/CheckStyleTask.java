@@ -31,7 +31,6 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -378,8 +377,8 @@ public class CheckStyleTask extends Task
 
             // setup the listeners
             final AuditListener[] listeners = getListeners();
-            for (int i = 0; i < listeners.length; i++) {
-                c.addListener(listeners[i]);
+            for (AuditListener element : listeners) {
+                c.addListener(element);
             }
         }
         catch (final Exception e) {
@@ -430,9 +429,8 @@ public class CheckStyleTask extends Task
 
         // override with Ant properties like ${basedir}
         final Hashtable<?, ?> antProps = this.getProject().getProperties();
-        for (final Iterator<?> it = antProps.keySet().iterator(); it.hasNext();)
-        {
-            final String key = (String) it.next();
+        for (Object name : antProps.keySet()) {
+            final String key = (String) name;
             final String value = String.valueOf(antProps.get(key));
             retVal.put(key, value);
         }
@@ -498,9 +496,9 @@ public class CheckStyleTask extends Task
             log(i + ") Adding " + names.length + " files from directory "
                     + ds.getBasedir(), Project.MSG_VERBOSE);
 
-            for (int j = 0; j < names.length; j++) {
+            for (String element : names) {
                 final String pathname = ds.getBasedir() + File.separator
-                        + names[j];
+                        + element;
                 list.add(new File(pathname));
             }
         }

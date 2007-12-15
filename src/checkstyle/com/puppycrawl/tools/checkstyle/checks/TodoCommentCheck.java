@@ -18,13 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -85,10 +83,7 @@ public class TodoCommentCheck
     private void checkCppComments(FileContents aContents)
     {
         final Map<Integer, TextBlock> comments = aContents.getCppComments();
-        for (final Iterator<Integer> it = comments.keySet().iterator(); it
-                .hasNext();)
-        {
-            final Integer key = it.next();
+        for (Integer key : comments.keySet()) {
             final String cmt = (comments.get(key)).getText()[0];
             if (getRegexp().matcher(cmt).find()) {
                 log(key.intValue(), "todo.match", getFormat());
@@ -104,13 +99,10 @@ public class TodoCommentCheck
     {
         final Map<Integer, List<TextBlock>> allComments = aContents
                 .getCComments();
-        final Iterator<Integer> allIter = allComments.keySet().iterator();
-        while (allIter.hasNext()) {
-            final Integer key = allIter.next();
+        for (Integer key : allComments.keySet()) {
             final List<TextBlock> lineComments = allComments.get(key);
-            final Iterator<TextBlock> lineIter = lineComments.iterator();
-            while (lineIter.hasNext()) {
-                final String[] cmt = (lineIter.next()).getText();
+            for (TextBlock line : lineComments) {
+                final String[] cmt = line.getText();
                 for (int i = 0; i < cmt.length; i++) {
                     if (getRegexp().matcher(cmt[i]).find()) {
                         log(key.intValue() + i, "todo.match", getFormat());

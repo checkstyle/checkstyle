@@ -468,8 +468,8 @@ public class Checker extends AutomaticBean
     public void fireErrors(String aFileName, LocalizedMessage[] aErrors)
     {
         final String stripped = getStrippedFileName(aFileName);
-        for (int i = 0; i < aErrors.length; i++) {
-            final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);
+        for (LocalizedMessage element : aErrors) {
+            final AuditEvent evt = new AuditEvent(this, stripped, element);
             if (mFilters.accept(evt)) {
                 for (AuditListener listener : mListeners) {
                     listener.addError(evt);

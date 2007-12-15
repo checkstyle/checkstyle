@@ -208,12 +208,12 @@ public class InnerAssignmentCheck
      */
     private static boolean isInContext(DetailAST aAST, int[][] aContextSet)
     {
-        for (int i = 0; i < aContextSet.length; i++) {
+        for (int[] element : aContextSet) {
             DetailAST current = aAST;
-            final int len = aContextSet[i].length;
+            final int len = element.length;
             for (int j = 0; j < len; j++) {
                 current = current.getParent();
-                final int expectedType = aContextSet[i][j];
+                final int expectedType = element[j];
                 if ((current == null) || (current.getType() != expectedType)) {
                     break;
                 }

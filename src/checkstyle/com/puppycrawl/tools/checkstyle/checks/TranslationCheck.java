@@ -31,7 +31,6 @@ import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -96,8 +95,7 @@ public class TranslationCheck
         final Map<String, Set<File>> propFileMap =
             new HashMap<String, Set<File>>();
 
-        for (int i = 0; i < aPropFiles.length; i++) {
-            final File f = aPropFiles[i];
+        for (final File f : aPropFiles) {
             final String identifier = extractPropertyIdentifier(f);
 
             Set<File> fileSet = propFileMap.get(identifier);
@@ -224,10 +222,7 @@ public class TranslationCheck
     {
         final Set<Entry<String, Set<File>>> entrySet = aPropFiles.entrySet();
 
-        for (final Iterator<Entry<String, Set<File>>> iterator = entrySet
-                .iterator(); iterator.hasNext();)
-        {
-            final Entry<String, Set<File>> entry = iterator.next();
+        for (Entry<String, Set<File>> entry : entrySet) {
             final Set<File> files = entry.getValue();
 
             if (files.size() >= 2) {
@@ -236,10 +231,7 @@ public class TranslationCheck
                 final Map<File, Set<Object>> fileMap =
                     new HashMap<File, Set<Object>>();
 
-                for (final Iterator<File> iter = files.iterator(); iter
-                        .hasNext();)
-                {
-                    final File file = iter.next();
+                for (File file : files) {
                     final Set<Object> fileKeys = loadKeys(file);
                     keys.addAll(fileKeys);
                     fileMap.put(file, fileKeys);

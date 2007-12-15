@@ -151,8 +151,7 @@ public class AutomaticBean
         // TODO: debug log messages
         final String[] attributes = aConfiguration.getAttributeNames();
 
-        for (int i = 0; i < attributes.length; i++) {
-            final String key = attributes[i];
+        for (final String key : attributes) {
             final String value = aConfiguration.getAttribute(key);
 
             try {
@@ -203,8 +202,7 @@ public class AutomaticBean
         finishLocalSetup();
 
         final Configuration[] childConfigs = aConfiguration.getChildren();
-        for (int i = 0; i < childConfigs.length; i++) {
-            final Configuration childConfig = childConfigs[i];
+        for (final Configuration childConfig : childConfigs) {
             setupChild(childConfig);
         }
     }
@@ -223,8 +221,7 @@ public class AutomaticBean
         // TODO: debug log messages
         final String[] attributes = aContext.getAttributeNames();
 
-        for (int i = 0; i < attributes.length; i++) {
-            final String key = attributes[i];
+        for (final String key : attributes) {
             final Object value = aContext.get(key);
 
             try {

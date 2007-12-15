@@ -73,8 +73,7 @@ public class NewlineAtEndOfFileCheck
     {
         final File[] files = filter(aFiles);
         final MessageDispatcher dispatcher = getMessageDispatcher();
-        for (int i = 0; i < files.length; i++) {
-            final File file = files[i];
+        for (final File file : files) {
             final String path = file.getPath();
             dispatcher.fireFileStarted(path);
             RandomAccessFile randomAccessFile = null;

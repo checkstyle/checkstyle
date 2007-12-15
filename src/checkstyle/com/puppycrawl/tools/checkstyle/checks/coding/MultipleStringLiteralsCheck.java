@@ -102,8 +102,7 @@ public class MultipleStringLiteralsCheck extends Check
     public final void setIgnoreOccurrenceContext(String[] aStrRep)
     {
         mIgnoreOccurrenceContext.clear();
-        for (int i = 0; i < aStrRep.length; i++) {
-            final String s = aStrRep[i];
+        for (final String s : aStrRep) {
             final int type = TokenTypes.getTokenId(s);
             mIgnoreOccurrenceContext.set(type);
         }

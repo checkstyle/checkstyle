@@ -59,9 +59,8 @@ public class RequiredRegexpCheck extends AbstractFormatCheck
     {
         final Pattern pattern = getRegexp();
         final String[] lines = getLines();
-        for (int i = 0; i < lines.length; i++) {
+        for (final String line : lines) {
 
-            final String line = lines[i];
             if (pattern.matcher(line).find()) {
                 return;
             }

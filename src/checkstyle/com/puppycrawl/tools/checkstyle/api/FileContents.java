@@ -18,17 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.Collection;
-import java.util.Iterator;
-
 import java.util.regex.Pattern;
-
-import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
 
 /**
  * Represents the contents of a file.
@@ -258,13 +255,8 @@ public final class FileContents implements CommentListener
     {
         // Check C comments (all comments should be checked)
         final Collection<List<TextBlock>> values = mCComments.values();
-
-        final Iterator<List<TextBlock>> it = values.iterator();
-        while (it.hasNext()) {
-            final List<TextBlock> row = it.next();
-            final Iterator<TextBlock> rowIterator = row.iterator();
-            while (rowIterator.hasNext()) {
-                final TextBlock comment = rowIterator.next();
+        for (List<TextBlock> row : values) {
+            for (TextBlock comment : row) {
                 if (comment.intersects(aStartLineNo, aStartColNo, aEndLineNo,
                         aEndColNo))
                 {

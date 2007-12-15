@@ -18,15 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Set;
-
 import antlr.collections.AST;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Arrays;
+import java.util.Set;
 
 /**
  * <p>
@@ -213,11 +210,11 @@ public class DescendantTokenCheck extends Check
         // name of this token
         final String name = TokenTypes.getTokenName(aAST.getType());
 
-        for (int i = 0; i < mLimitedTokens.length; i++) {
-            final int tokenCount = mCounts[mLimitedTokens[i] - 1];
+        for (int element : mLimitedTokens) {
+            final int tokenCount = mCounts[element - 1];
             if (tokenCount < mMinimumNumber) {
                 final String descendantName =
-                    TokenTypes.getTokenName(mLimitedTokens[i]);
+                    TokenTypes.getTokenName(element);
                 log(aAST.getLineNo(),
                     aAST.getColumnNo(),
                     mMinimumMessage,
@@ -230,7 +227,7 @@ public class DescendantTokenCheck extends Check
             }
             if (tokenCount > mMaximumNumber) {
                 final String descendantName =
-                    TokenTypes.getTokenName(mLimitedTokens[i]);
+                    TokenTypes.getTokenName(element);
                 log(aAST.getLineNo(),
                     aAST.getColumnNo(),
                     mMaximumMessage,
@@ -276,11 +273,8 @@ public class DescendantTokenCheck extends Check
         final Set<String> tokenNames = getTokenNames();
         final int[] result = new int[tokenNames.size()];
         int i = 0;
-        final Iterator<String> it = tokenNames.iterator();
-        while (it.hasNext()) {
-            final String name = it.next();
-            result[i] = TokenTypes.getTokenId(name);
-            i++;
+        for (String name : tokenNames) {
+            result[i++] = TokenTypes.getTokenId(name);
         }
         return result;
     }

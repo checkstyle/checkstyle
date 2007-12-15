@@ -82,6 +82,7 @@ public class RightCurlyCheck extends AbstractOptionCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -94,6 +95,7 @@ public class RightCurlyCheck extends AbstractOptionCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         // Attempt to locate the tokens to do the check

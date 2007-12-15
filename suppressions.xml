@@ -28,5 +28,6 @@
       Eclipse plug-in.
       -->    
     <suppress checks="." files=".*[\\/]grammars[\\/]Generated[a-zA-Z]*\.java"/>
-    <suppress checks="." files=".*[\\/]src[\\/]tests[\\/]"/>
+    <suppress checks="." files=".*[\\/]grammars[\\/]Generated[a-zA-Z]*\.java"/>
+    <suppress checks="." files=".*[\\/]checkstyle[\\/]gui[\\/]"/>
 </suppressions>

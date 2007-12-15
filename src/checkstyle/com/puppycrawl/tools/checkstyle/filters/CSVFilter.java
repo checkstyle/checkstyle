@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -91,9 +90,7 @@ class CSVFilter implements IntFilter
      */
     public boolean accept(Integer aInt)
     {
-        final Iterator<IntFilter> it = getFilters().iterator();
-        while (it.hasNext()) {
-            final IntFilter filter = it.next();
+        for (IntFilter filter : getFilters()) {
             if (filter.accept(aInt)) {
                 return true;
             }

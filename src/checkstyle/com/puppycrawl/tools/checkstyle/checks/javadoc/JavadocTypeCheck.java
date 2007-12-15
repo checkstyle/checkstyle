@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -163,12 +162,9 @@ public class JavadocTypeCheck
 
                 if (!mAllowMissingParamTags) {
                     //Check type parameters that should exist, do
-                    for (final Iterator<String> typeParamNameIt =
-                             typeParamNames.iterator();
-                         typeParamNameIt.hasNext();)
-                    {
+                    for (String string : typeParamNames) {
                         checkTypeParamTag(
-                            lineNo, tags, typeParamNameIt.next());
+                            lineNo, tags, string);
                     }
                 }
 

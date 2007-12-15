@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.Set;
-import java.util.Iterator;
 
 /**
  * Utility class to resolve a class name to an actual class. Note that loaded
@@ -75,9 +74,7 @@ public class ClassResolver
         }
 
         // try matching explicit imports
-        Iterator<String> it = mImports.iterator();
-        while (it.hasNext()) {
-            final String imp = it.next();
+        for (String imp : mImports) {
             // Very important to add the "." in the check below. Otherwise you
             // when checking for "DataException", it will match on
             // "SecurityDataException". This has been the cause of a very
@@ -109,9 +106,7 @@ public class ClassResolver
         }
 
         // try star imports
-        it = mImports.iterator();
-        while (it.hasNext()) {
-            final String imp = it.next();
+        for (String imp : mImports) {
             if (imp.endsWith(".*")) {
                 final String fqn = imp.substring(0, imp.lastIndexOf('.') + 1)
                     + aName;

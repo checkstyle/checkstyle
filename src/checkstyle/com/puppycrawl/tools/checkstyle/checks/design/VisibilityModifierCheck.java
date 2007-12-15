@@ -208,8 +208,7 @@ public class VisibilityModifierCheck
     private String getVisibilityScope(Set<String> aModifiers)
     {
         final String[] explicitModifiers = {"public", "private", "protected"};
-        for (int i = 0; i < explicitModifiers.length; i++) {
-            final String candidate = explicitModifiers[i];
+        for (final String candidate : explicitModifiers) {
             if (aModifiers.contains(candidate)) {
                 return candidate;
             }

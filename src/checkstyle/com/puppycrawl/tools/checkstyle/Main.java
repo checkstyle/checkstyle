@@ -165,14 +165,14 @@ public final class Main
         final List<File> files = new LinkedList<File>();
         if (aLine.hasOption("r")) {
             final String[] values = aLine.getOptionValues("r");
-            for (int i = 0; i < values.length; i++) {
-                traverse(new File(values[i]), files);
+            for (String element : values) {
+                traverse(new File(element), files);
             }
         }
 
         final String[] remainingArgs = aLine.getArgs();
-        for (int i = 0; i < remainingArgs.length; i++) {
-            files.add(new File(remainingArgs[i]));
+        for (String element : remainingArgs) {
+            files.add(new File(element));
         }
 
         if (files.isEmpty()) {
@@ -279,8 +279,8 @@ public final class Main
         if (aNode.canRead()) {
             if (aNode.isDirectory()) {
                 final File[] nodes = aNode.listFiles();
-                for (int i = 0; i < nodes.length; i++) {
-                    traverse(nodes[i], aFiles);
+                for (File element : nodes) {
+                    traverse(element, aFiles);
                 }
             }
             else if (aNode.isFile()) {

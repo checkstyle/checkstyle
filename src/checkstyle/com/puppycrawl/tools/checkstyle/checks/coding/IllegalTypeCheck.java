@@ -231,8 +231,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setIgnoredMethodNames(String[] aMethodNames)
     {
         mIgnoredMethodNames.clear();
-        for (int i = 0; i < aMethodNames.length; i++) {
-            mIgnoredMethodNames.add(aMethodNames[i]);
+        for (String element : aMethodNames) {
+            mIgnoredMethodNames.add(element);
         }
     }
 
@@ -252,8 +252,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setLegalAbstractClassNames(String[] aClassNames)
     {
         mLegalAbstractClassNames.clear();
-        for (int i = 0; i < aClassNames.length; i++) {
-            mLegalAbstractClassNames.add(aClassNames[i]);
+        for (String element : aClassNames) {
+            mLegalAbstractClassNames.add(element);
         }
     }
 

@@ -211,8 +211,7 @@ final class PropertyCacheFile
     private static String hexEncode(byte[] aByteArray)
     {
         final StringBuffer buf = new StringBuffer(2 * aByteArray.length);
-        for (int i = 0; i < aByteArray.length; i++) {
-            final int b = aByteArray[i];
+        for (final byte b : aByteArray) {
             final int low = b & MASK_0X0F;
             final int high = (b >> SHIFT_4) & MASK_0X0F;
             buf.append(HEX_CHARS[high]);

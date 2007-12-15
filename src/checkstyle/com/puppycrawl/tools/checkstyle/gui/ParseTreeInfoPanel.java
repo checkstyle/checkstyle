@@ -156,8 +156,8 @@ public class ParseTreeInfoPanel extends JPanel
                 }
 
                 // insert the contents of the file to the text area
-                for (int i = 0; i < sourceLines.length; i++) {
-                    mJTextArea.append(sourceLines[i] + "\n");
+                for (String element : sourceLines) {
+                    mJTextArea.append(element + "\n");
                 }
 
                 // move back to the top of the file

@@ -376,8 +376,8 @@ public final class TreeWalker
         else {
             tokens = aCheck.getDefaultTokens();
         }
-        for (int i = 0; i < tokens.length; i++) {
-            registerCheck(tokens[i], aCheck);
+        for (int element : tokens) {
+            registerCheck(element, aCheck);
         }
         mAllChecks.add(aCheck);
     }
@@ -579,8 +579,8 @@ public final class TreeWalker
     {
         final File[] javaFiles = filter(aFiles);
 
-        for (int i = 0; i < javaFiles.length; i++) {
-            process(javaFiles[i]);
+        for (File element : javaFiles) {
+            process(element);
         }
     }
 
