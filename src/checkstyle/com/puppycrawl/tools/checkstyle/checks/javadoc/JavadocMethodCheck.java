@@ -18,18 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Set;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import antlr.collections.AST;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -40,6 +29,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Checks the Javadoc of a method or constructor.
@@ -256,6 +253,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
@@ -266,6 +264,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF,
@@ -278,6 +277,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      *
      * @param aAST the tree node for the method or constructor.
      */
+    @Override
     protected final void processAST(DetailAST aAST)
     {
         final Scope theScope = calculateScope(aAST);
@@ -301,6 +301,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      *
      * @param aIdent class name for which we can no load class.
      */
+    @Override
     protected final void logLoadError(Token aIdent)
     {
         logLoadErrorImpl(aIdent.getLineNo(), aIdent.getColumnNo(),
@@ -352,18 +353,18 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      */
     private void checkComment(DetailAST aAST, TextBlock aComment, Scope aScope)
     {
-        final List tags = getMethodTags(aComment);
+        final List<JavadocTag> tags = getMethodTags(aComment);
 
         if (hasShortCircuitTag(aAST, tags, aScope)) {
             return;
         }
 
-        Iterator it = tags.iterator();
+        Iterator<JavadocTag> it = tags.iterator();
         if (aAST.getType() != TokenTypes.ANNOTATION_FIELD_DEF) {
             // Check for inheritDoc
             boolean hasInheritDocTag = false;
             while (it.hasNext() && !hasInheritDocTag) {
-                hasInheritDocTag |= ((JavadocTag) it.next()).isInheritDocTag();
+                hasInheritDocTag |= (it.next()).isInheritDocTag();
             }
 
             checkParamTags(tags, aAST, !hasInheritDocTag);
@@ -376,7 +377,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // Dump out all unused tags
         it = tags.iterator();
         while (it.hasNext()) {
-            final JavadocTag jt = (JavadocTag) it.next();
+            final JavadocTag jt = it.next();
             if (!jt.isSeeOrInheritDocTag()) {
                 log(jt.getLineNo(), "javadoc.unusedTagGeneral");
             }
@@ -392,12 +393,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      * @param aScope the scope of the construct
      * @return true if the construct has a short circuit tag.
      */
-    private boolean hasShortCircuitTag(final DetailAST aAST, final List aTags,
-        final Scope aScope)
+    private boolean hasShortCircuitTag(final DetailAST aAST,
+            final List<JavadocTag> aTags, final Scope aScope)
     {
         // Check if it contains {@inheritDoc} tag
         if ((aTags.size() != 1)
-                || !((JavadocTag) aTags.get(0)).isInheritDocTag())
+                || !(aTags.get(0)).isInheritDocTag())
         {
             return false;
         }
@@ -435,10 +436,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      * @return the tags found
      * @param aComment the Javadoc comment
      */
-    private List getMethodTags(TextBlock aComment)
+    private List<JavadocTag> getMethodTags(TextBlock aComment)
     {
         final String[] lines = aComment.getText();
-        final List tags = new ArrayList();
+        final List<JavadocTag> tags = new ArrayList<JavadocTag>();
         int currentLine = aComment.getStartLineNo() - 1;
 
         for (int i = 0; i < lines.length; i++) {
@@ -541,10 +542,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      * @param aAST the method node.
      * @return the list of parameter nodes for aAST.
      */
-    private List getParameters(DetailAST aAST)
+    private List<DetailAST> getParameters(DetailAST aAST)
     {
         final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
-        final List retVal = new ArrayList();
+        final List<DetailAST> retVal = new ArrayList<DetailAST>();
 
         DetailAST child = (DetailAST) params.getFirstChild();
         while (child != null) {
@@ -563,9 +564,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      * @param aAST the method node.
      * @return the list of exception nodes for aAST.
      */
-    private List getThrows(DetailAST aAST)
+    private List<ExceptionInfo> getThrows(DetailAST aAST)
     {
-        final List retVal = new ArrayList();
+        final List<ExceptionInfo> retVal = new ArrayList<ExceptionInfo>();
         final DetailAST throwsAST = aAST
                 .findFirstToken(TokenTypes.LITERAL_THROWS);
         if (throwsAST != null) {
@@ -593,16 +594,17 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      * @param aReportExpectedTags whether we should report if do not find
      *            expected tag
      */
-    private void checkParamTags(final List aTags, final DetailAST aParent,
-        boolean aReportExpectedTags)
+    private void checkParamTags(final List<JavadocTag> aTags,
+            final DetailAST aParent, boolean aReportExpectedTags)
     {
-        final List params = getParameters(aParent);
-        final List typeParams = CheckUtils.getTypeParameters(aParent);
+        final List<DetailAST> params = getParameters(aParent);
+        final List<DetailAST> typeParams = CheckUtils
+                .getTypeParameters(aParent);
 
         // Loop over the tags, checking to see they exist in the params.
-        final ListIterator tagIt = aTags.listIterator();
+        final ListIterator<JavadocTag> tagIt = aTags.listIterator();
         while (tagIt.hasNext()) {
-            final JavadocTag tag = (JavadocTag) tagIt.next();
+            final JavadocTag tag = tagIt.next();
 
             if (!tag.isParamTag()) {
                 continue;
@@ -613,9 +615,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             boolean found = false;
 
             // Loop looking for matching param
-            final Iterator paramIt = params.iterator();
+            final Iterator<DetailAST> paramIt = params.iterator();
             while (paramIt.hasNext()) {
-                final DetailAST param = (DetailAST) paramIt.next();
+                final DetailAST param = paramIt.next();
                 if (param.getText().equals(tag.getArg1())) {
                     found = true;
                     paramIt.remove();
@@ -625,9 +627,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
             if (tag.getArg1().startsWith("<") && tag.getArg1().endsWith(">")) {
                 // Loop looking for matching type param
-                final Iterator typeParamsIt = typeParams.iterator();
+                final Iterator<DetailAST> typeParamsIt = typeParams.iterator();
                 while (typeParamsIt.hasNext()) {
-                    final DetailAST typeParam = (DetailAST) typeParamsIt.next();
+                    final DetailAST typeParam = typeParamsIt.next();
                     if (typeParam.findFirstToken(TokenTypes.IDENT).getText()
                             .equals(
                                     tag.getArg1().substring(1,
@@ -651,15 +653,15 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // Now dump out all type parameters/parameters without tags :- unless
         // the user has chosen to suppress these problems
         if (!mAllowMissingParamTags && aReportExpectedTags) {
-            final Iterator paramIt = params.iterator();
+            final Iterator<DetailAST> paramIt = params.iterator();
             while (paramIt.hasNext()) {
-                final DetailAST param = (DetailAST) paramIt.next();
+                final DetailAST param = paramIt.next();
                 log(param, "javadoc.expectedTag", "@param", param.getText());
             }
 
-            final Iterator typeParamsIt = typeParams.iterator();
+            final Iterator<DetailAST> typeParamsIt = typeParams.iterator();
             while (typeParamsIt.hasNext()) {
-                final DetailAST typeParam = (DetailAST) typeParamsIt.next();
+                final DetailAST typeParam = typeParamsIt.next();
                 log(typeParam, "javadoc.expectedTag", "@param", "<"
                         + typeParam.findFirstToken(TokenTypes.IDENT).getText()
                         + ">");
@@ -696,15 +698,15 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      * @param aReportExpectedTags whether we should report if do not find
      *            expected tag
      */
-    private void checkReturnTag(List aTags, int aLineNo,
+    private void checkReturnTag(List<JavadocTag> aTags, int aLineNo,
         boolean aReportExpectedTags)
     {
         // Loop over tags finding return tags. After the first one, report an
         // error.
         boolean found = false;
-        final ListIterator it = aTags.listIterator();
+        final ListIterator<JavadocTag> it = aTags.listIterator();
         while (it.hasNext()) {
-            final JavadocTag jt = (JavadocTag) it.next();
+            final JavadocTag jt = it.next();
             if (jt.isReturnTag()) {
                 if (found) {
                     log(jt.getLineNo(), jt.getColumnNo(),
@@ -730,14 +732,15 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      * @param aReportExpectedTags whether we should report if do not find
      *            expected tag
      */
-    private void checkThrowsTags(List aTags, List aThrows,
-        boolean aReportExpectedTags)
+    private void checkThrowsTags(List<JavadocTag> aTags,
+            List<ExceptionInfo> aThrows, boolean aReportExpectedTags)
     {
         // Loop over the tags, checking to see they exist in the throws.
-        final Set foundThrows = new HashSet(); //used for performance only
-        final ListIterator tagIt = aTags.listIterator();
+        // The foundThrows used for performance only
+        final Set<String> foundThrows = new HashSet<String>();
+        final ListIterator<JavadocTag> tagIt = aTags.listIterator();
         while (tagIt.hasNext()) {
-            final JavadocTag tag = (JavadocTag) tagIt.next();
+            final JavadocTag tag = tagIt.next();
 
             if (!tag.isThrowsTag()) {
                 continue;
@@ -753,9 +756,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                     getCurrentClassName());
             boolean found = foundThrows.contains(documentedEx);
 
-            final ListIterator throwIt = aThrows.listIterator();
+            final ListIterator<ExceptionInfo> throwIt = aThrows.listIterator();
             while (!found && throwIt.hasNext()) {
-                final ExceptionInfo ei = (ExceptionInfo) throwIt.next();
+                final ExceptionInfo ei = throwIt.next();
 
                 if (documentedCI.getClazz() == ei.getClazz()) {
                     found = true;
@@ -785,9 +788,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // Now dump out all throws without tags :- unless
         // the user has chosen to suppress these problems
         if (!mAllowMissingThrowsTags && aReportExpectedTags) {
-            final ListIterator throwIt = aThrows.listIterator();
+            final ListIterator<ExceptionInfo> throwIt = aThrows.listIterator();
             while (throwIt.hasNext()) {
-                final ExceptionInfo ei = (ExceptionInfo) throwIt.next();
+                final ExceptionInfo ei = throwIt.next();
                 if (!ei.isFound()) {
                     final Token fi = ei.getName();
                     log(fi.getLineNo(), fi.getColumnNo(),
@@ -915,7 +918,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         /** does the exception have throws tag associated with. */
         private boolean mFound;
         /** class information associated with this exception. */
-        private ClassInfo mClassInfo;
+        private final ClassInfo mClassInfo;
 
         /**
          * Creates new instance for <code>FullIdent</code>.
@@ -947,7 +950,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         }
 
         /** @return class for this exception */
-        final Class getClazz()
+        final Class<?> getClazz()
         {
             return mClassInfo.getClazz();
         }

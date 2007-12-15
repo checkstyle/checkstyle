@@ -123,7 +123,8 @@
     <module name="UpperEll"/>
     <module name="VisibilityModifier"/>
     <module name="WhitespaceAfter"/>
-    <module name="WhitespaceAround"/>
+    <!-- Turned off as breaks on generics. Need to fix! -->
+    <!-- module name="WhitespaceAround"/ -->
     <module name="FinalClass"/>
     <module name="MissingSwitchDefault"/>
     <module name="MagicNumber"/>

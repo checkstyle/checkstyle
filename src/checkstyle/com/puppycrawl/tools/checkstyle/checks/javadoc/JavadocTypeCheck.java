@@ -128,6 +128,7 @@ public class JavadocTypeCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -139,6 +140,7 @@ public class JavadocTypeCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (shouldCheck(aAST)) {
@@ -150,23 +152,23 @@ public class JavadocTypeCheck
             }
             else if (ScopeUtils.isOuterMostType(aAST)) {
                 // don't check author/version for inner classes
-                final List tags = getJavadocTags(cmt);
+                final List<JavadocTag> tags = getJavadocTags(cmt);
                 checkTag(lineNo, tags, "author",
                          mAuthorFormatPattern, mAuthorFormat);
                 checkTag(lineNo, tags, "version",
                          mVersionFormatPattern, mVersionFormat);
 
-                final List typeParamNames =
+                final List<String> typeParamNames =
                     CheckUtils.getTypeParameterNames(aAST);
 
                 if (!mAllowMissingParamTags) {
                     //Check type parameters that should exist, do
-                    for (final Iterator typeParamNameIt =
+                    for (final Iterator<String> typeParamNameIt =
                              typeParamNames.iterator();
                          typeParamNameIt.hasNext();)
                     {
                         checkTypeParamTag(
-                            lineNo, tags, (String) typeParamNameIt.next());
+                            lineNo, tags, typeParamNameIt.next());
                     }
                 }
 
@@ -202,10 +204,10 @@ public class JavadocTypeCheck
      * @param aCmt teh Javadoc comment to process.
      * @return all standalone tags from the given javadoc.
      */
-    private List getJavadocTags(TextBlock aCmt)
+    private List<JavadocTag> getJavadocTags(TextBlock aCmt)
     {
         final String[] text = aCmt.getText();
-        final List tags = new ArrayList();
+        final List<JavadocTag> tags = new ArrayList<JavadocTag>();
         Pattern tagPattern = Utils.getPattern("/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
         for (int i = 0; i < text.length; i++) {
             final String s = text[i];
@@ -236,7 +238,7 @@ public class JavadocTypeCheck
      * @param aFormatPattern regexp for the tag value.
      * @param aFormat pattern for the tag value.
      */
-    private void checkTag(int aLineNo, List aTags, String aTag,
+    private void checkTag(int aLineNo, List<JavadocTag> aTags, String aTag,
                           Pattern aFormatPattern, String aFormat)
     {
         if (aFormatPattern == null) {
@@ -245,7 +247,7 @@ public class JavadocTypeCheck
 
         int tagCount = 0;
         for (int i = aTags.size() - 1; i >= 0; i--) {
-            final JavadocTag tag = (JavadocTag) aTags.get(i);
+            final JavadocTag tag = aTags.get(i);
             if (tag.getTag().equals(aTag)) {
                 tagCount++;
                 if (!aFormatPattern.matcher(tag.getArg1()).find()) {
@@ -265,12 +267,12 @@ public class JavadocTypeCheck
      * @param aTags tags from the Javadoc comment for the type definition.
      * @param aTypeParamName the name of the type parameter
      */
-    private void checkTypeParamTag(
-        final int aLineNo, final List aTags, final String aTypeParamName)
+    private void checkTypeParamTag(final int aLineNo,
+            final List<JavadocTag> aTags, final String aTypeParamName)
     {
         boolean found = false;
         for (int i = aTags.size() - 1; i >= 0; i--) {
-            final JavadocTag tag = (JavadocTag) aTags.get(i);
+            final JavadocTag tag = aTags.get(i);
             if (tag.getTag().equals("param")
                 && (tag.getArg1() != null)
                 && (tag.getArg1().indexOf("<" + aTypeParamName + ">") == 0))
@@ -289,12 +291,12 @@ public class JavadocTypeCheck
      * @param aTypeParamNames names of type parameters
      */
     private void checkUnusedTypeParamTags(
-        final List aTags,
-        final List aTypeParamNames)
+        final List<JavadocTag> aTags,
+        final List<String> aTypeParamNames)
     {
         final Pattern pattern = Utils.getPattern("\\s*<([^>]+)>.*");
         for (int i = aTags.size() - 1; i >= 0; i--) {
-            final JavadocTag tag = (JavadocTag) aTags.get(i);
+            final JavadocTag tag = aTags.get(i);
             if (tag.getTag().equals("param")) {
 
                 if (tag.getArg1() != null) {

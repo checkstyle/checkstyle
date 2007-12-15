@@ -34,7 +34,7 @@ import java.util.List;
 class TagParser
 {
     /** List of HtmlTags found on the input line of text. */
-    private final List mTags = new LinkedList();
+    private final List<HtmlTag> mTags = new LinkedList<HtmlTag>();
 
     /**
      * Constructs a TagParser and finds the first tag if any.
@@ -54,7 +54,7 @@ class TagParser
      */
     public HtmlTag nextTag()
     {
-        return (HtmlTag) mTags.remove(0);
+        return mTags.remove(0);
     }
 
     /**

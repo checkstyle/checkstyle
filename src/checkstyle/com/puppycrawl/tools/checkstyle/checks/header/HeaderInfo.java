@@ -25,7 +25,6 @@ import java.io.LineNumberReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
-
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -149,7 +148,7 @@ class HeaderInfo
     private void loadHeader(final Reader aHeaderReader) throws IOException
     {
         final LineNumberReader lnr = new LineNumberReader(aHeaderReader);
-        final ArrayList lines = new ArrayList();
+        final ArrayList<String> lines = new ArrayList<String>();
         while (true) {
             final String l = lnr.readLine();
             if (l == null) {
@@ -157,7 +156,7 @@ class HeaderInfo
             }
             lines.add(l);
         }
-        mHeaderLines = (String[]) lines.toArray(new String[lines.size()]);
+        mHeaderLines = lines.toArray(new String[lines.size()]);
         postprocessHeaderLines();
     }
 

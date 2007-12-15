@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.io.Serializable;
 import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -43,7 +43,7 @@ public abstract class AbstractOption
     protected AbstractOption(String aStrRep)
     {
         mStrRep = aStrRep.trim().toLowerCase();
-        final Map strToOpt = getStrToOpt();
+        final Map<String, AbstractOption> strToOpt = getStrToOpt();
         strToOpt.put(mStrRep, this);
     }
 
@@ -51,7 +51,7 @@ public abstract class AbstractOption
      * Returns the map from string representations to options.
      * @return <code>Map</code> from strings to options.
      */
-    protected abstract Map getStrToOpt();
+    protected abstract Map<String, AbstractOption> getStrToOpt();
 
     /**
      * Returns the option specified by a string representation. If no
@@ -62,13 +62,14 @@ public abstract class AbstractOption
      */
     public AbstractOption decode(String aStrRep)
     {
-        final Map strToOpt = getStrToOpt();
-        return (AbstractOption) strToOpt.get(aStrRep.trim().toLowerCase());
+        final Map<String, AbstractOption> strToOpt = getStrToOpt();
+        return strToOpt.get(aStrRep.trim().toLowerCase());
     }
 
     /**
      * {@inheritDoc}
      **/
+    @Override
     public String toString()
     {
         return mStrRep;

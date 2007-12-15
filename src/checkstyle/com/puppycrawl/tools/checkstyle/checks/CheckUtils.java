@@ -21,9 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Contains utility methods for the checks.
@@ -274,12 +273,12 @@ public final class CheckUtils
      * @param aNode the parameterised AST node
      * @return a list of type parameter names
      */
-    public static List getTypeParameterNames(final DetailAST aNode)
+    public static List<String> getTypeParameterNames(final DetailAST aNode)
     {
         final DetailAST typeParameters =
             aNode.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        final List typeParamNames = new ArrayList();
+        final List<String> typeParamNames = new ArrayList<String>();
         if (typeParameters != null) {
             final DetailAST typeParam =
                 typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);
@@ -304,12 +303,12 @@ public final class CheckUtils
      * @param aNode the parameterised AST node
      * @return a list of type parameter names
      */
-    public static List getTypeParameters(final DetailAST aNode)
+    public static List<DetailAST> getTypeParameters(final DetailAST aNode)
     {
         final DetailAST typeParameters =
             aNode.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        final List typeParams = new ArrayList();
+        final List<DetailAST> typeParams = new ArrayList<DetailAST>();
         if (typeParameters != null) {
             final DetailAST typeParam =
                 typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);

@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.HashSet;
-
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
 /**
  * Checks that all packages have a package documentation.
@@ -51,9 +50,9 @@ public class PackageHtmlCheck extends AbstractFileSetCheck
     public void process(File[] aFiles)
     {
         final File[] javaFiles = filter(aFiles);
-        final Set directories = getParentDirs(javaFiles);
-        for (final Iterator it = directories.iterator(); it.hasNext();) {
-            final File dir = (File) it.next();
+        final Set<File> directories = getParentDirs(javaFiles);
+        for (final Iterator<File> it = directories.iterator(); it.hasNext();) {
+            final File dir = it.next();
             final File packageHtml = new File(dir, "package.html");
             final MessageDispatcher dispatcher = getMessageDispatcher();
             final String path = packageHtml.getPath();
@@ -71,9 +70,9 @@ public class PackageHtmlCheck extends AbstractFileSetCheck
      * @param aFiles s set of files
      * @return the set of parent directories of the given files
      */
-    protected final Set getParentDirs(File[] aFiles)
+    protected final Set<File> getParentDirs(File[] aFiles)
     {
-        final Set directories = new HashSet();
+        final Set<File> directories = new HashSet<File>();
         for (int i = 0; i < aFiles.length; i++) {
             final File f = aFiles[i].getAbsoluteFile();
             if (f.getName().endsWith(".java")) {

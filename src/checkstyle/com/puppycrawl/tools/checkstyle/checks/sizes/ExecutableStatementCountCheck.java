@@ -39,7 +39,7 @@ public final class ExecutableStatementCountCheck
     private int mMax;
 
     /** Stack of method contexts. */
-    private final Stack mContextStack = new Stack();
+    private final Stack<Context> mContextStack = new Stack<Context>();
 
     /** Current method context. */
     private Context mContext;
@@ -51,6 +51,7 @@ public final class ExecutableStatementCountCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -63,6 +64,7 @@ public final class ExecutableStatementCountCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return new int[] {TokenTypes.SLIST};
@@ -87,6 +89,7 @@ public final class ExecutableStatementCountCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mContext = null;
@@ -94,6 +97,7 @@ public final class ExecutableStatementCountCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -112,6 +116,7 @@ public final class ExecutableStatementCountCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -155,7 +160,7 @@ public final class ExecutableStatementCountCheck
                 new Integer(count),
                 new Integer(getMax()));
         }
-        mContext = (Context) mContextStack.pop();
+        mContext = mContextStack.pop();
     }
 
     /**
@@ -193,7 +198,7 @@ public final class ExecutableStatementCountCheck
     private class Context
     {
         /** Member AST node. */
-        private DetailAST mAST;
+        private final DetailAST mAST;
 
         /** Counter for context elements. */
         private int mCount;
