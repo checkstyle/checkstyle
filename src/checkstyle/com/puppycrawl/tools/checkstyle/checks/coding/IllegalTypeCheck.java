@@ -23,7 +23,6 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -80,11 +79,11 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     };
 
     /** illegal classes. */
-    private final Set mIllegalClassNames = new HashSet();
+    private final Set<String> mIllegalClassNames = new HashSet<String>();
     /** legal abstract classes. */
-    private final Set mLegalAbstractClassNames = new HashSet();
+    private final Set<String> mLegalAbstractClassNames = new HashSet<String>();
     /** methods which should be ignored. */
-    private final Set mIgnoredMethodNames = new HashSet();
+    private final Set<String> mIgnoredMethodNames = new HashSet<String>();
 
     /** Creates new instance of the check. */
     public IllegalTypeCheck()
@@ -96,6 +95,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -106,6 +106,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -203,8 +204,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     public void setIllegalClassNames(String[] aClassNames)
     {
         mIllegalClassNames.clear();
-        for (int i = 0; i < aClassNames.length; i++) {
-            final String name = aClassNames[i];
+        for (String name : aClassNames) {
             mIllegalClassNames.add(name);
             final int lastDot = name.lastIndexOf(".");
             if ((lastDot > 0) && (lastDot < (name.length() - 1))) {
@@ -221,7 +221,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     public String[] getIllegalClassNames()
     {
-        return (String[]) mIllegalClassNames.toArray(new String[0]);
+        return mIllegalClassNames.toArray(new String[0]);
     }
 
     /**
@@ -242,7 +242,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     public String[] getIgnoredMethodNames()
     {
-        return (String[]) mIgnoredMethodNames.toArray(new String[0]);
+        return mIgnoredMethodNames.toArray(new String[0]);
     }
 
     /**
@@ -263,6 +263,6 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     public String[] getLegalAbstractClassNames()
     {
-        return (String[]) mLegalAbstractClassNames.toArray(new String[0]);
+        return mLegalAbstractClassNames.toArray(new String[0]);
     }
 }

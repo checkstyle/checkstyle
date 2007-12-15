@@ -19,16 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
 import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * <p>
@@ -55,19 +53,22 @@ public class EqualsHashCodeCheck
     // keep track of definitions in different inner classes
 
     /** maps OBJ_BLOCK to the method definition of equals() */
-    private final Map mObjBlockEquals = new HashMap();
+    private final Map<DetailAST, DetailAST> mObjBlockEquals =
+        new HashMap<DetailAST, DetailAST>();
 
     /** the set of OBJ_BLOCKs that contain a definition of hashCode() */
-    private final Set mObjBlockWithHashCode = new HashSet();
-
+    private final Set<DetailAST> mObjBlockWithHashCode =
+        new HashSet<DetailAST>();
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mObjBlockEquals.clear();
@@ -75,6 +76,7 @@ public class EqualsHashCodeCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST modifiers = (DetailAST) aAST.getFirstChild();
@@ -127,14 +129,13 @@ public class EqualsHashCodeCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void finishTree(DetailAST aRootAST)
     {
-        final Set equalsDefs = mObjBlockEquals.keySet();
-        for (final Iterator it = equalsDefs.iterator(); it.hasNext();) {
-            final Object objBlock = it.next();
+        final Set<DetailAST> equalsDefs = mObjBlockEquals.keySet();
+        for (DetailAST objBlock : equalsDefs) {
             if (!mObjBlockWithHashCode.contains(objBlock)) {
-                final DetailAST equalsAST =
-                    (DetailAST) mObjBlockEquals.get(objBlock);
+                final DetailAST equalsAST = mObjBlockEquals.get(objBlock);
                 log(equalsAST.getLineNo(), equalsAST.getColumnNo(),
                         "equals.noHashCode");
             }

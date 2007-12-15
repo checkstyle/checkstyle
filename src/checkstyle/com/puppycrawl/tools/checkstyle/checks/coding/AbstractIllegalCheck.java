@@ -29,7 +29,7 @@ import java.util.Set;
 public abstract class AbstractIllegalCheck extends Check
 {
     /** Illegal class names */
-    private final Set mIllegalClassNames = new HashSet();
+    private final Set<String> mIllegalClassNames = new HashSet<String>();
 
     /**
      * Constructs an object.

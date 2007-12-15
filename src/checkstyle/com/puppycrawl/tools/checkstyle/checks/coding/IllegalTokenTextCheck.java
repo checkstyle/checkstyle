@@ -18,12 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.Iterator;
-import java.util.Set;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck;
+import java.util.Set;
 
 /**
  * <p>
@@ -54,20 +52,20 @@ public class IllegalTokenTextCheck
     extends GenericIllegalRegexpCheck
 {
     /**  {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         // Any tokens set by property 'tokens' are acceptable
-        final Set tokenNames = getTokenNames();
+        final Set<String> tokenNames = getTokenNames();
         final int[] result = new int[tokenNames.size()];
         int i = 0;
-        final Iterator it = tokenNames.iterator();
-        while (it.hasNext()) {
-            final String name = (String) it.next();
+        for (String name : tokenNames) {
             result[i] = TokenTypes.getTokenId(name);
             i++;
         }
@@ -76,6 +74,7 @@ public class IllegalTokenTextCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final String text = aAST.getText();

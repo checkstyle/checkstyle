@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
-
 import java.util.Stack;
 
 /**
@@ -42,7 +41,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     /** Default value for format property. */
     private static final String DEFAULT_FORMAT = "^.*Exception$|^.*Error$";
     /** Stack of checking information for classes. */
-    private final Stack mCheckingStack = new Stack();
+    private final Stack<Boolean> mCheckingStack = new Stack<Boolean>();
     /** Should we check current class or not. */
     private boolean mChecking;
 
@@ -53,18 +52,21 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -80,6 +82,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -105,7 +108,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     /** Called when we leave class definition. */
     private void leaveClassDef()
     {
-        mChecking = ((Boolean) mCheckingStack.pop()).booleanValue();
+        mChecking = (mCheckingStack.pop()).booleanValue();
     }
 
     /**

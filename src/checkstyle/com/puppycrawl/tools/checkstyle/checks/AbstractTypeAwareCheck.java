@@ -40,7 +40,7 @@ import java.util.Vector;
 public abstract class AbstractTypeAwareCheck extends Check
 {
     /** imports details **/
-    private final Set mImports = new HashSet();
+    private final Set<String> mImports = new HashSet<String>();
 
     /** full identifier for package of the method **/
     private FullIdent mPackageFullIdent;
@@ -52,7 +52,8 @@ public abstract class AbstractTypeAwareCheck extends Check
     private ClassResolver mClassResolver;
 
     /** Stack of maps for type params. */
-    private final Vector mTypeParams = new Vector();
+    private final Vector<Map<String, ClassInfo>> mTypeParams =
+        new Vector<Map<String, ClassInfo>>();
 
     /**
      * Whether to log class loading errors to the checkstyle report
@@ -103,6 +104,7 @@ public abstract class AbstractTypeAwareCheck extends Check
     protected abstract void processAST(DetailAST aAST);
 
     /** {@inheritDoc} */
+    @Override
     public final int[] getRequiredTokens()
     {
         return new int[] {
@@ -114,6 +116,7 @@ public abstract class AbstractTypeAwareCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mPackageFullIdent = FullIdent.createFullIdent(null);
@@ -126,6 +129,7 @@ public abstract class AbstractTypeAwareCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public final void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
@@ -148,6 +152,7 @@ public abstract class AbstractTypeAwareCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public final void leaveToken(DetailAST aAST)
     {
         if ((aAST.getType() == TokenTypes.CLASS_DEF)
@@ -196,7 +201,7 @@ public abstract class AbstractTypeAwareCheck extends Check
      * @return true  if exception is unchecked
      *         false if exception is checked
      */
-    protected boolean isUnchecked(Class aException)
+    protected boolean isUnchecked(Class<?> aException)
     {
         return isSubclass(aException, RuntimeException.class)
             || isSubclass(aException, Error.class);
@@ -212,7 +217,7 @@ public abstract class AbstractTypeAwareCheck extends Check
      * @return true  if aChild is subclass of aParent
      *         false otherwise
      */
-    protected boolean isSubclass(Class aChild, Class aParent)
+    protected boolean isSubclass(Class<?> aChild, Class<?> aParent)
     {
         return (aParent != null) && (aChild != null)
             &&  aParent.isAssignableFrom(aChild);
@@ -237,7 +242,8 @@ public abstract class AbstractTypeAwareCheck extends Check
      * @return the resolved class or <code>null</code>
      *          if unable to resolve the class.
      */
-    protected final Class resolveClass(String aClassName, String aCurrentClass)
+    protected final Class<?> resolveClass(String aClassName,
+            String aCurrentClass)
     {
         try {
             return getClassResolver().resolve(aClassName, aCurrentClass);
@@ -253,9 +259,9 @@ public abstract class AbstractTypeAwareCheck extends Check
      * @param aCurrentClass name of surrounding class.
      * @return <code>Class</code> for a ident.
      */
-    protected final Class tryLoadClass(Token aIdent, String aCurrentClass)
+    protected final Class<?> tryLoadClass(Token aIdent, String aCurrentClass)
     {
-        final Class clazz = resolveClass(aIdent.getText(), aCurrentClass);
+        final Class<?> clazz = resolveClass(aIdent.getText(), aCurrentClass);
         if (clazz == null) {
             logLoadError(aIdent);
         }
@@ -327,7 +333,8 @@ public abstract class AbstractTypeAwareCheck extends Check
         final DetailAST typeParams =
             aAST.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        final Map paramsMap = new HashMap();
+        final Map<String, ClassInfo> paramsMap =
+            new HashMap<String, ClassInfo>();
         mTypeParams.add(paramsMap);
 
         if (typeParams == null) {
@@ -402,8 +409,8 @@ public abstract class AbstractTypeAwareCheck extends Check
     {
         ClassInfo ci = null;
         for (int i = mTypeParams.size() - 1; i >= 0; i--) {
-            final Map paramMap = (Map) mTypeParams.get(i);
-            ci = (ClassInfo) paramMap.get(aName);
+            final Map<String, ClassInfo> paramMap = mTypeParams.get(i);
+            ci = paramMap.get(aName);
             if (ci != null) {
                 break;
             }
@@ -426,7 +433,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         }
 
         /** @return <code>Class</code> associated with an object. */
-        public abstract Class getClazz();
+        public abstract Class<?> getClazz();
 
         /**
          * Creates new instance of class inforamtion object.
@@ -446,11 +453,11 @@ public abstract class AbstractTypeAwareCheck extends Check
     private static final class RegularClass extends ClassInfo
     {
         /** name of surrounding class. */
-        private String mSurroundingClass;
+        private final String mSurroundingClass;
         /** is class loadable. */
         private boolean mIsLoadable = true;
         /** <code>Class</code> object of this class if it's loadable. */
-        private Class mClass;
+        private Class<?> mClass;
         /** the check we use to resolve classes. */
         private final AbstractTypeAwareCheck mCheck;
 
@@ -475,7 +482,8 @@ public abstract class AbstractTypeAwareCheck extends Check
         }
 
         /** @return <code>Class</code> associated with an object. */
-        public Class getClazz()
+        @Override
+        public Class<?> getClazz()
         {
             if (isLoadable() && (mClass == null)) {
                 setClazz(mCheck.tryLoadClass(getName(), mSurroundingClass));
@@ -487,13 +495,14 @@ public abstract class AbstractTypeAwareCheck extends Check
          * Associates <code> Class</code> with an object.
          * @param aClass <code>Class</code> to associate with.
          */
-        private void setClazz(Class aClass)
+        private void setClazz(Class<?> aClass)
         {
             mClass = aClass;
             mIsLoadable = (mClass != null);
         }
 
         /** {@inheritDoc} */
+        @Override
         public String toString()
         {
             return "RegularClass[name=" + getName()
@@ -521,12 +530,14 @@ public abstract class AbstractTypeAwareCheck extends Check
         }
 
         /** {@inheritDoc} */
-        public final Class getClazz()
+        @Override
+        public final Class<?> getClazz()
         {
             return mClassInfo.getClazz();
         }
 
         /** {@inheritDoc} */
+        @Override
         public String toString()
         {
             return "ClassAlias[alias " + getName()
@@ -589,6 +600,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         }
 
         /** {@inheritDoc} */
+        @Override
         public String toString()
         {
             return "Token[" + getText() + "(" + getLineNo()

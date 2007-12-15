@@ -18,17 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.regex.Pattern;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * Checks for multiple occurrences of the same string literal within a
@@ -42,7 +42,8 @@ public class MultipleStringLiteralsCheck extends Check
      * The found strings and their positions.
      * <String, ArrayList>, with the ArrayList containing StringInfo objects.
      */
-    private final HashMap mStringMap = new HashMap();
+    private final Map<String, List<StringInfo>> mStringMap =
+        new HashMap<String, List<StringInfo>>();
 
     /**
      * Marks the TokenTypes where duplicate strings should be ignored.
@@ -109,12 +110,14 @@ public class MultipleStringLiteralsCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.STRING_LITERAL};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (isInIgnoreOccurrenceContext(aAST)) {
@@ -122,9 +125,9 @@ public class MultipleStringLiteralsCheck extends Check
         }
         final String currentString = aAST.getText();
         if ((mPattern == null) || !mPattern.matcher(currentString).find()) {
-            ArrayList hitList = (ArrayList) mStringMap.get(currentString);
+            List<StringInfo> hitList = mStringMap.get(currentString);
             if (hitList == null) {
-                hitList = new ArrayList();
+                hitList = new ArrayList<StringInfo>();
                 mStringMap.put(currentString, hitList);
             }
             final int line = aAST.getLineNo();
@@ -156,6 +159,7 @@ public class MultipleStringLiteralsCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         super.beginTree(aRootAST);
@@ -163,15 +167,14 @@ public class MultipleStringLiteralsCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void finishTree(DetailAST aRootAST)
     {
-        final Set keys = mStringMap.keySet();
-        final Iterator keyIterator = keys.iterator();
-        while (keyIterator.hasNext()) {
-            final String key = (String) keyIterator.next();
-            final ArrayList hits = (ArrayList) mStringMap.get(key);
+        final Set<String> keys = mStringMap.keySet();
+        for (String key : keys) {
+            final List<StringInfo> hits = mStringMap.get(key);
             if (hits.size() > mAllowedDuplicates) {
-                final StringInfo firstFinding = (StringInfo) hits.get(0);
+                final StringInfo firstFinding = hits.get(0);
                 final int line = firstFinding.getLine();
                 final int col = firstFinding.getCol();
                 final Object[] args =

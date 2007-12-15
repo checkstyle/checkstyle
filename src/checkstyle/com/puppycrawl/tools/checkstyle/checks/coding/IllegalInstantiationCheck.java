@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -64,21 +63,22 @@ public class IllegalInstantiationCheck
     extends Check
 {
     /** Set of fully qualified classnames. E.g. "java.lang.Boolean" */
-    private final Set mIllegalClasses = new HashSet();
+    private final Set<String> mIllegalClasses = new HashSet<String>();
 
     /** name of the package */
     private String mPkgName;
 
     /** the imports for the file */
-    private final Set mImports = new HashSet();
+    private final Set<FullIdent> mImports = new HashSet<FullIdent>();
 
     /** the class names defined in the file */
-    private final Set mClassNames = new HashSet();
+    private final Set<String> mClassNames = new HashSet<String>();
 
     /** the instantiations in the file */
-    private final Set mInstantiations = new HashSet();
+    private final Set<DetailAST> mInstantiations = new HashSet<DetailAST>();
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -94,12 +94,14 @@ public class IllegalInstantiationCheck
      * @see com.puppycrawl.tools.checkstyle.api.Check
      * @return empty array to not allow user to change configuration.
      */
+    @Override
     public int[] getAcceptableTokens()
     {
         return new int[] {};
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return new int[] {
@@ -110,6 +112,7 @@ public class IllegalInstantiationCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         super.beginTree(aRootAST);
@@ -120,6 +123,7 @@ public class IllegalInstantiationCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -143,10 +147,10 @@ public class IllegalInstantiationCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void finishTree(DetailAST aRootAST)
     {
-        for (final Iterator it = mInstantiations.iterator(); it.hasNext();) {
-            final DetailAST literalNewAST = (DetailAST) it.next();
+        for (DetailAST literalNewAST : mInstantiations) {
             postprocessLiteralNew(literalNewAST);
         }
     }
@@ -243,9 +247,7 @@ public class IllegalInstantiationCheck
         final int clsNameLen = aClassName.length();
         final int pkgNameLen = (mPkgName == null) ? 0 : mPkgName.length();
 
-        final Iterator illIter = mIllegalClasses.iterator();
-        while (illIter.hasNext()) {
-            final String illegal = (String) illIter.next();
+        for (String illegal : mIllegalClasses) {
             final int illegalLen = illegal.length();
 
             // class from java.lang
@@ -297,9 +299,7 @@ public class IllegalInstantiationCheck
                 return illegal;
             }
             // import statements
-            final Iterator importIter = mImports.iterator();
-            while (importIter.hasNext()) {
-                final FullIdent importLineText = (FullIdent) importIter.next();
+            for (FullIdent importLineText : mImports) {
                 final String importArg = importLineText.getText();
                 if (importArg.endsWith(".*")) {
                     final String fqClass =

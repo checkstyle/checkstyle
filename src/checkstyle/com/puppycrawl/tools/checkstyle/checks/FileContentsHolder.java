@@ -33,27 +33,31 @@ public class FileContentsHolder
     extends Check
 {
     /** The current file contents. */
-    private static final ThreadLocal FILE_CONTENTS = new ThreadLocal();
+    private static final ThreadLocal<FileContents> FILE_CONTENTS =
+        new ThreadLocal<FileContents>();
 
     /** @return the current file contents. */
     public static FileContents getContents()
     {
-        return (FileContents) FILE_CONTENTS.get();
+        return FILE_CONTENTS.get();
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         FILE_CONTENTS.set(getFileContents());
     }
 
     /** {@inheritDoc} */
+    @Override
     public void finishTree(DetailAST aRootAST)
     {
         // This seems like the right thing to do, but is called before

@@ -34,7 +34,7 @@ public class ClassResolver
     /** name of the package to check if the class belongs to **/
     private final String mPkg;
     /** set of imports to check against **/
-    private final Set mImports;
+    private final Set<String> mImports;
     /** use to load classes **/
     private final ClassLoader mLoader;
 
@@ -45,7 +45,7 @@ public class ClassResolver
      * @param aPkg the name of the package the class may belong to
      * @param aImports set of imports to check if the class belongs to
      */
-    public ClassResolver(ClassLoader aLoader, String aPkg, Set aImports)
+    public ClassResolver(ClassLoader aLoader, String aPkg, Set<String> aImports)
     {
         mLoader = aLoader;
         mPkg = aPkg;
@@ -65,19 +65,19 @@ public class ClassResolver
      * @return the resolved class
      * @throws ClassNotFoundException if unable to resolve the class
      */
-    public Class resolve(String aName, String aCurrentClass)
+    public Class<?> resolve(String aName, String aCurrentClass)
         throws ClassNotFoundException
     {
         // See if the class is full qualified
-        Class clazz = resolveQualifiedName(aName);
+        Class<?> clazz = resolveQualifiedName(aName);
         if (clazz != null) {
             return clazz;
         }
 
         // try matching explicit imports
-        Iterator it = mImports.iterator();
+        Iterator<String> it = mImports.iterator();
         while (it.hasNext()) {
-            final String imp = (String) it.next();
+            final String imp = it.next();
             // Very important to add the "." in the check below. Otherwise you
             // when checking for "DataException", it will match on
             // "SecurityDataException". This has been the cause of a very
@@ -111,7 +111,7 @@ public class ClassResolver
         // try star imports
         it = mImports.iterator();
         while (it.hasNext()) {
-            final String imp = (String) it.next();
+            final String imp = it.next();
             if (imp.endsWith(".*")) {
                 final String fqn = imp.substring(0, imp.lastIndexOf('.') + 1)
                     + aName;
@@ -149,7 +149,7 @@ public class ClassResolver
      * @return the <code>Class</code> for the specified class
      * @throws ClassNotFoundException if an error occurs
      */
-    public Class safeLoad(String aName)
+    public Class<?> safeLoad(String aName)
         throws ClassNotFoundException
     {
         // The next line will load the class using the specified class
@@ -163,7 +163,7 @@ public class ClassResolver
      * @param aName a given name of class.
      * @return Class object for the given name or null.
      */
-    private Class resolveQualifiedName(final String aName)
+    private Class<?> resolveQualifiedName(final String aName)
     {
         try {
             if (isLoadable(aName)) {

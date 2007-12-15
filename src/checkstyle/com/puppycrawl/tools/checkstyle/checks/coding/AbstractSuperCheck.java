@@ -46,7 +46,7 @@ public abstract class AbstractSuperCheck
     private class MethodNode
     {
         /** method definition */
-        private DetailAST mMethod;
+        private final DetailAST mMethod;
 
         /** true if the overriding method calls the super method */
         private boolean mCallsSuper;
@@ -91,9 +91,11 @@ public abstract class AbstractSuperCheck
     }
 
     /** stack of methods */
-    private final LinkedList mMethodStack = new LinkedList();
+    private final LinkedList<MethodNode> mMethodStack =
+        new LinkedList<MethodNode>();
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -111,6 +113,7 @@ public abstract class AbstractSuperCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mMethodStack.clear();
@@ -120,13 +123,14 @@ public abstract class AbstractSuperCheck
      *
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (isOverridingMethod(aAST)) {
             mMethodStack.add(new MethodNode(aAST));
         }
         else if (isSuperCall(aAST)) {
-            final MethodNode methodNode = (MethodNode) mMethodStack.getLast();
+            final MethodNode methodNode = mMethodStack.getLast();
             methodNode.setCallsSuper();
         }
     }
@@ -192,11 +196,12 @@ public abstract class AbstractSuperCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         if (isOverridingMethod(aAST)) {
             final MethodNode methodNode =
-                (MethodNode) mMethodStack.removeLast();
+                mMethodStack.removeLast();
             if (!methodNode.getCallsSuper()) {
                 final DetailAST methodAST = methodNode.getMethod();
                 final DetailAST nameAST =

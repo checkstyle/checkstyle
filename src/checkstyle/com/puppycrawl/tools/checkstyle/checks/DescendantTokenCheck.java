@@ -195,12 +195,14 @@ public class DescendantTokenCheck extends Check
     private int[] mCounts = new int[0];
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         //reset counts
@@ -267,15 +269,16 @@ public class DescendantTokenCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         // Any tokens set by property 'tokens' are acceptable
-        final Set tokenNames = getTokenNames();
+        final Set<String> tokenNames = getTokenNames();
         final int[] result = new int[tokenNames.size()];
         int i = 0;
-        final Iterator it = tokenNames.iterator();
+        final Iterator<String> it = tokenNames.iterator();
         while (it.hasNext()) {
-            final String name = (String) it.next();
+            final String name = it.next();
             result[i] = TokenTypes.getTokenId(name);
             i++;
         }

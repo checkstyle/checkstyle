@@ -38,12 +38,14 @@ public abstract class DeclarationCollector extends Check
     private FrameStack mFrames;
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mFrames = new FrameStack();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -76,6 +78,7 @@ public abstract class DeclarationCollector extends Check
 
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -123,12 +126,12 @@ public abstract class DeclarationCollector extends Check
 abstract class LexicalFrame
 {
     /** Set of name of variables declared in this frame. */
-    private HashSet mVarNames;
+    private final HashSet<String> mVarNames;
 
     /** constructor -- invocable only via super() from subclasses */
     protected LexicalFrame()
     {
-        mVarNames = new HashSet();
+        mVarNames = new HashSet<String>();
     }
 
     /** add a name to the frame.
@@ -136,7 +139,7 @@ abstract class LexicalFrame
      */
     void addName(String aNameToAdd)
     {
-        this.mVarNames.add(aNameToAdd);
+        mVarNames.add(aNameToAdd);
     }
 
     /** check whether the frame contains a given name.
@@ -145,7 +148,7 @@ abstract class LexicalFrame
      */
     boolean contains(String aNameToFind)
     {
-        return this.mVarNames.contains(aNameToFind);
+        return mVarNames.contains(aNameToFind);
     }
 }
 
@@ -212,12 +215,12 @@ class BlockFrame extends LexicalFrame
 class FrameStack
 {
     /** List of lexical frames. */
-    private LinkedList mFrameList;
+    private final LinkedList<LexicalFrame> mFrameList;
 
     /** Creates an empty FrameStack. */
     FrameStack()
     {
-        mFrameList = new LinkedList();
+        mFrameList = new LinkedList<LexicalFrame>();
         this.enter(new GlobalFrame());
     }
 
@@ -242,7 +245,7 @@ class FrameStack
      */
     LexicalFrame current()
     {
-        return (LexicalFrame) mFrameList.getFirst();
+        return mFrameList.getFirst();
     }
 
     /**
@@ -252,9 +255,9 @@ class FrameStack
      */
     LexicalFrame findFrame(String aNameToFind)
     {
-        final Iterator it = mFrameList.iterator();
+        final Iterator<LexicalFrame> it = mFrameList.iterator();
         while (it.hasNext()) {
-            final LexicalFrame thisFrame = (LexicalFrame) it.next();
+            final LexicalFrame thisFrame = it.next();
             if (thisFrame.contains(aNameToFind)) {
                 return thisFrame;
             }

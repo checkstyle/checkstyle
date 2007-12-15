@@ -18,19 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import org.apache.commons.beanutils.ConversionException;
-
-import antlr.collections.AST;
 
 /**
  * Checks visibility of class members. Only static final members may be public,
@@ -125,12 +123,14 @@ public class VisibilityModifierCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if ((aAST.getType() != TokenTypes.VARIABLE_DEF)
@@ -143,7 +143,7 @@ public class VisibilityModifierCheck
         final String varName = varNameAST.getText();
         final boolean inInterfaceOrAnnotationBlock =
             ScopeUtils.inInterfaceOrAnnotationBlock(aAST);
-        final Set mods = getModifiers(aAST);
+        final Set<String> mods = getModifiers(aAST);
         final String declaredScope = getVisibilityScope(mods);
         final String variableScope =
              inInterfaceOrAnnotationBlock ? "public" : declaredScope;
@@ -184,13 +184,13 @@ public class VisibilityModifierCheck
      * @param aVariableDefAST AST for a vraiable definition
      * @return the set of modifier Strings for variableDefAST
      */
-    private Set getModifiers(DetailAST aVariableDefAST)
+    private Set<String> getModifiers(DetailAST aVariableDefAST)
     {
         final AST modifiersAST = aVariableDefAST.getFirstChild();
         if (modifiersAST.getType() != TokenTypes.MODIFIERS) {
             throw new IllegalStateException("Strange parse tree");
         }
-        final Set retVal = new HashSet();
+        final Set<String> retVal = new HashSet<String>();
         AST modifier = modifiersAST.getFirstChild();
         while (modifier != null) {
             retVal.add(modifier.getText());
@@ -205,7 +205,7 @@ public class VisibilityModifierCheck
      * @param aModifiers the set of modifier Strings
      * @return one of "public", "private", "protected", "package"
      */
-    private String getVisibilityScope(Set aModifiers)
+    private String getVisibilityScope(Set<String> aModifiers)
     {
         final String[] explicitModifiers = {"public", "private", "protected"};
         for (int i = 0; i < explicitModifiers.length; i++) {

@@ -72,7 +72,7 @@ public class DeclarationOrderCheck extends Check
      * List of Declaration States. This is necessary due to
      * inner classes that have their own state
      */
-    private final Stack mScopeStates = new Stack();
+    private final Stack<ScopeState> mScopeStates = new Stack<ScopeState>();
 
     /**
      * private class to encapsulate the state
@@ -87,6 +87,7 @@ public class DeclarationOrderCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -98,6 +99,7 @@ public class DeclarationOrderCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final int parentType = aAST.getParent().getType();
@@ -113,7 +115,7 @@ public class DeclarationOrderCheck extends Check
                 return;
             }
 
-            state = (ScopeState) mScopeStates.peek();
+            state = mScopeStates.peek();
             if (state.mScopeState > STATE_CTOR_DEF) {
                 log(aAST, "declaration.order.constructor");
             }
@@ -123,7 +125,7 @@ public class DeclarationOrderCheck extends Check
             break;
 
         case TokenTypes.METHOD_DEF:
-            state = (ScopeState) mScopeStates.peek();
+            state = mScopeStates.peek();
             if (parentType != TokenTypes.OBJBLOCK) {
                 return;
             }
@@ -144,7 +146,7 @@ public class DeclarationOrderCheck extends Check
                 return;
             }
 
-            state = (ScopeState) mScopeStates.peek();
+            state = mScopeStates.peek();
             if (aAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 if (state.mScopeState > STATE_STATIC_VARIABLE_DEF) {
                     log(aAST, "declaration.order.static");
@@ -177,6 +179,7 @@ public class DeclarationOrderCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch(aAST.getType()) {

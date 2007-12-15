@@ -18,14 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Stack;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 
 /**
  * <p>
@@ -45,11 +44,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class FinalLocalVariableCheck extends Check
 {
     /** Scope Stack */
-    private final Stack mScopeStack = new Stack();
+    private final Stack<Map<String, DetailAST>> mScopeStack =
+        new Stack<Map<String, DetailAST>>();
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -66,6 +67,7 @@ public class FinalLocalVariableCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         return new int[] {
@@ -75,6 +77,7 @@ public class FinalLocalVariableCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return new int[] {
@@ -92,6 +95,7 @@ public class FinalLocalVariableCheck extends Check
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch(aAST.getType()) {
@@ -102,7 +106,7 @@ public class FinalLocalVariableCheck extends Check
         case TokenTypes.CTOR_DEF:
         case TokenTypes.STATIC_INIT:
         case TokenTypes.INSTANCE_INIT:
-            mScopeStack.push(new HashMap());
+            mScopeStack.push(new HashMap<String, DetailAST>());
             break;
 
         case TokenTypes.PARAMETER_DEF:
@@ -176,7 +180,7 @@ public class FinalLocalVariableCheck extends Check
     private void insertVariable(DetailAST aAST)
     {
         if (!aAST.branchContains(TokenTypes.FINAL)) {
-            final HashMap state = (HashMap) mScopeStack.peek();
+            final Map<String, DetailAST> state = mScopeStack.peek();
             final DetailAST ast = aAST.findFirstToken(TokenTypes.IDENT);
             state.put(ast.getText(), ast);
         }
@@ -189,7 +193,7 @@ public class FinalLocalVariableCheck extends Check
     private void removeVariable(DetailAST aAST)
     {
         for (int i = mScopeStack.size() - 1; i >= 0; i--) {
-            final HashMap state = (HashMap) mScopeStack.get(i);
+            final Map<String, DetailAST> state = mScopeStack.get(i);
             final Object obj = state.remove(aAST.getText());
             if (obj != null) {
                 break;
@@ -200,6 +204,7 @@ public class FinalLocalVariableCheck extends Check
     /**
      * {@inheritDoc}
      */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         super.leaveToken(aAST);
@@ -212,13 +217,10 @@ public class FinalLocalVariableCheck extends Check
         case TokenTypes.STATIC_INIT:
         case TokenTypes.INSTANCE_INIT:
         case TokenTypes.METHOD_DEF:
-            final HashMap state = (HashMap) mScopeStack.pop();
-            final Iterator finalVars = state.values().iterator();
-
-            while (finalVars.hasNext()) {
-                final DetailAST var = (DetailAST) finalVars.next();
-                log(var.getLineNo(), var.getColumnNo(),
-                    "final.variable", var.getText());
+            final Map<String, DetailAST> state = mScopeStack.pop();
+            for (DetailAST var : state.values()) {
+                log(var.getLineNo(), var.getColumnNo(), "final.variable", var
+                        .getText());
             }
             break;
 

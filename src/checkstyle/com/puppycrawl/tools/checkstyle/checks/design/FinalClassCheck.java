@@ -20,9 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
-
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.Stack;
 
 /**
@@ -42,15 +41,17 @@ public class FinalClassCheck
     extends Check
 {
     /** Keeps ClassDesc objects for stack of declared classes. */
-    private final Stack mClasses = new Stack();
+    private final Stack<ClassDesc> mClasses = new Stack<ClassDesc>();
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
@@ -63,7 +64,7 @@ public class FinalClassCheck
             mClasses.push(new ClassDesc(isFinal, isAbstract));
         }
         else if (!ScopeUtils.inEnumBlock(aAST)) { //ctors in enums don't matter
-            final ClassDesc desc = (ClassDesc) mClasses.peek();
+            final ClassDesc desc = mClasses.peek();
             if ((modifiers != null)
                 && modifiers.branchContains(TokenTypes.LITERAL_PRIVATE))
             {
@@ -76,13 +77,14 @@ public class FinalClassCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         if (aAST.getType() != TokenTypes.CLASS_DEF) {
             return;
         }
 
-        final ClassDesc desc = (ClassDesc) mClasses.pop();
+        final ClassDesc desc = mClasses.pop();
         if (!desc.isDeclaredAsFinal()
             && !desc.isDeclaredAsAbstract()
             && desc.hasPrivateCtor()
@@ -174,6 +176,7 @@ public class FinalClassCheck
          * Returns a string representation of the object.
          * @return a string representation of the object
          */
+        @Override
         public String toString()
         {
             return this.getClass().getName()

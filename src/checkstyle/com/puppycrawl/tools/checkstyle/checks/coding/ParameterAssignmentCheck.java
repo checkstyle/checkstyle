@@ -42,11 +42,13 @@ import java.util.Stack;
 public final class ParameterAssignmentCheck extends Check
 {
     /** Stack of methods' parameters. */
-    private final Stack mParameterNamesStack = new Stack();
+    private final Stack<Set<String>> mParameterNamesStack =
+        new Stack<Set<String>>();
     /** Current set of perameters. */
-    private Set mParameterNames;
+    private Set<String> mParameterNames;
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -72,12 +74,14 @@ public final class ParameterAssignmentCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         // clear data
@@ -86,6 +90,7 @@ public final class ParameterAssignmentCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -119,6 +124,7 @@ public final class ParameterAssignmentCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -193,7 +199,7 @@ public final class ParameterAssignmentCheck extends Check
     private void visitMethodDef(DetailAST aAST)
     {
         mParameterNamesStack.push(mParameterNames);
-        mParameterNames = new HashSet();
+        mParameterNames = new HashSet<String>();
 
         visitMethodParameters(aAST.findFirstToken(TokenTypes.PARAMETERS));
     }
@@ -201,7 +207,7 @@ public final class ParameterAssignmentCheck extends Check
     /** Restores old set of parameters. */
     private void leaveMethodDef()
     {
-        mParameterNames = (Set) mParameterNamesStack.pop();
+        mParameterNames = mParameterNamesStack.pop();
     }
 
     /**

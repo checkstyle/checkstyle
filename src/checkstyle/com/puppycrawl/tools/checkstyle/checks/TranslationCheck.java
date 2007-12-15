@@ -18,6 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.Defn;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,12 +35,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-
-import com.puppycrawl.tools.checkstyle.Defn;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.Utils;
+import java.util.Map.Entry;
 
 /**
  * <p>
@@ -90,17 +90,19 @@ public class TranslationCheck
      * @param aPropFiles the set of property files
      * @return a Map object which holds the arranged property file sets
      */
-    private static Map arrangePropertyFiles(File[] aPropFiles)
+    private static Map<String, Set<File>> arrangePropertyFiles(
+            File[] aPropFiles)
     {
-        final Map propFileMap = new HashMap();
+        final Map<String, Set<File>> propFileMap =
+            new HashMap<String, Set<File>>();
 
         for (int i = 0; i < aPropFiles.length; i++) {
             final File f = aPropFiles[i];
             final String identifier = extractPropertyIdentifier(f);
 
-            Set fileSet = (Set) propFileMap.get(identifier);
+            Set<File> fileSet = propFileMap.get(identifier);
             if (fileSet == null) {
-                fileSet = new HashSet();
+                fileSet = new HashSet<File>();
                 propFileMap.put(identifier, fileSet);
             }
             fileSet.add(f);
@@ -114,9 +116,9 @@ public class TranslationCheck
      * @param aFile the property file
      * @return a Set object which holds the loaded keys
      */
-    private Set loadKeys(File aFile)
+    private Set<Object> loadKeys(File aFile)
     {
-        final Set keys = new HashSet();
+        final Set<Object> keys = new HashSet<Object>();
         InputStream inStream = null;
 
         try {
@@ -126,7 +128,7 @@ public class TranslationCheck
             props.load(inStream);
 
             // Gather the keys and put them into a set
-            final Enumeration e = props.propertyNames();
+            final Enumeration<?> e = props.propertyNames();
             while (e.hasMoreElements()) {
                 keys.add(e.nextElement());
             }
@@ -180,26 +182,25 @@ public class TranslationCheck
      * @param aKeys the set of keys to compare with
      * @param aFileMap a Map from property files to their key sets
      */
-    private void compareKeySets(Set aKeys, Map aFileMap)
+    private void compareKeySets(Set<Object> aKeys,
+            Map<File, Set<Object>> aFileMap)
     {
-        final Set fls = aFileMap.entrySet();
+        final Set<Entry<File, Set<Object>>> fls = aFileMap.entrySet();
 
-        for (final Iterator iter = fls.iterator(); iter.hasNext();) {
-            final Map.Entry entry = (Map.Entry) iter.next();
-            final File currentFile = (File) entry.getKey();
+        for (Entry<File, Set<Object>> entry : fls) {
+            final File currentFile = entry.getKey();
             final MessageDispatcher dispatcher = getMessageDispatcher();
             final String path = currentFile.getPath();
             dispatcher.fireFileStarted(path);
-            final Set currentKeys = (Set) entry.getValue();
+            final Set<Object> currentKeys = entry.getValue();
 
             // Clone the keys so that they are not lost
-            final Set keysClone = new HashSet(aKeys);
+            final Set<Object> keysClone = new HashSet<Object>(aKeys);
             keysClone.removeAll(currentKeys);
 
             // Remaining elements in the key set are missing in the current file
             if (!keysClone.isEmpty()) {
-                for (final Iterator it = keysClone.iterator(); it.hasNext();) {
-                    final Object key = it.next();
+                for (Object key : keysClone) {
                     log(0, "translation.missingKey", key);
                 }
             }
@@ -219,23 +220,27 @@ public class TranslationCheck
      *
      * @param aPropFiles the property files organized as Map
      */
-    private void checkPropertyFileSets(Map aPropFiles)
+    private void checkPropertyFileSets(Map<String, Set<File>> aPropFiles)
     {
-        final Set entrySet = aPropFiles.entrySet();
+        final Set<Entry<String, Set<File>>> entrySet = aPropFiles.entrySet();
 
-        for (final Iterator iterator = entrySet.iterator(); iterator.hasNext();)
+        for (final Iterator<Entry<String, Set<File>>> iterator = entrySet
+                .iterator(); iterator.hasNext();)
         {
-            final Map.Entry entry = (Map.Entry) iterator.next();
-            final Set files = (Set) entry.getValue();
+            final Entry<String, Set<File>> entry = iterator.next();
+            final Set<File> files = entry.getValue();
 
             if (files.size() >= 2) {
                 // build a map from files to the keys they contain
-                final Set keys = new HashSet();
-                final Map fileMap = new HashMap();
+                final Set<Object> keys = new HashSet<Object>();
+                final Map<File, Set<Object>> fileMap =
+                    new HashMap<File, Set<Object>>();
 
-                for (final Iterator iter = files.iterator(); iter.hasNext();) {
-                    final File file = (File) iter.next();
-                    final Set fileKeys = loadKeys(file);
+                for (final Iterator<File> iter = files.iterator(); iter
+                        .hasNext();)
+                {
+                    final File file = iter.next();
+                    final Set<Object> fileKeys = loadKeys(file);
                     keys.addAll(fileKeys);
                     fileMap.put(file, fileKeys);
                 }
@@ -260,10 +265,8 @@ public class TranslationCheck
     public void process(File[] aFiles)
     {
         final File[] propertyFiles = filter(aFiles);
-        final Map propFilesMap = arrangePropertyFiles(propertyFiles);
+        final Map<String, Set<File>> propFilesMap =
+            arrangePropertyFiles(propertyFiles);
         checkPropertyFileSets(propFilesMap);
     }
-
-
-
 }

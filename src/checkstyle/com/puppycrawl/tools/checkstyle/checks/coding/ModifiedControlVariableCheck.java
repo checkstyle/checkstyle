@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.Stack;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Stack;
 /**
  * Check for ensuring that for loop control variables are not modified
  * inside the for block.
@@ -32,11 +31,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class ModifiedControlVariableCheck extends Check
 {
     /** Current set of parameters. */
-    private Stack mCurrentVariables = new Stack();
+    private Stack<String> mCurrentVariables = new Stack<String>();
     /** Stack of block parameters. */
-    private final Stack mVariableStack = new Stack();
+    private final Stack<Stack<String>> mVariableStack =
+        new Stack<Stack<String>>();
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -64,12 +65,14 @@ public final class ModifiedControlVariableCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         // clear data
@@ -78,6 +81,7 @@ public final class ModifiedControlVariableCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -113,6 +117,7 @@ public final class ModifiedControlVariableCheck extends Check
 
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -157,7 +162,7 @@ public final class ModifiedControlVariableCheck extends Check
     private void enterBlock()
     {
         mVariableStack.push(mCurrentVariables);
-        mCurrentVariables = new Stack();
+        mCurrentVariables = new Stack<String>();
 
     }
     /**
@@ -165,7 +170,7 @@ public final class ModifiedControlVariableCheck extends Check
      */
     private void exitBlock()
     {
-        mCurrentVariables = (Stack) mVariableStack.pop();
+        mCurrentVariables = mVariableStack.pop();
     }
 
     /**

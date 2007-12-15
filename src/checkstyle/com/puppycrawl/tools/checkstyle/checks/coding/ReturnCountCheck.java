@@ -20,9 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
-
 import java.util.Stack;
 
 /**
@@ -44,7 +42,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     private static final int DEFAULT_MAX = 2;
 
     /** Stack of method contexts. */
-    private final Stack mContextStack = new Stack();
+    private final Stack<Context> mContextStack = new Stack<Context>();
     /** Maximum allowed number of return stmts. */
     private int mMax;
     /** Current method context. */
@@ -58,6 +56,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -68,6 +67,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return new int[]{
@@ -95,6 +95,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mContext = null;
@@ -102,6 +103,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -118,6 +120,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -153,7 +156,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     private void leaveMethodDef(DetailAST aAST)
     {
         mContext.checkCount(aAST);
-        mContext = (Context) mContextStack.pop();
+        mContext = mContextStack.pop();
     }
 
     /**

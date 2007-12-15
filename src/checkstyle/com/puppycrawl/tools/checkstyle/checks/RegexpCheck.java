@@ -87,7 +87,7 @@ public class RegexpCheck extends AbstractFormatCheck
     private int mErrorCount;
 
     /** Relates StringBuffer positions to line # and column */
-    private final List mCharacters = new ArrayList();
+    private final List<Integer[]> mCharacters = new ArrayList<Integer[]>();
 
     /** The mMatcher */
     private Matcher mMatcher;
@@ -160,12 +160,14 @@ public class RegexpCheck extends AbstractFormatCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mCharacters.clear();
@@ -201,13 +203,13 @@ public class RegexpCheck extends AbstractFormatCheck
             logMessage(0);
         }
         else if (foundMatch) {
-            startLine = ((Integer[]) mCharacters.get(mMatcher.start()))[0].
+            startLine = (mCharacters.get(mMatcher.start()))[0].
                     intValue();
-            startColumn = ((Integer[]) mCharacters.get(mMatcher.start()))[1].
+            startColumn = (mCharacters.get(mMatcher.start()))[1].
                     intValue();
-            endLine = ((Integer[]) mCharacters.get(mMatcher.end() - 1))[0].
+            endLine = (mCharacters.get(mMatcher.end() - 1))[0].
                     intValue();
-            endColumn = ((Integer[]) mCharacters.get(mMatcher.end() - 1))[1].
+            endColumn = (mCharacters.get(mMatcher.end() - 1))[1].
                     intValue();
             if (mIgnoreComments) {
                 final FileContents theFileContents = getFileContents();

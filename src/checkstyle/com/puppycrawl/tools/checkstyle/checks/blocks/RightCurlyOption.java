@@ -32,7 +32,8 @@ public final class RightCurlyOption
     extends AbstractOption
 {
     /** maps from a string representation to an option */
-    private static final Map STR_TO_OPT = new HashMap();
+    private static final Map<String, AbstractOption> STR_TO_OPT =
+        new HashMap<String, AbstractOption>();
 
     /**
      * Represents the policy that the brace must be alone on the line. For
@@ -69,7 +70,8 @@ public final class RightCurlyOption
     }
 
     /** {@inheritDoc} */
-    protected Map getStrToOpt()
+    @Override
+    protected Map<String, AbstractOption> getStrToOpt()
     {
         return STR_TO_OPT;
     }

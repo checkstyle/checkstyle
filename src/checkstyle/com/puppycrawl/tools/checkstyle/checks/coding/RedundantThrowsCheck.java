@@ -77,6 +77,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -93,9 +94,10 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
      * Checks exceptions declared in throws for a method or constructor.
      * @param aAST the tree node for the method or constructor.
      */
+    @Override
     protected final void processAST(DetailAST aAST)
     {
-        final List knownExcs = new LinkedList();
+        final List<ClassInfo> knownExcs = new LinkedList<ClassInfo>();
         final DetailAST throwsAST =
             aAST.findFirstToken(TokenTypes.LITERAL_THROWS);
         if (throwsAST != null) {
@@ -116,6 +118,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
      * Logs error if unable to load class information.
      * @param aIdent class name for which we can no load class.
      */
+    @Override
     protected final void logLoadError(Token aIdent)
     {
         logLoadErrorImpl(aIdent.getLineNo(), aIdent.getColumnNo(),
@@ -135,7 +138,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
      * @param aExc <code>FullIdent</code> of exception to check
      * @param aKnownExcs list of already known exception
      */
-    private void checkException(FullIdent aExc, List aKnownExcs)
+    private void checkException(FullIdent aExc, List<ClassInfo> aKnownExcs)
     {
         // Let's try to load class.
         final ClassInfo newClassInfo =
@@ -149,8 +152,10 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
         }
 
         boolean shouldAdd = true;
-        for (final Iterator known = aKnownExcs.iterator(); known.hasNext();) {
-            final ClassInfo ci = (ClassInfo) known.next();
+        for (final Iterator<ClassInfo> known = aKnownExcs.iterator(); known
+                .hasNext();)
+        {
+            final ClassInfo ci = known.next();
             final Token fi = ci.getName();
 
             if (ci.getClazz() == newClassInfo.getClazz()) {

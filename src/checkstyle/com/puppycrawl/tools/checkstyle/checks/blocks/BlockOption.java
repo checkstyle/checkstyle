@@ -31,7 +31,8 @@ public final class BlockOption
     extends AbstractOption
 {
     /** maps from a string representation to an option */
-    private static final Map STR_TO_OPT = new HashMap();
+    private static final Map<String, AbstractOption> STR_TO_OPT =
+        new HashMap<String, AbstractOption>();
 
     /**
      * Represents the policy that there is some text in the block. For example:
@@ -67,7 +68,8 @@ public final class BlockOption
     }
 
     /** {@inheritDoc} */
-    protected Map getStrToOpt()
+    @Override
+    protected Map<String, AbstractOption> getStrToOpt()
     {
         return STR_TO_OPT;
     }

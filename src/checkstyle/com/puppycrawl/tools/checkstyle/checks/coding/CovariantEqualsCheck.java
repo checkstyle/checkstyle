@@ -18,15 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * <p>Checks that if a class defines a covariant method equals,
@@ -46,21 +44,24 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 public class CovariantEqualsCheck extends Check
 {
     /** Set of equals method definitions */
-    private final Set mEqualsMethods = new HashSet();
+    private final Set<DetailAST> mEqualsMethods = new HashSet<DetailAST>();
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, };
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         mEqualsMethods.clear();
@@ -86,15 +87,11 @@ public class CovariantEqualsCheck extends Check
 
             // report equals method definitions
             if (!hasEqualsObject) {
-                final Iterator it = mEqualsMethods.iterator();
-                while (it.hasNext()) {
-                    final DetailAST equalsAST = (DetailAST) it.next();
-                    final DetailAST nameNode =
-                        equalsAST.findFirstToken(TokenTypes.IDENT);
-                    log(
-                        nameNode.getLineNo(),
-                        nameNode.getColumnNo(),
-                        "covariant.equals");
+                for (DetailAST equalsAST : mEqualsMethods) {
+                    final DetailAST nameNode = equalsAST
+                            .findFirstToken(TokenTypes.IDENT);
+                    log(nameNode.getLineNo(), nameNode.getColumnNo(),
+                            "covariant.equals");
                 }
             }
         }

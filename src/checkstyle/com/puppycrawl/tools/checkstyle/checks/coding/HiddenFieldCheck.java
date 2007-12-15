@@ -18,18 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+import org.apache.commons.beanutils.ConversionException;
 
 /**
  * <p>Checks that a local variable or a parameter does not shadow
@@ -92,6 +90,7 @@ public class HiddenFieldCheck
     private boolean mIgnoreAbstractMethods;
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -104,6 +103,7 @@ public class HiddenFieldCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         return new int[] {
@@ -113,6 +113,7 @@ public class HiddenFieldCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return new int[] {
@@ -123,12 +124,14 @@ public class HiddenFieldCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mCurrentFrame = new FieldFrame(null, true);
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if ((aAST.getType() == TokenTypes.VARIABLE_DEF)
@@ -176,6 +179,7 @@ public class HiddenFieldCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         if ((aAST.getType() == TokenTypes.CLASS_DEF)
@@ -386,16 +390,16 @@ public class HiddenFieldCheck
     private static class FieldFrame
     {
         /** is this a static inner type */
-        private boolean mStaticType;
+        private final boolean mStaticType;
 
         /** parent frame. */
-        private FieldFrame mParent;
+        private final FieldFrame mParent;
 
         /** set of instance field names */
-        private final Set mInstanceFields = new HashSet();
+        private final Set<String> mInstanceFields = new HashSet<String>();
 
         /** set of static field names */
-        private final Set mStaticFields = new HashSet();
+        private final Set<String> mStaticFields = new HashSet<String>();
 
         /** Creates new frame.
          * @param aStaticType is this a static inner type (class or enum).

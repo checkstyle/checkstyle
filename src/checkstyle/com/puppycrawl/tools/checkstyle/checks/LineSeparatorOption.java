@@ -30,7 +30,8 @@ import java.util.HashMap;
 public final class LineSeparatorOption extends AbstractOption
 {
     /** maps from a string representation to an option */
-    private static final Map STR_TO_OPT = new HashMap();
+    private static final Map<String, AbstractOption> STR_TO_OPT =
+        new HashMap<String, AbstractOption>();
 
     /** Windows-style line separators. **/
     public static final LineSeparatorOption CRLF =
@@ -83,7 +84,8 @@ public final class LineSeparatorOption extends AbstractOption
     }
 
     /** {@inheritDoc} */
-    protected Map getStrToOpt()
+    @Override
+    protected Map<String, AbstractOption> getStrToOpt()
     {
         return STR_TO_OPT;
     }

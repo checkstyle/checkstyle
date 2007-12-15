@@ -18,12 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.Iterator;
-import java.util.Set;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Set;
 
 /**
  * <p>
@@ -58,6 +56,7 @@ public class IllegalTokenCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -70,17 +69,16 @@ public class IllegalTokenCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getAcceptableTokens()
     {
         // Any tokens set by property 'tokens' are acceptable
         int[] tokensToCopy = getDefaultTokens();
-        final Set tokenNames = getTokenNames();
+        final Set<String> tokenNames = getTokenNames();
         if (!tokenNames.isEmpty()) {
             tokensToCopy = new int[tokenNames.size()];
             int i = 0;
-            final Iterator it = tokenNames.iterator();
-            while (it.hasNext()) {
-                final String name = (String) it.next();
+            for (String name : tokenNames) {
                 tokensToCopy[i] = TokenTypes.getTokenId(name);
                 i++;
             }
@@ -93,6 +91,7 @@ public class IllegalTokenCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         log(
