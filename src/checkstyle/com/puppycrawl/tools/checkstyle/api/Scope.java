@@ -27,7 +27,7 @@ import java.util.Map;
  *
  * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne</a>
  */
-public final class Scope implements Comparable, Serializable
+public final class Scope implements Comparable<Scope>, Serializable
 {
     // Note that although this class might seem to be an
     // implementation detail, this class has to be public because it
@@ -84,7 +84,8 @@ public final class Scope implements Comparable, Serializable
         new Scope(SCOPECODE_ANONINNER, SCOPENAME_ANONINNER);
 
     /** map from scope names to the respective Scope */
-    private static final Map NAME_TO_SCOPE = new HashMap();
+    private static final Map<String, Scope> NAME_TO_SCOPE =
+        new HashMap<String, Scope>();
     static {
         NAME_TO_SCOPE.put(SCOPENAME_NOTHING, NOTHING);
         NAME_TO_SCOPE.put(SCOPENAME_PUBLIC, PUBLIC);
@@ -103,6 +104,7 @@ public final class Scope implements Comparable, Serializable
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString()
     {
         return "Scope[" + mCode + " (" + mName + ")]";
@@ -119,10 +121,9 @@ public final class Scope implements Comparable, Serializable
     /**
      * {@inheritDoc}
      */
-    public int compareTo(Object aObject)
+    public int compareTo(Scope aObject)
     {
-        final Scope s = (Scope) aObject;
-        return this.mCode - s.mCode;
+        return this.mCode - aObject.mCode;
     }
 
     /**
@@ -161,7 +162,7 @@ public final class Scope implements Comparable, Serializable
         // canonicalize argument
         final String scopeName = aScopeName.trim().toLowerCase();
 
-        final Scope retVal = (Scope) NAME_TO_SCOPE.get(scopeName);
+        final Scope retVal = NAME_TO_SCOPE.get(scopeName);
         if (retVal == null) {
             throw new IllegalArgumentException(scopeName);
         }

@@ -21,10 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import java.math.BigInteger;
 import java.util.Stack;
-
 
 /**
  * Base class for checks the calculate complexity based around methods.
@@ -39,7 +37,7 @@ public abstract class AbstractComplexityCheck
     private static final BigInteger INITIAL_VALUE = BigInteger.ONE;
 
     /** stack of values - all but the current value */
-    private final Stack mValueStack = new Stack();
+    private final Stack<BigInteger> mValueStack = new Stack<BigInteger>();
 
     /** the current value */
     private BigInteger mCurrentValue = BigInteger.ZERO;
@@ -82,6 +80,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public final int[] getRequiredTokens()
     {
         return new int[] {
@@ -109,6 +108,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -124,6 +124,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -177,7 +178,7 @@ public abstract class AbstractComplexityCheck
      */
     protected final BigInteger popValue()
     {
-        mCurrentValue = (BigInteger) mValueStack.pop();
+        mCurrentValue = mValueStack.pop();
         return mCurrentValue;
     }
 

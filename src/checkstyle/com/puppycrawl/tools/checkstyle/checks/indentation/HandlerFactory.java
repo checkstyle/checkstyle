@@ -18,16 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -45,7 +43,8 @@ public class HandlerFactory
     /**
      * Registered handlers.
      */
-    private final Map mTypeHandlers = new HashMap();
+    private final Map<Integer, Constructor<?>> mTypeHandlers =
+        new HashMap<Integer, Constructor<?>>();
 
     /**
      * registers a handler
@@ -53,14 +52,14 @@ public class HandlerFactory
      * @param aType   type from TokenTypes
      * @param aHandlerClass  the handler to register
      */
-    private void register(int aType, Class aHandlerClass)
+    private void register(int aType, Class<?> aHandlerClass)
     {
         try {
-            final Constructor ctor = aHandlerClass.getConstructor(new Class[] {
-                IndentationCheck.class,
-                DetailAST.class,             // current AST
-                ExpressionHandler.class,     // parent
-            });
+            final Constructor<?> ctor = aHandlerClass
+                    .getConstructor(new Class[] {IndentationCheck.class,
+                        DetailAST.class, // current AST
+                        ExpressionHandler.class, // parent
+                    });
             mTypeHandlers.put(new Integer(aType), ctor);
         }
         ///CLOVER:OFF
@@ -128,7 +127,7 @@ public class HandlerFactory
      */
     public boolean isHandledType(int aType)
     {
-        final Set typeSet = mTypeHandlers.keySet();
+        final Set<Integer> typeSet = mTypeHandlers.keySet();
         return typeSet.contains(new Integer(aType));
     }
 
@@ -139,11 +138,13 @@ public class HandlerFactory
      */
     public int[] getHandledTypes()
     {
-        final Set typeSet = mTypeHandlers.keySet();
+        final Set<Integer> typeSet = mTypeHandlers.keySet();
         final int[] types = new int[typeSet.size()];
         int index = 0;
-        for (final Iterator i = typeSet.iterator(); i.hasNext(); index++) {
-            types[index] = ((Integer) i.next()).intValue();
+        for (final Iterator<Integer> i = typeSet.iterator(); i.hasNext();
+            index++)
+        {
+            types[index] = (i.next()).intValue();
         }
 
         return types;
@@ -162,7 +163,7 @@ public class HandlerFactory
         DetailAST aAst, ExpressionHandler aParent)
     {
         final ExpressionHandler handler =
-            (ExpressionHandler) mCreatedHandlers.get(aAst);
+            mCreatedHandlers.get(aAst);
         if (handler != null) {
             return handler;
         }
@@ -175,8 +176,8 @@ public class HandlerFactory
 
         ExpressionHandler expHandler = null;
         try {
-            final Constructor handlerCtor =
-                (Constructor) mTypeHandlers.get(type);
+            final Constructor<?> handlerCtor =
+                mTypeHandlers.get(type);
             if (handlerCtor != null) {
                 expHandler = (ExpressionHandler) handlerCtor.newInstance(
                     new Object[] {
@@ -240,5 +241,6 @@ public class HandlerFactory
     }
 
     /** cache for created method call handlers */
-    private final Map mCreatedHandlers = new HashMap();
+    private final Map<DetailAST, ExpressionHandler> mCreatedHandlers =
+        new HashMap<DetailAST, ExpressionHandler>();
 }

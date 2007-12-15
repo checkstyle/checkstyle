@@ -18,15 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.duplicates;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
-
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-
 import org.apache.commons.collections.MultiHashMap;
 import org.apache.commons.collections.MultiMap;
 import org.apache.commons.collections.ReferenceMap;
@@ -43,6 +41,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Lars K&uuml;hne
  */
+@SuppressWarnings("unchecked")
 public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 {
     /**
@@ -144,6 +143,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
          * @param aLine the aLine
          * @return checksum
          */
+        @Override
         protected int calcChecksum(String aLine)
         {
             if (aLine.startsWith("import ")) {
@@ -188,7 +188,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     /**
      * A SoftReference cache for the trimmed lines of a file path,
      */
-    private Map mTrimmedLineCache = new ReferenceMap();
+    private final Map<String, String[]> mTrimmedLineCache = new ReferenceMap();
 
     // fields required only for statistics
 
@@ -396,6 +396,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
      * this line i/j-combination has already been reported as part of another
      * viloation
      */
+    @SuppressWarnings("unchecked")
     private void findDuplicateFromLine(
         final int aI, final int aJ, final int aILine,
         final int[] aJLines, final MultiMap aIgnore)
@@ -493,7 +494,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     private String[] getTrimmedLines(File aFile) throws IOException
     {
         final String path = aFile.getPath();
-        final String[] cachedLines = (String[]) mTrimmedLineCache.get(path);
+        final String[] cachedLines = mTrimmedLineCache.get(path);
         if (cachedLines != null) {
             return cachedLines;
         }

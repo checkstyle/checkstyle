@@ -19,20 +19,19 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
-import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
 import org.apache.commons.beanutils.ConversionException;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -45,7 +44,8 @@ import org.apache.commons.logging.LogFactory;
 public final class Utils
 {
     /** Map of all created regular expressions **/
-    private static final Map CREATED_RES = new HashMap();
+    private static final Map<String, Pattern> CREATED_RES =
+        new HashMap<String, Pattern>();
     /** Shared instance of logger for exception logging. */
     private static final Log EXCEPTION_LOG =
         LogFactory.getLog("com.puppycrawl.tools.checkstyle.ExceptionLog");
@@ -159,7 +159,7 @@ public final class Utils
         throws PatternSyntaxException
     {
         final String key = aPattern + ":flags-" + aCompileFlags;
-        Pattern retVal = (Pattern) CREATED_RES.get(key);
+        Pattern retVal = CREATED_RES.get(key);
         if (retVal == null) {
             retVal = Pattern.compile(aPattern, aCompileFlags);
             CREATED_RES.put(key, retVal);
@@ -191,7 +191,7 @@ public final class Utils
     public static String[] getLines(String aFileName, String aCharsetName)
         throws IOException
     {
-        final ArrayList lines = new ArrayList();
+        final List<String> lines = new ArrayList<String>();
         final FileInputStream fr = new FileInputStream(aFileName);
         LineNumberReader lnr = null;
         try {
@@ -218,8 +218,7 @@ public final class Utils
                 ; // silently ignore
             }
         }
-
-        return (String[]) lines.toArray(new String[0]);
+        return lines.toArray(new String[0]);
     }
 
     /**
@@ -301,7 +300,7 @@ public final class Utils
             }
         }
 
-        final ArrayList files = new ArrayList(aFiles.length);
+        final List<File> files = new ArrayList<File>(aFiles.length);
         for (int i = 0; i < aFiles.length; i++) {
             final File f = aFiles[i];
             final String fileName = f.getName();
@@ -312,7 +311,7 @@ public final class Utils
                 }
             }
         }
-        return (File[]) files.toArray(new File[files.size()]);
+        return files.toArray(new File[files.size()]);
     }
 
 }

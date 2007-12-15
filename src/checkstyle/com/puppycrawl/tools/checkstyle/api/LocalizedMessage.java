@@ -38,7 +38,7 @@ import java.util.ResourceBundle;
  * @version 1.0
  */
 public final class LocalizedMessage
-    implements Comparable
+    implements Comparable<LocalizedMessage>
 {
     /** hash function multiplicand */
     private static final int HASH_MULT = 29;
@@ -51,8 +51,8 @@ public final class LocalizedMessage
      * Avoids repetitive calls to ResourceBundle.getBundle().
      * TODO: The cache should be cleared at some point.
      */
-    private static final Map BUNDLE_CACHE =
-        Collections.synchronizedMap(new HashMap());
+    private static final Map<String, ResourceBundle> BUNDLE_CACHE =
+        Collections.synchronizedMap(new HashMap<String, ResourceBundle>());
 
     /** the line number **/
     private final int mLineNo;
@@ -78,9 +78,10 @@ public final class LocalizedMessage
     private final String mBundle;
 
     /** class of the source for this LocalizedMessage */
-    private final Class mSourceClass;
+    private final Class<?> mSourceClass;
 
     /** {@inheritDoc} */
+    @Override
     public boolean equals(Object aObject)
     {
         if (this == aObject) {
@@ -115,6 +116,7 @@ public final class LocalizedMessage
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode()
     {
         int result;
@@ -146,7 +148,7 @@ public final class LocalizedMessage
                             Object[] aArgs,
                             SeverityLevel aSeverityLevel,
                             String aModuleId,
-                            Class aSourceClass)
+                            Class<?> aSourceClass)
     {
         mLineNo = aLineNo;
         mColNo = aColNo;
@@ -175,7 +177,7 @@ public final class LocalizedMessage
                             String aKey,
                             Object[] aArgs,
                             String aModuleId,
-                            Class aSourceClass)
+                            Class<?> aSourceClass)
     {
         this(aLineNo,
              aColNo,
@@ -204,7 +206,7 @@ public final class LocalizedMessage
                             Object[] aArgs,
                             SeverityLevel aSeverityLevel,
                             String aModuleId,
-                            Class aSourceClass)
+                            Class<?> aSourceClass)
     {
         this(aLineNo, 0, aBundle, aKey, aArgs, aSeverityLevel, aModuleId,
                 aSourceClass);
@@ -227,7 +229,7 @@ public final class LocalizedMessage
         String aKey,
         Object[] aArgs,
         String aModuleId,
-        Class aSourceClass)
+        Class<?> aSourceClass)
     {
         this(aLineNo, 0, aBundle, aKey, aArgs, DEFAULT_SEVERITY, aModuleId,
                 aSourceClass);
@@ -263,7 +265,7 @@ public final class LocalizedMessage
     private ResourceBundle getBundle(String aBundleName)
     {
         synchronized (BUNDLE_CACHE) {
-            ResourceBundle bundle = (ResourceBundle) BUNDLE_CACHE
+            ResourceBundle bundle = BUNDLE_CACHE
                     .get(aBundleName);
             if (bundle == null) {
                 bundle = ResourceBundle.getBundle(aBundleName, sLocale,
@@ -326,16 +328,15 @@ public final class LocalizedMessage
     ////////////////////////////////////////////////////////////////////////////
 
     /** {@inheritDoc} */
-    public int compareTo(Object aOther)
+    public int compareTo(LocalizedMessage aOther)
     {
-        final LocalizedMessage lt = (LocalizedMessage) aOther;
-        if (getLineNo() == lt.getLineNo()) {
-            if (getColumnNo() == lt.getColumnNo()) {
-                return getMessage().compareTo(lt.getMessage());
+        if (getLineNo() == aOther.getLineNo()) {
+            if (getColumnNo() == aOther.getColumnNo()) {
+                return getMessage().compareTo(aOther.getMessage());
             }
-            return (getColumnNo() < lt.getColumnNo()) ? -1 : 1;
+            return (getColumnNo() < aOther.getColumnNo()) ? -1 : 1;
         }
 
-        return (getLineNo() < lt.getLineNo()) ? -1 : 1;
+        return (getLineNo() < aOther.getLineNo()) ? -1 : 1;
     }
 }

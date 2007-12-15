@@ -18,23 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
 import antlr.RecognitionException;
+import antlr.TokenStream;
 import antlr.TokenStreamException;
 import antlr.TokenStreamRecognitionException;
-import antlr.TokenStream;
-
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -45,9 +32,19 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
-
+import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -86,6 +83,7 @@ public final class TreeWalker
          * Parser error-reporting function, does nothing.
          * @param aRex the exception to be reported
          */
+        @Override
         public void reportError(RecognitionException aRex)
         {
         }
@@ -94,6 +92,7 @@ public final class TreeWalker
          * Parser error-reporting function, does nothing.
          * @param aMsg the error message
          */
+        @Override
         public void reportError(String aMsg)
         {
         }
@@ -102,6 +101,7 @@ public final class TreeWalker
          * Parser warning-reporting function, does nothing.
          * @param aMsg the error message
          */
+        @Override
         public void reportWarning(String aMsg)
         {
         }
@@ -111,9 +111,10 @@ public final class TreeWalker
     private static final int DEFAULT_TAB_WIDTH = 8;
 
     /** maps from token name to checks */
-    private final Map mTokenToChecks = new HashMap();
+    private final Map<String, List<Check>> mTokenToChecks =
+        new HashMap<String, List<Check>>();
     /** all the registered checks */
-    private final Set mAllChecks = new HashSet();
+    private final Set<Check> mAllChecks = new HashSet<Check>();
     /** the distance between tab stops */
     private int mTabWidth = DEFAULT_TAB_WIDTH;
     /** cache file **/
@@ -186,6 +187,7 @@ public final class TreeWalker
     }
 
     /** @see com.puppycrawl.tools.checkstyle.api.Configurable */
+    @Override
     public void finishLocalSetup()
     {
         final DefaultContext checkContext = new DefaultContext();
@@ -205,6 +207,7 @@ public final class TreeWalker
      * in the provided configuration.
      * {@inheritDoc}
      */
+    @Override
     public void setupChild(Configuration aChildConf)
         throws CheckstyleException
     {
@@ -349,16 +352,14 @@ public final class TreeWalker
         throws CheckstyleException
     {
         int[] tokens = new int[] {}; //safety initialization
-        final Set checkTokens = aCheck.getTokenNames();
+        final Set<String> checkTokens = aCheck.getTokenNames();
         if (!checkTokens.isEmpty()) {
             tokens = aCheck.getRequiredTokens();
 
             //register configured tokens
             final int acceptableTokens[] = aCheck.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
-            final Iterator it = checkTokens.iterator();
-            while (it.hasNext()) {
-                final String token = (String) it.next();
+            for (String token : checkTokens) {
                 try {
                     final int tokenId = TokenTypes.getTokenId(token);
                     if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
@@ -398,9 +399,9 @@ public final class TreeWalker
      */
     private void registerCheck(String aToken, Check aCheck)
     {
-        ArrayList visitors = (ArrayList) mTokenToChecks.get(aToken);
+        List<Check> visitors = mTokenToChecks.get(aToken);
         if (visitors == null) {
-            visitors = new ArrayList();
+            visitors = new ArrayList<Check>();
             mTokenToChecks.put(aToken, visitors);
         }
 
@@ -438,11 +439,9 @@ public final class TreeWalker
      */
     private void notifyBegin(DetailAST aRootAST, FileContents aContents)
     {
-        final Iterator it = mAllChecks.iterator();
-        while (it.hasNext()) {
-            final Check check = (Check) it.next();
-            check.setFileContents(aContents);
-            check.beginTree(aRootAST);
+        for (Check ch : mAllChecks) {
+            ch.setFileContents(aContents);
+            ch.beginTree(aRootAST);
         }
     }
 
@@ -452,10 +451,8 @@ public final class TreeWalker
      */
     private void notifyEnd(DetailAST aRootAST)
     {
-        final Iterator it = mAllChecks.iterator();
-        while (it.hasNext()) {
-            final Check check = (Check) it.next();
-            check.finishTree(aRootAST);
+        for (Check ch : mAllChecks) {
+            ch.finishTree(aRootAST);
         }
     }
 
@@ -491,13 +488,11 @@ public final class TreeWalker
      */
     private void notifyVisit(DetailAST aAST)
     {
-        final ArrayList visitors =
-            (ArrayList) mTokenToChecks.get(
-                TokenTypes.getTokenName(aAST.getType()));
+        final List<Check> visitors = mTokenToChecks.get(TokenTypes
+                .getTokenName(aAST.getType()));
         if (visitors != null) {
-            for (int i = 0; i < visitors.size(); i++) {
-                final Check check = (Check) visitors.get(i);
-                check.visitToken(aAST);
+            for (Check c : visitors) {
+                c.visitToken(aAST);
             }
         }
     }
@@ -508,13 +503,11 @@ public final class TreeWalker
      */
     private void notifyLeave(DetailAST aAST)
     {
-        final ArrayList visitors =
-            (ArrayList) mTokenToChecks.get(
-                TokenTypes.getTokenName(aAST.getType()));
+        final List<Check> visitors = mTokenToChecks.get(TokenTypes
+                .getTokenName(aAST.getType()));
         if (visitors != null) {
-            for (int i = 0; i < visitors.size(); i++) {
-                final Check check = (Check) visitors.get(i);
-                check.leaveToken(aAST);
+            for (Check ch : visitors) {
+                ch.leaveToken(aAST);
             }
         }
     }
@@ -594,10 +587,10 @@ public final class TreeWalker
     /**
      * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
      */
+    @Override
     public void destroy()
     {
-        for (final Iterator it = mAllChecks.iterator(); it.hasNext();) {
-            final Check c = (Check) it.next();
+        for (Check c : mAllChecks) {
             c.destroy();
         }
         mCache.destroy();

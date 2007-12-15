@@ -2,7 +2,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -13,7 +12,6 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Locale;
 import java.util.Properties;
-
 import junit.framework.TestCase;
 
 public abstract class BaseCheckTestCase
@@ -27,8 +25,11 @@ public abstract class BaseCheckTestCase
         {
             super(out, true);
         }
+        @Override
         public void auditStarted(AuditEvent evt) {}
+        @Override
         public void fileFinished(AuditEvent evt) {}
+        @Override
         public void fileStarted(AuditEvent evt) {}
     }
 
@@ -36,7 +37,7 @@ public abstract class BaseCheckTestCase
     protected final PrintStream mStream = new PrintStream(mBAOS);
     protected final Properties mProps = new Properties();
 
-    public static DefaultConfiguration createCheckConfig(Class aClazz)
+    public static DefaultConfiguration createCheckConfig(Class<?> aClazz)
     {
         final DefaultConfiguration checkConfig =
             new DefaultConfiguration(aClazz.getName());

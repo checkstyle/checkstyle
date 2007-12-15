@@ -24,7 +24,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Iterator;
 import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.Attributes;
@@ -61,7 +60,7 @@ public final class PackageNamesLoader
         new PackageObjectFactory();
 
     /** The loaded package names */
-    private final Stack mPackageStack = new Stack();
+    private final Stack<String> mPackageStack = new Stack<String>();
 
     /**
      * Creates a new <code>PackageNamesLoader</code> instance.
@@ -75,6 +74,7 @@ public final class PackageNamesLoader
     }
 
     /** {@inheritDoc} */
+    @Override
     public void startElement(String aNamespaceURI,
                              String aLocalName,
                              String aQName,
@@ -98,9 +98,7 @@ public final class PackageNamesLoader
     private String getPackageName()
     {
         final StringBuffer buf = new StringBuffer();
-        final Iterator it = mPackageStack.iterator();
-        while (it.hasNext()) {
-            final String subPackage = (String) it.next();
+        for (String subPackage : mPackageStack) {
             buf.append(subPackage);
             if (!subPackage.endsWith(".")) {
                 buf.append(".");
@@ -119,6 +117,7 @@ public final class PackageNamesLoader
     }
 
     /** {@inheritDoc} */
+    @Override
     public void endElement(String aNamespaceURI,
                            String aLocalName,
                            String aQName)

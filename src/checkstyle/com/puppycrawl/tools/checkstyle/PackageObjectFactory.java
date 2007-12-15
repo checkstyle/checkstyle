@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * A factory for creating objects from package names and names.
@@ -32,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 class PackageObjectFactory implements ModuleFactory
 {
     /** a list of package names to prepend to class names */
-    private final List mPackages = new ArrayList();
+    private final List<String> mPackages = new ArrayList<String>();
 
     /**
      * Creates a new <code>PackageObjectFactory</code> instance.
@@ -47,7 +46,7 @@ class PackageObjectFactory implements ModuleFactory
      */
     String[] getPackages()
     {
-        return (String[]) mPackages.toArray(new String[mPackages.size()]);
+        return mPackages.toArray(new String[mPackages.size()]);
     }
 
     /**
@@ -81,7 +80,7 @@ class PackageObjectFactory implements ModuleFactory
 
         //now try packages
         for (int i = 0; i < mPackages.size(); i++) {
-            final String packageName = (String) mPackages.get(i);
+            final String packageName = mPackages.get(i);
             final String className = packageName + aName;
             try {
                 return createObject(className);
@@ -106,7 +105,7 @@ class PackageObjectFactory implements ModuleFactory
         try {
             final ClassLoader loader = Thread.currentThread()
                     .getContextClassLoader();
-            final Class clazz = Class.forName(aClassName, true, loader);
+            final Class<?> clazz = Class.forName(aClassName, true, loader);
             return clazz.newInstance();
         }
         catch (final ClassNotFoundException e) {

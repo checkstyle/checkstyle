@@ -54,7 +54,8 @@ final class AccessResult
             LABEL_UNKNOWN);
 
     /** map from results names to the respective result */
-    private static final Map NAME_TO_LEVEL = new HashMap();
+    private static final Map<String, AccessResult> NAME_TO_LEVEL =
+        new HashMap<String, AccessResult>();
     static {
         NAME_TO_LEVEL.put(LABEL_ALLOWED, ALLOWED);
         NAME_TO_LEVEL.put(LABEL_DISALLOWED, DISALLOWED);
@@ -87,12 +88,14 @@ final class AccessResult
     }
 
     /** {@inheritDoc} */
+    @Override
     public String toString()
     {
         return getLabel();
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean equals(Object aObj)
     {
         boolean result = false;
@@ -107,6 +110,7 @@ final class AccessResult
     }
 
     /** {@inheritDoc} */
+    @Override
     public int hashCode()
     {
         return mCode;
@@ -123,7 +127,7 @@ final class AccessResult
         // canonicalize argument
         final String arName = aName.trim();
 
-        final AccessResult retVal = (AccessResult) NAME_TO_LEVEL.get(arName);
+        final AccessResult retVal = NAME_TO_LEVEL.get(arName);
         if (retVal == null) {
             throw new IllegalArgumentException(arName);
         }

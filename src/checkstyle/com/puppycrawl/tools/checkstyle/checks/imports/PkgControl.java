@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,9 +32,9 @@ import java.util.List;
 class PkgControl
 {
     /** List of {@link Guard} objects to check. */
-    private final LinkedList mGuards = new LinkedList();
+    private final LinkedList<Guard> mGuards = new LinkedList<Guard>();
     /** List of children {@link PkgControl} objects. */
-    private final List mChildren = new ArrayList();
+    private final List<PkgControl> mChildren = new ArrayList<PkgControl>();
     /** The parent. Null indicates we are the root node. */
     private final PkgControl mParent;
     /** The full package name for the node. */
@@ -98,9 +97,7 @@ class PkgControl
         }
 
         // Check if any of the children match.
-        final Iterator it = mChildren.iterator();
-        while (it.hasNext()) {
-            final PkgControl pc = (PkgControl) it.next();
+        for (PkgControl pc : mChildren) {
             final PkgControl match = pc.locateFinest(aForPkg);
             if (match != null) {
                 return match;
@@ -145,9 +142,7 @@ class PkgControl
     private AccessResult localCheckAccess(final String aForImport,
         final String aInPkg)
     {
-        final Iterator it = mGuards.iterator();
-        while (it.hasNext()) {
-            final Guard g = (Guard) it.next();
+        for (Guard g : mGuards) {
             // Check if a Guard is only meant to be applied locally.
             if (g.isLocalOnly() && !mFullPackage.equals(aInPkg)) {
                 continue;

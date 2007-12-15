@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -32,7 +31,7 @@ public class FilterSet
     implements Filter
 {
     /** filter set */
-    private final Set mFilters = new HashSet();
+    private final Set<Filter> mFilters = new HashSet<Filter>();
 
     /**
      * Adds a Filter to the set.
@@ -56,24 +55,27 @@ public class FilterSet
      * Returns the Filters of the filter set.
      * @return the Filters of the filter set.
      */
-    protected Set getFilters()
+    protected Set<Filter> getFilters()
     {
         return mFilters;
     }
 
     /** {@inheritDoc} */
+    @Override
     public String toString()
     {
         return mFilters.toString();
     }
 
     /** {@inheritDoc} */
+    @Override
     public int hashCode()
     {
         return mFilters.hashCode();
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean equals(Object aObject)
     {
         if (aObject instanceof FilterSet) {
@@ -86,9 +88,7 @@ public class FilterSet
     /** {@inheritDoc} */
     public boolean accept(AuditEvent aEvent)
     {
-        final Iterator it = mFilters.iterator();
-        while (it.hasNext()) {
-            final Filter filter = (Filter) it.next();
+        for (Filter filter : mFilters) {
             if (!filter.accept(aEvent)) {
                 return false;
             }

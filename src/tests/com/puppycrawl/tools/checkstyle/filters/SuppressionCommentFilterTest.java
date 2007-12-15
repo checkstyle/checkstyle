@@ -4,11 +4,6 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Locale;
-
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -19,6 +14,10 @@ import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Locale;
 
 public class SuppressionCommentFilterTest
     extends BaseCheckTestCase
@@ -150,7 +149,7 @@ public class SuppressionCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
-    public static DefaultConfiguration createFilterConfig(Class aClass)
+    public static DefaultConfiguration createFilterConfig(Class<?> aClass)
     {
         return new DefaultConfiguration(aClass.getName());
     }
@@ -164,6 +163,7 @@ public class SuppressionCommentFilterTest
                removeSuppressed(sAllMessages, aSuppressed));
     }
 
+    @Override
     protected Checker createChecker(Configuration aFilterConfig)
             throws CheckstyleException
     {
@@ -189,8 +189,8 @@ public class SuppressionCommentFilterTest
 
     private String[] removeSuppressed(String[] aFrom, String[] aRemove)
     {
-        final Collection coll = new ArrayList(Arrays.asList(aFrom));
+        final Collection<String> coll = new ArrayList<String>(Arrays.asList(aFrom));
         coll.removeAll(Arrays.asList(aRemove));
-        return (String[]) coll.toArray(new String[coll.size()]);
+        return coll.toArray(new String[coll.size()]);
     }
 }

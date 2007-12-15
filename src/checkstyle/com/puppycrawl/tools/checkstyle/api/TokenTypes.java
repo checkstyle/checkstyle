@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-import java.lang.reflect.Field;
-
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Contains the constants for all the tokens contained in the Abstract
@@ -3338,7 +3337,8 @@ public final class TokenTypes
     ////////////////////////////////////////////////////////////////////////
 
     /** maps from a token name to value */
-    private static final Map TOKEN_NAME_TO_VALUE = new HashMap();
+    private static final Map<String, Integer> TOKEN_NAME_TO_VALUE =
+        new HashMap<String, Integer>();
     /** maps from a token value to name */
     private static final String[] TOKEN_VALUE_TO_NAME;
 
@@ -3404,7 +3404,7 @@ public final class TokenTypes
      */
     public static int getTokenId(String aName)
     {
-        final Integer id = (Integer) TOKEN_NAME_TO_VALUE.get(aName);
+        final Integer id = TOKEN_NAME_TO_VALUE.get(aName);
         if (id == null) {
             throw new IllegalArgumentException("given name " + aName);
         }

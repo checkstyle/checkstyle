@@ -23,9 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
-
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -50,10 +48,10 @@ public class UnusedImportsCheck extends DeclarationCollector
     private boolean mCollect;
 
     /** set of the imports */
-    private final Set mImports = new HashSet();
+    private final Set<FullIdent> mImports = new HashSet<FullIdent>();
 
     /** set of references - possibly to imports or other things */
-    private final Set mReferenced = new HashSet();
+    private final Set<String> mReferenced = new HashSet<String>();
 
     /** Default constructor. */
     public UnusedImportsCheck()
@@ -61,6 +59,7 @@ public class UnusedImportsCheck extends DeclarationCollector
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         super.beginTree(aRootAST);
@@ -70,13 +69,11 @@ public class UnusedImportsCheck extends DeclarationCollector
     }
 
     /** {@inheritDoc} */
+    @Override
     public void finishTree(DetailAST aRootAST)
     {
         // loop over all the imports to see if referenced.
-        final Iterator it = mImports.iterator();
-        while (it.hasNext()) {
-            final FullIdent imp = (FullIdent) it.next();
-
+        for (FullIdent imp : mImports) {
             if (!mReferenced.contains(Utils.baseClassname(imp.getText()))) {
                 log(imp.getLineNo(),
                     imp.getColumnNo(),
@@ -86,6 +83,7 @@ public class UnusedImportsCheck extends DeclarationCollector
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -106,12 +104,14 @@ public class UnusedImportsCheck extends DeclarationCollector
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         super.visitToken(aAST);

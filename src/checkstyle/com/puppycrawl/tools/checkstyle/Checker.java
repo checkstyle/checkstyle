@@ -18,28 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.Context;
+import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.File;
-
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Stack;
 import java.util.StringTokenizer;
-
-import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.api.Context;
-import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -55,10 +53,12 @@ public class Checker extends AutomaticBean
             new SeverityLevelCounter(SeverityLevel.ERROR);
 
     /** vector of listeners */
-    private final ArrayList mListeners = new ArrayList();
+    private final List<AuditListener> mListeners =
+        new ArrayList<AuditListener>();
 
     /** vector of fileset checks */
-    private final ArrayList mFileSetChecks = new ArrayList();
+    private final List<FileSetCheck> mFileSetChecks =
+        new ArrayList<FileSetCheck>();
 
     /** class loader to resolve classes with. **/
     private ClassLoader mLoader =
@@ -106,6 +106,7 @@ public class Checker extends AutomaticBean
     }
 
     /** {@inheritDoc} */
+    @Override
     public void finishLocalSetup() throws CheckstyleException
     {
         final Locale locale = new Locale(mLocaleLanguage, mLocaleCountry);
@@ -132,6 +133,7 @@ public class Checker extends AutomaticBean
      * @throws CheckstyleException {@inheritDoc}
      * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean
      */
+    @Override
     protected void setupChild(Configuration aChildConf)
         throws CheckstyleException
     {
@@ -233,11 +235,9 @@ public class Checker extends AutomaticBean
     public int process(File[] aFiles)
     {
         fireAuditStarted();
-        for (int i = 0; i < mFileSetChecks.size(); i++) {
-            final FileSetCheck fileSetCheck =
-                (FileSetCheck) mFileSetChecks.get(i);
-            fileSetCheck.process(aFiles);
-            fileSetCheck.destroy();
+        for (FileSetCheck fsc : mFileSetChecks) {
+            fsc.process(aFiles);
+            fsc.destroy();
         }
         final int errorCount = mCounter.getCount();
         fireAuditFinished();
@@ -365,7 +365,7 @@ public class Checker extends AutomaticBean
             }
         }
 
-        final Stack s = new Stack();
+        final Stack<String> s = new Stack<String>();
         s.push(root);
         final StringTokenizer tok = new StringTokenizer(aPath, File.separator);
         while (tok.hasMoreTokens()) {
@@ -413,9 +413,7 @@ public class Checker extends AutomaticBean
     protected void fireAuditStarted()
     {
         final AuditEvent evt = new AuditEvent(this);
-        final Iterator it = mListeners.iterator();
-        while (it.hasNext()) {
-            final AuditListener listener = (AuditListener) it.next();
+        for (AuditListener listener : mListeners) {
             listener.auditStarted(evt);
         }
     }
@@ -424,9 +422,7 @@ public class Checker extends AutomaticBean
     protected void fireAuditFinished()
     {
         final AuditEvent evt = new AuditEvent(this);
-        final Iterator it = mListeners.iterator();
-        while (it.hasNext()) {
-            final AuditListener listener = (AuditListener) it.next();
+        for (AuditListener listener : mListeners) {
             listener.auditFinished(evt);
         }
     }
@@ -441,9 +437,7 @@ public class Checker extends AutomaticBean
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        final Iterator it = mListeners.iterator();
-        while (it.hasNext()) {
-            final AuditListener listener = (AuditListener) it.next();
+        for (AuditListener listener : mListeners) {
             listener.fileStarted(evt);
         }
     }
@@ -458,9 +452,7 @@ public class Checker extends AutomaticBean
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        final Iterator it = mListeners.iterator();
-        while (it.hasNext()) {
-            final AuditListener listener = (AuditListener) it.next();
+        for (AuditListener listener : mListeners) {
             listener.fileFinished(evt);
         }
     }
@@ -479,9 +471,7 @@ public class Checker extends AutomaticBean
         for (int i = 0; i < aErrors.length; i++) {
             final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);
             if (mFilters.accept(evt)) {
-                final Iterator it = mListeners.iterator();
-                while (it.hasNext()) {
-                    final AuditListener listener = (AuditListener) it.next();
+                for (AuditListener listener : mListeners) {
                     listener.addError(evt);
                 }
             }

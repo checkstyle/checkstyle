@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import java.util.Stack;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Stack;
 
 /**
  * This check calculates the Non Commenting Source Statements (NCSS) metric for
@@ -57,11 +56,12 @@ public class JavaNCSSCheck extends Check
     private int mMethodMax = METHOD_MAX_NCSS;
 
     /** list containing the stacked counters */
-    private Stack mCounters;
+    private Stack<Counter> mCounters;
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[]{
@@ -99,6 +99,7 @@ public class JavaNCSSCheck extends Check
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getRequiredTokens()
     {
         return new int[]{
@@ -136,9 +137,10 @@ public class JavaNCSSCheck extends Check
     /**
      * {@inheritDoc}
      */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
-        mCounters = new Stack();
+        mCounters = new Stack<Counter>();
 
         //add a counter for the file
         mCounters.push(new Counter());
@@ -147,6 +149,7 @@ public class JavaNCSSCheck extends Check
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final int tokenType = aAST.getType();
@@ -166,7 +169,7 @@ public class JavaNCSSCheck extends Check
             //increment the stacked counters
             final int size = mCounters.size();
             for (int i = 0; i < size; i++) {
-                ((Counter) mCounters.get(i)).increment();
+                (mCounters.get(i)).increment();
             }
         }
     }
@@ -174,6 +177,7 @@ public class JavaNCSSCheck extends Check
     /**
      * {@inheritDoc}
      */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         final int tokenType = aAST.getType();
@@ -183,7 +187,7 @@ public class JavaNCSSCheck extends Check
             || (TokenTypes.INSTANCE_INIT == tokenType))
         {
             //pop counter from the stack
-            final Counter counter = (Counter) mCounters.pop();
+            final Counter counter = mCounters.pop();
 
             final int count = counter.getCount();
             if (count > mMethodMax) {
@@ -193,7 +197,7 @@ public class JavaNCSSCheck extends Check
         }
         else if (TokenTypes.CLASS_DEF == tokenType) {
             //pop counter from the stack
-            final Counter counter = (Counter) mCounters.pop();
+            final Counter counter = mCounters.pop();
 
             final int count = counter.getCount();
             if (count > mClassMax) {
@@ -206,10 +210,11 @@ public class JavaNCSSCheck extends Check
     /**
      * {@inheritDoc}
      */
+    @Override
     public void finishTree(DetailAST aRootAST)
     {
         //pop counter from the stack
-        final Counter counter = (Counter) mCounters.pop();
+        final Counter counter = mCounters.pop();
 
         final int count = counter.getCount();
         if (count > mFileMax) {

@@ -18,27 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import java.util.LinkedList;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
-
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Wrapper command line program for the Checker.
@@ -119,7 +116,7 @@ public final class Main
         }
 
         final AuditListener listener = createListener(line, out, closeOut);
-        final List files = getFilesToProcess(line);
+        final List<File> files = getFilesToProcess(line);
         final Checker c = createChecker(config, moduleFactory, listener);
 
         final File[] processedFiles = new File[files.size()];
@@ -163,9 +160,9 @@ public final class Main
      * @param aLine the command line options specifying what files to process
      * @return list of files to process
      */
-    private static List getFilesToProcess(CommandLine aLine)
+    private static List<File> getFilesToProcess(CommandLine aLine)
     {
-        final List files = new LinkedList();
+        final List<File> files = new LinkedList<File>();
         if (aLine.hasOption("r")) {
             final String[] values = aLine.getOptionValues("r");
             for (int i = 0; i < values.length; i++) {
@@ -277,7 +274,7 @@ public final class Main
      * @param aNode the node to process
      * @param aFiles list to add found files to
      */
-    private static void traverse(File aNode, List aFiles)
+    private static void traverse(File aNode, List<File> aFiles)
     {
         if (aNode.canRead()) {
             if (aNode.isDirectory()) {

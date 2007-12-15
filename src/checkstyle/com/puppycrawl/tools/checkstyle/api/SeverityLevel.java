@@ -30,7 +30,8 @@ import java.util.Map;
  *
  * @author David Schneider
  */
-public final class SeverityLevel implements Comparable, Serializable
+public final class SeverityLevel implements Comparable<SeverityLevel>,
+        Serializable
 {
     /**  Numeric value for severity level IGNORE     */
     private static final int SEVERITYCODE_IGNORE = 10;
@@ -68,7 +69,8 @@ public final class SeverityLevel implements Comparable, Serializable
         new SeverityLevel(SEVERITYCODE_ERROR, SEVERITYNAME_ERROR);
 
     /** map from level names to the respective level */
-    private static final Map NAME_TO_LEVEL = new HashMap();
+    private static final Map<String, SeverityLevel> NAME_TO_LEVEL =
+        new HashMap<String, SeverityLevel>();
     static {
         NAME_TO_LEVEL.put(SEVERITYNAME_IGNORE, IGNORE);
         NAME_TO_LEVEL.put(SEVERITYNAME_INFO, INFO);
@@ -85,6 +87,7 @@ public final class SeverityLevel implements Comparable, Serializable
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString()
     {
         return "Severity[" + mCode + " (" + mName + ")]";
@@ -101,10 +104,9 @@ public final class SeverityLevel implements Comparable, Serializable
     /**
      * {@inheritDoc}
      */
-    public int compareTo(Object aObject)
+    public int compareTo(SeverityLevel aObject)
     {
-        final SeverityLevel severity = (SeverityLevel) aObject;
-        return this.mCode - severity.mCode;
+        return this.mCode - aObject.mCode;
     }
 
     /**
@@ -115,6 +117,7 @@ public final class SeverityLevel implements Comparable, Serializable
      *  @return  <code>true</code> means equal, <code>false</code> means
      *            not equal.
      */
+    @Override
     public boolean equals(Object aObj)
     {
         boolean result = false;
@@ -133,6 +136,7 @@ public final class SeverityLevel implements Comparable, Serializable
      *
      *  @return  hash code for the object.
      */
+    @Override
     public int hashCode()
     {
         return mCode;
@@ -163,7 +167,7 @@ public final class SeverityLevel implements Comparable, Serializable
         final String severityName = aSeverityName.trim().toLowerCase();
 
         final SeverityLevel retVal =
-            (SeverityLevel) NAME_TO_LEVEL.get(severityName);
+            NAME_TO_LEVEL.get(severityName);
         if (retVal == null) {
             throw new IllegalArgumentException(severityName);
         }

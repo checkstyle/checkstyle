@@ -1,5 +1,9 @@
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -7,13 +11,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
-
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.api.Utils;
-
 import junit.framework.TestCase;
 
 /**
@@ -25,6 +24,7 @@ public class XMLLoggerTest extends TestCase
 {
     private ByteArrayOutputStream outStream;
 
+    @Override
     public void setUp()
         throws Exception
     {
@@ -169,7 +169,7 @@ public class XMLLoggerTest extends TestCase
             new ByteArrayInputStream(bytes);
         final BufferedReader reader =
             new BufferedReader(new InputStreamReader(inStream));
-        final ArrayList lineList = new ArrayList();
+        final List<String> lineList = new ArrayList<String>();
         while (true) {
             final String line = reader.readLine();
             if (line == null) {
@@ -178,7 +178,7 @@ public class XMLLoggerTest extends TestCase
             lineList.add(line);
         }
         reader.close();
-        return (String[])lineList.toArray(new String[lineList.size()]);
+        return lineList.toArray(new String[lineList.size()]);
     }
 
     /**
@@ -204,6 +204,7 @@ public class XMLLoggerTest extends TestCase
 
     private class TestThrowable extends Exception
     {
+        @Override
         public void printStackTrace(PrintWriter s)
         {
             s.print("stackTrace");

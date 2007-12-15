@@ -22,10 +22,11 @@
               lines="27"/>
     <suppress id="paramNum"
 	      files="LocalizedMessage.java"
-	      lines="142"/>
+	      lines="144"/>
     <!-- 
-      Turn off all checks for Generated code. Fixes issues with using
+      Turn off all checks for Generated and Test code. Fixes issues with using
       Eclipse plug-in.
       -->    
     <suppress checks="." files=".*[\\/]grammars[\\/]Generated[a-zA-Z]*\.java"/>
+    <suppress checks="." files=".*[\\/]src[\\/]tests[\\/]"/>
 </suppressions>

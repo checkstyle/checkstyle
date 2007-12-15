@@ -22,9 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -39,14 +37,14 @@ import java.util.TreeSet;
 public abstract class AbstractClassCouplingCheck extends Check
 {
     /** Class names to ignore. */
-    private final Set mIgnoredClassNames = new HashSet();
+    private final Set<String> mIgnoredClassNames = new HashSet<String>();
     /** Allowed complexity. */
     private int mMax;
     /** package of the file we check. */
     private String mPackageName;
 
     /** Stack of contexts. */
-    private final Stack mContextStack = new Stack();
+    private final Stack<Context> mContextStack = new Stack<Context>();
     /** Current context. */
     private Context mContext;
 
@@ -92,6 +90,7 @@ public abstract class AbstractClassCouplingCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public final int[] getDefaultTokens()
     {
         return getRequiredTokens();
@@ -113,6 +112,7 @@ public abstract class AbstractClassCouplingCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public final void beginTree(DetailAST aAST)
     {
         mPackageName = "";
@@ -122,6 +122,7 @@ public abstract class AbstractClassCouplingCheck extends Check
     protected abstract String getLogMessageId();
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -149,6 +150,7 @@ public abstract class AbstractClassCouplingCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -192,7 +194,7 @@ public abstract class AbstractClassCouplingCheck extends Check
     private void leaveClassDef()
     {
         mContext.checkCoupling();
-        mContext = (Context) mContextStack.pop();
+        mContext = mContextStack.pop();
     }
 
     /**
@@ -207,7 +209,7 @@ public abstract class AbstractClassCouplingCheck extends Check
          * Set of referenced classes.
          * Sorted by name for predictable error messages in unit tests.
          */
-        private final Set mReferencedClassNames = new TreeSet();
+        private final Set<String> mReferencedClassNames = new TreeSet<String>();
         /** Own class name. */
         private final String mClassName;
         /* Location of own class. (Used to log violations) */

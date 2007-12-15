@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Default implementation of the Configuration interface.
@@ -36,10 +36,12 @@ public final class DefaultConfiguration implements Configuration
     private final String mName;
 
     /** the list of child Configurations */
-    private final ArrayList mChildren = new ArrayList();
+    private final List<Configuration> mChildren =
+        new ArrayList<Configuration>();
 
     /** the map from attribute names to attribute values */
-    private final Map mAttributeMap = new HashMap();
+    private final Map<String, String> mAttributeMap =
+        new HashMap<String, String>();
 
     /**
      * Instantiates a DefaultConfiguration.
@@ -53,8 +55,8 @@ public final class DefaultConfiguration implements Configuration
     /** {@inheritDoc} */
     public String[] getAttributeNames()
     {
-        final Set keySet = mAttributeMap.keySet();
-        return (String[]) keySet.toArray(new String[keySet.size()]);
+        final Set<String> keySet = mAttributeMap.keySet();
+        return keySet.toArray(new String[keySet.size()]);
     }
 
     /** {@inheritDoc} */
@@ -65,13 +67,13 @@ public final class DefaultConfiguration implements Configuration
             throw new CheckstyleException(
                     "missing key '" + aName + "' in " + getName());
         }
-        return (String) mAttributeMap.get(aName);
+        return mAttributeMap.get(aName);
     }
 
     /** {@inheritDoc} */
     public Configuration[] getChildren()
     {
-        return (Configuration[]) mChildren.toArray(
+        return mChildren.toArray(
             new Configuration[mChildren.size()]);
     }
 

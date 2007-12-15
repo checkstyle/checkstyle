@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -31,7 +30,7 @@ import java.util.TreeSet;
 public class IndentLevel
 {
     /** set of acceptable indentation levels. */
-    private final SortedSet mLevels = new TreeSet();
+    private final SortedSet<Integer> mLevels = new TreeSet<Integer>();
 
     /**
      * Creates new instance with one accaptable indentation level.
@@ -49,8 +48,7 @@ public class IndentLevel
      */
     public IndentLevel(IndentLevel aBase, int aOffset)
     {
-        for (final Iterator iter = aBase.mLevels.iterator(); iter.hasNext();) {
-            final int base = ((Integer) iter.next()).intValue();
+        for (Integer base : aBase.mLevels) {
             mLevels.add(new Integer(base + aOffset));
         }
     }
@@ -82,7 +80,7 @@ public class IndentLevel
      */
     public boolean gt(int aIndent)
     {
-        return (((Integer) mLevels.first()).intValue() > aIndent);
+        return ((mLevels.first()).intValue() > aIndent);
     }
 
     /**
@@ -104,6 +102,7 @@ public class IndentLevel
     }
 
     /** @return string representation of the object. */
+    @Override
     public String toString()
     {
         if (mLevels.size() == 1) {

@@ -23,9 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -59,11 +57,12 @@ public class RedundantImportCheck
     /** name of package in file */
     private String mPkgName;
     /** set of the imports */
-    private final Set mImports = new HashSet();
+    private final Set<FullIdent> mImports = new HashSet<FullIdent>();
     /** set of static imports */
-    private final Set mStaticImports = new HashSet();
+    private final Set<FullIdent> mStaticImports = new HashSet<FullIdent>();
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mPkgName = null;
@@ -72,6 +71,7 @@ public class RedundantImportCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[]
@@ -81,6 +81,7 @@ public class RedundantImportCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
@@ -98,9 +99,7 @@ public class RedundantImportCheck
                     imp.getText());
             }
             // Check for a duplicate import
-            final Iterator it = mImports.iterator();
-            while (it.hasNext()) {
-                final FullIdent full = (FullIdent) it.next();
+            for (FullIdent full : mImports) {
                 if (imp.getText().equals(full.getText())) {
                     log(aAST.getLineNo(),
                         aAST.getColumnNo(),
@@ -117,9 +116,7 @@ public class RedundantImportCheck
             final FullIdent imp =
                 FullIdent.createFullIdent(
                     aAST.getLastChild().getPreviousSibling());
-            final Iterator it = mStaticImports.iterator();
-            while (it.hasNext()) {
-                final FullIdent full = (FullIdent) it.next();
+            for (FullIdent full : mStaticImports) {
                 if (imp.getText().equals(full.getText())) {
                     log(aAST.getLineNo(),
                         aAST.getColumnNo(),

@@ -21,9 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-
 import java.util.Stack;
 
 /**
@@ -39,7 +37,7 @@ public final class BooleanExpressionComplexityCheck extends Check
     private static final int DEFAULT_MAX = 3;
 
     /** Stack of contexts. */
-    private final Stack mContextStack = new Stack();
+    private final Stack<Context> mContextStack = new Stack<Context>();
     /** Maximum allowed complexity. */
     private int mMax;
     /** Current context. */
@@ -52,6 +50,7 @@ public final class BooleanExpressionComplexityCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -67,6 +66,7 @@ public final class BooleanExpressionComplexityCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return new int[] {
@@ -95,6 +95,7 @@ public final class BooleanExpressionComplexityCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -118,6 +119,7 @@ public final class BooleanExpressionComplexityCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -146,7 +148,7 @@ public final class BooleanExpressionComplexityCheck extends Check
     /** Removes old context. */
     private void leaveMethodDef()
     {
-        mContext = (Context) mContextStack.pop();
+        mContext = mContextStack.pop();
     }
 
     /** Creates and pushes new context. */
@@ -163,7 +165,7 @@ public final class BooleanExpressionComplexityCheck extends Check
     private void leaveExpr(DetailAST aAST)
     {
         mContext.checkCount(aAST);
-        mContext = (Context) mContextStack.pop();
+        mContext = mContextStack.pop();
     }
 
     /**

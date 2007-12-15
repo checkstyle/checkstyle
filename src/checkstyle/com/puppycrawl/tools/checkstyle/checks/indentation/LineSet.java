@@ -31,7 +31,8 @@ public class LineSet
     /**
      * Maps line numbers to their start column.
      */
-    private final SortedMap mLines = new TreeMap();
+    private final SortedMap<Integer, Integer> mLines =
+        new TreeMap<Integer, Integer>();
 
     /**
      * Get the starting column for a given line number.
@@ -42,7 +43,7 @@ public class LineSet
      */
     public Integer getStartColumn(Integer aLineNum)
     {
-        return (Integer) mLines.get(aLineNum);
+        return mLines.get(aLineNum);
     }
 
     /**
@@ -53,7 +54,7 @@ public class LineSet
     public int firstLineCol()
     {
         final Object firstLineKey = mLines.firstKey();
-        return ((Integer) mLines.get(firstLineKey)).intValue();
+        return (mLines.get(firstLineKey)).intValue();
     }
 
     /**
@@ -63,7 +64,7 @@ public class LineSet
      */
     public int firstLine()
     {
-        return ((Integer) mLines.firstKey()).intValue();
+        return (mLines.firstKey()).intValue();
     }
 
     /**
@@ -73,7 +74,7 @@ public class LineSet
      */
     public int lastLine()
     {
-        return ((Integer) mLines.lastKey()).intValue();
+        return (mLines.lastKey()).intValue();
     }
 
     /**
@@ -100,6 +101,7 @@ public class LineSet
     /**
      * @return string representation
      */
+    @Override
     public String toString()
     {
         return "LineSet[ start=" + firstLine() + ", last=" + lastLine() + "]";

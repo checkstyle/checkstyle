@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,12 +36,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
-
-import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -111,6 +109,7 @@ public final class ConfigurationLoader
         }
 
         /** {@inheritDoc} **/
+        @Override
         public void startElement(String aNamespaceURI,
                                  String aLocalName,
                                  String aQName,
@@ -131,7 +130,7 @@ public final class ConfigurationLoader
                 //add configuration to it's parent
                 if (!mConfigStack.isEmpty()) {
                     final DefaultConfiguration top =
-                        (DefaultConfiguration) mConfigStack.peek();
+                        mConfigStack.peek();
                     top.addChild(conf);
                 }
 
@@ -151,12 +150,13 @@ public final class ConfigurationLoader
 
                 //add to attributes of configuration
                 final DefaultConfiguration top =
-                    (DefaultConfiguration) mConfigStack.peek();
+                    mConfigStack.peek();
                 top.addAttribute(name, value);
             }
         }
 
         /** {@inheritDoc} **/
+        @Override
         public void endElement(String aNamespaceURI,
                                String aLocalName,
                                String aQName)
@@ -165,7 +165,7 @@ public final class ConfigurationLoader
             if (aQName.equals(MODULE)) {
 
                 final Configuration recentModule =
-                    (Configuration) mConfigStack.pop();
+                    mConfigStack.pop();
 
                 // remove modules with severity ignore if these modules should
                 // be omitted
@@ -186,7 +186,7 @@ public final class ConfigurationLoader
 
                 if (omitModule && !mConfigStack.isEmpty()) {
                     final DefaultConfiguration parentModule =
-                        (DefaultConfiguration) mConfigStack.peek();
+                        mConfigStack.peek();
                     parentModule.removeChild(recentModule);
                 }
             }
@@ -195,25 +195,26 @@ public final class ConfigurationLoader
     }
 
     /** the SAX document handler */
-    private InternalLoader mSaxHandler;
+    private final InternalLoader mSaxHandler;
 
     /** property resolver **/
     private final PropertyResolver mOverridePropsResolver;
     /** the loaded configurations **/
-    private final Stack mConfigStack = new Stack();
+    private final Stack<DefaultConfiguration> mConfigStack =
+        new Stack<DefaultConfiguration>();
     /** the Configuration that is being built */
     private Configuration mConfiguration;
 
     /** flags if modules with the severity 'ignore' should be omitted. */
-    private boolean mOmitIgnoredModules;
+    private final boolean mOmitIgnoredModules;
 
     /**
      * Creates mapping between local resources and dtd ids.
      * @return map between local resources and dtd ids.
      */
-    private static Map createIdToResourceNameMap()
+    private static Map<String, String> createIdToResourceNameMap()
     {
-        final Map map = new HashMap();
+        final Map<String, String> map = new HashMap<String, String>();
         map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
         map.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
@@ -403,17 +404,17 @@ public final class ConfigurationLoader
             return null;
         }
 
-        final List fragments = new ArrayList();
-        final List propertyRefs = new ArrayList();
+        final List<String> fragments = new ArrayList<String>();
+        final List<String> propertyRefs = new ArrayList<String>();
         parsePropertyString(aValue, fragments, propertyRefs);
 
         final StringBuffer sb = new StringBuffer();
-        final Iterator i = fragments.iterator();
-        final Iterator j = propertyRefs.iterator();
+        final Iterator<String> i = fragments.iterator();
+        final Iterator<String> j = propertyRefs.iterator();
         while (i.hasNext()) {
-            String fragment = (String) i.next();
+            String fragment = i.next();
             if (fragment == null) {
-                final String propertyName = (String) j.next();
+                final String propertyName = j.next();
                 fragment = aProps.resolve(propertyName);
                 if (fragment == null) {
                     if (aDefaultValue != null) {
@@ -449,8 +450,8 @@ public final class ConfigurationLoader
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      */
     private static void parsePropertyString(String aValue,
-                                           List aFragments,
-                                           List aPropertyRefs)
+                                           List<String> aFragments,
+                                           List<String> aPropertyRefs)
         throws CheckstyleException
     {
         int prev = 0;

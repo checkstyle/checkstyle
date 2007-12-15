@@ -45,7 +45,7 @@ final class ImportControlLoader extends AbstractLoader
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd";
 
     /** Used to hold the {@link PkgControl} objects. */
-    private final Stack mStack = new Stack();
+    private final Stack<PkgControl> mStack = new Stack<PkgControl>();
 
     /**
      * Constructs an instance.
@@ -59,6 +59,7 @@ final class ImportControlLoader extends AbstractLoader
     }
 
     /** {@inheritDoc} */
+    @Override
     public void startElement(final String aNamespaceURI,
                              final String aLocalName,
                              final String aQName,
@@ -72,7 +73,7 @@ final class ImportControlLoader extends AbstractLoader
         else if (aQName.equals("subpackage")) {
             assert mStack.size() > 0;
             final String name = safeGet(aAtts, "name");
-            mStack.push(new PkgControl((PkgControl) mStack.peek(), name));
+            mStack.push(new PkgControl(mStack.peek(), name));
         }
         else if (aQName.equals("allow") || aQName.equals("disallow")) {
             assert mStack.size() > 0;
@@ -93,12 +94,13 @@ final class ImportControlLoader extends AbstractLoader
                 g = new Guard(isAllow, isLocalOnly, clazz);
             }
 
-            final PkgControl pc = (PkgControl) mStack.peek();
+            final PkgControl pc = mStack.peek();
             pc.addGuard(g);
         }
     }
 
     /** {@inheritDoc} */
+    @Override
     public void endElement(final String aNamespaceURI, final String aLocalName,
         final String aQName)
     {
@@ -163,7 +165,7 @@ final class ImportControlLoader extends AbstractLoader
     private PkgControl getRoot()
     {
         assert mStack.size() == 1;
-        return (PkgControl) mStack.peek();
+        return mStack.peek();
     }
 
     /**

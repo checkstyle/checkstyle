@@ -18,24 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
-import java.util.Hashtable;
 import java.util.ResourceBundle;
-import java.net.URL;
-
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DirectoryScanner;
@@ -78,13 +77,13 @@ public class CheckStyleTask extends Task
     private String mFailureProperty;
 
     /** contains the filesets to process */
-    private final List mFileSets = new ArrayList();
+    private final List<FileSet> mFileSets = new ArrayList<FileSet>();
 
     /** contains the formatters to log to */
-    private final List mFormatters = new ArrayList();
+    private final List<Formatter> mFormatters = new ArrayList<Formatter>();
 
     /** contains the Properties to override */
-    private final List mOverrideProps = new ArrayList();
+    private final List<Property> mOverrideProps = new ArrayList<Property>();
 
     /** the name of the properties file */
     private File mPropertiesFile;
@@ -254,6 +253,7 @@ public class CheckStyleTask extends Task
      * System.out. Will fail if any errors occurred.
      * @throws BuildException an error occurred
      */
+    @Override
     public void execute() throws BuildException
     {
         final long startTime = System.currentTimeMillis();
@@ -429,16 +429,16 @@ public class CheckStyleTask extends Task
         }
 
         // override with Ant properties like ${basedir}
-        final Hashtable antProps = this.getProject().getProperties();
-        for (final Iterator it = antProps.keySet().iterator(); it.hasNext();) {
+        final Hashtable<?, ?> antProps = this.getProject().getProperties();
+        for (final Iterator<?> it = antProps.keySet().iterator(); it.hasNext();)
+        {
             final String key = (String) it.next();
             final String value = String.valueOf(antProps.get(key));
             retVal.put(key, value);
         }
 
         // override with properties specified in subelements
-        for (final Iterator it = mOverrideProps.iterator(); it.hasNext();) {
-            final Property p = (Property) it.next();
+        for (Property p : mOverrideProps) {
             retVal.put(p.getKey(), p.getValue());
         }
 
@@ -469,7 +469,7 @@ public class CheckStyleTask extends Task
         }
         else {
             for (int i = 0; i < formatterCount; i++) {
-                final Formatter f = (Formatter) mFormatters.get(i);
+                final Formatter f = mFormatters.get(i);
                 listeners[i] = f.createListener(this);
             }
         }
@@ -482,7 +482,7 @@ public class CheckStyleTask extends Task
      */
     protected File[] scanFileSets()
     {
-        final ArrayList list = new ArrayList();
+        final List<File> list = new ArrayList<File>();
         if (mFileName != null) {
             // oops we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
@@ -490,7 +490,7 @@ public class CheckStyleTask extends Task
             list.add(new File(mFileName));
         }
         for (int i = 0; i < mFileSets.size(); i++) {
-            final FileSet fs = (FileSet) mFileSets.get(i);
+            final FileSet fs = mFileSets.get(i);
             final DirectoryScanner ds = fs.getDirectoryScanner(getProject());
             ds.scan();
 
@@ -505,7 +505,7 @@ public class CheckStyleTask extends Task
             }
         }
 
-        return (File[]) list.toArray(new File[0]);
+        return list.toArray(new File[0]);
     }
 
     /**
@@ -518,6 +518,7 @@ public class CheckStyleTask extends Task
         private static final String[] VALUES = {E_XML, E_PLAIN};
 
         /** {@inheritDoc} */
+        @Override
         public String[] getValues()
         {
             return VALUES;

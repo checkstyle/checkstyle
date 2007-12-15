@@ -1,16 +1,15 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import junit.framework.TestCase;
-
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
+import junit.framework.TestCase;
 
 public class ClassResolverTest
     extends TestCase
 {
     public void testMisc() throws ClassNotFoundException
     {
-        final Set imps = new HashSet();
+        final Set<String> imps = new HashSet<String>();
         imps.add("java.io.File");
         imps.add("nothing.will.match.*");
         imps.add("java.applet.*");

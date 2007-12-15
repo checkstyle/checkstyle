@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.Context;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
-import com.puppycrawl.tools.checkstyle.api.Context;
 
 /**
  * A default implementation of the Context interface.
@@ -31,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 public final class DefaultContext implements Context
 {
     /** stores the context entries */
-    private final Map mEntries = new HashMap();
+    private final Map<String, Object> mEntries = new HashMap<String, Object>();
 
     /** {@inheritDoc} */
     public Object get(String aKey)
@@ -42,8 +41,8 @@ public final class DefaultContext implements Context
     /** {@inheritDoc} */
     public String[] getAttributeNames()
     {
-        final Set keySet = mEntries.keySet();
-        return (String[]) keySet.toArray(new String[keySet.size()]);
+        final Set<String> keySet = mEntries.keySet();
+        return keySet.toArray(new String[keySet.size()]);
     }
 
     /**
