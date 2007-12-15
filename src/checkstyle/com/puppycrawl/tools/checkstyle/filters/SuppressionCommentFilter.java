@@ -18,19 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -38,7 +25,16 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
-
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+import org.apache.commons.beanutils.ConversionException;
 
 /**
  * <p>
@@ -73,19 +69,19 @@ public class SuppressionCommentFilter
      * @author Rick Giles
      */
     public class Tag
-        implements Comparable
+        implements Comparable<Tag>
     {
         /** The text of the tag. */
-        private String mText;
+        private final String mText;
 
         /** The line number of the tag. */
-        private int mLine;
+        private final int mLine;
 
         /** The column number of the tag. */
-        private int mColumn;
+        private final int mColumn;
 
         /** Determines whether the suppression turns checkstyle reporting on. */
-        private boolean mOn;
+        private final boolean mOn;
 
         /** The parsed check regexp, expanded for the text of this tag. */
         private Pattern mTagCheckRegexp;
@@ -188,14 +184,13 @@ public class SuppressionCommentFilter
          * tag is after the other tag.
          * @see java.lang.Comparable#compareTo(java.lang.Object)
          */
-        public int compareTo(Object aObject)
+        public int compareTo(Tag aObject)
         {
-            final Tag other = (Tag) aObject;
-            if (mLine == other.mLine) {
-                return mColumn - other.mColumn;
+            if (mLine == aObject.mLine) {
+                return mColumn - aObject.mColumn;
             }
 
-            return (mLine - other.mLine);
+            return (mLine - aObject.mLine);
         }
 
         /**
@@ -247,6 +242,7 @@ public class SuppressionCommentFilter
         }
 
         /** {@inheritDoc} */
+        @Override
         public final String toString()
         {
             return "Tag[line=" + getLine() + "; col=" + getColumn()
@@ -286,7 +282,7 @@ public class SuppressionCommentFilter
 
     //TODO: Investigate performance improvement with array
     /** Tagged comments */
-    private final List mTags = new ArrayList();
+    private final List<Tag> mTags = new ArrayList<Tag>();
 
     /**
      * References the current FileContents for this filter.
@@ -295,7 +291,8 @@ public class SuppressionCommentFilter
      * and FileContentsHolder are reassigned to the next FileContents,
      * at which time filtering for the current FileContents is finished.
      */
-    private WeakReference mFileContentsReference = new WeakReference(null);
+    private WeakReference<FileContents> mFileContentsReference =
+        new WeakReference<FileContents>(null);
 
     /**
      * Constructs a SuppressionCommentFilter.
@@ -344,7 +341,7 @@ public class SuppressionCommentFilter
     /** @return the FileContents for this filter. */
     public FileContents getFileContents()
     {
-        return (FileContents) mFileContentsReference.get();
+        return mFileContentsReference.get();
     }
 
     /**
@@ -353,7 +350,7 @@ public class SuppressionCommentFilter
      */
     public void setFileContents(FileContents aFileContents)
     {
-        mFileContentsReference = new WeakReference(aFileContents);
+        mFileContentsReference = new WeakReference<FileContents>(aFileContents);
     }
 
     /**
@@ -447,8 +444,8 @@ public class SuppressionCommentFilter
         Tag result = null;
         // TODO: try binary search if sequential search becomes a performance
         // problem.
-        for (final Iterator iter = mTags.iterator(); iter.hasNext();) {
-            final Tag tag = (Tag) iter.next();
+        for (final Iterator<Tag> iter = mTags.iterator(); iter.hasNext();) {
+            final Tag tag = iter.next();
             if ((tag.getLine() > aEvent.getLine())
                 || ((tag.getLine() == aEvent.getLine())
                     && (tag.getColumn() > aEvent.getColumn())))
@@ -474,10 +471,11 @@ public class SuppressionCommentFilter
             tagSuppressions(contents.getCppComments().values());
         }
         if (mCheckC) {
-            final Collection cComments = contents.getCComments().values();
-            final Iterator iter = cComments.iterator();
+            final Collection<List<TextBlock>> cComments = contents
+                    .getCComments().values();
+            final Iterator<List<TextBlock>> iter = cComments.iterator();
             while (iter.hasNext()) {
-                final Collection element = (Collection) iter.next();
+                final List<TextBlock> element = iter.next();
                 tagSuppressions(element);
             }
         }
@@ -489,10 +487,12 @@ public class SuppressionCommentFilter
      * set of suppression tags.
      * @param aComments the set of comments.
      */
-    private void tagSuppressions(Collection aComments)
+    private void tagSuppressions(Collection<TextBlock> aComments)
     {
-        for (final Iterator iter = aComments.iterator(); iter.hasNext();) {
-            final TextBlock comment = (TextBlock) iter.next();
+        for (final Iterator<TextBlock> iter = aComments.iterator(); iter
+                .hasNext();)
+        {
+            final TextBlock comment = iter.next();
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
             tagCommentLine(text[0], startLineNo, comment.getStartColNo());

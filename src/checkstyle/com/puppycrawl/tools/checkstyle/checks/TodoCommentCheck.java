@@ -63,12 +63,14 @@ public class TodoCommentCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         final FileContents contents = getFileContents();
@@ -82,10 +84,12 @@ public class TodoCommentCheck
      */
     private void checkCppComments(FileContents aContents)
     {
-        final Map comments = aContents.getCppComments();
-        for (final Iterator it = comments.keySet().iterator(); it.hasNext();) {
-            final Integer key = (Integer) it.next();
-            final String cmt = ((TextBlock) comments.get(key)).getText()[0];
+        final Map<Integer, TextBlock> comments = aContents.getCppComments();
+        for (final Iterator<Integer> it = comments.keySet().iterator(); it
+                .hasNext();)
+        {
+            final Integer key = it.next();
+            final String cmt = (comments.get(key)).getText()[0];
             if (getRegexp().matcher(cmt).find()) {
                 log(key.intValue(), "todo.match", getFormat());
             }
@@ -98,14 +102,15 @@ public class TodoCommentCheck
      */
     private void checkBadComments(FileContents aContents)
     {
-        final Map allComments = aContents.getCComments();
-        final Iterator allIter = allComments.keySet().iterator();
+        final Map<Integer, List<TextBlock>> allComments = aContents
+                .getCComments();
+        final Iterator<Integer> allIter = allComments.keySet().iterator();
         while (allIter.hasNext()) {
-            final Integer key = (Integer) allIter.next();
-            final List lineComments = (List) allComments.get(key);
-            final Iterator lineIter = lineComments.iterator();
+            final Integer key = allIter.next();
+            final List<TextBlock> lineComments = allComments.get(key);
+            final Iterator<TextBlock> lineIter = lineComments.iterator();
             while (lineIter.hasNext()) {
-                final String[] cmt = ((TextBlock) lineIter.next()).getText();
+                final String[] cmt = (lineIter.next()).getText();
                 for (int i = 0; i < cmt.length; i++) {
                     if (getRegexp().matcher(cmt[i]).find()) {
                         log(key.intValue() + i, "todo.match", getFormat());

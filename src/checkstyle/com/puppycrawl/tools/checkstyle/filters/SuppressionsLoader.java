@@ -79,6 +79,7 @@ public final class SuppressionsLoader
     }
 
     /** {@inheritDoc} **/
+    @Override
     public void startElement(String aNamespaceURI,
                              String aLocalName,
                              String aQName,
@@ -182,9 +183,9 @@ public final class SuppressionsLoader
      * Creates mapping between local resources and dtd ids.
      * @return map between local resources and dtd ids.
      */
-    private static Map createIdToResourceNameMap()
+    private static Map<String, String> createIdToResourceNameMap()
     {
-        final Map map = new HashMap();
+        final Map<String, String> map = new HashMap<String, String>();
         map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
         return map;

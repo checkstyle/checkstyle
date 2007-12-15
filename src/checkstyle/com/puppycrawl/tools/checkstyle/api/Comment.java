@@ -61,7 +61,7 @@ class Comment implements TextBlock
     /** {@inheritDoc} */
     public final String[] getText()
     {
-        return (String[]) mText.clone();
+        return mText.clone();
     }
 
     /** {@inheritDoc} */
@@ -104,6 +104,7 @@ class Comment implements TextBlock
     }
 
     /** {@inheritDoc} */
+    @Override
     public String toString()
     {
         return "Comment[" + mFirstLine + ":" + mFirstCol + "-"

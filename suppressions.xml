@@ -19,7 +19,7 @@
               lines="34"/>
     <suppress checks="ImportControl"
               files="SuppressionCommentFilter.java"
-              lines="40"/>
+              lines="27"/>
     <suppress id="paramNum"
 	      files="LocalizedMessage.java"
 	      lines="142"/>

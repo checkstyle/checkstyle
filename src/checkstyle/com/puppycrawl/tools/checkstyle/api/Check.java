@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.HashSet;
 import java.util.Set;
 
-
 /**
  * The base class for checks.
  *
@@ -39,7 +38,7 @@ public abstract class Check extends AbstractViolationReporter
     private FileContents mFileContents;
 
     /** the tokens the check is interested in */
-    private final Set mTokens = new HashSet();
+    private final Set<String> mTokens = new HashSet<String>();
 
     /** the object for collecting messages. */
     private LocalizedMessages mMessages;
@@ -103,7 +102,7 @@ public abstract class Check extends AbstractViolationReporter
      * Returns the tokens registered for the check.
      * @return the set of token names
      */
-    public final Set getTokenNames()
+    public final Set<String> getTokenNames()
     {
         return mTokens;
     }
@@ -235,6 +234,7 @@ public abstract class Check extends AbstractViolationReporter
      *
      * @see java.text.MessageFormat
      */
+    @Override
     protected final void log(int aLine, String aKey, Object aArgs[])
     {
         mMessages.add(
@@ -257,6 +257,7 @@ public abstract class Check extends AbstractViolationReporter
      * @param aKey key to locale message format
      * @param aArgs arguments for message
      */
+    @Override
     protected final void log(int aLineNo, int aColNo,
                              String aKey, Object[] aArgs)
     {

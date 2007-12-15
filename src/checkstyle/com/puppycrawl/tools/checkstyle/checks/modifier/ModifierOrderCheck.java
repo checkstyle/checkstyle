@@ -89,10 +89,10 @@ public class ModifierOrderCheck
     @Override
     public void visitToken(DetailAST aAST)
     {
-        final List<AST> mods = new ArrayList();
+        final List<DetailAST> mods = new ArrayList<DetailAST>();
         AST modifier = aAST.getFirstChild();
         while (modifier != null) {
-            mods.add(modifier);
+            mods.add((DetailAST) modifier);
             modifier = modifier.getNextSibling();
         }
 
@@ -123,11 +123,11 @@ public class ModifierOrderCheck
      * @return null if the order is correct, otherwise returns the offending
      * *       modifier AST.
      */
-    DetailAST checkOrderSuggestedByJLS(List aModifiers)
+    DetailAST checkOrderSuggestedByJLS(List<DetailAST> aModifiers)
     {
         int i = 0;
         DetailAST modifier;
-        final Iterator it = aModifiers.iterator();
+        final Iterator<DetailAST> it = aModifiers.iterator();
         //No modifiers, no problems
         if (!it.hasNext()) {
             return null;
@@ -135,7 +135,7 @@ public class ModifierOrderCheck
 
         //Speed past all initial annotations
         do {
-            modifier = (DetailAST) it.next();
+            modifier = it.next();
         }
         while (it.hasNext() && (modifier.getType() == TokenTypes.ANNOTATION));
 
@@ -165,7 +165,7 @@ public class ModifierOrderCheck
                 return null;
             }
             else {
-                modifier = (DetailAST) it.next();
+                modifier = it.next();
             }
         }
 

@@ -34,7 +34,7 @@ import java.util.StringTokenizer;
 class CSVFilter implements IntFilter
 {
     /** filter set */
-    private final Set mFilters = new HashSet();
+    private final Set<IntFilter> mFilters = new HashSet<IntFilter>();
 
     /**
      * Adds a IntFilter to the set.
@@ -49,7 +49,7 @@ class CSVFilter implements IntFilter
      * Returns the IntFilters of the filter set.
      * @return the IntFilters of the filter set.
      */
-    protected Set getFilters()
+    protected Set<IntFilter> getFilters()
     {
         return mFilters;
     }
@@ -91,9 +91,9 @@ class CSVFilter implements IntFilter
      */
     public boolean accept(Integer aInt)
     {
-        final Iterator it = getFilters().iterator();
+        final Iterator<IntFilter> it = getFilters().iterator();
         while (it.hasNext()) {
-            final IntFilter filter = (IntFilter) it.next();
+            final IntFilter filter = it.next();
             if (filter.accept(aInt)) {
                 return true;
             }
@@ -102,18 +102,21 @@ class CSVFilter implements IntFilter
     }
 
     /** {@inheritDoc} */
+    @Override
     public String toString()
     {
         return mFilters.toString();
     }
 
     /** {@inheritDoc} */
+    @Override
     public int hashCode()
     {
         return mFilters.hashCode();
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean equals(Object aObject)
     {
         if (aObject instanceof CSVFilter) {

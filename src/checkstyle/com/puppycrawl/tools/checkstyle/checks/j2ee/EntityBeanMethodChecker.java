@@ -33,10 +33,10 @@ public class EntityBeanMethodChecker
     extends BeanMethodChecker
 {
     /** set of ejbCreate methods for matching with ejbPostCreate methods */
-    private final Set mEjbCreates = new HashSet();
+    private final Set<DetailAST> mEjbCreates = new HashSet<DetailAST>();
 
     /** set of ejbPostCreate methods for matching with ejbCreate methods */
-    private final Set mEjbPostCreates = new HashSet();
+    private final Set<DetailAST> mEjbPostCreates = new HashSet<DetailAST>();
 
     /**
      * Constructs a EntityBeanMethodChecker for a bean check.
@@ -50,6 +50,7 @@ public class EntityBeanMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethods(DetailAST aAST)
     {
         mEjbCreates.clear();
@@ -65,9 +66,9 @@ public class EntityBeanMethodChecker
      */
     protected void checkCreateMatch()
     {
-        final Iterator it = mEjbCreates.iterator();
+        final Iterator<DetailAST> it = mEjbCreates.iterator();
         while (it.hasNext()) {
-            final DetailAST createMethod = (DetailAST) it.next();
+            final DetailAST createMethod = it.next();
             final DetailAST nameAST =
                 createMethod.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
@@ -75,10 +76,10 @@ public class EntityBeanMethodChecker
 
             // search for matching ejbPostCreate;
             boolean match = false;
-            final Iterator itPostCreate = mEjbPostCreates.iterator();
+            final Iterator<DetailAST> itPostCreate = mEjbPostCreates.iterator();
             while (!match && itPostCreate.hasNext()) {
                 final DetailAST postCreateMethod =
-                    (DetailAST) itPostCreate.next();
+                    itPostCreate.next();
                 final DetailAST postCreateNameAST =
                     postCreateMethod.findFirstToken(TokenTypes.IDENT);
                 final String postCreateName = postCreateNameAST.getText();
@@ -100,6 +101,7 @@ public class EntityBeanMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethod(DetailAST aMethodAST)
     {
         super.checkMethod(aMethodAST);
@@ -118,6 +120,7 @@ public class EntityBeanMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     protected void checkCreateMethod(DetailAST aMethodAST)
     {
         super.checkCreateMethod(aMethodAST);

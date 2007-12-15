@@ -47,7 +47,7 @@ public abstract class AbstractLoader
     extends DefaultHandler
 {
     /** maps public id to resolve to esource name for the DTD */
-    private final Map mPublicIdToResourceNameMap;
+    private final Map<String, String> mPublicIdToResourceNameMap;
     /** parser to read XML files **/
     private final XMLReader mParser;
 
@@ -61,7 +61,7 @@ public abstract class AbstractLoader
     protected AbstractLoader(String aPublicId, String aDtdResourceName)
         throws SAXException, ParserConfigurationException
     {
-        this(new HashMap(1));
+        this(new HashMap<String, String>(1));
         mPublicIdToResourceNameMap.put(aPublicId, aDtdResourceName);
     }
 
@@ -71,10 +71,11 @@ public abstract class AbstractLoader
      * @throws SAXException if an error occurs
      * @throws ParserConfigurationException if an error occurs
      */
-    protected AbstractLoader(Map aPublicIdToResourceNameMap)
+    protected AbstractLoader(Map<String, String> aPublicIdToResourceNameMap)
         throws SAXException, ParserConfigurationException
     {
-        mPublicIdToResourceNameMap = new HashMap(aPublicIdToResourceNameMap);
+        mPublicIdToResourceNameMap = new HashMap<String, String>(
+                aPublicIdToResourceNameMap);
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(true);
         factory.setNamespaceAware(true);
@@ -97,12 +98,13 @@ public abstract class AbstractLoader
     }
 
     /** {@inheritDoc} */
+    @Override
     public InputSource resolveEntity(String aPublicId, String aSystemId)
         throws SAXException
     {
         if (mPublicIdToResourceNameMap.keySet().contains(aPublicId)) {
             final String dtdResourceName =
-                    (String) mPublicIdToResourceNameMap.get(aPublicId);
+                    mPublicIdToResourceNameMap.get(aPublicId);
             final ClassLoader loader =
                 Thread.currentThread().getContextClassLoader();
             final InputStream dtdIS =
@@ -129,18 +131,21 @@ public abstract class AbstractLoader
     }
 
     /** {@inheritDoc} */
+    @Override
     public void warning(SAXParseException aEx) throws SAXException
     {
         throw aEx;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void error(SAXParseException aEx) throws SAXException
     {
         throw aEx;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void fatalError(SAXParseException aEx) throws SAXException
     {
         throw aEx;

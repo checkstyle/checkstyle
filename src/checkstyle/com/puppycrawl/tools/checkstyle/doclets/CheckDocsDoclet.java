@@ -46,15 +46,14 @@ public final class CheckDocsDoclet
      * Comparator that compares the {@link ClassDoc ClassDocs} of two checks
      * by their check name.
      */
-    private static class ClassDocByCheckNameComparator implements Comparator
+    private static class ClassDocByCheckNameComparator implements
+            Comparator<ClassDoc>
     {
         /** {@inheritDoc} */
-        public int compare(Object aObject1, Object aObject2)
+        public int compare(ClassDoc aObject1, ClassDoc aObject2)
         {
-            final ClassDoc classDoc1 = (ClassDoc) aObject1;
-            final ClassDoc classDoc2 = (ClassDoc) aObject2;
-            final String checkName1 = getCheckName(classDoc1);
-            final String checkName2 = getCheckName(classDoc2);
+            final String checkName1 = getCheckName(aObject1);
+            final String checkName2 = getCheckName(aObject2);
             return checkName1.compareTo(checkName2);
         }
     }

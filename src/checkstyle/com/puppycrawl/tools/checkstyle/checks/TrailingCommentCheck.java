@@ -133,41 +133,46 @@ public class TrailingCommentCheck extends AbstractFormatCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         throw new IllegalStateException("visitToken() shouldn't be called.");
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         final Pattern blankLinePattern = getRegexp();
-        final Map cppComments = getFileContents().getCppComments();
-        final Map cComments = getFileContents().getCComments();
-        final Set lines = new HashSet();
+        final Map<Integer, TextBlock> cppComments = getFileContents()
+                .getCppComments();
+        final Map<Integer, List<TextBlock>> cComments = getFileContents()
+                .getCComments();
+        final Set<Integer> lines = new HashSet<Integer>();
         lines.addAll(cppComments.keySet());
         lines.addAll(cComments.keySet());
 
-        final Iterator linesIter = lines.iterator();
+        final Iterator<Integer> linesIter = lines.iterator();
         while (linesIter.hasNext()) {
-            final Integer lineNo = (Integer) linesIter.next();
+            final Integer lineNo = linesIter.next();
 
             final String line = getLines()[lineNo.intValue() - 1];
             String lineBefore = "";
             TextBlock comment = null;
             if (cppComments.containsKey(lineNo)) {
-                comment = (TextBlock) cppComments.get(lineNo);
+                comment = cppComments.get(lineNo);
                 lineBefore = line.substring(0, comment.getStartColNo());
             }
             else if (cComments.containsKey(lineNo)) {
-                final List commentList = (List) cComments.get(lineNo);
-                comment = (TextBlock) commentList.get(commentList.size() - 1);
+                final List<TextBlock> commentList = cComments.get(lineNo);
+                comment = commentList.get(commentList.size() - 1);
                 lineBefore = line.substring(0, comment.getStartColNo());
                 if (comment.getText().length == 1) {
                     final String lineAfter =

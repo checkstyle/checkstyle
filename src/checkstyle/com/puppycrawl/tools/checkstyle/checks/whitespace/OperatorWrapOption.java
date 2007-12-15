@@ -32,7 +32,8 @@ public final class OperatorWrapOption
     extends AbstractOption
 {
     /** maps from a string representation to an option */
-    private static final Map STR_TO_OPT = new HashMap();
+    private static final Map<String, AbstractOption> STR_TO_OPT =
+        new HashMap<String, AbstractOption>();
 
     /** Require that the operator is on a new line. */
     public static final OperatorWrapOption NL = new OperatorWrapOption("nl");
@@ -50,7 +51,8 @@ public final class OperatorWrapOption
     }
 
     /** {@inheritDoc} */
-    protected Map getStrToOpt()
+    @Override
+    protected Map<String, AbstractOption> getStrToOpt()
     {
         return STR_TO_OPT;
     }

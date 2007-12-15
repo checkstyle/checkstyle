@@ -346,6 +346,8 @@ final class StrArrayConverter extends AbstractArrayConverter
      * @throws ConversionException if conversion cannot be performed
      *  successfully
      */
+    @SuppressWarnings("unchecked")
+    @Override
     public Object convert(Class aType, Object aValue)
         throws ConversionException
     {
@@ -401,6 +403,8 @@ final class StrArrayConverter extends AbstractArrayConverter
      * @throws NullPointerException
      *             if <code>svalue</code> is <code>null</code>
      */
+    @SuppressWarnings("unchecked")
+    @Override
     protected List parseElements(final String aValue)
         throws NullPointerException
     {
@@ -416,7 +420,7 @@ final class StrArrayConverter extends AbstractArrayConverter
         }
 
         final StringTokenizer st = new StringTokenizer(str, ",");
-        final List retVal = new ArrayList();
+        final List<String> retVal = new ArrayList<String>();
 
         while (st.hasMoreTokens()) {
             final String token = st.nextToken();
