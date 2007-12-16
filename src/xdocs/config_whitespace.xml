@@ -8,6 +8,61 @@
   </properties>
 
   <body>
+    <section name="GenericWhitespace">
+      <subsection name="Description">
+        <p>
+          Checks that the whitespace around the Generic tokens &lt; and &gt;
+          is correct to the <i>typical</i> convention. The convention is not
+          configurable.
+        </p>
+
+        <p>
+          For example the following is legal:
+        </p>
+
+        <source>
+List&lt;Integer&gt; x = new ArrayList&lt;Integer&gt;();
+List&lt;List&lt;Integer&gt;&gt; y = new ArrayList&lt;List&lt;Integer&gt;&gt;();
+        </source>
+
+        <p>
+          But the following example is not:
+        </p>
+        <source>
+List &lt; Integer &gt; x = new ArrayList &lt; Integer &gt; ();
+List &lt; List &lt; Integer &gt; &gt; y = new ArrayList &lt; List &lt; Integer &gt; &gt; ();
+        </source>
+      </subsection>
+
+      <subsection name="Properties">
+
+        <p>
+          None.
+        </p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;GenericWhitespace&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="EmptyForInitializerPad">
       <subsection name="Description">
         <p>
