@@ -1023,13 +1023,7 @@ public void func() {}    // empty method</pre>
              <a
               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">STAR_ASSIGN</a>
              <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_START">GENERIC_START</a>
-             <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_END">GENERIC_END</a>
-             <a
               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_EXTENSION">AND TYPE_EXTENSION_AND</a>
-             <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#WILDCARD_TYPE">WILDCARD_TYPE</a>
             </td>
             <td>all tokens</td>
           </tr>

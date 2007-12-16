@@ -8,6 +8,7 @@ public class WhitespaceAroundTest
 {
     DefaultConfiguration checkConfig;
 
+    @Override
     public void setUp()
     {
         checkConfig = createCheckConfig(WhitespaceAroundCheck.class);
@@ -102,22 +103,8 @@ public class WhitespaceAroundTest
         throws Exception
     {
         final String[] expected = {
-            "6:27: '<' is not preceded with whitespace.",
-            "6:28: '<' is not followed by whitespace.",
-            "6:51: '<' is not preceded with whitespace.",
-            "6:52: '<' is not followed by whitespace.",
-            "6:52: '?' is not preceded with whitespace.",
-            "6:53: '>' is not preceded with whitespace.",
-            "6:53: '?' is not followed by whitespace.",
-            "6:54: '>' is not followed by whitespace.",
             "6:67: '&' is not preceded with whitespace.",
             "6:68: '&' is not followed by whitespace.",
-            "6:91: '<' is not preceded with whitespace.",
-            "6:92: '<' is not followed by whitespace.",
-            "6:92: '?' is not preceded with whitespace.",
-            "6:117: '>' is not preceded with whitespace.",
-            "6:118: '>' is not followed by whitespace.",
-            "6:118: '>' is not preceded with whitespace.",
         };
         verify(checkConfig, getPath("InputGenerics.java"), expected);
     }
