@@ -124,6 +124,7 @@
     <module name="VisibilityModifier"/>
     <module name="WhitespaceAfter"/>
     <module name="WhitespaceAround"/>
+    <module name="GenericWhitespace"/>
     <module name="FinalClass"/>
     <module name="MissingSwitchDefault"/>
     <module name="MagicNumber"/>

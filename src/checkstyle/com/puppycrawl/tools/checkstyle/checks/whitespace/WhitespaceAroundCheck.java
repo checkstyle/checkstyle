@@ -19,8 +19,8 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
@@ -75,10 +75,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *  {@link TokenTypes#STAR STAR},
  *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN}.
  *  {@link TokenTypes#LITERAL_ASSERT LITERAL_ASSERT}.
- *  {@link TokenTypes#GENERIC_START GENERIC_START}.
- *  {@link TokenTypes#GENERIC_END GENERIC_END}.
  *  {@link TokenTypes#TYPE_EXTENSION_AND TYPE_EXTENSION_AND}.
- *  {@link TokenTypes#WILDCARD_TYPE WILDCARD_TYPE}.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -127,6 +124,7 @@ public class WhitespaceAroundCheck extends Check
     private boolean mAllowEmptyMethods;
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -177,10 +175,7 @@ public class WhitespaceAroundCheck extends Check
             TokenTypes.STAR,
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LITERAL_ASSERT,
-            TokenTypes.GENERIC_START,
-            TokenTypes.GENERIC_END,
             TokenTypes.TYPE_EXTENSION_AND,
-            TokenTypes.WILDCARD_TYPE,
         };
     }
 
@@ -203,6 +198,7 @@ public class WhitespaceAroundCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final int type = aAST.getType();
