@@ -24,8 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
- * Checks for the correct whitespace associated with the Generic tokens
- * {@link TokenTypes#GENERIC_START} and {@link TokenTypes#GENERIC_END}.
+ * Checks that the whitespace around the Generic tokens &lt; and &gt; are
+ * correct to the <i>typical</i> convention. The convention is not configurable.
  * @author Oliver Burn
  */
 public class GenericWhitespaceCheck extends Check
