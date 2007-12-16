@@ -9,6 +9,32 @@
   </properties>
 
   <body>
+    <section name="Release 5.0">
+      <p>
+        The 5.x release is developed using Java 5 and requires a Java 5
+        platform to run. If you need run a Java 1.4 or earlier, then use
+        a Checkstyle 4.x release. As such, features for earlier versions
+        of Java will be dropped over time.
+      </p>
+
+      <p>New Features:</p>
+      <ul>
+        <li>
+          New check GenericWhitespaceCheck for ensuring the whitespace
+          around the Generic tokens &lt; and &gt; are correct to the
+          <i>typical</i> convention.
+        </li>
+      </ul>
+
+      <p>Fixed Bugs:</p>
+      <ul>
+        <li>
+          Stop the WhitespaceAroundCheck from checking the Generic
+          tokens &lt; and &gt;.
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 4.4">
       <p>Fixed Bugs:</p>
 
