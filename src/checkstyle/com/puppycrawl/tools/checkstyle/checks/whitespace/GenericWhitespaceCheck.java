@@ -87,8 +87,7 @@ public class GenericWhitespaceCheck extends Check
                 if (!Character.isWhitespace(charAfter) && ('(' != charAfter)
                         && (')' != charAfter) && (',' != charAfter))
                 {
-                    log(aAST.getLineNo(), after,
-                            "Unknown character follows '>'");
+                    log(aAST.getLineNo(), after, "ws.illegalFollow", ">");
                 }
             }
             else {
@@ -110,10 +109,30 @@ public class GenericWhitespaceCheck extends Check
         final int before = aAST.getColumnNo() - 1;
         final int after = aAST.getColumnNo() + 1;
 
-        if ((0 <= before) && Character.isWhitespace(line.charAt(before))
+        // Need to handle two cases as in:
+        //
+        //   public static <T> Callable<T> callable(Runnable task, T result)
+        //                 ^           ^
+        //      ws reqd ---+           +--- whitespace NOT required
+        //
+        if (0 <= before) {
+            // Detect if the first case
+            final DetailAST parent = aAST.getParent();
+            final DetailAST grandparent = parent.getParent();
+            if ((TokenTypes.TYPE_PARAMETERS == parent.getType())
+                && (TokenTypes.METHOD_DEF == grandparent.getType()))
+            {
+                // Require whitespace
+                if (!Character.isWhitespace(line.charAt(before))) {
+                    log(aAST.getLineNo(), before, "ws.notPreceded", "<");
+                }
+            }
+            // Whitespace not required
+            else if (Character.isWhitespace(line.charAt(before))
                 && !Utils.whitespaceBefore(before, line))
-        {
-            log(aAST.getLineNo(), before, "ws.preceded", "<");
+            {
+                log(aAST.getLineNo(), before, "ws.preceded", "<");
+            }
         }
 
         if ((after < line.length())
