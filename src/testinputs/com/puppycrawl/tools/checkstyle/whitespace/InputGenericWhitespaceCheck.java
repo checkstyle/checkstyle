@@ -2,7 +2,9 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 class InputSimpleGenerics implements Comparable<InputSimpleGenerics>, Serializable
@@ -27,6 +29,10 @@ class InputSimpleGenerics implements Comparable<InputSimpleGenerics>, Serializab
 
     public static<T>Callable<T> callable2(Runnable task, T result)
     {
+        Map<Class<?>, Integer> x = new HashMap<Class<?>, Integer>();
+        for (final Map.Entry<Class<?>, Integer> entry : x.entrySet()) {
+            entry.getValue();
+        }
         return null;
     }
 }

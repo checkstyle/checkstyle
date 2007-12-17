@@ -91,8 +91,9 @@ public class GenericWhitespaceCheck extends Check
                 }
             }
             else {
-                // In a nested Generic type, so can only be a '>'
-                if (line.charAt(after) != '>') {
+                // In a nested Generic type, so can only be a '>' or ','
+                if ((line.charAt(after) != '>') && (line.charAt(after) != ','))
+                {
                     log(aAST.getLineNo(), after, "ws.followed", ">");
                 }
             }
