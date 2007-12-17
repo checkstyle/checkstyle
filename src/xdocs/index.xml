@@ -179,6 +179,12 @@
           <td>Checkstyle 3.3</td>
 	</tr>
 	<tr>
+          <td><a href="http://snowmail.sn.funpic.de/tide/">tIDE</a></td>
+          <td></td>
+          <td>Built in</td>
+          <td></td>
+	</tr>
+	<tr>
           <td><a href="http://jdee.sunsite.dk">Emacs JDE</a></td>
           <td>Markus Mohnen</td>
           <td>Part of the standard JDEE distribution</td>
