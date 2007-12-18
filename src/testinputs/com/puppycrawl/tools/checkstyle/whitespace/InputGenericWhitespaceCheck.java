@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
-
-class InputSimpleGenerics implements Comparable<InputSimpleGenerics>, Serializable
+import java.util.Collections;
+class InputGenericWhitespaceCheck implements Comparable<InputGenericWhitespaceCheck>, Serializable
 {
     void meth()
     {
@@ -17,7 +17,7 @@ class InputSimpleGenerics implements Comparable<InputSimpleGenerics>, Serializab
         List < List < Integer > > b = new ArrayList < List < Integer > > ();
     }
 
-    public int compareTo(InputSimpleGenerics aObject)
+    public int compareTo(InputGenericWhitespaceCheck aObject)
     {
         return 0;
     }
@@ -33,6 +33,21 @@ class InputSimpleGenerics implements Comparable<InputSimpleGenerics>, Serializab
         for (final Map.Entry<Class<?>, Integer> entry : x.entrySet()) {
             entry.getValue();
         }
+        Class<?>[] parameterClasses = new Class<?>[0];
         return null;
+    }
+    public int getConstructor(Class<?>... parameterTypes)
+    {
+        Collections.<Object>emptySet();
+        Collections. <Object> emptySet();
+        return 666;
+    }
+    
+    <T> InputGenericWhitespaceCheck(List<T> things, int i)
+    {
+    }
+
+    public <T> InputGenericWhitespaceCheck(List<T> things)
+    {
     }
 }

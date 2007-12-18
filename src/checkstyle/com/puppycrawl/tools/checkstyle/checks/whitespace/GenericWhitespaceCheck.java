@@ -80,12 +80,30 @@ public class GenericWhitespaceCheck extends Check
         }
 
         if (after < line.length()) {
+
             // Check if the last Generic, in which case must be a whitespace
-            // or a '(),'.
+            // or a '(),[.'.
             if (1 == mDepth) {
                 final char charAfter = line.charAt(after);
-                if (!Character.isWhitespace(charAfter) && ('(' != charAfter)
-                        && (')' != charAfter) && (',' != charAfter))
+
+                // Need to handle a number of cases. First is:
+                //    Collections.<Object>emptySet();
+                //                        ^
+                //                        +--- whitespace not allowed
+                if ((aAST.getParent().getType() == TokenTypes.TYPE_ARGUMENTS)
+                    && (aAST.getParent().getParent().getType()
+                        == TokenTypes.DOT)
+                    && (aAST.getParent().getParent().getParent().getType()
+                        == TokenTypes.METHOD_CALL))
+                {
+                    if (Character.isWhitespace(charAfter)) {
+                        log(aAST.getLineNo(), after, "ws.followed", ">");
+                    }
+                }
+                else if (!Character.isWhitespace(charAfter)
+                    && ('(' != charAfter) && (')' != charAfter)
+                    && (',' != charAfter) && ('[' != charAfter)
+                    && ('.' != charAfter))
                 {
                     log(aAST.getLineNo(), after, "ws.illegalFollow", ">");
                 }
@@ -121,7 +139,8 @@ public class GenericWhitespaceCheck extends Check
             final DetailAST parent = aAST.getParent();
             final DetailAST grandparent = parent.getParent();
             if ((TokenTypes.TYPE_PARAMETERS == parent.getType())
-                && (TokenTypes.METHOD_DEF == grandparent.getType()))
+                && ((TokenTypes.CTOR_DEF == grandparent.getType())
+                    || (TokenTypes.METHOD_DEF == grandparent.getType())))
             {
                 // Require whitespace
                 if (!Character.isWhitespace(line.charAt(before))) {
