@@ -29,7 +29,8 @@
           New check <a
           href="config_javadoc.html#JavadocPackage">JavadocPackage</a>
           for ensuring that each Java package has a Javadoc
-          comment. Replaces the check PackageHtml which has been removed.
+          comment. Replaces the check PackageHtml which has been
+          removed. (Bug 1228207)
         </li>
       </ul>
 
