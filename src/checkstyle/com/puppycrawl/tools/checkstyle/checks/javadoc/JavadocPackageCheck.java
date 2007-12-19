@@ -61,7 +61,6 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
                 dispatcher.fireFileStarted(path);
                 if (packageHtml.exists()) {
                     log(0, "javadoc.legacyPackageHtml");
-                    System.out.println("PANIC");
                 }
             }
             else if (mAllowLegacy && packageHtml.exists()) {
