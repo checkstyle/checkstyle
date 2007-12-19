@@ -13,7 +13,9 @@
     <property name="file" value="${checkstyle.suppressions.file}"/>
   </module>
 
-  <module name="PackageHtml"/>
+  <module name="JavadocPackage">
+    <property name="allowLegacy" value="false"/>
+  </module>
 
   <module name="Translation">
     <property name="severity" value="${translation.severity}"/>

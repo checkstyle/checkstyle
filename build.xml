@@ -134,6 +134,7 @@
     <javac srcdir="src/checkstyle"
            destdir="${checkstyle.dest}"
            includes="**/*.java"
+           excludes="**/package-info.java"
            deprecation="on" debug="on"
            source="${checkstyle.minimum.javaversion}"
            target="${checkstyle.minimum.javaversion}"
@@ -590,7 +591,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
              failonerror="yes" >
       <link packagelistLoc="${basedir}/config/jdk-package-list"
               offline="yes"
-              href="http://java.sun.com/j2se/1.4.2/docs/api/" />
+              href="http://java.sun.com/j2se/1.5.0/docs/api/" />
       <link packagelistLoc="${basedir}/config/antlr-package-list"
               offline="yes"
               href="http://www.antlr.org/javadoc/" />
