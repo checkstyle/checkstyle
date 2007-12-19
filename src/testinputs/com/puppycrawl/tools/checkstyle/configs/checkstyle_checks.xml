@@ -25,6 +25,6 @@
             <property name="format" value="System.out.println"/>
         </module>
     </module>
-    <module name="PackageHtml"/>
+    <module name="JavadocPackage"/>
     <module name="Translation"/>
 </module>

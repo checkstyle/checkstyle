@@ -112,7 +112,7 @@ public class ConfigurationLoaderTest extends TestCase
         final Configuration[] children = config.getChildren();
         atts.clear();
         verifyConfigNode(
-            (DefaultConfiguration) children[1], "PackageHtml", 0, atts);
+            (DefaultConfiguration) children[1], "JavadocPackage", 0, atts);
         verifyConfigNode(
             (DefaultConfiguration) children[2], "Translation", 0, atts);
         atts.put("testName", "testValue");

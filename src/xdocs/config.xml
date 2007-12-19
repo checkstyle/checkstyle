@@ -66,7 +66,7 @@
 
       <source>
 &lt;module name=&quot;Checker&quot;&gt;
-    &lt;module name=&quot;PackageHtml&quot;/&gt;
+    &lt;module name=&quot;JavadocPackage&quot;/&gt;
     &lt;module name=&quot;TreeWalker&quot;&gt;
         &lt;module name=&quot;AvoidStarImport&quot;/&gt;
         &lt;module name=&quot;ConstantName&quot;/&gt;
@@ -82,10 +82,10 @@
       <ul>
         <li>
           Root module <span class="code">Checker</span> has child
-          FileSetChecks <span class="code"> PackageHtml</span> and <span
+          FileSetChecks <span class="code">JavadocPackage</span> and <span
           class="code">TreeWalker</span>. (Module <a
           href="config_javadoc.html"> <span
-          class="code">PackageHtml</span></a> checks that all packages
+          class="code">JavadocPackage</span></a> checks that all packages
           have package documentation.)
         </li>
         <li>
@@ -200,7 +200,7 @@
 
       <source>
 &lt;module name=&quot;Checker&quot;&gt;
-    &lt;module name=&quot;PackageHtml&quot;/&gt;
+    &lt;module name=&quot;JavadocPackage&quot;/&gt;
     &lt;module name=&quot;TreeWalker&quot;&gt;
         &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
         &lt;module name=&quot;AvoidStarImport&quot;/&gt;
@@ -325,7 +325,7 @@
     &lt;property name=&quot;basedir&quot; value=&quot;src/checkstyle&quot;/&gt;
     &lt;property name=&quot;localeCountry&quot; value=&quot;DE&quot;/&gt;
     &lt;property name=&quot;localeLanguage&quot; value=&quot;de&quot;/&gt;
-    &lt;module name=&quot;PackageHtml&quot;/&gt;
+    &lt;module name=&quot;JavadocPackage&quot;/&gt;
     &lt;module name=&quot;TreeWalker&quot;&gt;
         ...
     &lt;/module&gt;

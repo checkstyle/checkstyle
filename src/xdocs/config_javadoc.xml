@@ -8,12 +8,17 @@
   </properties>
 
   <body>
-    <section name="PackageHtml">
+    <section name="JavadocPackage">
       <subsection name="Description">
         <p>
-          Checks that a <span class="code">package.html</span> file
-          exists for each package. More specifically, checks that each
-          java file has a package.html sibling.
+          Checks that each Java package has a Javadoc comment. By default it
+          only allows a <span class="code">package-info.java</span> file, but
+          can be configured to allow a <span class="code">package.html</span>
+          file.
+        </p>
+        <p>
+          An error will be reported if both files exist as this is not
+          allowed by the Javadoc tool.
         </p>
       </subsection>
 
@@ -26,15 +31,13 @@
             <th>default value</th>
           </tr>
           <tr>
-            <td>fileExtensions</td>
+            <td>allowLegacy</td>
             <td>
-              file type extension to identify java files. Setting this
-              property is typically only required if your java source
-              files are preprocessed and the original files do not have
-              the extension <span class="code">.java</span>
+              If set then allow the use of a
+              <span class="code">package.html</span> file.
             </td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><span class="default">java</span></td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
           </tr>
         </table>
       </subsection>
@@ -44,7 +47,7 @@
           To configure the check:
         </p>
         <source>
-&lt;module name="PackageHtml"/&gt;
+&lt;module name="JavadocPackage"/&gt;
         </source>
       </subsection>
 

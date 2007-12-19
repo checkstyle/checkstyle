@@ -20,9 +20,16 @@
       <p>New Features:</p>
       <ul>
         <li>
-          New check GenericWhitespaceCheck for ensuring the whitespace
-          around the Generic tokens &lt; and &gt; are correct to the
-          <i>typical</i> convention.
+          New check <a
+          href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a>
+          for ensuring the whitespace around the Generic tokens &lt; and
+          &gt; are correct to the <i>typical</i> convention.
+        </li>
+        <li>
+          New check <a
+          href="config_javadoc.html#JavadocPackage">JavadocPackage</a>
+          for ensuring that each Java package has a Javadoc
+          comment. Replaces the check PackageHtml which has been removed.
         </li>
       </ul>
 
