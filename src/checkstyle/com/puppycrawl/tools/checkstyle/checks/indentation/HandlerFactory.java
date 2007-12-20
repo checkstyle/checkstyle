@@ -59,7 +59,7 @@ public class HandlerFactory
                         DetailAST.class, // current AST
                         ExpressionHandler.class, // parent
                     });
-            mTypeHandlers.put(new Integer(aType), ctor);
+            mTypeHandlers.put(aType, ctor);
         }
         ///CLOVER:OFF
         catch (final NoSuchMethodException e) {
@@ -127,7 +127,7 @@ public class HandlerFactory
     public boolean isHandledType(int aType)
     {
         final Set<Integer> typeSet = mTypeHandlers.keySet();
-        return typeSet.contains(new Integer(aType));
+        return typeSet.contains(aType);
     }
 
     /**
@@ -169,12 +169,10 @@ public class HandlerFactory
             return createMethodCallHandler(aIndentCheck, aAst, aParent);
         }
 
-        final Integer type = new Integer(aAst.getType());
-
         ExpressionHandler expHandler = null;
         try {
             final Constructor<?> handlerCtor =
-                mTypeHandlers.get(type);
+                mTypeHandlers.get(aAst.getType());
             if (handlerCtor != null) {
                 expHandler = (ExpressionHandler) handlerCtor.newInstance(
                         aIndentCheck, aAst, aParent);
@@ -197,7 +195,7 @@ public class HandlerFactory
                                        + aAst);
         }
         if (expHandler == null) {
-            throw new RuntimeException("no handler for type " + type);
+            throw new RuntimeException("no handler for type " + aAst.getType());
         }
         ///CLOVER:ON
         return expHandler;

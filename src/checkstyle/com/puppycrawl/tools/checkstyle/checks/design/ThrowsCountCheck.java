@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -111,7 +111,7 @@ public final class ThrowsCountCheck extends Check
         final int count = (aAST.getChildCount() + 1) / 2;
         if (count > getMax()) {
             log(aAST.getLineNo(),  aAST.getColumnNo(), "throws.count",
-                new Integer(count), new Integer(getMax()));
+                count, getMax());
         }
     }
 }

@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
@@ -80,8 +80,7 @@ public class ParameterNumberCheck
         final int count = params.getChildCount(TokenTypes.PARAMETER_DEF);
         if (count > mMax) {
             final DetailAST name = aAST.findFirstToken(TokenTypes.IDENT);
-            log(name.getLineNo(), name.getColumnNo(),
-                "maxParam", new Integer(mMax));
+            log(name.getLineNo(), name.getColumnNo(), "maxParam", mMax);
         }
     }
 }

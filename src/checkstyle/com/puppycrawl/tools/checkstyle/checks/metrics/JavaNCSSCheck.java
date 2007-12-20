@@ -192,7 +192,7 @@ public class JavaNCSSCheck extends Check
             final int count = counter.getCount();
             if (count > mMethodMax) {
                 log(aAST.getLineNo(), aAST.getColumnNo(), "ncss.method",
-                        new Integer(count), new Integer(mMethodMax));
+                        count, mMethodMax);
             }
         }
         else if (TokenTypes.CLASS_DEF == tokenType) {
@@ -202,7 +202,7 @@ public class JavaNCSSCheck extends Check
             final int count = counter.getCount();
             if (count > mClassMax) {
                 log(aAST.getLineNo(), aAST.getColumnNo(), "ncss.class",
-                        new Integer(count), new Integer(mClassMax));
+                        count, mClassMax);
             }
         }
     }
@@ -219,7 +219,7 @@ public class JavaNCSSCheck extends Check
         final int count = counter.getCount();
         if (count > mFileMax) {
             log(aRootAST.getLineNo(), aRootAST.getColumnNo(), "ncss.file",
-                    new Integer(count), new Integer(mMethodMax));
+                    count, mMethodMax);
         }
     }
 

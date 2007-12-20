@@ -147,7 +147,7 @@ public abstract class ExpressionHandler
                                IndentLevel aExpectedLevel)
     {
         mIndentCheck.indentationLog(aLine, "indentation.child.error",
-                mTypeName, new Integer(aActualLevel), aExpectedLevel);
+                mTypeName, aActualLevel, aExpectedLevel);
     }
 
     /**
@@ -297,7 +297,7 @@ public abstract class ExpressionHandler
 
         // check following lines
         for (int i = startLine + 1; i <= endLine; i++) {
-            final Integer col = aLines.getStartColumn(new Integer(i));
+            final Integer col = aLines.getStartColumn(i);
             // startCol could be null if this line didn't have an
             // expression that was required to be checked (it could be
             // checked by a child expression)
@@ -418,7 +418,7 @@ public abstract class ExpressionHandler
         final LineSet subtreeLines = new LineSet();
         final int firstLine = getFirstLine(Integer.MAX_VALUE, aTree);
         if (aFirstLineMatches && !aAllowNesting) {
-            subtreeLines.addLineAndCol(new Integer(firstLine),
+            subtreeLines.addLineAndCol(firstLine,
                 getLineStart(mIndentCheck.getLines()[firstLine - 1]));
         }
         findSubtreeLines(subtreeLines, aTree, aAllowNesting);
@@ -500,7 +500,7 @@ public abstract class ExpressionHandler
 //              return;
 //          }
 
-        final Integer lineNum = new Integer(aTree.getLineNo());
+        final int lineNum = aTree.getLineNo();
         final Integer colNum = aLines.getStartColumn(lineNum);
 
         final int thisLineColumn = expandedTabsColumnNo(aTree);

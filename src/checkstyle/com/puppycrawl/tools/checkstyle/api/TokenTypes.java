@@ -3354,10 +3354,8 @@ public final class TokenTypes
 
             final String name = f.getName();
             try {
-                // this should NEVER fail (famous last words)
-                final Integer value = new Integer(f.getInt(name));
-                TOKEN_NAME_TO_VALUE.put(name, value);
-                final int tokenValue = value.intValue();
+                final int tokenValue = f.getInt(name);
+                TOKEN_NAME_TO_VALUE.put(name, tokenValue);
                 if (tokenValue > tempTokenValueToName.length - 1) {
                     final String[] temp = new String[tokenValue + 1];
                     System.arraycopy(tempTokenValueToName, 0,

@@ -219,9 +219,7 @@ public final class BooleanExpressionComplexityCheck extends Check
                 final DetailAST parentAST = aAST.getParent();
 
                 log(parentAST.getLineNo(), parentAST.getColumnNo(),
-                    "booleanExpressionComplexity",
-                    new Integer(mCount),
-                    new Integer(getMax()));
+                    "booleanExpressionComplexity", mCount, getMax());
             }
         }
     }

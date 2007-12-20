@@ -30,5 +30,5 @@ interface IntFilter
      * @param aInt the Integer to filter.
      * @return true if the aInt is accepted.
      */
-    boolean accept(Integer aInt);
+    boolean accept(int aInt);
 }

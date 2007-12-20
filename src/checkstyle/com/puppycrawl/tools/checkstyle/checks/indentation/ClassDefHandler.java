@@ -114,7 +114,7 @@ public class ClassDefHandler extends BlockParentHandler
             logError(ident, "ident", lineStart);
         }
 
-        lines.addLineAndCol(new Integer(ident.getLineNo()), lineStart);
+        lines.addLineAndCol(ident.getLineNo(), lineStart);
 
         final DetailAST impl = getMainAst().findFirstToken(
             TokenTypes.IMPLEMENTS_CLAUSE);

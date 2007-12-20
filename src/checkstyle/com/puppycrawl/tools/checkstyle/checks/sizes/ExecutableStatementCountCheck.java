@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import java.util.Stack;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Stack;
 
 /**
  * Restricts the number of executable statements to a specified limit
@@ -153,12 +152,8 @@ public final class ExecutableStatementCountCheck
     {
         final int count = mContext.getCount();
         if (count > getMax()) {
-            log(
-                aAST.getLineNo(),
-                aAST.getColumnNo(),
-                "executableStatementCount",
-                new Integer(count),
-                new Integer(getMax()));
+            log(aAST.getLineNo(), aAST.getColumnNo(),
+                    "executableStatementCount", count, getMax());
         }
         mContext = mContextStack.pop();
     }

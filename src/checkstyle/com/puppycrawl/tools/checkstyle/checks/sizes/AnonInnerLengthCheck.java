@@ -19,8 +19,8 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
@@ -81,11 +81,8 @@ public class AnonInnerLengthCheck extends Check
             final int length =
                 closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
             if (length > mMax) {
-                log(aAST.getLineNo(),
-                    aAST.getColumnNo(),
-                    "maxLen.anonInner",
-                    new Integer(length),
-                    new Integer(mMax));
+                log(aAST.getLineNo(), aAST.getColumnNo(), "maxLen.anonInner",
+                        length, mMax);
             }
         }
     }

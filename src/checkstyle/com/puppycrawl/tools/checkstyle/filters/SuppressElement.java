@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * This filter processes {@link com.puppycrawl.tools.checkstyle.api.AuditEvent}
@@ -157,16 +156,14 @@ public class SuppressElement
 
         // reject if line matches a line CSV value.
         if (mLineFilter != null) {
-            final Integer line = new Integer(aEvent.getLine());
-            if (mLineFilter.accept(line)) {
+            if (mLineFilter.accept(aEvent.getLine())) {
                 return false;
             }
         }
 
         // reject if column matches a column CSV value.
         if (mColumnFilter != null) {
-            final Integer column = new Integer(aEvent.getColumn());
-            if (mColumnFilter.accept(column)) {
+            if (mColumnFilter.accept(aEvent.getColumn())) {
                 return false;
             }
         }

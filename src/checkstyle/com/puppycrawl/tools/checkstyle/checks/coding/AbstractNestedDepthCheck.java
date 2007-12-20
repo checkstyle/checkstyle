@@ -82,7 +82,7 @@ public abstract class AbstractNestedDepthCheck extends Check
     protected final void nestIn(DetailAST aAST, String aMessageId)
     {
         if (mDepth > mMax) {
-            log(aAST, aMessageId, new Integer(mDepth), new Integer(mMax));
+            log(aAST, aMessageId, mDepth, mMax);
         }
         ++mDepth;
     }

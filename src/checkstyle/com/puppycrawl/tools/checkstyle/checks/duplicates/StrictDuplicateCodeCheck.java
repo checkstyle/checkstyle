@@ -407,10 +407,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 
         final int[] iCheckSums = mLineBlockChecksums[aI];
         final int[] jCheckSums = mLineBlockChecksums[aJ];
-
         final long checkSum = iCheckSums[aILine];
-
-        final Integer iLine = new Integer(aILine);
 
         for (int jLine : aJLines) {
 
@@ -422,10 +419,10 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
                 continue;
             }
 
-            final Collection ignoreEntries = (Collection) aIgnore.get(iLine);
+            final Collection ignoreEntries = (Collection) aIgnore.get(aILine);
             // avoid Integer constructor whenever we can
             if (ignoreEntries != null) {
-                if (ignoreEntries.contains(new Integer(jLine))) {
+                if (ignoreEntries.contains(jLine)) {
                     continue;
                 }
             }
@@ -436,8 +433,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
                 int extend = duplicateLines - mMin;
                 for (int i = 0; i < extend; i++) {
                     final int offset = (i + 1);
-                    aIgnore.put(new Integer(aILine + offset),
-                            new Integer(jLine + offset));
+                    aIgnore.put(aILine + offset, jLine + offset);
                 }
             }
         }
@@ -528,11 +524,9 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     private void reportDuplicate(
             int aEquivalent, int aILine, File aJFile, int aJLine)
     {
-        final Integer dupLines = new Integer(aEquivalent);
-        final Integer startLine = new Integer(aJLine + 1);
         final String fileName =
                 Utils.getStrippedFileName(mBasedir, aJFile.getPath());
-        log(aILine + 1, "duplicates.lines", dupLines, fileName, startLine);
+        log(aILine + 1, "duplicates.lines", aEquivalent, fileName, aJLine + 1);
         mDuplicates += 1;
     }
 

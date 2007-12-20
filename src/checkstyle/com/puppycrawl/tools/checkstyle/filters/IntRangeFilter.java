@@ -28,10 +28,10 @@ class IntRangeFilter implements IntFilter
     private static final int HASH_MULT = 29;
 
     /** lower bound of the range */
-    private Integer mLowerBound;
+    private final Integer mLowerBound;
 
     /** upper bound of the range */
-    private Integer mUpperBound;
+    private final Integer mUpperBound;
 
     /**
      * Constructs a <code>IntRangeFilter</code> with a
@@ -41,12 +41,12 @@ class IntRangeFilter implements IntFilter
      */
     public IntRangeFilter(int aLowerBound, int aUpperBound)
     {
-        mLowerBound = new Integer(aLowerBound);
-        mUpperBound = new Integer(aUpperBound);
+        mLowerBound = aLowerBound;
+        mUpperBound = aUpperBound;
     }
 
     /** {@inheritDoc} */
-    public boolean accept(Integer aInt)
+    public boolean accept(int aInt)
     {
         return ((mLowerBound.compareTo(aInt) <= 0)
             && (mUpperBound.compareTo(aInt) >= 0));

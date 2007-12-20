@@ -38,7 +38,7 @@ public class IndentLevel
      */
     public IndentLevel(int aIndent)
     {
-        mLevels.add(new Integer(aIndent));
+        mLevels.add(aIndent);
     }
 
     /**
@@ -49,7 +49,7 @@ public class IndentLevel
     public IndentLevel(IndentLevel aBase, int aOffset)
     {
         for (Integer base : aBase.mLevels) {
-            mLevels.add(new Integer(base + aOffset));
+            mLevels.add(base + aOffset);
         }
     }
 
@@ -70,7 +70,7 @@ public class IndentLevel
      */
     public boolean accept(int aIndent)
     {
-        return (mLevels.contains(new Integer(aIndent)));
+        return (mLevels.contains(aIndent));
     }
 
     /**
@@ -89,7 +89,7 @@ public class IndentLevel
      */
     public void addAcceptedIndent(int aIndent)
     {
-        mLevels.add(new Integer(aIndent));
+        mLevels.add(aIndent);
     }
 
     /**

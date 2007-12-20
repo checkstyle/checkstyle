@@ -73,9 +73,7 @@ public class FileLengthCheck extends Check
     {
         final String[] lines = getLines();
         if (lines.length > mMaxFileLength) {
-            log(1, "maxLen.file",
-                    new Integer(lines.length),
-                    new Integer(mMaxFileLength));
+            log(1, "maxLen.file", lines.length, mMaxFileLength);
         }
     }
 

@@ -92,11 +92,8 @@ public class MethodLengthCheck extends Check
                 }
             }
             if (length > mMax) {
-                log(aAST.getLineNo(),
-                    aAST.getColumnNo(),
-                    "maxLen.method",
-                    new Integer(length),
-                    new Integer(mMax));
+                log(aAST.getLineNo(), aAST.getColumnNo(), "maxLen.method",
+                        length, mMax);
             }
         }
     }

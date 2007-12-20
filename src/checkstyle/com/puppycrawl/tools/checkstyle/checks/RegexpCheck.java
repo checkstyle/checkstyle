@@ -178,8 +178,7 @@ public class RegexpCheck extends AbstractFormatCheck
             sb.append(lines[i]);
             sb.append('\n');
             for (int j = 0; j < (lines[i].length() + 1); j++) {
-                mCharacters.add(new Integer[] {
-                    new Integer(i + 1), new Integer(j), });
+                mCharacters.add(new Integer[] {i + 1, j});
             }
         }
         mMatcher = pattern.matcher(sb.toString());

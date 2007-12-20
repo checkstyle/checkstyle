@@ -25,7 +25,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 class IntMatchFilter implements IntFilter
 {
     /** the matching Integer */
-    private Integer mMatchValue;
+    private final int mMatchValue;
 
     /**
      * Constructs a MatchFilter for an int.
@@ -33,13 +33,13 @@ class IntMatchFilter implements IntFilter
      */
     public IntMatchFilter(int aMatchValue)
     {
-        mMatchValue = new Integer(aMatchValue);
+        mMatchValue = aMatchValue;
     }
 
     /** {@inheritDoc} */
-    public boolean accept(Integer aInt)
+    public boolean accept(int aInt)
     {
-        return mMatchValue.equals(aInt);
+        return mMatchValue == aInt;
     }
 
     /** {@inheritDoc} */
@@ -53,7 +53,7 @@ class IntMatchFilter implements IntFilter
     @Override
     public int hashCode()
     {
-        return mMatchValue.hashCode();
+        return Integer.valueOf(mMatchValue).hashCode();
     }
 
     /** {@inheritDoc} */
@@ -62,7 +62,7 @@ class IntMatchFilter implements IntFilter
     {
         if (aObject instanceof IntMatchFilter) {
             final IntMatchFilter other = (IntMatchFilter) aObject;
-            return (this.mMatchValue).equals(other.mMatchValue);
+            return this.mMatchValue == other.mMatchValue;
         }
         return false;
     }

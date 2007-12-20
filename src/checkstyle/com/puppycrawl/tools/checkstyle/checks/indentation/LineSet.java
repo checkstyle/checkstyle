@@ -83,9 +83,9 @@ public class LineSet
      * @param aLineNum   the line to add
      * @param aCol       the starting column of the new line
      */
-    public void addLineAndCol(Integer aLineNum, int aCol)
+    public void addLineAndCol(int aLineNum, int aCol)
     {
-        mLines.put(aLineNum, new Integer(aCol));
+        mLines.put(aLineNum, aCol);
     }
 
     /**

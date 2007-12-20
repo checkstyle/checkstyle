@@ -103,7 +103,7 @@ public final class FileContents implements CommentListener
         final String[] txt = new String[] {line.substring(aStartColNo)};
         final Comment comment = new Comment(txt, aStartColNo, aStartLineNo,
                 line.length() - 1);
-        mCPlusPlusComments.put(new Integer(aStartLineNo), comment);
+        mCPlusPlusComments.put(aStartLineNo, comment);
     }
 
     /**
@@ -132,20 +132,19 @@ public final class FileContents implements CommentListener
                 aEndColNo);
 
         // save the comment
-        final Integer key = new Integer(aStartLineNo);
-        if (mCComments.containsKey(key)) {
-            final List<TextBlock> entries = mCComments.get(key);
+        if (mCComments.containsKey(aStartLineNo)) {
+            final List<TextBlock> entries = mCComments.get(aStartLineNo);
             entries.add(comment);
         }
         else {
             final List<TextBlock> entries = new ArrayList<TextBlock>();
             entries.add(comment);
-            mCComments.put(key, entries);
+            mCComments.put(aStartLineNo, entries);
         }
 
         // Remember if possible Javadoc comment
         if (mLines[aStartLineNo - 1].indexOf("/**", aStartColNo) != -1) {
-            mJavadocComments.put(new Integer(aEndLineNo - 1), comment);
+            mJavadocComments.put(aEndLineNo - 1, comment);
         }
     }
 
@@ -205,7 +204,7 @@ public final class FileContents implements CommentListener
             lineNo--;
         }
 
-        return mJavadocComments.get(new Integer(lineNo));
+        return mJavadocComments.get(lineNo);
     }
 
     /** @return the lines in the file */
@@ -269,8 +268,7 @@ public final class FileContents implements CommentListener
         for (int lineNumber = aStartLineNo; lineNumber <= aEndLineNo;
              lineNumber++)
         {
-            final TextBlock comment = mCPlusPlusComments
-                    .get(new Integer(lineNumber));
+            final TextBlock comment = mCPlusPlusComments.get(lineNumber);
             if ((comment != null)
                     && comment.intersects(aStartLineNo, aStartColNo,
                             aEndLineNo, aEndColNo))
