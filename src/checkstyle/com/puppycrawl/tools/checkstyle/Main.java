@@ -118,10 +118,7 @@ public final class Main
         final AuditListener listener = createListener(line, out, closeOut);
         final List<File> files = getFilesToProcess(line);
         final Checker c = createChecker(config, moduleFactory, listener);
-
-        final File[] processedFiles = new File[files.size()];
-        files.toArray(processedFiles);
-        final int numErrs = c.process(processedFiles);
+        final int numErrs = c.process(files);
         c.destroy();
         System.exit(numErrs);
     }

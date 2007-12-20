@@ -95,6 +95,7 @@ public class UnnecessaryParenthesesCheck extends Check
     private int mAssignDepth;
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int [] {
@@ -124,6 +125,7 @@ public class UnnecessaryParenthesesCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final int type = aAST.getType();
@@ -168,6 +170,7 @@ public class UnnecessaryParenthesesCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         final int type = aAST.getType();

@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import org.apache.commons.collections.MultiHashMap;
 import org.apache.commons.collections.MultiMap;
@@ -183,7 +184,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     private ChecksumInfo[] mChecksumInfo;
 
     /** files that are currently checked */
-    private File[] mFiles;
+    private List<File> mFiles;
 
     /**
      * A SoftReference cache for the trimmed lines of a file path,
@@ -224,20 +225,20 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     /**
      * {@inheritDoc}
      */
-    public synchronized void process(File[] aFiles)
+    public synchronized void process(List<File> aFiles)
     {
         final long start = System.currentTimeMillis();
         mDuplicates = 0;
         mFiles = filter(aFiles);
-        mLineBlockChecksums = new int[mFiles.length][];
-        mChecksumInfo = new ChecksumInfo[mFiles.length];
+        mLineBlockChecksums = new int[mFiles.size()][];
+        mChecksumInfo = new ChecksumInfo[mFiles.size()];
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Reading " + mFiles.length + " input files");
+            LOG.debug("Reading " + mFiles.size() + " input files");
         }
 
-        for (int i = 0; i < mFiles.length; i++) {
-            final File file = mFiles[i];
+        for (int i = 0; i < mFiles.size(); i++) {
+            final File file = mFiles.get(i);
             try {
                 final String[] lines = getTrimmedLines(file);
                 final ChecksumGenerator transformer =
@@ -291,7 +292,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         if (LOG.isDebugEnabled()) {
             final long initTime = aEndReading - aStart;
             final long workTime = aEndSearching - aEndReading;
-            LOG.debug("files = " + mFiles.length);
+            LOG.debug("files = " + mFiles.size());
             LOG.debug("duplicates = " + mDuplicates);
             LOG.debug("Runtime = " + initTime + " + " + workTime);
         }
@@ -330,10 +331,10 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         // It may be possible to do this *much* smarter,
         // but I don't have the Knuth bible at hand right now :-)
 
-        final int len = mFiles.length;
+        final int len = mFiles.size();
         for (int i = 0; i < len; i++) {
 
-            final String path = mFiles[i].getPath();
+            final String path = mFiles.get(i).getPath();
             getMessageCollector().reset();
             final MessageDispatcher dispatcher = getMessageDispatcher();
             dispatcher.fireFileStarted(path);
@@ -431,7 +432,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 
             int duplicateLines = verifiyDuplicateLines(aI, aJ, aILine, jLine);
             if (duplicateLines >= mMin) {
-                reportDuplicate(duplicateLines, aILine, mFiles[aJ], jLine);
+                reportDuplicate(duplicateLines, aILine, mFiles.get(aJ), jLine);
                 int extend = duplicateLines - mMin;
                 for (int i = 0; i < extend; i++) {
                     final int offset = (i + 1);
@@ -456,8 +457,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     private int verifiyDuplicateLines(
         int aI, int aJ, int aIStartLine, int aJStartLine)
     {
-        final File iFile = mFiles[aI];
-        final File jFile = mFiles[aJ];
+        final File iFile = mFiles.get(aI);
+        final File jFile = mFiles.get(aJ);
         try {
             final String[] iLines = getTrimmedLines(iFile);
             final String[] jLines = getTrimmedLines(jFile);

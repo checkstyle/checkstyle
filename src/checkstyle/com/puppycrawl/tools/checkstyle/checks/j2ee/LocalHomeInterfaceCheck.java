@@ -44,6 +44,7 @@ public class LocalHomeInterfaceCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (Utils.hasExtends(aAST, "javax.ejb.EJBLocalHome")) {

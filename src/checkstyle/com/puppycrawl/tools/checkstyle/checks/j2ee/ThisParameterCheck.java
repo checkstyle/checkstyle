@@ -36,6 +36,7 @@ public class ThisParameterCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_THIS};
@@ -44,6 +45,7 @@ public class ThisParameterCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
@@ -52,6 +54,7 @@ public class ThisParameterCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (Utils.isInEJB(aAST)) {

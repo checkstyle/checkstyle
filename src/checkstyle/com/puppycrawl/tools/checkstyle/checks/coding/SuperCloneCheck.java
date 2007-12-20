@@ -43,6 +43,7 @@ public class SuperCloneCheck extends AbstractSuperCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getMethodName()
     {
         return "clone";

@@ -68,12 +68,14 @@ public class MemberNameCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     protected final boolean mustCheckName(DetailAST aAST)
     {
         final DetailAST modifiersAST =

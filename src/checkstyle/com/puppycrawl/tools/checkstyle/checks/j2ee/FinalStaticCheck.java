@@ -35,6 +35,7 @@ public class FinalStaticCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.VARIABLE_DEF};
@@ -43,6 +44,7 @@ public class FinalStaticCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
@@ -51,6 +53,7 @@ public class FinalStaticCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (Utils.isInEJB(aAST)

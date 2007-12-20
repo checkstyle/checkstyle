@@ -41,6 +41,7 @@ public final class ClassDataAbstractionCouplingCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return new int[] {
@@ -53,6 +54,7 @@ public final class ClassDataAbstractionCouplingCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     protected String getLogMessageId()
     {
         return "classDataAbstractionCoupling";

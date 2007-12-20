@@ -232,7 +232,7 @@ public class Checker extends AutomaticBean
      * @return the total number of errors found
      * @see #destroy()
      */
-    public int process(File[] aFiles)
+    public int process(List<File> aFiles)
     {
         fireAuditStarted();
         for (FileSetCheck fsc : mFileSetChecks) {

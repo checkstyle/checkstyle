@@ -64,6 +64,7 @@ public class ParseTreeInfoPanel extends JPanel
 
     private static class JavaFileFilter extends FileFilter
     {
+        @Override
         public boolean accept(File f)
         {
             if (f == null) {
@@ -72,6 +73,7 @@ public class ParseTreeInfoPanel extends JPanel
             return f.isDirectory() || f.getName().endsWith(".java");
         }
 
+        @Override
         public String getDescription()
         {
             return "Java Source Code";

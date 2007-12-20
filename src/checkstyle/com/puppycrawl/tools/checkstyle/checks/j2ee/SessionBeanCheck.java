@@ -48,6 +48,7 @@ public class SessionBeanCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (Utils.hasImplements(aAST, "javax.ejb.SessionBean")) {

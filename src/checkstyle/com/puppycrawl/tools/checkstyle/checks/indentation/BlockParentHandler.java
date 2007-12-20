@@ -281,6 +281,7 @@ public class BlockParentHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         checkToplevelToken();
@@ -331,6 +332,7 @@ public class BlockParentHandler extends ExpressionHandler
     }
 
     /** {@inheritDoc} */
+    @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         return getChildrenExpectedLevel();

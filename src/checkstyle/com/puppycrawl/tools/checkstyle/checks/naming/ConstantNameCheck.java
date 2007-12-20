@@ -64,12 +64,14 @@ public class ConstantNameCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     protected final boolean mustCheckName(DetailAST aAST)
     {
         boolean retVal = false;

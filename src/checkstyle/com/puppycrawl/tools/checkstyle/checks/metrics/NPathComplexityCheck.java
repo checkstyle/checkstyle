@@ -47,6 +47,7 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -68,6 +69,7 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -91,6 +93,7 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -114,6 +117,7 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     protected String getMessageID()
     {
         return "npathComplexity";

@@ -41,6 +41,7 @@ public abstract class AbstractBeanCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF};
@@ -49,6 +50,7 @@ public abstract class AbstractBeanCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();

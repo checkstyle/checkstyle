@@ -46,6 +46,7 @@ public class LocalHomeInterfaceMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethod(DetailAST aMethodAST)
     {
         super.checkMethod(aMethodAST);

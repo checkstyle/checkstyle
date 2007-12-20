@@ -57,6 +57,7 @@ public class TypeNameCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF,

@@ -76,6 +76,7 @@ public class UncommentedMainCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -86,12 +87,14 @@ public class UncommentedMainCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mPackage = FullIdent.createFullIdent(null);
@@ -100,6 +103,7 @@ public class UncommentedMainCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAst)
     {
         if (aAst.getType() == TokenTypes.CLASS_DEF) {
@@ -111,6 +115,7 @@ public class UncommentedMainCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAst)
     {
         switch (aAst.getType()) {

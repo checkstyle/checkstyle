@@ -54,6 +54,7 @@ public class LabelHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
+    @Override
     protected IndentLevel getLevelImpl()
     {
         return new IndentLevel(super.getLevelImpl(), -getBasicOffset());
@@ -70,6 +71,7 @@ public class LabelHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         checkLabel();

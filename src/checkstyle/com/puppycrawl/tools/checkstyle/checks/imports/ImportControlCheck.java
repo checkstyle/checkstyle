@@ -53,6 +53,7 @@ public class ImportControlCheck extends Check
     private PkgControl mCurrentLeaf;
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
@@ -60,12 +61,14 @@ public class ImportControlCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(final DetailAST aRootAST)
     {
         mCurrentLeaf = null;
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(final DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.PACKAGE_DEF) {

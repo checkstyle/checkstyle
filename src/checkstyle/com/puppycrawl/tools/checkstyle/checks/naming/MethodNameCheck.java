@@ -56,6 +56,7 @@ public class MethodNameCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF};

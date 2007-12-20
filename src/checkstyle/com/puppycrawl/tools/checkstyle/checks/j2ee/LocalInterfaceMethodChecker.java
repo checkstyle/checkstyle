@@ -42,6 +42,7 @@ public class LocalInterfaceMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethod(DetailAST aMethodAST)
     {
         // every method must not throw java.rmi.RemoteException

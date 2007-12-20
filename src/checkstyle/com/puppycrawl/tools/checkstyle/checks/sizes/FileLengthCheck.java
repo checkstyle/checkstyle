@@ -61,12 +61,14 @@ public class FileLengthCheck extends Check
     private int mMaxFileLength = DEFAULT_MAX_LINES;
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         final String[] lines = getLines();

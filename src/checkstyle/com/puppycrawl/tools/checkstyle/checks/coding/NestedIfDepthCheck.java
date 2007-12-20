@@ -39,12 +39,14 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_IF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -57,6 +59,7 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         switch (aAST.getType()) {

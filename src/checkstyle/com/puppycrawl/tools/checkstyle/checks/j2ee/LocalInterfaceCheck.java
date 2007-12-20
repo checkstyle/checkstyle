@@ -39,6 +39,7 @@ public class LocalInterfaceCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (Utils.hasExtends(aAST, "javax.ejb.EJBLocalObject")) {

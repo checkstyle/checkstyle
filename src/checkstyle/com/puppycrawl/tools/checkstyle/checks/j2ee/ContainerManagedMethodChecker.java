@@ -41,6 +41,7 @@ public class ContainerManagedMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethod(DetailAST aMethodAST)
     {
         super.checkMethod(aMethodAST);
@@ -77,6 +78,7 @@ public class ContainerManagedMethodChecker
       * entity bean satisfies requirements.
       * @param aMethodAST the AST for the method definition.
       */
+    @Override
     protected void checkCreateMethod(DetailAST aMethodAST)
     {
         super.checkCreateMethod(aMethodAST);

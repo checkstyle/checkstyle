@@ -59,12 +59,14 @@ public class ParameterNameCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.PARAMETER_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     protected boolean mustCheckName(DetailAST aAST)
     {
         return !(

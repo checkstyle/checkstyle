@@ -75,12 +75,14 @@ public class PackageNameCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.PACKAGE_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST nameAST = aAST.getLastChild().getPreviousSibling();

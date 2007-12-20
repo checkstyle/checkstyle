@@ -44,6 +44,7 @@ public class SessionBeanMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethods(DetailAST aAST)
     {
         mHasEjbCreate = false;
@@ -65,6 +66,7 @@ public class SessionBeanMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     protected void checkCreateMethod(DetailAST aMethodAST)
     {
         super.checkCreateMethod(aMethodAST);

@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Interface for Checking a set of files for some criteria.
@@ -49,7 +50,7 @@ public interface FileSetCheck
      * @param aFiles the files to be audited.
      * @see #destroy()
      */
-    void process(File[] aFiles);
+    void process(List<File> aFiles);
 
     /** Cleans up the object. **/
     void destroy();

@@ -44,6 +44,7 @@ public class NewHandler extends ExpressionHandler
     }
 
     /** {@inheritDoc} */
+    @Override
     public void checkIndentation()
     {
         final DetailAST type = (DetailAST) getMainAst().getFirstChild();
@@ -78,6 +79,7 @@ public class NewHandler extends ExpressionHandler
     }
 
     /** {@inheritDoc} */
+    @Override
     protected IndentLevel getLevelImpl()
     {
         // if our expression isn't first on the line, just use the start
@@ -89,6 +91,7 @@ public class NewHandler extends ExpressionHandler
     }
 
     /** {@inheritDoc} */
+    @Override
     protected boolean shouldIncreaseIndent()
     {
         return false;

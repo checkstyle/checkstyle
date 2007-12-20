@@ -22,6 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import java.io.File;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -45,9 +46,9 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
     }
 
     /** {@inheritDoc} */
-    public void process(File[] aFiles)
+    public void process(List<File> aFiles)
     {
-        final File[] javaFiles = filter(aFiles);
+        final List<File> javaFiles = filter(aFiles);
         final Set<File> directories = getParentDirs(javaFiles);
         for (File dir : directories) {
             // Check for the preferred file.
@@ -82,7 +83,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
      * @param aFiles s set of files
      * @return the set of parent directories of the given files
      */
-    protected final Set<File> getParentDirs(File[] aFiles)
+    protected final Set<File> getParentDirs(List<File> aFiles)
     {
         final Set<File> directories = new HashSet<File>();
         for (File element : aFiles) {

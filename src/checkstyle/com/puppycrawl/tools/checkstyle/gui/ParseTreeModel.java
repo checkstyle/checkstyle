@@ -69,6 +69,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
         return COLUMN_NAMES[column];
     }
 
+    @Override
     public Class getColumnClass(int column)
     {
         switch (column) {
@@ -104,6 +105,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
         return null;
     }
 
+    @Override
     public void setValueAt(Object aValue, Object node, int column)
     {
     }

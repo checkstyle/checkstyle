@@ -41,18 +41,21 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_THROWS};
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aDetailAST)
     {
         DetailAST token = (DetailAST) aDetailAST.getFirstChild();

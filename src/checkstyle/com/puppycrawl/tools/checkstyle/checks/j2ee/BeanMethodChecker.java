@@ -40,6 +40,7 @@ public abstract class BeanMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethod(DetailAST aMethodAST)
     {
         // every kind of a bean has ejbCreate<METHOD>(...) requirements

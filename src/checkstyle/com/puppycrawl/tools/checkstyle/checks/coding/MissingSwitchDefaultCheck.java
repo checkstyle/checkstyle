@@ -56,12 +56,14 @@ public class MissingSwitchDefaultCheck extends DescendantTokenCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.LITERAL_SWITCH};
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         return getDefaultTokens();

@@ -60,6 +60,7 @@ public class EmptyForInitializerPadCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.FOR_INIT,
@@ -67,6 +68,7 @@ public class EmptyForInitializerPadCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getChildCount() == 0) {

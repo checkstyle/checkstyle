@@ -66,12 +66,14 @@ public class ParameterNumberCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);

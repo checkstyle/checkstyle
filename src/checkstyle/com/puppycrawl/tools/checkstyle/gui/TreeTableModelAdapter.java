@@ -113,11 +113,13 @@ public class TreeTableModelAdapter extends AbstractTableModel
         return mTreeTableModel.getColumnCount();
     }
 
+    @Override
     public String getColumnName(int column)
     {
         return mTreeTableModel.getColumnName(column);
     }
 
+    @Override
     public Class getColumnClass(int column)
     {
         return mTreeTableModel.getColumnClass(column);
@@ -139,11 +141,13 @@ public class TreeTableModelAdapter extends AbstractTableModel
         return mTreeTableModel.getValueAt(nodeForRow(row), column);
     }
 
+    @Override
     public boolean isCellEditable(int row, int column)
     {
         return mTreeTableModel.isCellEditable(nodeForRow(row), column);
     }
 
+    @Override
     public void setValueAt(Object value, int row, int column)
     {
         mTreeTableModel.setValueAt(value, nodeForRow(row), column);

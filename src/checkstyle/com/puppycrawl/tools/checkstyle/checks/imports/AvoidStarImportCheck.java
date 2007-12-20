@@ -58,6 +58,7 @@ public class AvoidStarImportCheck
     private String[] mExcludes = new String[0];
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.IMPORT};
@@ -81,6 +82,7 @@ public class AvoidStarImportCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final FullIdent name = FullIdent.createFullIdentBelow(aAST);

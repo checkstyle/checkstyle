@@ -45,6 +45,7 @@ public class ElseHandler extends BlockParentHandler
     /**
      * Check the indent of the top level token.
      */
+    @Override
     protected void checkToplevelToken()
     {
         // check if else is nested with rcurly of if:
@@ -72,6 +73,7 @@ public class ElseHandler extends BlockParentHandler
      *
      * @return the non-list child element
      */
+    @Override
     protected DetailAST getNonlistChild()
     {
         return (DetailAST) getMainAst().getFirstChild();

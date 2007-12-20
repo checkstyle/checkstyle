@@ -222,6 +222,7 @@ public class IndentationCheck extends Check
      *
      * @return the array of tokens that this check handles
      */
+    @Override
     public int[] getDefaultTokens()
     {
         return mHandlerFactory.getHandledTypes();
@@ -230,6 +231,7 @@ public class IndentationCheck extends Check
     /**
      * {@inheritDoc}
      */
+    @Override
     public void beginTree(DetailAST aAst)
     {
         mHandlerFactory.clearCreatedHandlers();
@@ -240,6 +242,7 @@ public class IndentationCheck extends Check
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if ((aAST.getType() == TokenTypes.VARIABLE_DEF)
@@ -263,6 +266,7 @@ public class IndentationCheck extends Check
     /**
      * {@inheritDoc}
      */
+    @Override
     public void leaveToken(DetailAST aAST)
     {
         if ((aAST.getType() == TokenTypes.VARIABLE_DEF)

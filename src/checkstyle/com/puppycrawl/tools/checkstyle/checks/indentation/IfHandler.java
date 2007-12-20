@@ -51,6 +51,7 @@ public class IfHandler extends BlockParentHandler
      *
      * @return suggested indentation for child
      */
+    @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         if (aChild instanceof ElseHandler) {
@@ -64,6 +65,7 @@ public class IfHandler extends BlockParentHandler
      *
      * @return the expected indentation amount
      */
+    @Override
     protected IndentLevel getLevelImpl()
     {
         if (isIfAfterElse()) {
@@ -89,6 +91,7 @@ public class IfHandler extends BlockParentHandler
     /**
      * Check the indentation of the top level token.
      */
+    @Override
     protected void checkToplevelToken()
     {
         if (isIfAfterElse()) {
@@ -113,6 +116,7 @@ public class IfHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         super.checkIndentation();

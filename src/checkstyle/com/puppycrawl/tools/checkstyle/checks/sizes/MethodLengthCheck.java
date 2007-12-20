@@ -65,12 +65,14 @@ public class MethodLengthCheck extends Check
     private int mMax = DEFAULT_MAX_LINES;
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST openingBrace = aAST.findFirstToken(TokenTypes.SLIST);

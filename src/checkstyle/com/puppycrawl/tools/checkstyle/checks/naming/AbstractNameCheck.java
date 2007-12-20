@@ -54,6 +54,7 @@ public abstract class AbstractNameCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (mustCheckName(aAST)) {

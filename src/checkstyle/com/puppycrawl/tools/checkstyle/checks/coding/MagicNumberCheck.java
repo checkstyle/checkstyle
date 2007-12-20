@@ -70,6 +70,7 @@ public class MagicNumberCheck extends Check
     private double[] mIgnoreNumbers = {-1, 0, 1, 2};
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -81,6 +82,7 @@ public class MagicNumberCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (inIgnoreList(aAST)) {

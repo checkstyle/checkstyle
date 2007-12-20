@@ -43,6 +43,7 @@ public class SuperFinalizeCheck extends AbstractSuperCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     protected String getMethodName()
     {
         return "finalize";

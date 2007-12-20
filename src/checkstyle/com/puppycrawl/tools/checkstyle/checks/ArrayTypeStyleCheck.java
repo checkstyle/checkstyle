@@ -36,12 +36,14 @@ public class ArrayTypeStyleCheck extends Check
     private boolean mJavaStyle = true;
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.ARRAY_DECLARATOR};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST typeAST = aAST.getParent();

@@ -47,6 +47,7 @@ public class ObjectBlockHandler extends BlockParentHandler
      *
      * @return null
      */
+    @Override
     protected DetailAST getToplevelAST()
     {
         return null;
@@ -57,6 +58,7 @@ public class ObjectBlockHandler extends BlockParentHandler
      *
      * @return the left curly brace expression
      */
+    @Override
     protected DetailAST getLCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.LCURLY);
@@ -67,6 +69,7 @@ public class ObjectBlockHandler extends BlockParentHandler
      *
      * @return the right curly brace expression
      */
+    @Override
     protected DetailAST getRCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
@@ -77,6 +80,7 @@ public class ObjectBlockHandler extends BlockParentHandler
      *
      * @return the statement list child
      */
+    @Override
     protected DetailAST getListChild()
     {
         return getMainAst();
@@ -87,6 +91,7 @@ public class ObjectBlockHandler extends BlockParentHandler
      *
      * @return the expected indentation amount
      */
+    @Override
     protected IndentLevel getLevelImpl()
     {
         final DetailAST parentAST = getMainAst().getParent();
@@ -103,6 +108,7 @@ public class ObjectBlockHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         // if we have a class or interface as a parent, don't do anything,

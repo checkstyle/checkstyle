@@ -131,6 +131,7 @@ class HtmlTag
      * Used for displaying a Checkstyle error.
      * @return the String text of this tag.
      */
+    @Override
     public String toString()
     {
         final int startOfText = mPosition;

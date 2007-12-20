@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.File;
+import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -32,7 +33,7 @@ public class FileSetCheckLifecycleTest
             return destroyed;
         }
 
-        public void process(File[] aFiles)
+        public void process(List<File> aFiles)
         {
         }
     }

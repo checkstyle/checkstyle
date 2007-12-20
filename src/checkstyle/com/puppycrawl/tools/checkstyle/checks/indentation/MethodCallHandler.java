@@ -51,6 +51,7 @@ public class MethodCallHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
+    @Override
     protected IndentLevel getLevelImpl()
     {
         // if inside a method call's params, this could be part of
@@ -141,6 +142,7 @@ public class MethodCallHandler extends ExpressionHandler
      *
      * @return suggested indentation for child
      */
+    @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         // for whatever reason a method that crosses lines, like asList
@@ -162,6 +164,7 @@ public class MethodCallHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         final DetailAST methodName = (DetailAST) getMainAst().getFirstChild();
@@ -198,6 +201,7 @@ public class MethodCallHandler extends ExpressionHandler
      *              fisrt line in checkLinesIndent()
      *         false otherwise
      */
+    @Override
     protected boolean shouldIncreaseIndent()
     {
         return false;

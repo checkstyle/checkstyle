@@ -71,6 +71,7 @@ final class StringArrayReader extends Reader
     }
 
     /** @see Reader */
+    @Override
     public void close()
     {
         mClosed = true;
@@ -83,6 +84,7 @@ final class StringArrayReader extends Reader
     }
 
     /** {@inheritDoc} */
+    @Override
     public int read(char[] aCbuf, int aOff, int aLen) throws IOException
     {
         ensureOpen();
@@ -120,6 +122,7 @@ final class StringArrayReader extends Reader
     }
 
     /** {@inheritDoc} */
+    @Override
     public int read() throws IOException
     {
         if (mUnreportedNewline) {

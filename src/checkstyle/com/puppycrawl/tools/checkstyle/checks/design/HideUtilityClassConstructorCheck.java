@@ -36,12 +36,14 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class HideUtilityClassConstructorCheck extends Check
 {
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);

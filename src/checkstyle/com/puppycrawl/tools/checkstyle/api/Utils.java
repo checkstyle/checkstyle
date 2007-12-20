@@ -281,8 +281,8 @@ public final class Utils
      * @return aFiles if aFileExtensions is null or empty,
      * the subset of aFiles that have extensions in aFileExtensions otherwise
      */
-    public static File[] filterFilesByExtension(
-            File[] aFiles, String[] aFileExtensions)
+    public static List<File> filterFilesByExtension(
+        List<File> aFiles, String[] aFileExtensions)
     {
         if ((aFileExtensions == null) || (aFileExtensions.length == 0)) {
             return aFiles;
@@ -300,7 +300,7 @@ public final class Utils
             }
         }
 
-        final List<File> files = new ArrayList<File>(aFiles.length);
+        final List<File> files = new ArrayList<File>(aFiles.size());
         for (final File f : aFiles) {
             final String fileName = f.getName();
             for (final String fileExtension : withDotExtensions) {
@@ -309,7 +309,7 @@ public final class Utils
                 }
             }
         }
-        return files.toArray(new File[files.size()]);
+        return files;
     }
 
 }

@@ -65,6 +65,7 @@ public class NoWhitespaceBeforeCheck
     private boolean mAllowLineBreaks;
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -75,6 +76,7 @@ public class NoWhitespaceBeforeCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         return new int[] {
@@ -86,6 +88,7 @@ public class NoWhitespaceBeforeCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final String[] lines = getLines();

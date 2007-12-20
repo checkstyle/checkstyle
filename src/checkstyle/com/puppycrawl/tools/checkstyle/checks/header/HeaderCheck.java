@@ -75,6 +75,7 @@ public class HeaderCheck extends AbstractHeaderCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         if (getHeaderLines().length > getLines().length) {
@@ -91,6 +92,7 @@ public class HeaderCheck extends AbstractHeaderCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     protected HeaderInfo createHeaderInfo()
     {
         return new HeaderInfo();

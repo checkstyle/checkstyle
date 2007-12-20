@@ -100,6 +100,7 @@ public class OperatorWrapCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -129,6 +130,7 @@ public class OperatorWrapCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         return new int[] {
@@ -170,6 +172,7 @@ public class OperatorWrapCheck
         };
     }
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.COLON) {

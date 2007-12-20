@@ -40,6 +40,7 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return new int[] {
@@ -55,6 +56,7 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     protected String getLogMessageId()
     {
         return "classFanOutComplexity";

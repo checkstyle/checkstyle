@@ -33,6 +33,7 @@ public class RedundantModifierCheck
     extends Check
 {
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -43,12 +44,14 @@ public class RedundantModifierCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return new int[] {};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (ScopeUtils.inInterfaceOrAnnotationBlock(aAST)) {

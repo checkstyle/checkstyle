@@ -81,6 +81,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     /**
      * @see com.puppycrawl.tools.checkstyle.api.Check#init()
      */
+    @Override
     public void init()
     {
         super.init();
@@ -89,6 +90,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         final String[] lines = getLines();
@@ -96,6 +98,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     protected HeaderInfo createHeaderInfo()
     {
         return new RegexpHeaderInfo();

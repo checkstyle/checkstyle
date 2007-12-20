@@ -65,6 +65,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ParenPadCheck extends AbstractParenPadCheck
 {
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.RPAREN,
@@ -76,6 +77,7 @@ public class ParenPadCheck extends AbstractParenPadCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         // Strange logic in this method to guard against checking RPAREN tokens

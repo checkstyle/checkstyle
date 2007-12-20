@@ -56,18 +56,21 @@ public class SuppressionFilter
     }
 
     /** {@inheritDoc} */
+    @Override
     public String toString()
     {
         return mFilters.toString();
     }
 
     /** {@inheritDoc} */
+    @Override
     public int hashCode()
     {
         return mFilters.hashCode();
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean equals(Object aObject)
     {
         if (aObject instanceof SuppressionFilter) {

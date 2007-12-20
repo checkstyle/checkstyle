@@ -46,12 +46,14 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class EmptyStatementCheck extends Check
 {
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.EMPTY_STAT};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         log(aAST.getLineNo(), aAST.getColumnNo(), "empty.statement");

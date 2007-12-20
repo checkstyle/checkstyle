@@ -44,6 +44,7 @@ public class BeanManagedMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethods(DetailAST aAST)
     {
         mHasEjbFindByPrimaryKey = false;
@@ -60,6 +61,7 @@ public class BeanManagedMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethod(DetailAST aMethodAST)
     {
         super.checkMethod(aMethodAST);

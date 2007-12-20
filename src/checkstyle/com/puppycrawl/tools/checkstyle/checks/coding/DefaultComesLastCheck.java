@@ -49,6 +49,7 @@ public class DefaultComesLastCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -57,12 +58,14 @@ public class DefaultComesLastCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         return getDefaultTokens();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST defaultGroupAST = aAST.getParent();

@@ -67,6 +67,7 @@ public class NoWhitespaceAfterCheck extends Check
     private boolean mAllowLineBreaks = true;
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -82,6 +83,7 @@ public class NoWhitespaceAfterCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         return new int[] {
@@ -98,6 +100,7 @@ public class NoWhitespaceAfterCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         DetailAST targetAST = aAST;

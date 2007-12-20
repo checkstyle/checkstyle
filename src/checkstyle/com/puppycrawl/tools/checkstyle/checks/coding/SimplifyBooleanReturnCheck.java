@@ -42,12 +42,14 @@ public class SimplifyBooleanReturnCheck
     extends Check
 {
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_IF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         // LITERAL_IF has the following four or five children:

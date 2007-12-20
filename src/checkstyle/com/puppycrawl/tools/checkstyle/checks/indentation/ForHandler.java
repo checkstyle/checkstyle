@@ -73,6 +73,7 @@ public class ForHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         checkForParams();
@@ -88,6 +89,7 @@ public class ForHandler extends BlockParentHandler
      *
      * @return suggested indentation for child
      */
+    @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         if (aChild instanceof ElseHandler) {

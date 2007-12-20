@@ -52,6 +52,7 @@ public class ClassDefHandler extends BlockParentHandler
      *
      * @return the left curly brace expression
      */
+    @Override
     protected DetailAST getLCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)
@@ -63,6 +64,7 @@ public class ClassDefHandler extends BlockParentHandler
      *
      * @return the right curly brace expression
      */
+    @Override
     protected DetailAST getRCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)
@@ -74,6 +76,7 @@ public class ClassDefHandler extends BlockParentHandler
      *
      * @return null
      */
+    @Override
     protected DetailAST getToplevelAST()
     {
         return null;
@@ -85,6 +88,7 @@ public class ClassDefHandler extends BlockParentHandler
      *
      * @return the statement list child
      */
+    @Override
     protected DetailAST getListChild()
     {
         return getMainAst().findFirstToken(TokenTypes.OBJBLOCK);
@@ -93,6 +97,7 @@ public class ClassDefHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         // TODO: still need to better deal with the modifiers and "class"
@@ -129,6 +134,7 @@ public class ClassDefHandler extends BlockParentHandler
     }
 
     /** {@inheritDoc} */
+    @Override
     protected int[] getCheckedChildren()
     {
         return new int[] {

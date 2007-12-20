@@ -51,18 +51,21 @@ public class MissingCtorCheck extends DescendantTokenCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.CLASS_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         return getDefaultTokens();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);

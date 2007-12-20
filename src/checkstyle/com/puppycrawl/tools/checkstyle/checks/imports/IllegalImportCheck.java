@@ -82,12 +82,14 @@ public class IllegalImportCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final FullIdent imp;

@@ -126,12 +126,14 @@ public class WriteTagCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.INTERFACE_DEF, TokenTypes.CLASS_DEF, };
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getAcceptableTokens()
     {
         return new int[] {TokenTypes.INTERFACE_DEF,
@@ -141,6 +143,7 @@ public class WriteTagCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final FileContents contents = getFileContents();

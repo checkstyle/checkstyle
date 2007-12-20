@@ -47,6 +47,7 @@ public class ArrayInitHandler extends BlockParentHandler
      *
      * @return the expected indentation amount
      */
+    @Override
     protected IndentLevel getLevelImpl()
     {
         final DetailAST parentAST = getMainAst().getParent();
@@ -68,6 +69,7 @@ public class ArrayInitHandler extends BlockParentHandler
      *
      * @return null
      */
+    @Override
     protected DetailAST getToplevelAST()
     {
         return null;
@@ -78,6 +80,7 @@ public class ArrayInitHandler extends BlockParentHandler
      *
      * @return the left curly brace expression
      */
+    @Override
     protected DetailAST getLCurly()
     {
         return getMainAst();
@@ -88,6 +91,7 @@ public class ArrayInitHandler extends BlockParentHandler
      *
      * @return the right curly brace expression
      */
+    @Override
     protected DetailAST getRCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
@@ -98,6 +102,7 @@ public class ArrayInitHandler extends BlockParentHandler
      *
      * @return false
      */
+    @Override
     protected boolean rcurlyMustStart()
     {
         return false;
@@ -108,6 +113,7 @@ public class ArrayInitHandler extends BlockParentHandler
      *
      * @return true
      */
+    @Override
     protected boolean childrenMayNest()
     {
         return true;
@@ -118,12 +124,14 @@ public class ArrayInitHandler extends BlockParentHandler
      *
      * @return the statement list child
      */
+    @Override
     protected DetailAST getListChild()
     {
         return getMainAst();
     }
 
     /** {@inheritDoc} */
+    @Override
     protected IndentLevel getChildrenExpectedLevel()
     {
         // now we accept

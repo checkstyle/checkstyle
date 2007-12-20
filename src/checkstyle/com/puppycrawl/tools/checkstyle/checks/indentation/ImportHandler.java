@@ -45,6 +45,7 @@ public class ImportHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         final int lineStart = getMainAst().getLineNo();

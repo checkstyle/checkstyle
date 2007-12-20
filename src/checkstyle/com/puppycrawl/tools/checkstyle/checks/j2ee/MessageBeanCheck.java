@@ -50,6 +50,7 @@ public class MessageBeanCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (Utils.hasImplements(aAST, "javax.ejb.MessageDrivenBean")

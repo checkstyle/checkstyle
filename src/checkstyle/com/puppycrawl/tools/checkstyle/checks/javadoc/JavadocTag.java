@@ -84,6 +84,7 @@ class JavadocTag
     }
 
     /** @return a string representation of the object **/
+    @Override
     public String toString()
     {
         return "{Tag = '" + getTag() + "', lineNo = " + getLineNo()

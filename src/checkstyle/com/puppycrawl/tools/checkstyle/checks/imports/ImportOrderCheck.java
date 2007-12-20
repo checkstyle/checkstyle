@@ -145,12 +145,14 @@ public class ImportOrderCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
@@ -176,6 +178,7 @@ public class ImportOrderCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mLastGroup = Integer.MIN_VALUE;
@@ -186,6 +189,7 @@ public class ImportOrderCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final FullIdent ident;

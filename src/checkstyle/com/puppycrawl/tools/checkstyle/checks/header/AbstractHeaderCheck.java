@@ -88,6 +88,7 @@ public abstract class AbstractHeaderCheck extends Check
      * @throws CheckstyleException {@inheritDoc}
      * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean#finishLocalSetup
      */
+    @Override
     protected final void finishLocalSetup() throws CheckstyleException
     {
         if (mHeaderInfo.getHeaderLines() == null) {
@@ -98,6 +99,7 @@ public abstract class AbstractHeaderCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public final int[] getDefaultTokens()
     {
         return new int[0];

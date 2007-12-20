@@ -47,6 +47,7 @@ public class CatchHandler extends BlockParentHandler
      *
      * @return false
      */
+    @Override
     protected boolean toplevelMustStartLine()
     {
         return false;
@@ -65,6 +66,7 @@ public class CatchHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         super.checkIndentation();

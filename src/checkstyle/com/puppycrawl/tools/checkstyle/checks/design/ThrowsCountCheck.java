@@ -55,6 +55,7 @@ public final class ThrowsCountCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -63,6 +64,7 @@ public final class ThrowsCountCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
@@ -87,6 +89,7 @@ public final class ThrowsCountCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         switch (aAST.getType()) {

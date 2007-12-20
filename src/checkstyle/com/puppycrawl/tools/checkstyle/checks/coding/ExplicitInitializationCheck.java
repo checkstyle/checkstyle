@@ -51,18 +51,21 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 public class ExplicitInitializationCheck extends Check
 {
     /** {@inheritDoc} */
+    @Override
     public final int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
     /** {@inheritDoc} */
+    @Override
     public final int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         // do not check local variables and

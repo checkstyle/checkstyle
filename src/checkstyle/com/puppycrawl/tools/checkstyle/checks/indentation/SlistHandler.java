@@ -51,6 +51,7 @@ public class SlistHandler extends BlockParentHandler
      *
      * @return suggested indentation for child
      */
+    @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         // this is:
@@ -78,6 +79,7 @@ public class SlistHandler extends BlockParentHandler
      *
      * @return the non-list child element
      */
+    @Override
     protected DetailAST getNonlistChild()
     {
         // blocks always have either block children or they are transparent
@@ -92,6 +94,7 @@ public class SlistHandler extends BlockParentHandler
      *
      * @return the statement list child
      */
+    @Override
     protected DetailAST getListChild()
     {
         return getMainAst();
@@ -102,6 +105,7 @@ public class SlistHandler extends BlockParentHandler
      *
      * @return the left curly brace expression
      */
+    @Override
     protected DetailAST getLCurly()
     {
         return getMainAst();
@@ -112,6 +116,7 @@ public class SlistHandler extends BlockParentHandler
      *
      * @return the right curly brace expression
      */
+    @Override
     protected DetailAST getRCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
@@ -122,6 +127,7 @@ public class SlistHandler extends BlockParentHandler
      *
      * @return null
      */
+    @Override
     protected DetailAST getToplevelAST()
     {
         return null;
@@ -151,6 +157,7 @@ public class SlistHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         // only need to check this if parent is not

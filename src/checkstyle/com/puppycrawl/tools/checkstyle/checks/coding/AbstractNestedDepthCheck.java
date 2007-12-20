@@ -43,12 +43,14 @@ public abstract class AbstractNestedDepthCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public final int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
     /** {@inheritDoc} */
+    @Override
     public void beginTree(DetailAST aRootAST)
     {
         mDepth = 0;

@@ -10,6 +10,9 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import junit.framework.TestCase;
@@ -109,7 +112,9 @@ public abstract class BaseCheckTestCase
         throws Exception
     {
         mStream.flush();
-        final int errs = aC.process(aProcessedFiles);
+        final List<File> theFiles = new ArrayList<File>();
+        Collections.addAll(theFiles, aProcessedFiles);
+        final int errs = aC.process(theFiles);
 
         // process each of the lines
         final ByteArrayInputStream bais =

@@ -31,6 +31,7 @@ import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -90,7 +91,7 @@ public class TranslationCheck
      * @return a Map object which holds the arranged property file sets
      */
     private static Map<String, Set<File>> arrangePropertyFiles(
-            File[] aPropFiles)
+        List<File> aPropFiles)
     {
         final Map<String, Set<File>> propFileMap =
             new HashMap<String, Set<File>>();
@@ -254,9 +255,9 @@ public class TranslationCheck
      * @param aFiles {@inheritDoc}
      * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
      */
-    public void process(File[] aFiles)
+    public void process(List<File> aFiles)
     {
-        final File[] propertyFiles = filter(aFiles);
+        final List<File> propertyFiles = filter(aFiles);
         final Map<String, Set<File>> propFilesMap =
             arrangePropertyFiles(propertyFiles);
         checkPropertyFileSets(propFilesMap);

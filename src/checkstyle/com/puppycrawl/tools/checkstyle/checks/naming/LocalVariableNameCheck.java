@@ -59,6 +59,7 @@ public class LocalVariableNameCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -68,6 +69,7 @@ public class LocalVariableNameCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     protected final boolean mustCheckName(DetailAST aAST)
     {
         final DetailAST modifiersAST =

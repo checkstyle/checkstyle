@@ -30,6 +30,7 @@ public class AbstractInterfaceCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.INTERFACE_DEF};
@@ -38,6 +39,7 @@ public class AbstractInterfaceCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();

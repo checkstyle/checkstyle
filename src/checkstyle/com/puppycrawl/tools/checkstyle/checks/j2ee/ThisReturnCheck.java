@@ -35,6 +35,7 @@ public class ThisReturnCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_THIS};
@@ -43,6 +44,7 @@ public class ThisReturnCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
@@ -51,6 +53,7 @@ public class ThisReturnCheck
     /**
      * {@inheritDoc}
      */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (Utils.isInEJB(aAST)) {

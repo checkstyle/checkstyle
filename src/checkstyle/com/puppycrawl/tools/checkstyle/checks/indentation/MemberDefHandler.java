@@ -70,6 +70,7 @@ public class MemberDefHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         checkModifiers();
@@ -78,6 +79,7 @@ public class MemberDefHandler extends ExpressionHandler
     }
 
     /** {@inheritDoc} */
+    @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         return getLevel();

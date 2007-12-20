@@ -61,6 +61,7 @@ public class JavadocVariableCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -70,6 +71,7 @@ public class JavadocVariableCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (shouldCheck(aAST)) {

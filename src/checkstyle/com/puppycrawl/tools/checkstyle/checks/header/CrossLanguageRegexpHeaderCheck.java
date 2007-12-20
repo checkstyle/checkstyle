@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.beanutils.ConversionException;
 
@@ -64,7 +65,7 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
     }
 
     /** information about the expected header file. */
-    private RegexpHeaderInfo mHeaderInfo = new RegexpHeaderInfo();
+    private final RegexpHeaderInfo mHeaderInfo = new RegexpHeaderInfo();
 
     /**
      * Creates a new instance and initializes the file extentions
@@ -117,6 +118,7 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
      * @throws CheckstyleException {@inheritDoc}
      * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean#finishLocalSetup
      */
+    @Override
     protected void finishLocalSetup() throws CheckstyleException
     {
         if (mHeaderInfo.getHeaderLines() == null) {
@@ -127,14 +129,14 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
     }
 
     /** {@inheritDoc} */
-    public void process(File[] aFiles)
+    public void process(List<File> aFiles)
     {
 
         final MessageDispatcher msgDispatcher = getMessageDispatcher();
         final RegexpHeaderChecker regexpHeaderChecker =
             new RegexpHeaderChecker(
                     mHeaderInfo, new FileSetCheckViolationMonitor());
-        File[] files = filter(aFiles);
+        List<File> files = filter(aFiles);
         for (final File file : files) {
             final String path = file.getPath();
             msgDispatcher.fireFileStarted(path);

@@ -575,9 +575,9 @@ public final class TreeWalker
     }
 
     /** {@inheritDoc} */
-    public void process(File[] aFiles)
+    public void process(List<File> aFiles)
     {
-        final File[] javaFiles = filter(aFiles);
+        final List<File> javaFiles = filter(aFiles);
 
         for (File element : javaFiles) {
             process(element);

@@ -81,12 +81,14 @@ public class FallThroughCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.CASE_GROUP};
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
@@ -113,6 +115,7 @@ public class FallThroughCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void init()
     {
         super.init();
@@ -120,6 +123,7 @@ public class FallThroughCheck extends Check
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST nextGroup = (DetailAST) aAST.getNextSibling();

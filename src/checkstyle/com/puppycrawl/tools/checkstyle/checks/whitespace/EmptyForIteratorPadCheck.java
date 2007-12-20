@@ -59,6 +59,7 @@ public class EmptyForIteratorPadCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.FOR_ITERATOR,
@@ -66,6 +67,7 @@ public class EmptyForIteratorPadCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getChildCount() == 0) {

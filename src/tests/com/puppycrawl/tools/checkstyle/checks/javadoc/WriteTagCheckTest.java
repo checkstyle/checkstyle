@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.ByteArrayInputStream;
 import java.io.LineNumberReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Daniel Grenner
@@ -14,7 +17,7 @@ import java.io.InputStreamReader;
 public class WriteTagCheckTest extends BaseCheckTestCase
 {
     private DefaultConfiguration mCheckConfig;
-    
+
     public void setUp() {
         mCheckConfig = createCheckConfig(WriteTagCheck.class);
     }
@@ -141,6 +144,7 @@ public class WriteTagCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
+    @Override
     protected void verify(Checker aC,
                           File[] aProcessedFiles,
                           String aMessageFileName,
@@ -148,7 +152,9 @@ public class WriteTagCheckTest extends BaseCheckTestCase
         throws Exception
     {
         mStream.flush();
-        final int errs = aC.process(aProcessedFiles);
+        final List<File> theFiles = new ArrayList<File>();
+        Collections.addAll(theFiles, aProcessedFiles);
+        final int errs = aC.process(theFiles);
 
         // process each of the lines
         final ByteArrayInputStream bais =

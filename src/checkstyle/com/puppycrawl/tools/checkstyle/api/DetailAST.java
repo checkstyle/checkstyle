@@ -60,6 +60,7 @@ public final class DetailAST extends CommonAST
     private BitSet mBranchTokenTypes;
 
     /** {@inheritDoc} */
+    @Override
     public void initialize(Token aTok)
     {
         super.initialize(aTok);
@@ -68,6 +69,7 @@ public final class DetailAST extends CommonAST
     }
 
     /** {@inheritDoc} */
+    @Override
     public void initialize(AST aAST)
     {
         final DetailAST da = (DetailAST) aAST;
@@ -81,6 +83,7 @@ public final class DetailAST extends CommonAST
      * Sets this AST's first Child.
      * @param aAST the new first child
      */
+    @Override
     public void setFirstChild(AST aAST)
     {
         mChildCount = NOT_INITIALIZED;
@@ -94,6 +97,7 @@ public final class DetailAST extends CommonAST
      * Sets AST's next sibling.
      * @param aAST the new next sibling
      */
+    @Override
     public void setNextSibling(AST aAST)
     {
         super.setNextSibling(aAST);
@@ -118,6 +122,7 @@ public final class DetailAST extends CommonAST
      * Adds new child to AST.
      * @param aAST the new child
      */
+    @Override
     public void addChild(AST aAST)
     {
         super.addChild(aAST);
@@ -298,6 +303,7 @@ public final class DetailAST extends CommonAST
     }
 
     /** {@inheritDoc} */
+    @Override
     public String toString()
     {
         return super.toString() + "[" + getLineNo() + "x" + getColumnNo() + "]";

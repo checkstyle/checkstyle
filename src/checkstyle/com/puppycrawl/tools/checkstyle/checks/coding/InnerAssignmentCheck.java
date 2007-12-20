@@ -93,6 +93,7 @@ public class InnerAssignmentCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -112,6 +113,7 @@ public class InnerAssignmentCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (isInContext(aAST, ALLOWED_ASSIGMENT_CONTEXT)) {

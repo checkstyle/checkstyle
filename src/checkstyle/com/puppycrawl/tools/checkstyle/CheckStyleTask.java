@@ -308,12 +308,12 @@ public class CheckStyleTask extends Task
 
             // Process the files
             long startTime = System.currentTimeMillis();
-            final File[] files = scanFileSets();
+            final List<File> files = scanFileSets();
             long endTime = System.currentTimeMillis();
             log("To locate the files took " + (endTime - startTime) + " ms.",
                 Project.MSG_VERBOSE);
 
-            log("Running Checkstyle " + version + " on " + files.length
+            log("Running Checkstyle " + version + " on " + files.size()
                     + " files", Project.MSG_INFO);
             log("Using configuration " + mConfigLocation, Project.MSG_VERBOSE);
 
@@ -478,7 +478,7 @@ public class CheckStyleTask extends Task
      * returns the list of files (full path name) to process.
      * @return the list of files included via the filesets.
      */
-    protected File[] scanFileSets()
+    protected List<File> scanFileSets()
     {
         final List<File> list = new ArrayList<File>();
         if (mFileName != null) {
@@ -503,7 +503,7 @@ public class CheckStyleTask extends Task
             }
         }
 
-        return list.toArray(new File[0]);
+        return list;
     }
 
     /**

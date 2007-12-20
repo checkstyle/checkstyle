@@ -47,6 +47,7 @@ public class CyclomaticComplexityCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {
@@ -67,12 +68,14 @@ public class CyclomaticComplexityCheck
     }
 
     /** {@inheritDoc} */
+    @Override
     protected final void visitTokenHook(DetailAST aAST)
     {
         incrementCurrentValue(BigInteger.ONE);
     }
 
     /** {@inheritDoc} */
+    @Override
     protected final String getMessageID()
     {
         return "cyclomaticComplexity";

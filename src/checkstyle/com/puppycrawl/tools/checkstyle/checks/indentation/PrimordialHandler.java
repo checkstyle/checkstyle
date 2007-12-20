@@ -38,6 +38,7 @@ public class PrimordialHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         // nothing to check
@@ -52,6 +53,7 @@ public class PrimordialHandler extends ExpressionHandler
      *
      * @return suggested indentation for child
      */
+    @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         return new IndentLevel(0);
@@ -62,6 +64,7 @@ public class PrimordialHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
+    @Override
     protected IndentLevel getLevelImpl()
     {
         return new IndentLevel(0);

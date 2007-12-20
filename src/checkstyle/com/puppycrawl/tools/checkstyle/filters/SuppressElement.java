@@ -174,6 +174,7 @@ public class SuppressElement
     }
 
     /** {@inheritDoc} */
+    @Override
     public String toString()
     {
         return "SupressElement[files=" + mFilePattern + ",checks="
@@ -182,6 +183,7 @@ public class SuppressElement
     }
 
     /** {@inheritDoc} */
+    @Override
     public int hashCode()
     {
         int result = HASH_MULT * mFilePattern.hashCode();
@@ -201,6 +203,7 @@ public class SuppressElement
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean equals(Object aObject)
     {
         if (aObject instanceof SuppressElement) {

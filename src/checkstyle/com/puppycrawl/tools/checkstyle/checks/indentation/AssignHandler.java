@@ -45,6 +45,7 @@ public class AssignHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         final IndentLevel expectedLevel = getChildrenExpectedLevel();
@@ -80,12 +81,14 @@ public class AssignHandler extends BlockParentHandler
      *              fisrt line in checkLinesIndent()
      *         false otherwise
      */
+    @Override
     protected boolean shouldIncreaseIndent()
     {
         return false;
     }
 
     /** {@inheritDoc} */
+    @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         final DetailAST assign = getMainAst();

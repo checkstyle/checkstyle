@@ -13,7 +13,7 @@
               lines="176"/>
     <suppress checks="ImportControl"
               files="NewlineAtEndOfFileCheck.java"
-              lines="26"/>
+              lines="27"/>
     <suppress checks="ImportControl"
               files="TranslationCheck.java"
               lines="21"/>

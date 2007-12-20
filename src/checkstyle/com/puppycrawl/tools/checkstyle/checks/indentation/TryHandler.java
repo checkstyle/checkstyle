@@ -50,6 +50,7 @@ public class TryHandler extends BlockParentHandler
      *
      * @return suggested indentation for child
      */
+    @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         if ((aChild instanceof CatchHandler)

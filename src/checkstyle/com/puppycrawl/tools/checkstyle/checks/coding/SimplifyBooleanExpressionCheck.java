@@ -43,6 +43,7 @@ public class SimplifyBooleanExpressionCheck
         extends Check
 {
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
@@ -53,18 +54,21 @@ public class SimplifyBooleanExpressionCheck
      * @see com.puppycrawl.tools.checkstyle.api.Check
      * @return an empty array.
      */
+    @Override
     public int[] getAcceptableTokens()
     {
         return new int[] {};
     }
 
     /** {@inheritDoc} */
+    @Override
     public int[] getRequiredTokens()
     {
         return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         final DetailAST parent = aAST.getParent();

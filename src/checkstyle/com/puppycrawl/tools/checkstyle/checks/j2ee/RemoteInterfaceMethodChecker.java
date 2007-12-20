@@ -41,6 +41,7 @@ public class RemoteInterfaceMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethod(DetailAST aMethodAST)
     {
         // every method must throw java.rmi.RemoteException

@@ -44,6 +44,7 @@ public class MessageBeanMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethods(DetailAST aAST)
     {
         mHasEjbCreate = false;
@@ -62,6 +63,7 @@ public class MessageBeanMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     protected void checkCreateMethod(DetailAST aMethodAST)
     {
         final DetailAST nameAST = aMethodAST.findFirstToken(TokenTypes.IDENT);

@@ -40,6 +40,7 @@ public abstract class HomeInterfaceMethodChecker
     /**
      * {@inheritDoc}
      */
+    @Override
     public void checkMethod(DetailAST aMethodAST)
     {
         // every kind of a home interface has create<METHOD>(...)

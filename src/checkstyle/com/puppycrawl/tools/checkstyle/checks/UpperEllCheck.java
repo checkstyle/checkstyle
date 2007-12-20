@@ -49,12 +49,14 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 public class UpperEllCheck extends Check
 {
     /** {@inheritDoc} */
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.NUM_LONG};
     }
 
     /** {@inheritDoc} */
+    @Override
     public void visitToken(DetailAST aAST)
     {
         if (aAST.getText().endsWith("l")) {

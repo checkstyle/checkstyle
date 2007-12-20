@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.Defn;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -69,9 +70,9 @@ public class NewlineAtEndOfFileCheck
     /**
      * {@inheritDoc}
      */
-    public void process(File[] aFiles)
+    public void process(List<File> aFiles)
     {
-        final File[] files = filter(aFiles);
+        final List<File> files = filter(aFiles);
         final MessageDispatcher dispatcher = getMessageDispatcher();
         for (final File file : files) {
             final String path = file.getPath();

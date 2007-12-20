@@ -55,6 +55,7 @@ public class CaseHandler extends ExpressionHandler
      *
      * @return the expected indentation amount
      */
+    @Override
     protected IndentLevel getLevelImpl()
     {
         return new IndentLevel(getParent().getLevel(),
@@ -78,6 +79,7 @@ public class CaseHandler extends ExpressionHandler
      *
      * @return suggested indentation for child
      */
+    @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
         return getLevel();
@@ -86,6 +88,7 @@ public class CaseHandler extends ExpressionHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         checkCase();

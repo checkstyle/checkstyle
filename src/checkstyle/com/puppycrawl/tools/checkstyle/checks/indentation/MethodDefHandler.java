@@ -48,6 +48,7 @@ public class MethodDefHandler extends BlockParentHandler
      *
      * @return null
      */
+    @Override
     protected DetailAST getToplevelAST()
     {
         // we check this stuff ourselves below
@@ -114,6 +115,7 @@ public class MethodDefHandler extends BlockParentHandler
     /**
      * Check the indentation of the expression we are handling.
      */
+    @Override
     public void checkIndentation()
     {
         checkModifiers();
