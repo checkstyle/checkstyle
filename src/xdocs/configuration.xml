@@ -355,7 +355,7 @@
     &lt;property name=&quot;basedir&quot; value=&quot;src/checkstyle&quot;/&gt;
     &lt;property name=&quot;localeCountry&quot; value=&quot;DE&quot;/&gt;
     &lt;property name=&quot;localeLanguage&quot; value=&quot;de&quot;/&gt;
-    &lt;module name=&quot;PackageHtml&quot;/&gt;
+    &lt;module name=&quot;JavadocPackage&quot;/&gt;
     &lt;module name=&quot;TreeWalker&quot;&gt;
         ...
     &lt;/module&gt;
