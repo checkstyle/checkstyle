@@ -53,7 +53,7 @@ public abstract class AbstractJ2eeCheck
      * @param aKey key to locale message format
      * @param aArgs arguments for message
      */
-    protected void logName(DetailAST aAST, String aKey, Object[] aArgs)
+    protected void logName(DetailAST aAST, String aKey, Object... aArgs)
     {
         final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
         final String name = nameAST.getText();

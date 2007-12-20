@@ -532,8 +532,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         final Integer startLine = new Integer(aJLine + 1);
         final String fileName =
                 Utils.getStrippedFileName(mBasedir, aJFile.getPath());
-        log(aILine + 1, "duplicates.lines",
-                new Object[]{dupLines, fileName, startLine});
+        log(aILine + 1, "duplicates.lines", dupLines, fileName, startLine);
         mDuplicates += 1;
     }
 

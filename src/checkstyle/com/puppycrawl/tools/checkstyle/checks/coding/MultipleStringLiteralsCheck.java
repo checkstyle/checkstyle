@@ -176,9 +176,7 @@ public class MultipleStringLiteralsCheck extends Check
                 final StringInfo firstFinding = hits.get(0);
                 final int line = firstFinding.getLine();
                 final int col = firstFinding.getCol();
-                final Object[] args =
-                    new Object[]{key, new Integer(hits.size())};
-                log(line, col, "multiple.string.literal", args);
+                log(line, col, "multiple.string.literal", key, hits.size());
             }
         }
     }

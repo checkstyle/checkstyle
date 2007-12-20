@@ -82,13 +82,11 @@ public abstract class AbstractBeanCheck
         }
         if (Utils.isFinal(aAST)) {
             log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                "illegalmodifier.bean",
-                new Object[] {arg, "final"});
+                "illegalmodifier.bean", arg, "final");
         }
         if (!aAllowAbstract && Utils.isAbstract(aAST)) {
             log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                "illegalmodifier.bean",
-                new Object[] {arg, "abstract"});
+                "illegalmodifier.bean", arg, "abstract");
         }
         if (!Utils.hasPublicConstructor(aAST, 0)) {
             log(nameAST.getLineNo(), nameAST.getColumnNo(),

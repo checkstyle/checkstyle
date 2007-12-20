@@ -63,11 +63,11 @@ public class ContainerManagedMethodChecker
     {
         // must be declared as public
         if (!Utils.isPublic(aMethodAST)) {
-            log(aMethodAST, "nonpublic.bean", new Object[] {"Method"});
+            log(aMethodAST, "nonpublic.bean", "Method");
         }
         // The method must be declared as abstract.
         if (!Utils.isAbstract(aMethodAST)) {
-            log(aMethodAST, "nonabstract.bean", new Object[] {"Method"});
+            log(aMethodAST, "nonabstract.bean", "Method");
         }
         // The throws clause must define the javax.ejb.FinderException.
         checkThrows(aMethodAST, "javax.ejb.FinderException");

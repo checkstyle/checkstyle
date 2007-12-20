@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import java.util.Arrays;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+import java.util.Arrays;
 
 /**
  * Abstract base class for all handlers.
@@ -34,16 +33,16 @@ public abstract class ExpressionHandler
     /**
      * The instance of <code>IndentationCheck</code> using this handler.
      */
-    private IndentationCheck mIndentCheck;
+    private final IndentationCheck mIndentCheck;
 
     /** the AST which is handled by this handler */
-    private DetailAST mMainAst;
+    private final DetailAST mMainAst;
 
     /** name used during output to user */
-    private String mTypeName;
+    private final String mTypeName;
 
     /** containing AST handler */
-    private ExpressionHandler mParent;
+    private final ExpressionHandler mParent;
 
     /** indentation amount for this handler */
     private IndentLevel mLevel;
@@ -132,14 +131,8 @@ public abstract class ExpressionHandler
     {
         final String typeStr =
             ("".equals(aSubtypeName) ? "" : (" " + aSubtypeName));
-        final Object[] args = new Object[] {
-            mTypeName + typeStr,
-            new Integer(aActualLevel),
-            aExpectedLevel,
-        };
-        mIndentCheck.indentationLog(aAst.getLineNo(),
-                                    "indentation.error",
-                                    args);
+        mIndentCheck.indentationLog(aAst.getLineNo(), "indentation.error",
+                mTypeName + typeStr, aActualLevel, aExpectedLevel);
     }
 
     /**
@@ -153,14 +146,8 @@ public abstract class ExpressionHandler
                                int aActualLevel,
                                IndentLevel aExpectedLevel)
     {
-        final Object[] args = new Object[] {
-            mTypeName,
-            new Integer(aActualLevel),
-            aExpectedLevel,
-        };
-        mIndentCheck.indentationLog(aLine,
-                                    "indentation.child.error",
-                                    args);
+        mIndentCheck.indentationLog(aLine, "indentation.child.error",
+                mTypeName, new Integer(aActualLevel), aExpectedLevel);
     }
 
     /**

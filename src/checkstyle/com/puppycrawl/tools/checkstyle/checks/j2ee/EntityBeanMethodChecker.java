@@ -90,7 +90,7 @@ public class EntityBeanMethodChecker
                 final String suffix = name.substring("ejbCreate".length());
                 final String postCreateName = "ejbPostCreate" + suffix;
                 logName(createMethod, "unmatchedejbcreate.bean",
-                    new Object[] {postCreateName});
+                    postCreateName);
             }
         }
     }
@@ -126,7 +126,7 @@ public class EntityBeanMethodChecker
 
         // The return type must be the entity bean’s primary key type
         if (Utils.isVoid(aMethodAST)) {
-            logName(aMethodAST, "voidmethod.bean", new Object[] {});
+            logName(aMethodAST, "voidmethod.bean");
         }
     }
 
@@ -160,7 +160,7 @@ public class EntityBeanMethodChecker
 
         // The return type must be void
         if (!Utils.isVoid(aMethodAST)) {
-            logName(aMethodAST, "nonvoidmethod.bean", new Object[] {});
+            logName(aMethodAST, "nonvoidmethod.bean");
         }
     }
 }

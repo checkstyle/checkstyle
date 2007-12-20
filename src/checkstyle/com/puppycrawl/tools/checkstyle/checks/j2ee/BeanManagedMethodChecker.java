@@ -53,8 +53,7 @@ public class BeanManagedMethodChecker
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
             final String arg = "Entity bean '" + name + "'";
-            log(aAST, "missingmethod.bean",
-                new Object[] {arg, "ejbFindByPrimaryKey"});
+            log(aAST, "missingmethod.bean", arg, "ejbFindByPrimaryKey");
         }
     }
 
@@ -77,7 +76,7 @@ public class BeanManagedMethodChecker
                     aMethodAST.findFirstToken(TokenTypes.PARAMETERS);
                 final int paramCount = paramAST.getChildCount();
                 if (paramCount != 1) {
-                    logName(aMethodAST, "paramcount.bean", new Object[] {"1"});
+                    logName(aMethodAST, "paramcount.bean", "1");
                 }
             }
             checkFindMethod(aMethodAST);
@@ -97,7 +96,7 @@ public class BeanManagedMethodChecker
         // The return type must be the entity bean's primary key type,
         // or a collection of primary keys
         if (Utils.isVoid(aMethodAST)) {
-            logName(aMethodAST, "voidmethod.bean", new Object[] {});
+            logName(aMethodAST, "voidmethod.bean");
         }
     }
 }

@@ -18,9 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.j2ee;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import org.apache.commons.beanutils.ConversionException;
 
 /**
  * Checks that an EntityBean implementation satisfies EntityBean
@@ -126,13 +125,13 @@ public class EntityBeanCheck
         if ((getPersistenceOption() == PersistenceOption.BEAN)
             && Utils.isAbstract(aAST))
         {
-            logName(aAST, "abstract.bean", new Object[] {});
+            logName(aAST, "abstract.bean");
         }
         //container-managed persistence requires abstract class
         if ((getPersistenceOption() == PersistenceOption.CONTAINER)
                     && !Utils.isAbstract(aAST))
         {
-            logName(aAST, "nonabstract.bean", new Object[] {});
+            logName(aAST, "nonabstract.bean");
         }
     }
 }

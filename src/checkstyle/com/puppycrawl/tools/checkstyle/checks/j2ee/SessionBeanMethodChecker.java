@@ -56,10 +56,7 @@ public class SessionBeanMethodChecker
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
             final String arg = "Session bean '" + name + "'";
-            log(
-                aAST,
-                "missingmethod.bean",
-                new Object[] {arg, "ejbCreate<METHOD>(...)"});
+            log(aAST, "missingmethod.bean", arg, "ejbCreate<METHOD>(...)");
         }
     }
 
@@ -81,7 +78,7 @@ public class SessionBeanMethodChecker
 
         // The return type must be void
         if (!Utils.isVoid(aMethodAST)) {
-            log(aMethodAST, "nonvoidmethod.bean", new Object[] {});
+            log(aMethodAST, "nonvoidmethod.bean");
         }
     }
 }

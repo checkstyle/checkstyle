@@ -22,7 +22,6 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import org.apache.commons.collections.ArrayStack;
 
 // TODO: allow preset indentation styles (IE... GNU style, Sun style, etc...)?
@@ -202,7 +201,7 @@ public class IndentationCheck extends Check
      *
      * @see java.text.MessageFormat
      */
-    public void indentationLog(int aLine, String aKey, Object[] aArgs)
+    public void indentationLog(int aLine, String aKey, Object... aArgs)
     {
         super.log(aLine, aKey, aArgs);
     }

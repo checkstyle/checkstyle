@@ -19,14 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.LinkedList;
-
 import antlr.collections.AST;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.LinkedList;
 
 /**
  * <p>
@@ -207,8 +205,7 @@ public abstract class AbstractSuperCheck
                 final DetailAST nameAST =
                     methodAST.findFirstToken(TokenTypes.IDENT);
                 log(nameAST.getLineNo(), nameAST.getColumnNo(),
-                    "missing.super.call",
-                    new Object[] {nameAST.getText()});
+                    "missing.super.call", nameAST.getText());
             }
         }
     }

@@ -55,8 +55,7 @@ public class MessageBeanMethodChecker
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
             final String arg = "Message bean '" + name + "'";
-            log(aAST, "missingmethod.bean",
-                new Object[] {arg, "ejbCreate()"});
+            log(aAST, "missingmethod.bean", arg, "ejbCreate()");
         }
     }
 
@@ -74,7 +73,7 @@ public class MessageBeanMethodChecker
 
             // the return type must be void
             if (!Utils.isVoid(aMethodAST)) {
-                logName(aMethodAST, "nonvoidmethod.bean", new Object[] {});
+                logName(aMethodAST, "nonvoidmethod.bean");
             }
 
             // the method must have no parameters
@@ -82,7 +81,7 @@ public class MessageBeanMethodChecker
                 aMethodAST.findFirstToken(TokenTypes.PARAMETERS);
             final int paramCount = paramAST.getChildCount();
             if (paramCount != 0) {
-                logName(aMethodAST, "paramcount.bean", new Object[] {"0"});
+                logName(aMethodAST, "paramcount.bean", "0");
             }
         }
     }

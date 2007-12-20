@@ -177,12 +177,7 @@ public class HandlerFactory
                 mTypeHandlers.get(type);
             if (handlerCtor != null) {
                 expHandler = (ExpressionHandler) handlerCtor.newInstance(
-                    new Object[] {
-                        aIndentCheck,
-                        aAst,
-                        aParent,
-                    }
-                );
+                        aIndentCheck, aAst, aParent);
             }
         }
         ///CLOVER:OFF

@@ -60,7 +60,7 @@ public abstract class HomeInterfaceMethodChecker
     {
         // return type is the entity bean’s remote or local interface
         if (Utils.isVoid(aMethodAST)) {
-            logName(aMethodAST, "voidmethod.bean", new Object[] {});
+            logName(aMethodAST, "voidmethod.bean");
         }
 
         // every create method throws a javax.ejb.CreateException

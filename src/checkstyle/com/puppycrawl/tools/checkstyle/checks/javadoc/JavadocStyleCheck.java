@@ -308,7 +308,7 @@ public class JavadocStyleCheck
 
             if (tag.isIncompleteTag()) {
                 log(tag.getLineno(), "javadoc.incompleteTag",
-                    new Object[] {text[tag.getLineno() - lineno]});
+                    text[tag.getLineno() - lineno]);
                 return;
             }
             if (tag.isClosedTag()) {

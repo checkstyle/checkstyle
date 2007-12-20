@@ -84,19 +84,17 @@ public abstract class MethodChecker
     {
         // must be declared as public
         if (!Utils.isPublic(aMethodAST)) {
-            logName(aMethodAST, "nonpublicmethod.bean", new Object[] {});
+            logName(aMethodAST, "nonpublicmethod.bean");
         }
 
         // declared as final?
         if (!aAllowFinal && Utils.isFinal(aMethodAST)) {
-            logName(aMethodAST, "illegalmodifiermethod.bean",
-                new Object[] {"final"});
+            logName(aMethodAST, "illegalmodifiermethod.bean", "final");
         }
 
         // must not be declared as static
         if (Utils.isStatic(aMethodAST)) {
-            logName(aMethodAST, "illegalmodifiermethod.bean",
-                new Object[] {"static"});
+            logName(aMethodAST, "illegalmodifiermethod.bean", "static");
         }
     }
 
@@ -123,7 +121,7 @@ public abstract class MethodChecker
     protected void checkNotThrows(DetailAST aMethodAST, String aException)
     {
         if (Utils.hasThrows(aMethodAST, aException)) {
-            logName(aMethodAST, "hasthrows.bean", new Object[] {aException});
+            logName(aMethodAST, "hasthrows.bean", aException);
         }
     }
 
@@ -144,7 +142,7 @@ public abstract class MethodChecker
      * @param aKey key for message.
      * @param aArgs message arguments.
      */
-    protected void logName(DetailAST aMethodAST, String aKey, Object[] aArgs)
+    protected void logName(DetailAST aMethodAST, String aKey, Object... aArgs)
     {
         mCheck.logName(aMethodAST, aKey, aArgs);
     }

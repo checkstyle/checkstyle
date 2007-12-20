@@ -247,7 +247,7 @@ public class WhitespaceAroundCheck extends Check
 
         if ((before >= 0) && !Character.isWhitespace(line.charAt(before))) {
             log(aAST.getLineNo(), aAST.getColumnNo(),
-                    "ws.notPreceded", new Object[]{aAST.getText()});
+                    "ws.notPreceded", aAST.getText());
         }
 
         if (after >= line.length()) {
@@ -265,11 +265,8 @@ public class WhitespaceAroundCheck extends Check
                     || (nextChar == ';')
                     || (nextChar == ','))))
         {
-            log(
-                aAST.getLineNo(),
-                aAST.getColumnNo() + aAST.getText().length(),
-                "ws.notFollowed",
-                new Object[] {aAST.getText()});
+            log(aAST.getLineNo(), aAST.getColumnNo() + aAST.getText().length(),
+                    "ws.notFollowed", aAST.getText());
         }
     }
 
