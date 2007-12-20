@@ -294,7 +294,7 @@
                 >
       <fileset dir="src/checkstyle"
                includes="**/*.java,**/*.properties"
-               excludes="**/Generated*.java,**/gui/*,**/transmogrify/*"/>
+               excludes="**/Generated*.java,**/gui/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${target.dir}/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
@@ -324,7 +324,7 @@
     <checkstyle failonviolation="false" config="${check.config}">
       <fileset dir="src/checkstyle"
                includes="**/*.java,**/*.properties"
-               excludes="**/Generated*.java,**/gui/*,,**/transmogrify/*"/>
+               excludes="**/Generated*.java,**/gui/*"/>
       <formatter type="xml" toFile="${target.dir}/cs_errors.xml"/>
       <classpath refid="run.classpath"/>
       <property key="checkstyle.cache.file" file="${target.dir}/cachefile"/>
