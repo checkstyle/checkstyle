@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Collection;
+
 /**
  * A context to be used in subcomponents. The general idea of
  * Context/Contextualizable was taken from <a target="_top"
@@ -38,5 +40,5 @@ public interface Context
      * Returns the names of all atttributes of this context.
      * @return the names of all atttributes of this context.
      */
-    String[] getAttributeNames();
+    Collection<String> getAttributeNames();
 }

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
 import org.apache.commons.beanutils.BeanUtilsBean;
@@ -219,7 +220,7 @@ public class AutomaticBean
         final BeanUtilsBean beanUtils = createBeanUtilsBean();
 
         // TODO: debug log messages
-        final String[] attributes = aContext.getAttributeNames();
+        final Collection<String> attributes = aContext.getAttributeNames();
 
         for (final String key : attributes) {
             final Object value = aContext.get(key);

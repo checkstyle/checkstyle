@@ -19,9 +19,10 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.Context;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * A default implementation of the Context interface.
@@ -39,10 +40,9 @@ public final class DefaultContext implements Context
     }
 
     /** {@inheritDoc} */
-    public String[] getAttributeNames()
+    public Collection<String> getAttributeNames()
     {
-        final Set<String> keySet = mEntries.keySet();
-        return keySet.toArray(new String[keySet.size()]);
+        return Collections.unmodifiableCollection(mEntries.keySet());
     }
 
     /**
