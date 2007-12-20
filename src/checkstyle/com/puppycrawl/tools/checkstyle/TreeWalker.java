@@ -19,7 +19,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import antlr.RecognitionException;
-import antlr.TokenStream;
 import antlr.TokenStreamException;
 import antlr.TokenStreamRecognitionException;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -58,55 +57,6 @@ import org.apache.commons.logging.LogFactory;
 public final class TreeWalker
     extends AbstractFileSetCheck
 {
-    /**
-     * Overrides ANTLR error reporting so we completely control
-     * checkstyle's output during parsing. This is important because
-     * we try parsing with several grammers (with/without support for
-     * <code>assert</code>). We must not write any error messages when
-     * parsing fails because with the next grammar it might succeed
-     * and the user will be confused.
-     */
-    private static final class SilentJavaRecognizer
-        extends GeneratedJavaRecognizer
-    {
-        /**
-         * Creates a new <code>SilentJavaRecognizer</code> instance.
-         *
-         * @param aLexer the tokenstream the recognizer operates on.
-         */
-        public SilentJavaRecognizer(TokenStream aLexer)
-        {
-            super(aLexer);
-        }
-
-        /**
-         * Parser error-reporting function, does nothing.
-         * @param aRex the exception to be reported
-         */
-        @Override
-        public void reportError(RecognitionException aRex)
-        {
-        }
-
-        /**
-         * Parser error-reporting function, does nothing.
-         * @param aMsg the error message
-         */
-        @Override
-        public void reportError(String aMsg)
-        {
-        }
-
-        /**
-         * Parser warning-reporting function, does nothing.
-         * @param aMsg the error message
-         */
-        @Override
-        public void reportWarning(String aMsg)
-        {
-        }
-    }
-
     /** default distance between tab stops */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
@@ -522,51 +472,15 @@ public final class TreeWalker
     public static DetailAST parse(FileContents aContents)
         throws RecognitionException, TokenStreamException
     {
-        DetailAST rootAST = null;
-
-        try {
-            rootAST = parse(aContents, true, true, true);
-        }
-        catch (final RecognitionException exception) {
-            try {
-                rootAST = parse(aContents, true, true, false);
-            }
-            catch (final RecognitionException exception2) {
-                rootAST = parse(aContents, false, false, false);
-            }
-        }
-        return rootAST;
-    }
-
-    /**
-     * Static helper method to parses a Java source file with a given
-     * lexer class and parser class.
-     * @param aContents contains the contents of the file
-     * @param aSilentlyConsumeErrors flag to output errors to stdout or not
-     * @param aTreatAssertAsKeyword flag to treat 'assert' as a keyowrd
-     * @param aTreatEnumAsKeyword flag to treat 'enum' as a keyowrd
-     * @throws TokenStreamException if lexing failed
-     * @throws RecognitionException if parsing failed
-     * @return the root of the AST
-     */
-    private static DetailAST parse(
-        FileContents aContents,
-        boolean aSilentlyConsumeErrors,
-        boolean aTreatAssertAsKeyword,
-        boolean aTreatEnumAsKeyword)
-        throws RecognitionException, TokenStreamException
-    {
         final Reader sar = new StringArrayReader(aContents.getLines());
         final GeneratedJavaLexer lexer = new GeneratedJavaLexer(sar);
         lexer.setFilename(aContents.getFilename());
         lexer.setCommentListener(aContents);
-        lexer.setTreatAssertAsKeyword(aTreatAssertAsKeyword);
-        lexer.setTreatEnumAsKeyword(aTreatEnumAsKeyword);
+        lexer.setTreatAssertAsKeyword(true);
+        lexer.setTreatEnumAsKeyword(true);
 
         final GeneratedJavaRecognizer parser =
-            aSilentlyConsumeErrors
-                ? new SilentJavaRecognizer(lexer)
-                : new GeneratedJavaRecognizer(lexer);
+            new GeneratedJavaRecognizer(lexer);
         parser.setFilename(aContents.getFilename());
         parser.setASTNodeClass(DetailAST.class.getName());
         parser.compilationUnit();
