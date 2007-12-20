@@ -23,8 +23,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.HashSet;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -283,7 +283,7 @@ public abstract class AbstractTypeAwareCheck extends Check
      * @param aValues values to fill the message out.
      */
     protected final void logLoadErrorImpl(int aLineNo, int aColumnNo,
-                                          String aMsgKey, Object[] aValues)
+                                          String aMsgKey, Object... aValues)
     {
         if (!mLogLoadErrors) {
             final LocalizedMessage msg = new LocalizedMessage(aLineNo,

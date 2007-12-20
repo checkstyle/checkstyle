@@ -154,7 +154,7 @@ public abstract class AbstractFileSetCheck
      * {@inheritDoc}
      */
     @Override
-    protected final void log(int aLine, String aKey, Object aArgs[])
+    protected final void log(int aLine, String aKey, Object... aArgs)
     {
         log(aLine, 0, aKey, aArgs);
     }
@@ -165,8 +165,8 @@ public abstract class AbstractFileSetCheck
      * {@inheritDoc}
      */
     @Override
-    protected final void log(int aLineNo, int aColNo,
-                             String aKey, Object[] aArgs)
+    protected final void log(int aLineNo, int aColNo, String aKey,
+            Object... aArgs)
     {
         getMessageCollector().add(
             new LocalizedMessage(aLineNo,

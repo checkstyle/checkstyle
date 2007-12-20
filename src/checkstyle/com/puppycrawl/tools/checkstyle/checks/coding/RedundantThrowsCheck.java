@@ -122,8 +122,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
     protected final void logLoadError(Token aIdent)
     {
         logLoadErrorImpl(aIdent.getLineNo(), aIdent.getColumnNo(),
-                         "redundant.throws.classInfo",
-                         new Object[] {aIdent.getText()});
+                         "redundant.throws.classInfo", aIdent.getText());
     }
 
     /**

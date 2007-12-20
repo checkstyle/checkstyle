@@ -215,28 +215,16 @@ public class DescendantTokenCheck extends Check
             if (tokenCount < mMinimumNumber) {
                 final String descendantName =
                     TokenTypes.getTokenName(element);
-                log(aAST.getLineNo(),
-                    aAST.getColumnNo(),
-                    mMinimumMessage,
-                    new String[] {
-                        "" + tokenCount,
-                        "" + mMinimumNumber,
-                        name,
-                        descendantName,
-                    });
+                log(aAST.getLineNo(), aAST.getColumnNo(), mMinimumMessage,
+                    "" + tokenCount, "" + mMinimumNumber,
+                    name, descendantName);
             }
             if (tokenCount > mMaximumNumber) {
                 final String descendantName =
                     TokenTypes.getTokenName(element);
-                log(aAST.getLineNo(),
-                    aAST.getColumnNo(),
-                    mMaximumMessage,
-                    new String[] {
-                        "" + tokenCount,
-                        "" + mMaximumNumber,
-                        name,
-                        descendantName,
-                    });
+                log(aAST.getLineNo(), aAST.getColumnNo(), mMaximumMessage,
+                    "" + tokenCount, "" + mMaximumNumber,
+                    name, descendantName);
             }
         }
     }

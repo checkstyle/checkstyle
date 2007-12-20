@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * <p>

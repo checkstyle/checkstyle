@@ -234,7 +234,7 @@ public abstract class Check extends AbstractViolationReporter
      * @see java.text.MessageFormat
      */
     @Override
-    protected final void log(int aLine, String aKey, Object aArgs[])
+    protected final void log(int aLine, String aKey, Object... aArgs)
     {
         mMessages.add(
             new LocalizedMessage(
@@ -257,8 +257,8 @@ public abstract class Check extends AbstractViolationReporter
      * @param aArgs arguments for message
      */
     @Override
-    protected final void log(int aLineNo, int aColNo,
-                             String aKey, Object[] aArgs)
+    protected final void log(int aLineNo, int aColNo, String aKey,
+            Object... aArgs)
     {
         final int col = 1 + Utils.lengthExpandedTabs(
             getLines()[aLineNo - 1], aColNo, getTabWidth());

@@ -20,8 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks for redundant modifiers in interface and annotation definitions.
@@ -71,10 +71,8 @@ public class RedundantModifierCheck
                     || (type == TokenTypes.LITERAL_STATIC)
                     || (type == TokenTypes.FINAL))
                 {
-                    log(modifier.getLineNo(),
-                        modifier.getColumnNo(),
-                        "redundantModifier",
-                        new String[] {modifier.getText()});
+                    log(modifier.getLineNo(), modifier.getColumnNo(),
+                            "redundantModifier", modifier.getText());
                     break;
                 }
 
@@ -104,10 +102,8 @@ public class RedundantModifierCheck
                 while (modifier != null) {
                     final int type = modifier.getType();
                     if (type == TokenTypes.FINAL) {
-                        log(modifier.getLineNo(),
-                            modifier.getColumnNo(),
-                            "redundantModifier",
-                            new String[] {modifier.getText()});
+                        log(modifier.getLineNo(), modifier.getColumnNo(),
+                                "redundantModifier", modifier.getText());
                         break;
                     }
                     modifier = (DetailAST) modifier.getNextSibling();

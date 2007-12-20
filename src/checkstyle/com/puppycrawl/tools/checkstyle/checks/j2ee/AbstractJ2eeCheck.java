@@ -39,7 +39,7 @@ public abstract class AbstractJ2eeCheck
      * @param aKey key to locale message format
      * @param aArgs arguments for message
      */
-    protected void log(DetailAST aAST, String aKey, Object[] aArgs)
+    protected void mylog(DetailAST aAST, String aKey, Object... aArgs)
     {
         final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
         log(nameAST.getLineNo(), nameAST.getColumnNo(), aKey, aArgs);

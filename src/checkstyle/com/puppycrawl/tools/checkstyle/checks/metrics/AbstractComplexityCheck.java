@@ -197,9 +197,7 @@ public abstract class AbstractComplexityCheck
     {
         BigInteger max = BigInteger.valueOf(mMax);
         if (mCurrentValue.compareTo(max) > 0) {
-            log(aAST, getMessageID(),
-                mCurrentValue,
-                max);
+            log(aAST, getMessageID(), mCurrentValue, max);
         }
         popValue();
     }

@@ -294,11 +294,9 @@ public abstract class AbstractClassCouplingCheck extends Check
             mReferencedClassNames.remove(mPackageName + "." + mClassName);
 
             if (mReferencedClassNames.size() > mMax) {
-                log(mLineNo, mColumnNo, getLogMessageId(),
-                    new Object[] {
-                        new Integer(mReferencedClassNames.size()),
-                        new Integer(getMax()),
-                        mReferencedClassNames.toString(), });
+                log(mLineNo, mColumnNo, getLogMessageId(), new Integer(
+                        mReferencedClassNames.size()), new Integer(getMax()),
+                        mReferencedClassNames.toString());
             }
         }
 

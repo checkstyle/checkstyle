@@ -28,9 +28,6 @@ package com.puppycrawl.tools.checkstyle.api;
 public abstract class AbstractViolationReporter
     extends AutomaticBean
 {
-    /** resuable constant for message formating */
-    private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
-
     /** the severity level of any violations found */
     private SeverityLevel mSeverityLevel = SeverityLevel.ERROR;
 
@@ -89,120 +86,16 @@ public abstract class AbstractViolationReporter
     }
 
     /**
-     * Log a message.
-     *
-     * @param aLine the line number where the error was found
-     * @param aKey the message that describes the error
-     */
-    protected final void log(int aLine, String aKey)
-    {
-        log(aLine, aKey, EMPTY_OBJECT_ARRAY);
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     */
-    protected final void log(int aLineNo, String aKey, Object aArg0)
-    {
-        log(aLineNo, aKey, new Object[] {aArg0});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage. Column defaults to 0.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 first argument
-     * @param aArg1 second argument
-     */
-    protected final void log(int aLineNo, String aKey,
-                             Object aArg0, Object aArg1)
-    {
-        log(aLineNo, aKey, new Object[] {aArg0, aArg1});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     */
-    protected final void log(int aLineNo, int aColNo, String aKey)
-    {
-        log(aLineNo, aColNo, aKey, EMPTY_OBJECT_ARRAY);
-    }
-
-    /**
      * Helper method to log a LocalizedMessage.
      *
      * @param aAST a node to get line and column numbers associated
      *             with the message
      * @param aKey key to locale message format
+     * @param aArgs arguments to format
      */
-    protected final void log(DetailAST aAST, String aKey)
+    protected final void log(DetailAST aAST, String aKey, Object... aArgs)
     {
-        log(aAST.getLineNo(), aAST.getColumnNo(), aKey);
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 an <code>Object</code> value
-     */
-    protected final void log(int aLineNo, int aColNo, String aKey,
-                    Object aArg0)
-    {
-        log(aLineNo, aColNo, aKey, new Object[] {aArg0});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aAST a node to get line and column numbers associated
-     *             with the message
-     * @param aKey key to locale message format
-     * @param aArg0 an <code>Object</code> value
-     */
-    protected final void log(DetailAST aAST, String aKey, Object aArg0)
-    {
-        log(aAST.getLineNo(), aAST.getColumnNo(), aKey, aArg0);
-    }
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArg0 an <code>Object</code> value
-     * @param aArg1 an <code>Object</code> value
-     */
-    protected final void log(int aLineNo, int aColNo, String aKey,
-                    Object aArg0, Object aArg1)
-    {
-        log(aLineNo, aColNo, aKey, new Object[] {aArg0, aArg1});
-    }
-
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aAST a node to get line and column numbers associated
-     *             with the message
-     * @param aKey key to locale message format
-     * @param aArg0 an <code>Object</code> value
-     * @param aArg1 an <code>Object</code> value
-     */
-    protected final void log(DetailAST aAST, String aKey,
-                             Object aArg0, Object aArg1)
-    {
-        log(aAST.getLineNo(), aAST.getColumnNo(), aKey, aArg0, aArg1);
+        log(aAST.getLineNo(), aAST.getColumnNo(), aKey, aArgs);
     }
 
     /**
@@ -253,7 +146,7 @@ public abstract class AbstractViolationReporter
      *
      * @see java.text.MessageFormat
      */
-    protected abstract void log(int aLine, String aKey, Object aArgs[]);
+    protected abstract void log(int aLine, String aKey, Object... aArgs);
 
     /**
      * Log a message that has column information.
@@ -265,9 +158,6 @@ public abstract class AbstractViolationReporter
      *
      * @see java.text.MessageFormat
      */
-    protected abstract void log(int aLine,
-                                int aCol,
-                                String aKey,
-                                Object[] aArgs);
-
+    protected abstract void log(int aLine, int aCol, String aKey,
+            Object... aArgs);
 }

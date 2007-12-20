@@ -305,8 +305,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     protected final void logLoadError(Token aIdent)
     {
         logLoadErrorImpl(aIdent.getLineNo(), aIdent.getColumnNo(),
-                         "javadoc.classInfo",
-                         new Object[] {"@throws", aIdent.getText()});
+                         "javadoc.classInfo", "@throws", aIdent.getText());
     }
 
     /**

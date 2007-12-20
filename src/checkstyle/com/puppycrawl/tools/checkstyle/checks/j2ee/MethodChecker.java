@@ -133,9 +133,9 @@ public abstract class MethodChecker
      * @param aKey key for message.
      * @param aArgs message arguments.
      */
-    protected void log(DetailAST aMethodAST, String aKey, Object[] aArgs)
+    protected void log(DetailAST aMethodAST, String aKey, Object... aArgs)
     {
-        mCheck.log(aMethodAST, aKey, aArgs);
+        mCheck.mylog(aMethodAST, aKey, aArgs);
     }
 
     /**
