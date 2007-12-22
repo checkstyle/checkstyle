@@ -2,10 +2,10 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.imports;
 
-import com.puppycrawl.tools.checkstyle.*;
-                                     import com.puppycrawl.tools.checkstyle.GlobalProperties;
+import com.puppycrawl.tools.checkstyle.imports.*;
+                                     import com.puppycrawl.tools.checkstyle.imports.GlobalProperties;
 import java.io.*;
 import java.lang.*;
 import java.lang.String;

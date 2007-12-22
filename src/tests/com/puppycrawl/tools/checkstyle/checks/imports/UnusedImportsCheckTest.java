@@ -1,5 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.io.File;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
@@ -12,7 +14,7 @@ public class UnusedImportsCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "8:45: Unused import - com.puppycrawl.tools.checkstyle.GlobalProperties.",
+            "8:45: Unused import - com.puppycrawl.tools.checkstyle.imports.GlobalProperties.",
             "11:8: Unused import - java.lang.String.",
             "13:8: Unused import - java.util.List.",
             "14:8: Unused import - java.util.List.",
@@ -23,7 +25,7 @@ public class UnusedImportsCheckTest
             "29:8: Unused import - java.awt.Component.",
             "30:8: Unused import - java.awt.Label.",
         };
-        verify(checkConfig, getPath("InputImport.java"), expected);
+        verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected);
     }
 
     public void testAnnotations()
@@ -33,6 +35,6 @@ public class UnusedImportsCheckTest
             createCheckConfig(UnusedImportsCheck.class);
         final String[] expected = {
         };
-        verify(checkConfig, getPath("package-info.java"), expected);
+        verify(checkConfig, getPath("imports" + File.separator + "package-info.java"), expected);
     }
 }
