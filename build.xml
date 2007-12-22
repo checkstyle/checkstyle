@@ -190,6 +190,7 @@
            deprecation="on" debug="on"
            source="${checkstyle.testinputs.minimum.javaversion}"
            target="${checkstyle.testinputs.minimum.javaversion}"
+           encoding="iso-8859-1"
            includeAntRuntime="false">
       <exclude name="**/j2ee/*" />
       <exclude name="**/InputAssertIdentifier.java" />
@@ -458,7 +459,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     </junitreport>
 
     <property name="report"
-              value="${basedir}/${testreport.dir}/index.html"/>
+              value="${testreport.dir}/index.html"/>
 
     <!-- generate the emma report -->
     <emma enabled="${emma.enabled}">
