@@ -2062,7 +2062,7 @@ case 3:
         </p>
         <source>
 &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-    &lt;property name=&quot;allowedDuplicates&quot; value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
+    &lt;property name=&quot;ignoreStringsRegexp&quot; value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
 &lt;/module&gt;
         </source>
 
