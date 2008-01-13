@@ -40,6 +40,12 @@
           Stop the WhitespaceAroundCheck from checking the Generic
           tokens &lt; and &gt;.
         </li>
+        <li>
+          Fixed bug with incorrectly flagging an import as being
+          unused. Bug 1860424, but as a consequence reintroduced bug
+          1098126. It is a catch-22 that both bugs can be solved with
+          the current architecture.
+        </li>
       </ul>
     </section>
 

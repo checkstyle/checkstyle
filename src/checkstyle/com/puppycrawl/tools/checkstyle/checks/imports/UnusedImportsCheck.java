@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.DeclarationCollector;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,7 +42,7 @@ import java.util.Set;
  * @author Oliver Burn
  * @version 1.1
  */
-public class UnusedImportsCheck extends DeclarationCollector
+public class UnusedImportsCheck extends Check
 {
     /** flag to indicate when time to start collecting references */
     private boolean mCollect;
@@ -62,7 +62,6 @@ public class UnusedImportsCheck extends DeclarationCollector
     @Override
     public void beginTree(DetailAST aRootAST)
     {
-        super.beginTree(aRootAST);
         mCollect = false;
         mImports.clear();
         mReferenced.clear();
@@ -90,16 +89,11 @@ public class UnusedImportsCheck extends DeclarationCollector
             TokenTypes.PACKAGE_DEF,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.CLASS_DEF,
-            TokenTypes.CTOR_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
             TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.PARAMETER_DEF,
-            TokenTypes.SLIST,
             TokenTypes.STATIC_IMPORT,
-            TokenTypes.VARIABLE_DEF,
         };
     }
 
@@ -114,7 +108,6 @@ public class UnusedImportsCheck extends DeclarationCollector
     @Override
     public void visitToken(DetailAST aAST)
     {
-        super.visitToken(aAST);
         if (aAST.getType() == TokenTypes.IDENT) {
             if (mCollect) {
                 processIdent(aAST);
@@ -149,9 +142,7 @@ public class UnusedImportsCheck extends DeclarationCollector
             || ((parentType == TokenTypes.DOT)
                 && (aAST.getNextSibling() != null)))
         {
-            if (!isDeclared(aAST.getText())) {
-                mReferenced.add(aAST.getText());
-            }
+            mReferenced.add(aAST.getText());
         }
     }
 

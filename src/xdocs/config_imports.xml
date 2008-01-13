@@ -205,6 +205,23 @@
             The class imported is from the same package.
           </li>
         </ul>
+        <p>
+          The main limitation of this check is handling the case where
+          an imported type has the same name as a declaration, such as a
+          member variable.
+        </p>
+        <p>
+          For example, in the following case the import <span
+          class="code">java.awt.Component</span> will not be flagged as
+          unused:
+        </p>
+        <source>
+import java.awt.Component;
+class FooBar {
+    private Object Component; // IMHO bad practise
+    ...
+}
+        </source>
       </subsection>
 
       <subsection name="Example">
