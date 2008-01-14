@@ -228,7 +228,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         mAllowMissingPropertyJavadoc = aFlag;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -239,7 +238,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {
@@ -248,11 +246,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         };
     }
 
-    /**
-     * Checks Javadoc comments for a method or constructor.
-     *
-     * @param aAST the tree node for the method or constructor.
-     */
     @Override
     protected final void processAST(DetailAST aAST)
     {
@@ -272,11 +265,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         }
     }
 
-    /**
-     * Logs error if unable to load class information.
-     *
-     * @param aIdent class name for which we can no load class.
-     */
     @Override
     protected final void logLoadError(Token aIdent)
     {
@@ -297,7 +285,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      */
     protected boolean isMissingJavadocAllowed(final DetailAST aAST)
     {
-        return mAllowMissingJavadoc
+        return mAllowMissingJavadoc || isOverrideMethod(aAST)
             || (mAllowMissingPropertyJavadoc
                 && (isSetterMethod(aAST) || isGetterMethod(aAST)));
     }
@@ -879,6 +867,38 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         }
 
         return true;
+    }
+
+    /**
+     * Returns is a method has the "@Override" annotation.
+     * @param aAST the AST to check with
+     * @return whether the AST represents a method that has the annotation.
+     */
+    private boolean isOverrideMethod(DetailAST aAST)
+    {
+        // Need it to be a method, cannot have an override on anything else.
+        // Must also have MODIFIERS token to hold the @Override
+        if ((TokenTypes.METHOD_DEF != aAST.getType())
+            || (TokenTypes.MODIFIERS != aAST.getFirstChild().getType()))
+        {
+            return false;
+        }
+
+        // Now loop over all nodes while they are annotations looking for
+        // an "@Override".
+        DetailAST node = (DetailAST) aAST.getFirstChild().getFirstChild();
+        while ((null != node) && (TokenTypes.ANNOTATION == node.getType())) {
+            if ((node.getFirstChild().getType() == TokenTypes.AT)
+                && (node.getFirstChild().getNextSibling().getType()
+                    == TokenTypes.IDENT)
+                && ("Override".equals(
+                        node.getFirstChild().getNextSibling().getText())))
+            {
+                return true;
+            }
+            node = (DetailAST) node.getNextSibling();
+        }
+        return false;
     }
 
     /** Stores useful information about declared exception. */
