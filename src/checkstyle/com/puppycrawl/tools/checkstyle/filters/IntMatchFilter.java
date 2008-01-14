@@ -42,21 +42,18 @@ class IntMatchFilter implements IntFilter
         return mMatchValue == aInt;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String toString()
     {
         return "IntMatchFilter[" + mMatchValue + "]";
     }
 
-    /** {@inheritDoc} */
     @Override
     public int hashCode()
     {
         return Integer.valueOf(mMatchValue).hashCode();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean equals(Object aObject)
     {

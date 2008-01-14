@@ -42,15 +42,6 @@ public class IfHandler extends BlockParentHandler
         super(aIndentCheck, "if", aAst, aParent);
     }
 
-    /**
-     * Indentation level suggested for a child element. Children don't have
-     * to respect this, but most do.
-     *
-     * @param aChild  child AST (so suggestion level can differ based on child
-     *                  type)
-     *
-     * @return suggested indentation for child
-     */
     @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
@@ -60,11 +51,6 @@ public class IfHandler extends BlockParentHandler
         return super.suggestedChildLevel(aChild);
     }
 
-    /**
-     * Compute the indentation amount for this handler.
-     *
-     * @return the expected indentation amount
-     */
     @Override
     protected IndentLevel getLevelImpl()
     {
@@ -88,9 +74,6 @@ public class IfHandler extends BlockParentHandler
             && (parent.getLineNo() == getMainAst().getLineNo());
     }
 
-    /**
-     * Check the indentation of the top level token.
-     */
     @Override
     protected void checkToplevelToken()
     {
@@ -113,9 +96,6 @@ public class IfHandler extends BlockParentHandler
         checkExpressionSubtree(condAst, expected, false, false);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

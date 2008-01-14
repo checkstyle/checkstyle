@@ -42,15 +42,6 @@ public class SlistHandler extends BlockParentHandler
         super(aIndentCheck, "block", aAst, aParent);
     }
 
-    /**
-     * Indentation level suggested for a child element. Children don't have
-     * to respect this, but most do.
-     *
-     * @param aChild  child AST (so suggestion level can differ based on child
-     *                  type)
-     *
-     * @return suggested indentation for child
-     */
     @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
@@ -74,11 +65,6 @@ public class SlistHandler extends BlockParentHandler
         return super.suggestedChildLevel(aChild);
     }
 
-    /**
-     * Get the child element that is not a list of statements.
-     *
-     * @return the non-list child element
-     */
     @Override
     protected DetailAST getNonlistChild()
     {
@@ -89,44 +75,24 @@ public class SlistHandler extends BlockParentHandler
         return null;
     }
 
-    /**
-     * Get the child element representing the list of statements.
-     *
-     * @return the statement list child
-     */
     @Override
     protected DetailAST getListChild()
     {
         return getMainAst();
     }
 
-    /**
-     * Get the left curly brace portion of the expression we are handling.
-     *
-     * @return the left curly brace expression
-     */
     @Override
     protected DetailAST getLCurly()
     {
         return getMainAst();
     }
 
-    /**
-     * Get the right curly brace portion of the expression we are handling.
-     *
-     * @return the right curly brace expression
-     */
     @Override
     protected DetailAST getRCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
     }
 
-    /**
-     * There is no top level expression for this handler.
-     *
-     * @return null
-     */
     @Override
     protected DetailAST getToplevelAST()
     {
@@ -154,9 +120,6 @@ public class SlistHandler extends BlockParentHandler
             || (parentType == TokenTypes.STATIC_INIT);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

@@ -42,9 +42,6 @@ public class PackageDefHandler extends ExpressionHandler
         super(aIndentCheck, "package def", aAst, aParent);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

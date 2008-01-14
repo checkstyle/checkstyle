@@ -101,7 +101,6 @@ public class IndentLevel
         mLevels.addAll(aIndent.mLevels);
     }
 
-    /** @return string representation of the object. */
     @Override
     public String toString()
     {

@@ -81,10 +81,6 @@ final class RegexpHeaderInfo extends HeaderInfo
         return mHeaderRegexps;
     }
 
-    /**
-     * Initializes {@link #mHeaderRegexps} from
-     * {@link HeaderInfo#getHeaderLines()}.
-     */
     @Override
     protected void postprocessHeaderLines()
     {

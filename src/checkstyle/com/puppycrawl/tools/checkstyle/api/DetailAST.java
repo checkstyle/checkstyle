@@ -77,10 +77,6 @@ public final class DetailAST extends CommonAST
         mColumnNo = da.getColumnNo();
     }
 
-    /**
-     * Sets this AST's first Child.
-     * @param aAST the new first child
-     */
     @Override
     public void setFirstChild(AST aAST)
     {
@@ -91,10 +87,6 @@ public final class DetailAST extends CommonAST
         }
     }
 
-    /**
-     * Sets AST's next sibling.
-     * @param aAST the new next sibling
-     */
     @Override
     public void setNextSibling(AST aAST)
     {
@@ -116,10 +108,6 @@ public final class DetailAST extends CommonAST
         mPreviousSibling = aAST;
     }
 
-    /**
-     * Adds new child to AST.
-     * @param aAST the new child
-     */
     @Override
     public void addChild(AST aAST)
     {

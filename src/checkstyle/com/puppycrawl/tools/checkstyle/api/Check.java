@@ -224,15 +224,6 @@ public abstract class Check extends AbstractViolationReporter
         mTabWidth = aTabWidth;
     }
 
-    /**
-     * Log an error message.
-     *
-     * @param aLine the line number where the error was found
-     * @param aKey the message that describes the error
-     * @param aArgs the details of the message
-     *
-     * @see java.text.MessageFormat
-     */
     @Override
     protected final void log(int aLine, String aKey, Object... aArgs)
     {
@@ -248,14 +239,6 @@ public abstract class Check extends AbstractViolationReporter
     }
 
 
-    /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param aLineNo line number to associate with the message
-     * @param aColNo column number to associate with the message
-     * @param aKey key to locale message format
-     * @param aArgs arguments for message
-     */
     @Override
     protected final void log(int aLineNo, int aColNo, String aKey,
             Object... aArgs)

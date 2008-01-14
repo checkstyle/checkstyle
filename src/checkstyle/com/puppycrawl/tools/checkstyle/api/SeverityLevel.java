@@ -106,14 +106,6 @@ public final class SeverityLevel implements Comparable<SeverityLevel>,
         return this.mCode - aObject.mCode;
     }
 
-    /**
-     *  The equals method.
-     *
-     *  @param aObj  Object to compare to.
-     *
-     *  @return  <code>true</code> means equal, <code>false</code> means
-     *            not equal.
-     */
     @Override
     public boolean equals(Object aObj)
     {
@@ -128,11 +120,6 @@ public final class SeverityLevel implements Comparable<SeverityLevel>,
         return result;
     }
 
-    /**
-     *  The hashCode method.
-     *
-     *  @return  hash code for the object.
-     */
     @Override
     public int hashCode()
     {

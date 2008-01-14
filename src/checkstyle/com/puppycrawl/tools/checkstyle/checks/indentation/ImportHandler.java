@@ -42,9 +42,6 @@ public class ImportHandler extends ExpressionHandler
         super(aIndentCheck, "import", aAst, aParent);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

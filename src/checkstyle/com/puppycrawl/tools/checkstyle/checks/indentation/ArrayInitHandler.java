@@ -42,11 +42,6 @@ public class ArrayInitHandler extends BlockParentHandler
         super(aIndentCheck, "array initialization", aAst, aParent);
     }
 
-    /**
-     * Compute the indentation amount for this handler.
-     *
-     * @return the expected indentation amount
-     */
     @Override
     protected IndentLevel getLevelImpl()
     {
@@ -64,66 +59,36 @@ public class ArrayInitHandler extends BlockParentHandler
         }
     }
 
-    /**
-     * There is no top level expression for this handler.
-     *
-     * @return null
-     */
     @Override
     protected DetailAST getToplevelAST()
     {
         return null;
     }
 
-    /**
-     * Get the left curly brace portion of the expression we are handling.
-     *
-     * @return the left curly brace expression
-     */
     @Override
     protected DetailAST getLCurly()
     {
         return getMainAst();
     }
 
-    /**
-     * Get the right curly brace portion of the expression we are handling.
-     *
-     * @return the right curly brace expression
-     */
     @Override
     protected DetailAST getRCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
     }
 
-    /**
-     * Determines if the right curly brace must be at the start of the line.
-     *
-     * @return false
-     */
     @Override
     protected boolean rcurlyMustStart()
     {
         return false;
     }
 
-    /**
-     * Determines if child elements within the expression may be nested.
-     *
-     * @return true
-     */
     @Override
     protected boolean childrenMayNest()
     {
         return true;
     }
 
-    /**
-     * Get the child element representing the list of statements.
-     *
-     * @return the statement list child
-     */
     @Override
     protected DetailAST getListChild()
     {

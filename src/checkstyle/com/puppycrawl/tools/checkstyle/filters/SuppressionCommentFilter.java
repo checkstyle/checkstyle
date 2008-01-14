@@ -240,7 +240,6 @@ public class SuppressionCommentFilter
             return result;
         }
 
-        /** {@inheritDoc} */
         @Override
         public final String toString()
         {

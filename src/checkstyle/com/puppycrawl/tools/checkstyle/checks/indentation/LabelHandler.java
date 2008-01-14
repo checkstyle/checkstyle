@@ -49,11 +49,6 @@ public class LabelHandler extends ExpressionHandler
         super(aIndentCheck, "label", aExpr, aParent);
     }
 
-    /**
-     * Compute the indentation amount for this handler.
-     *
-     * @return the expected indentation amount
-     */
     @Override
     protected IndentLevel getLevelImpl()
     {
@@ -68,9 +63,6 @@ public class LabelHandler extends ExpressionHandler
         checkChildren(getMainAst(), mLabelChildren, getLevel(), true, false);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

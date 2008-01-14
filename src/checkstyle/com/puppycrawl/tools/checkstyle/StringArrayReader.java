@@ -70,7 +70,6 @@ final class StringArrayReader extends Reader
         }
     }
 
-    /** @see Reader */
     @Override
     public void close()
     {
@@ -83,7 +82,6 @@ final class StringArrayReader extends Reader
         return (mUnderlyingArray.length > mArrayIdx);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int read(char[] aCbuf, int aOff, int aLen) throws IOException
     {
@@ -121,7 +119,6 @@ final class StringArrayReader extends Reader
         return retVal;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int read() throws IOException
     {

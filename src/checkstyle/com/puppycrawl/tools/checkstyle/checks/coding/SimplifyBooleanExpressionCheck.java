@@ -48,14 +48,11 @@ public class SimplifyBooleanExpressionCheck
         return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
     }
 
-    /**
-     * Prevent user from changing tokens in the configuration.
-     * @see com.puppycrawl.tools.checkstyle.api.Check
-     * @return an empty array.
-     */
     @Override
     public int[] getAcceptableTokens()
     {
+        // Return empty list to prevent user changing tokens in the
+        // configuration.
         return new int[] {};
     }
 

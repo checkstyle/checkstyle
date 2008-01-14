@@ -42,11 +42,6 @@ public class CatchHandler extends BlockParentHandler
         super(aIndentCheck, "catch", aAst, aParent);
     }
 
-    /**
-     * Determines if the top level token must start the line.
-     *
-     * @return false
-     */
     @Override
     protected boolean toplevelMustStartLine()
     {
@@ -63,9 +58,6 @@ public class CatchHandler extends BlockParentHandler
         checkExpressionSubtree(condAst, getLevel(), false, false);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

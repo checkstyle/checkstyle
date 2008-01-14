@@ -477,7 +477,6 @@ public abstract class AbstractTypeAwareCheck extends Check
             return mIsLoadable;
         }
 
-        /** @return <code>Class</code> associated with an object. */
         @Override
         public Class<?> getClazz()
         {

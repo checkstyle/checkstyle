@@ -278,9 +278,6 @@ public class BlockParentHandler extends ExpressionHandler
         return getMainAst().findFirstToken(TokenTypes.LPAREN);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

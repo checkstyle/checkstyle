@@ -126,11 +126,6 @@ class HtmlTag
         return mPosition;
     }
 
-    /**
-     * Returns this HTML tag and trailing text.
-     * Used for displaying a Checkstyle error.
-     * @return the String text of this tag.
-     */
     @Override
     public String toString()
     {

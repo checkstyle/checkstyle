@@ -42,33 +42,18 @@ public class SwitchHandler extends BlockParentHandler
         super(aIndentCheck, "switch", aAst, aParent);
     }
 
-    /**
-     * Get the left curly brace portion of the expression we are handling.
-     *
-     * @return the left curly brace expression
-     */
     @Override
     protected DetailAST getLCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.LCURLY);
     }
 
-    /**
-     * Get the right curly brace portion of the expression we are handling.
-     *
-     * @return the right curly brace expression
-     */
     @Override
     protected DetailAST getRCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
     }
 
-    /**
-     * There is no list of statements child for this handler.
-     *
-     * @return null
-     */
     @Override
     protected DetailAST getListChild()
     {
@@ -79,11 +64,6 @@ public class SwitchHandler extends BlockParentHandler
         return null;
     }
 
-    /**
-     * There is no child element that is not a list of statements.
-     *
-     * @return null
-     */
     @Override
     protected DetailAST getNonlistChild()
     {
@@ -103,9 +83,6 @@ public class SwitchHandler extends BlockParentHandler
             false);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

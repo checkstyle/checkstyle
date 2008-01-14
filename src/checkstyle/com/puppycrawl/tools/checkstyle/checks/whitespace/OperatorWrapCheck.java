@@ -169,6 +169,7 @@ public class OperatorWrapCheck
 
         };
     }
+
     @Override
     public void visitToken(DetailAST aAST)
     {

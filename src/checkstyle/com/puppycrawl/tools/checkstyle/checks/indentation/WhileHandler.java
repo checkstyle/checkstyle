@@ -53,9 +53,6 @@ public class WhileHandler extends BlockParentHandler
         checkExpressionSubtree(condAst, expected, false, false);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

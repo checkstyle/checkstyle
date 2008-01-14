@@ -42,9 +42,6 @@ public class ElseHandler extends BlockParentHandler
         super(aIndentCheck, "else", aAst, aParent);
     }
 
-    /**
-     * Check the indent of the top level token.
-     */
     @Override
     protected void checkToplevelToken()
     {
@@ -68,11 +65,6 @@ public class ElseHandler extends BlockParentHandler
         super.checkToplevelToken();
     }
 
-    /**
-     * Get the child element that is not a list of statements.
-     *
-     * @return the non-list child element
-     */
     @Override
     protected DetailAST getNonlistChild()
     {

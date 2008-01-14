@@ -88,14 +88,10 @@ public class IllegalInstantiationCheck
         };
     }
 
-    /**
-     * Prevent user from changing tokens in the configuration.
-     * @see com.puppycrawl.tools.checkstyle.api.Check
-     * @return empty array to not allow user to change configuration.
-     */
     @Override
     public int[] getAcceptableTokens()
     {
+        // Return an empty array to not allow user to change configuration.
         return new int[] {};
     }
 

@@ -43,11 +43,6 @@ public class MethodDefHandler extends BlockParentHandler
             ? "ctor def" : "method def", aAst, aParent);
     }
 
-    /**
-     * There is no top level expression for this handler.
-     *
-     * @return null
-     */
     @Override
     protected DetailAST getToplevelAST()
     {
@@ -112,9 +107,6 @@ public class MethodDefHandler extends BlockParentHandler
         checkExpressionSubtree(params, getLevel(), false, false);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

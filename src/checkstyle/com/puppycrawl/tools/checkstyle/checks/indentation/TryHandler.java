@@ -41,15 +41,6 @@ public class TryHandler extends BlockParentHandler
         super(aIndentCheck, "try", aAst, aParent);
     }
 
-    /**
-     * Indentation level suggested for a child element. Children don't have
-     * to respect this, but most do.
-     *
-     * @param aChild  child AST (so suggestion level can differ based on child
-     *                  type)
-     *
-     * @return suggested indentation for child
-     */
     @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {

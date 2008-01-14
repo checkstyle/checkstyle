@@ -74,9 +74,6 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
         getRegexpHeaderInfo().setMultiLines(aList);
     }
 
-    /**
-     * @see com.puppycrawl.tools.checkstyle.api.Check#init()
-     */
     @Override
     public void init()
     {

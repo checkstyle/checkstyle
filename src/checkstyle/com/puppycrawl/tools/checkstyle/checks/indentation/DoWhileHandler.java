@@ -52,9 +52,6 @@ public class DoWhileHandler extends BlockParentHandler
         checkExpressionSubtree(condAst, getLevel(), false, false);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

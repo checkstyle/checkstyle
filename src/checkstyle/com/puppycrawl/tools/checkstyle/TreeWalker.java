@@ -136,7 +136,6 @@ public final class TreeWalker
         mModuleFactory = aModuleFactory;
     }
 
-    /** @see com.puppycrawl.tools.checkstyle.api.Configurable */
     @Override
     public void finishLocalSetup()
     {
@@ -152,11 +151,6 @@ public final class TreeWalker
         mChildContext = checkContext;
     }
 
-    /**
-     * Instantiates, configures and registers a Check that is specified
-     * in the provided configuration.
-     * {@inheritDoc}
-     */
     @Override
     public void setupChild(Configuration aChildConf)
         throws CheckstyleException
@@ -498,9 +492,6 @@ public final class TreeWalker
         }
     }
 
-    /**
-     * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
-     */
     @Override
     public void destroy()
     {

@@ -46,11 +46,6 @@ public class MethodCallHandler extends ExpressionHandler
             aParent);
     }
 
-    /**
-     * Compute the indentation amount for this handler.
-     *
-     * @return the expected indentation amount
-     */
     @Override
     protected IndentLevel getLevelImpl()
     {
@@ -133,15 +128,6 @@ public class MethodCallHandler extends ExpressionHandler
         return ast;
     }
 
-    /**
-     * Indentation level suggested for a child element. Children don't have
-     * to respect this, but most do.
-     *
-     * @param aChild  child AST (so suggestion level can differ based on child
-     *                  type)
-     *
-     * @return suggested indentation for child
-     */
     @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
@@ -161,9 +147,6 @@ public class MethodCallHandler extends ExpressionHandler
         return new IndentLevel(indentLevel);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {
@@ -196,11 +179,6 @@ public class MethodCallHandler extends ExpressionHandler
         checkRParen(lparen, rparen);
     }
 
-    /**
-     * @return true if indentation should be increased after
-     *              fisrt line in checkLinesIndent()
-     *         false otherwise
-     */
     @Override
     protected boolean shouldIncreaseIndent()
     {

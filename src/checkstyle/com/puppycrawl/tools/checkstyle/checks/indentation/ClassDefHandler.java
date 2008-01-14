@@ -47,11 +47,6 @@ public class ClassDefHandler extends BlockParentHandler
               aAst, aParent);
     }
 
-    /**
-     * Get the left curly brace portion of the expression we are handling.
-     *
-     * @return the left curly brace expression
-     */
     @Override
     protected DetailAST getLCurly()
     {
@@ -59,11 +54,6 @@ public class ClassDefHandler extends BlockParentHandler
             .findFirstToken(TokenTypes.LCURLY);
     }
 
-    /**
-     * Get the right curly brace portion of the expression we are handling.
-     *
-     * @return the right curly brace expression
-     */
     @Override
     protected DetailAST getRCurly()
     {
@@ -71,11 +61,6 @@ public class ClassDefHandler extends BlockParentHandler
             .findFirstToken(TokenTypes.RCURLY);
     }
 
-    /**
-     * There is no top level expression for this handler.
-     *
-     * @return null
-     */
     @Override
     protected DetailAST getToplevelAST()
     {
@@ -83,20 +68,12 @@ public class ClassDefHandler extends BlockParentHandler
         // note: ident checked by hand in check indentation;
     }
 
-    /**
-     * Get the child element representing the list of statements.
-     *
-     * @return the statement list child
-     */
     @Override
     protected DetailAST getListChild()
     {
         return getMainAst().findFirstToken(TokenTypes.OBJBLOCK);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

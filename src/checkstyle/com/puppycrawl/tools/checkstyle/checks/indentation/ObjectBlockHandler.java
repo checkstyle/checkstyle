@@ -42,55 +42,30 @@ public class ObjectBlockHandler extends BlockParentHandler
         super(aIndentCheck, "object def", aAst, aParent);
     }
 
-    /**
-     * There is no top level expression for this handler.
-     *
-     * @return null
-     */
     @Override
     protected DetailAST getToplevelAST()
     {
         return null;
     }
 
-    /**
-     * Get the left curly brace portion of the expression we are handling.
-     *
-     * @return the left curly brace expression
-     */
     @Override
     protected DetailAST getLCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.LCURLY);
     }
 
-    /**
-     * Get the right curly brace portion of the expression we are handling.
-     *
-     * @return the right curly brace expression
-     */
     @Override
     protected DetailAST getRCurly()
     {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
     }
 
-    /**
-     * Get the child element representing the list of statements.
-     *
-     * @return the statement list child
-     */
     @Override
     protected DetailAST getListChild()
     {
         return getMainAst();
     }
 
-    /**
-     * Compute the indentation amount for this handler.
-     *
-     * @return the expected indentation amount
-     */
     @Override
     protected IndentLevel getLevelImpl()
     {
@@ -105,9 +80,6 @@ public class ObjectBlockHandler extends BlockParentHandler
         return indent;
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {

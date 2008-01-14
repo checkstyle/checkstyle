@@ -124,14 +124,6 @@ public class Checker extends AutomaticBean
         mChildContext = context;
     }
 
-    /**
-     * Instantiates, configures and registers a child AbstractFilter
-     * or FileSetCheck
-     * that is specified in the provided configuration.
-     * @param aChildConf {@inheritDoc}
-     * @throws CheckstyleException {@inheritDoc}
-     * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean
-     */
     @Override
     protected void setupChild(Configuration aChildConf)
         throws CheckstyleException

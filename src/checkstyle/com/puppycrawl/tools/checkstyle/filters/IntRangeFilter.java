@@ -52,14 +52,12 @@ class IntRangeFilter implements IntFilter
             && (mUpperBound.compareTo(aInt) >= 0));
     }
 
-    /** {@inheritDoc} */
     @Override
     public int hashCode()
     {
         return HASH_MULT * mLowerBound.intValue() + mUpperBound.intValue();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean equals(Object aObject)
     {
@@ -70,7 +68,7 @@ class IntRangeFilter implements IntFilter
         }
         return false;
     }
-    /** {@inheritDoc} */
+
     @Override
     public String toString()
     {

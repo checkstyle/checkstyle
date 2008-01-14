@@ -41,11 +41,6 @@ public class FinallyHandler extends BlockParentHandler
         super(aIndentCheck, "finally", aAst, aParent);
     }
 
-    /**
-     * Determines if the top level token must start the line.
-     *
-     * @return false
-     */
     @Override
     protected boolean toplevelMustStartLine()
     {

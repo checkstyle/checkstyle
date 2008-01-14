@@ -332,18 +332,6 @@ final class StrArrayConverter extends AbstractArrayConverter
         this.useDefault = true;
     }
 
-    /**
-     * Convert the specified input object into an output object of the
-     * specified type.
-     *
-     * @param aType Data type to which this value should be converted
-     * @param aValue The input value to be converted
-     *
-     * @return the converted object
-     *
-     * @throws ConversionException if conversion cannot be performed
-     *  successfully
-     */
     @SuppressWarnings("unchecked")
     @Override
     public Object convert(Class aType, Object aValue)
@@ -381,26 +369,6 @@ final class StrArrayConverter extends AbstractArrayConverter
         }
     }
 
-    /**
-     * <p>
-     * Parse an incoming String of the form similar to an array initializer in
-     * the Java language into a <code>List</code> individual Strings for each
-     * element, according to the following rules.
-     * </p>
-     * <ul>
-     * <li>The string must have matching '{' and '}' delimiters around a
-     * comma-delimited list of values.</li>
-     * <li>Whitespace before and after each element is stripped.
-     * <li>If an element is itself delimited by matching single or double
-     * quotes, the usual rules for interpreting a quoted String apply.</li>
-     * </ul>
-     *
-     * @param aValue
-     *            String value to be parsed
-     * @return the list of Strings parsed from the array
-     * @throws NullPointerException
-     *             if <code>svalue</code> is <code>null</code>
-     */
     @SuppressWarnings("unchecked")
     @Override
     protected List parseElements(final String aValue)

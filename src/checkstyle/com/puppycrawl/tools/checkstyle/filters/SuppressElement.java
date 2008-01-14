@@ -170,7 +170,6 @@ public class SuppressElement
         return true;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String toString()
     {
@@ -179,7 +178,6 @@ public class SuppressElement
             + mColumnsCSV + "]";
     }
 
-    /** {@inheritDoc} */
     @Override
     public int hashCode()
     {
@@ -199,7 +197,6 @@ public class SuppressElement
         return result;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean equals(Object aObject)
     {

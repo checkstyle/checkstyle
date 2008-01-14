@@ -247,11 +247,6 @@ public class CheckStyleTask extends Task
     // The doers
     ////////////////////////////////////////////////////////////////////////////
 
-    /**
-     * Actually checks the files specified. All errors are reported to
-     * System.out. Will fail if any errors occurred.
-     * @throws BuildException an error occurred
-     */
     @Override
     public void execute() throws BuildException
     {

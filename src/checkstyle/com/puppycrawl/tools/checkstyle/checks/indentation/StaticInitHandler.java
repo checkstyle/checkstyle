@@ -41,11 +41,6 @@ public class StaticInitHandler extends BlockParentHandler
         super(aIndentCheck, "static initialization", aAst, aParent);
     }
 
-    /**
-     * Determines if the top level token must start the line.
-     *
-     * @return false
-     */
     @Override
     protected boolean toplevelMustStartLine()
     {

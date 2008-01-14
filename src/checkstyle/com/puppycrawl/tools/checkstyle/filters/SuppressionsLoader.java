@@ -78,7 +78,6 @@ public final class SuppressionsLoader
         return mFilterChain;
     }
 
-    /** {@inheritDoc} **/
     @Override
     public void startElement(String aNamespaceURI,
                              String aLocalName,

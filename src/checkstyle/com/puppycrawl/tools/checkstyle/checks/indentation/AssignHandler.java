@@ -42,9 +42,6 @@ public class AssignHandler extends BlockParentHandler
         super(aIndentCheck, "assign", aAst, aParent);
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {
@@ -76,11 +73,6 @@ public class AssignHandler extends BlockParentHandler
         checkExpressionSubtree(child, expectedLevel, false, true);
     }
 
-    /**
-     * @return true if indentation should be increased after
-     *              fisrt line in checkLinesIndent()
-     *         false otherwise
-     */
     @Override
     protected boolean shouldIncreaseIndent()
     {

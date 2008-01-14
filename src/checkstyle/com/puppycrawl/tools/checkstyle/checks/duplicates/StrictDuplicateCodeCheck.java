@@ -137,16 +137,11 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         // we could also parse the java code using the TreeWalker
         // and then ignore everything before the CLASS_DEF...
 
-
-        /**
-         * computes a checksum for a aLine. to avoid false alarms it is
-         * important that different lines result in different checksums.
-         * @param aLine the aLine
-         * @return checksum
-         */
         @Override
         protected int calcChecksum(String aLine)
         {
+            // to avoid false alarms it is important that different lines
+            // result in different checksums.
             if (aLine.startsWith("import ")) {
                 return IGNORE;
             }

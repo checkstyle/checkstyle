@@ -98,9 +98,6 @@ public class LineSet
         return mLines.isEmpty();
     }
 
-    /**
-     * @return string representation
-     */
     @Override
     public String toString()
     {

@@ -89,10 +89,6 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
         };
     }
 
-    /**
-     * Checks exceptions declared in throws for a method or constructor.
-     * @param aAST the tree node for the method or constructor.
-     */
     @Override
     protected final void processAST(DetailAST aAST)
     {
@@ -113,10 +109,6 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
         }
     }
 
-    /**
-     * Logs error if unable to load class information.
-     * @param aIdent class name for which we can no load class.
-     */
     @Override
     protected final void logLoadError(Token aIdent)
     {

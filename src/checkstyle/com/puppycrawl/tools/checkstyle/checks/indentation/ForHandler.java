@@ -70,9 +70,6 @@ public class ForHandler extends BlockParentHandler
         }
     }
 
-    /**
-     * Check the indentation of the expression we are handling.
-     */
     @Override
     public void checkIndentation()
     {
@@ -80,15 +77,6 @@ public class ForHandler extends BlockParentHandler
         super.checkIndentation();
     }
 
-    /**
-     * Indentation level suggested for a child element. Children don't have
-     * to respect this, but most do.
-     *
-     * @param aChild  child AST (so suggestion level can differ based on child
-     *                  type)
-     *
-     * @return suggested indentation for child
-     */
     @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {
