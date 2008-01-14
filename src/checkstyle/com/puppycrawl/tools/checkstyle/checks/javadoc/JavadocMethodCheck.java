@@ -48,56 +48,32 @@ import java.util.regex.Pattern;
  */
 public class JavadocMethodCheck extends AbstractTypeAwareCheck
 {
-    /** the pattern to match Javadoc tags that take an argument * */
-    private static final String MATCH_JAVADOC_ARG_PAT =
-        "@(throws|exception|param)\\s+(\\S+)\\s+\\S";
     /** compiled regexp to match Javadoc tags that take an argument * */
-    private static final Pattern MATCH_JAVADOC_ARG = Utils
-            .createPattern(MATCH_JAVADOC_ARG_PAT);
+    private static final Pattern MATCH_JAVADOC_ARG =
+        Utils.createPattern("@(throws|exception|param)\\s+(\\S+)\\s+\\S");
 
-    /**
-     * the pattern to match the first line of a multi-line Javadoc tag that
-     * takes an argument.
-     */
-    private static final String MATCH_JAVADOC_ARG_MULTILINE_START_PAT =
-        "@(throws|exception|param)\\s+(\\S+)\\s*$";
     /** compiled regexp to match first part of multilineJavadoc tags * */
-    private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START = Utils
-            .createPattern(MATCH_JAVADOC_ARG_MULTILINE_START_PAT);
+    private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START =
+        Utils.createPattern("@(throws|exception|param)\\s+(\\S+)\\s*$");
 
-    /** the pattern that looks for a continuation of the comment * */
-    private static final String MATCH_JAVADOC_MULTILINE_CONT_PAT =
-        "(\\*/|@|[^\\s\\*])";
     /** compiled regexp to look for a continuation of the comment * */
-    private static final Pattern MATCH_JAVADOC_MULTILINE_CONT = Utils
-            .createPattern(MATCH_JAVADOC_MULTILINE_CONT_PAT);
+    private static final Pattern MATCH_JAVADOC_MULTILINE_CONT =
+        Utils.createPattern("(\\*/|@|[^\\s\\*])");
+
     /** Multiline finished at end of comment * */
     private static final String END_JAVADOC = "*/";
     /** Multiline finished at next Javadoc * */
     private static final String NEXT_TAG = "@";
 
-    /** the pattern to match Javadoc tags with no argument * */
-    private static final String MATCH_JAVADOC_NOARG_PAT =
-        "@(return|see)\\s+\\S";
     /** compiled regexp to match Javadoc tags with no argument * */
-    private static final Pattern MATCH_JAVADOC_NOARG = Utils
-            .createPattern(MATCH_JAVADOC_NOARG_PAT);
-    /**
-     * the pattern to match the first line of a multi-line Javadoc tag that
-     * takes no argument.
-     */
-    private static final String MATCH_JAVADOC_NOARG_MULTILINE_START_PAT =
-        "@(return|see)\\s*$";
+    private static final Pattern MATCH_JAVADOC_NOARG =
+        Utils.createPattern("@(return|see)\\s+\\S");
     /** compiled regexp to match first part of multilineJavadoc tags * */
-    private static final Pattern MATCH_JAVADOC_NOARG_MULTILINE_START = Utils
-            .createPattern(MATCH_JAVADOC_NOARG_MULTILINE_START_PAT);
-
-    /** the pattern to match Javadoc tags with no argument and {} * */
-    private static final String MATCH_JAVADOC_NOARG_CURLY_PAT =
-        "\\{\\s*@(inheritDoc)\\s*\\}";
+    private static final Pattern MATCH_JAVADOC_NOARG_MULTILINE_START =
+        Utils.createPattern("@(return|see)\\s*$");
     /** compiled regexp to match Javadoc tags with no argument and {} * */
-    private static final Pattern MATCH_JAVADOC_NOARG_CURLY = Utils
-            .createPattern(MATCH_JAVADOC_NOARG_CURLY_PAT);
+    private static final Pattern MATCH_JAVADOC_NOARG_CURLY =
+        Utils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
     /** Maximum children allowed * */
     private static final int MAX_CHILDREN = 7;
