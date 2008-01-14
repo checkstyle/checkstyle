@@ -142,7 +142,6 @@ public final class FullIdent
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public String toString()
     {

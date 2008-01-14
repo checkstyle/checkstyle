@@ -78,14 +78,12 @@ public class ModifierOrderCheck
         "transient", "volatile", "synchronized", "native", "strictfp",
     };
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.MODIFIERS};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

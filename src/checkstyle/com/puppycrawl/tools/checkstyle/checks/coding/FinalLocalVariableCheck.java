@@ -47,9 +47,6 @@ public class FinalLocalVariableCheck extends Check
     private final Stack<Map<String, DetailAST>> mScopeStack =
         new Stack<Map<String, DetailAST>>();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int[] getDefaultTokens()
     {
@@ -66,7 +63,6 @@ public class FinalLocalVariableCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {
@@ -76,7 +72,6 @@ public class FinalLocalVariableCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
@@ -92,9 +87,6 @@ public class FinalLocalVariableCheck extends Check
         };
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -201,9 +193,6 @@ public class FinalLocalVariableCheck extends Check
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void leaveToken(DetailAST aAST)
     {

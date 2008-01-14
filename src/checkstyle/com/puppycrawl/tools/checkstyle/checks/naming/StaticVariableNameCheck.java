@@ -56,14 +56,12 @@ public class StaticVariableNameCheck
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
-    /** {@inheritDoc} */
     @Override
     protected final boolean mustCheckName(DetailAST aAST)
     {

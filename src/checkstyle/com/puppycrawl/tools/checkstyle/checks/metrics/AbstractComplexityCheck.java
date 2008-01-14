@@ -79,7 +79,6 @@ public abstract class AbstractComplexityCheck
     {
     }
 
-    /** {@inheritDoc} */
     @Override
     public final int[] getRequiredTokens()
     {
@@ -107,7 +106,6 @@ public abstract class AbstractComplexityCheck
         mMax = aMax;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -123,7 +121,6 @@ public abstract class AbstractComplexityCheck
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

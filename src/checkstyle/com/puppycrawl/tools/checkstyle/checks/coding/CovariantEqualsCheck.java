@@ -46,21 +46,18 @@ public class CovariantEqualsCheck extends Check
     /** Set of equals method definitions */
     private final Set<DetailAST> mEqualsMethods = new HashSet<DetailAST>();
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

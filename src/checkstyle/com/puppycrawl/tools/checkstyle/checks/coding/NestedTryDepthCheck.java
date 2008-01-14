@@ -36,14 +36,12 @@ public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
         super(DEFAULT_MAX);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_TRY};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -56,7 +54,6 @@ public final class NestedTryDepthCheck extends AbstractNestedDepthCheck
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

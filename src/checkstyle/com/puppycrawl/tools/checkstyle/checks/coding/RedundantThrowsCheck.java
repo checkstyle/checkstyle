@@ -76,7 +76,6 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
         mAllowSubclasses = aAllowSubclasses;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {

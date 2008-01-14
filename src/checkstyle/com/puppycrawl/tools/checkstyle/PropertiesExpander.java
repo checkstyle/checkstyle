@@ -46,9 +46,7 @@ public final class PropertiesExpander
         mProperties = aProperties;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public String resolve(String aPropertyName)
     {
         return mProperties.getProperty(aPropertyName);

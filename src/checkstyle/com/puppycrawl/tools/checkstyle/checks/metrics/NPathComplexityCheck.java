@@ -46,7 +46,6 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
         super(DEFAULT_MAX);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -68,7 +67,6 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -92,7 +90,6 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {
@@ -116,7 +113,6 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     protected String getMessageID()
     {

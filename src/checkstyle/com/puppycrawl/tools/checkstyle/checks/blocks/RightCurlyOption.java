@@ -69,7 +69,6 @@ public final class RightCurlyOption
        super(aStrRep);
     }
 
-    /** {@inheritDoc} */
     @Override
     protected Map<String, AbstractOption> getStrToOpt()
     {

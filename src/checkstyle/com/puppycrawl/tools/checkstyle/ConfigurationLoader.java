@@ -108,7 +108,6 @@ public final class ConfigurationLoader
             super(createIdToResourceNameMap());
         }
 
-        /** {@inheritDoc} **/
         @Override
         public void startElement(String aNamespaceURI,
                                  String aLocalName,
@@ -155,7 +154,6 @@ public final class ConfigurationLoader
             }
         }
 
-        /** {@inheritDoc} **/
         @Override
         public void endElement(String aNamespaceURI,
                                String aLocalName,

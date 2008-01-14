@@ -191,14 +191,12 @@ public class DescendantTokenCheck extends Check
      */
     private int[] mCounts = new int[0];
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -253,7 +251,6 @@ public class DescendantTokenCheck extends Check
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {

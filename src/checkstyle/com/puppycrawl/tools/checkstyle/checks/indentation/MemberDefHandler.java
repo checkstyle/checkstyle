@@ -78,7 +78,6 @@ public class MemberDefHandler extends ExpressionHandler
         checkIdent();
     }
 
-    /** {@inheritDoc} */
     @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {

@@ -91,7 +91,6 @@ public class LeftCurlyCheck
         mMaxLineLength = aMaxLineLength;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -118,7 +117,6 @@ public class LeftCurlyCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

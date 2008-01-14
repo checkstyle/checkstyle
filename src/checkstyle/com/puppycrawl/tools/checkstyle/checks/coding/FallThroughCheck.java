@@ -80,14 +80,12 @@ public class FallThroughCheck extends Check
         // do nothing
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.CASE_GROUP};
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
@@ -114,7 +112,6 @@ public class FallThroughCheck extends Check
         mCheckLastGroup = aValue;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void init()
     {
@@ -122,7 +119,6 @@ public class FallThroughCheck extends Check
         mRegExp = Utils.getPattern(mReliefPattern);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

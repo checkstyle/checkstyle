@@ -80,7 +80,6 @@ public final class LocalizedMessage
     /** class of the source for this LocalizedMessage */
     private final Class<?> mSourceClass;
 
-    /** {@inheritDoc} */
     @Override
     public boolean equals(Object aObject)
     {
@@ -113,9 +112,6 @@ public final class LocalizedMessage
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode()
     {

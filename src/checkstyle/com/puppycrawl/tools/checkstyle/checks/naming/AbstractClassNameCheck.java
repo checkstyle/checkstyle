@@ -46,21 +46,18 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
         super(DEFAULT_FORMAT);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.CLASS_DEF};
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

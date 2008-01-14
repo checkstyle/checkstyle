@@ -89,7 +89,6 @@ public abstract class AbstractClassCouplingCheck extends Check
         mIgnoredClassNames.add("UnsupportedOperationException");
     }
 
-    /** {@inheritDoc} */
     @Override
     public final int[] getDefaultTokens()
     {
@@ -111,7 +110,6 @@ public abstract class AbstractClassCouplingCheck extends Check
         mMax = aMax;
     }
 
-    /** {@inheritDoc} */
     @Override
     public final void beginTree(DetailAST aAST)
     {
@@ -121,7 +119,6 @@ public abstract class AbstractClassCouplingCheck extends Check
     /** @return message key we use for log violations. */
     protected abstract String getLogMessageId();
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -149,7 +146,6 @@ public abstract class AbstractClassCouplingCheck extends Check
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

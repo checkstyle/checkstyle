@@ -83,11 +83,6 @@ public abstract class AbstractHeaderCheck extends Check
         mHeaderInfo.setHeader(aHeader);
     }
 
-    /**
-     * Checks that required args were specified.
-     * @throws CheckstyleException {@inheritDoc}
-     * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean#finishLocalSetup
-     */
     @Override
     protected final void finishLocalSetup() throws CheckstyleException
     {
@@ -98,7 +93,6 @@ public abstract class AbstractHeaderCheck extends Check
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public final int[] getDefaultTokens()
     {

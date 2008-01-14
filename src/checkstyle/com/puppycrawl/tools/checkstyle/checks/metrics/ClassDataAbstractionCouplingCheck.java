@@ -40,7 +40,6 @@ public final class ClassDataAbstractionCouplingCheck
         setTokens(new String[] {"LITERAL_NEW"});
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
@@ -53,7 +52,6 @@ public final class ClassDataAbstractionCouplingCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     protected String getLogMessageId()
     {

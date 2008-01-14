@@ -86,7 +86,6 @@ public class DeclarationOrderCheck extends Check
         private Scope mDeclarationAccess = Scope.PUBLIC;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -98,7 +97,6 @@ public class DeclarationOrderCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -178,7 +176,6 @@ public class DeclarationOrderCheck extends Check
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

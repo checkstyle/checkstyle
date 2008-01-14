@@ -58,7 +58,6 @@ final class ImportControlLoader extends AbstractLoader
         super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void startElement(final String aNamespaceURI,
                              final String aLocalName,
@@ -99,7 +98,6 @@ final class ImportControlLoader extends AbstractLoader
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void endElement(final String aNamespaceURI, final String aLocalName,
         final String aQName)

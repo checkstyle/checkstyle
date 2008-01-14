@@ -48,7 +48,6 @@ public class DefaultComesLastCheck extends Check
         // do nothing
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -57,14 +56,12 @@ public class DefaultComesLastCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {
         return getDefaultTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

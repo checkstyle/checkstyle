@@ -222,9 +222,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         mBasedir = aBasedir;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public synchronized void process(List<File> aFiles)
     {
         final long start = System.currentTimeMillis();

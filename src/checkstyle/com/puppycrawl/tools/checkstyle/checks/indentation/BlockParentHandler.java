@@ -331,7 +331,6 @@ public class BlockParentHandler extends ExpressionHandler
         return new IndentLevel(getLevel(), getBasicOffset());
     }
 
-    /** {@inheritDoc} */
     @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {

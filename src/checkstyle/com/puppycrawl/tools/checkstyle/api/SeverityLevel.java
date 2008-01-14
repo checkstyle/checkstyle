@@ -84,9 +84,6 @@ public final class SeverityLevel implements Comparable<SeverityLevel>,
     /** the name of this severity level. */
     private final String mName;
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString()
     {

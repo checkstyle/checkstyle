@@ -42,14 +42,12 @@ public abstract class AbstractNestedDepthCheck extends Check
         setMax(aMax);
     }
 
-    /** {@inheritDoc} */
     @Override
     public final int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {

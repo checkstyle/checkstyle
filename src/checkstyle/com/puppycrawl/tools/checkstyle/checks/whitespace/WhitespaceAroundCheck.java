@@ -123,7 +123,6 @@ public class WhitespaceAroundCheck extends Check
     /** Whether or not empty method bodies are allowed. */
     private boolean mAllowEmptyMethods;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -197,7 +196,6 @@ public class WhitespaceAroundCheck extends Check
         mAllowEmptyCtors = aAllow;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

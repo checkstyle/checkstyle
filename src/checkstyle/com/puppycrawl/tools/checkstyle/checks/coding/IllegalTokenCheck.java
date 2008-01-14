@@ -53,9 +53,6 @@ import java.util.Set;
 public class IllegalTokenCheck
     extends Check
 {
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int[] getDefaultTokens()
     {
@@ -66,9 +63,6 @@ public class IllegalTokenCheck
         };
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int[] getAcceptableTokens()
     {
@@ -88,9 +82,6 @@ public class IllegalTokenCheck
         return copy;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void visitToken(DetailAST aAST)
     {

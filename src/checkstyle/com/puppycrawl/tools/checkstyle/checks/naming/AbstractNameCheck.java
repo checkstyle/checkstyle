@@ -53,7 +53,6 @@ public abstract class AbstractNameCheck
         return true;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

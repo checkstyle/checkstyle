@@ -32,7 +32,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class RedundantModifierCheck
     extends Check
 {
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -43,14 +42,12 @@ public class RedundantModifierCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
         return new int[] {};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

@@ -54,7 +54,6 @@ public final class ThrowsCountCheck extends Check
         setMax(DEFAULT_MAX);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -63,7 +62,6 @@ public final class ThrowsCountCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
@@ -88,7 +86,6 @@ public final class ThrowsCountCheck extends Check
         mMax = aMax;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

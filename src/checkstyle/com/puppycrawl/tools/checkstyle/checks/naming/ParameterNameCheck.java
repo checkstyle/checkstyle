@@ -58,14 +58,12 @@ public class ParameterNameCheck
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.PARAMETER_DEF};
     }
 
-    /** {@inheritDoc} */
     @Override
     protected boolean mustCheckName(DetailAST aAST)
     {

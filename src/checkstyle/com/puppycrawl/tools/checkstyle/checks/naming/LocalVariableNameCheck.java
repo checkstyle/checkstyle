@@ -58,7 +58,6 @@ public class LocalVariableNameCheck
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -68,7 +67,6 @@ public class LocalVariableNameCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     protected final boolean mustCheckName(DetailAST aAST)
     {

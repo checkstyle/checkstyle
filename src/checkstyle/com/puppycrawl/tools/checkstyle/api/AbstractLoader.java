@@ -97,7 +97,6 @@ public abstract class AbstractLoader
         mParser.parse(aInputSource);
     }
 
-    /** {@inheritDoc} */
     @Override
     public InputSource resolveEntity(String aPublicId, String aSystemId)
         throws SAXException
@@ -130,21 +129,18 @@ public abstract class AbstractLoader
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void warning(SAXParseException aEx) throws SAXException
     {
         throw aEx;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void error(SAXParseException aEx) throws SAXException
     {
         throw aEx;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fatalError(SAXParseException aEx) throws SAXException
     {

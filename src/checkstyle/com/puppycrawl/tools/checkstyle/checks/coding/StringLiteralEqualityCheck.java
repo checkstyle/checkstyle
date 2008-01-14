@@ -37,14 +37,12 @@ import antlr.collections.AST;
  */
 public class StringLiteralEqualityCheck extends Check
 {
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.EQUAL, TokenTypes.NOT_EQUAL};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

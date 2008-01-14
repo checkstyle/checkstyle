@@ -58,7 +58,6 @@ public class UnusedImportsCheck extends Check
     {
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -67,7 +66,6 @@ public class UnusedImportsCheck extends Check
         mReferenced.clear();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void finishTree(DetailAST aRootAST)
     {
@@ -81,7 +79,6 @@ public class UnusedImportsCheck extends Check
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -97,14 +94,12 @@ public class UnusedImportsCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

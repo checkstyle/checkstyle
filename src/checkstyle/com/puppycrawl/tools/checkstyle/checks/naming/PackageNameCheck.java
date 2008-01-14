@@ -74,14 +74,12 @@ public class PackageNameCheck
         super("^[a-z]+(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.PACKAGE_DEF};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

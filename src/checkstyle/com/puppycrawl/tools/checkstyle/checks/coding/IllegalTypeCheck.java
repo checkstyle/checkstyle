@@ -94,7 +94,6 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
         setIgnoredMethodNames(DEFAULT_IGNORED_METHOD_NAMES);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -105,7 +104,6 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

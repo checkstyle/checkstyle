@@ -49,7 +49,6 @@ public final class ExecutableStatementCountCheck
         setMax(DEFAULT_MAX);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -62,7 +61,6 @@ public final class ExecutableStatementCountCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
@@ -87,7 +85,6 @@ public final class ExecutableStatementCountCheck
         mMax = aMax;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -95,7 +92,6 @@ public final class ExecutableStatementCountCheck
         mContextStack.clear();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -114,7 +110,6 @@ public final class ExecutableStatementCountCheck
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

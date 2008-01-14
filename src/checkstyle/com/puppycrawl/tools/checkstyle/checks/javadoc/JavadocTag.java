@@ -83,7 +83,6 @@ class JavadocTag
         return mColumnNo;
     }
 
-    /** @return a string representation of the object **/
     @Override
     public String toString()
     {

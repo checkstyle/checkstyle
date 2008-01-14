@@ -39,7 +39,6 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
         super(DEFAULT_MAX);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
@@ -55,7 +54,6 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     protected String getLogMessageId()
     {

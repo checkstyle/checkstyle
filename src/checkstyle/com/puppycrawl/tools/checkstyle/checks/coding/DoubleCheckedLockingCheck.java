@@ -37,14 +37,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class DoubleCheckedLockingCheck extends Check
 {
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.LITERAL_IF};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

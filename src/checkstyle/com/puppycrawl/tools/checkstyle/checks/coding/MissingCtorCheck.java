@@ -50,21 +50,18 @@ public class MissingCtorCheck extends DescendantTokenCheck
         setMinimumMessage("missing.ctor");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.CLASS_DEF};
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {
         return getDefaultTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

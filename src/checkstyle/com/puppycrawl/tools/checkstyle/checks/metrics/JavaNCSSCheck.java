@@ -58,9 +58,6 @@ public class JavaNCSSCheck extends Check
     /** list containing the stacked counters */
     private Stack<Counter> mCounters;
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int[] getDefaultTokens()
     {
@@ -96,9 +93,6 @@ public class JavaNCSSCheck extends Check
         };
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int[] getRequiredTokens()
     {
@@ -134,9 +128,6 @@ public class JavaNCSSCheck extends Check
         };
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -146,9 +137,6 @@ public class JavaNCSSCheck extends Check
         mCounters.push(new Counter());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -174,9 +162,6 @@ public class JavaNCSSCheck extends Check
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void leaveToken(DetailAST aAST)
     {
@@ -207,9 +192,6 @@ public class JavaNCSSCheck extends Check
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void finishTree(DetailAST aRootAST)
     {

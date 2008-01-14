@@ -35,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class FinalParametersCheck extends Check
 {
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -45,7 +44,6 @@ public class FinalParametersCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {
@@ -57,7 +55,6 @@ public class FinalParametersCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

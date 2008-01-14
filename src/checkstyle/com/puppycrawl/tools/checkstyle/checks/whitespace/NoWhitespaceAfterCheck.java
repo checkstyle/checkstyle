@@ -66,7 +66,6 @@ public class NoWhitespaceAfterCheck extends Check
     /** Whether whitespace is allowed if the AST is at a linebreak */
     private boolean mAllowLineBreaks = true;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -82,7 +81,6 @@ public class NoWhitespaceAfterCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {
@@ -99,7 +97,6 @@ public class NoWhitespaceAfterCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

@@ -130,7 +130,6 @@ public class ArrayInitHandler extends BlockParentHandler
         return getMainAst();
     }
 
-    /** {@inheritDoc} */
     @Override
     protected IndentLevel getChildrenExpectedLevel()
     {

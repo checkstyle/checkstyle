@@ -74,7 +74,6 @@ public class HeaderCheck extends AbstractHeaderCheck
         Arrays.sort(mIgnoreLines);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -91,7 +90,6 @@ public class HeaderCheck extends AbstractHeaderCheck
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     protected HeaderInfo createHeaderInfo()
     {

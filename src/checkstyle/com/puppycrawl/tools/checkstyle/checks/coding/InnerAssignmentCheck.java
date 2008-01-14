@@ -92,7 +92,6 @@ public class InnerAssignmentCheck
         Arrays.sort(COMPARISON_TYPES);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -112,7 +111,6 @@ public class InnerAssignmentCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

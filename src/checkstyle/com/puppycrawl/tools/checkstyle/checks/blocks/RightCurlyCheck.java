@@ -81,7 +81,6 @@ public class RightCurlyCheck extends AbstractOptionCheck
         mShouldStartLine = aFlag;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -94,7 +93,6 @@ public class RightCurlyCheck extends AbstractOptionCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

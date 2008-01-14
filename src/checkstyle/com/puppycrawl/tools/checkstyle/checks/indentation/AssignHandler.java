@@ -87,7 +87,6 @@ public class AssignHandler extends BlockParentHandler
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public IndentLevel suggestedChildLevel(ExpressionHandler aChild)
     {

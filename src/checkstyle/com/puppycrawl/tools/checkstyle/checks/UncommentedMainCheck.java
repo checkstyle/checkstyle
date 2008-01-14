@@ -75,7 +75,6 @@ public class UncommentedMainCheck
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -86,14 +85,12 @@ public class UncommentedMainCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -102,7 +99,6 @@ public class UncommentedMainCheck
         mClassDepth = 0;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAst)
     {
@@ -114,7 +110,6 @@ public class UncommentedMainCheck
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAst)
     {

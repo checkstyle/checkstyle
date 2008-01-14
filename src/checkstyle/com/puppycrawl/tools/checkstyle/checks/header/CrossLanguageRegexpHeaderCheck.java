@@ -47,17 +47,13 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
     private final class FileSetCheckViolationMonitor
         implements HeaderViolationMonitor
     {
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         public void reportHeaderMismatch(int aLineNo, String aHeaderLine)
         {
             log(aLineNo, "header.mismatch", aHeaderLine);
         }
 
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         public void reportHeaderMissing()
         {
             log(1, "header.missing");
@@ -113,11 +109,6 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
         mHeaderInfo.setHeader(aHeader);
     }
 
-    /**
-     * Checks that required args were specified.
-     * @throws CheckstyleException {@inheritDoc}
-     * @see com.puppycrawl.tools.checkstyle.api.AutomaticBean#finishLocalSetup
-     */
     @Override
     protected void finishLocalSetup() throws CheckstyleException
     {

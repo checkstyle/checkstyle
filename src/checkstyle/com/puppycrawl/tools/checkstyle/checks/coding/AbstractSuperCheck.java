@@ -92,7 +92,6 @@ public abstract class AbstractSuperCheck
     private final LinkedList<MethodNode> mMethodStack =
         new LinkedList<MethodNode>();
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -108,19 +107,12 @@ public abstract class AbstractSuperCheck
      */
     protected abstract String getMethodName();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
         mMethodStack.clear();
     }
 
-    /**
-     *
-     * {@inheritDoc}
-     */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -191,9 +183,6 @@ public abstract class AbstractSuperCheck
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void leaveToken(DetailAST aAST)
     {

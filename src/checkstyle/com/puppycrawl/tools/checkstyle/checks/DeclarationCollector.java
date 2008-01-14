@@ -35,14 +35,12 @@ public abstract class DeclarationCollector extends Check
     /** Stack of variable declaration frames. */
     private FrameStack mFrames;
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
         mFrames = new FrameStack();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -75,7 +73,6 @@ public abstract class DeclarationCollector extends Check
     }
 
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

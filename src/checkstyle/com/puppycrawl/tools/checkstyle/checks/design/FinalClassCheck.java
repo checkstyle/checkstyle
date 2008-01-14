@@ -43,14 +43,12 @@ public class FinalClassCheck
     /** Keeps ClassDesc objects for stack of declared classes. */
     private final Stack<ClassDesc> mClasses = new Stack<ClassDesc>();
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -76,7 +74,6 @@ public class FinalClassCheck
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

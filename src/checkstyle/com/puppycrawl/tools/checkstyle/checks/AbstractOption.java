@@ -66,9 +66,6 @@ public abstract class AbstractOption
         return strToOpt.get(aStrRep.trim().toLowerCase());
     }
 
-    /**
-     * {@inheritDoc}
-     **/
     @Override
     public String toString()
     {

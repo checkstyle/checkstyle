@@ -64,7 +64,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class ParenPadCheck extends AbstractParenPadCheck
 {
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -76,7 +75,6 @@ public class ParenPadCheck extends AbstractParenPadCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

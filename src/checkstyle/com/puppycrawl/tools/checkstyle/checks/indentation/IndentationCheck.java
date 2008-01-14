@@ -216,20 +216,12 @@ public class IndentationCheck extends Check
         return getTabWidth();
     }
 
-    /**
-     * Get the tokens that this check will handle.
-     *
-     * @return the array of tokens that this check handles
-     */
     @Override
     public int[] getDefaultTokens()
     {
         return mHandlerFactory.getHandledTypes();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void beginTree(DetailAST aAst)
     {
@@ -238,9 +230,6 @@ public class IndentationCheck extends Check
         mHandlers.push(new PrimordialHandler(this));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -262,9 +251,6 @@ public class IndentationCheck extends Check
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void leaveToken(DetailAST aAST)
     {

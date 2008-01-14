@@ -64,14 +64,12 @@ public class MethodLengthCheck extends Check
     /** the maximum number of lines */
     private int mMax = DEFAULT_MAX_LINES;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

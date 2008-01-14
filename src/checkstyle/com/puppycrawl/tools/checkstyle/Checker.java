@@ -105,7 +105,6 @@ public class Checker extends AutomaticBean
         addListener(mCounter);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void finishLocalSetup() throws CheckstyleException
     {

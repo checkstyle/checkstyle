@@ -41,14 +41,12 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class SimplifyBooleanReturnCheck
     extends Check
 {
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_IF};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

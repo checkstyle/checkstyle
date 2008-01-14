@@ -93,14 +93,12 @@ public class LineLengthCheck extends Check
         setIgnorePattern("^$");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {

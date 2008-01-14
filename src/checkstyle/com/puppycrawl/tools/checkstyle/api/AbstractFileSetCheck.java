@@ -148,22 +148,12 @@ public abstract class AbstractFileSetCheck
         return mMessages;
     }
 
-    /**
-     * Adds a violation message to the
-     * {@link #getMessageCollector message collector}.
-     * {@inheritDoc}
-     */
     @Override
     protected final void log(int aLine, String aKey, Object... aArgs)
     {
         log(aLine, 0, aKey, aArgs);
     }
 
-    /**
-     * Adds a violation message to the
-     * {@link #getMessageCollector message collector}.
-     * {@inheritDoc}
-     */
     @Override
     protected final void log(int aLineNo, int aColNo, String aKey,
             Object... aArgs)

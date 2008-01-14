@@ -49,14 +49,12 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class TabCharacterCheck
         extends Check
 {
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {

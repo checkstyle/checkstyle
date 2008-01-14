@@ -94,7 +94,6 @@ public class UnnecessaryParenthesesCheck extends Check
     /** Depth of nested assignments.  Normally this will be 0 or 1. */
     private int mAssignDepth;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -124,7 +123,6 @@ public class UnnecessaryParenthesesCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -169,7 +167,6 @@ public class UnnecessaryParenthesesCheck extends Check
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

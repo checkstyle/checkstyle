@@ -33,14 +33,12 @@ public class GenericWhitespaceCheck extends Check
     /** Used to count the depth of a Generic expression. */
     private int mDepth;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.GENERIC_START, TokenTypes.GENERIC_END};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -49,7 +47,6 @@ public class GenericWhitespaceCheck extends Check
         mDepth = 0;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

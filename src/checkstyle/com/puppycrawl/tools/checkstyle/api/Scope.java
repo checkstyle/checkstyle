@@ -101,9 +101,6 @@ public final class Scope implements Comparable<Scope>, Serializable
     /** the name of this scope. */
     private final String mName;
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString()
     {

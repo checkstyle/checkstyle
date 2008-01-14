@@ -103,7 +103,6 @@ public abstract class AbstractTypeAwareCheck extends Check
      */
     protected abstract void processAST(DetailAST aAST);
 
-    /** {@inheritDoc} */
     @Override
     public final int[] getRequiredTokens()
     {
@@ -115,7 +114,6 @@ public abstract class AbstractTypeAwareCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -128,7 +126,6 @@ public abstract class AbstractTypeAwareCheck extends Check
         mTypeParams.clear();
     }
 
-    /** {@inheritDoc} */
     @Override
     public final void visitToken(DetailAST aAST)
     {
@@ -151,7 +148,6 @@ public abstract class AbstractTypeAwareCheck extends Check
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public final void leaveToken(DetailAST aAST)
     {
@@ -501,7 +497,6 @@ public abstract class AbstractTypeAwareCheck extends Check
             mIsLoadable = (mClass != null);
         }
 
-        /** {@inheritDoc} */
         @Override
         public String toString()
         {
@@ -529,14 +524,12 @@ public abstract class AbstractTypeAwareCheck extends Check
             mClassInfo = aClassInfo;
         }
 
-        /** {@inheritDoc} */
         @Override
         public final Class<?> getClazz()
         {
             return mClassInfo.getClazz();
         }
 
-        /** {@inheritDoc} */
         @Override
         public String toString()
         {
@@ -599,7 +592,6 @@ public abstract class AbstractTypeAwareCheck extends Check
             return mText;
         }
 
-        /** {@inheritDoc} */
         @Override
         public String toString()
         {

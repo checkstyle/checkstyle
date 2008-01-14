@@ -126,7 +126,6 @@ public class JavadocTypeCheck
         mAllowMissingParamTags = aFlag;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -138,7 +137,6 @@ public class JavadocTypeCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

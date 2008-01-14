@@ -60,7 +60,6 @@ public class JavadocVariableCheck
         mExcludeScope = Scope.getInstance(aScope);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -70,7 +69,6 @@ public class JavadocVariableCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

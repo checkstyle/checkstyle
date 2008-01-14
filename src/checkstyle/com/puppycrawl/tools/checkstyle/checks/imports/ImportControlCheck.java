@@ -52,7 +52,6 @@ public class ImportControlCheck extends Check
      */
     private PkgControl mCurrentLeaf;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -60,14 +59,12 @@ public class ImportControlCheck extends Check
                           TokenTypes.STATIC_IMPORT, };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(final DetailAST aRootAST)
     {
         mCurrentLeaf = null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(final DetailAST aAST)
     {

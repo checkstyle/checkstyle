@@ -76,7 +76,6 @@ public class JavadocStyleCheck
      */
     private boolean mCheckEmptyJavadoc;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -93,7 +92,6 @@ public class JavadocStyleCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

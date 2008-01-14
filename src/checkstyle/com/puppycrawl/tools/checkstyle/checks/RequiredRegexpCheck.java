@@ -48,14 +48,12 @@ public class RequiredRegexpCheck extends AbstractFormatCheck
         super("$^"); // the empty language
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {

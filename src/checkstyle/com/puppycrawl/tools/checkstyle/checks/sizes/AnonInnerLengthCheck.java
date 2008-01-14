@@ -63,14 +63,12 @@ public class AnonInnerLengthCheck extends Check
     /** maximum number of lines */
     private int mMax = DEFAULT_MAX;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.LITERAL_NEW};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

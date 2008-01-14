@@ -103,7 +103,6 @@ class Comment implements TextBlock
         return !((thisEnd < inStart) || (inEnd < thisStart));
     }
 
-    /** {@inheritDoc} */
     @Override
     public String toString()
     {

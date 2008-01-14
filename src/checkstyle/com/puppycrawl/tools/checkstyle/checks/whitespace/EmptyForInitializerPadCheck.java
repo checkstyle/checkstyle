@@ -59,7 +59,6 @@ public class EmptyForInitializerPadCheck
         super(PadOption.NOSPACE);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -67,7 +66,6 @@ public class EmptyForInitializerPadCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

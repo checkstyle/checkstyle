@@ -77,7 +77,6 @@ public class IllegalInstantiationCheck
     /** the instantiations in the file */
     private final Set<DetailAST> mInstantiations = new HashSet<DetailAST>();
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -100,7 +99,6 @@ public class IllegalInstantiationCheck
         return new int[] {};
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
@@ -111,7 +109,6 @@ public class IllegalInstantiationCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -122,7 +119,6 @@ public class IllegalInstantiationCheck
         mClassNames.clear();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -144,9 +140,6 @@ public class IllegalInstantiationCheck
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void finishTree(DetailAST aRootAST)
     {

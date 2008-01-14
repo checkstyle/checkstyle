@@ -55,14 +55,12 @@ public class MissingSwitchDefaultCheck extends DescendantTokenCheck
         setMinimumMessage("missing.switch.default");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.LITERAL_SWITCH};
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {

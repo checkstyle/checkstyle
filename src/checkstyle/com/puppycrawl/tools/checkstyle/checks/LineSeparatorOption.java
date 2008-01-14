@@ -83,7 +83,6 @@ public final class LineSeparatorOption extends AbstractOption
         return mLineSeparator.length();
     }
 
-    /** {@inheritDoc} */
     @Override
     protected Map<String, AbstractOption> getStrToOpt()
     {

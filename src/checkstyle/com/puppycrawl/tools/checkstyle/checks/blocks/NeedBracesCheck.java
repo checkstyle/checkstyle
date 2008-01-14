@@ -55,7 +55,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class NeedBracesCheck extends Check
 {
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -68,7 +67,6 @@ public class NeedBracesCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

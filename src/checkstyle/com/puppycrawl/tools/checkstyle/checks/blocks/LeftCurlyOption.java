@@ -89,7 +89,6 @@ public final class LeftCurlyOption
         super(aStrRep);
     }
 
-    /** {@inheritDoc} */
     @Override
     protected Map<String, AbstractOption> getStrToOpt()
     {

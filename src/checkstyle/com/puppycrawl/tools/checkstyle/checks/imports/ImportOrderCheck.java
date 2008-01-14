@@ -144,14 +144,12 @@ public class ImportOrderCheck extends Check
         mCaseSensitive = aCaseSensitive;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
@@ -177,7 +175,6 @@ public class ImportOrderCheck extends Check
         return i;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -188,7 +185,6 @@ public class ImportOrderCheck extends Check
         mBeforeFirstImport = true;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

@@ -55,7 +55,6 @@ public final class ReturnCountCheck extends AbstractFormatCheck
         setMax(DEFAULT_MAX);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -66,7 +65,6 @@ public final class ReturnCountCheck extends AbstractFormatCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
@@ -94,7 +92,6 @@ public final class ReturnCountCheck extends AbstractFormatCheck
         mMax = aMax;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -102,7 +99,6 @@ public final class ReturnCountCheck extends AbstractFormatCheck
         mContextStack.clear();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -119,7 +115,6 @@ public final class ReturnCountCheck extends AbstractFormatCheck
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

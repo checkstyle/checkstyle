@@ -133,7 +133,6 @@ public class ClassDefHandler extends BlockParentHandler
         super.checkIndentation();
     }
 
-    /** {@inheritDoc} */
     @Override
     protected int[] getCheckedChildren()
     {

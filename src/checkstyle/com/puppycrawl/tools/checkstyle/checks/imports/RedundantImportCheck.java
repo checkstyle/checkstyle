@@ -61,7 +61,6 @@ public class RedundantImportCheck
     /** set of static imports */
     private final Set<FullIdent> mStaticImports = new HashSet<FullIdent>();
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -70,7 +69,6 @@ public class RedundantImportCheck
         mStaticImports.clear();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -80,7 +78,6 @@ public class RedundantImportCheck
          TokenTypes.PACKAGE_DEF, };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

@@ -77,7 +77,6 @@ public class MethodParamPadCheck
      * linebreak */
     private boolean mAllowLineBreaks;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -90,7 +89,6 @@ public class MethodParamPadCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

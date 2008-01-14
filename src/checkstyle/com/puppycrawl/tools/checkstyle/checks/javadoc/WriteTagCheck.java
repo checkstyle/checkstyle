@@ -125,14 +125,12 @@ public class WriteTagCheck
         mTagSeverityLevel = SeverityLevel.getInstance(aSeverity);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.INTERFACE_DEF, TokenTypes.CLASS_DEF, };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {
@@ -142,7 +140,6 @@ public class WriteTagCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

@@ -55,7 +55,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class WhitespaceAfterCheck
     extends Check
 {
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -66,7 +65,6 @@ public class WhitespaceAfterCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

@@ -129,21 +129,18 @@ public class TrailingCommentCheck extends AbstractFormatCheck
         super(DEFAULT_FORMAT);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
         throw new IllegalStateException("visitToken() shouldn't be called.");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {

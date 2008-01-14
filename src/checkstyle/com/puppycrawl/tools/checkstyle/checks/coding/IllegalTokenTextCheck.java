@@ -51,13 +51,11 @@ import java.util.Set;
 public class IllegalTokenTextCheck
     extends GenericIllegalRegexpCheck
 {
-    /**  {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {
@@ -71,9 +69,7 @@ public class IllegalTokenTextCheck
         }
         return result;
     }
-    /**
-     * {@inheritDoc}
-     */
+
     @Override
     public void visitToken(DetailAST aAST)
     {

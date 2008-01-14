@@ -159,14 +159,12 @@ public class RegexpCheck extends AbstractFormatCheck
         mCheckForDuplicates = (mDuplicateLimit > DEFAULT_DUPLICATE_LIMIT);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[0];
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {

@@ -89,7 +89,6 @@ public class HiddenFieldCheck
     /** controls whether to check the parameter of abstract methods. */
     private boolean mIgnoreAbstractMethods;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -102,7 +101,6 @@ public class HiddenFieldCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {
@@ -112,7 +110,6 @@ public class HiddenFieldCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
@@ -123,14 +120,12 @@ public class HiddenFieldCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
         mCurrentFrame = new FieldFrame(null, true);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -178,7 +173,6 @@ public class HiddenFieldCheck
         mCurrentFrame = frame;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

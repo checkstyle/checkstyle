@@ -42,7 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class SimplifyBooleanExpressionCheck
         extends Check
 {
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -60,14 +59,12 @@ public class SimplifyBooleanExpressionCheck
         return new int[] {};
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
         return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

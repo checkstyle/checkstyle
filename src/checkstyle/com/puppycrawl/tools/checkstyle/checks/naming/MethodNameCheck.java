@@ -55,7 +55,6 @@ public class MethodNameCheck
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {

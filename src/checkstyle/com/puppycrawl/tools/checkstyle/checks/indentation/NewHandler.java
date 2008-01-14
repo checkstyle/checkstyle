@@ -43,7 +43,6 @@ public class NewHandler extends ExpressionHandler
         super(aIndentCheck, "operator new", aAST, aParent);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void checkIndentation()
     {
@@ -78,7 +77,6 @@ public class NewHandler extends ExpressionHandler
         checkRParen(lparen, rparen);
     }
 
-    /** {@inheritDoc} */
     @Override
     protected IndentLevel getLevelImpl()
     {
@@ -90,7 +88,6 @@ public class NewHandler extends ExpressionHandler
         return super.getLevelImpl();
     }
 
-    /** {@inheritDoc} */
     @Override
     protected boolean shouldIncreaseIndent()
     {

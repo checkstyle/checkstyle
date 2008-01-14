@@ -50,7 +50,6 @@ public final class OperatorWrapOption
         super(aStrRep);
     }
 
-    /** {@inheritDoc} */
     @Override
     protected Map<String, AbstractOption> getStrToOpt()
     {

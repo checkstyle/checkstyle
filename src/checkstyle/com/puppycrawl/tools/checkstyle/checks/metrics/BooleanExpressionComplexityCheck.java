@@ -49,7 +49,6 @@ public final class BooleanExpressionComplexityCheck extends Check
         setMax(DEFAULT_MAX);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -65,7 +64,6 @@ public final class BooleanExpressionComplexityCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
@@ -94,7 +92,6 @@ public final class BooleanExpressionComplexityCheck extends Check
         mMax = aMax;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -118,7 +115,6 @@ public final class BooleanExpressionComplexityCheck extends Check
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

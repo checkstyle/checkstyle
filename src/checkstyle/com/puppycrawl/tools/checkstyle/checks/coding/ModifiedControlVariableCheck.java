@@ -36,7 +36,6 @@ public final class ModifiedControlVariableCheck extends Check
     private final Stack<Stack<String>> mVariableStack =
         new Stack<Stack<String>>();
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -64,14 +63,12 @@ public final class ModifiedControlVariableCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -80,7 +77,6 @@ public final class ModifiedControlVariableCheck extends Check
         mVariableStack.clear();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -116,7 +112,6 @@ public final class ModifiedControlVariableCheck extends Check
     }
 
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

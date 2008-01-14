@@ -63,14 +63,12 @@ public class ConstantNameCheck
         super("^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
-    /** {@inheritDoc} */
     @Override
     protected final boolean mustCheckName(DetailAST aAST)
     {

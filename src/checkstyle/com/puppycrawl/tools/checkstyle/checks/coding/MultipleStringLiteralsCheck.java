@@ -108,14 +108,12 @@ public class MultipleStringLiteralsCheck extends Check
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.STRING_LITERAL};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -157,7 +155,6 @@ public class MultipleStringLiteralsCheck extends Check
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -165,7 +162,6 @@ public class MultipleStringLiteralsCheck extends Check
         mStringMap.clear();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void finishTree(DetailAST aRootAST)
     {

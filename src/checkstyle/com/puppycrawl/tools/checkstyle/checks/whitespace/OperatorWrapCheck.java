@@ -99,7 +99,6 @@ public class OperatorWrapCheck
         super(OperatorWrapOption.NL);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -129,7 +128,6 @@ public class OperatorWrapCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens()
     {
@@ -171,7 +169,6 @@ public class OperatorWrapCheck
 
         };
     }
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

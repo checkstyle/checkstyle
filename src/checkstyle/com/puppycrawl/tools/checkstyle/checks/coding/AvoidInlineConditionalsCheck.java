@@ -39,21 +39,18 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class AvoidInlineConditionalsCheck extends Check
 {
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.QUESTION};
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

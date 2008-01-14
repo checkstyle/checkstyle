@@ -57,7 +57,6 @@ public class AvoidStarImportCheck
     /** the packages to exempt from this check. */
     private String[] mExcludes = new String[0];
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -81,7 +80,6 @@ public class AvoidStarImportCheck
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

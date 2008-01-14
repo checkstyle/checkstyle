@@ -67,7 +67,6 @@ public final class BlockOption
         super(aStrRep);
     }
 
-    /** {@inheritDoc} */
     @Override
     protected Map<String, AbstractOption> getStrToOpt()
     {

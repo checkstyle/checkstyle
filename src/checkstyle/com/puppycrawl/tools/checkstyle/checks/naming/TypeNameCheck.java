@@ -56,7 +56,6 @@ public class TypeNameCheck
         super("^[A-Z][a-zA-Z0-9]*$");
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {

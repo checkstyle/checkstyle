@@ -47,21 +47,18 @@ public final class InterfaceIsTypeCheck
     /** flag to control whether marker interfaces are allowed. */
     private boolean mAllowMarkerInterfaces = true;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.INTERFACE_DEF};
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

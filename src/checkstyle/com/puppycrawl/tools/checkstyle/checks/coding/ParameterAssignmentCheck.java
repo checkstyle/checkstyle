@@ -47,7 +47,6 @@ public final class ParameterAssignmentCheck extends Check
     /** Current set of perameters. */
     private Set<String> mParameterNames;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -73,14 +72,12 @@ public final class ParameterAssignmentCheck extends Check
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens()
     {
         return getDefaultTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -89,7 +86,6 @@ public final class ParameterAssignmentCheck extends Check
         mParameterNames = null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {
@@ -123,7 +119,6 @@ public final class ParameterAssignmentCheck extends Check
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void leaveToken(DetailAST aAST)
     {

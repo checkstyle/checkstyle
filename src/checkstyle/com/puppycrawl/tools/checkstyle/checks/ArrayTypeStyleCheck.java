@@ -35,14 +35,12 @@ public class ArrayTypeStyleCheck extends Check
     /** controls whether to use Java or C style */
     private boolean mJavaStyle = true;
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.ARRAY_DECLARATOR};
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

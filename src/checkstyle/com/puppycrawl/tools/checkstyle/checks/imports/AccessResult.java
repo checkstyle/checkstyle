@@ -87,14 +87,12 @@ final class AccessResult
         return mLabel;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String toString()
     {
         return getLabel();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean equals(Object aObj)
     {
@@ -109,7 +107,6 @@ final class AccessResult
         return result;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int hashCode()
     {

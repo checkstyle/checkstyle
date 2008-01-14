@@ -68,7 +68,6 @@ public class EmptyBlockCheck
         super(BlockOption.STMT);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens()
     {
@@ -89,7 +88,6 @@ public class EmptyBlockCheck
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(DetailAST aAST)
     {

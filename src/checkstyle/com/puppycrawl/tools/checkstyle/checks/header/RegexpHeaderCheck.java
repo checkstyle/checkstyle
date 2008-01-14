@@ -37,17 +37,13 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      */
     private final class CheckViolationMonitor implements HeaderViolationMonitor
     {
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         public void reportHeaderMismatch(int aLineNo, String aHeaderLine)
         {
             log(aLineNo, "header.mismatch", aHeaderLine);
         }
 
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         public void reportHeaderMissing()
         {
             log(1, "header.missing");
@@ -89,7 +85,6 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
                 getRegexpHeaderInfo(), new CheckViolationMonitor());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginTree(DetailAST aRootAST)
     {
@@ -97,7 +92,6 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
         mRegexpHeaderChecker.checkLines(lines);
     }
 
-    /** {@inheritDoc} */
     @Override
     protected HeaderInfo createHeaderInfo()
     {

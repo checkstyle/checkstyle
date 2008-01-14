@@ -73,7 +73,6 @@ public final class PackageNamesLoader
         super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void startElement(String aNamespaceURI,
                              String aLocalName,
@@ -116,7 +115,6 @@ public final class PackageNamesLoader
         return mModuleFactory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void endElement(String aNamespaceURI,
                            String aLocalName,

@@ -67,9 +67,7 @@ public class NewlineAtEndOfFileCheck
     private LineSeparatorOption mLineSeparator =
         LineSeparatorOption.SYSTEM;
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void process(List<File> aFiles)
     {
         final List<File> files = filter(aFiles);
