@@ -108,4 +108,10 @@ public class InputPublicOnly // ignore - need javadoc
     {
         return super.toString();
     }
+
+    @Deprecated @Override
+    public Class getClass()
+    {
+        return super.getClass();
+    }
 }

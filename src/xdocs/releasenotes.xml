@@ -32,6 +32,12 @@
           comment. Replaces the check PackageHtml which has been
           removed. (Bug 1228207)
         </li>
+        <li>
+          Enhanced the <a
+          href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
+          check to not require Javadoc if the method is tagged with the
+          <span class="code">@Override</span> annotation.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>
