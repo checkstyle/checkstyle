@@ -110,8 +110,8 @@ public class InputPublicOnly // ignore - need javadoc
     }
 
     @Deprecated @Override
-    public Class getClass()
+    public int hashCode()
     {
-        return super.getClass();
+        return super.hashCode();
     }
 }
