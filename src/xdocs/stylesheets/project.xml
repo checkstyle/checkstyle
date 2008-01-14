@@ -41,10 +41,6 @@
         <item name="Miscellaneous"      href="/config_misc.html"/>
       </item>
 
-      <item name="Optional Checks" href="/optional.html">
-        <item name="J2EE Checks" href="/config_j2ee.html"/>
-      </item>
-
       <item name="Extending Checkstyle" href="/extending.html">
         <item name="Writing checks" href="/writingchecks.html"/>
         <item name="Writing filters" href="/writingfilters.html"/>

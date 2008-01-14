@@ -10,9 +10,8 @@
   <body>
     <p>
       The Standard Checkstyle Checks are applicable to general Java coding style
-      and require no external libraries. There are also <a href="optional.html">optional</a>
-      checks that target special applications or require additional libraries.
-      The standard checks are included in the base distribution.
+      and require no external libraries. The standard checks are included in
+      the base distribution.
     </p>
 
     <p>

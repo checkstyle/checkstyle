@@ -981,7 +981,6 @@
       &lt;package name=&quot;design&quot;/&gt;
       &lt;package name=&quot;imports&quot;/&gt;
       &lt;package name=&quot;indentation&quot;/&gt;
-      &lt;package name=&quot;j2ee&quot;/&gt;
       &lt;package name=&quot;javadoc&quot;/&gt;
       &lt;package name=&quot;metrics&quot;/&gt;
       &lt;package name=&quot;naming&quot;/&gt;

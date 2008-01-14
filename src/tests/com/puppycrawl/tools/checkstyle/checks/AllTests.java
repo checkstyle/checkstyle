@@ -35,7 +35,6 @@ public class AllTests {
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.header.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.imports.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.indentation.AllTests.suite());
-        suite.addTest(com.puppycrawl.tools.checkstyle.checks.j2ee.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.javadoc.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.metrics.AllTests.suite());
         suite.addTest(com.puppycrawl.tools.checkstyle.checks.naming.AllTests.suite());

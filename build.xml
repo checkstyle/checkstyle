@@ -192,7 +192,6 @@
            target="${checkstyle.testinputs.minimum.javaversion}"
            encoding="iso-8859-1"
            includeAntRuntime="false">
-      <exclude name="**/j2ee/*" />
       <exclude name="**/InputAssertIdentifier.java" />
       <exclude name="**/InputClone.java" />
       <exclude name="**/InputCovariant.java" />
@@ -487,11 +486,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     </copy>
     <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-${version}.jar"
          basedir="${checkstyle.dest}"
-         excludes="**/j2ee/**"
          manifest="${target.dir}/manifest.mf" />
-    <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-optional-${version}.jar"
-         basedir="${checkstyle.dest}"
-         includes="**/j2ee/**"/>
     <!-- copy the JARS and make a mega JAR out of them -->
     <copy file="${antlr.jar}" todir="${dist.dir}/checkstyle-${version}" />
     <copy file="${beanutils.jar}" todir="${dist.dir}/checkstyle-${version}" />
@@ -633,7 +628,6 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
       </doclet>
       <fileset dir="src/checkstyle">
         <include name="**/checks/**/*Check.java" />
-        <exclude name="**/checks/j2ee/AbstractInterfaceCheck.java" />
       </fileset>
     </javadoc>
 
@@ -772,17 +766,6 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
       <fileset dir="${basedir}" includes="pom.xml"/>
       <fileset dir="${dist.dir}/checkstyle-${version}">
         <include name="checkstyle-${version}.jar"/>
-      </fileset>
-    </jar>
-    <!-- Bundle for checkstyle-optional -->
-    <mkdir dir="${dist.dir}/maven-bundles/temp" />
-    <!-- Create a temporary copy of the optional pom with another name so that
-         it can be included in the optional-bundle -->
-    <copy file="${basedir}/pom-optional.xml" tofile="${dist.dir}/maven-bundles/temp/pom.xml" />
-    <jar jarfile="${dist.dir}/maven-bundles/checkstyle-optional-${version}-bundle.jar">
-      <fileset dir="${dist.dir}/maven-bundles/temp" includes="pom.xml"/>
-      <fileset dir="${dist.dir}/checkstyle-${version}">
-        <include name="checkstyle-optional-${version}.jar"/>
       </fileset>
     </jar>
     <!-- Remove the temporary directory -->

@@ -47,6 +47,16 @@
           the current architecture.
         </li>
       </ul>
+
+      <p>Notes:</p>
+      <ul>
+        <li>
+          <i>Retired</i> the J2EE Checks. If you are using Java 5, then you
+          really should be using
+          <a href="http://java.sun.com/javaee/">Java EE</a>. If you need
+          these checks, then use a Checkstyle 4.x release.
+        </li>
+      </ul>
     </section>
 
     <section name="Release 4.4">
