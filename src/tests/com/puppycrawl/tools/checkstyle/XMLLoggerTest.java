@@ -1,5 +1,9 @@
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
@@ -13,25 +17,18 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Enter a description of class XMLLoggerTest.java.
  * @author Rick Giles
  * @version 11-Dec-2002
  */
-public class XMLLoggerTest extends TestCase
+public class XMLLoggerTest
 {
-    private ByteArrayOutputStream outStream;
+    private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
 
-    @Override
-    public void setUp()
-        throws Exception
-    {
-        outStream = new ByteArrayOutputStream();
-    }
-
-    public void testEncode()
+    @Test public void testEncode()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, false);
@@ -51,7 +48,7 @@ public class XMLLoggerTest extends TestCase
         outStream.close();
     }
 
-    public void testIsReference()
+    @Test public void testIsReference()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, false);
@@ -80,7 +77,7 @@ public class XMLLoggerTest extends TestCase
         outStream.close();
     }
 
-     public void testCloseStream()
+     @Test public void testCloseStream()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, true);
@@ -90,7 +87,7 @@ public class XMLLoggerTest extends TestCase
         verifyLines(expectedLines);
     }
 
-    public void testNoCloseStream()
+    @Test public void testNoCloseStream()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, false);
@@ -101,7 +98,7 @@ public class XMLLoggerTest extends TestCase
         verifyLines(expectedLines);
     }
 
-    public void testFileStarted()
+    @Test public void testFileStarted()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, true);
@@ -113,7 +110,7 @@ public class XMLLoggerTest extends TestCase
         verifyLines(expectedLines);
     }
 
-    public void testFileFinished()
+    @Test public void testFileFinished()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, true);
@@ -125,7 +122,7 @@ public class XMLLoggerTest extends TestCase
         verifyLines(expectedLines);
     }
 
-    public void testAddError() throws IOException {
+    @Test public void testAddError() throws IOException {
         final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         final LocalizedMessage message =
@@ -140,7 +137,7 @@ public class XMLLoggerTest extends TestCase
         verifyLines(expectedLines);
     }
 
-    public void testAddException()
+    @Test public void testAddException()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, true);

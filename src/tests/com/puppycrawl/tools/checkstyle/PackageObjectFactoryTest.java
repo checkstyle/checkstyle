@@ -1,26 +1,24 @@
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
-
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Enter a description of class PackageObjectFactoryTest.java.
  * @author Rick Giles
  * @version 8-Dec-2002
  */
-public class PackageObjectFactoryTest extends TestCase
+public class PackageObjectFactoryTest
 {
 
-    private PackageObjectFactory mFactory = new PackageObjectFactory();
+    private final PackageObjectFactory mFactory = new PackageObjectFactory();
 
-    public void setUp()
-    {
-        mFactory = new PackageObjectFactory();
-    }
-
-    public void testMakeObjectFromName()
+    @Test public void testMakeObjectFromName()
         throws CheckstyleException
     {
         final Checker checker =
@@ -29,7 +27,7 @@ public class PackageObjectFactoryTest extends TestCase
         assertNotNull(checker);
     }
 
-    public void testMakeCheckFromName()
+    @Test public void testMakeCheckFromName()
         throws CheckstyleException
     {
         final ConstantNameCheck check =
@@ -38,7 +36,7 @@ public class PackageObjectFactoryTest extends TestCase
         assertNotNull(check);
     }
 
-    public void testMakeObectFromList()
+    @Test public void testMakeObectFromList()
         throws CheckstyleException
     {
         mFactory.addPackage("com.");
@@ -48,7 +46,7 @@ public class PackageObjectFactoryTest extends TestCase
         assertNotNull(checker);
     }
 
-    public void testMakeObectNoClass()
+    @Test public void testMakeObectNoClass()
     {
         try {
             mFactory.createModule("NoClass");

@@ -1,12 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
 import java.util.HashSet;
 import java.util.Set;
-import junit.framework.TestCase;
-
+import org.junit.Test;
 public class ClassResolverTest
-    extends TestCase
 {
+    @Test
     public void testMisc() throws ClassNotFoundException
     {
         final Set<String> imps = new HashSet<String>();

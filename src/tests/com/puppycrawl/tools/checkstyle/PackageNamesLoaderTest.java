@@ -1,10 +1,13 @@
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Enter a description of class PackageNamesLoaderTest.java.
@@ -12,9 +15,9 @@ import junit.framework.TestCase;
  * @author lkuehne
  * @version $Revision$
  */
-public class PackageNamesLoaderTest extends TestCase
+public class PackageNamesLoaderTest
 {
-    public void testDefault()
+    @Test public void testDefault()
         throws CheckstyleException
     {
         ModuleFactory moduleFactory = PackageNamesLoader
@@ -23,7 +26,7 @@ public class PackageNamesLoaderTest extends TestCase
         validateFactory(moduleFactory);
     }
 
-    public void testNoFile()
+    @Test public void testNoFile()
     {
         try {
             PackageNamesLoader.loadModuleFactory("NoFile");
@@ -36,7 +39,7 @@ public class PackageNamesLoaderTest extends TestCase
         }
     }
 
-    public void testFile()
+    @Test public void testFile()
         throws CheckstyleException
     {
         final ModuleFactory moduleFactory =
@@ -78,5 +81,4 @@ public class PackageNamesLoaderTest extends TestCase
         Set<String> pkgNamesSet = new HashSet<String>(Arrays.asList(pkgNames));
         assertEquals("names set.", checkstylePackagesSet, pkgNamesSet);
     }
-
 }

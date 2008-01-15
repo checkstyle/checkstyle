@@ -1,20 +1,23 @@
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * @author Rick Giles
  * @version 14-Nov-2002
  */
-public class OptionTest extends TestCase {
-
-    public void testBlockOption()
+public class OptionTest
+{
+    @Test public void testBlockOption()
     {
         BlockOption stmtOpt = BlockOption.STMT;
         assertEquals("STMT", "stmt", stmtOpt.toString());
@@ -23,10 +26,10 @@ public class OptionTest extends TestCase {
         BlockOption stmtDecode = (BlockOption)(stmtOpt.decode("stmt"));
         assertTrue("STMT decode", stmtOpt == stmtDecode);
         BlockOption textDecode = (BlockOption)(stmtOpt.decode("text"));
-        assertTrue("TEXT decode", textOpt == textDecode);        
+        assertTrue("TEXT decode", textOpt == textDecode);
     }
-    
-    public void testLeftCurlyOption()
+
+    @Test public void testLeftCurlyOption()
     {
         LeftCurlyOption eolOpt = LeftCurlyOption.EOL;
         assertEquals("EOL", "eol", eolOpt.toString());
@@ -41,8 +44,8 @@ public class OptionTest extends TestCase {
         LeftCurlyOption nlowDecode = (LeftCurlyOption)(nlowOpt.decode("nlow"));
         assertTrue("NL decode", nlowOpt == nlowDecode);
     }
-    
-    public void testOperatorWrapOption()
+
+    @Test public void testOperatorWrapOption()
     {
         OperatorWrapOption eolOpt = OperatorWrapOption.EOL;
         assertEquals("EOL", "eol", eolOpt.toString());
@@ -53,8 +56,8 @@ public class OptionTest extends TestCase {
         OperatorWrapOption nlDecode = (OperatorWrapOption)(nlOpt.decode("nl"));
         assertTrue("NL decode", nlOpt == nlDecode);
     }
-    
-    public void testPadOption()
+
+    @Test public void testPadOption()
     {
         PadOption nospaceOpt = PadOption.NOSPACE;
         assertEquals("NOSPACE", "nospace", nospaceOpt.toString());
@@ -63,10 +66,10 @@ public class OptionTest extends TestCase {
         PadOption nospaceDecode = (PadOption)(nospaceOpt.decode("nospace"));
         assertTrue("NOSPACE decode", nospaceOpt == nospaceDecode);
         PadOption spaceDecode = (PadOption)(spaceOpt.decode("space"));
-        assertTrue("SPACE decode", spaceOpt == spaceDecode);       
+        assertTrue("SPACE decode", spaceOpt == spaceDecode);
     }
-    
-    public void testRightCurlyOption()
+
+    @Test public void testRightCurlyOption()
     {
         RightCurlyOption aloneOpt = RightCurlyOption.ALONE;
         assertEquals("ALONE", "alone", aloneOpt.toString());
@@ -77,8 +80,8 @@ public class OptionTest extends TestCase {
         RightCurlyOption sameDecode = (RightCurlyOption)(sameOpt.decode("same"));
         assertTrue("SAME decode", sameOpt == sameDecode);
     }
-    
-    public void testEqualKeys()
+
+    @Test public void testEqualKeys()
     {
         LeftCurlyOption eolLeftCurl = LeftCurlyOption.EOL;
         LeftCurlyOption eolLeftCurlDecode =
@@ -89,7 +92,7 @@ public class OptionTest extends TestCase {
         assertTrue("eol",
                    (AbstractOption)eolLeftCurlDecode
                         != (AbstractOption)eolOpWrapDecode);
-                        
+
         LeftCurlyOption nlLeftCurl = LeftCurlyOption.NL;
         LeftCurlyOption nlLeftCurlDecode =
             (LeftCurlyOption)(nlLeftCurl.decode("nl"));

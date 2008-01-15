@@ -1,17 +1,20 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import com.puppycrawl.tools.checkstyle.filters.SuppressElement;
-import junit.framework.TestCase;
 import java.util.regex.PatternSyntaxException;
+import org.junit.Test;
 
 /**
  * Tests SuppressionsLoader.
  * @author Rick Giles
  */
-public class SuppressionsLoaderTest extends TestCase
+public class SuppressionsLoaderTest
 {
+    @Test
     public void testNoSuppressions()
         throws CheckstyleException
     {
@@ -23,6 +26,7 @@ public class SuppressionsLoaderTest extends TestCase
         assertEquals(fc, fc2);
     }
 
+    @Test
     public void testMultipleSuppression()
         throws CheckstyleException, PatternSyntaxException
     {
@@ -50,6 +54,7 @@ public class SuppressionsLoaderTest extends TestCase
         assertEquals(fc, fc2);
     }
 
+    @Test
     public void testNoFile()
     {
         final String fn = System.getProperty("testinputs.dir")
@@ -64,6 +69,7 @@ public class SuppressionsLoaderTest extends TestCase
         }
     }
 
+    @Test
     public void testNoCheck()
     {
         final String fn = System.getProperty("testinputs.dir")
@@ -78,6 +84,7 @@ public class SuppressionsLoaderTest extends TestCase
         }
     }
 
+    @Test
     public void testBadInt()
     {
         final String fn = System.getProperty("testinputs.dir")

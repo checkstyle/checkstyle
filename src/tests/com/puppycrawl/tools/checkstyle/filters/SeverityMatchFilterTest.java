@@ -1,25 +1,19 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.util.regex.PatternSyntaxException;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /** Tests SeverityMatchFilter */
-public class SeverityMatchFilterTest extends TestCase
+public class SeverityMatchFilterTest
 {
-    private SeverityMatchFilter filter;
+    private final SeverityMatchFilter filter = new SeverityMatchFilter();
 
-    public void setUp()
-        throws PatternSyntaxException
-    {
-        filter = new SeverityMatchFilter();
-    }
-
-    public void testDefault()
+    @Test public void testDefault()
     {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         assertFalse("no message", filter.accept(ev));
@@ -36,7 +30,7 @@ public class SeverityMatchFilterTest extends TestCase
         assertFalse("level:" + level, filter.accept(ev3));
     }
 
-    public void testSeverity()
+    @Test public void testSeverity()
     {
         filter.setSeverity("info");
         final AuditEvent ev = new AuditEvent(this, "Test.java");
@@ -55,7 +49,7 @@ public class SeverityMatchFilterTest extends TestCase
         assertTrue("level:" + level, filter.accept(ev3));
     }
 
-    public void testAcceptOnMatch()
+    @Test public void testAcceptOnMatch()
     {
         filter.setSeverity("info");
         filter.setAcceptOnMatch(false);

@@ -1,15 +1,20 @@
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import java.io.File;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class CheckerTest extends TestCase
+public class CheckerTest
 {
+    @Test
     public void testDosBasedir() throws Exception
     {
         Checker c = new Checker();
@@ -18,6 +23,7 @@ public class CheckerTest extends TestCase
         assertEquals("C:\\a\\b\\d", c.getBasedir());
     }
 
+    @Test
     public void testOsBasedir() throws Exception
     {
         Checker c = new Checker();
@@ -34,7 +40,7 @@ public class CheckerTest extends TestCase
         assertTrue((testinputs_dir + "coding").equalsIgnoreCase(c.getBasedir()));
     }
 
-
+    @Test
     public void testDestroy() throws Exception
     {
         DebugChecker c= new DebugChecker();
@@ -61,6 +67,7 @@ public class CheckerTest extends TestCase
         assertFalse("Checker.destroy() doesn't remove filters.", f.wasCalled());
     }
 
+    @Test
     public void testAddListener() throws Exception
     {
         DebugChecker c= new DebugChecker();
@@ -92,6 +99,7 @@ public class CheckerTest extends TestCase
         assertTrue("Checker.fireErrors() doesn't call listener", aa.wasCalled());
     }
 
+    @Test
     public void testRemoveListener() throws Exception
     {
         DebugChecker c= new DebugChecker();
@@ -132,6 +140,7 @@ public class CheckerTest extends TestCase
 
     }
 
+    @Test
     public void testAddFilter() throws Exception
     {
         DebugChecker c= new DebugChecker();
@@ -168,6 +177,7 @@ public class CheckerTest extends TestCase
         assertTrue("Checker.fireErrors() doesn't call filter", f.wasCalled());
     }
 
+    @Test
     public void testRemoveFilter() throws Exception
     {
         DebugChecker c= new DebugChecker();

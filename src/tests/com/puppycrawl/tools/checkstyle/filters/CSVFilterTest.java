@@ -1,19 +1,22 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /** Tests CSVFilter */
-public class CSVFilterTest extends TestCase
+public class CSVFilterTest
 {
-    public void testDecideSingle()
+    @Test public void testDecideSingle()
     {
         final IntFilter filter = new CSVFilter("0");
         assertFalse("less than", filter.accept(new Integer(-1)));
         assertTrue("equal", filter.accept(new Integer(0)));
         assertFalse("greater than", filter.accept(new Integer(1)));
     }
-    
-    public void testDecidePair()
+
+    @Test public void testDecidePair()
     {
         final IntFilter filter = new CSVFilter("0, 2");
         assertFalse("less than", filter.accept(new Integer(-1)));
@@ -21,8 +24,8 @@ public class CSVFilterTest extends TestCase
         assertFalse("greater than", filter.accept(new Integer(1)));
         assertTrue("equal 2", filter.accept(new Integer(2)));
     }
-    
-    public void testDecideRange()
+
+    @Test public void testDecideRange()
     {
         final IntFilter filter = new CSVFilter("0-2");
         assertFalse("less than", filter.accept(new Integer(-1)));
@@ -31,8 +34,8 @@ public class CSVFilterTest extends TestCase
         assertTrue("equal 2", filter.accept(new Integer(2)));
         assertFalse("greater than", filter.accept(new Integer(3)));
     }
-    
-    public void testDecideEmptyRange()
+
+    @Test public void testDecideEmptyRange()
     {
         final IntFilter filter = new CSVFilter("2-0");
         assertFalse("less than", filter.accept(new Integer(-1)));
@@ -41,8 +44,8 @@ public class CSVFilterTest extends TestCase
         assertFalse("equal 2", filter.accept(new Integer(2)));
         assertFalse("greater than", filter.accept(new Integer(3)));
     }
-    
-    public void testDecideRangePlusValue()
+
+    @Test public void testDecideRangePlusValue()
     {
         final IntFilter filter = new CSVFilter("0-2, 10");
         assertFalse("less than", filter.accept(new Integer(-1)));

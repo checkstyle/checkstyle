@@ -1,18 +1,19 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.AccessResult;
-import com.puppycrawl.tools.checkstyle.checks.imports.Guard;
-import com.puppycrawl.tools.checkstyle.checks.imports.PkgControl;
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-public class PkgControlTest extends TestCase
+import org.junit.Before;
+import org.junit.Test;
+
+public class PkgControlTest
 {
     private final PkgControl pcRoot = new PkgControl("com.kazgroup.courtlink");
     private final PkgControl pcCommon = new PkgControl(pcRoot, "common");
 
-    protected void setUp() throws Exception
+    @Before
+    public void setUp() throws Exception
     {
-        super.setUp();
         pcRoot.addGuard(new Guard(false, false, "org.springframework", false));
         pcRoot.addGuard(new Guard(false, false, "org.hibernate", false));
         pcRoot.addGuard(new Guard(true, false, "org.apache.commons", false));
@@ -20,13 +21,13 @@ public class PkgControlTest extends TestCase
         pcCommon.addGuard(new Guard(true, false, "org.hibernate", false));
     }
 
-    public void testFullPkg()
+    @Test public void testFullPkg()
     {
         assertEquals("com.kazgroup.courtlink", pcRoot.getFullPackage());
         assertEquals("com.kazgroup.courtlink.common", pcCommon.getFullPackage());
     }
 
-    public void testLocateFinest()
+    @Test public void testLocateFinest()
     {
         assertEquals(pcRoot, pcRoot
                 .locateFinest("com.kazgroup.courtlink.domain"));
@@ -35,7 +36,7 @@ public class PkgControlTest extends TestCase
         assertNull(pcRoot.locateFinest("com"));
     }
 
-    public void testCheckAccess()
+    @Test public void testCheckAccess()
     {
         assertEquals(AccessResult.DISALLOWED, pcCommon.checkAccess(
                 "org.springframework.something",
@@ -52,8 +53,8 @@ public class PkgControlTest extends TestCase
         assertEquals(AccessResult.DISALLOWED, pcRoot.checkAccess(
                 "org.hibernate.something", "com.kazgroup.courtlink"));
     }
-    
-    public void testUnknownPkg()
+
+    @Test public void testUnknownPkg()
     {
         assertNull(pcRoot.locateFinest("net.another"));
     }

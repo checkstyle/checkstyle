@@ -1,10 +1,13 @@
 package com.puppycrawl.tools.checkstyle.api;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
 
 public class ScopeTest
-    extends TestCase
 {
+    @Test(expected = IllegalArgumentException.class)
     public void testMisc()
     {
         final Scope o = Scope.getInstance("public");
@@ -12,12 +15,6 @@ public class ScopeTest
         assertEquals("Scope[1 (public)]", o.toString());
         assertEquals("public", o.getName());
 
-        try {
-            Scope.getInstance("unknown");
-            fail();
-        }
-        catch (IllegalArgumentException e) {
-            // As expected
-        }
+        Scope.getInstance("unknown"); // will fail
     }
 }

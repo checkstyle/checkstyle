@@ -1,10 +1,16 @@
 package com.puppycrawl.tools.checkstyle.api;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
-public class TokenTypesTest extends TestCase
+import org.junit.Test;
+
+public class TokenTypesTest
 {
-    public void testGetShortDescription() {
-        assertEquals("short description for EQUAL", "The <code>==</code> (equal) operator.", TokenTypes.getShortDescription("EQUAL"));
+    @Test
+    public void testGetShortDescription()
+    {
+        assertEquals("short description for EQUAL",
+                "The <code>==</code> (equal) operator.", TokenTypes
+                        .getShortDescription("EQUAL"));
     }
 }

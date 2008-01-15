@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.AccessResult;
-import com.puppycrawl.tools.checkstyle.checks.imports.Guard;
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-public class GuardTest extends TestCase
+import org.junit.Test;
+
+public class GuardTest
 {
-    public void testPkgGuard1()
+    @Test public void testPkgGuard1()
     {
         final Guard g = new Guard(true, false, "pkg", false);
         assertNotNull(g);
@@ -18,7 +19,7 @@ public class GuardTest extends TestCase
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("pkg"));
     }
 
-    public void testPkgGuard2()
+    @Test public void testPkgGuard2()
     {
         final Guard g = new Guard(true, false, "pkg", true);
         assertNotNull(g);
@@ -29,7 +30,7 @@ public class GuardTest extends TestCase
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("pkg"));
     }
 
-    public void testClassGuard()
+    @Test public void testClassGuard()
     {
         final Guard g = new Guard(true, false, "pkg.a");
         assertNotNull(g);

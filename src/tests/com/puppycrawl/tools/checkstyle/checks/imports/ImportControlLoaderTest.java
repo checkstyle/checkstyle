@@ -1,12 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import java.io.File;
+import static org.junit.Assert.assertNotNull;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import junit.framework.TestCase;
+import java.io.File;
+import org.junit.Test;
 
-public class ImportControlLoaderTest extends TestCase
+public class ImportControlLoaderTest
 {
+    @Test
     public void testLoad() throws CheckstyleException
     {
         final PkgControl root =

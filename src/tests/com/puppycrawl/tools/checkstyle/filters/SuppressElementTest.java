@@ -1,31 +1,35 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.util.regex.PatternSyntaxException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-
-import junit.framework.TestCase;
+import java.util.regex.PatternSyntaxException;
+import org.junit.Before;
+import org.junit.Test;
 
 /** Tests SuppressElementFilter */
-public class SuppressElementTest extends TestCase
+public class SuppressElementTest
 {
     private SuppressElement filter;
-    
+
+    @Before
     public void setUp()
         throws PatternSyntaxException
     {
         filter = new SuppressElement("Test");
         filter.setChecks("Test");
     }
-    
-    public void testDecideDefault()
+
+    @Test public void testDecideDefault()
     {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         assertTrue(ev.getFileName(), filter.accept(ev));
     }
-    
-    public void testDecideLocalizedMessage()
+
+    @Test public void testDecideLocalizedMessage()
     {
         LocalizedMessage message =
             new LocalizedMessage(0, 0, "", "", null, null, this.getClass());
@@ -33,8 +37,8 @@ public class SuppressElementTest extends TestCase
         //deny because there are matches on file and check names
         assertFalse("Names match", filter.accept(ev));
     }
-    
-    public void testDecideByLine()
+
+    @Test public void testDecideByLine()
     {
         LocalizedMessage message =
             new LocalizedMessage(10, 10, "", "", null, null, this.getClass());
@@ -45,8 +49,8 @@ public class SuppressElementTest extends TestCase
         filter.setLines("1-9, 11");
         assertTrue("Not in 1-9, 11", filter.accept(ev));
     }
-    
-    public void testDecideByColumn()
+
+    @Test public void testDecideByColumn()
     {
         LocalizedMessage message =
             new LocalizedMessage(10, 10, "", "", null, null, this.getClass());
@@ -58,7 +62,7 @@ public class SuppressElementTest extends TestCase
         assertTrue("Not in 1-9, 1)", filter.accept(ev));
     }
 
-    public void testEquals() throws PatternSyntaxException
+    @Test public void testEquals() throws PatternSyntaxException
     {
         final SuppressElement filter2 = new SuppressElement("Test");
         filter2.setChecks("Test");
@@ -80,6 +84,6 @@ public class SuppressElementTest extends TestCase
         filter.setColumns("1-10");
         assertFalse("filter, filter2", filter.equals(filter2));
         filter2.setColumns("1-10");
-        assertEquals("filter, filter2", filter, filter2);       
+        assertEquals("filter, filter2", filter, filter2);
     }
 }

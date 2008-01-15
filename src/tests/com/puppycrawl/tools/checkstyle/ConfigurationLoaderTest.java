@@ -1,18 +1,20 @@
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.Properties;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import junit.framework.TestCase;
-
+import java.util.Properties;
+import org.junit.Test;
 
 /**
  * @author Rick Giles
  * @author lkuehne
  * @version $Revision$
  */
-public class ConfigurationLoaderTest extends TestCase
+public class ConfigurationLoaderTest
 {
     private Configuration loadConfiguration(String aName)
         throws CheckstyleException
@@ -30,6 +32,7 @@ public class ConfigurationLoaderTest extends TestCase
             fName, new PropertiesExpander(aProps));
     }
 
+    @Test
     public void testEmptyConfiguration() throws Exception
     {
         final DefaultConfiguration config =
@@ -37,6 +40,7 @@ public class ConfigurationLoaderTest extends TestCase
         verifyConfigNode(config, "Checker", 0, new Properties());
     }
 
+    @Test
     public void testMissingPropertyName()
     {
         try {
@@ -51,6 +55,7 @@ public class ConfigurationLoaderTest extends TestCase
         }
     }
 
+    @Test
     public void testMissingPropertyValue()
     {
         try {
@@ -65,6 +70,7 @@ public class ConfigurationLoaderTest extends TestCase
         }
     }
 
+    @Test
     public void testMissingConfigName()
     {
         try {
@@ -79,6 +85,7 @@ public class ConfigurationLoaderTest extends TestCase
         }
     }
 
+    @Test
     public void testMissingConfigParent()
     {
         try {
@@ -93,6 +100,7 @@ public class ConfigurationLoaderTest extends TestCase
         }
     }
 
+    @Test
     public void testCheckstyleChecks() throws Exception
     {
         final Properties props = new Properties();
@@ -167,6 +175,7 @@ public class ConfigurationLoaderTest extends TestCase
         }
     }
 
+    @Test
     public void testReplacePropertiesNoReplace()
         throws CheckstyleException
     {
@@ -180,6 +189,7 @@ public class ConfigurationLoaderTest extends TestCase
         }
     }
 
+    @Test
     public void testReplacePropertiesSyntaxError()
     {
         final Properties props = initProperties();
@@ -193,6 +203,7 @@ public class ConfigurationLoaderTest extends TestCase
         }
     }
 
+    @Test
     public void testReplacePropertiesMissingProperty()
     {
         final Properties props = initProperties();
@@ -206,6 +217,7 @@ public class ConfigurationLoaderTest extends TestCase
         }
     }
 
+    @Test
     public void testReplacePropertiesReplace()
         throws CheckstyleException
     {

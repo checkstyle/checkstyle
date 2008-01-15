@@ -1,13 +1,19 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class AccessResultTest extends TestCase
+public class AccessResultTest
 {
+    @Test
     public void testNormal()
     {
         assertEquals("ALLOWED", AccessResult.ALLOWED.getLabel());
@@ -23,17 +29,13 @@ public class AccessResultTest extends TestCase
         assertTrue(AccessResult.UNKNOWN == revived);
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void testBadname()
     {
-        try {
-            AccessResult.getInstance("badname");
-            fail("should not get here");
-        }
-        catch (IllegalArgumentException ex) {
-            ;
-        }
+        AccessResult.getInstance("badname");
     }
 
+    @Test
     public void testSerial() throws Exception
     {
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();

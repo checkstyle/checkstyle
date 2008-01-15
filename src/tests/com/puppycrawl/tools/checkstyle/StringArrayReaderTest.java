@@ -1,13 +1,15 @@
 package com.puppycrawl.tools.checkstyle;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import org.junit.Test;
 
 public class StringArrayReaderTest
-    extends TestCase
 {
-    public void testClose()
+    @Test public void testClose()
     {
         final StringArrayReader o = new StringArrayReader(new String[] {""});
         assertNotNull(o);
@@ -20,7 +22,7 @@ public class StringArrayReaderTest
         }
     }
 
-    public void testLineBreakSingleChar()
+    @Test public void testLineBreakSingleChar()
     {
         final StringArrayReader o =
             new StringArrayReader(new String[] {"a", "bc"});
@@ -42,7 +44,7 @@ public class StringArrayReaderTest
         }
     }
 
-    public void testLineBreakCharArray()
+    @Test public void testLineBreakCharArray()
     {
         final StringArrayReader o =
             new StringArrayReader(new String[] {"a", "bc"});
@@ -66,7 +68,7 @@ public class StringArrayReaderTest
         }
     }
 
-    public void testNoLineBreakCharArray()
+    @Test public void testNoLineBreakCharArray()
     {
         final StringArrayReader o =
             new StringArrayReader(new String[] {"a", "bc"});

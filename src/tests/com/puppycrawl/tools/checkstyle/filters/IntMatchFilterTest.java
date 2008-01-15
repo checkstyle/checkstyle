@@ -1,19 +1,23 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /** Tests IntMatchFilter */
-public class IntMatchFilterTest extends TestCase
+public class IntMatchFilterTest
 {
-    public void testDecide()
+    @Test public void testDecide()
     {
         final IntFilter filter = new IntMatchFilter(0);
         assertFalse("less than", filter.accept(new Integer(-1)));
         assertTrue("equal", filter.accept(new Integer(0)));
         assertFalse("greater than", filter.accept(new Integer(1)));
     }
-    
-    public void testEquals()
+
+    @Test public void testEquals()
     {
         final IntFilter filter = new IntMatchFilter(0);
         final IntFilter filter2 = new IntMatchFilter(0);

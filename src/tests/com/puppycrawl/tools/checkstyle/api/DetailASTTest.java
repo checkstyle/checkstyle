@@ -1,20 +1,21 @@
 package com.puppycrawl.tools.checkstyle.api;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import java.io.File;
 import java.io.FileFilter;
 import java.text.MessageFormat;
-
-import com.puppycrawl.tools.checkstyle.TreeWalker;
+import org.junit.Test;
 
 /**
  * TestCase to check DetailAST.
  * @author Oliver Burn
  */
-public class DetailASTTest extends TestCase {
-
-    public void testGetChildCount() {
+public class DetailASTTest
+{
+    @Test public void testGetChildCount() {
         final DetailAST root = new DetailAST();
         final DetailAST firstLevelA = new DetailAST();
         final DetailAST firstLevelB = new DetailAST();
@@ -42,7 +43,7 @@ public class DetailASTTest extends TestCase {
         assertEquals(firstLevelA, firstLevelB.getPreviousSibling());
     }
 
-    public void testTreeStructure() throws Exception
+    @Test public void testTreeStructure() throws Exception
     {
         checkDir(new File(System.getProperty("testinputs.dir")));
     }
