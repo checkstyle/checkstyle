@@ -12,7 +12,7 @@
   <property name="antlr.jar" value="lib/antlr.jar" />
   <property name="velocity.jar" value="lib/velocity-dep-1.4.jar" />
   <property name="jdom.jar" value="lib/jdom-b9.jar" />
-  <property name="junit.jar" value="lib/junit.jar" />
+  <property name="junit.jar" value="lib/junit-4.4.jar" />
   <property name="beanutils.jar" value="lib/commons-beanutils-core.jar" />
   <property name="collections.jar" value="lib/commons-collections.jar" />
   <property name="cli.jar" value="lib/commons-cli.jar" />
@@ -364,18 +364,6 @@
            style="contrib/checkstyle-author.xsl"/>
   </target>
 
-  <!-- Targets to verify that JUnit is in the classpath -->
-  <target name="-check.junit"
-          description="Checks whether JUnit is in the classpath">
-    <available property="have.junit"
-               classname="junit.framework.TestListener"/>
-  </target>
-
-  <target name="-require.junit" depends="-check.junit" unless="have.junit"
-          description="Fails if JUnit is not present in the classpath">
-    <fail message="Need to have JUnit in your CLASSPATH to run the tests. Consider using the one in the lib directory."/>
-  </target>
-
   <!-- Targets to verify that Xalan is in the classpath -->
   <target name="-check.xalan"
           description="Checks whether xalan is in the classpath">
@@ -416,12 +404,13 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
 
   <!-- To run the tests need Xalan in the classpath -->
   <target name="run.tests"
-          depends="compile.tests,-require.ant15,-require.junit,-require.xalan,compile.testinputs"
+          depends="compile.tests,-require.ant17,-require.xalan,compile.testinputs"
           description="Runs the tests for checkstyle">
 
     <mkdir dir="${testreport.dir}"/>
     <property name="testinputs.dir"
               location="${basedir}/src/testinputs/com/puppycrawl/tools/checkstyle"/>
+    <echo>testinputs.dir = ${testinputs.dir}</echo>
 
     <junit printsummary="yes"
            fork="yes"
@@ -677,21 +666,19 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     </xmlvalidate>
   </target>
 
-  <!-- Targets to verify that ANT version if at least 1.5 -->
-  <target name="-check.ant15">
+  <!-- Targets to verify that ANT version if at least 1.7 -->
+  <target name="-check.ant17">
     <echo>version is ${ant.version}</echo>
-    <condition property="have.ant15">
-      <not>
-        <or>
-          <equals arg1="${ant.version}"
-                  arg2="Ant version 1.4.1 compiled on October 11 2001"/>
-        </or>
-      </not>
+    <condition property="have.ant17">
+      <or>
+        <equals arg1="${ant.version}"
+                arg2="Apache Ant version 1.7.0 compiled on December 13 2006"/>
+      </or>
     </condition>
   </target>
 
-  <target name="-require.ant15" depends="-check.ant15" unless="have.ant15">
-    <fail message="Need at least version 1.5 of ANT - you have ${ant.version}"/>
+  <target name="-require.ant17" depends="-check.ant17" unless="have.ant17">
+    <fail message="Need at least version 1.7 of ANT - you have ${ant.version}"/>
   </target>
 
   <target name="checkstyle.run" depends="compile.checkstyle"

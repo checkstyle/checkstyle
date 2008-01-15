@@ -1,9 +1,9 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class AutomaticBeanTest extends TestCase
+public class AutomaticBeanTest
 {
     private class TestBean extends AutomaticBean
     {
@@ -15,27 +15,15 @@ public class AutomaticBeanTest extends TestCase
         }
     }
 
-    DefaultConfiguration mConf = null;
+    private final DefaultConfiguration mConf = new DefaultConfiguration(
+            "testConf");
 
     TestBean mTestBean = new TestBean();
 
-    public void setUp()
-    {
-        mConf = new DefaultConfiguration("testConf");
-    }
-
-    public void testNoSuchAttribute()
+    @Test(expected = CheckstyleException.class)
+    public void testNoSuchAttribute() throws CheckstyleException
     {
         mConf.addAttribute("NonExisting", "doesn't matter");
-        try {
-            mTestBean.configure(mConf);
-            fail("AutomaticBean.configure() accepted nonexisting attribute name");
-        }
-        catch (CheckstyleException ex)
-        {
-            // expected exception
-        }
-        assertEquals(mTestBean.mName, null);
-
+        mTestBean.configure(mConf);
     }
 }

@@ -1,14 +1,12 @@
 package com.puppycrawl.tools.checkstyle;
 
-import java.io.File;
-
-import junit.framework.TestCase;
-
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import java.io.File;
+import junit.framework.TestCase;
 
 public class CheckerTest extends TestCase
 {
@@ -33,9 +31,7 @@ public class CheckerTest extends TestCase
         }
 
         c.setBasedir(testinputs_dir + "indentation/./..\\coding\\");
-
-
-        assertEquals(testinputs_dir + "coding", c.getBasedir());
+        assertTrue((testinputs_dir + "coding").equalsIgnoreCase(c.getBasedir()));
     }
 
 
@@ -225,11 +221,13 @@ class DebugChecker extends Checker
         super();
     }
 
+    @Override
     public void fireAuditFinished()
     {
         super.fireAuditFinished();
     }
 
+    @Override
     public void fireAuditStarted()
     {
         super.fireAuditStarted();
