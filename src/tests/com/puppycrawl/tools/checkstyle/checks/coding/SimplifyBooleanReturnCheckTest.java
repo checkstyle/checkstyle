@@ -1,18 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
-/*
- * Created by IntelliJ IDEA.
- * User: lk
- * Date: Oct 21, 2002
- * Time: 8:59:11 AM
- * To change this template use Options | File Templates.
- */
 public class SimplifyBooleanReturnCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testIt()
             throws Exception
     {

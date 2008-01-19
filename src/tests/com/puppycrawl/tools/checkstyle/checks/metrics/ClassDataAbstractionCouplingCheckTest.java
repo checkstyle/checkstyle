@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestCase
+public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void test() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(ClassDataAbstractionCouplingCheck.class);

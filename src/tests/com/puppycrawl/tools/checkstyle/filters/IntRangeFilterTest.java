@@ -9,7 +9,8 @@ import org.junit.Test;
 /** Tests IntRangeFilter */
 public class IntRangeFilterTest
 {
-    @Test public void testDecide()
+    @Test
+    public void testDecide()
     {
         final IntFilter filter = new IntRangeFilter(0, 10);
         assertFalse("less than", filter.accept(new Integer(-1)));
@@ -19,7 +20,8 @@ public class IntRangeFilterTest
         assertFalse("greater than", filter.accept(new Integer(11)));
     }
 
-    @Test public void testDecideSingle()
+    @Test
+    public void testDecideSingle()
     {
         final IntFilter filter = new IntRangeFilter(0, 0);
         assertFalse("less than", filter.accept(new Integer(-1)));
@@ -27,7 +29,8 @@ public class IntRangeFilterTest
         assertFalse("greater than", filter.accept(new Integer(1)));
     }
 
-    @Test public void testDecideEmpty()
+    @Test
+    public void testDecideEmpty()
     {
         final IntFilter filter = new IntRangeFilter(10, 0);
         assertFalse("out", filter.accept(new Integer(-1)));
@@ -37,7 +40,8 @@ public class IntRangeFilterTest
         assertFalse("out", filter.accept(new Integer(11)));
     }
 
-    @Test public void testEquals()
+    @Test
+    public void testEquals()
     {
         final IntFilter filter = new IntRangeFilter(0, 2);
         final IntFilter filter2 = new IntRangeFilter(0, 2);

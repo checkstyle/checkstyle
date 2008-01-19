@@ -1,10 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-
 import java.io.File;
+import org.junit.Test;
 
 /**
  * @author Oliver.Burn
@@ -14,8 +14,9 @@ import java.io.File;
  * To enable and disable the creation of type comments go to
  * Window>Preferences>Java>Code Generation.
  */
-public class JavadocTypeCheckTest extends BaseCheckTestCase
+public class JavadocTypeCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testTags() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -29,6 +30,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputTags.java"), expected);
     }
 
+    @Test
     public void testInner() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -42,6 +44,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
 
+    @Test
     public void testStrict() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -56,6 +59,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
 
+    @Test
     public void testProtected() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -68,6 +72,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
 
+    @Test
     public void testPublic() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -81,6 +86,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
+    @Test
     public void testProtest() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -96,6 +102,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
+    @Test
     public void testPkg() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -112,6 +119,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputScopeInnerClasses.java"), expected);
     }
 
+    @Test
     public void testEclipse() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -126,6 +134,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputScopeInnerClasses.java"), expected);
     }
 
+    @Test
     public void testAuthorRequired() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -137,7 +146,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
-    
+
+    @Test
     public void testAuthorRegularEx()
         throws Exception
     {
@@ -152,6 +162,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
 
+    @Test
     public void testAuthorRegularExError()
         throws Exception
     {
@@ -172,6 +183,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
 
+    @Test
     public void testVersionRequired()
         throws Exception
     {
@@ -183,7 +195,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
-    
+
+    @Test
     public void testVersionRegularEx()
         throws Exception
     {
@@ -197,7 +210,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
-    
+
+    @Test
     public void testVersionRegularExError()
         throws Exception
     {
@@ -221,6 +235,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputJavadoc.java"), expected);
     }
 
+    @Test
     public void testScopes() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -241,6 +256,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
                expected);
     }
 
+    @Test
     public void testScopes2() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -255,6 +271,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
                expected);
     }
 
+    @Test
     public void testExcludeScope() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -275,6 +292,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
                expected);
     }
 
+    @Test
     public void testTypeParameters() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -285,6 +303,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }
+    @Test
     public void testAllowMissingTypeParameters() throws Exception
     {
         final DefaultConfiguration checkConfig =

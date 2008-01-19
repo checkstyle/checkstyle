@@ -18,7 +18,8 @@ public class PackageObjectFactoryTest
 
     private final PackageObjectFactory mFactory = new PackageObjectFactory();
 
-    @Test public void testMakeObjectFromName()
+    @Test
+    public void testMakeObjectFromName()
         throws CheckstyleException
     {
         final Checker checker =
@@ -27,7 +28,8 @@ public class PackageObjectFactoryTest
         assertNotNull(checker);
     }
 
-    @Test public void testMakeCheckFromName()
+    @Test
+    public void testMakeCheckFromName()
         throws CheckstyleException
     {
         final ConstantNameCheck check =
@@ -36,7 +38,8 @@ public class PackageObjectFactoryTest
         assertNotNull(check);
     }
 
-    @Test public void testMakeObectFromList()
+    @Test
+    public void testMakeObectFromList()
         throws CheckstyleException
     {
         mFactory.addPackage("com.");
@@ -46,7 +49,8 @@ public class PackageObjectFactoryTest
         assertNotNull(checker);
     }
 
-    @Test public void testMakeObectNoClass()
+    @Test
+    public void testMakeObectNoClass()
     {
         try {
             mFactory.createModule("NoClass");

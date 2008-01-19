@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class UncommentedMainCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefaults()
         throws Exception
     {
@@ -19,6 +21,7 @@ public class UncommentedMainCheckTest
         verify(checkConfig, getPath("InputUncommentedMain.java"), expected);
     }
 
+    @Test
     public void testExcludedClasses()
         throws Exception
     {

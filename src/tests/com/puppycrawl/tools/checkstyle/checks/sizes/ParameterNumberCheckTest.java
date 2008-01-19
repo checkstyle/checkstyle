@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class ParameterNumberCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault()
         throws Exception
     {
@@ -17,6 +19,7 @@ public class ParameterNumberCheckTest
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
+    @Test
     public void testNum()
         throws Exception
     {

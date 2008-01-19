@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class ParameterNameCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testCatch()
         throws Exception
     {
@@ -17,6 +19,7 @@ public class ParameterNameCheckTest
         verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
+    @Test
     public void testSpecified()
         throws Exception
     {
@@ -31,6 +34,7 @@ public class ParameterNameCheckTest
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
+    @Test
     public void testDefault()
         throws Exception
     {

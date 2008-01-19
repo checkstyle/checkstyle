@@ -1,19 +1,22 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Before;
+import org.junit.Test;
 
 public class WhitespaceAroundTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
     DefaultConfiguration checkConfig;
 
-    @Override
+    @Before
     public void setUp()
     {
         checkConfig = createCheckConfig(WhitespaceAroundCheck.class);
     }
 
+    @Test
     public void testIt()
         throws Exception
     {
@@ -57,6 +60,7 @@ public class WhitespaceAroundTest
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
+    @Test
     public void testIt2()
         throws Exception
     {
@@ -71,6 +75,7 @@ public class WhitespaceAroundTest
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
+    @Test
     public void testIt3()
         throws Exception
     {
@@ -87,6 +92,7 @@ public class WhitespaceAroundTest
         verify(checkConfig, getPath("InputBraces.java"), expected);
     }
 
+    @Test
     public void testIt4()
         throws Exception
     {
@@ -99,6 +105,7 @@ public class WhitespaceAroundTest
         verify(checkConfig, getPath("InputBraces.java"), expected);
     }
 
+    @Test
     public void testGenericsTokensAreFlagged()
         throws Exception
     {
@@ -109,6 +116,7 @@ public class WhitespaceAroundTest
         verify(checkConfig, getPath("InputGenerics.java"), expected);
     }
 
+    @Test
     public void test1322879() throws Exception
     {
         final String[] expected = {

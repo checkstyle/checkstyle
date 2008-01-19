@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class MultipleStringLiteralsCheckTest extends BaseCheckTestCase
+public class MultipleStringLiteralsCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testIt() throws Exception
     {
         DefaultConfiguration checkConfig =
@@ -25,6 +26,7 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestCase
                expected);
     }
 
+    @Test
     public void testItIgnoreEmpty() throws Exception
     {
         DefaultConfiguration checkConfig =
@@ -41,6 +43,7 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestCase
                expected);
     }
 
+    @Test
     public void testItIgnoreEmptyAndComaSpace() throws Exception
     {
         DefaultConfiguration checkConfig =
@@ -57,6 +60,7 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestCase
                expected);
     }
 
+    @Test
     public void testItWithoutIgnoringAnnotations() throws Exception
     {
         DefaultConfiguration checkConfig =

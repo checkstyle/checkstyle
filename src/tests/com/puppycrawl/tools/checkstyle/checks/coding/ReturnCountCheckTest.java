@@ -1,11 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
-public class ReturnCountCheckTest extends BaseCheckTestCase
+import org.junit.Test;
+public class ReturnCountCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -17,6 +18,7 @@ public class ReturnCountCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("coding" + File.separator + "InputReturnCount.java"), expected);
     }
 
+    @Test
     public void testFormat() throws Exception
     {
         final DefaultConfiguration checkConfig =

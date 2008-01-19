@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class MethodNameCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault()
         throws Exception
     {

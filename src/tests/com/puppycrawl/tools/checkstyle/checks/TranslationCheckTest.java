@@ -1,14 +1,15 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.io.File;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import java.io.File;
+import org.junit.Test;
 
 public class TranslationCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration aCheckConfig)
     {
@@ -17,6 +18,7 @@ public class TranslationCheckTest
         return dc;
     }
 
+    @Test
     public void testTranslation()
          throws Exception
     {

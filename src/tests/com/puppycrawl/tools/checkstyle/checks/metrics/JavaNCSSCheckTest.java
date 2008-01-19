@@ -1,17 +1,19 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import java.io.File;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import java.io.File;
+import org.junit.Test;
 
 /**
  * Testcase for the JavaNCSS-Check.
- * 
+ *
  * @author Lars Ködderitzsch
  */
-public class JavaNCSSCheckTest extends BaseCheckTestCase {
+public class JavaNCSSCheckTest extends BaseCheckTestSupport
+{
 
+    @Test
     public void test() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
 

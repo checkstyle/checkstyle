@@ -12,7 +12,8 @@ public class UtilsTest
     /**
      * Test Utils.countCharInString.
      */
-    @Test public void testLengthExpandedTabs()
+    @Test
+    public void testLengthExpandedTabs()
         throws Exception
     {
         String s1 = "\t";

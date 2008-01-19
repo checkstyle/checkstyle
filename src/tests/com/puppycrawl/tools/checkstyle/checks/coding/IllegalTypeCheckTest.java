@@ -1,17 +1,21 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Before;
+import org.junit.Test;
 
-public class IllegalTypeCheckTest extends BaseCheckTestCase {
+public class IllegalTypeCheckTest extends BaseCheckTestSupport
+{
     private DefaultConfiguration mCheckConfig;
 
+    @Before
     public void setUp() {
         mCheckConfig = createCheckConfig(IllegalTypeCheck.class);
     }
 
+    @Test
     public void testDefaults() throws Exception {
         String[] expected = {
             "6:13: Declaring variables, return values or parameters of type 'AbstractClass' is not allowed.",
@@ -25,6 +29,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestCase {
         verify(mCheckConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
     }
 
+    @Test
     public void testIgnoreMethodNames() throws Exception {
         mCheckConfig.addAttribute("ignoredMethodNames", "table2");
 
@@ -39,6 +44,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestCase {
         verify(mCheckConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
     }
 
+    @Test
     public void testFormat() throws Exception {
         mCheckConfig.addAttribute("format", "^$");
 
@@ -50,6 +56,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestCase {
         verify(mCheckConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
     }
 
+    @Test
     public void testLegalAbstractClassNames() throws Exception {
         mCheckConfig.addAttribute("legalAbstractClassNames", "AbstractClass");
 

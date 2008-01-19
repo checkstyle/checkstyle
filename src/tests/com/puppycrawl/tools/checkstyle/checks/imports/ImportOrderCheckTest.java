@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class ImportOrderCheckTest extends BaseCheckTestCase
+public class ImportOrderCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -21,6 +22,7 @@ public class ImportOrderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
     }
 
+    @Test
     public void testGroups() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
@@ -34,6 +36,7 @@ public class ImportOrderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
     }
 
+    @Test
     public void testSeparated() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
@@ -49,6 +52,7 @@ public class ImportOrderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
     }
 
+    @Test
     public void testCaseInsensitive() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);

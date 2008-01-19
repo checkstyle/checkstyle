@@ -1,14 +1,15 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import java.io.File;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import java.io.File;
+import org.junit.Test;
 
 public class HideUtilityClassConstructorCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
     /** only static methods and no constructor - default ctor is visible */
+    @Test
     public void testUtilClass() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -20,6 +21,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     /** nonstatic methods - always OK */
+    @Test
     public void testNonUtilClass() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -29,6 +31,7 @@ public class HideUtilityClassConstructorCheckTest
         verify(checkConfig, getPath("InputDesignForExtension.java"), expected);
     }
 
+    @Test
     public void testDerivedNonUtilClass() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -38,6 +41,7 @@ public class HideUtilityClassConstructorCheckTest
         verify(checkConfig, getPath("design" + File.separator + "InputNonUtilityClass.java"), expected);
     }
 
+    @Test
     public void testOnlyNonstaticFieldNonUtilClass() throws Exception
     {
         final DefaultConfiguration checkConfig =

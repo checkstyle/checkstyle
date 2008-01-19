@@ -1,12 +1,15 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import static org.junit.Assert.fail;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.io.File;
+import org.junit.Test;
 
-public class ImportControlCheckTest extends BaseCheckTestCase
+public class ImportControlCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testOne() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
@@ -18,6 +21,7 @@ public class ImportControlCheckTest extends BaseCheckTestCase
                 + "InputImportControl.java"), expected);
     }
 
+    @Test
     public void testTwo() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
@@ -31,6 +35,7 @@ public class ImportControlCheckTest extends BaseCheckTestCase
                 + "InputImportControl.java"), expected);
     }
 
+    @Test
     public void testWrong() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
@@ -42,6 +47,7 @@ public class ImportControlCheckTest extends BaseCheckTestCase
                 + "InputImportControl.java"), expected);
     }
 
+    @Test
     public void testMissing() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
@@ -50,6 +56,7 @@ public class ImportControlCheckTest extends BaseCheckTestCase
                 + "InputImportControl.java"), expected);
     }
 
+    @Test
     public void testEmpty() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
@@ -59,6 +66,7 @@ public class ImportControlCheckTest extends BaseCheckTestCase
                 + "InputImportControl.java"), expected);
     }
 
+    @Test
     public void testUnknown() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
@@ -74,6 +82,7 @@ public class ImportControlCheckTest extends BaseCheckTestCase
         }
     }
 
+    @Test
     public void testBroken() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);

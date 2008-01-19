@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class ExplicitInitializationCheckTest extends BaseCheckTestCase
+public class ExplicitInitializationCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -32,7 +33,7 @@ public class ExplicitInitializationCheckTest extends BaseCheckTestCase
             "51:25: Variable 'bar' explicitly initialized to 'null' (default value for its type).",
             "52:27: Variable 'barArray' explicitly initialized to 'null' (default value for its type).",
         };
-        verify(checkConfig, 
+        verify(checkConfig,
                getPath("coding" + File.separator + "InputExplicitInit.java"),
                expected);
     }

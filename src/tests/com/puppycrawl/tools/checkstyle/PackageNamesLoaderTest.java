@@ -17,7 +17,8 @@ import org.junit.Test;
  */
 public class PackageNamesLoaderTest
 {
-    @Test public void testDefault()
+    @Test
+    public void testDefault()
         throws CheckstyleException
     {
         ModuleFactory moduleFactory = PackageNamesLoader
@@ -26,7 +27,8 @@ public class PackageNamesLoaderTest
         validateFactory(moduleFactory);
     }
 
-    @Test public void testNoFile()
+    @Test
+    public void testNoFile()
     {
         try {
             PackageNamesLoader.loadModuleFactory("NoFile");
@@ -39,7 +41,8 @@ public class PackageNamesLoaderTest
         }
     }
 
-    @Test public void testFile()
+    @Test
+    public void testFile()
         throws CheckstyleException
     {
         final ModuleFactory moduleFactory =

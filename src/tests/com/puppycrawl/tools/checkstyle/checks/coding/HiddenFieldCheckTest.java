@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class HiddenFieldCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testNoParameters()
         throws Exception
     {
@@ -35,6 +37,7 @@ public class HiddenFieldCheckTest
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
 
+    @Test
     public void testDefault()
         throws Exception
     {
@@ -76,6 +79,7 @@ public class HiddenFieldCheckTest
     }
 
     /** tests ignoreFormat property */
+    @Test
     public void testIgnoreFormat()
         throws Exception
     {
@@ -112,6 +116,7 @@ public class HiddenFieldCheckTest
     }
 
     /** tests ignoreSetter property */
+    @Test
     public void testIgnoreSetter()
         throws Exception
     {
@@ -153,6 +158,7 @@ public class HiddenFieldCheckTest
     }
 
     /** tests ignoreConstructorParameter property */
+    @Test
     public void testIgnoreConstructorParameter()
         throws Exception
     {
@@ -192,6 +198,7 @@ public class HiddenFieldCheckTest
     }
 
     /** Test against a class with field declarations in different order */
+    @Test
     public void testReordered()
         throws Exception
     {
@@ -222,6 +229,7 @@ public class HiddenFieldCheckTest
         verify(checkConfig, getPath("InputHiddenFieldReorder.java"), expected);
     }
 
+    @Test
     public void testIgnoreAbstractMethods() throws Exception
     {
         final DefaultConfiguration checkConfig =

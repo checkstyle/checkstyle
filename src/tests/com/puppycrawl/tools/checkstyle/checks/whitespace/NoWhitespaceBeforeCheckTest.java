@@ -1,17 +1,21 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Before;
+import org.junit.Test;
 
 public class NoWhitespaceBeforeCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
     private DefaultConfiguration checkConfig;
 
+    @Before
     public void setUp() {
         checkConfig = createCheckConfig(NoWhitespaceBeforeCheck.class);
     }
 
+    @Test
     public void testDefault() throws Exception
     {
         final String[] expected = {
@@ -27,6 +31,7 @@ public class NoWhitespaceBeforeCheckTest
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
+    @Test
     public void testDot() throws Exception
     {
         checkConfig.addAttribute("tokens", "DOT");
@@ -40,7 +45,7 @@ public class NoWhitespaceBeforeCheckTest
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
-
+    @Test
     public void testDotAllowLineBreaks() throws Exception
     {
         checkConfig.addAttribute("tokens", "DOT");
@@ -52,5 +57,4 @@ public class NoWhitespaceBeforeCheckTest
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
-
 }

@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class AbstractClassNameCheckTest extends BaseCheckTestCase
+public class AbstractClassNameCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testIllegalAbstractClassName() throws Exception
     {
         final DefaultConfiguration checkConfig =

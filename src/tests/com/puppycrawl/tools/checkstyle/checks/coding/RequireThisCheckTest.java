@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class RequireThisCheckTest extends BaseCheckTestCase
+public class RequireThisCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testIt() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -23,6 +24,7 @@ public class RequireThisCheckTest extends BaseCheckTestCase
                expected);
     }
 
+    @Test
     public void testMethodsOnly() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -36,6 +38,7 @@ public class RequireThisCheckTest extends BaseCheckTestCase
                expected);
     }
 
+    @Test
     public void testFieldsOnly() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -52,6 +55,7 @@ public class RequireThisCheckTest extends BaseCheckTestCase
                expected);
     }
 
+    @Test
     public void testGenerics() throws Exception
     {
         final DefaultConfiguration checkConfig =

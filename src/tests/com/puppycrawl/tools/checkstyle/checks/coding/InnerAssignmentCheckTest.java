@@ -1,13 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.io.File;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import java.io.File;
+import org.junit.Test;
 
 public class InnerAssignmentCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testIt() throws Exception
     {
         final DefaultConfiguration checkConfig =

@@ -1,18 +1,22 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Before;
+import org.junit.Test;
 
 public class EmptyForInitializerPadCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
     private DefaultConfiguration mCheckConfig;
 
+    @Before
     public void setUp()
     {
         mCheckConfig = createCheckConfig(EmptyForInitializerPadCheck.class);
     }
 
+    @Test
     public void testDefault() throws Exception
     {
         final String[] expected = {
@@ -21,6 +25,7 @@ public class EmptyForInitializerPadCheckTest
         verify(mCheckConfig, getPath("InputForWhitespace.java"), expected);
     }
 
+    @Test
     public void testSpaceOption() throws Exception
     {
         mCheckConfig.addAttribute("option", PadOption.SPACE.toString());

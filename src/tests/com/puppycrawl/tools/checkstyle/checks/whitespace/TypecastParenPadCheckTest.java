@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class TypecastParenPadCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault()
         throws Exception
     {
@@ -18,6 +20,7 @@ public class TypecastParenPadCheckTest
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
+    @Test
     public void testSpace()
         throws Exception
     {
@@ -37,6 +40,7 @@ public class TypecastParenPadCheckTest
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
 
+    @Test
     public void test1322879() throws Exception
     {
         final DefaultConfiguration checkConfig =

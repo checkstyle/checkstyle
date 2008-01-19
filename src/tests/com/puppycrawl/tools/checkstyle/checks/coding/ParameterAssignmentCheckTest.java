@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class ParameterAssignmentCheckTest extends BaseCheckTestCase
+public class ParameterAssignmentCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault()
         throws Exception
     {

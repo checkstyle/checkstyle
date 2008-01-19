@@ -7,7 +7,8 @@ import org.junit.Test;
 
 public class GuardTest
 {
-    @Test public void testPkgGuard1()
+    @Test
+    public void testPkgGuard1()
     {
         final Guard g = new Guard(true, false, "pkg", false);
         assertNotNull(g);
@@ -19,7 +20,8 @@ public class GuardTest
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("pkg"));
     }
 
-    @Test public void testPkgGuard2()
+    @Test
+    public void testPkgGuard2()
     {
         final Guard g = new Guard(true, false, "pkg", true);
         assertNotNull(g);
@@ -30,7 +32,8 @@ public class GuardTest
         assertEquals(AccessResult.UNKNOWN, g.verifyImport("pkg"));
     }
 
-    @Test public void testClassGuard()
+    @Test
+    public void testClassGuard()
     {
         final Guard g = new Guard(true, false, "pkg.a");
         assertNotNull(g);

@@ -1,13 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import java.io.File;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import java.io.File;
+import org.junit.Test;
 
 public class RedundantImportCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testWithChecker()
         throws Exception
     {

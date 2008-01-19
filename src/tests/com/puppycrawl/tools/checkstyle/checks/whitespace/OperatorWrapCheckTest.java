@@ -1,17 +1,21 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Before;
+import org.junit.Test;
 
 public class OperatorWrapCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
     private DefaultConfiguration checkConfig;
 
+    @Before
     public void setUp() {
         checkConfig = createCheckConfig(OperatorWrapCheck.class);
     }
 
+    @Test
     public void testDefault()
         throws Exception
     {
@@ -24,6 +28,7 @@ public class OperatorWrapCheckTest
         verify(checkConfig, getPath("InputOpWrap.java"), expected);
     }
 
+    @Test
     public void testOpWrapEOL()
         throws Exception
     {
@@ -36,6 +41,7 @@ public class OperatorWrapCheckTest
         verify(checkConfig, getPath("InputOpWrap.java"), expected);
     }
 
+    @Test
     public void testAssignEOL()
         throws Exception
     {

@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class DefaultComesLastCheckTest extends BaseCheckTestCase
+public class DefaultComesLastCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testIt() throws Exception
     {
         final DefaultConfiguration checkConfig =

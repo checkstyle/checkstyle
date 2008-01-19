@@ -1,13 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
 public class MemberNameCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testSpecified()
         throws Exception
     {
@@ -20,7 +21,8 @@ public class MemberNameCheckTest
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
-    
+
+    @Test
     public void testInnerClass()
         throws Exception
     {
@@ -32,6 +34,7 @@ public class MemberNameCheckTest
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
 
+    @Test
     public void testDefaults() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -47,6 +50,7 @@ public class MemberNameCheckTest
                expected);
     }
 
+    @Test
     public void testUnderlined() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -63,6 +67,7 @@ public class MemberNameCheckTest
                expected);
     }
 
+    @Test
     public void testPublicOnly() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -79,6 +84,7 @@ public class MemberNameCheckTest
                expected);
     }
 
+    @Test
     public void testProtectedOnly() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -95,6 +101,7 @@ public class MemberNameCheckTest
                expected);
     }
 
+    @Test
     public void testPackageOnly() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -111,6 +118,7 @@ public class MemberNameCheckTest
                expected);
     }
 
+    @Test
     public void testPrivateOnly() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -127,6 +135,7 @@ public class MemberNameCheckTest
                expected);
     }
 
+    @Test
     public void testNotPrivate() throws Exception
     {
         final DefaultConfiguration checkConfig =

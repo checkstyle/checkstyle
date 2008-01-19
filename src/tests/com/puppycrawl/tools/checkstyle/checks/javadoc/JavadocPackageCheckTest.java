@@ -1,13 +1,15 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import org.junit.Test;
 
 
 public class JavadocPackageCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration aCheckConfig)
     {
@@ -16,6 +18,7 @@ public class JavadocPackageCheckTest
         return dc;
     }
 
+    @Test
     public void testMissing()
          throws Exception
     {
@@ -29,6 +32,7 @@ public class JavadocPackageCheckTest
             getPath("javadoc/package-info.java"),
             expected);
     }
+    @Test
     public void testBoth() throws Exception
     {
         Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
@@ -38,6 +42,7 @@ public class JavadocPackageCheckTest
             getPath("javadoc/bothfiles/package-info.java"), expected);
     }
 
+    @Test
     public void testHtmlDisallowed() throws Exception
     {
         Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
@@ -47,6 +52,7 @@ public class JavadocPackageCheckTest
             getPath("javadoc/pkghtml/package-info.java"), expected);
     }
 
+    @Test
     public void testHtmlAllowed() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);

@@ -1,13 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class FallThroughCheckTest extends BaseCheckTestCase
+public class FallThroughCheckTest extends BaseCheckTestSupport
 {
 
+    @Test
     public void testDefault() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
@@ -27,7 +28,8 @@ public class FallThroughCheckTest extends BaseCheckTestCase
                getPath("coding" + File.separator + "InputFallThrough.java"),
                expected);
     }
-    
+
+    @Test
     public void testLastCaseGroup() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
@@ -51,13 +53,14 @@ public class FallThroughCheckTest extends BaseCheckTestCase
                expected);
     }
 
+    @Test
     public void testOwnPattern() throws Exception
     {
         final String ownPattern = "Continue with next case";
         final DefaultConfiguration checkConfig =
             createCheckConfig(FallThroughCheck.class);
         checkConfig.addAttribute("reliefPattern", ownPattern);
-        
+
         final String[] expected = {
             "12:13: Fall through from previous branch of the switch statement.",
             "36:13: Fall through from previous branch of the switch statement.",
@@ -91,6 +94,6 @@ public class FallThroughCheckTest extends BaseCheckTestCase
         verify(checkConfig,
                getPath("coding" + File.separator + "InputFallThrough.java"),
                expected);
-        
+
     }
 }

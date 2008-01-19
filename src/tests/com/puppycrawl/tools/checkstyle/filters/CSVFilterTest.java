@@ -8,7 +8,8 @@ import org.junit.Test;
 /** Tests CSVFilter */
 public class CSVFilterTest
 {
-    @Test public void testDecideSingle()
+    @Test
+    public void testDecideSingle()
     {
         final IntFilter filter = new CSVFilter("0");
         assertFalse("less than", filter.accept(new Integer(-1)));
@@ -16,7 +17,8 @@ public class CSVFilterTest
         assertFalse("greater than", filter.accept(new Integer(1)));
     }
 
-    @Test public void testDecidePair()
+    @Test
+    public void testDecidePair()
     {
         final IntFilter filter = new CSVFilter("0, 2");
         assertFalse("less than", filter.accept(new Integer(-1)));
@@ -25,7 +27,8 @@ public class CSVFilterTest
         assertTrue("equal 2", filter.accept(new Integer(2)));
     }
 
-    @Test public void testDecideRange()
+    @Test
+    public void testDecideRange()
     {
         final IntFilter filter = new CSVFilter("0-2");
         assertFalse("less than", filter.accept(new Integer(-1)));
@@ -35,7 +38,8 @@ public class CSVFilterTest
         assertFalse("greater than", filter.accept(new Integer(3)));
     }
 
-    @Test public void testDecideEmptyRange()
+    @Test
+    public void testDecideEmptyRange()
     {
         final IntFilter filter = new CSVFilter("2-0");
         assertFalse("less than", filter.accept(new Integer(-1)));
@@ -45,7 +49,8 @@ public class CSVFilterTest
         assertFalse("greater than", filter.accept(new Integer(3)));
     }
 
-    @Test public void testDecideRangePlusValue()
+    @Test
+    public void testDecideRangePlusValue()
     {
         final IntFilter filter = new CSVFilter("0-2, 10");
         assertFalse("less than", filter.accept(new Integer(-1)));

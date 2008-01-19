@@ -21,13 +21,15 @@ public class PkgControlTest
         pcCommon.addGuard(new Guard(true, false, "org.hibernate", false));
     }
 
-    @Test public void testFullPkg()
+    @Test
+    public void testFullPkg()
     {
         assertEquals("com.kazgroup.courtlink", pcRoot.getFullPackage());
         assertEquals("com.kazgroup.courtlink.common", pcCommon.getFullPackage());
     }
 
-    @Test public void testLocateFinest()
+    @Test
+    public void testLocateFinest()
     {
         assertEquals(pcRoot, pcRoot
                 .locateFinest("com.kazgroup.courtlink.domain"));
@@ -36,7 +38,8 @@ public class PkgControlTest
         assertNull(pcRoot.locateFinest("com"));
     }
 
-    @Test public void testCheckAccess()
+    @Test
+    public void testCheckAccess()
     {
         assertEquals(AccessResult.DISALLOWED, pcCommon.checkAccess(
                 "org.springframework.something",
@@ -54,7 +57,8 @@ public class PkgControlTest
                 "org.hibernate.something", "com.kazgroup.courtlink"));
     }
 
-    @Test public void testUnknownPkg()
+    @Test
+    public void testUnknownPkg()
     {
         assertNull(pcRoot.locateFinest("net.another"));
     }

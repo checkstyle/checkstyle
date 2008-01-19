@@ -4,7 +4,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
@@ -18,9 +18,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
+import org.junit.Test;
 
 public class SuppressionCommentFilterTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
     static String[] sAllMessages = {
         "13:17: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -39,6 +40,7 @@ public class SuppressionCommentFilterTest
         "71:11: Catching 'Exception' is not allowed.",
     };
 
+    @Test
     public void testNone()
             throws Exception
     {
@@ -49,6 +51,7 @@ public class SuppressionCommentFilterTest
     }
 
     //Supress all checks between default comments
+    @Test
     public void testDefault() throws Exception
     {
         final DefaultConfiguration filterConfig =
@@ -62,6 +65,7 @@ public class SuppressionCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
+    @Test
     public void testCheckC() throws Exception
     {
         final DefaultConfiguration filterConfig =
@@ -75,6 +79,7 @@ public class SuppressionCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
+    @Test
     public void testCheckCPP() throws Exception
     {
         final DefaultConfiguration filterConfig =
@@ -87,6 +92,7 @@ public class SuppressionCommentFilterTest
     }
 
     //Supress all checks between CS_OFF and CS_ON
+    @Test
     public void testOffFormat() throws Exception
     {
         final DefaultConfiguration filterConfig =
@@ -104,6 +110,7 @@ public class SuppressionCommentFilterTest
 
     //Test supression of checks of only one type
     //Supress only ConstantNameCheck between CS_OFF and CS_ON
+    @Test
     public void testOffFormatCheck() throws Exception
     {
         final DefaultConfiguration filterConfig =
@@ -118,6 +125,7 @@ public class SuppressionCommentFilterTest
     }
 
 
+    @Test
     public void testExpansion()
             throws Exception
     {
@@ -134,6 +142,7 @@ public class SuppressionCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
+    @Test
     public void testMessage()
             throws Exception
     {

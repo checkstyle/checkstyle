@@ -18,11 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
-public class MethodLengthCheckTest extends BaseCheckTestCase
+public class MethodLengthCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testIt() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -33,7 +35,8 @@ public class MethodLengthCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
-    
+
+    @Test
     public void testcountEmpty() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -45,6 +48,7 @@ public class MethodLengthCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
+    @Test
     public void testAbstract() throws Exception
     {
         final DefaultConfiguration checkConfig =

@@ -1,12 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
-public class CyclomaticComplexityCheckTest 
-    extends BaseCheckTestCase 
+public class CyclomaticComplexityCheckTest
+    extends BaseCheckTestSupport
 {
-    public void test() throws Exception 
+    @Test
+    public void test() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(CyclomaticComplexityCheck.class);

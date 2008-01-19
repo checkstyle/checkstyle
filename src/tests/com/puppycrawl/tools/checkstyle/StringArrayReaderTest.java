@@ -9,7 +9,8 @@ import org.junit.Test;
 
 public class StringArrayReaderTest
 {
-    @Test public void testClose()
+    @Test
+    public void testClose()
     {
         final StringArrayReader o = new StringArrayReader(new String[] {""});
         assertNotNull(o);
@@ -22,7 +23,8 @@ public class StringArrayReaderTest
         }
     }
 
-    @Test public void testLineBreakSingleChar()
+    @Test
+    public void testLineBreakSingleChar()
     {
         final StringArrayReader o =
             new StringArrayReader(new String[] {"a", "bc"});
@@ -44,7 +46,8 @@ public class StringArrayReaderTest
         }
     }
 
-    @Test public void testLineBreakCharArray()
+    @Test
+    public void testLineBreakCharArray()
     {
         final StringArrayReader o =
             new StringArrayReader(new String[] {"a", "bc"});
@@ -68,7 +71,8 @@ public class StringArrayReaderTest
         }
     }
 
-    @Test public void testNoLineBreakCharArray()
+    @Test
+    public void testNoLineBreakCharArray()
     {
         final StringArrayReader o =
             new StringArrayReader(new String[] {"a", "bc"});

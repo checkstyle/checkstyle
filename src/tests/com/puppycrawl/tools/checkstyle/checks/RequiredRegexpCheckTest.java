@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class RequiredRegexpCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testExistingInDoc()
             throws Exception
     {
@@ -18,6 +20,7 @@ public class RequiredRegexpCheckTest
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testExistingInCode()
             throws Exception
     {
@@ -30,6 +33,7 @@ public class RequiredRegexpCheckTest
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testMissing()
             throws Exception
     {

@@ -1,7 +1,6 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 /**

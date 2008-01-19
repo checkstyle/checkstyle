@@ -1,14 +1,15 @@
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import java.io.File;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import java.io.File;
+import org.junit.Test;
 
 public class CrossLanguageRegexpHeaderCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration aCheckConfig)
     {
@@ -17,6 +18,7 @@ public class CrossLanguageRegexpHeaderCheckTest
         return dc;
     }
 
+    @Test
     public void testComplexHeaderConfigOnProperties()
     throws Exception
     {
@@ -37,6 +39,7 @@ public class CrossLanguageRegexpHeaderCheckTest
                 expected);
     }
 
+    @Test
     public void testComplexHeaderConfigOnJava()
     throws Exception
     {
@@ -57,6 +60,7 @@ public class CrossLanguageRegexpHeaderCheckTest
                 expected);
     }
 
+    @Test
     public void testComplexHeaderConfigOnXml()
     throws Exception
     {
@@ -79,11 +83,11 @@ public class CrossLanguageRegexpHeaderCheckTest
 
 
     /**
-     * Creates a configuration that is functionally close to that in the docs. 
+     * Creates a configuration that is functionally close to that in the docs.
      */
     private DefaultConfiguration createComplexHeaderConfig() {
         final DefaultConfiguration checkConfig = createCheckConfig(CrossLanguageRegexpHeaderCheck.class);
-        checkConfig.addAttribute("header", 
+        checkConfig.addAttribute("header",
                 "^<\\?xml.*\\?>$\n" +
                 "^\\W*$\n" +
                 "\\W*\\(C\\) \\d\\d\\d\\d correct header$\n" +

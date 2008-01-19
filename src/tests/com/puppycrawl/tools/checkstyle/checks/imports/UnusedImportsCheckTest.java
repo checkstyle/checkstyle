@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.File;
+import org.junit.Test;
 
-public class UnusedImportsCheckTest extends BaseCheckTestCase
+public class UnusedImportsCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
@@ -24,6 +26,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestCase
                 + "InputImport.java"), expected);
     }
 
+    @Test
     public void testAnnotations() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
@@ -32,6 +35,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestCase
                 + "package-info.java"), expected);
     }
 
+    @Test
     public void testBug() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);

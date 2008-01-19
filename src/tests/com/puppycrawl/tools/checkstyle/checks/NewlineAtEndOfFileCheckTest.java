@@ -1,13 +1,16 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import static org.junit.Assert.fail;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import org.junit.Test;
 
 public class NewlineAtEndOfFileCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration aCheckConfig)
     {
@@ -16,6 +19,7 @@ public class NewlineAtEndOfFileCheckTest
         return dc;
     }
 
+    @Test
     public void testNewlineAtEndOfFile()
          throws Exception
     {
@@ -29,6 +33,7 @@ public class NewlineAtEndOfFileCheckTest
             expected);
     }
 
+    @Test
     public void testNoNewlineAtEndOfFile()
          throws Exception
     {
@@ -43,7 +48,8 @@ public class NewlineAtEndOfFileCheckTest
             getPath("InputNoNewlineAtEndOfFile.java"),
             expected);
     }
-    
+
+    @Test
     public void testSetLineSeparatorFailure()
         throws Exception
     {
@@ -58,7 +64,8 @@ public class NewlineAtEndOfFileCheckTest
         }
         fail("should throw conversion exception");
     }
-    
+
+    @Test
     public void testEmptyFileFile()
          throws Exception
     {

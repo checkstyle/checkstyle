@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class MagicNumberCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault()
         throws Exception
     {
@@ -41,12 +43,13 @@ public class MagicNumberCheckTest
             "111:35: '0x80000000' is a magic number.",
             "112:36: '0x8000000000000000L' is a magic number.",
             "115:37: '020000000000' is a magic number.",
-            "116:38: '01000000000000000000000L' is a magic number.",          
+            "116:38: '01000000000000000000000L' is a magic number.",
             "131:20: '378' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
-    
+
+    @Test
     public void testIgnoreSome()
         throws Exception
     {
@@ -85,7 +88,8 @@ public class MagicNumberCheckTest
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
-    
+
+    @Test
     public void testIgnoreNone()
         throws Exception
     {
@@ -152,7 +156,8 @@ public class MagicNumberCheckTest
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
-    
+
+    @Test
     public void testIntegersOnly()
         throws Exception
     {
@@ -190,7 +195,8 @@ public class MagicNumberCheckTest
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
-    
+
+    @Test
     public void testIgnoreNegativeOctalHex()
          throws Exception
      {

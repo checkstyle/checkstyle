@@ -1,12 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
-public class ExecutableStatementCountCheckTest 
-    extends BaseCheckTestCase 
+public class ExecutableStatementCountCheckTest
+    extends BaseCheckTestSupport
 {
-    public void testMaxZero() throws Exception 
+    @Test
+    public void testMaxZero() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
@@ -28,8 +30,9 @@ public class ExecutableStatementCountCheckTest
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
     }
-    
-    public void testMethodDef() throws Exception 
+
+    @Test
+    public void testMethodDef() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
@@ -48,8 +51,9 @@ public class ExecutableStatementCountCheckTest
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
     }
-    
-    public void testCtorDef() throws Exception 
+
+    @Test
+    public void testCtorDef() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
@@ -64,8 +68,9 @@ public class ExecutableStatementCountCheckTest
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
     }
-    
-    public void testStaticInit() throws Exception 
+
+    @Test
+    public void testStaticInit() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
@@ -79,8 +84,9 @@ public class ExecutableStatementCountCheckTest
 
         verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
     }
-    
-    public void testInstanceInit() throws Exception 
+
+    @Test
+    public void testInstanceInit() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);

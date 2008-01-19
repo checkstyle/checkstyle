@@ -18,11 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
-public class NeedBracesCheckTest extends BaseCheckTestCase
+public class NeedBracesCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testIt() throws Exception
     {
         final DefaultConfiguration checkConfig =

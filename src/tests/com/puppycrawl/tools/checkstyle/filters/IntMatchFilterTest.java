@@ -9,7 +9,8 @@ import org.junit.Test;
 /** Tests IntMatchFilter */
 public class IntMatchFilterTest
 {
-    @Test public void testDecide()
+    @Test
+    public void testDecide()
     {
         final IntFilter filter = new IntMatchFilter(0);
         assertFalse("less than", filter.accept(new Integer(-1)));
@@ -17,7 +18,8 @@ public class IntMatchFilterTest
         assertFalse("greater than", filter.accept(new Integer(1)));
     }
 
-    @Test public void testEquals()
+    @Test
+    public void testEquals()
     {
         final IntFilter filter = new IntMatchFilter(0);
         final IntFilter filter2 = new IntMatchFilter(0);

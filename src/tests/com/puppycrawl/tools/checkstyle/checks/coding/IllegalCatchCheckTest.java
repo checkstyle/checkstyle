@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class IllegalCatchCheckTest extends BaseCheckTestCase
+public class IllegalCatchCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
@@ -23,10 +24,11 @@ public class IllegalCatchCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck.java"), expected);
     }
 
+    @Test
     public void testIllegalClassNames() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
-        checkConfig.addAttribute("illegalClassNames", 
+        checkConfig.addAttribute("illegalClassNames",
                                  "java.lang.Error, java.lang.Exception, java.lang.Throwable");
 
         String[] expected = {

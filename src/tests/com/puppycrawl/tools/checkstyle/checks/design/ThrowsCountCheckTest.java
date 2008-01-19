@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class ThrowsCountCheckTest extends BaseCheckTestCase {
+public class ThrowsCountCheckTest extends BaseCheckTestSupport
+{
+    @Test
     public void testDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
 
@@ -18,6 +20,7 @@ public class ThrowsCountCheckTest extends BaseCheckTestCase {
         verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
     }
 
+    @Test
     public void testMax() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
         checkConfig.addAttribute("max", "2");

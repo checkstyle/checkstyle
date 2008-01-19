@@ -23,13 +23,15 @@ public class SuppressElementTest
         filter.setChecks("Test");
     }
 
-    @Test public void testDecideDefault()
+    @Test
+    public void testDecideDefault()
     {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         assertTrue(ev.getFileName(), filter.accept(ev));
     }
 
-    @Test public void testDecideLocalizedMessage()
+    @Test
+    public void testDecideLocalizedMessage()
     {
         LocalizedMessage message =
             new LocalizedMessage(0, 0, "", "", null, null, this.getClass());
@@ -38,7 +40,8 @@ public class SuppressElementTest
         assertFalse("Names match", filter.accept(ev));
     }
 
-    @Test public void testDecideByLine()
+    @Test
+    public void testDecideByLine()
     {
         LocalizedMessage message =
             new LocalizedMessage(10, 10, "", "", null, null, this.getClass());
@@ -50,7 +53,8 @@ public class SuppressElementTest
         assertTrue("Not in 1-9, 11", filter.accept(ev));
     }
 
-    @Test public void testDecideByColumn()
+    @Test
+    public void testDecideByColumn()
     {
         LocalizedMessage message =
             new LocalizedMessage(10, 10, "", "", null, null, this.getClass());
@@ -62,7 +66,8 @@ public class SuppressElementTest
         assertTrue("Not in 1-9, 1)", filter.accept(ev));
     }
 
-    @Test public void testEquals() throws PatternSyntaxException
+    @Test
+    public void testEquals() throws PatternSyntaxException
     {
         final SuppressElement filter2 = new SuppressElement("Test");
         filter2.setChecks("Test");

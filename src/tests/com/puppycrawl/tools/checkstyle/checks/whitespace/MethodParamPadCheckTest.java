@@ -1,18 +1,22 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Before;
+import org.junit.Test;
 
 public class MethodParamPadCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
     private DefaultConfiguration checkConfig;
 
+    @Before
     public void setUp()
     {
         checkConfig = createCheckConfig(MethodParamPadCheck.class);
     }
 
+    @Test
     public void testDefault() throws Exception
     {
         final String[] expected = {
@@ -36,6 +40,7 @@ public class MethodParamPadCheckTest
         verify(checkConfig, getPath("whitespace/InputMethodParamPad.java"), expected);
     }
 
+    @Test
     public void testAllowLineBreaks() throws Exception
     {
         checkConfig.addAttribute("allowLineBreaks", "true");
@@ -52,6 +57,7 @@ public class MethodParamPadCheckTest
         verify(checkConfig, getPath("whitespace/InputMethodParamPad.java"), expected);
     }
 
+    @Test
     public void testSpaceOption() throws Exception
     {
         checkConfig.addAttribute("option", "space");
@@ -81,6 +87,7 @@ public class MethodParamPadCheckTest
         verify(checkConfig, getPath("whitespace/InputMethodParamPad.java"), expected);
     }
 
+    @Test
     public void test1322879() throws Exception
     {
         checkConfig.addAttribute("option", PadOption.SPACE.toString());

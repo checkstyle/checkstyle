@@ -1,16 +1,18 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class DeclarationOrderCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(DeclarationOrderCheck.class);
-        
+
         final String[] expected = {
             "8:5: Variable access definition in wrong order.",
             "13:5: Variable access definition in wrong order.",

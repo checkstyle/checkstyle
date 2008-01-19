@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class LocalFinalVariableNameCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault()
         throws Exception
     {
@@ -17,6 +19,7 @@ public class LocalFinalVariableNameCheckTest
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
+    @Test
     public void testSet()
         throws Exception
     {
@@ -28,7 +31,8 @@ public class LocalFinalVariableNameCheckTest
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
-    
+
+    @Test
     public void testInnerClass()
         throws Exception
     {

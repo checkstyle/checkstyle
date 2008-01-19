@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class ClassFanOutComplexityCheckTest extends BaseCheckTestCase {
+public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport
+{
+    @Test
     public void test() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(ClassFanOutComplexityCheck.class);
 
@@ -20,6 +22,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestCase {
         verify(checkConfig, getPath("metrics" + File.separator +"ClassCouplingCheckTestInput.java"), expected);
     }
 
+    @Test
     public void test15() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(ClassFanOutComplexityCheck.class);
 

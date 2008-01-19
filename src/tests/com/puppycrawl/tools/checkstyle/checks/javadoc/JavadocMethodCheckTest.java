@@ -1,20 +1,23 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-
 import java.io.File;
+import org.junit.Before;
+import org.junit.Test;
 
-public class JavadocMethodCheckTest extends BaseCheckTestCase
+public class JavadocMethodCheckTest extends BaseCheckTestSupport
 {
     private DefaultConfiguration mCheckConfig;
 
+    @Before
     public void setUp()
     {
         mCheckConfig = createCheckConfig(JavadocMethodCheck.class);
     }
 
+    @Test
     public void testTags() throws Exception
     {
         final String[] expected = {
@@ -52,6 +55,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputTags.java"), expected);
     }
 
+    @Test
     public void testTagsWithResolver() throws Exception
     {
         mCheckConfig.addAttribute("allowUndeclaredRTE", "true");
@@ -85,6 +89,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputTags.java"), expected);
     }
 
+    @Test
     public void testStrictJavadoc() throws Exception
     {
         final String[] expected = {
@@ -104,6 +109,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputPublicOnly.java"), expected);
     }
 
+    @Test
     public void testNoJavadoc() throws Exception
     {
         mCheckConfig.addAttribute("scope", Scope.NOTHING.getName());
@@ -112,6 +118,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
     }
 
     // pre 1.4 relaxed mode is roughly equivalent with check=protected
+    @Test
     public void testRelaxedJavadoc() throws Exception
     {
         mCheckConfig.addAttribute("scope", Scope.PROTECTED.getName());
@@ -123,6 +130,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputPublicOnly.java"), expected);
     }
 
+    @Test
     public void testScopeInnerInterfacesPublic() throws Exception
     {
         mCheckConfig.addAttribute("scope", Scope.PUBLIC.getName());
@@ -132,6 +140,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
+    @Test
     public void testScopeAnonInnerPrivate() throws Exception
     {
         mCheckConfig.addAttribute("scope", Scope.PRIVATE.getName());
@@ -139,6 +148,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
+    @Test
     public void testScopeAnonInnerAnonInner() throws Exception
     {
         mCheckConfig.addAttribute("scope", Scope.ANONINNER.getName());
@@ -149,6 +159,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
+    @Test
     public void testScopeAnonInnerWithResolver() throws Exception
     {
         mCheckConfig.addAttribute("allowUndeclaredRTE", "true");
@@ -156,6 +167,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
+    @Test
     public void testTagsWithSubclassesAllowed() throws Exception
     {
         mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
@@ -189,6 +201,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputTags.java"), expected);
     }
 
+    @Test
     public void testScopes() throws Exception
     {
         final String[] expected = {
@@ -232,6 +245,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
                                     + "InputNoJavadoc.java"), expected);
     }
 
+    @Test
     public void testScopes2() throws Exception
     {
         mCheckConfig.addAttribute("scope", Scope.PROTECTED.getName());
@@ -244,6 +258,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
                                     + "InputNoJavadoc.java"), expected);
     }
 
+    @Test
     public void testExcludeScope() throws Exception
     {
         mCheckConfig.addAttribute("scope", Scope.PRIVATE.getName());
@@ -285,6 +300,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
                                     + "InputNoJavadoc.java"), expected);
     }
 
+    @Test
     public void testAllowMissingJavadoc() throws Exception
     {
         mCheckConfig.addAttribute("allowMissingJavadoc", "true");
@@ -293,6 +309,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
                                     + "InputNoJavadoc.java"), expected);
     }
 
+    @Test
     public void testSetterGetterOff() throws Exception
     {
         final String[] expected = {
@@ -309,6 +326,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
                                     + "InputSetterGetter.java"), expected);
     }
 
+    @Test
     public void testSetterGetterOn() throws Exception
     {
         mCheckConfig.addAttribute("allowMissingPropertyJavadoc", "true");
@@ -323,6 +341,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
                                     + "InputSetterGetter.java"), expected);
     }
 
+    @Test
     public void testTypeParamsTags() throws Exception
     {
         final String[] expected = {
@@ -331,18 +350,21 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputTypeParamsTags.java"), expected);
     }
 
+    @Test
     public void test_1168408_1() throws Exception
     {
         final String[] expected = {};
         verify(mCheckConfig, getPath("javadoc/Test1.java"), expected);
     }
 
+    @Test
     public void test_1168408_2() throws Exception
     {
         final String[] expected = {};
         verify(mCheckConfig, getPath("javadoc/Test2.java"), expected);
     }
 
+    @Test
     public void test_1168408_3() throws Exception
     {
         mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
@@ -351,6 +373,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("javadoc/Test3.java"), expected);
     }
 
+    @Test
     public void test_generics_1() throws Exception
     {
         mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
@@ -366,6 +389,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
 
+    @Test
     public void test_generics_2() throws Exception
     {
         mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
@@ -380,6 +404,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
 
+    @Test
     public void test_generics_3() throws Exception
     {
         final String[] expected = {
@@ -393,6 +418,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
 
+    @Test
     public void test_1379666() throws Exception
     {
         mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
@@ -401,6 +427,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("javadoc/Test_1379666.java"), expected);
     }
 
+    @Test
     public void testInheritDoc() throws Exception
     {
         final String[] expected = {

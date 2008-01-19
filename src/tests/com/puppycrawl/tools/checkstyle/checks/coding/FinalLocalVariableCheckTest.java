@@ -1,16 +1,18 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class FinalLocalVariableCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalLocalVariableCheck.class);
-        
+
         final String[] expected = {
             "9:13: Variable 'i' should be declared final.",
             "9:16: Variable 'j' should be declared final.",
@@ -35,12 +37,13 @@ public class FinalLocalVariableCheckTest
         verify(checkConfig, getPath("coding/InputFinalLocalVariable.java"), expected);
     }
 
+    @Test
     public void testParameter() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF");
-        
+
         final String[] expected = {
             "45:28: Variable 'aArg' should be declared final.",
             "149:36: Variable '_o' should be declared final.",

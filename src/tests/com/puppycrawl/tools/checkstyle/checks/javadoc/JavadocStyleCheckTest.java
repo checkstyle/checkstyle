@@ -1,12 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 
 public class JavadocStyleCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefaultSettings()
         throws Exception
     {
@@ -35,6 +37,7 @@ public class JavadocStyleCheckTest
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
     }
 
+    @Test
     public void testFirstSentence() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -55,6 +58,7 @@ public class JavadocStyleCheckTest
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
     }
 
+    @Test
     public void testHtml() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
@@ -76,6 +80,7 @@ public class JavadocStyleCheckTest
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
     }
 
+    @Test
     public void testScopePublic()
         throws Exception
     {
@@ -98,6 +103,7 @@ public class JavadocStyleCheckTest
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
     }
 
+    @Test
     public void testScopeProtected()
         throws Exception
     {
@@ -123,6 +129,7 @@ public class JavadocStyleCheckTest
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
     }
 
+    @Test
     public void testScopePackage()
         throws Exception
     {
@@ -151,6 +158,7 @@ public class JavadocStyleCheckTest
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
     }
 
+    @Test
     public void testEmptyJavadoc() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
@@ -169,6 +177,7 @@ public class JavadocStyleCheckTest
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
     }
 
+    @Test
     public void testExcludeScope()
         throws Exception
     {

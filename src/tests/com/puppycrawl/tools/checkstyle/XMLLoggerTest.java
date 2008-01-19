@@ -28,7 +28,8 @@ public class XMLLoggerTest
 {
     private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
 
-    @Test public void testEncode()
+    @Test
+    public void testEncode()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, false);
@@ -48,7 +49,8 @@ public class XMLLoggerTest
         outStream.close();
     }
 
-    @Test public void testIsReference()
+    @Test
+    public void testIsReference()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, false);
@@ -77,7 +79,8 @@ public class XMLLoggerTest
         outStream.close();
     }
 
-     @Test public void testCloseStream()
+     @Test
+    public void testCloseStream()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, true);
@@ -87,7 +90,8 @@ public class XMLLoggerTest
         verifyLines(expectedLines);
     }
 
-    @Test public void testNoCloseStream()
+    @Test
+    public void testNoCloseStream()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, false);
@@ -98,7 +102,8 @@ public class XMLLoggerTest
         verifyLines(expectedLines);
     }
 
-    @Test public void testFileStarted()
+    @Test
+    public void testFileStarted()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, true);
@@ -110,7 +115,8 @@ public class XMLLoggerTest
         verifyLines(expectedLines);
     }
 
-    @Test public void testFileFinished()
+    @Test
+    public void testFileFinished()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, true);
@@ -122,7 +128,8 @@ public class XMLLoggerTest
         verifyLines(expectedLines);
     }
 
-    @Test public void testAddError() throws IOException {
+    @Test
+    public void testAddError() throws IOException {
         final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         final LocalizedMessage message =
@@ -137,7 +144,8 @@ public class XMLLoggerTest
         verifyLines(expectedLines);
     }
 
-    @Test public void testAddException()
+    @Test
+    public void testAddException()
         throws IOException
     {
         final XMLLogger logger = new XMLLogger(outStream, true);

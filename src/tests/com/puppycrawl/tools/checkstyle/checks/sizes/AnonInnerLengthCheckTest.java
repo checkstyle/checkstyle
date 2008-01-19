@@ -18,17 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck;
+import org.junit.Test;
 
 /**
  * @author Rob Worth
  * @author Lars Kühne
  */
-public class AnonInnerLengthCheckTest extends BaseCheckTestCase
+public class AnonInnerLengthCheckTest extends BaseCheckTestSupport
 {
 
+    @Test
     public void testDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -39,6 +40,7 @@ public class AnonInnerLengthCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputAnonInnerLength.java"), expected);
     }
 
+    @Test
     public void testNonDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =

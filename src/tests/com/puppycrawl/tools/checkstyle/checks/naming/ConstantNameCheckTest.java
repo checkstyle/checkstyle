@@ -1,14 +1,16 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import java.io.File;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import static org.junit.Assert.fail;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import java.io.File;
+import org.junit.Test;
 
 public class ConstantNameCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testIllegalRegexp()
         throws Exception
     {
@@ -24,6 +26,7 @@ public class ConstantNameCheckTest
         }
     }
 
+    @Test
     public void testDefault()
         throws Exception
     {
@@ -36,6 +39,7 @@ public class ConstantNameCheckTest
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
+    @Test
     public void testInterfaceAndAnnotation()
         throws Exception
     {
@@ -48,6 +52,7 @@ public class ConstantNameCheckTest
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
 
+    @Test
     public void testDefault1()
         throws Exception
     {

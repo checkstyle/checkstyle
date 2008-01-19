@@ -7,11 +7,8 @@ public class AutomaticBeanTest
 {
     private class TestBean extends AutomaticBean
     {
-        private String mName = null;
-
         public void setName(String aName)
         {
-            mName = aName;
         }
     }
 

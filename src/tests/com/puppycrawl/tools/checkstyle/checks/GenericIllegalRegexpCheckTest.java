@@ -1,18 +1,22 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Before;
+import org.junit.Test;
 
 public class GenericIllegalRegexpCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
     private DefaultConfiguration mCheckConfig;
 
+    @Before
     public void setUp()
     {
         mCheckConfig = createCheckConfig(GenericIllegalRegexpCheck.class);
     }
 
+    @Test
     public void testIt()
             throws Exception
     {
@@ -24,6 +28,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testMessageProperty()
         throws Exception
     {
@@ -37,6 +42,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testIgnoreCaseTrue()
             throws Exception
     {
@@ -49,6 +55,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testIgnoreCaseFalse()
             throws Exception
     {
@@ -59,6 +66,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsCppStyle()
             throws Exception
     {
@@ -71,6 +79,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsFalseCppStyle()
             throws Exception
     {
@@ -84,6 +93,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsCStyle()
             throws Exception
     {
@@ -96,6 +106,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsFalseCStyle()
             throws Exception
     {
@@ -108,6 +119,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsMultipleCStyle()
             throws Exception
     {
@@ -120,6 +132,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsMultiLine()
             throws Exception
     {
@@ -131,6 +144,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsInlineStart()
             throws Exception
     {
@@ -142,6 +156,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsInlineEnd()
             throws Exception
     {
@@ -154,6 +169,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsInlineMiddle() throws Exception
     {
         final String illegal = "int y";
@@ -165,6 +181,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsNoSpaces()
             throws Exception
     {
@@ -177,6 +194,7 @@ public class GenericIllegalRegexpCheckTest
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void test1371588()
             throws Exception
     {

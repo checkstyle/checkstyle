@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import static org.junit.Assert.fail;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import org.junit.Test;
 
 public class FileLengthCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
     private void runIt(String aMax, String[] aExpected) throws Exception
     {
@@ -15,6 +17,7 @@ public class FileLengthCheckTest
         verify(checkConfig, getPath("InputSimple.java"), aExpected);
     }
 
+    @Test
     public void testAlarm() throws Exception
     {
         final String[] expected = {
@@ -23,6 +26,7 @@ public class FileLengthCheckTest
         runIt("20", expected);
     }
 
+    @Test
     public void testOK() throws Exception
     {
         final String[] expected = {
@@ -30,6 +34,7 @@ public class FileLengthCheckTest
         runIt("2000", expected);
     }
 
+    @Test
     public void testArgs() throws Exception
     {
         final DefaultConfiguration checkConfig =

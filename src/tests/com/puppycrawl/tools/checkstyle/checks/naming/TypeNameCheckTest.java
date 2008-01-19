@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class TypeNameCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testSpecified()
         throws Exception
     {
@@ -17,6 +19,7 @@ public class TypeNameCheckTest
         verify(checkConfig, getPath("inputHeader.java"), expected);
     }
 
+    @Test
     public void testDefault()
         throws Exception
     {

@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class PackageDeclarationCheckTest extends BaseCheckTestCase
+public class PackageDeclarationCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
@@ -18,6 +19,7 @@ public class PackageDeclarationCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("coding" + File.separator + "InputNoPackage.java"), expected);
     }
 
+    @Test
     public void testDefault1() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);

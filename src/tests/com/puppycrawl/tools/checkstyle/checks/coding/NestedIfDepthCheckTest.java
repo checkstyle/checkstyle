@@ -1,10 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
-public class NestedIfDepthCheckTest extends BaseCheckTestCase
+public class NestedIfDepthCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -19,6 +21,7 @@ public class NestedIfDepthCheckTest extends BaseCheckTestCase
     }
     //        checkConfig.addAttribute("max", "2");
 
+    @Test
     public void testCustomNestingDepth() throws Exception
     {
         final DefaultConfiguration checkConfig =

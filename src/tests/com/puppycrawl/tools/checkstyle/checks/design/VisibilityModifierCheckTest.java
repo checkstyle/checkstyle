@@ -1,11 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class VisibilityModifierCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
     private Checker getChecker() throws Exception
     {
@@ -15,6 +16,7 @@ public class VisibilityModifierCheckTest
         return createChecker(checkConfig);
     }
 
+    @Test
     public void testInner()
         throws Exception
     {
@@ -29,6 +31,7 @@ public class VisibilityModifierCheckTest
         verify(getChecker(), getPath("InputInner.java"), expected);
     }
 
+    @Test
     public void testIgnoreAccess()
         throws Exception
     {
@@ -44,6 +47,7 @@ public class VisibilityModifierCheckTest
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
 
+    @Test
     public void testSimple() throws Exception {
         final String[] expected = {
             "39:19: Variable 'mNumCreated2' must be private and have accessor methods.",
@@ -56,6 +60,7 @@ public class VisibilityModifierCheckTest
         verify(getChecker(), getPath("InputSimple.java"), expected);
     }
 
+    @Test
     public void testStrictJavadoc()
             throws Exception
     {

@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class ArrayTypeStyleCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testJavaStyle()
         throws Exception
     {
@@ -18,6 +20,7 @@ public class ArrayTypeStyleCheckTest
         verify(checkConfig, getPath("InputArrayTypeStyle.java"), expected);
     }
 
+    @Test
     public void testCStyle()
         throws Exception
     {

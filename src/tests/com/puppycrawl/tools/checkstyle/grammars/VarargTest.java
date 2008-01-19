@@ -1,16 +1,18 @@
 package com.puppycrawl.tools.checkstyle.grammars;
 
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import org.junit.Test;
 
 /**
  * Tests varargs can be parsed.
  * @author Michael Studman
  */
 public class VarargTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testCanParse()
         throws Exception
     {

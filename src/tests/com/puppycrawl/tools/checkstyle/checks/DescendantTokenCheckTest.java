@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class DescendantTokenCheckTest extends BaseCheckTestCase
+public class DescendantTokenCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault()
         throws Exception
     {
@@ -15,7 +16,8 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
         final String[] expected = {};
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
-    
+
+    @Test
     public void testMaximumNumber()
         throws Exception
     {
@@ -29,7 +31,8 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
-     
+
+    @Test
     public void testMessage()
         throws Exception
     {
@@ -45,6 +48,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
 
+    @Test
     public void testMinimumNumber()
         throws Exception
     {
@@ -58,7 +62,8 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
-     
+
+    @Test
     public void testMinimumDepth()
         throws Exception
     {
@@ -71,7 +76,8 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
         final String[] expected = {};
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
-     
+
+    @Test
     public void testMaximumDepth()
         throws Exception
     {
@@ -85,6 +91,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
 
+    @Test
     public void testEmptyStatements()
         throws Exception
     {
@@ -118,6 +125,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputEmptyStatement.java"), expected);
     }
 
+    @Test
     public void testMissingSwitchDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -135,6 +143,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputMissingSwitchDefault.java"), expected);
     }
 
+    @Test
     public void testStringLiteralEquality() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -153,6 +162,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("coding" + File.separator + "InputStringLiteralEquality.java"), expected);
     }
 
+    @Test
     public void testIllegalTokenDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -170,7 +180,8 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
-    
+
+    @Test
     public void testIllegalTokenNative() throws Exception
      {
          final DefaultConfiguration checkConfig =
@@ -187,6 +198,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
          verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
      }
 
+    @Test
     public void testReturnFromCatch() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
@@ -206,6 +218,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestCase
                expected);
     }
 
+    @Test
     public void testReturnFromFinally() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);

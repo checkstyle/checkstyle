@@ -1,13 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import java.io.File;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import java.io.File;
+import org.junit.Test;
 
 public class AvoidStarImportTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefaultOperation()
         throws Exception
     {
@@ -22,6 +23,7 @@ public class AvoidStarImportTest
         verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected);
     }
 
+    @Test
     public void testExcludes()
         throws Exception
     {

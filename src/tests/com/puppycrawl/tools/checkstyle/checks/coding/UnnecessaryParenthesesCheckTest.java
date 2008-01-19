@@ -1,18 +1,21 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.io.File;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import java.io.File;
+import org.junit.Test;
 
 /**
  * Test fixture for the UnnecessaryParenthesesCheck.
  *
  * @author  Eric K. Roe
  */
-public class UnnecessaryParenthesesCheckTest extends BaseCheckTestCase {
+public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport
+{
     private static final String TEST_FILE = "coding" + File.separator +
         "InputUnnecessaryParentheses.java";
 
+    @Test
     public void testDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -68,6 +71,7 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestCase {
         verify(checkConfig, getPath(TEST_FILE), expected);
     }
 
+    @Test
     public void test15Extensions() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(UnnecessaryParenthesesCheck.class);

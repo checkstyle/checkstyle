@@ -1,5 +1,6 @@
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertEquals;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import java.io.ByteArrayInputStream;
@@ -15,10 +16,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
-import junit.framework.TestCase;
 
-public abstract class BaseCheckTestCase
-    extends TestCase
+public abstract class BaseCheckTestSupport
 {
     /** a brief logger that only display info about errors */
     protected static class BriefLogger

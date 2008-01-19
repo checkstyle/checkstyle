@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class IllegalTokenTextCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testCaseSensitive()
         throws Exception
     {
@@ -18,7 +20,8 @@ public class IllegalTokenTextCheckTest
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
-    
+
+    @Test
     public void testCaseInSensitive()
         throws Exception
     {

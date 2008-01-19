@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class BooleanExpressionComplexityCheckTest extends BaseCheckTestCase
+public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void test() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(BooleanExpressionComplexityCheck.class);
@@ -19,6 +20,7 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("metrics" + File.separator + "BooleanExpressionComplexityCheckTestInput.java"), expected);
     }
 
+    @Test
     public void testNoBitwise() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(BooleanExpressionComplexityCheck.class);

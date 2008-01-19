@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class EmptyBlockCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault()
         throws Exception
     {
@@ -26,6 +28,7 @@ public class EmptyBlockCheckTest
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testText()
         throws Exception
     {
@@ -43,6 +46,7 @@ public class EmptyBlockCheckTest
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testStatement()
         throws Exception
     {

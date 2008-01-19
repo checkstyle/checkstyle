@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
 public class AvoidNestedBlocksCheckTest
-        extends BaseCheckTestCase
+        extends BaseCheckTestSupport
 {
+    @Test
     public void testStrictSettings()
         throws Exception
     {
@@ -20,6 +22,7 @@ public class AvoidNestedBlocksCheckTest
         verify(checkConfig, getPath("InputNestedBlocks.java"), expected);
     }
 
+    @Test
     public void testAllowSwitchInCase()
         throws Exception
     {

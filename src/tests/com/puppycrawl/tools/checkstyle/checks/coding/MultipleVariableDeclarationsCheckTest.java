@@ -1,15 +1,16 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestCase
+public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testIt() throws Exception
     {
-        DefaultConfiguration checkConfig = 
+        DefaultConfiguration checkConfig =
             createCheckConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expected = {

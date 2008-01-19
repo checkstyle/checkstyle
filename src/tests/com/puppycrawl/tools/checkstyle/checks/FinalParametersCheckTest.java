@@ -1,10 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
-public class FinalParametersCheckTest extends BaseCheckTestCase
+public class FinalParametersCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testDefaultTokens()
             throws Exception
     {
@@ -26,6 +28,7 @@ public class FinalParametersCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
 
+    @Test
     public void testCtorToken()
             throws Exception
     {
@@ -40,6 +43,7 @@ public class FinalParametersCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
 
+    @Test
     public void testMethodToken()
             throws Exception
     {
@@ -59,6 +63,7 @@ public class FinalParametersCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
 
+    @Test
     public void testCatchToken()
             throws Exception
     {
@@ -73,6 +78,7 @@ public class FinalParametersCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }
 
+    @Test
     public void testForEachClauseToken()
             throws Exception
     {

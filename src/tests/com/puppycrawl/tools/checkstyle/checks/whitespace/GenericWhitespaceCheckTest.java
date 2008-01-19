@@ -1,16 +1,18 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.Before;
+import org.junit.Test;
 
 public class GenericWhitespaceCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
     private DefaultConfiguration mCheckConfig;
 
-    @Override
+    @Before
     public void setUp()
     {
         mCheckConfig = createCheckConfig(GenericWhitespaceCheck.class);
@@ -21,6 +23,7 @@ public class GenericWhitespaceCheckTest
         //for (final Entry<Class<?>, Integer> entry : entrySet())
     }
 
+    @Test
     public void testDefault() throws Exception
     {
         final String[] expected = {

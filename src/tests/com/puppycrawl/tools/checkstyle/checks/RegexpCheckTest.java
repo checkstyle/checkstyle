@@ -1,10 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Test;
 
-public class RegexpCheckTest extends BaseCheckTestCase
+public class RegexpCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testRequiredPass()
             throws Exception
     {
@@ -17,6 +19,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testRequiredFail()
             throws Exception
     {
@@ -30,6 +33,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testRequiredNoDuplicatesPass()
             throws Exception
     {
@@ -43,6 +47,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testRequiredNoDuplicatesFail()
             throws Exception
     {
@@ -57,6 +62,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testIllegalPass()
             throws Exception
     {
@@ -70,6 +76,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testIllegalFailBelowErrorLimit()
             throws Exception
     {
@@ -87,6 +94,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testIllegalFailAboveErrorLimit()
             throws Exception
     {
@@ -106,6 +114,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testMessagePropertyGood()
         throws Exception
     {
@@ -122,6 +131,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testMessagePropertyBad()
         throws Exception
     {
@@ -136,7 +146,8 @@ public class RegexpCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
-    
+
+    @Test
     public void testIgnoreCaseTrue()
             throws Exception
     {
@@ -151,6 +162,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
+    @Test
     public void testIgnoreCaseFalse()
             throws Exception
     {
@@ -162,7 +174,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         final String[] expectedTrue = {
             "69: Line matches the illegal pattern '" + illegalTrue + "'."};
         verify(checkConfigTrue, getPath("InputSemantic.java"), expectedTrue);
-        
+
         final String illegalFalse = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
         final DefaultConfiguration checkConfigFalse =
             createCheckConfig(RegexpCheck.class);
@@ -172,6 +184,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfigFalse, getPath("InputSemantic.java"), expectedFalse);
     }
 
+    @Test
     public void testIgnoreCommentsCppStyle()
             throws Exception
     {
@@ -187,6 +200,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsFalseCppStyle()
             throws Exception
     {
@@ -203,6 +217,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsCStyle()
             throws Exception
     {
@@ -218,6 +233,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsFalseCStyle()
             throws Exception
     {
@@ -233,6 +249,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsMultipleCStyle()
             throws Exception
     {
@@ -248,6 +265,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsMultiLine()
             throws Exception
     {
@@ -262,6 +280,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsInlineStart()
             throws Exception
     {
@@ -276,6 +295,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsInlineEnd()
             throws Exception
     {
@@ -290,7 +310,8 @@ public class RegexpCheckTest extends BaseCheckTestCase
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
-    
+
+    @Test
     public void testIgnoreCommentsInlineMiddle()
             throws Exception
     {
@@ -306,6 +327,7 @@ public class RegexpCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
+    @Test
     public void testIgnoreCommentsNoSpaces()
             throws Exception
     {

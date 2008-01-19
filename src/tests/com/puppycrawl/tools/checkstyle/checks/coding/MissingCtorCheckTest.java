@@ -1,15 +1,16 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class MissingCtorCheckTest extends BaseCheckTestCase
+public class MissingCtorCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testMissingSwitchDefault() throws Exception
     {
-        DefaultConfiguration checkConfig = 
+        DefaultConfiguration checkConfig =
             createCheckConfig(MissingCtorCheck.class);
 
         final String[] expected = {

@@ -1,14 +1,15 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-
 import java.io.File;
+import org.junit.Test;
 
 public class JavadocVariableCheckTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault()
         throws Exception
     {
@@ -23,6 +24,7 @@ public class JavadocVariableCheckTest
         verify(checkConfig, getPath("InputTags.java"), expected);
     }
 
+    @Test
     public void testAnother()
         throws Exception
     {
@@ -36,6 +38,7 @@ public class JavadocVariableCheckTest
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
 
+    @Test
     public void testAnother2()
         throws Exception
     {
@@ -47,6 +50,7 @@ public class JavadocVariableCheckTest
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
 
+    @Test
     public void testAnother3()
         throws Exception
     {
@@ -63,6 +67,7 @@ public class JavadocVariableCheckTest
         };
         verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
+    @Test
     public void testAnother4()
         throws Exception
     {
@@ -75,6 +80,7 @@ public class JavadocVariableCheckTest
         verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
 
+    @Test
     public void testScopes() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -122,6 +128,7 @@ public class JavadocVariableCheckTest
                expected);
     }
 
+    @Test
     public void testScopes2() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -138,6 +145,7 @@ public class JavadocVariableCheckTest
                expected);
     }
 
+    @Test
     public void testExcludeScope() throws Exception
     {
         final DefaultConfiguration checkConfig =

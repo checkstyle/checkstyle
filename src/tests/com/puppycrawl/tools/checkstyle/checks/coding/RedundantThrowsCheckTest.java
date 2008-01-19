@@ -1,17 +1,21 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Before;
+import org.junit.Test;
 
-public class RedundantThrowsCheckTest extends BaseCheckTestCase
+public class RedundantThrowsCheckTest extends BaseCheckTestSupport
 {
     private DefaultConfiguration mCheckConfig;
 
+    @Before
     public void setUp()
     {
         mCheckConfig = createCheckConfig(RedundantThrowsCheck.class);
     }
 
+    @Test
     public void testDefaults() throws Exception
     {
         final String[] expected = {
@@ -25,6 +29,7 @@ public class RedundantThrowsCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputRedundantThrows.java"), expected);
     }
 
+    @Test
     public void testAllowUnchecked() throws Exception
     {
         mCheckConfig.addAttribute("allowUnchecked", "true");
@@ -37,6 +42,7 @@ public class RedundantThrowsCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputRedundantThrows.java"), expected);
     }
 
+    @Test
     public void testAllowSubclasses() throws Exception
     {
         mCheckConfig.addAttribute("allowSubclasses", "true");
@@ -49,6 +55,7 @@ public class RedundantThrowsCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputRedundantThrows.java"), expected);
     }
 
+    @Test
     public void testRejectDuplicatesOnly() throws Exception
     {
         mCheckConfig.addAttribute("allowSubclasses", "true");
@@ -59,30 +66,35 @@ public class RedundantThrowsCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputRedundantThrows.java"), expected);
     }
 
+    @Test
     public void test_1168408_1() throws Exception
     {
         final String[] expected = {};
         verify(mCheckConfig, getPath("javadoc/Test1.java"), expected);
     }
 
+    @Test
     public void test_1168408_2() throws Exception
     {
         final String[] expected = {};
         verify(mCheckConfig, getPath("javadoc/Test2.java"), expected);
     }
 
+    @Test
     public void test_1168408_3() throws Exception
     {
         final String[] expected = {};
         verify(mCheckConfig, getPath("javadoc/Test3.java"), expected);
     }
 
+    @Test
     public void test_1220726() throws Exception
     {
         final String[] expected = {};
         verify(mCheckConfig, getPath("javadoc/BadCls.java"), expected);
     }
 
+    @Test
     public void test_generics_params() throws Exception
     {
         final String[] expected = {
@@ -101,6 +113,7 @@ public class RedundantThrowsCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
 
+    @Test
     public void test_1379666() throws Exception
     {
         final String[] expected = {};

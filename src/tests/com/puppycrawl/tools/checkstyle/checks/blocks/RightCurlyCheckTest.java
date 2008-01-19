@@ -1,17 +1,21 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Before;
+import org.junit.Test;
 
-public class RightCurlyCheckTest extends BaseCheckTestCase
+public class RightCurlyCheckTest extends BaseCheckTestSupport
 {
     private DefaultConfiguration mCheckConfig;
 
+    @Before
     public void setUp()
     {
         mCheckConfig = createCheckConfig(RightCurlyCheck.class);
     }
 
+    @Test
     public void testDefault() throws Exception
     {
         final String[] expected = {
@@ -25,6 +29,7 @@ public class RightCurlyCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
+    @Test
     public void testSame() throws Exception
     {
         mCheckConfig.addAttribute("option", RightCurlyOption.SAME.toString());
@@ -39,6 +44,7 @@ public class RightCurlyCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
+    @Test
     public void testAlone() throws Exception
     {
         mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
@@ -49,6 +55,7 @@ public class RightCurlyCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
+    @Test
     public void testShouldStartLine() throws Exception
     {
         mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());

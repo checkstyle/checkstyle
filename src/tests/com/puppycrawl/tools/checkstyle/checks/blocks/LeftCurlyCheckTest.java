@@ -1,17 +1,21 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Before;
+import org.junit.Test;
 
-public class LeftCurlyCheckTest extends BaseCheckTestCase
+public class LeftCurlyCheckTest extends BaseCheckTestSupport
 {
     private DefaultConfiguration mCheckConfig;
 
+    @Before
     public void setUp()
     {
         mCheckConfig = createCheckConfig(LeftCurlyCheck.class);
     }
 
+    @Test
     public void testDefault() throws Exception
     {
         final String[] expected = {
@@ -24,6 +28,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
+    @Test
     public void testNL() throws Exception
     {
         mCheckConfig.addAttribute("option", LeftCurlyOption.NL.toString());
@@ -38,6 +43,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
+    @Test
     public void testNLOW() throws Exception
     {
         mCheckConfig.addAttribute("option", LeftCurlyOption.NLOW.toString());
@@ -57,6 +63,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
+    @Test
     public void testDefault2() throws Exception
     {
         final String[] expected = {
@@ -75,6 +82,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputLeftCurlyMethod.java"), expected);
     }
 
+    @Test
     public void testNL2() throws Exception
     {
         mCheckConfig.addAttribute("option", LeftCurlyOption.NL.toString());
@@ -90,6 +98,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestCase
         };
         verify(mCheckConfig, getPath("InputLeftCurlyMethod.java"), expected);
     }
+    @Test
     public void testDefault3() throws Exception
     {
         final String[] expected = {
@@ -111,6 +120,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
+    @Test
     public void testNL3() throws Exception
     {
         mCheckConfig.addAttribute("option", LeftCurlyOption.NL.toString());
@@ -122,6 +132,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
+    @Test
     public void testMissingBraces() throws Exception
     {
         final String[] expected = {

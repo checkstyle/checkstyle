@@ -17,7 +17,8 @@ import org.junit.Test;
  */
 public class OptionTest
 {
-    @Test public void testBlockOption()
+    @Test
+    public void testBlockOption()
     {
         BlockOption stmtOpt = BlockOption.STMT;
         assertEquals("STMT", "stmt", stmtOpt.toString());
@@ -29,7 +30,8 @@ public class OptionTest
         assertTrue("TEXT decode", textOpt == textDecode);
     }
 
-    @Test public void testLeftCurlyOption()
+    @Test
+    public void testLeftCurlyOption()
     {
         LeftCurlyOption eolOpt = LeftCurlyOption.EOL;
         assertEquals("EOL", "eol", eolOpt.toString());
@@ -45,7 +47,8 @@ public class OptionTest
         assertTrue("NL decode", nlowOpt == nlowDecode);
     }
 
-    @Test public void testOperatorWrapOption()
+    @Test
+    public void testOperatorWrapOption()
     {
         OperatorWrapOption eolOpt = OperatorWrapOption.EOL;
         assertEquals("EOL", "eol", eolOpt.toString());
@@ -57,7 +60,8 @@ public class OptionTest
         assertTrue("NL decode", nlOpt == nlDecode);
     }
 
-    @Test public void testPadOption()
+    @Test
+    public void testPadOption()
     {
         PadOption nospaceOpt = PadOption.NOSPACE;
         assertEquals("NOSPACE", "nospace", nospaceOpt.toString());
@@ -69,7 +73,8 @@ public class OptionTest
         assertTrue("SPACE decode", spaceOpt == spaceDecode);
     }
 
-    @Test public void testRightCurlyOption()
+    @Test
+    public void testRightCurlyOption()
     {
         RightCurlyOption aloneOpt = RightCurlyOption.ALONE;
         assertEquals("ALONE", "alone", aloneOpt.toString());
@@ -81,7 +86,8 @@ public class OptionTest
         assertTrue("SAME decode", sameOpt == sameDecode);
     }
 
-    @Test public void testEqualKeys()
+    @Test
+    public void testEqualKeys()
     {
         LeftCurlyOption eolLeftCurl = LeftCurlyOption.EOL;
         LeftCurlyOption eolLeftCurlDecode =

@@ -1,27 +1,33 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
-import java.io.File;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import java.io.ByteArrayInputStream;
-import java.io.LineNumberReader;
+import java.io.File;
 import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author Daniel Grenner
  */
-public class WriteTagCheckTest extends BaseCheckTestCase
+public class WriteTagCheckTest extends BaseCheckTestSupport
 {
     private DefaultConfiguration mCheckConfig;
 
+    @Before
     public void setUp() {
         mCheckConfig = createCheckConfig(WriteTagCheck.class);
     }
 
+    @Test
     public void testDefaultSettings() throws Exception
     {
         final String[] expected =
@@ -30,6 +36,7 @@ public class WriteTagCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
+    @Test
     public void testTag() throws Exception
     {
         mCheckConfig.addAttribute("tag", "@author");
@@ -41,6 +48,7 @@ public class WriteTagCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
+    @Test
     public void testMissingFormat() throws Exception
     {
         mCheckConfig.addAttribute("tag", "@author");
@@ -51,6 +59,7 @@ public class WriteTagCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
+    @Test
     public void testTagSeverity() throws Exception
     {
         mCheckConfig.addAttribute("tag", "@incomplete");
@@ -63,6 +72,7 @@ public class WriteTagCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
+    @Test
     public void testDoubleTag() throws Exception
     {
       mCheckConfig.addAttribute("tag", "@doubletag");
@@ -76,6 +86,7 @@ public class WriteTagCheckTest extends BaseCheckTestCase
     }
 
 
+    @Test
     public void testMissingTag() throws Exception
     {
         mCheckConfig.addAttribute("tag", "@missingtag");
@@ -86,6 +97,7 @@ public class WriteTagCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
+    @Test
     public void testMethod() throws Exception
     {
         mCheckConfig.addAttribute("tag", "@todo");
@@ -100,6 +112,7 @@ public class WriteTagCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
+    @Test
     public void testSeverity() throws Exception
     {
         mCheckConfig.addAttribute("tag", "@author");
@@ -112,6 +125,7 @@ public class WriteTagCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
+    @Test
     public void testIgnoreMissing() throws Exception
     {
         mCheckConfig.addAttribute("tag", "@todo2");
@@ -123,6 +137,7 @@ public class WriteTagCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
+    @Test
     public void testRegularEx()
         throws Exception
     {
@@ -133,6 +148,7 @@ public class WriteTagCheckTest extends BaseCheckTestCase
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
+    @Test
     public void testRegularExError()
         throws Exception
     {

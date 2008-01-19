@@ -1,11 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class MutableExceptionCheckTest extends BaseCheckTestCase {
+public class MutableExceptionCheckTest extends BaseCheckTestSupport
+{
+    @Test
     public void test() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
 

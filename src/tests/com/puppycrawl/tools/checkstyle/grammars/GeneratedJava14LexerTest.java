@@ -1,18 +1,19 @@
 package com.puppycrawl.tools.checkstyle.grammars;
 
-import java.io.IOException;
-
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import java.io.IOException;
+import org.junit.Test;
 
 /**
  * Tests GeneratedJava14Lexer.
  * @author Rick Giles
  */
 public class GeneratedJava14LexerTest
-    extends BaseCheckTestCase
+    extends BaseCheckTestSupport
 {
+    @Test
     public void testUnexpectedChar() throws IOException, Exception
     {
         final DefaultConfiguration checkConfig =

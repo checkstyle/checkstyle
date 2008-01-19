@@ -1,11 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import static org.junit.Assert.fail;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import org.junit.Test;
 
-public class HeaderCheckTest extends BaseCheckTestCase
+public class HeaderCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testStaticHeader()
             throws Exception
     {
@@ -19,6 +22,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("inputHeader.java"), expected);
     }
 
+    @Test
     public void testRegexpHeader() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -30,6 +34,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
+    @Test
     public void testInlineRegexpHeader()
             throws Exception
     {
@@ -42,6 +47,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
+    @Test
     public void testFailureForMultilineRegexp()
             throws Exception
     {
@@ -57,6 +63,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         }
     }
 
+    @Test
     public void testRegexpHeaderIgnore() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -67,6 +74,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
+    @Test
     public void testRegexpHeaderMulti1() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -78,6 +86,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
     }
 
+    @Test
     public void testRegexpHeaderMulti2() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -89,6 +98,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputRegexpHeader2.java"), expected);
     }
 
+    @Test
     public void testRegexpHeaderMulti3() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -100,6 +110,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
     }
 
+    @Test
     public void testRegexpHeaderMulti4() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -111,6 +122,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputRegexpHeader3.java"), expected);
     }
 
+    @Test
     public void testRegexpHeaderMulti5() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -123,6 +135,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputRegexpHeader4.java"), expected);
     }
 
+    @Test
     public void testRegexpHeaderSmallHeader() throws Exception
     {
         final DefaultConfiguration checkConfig =
@@ -134,6 +147,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("InputRegexpSmallHeader.java"), expected);
     }
 
+    @Test
     public void testNoHeader()
         throws Exception
     {
@@ -149,6 +163,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         }
     }
 
+    @Test
     public void testNonExistingHeaderFile()
             throws Exception
     {
@@ -164,6 +179,7 @@ public class HeaderCheckTest extends BaseCheckTestCase
         }
     }
 
+    @Test
     public void testEmptyFilename()
             throws Exception
     {

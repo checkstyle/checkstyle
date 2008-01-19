@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestCase;
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-
 import java.io.File;
+import org.junit.Test;
 
-public class IllegalThrowsCheckTest extends BaseCheckTestCase
+public class IllegalThrowsCheckTest extends BaseCheckTestSupport
 {
+    @Test
     public void testDefault() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
@@ -20,6 +21,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestCase
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);
     }
 
+    @Test
     public void testIllegalClassNames() throws Exception
     {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
