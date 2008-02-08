@@ -998,20 +998,16 @@
 
 &lt;checkstyle-packages&gt;
   &lt;package name=&quot;com.mycompany.checks&quot;/&gt;
+
+  &lt;!-- Copy the contents of the file checkstyle_packages.xml --&gt;
+  &lt;!-- from the current Checkstyle JAR! --&gt;
   &lt;package name=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
     &lt;package name=&quot;checks&quot;&gt;
       &lt;package name=&quot;blocks&quot;/&gt;
       &lt;package name=&quot;coding&quot;/&gt;
       &lt;package name=&quot;design&quot;/&gt;
-      &lt;package name=&quot;imports&quot;/&gt;
-      &lt;package name=&quot;indentation&quot;/&gt;
-      &lt;package name=&quot;javadoc&quot;/&gt;
-      &lt;package name=&quot;metrics&quot;/&gt;
-      &lt;package name=&quot;naming&quot;/&gt;
-      &lt;package name=&quot;sizes&quot;/&gt;
-      &lt;package name=&quot;whitespace&quot;/&gt;
+      &lt;!-- .... etc. --&gt;
     &lt;/package&gt;
-    &lt;package name="filters"/&gt;
   &lt;/package&gt;
 &lt;/checkstyle-packages&gt;
       </source>
