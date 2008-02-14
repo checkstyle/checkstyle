@@ -15,10 +15,11 @@
         elements. Valid identifiers for a naming module are specified by its
         <span class="code"> format</span> property. The value of <span
         class="code">format</span> is a <a
-        href="http://jakarta.apache.org/regexp/">regular expression</a> for
-        valid identifiers.  This is an example of a configuration of the <span
-        class="code">MemberName</span> module to ensure that member
-        identifiers begin with <span class="code">&#39;m&#39;</span>, followed
+        href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html">
+        regular expression</a> for valid identifiers.  This is an example of a
+        configuration of the <span class="code">MemberName</span> module to
+        ensure that member identifiers begin with 
+        <span class="code">&#39;m&#39;</span>, followed
         by an upper case letter, and then letters and digits:
       </p>
       
@@ -201,7 +202,7 @@
         </tr>
         <tr>
           <td>applyToPrivate</td>
-          <td>Controls whether to apply the check to pribvate member.</td>
+          <td>Controls whether to apply the check to private member.</td>
           <td><a href="property_types.html#boolean">Boolean</a></td>
           <td><span class="default">true</span></td>
         </tr>
