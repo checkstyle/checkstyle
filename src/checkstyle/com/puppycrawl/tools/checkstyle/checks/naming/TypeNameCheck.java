@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  */
 public class TypeNameCheck
-    extends AbstractNameCheck
+    extends AbstractAccessControlNameCheck
 {
 
     /**
@@ -56,7 +56,7 @@ public class TypeNameCheck
         super("^[A-Z][a-zA-Z0-9]*$");
     }
 
-    @Override
+    /** {@inheritDoc} */
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF,

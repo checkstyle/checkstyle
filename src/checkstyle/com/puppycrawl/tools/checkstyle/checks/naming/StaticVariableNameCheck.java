@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @version 1.0
  */
 public class StaticVariableNameCheck
-    extends AbstractNameCheck
+    extends AbstractAccessControlNameCheck
 {
     /** Creates a new <code>StaticVariableNameCheck</code> instance. */
     public StaticVariableNameCheck()

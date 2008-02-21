@@ -62,6 +62,10 @@
           <a href="http://java.sun.com/javaee/">Java EE</a>. If you need
           these checks, then use a Checkstyle 4.x release.
         </li>
+        <li>
+          Applied patch 1892253 to expand access controls to other naming
+          checks.
+        </li>
       </ul>
     </section>
 

@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @version 1.0
  */
 public class ConstantNameCheck
-    extends AbstractNameCheck
+    extends AbstractAccessControlNameCheck
 {
     /** Creates a new <code>ConstantNameCheck</code> instance. */
     public ConstantNameCheck()

@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @version 1.0
  */
 public class MethodNameCheck
-    extends AbstractNameCheck
+    extends AbstractAccessControlNameCheck
 {
     /** Creates a new <code>MethodNameCheck</code> instance. */
     public MethodNameCheck()
