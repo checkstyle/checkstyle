@@ -1263,6 +1263,36 @@ if (&quot;something&quot;.equals(x))
       </subsection>
     </section>
 
+    <section name="NoFinalizer">
+      <subsection name="Description">
+        <p>
+          Verifies there are no <span class="code">finalize()</span> methods 
+          defined in a class.
+        </p>
+      </subsection>
+
+      <subsection name="Example">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;NoFinalizer&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="SuperClone">
       <subsection name="Description">
         <p>
@@ -1272,7 +1302,7 @@ if (&quot;something&quot;.equals(x))
 
         <p>
           Reference: <a
-          href="http://java.sun.com/j2se/1.4.1/docs/api/java/lang/Object.html#clone()">Object.clone()</a>.
+          href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Object.html#clone()">Object.clone()</a>.
         </p>
       </subsection>
 

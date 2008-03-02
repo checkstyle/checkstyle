@@ -21,6 +21,12 @@
       <ul>
         <li>
           New check <a
+          href="config_coding.html#NoFinalizer">NoFinalizer</a>
+          for ensuring that a class does not define a finalize() method.
+          Thanks to Feng Qian and Steve McKay for providing patch #1892273.
+        </li>
+        <li>
+          New check <a
           href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a>
           for ensuring the whitespace around the Generic tokens &lt; and
           &gt; are correct to the <i>typical</i> convention.
