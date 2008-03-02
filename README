@@ -20,10 +20,8 @@ are in the file named "RIGHTS.antlr" in this directory.
 This product includes software developed by
 The Apache Software Foundation (http://www.apache.org/).
 
-The software uses the Jakarta Regexp package
-(http://jakarta.apache.org/regexp) and the Cli and Collections
-packages from the Jakarta Commons project
-(http://jakarta.apache.org/commons). The license terms of these
+The software uses the Cli and Collections packages from the Jakarta Commons
+project (http://jakarta.apache.org/commons). The license terms of these
 packages are in the file named "LICENSE.apache" in this directory.
 
 The software uses the Logging and Beanutils packages from the Jakarta
