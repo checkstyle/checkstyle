@@ -671,8 +671,8 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <echo>version is ${ant.version}</echo>
     <condition property="have.ant17">
       <or>
-        <equals arg1="${ant.version}"
-                arg2="Apache Ant version 1.7.0 compiled on December 13 2006"/>
+        <contains string="${ant.version}"
+                  substring="Apache Ant version 1.7"/>
       </or>
     </condition>
   </target>
