@@ -128,7 +128,11 @@ public class WriteTagCheck
     @Override
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.INTERFACE_DEF, TokenTypes.CLASS_DEF, };
+        return new int[] {TokenTypes.INTERFACE_DEF,
+                          TokenTypes.CLASS_DEF,
+                          TokenTypes.ENUM_DEF,
+                          TokenTypes.ANNOTATION_DEF,
+        };
     }
 
     @Override
@@ -136,7 +140,11 @@ public class WriteTagCheck
     {
         return new int[] {TokenTypes.INTERFACE_DEF,
                           TokenTypes.CLASS_DEF,
+                          TokenTypes.ENUM_DEF,
+                          TokenTypes.ANNOTATION_DEF,
                           TokenTypes.METHOD_DEF,
+                          TokenTypes.ENUM_CONSTANT_DEF,
+                          TokenTypes.ANNOTATION_FIELD_DEF,
         };
     }
 
@@ -159,7 +167,7 @@ public class WriteTagCheck
     /**
      * Verifies that a type definition has a required tag.
      * @param aLineNo the line number for the type definition.
-     * @param aCmt the Javadoc comment for the type definition.
+     * @param aComment the Javadoc comment for the type definition.
      * @param aTag the required tag name.
      * @param aTagRE regexp for the full tag.
      * @param aFormatRE regexp for the tag value.
@@ -167,7 +175,7 @@ public class WriteTagCheck
      */
     private void checkTag(
             int aLineNo,
-            String[] aCmt,
+            String[] aComment,
             String aTag,
             Pattern aTagRE,
             Pattern aFormatRE,
@@ -178,19 +186,19 @@ public class WriteTagCheck
         }
 
         int tagCount = 0;
-        for (int i = 0; i < aCmt.length; i++) {
-            final String s = aCmt[i];
+        for (int i = 0; i < aComment.length; i++) {
+            final String s = aComment[i];
             final Matcher matcher = aTagRE.matcher(s);
             if (matcher.find()) {
                 tagCount += 1;
                 final int contentStart = matcher.start(1);
                 final String content = s.substring(contentStart);
                 if ((aFormatRE != null) && !aFormatRE.matcher(content).find()) {
-                    log(aLineNo + i - aCmt.length, "type.tagFormat", aTag,
+                    log(aLineNo + i - aComment.length, "type.tagFormat", aTag,
                         aFormat);
                 }
                 else {
-                    logTag(aLineNo + i - aCmt.length, aTag, content);
+                    logTag(aLineNo + i - aComment.length, aTag, content);
                 }
 
             }

@@ -215,6 +215,17 @@
           </td>
           <td>No</td>
         </tr>
+
+        <tr>
+          <td>omitIgnoredModules</td>
+          <td>
+            For efficiency, Checkstyle does not invoke modules with a configured severity of "ignore"
+            (since their output would be ignored anyway). A small number of modules may choose to log above their
+            configured severity level and so always need to be invoked. This settings specifies that behaviour.
+            Defaults to <span class="default">&quot;true&quot;</span>. 
+          </td>
+          <td>No</td>
+        </tr>
       </table>
     </section>
 

@@ -93,6 +93,13 @@ public class CheckStyleTask extends Task
     /** the maximum number of warnings that are tolerated. */
     private int mMaxWarnings = Integer.MAX_VALUE;
 
+    /**
+     * whether to omit ignored modules - some modules may log above
+     * their severity depending on their configuration (e.g. WriteTag) so
+     * need to be included
+     */
+    private boolean mOmitIgnoredModules = true;
+
     ////////////////////////////////////////////////////////////////////////////
     // Setters for ANT specific attributes
     ////////////////////////////////////////////////////////////////////////////
@@ -229,6 +236,12 @@ public class CheckStyleTask extends Task
         mPackageNamesFile = aFile;
     }
 
+    /** @param aOmit whether to omit ignored modules */
+    public void setOmitIgnoredModules(boolean aOmit)
+    {
+        mOmitIgnoredModules = aOmit;
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Setters for Checker configuration attributes
     ////////////////////////////////////////////////////////////////////////////
@@ -351,8 +364,11 @@ public class CheckStyleTask extends Task
         Checker c = null;
         try {
             final Properties props = createOverridingProperties();
-            final Configuration config = ConfigurationLoader.loadConfiguration(
-                    mConfigLocation, new PropertiesExpander(props), true);
+            final Configuration config =
+                ConfigurationLoader.loadConfiguration(
+                    mConfigLocation,
+                    new PropertiesExpander(props),
+                    mOmitIgnoredModules);
 
             final DefaultContext context = new DefaultContext();
             final ClassLoader loader = new AntClassLoader(getProject(),

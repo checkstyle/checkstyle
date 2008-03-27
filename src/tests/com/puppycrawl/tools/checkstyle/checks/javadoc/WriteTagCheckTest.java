@@ -160,6 +160,25 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
+    @Test
+    public void testEnumsAndAnnotations() throws Exception
+    {
+        mCheckConfig.addAttribute("tag", "@incomplete");
+        mCheckConfig.addAttribute("tagFormat", ".*");
+        mCheckConfig.addAttribute("severity", "ignore");
+        mCheckConfig.addAttribute("tagSeverity", "error");
+        mCheckConfig.addAttribute("tokens",
+            "ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF");
+        final String[] expected =
+        {
+            "9: @incomplete=This enum needs more code...",
+            "13: @incomplete=This enum constant needs more code...",
+            "19: @incomplete=This annotation needs more code...",
+            "23: @incomplete=This annotation field needs more code...",
+        };
+        verify(mCheckConfig, getPath("InputWriteTag2.java"), expected);
+    }
+
     @Override
     protected void verify(Checker aC,
                           File[] aProcessedFiles,
