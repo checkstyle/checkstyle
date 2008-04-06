@@ -52,16 +52,16 @@ public class HideUtilityClassConstructorCheck extends Check
         boolean hasPublicCtor = false;
 
         while (child != null) {
-            int type = child.getType();
+            final int type = child.getType();
             if (type == TokenTypes.METHOD_DEF
                     || type == TokenTypes.VARIABLE_DEF)
             {
                 hasMethodOrField = true;
                 final DetailAST modifiers =
                     child.findFirstToken(TokenTypes.MODIFIERS);
-                boolean isStatic =
+                final boolean isStatic =
                     modifiers.branchContains(TokenTypes.LITERAL_STATIC);
-                boolean isPrivate =
+                final boolean isPrivate =
                     modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
 
                 if (!isStatic && !isPrivate) {

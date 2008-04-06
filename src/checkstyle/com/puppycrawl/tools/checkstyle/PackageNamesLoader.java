@@ -80,7 +80,7 @@ public final class PackageNamesLoader
                              Attributes aAtts)
         throws SAXException
     {
-        if (aQName.equals("package")) {
+        if ("package".equals(aQName)) {
             //push package name
             final String name = aAtts.getValue("name");
             if (name == null) {

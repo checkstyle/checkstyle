@@ -127,12 +127,12 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
         final RegexpHeaderChecker regexpHeaderChecker =
             new RegexpHeaderChecker(
                     mHeaderInfo, new FileSetCheckViolationMonitor());
-        List<File> files = filter(aFiles);
+        final List<File> files = filter(aFiles);
         for (final File file : files) {
             final String path = file.getPath();
             msgDispatcher.fireFileStarted(path);
             try {
-                String[] lines = Utils.getLines(path);
+                final String[] lines = Utils.getLines(path);
                 regexpHeaderChecker.checkLines(lines);
             }
             catch (IOException ex) {

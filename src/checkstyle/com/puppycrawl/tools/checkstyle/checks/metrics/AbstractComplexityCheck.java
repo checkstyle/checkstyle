@@ -192,7 +192,7 @@ public abstract class AbstractComplexityCheck
      */
     private void leaveMethodDef(DetailAST aAST)
     {
-        BigInteger max = BigInteger.valueOf(mMax);
+        final BigInteger max = BigInteger.valueOf(mMax);
         if (mCurrentValue.compareTo(max) > 0) {
             log(aAST, getMessageID(), mCurrentValue, max);
         }

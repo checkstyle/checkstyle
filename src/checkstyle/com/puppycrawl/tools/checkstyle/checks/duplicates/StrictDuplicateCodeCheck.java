@@ -368,7 +368,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         for (int iLine = 0; iLine < iBlockCount; iLine++) {
 
             final int iSum = iLineBlockChecksums[iLine];
-            int[] jLines = jChecksumInfo.findLinesWithChecksum(iSum);
+            final int[] jLines = jChecksumInfo.findLinesWithChecksum(iSum);
             // detailed analysis only if the iLine block occurs in jFile at all
             if (jLines.length > 0) {
                 findDuplicateFromLine(aI, aJ, iLine, jLines, ignorePairs);
@@ -420,10 +420,11 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
                 }
             }
 
-            int duplicateLines = verifiyDuplicateLines(aI, aJ, aILine, jLine);
+            final int duplicateLines =
+                verifiyDuplicateLines(aI, aJ, aILine, jLine);
             if (duplicateLines >= mMin) {
                 reportDuplicate(duplicateLines, aILine, mFiles.get(aJ), jLine);
-                int extend = duplicateLines - mMin;
+                final int extend = duplicateLines - mMin;
                 for (int i = 0; i < extend; i++) {
                     final int offset = (i + 1);
                     aIgnore.put(aILine + offset, jLine + offset);
@@ -499,7 +500,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
      */
     private String[] getTrimmed(String[] aLines)
     {
-        String[] ret = new String[aLines.length];
+        final String[] ret = new String[aLines.length];
         for (int i = 0; i < ret.length; i++) {
             ret[i] = aLines[i].trim();
         }
