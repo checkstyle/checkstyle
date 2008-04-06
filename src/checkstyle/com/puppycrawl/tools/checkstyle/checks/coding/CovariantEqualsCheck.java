@@ -115,6 +115,6 @@ public class CovariantEqualsCheck extends Check
         final DetailAST typeNode = paramNode.findFirstToken(TokenTypes.TYPE);
         final FullIdent fullIdent = FullIdent.createFullIdentBelow(typeNode);
         final String name = fullIdent.getText();
-        return (name.equals("Object") || name.equals("java.lang.Object"));
+        return ("Object".equals(name) || "java.lang.Object".equals(name));
     }
 }

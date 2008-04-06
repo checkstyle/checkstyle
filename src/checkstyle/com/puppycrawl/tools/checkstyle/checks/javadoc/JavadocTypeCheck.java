@@ -267,7 +267,7 @@ public class JavadocTypeCheck
         boolean found = false;
         for (int i = aTags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = aTags.get(i);
-            if (tag.getTag().equals("param")
+            if ("param".equals(tag.getTag())
                 && (tag.getArg1() != null)
                 && (tag.getArg1().indexOf("<" + aTypeParamName + ">") == 0))
             {
@@ -291,7 +291,7 @@ public class JavadocTypeCheck
         final Pattern pattern = Utils.getPattern("\\s*<([^>]+)>.*");
         for (int i = aTags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = aTags.get(i);
-            if (tag.getTag().equals("param")) {
+            if ("param".equals(tag.getTag())) {
 
                 if (tag.getArg1() != null) {
 

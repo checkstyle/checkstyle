@@ -120,7 +120,7 @@ public final class PackageNamesLoader
                            String aLocalName,
                            String aQName)
     {
-        if (aQName.equals("package")) {
+        if ("package".equals(aQName)) {
             mModuleFactory.addPackage(getPackageName());
             mPackageStack.pop();
         }

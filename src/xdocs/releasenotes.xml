@@ -44,6 +44,13 @@
           check to not require Javadoc if the method is tagged with the
           <span class="code">@Override</span> annotation.
         </li>
+        <li>
+          New check <a
+          href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a>
+          for ensuring that String literals is on the left side of an
+          <span class="code">equals()</span> comparison.  Thanks to
+          Travis Schneeberger for providing patch #1895152.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

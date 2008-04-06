@@ -85,7 +85,7 @@ public final class SuppressionsLoader
                              Attributes aAtts)
         throws SAXException
     {
-        if (aQName.equals("suppress")) {
+        if ("suppress".equals(aQName)) {
             //add SuppressElement filter to the filter chain
             final String files = aAtts.getValue("files");
             if (files == null) {

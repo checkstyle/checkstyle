@@ -45,7 +45,7 @@ public class NoFinalizerCheck extends Check
         final DetailAST mid = aAST.findFirstToken(TokenTypes.IDENT);
         final String methodName = mid.getText();
 
-        if (methodName.equals("finalize")) {
+        if ("finalize".equals(methodName)) {
 
             final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
             final boolean hasEmptyParamList =

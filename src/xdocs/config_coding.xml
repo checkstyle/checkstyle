@@ -229,6 +229,95 @@ public class MySingleton
       </subsection>
     </section>
 
+    <section name="EqualsAvoidNull">
+      <subsection name="Description">
+        <p>
+          Checks that any combination of String literals with optional
+          assignment is on the left side of an <span
+          class="code">equals()</span> comparison.
+        </p>
+
+        <p>
+          Rationale: Calling the <span class="code">equals()</span>
+          method on String literals will avoid a potential
+          NullPointerException.  Also, it is pretty common to see null
+          check right before equals comparisons which is not necessary
+          in the below example.
+        </p>
+
+        <p>
+          For example:
+        </p>
+        <source>
+String nullString = null;
+nullString.equals(&quot;My_Sweet_String&quot;);
+        </source>
+
+        <p>should be refactored to:</p>
+
+        <source>
+String nullString = null;
+&quot;My_Sweet_String&quot;.equals(nullString);
+        </source>
+
+        <p>
+          Limitations: If the equals method is overridden or a covariant
+          equals method is defined and the implementation is incorrect
+          (where <span class="code">s.equals(t)</span> does not return
+          the same result as <span class="code">t.equals(s)</span>) then
+          rearranging the called on object and parameter may have
+          unexpected results
+        </p>
+
+        <p>
+          Java's Autoboxing feature has an affect on how this check is
+          implemented. Pre Java 5 all IDENT + IDENT object
+          concatenations would not cause a NullPointerException even if
+          null.  Those situations could have been included in this
+          check.  They would simply act as if they surrounded by <span
+          class="code">String.valueof()</span> which would concatenate
+          the String null.
+        </p>
+        <p>
+          The following example will cause a NullPointerException as a
+          result of what autoboxing does.
+        </p>
+
+        <source>
+Integer i = null, j = null;
+String number = "5"
+number.equals(i + j);
+        </source>
+
+        <p>
+          Since, it is difficult to determine what kind of Object is
+          being concatenated all ident concatenation is considered
+          unsafe.
+        </p>
+      </subsection>
+
+      <subsection name="Example">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;EqualsAvoidNull&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#treewalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="EqualsHashCode">
       <subsection name="Description">
         <p>
@@ -238,7 +327,7 @@ public class MySingleton
 
         <p>
           Rationale: The contract of <span class="code">equals()</span> and
-          <span class="code"> hashCode()</span> requires that equal objects
+          <span class="code">hashCode()</span> requires that equal objects
           have the same hashCode. Hence, whenever you override <span
           class="code">equals()</span> you must override <span class="code">
           hashCode()</span> to ensure that your class can be used in
