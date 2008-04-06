@@ -30,7 +30,7 @@
       <p>
         A good example of a report that can be produced using Checkstyle and
         <a href="http://maven.apache.org/">Maven</a> can be <a
-        href="http://maven.apache.org/plugins/maven-checkstyle-plugin/sample-checkstyle.html">seen here</a>.
+        href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">seen here</a>.
       </p>
     </section>
 
