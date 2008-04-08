@@ -51,6 +51,14 @@
           <span class="code">equals()</span> comparison.  Thanks to
           Travis Schneeberger for providing patch #1895152.
         </li>
+        <li>
+          Overhaul of how the package names to be prefixed to module
+          names are determined. See the <a
+          href="config.html#Packages">documentation</a> for full
+          details. This has meant removing a supported parameter to the
+          ANT task and the Command line. Thanks to Lars Koedderitzsch
+          for patch #1914806.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

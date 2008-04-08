@@ -18,9 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A factory for creating objects from package names and names.
@@ -31,22 +32,28 @@ import java.util.List;
 class PackageObjectFactory implements ModuleFactory
 {
     /** a list of package names to prepend to class names */
-    private final List<String> mPackages = new ArrayList<String>();
+    private final Set<String> mPackages;
+
+    /** the class loader used to load Checkstyle core and custom modules. */
+    private final ClassLoader mModuleClassLoader;
 
     /**
      * Creates a new <code>PackageObjectFactory</code> instance.
+     * @param aPackageNames the list of package names to use
+     * @param aModuleClassLoader class loader used to load Checkstyle
+     *          core and custom modules
      */
-    PackageObjectFactory()
+    public PackageObjectFactory(Set<String> aPackageNames,
+            ClassLoader aModuleClassLoader)
     {
-    }
+        if (aModuleClassLoader == null) {
+            throw new IllegalArgumentException(
+                    "aModuleClassLoader must not be null");
+        }
 
-    /**
-     * Helper for testing.
-     * @return the package names that have been added
-     */
-    String[] getPackages()
-    {
-        return mPackages.toArray(new String[mPackages.size()]);
+        //create a copy of the given set, but retain ordering
+        mPackages = new LinkedHashSet<String>(aPackageNames);
+        mModuleClassLoader = aModuleClassLoader;
     }
 
     /**
@@ -79,8 +86,8 @@ class PackageObjectFactory implements ModuleFactory
         }
 
         //now try packages
-        for (int i = 0; i < mPackages.size(); i++) {
-            final String packageName = mPackages.get(i);
+        for (String packageName : mPackages) {
+
             final String className = packageName + aName;
             try {
                 return createObject(className);
@@ -103,9 +110,8 @@ class PackageObjectFactory implements ModuleFactory
         throws CheckstyleException
     {
         try {
-            final ClassLoader loader = Thread.currentThread()
-                    .getContextClassLoader();
-            final Class<?> clazz = Class.forName(aClassName, true, loader);
+            final Class<?> clazz = Class.forName(aClassName, true,
+                    mModuleClassLoader);
             return clazz.newInstance();
         }
         catch (final ClassNotFoundException e) {

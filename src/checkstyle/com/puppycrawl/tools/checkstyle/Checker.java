@@ -36,6 +36,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
@@ -75,6 +76,9 @@ public class Checker extends AutomaticBean
     /** The factory for instantiating submodules */
     private ModuleFactory mModuleFactory;
 
+    /** The classloader used for loading Checkstyle module classes. */
+    private ClassLoader mModuleClassLoader;
+
     /** the context of all child components */
     private Context mChildContext;
 
@@ -112,8 +116,17 @@ public class Checker extends AutomaticBean
         LocalizedMessage.setLocale(locale);
 
         if (mModuleFactory == null) {
-            mModuleFactory = PackageNamesLoader.loadModuleFactory(Thread
-                    .currentThread().getContextClassLoader());
+
+            if (mModuleClassLoader == null) {
+                throw new CheckstyleException(
+                        "if no custom moduleFactory is set, "
+                        + "moduleClassLoader must be specified");
+            }
+
+            final Set<String> packageNames = PackageNamesLoader.getPackageNames(
+                    mModuleClassLoader);
+            mModuleFactory = new PackageObjectFactory(packageNames,
+                    mModuleClassLoader);
         }
 
         final DefaultContext context = new DefaultContext();
@@ -513,5 +526,17 @@ public class Checker extends AutomaticBean
     public final void setClassloader(ClassLoader aLoader)
     {
         mLoader = aLoader;
+    }
+
+    /**
+     * Sets the classloader used to load Checkstyle core and custom module
+     * classes when the module tree is being built up.
+     * If no custom ModuleFactory is being set for the Checker module then
+     * this module classloader must be specified.
+     * @param aModuleClassLoader the classloader used to load module classes
+     */
+    public final void setModuleClassLoader(ClassLoader aModuleClassLoader)
+    {
+        mModuleClassLoader = aModuleClassLoader;
     }
 }

@@ -18,17 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.util.Enumeration;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.Stack;
+
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Loads a list of package names from a package name XML file.
@@ -49,18 +55,14 @@ public final class PackageNamesLoader
     /** Name of default checkstyle package names resource file.
      * The file must be in the classpath.
      */
-    private static final String DEFAULT_PACKAGES =
-        "com/puppycrawl/tools/checkstyle/checkstyle_packages.xml";
+    private static final String CHECKSTYLE_PACKAGES =
+        "checkstyle_packages.xml";
 
-    /**
-     * the factory to return in getModuleFactory(),
-     * configured during parsing
-     */
-    private final PackageObjectFactory mModuleFactory =
-        new PackageObjectFactory();
-
-    /** The loaded package names */
+    /** The temporary stack of package name parts */
     private final Stack<String> mPackageStack = new Stack<String>();
+
+    /** The fully qualified package names. */
+    private final Set<String> mPackageNames = new LinkedHashSet<String>();
 
     /**
      * Creates a new <code>PackageNamesLoader</code> instance.
@@ -71,6 +73,16 @@ public final class PackageNamesLoader
         throws ParserConfigurationException, SAXException
     {
         super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
+    }
+
+    /**
+     * Returns the set of fully qualified package names this
+     * this loader processed.
+     * @return the set of package names
+     */
+    private Set<String> getPackageNames()
+    {
+        return mPackageNames;
     }
 
     @Override
@@ -106,86 +118,109 @@ public final class PackageNamesLoader
         return buf.toString();
     }
 
-    /**
-     * Returns the module factory that has just been configured.
-     * @return the module factory, never null
-     */
-    private ModuleFactory getModuleFactory()
-    {
-        return mModuleFactory;
-    }
-
     @Override
     public void endElement(String aNamespaceURI,
                            String aLocalName,
                            String aQName)
     {
         if ("package".equals(aQName)) {
-            mModuleFactory.addPackage(getPackageName());
+
+            mPackageNames.add(getPackageName());
             mPackageStack.pop();
         }
     }
 
     /**
-     * Returns the default list of package names.
-     * @param aClassLoader the class loader that gets the
-     * default package names.
-     * @return the default list of package names.
+     * Returns the set of package names, compiled from all
+     * checkstyle_packages.xml files found on the given classloaders
+     * classpath.
+     * @param aClassLoader the class loader for loading the
+     *          checkstyle_packages.xml files.
+     * @return the set of package names.
      * @throws CheckstyleException if an error occurs.
      */
-    public static ModuleFactory loadModuleFactory(ClassLoader aClassLoader)
+    public static Set<String> getPackageNames(ClassLoader aClassLoader)
         throws CheckstyleException
     {
 
-        final InputStream stream =
-            aClassLoader.getResourceAsStream(DEFAULT_PACKAGES);
-        final InputSource source = new InputSource(stream);
-        return loadModuleFactory(source, "default package names");
+        Enumeration<URL> packageFiles = null;
+        try {
+            packageFiles = aClassLoader.getResources(CHECKSTYLE_PACKAGES);
+        }
+        catch (IOException e) {
+            throw new CheckstyleException(
+                    "unable to get package file resources", e);
+        }
+
+        //create the loader outside the loop to prevent PackageObjectFactory
+        //being created anew for each file
+        final PackageNamesLoader namesLoader = newPackageNamesLoader();
+
+        while ((null != packageFiles) && packageFiles.hasMoreElements()) {
+            final URL aPackageFile = packageFiles.nextElement();
+            InputStream stream = null;
+
+            try {
+                stream = new BufferedInputStream(aPackageFile.openStream());
+                final InputSource source = new InputSource(stream);
+                loadPackageNamesSource(source, "default package names",
+                    namesLoader);
+            }
+            catch (IOException e) {
+                throw new CheckstyleException(
+                        "unable to open " + aPackageFile, e);
+            }
+            finally {
+                if (stream != null) {
+                    try {
+                        stream.close();
+                    }
+                    catch (IOException e) {
+                        throw new CheckstyleException(
+                                "error closing stream", e);
+                    }
+                }
+            }
+        }
+        return namesLoader.getPackageNames();
     }
 
     /**
-     * Returns the package names in a specified file.
-     * @param aFilename name of the package file.
-     * @return the list of package names stored in the
-     *  package file.
-     * @throws CheckstyleException if an error occurs.
+     * Creates a PackageNamesLoader instance.
+     * @return the PackageNamesLoader
+     * @throws CheckstyleException if the creation failed
      */
-    public static ModuleFactory loadModuleFactory(String aFilename)
+    private static PackageNamesLoader newPackageNamesLoader()
         throws CheckstyleException
     {
-        FileInputStream fis = null;
         try {
-            fis = new FileInputStream(aFilename);
+            return new PackageNamesLoader();
         }
-        catch (final FileNotFoundException e) {
+        catch (final ParserConfigurationException e) {
             throw new CheckstyleException(
-                "unable to find " + aFilename, e);
+                    "unable to create PackageNamesLoader ", e);
         }
-        final InputSource source = new InputSource(fis);
-        return loadModuleFactory(source, aFilename);
+        catch (final SAXException e) {
+            throw new CheckstyleException(
+                    "unable to create PackageNamesLoader - "
+                    + e.getMessage(), e);
+        }
     }
 
     /**
      * Returns the list of package names in a specified source.
      * @param aSource the source for the list.
      * @param aSourceName the name of the source.
-     * @return the list ofpackage names stored in aSource.
+     * @param aNameLoader the PackageNamesLoader instance
      * @throws CheckstyleException if an error occurs.
      */
-    private static ModuleFactory loadModuleFactory(
-            InputSource aSource, String aSourceName)
+    private static void loadPackageNamesSource(
+            InputSource aSource, String aSourceName,
+            PackageNamesLoader aNameLoader)
         throws CheckstyleException
     {
         try {
-            final PackageNamesLoader nameLoader = new PackageNamesLoader();
-            nameLoader.parseInputSource(aSource);
-            return nameLoader.getModuleFactory();
-        }
-        catch (final FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + aSourceName, e);
-        }
-        catch (final ParserConfigurationException e) {
-            throw new CheckstyleException("unable to parse " + aSourceName, e);
+            aNameLoader.parseInputSource(aSource);
         }
         catch (final SAXException e) {
             throw new CheckstyleException("unable to parse "

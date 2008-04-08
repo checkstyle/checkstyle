@@ -951,12 +951,20 @@
         class="code"> com.puppycrawl.tools.checkstyle.checks</span> as
         well as any sub-packages of <span
         class="code">com.puppycrawl.tools.checkstyle.checks</span> that
-        are distributed with Checkstyle. To specify other packages to
-        apply, create a <em>package names XML document</em> in a file,
-        and provide that file as a <a href="cmdline.html">command
-        line</a> option or as a attribute of an <a
-        href="anttask.html">ant Checkstyle task</a>.  This is useful for
-        integrating other modules in your configuration.
+        are distributed with Checkstyle.
+      </p>
+      <p>
+        To specify other packages to apply, 
+        create a <em>package names XML document</em> in a file 
+        named <span class="code">checkstyle_packages.xml</span>,
+        and provide that file in the root of the .jar containing your
+        custom checks.
+      </p>
+      <p>
+        Note that the support for providing a <em>package names XML document</em> 
+        via <a href="cmdline.html">command line</a> option or as a attribute 
+        of an <a href="anttask.html">ant Checkstyle task</a> has been dropped
+        with Checkstyle 5.0.
       </p>
 
       <p>
@@ -984,9 +992,9 @@
       <p>
         For example, to incorporate modules from package <span
         class="code">com.mycompany.checks</span> with Checkstyle
-        modules, create the XML file below and specify that file as a <a
-        href="cmdline.html">command line</a> option or as a attribute of
-        an <a href="anttask.html">ant Checkstyle task</a>.:
+        modules, create the XML file below and put this file into the
+        <b>root of the jar</b> file which contains your custom check modules.
+        The XML file must be named exactly <span class="code">checkstyle_packages.xml</span>:
       </p>
 
       <source>
@@ -998,17 +1006,6 @@
 
 &lt;checkstyle-packages&gt;
   &lt;package name=&quot;com.mycompany.checks&quot;/&gt;
-
-  &lt;!-- Copy the contents of the file checkstyle_packages.xml --&gt;
-  &lt;!-- from the current Checkstyle JAR! --&gt;
-  &lt;package name=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
-    &lt;package name=&quot;checks&quot;&gt;
-      &lt;package name=&quot;blocks&quot;/&gt;
-      &lt;package name=&quot;coding&quot;/&gt;
-      &lt;package name=&quot;design&quot;/&gt;
-      &lt;!-- .... etc. --&gt;
-    &lt;/package&gt;
-  &lt;/package&gt;
 &lt;/checkstyle-packages&gt;
       </source>
 
@@ -1025,12 +1022,12 @@
       </source>
 
       <div class="tip">
-        <h4 class="tip">Important</h4>
+        <h4 class="tip">Note</h4>
         <p>
-          If you provide a package names XML document for your own
-          modules and still need to use Checkstyle modules, you must
-          include <span class="code">package</span> elements for
-          Checkstyle's packages.
+          As of Checkstyle 5.0 it is unnecessary to repeat the 
+          <span class="code">package</span> elements for Checkstyle's packages
+          in your custom <span class="code">checkstyle_packages.xml</span>
+          file.
         </p>
       </div>
 

@@ -153,15 +153,6 @@
         </tr>
 
         <tr>
-          <td>packageNamesFile</td>
-          <td>
-            Specifies a file that contains <a href="config.html#Packages">
-            package names</a> for the configuration.
-          </td>
-          <td>No</td>
-        </tr>
-
-        <tr>
           <td>failOnViolation</td>
           <td>
             Specifies whether the build will continue even if there are
@@ -222,11 +213,18 @@
             For efficiency, Checkstyle does not invoke modules with a configured severity of "ignore"
             (since their output would be ignored anyway). A small number of modules may choose to log above their
             configured severity level and so always need to be invoked. This settings specifies that behaviour.
-            Defaults to <span class="default">&quot;true&quot;</span>. 
+            Defaults to <span class="default">&quot;true&quot;</span>.
           </td>
           <td>No</td>
         </tr>
       </table>
+
+      <p>
+        Note that the <span class="default">packageNamesFile</span>
+        parameter has been dropped for Checkstyle 5.0, because of
+        significant changes regarding package name file handling. See <a
+        href="config.html#Packages"/> for details.
+      </p>
     </section>
 
     <section name="Nested Elements">

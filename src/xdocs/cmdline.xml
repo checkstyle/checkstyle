@@ -68,7 +68,7 @@
       <source>
 java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
-     -c &lt;configurationFile&gt; [-n &lt;packageNameFile&gt;] \
+     -c &lt;configurationFile&gt; \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
      [-r &lt;dir&gt;] file...
       </source>
@@ -81,10 +81,6 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       </p>
 
       <ul>
-        <li>
-          <span class="default">-n packageNamesFile</span> - specify a <a
-          href="config.html#Packages">package names file</a> to use.
-        </li>
         <li>
           <span class="default">-f format</span> - specify the output
           format. Options are <span class="default"> "plain"</span> for the <a
@@ -106,6 +102,13 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           traverse for Java source files.
         </li>
       </ul>
+
+      <p>
+        Note that the <span class="default">-n packageNamesFile</span>
+        option has been dropped for Checkstyle 5.0, because of
+        significant changes regarding package name file handling. See <a
+        href="config.html#Packages"/> for details.
+      </p>
 
       <p>
         Set the properties for <a href="config.html#Properties">expanded

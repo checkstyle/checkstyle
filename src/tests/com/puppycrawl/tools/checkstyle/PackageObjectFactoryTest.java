@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import java.util.HashSet;
 import org.junit.Test;
 
 /**
@@ -16,7 +17,8 @@ import org.junit.Test;
 public class PackageObjectFactoryTest
 {
 
-    private final PackageObjectFactory mFactory = new PackageObjectFactory();
+    private final PackageObjectFactory mFactory = new PackageObjectFactory(
+            new HashSet<String>(), Thread.currentThread().getContextClassLoader());
 
     @Test
     public void testMakeObjectFromName()

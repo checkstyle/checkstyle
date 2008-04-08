@@ -50,7 +50,6 @@ public final class Main
         OPTS.addOption("r", true, "Traverse the directory for source files");
         OPTS.addOption("o", true, "Sets the output file. Defaults to stdout");
         OPTS.addOption("p", true, "Loads the properties file");
-        OPTS.addOption("n", true, "Loads the package names file");
         OPTS.addOption(
             "f",
             true,
@@ -90,12 +89,6 @@ public final class Main
 
         final Configuration config = loadConfig(line, props);
 
-        //Load the set of package names
-        ModuleFactory moduleFactory = null;
-        if (line.hasOption("n")) {
-            moduleFactory = loadPackages(line);
-        }
-
         // setup the output stream
         OutputStream out = null;
         boolean closeOut = false;
@@ -117,7 +110,7 @@ public final class Main
 
         final AuditListener listener = createListener(line, out, closeOut);
         final List<File> files = getFilesToProcess(line);
-        final Checker c = createChecker(config, moduleFactory, listener);
+        final Checker c = createChecker(config, listener);
         final int numErrs = c.process(files);
         c.destroy();
         System.exit(numErrs);
@@ -127,18 +120,19 @@ public final class Main
      * Creates the Checker object.
      *
      * @param aConfig the configuration to use
-     * @param aFactory the module factor to use
      * @param aNosy the sticky beak to track what happens
      * @return a nice new fresh Checker
      */
     private static Checker createChecker(Configuration aConfig,
-                                         ModuleFactory aFactory,
                                          AuditListener aNosy)
     {
         Checker c = null;
         try {
             c = new Checker();
-            c.setModuleFactory(aFactory);
+
+            final ClassLoader moduleClassLoader =
+                Checker.class.getClassLoader();
+            c.setModuleClassLoader(moduleClassLoader);
             c.configure(aConfig);
             c.addListener(aNosy);
         }
@@ -207,26 +201,6 @@ public final class Main
             usage();
         }
         return listener;
-    }
-
-    /**
-     * Loads the packages, or exists if unable to.
-     *
-     * @param aLine the supplied command line options
-     * @return a fresh new <code>ModuleFactory</code>
-     */
-    private static ModuleFactory loadPackages(CommandLine aLine)
-    {
-        try {
-            return PackageNamesLoader.loadModuleFactory(
-                aLine.getOptionValue("n"));
-        }
-        catch (final CheckstyleException e) {
-            System.out.println("Error loading package names file");
-            e.printStackTrace(System.out);
-            System.exit(1);
-            return null; // never get here
-        }
     }
 
     /**

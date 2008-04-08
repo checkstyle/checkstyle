@@ -66,9 +66,6 @@ public class CheckStyleTask extends Task
     /** config file containing configuration */
     private String mConfigLocation;
 
-    /** contains package names */
-    private File mPackageNamesFile;
-
     /** whether to fail build on violations */
     private boolean mFailOnViolation = true;
 
@@ -230,12 +227,6 @@ public class CheckStyleTask extends Task
         mConfigLocation = aLocation;
     }
 
-    /** @param aFile the package names file to use */
-    public void setPackageNamesFile(File aFile)
-    {
-        mPackageNamesFile = aFile;
-    }
-
     /** @param aOmit whether to omit ignored modules */
     public void setOmitIgnoredModules(boolean aOmit)
     {
@@ -264,15 +255,11 @@ public class CheckStyleTask extends Task
     public void execute() throws BuildException
     {
         final long startTime = System.currentTimeMillis();
-        final ClassLoader loader = Thread.currentThread()
-                .getContextClassLoader();
+
         try {
-            Thread.currentThread().setContextClassLoader(
-                    getClass().getClassLoader());
             realExecute();
         }
         finally {
-            Thread.currentThread().setContextClassLoader(loader);
             final long endTime = System.currentTimeMillis();
             log("Total execution took " + (endTime - startTime) + " ms.",
                 Project.MSG_VERBOSE);
@@ -375,14 +362,12 @@ public class CheckStyleTask extends Task
                     mClasspath);
             context.add("classloader", loader);
 
+            final ClassLoader moduleClassLoader =
+                Checker.class.getClassLoader();
+            context.add("moduleClassLoader", moduleClassLoader);
+
             c = new Checker();
 
-            //load the set of package names
-            if (mPackageNamesFile != null) {
-                final ModuleFactory moduleFactory = PackageNamesLoader
-                        .loadModuleFactory(mPackageNamesFile.getAbsolutePath());
-                c.setModuleFactory(moduleFactory);
-            }
             c.contextualize(context);
             c.configure(config);
 

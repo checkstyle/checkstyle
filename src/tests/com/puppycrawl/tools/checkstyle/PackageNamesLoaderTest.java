@@ -1,7 +1,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.util.Arrays;
@@ -21,38 +20,13 @@ public class PackageNamesLoaderTest
     public void testDefault()
         throws CheckstyleException
     {
-        ModuleFactory moduleFactory = PackageNamesLoader
-                .loadModuleFactory(Thread.currentThread()
+        Set<String> packageNames = PackageNamesLoader
+                .getPackageNames(Thread.currentThread()
                         .getContextClassLoader());
-        validateFactory(moduleFactory);
+        validatePackageNames(packageNames);
     }
 
-    @Test
-    public void testNoFile()
-    {
-        try {
-            PackageNamesLoader.loadModuleFactory("NoFile");
-            fail("Loaded non-existant file.");
-        }
-        catch (CheckstyleException ex) {
-            assertEquals("CheckstyleException.message.",
-                "unable to find NoFile",
-                ex.getMessage());
-        }
-    }
-
-    @Test
-    public void testFile()
-        throws CheckstyleException
-    {
-        final ModuleFactory moduleFactory =
-            PackageNamesLoader.loadModuleFactory(
-                System.getProperty("checkstyle.root")
-                + "/src/checkstyle/com/puppycrawl/tools/checkstyle/checkstyle_packages.xml");
-        validateFactory(moduleFactory);
-    }
-
-    private void validateFactory(ModuleFactory aModuleFactory)
+    private void validatePackageNames(Set<String> aPkgNames)
     {
         final String[] checkstylePackages = {
             "com.puppycrawl.tools.checkstyle.",
@@ -74,14 +48,10 @@ public class PackageNamesLoaderTest
 
         };
 
-        PackageObjectFactory factory = (PackageObjectFactory) aModuleFactory;
-        String[] pkgNames = factory.getPackages();
-
         assertEquals("pkgNames.length.", checkstylePackages.length,
-            pkgNames.length);
+            aPkgNames.size());
         Set<String> checkstylePackagesSet =
             new HashSet<String>(Arrays.asList(checkstylePackages));
-        Set<String> pkgNamesSet = new HashSet<String>(Arrays.asList(pkgNames));
-        assertEquals("names set.", checkstylePackagesSet, pkgNamesSet);
+        assertEquals("names set.", checkstylePackagesSet, aPkgNames);
     }
 }
