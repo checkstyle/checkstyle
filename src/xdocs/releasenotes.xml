@@ -59,6 +59,12 @@
           ANT task and the Command line. Thanks to Lars Koedderitzsch
           for patch #1914806.
         </li>
+        <li>
+          New check <a
+          href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a>
+          for ensuring there are no static import statements. Thanks to
+          Travis Schneeberger for providing patch #1940611.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>
