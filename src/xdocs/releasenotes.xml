@@ -73,6 +73,11 @@
           1098126. It is a catch-22 that both bugs can be solved with
           the current architecture.
         </li>
+        <li>
+          Fixed bug #1649020 where generic parameters for methods
+          recognized as HTML tags. Used patch #1936389 from Travis
+          Schneeberger.
+        </li>
       </ul>
 
       <p>Notes:</p>

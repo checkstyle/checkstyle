@@ -22,13 +22,24 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Helper class used to parse HTML tags from a single line of text.
- * Just the beginning of the HTML tag is located.  No attempt is made to
- * parse out the complete tag, particularly since some of the tag
- * parameters could be located on the following line of text.  The
- * <code>hasNextTag</code> and <code>nextTag</code> methods are used
- * to iterate through the HTML tags that were found on the line of text.
+ * <p>
+ * Helper class used to parse HTML tags or generic type identifiers
+ * from a single line of text. Just the beginning of the HTML tag
+ * is located.  No attempt is made to parse out the complete tag,
+ * particularly since some of the tag parameters could be located
+ * on the following line of text.  The <code>hasNextTag</code> and
+ * <code>nextTag</code> methods are used to iterate through the HTML
+ * tags or generic type identifiers that were found on the line of text.
+ * </p>
  *
+ * <p>
+ * This class isn't really specific to HTML tags. Currently the only HTML
+ * tag that this class looks specifically for is the HTML comment tag.
+ * This class helps figure out if a tag exists and if it is well-formed.
+ * It does not know whether it is valid HTML.  This class is also used for
+ * generics types which looks like opening HTML tags ex: <T>, <E>, <V>,
+ * <MY_FOO_TYPE>, etc. According to this class they are valid tags.
+ * </p>
  * @author Chris Stillwell
  */
 class TagParser
@@ -132,12 +143,12 @@ class TagParser
         final int column = aPos.getColumnNo() + 1;
         final String text = aText[aPos.getLineNo()];
 
-        return (((column < text.length())
-                && (((text.charAt(column) >= 'A')
-                     && (text.charAt(column) <= 'Z'))
-                    || ((text.charAt(column) >= 'a')
-                        && (text.charAt(column) <= 'z'))
-                    || (text.charAt(column) == '/')))
+        //Character.isJavaIdentifier... may not be a valid HTML
+        //identifier but is valid for generics
+        return ((column < text.length())
+                && (Character.isJavaIdentifierStart(text.charAt(column))
+                    || Character.isJavaIdentifierPart(text.charAt(column))
+                    || text.charAt(column) == '/')
                 || (column >= text.length()));
     }
 
@@ -162,13 +173,11 @@ class TagParser
         text = text.substring(column).trim();
         column = 0;
 
-        while ((column < text.length())
-               && (((text.charAt(column) >= 'A')
-                    && (text.charAt(column) <= 'Z'))
-                   || ((text.charAt(column) >= 'a')
-                       && (text.charAt(column) <= 'z'))
-                   || ((text.charAt(column) >= '0')
-                       && (text.charAt(column) <= '9'))))
+        //Character.isJavaIdentifier... may not be a valid HTML
+        //identifier but is valid for generics
+        while (column < text.length()
+            && (Character.isJavaIdentifierStart(text.charAt(column))
+                || Character.isJavaIdentifierPart(text.charAt(column))))
         {
             column++;
         }
@@ -208,11 +217,11 @@ class TagParser
     }
 
     /**
-     * Finds next occurence of given character.
+     * Finds next occurrence of given character.
      * @param aText text to search
      * @param aChar character to search
      * @param aFrom position to start search
-     * @return position of next occurence of given character
+     * @return position of next occurrence of given character
      */
     private Point findChar(String[] aText, char aChar, Point aFrom)
     {
@@ -228,7 +237,7 @@ class TagParser
 
     /**
      * Returns position of next comment character, skips
-     * whitespaces and asteriks.
+     * whitespaces and asterisks.
      * @param aText to search.
      * @param aFrom location to search from
      * @return location of the next character.
@@ -272,7 +281,7 @@ final class Point
 {
     /** line number. */
     private final int mLine;
-    /** clumn number.*/
+    /** column number.*/
     private final int mColumn;
 
     /**
