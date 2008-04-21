@@ -32,7 +32,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class NoFinalizerCheck extends Check
 {
-
     @Override
     public int[] getDefaultTokens()
     {

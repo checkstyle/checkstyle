@@ -70,4 +70,26 @@ class MyClassWithGenericSuperMethod
     {
 
     }
+    
+    /**
+     * Not a valid clone override. Should not get flagged.
+     * @param o some object
+     * @return a cloned Object?
+     */
+    public static Object clone(Object o) {
+	return null;
+    }
+}
+
+class AnotherClass {
+    
+    /**
+     * Not a valid clone override. Should not get flagged.
+     * @param t some type
+     * @param <T> a type
+     * @return a cloned type?
+     */
+    public <T> T clone(T t) {
+	return null;
+    }
 }

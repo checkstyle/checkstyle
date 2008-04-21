@@ -71,6 +71,13 @@
           name. Thanks to Travis Schneeberger for providing patch
           #1892364.
         </li>
+        <li>
+          New check <a href="config_coding.html#NoClone">NoClone</a> for
+          ensuring a class does not override the <span
+          class="code">clone</span> method from the <span
+          class="code">Object</span> class. Thanks to Travis
+          Schneeberger for providing patch #1947417.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>
