@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -28,6 +29,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * and defaults to
  * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
  * </p>
+ *
+ * <p>
+ * Also, checks if a method name has the same name as the residing class.
+ * The default is false (it is not allowed).  It is legal in Java to have
+ * method with the same name as a class.  As long as a return type is specified
+ * it is a method and not a constructor which it could be easily confused as.
+ * </p>
+ *
  * <p>
  * An example of how to configure the check is:
  * </p>
@@ -43,12 +52,27 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * <p>
+ * An example of how to configure the check to allow method names
+ * to be equal to the residing class name is:
+ * </p>
+ * <pre>
+ * &lt;module name="MethodName"&gt;
+ *    &lt;property name="allowClassName" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
  * @author Oliver Burn
- * @version 1.0
+ * @author Travis Schneeberger
+ * @version 1.1
  */
-public class MethodNameCheck
-    extends AbstractAccessControlNameCheck
+public class MethodNameCheck extends AbstractNameCheck
 {
+    /**
+     * for allowing method name to be the same as the class name.
+     */
+    private boolean mAllowClassName;
+
     /** Creates a new <code>MethodNameCheck</code> instance. */
     public MethodNameCheck()
     {
@@ -58,6 +82,35 @@ public class MethodNameCheck
     @Override
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.METHOD_DEF};
+        return new int[] {TokenTypes.METHOD_DEF, };
+    }
+
+    @Override
+    public void visitToken(DetailAST aAst)
+    {
+        super.visitToken(aAst); // Will check the name against the format.
+
+        if (!mAllowClassName) {
+            final DetailAST method =
+                aAst.findFirstToken(TokenTypes.IDENT);
+            //in all cases this will be the classDef type except anon inner
+            //with anon inner classes this will be the Literal_New keyword
+            final DetailAST classDefOrNew = aAst.getParent().getParent();
+            final DetailAST classIdent =
+                classDefOrNew.findFirstToken(TokenTypes.IDENT);
+            if (method.getText().equals(classIdent.getText())) {
+                log(method.getLineNo(), method.getColumnNo(),
+                    "method.name.equals.class.name", method.getText());
+            }
+        }
+    }
+
+    /**
+     * Sets the property for allowing a method to be the same name as a class.
+     * @param aAllowClassName true to allow false to disallow
+     */
+    public void setAllowClassName(boolean aAllowClassName)
+    {
+        mAllowClassName = aAllowClassName;
     }
 }

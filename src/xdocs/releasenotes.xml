@@ -65,6 +65,12 @@
           for ensuring there are no static import statements. Thanks to
           Travis Schneeberger for providing patch #1940611.
         </li>
+        <li>
+          Enhanced the <a href="config_naming.html">MethodName</a> check
+          to detect when a method name is the same as the residing class
+          name. Thanks to Travis Schneeberger for providing patch
+          #1892364.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>
