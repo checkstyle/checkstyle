@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -92,7 +92,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
     @Override
     protected final void processAST(DetailAST aAST)
     {
-        final List<ClassInfo> knownExcs = new LinkedList<ClassInfo>();
+        final List<ClassInfo> knownExcs = Lists.newLinkedList();
         final DetailAST throwsAST =
             aAST.findFirstToken(TokenTypes.LITERAL_THROWS);
         if (throwsAST != null) {

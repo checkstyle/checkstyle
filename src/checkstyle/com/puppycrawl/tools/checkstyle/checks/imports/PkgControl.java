@@ -32,7 +32,7 @@ import java.util.List;
 class PkgControl
 {
     /** List of {@link Guard} objects to check. */
-    private final LinkedList<Guard> mGuards = new LinkedList<Guard>();
+    private final LinkedList<Guard> mGuards = Lists.newLinkedList();
     /** List of children {@link PkgControl} objects. */
     private final List<PkgControl> mChildren = Lists.newArrayList();
     /** The parent. Null indicates we are the root node. */

@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -216,7 +217,7 @@ class FrameStack
     /** Creates an empty FrameStack. */
     FrameStack()
     {
-        mFrameList = new LinkedList<LexicalFrame>();
+        mFrameList = Lists.newLinkedList();
         this.enter(new GlobalFrame());
     }
 

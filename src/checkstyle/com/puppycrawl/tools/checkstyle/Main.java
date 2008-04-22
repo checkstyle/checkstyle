@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -27,7 +28,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import org.apache.commons.cli.CommandLine;
@@ -153,7 +153,7 @@ public final class Main
      */
     private static List<File> getFilesToProcess(CommandLine aLine)
     {
-        final List<File> files = new LinkedList<File>();
+        final List<File> files = Lists.newLinkedList();
         if (aLine.hasOption("r")) {
             final String[] values = aLine.getOptionValues("r");
             for (String element : values) {

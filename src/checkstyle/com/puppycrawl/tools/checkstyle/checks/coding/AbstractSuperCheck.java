@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import antlr.collections.AST;
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
@@ -89,8 +90,7 @@ public abstract class AbstractSuperCheck
     }
 
     /** stack of methods */
-    private final LinkedList<MethodNode> mMethodStack =
-        new LinkedList<MethodNode>();
+    private final LinkedList<MethodNode> mMethodStack = Lists.newLinkedList();
 
     @Override
     public int[] getDefaultTokens()

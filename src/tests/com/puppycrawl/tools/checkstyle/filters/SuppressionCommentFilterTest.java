@@ -4,6 +4,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -14,7 +15,6 @@ import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
@@ -199,7 +199,8 @@ public class SuppressionCommentFilterTest
 
     private String[] removeSuppressed(String[] aFrom, String[] aRemove)
     {
-        final Collection<String> coll = new ArrayList<String>(Arrays.asList(aFrom));
+        final Collection<String> coll =
+            Lists.newArrayList(Arrays.asList(aFrom));
         coll.removeAll(Arrays.asList(aRemove));
         return coll.toArray(new String[coll.size()]);
     }

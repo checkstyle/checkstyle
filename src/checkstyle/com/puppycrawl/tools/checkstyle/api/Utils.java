@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -300,7 +299,7 @@ public final class Utils
             }
         }
 
-        final List<File> files = new ArrayList<File>(aFiles.size());
+        final List<File> files = Lists.newArrayList();
         for (final File f : aFiles) {
             final String fileName = f.getName();
             for (final String fileExtension : withDotExtensions) {
