@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.duplicates;
 
+import com.google.common.base.ReferenceType;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
+import com.google.common.collect.ReferenceMap;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -26,9 +30,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.collections.MultiHashMap;
-import org.apache.commons.collections.MultiMap;
-import org.apache.commons.collections.ReferenceMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -42,7 +43,6 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Lars K&uuml;hne
  */
-@SuppressWarnings("unchecked")
 public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 {
     /**
@@ -184,7 +184,9 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     /**
      * A SoftReference cache for the trimmed lines of a file path,
      */
-    private final Map<String, String[]> mTrimmedLineCache = new ReferenceMap();
+    private final Map<String, String[]> mTrimmedLineCache =
+        new ReferenceMap<String, String[]>(
+            ReferenceType.STRONG, ReferenceType.SOFT);
 
     // fields required only for statistics
 
@@ -360,8 +362,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         // blocks of duplicate code might be longer than 'min'. We need to
         // remember the line combinations where we must ignore identical blocks
         // because we have already reported them for an earlier blockIdx.
-        // Note: MultiHashMap is deprecated in the latest releases of o.a.j.c.c
-        final MultiMap ignorePairs = new MultiHashMap();
+        final Multimap<Integer, Integer> ignorePairs =
+            Multimaps.newArrayListMultimap();
 
         // go through all the blocks in iFile and
         // check if the following mMin lines occur in jFile
@@ -390,10 +392,9 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
      * this line i/j-combination has already been reported as part of another
      * viloation
      */
-    @SuppressWarnings("unchecked")
     private void findDuplicateFromLine(
         final int aI, final int aJ, final int aILine,
-        final int[] aJLines, final MultiMap aIgnore)
+        final int[] aJLines, final Multimap<Integer, Integer> aIgnore)
     {
         // Using something more advanced like Boyer-Moore might be a
         // good idea...
@@ -412,7 +413,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
                 continue;
             }
 
-            final Collection ignoreEntries = (Collection) aIgnore.get(aILine);
+            final Collection<Integer> ignoreEntries = aIgnore.get(aILine);
             // avoid Integer constructor whenever we can
             if (ignoreEntries != null) {
                 if (ignoreEntries.contains(jLine)) {

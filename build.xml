@@ -14,7 +14,7 @@
   <property name="jdom.jar" value="lib/jdom-b9.jar" />
   <property name="junit.jar" value="lib/junit-4.4.jar" />
   <property name="beanutils.jar" value="lib/commons-beanutils-core.jar" />
-  <property name="collections.jar" value="lib/commons-collections.jar" />
+  <property name="collections.jar" value="lib/google-collect-snapshot-20080321.jar" />
   <property name="cli.jar" value="lib/commons-cli.jar" />
   <property name="logging.jar" value="lib/commons-logging.jar" />
   <property name="tools.jar" value="${java.home}/../lib/tools.jar" />
@@ -483,16 +483,15 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     <copy file="${cli.jar}" todir="${dist.dir}/checkstyle-${version}" />
     <copy file="${logging.jar}" todir="${dist.dir}/checkstyle-${version}" />
     <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-all-${version}.jar"
-    	 manifest="${target.dir}/manifest.mf" 
+    	 manifest="${target.dir}/manifest.mf"
     	 filesetmanifest="skip">
         <zipfileset src="${dist.dir}/checkstyle-${version}/antlr.jar" excludes="META-INF/*"/>
-        <!-- beanutils packages parts of commons collections, exclude it here so we don't have it in checkstyle-all.jar twice -->
-    	<zipfileset src="${dist.dir}/checkstyle-${version}/commons-beanutils-core.jar" excludes="META-INF/*,org/apache/commons/collections/*,**/*.html"/>
-        <zipfileset src="${dist.dir}/checkstyle-${version}/commons-collections.jar" excludes="META-INF/*"/>
+    	<zipfileset src="${dist.dir}/checkstyle-${version}/commons-beanutils-core.jar" excludes="META-INF/*,**/*.html"/>
+        <zipfileset src="${dist.dir}/checkstyle-${version}/google-collect-snapshot-20080321.jar" excludes="META-INF/*"/>
         <zipfileset src="${dist.dir}/checkstyle-${version}/commons-cli.jar" excludes="META-INF/*"/>
         <zipfileset src="${dist.dir}/checkstyle-${version}/commons-logging.jar" excludes="META-INF/*,**/package.html"/>
         <zipfileset src="${dist.dir}/checkstyle-${version}/checkstyle-${version}.jar" excludes="META-INF/*"/>
-    </jar>	
+    </jar>
     <!-- copy stuff without filtering -->
     <copy todir="${dist.dir}/checkstyle-${version}">
       <fileset dir=".">
