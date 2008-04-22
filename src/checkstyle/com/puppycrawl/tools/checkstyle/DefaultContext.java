@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -31,7 +31,7 @@ import java.util.Map;
 public final class DefaultContext implements Context
 {
     /** stores the context entries */
-    private final Map<String, Object> mEntries = new HashMap<String, Object>();
+    private final Map<String, Object> mEntries = Maps.newHashMap();
 
     /** {@inheritDoc} */
     public Object get(String aKey)

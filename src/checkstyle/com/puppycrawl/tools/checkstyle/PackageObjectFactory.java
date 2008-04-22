@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import java.util.Set;
 
 /**
  * A factory for creating objects from package names and names.
@@ -52,7 +51,7 @@ class PackageObjectFactory implements ModuleFactory
         }
 
         //create a copy of the given set, but retain ordering
-        mPackages = new LinkedHashSet<String>(aPackageNames);
+        mPackages = Sets.newLinkedHashSet(aPackageNames);
         mModuleClassLoader = aModuleClassLoader;
     }
 

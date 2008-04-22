@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import org.apache.commons.logging.Log;
@@ -43,13 +43,15 @@ public class HandlerFactory
      * Registered handlers.
      */
     private final Map<Integer, Constructor<?>> mTypeHandlers =
-        new HashMap<Integer, Constructor<?>>();
+        Maps.newHashMap();
 
     /**
      * registers a handler
      *
-     * @param aType   type from TokenTypes
-     * @param aHandlerClass  the handler to register
+     * @param aType
+     *                type from TokenTypes
+     * @param aHandlerClass
+     *                the handler to register
      */
     private void register(int aType, Class<?> aHandlerClass)
     {
@@ -232,5 +234,5 @@ public class HandlerFactory
 
     /** cache for created method call handlers */
     private final Map<DetailAST, ExpressionHandler> mCreatedHandlers =
-        new HashMap<DetailAST, ExpressionHandler>();
+        Maps.newHashMap();
 }

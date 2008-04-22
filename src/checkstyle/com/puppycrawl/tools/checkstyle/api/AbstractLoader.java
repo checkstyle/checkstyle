@@ -18,10 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
@@ -74,8 +75,8 @@ public abstract class AbstractLoader
     protected AbstractLoader(Map<String, String> aPublicIdToResourceNameMap)
         throws SAXException, ParserConfigurationException
     {
-        mPublicIdToResourceNameMap = new HashMap<String, String>(
-                aPublicIdToResourceNameMap);
+        mPublicIdToResourceNameMap =
+            Maps.newHashMap(aPublicIdToResourceNameMap);
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(true);
         factory.setNamespaceAware(true);

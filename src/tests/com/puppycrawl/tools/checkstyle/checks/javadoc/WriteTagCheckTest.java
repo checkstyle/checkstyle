@@ -2,6 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -9,7 +10,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Before;
@@ -187,7 +187,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
         throws Exception
     {
         mStream.flush();
-        final List<File> theFiles = new ArrayList<File>();
+        final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, aProcessedFiles);
         final int errs = aC.process(theFiles);
 

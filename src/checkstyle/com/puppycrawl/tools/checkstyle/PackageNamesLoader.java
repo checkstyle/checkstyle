@@ -18,23 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Enumeration;
-import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.Stack;
-
 import javax.xml.parsers.ParserConfigurationException;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-
-import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Loads a list of package names from a package name XML file.
@@ -62,7 +59,7 @@ public final class PackageNamesLoader
     private final Stack<String> mPackageStack = new Stack<String>();
 
     /** The fully qualified package names. */
-    private final Set<String> mPackageNames = new LinkedHashSet<String>();
+    private final Set<String> mPackageNames = Sets.newLinkedHashSet();
 
     /**
      * Creates a new <code>PackageNamesLoader</code> instance.

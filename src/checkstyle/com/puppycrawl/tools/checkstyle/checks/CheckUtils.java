@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -278,7 +278,7 @@ public final class CheckUtils
         final DetailAST typeParameters =
             aNode.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        final List<String> typeParamNames = new ArrayList<String>();
+        final List<String> typeParamNames = Lists.newArrayList();
         if (typeParameters != null) {
             final DetailAST typeParam =
                 typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);
@@ -308,7 +308,7 @@ public final class CheckUtils
         final DetailAST typeParameters =
             aNode.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        final List<DetailAST> typeParams = new ArrayList<DetailAST>();
+        final List<DetailAST> typeParams = Lists.newArrayList();
         if (typeParameters != null) {
             final DetailAST typeParam =
                 typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);

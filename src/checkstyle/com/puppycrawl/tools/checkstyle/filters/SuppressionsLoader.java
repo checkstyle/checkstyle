@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.filters;
 
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -184,7 +184,7 @@ public final class SuppressionsLoader
      */
     private static Map<String, String> createIdToResourceNameMap()
     {
-        final Map<String, String> map = new HashMap<String, String>();
+        final Map<String, String> map = Maps.newHashMap();
         map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
         return map;

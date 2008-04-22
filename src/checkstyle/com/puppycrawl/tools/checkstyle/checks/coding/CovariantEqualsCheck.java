@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -44,7 +44,7 @@ import java.util.Set;
 public class CovariantEqualsCheck extends Check
 {
     /** Set of equals method definitions */
-    private final Set<DetailAST> mEqualsMethods = new HashSet<DetailAST>();
+    private final Set<DetailAST> mEqualsMethods = Sets.newHashSet();
 
     @Override
     public int[] getDefaultTokens()

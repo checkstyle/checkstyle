@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import com.google.common.collect.Sets;
 import java.util.SortedSet;
-import java.util.TreeSet;
 
 /**
  * Encapsulates representation of notion of expected indentation levels.
@@ -30,7 +30,7 @@ import java.util.TreeSet;
 public class IndentLevel
 {
     /** set of acceptable indentation levels. */
-    private final SortedSet<Integer> mLevels = new TreeSet<Integer>();
+    private final SortedSet<Integer> mLevels = Sets.newTreeSet();
 
     /**
      * Creates new instance with one accaptable indentation level.

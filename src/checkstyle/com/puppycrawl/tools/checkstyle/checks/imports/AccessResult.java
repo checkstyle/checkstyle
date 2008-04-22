@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import com.google.common.collect.Maps;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -55,7 +55,8 @@ final class AccessResult
 
     /** map from results names to the respective result */
     private static final Map<String, AccessResult> NAME_TO_LEVEL =
-        new HashMap<String, AccessResult>();
+        Maps.newHashMap();
+
     static {
         NAME_TO_LEVEL.put(LABEL_ALLOWED, ALLOWED);
         NAME_TO_LEVEL.put(LABEL_DISALLOWED, DISALLOWED);

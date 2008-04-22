@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
 import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -3338,7 +3338,7 @@ public final class TokenTypes
 
     /** maps from a token name to value */
     private static final Map<String, Integer> TOKEN_NAME_TO_VALUE =
-        new HashMap<String, Integer>();
+        Maps.newHashMap();
     /** maps from a token value to name */
     private static final String[] TOKEN_VALUE_TO_NAME;
 

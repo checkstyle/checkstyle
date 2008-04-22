@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import com.google.common.collect.Maps;
 import java.util.SortedMap;
-import java.util.TreeMap;
 
 /**
  * Represents a set of lines.
@@ -31,8 +31,7 @@ public class LineSet
     /**
      * Maps line numbers to their start column.
      */
-    private final SortedMap<Integer, Integer> mLines =
-        new TreeMap<Integer, Integer>();
+    private final SortedMap<Integer, Integer> mLines = Maps.newTreeMap();
 
     /**
      * Get the starting column for a given line number.

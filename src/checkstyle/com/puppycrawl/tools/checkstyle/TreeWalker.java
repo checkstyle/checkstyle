@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle;
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 import antlr.TokenStreamRecognitionException;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -37,12 +40,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -61,10 +61,11 @@ public final class TreeWalker
     private static final int DEFAULT_TAB_WIDTH = 8;
 
     /** maps from token name to checks */
-    private final Map<String, List<Check>> mTokenToChecks =
-        new HashMap<String, List<Check>>();
+    //private final Map<String, List<Check>> mTokenToChecks = Maps.newHashMap();
+    private final Multimap<String, Check> mTokenToChecks =
+        Multimaps.newHashMultimap();
     /** all the registered checks */
-    private final Set<Check> mAllChecks = new HashSet<Check>();
+    private final Set<Check> mAllChecks = Sets.newHashSet();
     /** the distance between tab stops */
     private int mTabWidth = DEFAULT_TAB_WIDTH;
     /** cache file **/
@@ -343,13 +344,7 @@ public final class TreeWalker
      */
     private void registerCheck(String aToken, Check aCheck)
     {
-        List<Check> visitors = mTokenToChecks.get(aToken);
-        if (visitors == null) {
-            visitors = new ArrayList<Check>();
-            mTokenToChecks.put(aToken, visitors);
-        }
-
-        visitors.add(aCheck);
+        mTokenToChecks.put(aToken, aCheck);
     }
 
     /**
@@ -432,35 +427,37 @@ public final class TreeWalker
      */
     private void notifyVisit(DetailAST aAST)
     {
-        final List<Check> visitors = mTokenToChecks.get(TokenTypes
-                .getTokenName(aAST.getType()));
-        if (visitors != null) {
-            for (Check c : visitors) {
-                c.visitToken(aAST);
-            }
+        final Collection<Check> visitors =
+            mTokenToChecks.get(TokenTypes.getTokenName(aAST.getType()));
+        for (Check c : visitors) {
+            c.visitToken(aAST);
         }
     }
 
     /**
      * Notify interested checks that leaving a node.
-     * @param aAST the node to notify for
+     *
+     * @param aAST
+     *                the node to notify for
      */
     private void notifyLeave(DetailAST aAST)
     {
-        final List<Check> visitors = mTokenToChecks.get(TokenTypes
-                .getTokenName(aAST.getType()));
-        if (visitors != null) {
-            for (Check ch : visitors) {
-                ch.leaveToken(aAST);
-            }
+        final Collection<Check> visitors =
+            mTokenToChecks.get(TokenTypes.getTokenName(aAST.getType()));
+        for (Check ch : visitors) {
+            ch.leaveToken(aAST);
         }
     }
 
     /**
      * Static helper method to parses a Java source file.
-     * @param aContents contains the contents of the file
-     * @throws TokenStreamException if lexing failed
-     * @throws RecognitionException if parsing failed
+     *
+     * @param aContents
+     *                contains the contents of the file
+     * @throws TokenStreamException
+     *                 if lexing failed
+     * @throws RecognitionException
+     *                 if parsing failed
      * @return the root of the AST
      */
     public static DetailAST parse(FileContents aContents)

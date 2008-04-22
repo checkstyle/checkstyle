@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -390,10 +390,10 @@ public class HiddenFieldCheck
         private final FieldFrame mParent;
 
         /** set of instance field names */
-        private final Set<String> mInstanceFields = new HashSet<String>();
+        private final Set<String> mInstanceFields = Sets.newHashSet();
 
         /** set of static field names */
-        private final Set<String> mStaticFields = new HashSet<String>();
+        private final Set<String> mStaticFields = Sets.newHashSet();
 
         /** Creates new frame.
          * @param aStaticType is this a static inner type (class or enum).

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import java.util.ArrayList;
+import com.google.common.collect.Lists;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,7 +34,7 @@ class PkgControl
     /** List of {@link Guard} objects to check. */
     private final LinkedList<Guard> mGuards = new LinkedList<Guard>();
     /** List of children {@link PkgControl} objects. */
-    private final List<PkgControl> mChildren = new ArrayList<PkgControl>();
+    private final List<PkgControl> mChildren = Lists.newArrayList();
     /** The parent. Null indicates we are the root node. */
     private final PkgControl mParent;
     /** The full package name for the node. */

@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -29,7 +29,7 @@ import java.util.Set;
 public abstract class AbstractIllegalCheck extends Check
 {
     /** Illegal class names */
-    private final Set<String> mIllegalClassNames = new HashSet<String>();
+    private final Set<String> mIllegalClassNames = Sets.newHashSet();
 
     /**
      * Constructs an object.

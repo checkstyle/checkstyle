@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -126,7 +127,7 @@ abstract class LexicalFrame
     /** constructor -- invocable only via super() from subclasses */
     protected LexicalFrame()
     {
-        mVarNames = new HashSet<String>();
+        mVarNames = Sets.newHashSet();
     }
 
     /** add a name to the frame.

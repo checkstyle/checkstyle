@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import java.io.ByteArrayInputStream;
@@ -11,7 +12,6 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -112,7 +112,7 @@ public abstract class BaseCheckTestSupport
         throws Exception
     {
         mStream.flush();
-        final List<File> theFiles = new ArrayList<File>();
+        final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, aProcessedFiles);
         final int errs = aC.process(theFiles);
 

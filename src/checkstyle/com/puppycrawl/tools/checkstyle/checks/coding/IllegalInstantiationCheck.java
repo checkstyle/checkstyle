@@ -19,12 +19,12 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import antlr.collections.AST;
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -63,19 +63,19 @@ public class IllegalInstantiationCheck
     extends Check
 {
     /** Set of fully qualified classnames. E.g. "java.lang.Boolean" */
-    private final Set<String> mIllegalClasses = new HashSet<String>();
+    private final Set<String> mIllegalClasses = Sets.newHashSet();
 
     /** name of the package */
     private String mPkgName;
 
     /** the imports for the file */
-    private final Set<FullIdent> mImports = new HashSet<FullIdent>();
+    private final Set<FullIdent> mImports = Sets.newHashSet();
 
     /** the class names defined in the file */
-    private final Set<String> mClassNames = new HashSet<String>();
+    private final Set<String> mClassNames = Sets.newHashSet();
 
     /** the instantiations in the file */
-    private final Set<DetailAST> mInstantiations = new HashSet<DetailAST>();
+    private final Set<DetailAST> mInstantiations = Sets.newHashSet();
 
     @Override
     public int[] getDefaultTokens()

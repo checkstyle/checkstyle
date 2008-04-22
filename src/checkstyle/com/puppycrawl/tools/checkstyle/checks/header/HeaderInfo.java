@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import com.google.common.collect.Lists;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
@@ -148,7 +149,7 @@ class HeaderInfo
     private void loadHeader(final Reader aHeaderReader) throws IOException
     {
         final LineNumberReader lnr = new LineNumberReader(aHeaderReader);
-        final ArrayList<String> lines = new ArrayList<String>();
+        final ArrayList<String> lines = Lists.newArrayList();
         while (true) {
             final String l = lnr.readLine();
             if (l == null) {

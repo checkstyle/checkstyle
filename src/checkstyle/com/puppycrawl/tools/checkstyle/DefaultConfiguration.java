@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -37,11 +37,10 @@ public final class DefaultConfiguration implements Configuration
 
     /** the list of child Configurations */
     private final List<Configuration> mChildren =
-        new ArrayList<Configuration>();
+        Lists.newArrayList();
 
     /** the map from attribute names to attribute values */
-    private final Map<String, String> mAttributeMap =
-        new HashMap<String, String>();
+    private final Map<String, String> mAttributeMap = Maps.newHashMap();
 
     /**
      * Instantiates a DefaultConfiguration.

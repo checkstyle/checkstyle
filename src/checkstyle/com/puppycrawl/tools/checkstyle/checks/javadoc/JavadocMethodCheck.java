@@ -19,6 +19,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import antlr.collections.AST;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -29,8 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -402,7 +402,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     private List<JavadocTag> getMethodTags(TextBlock aComment)
     {
         final String[] lines = aComment.getText();
-        final List<JavadocTag> tags = new ArrayList<JavadocTag>();
+        final List<JavadocTag> tags = Lists.newArrayList();
         int currentLine = aComment.getStartLineNo() - 1;
 
         for (int i = 0; i < lines.length; i++) {
@@ -508,7 +508,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     private List<DetailAST> getParameters(DetailAST aAST)
     {
         final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
-        final List<DetailAST> retVal = new ArrayList<DetailAST>();
+        final List<DetailAST> retVal = Lists.newArrayList();
 
         DetailAST child = (DetailAST) params.getFirstChild();
         while (child != null) {
@@ -529,7 +529,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      */
     private List<ExceptionInfo> getThrows(DetailAST aAST)
     {
-        final List<ExceptionInfo> retVal = new ArrayList<ExceptionInfo>();
+        final List<ExceptionInfo> retVal = Lists.newArrayList();
         final DetailAST throwsAST = aAST
                 .findFirstToken(TokenTypes.LITERAL_THROWS);
         if (throwsAST != null) {
@@ -696,7 +696,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     {
         // Loop over the tags, checking to see they exist in the throws.
         // The foundThrows used for performance only
-        final Set<String> foundThrows = new HashSet<String>();
+        final Set<String> foundThrows = Sets.newHashSet();
         final ListIterator<JavadocTag> tagIt = aTags.listIterator();
         while (tagIt.hasNext()) {
             final JavadocTag tag = tagIt.next();

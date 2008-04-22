@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import com.google.common.collect.Maps;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -84,8 +84,7 @@ public final class Scope implements Comparable<Scope>, Serializable
         new Scope(SCOPECODE_ANONINNER, SCOPENAME_ANONINNER);
 
     /** map from scope names to the respective Scope */
-    private static final Map<String, Scope> NAME_TO_SCOPE =
-        new HashMap<String, Scope>();
+    private static final Map<String, Scope> NAME_TO_SCOPE = Maps.newHashMap();
     static {
         NAME_TO_SCOPE.put(SCOPENAME_NOTHING, NOTHING);
         NAME_TO_SCOPE.put(SCOPENAME_PUBLIC, PUBLIC);

@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
@@ -14,7 +14,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import org.junit.Test;
@@ -174,7 +173,7 @@ public class XMLLoggerTest
             new ByteArrayInputStream(bytes);
         final BufferedReader reader =
             new BufferedReader(new InputStreamReader(inStream));
-        final List<String> lineList = new ArrayList<String>();
+        final List<String> lineList = Lists.newArrayList();
         while (true) {
             final String line = reader.readLine();
             if (line == null) {

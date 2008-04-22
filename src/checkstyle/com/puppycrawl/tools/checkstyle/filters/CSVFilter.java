@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.util.HashSet;
+import com.google.common.collect.Sets;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -33,7 +33,7 @@ import java.util.StringTokenizer;
 class CSVFilter implements IntFilter
 {
     /** filter set */
-    private final Set<IntFilter> mFilters = new HashSet<IntFilter>();
+    private final Set<IntFilter> mFilters = Sets.newHashSet();
 
     /**
      * Adds a IntFilter to the set.

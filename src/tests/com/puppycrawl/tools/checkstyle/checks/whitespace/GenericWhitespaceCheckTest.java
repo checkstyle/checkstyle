@@ -1,8 +1,8 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.util.HashMap;
 import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class GenericWhitespaceCheckTest
     public void setUp()
     {
         mCheckConfig = createCheckConfig(GenericWhitespaceCheck.class);
-        Map<Class<?>, Integer> x = new HashMap<Class<?>, Integer>();
+        Map<Class<?>, Integer> x = Maps.newHashMap();
         for (final Map.Entry<Class<?>, Integer> entry : x.entrySet()) {
             entry.getValue();
         }

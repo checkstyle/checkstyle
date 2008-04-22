@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import java.util.ArrayList;
 import java.util.BitSet;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -42,8 +42,7 @@ public class MultipleStringLiteralsCheck extends Check
      * The found strings and their positions.
      * <String, ArrayList>, with the ArrayList containing StringInfo objects.
      */
-    private final Map<String, List<StringInfo>> mStringMap =
-        new HashMap<String, List<StringInfo>>();
+    private final Map<String, List<StringInfo>> mStringMap = Maps.newHashMap();
 
     /**
      * Marks the TokenTypes where duplicate strings should be ignored.
@@ -124,7 +123,7 @@ public class MultipleStringLiteralsCheck extends Check
         if ((mPattern == null) || !mPattern.matcher(currentString).find()) {
             List<StringInfo> hitList = mStringMap.get(currentString);
             if (hitList == null) {
-                hitList = new ArrayList<StringInfo>();
+                hitList = Lists.newArrayList();
                 mStringMap.put(currentString, hitList);
             }
             final int line = aAST.getLineNo();

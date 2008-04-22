@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -40,7 +40,7 @@ import java.util.Vector;
 public abstract class AbstractTypeAwareCheck extends Check
 {
     /** imports details **/
-    private final Set<String> mImports = new HashSet<String>();
+    private final Set<String> mImports = Sets.newHashSet();
 
     /** full identifier for package of the method **/
     private FullIdent mPackageFullIdent;
@@ -329,8 +329,7 @@ public abstract class AbstractTypeAwareCheck extends Check
         final DetailAST typeParams =
             aAST.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
-        final Map<String, ClassInfo> paramsMap =
-            new HashMap<String, ClassInfo>();
+        final Map<String, ClassInfo> paramsMap = Maps.newHashMap();
         mTypeParams.add(paramsMap);
 
         if (typeParams == null) {

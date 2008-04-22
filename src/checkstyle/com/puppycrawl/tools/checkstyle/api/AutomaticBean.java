@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import com.google.common.collect.Lists;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -386,7 +386,7 @@ final class StrArrayConverter extends AbstractArrayConverter
         }
 
         final StringTokenizer st = new StringTokenizer(str, ",");
-        final List<String> retVal = new ArrayList<String>();
+        final List<String> retVal = Lists.newArrayList();
 
         while (st.hasMoreTokens()) {
             final String token = st.nextToken();

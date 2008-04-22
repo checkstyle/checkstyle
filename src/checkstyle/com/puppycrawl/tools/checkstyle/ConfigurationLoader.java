@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -29,8 +31,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -212,7 +212,7 @@ public final class ConfigurationLoader
      */
     private static Map<String, String> createIdToResourceNameMap()
     {
-        final Map<String, String> map = new HashMap<String, String>();
+        final Map<String, String> map = Maps.newHashMap();
         map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
         map.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
@@ -402,8 +402,8 @@ public final class ConfigurationLoader
             return null;
         }
 
-        final List<String> fragments = new ArrayList<String>();
-        final List<String> propertyRefs = new ArrayList<String>();
+        final List<String> fragments = Lists.newArrayList();
+        final List<String> propertyRefs = Lists.newArrayList();
         parsePropertyString(aValue, fragments, propertyRefs);
 
         final StringBuffer sb = new StringBuffer();

@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -33,7 +33,7 @@ public final class OperatorWrapOption
 {
     /** maps from a string representation to an option */
     private static final Map<String, AbstractOption> STR_TO_OPT =
-        new HashMap<String, AbstractOption>();
+        Maps.newHashMap();
 
     /** Require that the operator is on a new line. */
     public static final OperatorWrapOption NL = new OperatorWrapOption("nl");

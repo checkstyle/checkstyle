@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -35,7 +35,7 @@ public final class PadOption
 {
     /** maps from a string representation to an option */
     private static final Map<String, AbstractOption> STR_TO_OPT =
-        new HashMap<String, AbstractOption>();
+        Maps.newHashMap();
 
     /**
      * Represents no spacing following a left parenthesis

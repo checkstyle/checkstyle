@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -149,7 +149,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck
                 .getCppComments();
         final Map<Integer, List<TextBlock>> cComments = getFileContents()
                 .getCComments();
-        final Set<Integer> lines = new HashSet<Integer>();
+        final Set<Integer> lines = Sets.newHashSet();
         lines.addAll(cppComments.keySet());
         lines.addAll(cComments.keySet());
 

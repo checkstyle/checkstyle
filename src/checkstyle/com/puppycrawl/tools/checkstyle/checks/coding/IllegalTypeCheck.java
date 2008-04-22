@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -79,11 +79,11 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
     };
 
     /** illegal classes. */
-    private final Set<String> mIllegalClassNames = new HashSet<String>();
+    private final Set<String> mIllegalClassNames = Sets.newHashSet();
     /** legal abstract classes. */
-    private final Set<String> mLegalAbstractClassNames = new HashSet<String>();
+    private final Set<String> mLegalAbstractClassNames = Sets.newHashSet();
     /** methods which should be ignored. */
-    private final Set<String> mIgnoredMethodNames = new HashSet<String>();
+    private final Set<String> mIgnoredMethodNames = Sets.newHashSet();
 
     /** Creates new instance of the check. */
     public IllegalTypeCheck()

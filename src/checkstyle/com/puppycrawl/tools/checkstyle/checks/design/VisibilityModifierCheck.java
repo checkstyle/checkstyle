@@ -19,12 +19,12 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import antlr.collections.AST;
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -188,7 +188,7 @@ public class VisibilityModifierCheck
         if (modifiersAST.getType() != TokenTypes.MODIFIERS) {
             throw new IllegalStateException("Strange parse tree");
         }
-        final Set<String> retVal = new HashSet<String>();
+        final Set<String> retVal = Sets.newHashSet();
         AST modifier = modifiersAST.getFirstChild();
         while (modifier != null) {
             retVal.add(modifier.getText());

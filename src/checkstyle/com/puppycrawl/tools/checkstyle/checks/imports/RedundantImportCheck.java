@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -57,9 +57,9 @@ public class RedundantImportCheck
     /** name of package in file */
     private String mPkgName;
     /** set of the imports */
-    private final Set<FullIdent> mImports = new HashSet<FullIdent>();
+    private final Set<FullIdent> mImports = Sets.newHashSet();
     /** set of static imports */
-    private final Set<FullIdent> mStaticImports = new HashSet<FullIdent>();
+    private final Set<FullIdent> mStaticImports = Sets.newHashSet();
 
     @Override
     public void beginTree(DetailAST aRootAST)

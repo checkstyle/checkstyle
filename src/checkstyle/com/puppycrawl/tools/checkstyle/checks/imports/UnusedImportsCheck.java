@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -48,10 +48,10 @@ public class UnusedImportsCheck extends Check
     private boolean mCollect;
 
     /** set of the imports */
-    private final Set<FullIdent> mImports = new HashSet<FullIdent>();
+    private final Set<FullIdent> mImports = Sets.newHashSet();
 
     /** set of references - possibly to imports or other things */
-    private final Set<String> mReferenced = new HashSet<String>();
+    private final Set<String> mReferenced = Sets.newHashSet();
 
     /** Default constructor. */
     public UnusedImportsCheck()

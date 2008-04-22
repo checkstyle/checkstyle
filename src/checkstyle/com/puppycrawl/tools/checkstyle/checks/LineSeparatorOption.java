@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.google.common.collect.Maps;
 import java.util.Map;
-import java.util.HashMap;
 
 /**
  * Represents the options for line separator settings.
@@ -31,7 +31,7 @@ public final class LineSeparatorOption extends AbstractOption
 {
     /** maps from a string representation to an option */
     private static final Map<String, AbstractOption> STR_TO_OPT =
-        new HashMap<String, AbstractOption>();
+        Maps.newHashMap();
 
     /** Windows-style line separators. **/
     public static final LineSeparatorOption CRLF =

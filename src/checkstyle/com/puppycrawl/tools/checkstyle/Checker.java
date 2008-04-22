@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -33,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -55,11 +55,11 @@ public class Checker extends AutomaticBean
 
     /** vector of listeners */
     private final List<AuditListener> mListeners =
-        new ArrayList<AuditListener>();
+        Lists.newArrayList();
 
     /** vector of fileset checks */
     private final List<FileSetCheck> mFileSetChecks =
-        new ArrayList<FileSetCheck>();
+        Lists.newArrayList();
 
     /** class loader to resolve classes with. **/
     private ClassLoader mLoader =

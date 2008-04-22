@@ -2,8 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
-
-import java.util.HashSet;
+import com.google.common.collect.Sets;
 import java.util.Set;
 import org.junit.Test;
 public class ClassResolverTest
@@ -11,7 +10,7 @@ public class ClassResolverTest
     @Test
     public void testMisc() throws ClassNotFoundException
     {
-        final Set<String> imps = new HashSet<String>();
+        final Set<String> imps = Sets.newHashSet();
         imps.add("java.io.File");
         imps.add("nothing.will.match.*");
         imps.add("java.applet.*");

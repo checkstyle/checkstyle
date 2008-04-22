@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -87,7 +87,7 @@ public class RegexpCheck extends AbstractFormatCheck
     private int mErrorCount;
 
     /** Relates StringBuffer positions to line # and column */
-    private final List<Integer[]> mCharacters = new ArrayList<Integer[]>();
+    private final List<Integer[]> mCharacters = Lists.newArrayList();
 
     /** The mMatcher */
     private Matcher mMatcher;

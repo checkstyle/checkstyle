@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
@@ -29,7 +30,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Properties;
@@ -73,13 +73,13 @@ public class CheckStyleTask extends Task
     private String mFailureProperty;
 
     /** contains the filesets to process */
-    private final List<FileSet> mFileSets = new ArrayList<FileSet>();
+    private final List<FileSet> mFileSets = Lists.newArrayList();
 
     /** contains the formatters to log to */
-    private final List<Formatter> mFormatters = new ArrayList<Formatter>();
+    private final List<Formatter> mFormatters = Lists.newArrayList();
 
     /** contains the Properties to override */
-    private final List<Property> mOverrideProps = new ArrayList<Property>();
+    private final List<Property> mOverrideProps = Lists.newArrayList();
 
     /** the name of the properties file */
     private File mPropertiesFile;
@@ -476,7 +476,7 @@ public class CheckStyleTask extends Task
      */
     protected List<File> scanFileSets()
     {
-        final List<File> list = new ArrayList<File>();
+        final List<File> list = Lists.newArrayList();
         if (mFileName != null) {
             // oops we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.

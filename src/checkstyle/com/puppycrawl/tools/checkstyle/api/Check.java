@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.HashSet;
+import com.google.common.collect.Sets;
 import java.util.Set;
 
 /**
@@ -38,7 +38,7 @@ public abstract class Check extends AbstractViolationReporter
     private FileContents mFileContents;
 
     /** the tokens the check is interested in */
-    private final Set<String> mTokens = new HashSet<String>();
+    private final Set<String> mTokens = Sets.newHashSet();
 
     /** the object for collecting messages. */
     private LocalizedMessages mMessages;

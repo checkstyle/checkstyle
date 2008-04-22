@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class BlockOption
 {
     /** maps from a string representation to an option */
     private static final Map<String, AbstractOption> STR_TO_OPT =
-        new HashMap<String, AbstractOption>();
+        Maps.newHashMap();
 
     /**
      * Represents the policy that there is some text in the block. For example:

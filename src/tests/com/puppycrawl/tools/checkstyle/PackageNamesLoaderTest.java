@@ -1,10 +1,9 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
-
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import org.junit.Test;
 
@@ -51,7 +50,7 @@ public class PackageNamesLoaderTest
         assertEquals("pkgNames.length.", checkstylePackages.length,
             aPkgNames.size());
         Set<String> checkstylePackagesSet =
-            new HashSet<String>(Arrays.asList(checkstylePackages));
+            Sets.newHashSet(Arrays.asList(checkstylePackages));
         assertEquals("names set.", checkstylePackagesSet, aPkgNames);
     }
 }

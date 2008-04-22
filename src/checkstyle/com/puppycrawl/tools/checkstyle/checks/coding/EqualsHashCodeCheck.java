@@ -20,11 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import antlr.collections.AST;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -53,12 +53,10 @@ public class EqualsHashCodeCheck
     // keep track of definitions in different inner classes
 
     /** maps OBJ_BLOCK to the method definition of equals() */
-    private final Map<DetailAST, DetailAST> mObjBlockEquals =
-        new HashMap<DetailAST, DetailAST>();
+    private final Map<DetailAST, DetailAST> mObjBlockEquals = Maps.newHashMap();
 
     /** the set of OBJ_BLOCKs that contain a definition of hashCode() */
-    private final Set<DetailAST> mObjBlockWithHashCode =
-        new HashSet<DetailAST>();
+    private final Set<DetailAST> mObjBlockWithHashCode = Sets.newHashSet();
 
     @Override
     public int[] getDefaultTokens()

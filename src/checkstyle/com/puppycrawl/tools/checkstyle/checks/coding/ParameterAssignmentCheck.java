@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
@@ -194,7 +194,7 @@ public final class ParameterAssignmentCheck extends Check
     private void visitMethodDef(DetailAST aAST)
     {
         mParameterNamesStack.push(mParameterNames);
-        mParameterNames = new HashSet<String>();
+        mParameterNames = Sets.newHashSet();
 
         visitMethodParameters(aAST.findFirstToken(TokenTypes.PARAMETERS));
     }

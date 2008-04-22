@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import java.io.File;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -85,7 +85,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
      */
     protected final Set<File> getParentDirs(List<File> aFiles)
     {
-        final Set<File> directories = new HashSet<File>();
+        final Set<File> directories = Sets.newHashSet();
         for (File element : aFiles) {
             final File f = element.getAbsoluteFile();
             if (f.getName().endsWith(".java")) {

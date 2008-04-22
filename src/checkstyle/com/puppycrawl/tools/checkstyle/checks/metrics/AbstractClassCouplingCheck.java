@@ -18,15 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
-import java.util.TreeSet;
 
 /**
  * Base class for coupling calculation.
@@ -37,7 +36,7 @@ import java.util.TreeSet;
 public abstract class AbstractClassCouplingCheck extends Check
 {
     /** Class names to ignore. */
-    private final Set<String> mIgnoredClassNames = new HashSet<String>();
+    private final Set<String> mIgnoredClassNames = Sets.newHashSet();
     /** Allowed complexity. */
     private int mMax;
     /** package of the file we check. */
@@ -205,7 +204,7 @@ public abstract class AbstractClassCouplingCheck extends Check
          * Set of referenced classes.
          * Sorted by name for predictable error messages in unit tests.
          */
-        private final Set<String> mReferencedClassNames = new TreeSet<String>();
+        private final Set<String> mReferencedClassNames = Sets.newTreeSet();
         /** Own class name. */
         private final String mClassName;
         /* Location of own class. (Used to log violations) */

@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -27,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -201,7 +201,7 @@ public class JavadocTypeCheck
     private List<JavadocTag> getJavadocTags(TextBlock aCmt)
     {
         final String[] text = aCmt.getText();
-        final List<JavadocTag> tags = new ArrayList<JavadocTag>();
+        final List<JavadocTag> tags = Lists.newArrayList();
         Pattern tagPattern = Utils.getPattern("/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
         for (int i = 0; i < text.length; i++) {
             final String s = text[i];

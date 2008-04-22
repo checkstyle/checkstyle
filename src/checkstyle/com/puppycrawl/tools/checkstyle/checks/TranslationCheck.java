@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.Defn;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -29,8 +31,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -93,15 +93,14 @@ public class TranslationCheck
     private static Map<String, Set<File>> arrangePropertyFiles(
         List<File> aPropFiles)
     {
-        final Map<String, Set<File>> propFileMap =
-            new HashMap<String, Set<File>>();
+        final Map<String, Set<File>> propFileMap = Maps.newHashMap();
 
         for (final File f : aPropFiles) {
             final String identifier = extractPropertyIdentifier(f);
 
             Set<File> fileSet = propFileMap.get(identifier);
             if (fileSet == null) {
-                fileSet = new HashSet<File>();
+                fileSet = Sets.newHashSet();
                 propFileMap.put(identifier, fileSet);
             }
             fileSet.add(f);
@@ -117,7 +116,7 @@ public class TranslationCheck
      */
     private Set<Object> loadKeys(File aFile)
     {
-        final Set<Object> keys = new HashSet<Object>();
+        final Set<Object> keys = Sets.newHashSet();
         InputStream inStream = null;
 
         try {
@@ -194,7 +193,7 @@ public class TranslationCheck
             final Set<Object> currentKeys = entry.getValue();
 
             // Clone the keys so that they are not lost
-            final Set<Object> keysClone = new HashSet<Object>(aKeys);
+            final Set<Object> keysClone = Sets.newHashSet(aKeys);
             keysClone.removeAll(currentKeys);
 
             // Remaining elements in the key set are missing in the current file
@@ -228,9 +227,8 @@ public class TranslationCheck
 
             if (files.size() >= 2) {
                 // build a map from files to the keys they contain
-                final Set<Object> keys = new HashSet<Object>();
-                final Map<File, Set<Object>> fileMap =
-                    new HashMap<File, Set<Object>>();
+                final Set<Object> keys = Sets.newHashSet();
+                final Map<File, Set<Object>> fileMap = Maps.newHashMap();
 
                 for (File file : files) {
                     final Set<Object> fileKeys = loadKeys(file);

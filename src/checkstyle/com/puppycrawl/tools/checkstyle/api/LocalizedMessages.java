@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.api;
 // as soon as architecture has settled. At the time of writing
 // this class is not necessary as a part of the public api
 
+import com.google.common.collect.Sets;
 import java.util.TreeSet;
 
 /**
@@ -32,8 +33,7 @@ import java.util.TreeSet;
 public final class LocalizedMessages
 {
     /** contains the messages logged **/
-    private final TreeSet<LocalizedMessage> mMessages =
-        new TreeSet<LocalizedMessage>();
+    private final TreeSet<LocalizedMessage> mMessages = Sets.newTreeSet();
 
     /** @return the logged messages **/
     public LocalizedMessage[] getMessages()

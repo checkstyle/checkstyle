@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.HashSet;
+import com.google.common.collect.Sets;
 import java.util.Set;
 
 /**
@@ -31,7 +31,7 @@ public class FilterSet
     implements Filter
 {
     /** filter set */
-    private final Set<Filter> mFilters = new HashSet<Filter>();
+    private final Set<Filter> mFilters = Sets.newHashSet();
 
     /**
      * Adds a Filter to the set.

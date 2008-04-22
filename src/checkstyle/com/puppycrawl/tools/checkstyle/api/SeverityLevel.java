@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import com.google.common.collect.Maps;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -70,7 +70,7 @@ public final class SeverityLevel implements Comparable<SeverityLevel>,
 
     /** map from level names to the respective level */
     private static final Map<String, SeverityLevel> NAME_TO_LEVEL =
-        new HashMap<String, SeverityLevel>();
+        Maps.newHashMap();
     static {
         NAME_TO_LEVEL.put(SEVERITYNAME_IGNORE, IGNORE);
         NAME_TO_LEVEL.put(SEVERITYNAME_INFO, INFO);

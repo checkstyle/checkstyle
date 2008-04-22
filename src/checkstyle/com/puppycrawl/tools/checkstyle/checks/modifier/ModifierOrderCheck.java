@@ -19,14 +19,12 @@
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import antlr.collections.AST;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
-
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * <p>
@@ -87,7 +85,7 @@ public class ModifierOrderCheck
     @Override
     public void visitToken(DetailAST aAST)
     {
-        final List<DetailAST> mods = new ArrayList<DetailAST>();
+        final List<DetailAST> mods = Lists.newArrayList();
         AST modifier = aAST.getFirstChild();
         while (modifier != null) {
             mods.add((DetailAST) modifier);
