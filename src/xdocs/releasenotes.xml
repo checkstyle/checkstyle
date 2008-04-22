@@ -111,6 +111,10 @@
           Applied patch 1892253 to expand access controls to other naming
           checks.
         </li>
+        <li>
+          <i>Updated dependencies</i>: Removed commons-collections; added google collections
+          (google-collect-snapshot-20080321.jar).
+        </li>
       </ul>
     </section>
 
