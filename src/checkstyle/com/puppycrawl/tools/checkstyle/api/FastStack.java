@@ -87,12 +87,13 @@ public class FastStack<E> implements Iterable<E>
     }
 
     /**
-     * Return the element at the specified index.
+     * Return the element at the specified index. It does not remove the
+     * element from the stack.
      * @param aIndex the index to return
      * @return the element at the index
      * @throws IllegalArgumentException if index out of range
      */
-    public E get(int aIndex)
+    public E peek(int aIndex)
     {
         if ((aIndex < 0) || (aIndex >= mEntries.size())) {
             throw new IllegalArgumentException("index out of range.");

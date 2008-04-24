@@ -35,7 +35,7 @@ public class FastStackTest
         }
         assertEquals(num, fs.size());
         assertFalse(fs.isEmpty());
-        assertEquals(1, fs.get(1).intValue());
+        assertEquals(1, fs.peek(1).intValue());
         assertEquals(num - 1, fs.peek().intValue());
         assertEquals(num, fs.size());
         for (int i = 0; i < num; i++)

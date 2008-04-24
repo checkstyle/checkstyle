@@ -20,9 +20,9 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.apache.commons.collections.ArrayStack;
 
 // TODO: allow preset indentation styles (IE... GNU style, Sun style, etc...)?
 
@@ -122,7 +122,8 @@ public class IndentationCheck extends Check
     private int mBraceAdjustment;
 
     /** handlers currently in use */
-    private final ArrayStack mHandlers = new ArrayStack();
+    private final FastStack<ExpressionHandler> mHandlers =
+        FastStack.newInstance();
 
     /** factory from which handlers are distributed */
     private final HandlerFactory mHandlerFactory = new HandlerFactory();
@@ -241,7 +242,7 @@ public class IndentationCheck extends Check
         }
 
         final ExpressionHandler handler = mHandlerFactory.getHandler(this, aAST,
-            (ExpressionHandler) mHandlers.peek());
+            mHandlers.peek());
         mHandlers.push(handler);
         try {
             handler.checkIndentation();

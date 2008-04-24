@@ -396,7 +396,7 @@ public class Checker extends AutomaticBean
                 // already contains one
                 sb.append(File.separatorChar);
             }
-            sb.append(s.get(i));
+            sb.append(s.peek(i));
         }
 
 
