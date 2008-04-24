@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
@@ -27,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 import java.util.List;
-import java.util.Stack;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -293,7 +293,7 @@ public class JavadocStyleCheck
     private void checkHtml(final DetailAST aAST, final TextBlock aComment)
     {
         final int lineno = aComment.getStartLineNo();
-        final Stack<HtmlTag> htmlStack = new Stack<HtmlTag>();
+        final FastStack<HtmlTag> htmlStack = FastStack.newInstance();
         final String[] text = aComment.getText();
         final List<String> typeParameters =
             CheckUtils.getTypeParameterNames(aAST);
@@ -335,8 +335,7 @@ public class JavadocStyleCheck
 
         // Identify any tags left on the stack.
         String lastFound = ""; // Skip multiples, like <b>...<b>
-        for (int i = 0; i < htmlStack.size(); i++) {
-            final HtmlTag htag = htmlStack.elementAt(i);
+        for (final HtmlTag htag : htmlStack) {
             if (!isSingleTag(htag)
                 && !htag.getId().equals(lastFound)
                 && !typeParameters.contains(htag.getId()))
@@ -356,9 +355,9 @@ public class JavadocStyleCheck
      * @param aHtmlStack the stack of opened HTML tags.
      * @param aToken the current HTML tag name that has been closed.
      */
-    private void checkUnclosedTags(Stack<HtmlTag> aHtmlStack, String aToken)
+    private void checkUnclosedTags(FastStack<HtmlTag> aHtmlStack, String aToken)
     {
-        final Stack<HtmlTag> unclosedTags = new Stack<HtmlTag>();
+        final FastStack<HtmlTag> unclosedTags = FastStack.newInstance();
         HtmlTag lastOpenTag = aHtmlStack.pop();
         while (!aToken.equalsIgnoreCase(lastOpenTag.getId())) {
             // Find unclosed elements. Put them on a stack so the
@@ -374,8 +373,8 @@ public class JavadocStyleCheck
 
         // Output the unterminated tags, if any
         String lastFound = ""; // Skip multiples, like <b>..<b>
-        for (int i = 0; i < unclosedTags.size(); i++) {
-            lastOpenTag = unclosedTags.get(i);
+        for (final HtmlTag htag : unclosedTags) {
+            lastOpenTag = htag;
             if (lastOpenTag.getId().equals(lastFound)) {
                 continue;
             }
@@ -417,15 +416,14 @@ public class JavadocStyleCheck
      * @return <code>false</code> if a previous open tag was found
      *         for the token.
      */
-    private boolean isExtraHtml(String aToken, Stack<HtmlTag> aHtmlStack)
+    private boolean isExtraHtml(String aToken, FastStack<HtmlTag> aHtmlStack)
     {
         boolean isExtra = true;
-        for (int i = 0; i < aHtmlStack.size(); i++) {
+        for (final HtmlTag td : aHtmlStack) {
             // Loop, looking for tags that are closed.
             // The loop is needed in case there are unclosed
             // tags on the stack. In that case, the stack would
             // not be empty, but this tag would still be extra.
-            final HtmlTag td = aHtmlStack.elementAt(i);
             if (aToken.equalsIgnoreCase(td.getId())) {
                 isExtra = false;
                 break;

@@ -20,8 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.Stack;
 
 /**
  * Restricts the number of executable statements to a specified limit
@@ -38,7 +38,7 @@ public final class ExecutableStatementCountCheck
     private int mMax;
 
     /** Stack of method contexts. */
-    private final Stack<Context> mContextStack = new Stack<Context>();
+    private final FastStack<Context> mContextStack = FastStack.newInstance();
 
     /** Current method context. */
     private Context mContext;

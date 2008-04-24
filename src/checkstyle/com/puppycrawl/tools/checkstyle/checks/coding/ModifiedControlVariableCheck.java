@@ -20,8 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.Stack;
 /**
  * Check for ensuring that for loop control variables are not modified
  * inside the for block.
@@ -31,10 +31,10 @@ import java.util.Stack;
 public final class ModifiedControlVariableCheck extends Check
 {
     /** Current set of parameters. */
-    private Stack<String> mCurrentVariables = new Stack<String>();
+    private FastStack<String> mCurrentVariables = FastStack.newInstance();
     /** Stack of block parameters. */
-    private final Stack<Stack<String>> mVariableStack =
-        new Stack<Stack<String>>();
+    private final FastStack<FastStack<String>> mVariableStack =
+        FastStack.newInstance();
 
     @Override
     public int[] getDefaultTokens()
@@ -157,7 +157,7 @@ public final class ModifiedControlVariableCheck extends Check
     private void enterBlock()
     {
         mVariableStack.push(mCurrentVariables);
-        mCurrentVariables = new Stack<String>();
+        mCurrentVariables = FastStack.newInstance();
 
     }
     /**

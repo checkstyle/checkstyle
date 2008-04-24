@@ -21,11 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 import java.util.Set;
-import java.util.Stack;
 
 /**
  * Base class for coupling calculation.
@@ -43,7 +43,7 @@ public abstract class AbstractClassCouplingCheck extends Check
     private String mPackageName;
 
     /** Stack of contexts. */
-    private final Stack<Context> mContextStack = new Stack<Context>();
+    private final FastStack<Context> mContextStack = FastStack.newInstance();
     /** Current context. */
     private Context mContext;
 

@@ -19,9 +19,9 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
-import java.util.Stack;
 
 /**
  * <p> Ensures that exceptions (defined as any class name conforming
@@ -41,7 +41,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck
     /** Default value for format property. */
     private static final String DEFAULT_FORMAT = "^.*Exception$|^.*Error$";
     /** Stack of checking information for classes. */
-    private final Stack<Boolean> mCheckingStack = new Stack<Boolean>();
+    private final FastStack<Boolean> mCheckingStack = FastStack.newInstance();
     /** Should we check current class or not. */
     private boolean mChecking;
 

@@ -20,11 +20,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
 
 /**
  * <p>
@@ -44,8 +44,8 @@ import java.util.Stack;
 public class FinalLocalVariableCheck extends Check
 {
     /** Scope Stack */
-    private final Stack<Map<String, DetailAST>> mScopeStack =
-        new Stack<Map<String, DetailAST>>();
+    private final FastStack<Map<String, DetailAST>> mScopeStack =
+        FastStack.newInstance();
 
     @Override
     public int[] getDefaultTokens()

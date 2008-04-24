@@ -21,9 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.Set;
-import java.util.Stack;
 
 /**
  * <p>
@@ -42,8 +42,8 @@ import java.util.Stack;
 public final class ParameterAssignmentCheck extends Check
 {
     /** Stack of methods' parameters. */
-    private final Stack<Set<String>> mParameterNamesStack =
-        new Stack<Set<String>>();
+    private final FastStack<Set<String>> mParameterNamesStack =
+        FastStack.newInstance();
     /** Current set of perameters. */
     private Set<String> mParameterNames;
 

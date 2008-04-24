@@ -20,11 +20,11 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -45,7 +45,7 @@ final class ImportControlLoader extends AbstractLoader
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd";
 
     /** Used to hold the {@link PkgControl} objects. */
-    private final Stack<PkgControl> mStack = new Stack<PkgControl>();
+    private final FastStack<PkgControl> mStack = FastStack.newInstance();
 
     /**
      * Constructs an instance.

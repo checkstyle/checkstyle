@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses( {AbstractViolationReporterTest.class,
     AutomaticBeanTest.class, DetailASTTest.class, ScopeTest.class,
-    TokenTypesTest.class})
+    TokenTypesTest.class, FastStackTest.class})
 public class AllApiTests
 {
 }

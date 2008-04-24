@@ -21,13 +21,13 @@ package com.puppycrawl.tools.checkstyle;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.Set;
-import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -56,7 +56,7 @@ public final class PackageNamesLoader
         "checkstyle_packages.xml";
 
     /** The temporary stack of package name parts */
-    private final Stack<String> mPackageStack = new Stack<String>();
+    private final FastStack<String> mPackageStack = FastStack.newInstance();
 
     /** The fully qualified package names. */
     private final Set<String> mPackageNames = Sets.newLinkedHashSet();

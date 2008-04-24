@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
@@ -37,7 +38,6 @@ import java.io.File;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.Stack;
 import java.util.StringTokenizer;
 
 /**
@@ -369,7 +369,7 @@ public class Checker extends AutomaticBean
             }
         }
 
-        final Stack<String> s = new Stack<String>();
+        final FastStack<String> s = FastStack.newInstance();
         s.push(root);
         final StringTokenizer tok = new StringTokenizer(aPath, File.separator);
         while (tok.hasMoreTokens()) {
@@ -396,7 +396,7 @@ public class Checker extends AutomaticBean
                 // already contains one
                 sb.append(File.separatorChar);
             }
-            sb.append(s.elementAt(i));
+            sb.append(s.get(i));
         }
 
 

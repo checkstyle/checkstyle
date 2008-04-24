@@ -20,9 +20,9 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.math.BigInteger;
-import java.util.Stack;
 
 /**
  * Base class for checks the calculate complexity based around methods.
@@ -37,7 +37,7 @@ public abstract class AbstractComplexityCheck
     private static final BigInteger INITIAL_VALUE = BigInteger.ONE;
 
     /** stack of values - all but the current value */
-    private final Stack<BigInteger> mValueStack = new Stack<BigInteger>();
+    private final FastStack<BigInteger> mValueStack = FastStack.newInstance();
 
     /** the current value */
     private BigInteger mCurrentValue = BigInteger.ZERO;

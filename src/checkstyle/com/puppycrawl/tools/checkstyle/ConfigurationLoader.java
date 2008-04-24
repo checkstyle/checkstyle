@@ -23,6 +23,7 @@ import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -34,7 +35,6 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -198,8 +198,8 @@ public final class ConfigurationLoader
     /** property resolver **/
     private final PropertyResolver mOverridePropsResolver;
     /** the loaded configurations **/
-    private final Stack<DefaultConfiguration> mConfigStack =
-        new Stack<DefaultConfiguration>();
+    private final FastStack<DefaultConfiguration> mConfigStack =
+        FastStack.newInstance();
     /** the Configuration that is being built */
     private Configuration mConfiguration;
 

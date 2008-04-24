@@ -20,9 +20,9 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.Stack;
 
 /**
  * <p>
@@ -41,7 +41,7 @@ public class FinalClassCheck
     extends Check
 {
     /** Keeps ClassDesc objects for stack of declared classes. */
-    private final Stack<ClassDesc> mClasses = new Stack<ClassDesc>();
+    private final FastStack<ClassDesc> mClasses = FastStack.newInstance();
 
     @Override
     public int[] getDefaultTokens()

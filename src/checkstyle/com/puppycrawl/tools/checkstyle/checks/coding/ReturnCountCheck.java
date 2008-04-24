@@ -19,9 +19,9 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
-import java.util.Stack;
 
 /**
  * <p>
@@ -42,7 +42,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     private static final int DEFAULT_MAX = 2;
 
     /** Stack of method contexts. */
-    private final Stack<Context> mContextStack = new Stack<Context>();
+    private final FastStack<Context> mContextStack = FastStack.newInstance();
     /** Maximum allowed number of return stmts. */
     private int mMax;
     /** Current method context. */

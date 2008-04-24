@@ -20,8 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.Stack;
 
 /**
  * This check calculates the Non Commenting Source Statements (NCSS) metric for
@@ -56,7 +56,7 @@ public class JavaNCSSCheck extends Check
     private int mMethodMax = METHOD_MAX_NCSS;
 
     /** list containing the stacked counters */
-    private Stack<Counter> mCounters;
+    private FastStack<Counter> mCounters;
 
     @Override
     public int[] getDefaultTokens()
@@ -131,7 +131,7 @@ public class JavaNCSSCheck extends Check
     @Override
     public void beginTree(DetailAST aRootAST)
     {
-        mCounters = new Stack<Counter>();
+        mCounters = new FastStack<Counter>();
 
         //add a counter for the file
         mCounters.push(new Counter());
@@ -155,9 +155,8 @@ public class JavaNCSSCheck extends Check
         //check if token is countable
         if (isCountable(aAST)) {
             //increment the stacked counters
-            final int size = mCounters.size();
-            for (int i = 0; i < size; i++) {
-                (mCounters.get(i)).increment();
+            for (final Counter c : mCounters) {
+                c.increment();
             }
         }
     }
