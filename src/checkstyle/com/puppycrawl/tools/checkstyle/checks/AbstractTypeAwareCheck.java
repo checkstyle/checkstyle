@@ -22,12 +22,12 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.Map;
 import java.util.Set;
-import java.util.Vector;
 
 /**
  * Abstract class that endeavours to maintain type information for the Java
@@ -52,8 +52,8 @@ public abstract class AbstractTypeAwareCheck extends Check
     private ClassResolver mClassResolver;
 
     /** Stack of maps for type params. */
-    private final Vector<Map<String, ClassInfo>> mTypeParams =
-        new Vector<Map<String, ClassInfo>>();
+    private final FastStack<Map<String, ClassInfo>> mTypeParams =
+        FastStack.newInstance();
 
     /**
      * Whether to log class loading errors to the checkstyle report
@@ -167,10 +167,10 @@ public abstract class AbstractTypeAwareCheck extends Check
             else {
                 mCurrentClass = mCurrentClass.substring(0, dotIdx);
             }
-            mTypeParams.remove(mTypeParams.size() - 1);
+            mTypeParams.pop();
         }
         else if (aAST.getType() == TokenTypes.METHOD_DEF) {
-            mTypeParams.remove(mTypeParams.size() - 1);
+            mTypeParams.pop();
         }
         else if ((aAST.getType() != TokenTypes.PACKAGE_DEF)
                  && (aAST.getType() != TokenTypes.IMPORT))
@@ -330,7 +330,7 @@ public abstract class AbstractTypeAwareCheck extends Check
             aAST.findFirstToken(TokenTypes.TYPE_PARAMETERS);
 
         final Map<String, ClassInfo> paramsMap = Maps.newHashMap();
-        mTypeParams.add(paramsMap);
+        mTypeParams.push(paramsMap);
 
         if (typeParams == null) {
             return;
@@ -404,7 +404,7 @@ public abstract class AbstractTypeAwareCheck extends Check
     {
         ClassInfo ci = null;
         for (int i = mTypeParams.size() - 1; i >= 0; i--) {
-            final Map<String, ClassInfo> paramMap = mTypeParams.get(i);
+            final Map<String, ClassInfo> paramMap = mTypeParams.peek(i);
             ci = paramMap.get(aName);
             if (ci != null) {
                 break;
