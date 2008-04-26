@@ -81,7 +81,7 @@ public class AvoidStaticImportCheck
      */
     public void setExcludes(String[] aExcludes)
     {
-        mExcludes = aExcludes;
+        mExcludes = aExcludes.clone();
     }
 
     @Override

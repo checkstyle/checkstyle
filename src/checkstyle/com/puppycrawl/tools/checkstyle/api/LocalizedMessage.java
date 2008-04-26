@@ -149,7 +149,7 @@ public final class LocalizedMessage
         mLineNo = aLineNo;
         mColNo = aColNo;
         mKey = aKey;
-        mArgs = aArgs;
+        mArgs = (null == aArgs) ? null : aArgs.clone();
         mBundle = aBundle;
         mSeverityLevel = aSeverityLevel;
         mModuleId = aModuleId;

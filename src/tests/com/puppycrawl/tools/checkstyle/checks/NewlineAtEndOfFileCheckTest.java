@@ -1,6 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
-import static org.junit.Assert.fail;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -49,20 +48,14 @@ public class NewlineAtEndOfFileCheckTest
             expected);
     }
 
-    @Test
+    @Test(expected=CheckstyleException.class)
     public void testSetLineSeparatorFailure()
         throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", "ct");
-        try {
-            createChecker(checkConfig);
-        }
-        catch (CheckstyleException ex) {
-            return;
-        }
-        fail("should throw conversion exception");
+        createChecker(checkConfig);
     }
 
     @Test

@@ -330,7 +330,7 @@ public class JavaNCSSCheck extends Check
      *
      * Class representing a counter,
      */
-    private class Counter
+    private static class Counter
     {
         /** the counters internal integer */
         private int mIvCount;

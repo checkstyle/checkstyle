@@ -42,7 +42,7 @@ public abstract class AbstractSuperCheck
      * whether the method has a call to the super method.
      * @author Rick Giles
      */
-    private class MethodNode
+    private static class MethodNode
     {
         /** method definition */
         private final DetailAST mMethod;

@@ -78,7 +78,7 @@ public class IllegalImportCheck
      */
     public void setIllegalPkgs(String[] aFrom)
     {
-        mIllegalPkgs = aFrom;
+        mIllegalPkgs = aFrom.clone();
     }
 
     @Override

@@ -122,6 +122,19 @@ public final class Scope implements Comparable<Scope>, Serializable
         return this.mCode - aObject.mCode;
     }
 
+    @Override
+    public boolean equals(Object aOther)
+    {
+        // Since this is an Enum class, can do a simple implementation.
+        return (this == aOther);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return mCode;
+    }
+
     /**
      * Checks if this scope is a subscope of another scope.
      * Example: PUBLIC is a subscope of PRIVATE.

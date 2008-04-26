@@ -185,7 +185,7 @@ public final class ExecutableStatementCountCheck
      * Class to encapsulate counting information about one member.
      * @author Simon Harris
      */
-    private class Context
+    private static class Context
     {
         /** Member AST node. */
         private final DetailAST mAST;

@@ -77,7 +77,7 @@ public class DeclarationOrderCheck extends Check
     /**
      * private class to encapsulate the state
      */
-    private class ScopeState
+    private static class ScopeState
     {
         /** The state the check is in */
         private int mScopeState = STATE_STATIC_VARIABLE_DEF;

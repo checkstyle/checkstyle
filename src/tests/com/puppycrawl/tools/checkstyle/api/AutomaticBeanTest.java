@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class AutomaticBeanTest
 {
-    private class TestBean extends AutomaticBean
+    private static class TestBean extends AutomaticBean
     {
         public void setName(String aName)
         {

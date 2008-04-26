@@ -19,14 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.doclets;
 
-import com.sun.javadoc.RootDoc;
 import com.sun.javadoc.ClassDoc;
+import com.sun.javadoc.RootDoc;
 import com.sun.javadoc.Tag;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -47,7 +47,7 @@ public final class CheckDocsDoclet
      * by their check name.
      */
     private static class ClassDocByCheckNameComparator implements
-            Comparator<ClassDoc>
+            Comparator<ClassDoc>, Serializable
     {
         /** {@inheritDoc} */
         public int compare(ClassDoc aObject1, ClassDoc aObject2)

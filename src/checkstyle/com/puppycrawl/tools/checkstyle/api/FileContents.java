@@ -73,7 +73,7 @@ public final class FileContents implements CommentListener
     public FileContents(String aFilename, String[] aLines)
     {
         mFilename = aFilename;
-        mLines = aLines;
+        mLines = aLines.clone();
     }
 
     /** {@inheritDoc} */
@@ -208,7 +208,7 @@ public final class FileContents implements CommentListener
     /** @return the lines in the file */
     public String[] getLines()
     {
-        return mLines;
+        return mLines.clone();
     }
 
     /** @return the name of the file */

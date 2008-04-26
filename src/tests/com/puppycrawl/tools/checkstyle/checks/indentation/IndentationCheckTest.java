@@ -647,8 +647,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport
             throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
-        checkConfig.addAttribute("basicOffset", new Integer(4).toString());
-        checkConfig.addAttribute("tabWidth", new Integer(4).toString());
+        checkConfig.addAttribute("basicOffset", Integer.valueOf(4).toString());
+        checkConfig.addAttribute("tabWidth", Integer.valueOf(4).toString());
         final String[] expected = {
             "25: ctor def child at indentation level 9 not at correct indentation, 8",
         };
@@ -660,7 +660,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
             throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
-        checkConfig.addAttribute("basicOffset", new Integer(2).toString());
+        checkConfig.addAttribute("basicOffset", Integer.valueOf(2).toString());
         final String[] expected = {
             "25: ctor def child at indentation level 5 not at correct indentation, 4",
         };
@@ -672,7 +672,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
             throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
-        checkConfig.addAttribute("caseIndent", new Integer(0).toString());
+        checkConfig.addAttribute("caseIndent", Integer.valueOf(0).toString());
         final String[] expected = {
             "23: case child at indentation level 10 not at correct indentation, 8",
         };
@@ -684,7 +684,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
             throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
-        checkConfig.addAttribute("braceAdjustment", new Integer(2).toString());
+        checkConfig.addAttribute("braceAdjustment", Integer.valueOf(2).toString());
         final String[] expected = {
             "24: if rcurly at indentation level 8 not at correct indentation, 10",
         };

@@ -42,7 +42,7 @@ public final class AuditEvent
     /** filename event associated with **/
     private final String mFileName;
     /** message associated with the event **/
-    private final LocalizedMessage mMessage;
+    private final transient LocalizedMessage mMessage;
 
     /**
      * Creates a new instance.

@@ -514,7 +514,7 @@ public class CheckStyleTask extends Task
         @Override
         public String[] getValues()
         {
-            return VALUES;
+            return VALUES.clone();
         }
     }
 

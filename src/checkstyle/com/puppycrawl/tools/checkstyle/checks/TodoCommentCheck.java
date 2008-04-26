@@ -81,10 +81,10 @@ public class TodoCommentCheck
     private void checkCppComments(FileContents aContents)
     {
         final Map<Integer, TextBlock> comments = aContents.getCppComments();
-        for (Integer key : comments.keySet()) {
-            final String cmt = (comments.get(key)).getText()[0];
+        for (Map.Entry<Integer, TextBlock> entry : comments.entrySet()) {
+            final String cmt = entry.getValue().getText()[0];
             if (getRegexp().matcher(cmt).find()) {
-                log(key.intValue(), "todo.match", getFormat());
+                log(entry.getKey().intValue(), "todo.match", getFormat());
             }
         }
     }
@@ -97,13 +97,14 @@ public class TodoCommentCheck
     {
         final Map<Integer, List<TextBlock>> allComments = aContents
                 .getCComments();
-        for (Integer key : allComments.keySet()) {
-            final List<TextBlock> lineComments = allComments.get(key);
-            for (TextBlock line : lineComments) {
+        for (Map.Entry<Integer, List<TextBlock>> entry : allComments.entrySet())
+        {
+            for (TextBlock line : entry.getValue()) {
                 final String[] cmt = line.getText();
                 for (int i = 0; i < cmt.length; i++) {
                     if (getRegexp().matcher(cmt[i]).find()) {
-                        log(key.intValue() + i, "todo.match", getFormat());
+                        log(entry.getKey().intValue() + i, "todo.match",
+                                getFormat());
                     }
                 }
             }

@@ -206,7 +206,7 @@ public class XMLLoggerTest
         assertEquals("last line.", "</checkstyle>", lines[lines.length - 1]);
     }
 
-    private class TestThrowable extends Exception
+    private static class TestThrowable extends Exception
     {
         @Override
         public void printStackTrace(PrintWriter s)
