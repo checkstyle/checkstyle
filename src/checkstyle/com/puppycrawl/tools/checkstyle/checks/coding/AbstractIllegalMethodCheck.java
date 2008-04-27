@@ -19,15 +19,15 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Provide support for checking for a method with a specified name and no
  * arguments.
  * @author Oliver Burn
  */
-public class BaseIllegalMethodCheck extends Check
+public abstract class AbstractIllegalMethodCheck extends Check
 {
     /** Name of method to disallow. */
     private final String mMethodName;
@@ -39,7 +39,7 @@ public class BaseIllegalMethodCheck extends Check
      * @param aMethodName name of the method to disallow.
      * @param aErrorKey the error key to report with.
      */
-    public BaseIllegalMethodCheck(String aMethodName, final String aErrorKey)
+    public AbstractIllegalMethodCheck(String aMethodName, String aErrorKey)
     {
         mMethodName = aMethodName;
         mErrorKey = aErrorKey;

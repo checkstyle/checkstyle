@@ -26,7 +26,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * @author smckay@google.com (Steve McKay)
  * @author lkuehne
  */
-public class NoFinalizerCheck extends BaseIllegalMethodCheck
+public class NoFinalizerCheck extends AbstractIllegalMethodCheck
 {
     /**
      * Creates an instance.
