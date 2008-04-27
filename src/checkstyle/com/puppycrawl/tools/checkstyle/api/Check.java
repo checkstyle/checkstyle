@@ -116,7 +116,7 @@ public abstract class Check extends AbstractViolationReporter
     }
 
     /**
-     * Initialse the check. This is the time to verify that the check has
+     * Initialise the check. This is the time to verify that the check has
      * everything required to perform it job.
      */
     public void init()
