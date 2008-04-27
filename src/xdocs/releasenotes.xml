@@ -113,7 +113,7 @@
         </li>
         <li>
           <i>Updated dependencies</i>: Removed commons-collections; added google collections
-          (google-collect-snapshot-20080321.jar).
+          (google-collect-snapshot-20080321.jar); upgraded commons-cli to version 1.1.
         </li>
       </ul>
     </section>
