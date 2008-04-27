@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 /**
  * <p>
  * Checks that the clone method is not overridden from the
@@ -130,28 +126,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @see java.lang.Cloneable
  * @see java.lang.CloneNotSupportedException
  */
-public class NoCloneCheck extends Check
+public class NoCloneCheck extends  BaseIllegalMethodCheck
 {
-    @Override
-    public int[] getDefaultTokens()
+    /**
+     * Creates an instance.
+     */
+    public NoCloneCheck()
     {
-        return new int[] {TokenTypes.METHOD_DEF};
-    }
-
-    @Override
-    public void visitToken(DetailAST aAST)
-    {
-        final DetailAST mid = aAST.findFirstToken(TokenTypes.IDENT);
-        final String methodName = mid.getText();
-
-        if ("clone".equals(methodName)) {
-            final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
-            final boolean hasEmptyParamList =
-                !params.branchContains(TokenTypes.PARAMETER_DEF);
-
-            if (hasEmptyParamList) {
-                log(aAST.getLineNo(), "avoid.clone.method");
-            }
-        }
+        super("clone", "avoid.clone.method");
     }
 }

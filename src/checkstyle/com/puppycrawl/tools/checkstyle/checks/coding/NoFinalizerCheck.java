@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 /**
  * Checks that no method having zero parameters is defined
  * using the name <em>finalize</em>.
@@ -30,29 +26,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author smckay@google.com (Steve McKay)
  * @author lkuehne
  */
-public class NoFinalizerCheck extends Check
+public class NoFinalizerCheck extends BaseIllegalMethodCheck
 {
-    @Override
-    public int[] getDefaultTokens()
+    /**
+     * Creates an instance.
+     */
+    public NoFinalizerCheck()
     {
-        return new int[] {TokenTypes.METHOD_DEF};
-    }
-
-    @Override
-    public void visitToken(DetailAST aAST)
-    {
-        final DetailAST mid = aAST.findFirstToken(TokenTypes.IDENT);
-        final String methodName = mid.getText();
-
-        if ("finalize".equals(methodName)) {
-
-            final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
-            final boolean hasEmptyParamList =
-                !params.branchContains(TokenTypes.PARAMETER_DEF);
-
-            if (hasEmptyParamList) {
-                log(aAST.getLineNo(), "avoid.finalizer.method");
-            }
-        }
+        super("finalize", "avoid.finalizer.method");
     }
 }
