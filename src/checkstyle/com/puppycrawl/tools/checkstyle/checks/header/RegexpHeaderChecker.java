@@ -23,8 +23,8 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 /**
- * Isolates the check funtionality in RegexpHeaderCheck in an external class.
- * This makes it easier to use the funtionality both in a Java
+ * Isolates the check functionality in RegexpHeaderCheck in an external class.
+ * This makes it easier to use the functionality both in a Java
  * {@link com.puppycrawl.tools.checkstyle.api.Check} and in
  * a {@link com.puppycrawl.tools.checkstyle.api.FileSetCheck}.
  *
