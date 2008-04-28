@@ -64,7 +64,7 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
     private final RegexpHeaderInfo mHeaderInfo = new RegexpHeaderInfo();
 
     /**
-     * Creates a new instance and initializes the file extentions
+     * Creates a new instance and initializes the file extensions
      * to the default value, which represents most of the typical
      * text files that require a copyright header.
      */
