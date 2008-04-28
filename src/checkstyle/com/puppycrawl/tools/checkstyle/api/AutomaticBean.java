@@ -50,7 +50,7 @@ import org.apache.commons.beanutils.converters.ShortConverter;
 
 /**
  * A Java Bean that implements the component lifecycle interfaces by
- * calling the bean's setters for all configration attributes.
+ * calling the bean's setters for all configuration attributes.
  * @author lkuehne
  */
 public class AutomaticBean
@@ -263,7 +263,7 @@ public class AutomaticBean
     }
 
     /**
-     * Provides a hook to finish the part of this compoent's setup that
+     * Provides a hook to finish the part of this component's setup that
      * was not handled by the bean introspection.
      * <p>
      * The default implementation does nothing.
@@ -321,7 +321,7 @@ final class StrArrayConverter extends AbstractArrayConverter
     }
 
     /**
-     * Create a onverter that will return the specified default value
+     * Create a converter that will return the specified default value
      * if a conversion error occurs.
      *
      * @param aDefaultValue The default value to be returned
