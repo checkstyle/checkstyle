@@ -249,7 +249,7 @@
           description="Run the GUI for displaying a tree">
     <java classname="com.puppycrawl.tools.checkstyle.gui.Main"
           fork="yes" classpathref="run.classpath">
-          <arg value="${gui.target}"/>
+          <arg line="${gui.target}"/>
     </java>
   </target>
 
