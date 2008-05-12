@@ -58,7 +58,7 @@ public final class Utils
 
     /**
      * Accessor for shared instance of logger which should be
-     * used to log all exceptions occured during <code>FileSetCheck</code>
+     * used to log all exceptions occurred during <code>FileSetCheck</code>
      * work (<code>debug()</code> should be used).
      * @return shared exception logger.
      */
@@ -110,7 +110,7 @@ public final class Utils
      * jump to the next tab stop.
      * @param aString the input String
      * @param aToIdx index in aString (exclusive) where the calculation stops
-     * @param aTabWidth the distance betweeen tab stop position.
+     * @param aTabWidth the distance between tab stop position.
      * @return the length of aString.substring(0, aToIdx) with tabs expanded.
      */
     public static int lengthExpandedTabs(String aString,
