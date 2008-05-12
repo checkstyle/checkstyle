@@ -36,6 +36,8 @@
   <property name="checkstyle.minimum.javaversion" value="1.5" />
   <property name="checkstyle.testinputs.minimum.javaversion" value="1.5" />
   <property name="testcases" value="**/*Test.java"/>
+  <!-- override using -Dgui.target= if you wish to load a source file from startup -->
+  <property name="gui.target" value=""/>
 
   <path id="build.classpath">
     <pathelement location="${antlr.jar}" />
@@ -247,6 +249,7 @@
           description="Run the GUI for displaying a tree">
     <java classname="com.puppycrawl.tools.checkstyle.gui.Main"
           fork="yes" classpathref="run.classpath">
+          <arg value="${gui.target}"/>
     </java>
   </target>
 
