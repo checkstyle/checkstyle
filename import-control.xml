@@ -27,6 +27,7 @@
     <allow pkg="java.beans"/>
     <allow pkg="java.lang.reflect"/>
     <allow pkg="java.text"/>
+    <allow class="java.nio.charset.Charset"/>
     <allow class="com.puppycrawl.tools.checkstyle.grammars.CommentListener"
            local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes"
