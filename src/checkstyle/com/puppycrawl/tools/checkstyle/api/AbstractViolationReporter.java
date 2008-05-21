@@ -77,7 +77,7 @@ public abstract class AbstractViolationReporter
     }
 
     /**
-     * Sets the identifer of the reporter. Can be null.
+     * Sets the identifier of the reporter. Can be null.
      * @param aId the id
      */
     public final void setId(final String aId)
