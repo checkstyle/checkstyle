@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 /**
  * Custom Checkstyle Check to validate Javadoc.
@@ -56,6 +55,9 @@ public class JavadocStyleCheck
 
     /** the visibility scope where Javadoc comments shouldn't be checked **/
     private Scope mExcludeScope;
+
+    /** Format for matching the end of a sentence. */
+    private String mEndOfSentenceFormat = "([.?!][ \t\n\r\f<])|([.?!]$)";
 
     /** Regular expression for matching the end of a sentence. */
     private Pattern mEndOfSentencePattern;
@@ -452,6 +454,15 @@ public class JavadocStyleCheck
     }
 
     /**
+     * Set the format for matching the end of a sentence.
+     * @param aFormat format for matching the end of a sentence.
+     */
+    public void setEndOfSentenceFormat(String aFormat)
+    {
+        mEndOfSentenceFormat = aFormat;
+    }
+
+    /**
      * Returns a regular expression for matching the end of a sentence.
      *
      * @return a regular expression for matching the end of a sentence.
@@ -459,14 +470,7 @@ public class JavadocStyleCheck
     private Pattern getEndOfSentencePattern()
     {
         if (mEndOfSentencePattern == null) {
-            try {
-                mEndOfSentencePattern =
-                    Pattern.compile("([.?!][ \t\n\r\f<])|([.?!]$)");
-            }
-            catch (final PatternSyntaxException e) {
-                // This should never occur.
-                e.printStackTrace();
-            }
+            mEndOfSentencePattern = Pattern.compile(mEndOfSentenceFormat);
         }
         return mEndOfSentencePattern;
     }

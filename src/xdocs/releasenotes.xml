@@ -108,8 +108,14 @@
           these checks, then use a Checkstyle 4.x release.
         </li>
         <li>
-          Applied patch 1892253 to expand access controls to other naming
+          Applied patch #1892253 to expand access controls to other naming
           checks.
+        </li>
+        <li>
+          Applied patch #1993103 to make the format of end of sentence
+          configurable in the
+          <a href="config_javadoc.html#JavadocStyle">JavadocStyle</a>
+          check.
         </li>
         <li>
           <i>Updated dependencies</i>: Removed commons-collections; added google collections

@@ -59,6 +59,31 @@ public class JavadocStyleCheckTest
     }
 
     @Test
+    public void testFirstSentenceFormat() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocStyleCheck.class);
+        checkConfig.addAttribute("checkFirstSentence", "true");
+        checkConfig.addAttribute("checkHtml", "false");
+        checkConfig.addAttribute("endOfSentenceFormat",
+                "([.][ \t\n\r\f<])|([.]$)");
+        final String[] expected =
+        {
+            "20: First sentence should end with a period.",
+            "32: First sentence should end with a period.",
+            "39: First sentence should end with a period.",
+            "53: First sentence should end with a period.",
+            "74: First sentence should end with a period.",
+            "81: First sentence should end with a period.",
+            "88: First sentence should end with a period.",
+            "193: First sentence should end with a period.",
+            "238: First sentence should end with a period.",
+        };
+
+        verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
+    }
+
+    @Test
     public void testHtml() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);

@@ -536,7 +536,7 @@ public boolean isSomething()
         <ul>
           <li>
             Ensures the first sentence ends with proper punctuation
-            (That is a period, question mark, or exclamation mark).
+            (That is a period, question mark, or exclamation mark, by default).
             Javadoc automatically places the first sentence in the
             method summary table and index.  With out proper punctuation
             the Javadoc may be malformed.
@@ -591,6 +591,14 @@ public boolean isSomething()
             </td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><span class="default">true</span></td>
+          </tr>
+          <tr>
+            <td>endOfSentenceFormat</td>
+            <td>
+              Format for matching the end of a sentence.
+            </td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><span class="default">([.?!][ \t\n\r\f&lt;])|([.?!]$)</span></td>
           </tr>
           <tr>
             <td>checkEmptyJavadoc</td>
