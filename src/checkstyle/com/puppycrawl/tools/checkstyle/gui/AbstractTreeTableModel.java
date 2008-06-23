@@ -45,7 +45,7 @@ import javax.swing.event.*;
 
 public abstract class AbstractTreeTableModel implements TreeTableModel
 {
-    private Object mRoot;
+    private final Object mRoot;
     private final EventListenerList mListenerList = new EventListenerList();
 
     public AbstractTreeTableModel(Object root)
@@ -204,7 +204,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel
     // Default impelmentations for methods in the TreeTableModel interface.
     //
 
-    public Class getColumnClass(int column)
+    public Class<?> getColumnClass(int column)
     {
         return Object.class;
     }

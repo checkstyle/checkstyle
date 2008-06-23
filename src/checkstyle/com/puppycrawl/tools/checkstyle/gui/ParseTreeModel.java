@@ -70,7 +70,7 @@ public class ParseTreeModel extends AbstractTreeTableModel
     }
 
     @Override
-    public Class getColumnClass(int column)
+    public Class<?> getColumnClass(int column)
     {
         switch (column) {
             case 0:

@@ -55,8 +55,8 @@ import javax.swing.event.TreeModelListener;
  */
 public class TreeTableModelAdapter extends AbstractTableModel
 {
-    private JTree mTree;
-    private TreeTableModel mTreeTableModel;
+    private final JTree mTree;
+    private final TreeTableModel mTreeTableModel;
 
     public TreeTableModelAdapter(TreeTableModel aTreeTableModel, JTree aTree)
     {
@@ -120,7 +120,7 @@ public class TreeTableModelAdapter extends AbstractTableModel
     }
 
     @Override
-    public Class getColumnClass(int column)
+    public Class<?> getColumnClass(int column)
     {
         return mTreeTableModel.getColumnClass(column);
     }

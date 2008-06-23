@@ -271,6 +271,7 @@ class FileDrop
             }
         }
 
+        @SuppressWarnings("unchecked")
         public void drop(DropTargetDropEvent evt)
         {
             try {
@@ -279,7 +280,7 @@ class FileDrop
                 if (tr.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
                     evt.acceptDrop(DnDConstants.ACTION_COPY);
 
-                    final List fileList = (List) tr.getTransferData(
+                    final List<File> fileList = (List<File>) tr.getTransferData(
                             DataFlavor.javaFileListFlavor);
                     final File[] files = new File[fileList.size()];
                     fileList.toArray(files);
