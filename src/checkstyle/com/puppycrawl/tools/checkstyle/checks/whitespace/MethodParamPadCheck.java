@@ -63,14 +63,14 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  */
 
 public class MethodParamPadCheck
-    extends AbstractOptionCheck
+    extends AbstractOptionCheck<PadOption>
 {
     /**
      * Sets the pad otion to nospace.
      */
     public MethodParamPadCheck()
     {
-        super(PadOption.NOSPACE);
+        super(PadOption.NOSPACE, PadOption.class);
     }
 
     /** Whether whitespace is allowed if the method identifier is at a

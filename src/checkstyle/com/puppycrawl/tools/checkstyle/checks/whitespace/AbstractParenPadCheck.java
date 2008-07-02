@@ -31,14 +31,14 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @version 1.0
  */
 abstract class AbstractParenPadCheck
-    extends AbstractOptionCheck
+    extends AbstractOptionCheck<PadOption>
 {
     /**
      * Sets the paren pad otion to nospace.
      */
     AbstractParenPadCheck()
     {
-        super(PadOption.NOSPACE);
+        super(PadOption.NOSPACE, PadOption.class);
     }
 
     /**

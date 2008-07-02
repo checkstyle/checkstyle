@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 
 /**
@@ -89,14 +88,14 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @version 1.0
  */
 public class OperatorWrapCheck
-    extends AbstractOptionCheck
+    extends AbstractOptionCheck<OperatorWrapOption>
 {
     /**
      * Sets the operator wrap option to new line.
      */
     public OperatorWrapCheck()
     {
-        super(OperatorWrapOption.NL);
+        super(OperatorWrapOption.NL, OperatorWrapOption.class);
     }
 
     @Override
@@ -182,7 +181,7 @@ public class OperatorWrapCheck
                 return;
             }
         }
-        final AbstractOption wOp = getAbstractOption();
+        final OperatorWrapOption wOp = getAbstractOption();
 
         final String text = aAST.getText();
         final int colNo = aAST.getColumnNo();

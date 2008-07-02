@@ -23,7 +23,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
 
 /**
  * <p>Checks the padding of an empty for initializer; that is whether a
@@ -49,14 +48,14 @@ for (
  * @version 1.0
  */
 public class EmptyForInitializerPadCheck
-    extends AbstractOptionCheck
+    extends AbstractOptionCheck<PadOption>
 {
     /**
      * Sets the paren pad otion to nospace.
      */
     public EmptyForInitializerPadCheck()
     {
-        super(PadOption.NOSPACE);
+        super(PadOption.NOSPACE, PadOption.class);
     }
 
     @Override
@@ -77,13 +76,13 @@ public class EmptyForInitializerPadCheck
             final int before = semi.getColumnNo() - 1;
             //don't check if semi at beginning of line
             if (!Utils.whitespaceBefore(before, line)) {
-                final AbstractOption abstractOption = getAbstractOption();
-                if ((PadOption.NOSPACE == abstractOption)
+                final PadOption option = getAbstractOption();
+                if ((PadOption.NOSPACE == option)
                     && (Character.isWhitespace(line.charAt(before))))
                 {
                     log(semi.getLineNo(), before, "ws.preceded", ";");
                 }
-                else if ((PadOption.SPACE == abstractOption)
+                else if ((PadOption.SPACE == option)
                          && !Character.isWhitespace(line.charAt(before)))
                 {
                     log(semi.getLineNo(), before, "ws.notPreceded", ";");

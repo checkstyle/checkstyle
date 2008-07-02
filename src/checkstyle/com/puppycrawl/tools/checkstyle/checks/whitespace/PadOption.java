@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
-import java.util.Map;
-
 /**
  * Represents the options for whitespace around parentheses.
  *
@@ -30,36 +26,17 @@ import java.util.Map;
  * @see EmptyForIteratorPadCheck
  * @see ParenPadCheck
  */
-public final class PadOption
-    extends AbstractOption
+public enum PadOption
 {
-    /** maps from a string representation to an option */
-    private static final Map<String, AbstractOption> STR_TO_OPT =
-        Maps.newHashMap();
-
     /**
      * Represents no spacing following a left parenthesis
      * or preceding a right one.
      */
-    public static final PadOption NOSPACE = new PadOption("nospace");
+    NOSPACE,
+
     /**
      * Represents mandatory spacing following a left parenthesis
      * and preceeing a right one.
      */
-    public static final PadOption SPACE = new PadOption("space");
-
-    /**
-     * Creates a new <code>PadOption</code> instance.
-     * @param aStrRep the string representation
-     */
-    private PadOption(String aStrRep)
-    {
-        super(aStrRep);
-    }
-
-    @Override
-    protected Map<String, AbstractOption> getStrToOpt()
-    {
-        return STR_TO_OPT;
-    }
+    SPACE;
 }

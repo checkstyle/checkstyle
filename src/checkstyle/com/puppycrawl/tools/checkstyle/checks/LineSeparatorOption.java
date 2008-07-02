@@ -18,48 +18,35 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.google.common.collect.Maps;
-import java.util.Map;
-
 /**
  * Represents the options for line separator settings.
  *
  * @author lkuehne
  * @see NewlineAtEndOfFileCheck
  */
-public final class LineSeparatorOption extends AbstractOption
+public enum LineSeparatorOption
 {
-    /** maps from a string representation to an option */
-    private static final Map<String, AbstractOption> STR_TO_OPT =
-        Maps.newHashMap();
-
     /** Windows-style line separators. **/
-    public static final LineSeparatorOption CRLF =
-        new LineSeparatorOption("crlf", "\r\n");
+    CRLF("\r\n"),
 
     /** Mac-style line separators. **/
-    public static final LineSeparatorOption CR =
-        new LineSeparatorOption("cr", "\r");
+    CR("\r"),
 
     /** Unix-style line separators. **/
-    public static final LineSeparatorOption LF =
-        new LineSeparatorOption("lf", "\n");
+    LF("\n"),
 
     /** System default line separators. **/
-    public static final LineSeparatorOption SYSTEM = new LineSeparatorOption(
-        "system", System.getProperty("line.separator"));
+    SYSTEM(System.getProperty("line.separator"));
 
     /** the line separator representation */
     private final String mLineSeparator;
 
     /**
      * Creates a new <code>LineSeparatorOption</code> instance.
-     * @param aStrRep the string representation
      * @param aSep the line separator, e.g. "\r\n"
      */
-    private LineSeparatorOption(String aStrRep, String aSep)
+    private LineSeparatorOption(String aSep)
     {
-        super(aStrRep);
         mLineSeparator = aSep;
     }
 
@@ -82,11 +69,4 @@ public final class LineSeparatorOption extends AbstractOption
     {
         return mLineSeparator.length();
     }
-
-    @Override
-    protected Map<String, AbstractOption> getStrToOpt()
-    {
-        return STR_TO_OPT;
-    }
-
 }

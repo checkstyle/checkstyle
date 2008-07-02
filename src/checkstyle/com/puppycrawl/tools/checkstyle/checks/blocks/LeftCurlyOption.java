@@ -18,23 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
-import java.util.Map;
-
 /**
  * Represents the options for placing the left curly brace <code>'{'</code>.
  *
  * @author Oliver Burn
  * @version 1
  */
-public final class LeftCurlyOption
-    extends AbstractOption
+public enum LeftCurlyOption
 {
-    /** maps from a string representation to an option */
-    private static final Map<String, AbstractOption> STR_TO_OPT =
-        Maps.newHashMap();
-
     /**
      * Represents the policy for placing the brace at the end of line. For
      * example:
@@ -43,7 +34,7 @@ public final class LeftCurlyOption
      *     ...
      * </pre>
      **/
-    public static final LeftCurlyOption EOL = new LeftCurlyOption("eol");
+    EOL,
 
     /**
      * Represents the policy that if the brace will fit on the first line of
@@ -67,7 +58,7 @@ public final class LeftCurlyOption
      *     ...
      * </pre>
      **/
-    public static final LeftCurlyOption NLOW = new LeftCurlyOption("nlow");
+    NLOW,
 
     /**
      * Represents the policy that the brace must always be on a new line. For
@@ -78,20 +69,5 @@ public final class LeftCurlyOption
      *     ...
      * </pre>
      */
-    public static final LeftCurlyOption NL = new LeftCurlyOption("nl");
-
-    /**
-     * Creates a new <code>LeftCurlyOption</code> instance.
-     * @param aStrRep the string representation
-     */
-    private LeftCurlyOption(String aStrRep)
-    {
-        super(aStrRep);
-    }
-
-    @Override
-    protected Map<String, AbstractOption> getStrToOpt()
-    {
-        return STR_TO_OPT;
-    }
+    NL;
 }

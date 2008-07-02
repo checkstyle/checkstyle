@@ -113,14 +113,15 @@ public class NewlineAtEndOfFileCheck
      */
     public void setLineSeparator(String aLineSeparator)
     {
-        final AbstractOption option =
-            LineSeparatorOption.SYSTEM.decode(aLineSeparator);
-
-        if (option == null) {
-            throw new ConversionException("unable to parse " + aLineSeparator);
+        try {
+            mLineSeparator =
+                Enum.valueOf(LineSeparatorOption.class, aLineSeparator.trim()
+                    .toUpperCase());
         }
-
-        mLineSeparator = (LineSeparatorOption) option;
+        catch (IllegalArgumentException iae) {
+            throw new ConversionException("unable to parse " + aLineSeparator,
+                iae);
+        }
     }
 
     /**

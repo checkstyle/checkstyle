@@ -22,7 +22,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses( {CheckerTest.class, ConfigurationLoaderTest.class,
-    OptionTest.class, PackageNamesLoaderTest.class,
+    PackageNamesLoaderTest.class,
     PackageObjectFactoryTest.class, StringArrayReaderTest.class,
     UtilsTest.class, XMLLoggerTest.class, AllApiTests.class,
     AllChecksTests.class, AllBlocksTests.class, AllCodingTests.class,

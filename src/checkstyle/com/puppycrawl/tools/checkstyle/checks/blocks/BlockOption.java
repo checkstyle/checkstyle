@@ -18,22 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
-import java.util.Map;
-
 /**
  * Represents the policy for checking block statements.
  * @see com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck
  * @author Rick Giles
  */
-public final class BlockOption
-    extends AbstractOption
+public enum BlockOption
 {
-    /** maps from a string representation to an option */
-    private static final Map<String, AbstractOption> STR_TO_OPT =
-        Maps.newHashMap();
-
     /**
      * Represents the policy that there is some text in the block. For example:
      *
@@ -43,7 +34,7 @@ public final class BlockOption
      * }
      * </pre>
      */
-    public static final BlockOption TEXT = new BlockOption("text");
+    TEXT,
 
     /**
      * Represents the policy that there is a statement in the block. For
@@ -55,21 +46,5 @@ public final class BlockOption
      * }
      * </pre>
      */
-    public static final BlockOption STMT = new BlockOption("stmt");
-
-    /**
-     * Creates a new <code>BlockOption</code> instance.
-     *
-     * @param aStrRep the string representation
-     */
-    private BlockOption(String aStrRep)
-    {
-        super(aStrRep);
-    }
-
-    @Override
-    protected Map<String, AbstractOption> getStrToOpt()
-    {
-        return STR_TO_OPT;
-    }
+    STMT;
 }

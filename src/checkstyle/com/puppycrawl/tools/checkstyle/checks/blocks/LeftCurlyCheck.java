@@ -65,7 +65,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @version 1.0
  */
 public class LeftCurlyCheck
-    extends AbstractOptionCheck
+    extends AbstractOptionCheck<LeftCurlyOption>
 {
     /** default maximum line length */
     private static final int DEFAULT_MAX_LINE_LENGTH = 80;
@@ -78,7 +78,7 @@ public class LeftCurlyCheck
      */
     public LeftCurlyCheck()
     {
-        super(LeftCurlyOption.EOL);
+        super(LeftCurlyOption.EOL, LeftCurlyOption.class);
     }
 
     /**

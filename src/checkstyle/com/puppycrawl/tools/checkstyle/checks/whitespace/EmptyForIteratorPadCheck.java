@@ -48,14 +48,14 @@ for (Iterator foo = very.long.line.iterator();
  * @version 1.0
  */
 public class EmptyForIteratorPadCheck
-    extends AbstractOptionCheck
+    extends AbstractOptionCheck<PadOption>
 {
     /**
      * Sets the paren pad otion to nospace.
      */
     public EmptyForIteratorPadCheck()
     {
-        super(PadOption.NOSPACE);
+        super(PadOption.NOSPACE, PadOption.class);
     }
 
     @Override

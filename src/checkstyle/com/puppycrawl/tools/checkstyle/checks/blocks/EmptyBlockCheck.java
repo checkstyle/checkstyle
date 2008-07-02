@@ -58,14 +58,14 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @author Lars Kühne
  */
 public class EmptyBlockCheck
-    extends AbstractOptionCheck
+    extends AbstractOptionCheck<BlockOption>
 {
     /**
      * Creates a new <code>EmptyBlockCheck</code> instance.
      */
     public EmptyBlockCheck()
     {
-        super(BlockOption.STMT);
+        super(BlockOption.STMT, BlockOption.class);
     }
 
     @Override

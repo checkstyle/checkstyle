@@ -18,41 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
-import java.util.Map;
-
 /**
  * Represents the options for wrapping on an operator.
  *
  * @author Rick Giles
  * @version 1.0
  */
-public final class OperatorWrapOption
-    extends AbstractOption
+public enum OperatorWrapOption
 {
-    /** maps from a string representation to an option */
-    private static final Map<String, AbstractOption> STR_TO_OPT =
-        Maps.newHashMap();
-
     /** Require that the operator is on a new line. */
-    public static final OperatorWrapOption NL = new OperatorWrapOption("nl");
+    NL,
     /** Require that the operator is at the end of the line. */
-    public static final OperatorWrapOption EOL = new OperatorWrapOption("eol");
-
-    /**
-     * Creates a new <code>OperatorWrapOption</code> instance.
-     *
-     * @param aStrRep the string representation
-     */
-    private OperatorWrapOption(String aStrRep)
-    {
-        super(aStrRep);
-    }
-
-    @Override
-    protected Map<String, AbstractOption> getStrToOpt()
-    {
-        return STR_TO_OPT;
-    }
+    EOL;
 }

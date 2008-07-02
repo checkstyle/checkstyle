@@ -18,23 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOption;
-import java.util.Map;
-
 /**
  * Represents the options for placing the right curly brace <code>'}'</code>.
  *
  * @author Oliver Burn
  * @version 1
  */
-public final class RightCurlyOption
-    extends AbstractOption
+public enum RightCurlyOption
 {
-    /** maps from a string representation to an option */
-    private static final Map<String, AbstractOption> STR_TO_OPT =
-        Maps.newHashMap();
-
     /**
      * Represents the policy that the brace must be alone on the line. For
      * example:
@@ -46,7 +37,7 @@ public final class RightCurlyOption
      * finally {
      * </pre>
      **/
-    public static final RightCurlyOption ALONE = new RightCurlyOption("alone");
+    ALONE,
 
     /**
      * Represents the policy that the brace must be on the same line as the
@@ -58,20 +49,5 @@ public final class RightCurlyOption
      * } finally {
      * </pre>
      **/
-    public static final RightCurlyOption SAME = new RightCurlyOption("same");
-
-    /**
-     * Creates a new <code>RightCurlyOption</code> instance.
-     * @param aStrRep the string representation
-     */
-    private RightCurlyOption(String aStrRep)
-    {
-       super(aStrRep);
-    }
-
-    @Override
-    protected Map<String, AbstractOption> getStrToOpt()
-    {
-        return STR_TO_OPT;
-    }
+    SAME;
 }

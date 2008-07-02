@@ -59,7 +59,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * @author o_sukhodolsky
  * @version 2.0
  */
-public class RightCurlyCheck extends AbstractOptionCheck
+public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
 {
     /** Do we need to check if rculry starts line. */
     private boolean mShouldStartLine = true;
@@ -69,7 +69,7 @@ public class RightCurlyCheck extends AbstractOptionCheck
      */
     public RightCurlyCheck()
     {
-        super(RightCurlyOption.SAME);
+        super(RightCurlyOption.SAME, RightCurlyOption.class);
     }
 
     /**

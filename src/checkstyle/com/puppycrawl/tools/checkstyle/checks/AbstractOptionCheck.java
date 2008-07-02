@@ -23,22 +23,33 @@ import org.apache.commons.beanutils.ConversionException;
 import com.puppycrawl.tools.checkstyle.api.Check;
 
 /**
- * Abstract class for checks with options.
+ * Abstract class for checks with a parameter named <tt>option</tt>, where the
+ * option is identified by a {@link Enum}. The logic to convert from a string
+ * representation to the {@link Enum} is to {@link String#trim()} the string
+ * and convert using {@link String#toUpperCase()} and then look up using
+ * {@link Enum#valueOf}.
+ * @param <T> the type of the option.
+ * @author Oliver Burn
  * @author Rick Giles
  */
-public abstract class AbstractOptionCheck
+public abstract class AbstractOptionCheck<T extends Enum<T>>
     extends Check
 {
+    /** Since I cannot get this by going <tt>T.class</tt>. */
+    private final Class<T> mOptionClass;
     /** the policy to enforce */
-    private AbstractOption mOption;
+    private T mOption;
 
     /**
      * Creates a new <code>AbstractOptionCheck</code> instance.
      * @param aDefault the default option.
+     * @param aOptionClass the class for the option. Required due to a quirk
+     *        in the Java language.
      */
-    public AbstractOptionCheck(AbstractOption aDefault)
+    public AbstractOptionCheck(T aDefault, Class<T> aOptionClass)
     {
         mOption = aDefault;
+        mOptionClass = aOptionClass;
     }
 
     /**
@@ -46,19 +57,20 @@ public abstract class AbstractOptionCheck
      * @param aOption string to decode option from
      * @throws ConversionException if unable to decode
      */
-    public void setOption(String aOption)
-        throws ConversionException
+    public void setOption(String aOption) throws ConversionException
     {
-        mOption = mOption.decode(aOption);
-        if (mOption == null) {
-            throw new ConversionException("unable to parse " + aOption);
+        try {
+            mOption = Enum.valueOf(mOptionClass, aOption.trim().toUpperCase());
+        }
+        catch (IllegalArgumentException iae) {
+            throw new ConversionException("unable to parse " + aOption, iae);
         }
     }
 
     /**
      * @return the <code>AbstractOption</code> set
      */
-    public AbstractOption getAbstractOption()
+    public T getAbstractOption()
     {
         // WARNING!! Do not rename this method to getOption(). It breaks
         // BeanUtils, which will silently not call setOption. Very annoying!
