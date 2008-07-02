@@ -121,6 +121,12 @@
           <i>Updated dependencies</i>: Removed commons-collections; added google collections
           (google-collect-snapshot-20080321.jar); upgraded commons-cli to version 1.1.
         </li>
+        <li>
+          Changed the classes <span class="code">Scope</span> and
+          <span class="code">SeverityLevel</span> to be based on the Java 5
+          <span class="code">Enum</span> class. Used patch #2004776 from Travis
+          Schneeberger.
+        </li>
       </ul>
     </section>
 

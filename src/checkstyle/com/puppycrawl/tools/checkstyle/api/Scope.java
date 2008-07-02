@@ -18,121 +18,39 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.google.common.collect.Maps;
-import java.io.Serializable;
-import java.util.Map;
-
 /**
  * Represents a Java visibility scope.
  *
- * @author <a href="mailto:lkuehne@users.sourceforge.net">Lars Kühne</a>
+ * @author Lars Kühne
+ * @author Travis Schneeberger
  */
-public final class Scope implements Comparable<Scope>, Serializable
+public enum Scope
 {
-    // Note that although this class might seem to be an
-    // implementation detail, this class has to be public because it
-    // is used as a parameter in GlobalProperties.setJavadocScope()
-
-    /** poor man's enum for nothing scope */
-    private static final int SCOPECODE_NOTHING = 0;
-    /** poor man's enum for public scope */
-    private static final int SCOPECODE_PUBLIC = 1;
-    /** poor man's enum for protected scope */
-    private static final int SCOPECODE_PROTECTED = 2;
-    /** poor man's enum for package scope */
-    private static final int SCOPECODE_PACKAGE = 3;
-    /** poor man's enum for private scope */
-    private static final int SCOPECODE_PRIVATE = 4;
-    /** poor man's enum for anonymous inner class scope */
-    private static final int SCOPECODE_ANONINNER = 5;
-
-    /** none scopename */
-    private static final String SCOPENAME_NOTHING = "nothing";
-    /** public scopename */
-    private static final String SCOPENAME_PUBLIC = "public";
-    /** protected scopename */
-    private static final String SCOPENAME_PROTECTED = "protected";
-    /** package scopename */
-    private static final String SCOPENAME_PACKAGE = "package";
-    /** private scopename */
-    private static final String SCOPENAME_PRIVATE = "private";
-    /** anon inner scopename */
-    private static final String SCOPENAME_ANONINNER = "anoninner";
-
     /** nothing scope. */
-    public static final Scope NOTHING =
-        new Scope(SCOPECODE_NOTHING, SCOPENAME_NOTHING);
-
-    /** public scope. */
-    public static final Scope PUBLIC =
-        new Scope(SCOPECODE_PUBLIC, SCOPENAME_PUBLIC);
-
+    NOTHING,
     /** protected scope. */
-    public static final Scope PROTECTED =
-        new Scope(SCOPECODE_PROTECTED, SCOPENAME_PROTECTED);
-
-    /** package scope. */
-    public static final Scope PACKAGE =
-        new Scope(SCOPECODE_PACKAGE, SCOPENAME_PACKAGE);
-
+    PUBLIC,
+    /** protected scope. */
+    PROTECTED,
+    /** package or default scope. */
+    PACKAGE,
     /** private scope. */
-    public static final Scope PRIVATE =
-        new Scope(SCOPECODE_PRIVATE, SCOPENAME_PRIVATE);
-
-    /** anon inner scope. */
-    public static final Scope ANONINNER =
-        new Scope(SCOPECODE_ANONINNER, SCOPENAME_ANONINNER);
-
-    /** map from scope names to the respective Scope */
-    private static final Map<String, Scope> NAME_TO_SCOPE = Maps.newHashMap();
-    static {
-        NAME_TO_SCOPE.put(SCOPENAME_NOTHING, NOTHING);
-        NAME_TO_SCOPE.put(SCOPENAME_PUBLIC, PUBLIC);
-        NAME_TO_SCOPE.put(SCOPENAME_PROTECTED, PROTECTED);
-        NAME_TO_SCOPE.put(SCOPENAME_PACKAGE, PACKAGE);
-        NAME_TO_SCOPE.put(SCOPENAME_PRIVATE, PRIVATE);
-        NAME_TO_SCOPE.put(SCOPENAME_ANONINNER, ANONINNER);
-    }
-
-    /** the SCOPECODE_XYZ value of this scope. */
-    private final int mCode;
-
-    /** the name of this scope. */
-    private final String mName;
+    PRIVATE,
+    /** anonymous inner scope. */
+    ANONINNER;
 
     @Override
     public String toString()
     {
-        return "Scope[" + mCode + " (" + mName + ")]";
+        return getName();
     }
 
     /**
-     * @return the name of this scope.
+     * @return the name of this severity level.
      */
     public String getName()
     {
-        return mName;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public int compareTo(Scope aObject)
-    {
-        return this.mCode - aObject.mCode;
-    }
-
-    @Override
-    public boolean equals(Object aOther)
-    {
-        // Since this is an Enum class, can do a simple implementation.
-        return (this == aOther);
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return mCode;
+        return name().toLowerCase();
     }
 
     /**
@@ -148,18 +66,6 @@ public final class Scope implements Comparable<Scope>, Serializable
     }
 
     /**
-     * Creates a new <code>Scope</code> instance.
-     *
-     * @param aCode one of the SCOPECODE_XYZ values.
-     * @param aName one of the SCOPENAME_XYZ values.
-     */
-    private Scope(int aCode, String aName)
-    {
-        mCode = aCode;
-        mName = aName;
-    }
-
-    /**
      * Scope factory method.
      *
      * @param aScopeName scope name, such as "nothing", "public", etc.
@@ -167,26 +73,6 @@ public final class Scope implements Comparable<Scope>, Serializable
      */
     public static Scope getInstance(String aScopeName)
     {
-        // TODO: change scope....
-        // canonicalize argument
-        final String scopeName = aScopeName.trim().toLowerCase();
-
-        final Scope retVal = NAME_TO_SCOPE.get(scopeName);
-        if (retVal == null) {
-            throw new IllegalArgumentException(scopeName);
-        }
-        return retVal;
-    }
-
-    /**
-     * Ensures that we don't get multiple instances of one Scope
-     * during deserialization. See Section 3.6 of the Java Object
-     * Serialization Specification for details.
-     *
-     * @return the serialization replacement object
-     */
-    private Object readResolve()
-    {
-        return getInstance(mName);
+        return valueOf(Scope.class, aScopeName.trim().toUpperCase());
     }
 }

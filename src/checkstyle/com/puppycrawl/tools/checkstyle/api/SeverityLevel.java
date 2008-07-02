@@ -18,76 +18,33 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.google.common.collect.Maps;
-import java.io.Serializable;
-import java.util.Map;
-
 /**
+ * <p>
  * Severity level for a check violation.
+ * </p>
  * <p>
  * Each violation of an audit check is assigned one of the severity levels
  * defined here.
+ * </p>
  *
  * @author David Schneider
+ * @author Travis Schneeberger
  */
-public final class SeverityLevel implements Comparable<SeverityLevel>,
-        Serializable
+public enum SeverityLevel
 {
-    /**  Numeric value for severity level IGNORE     */
-    private static final int SEVERITYCODE_IGNORE = 10;
-    /**  Numeric value for severity level INFO     */
-    private static final int SEVERITYCODE_INFO = 20;
-    /**  Numeric value for severity level WARNING     */
-    private static final int SEVERITYCODE_WARNING = 30;
-    /**  Numeric value for severity level ERROR     */
-    private static final int SEVERITYCODE_ERROR = 40;
-
-
-    /**  Name for severity level IGNORE */
-    private static final String SEVERITYNAME_IGNORE = "ignore";
-    /**  Name for severity level INFO */
-    private static final String SEVERITYNAME_INFO = "info";
-    /**  Name for severity level WARNING */
-    private static final String SEVERITYNAME_WARNING = "warning";
-    /**  Name for severity level ERROR */
-    private static final String SEVERITYNAME_ERROR = "error";
-
-    /** Severity level: ignore.  This is the lowest severity level.  */
-    public static final SeverityLevel IGNORE =
-        new SeverityLevel(SEVERITYCODE_IGNORE, SEVERITYNAME_IGNORE);
-
-    /** Severity level: informational.  */
-    public static final SeverityLevel INFO =
-        new SeverityLevel(SEVERITYCODE_INFO, SEVERITYNAME_INFO);
-
-    /** Severity level: warning. */
-    public static final SeverityLevel WARNING =
-        new SeverityLevel(SEVERITYCODE_WARNING, SEVERITYNAME_WARNING);
-
-    /** Severity level: error.  This is the highest severity level.  */
-    public static final SeverityLevel ERROR =
-        new SeverityLevel(SEVERITYCODE_ERROR, SEVERITYNAME_ERROR);
-
-    /** map from level names to the respective level */
-    private static final Map<String, SeverityLevel> NAME_TO_LEVEL =
-        Maps.newHashMap();
-    static {
-        NAME_TO_LEVEL.put(SEVERITYNAME_IGNORE, IGNORE);
-        NAME_TO_LEVEL.put(SEVERITYNAME_INFO, INFO);
-        NAME_TO_LEVEL.put(SEVERITYNAME_WARNING, WARNING);
-        NAME_TO_LEVEL.put(SEVERITYNAME_ERROR, ERROR);
-    }
-
-    /** the SEVERITYCODE_XYZ value of this severity level. */
-    private final int mCode;
-
-    /** the name of this severity level. */
-    private final String mName;
+    /** security level ignore. */
+    IGNORE,
+    /** security level info. */
+    INFO,
+    /** security level warning. */
+    WARNING,
+    /** security level error. */
+    ERROR;
 
     @Override
     public String toString()
     {
-        return "Severity[" + mCode + " (" + mName + ")]";
+        return getName();
     }
 
     /**
@@ -95,78 +52,19 @@ public final class SeverityLevel implements Comparable<SeverityLevel>,
      */
     public String getName()
     {
-        return mName;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public int compareTo(SeverityLevel aObject)
-    {
-        return this.mCode - aObject.mCode;
-    }
-
-    @Override
-    public boolean equals(Object aObj)
-    {
-        boolean result = false;
-
-        if ((aObj instanceof SeverityLevel)
-            && (((SeverityLevel) aObj).mCode == this.mCode))
-        {
-            result = true;
-        }
-
-        return result;
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return mCode;
-    }
-
-    /**
-     * Creates a new <code>SeverityLevel</code> instance.
-     *
-     * @param aCode one of the SEVERITYCODE_XYZ values.
-     * @param aName one of the SEVERITYNAME_XYZ values.
-     */
-    private SeverityLevel(int aCode, String aName)
-    {
-        mCode = aCode;
-        mName = aName;
+        return name().toLowerCase();
     }
 
     /**
      * SeverityLevel factory method.
      *
-     * @param aSeverityName severity name, such as "ignore", "info", etc.
-     * @return the <code>SeverityLevel</code> associated with
-     *          <code>aSeverityName</code>
+     * @param aSecurityLevelName level name, such as "ignore", "info", etc.
+     * @return the <code>SeverityLevel</code>
+     * associated with <code>aSecurityLevelName</code>
      */
-    public static SeverityLevel getInstance(String aSeverityName)
+    public static SeverityLevel getInstance(String aSecurityLevelName)
     {
-        // canonicalize argument
-        final String severityName = aSeverityName.trim().toLowerCase();
-
-        final SeverityLevel retVal =
-            NAME_TO_LEVEL.get(severityName);
-        if (retVal == null) {
-            throw new IllegalArgumentException(severityName);
-        }
-        return retVal;
-    }
-
-    /**
-     * Ensures that we don't get multiple instances of one SeverityLevel
-     * during deserialization. See Section 3.6 of the Java Object
-     * Serialization Specification for details.
-     *
-     * @return the serialization replacement object
-     */
-    private Object readResolve()
-    {
-        return getInstance(mName);
+        return valueOf(SeverityLevel.class, aSecurityLevelName.trim()
+                .toUpperCase());
     }
 }
