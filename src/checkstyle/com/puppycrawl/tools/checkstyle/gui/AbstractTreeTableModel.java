@@ -33,8 +33,11 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
-import javax.swing.tree.*;
-import javax.swing.event.*;
+import java.io.Serializable;
+import javax.swing.event.EventListenerList;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.TreePath;
 
 /**
  * @version 1.2 10/27/98
@@ -42,15 +45,15 @@ import javax.swing.event.*;
  * of listeners.
  * @author Philip Milne
  */
-
-public abstract class AbstractTreeTableModel implements TreeTableModel
+public abstract class AbstractTreeTableModel implements TreeTableModel,
+        Serializable
 {
     private final Object mRoot;
     private final EventListenerList mListenerList = new EventListenerList();
 
     public AbstractTreeTableModel(Object root)
     {
-        this.mRoot = root;
+        mRoot = root;
     }
 
     //

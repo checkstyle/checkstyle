@@ -49,29 +49,38 @@ public class TokenTypesDoclet
     {
         final String fileName = getDestFileName(aRoot.options());
         final FileOutputStream fos = new FileOutputStream(fileName);
-        final PrintStream ps = new PrintStream(fos);
-        final ClassDoc[] classes = aRoot.classes();
-        if ((classes.length != 1) || !"TokenTypes".equals(classes[0].name())) {
-            final String message =
-                "The doclet should be used for TokenTypes only";
-            throw new IllegalArgumentException(message);
-        }
-
-        final FieldDoc[] fields = classes[0].fields();
-        for (final FieldDoc field : fields) {
-            if (field.isStatic() && field.isPublic() && field.isFinal()
-                && "int".equals((field.type().qualifiedTypeName())))
+        PrintStream ps = null;
+        try {
+            ps = new PrintStream(fos);
+            final ClassDoc[] classes = aRoot.classes();
+            if ((classes.length != 1)
+                || !"TokenTypes".equals(classes[0].name()))
             {
-                if (field.firstSentenceTags().length != 1) {
-                    final String message = "Should be only one tag.";
-                    throw new IllegalArgumentException(message);
+                final String message =
+                    "The doclet should be used for TokenTypes only";
+                throw new IllegalArgumentException(message);
+            }
+
+            final FieldDoc[] fields = classes[0].fields();
+            for (final FieldDoc field : fields) {
+                if (field.isStatic() && field.isPublic() && field.isFinal()
+                    && "int".equals((field.type().qualifiedTypeName())))
+                {
+                    if (field.firstSentenceTags().length != 1) {
+                        final String message = "Should be only one tag.";
+                        throw new IllegalArgumentException(message);
+                    }
+                    ps.println(field.name() + "="
+                        + field.firstSentenceTags()[0].text());
                 }
-                ps.println(field.name() + "="
-                           + field.firstSentenceTags()[0].text());
+            }
+        }
+        finally {
+            if (ps != null) {
+                ps.close();
             }
         }
 
-        ps.close();
         return true;
     }
 

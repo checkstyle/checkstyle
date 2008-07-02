@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Collections;
@@ -38,7 +39,7 @@ import java.util.ResourceBundle;
  * @version 1.0
  */
 public final class LocalizedMessage
-    implements Comparable<LocalizedMessage>
+    implements Comparable<LocalizedMessage>, Serializable
 {
     /** hash function multiplicand */
     private static final int HASH_MULT = 29;

@@ -270,9 +270,15 @@ public final class Main
         final Properties properties = new Properties();
         try {
             FileInputStream fis = null;
-            fis = new FileInputStream(aFile);
-            properties.load(fis);
-            fis.close();
+            try {
+                fis = new FileInputStream(aFile);
+                properties.load(fis);
+            }
+            finally {
+                if (fis != null) {
+                    fis.close();
+                }
+            }
         }
         catch (final IOException ex) {
             System.out.println("Unable to load properties from file: "

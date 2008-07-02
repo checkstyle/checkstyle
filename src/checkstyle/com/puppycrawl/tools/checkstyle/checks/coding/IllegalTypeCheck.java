@@ -219,7 +219,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     public String[] getIllegalClassNames()
     {
-        return mIllegalClassNames.toArray(new String[0]);
+        return mIllegalClassNames.toArray(
+            new String[mIllegalClassNames.size()]);
     }
 
     /**
@@ -240,7 +241,8 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     public String[] getIgnoredMethodNames()
     {
-        return mIgnoredMethodNames.toArray(new String[0]);
+        return mIgnoredMethodNames.toArray(
+            new String[mIgnoredMethodNames.size()]);
     }
 
     /**
@@ -261,6 +263,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck
      */
     public String[] getLegalAbstractClassNames()
     {
-        return mLegalAbstractClassNames.toArray(new String[0]);
+        return mLegalAbstractClassNames.toArray(
+            new String[mLegalAbstractClassNames.size()]);
     }
 }

@@ -24,9 +24,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.Properties;
 import java.security.MessageDigest;
+
 
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -122,15 +124,32 @@ final class PropertyCacheFile
                     .debug("Unable to save cache file.", e);
             }
             finally {
-                if (out != null) {
-                    try {
-                        out.flush();
-                        out.close();
-                    }
-                    catch (final IOException ex) {
-                        Utils.getExceptionLogger()
-                            .debug("Unable to close cache file.", ex);
-                    }
+                this.flushAndCloseOutStream(out);
+            }
+        }
+    }
+
+    /**
+     * Flushes and closes output stream.
+     * @param aStream the output stream
+     */
+    private void flushAndCloseOutStream(OutputStream aStream)
+    {
+        if (aStream != null) {
+            try {
+                aStream.flush();
+            }
+            catch (final IOException ex) {
+                Utils.getExceptionLogger()
+                    .debug("Unable to flush output stream.", ex);
+            }
+            finally {
+                try {
+                    aStream.close();
+                }
+                catch (final IOException ex) {
+                    Utils.getExceptionLogger()
+                        .debug("Unable to close output stream.", ex);
                 }
             }
         }
@@ -170,10 +189,14 @@ final class PropertyCacheFile
             // im-memory serialization of Configuration
 
             final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            final ObjectOutputStream oos = new ObjectOutputStream(baos);
-            oos.writeObject(aConfiguration);
-            oos.flush();
-            oos.close();
+            ObjectOutputStream oos = null;
+            try {
+                oos = new ObjectOutputStream(baos);
+                oos.writeObject(aConfiguration);
+            }
+            finally {
+                this.flushAndCloseOutStream(oos);
+            }
 
             // Instead of hexEncoding baos.toByteArray() directly we
             // use a message digest here to keep the length of the

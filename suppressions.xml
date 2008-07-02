@@ -22,7 +22,7 @@
               lines="28"/>
     <suppress id="paramNum"
 	      files="LocalizedMessage.java"
-	      lines="140"/>
+	      lines="141"/>
     <!--
       Turn off all checks for Generated and Test code. Fixes issues with using
       Eclipse plug-in.
