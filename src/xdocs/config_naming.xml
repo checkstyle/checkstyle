@@ -50,6 +50,11 @@
           <td><span class="default">^Abstract.*$|^.*Factory$</span></td>
         </tr>
         <tr>
+          <td><span class="code">ClassTypeParameterName</span></td>
+          <td>class type parameters</td>
+          <td><span class="default">^[A-Z]$</span></td>
+        </tr>
+        <tr>
           <td><span class="code">ConstantName</span></td>
           <td>
             constants (<span class="code">static</span>, <span class="code">
@@ -80,6 +85,11 @@
           <td><span class="code">MethodName</span></td>
           <td>methods</td>
           <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">MethodTypeParameterName</span></td>
+          <td>method type parameters</td>
+          <td><span class="default">^[A-Z]$</span></td>
         </tr>
         <tr>
           <td><span class="code">PackageName</span></td>

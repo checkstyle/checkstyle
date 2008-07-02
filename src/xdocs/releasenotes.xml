@@ -79,6 +79,14 @@
           Schneeberger for providing patch #1947417.
         </li>
         <li>
+          New checks <a href="config_naming.html#ClassTypeParameterName">
+          ClassTypeParameterName</a> and
+          <a href="config_naming.html#MethodTypeParameterName">
+          MethodTypeParameterName</a>
+          for type name formats. Thanks to Travis Schneeberger for providing
+          patch #1956561.
+        </li>
+        <li>
           Overhaul of how <span class="code">AbstractOptionCheck</span> works.
           It now requires that the option type is a Java 5 Enum and hence the
           <span class="code">AbstractOption</span> class has been removed.

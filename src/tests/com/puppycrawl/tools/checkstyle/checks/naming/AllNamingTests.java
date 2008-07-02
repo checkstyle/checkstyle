@@ -9,7 +9,7 @@ import org.junit.runners.Suite;
     LocalVariableNameCheckTest.class, MemberNameCheckTest.class,
     MethodNameCheckTest.class, PackageNameCheckTest.class,
     ParameterNameCheckTest.class, StaticVariableNameCheckTest.class,
-    TypeNameCheckTest.class})
+    TypeNameCheckTest.class, TypeParameterNameTest.class})
 public class AllNamingTests
 {
 }
