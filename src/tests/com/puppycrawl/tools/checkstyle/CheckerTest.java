@@ -60,7 +60,7 @@ public class CheckerTest
         LocalizedMessage[] msgs = new LocalizedMessage[1];
         msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
                                        new Object[] {"arg"}, null,
-                                       getClass());
+                                       getClass(), null);
         c.fireErrors("Some File Name", msgs);
 
         assertFalse("Checker.destroy() doesn't remove listeners.", aa.wasCalled());
@@ -94,7 +94,7 @@ public class CheckerTest
         LocalizedMessage[] msgs = new LocalizedMessage[1];
         msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
                                        new Object[] {"arg"}, null,
-                                       getClass());
+                                       getClass(), null);
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call listener", aa.wasCalled());
     }
@@ -133,7 +133,7 @@ public class CheckerTest
         LocalizedMessage[] msgs = new LocalizedMessage[1];
         msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
                                        new Object[] {"arg"}, null,
-                                       getClass());
+                                       getClass(), null);
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call listener", aa2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed listener", aa.wasCalled());
@@ -172,7 +172,7 @@ public class CheckerTest
         LocalizedMessage[] msgs = new LocalizedMessage[1];
         msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
                                        new Object[] {"arg"}, null,
-                                       getClass());
+                                       getClass(), null);
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call filter", f.wasCalled());
     }
@@ -215,7 +215,7 @@ public class CheckerTest
         LocalizedMessage[] msgs = new LocalizedMessage[1];
         msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
                                        new Object[] {"arg"}, null,
-                                       getClass());
+                                       getClass(), null);
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call filter", f2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed filter", f.wasCalled());

@@ -34,7 +34,7 @@ public class SuppressElementTest
     public void testDecideLocalizedMessage()
     {
         LocalizedMessage message =
-            new LocalizedMessage(0, 0, "", "", null, null, this.getClass());
+            new LocalizedMessage(0, 0, "", "", null, null, this.getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         //deny because there are matches on file and check names
         assertFalse("Names match", filter.accept(ev));
@@ -44,7 +44,7 @@ public class SuppressElementTest
     public void testDecideByLine()
     {
         LocalizedMessage message =
-            new LocalizedMessage(10, 10, "", "", null, null, this.getClass());
+            new LocalizedMessage(10, 10, "", "", null, null, this.getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         //deny because there are matches on file name, check name, and line
         filter.setLines("1-10");
@@ -57,7 +57,7 @@ public class SuppressElementTest
     public void testDecideByColumn()
     {
         LocalizedMessage message =
-            new LocalizedMessage(10, 10, "", "", null, null, this.getClass());
+            new LocalizedMessage(10, 10, "", "", null, null, this.getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         //deny because there are matches on file name, check name, and column
         filter.setColumns("1-10");

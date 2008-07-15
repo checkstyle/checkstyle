@@ -134,7 +134,7 @@ public class XMLLoggerTest
         final LocalizedMessage message =
             new LocalizedMessage(1, 1,
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
-                this.getClass());
+                this.getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
         logger.addError(ev);
         logger.auditFinished(null);
@@ -151,7 +151,7 @@ public class XMLLoggerTest
         logger.auditStarted(null);
         final LocalizedMessage message =
             new LocalizedMessage(1, 1,
-                "messages.properties", null, null, null, this.getClass());
+                "messages.properties", null, null, null, this.getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
         logger.addException(ev, new TestThrowable());
         logger.auditFinished(null);

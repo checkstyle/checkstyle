@@ -165,7 +165,7 @@ public class NewlineAtEndOfFileCheck
                 key,
                 args,
                 getId(),
-                this.getClass());
+                this.getClass(), null);
         getMessageCollector().add(message);
         Utils.getExceptionLogger().debug("IOException occured.", aEx);
     }

@@ -81,6 +81,9 @@ public final class LocalizedMessage
     /** class of the source for this LocalizedMessage */
     private final Class<?> mSourceClass;
 
+    /** a custom message overriding the default message from the bundle. */
+    private final String mCustomMessage;
+
     @Override
     public boolean equals(Object aObject)
     {
@@ -137,6 +140,7 @@ public final class LocalizedMessage
      * @param aSeverityLevel severity level for the message
      * @param aModuleId the id of the module the message is associated with
      * @param aSourceClass the Class that is the source of the message
+     * @param aCustomMessage optional custom message overriding the default
      */
     public LocalizedMessage(int aLineNo,
                             int aColNo,
@@ -145,7 +149,8 @@ public final class LocalizedMessage
                             Object[] aArgs,
                             SeverityLevel aSeverityLevel,
                             String aModuleId,
-                            Class<?> aSourceClass)
+                            Class<?> aSourceClass,
+                            String aCustomMessage)
     {
         mLineNo = aLineNo;
         mColNo = aColNo;
@@ -155,6 +160,7 @@ public final class LocalizedMessage
         mSeverityLevel = aSeverityLevel;
         mModuleId = aModuleId;
         mSourceClass = aSourceClass;
+        mCustomMessage = aCustomMessage;
     }
 
     /**
@@ -167,6 +173,7 @@ public final class LocalizedMessage
      * @param aArgs arguments for the translation
      * @param aModuleId the id of the module the message is associated with
      * @param aSourceClass the Class that is the source of the message
+     * @param aCustomMessage optional custom message overriding the default
      */
     public LocalizedMessage(int aLineNo,
                             int aColNo,
@@ -174,7 +181,8 @@ public final class LocalizedMessage
                             String aKey,
                             Object[] aArgs,
                             String aModuleId,
-                            Class<?> aSourceClass)
+                            Class<?> aSourceClass,
+                            String aCustomMessage)
     {
         this(aLineNo,
              aColNo,
@@ -183,7 +191,8 @@ public final class LocalizedMessage
              aArgs,
              DEFAULT_SEVERITY,
              aModuleId,
-             aSourceClass);
+             aSourceClass,
+             aCustomMessage);
     }
 
     /**
@@ -196,6 +205,7 @@ public final class LocalizedMessage
      * @param aSeverityLevel severity level for the message
      * @param aModuleId the id of the module the message is associated with
      * @param aSourceClass the source class for the message
+     * @param aCustomMessage optional custom message overriding the default
      */
     public LocalizedMessage(int aLineNo,
                             String aBundle,
@@ -203,10 +213,11 @@ public final class LocalizedMessage
                             Object[] aArgs,
                             SeverityLevel aSeverityLevel,
                             String aModuleId,
-                            Class<?> aSourceClass)
+                            Class<?> aSourceClass,
+                            String aCustomMessage)
     {
         this(aLineNo, 0, aBundle, aKey, aArgs, aSeverityLevel, aModuleId,
-                aSourceClass);
+                aSourceClass, aCustomMessage);
     }
 
     /**
@@ -219,6 +230,7 @@ public final class LocalizedMessage
      * @param aArgs arguments for the translation
      * @param aModuleId the id of the module the message is associated with
      * @param aSourceClass the name of the source for the message
+     * @param aCustomMessage optional custom message overriding the default
      */
     public LocalizedMessage(
         int aLineNo,
@@ -226,15 +238,22 @@ public final class LocalizedMessage
         String aKey,
         Object[] aArgs,
         String aModuleId,
-        Class<?> aSourceClass)
+        Class<?> aSourceClass,
+        String aCustomMessage)
     {
         this(aLineNo, 0, aBundle, aKey, aArgs, DEFAULT_SEVERITY, aModuleId,
-                aSourceClass);
+                aSourceClass, aCustomMessage);
     }
 
     /** @return the translated message **/
     public String getMessage()
     {
+
+        final String customMessage = getCustomMessage();
+        if (customMessage != null) {
+            return customMessage;
+        }
+
         try {
             // Important to use the default class loader, and not the one in
             // the GlobalProperties object. This is because the class loader in
@@ -250,6 +269,21 @@ public final class LocalizedMessage
             // the author's original message
             return MessageFormat.format(mKey, mArgs);
         }
+    }
+
+    /**
+     * Returns the formatted custom message if one is configured.
+     * @return the formatted custom message or <code>null</code>
+     *          if there is no custom message
+     */
+    private String getCustomMessage()
+    {
+
+        if (mCustomMessage == null) {
+            return null;
+        }
+
+        return MessageFormat.format(mCustomMessage, mArgs);
     }
 
     /**

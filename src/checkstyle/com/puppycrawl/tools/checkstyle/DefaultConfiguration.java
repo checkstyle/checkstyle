@@ -22,6 +22,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,6 +43,9 @@ public final class DefaultConfiguration implements Configuration
 
     /** the map from attribute names to attribute values */
     private final Map<String, String> mAttributeMap = Maps.newHashMap();
+
+    /** the map containing custom messages. */
+    private final Map<String, String> mMessages = Maps.newHashMap();
 
     /**
      * Instantiates a DefaultConfiguration.
@@ -110,4 +115,23 @@ public final class DefaultConfiguration implements Configuration
         mAttributeMap.put(aName, aValue);
     }
 
+    /**
+     * Adds a custom message to this configuration.
+     * @param aKey the message key
+     * @param aValue the custom message pattern
+     */
+    public void addMessage(String aKey, String aValue)
+    {
+        mMessages.put(aKey, aValue);
+    }
+
+    /**
+     * Returns an unmodifiable map instance containing the custom messages
+     * for this configuration.
+     * @return unmodifiable map containing custom messages
+     */
+    public Map<String, String> getMessages()
+    {
+        return Collections.unmodifiableMap(mMessages);
+    }
 }

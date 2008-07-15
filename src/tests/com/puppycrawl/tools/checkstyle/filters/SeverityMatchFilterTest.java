@@ -21,12 +21,12 @@ public class SeverityMatchFilterTest
         SeverityLevel level = SeverityLevel.ERROR;
         LocalizedMessage message =
             new LocalizedMessage(0, 0, "", "", null,
-                level, null, this.getClass());
+                level, null, this.getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", message);
         assertTrue("level:" + level, filter.accept(ev2));
         level = SeverityLevel.INFO;
         message = new LocalizedMessage(0, 0, "", "", null, level, null, this
-                .getClass());
+                .getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", message);
         assertFalse("level:" + level, filter.accept(ev3));
     }
@@ -41,12 +41,12 @@ public class SeverityMatchFilterTest
         SeverityLevel level = SeverityLevel.ERROR;
         LocalizedMessage message =
             new LocalizedMessage(0, 0, "", "", null,
-                level, null, this.getClass());
+                level, null, this.getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", message);
         assertFalse("level:" + level, filter.accept(ev2));
         level = SeverityLevel.INFO;
         message = new LocalizedMessage(0, 0, "", "", null, level, null, this
-                .getClass());
+                .getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", message);
         assertTrue("level:" + level, filter.accept(ev3));
     }
@@ -62,12 +62,12 @@ public class SeverityMatchFilterTest
         SeverityLevel level = SeverityLevel.ERROR;
         LocalizedMessage message =
             new LocalizedMessage(0, 0, "", "", null,
-                level, null, this.getClass());
+                level, null, this.getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", message);
         assertTrue("level:" + level, filter.accept(ev2));
         level = SeverityLevel.INFO;
         message = new LocalizedMessage(0, 0, "", "", null, level, null, this
-                .getClass());
+                .getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", message);
         assertFalse("level:" + level, filter.accept(ev3));
     }

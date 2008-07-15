@@ -69,9 +69,17 @@ public final class ConfigurationLoader
     private static final String DTD_PUBLIC_ID_1_2 =
         "-//Puppy Crawl//DTD Check Configuration 1.2//EN";
 
-    /** the resource for version 1_1 of the configuration dtd */
+    /** the resource for version 1_2 of the configuration dtd */
     private static final String DTD_RESOURCE_NAME_1_2 =
         "com/puppycrawl/tools/checkstyle/configuration_1_2.dtd";
+
+    /** the public ID for version 1_2 of the configuration dtd */
+    private static final String DTD_PUBLIC_ID_1_3 =
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN";
+
+    /** the resource for version 1_3 of the configuration dtd */
+    private static final String DTD_RESOURCE_NAME_1_3 =
+        "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
 
     /** constant to specify two kilobyte of data */
     private static final int TWO_KB = 2048;
@@ -95,6 +103,10 @@ public final class ConfigurationLoader
         private static final String DEFAULT = "default";
         /** name of the severity property */
         private static final String SEVERITY = "severity";
+        /** name of the message element */
+        private static final String MESSAGE = "message";
+        /** name of the key attribute */
+        private static final String KEY = "key";
 
         /**
          * Creates a new InternalLoader.
@@ -151,6 +163,17 @@ public final class ConfigurationLoader
                 final DefaultConfiguration top =
                     mConfigStack.peek();
                 top.addAttribute(name, value);
+            }
+            else if (aQName.equals(MESSAGE)) {
+
+                //extract key and value
+                final String key = aAtts.getValue(KEY);
+                final String value = aAtts.getValue(VALUE);
+
+                //add to messages of configuration
+                final DefaultConfiguration top =
+                    mConfigStack.peek();
+                top.addMessage(key, value);
             }
         }
 
@@ -216,6 +239,7 @@ public final class ConfigurationLoader
         map.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         map.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
         map.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
+        map.put(DTD_PUBLIC_ID_1_3, DTD_RESOURCE_NAME_1_3);
         return map;
     }
 

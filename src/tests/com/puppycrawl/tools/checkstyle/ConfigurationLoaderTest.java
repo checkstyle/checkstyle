@@ -153,6 +153,23 @@ public class ConfigurationLoaderTest
             0,
             atts);
     }
+    
+    @Test
+    public void testCustomMessages() throws Exception
+    {
+        final Properties props = new Properties();
+        props.put("checkstyle.basedir", "basedir");
+
+        final DefaultConfiguration config =
+            (DefaultConfiguration) loadConfiguration(
+                "custom_messages.xml", props);
+
+        final Configuration[] children = config.getChildren();
+        final Configuration[] grandchildren = children[0].getChildren();
+
+        assertTrue(((DefaultConfiguration) grandchildren[0]).getMessages().containsKey("name.invalidPattern"));
+    }
+    
 
     private void verifyConfigNode(
         DefaultConfiguration aConfig, String aName, int aChildrenLength,

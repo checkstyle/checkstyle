@@ -201,7 +201,7 @@ public final class TreeWalker
                     "general.fileNotFound",
                     null,
                     getId(),
-                    this.getClass()));
+                    this.getClass(), null));
         }
         catch (final IOException ioe) {
             Utils.getExceptionLogger().debug("IOException occured.", ioe);
@@ -212,7 +212,7 @@ public final class TreeWalker
                     "general.exception",
                     new String[] {ioe.getMessage()},
                     getId(),
-                    this.getClass()));
+                    this.getClass(), null));
         }
         catch (final RecognitionException re) {
             Utils.getExceptionLogger()
@@ -225,7 +225,7 @@ public final class TreeWalker
                     "general.exception",
                     new String[] {re.getMessage()},
                     getId(),
-                    this.getClass()));
+                    this.getClass(), null));
         }
         catch (final TokenStreamRecognitionException tre) {
             Utils.getExceptionLogger()
@@ -240,7 +240,7 @@ public final class TreeWalker
                         "general.exception",
                         new String[] {re.getMessage()},
                         getId(),
-                        this.getClass()));
+                        this.getClass(), null));
             }
             else {
                 getMessageCollector().add(
@@ -251,7 +251,7 @@ public final class TreeWalker
                         new String[]
                         {"TokenStreamRecognitionException occured."},
                         getId(),
-                        this.getClass()));
+                        this.getClass(), null));
             }
         }
         catch (final TokenStreamException te) {
@@ -264,7 +264,7 @@ public final class TreeWalker
                     "general.exception",
                     new String[] {te.getMessage()},
                     getId(),
-                    this.getClass()));
+                    this.getClass(), null));
         }
         catch (final Throwable err) {
             Utils.getExceptionLogger().debug("Throwable occured.", err);
@@ -275,7 +275,7 @@ public final class TreeWalker
                     "general.exception",
                     new String[] {"" + err},
                     getId(),
-                    this.getClass()));
+                    this.getClass(), null));
         }
 
         if (getMessageCollector().size() == 0) {

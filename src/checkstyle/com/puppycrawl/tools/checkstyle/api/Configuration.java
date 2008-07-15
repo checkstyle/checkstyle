@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.Serializable;
+import java.util.Map;
 
 
 /**
@@ -54,4 +55,11 @@ public interface Configuration extends Serializable
      * @return The name of this configuration.
      */
     String getName();
+
+    /**
+     * Returns an unmodifiable map instance containing the custom messages
+     * for this configuration.
+     * @return unmodifiable map containing custom messages
+     */
+    Map<String, String> getMessages();
 }

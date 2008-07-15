@@ -167,7 +167,7 @@ public class TranslationCheck
                 key,
                 args,
                 getId(),
-                this.getClass());
+                this.getClass(), null);
         final LocalizedMessage[] messages = new LocalizedMessage[] {message};
         getMessageDispatcher().fireErrors(aFile.getPath(), messages);
         Utils.getExceptionLogger().debug("IOException occured.", aEx);

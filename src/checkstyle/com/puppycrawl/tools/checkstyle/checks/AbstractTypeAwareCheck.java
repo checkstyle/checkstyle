@@ -289,7 +289,8 @@ public abstract class AbstractTypeAwareCheck extends Check
                                                     aValues,
                                                     getSeverityLevel(),
                                                     getId(),
-                                                    this.getClass());
+                                                    this.getClass(),
+                                                    null);
             throw new RuntimeException(msg.getMessage());
         }
 
