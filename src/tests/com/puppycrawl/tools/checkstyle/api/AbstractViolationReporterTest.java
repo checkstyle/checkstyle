@@ -2,14 +2,10 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
 
-import javax.swing.text.DefaultCaret;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Tests to ensure that default messagebundle is determined correctly.
@@ -40,7 +36,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport
         assertEquals("messages",
             emptyCheck.getMessageBundle("MyCoolCheck"));
     }
-    
+
     @Test
     public void testCustomMessage() throws CheckstyleException
     {
@@ -55,7 +51,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport
 
         LocalizedMessage[] messages = collector.getMessages();
         Assert.assertTrue(messages.length == 1);
-        
+
         Assert.assertEquals("This is a custom message.", messages[0].getMessage());
     }
 
@@ -70,14 +66,14 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport
         emptyCheck.setMessages(collector);
 
         emptyCheck.log(0, "msgKey", "TestParam");
-        
+
         LocalizedMessage[] messages = collector.getMessages();
         Assert.assertTrue(messages.length == 1);
-        
+
         Assert.assertEquals("This is a custom message with TestParam.", messages[0].getMessage());
     }
-    
-    @Test
+
+    @Test(expected=IllegalArgumentException.class)
     public void testCustomMessageWithParametersNegative() throws CheckstyleException
     {
         DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
@@ -88,18 +84,12 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport
         emptyCheck.setMessages(collector);
 
         emptyCheck.log(0, "msgKey", "TestParam");
-        
+
         LocalizedMessage[] messages = collector.getMessages();
         Assert.assertTrue(messages.length == 1);
-        
+
         //we expect an exception here because of the bogus custom message
         //format
-        try {
-            messages[0].getMessage();
-            Assert.fail("Didn't receive expected exception.");
-        }
-        catch (IllegalArgumentException e) {
-            //expected
-        }
+        messages[0].getMessage();
     }
 }

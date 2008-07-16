@@ -547,38 +547,55 @@
 
     <section name="Custom messages">
       <p>
-          As of Checkstyle 5 all checks can be configured to report custom, 
-          configuration specific messages instead of the Checkstyle default messages.<br/>
-          This can be useful in cases where the check message should reference
-          corresponding sections in a coding style document or the default is
-          too generic for junior developers to understand.<br/>
+        As of Checkstyle 5 all checks can be configured to report
+        custom, configuration specific messages instead of the
+        Checkstyle default messages.  This can be useful in cases where
+        the check message should reference corresponding sections in a
+        coding style document or the default is too generic for
+        developers to understand.
       </p>
-      Example:
+
+      <p>An example usage is:</p>
+
       <source>
 &lt;module name=&quot;MemberName&quot;&gt;
     &lt;property name=&quot;format&quot; value=&quot;^m[a-zA-Z0-9]*$&quot;/&gt;
-    &lt;message key=&quot;name.invalidPattern&quot; value=&quot;Member ''{0}'' must start with a lowercase ''m'' (checked pattern ''{1}'').&quot;/&gt;
+    &lt;message key=&quot;name.invalidPattern&quot;
+             value=&quot;Member ''{0}'' must start with a lowercase ''m'' (checked pattern ''{1}'').&quot;
+             /&gt;
 &lt;/module&gt;
       </source>
+
       <p>
-          Each check configuration element can host 0-n <span class="code">message</span> elements.
-          Every check uses one or more distinct message keys to log violations. If you want to customize
-          a certain message you need to specify the message key in the <span class="code">key</span> attribute
-          of the <span class="code">message</span> element.<br/>
-          The <span class="code">value</span> attribute specifies the custom message pattern, as shown in the
-          example.<br/>
-          Placeholders used in the default message can also be used in the custom message.<br/>
-          Note that the message pattern must be a valid <span class="code">java.text.MessageFormat</span> style
-          pattern, so be careful about curly braces outside a placeholder definition.
+        Each check configuration element can zero or more <span
+        class="code">message</span> elements. Every check uses one or
+        more distinct message keys to log violations. If you want to
+        customize a certain message you need to specify the message key
+        in the <span class="code">key</span> attribute of the <span
+        class="code">message</span> element.
       </p>
+
       <p>
-          How do you know, which message keys a check uses, so that you can override them?<br/>
-          Well, thats the trick part. To find out which keys a check uses you currently need to look into
-          the checks source code, in conjunction with the checks <span class="code">messages.properties</span> file.
-          Tools/plugins might come to the rescue on this topic, so have a look there.
+        The <span class="code">value</span> attribute specifies the
+        custom message pattern, as shown in the example above.
+        Placeholders used in the default message can also be used in the
+        custom message.  Note that the message pattern must be a valid
+        <span class="code">java.text.MessageFormat</span> style pattern,
+        so be careful about curly braces outside a placeholder
+        definition.
+      </p>
+
+      <p>
+        The obvious question is how do you know which message keys a
+        Check uses, so that you can override them? Well, that is the
+        tricky part. To find out which keys a Check uses you currently
+        need to look into the Check's source code, in conjunction with
+        the Check's <span class="code">messages.properties</span> file.
+        Tools/plugins might come to the rescue on this topic, so have a
+        look there.
       </p>
     </section>
-      
+
     <section name="Filters">
 
       <p>
@@ -650,7 +667,7 @@
           document</em></a> in a file. If there is no configured
           suppressions file, the Filter accepts all audit events.
 	</p>
-	
+
 	<h5>SuppressionFilter Properties</h5>
 
 	<table width="100%" border="1" cellpadding="5" class="body">
@@ -988,15 +1005,15 @@
         are distributed with Checkstyle.
       </p>
       <p>
-        To specify other packages to apply, 
-        create a <em>package names XML document</em> in a file 
+        To specify other packages to apply,
+        create a <em>package names XML document</em> in a file
         named <span class="code">checkstyle_packages.xml</span>,
         and provide that file in the root of the .jar containing your
         custom checks.
       </p>
       <p>
-        Note that the support for providing a <em>package names XML document</em> 
-        via <a href="cmdline.html">command line</a> option or as a attribute 
+        Note that the support for providing a <em>package names XML document</em>
+        via <a href="cmdline.html">command line</a> option or as a attribute
         of an <a href="anttask.html">ant Checkstyle task</a> has been dropped
         with Checkstyle 5.0.
       </p>
@@ -1058,7 +1075,7 @@
       <div class="tip">
         <h4 class="tip">Note</h4>
         <p>
-          As of Checkstyle 5.0 it is unnecessary to repeat the 
+          As of Checkstyle 5.0 it is unnecessary to repeat the
           <span class="code">package</span> elements for Checkstyle's packages
           in your custom <span class="code">checkstyle_packages.xml</span>
           file.
