@@ -47,7 +47,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport
         LocalizedMessages collector = new LocalizedMessages();
         emptyCheck.setMessages(collector);
 
-        emptyCheck.log(0, "msgKey", null);
+        emptyCheck.log(0, "msgKey");
 
         LocalizedMessage[] messages = collector.getMessages();
         Assert.assertTrue(messages.length == 1);
