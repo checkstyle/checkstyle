@@ -91,6 +91,14 @@
           It now requires that the option type is a Java 5 Enum and hence the
           <span class="code">AbstractOption</span> class has been removed.
         </li>
+        <li>
+          Provide support in the module configuration to allow for custom
+          messages that override the default message. This allows for
+          messages to be easily overridden.
+          See <a href="config.html#Custom%20messages">Custom Messages</a> for
+          more information. Thanks to Lars Koedderitzsch for providing patch
+          #1917420.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>
