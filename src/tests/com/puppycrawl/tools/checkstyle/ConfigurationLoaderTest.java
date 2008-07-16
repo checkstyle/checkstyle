@@ -153,9 +153,9 @@ public class ConfigurationLoaderTest
             0,
             atts);
     }
-    
+
     @Test
-    public void testCustomMessages() throws Exception
+    public void testCustomMessages() throws CheckstyleException
     {
         final Properties props = new Properties();
         props.put("checkstyle.basedir", "basedir");
@@ -167,9 +167,10 @@ public class ConfigurationLoaderTest
         final Configuration[] children = config.getChildren();
         final Configuration[] grandchildren = children[0].getChildren();
 
-        assertTrue(((DefaultConfiguration) grandchildren[0]).getMessages().containsKey("name.invalidPattern"));
+        assertTrue(((DefaultConfiguration) grandchildren[0]).getMessages()
+            .containsKey("name.invalidPattern"));
     }
-    
+
 
     private void verifyConfigNode(
         DefaultConfiguration aConfig, String aName, int aChildrenLength,

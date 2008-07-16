@@ -73,7 +73,7 @@ public final class ConfigurationLoader
     private static final String DTD_RESOURCE_NAME_1_2 =
         "com/puppycrawl/tools/checkstyle/configuration_1_2.dtd";
 
-    /** the public ID for version 1_2 of the configuration dtd */
+    /** the public ID for version 1_3 of the configuration dtd */
     private static final String DTD_PUBLIC_ID_1_3 =
         "-//Puppy Crawl//DTD Check Configuration 1.3//EN";
 
@@ -165,14 +165,12 @@ public final class ConfigurationLoader
                 top.addAttribute(name, value);
             }
             else if (aQName.equals(MESSAGE)) {
-
                 //extract key and value
                 final String key = aAtts.getValue(KEY);
                 final String value = aAtts.getValue(VALUE);
 
                 //add to messages of configuration
-                final DefaultConfiguration top =
-                    mConfigStack.peek();
+                final DefaultConfiguration top = mConfigStack.peek();
                 top.addMessage(key, value);
             }
         }
