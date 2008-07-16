@@ -98,7 +98,15 @@ public class MethodNameCheck extends AbstractNameCheck
             final DetailAST classDefOrNew = aAst.getParent().getParent();
             final DetailAST classIdent =
                 classDefOrNew.findFirstToken(TokenTypes.IDENT);
-            if (method.getText().equals(classIdent.getText())) {
+            // Following logic is to handle when a classIdent can not be
+            // found. This is when you have a Literal_New keyword followed
+            // a DOT, which is when you have:
+            // new Outclass.InnerInterface(x) { ... }
+            // Such a rare case, will not have the logic to handle parsing
+            // down the tree looking for the first ident.
+            if ((null != classIdent)
+                && method.getText().equals(classIdent.getText()))
+            {
                 log(method.getLineNo(), method.getColumnNo(),
                     "method.name.equals.class.name", method.getText());
             }

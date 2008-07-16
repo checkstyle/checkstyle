@@ -60,4 +60,16 @@ public class MethodNameCheckTest
 
          verify(checkConfig, getPath("InputMethNameEqualClsName.java"), expected);
     }
+
+    @Test
+    public void testForNpe() throws Exception
+    {
+         final DefaultConfiguration checkConfig =
+             createCheckConfig(MethodNameCheck.class);
+
+         final String[] expected = {
+         };
+
+         verify(checkConfig, getPath("naming/InputMethodNameExtra.java"), expected);
+    }
 }

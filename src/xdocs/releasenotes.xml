@@ -9,7 +9,7 @@
   </properties>
 
   <body>
-    <section name="Release 5.0">
+    <section name="Release 5.0 Beta 1">
       <p>
         The 5.x release is developed using Java 5 and requires a Java 5
         platform to run. If you need run a Java 1.4 or earlier, then use

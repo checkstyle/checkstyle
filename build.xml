@@ -204,6 +204,7 @@
       <exclude name="**/InputSimple.java" />
       <exclude name="**/InputValidMethodIndent.java" />
       <exclude name="**/Post13KeywordsAsIdentifiersOK.java" />
+      <exclude name="**/InputMethodNameExtra.java"/>
     </javac>
   </target>
 
