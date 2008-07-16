@@ -761,8 +761,8 @@
 &lt;?xml version=&quot;1.0&quot;?&gt;
 
 &lt;!DOCTYPE suppressions PUBLIC
-    &quot;-//Puppy Crawl//DTD Suppressions 1.0//EN&quot;
-    &quot;http://www.puppycrawl.com/dtds/suppressions_1_0.dtd&quot;&gt;
+    &quot;-//Puppy Crawl//DTD Suppressions 1.1//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/suppressions_1_1.dtd&quot;&gt;
 
 &lt;suppressions&gt;
     &lt;suppress checks=&quot;JavadocStyleCheck&quot;
