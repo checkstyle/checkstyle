@@ -71,6 +71,7 @@
       <property name="option" value="nlow"/>
     </module>
 
+    <module name="OuterTypeNumber"/>
     <module name="LineLength">
       <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
     </module>

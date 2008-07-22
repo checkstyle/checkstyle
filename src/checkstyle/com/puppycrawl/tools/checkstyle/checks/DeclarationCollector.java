@@ -113,150 +113,130 @@ public abstract class DeclarationCollector extends Check
     {
         return (mFrames.findFrame(aName) instanceof ClassFrame);
     }
-}
-
-/**
- * A declaration frame.
- * @author Stephen Bloch
- * June 19, 2003
- */
-abstract class LexicalFrame
-{
-    /** Set of name of variables declared in this frame. */
-    private final HashSet<String> mVarNames;
-
-    /** constructor -- invocable only via super() from subclasses */
-    protected LexicalFrame()
-    {
-        mVarNames = Sets.newHashSet();
-    }
-
-    /** add a name to the frame.
-     * @param aNameToAdd  the name we're adding
-     */
-    void addName(String aNameToAdd)
-    {
-        mVarNames.add(aNameToAdd);
-    }
-
-    /** check whether the frame contains a given name.
-     * @param aNameToFind  the name we're looking for
-     * @return whether it was found
-     */
-    boolean contains(String aNameToFind)
-    {
-        return mVarNames.contains(aNameToFind);
-    }
-}
-
-/**
- * The global frame; should hold only class names.
- * @author Stephen Bloch
- */
-class GlobalFrame extends LexicalFrame
-{
-    /** Create new instance of hte frame. */
-    GlobalFrame()
-    {
-        super();
-    }
-}
-
-/**
- * A frame initiated at method definition; holds parameter names.
- * @author Stephen Bloch
- */
-class MethodFrame extends LexicalFrame
-{
-    /** Create new instance of hte frame. */
-    MethodFrame()
-    {
-        super();
-    }
-}
-
-/**
- * A frame initiated at class definition; holds instance variable
- * names.  For the present, I'm not worried about other class names,
- * method names, etc.
- * @author Stephen Bloch
- */
-class ClassFrame extends LexicalFrame
-{
-    /** Create new instance of hte frame. */
-    ClassFrame()
-    {
-        super();
-    }
-}
-
-/**
- * A frame initiated on entering a statement list; holds local variable
- * names.  For the present, I'm not worried about other class names,
- * method names, etc.
- * @author Stephen Bloch
- */
-class BlockFrame extends LexicalFrame
-{
-    /** Create new instance of hte frame. */
-    BlockFrame()
-    {
-        super();
-    }
-}
-
-/**
- * A stack of LexicalFrames.  Standard issue....
- * @author Stephen Bloch
- */
-class FrameStack
-{
-    /** List of lexical frames. */
-    private final LinkedList<LexicalFrame> mFrameList;
-
-    /** Creates an empty FrameStack. */
-    FrameStack()
-    {
-        mFrameList = Lists.newLinkedList();
-        this.enter(new GlobalFrame());
-    }
 
     /**
-     * Enter a scope, i.e. push a frame on the stack.
-     * @param aNewFrame  the already-created frame to push
+     * A declaration frame.
+     * @author Stephen Bloch
+     * June 19, 2003
      */
-    void enter(LexicalFrame aNewFrame)
+    private abstract static class LexicalFrame
     {
-        mFrameList.addFirst(aNewFrame);
-    }
+        /** Set of name of variables declared in this frame. */
+        private final HashSet<String> mVarNames;
 
-    /** Leave a scope, i.e. pop a frame from the stack.  */
-    void leave()
-    {
-        mFrameList.removeFirst();
-    }
-
-    /**
-     * Get current scope, i.e. top frame on the stack.
-     * @return the current frame
-     */
-    LexicalFrame current()
-    {
-        return mFrameList.getFirst();
-    }
-
-    /**
-     * Search this and containing frames for a given name.
-     * @param aNameToFind the name we're looking for
-     * @return the frame in which it was found, or null if not found
-     */
-    LexicalFrame findFrame(String aNameToFind)
-    {
-        for (LexicalFrame thisFrame : mFrameList) {
-            if (thisFrame.contains(aNameToFind)) {
-                return thisFrame;
-            }
+        /** constructor -- invocable only via super() from subclasses */
+        protected LexicalFrame()
+        {
+            mVarNames = Sets.newHashSet();
         }
-        return null;
+
+        /** add a name to the frame.
+         * @param aNameToAdd  the name we're adding
+         */
+        void addName(String aNameToAdd)
+        {
+            mVarNames.add(aNameToAdd);
+        }
+
+        /** check whether the frame contains a given name.
+         * @param aNameToFind  the name we're looking for
+         * @return whether it was found
+         */
+        boolean contains(String aNameToFind)
+        {
+            return mVarNames.contains(aNameToFind);
+        }
+    }
+
+    /**
+     * The global frame; should hold only class names.
+     * @author Stephen Bloch
+     */
+    private static class GlobalFrame extends LexicalFrame
+    {
+    }
+
+    /**
+     * A frame initiated at method definition; holds parameter names.
+     * @author Stephen Bloch
+     */
+    private static class MethodFrame extends LexicalFrame
+    {
+    }
+
+    /**
+     * A frame initiated at class definition; holds instance variable
+     * names.  For the present, I'm not worried about other class names,
+     * method names, etc.
+     * @author Stephen Bloch
+     */
+    private static class ClassFrame extends LexicalFrame
+    {
+    }
+
+    /**
+     * A frame initiated on entering a statement list; holds local variable
+     * names.  For the present, I'm not worried about other class names,
+     * method names, etc.
+     * @author Stephen Bloch
+     */
+    private static class BlockFrame extends LexicalFrame
+    {
+    }
+
+    /**
+     * A stack of LexicalFrames.  Standard issue....
+     * @author Stephen Bloch
+     */
+    private static class FrameStack
+    {
+        /** List of lexical frames. */
+        private final LinkedList<LexicalFrame> mFrameList;
+
+        /** Creates an empty FrameStack. */
+        FrameStack()
+        {
+            mFrameList = Lists.newLinkedList();
+            this.enter(new GlobalFrame());
+        }
+
+        /**
+         * Enter a scope, i.e. push a frame on the stack.
+         * @param aNewFrame  the already-created frame to push
+         */
+        void enter(LexicalFrame aNewFrame)
+        {
+            mFrameList.addFirst(aNewFrame);
+        }
+
+        /** Leave a scope, i.e. pop a frame from the stack.  */
+        void leave()
+        {
+            mFrameList.removeFirst();
+        }
+
+        /**
+         * Get current scope, i.e. top frame on the stack.
+         * @return the current frame
+         */
+        LexicalFrame current()
+        {
+            return mFrameList.getFirst();
+        }
+
+        /**
+         * Search this and containing frames for a given name.
+         * @param aNameToFind the name we're looking for
+         * @return the frame in which it was found, or null if not found
+         */
+        LexicalFrame findFrame(String aNameToFind)
+        {
+            for (LexicalFrame thisFrame : mFrameList) {
+                if (thisFrame.contains(aNameToFind)) {
+                    return thisFrame;
+                }
+            }
+            return null;
+        }
     }
 }

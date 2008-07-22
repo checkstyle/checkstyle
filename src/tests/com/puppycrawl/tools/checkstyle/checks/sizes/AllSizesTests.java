@@ -7,7 +7,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses( {AnonInnerLengthCheckTest.class,
     ExecutableStatementCountCheckTest.class, FileLengthCheckTest.class,
     LineLengthCheckTest.class, MethodLengthCheckTest.class,
-    ParameterNumberCheckTest.class})
+    ParameterNumberCheckTest.class, OuterTypeNumberCheckTest.class})
 public class AllSizesTests
 {
 }

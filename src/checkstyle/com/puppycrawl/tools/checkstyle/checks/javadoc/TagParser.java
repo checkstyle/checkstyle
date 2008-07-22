@@ -271,45 +271,45 @@ class TagParser
 
         return new Point(line, column);
     }
-}
-
-/**
- * Represents current position in the text.
- * @author o_sukholsky
- */
-final class Point
-{
-    /** line number. */
-    private final int mLine;
-    /** column number.*/
-    private final int mColumn;
 
     /**
-     * Creates new <code>Point</code> instance.
-     * @param aLineNo line number
-     * @param aColumnNo column number
+     * Represents current position in the text.
+     * @author o_sukholsky
      */
-    public Point(int aLineNo, int aColumnNo)
+    private static final class Point
     {
-        mLine = aLineNo;
-        mColumn = aColumnNo;
-    }
+        /** line number. */
+        private final int mLine;
+        /** column number.*/
+        private final int mColumn;
 
-    /**
-     * Getter for line number.
-     * @return line number of the position.
-     */
-    public int getLineNo()
-    {
-        return mLine;
-    }
+        /**
+         * Creates new <code>Point</code> instance.
+         * @param aLineNo line number
+         * @param aColumnNo column number
+         */
+        public Point(int aLineNo, int aColumnNo)
+        {
+            mLine = aLineNo;
+            mColumn = aColumnNo;
+        }
 
-    /**
-     * Getter for column number.
-     * @return column number of the position.
-     */
-    public int getColumnNo()
-    {
-        return mColumn;
+        /**
+         * Getter for line number.
+         * @return line number of the position.
+         */
+        public int getLineNo()
+        {
+            return mLine;
+        }
+
+        /**
+         * Getter for column number.
+         * @return column number of the position.
+         */
+        public int getColumnNo()
+        {
+            return mColumn;
+        }
     }
 }

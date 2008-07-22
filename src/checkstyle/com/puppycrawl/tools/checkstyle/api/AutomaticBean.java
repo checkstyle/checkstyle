@@ -287,112 +287,106 @@ public class AutomaticBean
         throws CheckstyleException
     {
     }
-}
-
-/**
- * <p>Standard Converter implementation that converts an incoming
- * String into an array of String.  On a conversion failure, returns
- * a specified default value or throws a ConversionException depending
- * on how this instance is constructed.</p>
- *
- * Hacked from
- * http://cvs.apache.org/viewcvs/jakarta-commons/beanutils/src/java/org/apache/commons/beanutils/converters/StringArrayConverter.java
- * because that implementation fails to convert array of tokens with elements
- * containing an underscore, "_" :(
- *
- * @author Rick Giles
- */
-
-
-final class StrArrayConverter extends AbstractArrayConverter
-{
-    /**
-     * <p>Model object for type comparisons.</p>
-     */
-    private static final String[] MODEL = new String[0];
 
     /**
-     * Creates a new StrArrayConverter object.
-     */
-    public StrArrayConverter()
-    {
-        this.defaultValue = null;
-        this.useDefault = false;
-    }
-
-    /**
-     * Create a converter that will return the specified default value
-     * if a conversion error occurs.
+     * <p>Standard Converter implementation that converts an incoming
+     * String into an array of String.  On a conversion failure, returns
+     * a specified default value or throws a ConversionException depending
+     * on how this instance is constructed.</p>
      *
-     * @param aDefaultValue The default value to be returned
+     * Hacked from
+     * http://cvs.apache.org/viewcvs/jakarta-commons/beanutils/src/java/org/apache/commons/beanutils/converters/StringArrayConverter.java
+     * because that implementation fails to convert array of tokens with
+     * elements containing an underscore, "_" :(
+     *
+     * @author Rick Giles
      */
-    public StrArrayConverter(Object aDefaultValue)
+    private static final class StrArrayConverter extends AbstractArrayConverter
     {
-        this.defaultValue = aDefaultValue;
-        this.useDefault = true;
-    }
+        /** <p>Model object for type comparisons.</p> */
+        private static final String[] MODEL = new String[0];
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public Object convert(Class aType, Object aValue)
-        throws ConversionException
-    {
-        // Deal with a null value
-        if (aValue == null) {
-            if (useDefault) {
-                return (defaultValue);
+        /** Creates a new StrArrayConverter object. */
+        public StrArrayConverter()
+        {
+            this.defaultValue = null;
+            this.useDefault = false;
+        }
+
+        /**
+         * Create a converter that will return the specified default value
+         * if a conversion error occurs.
+         *
+         * @param aDefaultValue The default value to be returned
+         */
+        public StrArrayConverter(Object aDefaultValue)
+        {
+            this.defaultValue = aDefaultValue;
+            this.useDefault = true;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public Object convert(Class aType, Object aValue)
+            throws ConversionException
+        {
+            // Deal with a null value
+            if (aValue == null) {
+                if (useDefault) {
+                    return (defaultValue);
+                }
+                throw new ConversionException("No value specified");
             }
-            throw new ConversionException("No value specified");
-        }
 
-        // Deal with the no-conversion-needed case
-        if (MODEL.getClass() == aValue.getClass()) {
-            return (aValue);
-        }
-
-        // Parse the input value as a String into elements
-        // and convert to the appropriate type
-        try {
-            final List list = parseElements(aValue.toString());
-            final String[] results = new String[list.size()];
-
-            for (int i = 0; i < results.length; i++) {
-                results[i] = (String) list.get(i);
+            // Deal with the no-conversion-needed case
+            if (MODEL.getClass() == aValue.getClass()) {
+                return (aValue);
             }
-            return (results);
-        }
-        catch (final Exception e) {
-            if (useDefault) {
-                return (defaultValue);
+
+            // Parse the input value as a String into elements
+            // and convert to the appropriate type
+            try {
+                final List list = parseElements(aValue.toString());
+                final String[] results = new String[list.size()];
+
+                for (int i = 0; i < results.length; i++) {
+                    results[i] = (String) list.get(i);
+                }
+                return (results);
             }
-            throw new ConversionException(aValue.toString(), e);
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    protected List parseElements(final String aValue)
-        throws NullPointerException
-    {
-        // Validate the passed argument
-        if (aValue == null) {
-            throw new NullPointerException();
+            catch (final Exception e) {
+                if (useDefault) {
+                    return (defaultValue);
+                }
+                throw new ConversionException(aValue.toString(), e);
+            }
         }
 
-        // Trim any matching '{' and '}' delimiters
-        String str = aValue.trim();
-        if (str.startsWith("{") && str.endsWith("}")) {
-            str = str.substring(1, str.length() - 1);
+        @SuppressWarnings("unchecked")
+        @Override
+        protected List parseElements(final String aValue)
+            throws NullPointerException
+        {
+            // Validate the passed argument
+            if (aValue == null) {
+                throw new NullPointerException();
+            }
+
+            // Trim any matching '{' and '}' delimiters
+            String str = aValue.trim();
+            if (str.startsWith("{") && str.endsWith("}")) {
+                str = str.substring(1, str.length() - 1);
+            }
+
+            final StringTokenizer st = new StringTokenizer(str, ",");
+            final List<String> retVal = Lists.newArrayList();
+
+            while (st.hasMoreTokens()) {
+                final String token = st.nextToken();
+                retVal.add(token.trim());
+            }
+
+            return retVal;
         }
-
-        final StringTokenizer st = new StringTokenizer(str, ",");
-        final List<String> retVal = Lists.newArrayList();
-
-        while (st.hasMoreTokens()) {
-            final String token = st.nextToken();
-            retVal.add(token.trim());
-        }
-
-        return retVal;
     }
 }

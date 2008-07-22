@@ -9,6 +9,28 @@
   </properties>
 
   <body>
+    <section name="Release 5.0 Beta 2">
+      <p>New Features:</p>
+      <ul>
+        <li>
+          New check
+          <a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a>
+          for enforcing the maximum number of outer types per file. Inspired
+          by patch #1145023 from Alexander Jesse.
+        </li>
+      </ul>
+
+      <p>Fixed Bugs:</p>
+      <ul>
+        <li>...</li>
+      </ul>
+
+      <p>Notes:</p>
+      <ul>
+        <li>...</li>
+      </ul>
+    </section>
+
     <section name="Release 5.0 Beta 1">
       <p>
         The 5.x release is developed using Java 5 and requires a Java 5
