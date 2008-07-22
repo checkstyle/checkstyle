@@ -618,9 +618,6 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
       <doclet name="com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet"
               path="${checkstyle.dest}">
       </doclet>
-      <fileset dir="src/checkstyle">
-        <include name="**/checks/**/*Check.java" />
-      </fileset>
     </javadoc>
 
     <taskdef name="anakia" classname="org.apache.velocity.anakia.AnakiaTask">
