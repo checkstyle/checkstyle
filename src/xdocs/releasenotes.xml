@@ -18,6 +18,12 @@
           for enforcing the maximum number of outer types per file. Inspired
           by patch #1145023 from Alexander Jesse.
         </li>
+        <li>
+          Add new options to the <a
+          href="config_sizes.html#ImportOrderCheck">ImportOrderCheck</a>
+          to make it more flexible. Thanks to David Didier for providing
+          patch #1854213.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

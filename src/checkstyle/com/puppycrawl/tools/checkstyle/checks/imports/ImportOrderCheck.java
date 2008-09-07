@@ -19,55 +19,74 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 
 /**
- * Class to check the ordering/grouping of imports.  Ensures that
- * groups of imports come in a specific order (e.g., java. comes
- * first, javax. comes second, then everything else) and imports
- * within each group are in lexicographic order. Static imports must
- * be at the end of a group and in lexicographic order amongst themselves.
+ * Class to check the ordering/grouping of imports. Features are:
+ * <ul>
+ * <li>groups imports: ensures that groups of imports come in a specific order
+ * (e.g., java. comes first, javax. comes second, then everything else)</li>
+ * <li>adds a separation between groups : ensures that a blank line sit between
+ * each group</li>
+ * <li>sorts imports inside each group: ensures that imports within each group
+ * are in lexicographic order</li>
+ * <li>sorts according to case: ensures that the comparison between import is
+ * case sensitive</li>
+ * <li>groups static imports: ensures that static imports are at the top (or the
+ * bottom) of all the imports, or above (or under) each group, or are treated
+ * like non static imports (@see {@link ImportOrderOption}</li>
+ * </ul>
  *
  * <p>
  * Example:
+ * </p>
+ *
  * <pre>
- *  &lt;module name=&quot;ImportOrder&quot;>
- *    &lt;property name=&quot;groups&quot; value=&quot;java,javax&quot;/>
- *    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/>
- *    &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/>
- *  &lt;/module>
+ *  &lt;module name=&quot;ImportOrder&quot;&gt;
+ *    &lt;property name=&quot;groups&quot; value=&quot;java,javax&quot;/&gt;
+ *    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+ *    &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
+ *    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
+ *  &lt;/module&gt;
  * </pre>
  *
+ * <p>
  * There is always an additional, implied &quot;everything else&quot; package
- * group.  If no &quot;groups&quot; property is supplied, all imports belong in
- * this &quot;everything else&quot; group.  </p>
- *
- * <p>
- * ordered defaults to true.
+ * group. If no &quot;groups&quot; property is supplied, all imports belong in
+ * this &quot;everything else&quot; group.
  * </p>
  *
  * <p>
- * separated defaults to false.
+ * Defaults:
  * </p>
+ * <ul>
+ * <li>import groups: none</li>
+ * <li>separation: false</li>
+ * <li>ordered: true</li>
+ * <li>case sensitive: true</li>
+ * <li>static import: under</li>
+ * </ul>
  *
+ * <p>
  * Compatible with Java 1.5 source.
+ * </p>
  *
  * @author Bill Schneider
  * @author o_sukhodolsky
+ * @author David DIDIER
  */
-public class ImportOrderCheck extends Check
+public class ImportOrderCheck
+    extends AbstractOptionCheck<ImportOrderOption>
 {
     /** List of import groups specified by the user. */
     private String[] mGroups = new String[0];
-
-    /** Require imports in group. */
-    private boolean mOrdered = true;
-
     /** Require imports in group be separated. */
     private boolean mSeparated;
+    /** Require imports in group. */
+    private boolean mOrdered = true;
     /** Should comparison be case sensitive. */
     private boolean mCaseSensitive = true;
 
@@ -83,21 +102,23 @@ public class ImportOrderCheck extends Check
     private boolean mBeforeFirstImport;
 
     /**
-     * Default constructor.
+     * Groups static imports under each group.
      */
     public ImportOrderCheck()
     {
+        super(ImportOrderOption.UNDER, ImportOrderOption.class);
     }
 
     /**
-     * sets the list of package groups and the order they should
-     * occur in the  file.
+     * Sets the list of package groups and the order they should occur in the
+     * file.
      *
-     * @param aGroups a comma-separated list of package names/prefixes
+     * @param aGroups
+     *            a comma-separated list of package names/prefixes.
      */
     public void setGroups(String[] aGroups)
     {
-        mGroups = new String[ aGroups.length ];
+        mGroups = new String[aGroups.length];
 
         for (int i = 0; i < aGroups.length; i++) {
             String pkg = aGroups[i];
@@ -111,11 +132,12 @@ public class ImportOrderCheck extends Check
     }
 
     /**
-     * Sets whether or not imports should be ordered within any one
-     * group of imports.
+     * Sets whether or not imports should be ordered within any one group of
+     * imports.
      *
-     * @param aOrdered whether lexicographic ordering of imports within
-     *                 a group required or not.
+     * @param aOrdered
+     *            whether lexicographic ordering of imports within a group
+     *            required or not.
      */
     public void setOrdered(boolean aOrdered)
     {
@@ -123,10 +145,11 @@ public class ImportOrderCheck extends Check
     }
 
     /**
-     * Sets whether or not groups of imports must be separated from
-     * one another by at least one blank line.
+     * Sets whether or not groups of imports must be separated from one another
+     * by at least one blank line.
      *
-     * @param aSeparated whehter groups should be separated by blank line.
+     * @param aSeparated
+     *            whether groups should be separated by oen blank line.
      */
     public void setSeparated(boolean aSeparated)
     {
@@ -134,10 +157,10 @@ public class ImportOrderCheck extends Check
     }
 
     /**
-     * Sets whether string comparision should be case sensitive
-     * or not.
-     * @param aCaseSensitive whether string comparision should be
-     *                       case sensitive.
+     * Sets whether string comparison should be case sensitive or not.
+     *
+     * @param aCaseSensitive
+     *            whether string comparison should be case sensitive.
      */
     public void setCaseSensitive(boolean aCaseSensitive)
     {
@@ -147,7 +170,7 @@ public class ImportOrderCheck extends Check
     @Override
     public int[] getDefaultTokens()
     {
-        return new int[]{TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
     }
 
     @Override
@@ -156,8 +179,156 @@ public class ImportOrderCheck extends Check
         return getDefaultTokens();
     }
 
+    @Override
+    public void beginTree(DetailAST aRootAST)
+    {
+        mLastGroup = Integer.MIN_VALUE;
+        mLastImportLine = Integer.MIN_VALUE;
+        mLastImport = "";
+        mLastImportStatic = false;
+        mBeforeFirstImport = true;
+    }
+
+    @Override
+    public void visitToken(DetailAST aAST)
+    {
+        final FullIdent ident;
+        final boolean isStatic;
+
+        if (aAST.getType() == TokenTypes.IMPORT) {
+            ident = FullIdent.createFullIdentBelow(aAST);
+            isStatic = false;
+        }
+        else {
+            ident = FullIdent.createFullIdent((DetailAST) aAST.getFirstChild()
+                    .getNextSibling());
+            isStatic = true;
+        }
+
+        switch (getAbstractOption()) {
+        case TOP:
+            if (!isStatic && mLastImportStatic) {
+                mLastGroup = Integer.MIN_VALUE;
+                mLastImport = "";
+            }
+            // no break;
+
+        case ABOVE:
+            // previous non-static but current is static
+            doVisitToken(ident, isStatic, (!mLastImportStatic && isStatic));
+            break;
+
+        case INFLOW:
+            // previous argument is useless here
+            doVisitToken(ident, isStatic, true);
+            break;
+
+        case BOTTOM:
+            if (isStatic && !mLastImportStatic) {
+                mLastGroup = Integer.MIN_VALUE;
+                mLastImport = "";
+            }
+            // no break;
+
+        case UNDER:
+            // previous static but current is non-static
+            doVisitToken(ident, isStatic, (mLastImportStatic && !isStatic));
+            break;
+
+        default:
+            break;
+        }
+
+        mLastImportLine = aAST.findFirstToken(TokenTypes.SEMI).getLineNo();
+        mLastImportStatic = isStatic;
+        mBeforeFirstImport = false;
+    }
+
     /**
-     * @param aName import name to check.
+     * Shares processing...
+     *
+     * @param aIdent the import to process.
+     * @param aIsStatic whether the token is static or not.
+     * @param aPrevious previous non-static but current is static (above), or
+     *                  previous static but current is non-static (under).
+     */
+    private void doVisitToken(FullIdent aIdent, boolean aIsStatic,
+            boolean aPrevious)
+    {
+        if (aIdent != null) {
+            final String name = aIdent.getText();
+            final int groupIdx = getGroupNumber(name);
+            final int line = aIdent.getLineNo();
+
+            if (groupIdx > mLastGroup) {
+                if (!mBeforeFirstImport && mSeparated) {
+                    // This check should be made more robust to handle
+                    // comments and imports that span more than one line.
+                    if ((line - mLastImportLine) < 2) {
+                        log(line, "import.separation", name);
+                    }
+                }
+            }
+            else if (groupIdx == mLastGroup) {
+                doVisitTokenInSameGroup(aIdent, aIsStatic, aPrevious, name,
+                        line);
+            }
+            else {
+                log(line, "import.ordering", name);
+            }
+
+            mLastGroup = groupIdx;
+            mLastImport = name;
+        }
+    }
+
+    /**
+     * Shares processing...
+     *
+     * @param aIdent the import to process.
+     * @param aIsStatic whether the token is static or not.
+     * @param aPrevious previous non-static but current is static (above), or
+     *    previous static but current is non-static (under).
+     * @param aName the name of the current import.
+     * @param aLine the line of the current import.
+     */
+    private void doVisitTokenInSameGroup(FullIdent aIdent, boolean aIsStatic,
+            boolean aPrevious, String aName, int aLine)
+    {
+        if (!mOrdered) {
+            return;
+        }
+
+        if (getAbstractOption().equals(ImportOrderOption.INFLOW)) {
+            // out of lexicographic order
+            if (compare(mLastImport, aName, mCaseSensitive) >= 0) {
+                log(aLine, "import.ordering", aName);
+            }
+        }
+        else {
+            final boolean shouldFireError =
+                // current and previous static or current and
+                // previous non-static
+                (!(mLastImportStatic ^ aIsStatic)
+                &&
+                // and out of lexicographic order
+                (compare(mLastImport, aName, mCaseSensitive) >= 0))
+                ||
+                // previous non-static but current is static (above)
+                // or
+                // previous static but current is non-static (under)
+                aPrevious;
+
+            if (shouldFireError) {
+                log(aLine, "import.ordering", aName);
+            }
+        }
+    }
+
+    /**
+     * Finds out what group the specified import belongs to.
+     *
+     * @param aName the import name to find.
      * @return group number for given import name.
      */
     private int getGroupNumber(String aName)
@@ -175,86 +346,27 @@ public class ImportOrderCheck extends Check
         return i;
     }
 
-    @Override
-    public void beginTree(DetailAST aRootAST)
+    /**
+     * Compares two strings.
+     *
+     * @param aString1
+     *            the first string.
+     * @param aString2
+     *            the second string.
+     * @param aCaseSensitive
+     *            whether the comparison is case sensitive.
+     * @return the value <code>0</code> if string1 is equal to string2; a value
+     *         less than <code>0</code> if string1 is lexicographically less
+     *         than the string2; and a value greater than <code>0</code> if
+     *         string1 is lexicographically greater than string2.
+     */
+    private int compare(String aString1, String aString2,
+            boolean aCaseSensitive)
     {
-        mLastGroup = Integer.MIN_VALUE;
-        mLastImportLine = Integer.MIN_VALUE;
-        mLastImport = "";
-        mLastImportStatic = false;
-        mBeforeFirstImport = true;
-    }
-
-    @Override
-    public void visitToken(DetailAST aAST)
-    {
-        final FullIdent ident;
-        boolean isStatic;
-        if (aAST.getType() == TokenTypes.IMPORT) {
-            ident = FullIdent.createFullIdentBelow(aAST);
-            isStatic = false;
-        }
-        else {
-            ident = FullIdent.createFullIdent(
-                (DetailAST) aAST.getFirstChild().getNextSibling());
-            isStatic = true;
+        if (aCaseSensitive) {
+            return aString1.compareTo(aString2);
         }
 
-        if (ident != null) {
-            final String name = ident.getText();
-            final int groupIdx = getGroupNumber(name);
-            final int line = ident.getLineNo();
-
-            if (groupIdx > mLastGroup) {
-                if (!mBeforeFirstImport && mSeparated) {
-                    // This check should be made more robust to handle
-                    // comments and imports that span more than one line.
-                    if (line - mLastImportLine < 2) {
-                        log(line, "import.separation", name);
-                    }
-                }
-            }
-            else if (groupIdx == mLastGroup) {
-                if (mOrdered) {
-                    boolean shouldFireError = false;
-                    if (mCaseSensitive) {
-                        shouldFireError =
-                            //current and previous static or current and
-                            //previous non-static
-                            (!(mLastImportStatic ^ isStatic)
-                            &&
-                            //and out of lexicographic order
-                            (mLastImport.compareTo(name) >= 0))
-                            ||
-                            //previous static but current is non-static
-                            (mLastImportStatic && !isStatic);
-                    }
-                    else {
-                        shouldFireError =
-                                //current and previous static or current and
-                                //previous non-static
-                                (!(mLastImportStatic ^ isStatic)
-                                &&
-                                //and out of lexicographic order
-                                (mLastImport.compareToIgnoreCase(name) >= 0))
-                                ||
-                                //previous static but current is non-static
-                                (mLastImportStatic && !isStatic);
-                    }
-                    if (shouldFireError) {
-                        log(line, "import.ordering", name);
-                    }
-                }
-            }
-            else {
-                log(line, "import.ordering", name);
-            }
-
-            mLastGroup = groupIdx;
-            mLastImport = name;
-            mLastImportLine = aAST.findFirstToken(TokenTypes.SEMI).getLineNo();
-            mLastImportStatic = isStatic;
-            mBeforeFirstImport = false;
-        }
+        return aString1.compareToIgnoreCase(aString2);
     }
 }

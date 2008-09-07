@@ -62,4 +62,83 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrderCaseInsensitive.java"), expected);
     }
+
+    @Test
+    public void testTop() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "top");
+        final String[] expected = {
+            "4: Wrong order for 'java.awt.Button.ABORT' import.",
+            "18: Wrong order for 'java.io.File.*' import."
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Top.java"), expected);
+    }
+
+    @Test
+    public void testAbove() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "above");
+        final String[] expected = {
+            "5: Wrong order for 'java.awt.Button.ABORT' import.",
+            "8: Wrong order for 'java.awt.Dialog' import.",
+            "13: Wrong order for 'java.io.File' import.",
+            "14: Wrong order for 'java.io.File.createTempFile' import."
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Above.java"), expected);
+    }
+
+    @Test
+    public void testInFlow() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "inflow");
+        final String[] expected = {
+            "6: Wrong order for 'java.awt.Dialog' import.",
+            "11: Wrong order for 'javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE' import.",
+            "12: Wrong order for 'javax.swing.WindowConstants.*' import.",
+            "13: Wrong order for 'javax.swing.JTable' import.",
+            "15: Wrong order for 'java.io.File.createTempFile' import.",
+            "16: Wrong order for 'java.io.File' import."
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_InFlow.java"), expected);
+    }
+
+    @Test
+    public void testUnder() throws Exception
+    {
+        // is default (testDefault)
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "under");
+        final String[] expected = {
+            "5: Wrong order for 'java.awt.Dialog' import.",
+            "11: Wrong order for 'java.awt.Button.ABORT' import.",
+            "14: Wrong order for 'java.io.File' import."
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Under.java"), expected);
+    }
+
+    @Test
+    public void testBottom() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("option", "bottom");
+        final String[] expected = {
+                "15: Wrong order for 'java.io.File' import.",
+                "18: Wrong order for 'java.awt.Button.ABORT' import.",
+                "21: Wrong order for 'java.io.Reader' import."
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Bottom.java"), expected);
+    }
 }

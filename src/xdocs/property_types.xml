@@ -65,7 +65,7 @@
         This property represents a regular expression. The string
         representation is parsed using <a
         href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/package-summary.html">java.util.regex
-        package</a>. 
+        package</a>.
       </p>
     </section>
 
@@ -178,7 +178,7 @@
           <td>Option</td>
           <td>Definition</td>
         </tr>
-        
+
         <tr>
           <td><span class="code">eol</span></td>
           <td>
@@ -326,6 +326,81 @@
           <td>
             The beans have mixed bean-managed and container-managed
             persistence.
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <section name="importOrder">
+      <p>
+        This property represents the policy for checking imports order.
+        The following table describes the valid options:
+      </p>
+
+      <table summary="import order options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+
+        <tr>
+          <td><span class="code">top</span></td>
+          <td>All static imports are at the top. For example:
+              <pre>
+    import static a.b.C.*;
+    import static x.y.Z.*;
+
+    import a.b.D;
+    import x.y.Z;</pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">above</span></td>
+          <td>All static imports are above the local group.. For example:
+            <pre>
+    import static a.b.C.*;
+    import a.b.D;
+
+    import static x.y.Z.*;
+    import x.y.Z;</pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">inflow</span></td>
+          <td>All static imports are processed like non static
+              imports. For example:
+              <pre>
+    import static a.b.C.*;
+    import a.b.D;
+
+    import x.y.Z;
+    import static x.y.Z.*;</pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">under</span></td>
+          <td>All static imports are under the local group. For example:
+              <pre>
+    import a.b.D;
+    import static a.b.C.*;
+
+    import x.y.Z;
+    import static x.y.Z.*;</pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">bottom</span></td>
+          <td>All static imports are at the bottom. For example:
+              <pre>
+    import a.b.D;
+    import x.y.Z;
+
+    import static a.b.C.*;
+    import static x.y.Z.*;</pre>
           </td>
         </tr>
       </table>

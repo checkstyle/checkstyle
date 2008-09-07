@@ -323,12 +323,21 @@ class FooBar {
     <section name="ImportOrder">
       <subsection name="Description">
         <p>
-          Checks the ordering/grouping of imports.  Ensures that groups of
-          imports come in a specific order (e.g., java. comes first,
-          javax. comes first, then everything else) and imports within each
-          group are in lexicographic order.
-          Static imports must be at the end of a group and in lexicographic
-          order amongst themselves.
+            Checks the ordering/grouping of imports. Features are:
+            <ul>
+                <li>groups imports: ensures that groups of imports come in a 
+                specific order (e.g., java. comes first, javax. comes second, 
+                then everything else)</li>
+                <li>adds a separation between groups : ensures that a blank 
+                line sit between each group</li>
+                <li>sorts imports inside each group: ensures that imports 
+                within each group are in lexicographic order</li>
+                <li>sorts according to case: ensures that the comparison 
+                between imports is case sensitive</li>
+                <li>groups static imports: ensures the relative order between 
+                regular imports and static imports (see
+                <a href="property_types.html#importOrder">import orders</a>)</li>
+             </ul>
         </p>
       </subsection>
 
@@ -339,6 +348,12 @@ class FooBar {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+          </tr>
+          <tr>
+            <td>option</td>
+            <td>policy on the relative order between regular imports and static imports</td>
+            <td><a href="property_types.html#importOrder">import order</a></td>
+            <td><span class="default">under</span></td>
           </tr>
           <tr>
             <td>groups</td>
@@ -375,10 +390,13 @@ class FooBar {
 
       <subsection name="Example">
         <p>
-          To configure the check so that it requires &quot;java&quot; packages
-          first, than &quot;javax&quot; and than all other imports, imports
-          will be sorted in the groups and groups are separated by, at least,
-          on blank line:
+          To configure the check so that it requires that:
+          <ul>
+            <li>&quot;java&quot; packages first, then &quot;javax&quot; and then all other imports</li>
+            <li>imports will be sorted in the groups</li>
+            <li>groups are separated by, at least, on blank line</li>
+            <li>static imports are above each local groups</li>
+          </ul>
         </p>
 
         <source>
@@ -386,6 +404,7 @@ class FooBar {
     &lt;property name=&quot;groups&quot; value=&quot;java,javax&quot;/>
     &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/>
     &lt;property name=&quot;separated&quot; value=&quot;true&quot;/>
+    &lt;property name=&quot;option&quot; value=&quot;above&quot;/>
 &lt;/module>
         </source>
       </subsection>
