@@ -215,9 +215,9 @@ public class HandlerFactory
     ExpressionHandler createMethodCallHandler(IndentationCheck aIndentCheck,
         DetailAST aAst, ExpressionHandler aParent)
     {
-        DetailAST ast = (DetailAST) aAst.getFirstChild();
+        DetailAST ast = aAst.getFirstChild();
         while ((ast != null) && (ast.getType() == TokenTypes.DOT)) {
-            ast = (DetailAST) ast.getFirstChild();
+            ast = ast.getFirstChild();
         }
         if ((ast != null) && isHandledType(ast.getType())) {
             aParent = getHandler(aIndentCheck, ast, aParent);

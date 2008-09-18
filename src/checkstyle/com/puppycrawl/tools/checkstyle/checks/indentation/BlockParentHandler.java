@@ -228,7 +228,7 @@ public class BlockParentHandler extends ExpressionHandler
      */
     protected DetailAST getNonlistChild()
     {
-        return (DetailAST) getMainAst().findFirstToken(
+        return getMainAst().findFirstToken(
             TokenTypes.RPAREN).getNextSibling();
     }
 

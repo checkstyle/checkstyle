@@ -45,7 +45,7 @@ public class HideUtilityClassConstructorCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
-        DetailAST child = (DetailAST) objBlock.getFirstChild();
+        DetailAST child = objBlock.getFirstChild();
         boolean hasMethodOrField = false;
         boolean hasNonStaticMethodOrField = false;
         boolean hasDefaultCtor = true;
@@ -81,7 +81,7 @@ public class HideUtilityClassConstructorCheck extends Check
                 }
 
             }
-            child = (DetailAST) child.getNextSibling();
+            child = child.getNextSibling();
         }
 
         final boolean hasAccessibleCtor = (hasDefaultCtor || hasPublicCtor);

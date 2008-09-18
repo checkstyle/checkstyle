@@ -59,7 +59,7 @@ public class MultipleVariableDeclarationsCheck extends Check
     @Override
     public void visitToken(DetailAST aAST)
     {
-        DetailAST nextNode = (DetailAST) aAST.getNextSibling();
+        DetailAST nextNode = aAST.getNextSibling();
         final boolean isCommaSeparated =
             ((nextNode != null) && (nextNode.getType() == TokenTypes.COMMA));
 
@@ -71,7 +71,7 @@ public class MultipleVariableDeclarationsCheck extends Check
         if ((nextNode.getType() == TokenTypes.COMMA)
             || (nextNode.getType() == TokenTypes.SEMI))
         {
-            nextNode = (DetailAST) nextNode.getNextSibling();
+            nextNode = nextNode.getNextSibling();
         }
 
         if ((nextNode != null)
@@ -101,7 +101,7 @@ public class MultipleVariableDeclarationsCheck extends Check
     private static DetailAST getLastNode(final DetailAST aNode)
     {
         DetailAST currentNode = aNode;
-        DetailAST child = (DetailAST) aNode.getFirstChild();
+        DetailAST child = aNode.getFirstChild();
         while (child != null) {
             final DetailAST newNode = getLastNode(child);
             if ((newNode.getLineNo() > currentNode.getLineNo())
@@ -110,7 +110,7 @@ public class MultipleVariableDeclarationsCheck extends Check
             {
                 currentNode = newNode;
             }
-            child = (DetailAST) child.getNextSibling();
+            child = child.getNextSibling();
         }
 
         return currentNode;

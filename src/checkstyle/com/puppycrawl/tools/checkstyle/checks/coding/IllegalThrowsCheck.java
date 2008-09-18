@@ -55,7 +55,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     @Override
     public void visitToken(DetailAST aDetailAST)
     {
-        DetailAST token = (DetailAST) aDetailAST.getFirstChild();
+        DetailAST token = aDetailAST.getFirstChild();
         while (token != null) {
             if (token.getType() != TokenTypes.COMMA) {
                 final FullIdent ident = FullIdent.createFullIdent(token);
@@ -64,7 +64,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
                 }
             }
 
-            token = (DetailAST) token.getNextSibling();
+            token = token.getNextSibling();
         }
     }
 }

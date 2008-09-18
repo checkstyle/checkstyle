@@ -408,14 +408,14 @@ public final class TreeWalker
 
         notifyVisit(aAST);
 
-        final DetailAST child = (DetailAST) aAST.getFirstChild();
+        final DetailAST child = aAST.getFirstChild();
         if (child != null) {
             processRec(child);
         }
 
         notifyLeave(aAST);
 
-        final DetailAST sibling = (DetailAST) aAST.getNextSibling();
+        final DetailAST sibling = aAST.getNextSibling();
         if (sibling != null) {
             processRec(sibling);
         }
@@ -518,10 +518,10 @@ public final class TreeWalker
         DetailAST curNode = aRoot;
         while (curNode != null) {
             notifyVisit(curNode);
-            DetailAST toVisit = (DetailAST) curNode.getFirstChild();
+            DetailAST toVisit = curNode.getFirstChild();
             while ((curNode != null) && (toVisit == null)) {
                 notifyLeave(curNode);
-                toVisit = (DetailAST) curNode.getNextSibling();
+                toVisit = curNode.getNextSibling();
                 if (toVisit == null) {
                     curNode = curNode.getParent();
                 }

@@ -70,7 +70,7 @@ public class EmptyForInitializerPadCheck
     {
         if (aAST.getChildCount() == 0) {
             //empty for initializer. test pad before semi.
-            final DetailAST semi = (DetailAST) aAST.getNextSibling();
+            final DetailAST semi = aAST.getNextSibling();
             final int semiLineIdx = semi.getLineNo() - 1;
             final String line = getLines()[semiLineIdx];
             final int before = semi.getColumnNo() - 1;

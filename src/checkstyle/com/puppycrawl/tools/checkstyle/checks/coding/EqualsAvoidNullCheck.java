@@ -97,12 +97,12 @@ public class EqualsAvoidNullCheck extends Check
     @Override
     public void visitToken(final DetailAST aMethodCall)
     {
-        final AST dot = aMethodCall.getFirstChild();
+        final DetailAST dot = aMethodCall.getFirstChild();
         if (dot.getType() != TokenTypes.DOT) {
             return;
         }
 
-        final AST objCalledOn = dot.getFirstChild();
+        final DetailAST objCalledOn = dot.getFirstChild();
 
         //checks for calling equals on String literal and
         //anon object which cannot be null
@@ -116,8 +116,8 @@ public class EqualsAvoidNullCheck extends Check
             return;
         }
 
-        final AST method = objCalledOn.getNextSibling();
-        final AST expr = dot.getNextSibling().getFirstChild();
+        final DetailAST method = objCalledOn.getNextSibling();
+        final DetailAST expr = dot.getNextSibling().getFirstChild();
         if ("equals".equals(method.getText()) && containsOneArg(expr)) {
             if (containsAllSafeTokens(expr)) {
                 log(aMethodCall.getLineNo(), aMethodCall.getColumnNo(),
@@ -177,11 +177,11 @@ public class EqualsAvoidNullCheck extends Check
      * @param aExpr the argument expression
      * @return - true if any child matches the set of tokens, false if not
      */
-    private boolean containsAllSafeTokens(final AST aExpr)
+    private boolean containsAllSafeTokens(final DetailAST aExpr)
     {
-        AST arg = aExpr.getFirstChild();
+        DetailAST arg = aExpr.getFirstChild();
 
-        if (((DetailAST) arg).branchContains(TokenTypes.METHOD_CALL)) {
+        if (arg.branchContains(TokenTypes.METHOD_CALL)) {
             return false;
         }
         arg = skipVariableAssign(arg);
@@ -195,8 +195,8 @@ public class EqualsAvoidNullCheck extends Check
         //(s += "SweetString").equals(s); //true
         //arg = skipVariablePlusAssign(arg);
 
-        if (((DetailAST) arg).branchContains(TokenTypes.PLUS_ASSIGN)
-                || ((DetailAST) arg).branchContains(TokenTypes.IDENT))
+        if ((arg).branchContains(TokenTypes.PLUS_ASSIGN)
+                || (arg).branchContains(TokenTypes.IDENT))
         {
             return false;
         }
@@ -210,7 +210,7 @@ public class EqualsAvoidNullCheck extends Check
      * @param aCurrentAST current token in the argument expression
      * @return the next relevant token
      */
-    private AST skipVariableAssign(final AST aCurrentAST)
+    private DetailAST skipVariableAssign(final DetailAST aCurrentAST)
     {
         if ((aCurrentAST.getType() == TokenTypes.ASSIGN)
                 && (aCurrentAST.getFirstChild().getType() == TokenTypes.IDENT))

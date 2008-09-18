@@ -96,7 +96,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
         final DetailAST throwsAST =
             aAST.findFirstToken(TokenTypes.LITERAL_THROWS);
         if (throwsAST != null) {
-            DetailAST child = (DetailAST) throwsAST.getFirstChild();
+            DetailAST child = throwsAST.getFirstChild();
             while (child != null) {
                 if ((child.getType() == TokenTypes.IDENT)
                     || (child.getType() == TokenTypes.DOT))
@@ -104,7 +104,7 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
                     final FullIdent fi = FullIdent.createFullIdent(child);
                     checkException(fi, knownExcs);
                 }
-                child = (DetailAST) child.getNextSibling();
+                child = child.getNextSibling();
             }
         }
     }

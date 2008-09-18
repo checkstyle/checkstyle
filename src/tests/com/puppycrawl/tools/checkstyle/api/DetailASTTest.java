@@ -97,11 +97,11 @@ public class DetailASTTest
         assertEquals(msg, prev, node.getPreviousSibling());
 
         if (node.getFirstChild() != null) {
-            checkTree((DetailAST) node.getFirstChild(), node, null,
+            checkTree(node.getFirstChild(), node, null,
                       filename, root);
         }
         if (node.getNextSibling() != null) {
-            checkTree((DetailAST) node.getNextSibling(), parent, node,
+            checkTree(node.getNextSibling(), parent, node,
                       filename, root);
         }
     }

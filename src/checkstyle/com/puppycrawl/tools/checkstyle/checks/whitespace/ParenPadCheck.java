@@ -84,7 +84,7 @@ public class ParenPadCheck extends AbstractParenPadCheck
             if ((aAST.getType() == TokenTypes.CTOR_CALL)
                 || (aAST.getType() == TokenTypes.SUPER_CTOR_CALL))
             {
-                aAST = (DetailAST) aAST.getFirstChild();
+                aAST = aAST.getFirstChild();
             }
             if (!isPreceedsEmptyForInit(aAST)) {
                 processLeft(aAST);

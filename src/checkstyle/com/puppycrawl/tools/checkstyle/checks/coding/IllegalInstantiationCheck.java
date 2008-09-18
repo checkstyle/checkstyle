@@ -200,7 +200,7 @@ public class IllegalInstantiationCheck
      */
     private void postprocessLiteralNew(DetailAST aAST)
     {
-        final DetailAST typeNameAST = (DetailAST) aAST.getFirstChild();
+        final DetailAST typeNameAST = aAST.getFirstChild();
         final AST nameSibling = typeNameAST.getNextSibling();
         if ((nameSibling != null)
                 && (nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR))

@@ -175,7 +175,7 @@ public final class ModifiedControlVariableCheck extends Check
     private void checkIdent(DetailAST aAST)
     {
         if ((mCurrentVariables != null) && !mCurrentVariables.isEmpty()) {
-            final DetailAST identAST = (DetailAST) aAST.getFirstChild();
+            final DetailAST identAST = aAST.getFirstChild();
 
             if ((identAST != null)
                 && (identAST.getType() == TokenTypes.IDENT)
@@ -198,7 +198,7 @@ public final class ModifiedControlVariableCheck extends Check
             forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);
 
         for (; parameterDefAST != null;
-             parameterDefAST = (DetailAST) parameterDefAST.getNextSibling())
+             parameterDefAST = parameterDefAST.getNextSibling())
         {
             if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {
                 final DetailAST param =
@@ -232,7 +232,7 @@ public final class ModifiedControlVariableCheck extends Check
                 forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);
 
             for (; parameterDefAST != null;
-                 parameterDefAST = (DetailAST) parameterDefAST.getNextSibling())
+                 parameterDefAST = parameterDefAST.getNextSibling())
             {
                 if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {
                     mCurrentVariables.pop();

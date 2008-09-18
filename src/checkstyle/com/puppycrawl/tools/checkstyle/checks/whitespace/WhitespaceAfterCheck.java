@@ -95,7 +95,7 @@ public class WhitespaceAfterCheck
                 //empty FOR_ITERATOR?
                 if (targetAST.getType() == TokenTypes.SEMI) {
                     final DetailAST sibling =
-                        (DetailAST) targetAST.getNextSibling();
+                        targetAST.getNextSibling();
                     if ((sibling != null)
                         && (sibling.getType() == TokenTypes.FOR_ITERATOR)
                         && (sibling.getChildCount() == 0))

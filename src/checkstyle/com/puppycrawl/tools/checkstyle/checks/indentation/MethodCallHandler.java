@@ -62,14 +62,14 @@ public class MethodCallHandler extends ExpressionHandler
                 // we should increase indentation only if this is the first
                 // chained method call which was moved to the next line
                 final DetailAST main = getMainAst();
-                final DetailAST dot = (DetailAST) main.getFirstChild();
-                final DetailAST target = (DetailAST) dot.getFirstChild();
+                final DetailAST dot = main.getFirstChild();
+                final DetailAST target = dot.getFirstChild();
 
                 if ((dot.getType() == TokenTypes.DOT)
                     && (target.getType() == TokenTypes.METHOD_CALL))
                 {
-                    final DetailAST dot1 = (DetailAST) target.getFirstChild();
-                    final DetailAST target1 = (DetailAST) dot1.getFirstChild();
+                    final DetailAST dot1 = target.getFirstChild();
+                    final DetailAST target1 = dot1.getFirstChild();
 
                     if ((dot1.getType() == TokenTypes.DOT)
                         && (target1.getType() == TokenTypes.METHOD_CALL))
@@ -94,7 +94,7 @@ public class MethodCallHandler extends ExpressionHandler
         // if our expression isn't first on the line, just use the start
         // of the line
         final LineSet lines = new LineSet();
-        findSubtreeLines(lines, (DetailAST) getMainAst().getFirstChild(), true);
+        findSubtreeLines(lines, getMainAst().getFirstChild(), true);
         final int firstCol = lines.firstLineCol();
         final int lineStart = getLineStart(getFirstAst(getMainAst()));
         if (lineStart != firstCol) {
@@ -116,9 +116,9 @@ public class MethodCallHandler extends ExpressionHandler
         // walk down the first child part of the dots that make up a method
         // call name
 
-        DetailAST ast = (DetailAST) aAst.getFirstChild();
+        DetailAST ast = aAst.getFirstChild();
         while ((ast != null) && (ast.getType() == TokenTypes.DOT)) {
-            ast = (DetailAST) ast.getFirstChild();
+            ast = ast.getFirstChild();
         }
 
         if (ast == null) {
@@ -137,10 +137,10 @@ public class MethodCallHandler extends ExpressionHandler
         //                new String[] {"method"}).toString());
         // will not have the right line num, so just get the child name
 
-        final DetailAST first = (DetailAST) getMainAst().getFirstChild();
+        final DetailAST first = getMainAst().getFirstChild();
         int indentLevel = getLineStart(first);
-        if (!areOnSameLine((DetailAST) aChild.getMainAst().getFirstChild(),
-                           (DetailAST) getMainAst().getFirstChild()))
+        if (!areOnSameLine(aChild.getMainAst().getFirstChild(),
+                           getMainAst().getFirstChild()))
         {
             indentLevel += getBasicOffset();
         }
@@ -150,7 +150,7 @@ public class MethodCallHandler extends ExpressionHandler
     @Override
     public void checkIndentation()
     {
-        final DetailAST methodName = (DetailAST) getMainAst().getFirstChild();
+        final DetailAST methodName = getMainAst().getFirstChild();
         checkExpressionSubtree(methodName, getLevel(), false, false);
 
         final DetailAST lparen = getMainAst();

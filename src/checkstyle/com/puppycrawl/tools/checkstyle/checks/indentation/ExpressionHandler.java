@@ -185,7 +185,7 @@ public abstract class ExpressionHandler
     static DetailAST getFirstToken(DetailAST aAST)
     {
         DetailAST first = aAST;
-        DetailAST child = (DetailAST) aAST.getFirstChild();
+        DetailAST child = aAST.getFirstChild();
 
         while (child != null) {
             final DetailAST toTest = getFirstToken(child);
@@ -195,7 +195,7 @@ public abstract class ExpressionHandler
             {
                 first = toTest;
             }
-            child = (DetailAST) child.getNextSibling();
+            child = child.getNextSibling();
         }
 
         return first;
@@ -389,9 +389,9 @@ public abstract class ExpressionHandler
                                        boolean aAllowNesting)
     {
         Arrays.sort(aTokenTypes);
-        for (DetailAST child = (DetailAST) aParent.getFirstChild();
+        for (DetailAST child = aParent.getFirstChild();
                 child != null;
-                child = (DetailAST) child.getNextSibling())
+                child = child.getNextSibling())
         {
             if (Arrays.binarySearch(aTokenTypes, child.getType()) >= 0) {
                 checkExpressionSubtree(child, aStartLevel,
@@ -446,9 +446,9 @@ public abstract class ExpressionHandler
         }
 
         // check children
-        for (DetailAST node = (DetailAST) aTree.getFirstChild();
+        for (DetailAST node = aTree.getFirstChild();
             node != null;
-            node = (DetailAST) node.getNextSibling())
+            node = node.getNextSibling())
         {
             aStartLine = getFirstLine(aStartLine, node);
         }
@@ -509,9 +509,9 @@ public abstract class ExpressionHandler
         }
 
         // check children
-        for (DetailAST node = (DetailAST) aTree.getFirstChild();
+        for (DetailAST node = aTree.getFirstChild();
             node != null;
-            node = (DetailAST) node.getNextSibling())
+            node = node.getNextSibling())
         {
             findSubtreeLines(aLines, node, aAllowNesting);
         }
@@ -524,9 +524,9 @@ public abstract class ExpressionHandler
     {
         final DetailAST modifiers =
             mMainAst.findFirstToken(TokenTypes.MODIFIERS);
-        for (DetailAST modifier = (DetailAST) modifiers.getFirstChild();
+        for (DetailAST modifier = modifiers.getFirstChild();
              modifier != null;
-             modifier = (DetailAST) modifier.getNextSibling())
+             modifier = modifier.getNextSibling())
         {
             /*
             if (!areOnSameLine(modifier, prevExpr)) {

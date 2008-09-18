@@ -135,11 +135,11 @@ public class LeftCurlyCheck
         case TokenTypes.ANNOTATION_DEF :
         case TokenTypes.ENUM_DEF :
         case TokenTypes.ENUM_CONSTANT_DEF :
-            startToken = (DetailAST) aAST.getFirstChild();
+            startToken = aAST.getFirstChild();
             final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
             brace = (objBlock == null)
                 ? null
-                : (DetailAST) objBlock.getFirstChild();
+                : objBlock.getFirstChild();
             break;
 
         case TokenTypes.LITERAL_WHILE:
@@ -156,7 +156,7 @@ public class LeftCurlyCheck
 
         case TokenTypes.LITERAL_ELSE :
             startToken = aAST;
-            final DetailAST candidate = (DetailAST) aAST.getFirstChild();
+            final DetailAST candidate = aAST.getFirstChild();
             brace =
                 (candidate.getType() == TokenTypes.SLIST)
                 ? candidate

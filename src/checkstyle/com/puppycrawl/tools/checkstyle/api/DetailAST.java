@@ -114,7 +114,7 @@ public final class DetailAST extends CommonAST
         super.addChild(aAST);
         if (aAST != null) {
             ((DetailAST) aAST).setParent(this);
-            ((DetailAST) getFirstChild()).setParent(this);
+            (getFirstChild()).setParent(this);
         }
     }
 
@@ -149,7 +149,7 @@ public final class DetailAST extends CommonAST
         // TODO: Check visibility, could be private
         // if set in setFirstChild() and friends
         mParent = aParent;
-        final DetailAST nextSibling = (DetailAST) getNextSibling();
+        final DetailAST nextSibling = getNextSibling();
         if (nextSibling != null) {
             nextSibling.setParent(aParent);
             nextSibling.setPreviousSibling(this);
@@ -171,8 +171,8 @@ public final class DetailAST extends CommonAST
         if (mLineNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
             // with initialize(String text)
-            final DetailAST child = (DetailAST) getFirstChild();
-            final DetailAST sibling = (DetailAST) getNextSibling();
+            final DetailAST child = getFirstChild();
+            final DetailAST sibling = getNextSibling();
             if (child != null) {
                 return child.getLineNo();
             }
@@ -189,8 +189,8 @@ public final class DetailAST extends CommonAST
         if (mColumnNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
             // with initialize(String text)
-            final DetailAST child = (DetailAST) getFirstChild();
-            final DetailAST sibling = (DetailAST) getNextSibling();
+            final DetailAST child = getFirstChild();
+            final DetailAST sibling = getNextSibling();
             if (child != null) {
                 return child.getColumnNo();
             }
@@ -204,11 +204,11 @@ public final class DetailAST extends CommonAST
     /** @return the last child node */
     public DetailAST getLastChild()
     {
-        AST ast = getFirstChild();
+        DetailAST ast = getFirstChild();
         while ((ast != null) && (ast.getNextSibling() != null)) {
             ast = ast.getNextSibling();
         }
-        return (DetailAST) ast;
+        return ast;
     }
 
     /**
@@ -223,12 +223,12 @@ public final class DetailAST extends CommonAST
             mBranchTokenTypes.set(getType());
 
             // add union of all childs
-            DetailAST child = (DetailAST) getFirstChild();
+            DetailAST child = getFirstChild();
             while (child != null) {
                 final BitSet childTypes = child.getBranchTokenTypes();
                 mBranchTokenTypes.or(childTypes);
 
-                child = (DetailAST) child.getNextSibling();
+                child = child.getNextSibling();
             }
         }
         return mBranchTokenTypes;
@@ -279,9 +279,9 @@ public final class DetailAST extends CommonAST
     public DetailAST findFirstToken(int aType)
     {
         DetailAST retVal = null;
-        for (AST i = getFirstChild(); i != null; i = i.getNextSibling()) {
+        for (DetailAST i = getFirstChild(); i != null; i = i.getNextSibling()) {
             if (i.getType() == aType) {
-                retVal = (DetailAST) i;
+                retVal = i;
                 break;
             }
         }
@@ -292,5 +292,17 @@ public final class DetailAST extends CommonAST
     public String toString()
     {
         return super.toString() + "[" + getLineNo() + "x" + getColumnNo() + "]";
+    }
+
+    @Override
+    public DetailAST getNextSibling()
+    {
+        return (DetailAST) super.getNextSibling();
+    }
+
+    @Override
+    public DetailAST getFirstChild()
+    {
+        return (DetailAST) super.getFirstChild();
     }
 }

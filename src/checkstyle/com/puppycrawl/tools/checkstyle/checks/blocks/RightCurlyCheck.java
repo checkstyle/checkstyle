@@ -104,12 +104,12 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
 
         switch (aAST.getType()) {
         case TokenTypes.LITERAL_TRY:
-            lcurly = (DetailAST) aAST.getFirstChild();
-            nextToken = (DetailAST) lcurly.getNextSibling();
+            lcurly = aAST.getFirstChild();
+            nextToken = lcurly.getNextSibling();
             rcurly = lcurly.getLastChild();
             break;
         case TokenTypes.LITERAL_CATCH:
-            nextToken = (DetailAST) aAST.getNextSibling();
+            nextToken = aAST.getNextSibling();
             lcurly = aAST.getLastChild();
             rcurly = lcurly.getLastChild();
             if (nextToken == null) {
@@ -133,13 +133,13 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
         case TokenTypes.LITERAL_ELSE:
             shouldCheckLastRcurly = true;
             nextToken = getNextToken(aAST);
-            lcurly = (DetailAST) aAST.getFirstChild();
+            lcurly = aAST.getFirstChild();
             rcurly = lcurly.getLastChild();
             break;
         case TokenTypes.LITERAL_FINALLY:
             shouldCheckLastRcurly = true;
             nextToken = getNextToken(aAST);
-            lcurly = (DetailAST) aAST.getFirstChild();
+            lcurly = aAST.getFirstChild();
             rcurly = lcurly.getLastChild();
             break;
         default:
@@ -190,7 +190,7 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
         DetailAST next = null;
         DetailAST parent = aAST;
         while ((parent != null) && (next == null)) {
-            next = (DetailAST) parent.getNextSibling();
+            next = parent.getNextSibling();
             parent = parent.getParent();
         }
         return CheckUtils.getFirstNode(next);

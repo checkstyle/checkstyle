@@ -47,7 +47,7 @@ public class DoWhileHandler extends BlockParentHandler
      */
     private void checkCondExpr()
     {
-        final DetailAST condAst = (DetailAST) getMainAst()
+        final DetailAST condAst = getMainAst()
             .findFirstToken(TokenTypes.LPAREN).getNextSibling();
         checkExpressionSubtree(condAst, getLevel(), false, false);
     }

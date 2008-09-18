@@ -161,7 +161,7 @@ public class UnusedImportsCheck extends Check
     {
         final FullIdent name =
             FullIdent.createFullIdent(
-                (DetailAST) aAST.getFirstChild().getNextSibling());
+                aAST.getFirstChild().getNextSibling());
         if ((name != null) && !name.getText().endsWith(".*")) {
             mImports.add(name);
         }

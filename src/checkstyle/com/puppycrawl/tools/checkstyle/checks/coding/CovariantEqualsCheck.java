@@ -67,7 +67,7 @@ public class CovariantEqualsCheck extends Check
         // examine method definitions for equals methods
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
         if (objBlock != null) {
-            DetailAST child = (DetailAST) objBlock.getFirstChild();
+            DetailAST child = objBlock.getFirstChild();
             while (child != null) {
                 if (child.getType() == TokenTypes.METHOD_DEF) {
                     if (CheckUtils.isEqualsMethod(child)) {
@@ -79,7 +79,7 @@ public class CovariantEqualsCheck extends Check
                         }
                     }
                 }
-                child = (DetailAST) child.getNextSibling();
+                child = child.getNextSibling();
             }
 
             // report equals method definitions

@@ -96,7 +96,7 @@ public class IllegalImportCheck
         }
         else {
             imp = FullIdent.createFullIdent(
-                (DetailAST) aAST.getFirstChild().getNextSibling());
+                aAST.getFirstChild().getNextSibling());
         }
         if (isIllegalImport(imp.getText())) {
             log(aAST.getLineNo(),

@@ -223,7 +223,7 @@ public class UnnecessaryParenthesesCheck extends Check
     private boolean isSurrounded(DetailAST aAST)
     {
         final DetailAST prev = aAST.getPreviousSibling();
-        final DetailAST next = (DetailAST) aAST.getNextSibling();
+        final DetailAST next = aAST.getNextSibling();
 
         return (prev != null) && (prev.getType() == TokenTypes.LPAREN)
             && (next != null) && (next.getType() == TokenTypes.RPAREN);

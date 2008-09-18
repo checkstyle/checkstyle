@@ -114,7 +114,7 @@ public class DesignForExtensionCheck extends Check
         boolean hasDefaultConstructor = true;
         boolean hasExplNonPrivateCtor = false;
 
-        DetailAST candidate = (DetailAST) objBlock.getFirstChild();
+        DetailAST candidate = objBlock.getFirstChild();
 
         while (candidate != null) {
             if (candidate.getType() == TokenTypes.CTOR_DEF) {
@@ -127,7 +127,7 @@ public class DesignForExtensionCheck extends Check
                     break;
                 }
             }
-            candidate = (DetailAST) candidate.getNextSibling();
+            candidate = candidate.getNextSibling();
         }
 
         if (hasDefaultConstructor || hasExplNonPrivateCtor) {

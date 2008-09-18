@@ -89,8 +89,8 @@ public class IfHandler extends BlockParentHandler
      */
     private void checkCondExpr()
     {
-        final DetailAST condAst = (DetailAST)
-            getMainAst().findFirstToken(TokenTypes.LPAREN).getNextSibling();
+        final DetailAST condAst = getMainAst().findFirstToken(TokenTypes.LPAREN)
+            .getNextSibling();
         final IndentLevel expected =
             new IndentLevel(getLevel(), getBasicOffset());
         checkExpressionSubtree(condAst, expected, false, false);

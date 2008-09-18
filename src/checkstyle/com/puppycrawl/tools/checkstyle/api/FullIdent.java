@@ -116,7 +116,7 @@ public final class FullIdent
      */
     public static FullIdent createFullIdentBelow(DetailAST aAST)
     {
-        return createFullIdent((DetailAST) aAST.getFirstChild());
+        return createFullIdent(aAST.getFirstChild());
     }
 
     /**
@@ -132,10 +132,10 @@ public final class FullIdent
         }
 
         if (aAST.getType() == TokenTypes.DOT) {
-            extractFullIdent(aFull, (DetailAST) aAST.getFirstChild());
+            extractFullIdent(aFull, aAST.getFirstChild());
             aFull.append(".");
             extractFullIdent(
-                aFull, (DetailAST) aAST.getFirstChild().getNextSibling());
+                aFull, aAST.getFirstChild().getNextSibling());
         }
         else {
             aFull.append(aAST);

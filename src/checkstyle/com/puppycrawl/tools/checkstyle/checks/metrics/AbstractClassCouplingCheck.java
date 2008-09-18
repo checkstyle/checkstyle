@@ -232,9 +232,9 @@ public abstract class AbstractClassCouplingCheck extends Check
          */
         public void visitLiteralThrows(DetailAST aThrows)
         {
-            for (DetailAST childAST = (DetailAST) aThrows.getFirstChild();
+            for (DetailAST childAST = aThrows.getFirstChild();
                  childAST != null;
-                 childAST = (DetailAST) childAST.getNextSibling())
+                 childAST = childAST.getNextSibling())
             {
                 if (childAST.getType() != TokenTypes.COMMA) {
                     addReferencedClassName(childAST);
@@ -258,7 +258,7 @@ public abstract class AbstractClassCouplingCheck extends Check
          */
         public void visitLiteralNew(DetailAST aAST)
         {
-            mContext.addReferencedClassName((DetailAST) aAST.getFirstChild());
+            mContext.addReferencedClassName(aAST.getFirstChild());
         }
 
         /**

@@ -68,8 +68,7 @@ public class LabelHandler extends ExpressionHandler
     {
         checkLabel();
         // need to check children (like 'block' parents do)
-        final DetailAST parent = (DetailAST)
-            getMainAst().getFirstChild().getNextSibling();
+        final DetailAST parent = getMainAst().getFirstChild().getNextSibling();
 
         final IndentLevel expected =
             new IndentLevel(getLevel(), getBasicOffset());

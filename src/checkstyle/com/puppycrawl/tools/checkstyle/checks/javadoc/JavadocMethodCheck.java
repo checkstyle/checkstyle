@@ -510,13 +510,13 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
         final List<DetailAST> retVal = Lists.newArrayList();
 
-        DetailAST child = (DetailAST) params.getFirstChild();
+        DetailAST child = params.getFirstChild();
         while (child != null) {
             if (child.getType() == TokenTypes.PARAMETER_DEF) {
                 final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
                 retVal.add(ident);
             }
-            child = (DetailAST) child.getNextSibling();
+            child = child.getNextSibling();
         }
         return retVal;
     }
@@ -533,7 +533,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         final DetailAST throwsAST = aAST
                 .findFirstToken(TokenTypes.LITERAL_THROWS);
         if (throwsAST != null) {
-            DetailAST child = (DetailAST) throwsAST.getFirstChild();
+            DetailAST child = throwsAST.getFirstChild();
             while (child != null) {
                 if ((child.getType() == TokenTypes.IDENT)
                         || (child.getType() == TokenTypes.DOT))
@@ -543,7 +543,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                             getCurrentClassName());
                     retVal.add(ei);
                 }
-                child = (DetailAST) child.getNextSibling();
+                child = child.getNextSibling();
             }
         }
         return retVal;
@@ -886,7 +886,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
         // Now loop over all nodes while they are annotations looking for
         // an "@Override".
-        DetailAST node = (DetailAST) aAST.getFirstChild().getFirstChild();
+        DetailAST node = aAST.getFirstChild().getFirstChild();
         while ((null != node) && (TokenTypes.ANNOTATION == node.getType())) {
             if ((node.getFirstChild().getType() == TokenTypes.AT)
                 && (node.getFirstChild().getNextSibling().getType()
@@ -896,7 +896,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             {
                 return true;
             }
-            node = (DetailAST) node.getNextSibling();
+            node = node.getNextSibling();
         }
         return false;
     }

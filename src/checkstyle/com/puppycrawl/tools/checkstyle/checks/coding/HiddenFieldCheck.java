@@ -152,7 +152,7 @@ public class HiddenFieldCheck
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
         // enum constants may not have bodies
         if (objBlock != null) {
-            DetailAST child = (DetailAST) objBlock.getFirstChild();
+            DetailAST child = objBlock.getFirstChild();
             while (child != null) {
                 if (child.getType() == TokenTypes.VARIABLE_DEF) {
                     final String name =
@@ -166,7 +166,7 @@ public class HiddenFieldCheck
                         frame.addInstanceField(name);
                     }
                 }
-                child = (DetailAST) child.getNextSibling();
+                child = child.getNextSibling();
             }
         }
         // push container

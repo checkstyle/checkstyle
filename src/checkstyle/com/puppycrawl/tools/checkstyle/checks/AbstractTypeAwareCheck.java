@@ -337,9 +337,9 @@ public abstract class AbstractTypeAwareCheck extends Check
             return;
         }
 
-        for (DetailAST child = (DetailAST) typeParams.getFirstChild();
+        for (DetailAST child = typeParams.getFirstChild();
              child != null;
-             child = (DetailAST) child.getNextSibling())
+             child = child.getNextSibling())
         {
             if (child.getType() == TokenTypes.TYPE_PARAMETER) {
                 final DetailAST param = child;

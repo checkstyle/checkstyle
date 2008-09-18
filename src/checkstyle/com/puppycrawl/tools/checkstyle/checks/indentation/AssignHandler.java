@@ -56,18 +56,18 @@ public class AssignHandler extends BlockParentHandler
         }
 
         // check indentation of rvalue
-        DetailAST child = (DetailAST) assign.getFirstChild();
+        DetailAST child = assign.getFirstChild();
 
         // if this is assign in expression then skip first child,
         // because it's lvalue.
         final DetailAST parent = assign.getParent();
         if ((parent != null) && (parent.getType() == TokenTypes.EXPR)) {
-            child = (DetailAST) child.getNextSibling();
+            child = child.getNextSibling();
         }
         if ((parent != null)
             && (parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR))
         {
-            child = (DetailAST) assign.getNextSibling();
+            child = assign.getNextSibling();
         }
 
         checkExpressionSubtree(child, expectedLevel, false, true);

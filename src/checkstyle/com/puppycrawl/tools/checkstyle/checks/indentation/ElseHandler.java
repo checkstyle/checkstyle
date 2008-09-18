@@ -68,6 +68,6 @@ public class ElseHandler extends BlockParentHandler
     @Override
     protected DetailAST getNonlistChild()
     {
-        return (DetailAST) getMainAst().getFirstChild();
+        return getMainAst().getFirstChild();
     }
 }

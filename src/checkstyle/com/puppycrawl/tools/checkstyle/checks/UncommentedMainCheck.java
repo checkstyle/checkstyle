@@ -217,7 +217,7 @@ public class UncommentedMainCheck
     private boolean checkType(DetailAST aMethod)
     {
         final DetailAST type =
-            (DetailAST) aMethod.findFirstToken(TokenTypes.TYPE).getFirstChild();
+            aMethod.findFirstToken(TokenTypes.TYPE).getFirstChild();
         return type.getType() == TokenTypes.LITERAL_VOID;
     }
 
@@ -232,7 +232,7 @@ public class UncommentedMainCheck
         if (params.getChildCount() != 1) {
             return false;
         }
-        final DetailAST paramType = ((DetailAST) params.getFirstChild())
+        final DetailAST paramType = (params.getFirstChild())
             .findFirstToken(TokenTypes.TYPE);
         final DetailAST arrayDecl =
             paramType.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
@@ -240,7 +240,7 @@ public class UncommentedMainCheck
             return false;
         }
 
-        final DetailAST arrayType = (DetailAST) arrayDecl.getFirstChild();
+        final DetailAST arrayType = arrayDecl.getFirstChild();
 
         if ((arrayType.getType() == TokenTypes.IDENT)
             || (arrayType.getType() == TokenTypes.DOT))

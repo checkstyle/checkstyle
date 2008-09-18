@@ -55,7 +55,7 @@ public class RedundantModifierCheck
             final DetailAST modifiers =
                 aAST.findFirstToken(TokenTypes.MODIFIERS);
 
-            DetailAST modifier = (DetailAST) modifiers.getFirstChild();
+            DetailAST modifier = modifiers.getFirstChild();
             while (modifier != null) {
 
                 // javac does not allow final or static in interface methods
@@ -73,7 +73,7 @@ public class RedundantModifierCheck
                     break;
                 }
 
-                modifier = (DetailAST) modifier.getNextSibling();
+                modifier = modifier.getNextSibling();
             }
         }
         else if (aAST.getType() == TokenTypes.METHOD_DEF) {
@@ -95,7 +95,7 @@ public class RedundantModifierCheck
                 parent = parent.getParent();
             }
             if (checkFinal) {
-                DetailAST modifier = (DetailAST) modifiers.getFirstChild();
+                DetailAST modifier = modifiers.getFirstChild();
                 while (modifier != null) {
                     final int type = modifier.getType();
                     if (type == TokenTypes.FINAL) {
@@ -103,7 +103,7 @@ public class RedundantModifierCheck
                                 "redundantModifier", modifier.getText());
                         break;
                     }
-                    modifier = (DetailAST) modifier.getNextSibling();
+                    modifier = modifier.getNextSibling();
                 }
             }
         }

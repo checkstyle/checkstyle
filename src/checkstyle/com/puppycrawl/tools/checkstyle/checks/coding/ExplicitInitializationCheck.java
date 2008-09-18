@@ -90,7 +90,7 @@ public class ExplicitInitializationCheck extends Check
         final DetailAST type = aAST.findFirstToken(TokenTypes.TYPE);
         final DetailAST ident = aAST.findFirstToken(TokenTypes.IDENT);
         final DetailAST exprStart =
-            (DetailAST) assign.getFirstChild().getFirstChild();
+            assign.getFirstChild().getFirstChild();
         if (isObjectType(type)
             && (exprStart.getType() == TokenTypes.LITERAL_NULL))
         {

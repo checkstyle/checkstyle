@@ -166,11 +166,11 @@ public class VisibilityModifierCheck
      */
     private DetailAST getVarNameAST(DetailAST aVariableDefAST)
     {
-        AST ast = aVariableDefAST.getFirstChild();
+        DetailAST ast = aVariableDefAST.getFirstChild();
         while (ast != null) {
-            final AST nextSibling = ast.getNextSibling();
+            final DetailAST nextSibling = ast.getNextSibling();
             if (ast.getType() == TokenTypes.TYPE) {
-                return (DetailAST) nextSibling;
+                return nextSibling;
             }
             ast = nextSibling;
         }

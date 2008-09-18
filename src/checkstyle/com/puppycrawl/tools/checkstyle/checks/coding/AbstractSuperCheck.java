@@ -160,7 +160,7 @@ public abstract class AbstractSuperCheck
         }
 
         // 0 parameters?
-        final DetailAST args = (DetailAST) parent.getNextSibling();
+        final DetailAST args = parent.getNextSibling();
         if ((args == null) || (args.getType() != TokenTypes.ELIST)) {
             return false;
         }

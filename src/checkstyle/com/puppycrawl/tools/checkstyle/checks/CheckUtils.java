@@ -128,7 +128,7 @@ public final class CheckUtils
      */
     private static FullIdent createFullTypeNoArrays(DetailAST aTypeAST)
     {
-        return FullIdent.createFullIdent((DetailAST) aTypeAST.getFirstChild());
+        return FullIdent.createFullIdent(aTypeAST.getFirstChild());
     }
 
     // constants for parseDouble()
@@ -253,7 +253,7 @@ public final class CheckUtils
     public static DetailAST getFirstNode(final DetailAST aNode)
     {
         DetailAST currentNode = aNode;
-        DetailAST child = (DetailAST) aNode.getFirstChild();
+        DetailAST child = aNode.getFirstChild();
         while (child != null) {
             final DetailAST newNode = getFirstNode(child);
             if ((newNode.getLineNo() < currentNode.getLineNo())
@@ -262,7 +262,7 @@ public final class CheckUtils
             {
                 currentNode = newNode;
             }
-            child = (DetailAST) child.getNextSibling();
+            child = child.getNextSibling();
         }
 
         return currentNode;
@@ -285,13 +285,13 @@ public final class CheckUtils
             typeParamNames.add(
                 typeParam.findFirstToken(TokenTypes.IDENT).getText());
 
-            DetailAST sibling = (DetailAST) typeParam.getNextSibling();
+            DetailAST sibling = typeParam.getNextSibling();
             while (sibling != null) {
                 if (sibling.getType() == TokenTypes.TYPE_PARAMETER) {
                     typeParamNames.add(
                         sibling.findFirstToken(TokenTypes.IDENT).getText());
                 }
-                sibling = (DetailAST) sibling.getNextSibling();
+                sibling = sibling.getNextSibling();
             }
         }
 
@@ -314,12 +314,12 @@ public final class CheckUtils
                 typeParameters.findFirstToken(TokenTypes.TYPE_PARAMETER);
             typeParams.add(typeParam);
 
-            DetailAST sibling = (DetailAST) typeParam.getNextSibling();
+            DetailAST sibling = typeParam.getNextSibling();
             while (sibling != null) {
                 if (sibling.getType() == TokenTypes.TYPE_PARAMETER) {
                     typeParams.add(sibling);
                 }
-                sibling = (DetailAST) sibling.getNextSibling();
+                sibling = sibling.getNextSibling();
             }
         }
 

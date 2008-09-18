@@ -74,7 +74,7 @@ public class EqualsHashCodeCheck
     @Override
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST modifiers = (DetailAST) aAST.getFirstChild();
+        final DetailAST modifiers = aAST.getFirstChild();
         final AST type = aAST.findFirstToken(TokenTypes.TYPE);
         final AST methodName = aAST.findFirstToken(TokenTypes.IDENT);
         final DetailAST parameters = aAST.findFirstToken(TokenTypes.PARAMETERS);

@@ -46,7 +46,7 @@ public class NewHandler extends ExpressionHandler
     @Override
     public void checkIndentation()
     {
-        final DetailAST type = (DetailAST) getMainAst().getFirstChild();
+        final DetailAST type = getMainAst().getFirstChild();
         checkExpressionSubtree(type, getLevel(), false, false);
 
         final DetailAST lparen = getMainAst().findFirstToken(TokenTypes.LPAREN);

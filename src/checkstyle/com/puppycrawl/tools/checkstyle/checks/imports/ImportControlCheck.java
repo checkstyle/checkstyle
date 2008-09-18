@@ -89,7 +89,7 @@ public class ImportControlCheck extends Check
             }
             else {
                 // know it is a static import
-                imp = FullIdent.createFullIdent((DetailAST) aAST
+                imp = FullIdent.createFullIdent(aAST
                         .getFirstChild().getNextSibling());
             }
             final AccessResult access = mCurrentLeaf.checkAccess(imp.getText(),

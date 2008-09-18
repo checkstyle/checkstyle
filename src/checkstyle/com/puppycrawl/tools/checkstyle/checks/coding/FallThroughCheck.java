@@ -122,7 +122,7 @@ public class FallThroughCheck extends Check
     @Override
     public void visitToken(DetailAST aAST)
     {
-        final DetailAST nextGroup = (DetailAST) aAST.getNextSibling();
+        final DetailAST nextGroup = aAST.getNextSibling();
         final boolean isLastGroup =
             ((nextGroup == null)
              || (nextGroup.getType() != TokenTypes.CASE_GROUP));
@@ -218,13 +218,13 @@ public class FallThroughCheck extends Check
     private boolean checkIf(final DetailAST aAST, boolean aUseBreak,
                             boolean aUseContinue)
     {
-        final DetailAST thenStmt = (DetailAST)
-            aAST.findFirstToken(TokenTypes.RPAREN).getNextSibling();
-        final DetailAST elseStmt = (DetailAST) thenStmt.getNextSibling();
+        final DetailAST thenStmt = aAST.findFirstToken(TokenTypes.RPAREN)
+                .getNextSibling();
+        final DetailAST elseStmt = thenStmt.getNextSibling();
         boolean isTerminated = isTerminated(thenStmt, aUseBreak, aUseContinue);
 
         if (isTerminated && (elseStmt != null)) {
-            isTerminated = isTerminated((DetailAST) elseStmt.getFirstChild(),
+            isTerminated = isTerminated(elseStmt.getFirstChild(),
                                         aUseBreak, aUseContinue);
         }
         return isTerminated;
@@ -245,7 +245,7 @@ public class FallThroughCheck extends Check
         }
         else {
             final DetailAST rparen = aAST.findFirstToken(TokenTypes.RPAREN);
-            loopBody = (DetailAST) rparen.getNextSibling();
+            loopBody = rparen.getNextSibling();
         }
         return isTerminated(loopBody, false, false);
     }
@@ -267,7 +267,7 @@ public class FallThroughCheck extends Check
                                 aUseBreak, aUseContinue);
         }
 
-        boolean isTerminated = isTerminated((DetailAST) aAST.getFirstChild(),
+        boolean isTerminated = isTerminated(aAST.getFirstChild(),
                                             aUseBreak, aUseContinue);
 
         DetailAST catchStmt = aAST.findFirstToken(TokenTypes.LITERAL_CATCH);
@@ -275,7 +275,7 @@ public class FallThroughCheck extends Check
             final DetailAST catchBody =
                 catchStmt.findFirstToken(TokenTypes.SLIST);
             isTerminated &= isTerminated(catchBody, aUseBreak, aUseContinue);
-            catchStmt = (DetailAST) catchStmt.getNextSibling();
+            catchStmt = catchStmt.getNextSibling();
         }
         return isTerminated;
     }
@@ -297,7 +297,7 @@ public class FallThroughCheck extends Check
             final DetailAST caseBody =
                 caseGroup.findFirstToken(TokenTypes.SLIST);
             isTerminated &= isTerminated(caseBody, false, aUseContinue);
-            caseGroup = (DetailAST) caseGroup.getNextSibling();
+            caseGroup = caseGroup.getNextSibling();
         }
         return isTerminated;
     }
