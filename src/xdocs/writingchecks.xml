@@ -349,7 +349,7 @@ public class MethodLimitCheck extends Check
 
       <p>
         To support internationalized error messages, you need to create
-        a message.properties file alongside your Check class, i.e. the
+        a messages.properties file alongside your Check class, i.e. the
         Java file and the properties files should be in the same
         directory.  Add a symbolic error code and an English
         representation to the messages.properties. The file should
