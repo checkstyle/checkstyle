@@ -314,6 +314,25 @@
           />
   </target>
 
+  <target name="checkstyle.sun_checks" depends="compile.checkstyle"
+          description="Runs checkstyle using sun_checks.xml">
+    <taskdef name="checkstyle"
+             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+      <classpath refid="run.classpath"/>
+    </taskdef>
+
+    <property name="check.config" location="sun_checks.xml"/>
+    <checkstyle config="${check.config}"
+                failOnViolation="true"
+                >
+      <fileset dir="src/checkstyle"
+               includes="**/*.java,**/*.properties"
+               excludes="**/Generated*.java,**/gui/*"/>
+      <formatter type="plain"/>
+      <classpath refid="run.classpath"/>
+    </checkstyle>
+  </target>
+
   <target name="checkstyle.style" depends="compile.checkstyle"
           description="Runs checkstyle against it's own sources to test generation of error reports">
     <taskdef name="checkstyle"
