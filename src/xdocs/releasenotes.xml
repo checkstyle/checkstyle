@@ -28,7 +28,10 @@
 
       <p>Fixed Bugs:</p>
       <ul>
-        <li>...</li>
+        <li>
+          The NCSS complexity checker reported an incorrect fileMax value
+          (bug #2161419).
+        </li>
       </ul>
 
       <p>Notes:</p>

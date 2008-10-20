@@ -200,7 +200,7 @@ public class JavaNCSSCheck extends Check
         final int count = counter.getCount();
         if (count > mFileMax) {
             log(aRootAST.getLineNo(), aRootAST.getColumnNo(), "ncss.file",
-                    count, mMethodMax);
+                    count, mFileMax);
         }
     }
 
