@@ -149,33 +149,11 @@
           <td></td>
 	</tr>
 	<tr>
-          <td>
-            <a href="http://www.borland.com/jbuilder/">Borland JBuilder</a>
-          </td>
-          <td>Darrel King</td>
-          <td>
-            <a href="http://www.pautinka.com/">http://www.pautinka.com/</a>
-          </td>
-          <td></td>
-	</tr>
-	<tr>
-          <td><a href="http://www.borland.com/jbuilder/">Borland JBuilder</a></td>
-          <td>Henri Tremblay</td>
-          <td><a href="http://sourceforge.net/projects/jbcheckstyle-pg/">JBCS Sourceforge Project Page</a></td>
-          <td></td>
-	</tr>
-	<tr>
-          <td><a href="http://www.borland.com/jbuilder/">Borland JBuilder</a></td>
-          <td>Angus Chan</td>
-          <td><a href="http://jbcheckstyle.sourceforge.net">jbCheckStyle</a></td>
-          <td>Checkstyle 2.4</td>
-	</tr>
-	<tr>
           <td><a href="http://www.bluej.org">BlueJ</a></td>
           <td>Rick Giles</td>
           <td><a href="http://bluejcheckstyle.sourceforge.net/">bluejcheckstyle
 	    home page</a></td>
-          <td>Checkstyle 3.3</td>
+          <td></td>
 	</tr>
 	<tr>
           <td><a href="http://snowmail.sn.funpic.de/tide/">tIDE</a></td>
@@ -184,7 +162,7 @@
           <td></td>
 	</tr>
 	<tr>
-          <td><a href="http://jdee.sunsite.dk">Emacs JDE</a></td>
+          <td><a href="http://jdee.sourceforge.net/">Emacs JDE</a></td>
           <td>Markus Mohnen</td>
           <td>Part of the standard JDEE distribution</td>
           <td></td>
@@ -216,10 +194,38 @@
           <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/sample-checkstyle.html">example report</a></td>
 	</tr>
 	<tr>
+          <td><a href="http://sonar.codehaus.org/">Sonar</a></td>
+          <td>Freddy Mallet (initial author)</td>
+          <td><a href="http://sonar.codehaus.org/">Sonar Home Page</a></td>
+          <td><a href="http://nemo.sonar.codehaus.org/">Demo site</a></td>
+	</tr>
+	<tr>
           <td><a href="http://qalab.sourceforge.net/">QALab</a></td>
           <td>Benoit Xhenseval</td>
           <td><a href="http://qalab.sourceforge.net/">QALab Home Page</a></td>
           <td>Supports tracking Checkstyle statistics over time.</td>
+	</tr>
+	<tr>
+          <td>
+            <a href="http://www.borland.com/jbuilder/">Borland JBuilder</a>
+          </td>
+          <td>Darrel King</td>
+          <td>
+            <a href="http://www.pautinka.com/">http://www.pautinka.com/</a>
+          </td>
+          <td></td>
+	</tr>
+	<tr>
+          <td><a href="http://www.borland.com/jbuilder/">Borland JBuilder</a></td>
+          <td>Henri Tremblay</td>
+          <td><a href="http://sourceforge.net/projects/jbcheckstyle-pg/">JBCS Sourceforge Project Page</a></td>
+          <td></td>
+	</tr>
+	<tr>
+          <td><a href="http://www.borland.com/jbuilder/">Borland JBuilder</a></td>
+          <td>Angus Chan</td>
+          <td><a href="http://jbcheckstyle.sourceforge.net">jbCheckStyle</a></td>
+          <td>Checkstyle 2.4</td>
 	</tr>
       </table>
 
