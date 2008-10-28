@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>checkstyle</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>4.4-SNAPSHOT</version>
+  <version>5.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Checkstyle</name>
   <url>http://checkstyle.sourceforge.net/</url>
@@ -41,6 +41,37 @@
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
       <version>1.0.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.google-collections</groupId>
+      <artifactId>google-collect</artifactId>
+      <version>snapshot-20080321</version>
+    </dependency>
+    <dependency>
+      <groupId>emma</groupId>
+      <artifactId>emma</artifactId>
+      <version>2.0.5312</version>
+    </dependency>
+    <dependency>
+      <groupId>emma</groupId>
+      <artifactId>emma_ant</artifactId>
+      <version>2.0.5312</version>
+    </dependency>
+    <dependency>
+      <groupId>jdom</groupId>
+      <artifactId>jdom</artifactId>
+      <version>b8</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>velocity</groupId>
+      <artifactId>velocity-dep</artifactId>
+      <version>1.4</version>
     </dependency>
   </dependencies>
 </project>
