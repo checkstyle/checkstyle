@@ -166,7 +166,7 @@ public final class Main
             files.add(new File(element));
         }
 
-        if (files.isEmpty()) {
+        if (files.isEmpty() && !aLine.hasOption("r")) {
             System.out.println("Must specify files to process");
             usage();
         }

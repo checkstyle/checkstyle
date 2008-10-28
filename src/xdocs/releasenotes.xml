@@ -32,6 +32,12 @@
           The NCSS complexity checker reported an incorrect fileMax value
           (bug #2161419).
         </li>
+
+        <li>
+          Checkstyle command-line no longer reports a usage error if the
+          user specifies a directory with the <i>-r</i> option that does
+          not contain any files. Thanks to Florian for patch #2151706.
+        </li>
       </ul>
 
       <p>Notes:</p>
