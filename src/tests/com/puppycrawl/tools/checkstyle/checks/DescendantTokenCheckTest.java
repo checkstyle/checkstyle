@@ -237,4 +237,65 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport
                getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
                expected);
     }
+
+    @Test
+    public void testNoSum() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+
+        checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
+        checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
+        checkConfig.addAttribute("maximumNumber", "1");
+        checkConfig.addAttribute("maximumMessage", "What are you doing?");
+
+        String[] expected = {
+        };
+
+        verify(checkConfig,
+               getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+               expected);
+    }
+
+    @Test
+    public void testWithSumCustomMsg() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+        checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
+        checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
+        checkConfig.addAttribute("maximumNumber", "1");
+        checkConfig.addAttribute("maximumMessage", "this cannot be null.");
+        checkConfig.addAttribute("sumTokenCounts", "true");
+
+        String[] expected = {
+            "22:32: this cannot be null.",
+            "22:50: this cannot be null.",
+            "23:33: this cannot be null.",
+            "23:51: this cannot be null.",
+        };
+
+        verify(checkConfig,
+               getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+               expected);
+    }
+
+    @Test
+    public void testWithSumDefaultMsg() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+        checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
+        checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
+        checkConfig.addAttribute("maximumNumber", "1");
+        checkConfig.addAttribute("sumTokenCounts", "true");
+
+        String[] expected = {
+            "22:32: Total count of 2 exceeds maximum count 1 under 'EQUAL'.",
+            "22:50: Total count of 2 exceeds maximum count 1 under 'EQUAL'.",
+            "23:33: Total count of 2 exceeds maximum count 1 under 'NOT_EQUAL'.",
+            "23:51: Total count of 2 exceeds maximum count 1 under 'NOT_EQUAL'.",
+        };
+
+        verify(checkConfig,
+               getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+               expected);
+    }
 }
