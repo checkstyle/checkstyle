@@ -263,6 +263,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
         checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
         checkConfig.addAttribute("maximumNumber", "1");
+        checkConfig.addAttribute("maximumDepth", "1");
         checkConfig.addAttribute("maximumMessage", "this cannot be null.");
         checkConfig.addAttribute("sumTokenCounts", "true");
 
@@ -285,6 +286,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
         checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
         checkConfig.addAttribute("maximumNumber", "1");
+        checkConfig.addAttribute("maximumDepth", "1");
         checkConfig.addAttribute("sumTokenCounts", "true");
 
         String[] expected = {

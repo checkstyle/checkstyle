@@ -19,6 +19,12 @@
           by patch #1145023 from Alexander Jesse.
         </li>
         <li>
+          Added the option <i>sumTokenCounts</i> to the <a
+          href="config_misc.html#DescendantToken">DescendantToken</a> to
+          allow for even more powerful checks. For example, detect
+          statements like <span class="code">this == null</span>.
+        </li>
+        <li>
           Add new options to the <a
           href="config_sizes.html#ImportOrderCheck">ImportOrderCheck</a>
           to make it more flexible. Thanks to David Didier for providing
@@ -42,7 +48,10 @@
 
       <p>Notes:</p>
       <ul>
-        <li>...</li>
+        <li>
+          Please report any problems, as this may be the last beta
+          release.
+        </li>
       </ul>
     </section>
 
