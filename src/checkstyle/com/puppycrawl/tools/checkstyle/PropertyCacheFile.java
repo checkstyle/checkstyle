@@ -96,15 +96,7 @@ final class PropertyCacheFile
                     .debug("Unable to open cache file, ignoring.", e);
             }
             finally {
-                if (inStream != null) {
-                    try {
-                        inStream.close();
-                    }
-                    catch (final IOException ex) {
-                        Utils.getExceptionLogger()
-                            .debug("Unable to close cache file.", ex);
-                    }
-                }
+                Utils.closeQuietly(inStream);
             }
         }
         mDetailsFile = (setInActive) ? null : aFileName;
@@ -144,13 +136,7 @@ final class PropertyCacheFile
                     .debug("Unable to flush output stream.", ex);
             }
             finally {
-                try {
-                    aStream.close();
-                }
-                catch (final IOException ex) {
-                    Utils.getExceptionLogger()
-                        .debug("Unable to close output stream.", ex);
-                }
+                Utils.closeQuietly(aStream);
             }
         }
     }

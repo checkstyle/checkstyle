@@ -187,7 +187,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#checker">Checker</a>
+          <a href="config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>
@@ -337,7 +337,7 @@ messages.properties: Key 'ok' missing.
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#checker">Checker</a>
+          <a href="config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>

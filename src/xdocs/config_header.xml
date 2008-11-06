@@ -264,7 +264,7 @@ line 14: ^ \*/
 
         <p>
           This check is very similar to the <a href="#RegexpHeader">RegexpHeader check</a>
-          above. However it has <a href="config.html#checker">Checker</a> as it's parent 
+          above. However it has <a href="config.html#Checker">Checker</a> as it's parent 
           module, so it is not limited to java source code, and allows checking headers
           of other file types as well.
         </p>
@@ -393,7 +393,7 @@ line 6: ^\W*$
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#checker">Checker</a>
+          <a href="config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>

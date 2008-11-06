@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import com.puppycrawl.tools.checkstyle.api.Utils;
+
 import com.google.common.collect.Lists;
 import java.io.FileReader;
 import java.io.IOException;
@@ -79,15 +81,7 @@ class HeaderInfo
                     "unable to load header file " + aFileName, ex);
         }
         finally {
-            if (headerReader != null) {
-                try {
-                    headerReader.close();
-                }
-                catch (final IOException ex) {
-                    throw new ConversionException(
-                            "unable to close header file " + aFileName, ex);
-                }
-            }
+            Utils.closeQuietly(headerReader);
         }
     }
 
@@ -112,20 +106,11 @@ class HeaderInfo
             loadHeader(headerReader);
         }
         catch (final IOException ex) {
-            throw new ConversionException(
-                    "unable to load header", ex);
+            throw new ConversionException("unable to load header", ex);
         }
         finally {
-            try {
-                headerReader.close();
-            }
-            catch (final IOException ex) {
-                // shouldn't happen with StringReader
-                throw new ConversionException(
-                        "unable to close header", ex);
-            }
+            Utils.closeQuietly(headerReader);
         }
-
     }
 
     /**

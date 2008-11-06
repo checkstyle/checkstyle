@@ -30,6 +30,13 @@
           to make it more flexible. Thanks to David Didier for providing
           patch #1854213.
         </li>
+        <li>
+          New check <a
+          href="config_whitespace.html#FileTabCharacter">FileTabCharacter</a>
+          for ensuring that any files does not contain a tab
+          character. It replaces <i>TabCharacterCheck</i> which was
+          restricted to Java files.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>
@@ -297,8 +304,8 @@
           for other languages than Java.
         </li>
         <li>
-	  Applied patch 1586411 from Dennis Lundberg (dennislundberg) to
-	  add Maven POM files to the build.
+          Applied patch 1586411 from Dennis Lundberg (dennislundberg) to
+          add Maven POM files to the build.
         </li>
       </ul>
     </section>

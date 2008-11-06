@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
     NoWhitespaceBeforeCheckTest.class, OperatorWrapCheckTest.class,
     ParenPadCheckTest.class, TabCharacterCheckTest.class,
     TypecastParenPadCheckTest.class, WhitespaceAfterCheckTest.class,
-    WhitespaceAroundTest.class})
+    WhitespaceAroundTest.class, FileTabCharacterCheckTest.class})
 public class AllWhitespaceTests
 {
 }

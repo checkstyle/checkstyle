@@ -16,11 +16,11 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.api;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -210,12 +210,7 @@ public final class Utils
             }
         }
         finally {
-            try {
-                lnr.close();
-            }
-            catch (final IOException e) {
-                ; // silently ignore
-            }
+            Utils.closeQuietly(lnr);
         }
         return lines.toArray(new String[lines.size()]);
     }
@@ -311,4 +306,21 @@ public final class Utils
         return files;
     }
 
+    /**
+     * Closes the supplied {@link Closeable} object ignoring an
+     * {@link IOException} if it is thrown. Honestly, what are you going to
+     * do if you cannot close a file.
+     * @param aShutting the object to be closed.
+     */
+    public static void closeQuietly(Closeable aShutting)
+    {
+        if (null != aShutting) {
+            try {
+                aShutting.close();
+            }
+            catch (IOException e) {
+                ; // ignore
+            }
+        }
+    }
 }

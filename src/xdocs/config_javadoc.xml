@@ -59,7 +59,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#checker">Checker</a>
+          <a href="config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>
@@ -725,22 +725,22 @@ public boolean isSomething()
             <th>type</th>
             <th>default value</th>
           </tr>
-	  <tr>
-	    <td>tag</td>
-	    <td>Name of tag</td>
-	    <td><a href="property_types.html#string">String</a></td>
+          <tr>
+            <td>tag</td>
+            <td>Name of tag</td>
+            <td><a href="property_types.html#string">String</a></td>
            <td><span class="default">null</span></td>
           </tr>
-	  <tr>
-	    <td>tagFormat</td>
-	    <td>Format of tag</td>
+          <tr>
+            <td>tagFormat</td>
+            <td>Format of tag</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><span class="default">null</span></td>
           </tr>
-	  <tr>
-	    <td>tagSeverity</td>
-	    <td>Severity level when tag is found and printed</td>
-	    <td><a href="property_types.html#severity">severity</a></td>
+          <tr>
+            <td>tagSeverity</td>
+            <td>Severity level when tag is found and printed</td>
+            <td><a href="property_types.html#severity">severity</a></td>
             <td><span class="default">info</span></td>
           </tr>
         </table>

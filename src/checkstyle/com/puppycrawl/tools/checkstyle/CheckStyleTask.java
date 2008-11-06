@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.Utils;
+
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -411,15 +413,7 @@ public class CheckStyleTask extends Task
                         + mPropertiesFile + "'", e, getLocation());
             }
             finally {
-                try {
-                    if (inStream != null) {
-                        inStream.close();
-                    }
-                }
-                catch (final IOException e) {
-                    throw new BuildException("Error closing Properties file '"
-                            + mPropertiesFile + "'", e, getLocation());
-                }
+                Utils.closeQuietly(inStream);
             }
         }
 

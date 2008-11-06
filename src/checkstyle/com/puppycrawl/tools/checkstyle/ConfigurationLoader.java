@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.Utils;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
@@ -331,15 +333,7 @@ public final class ConfigurationLoader
                     + e.getMessage(), e);
         }
         finally {
-            if (bufferedStream != null) {
-                try {
-                    bufferedStream.close();
-                }
-                catch (final IOException e) {
-                    // cannot throw another exception.
-                    ;
-                }
-            }
+            Utils.closeQuietly(bufferedStream);
         }
     }
 

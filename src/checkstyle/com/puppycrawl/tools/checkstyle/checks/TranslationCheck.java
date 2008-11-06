@@ -135,14 +135,7 @@ public class TranslationCheck
             logIOException(e, aFile);
         }
         finally {
-            try {
-                if (inStream != null) {
-                    inStream.close();
-                }
-            }
-            catch (final IOException e) {
-                logIOException(e, aFile);
-            }
+            Utils.closeQuietly(inStream);
         }
         return keys;
     }

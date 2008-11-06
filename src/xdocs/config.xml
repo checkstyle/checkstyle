@@ -608,15 +608,15 @@
       </p>
 
       <subsection name="SeverityMatchFilter">
-	<p>
+        <p>
           Filter <span class="code">SeverityMatchFilter</span> decides
           audit events according to the <a href="#Severity">severity
           level</a> of the event.
-	</p>
+        </p>
 
-	<h5>SeverityMatchFilter Properties</h5>
+        <h5>SeverityMatchFilter Properties</h5>
 
-	<table width="100%" border="1" cellpadding="5" class="body">
+        <table width="100%" border="1" cellpadding="5" class="body">
           <tr class="header">
             <th>name</th>
             <th>description</th>
@@ -643,34 +643,34 @@
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><span class="default">true</span></td>
           </tr>
-	</table>
+        </table>
 
-	<p>
+        <p>
           For example, the following configuration fragment directs the
           Checker to not report audit events with severity
           level <span class="code">info</span>:
-	</p>
+        </p>
 
-	<source>
+        <source>
 &lt;module name=&quot;SeverityMatchFilter&quot;&gt;
     &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
     &lt;property name=&quot;acceptOnMatch&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
-	</source>
+        </source>
       </subsection>
 
       <subsection name="SuppressionFilter">
-	<p>
+        <p>
           Filter <span class="code">SuppressionFilter</span> rejects
           audit events for Check errors according to
           a <a href="#XML%20Details"><em>suppressions XML
           document</em></a> in a file. If there is no configured
           suppressions file, the Filter accepts all audit events.
-	</p>
+        </p>
 
-	<h5>SuppressionFilter Properties</h5>
+        <h5>SuppressionFilter Properties</h5>
 
-	<table width="100%" border="1" cellpadding="5" class="body">
+        <table width="100%" border="1" cellpadding="5" class="body">
           <tr class="header">
             <th>name</th>
             <th>description</th>
@@ -683,20 +683,20 @@
             <td><a href="property_types.html#string">string</a></td>
             <td><span class="default">none</span></td>
           </tr>
-	</table>
+        </table>
 
-	<p>
+        <p>
           For example, the following configuration fragment directs the
           Checker to use a <span class="code">SuppressionFilter</span>
           with suppressions
           file <span class="code">docs/suppressions.xml</span>:
-	</p>
+        </p>
 
-	<source>
+        <source>
 &lt;module name=&quot;SuppressionFilter&quot;&gt;
     &lt;property name=&quot;file&quot; value=&quot;docs/suppressions.xml&quot;/&gt;
 &lt;/module&gt;
-	</source>
+        </source>
 
         <p>
           A <a href="#XML%20Details"><em>suppressions XML
@@ -707,47 +707,47 @@
         </p>
 
         <ul>
-   	  <li>
-   	    <span class="code">files</span> -
-   	    a <a href="property_types.html#regexp">regular expression</a>
-   	    matched against the file name associated with an audit
-   	    event. It is mandatory.
-   	  </li>
-   	  <li>
-   	    <span class="code">checks</span> -
-   	    a <a href="property_types.html#regexp">regular expression</a>
-   	    matched against the name of the check associated with an audit
-   	    event. Optional if <span class="code">id</span> is specified.
-   	  </li>
-   	  <li>
-   	    <span class="code">id</span> -
-   	    a <a href="property_types.html#string">string</a>
-   	    matched against the id of the check associated with an audit
-   	    event. Optional if <span class="code">checks</span> is specified.
-   	  </li>
-   	  <li>
-   	    <span class="code">lines</span> - a comma-separated list of
-   	    values, where each value is
-   	    an <a href="property_types.html#integer">integer</a> or a
-   	    range of integers denoted by integer-integer. It is optional.
-   	  </li>
-   	  <li>
-   	    <span class="code">columns</span> - a comma-separated list of
-   	    values, where each value is
-   	    an <a href="property_types.html#integer">integer</a> or a
-   	    range of integers denoted by integer-integer. It is optional.
-   	  </li>
+          <li>
+            <span class="code">files</span> -
+            a <a href="property_types.html#regexp">regular expression</a>
+            matched against the file name associated with an audit
+            event. It is mandatory.
+          </li>
+          <li>
+            <span class="code">checks</span> -
+            a <a href="property_types.html#regexp">regular expression</a>
+            matched against the name of the check associated with an audit
+            event. Optional if <span class="code">id</span> is specified.
+          </li>
+          <li>
+            <span class="code">id</span> -
+            a <a href="property_types.html#string">string</a>
+            matched against the id of the check associated with an audit
+            event. Optional if <span class="code">checks</span> is specified.
+          </li>
+          <li>
+            <span class="code">lines</span> - a comma-separated list of
+            values, where each value is
+            an <a href="property_types.html#integer">integer</a> or a
+            range of integers denoted by integer-integer. It is optional.
+          </li>
+          <li>
+            <span class="code">columns</span> - a comma-separated list of
+            values, where each value is
+            an <a href="property_types.html#integer">integer</a> or a
+            range of integers denoted by integer-integer. It is optional.
+          </li>
         </ul>
 
-	<p>
-	  Each audit event is checked against
-	  each <span class="code">suppress</span> element. It is
-	  suppressed if all specified attributes match against the audit
-	  event.
-	</p>
+        <p>
+          Each audit event is checked against
+          each <span class="code">suppress</span> element. It is
+          suppressed if all specified attributes match against the audit
+          event.
+        </p>
 
-	<h5>Examples</h5>
-	<p>
+        <h5>Examples</h5>
+        <p>
           For example, the following suppressions XML document directs
           a <span class="code">SuppressionFilter</span> to
           reject <span class="code">JavadocStyleCheck</span> errors for
@@ -755,9 +755,9 @@
           file <span class="code">AbstractComplexityCheck.java</span>,
           and <span class="code">MagicNumberCheck</span> errors for line
           221 of file <span class="code">JavadocStyleCheck.java</span>:
-	</p>
+        </p>
 
-	<source>
+        <source>
 &lt;?xml version=&quot;1.0&quot;?&gt;
 
 &lt;!DOCTYPE suppressions PUBLIC
@@ -772,14 +772,14 @@
               files=&quot;JavadocStyleCheck.java&quot;
               lines=&quot;221&quot;/&gt;
 &lt;/suppressions&gt;
-	</source>
+        </source>
 
-	<p>
-	  As another example, imagine that a configuration contains the
-	  following:
-	</p>
+        <p>
+          As another example, imagine that a configuration contains the
+          following:
+        </p>
 
-	<source>
+        <source>
 &lt;module name=&quot;DescendantToken&quot;&gt;
     &lt;property name=&quot;id&quot; value=&quot;stringEqual&quot;/&gt;
     &lt;property name=&quot;tokens&quot; value=&quot;EQUAL,NOT_EQUAL&quot;/&gt;
@@ -795,17 +795,17 @@
     &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
     &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
 &lt;/module&gt;
-	</source>
+        </source>
 
-	<p>
-	  Then the following can be used to suppress only the first
-	  check and not the second by using
-	  the <span class="code">id</span> attribute:
-	</p>
+        <p>
+          Then the following can be used to suppress only the first
+          check and not the second by using
+          the <span class="code">id</span> attribute:
+        </p>
 
-	<source>
+        <source>
 &lt;suppress id=&quot;stringEqual&quot; files=&quot;SomeTestCode.java&quot;/&gt;
-	</source>
+        </source>
 
       </subsection>
 
@@ -1100,8 +1100,8 @@
 
 &lt;!ELEMENT property EMPTY&gt;
 &lt;!ATTLIST property
-	name NMTOKEN #REQUIRED
-	value CDATA #REQUIRED
+        name NMTOKEN #REQUIRED
+        value CDATA #REQUIRED
 &gt;
       </source>
 

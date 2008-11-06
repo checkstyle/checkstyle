@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.Utils;
+
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -268,24 +270,21 @@ public final class Main
     private static Properties loadProperties(File aFile)
     {
         final Properties properties = new Properties();
+        FileInputStream fis = null;
         try {
-            FileInputStream fis = null;
-            try {
-                fis = new FileInputStream(aFile);
-                properties.load(fis);
-            }
-            finally {
-                if (fis != null) {
-                    fis.close();
-                }
-            }
+            fis = new FileInputStream(aFile);
+            properties.load(fis);
         }
         catch (final IOException ex) {
             System.out.println("Unable to load properties from file: "
-                               + aFile.getAbsolutePath());
+                + aFile.getAbsolutePath());
             ex.printStackTrace(System.out);
             System.exit(1);
         }
+        finally {
+            Utils.closeQuietly(fis);
+        }
+
         return properties;
     }
 }

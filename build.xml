@@ -296,8 +296,8 @@
                 failOnViolation="false"
                 failureProperty="checkstyle.failure.property"
                 >
-      <fileset dir="src/checkstyle"
-               includes="**/*.java,**/*.properties"
+      <fileset dir="src"
+               includes="checkstyle/**/*.java,checkstyle/**/*.properties,xdocs/**/*.xml"
                excludes="**/Generated*.java,**/gui/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${target.dir}/cs_errors.xml"/>

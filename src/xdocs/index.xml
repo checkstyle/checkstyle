@@ -87,13 +87,13 @@
       </p>
 
       <table>
-	<tr>
-	  <th>IDE / Build tool</th>
-	  <th>Main/Initial Author</th>
-	  <th>Available from</th>
-	  <th>Remarks</th>
-	</tr>
-	<tr>
+        <tr>
+          <th>IDE / Build tool</th>
+          <th>Main/Initial Author</th>
+          <th>Available from</th>
+          <th>Remarks</th>
+        </tr>
+        <tr>
           <td><a href="http://www.eclipse.org">Eclipse/WSAD</a></td>
           <td>David Schneider</td>
           <td>
@@ -101,8 +101,8 @@
             Page</a>
           </td>
           <td></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://www.eclipse.org">Eclipse/WSAD</a></td>
           <td>Marco van Meegen</td>
           <td>
@@ -111,16 +111,16 @@
             Home Page</a>
           </td>
           <td></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://www.intellij.com/idea/">IntelliJ IDEA</a></td>
           <td>James Shiell</td>
           <td>
             <a href="http://code.google.com/p/checkstyle-idea/">Checkstyle-idea Project Page</a>
           </td>
           <td>Provides real-time and on-demand scanning.</td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://www.intellij.com/idea/">IntelliJ IDEA</a></td>
           <td>Mark Lussier</td>
           <td>
@@ -128,8 +128,8 @@
             Project Page</a>
           </td>
           <td></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://www.netbeans.org">NetBeans</a></td>
           <td>Petr Hejl</td>
           <td>
@@ -139,73 +139,73 @@
             Problems with source code are displayed as annotations of
             the source
           </td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://www.netbeans.org">NetBeans</a></td>
           <td>Paul Goulbourn</td>
           <td>
             <a href="http://nbcheckstyle.sourceforge.net">nbCheckStyle</a>
           </td>
           <td></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://www.bluej.org">BlueJ</a></td>
           <td>Rick Giles</td>
           <td><a href="http://bluejcheckstyle.sourceforge.net/">bluejcheckstyle
-	    home page</a></td>
+            home page</a></td>
           <td></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://snowmail.sn.funpic.de/tide/">tIDE</a></td>
           <td></td>
           <td>Built in</td>
           <td></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://jdee.sourceforge.net/">Emacs JDE</a></td>
           <td>Markus Mohnen</td>
           <td>Part of the standard JDEE distribution</td>
           <td></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://www.jedit.org/">jEdit</a></td>
           <td>Todd Papaioannou</td>
           <td><a
-	      href="http://plugins.jedit.org/plugins/?CheckStylePlugin">JEdit CheckStylePlugin</a></td>
+              href="http://plugins.jedit.org/plugins/?CheckStylePlugin">JEdit CheckStylePlugin</a></td>
           <td></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://www.vim.org">Vim editor</a></td>
           <td>Xandy Johnson</td>
           <td><a
-	      href="http://vim.sourceforge.net/script.php?script_id=448">Plugin Homepage</a></td>
+              href="http://vim.sourceforge.net/script.php?script_id=448">Plugin Homepage</a></td>
           <td>Vim file-type plug-in</td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://www.krysalis.org/centipede/">Krysalis Centipede</a></td>
           <td>unknown</td>
           <td>Checkstyle supported out of the box</td>
           <td></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://maven.apache.org/">Maven</a></td>
           <td>Vincent Massol</td>
           <td>Checkstyle supported out of the box</td>
           <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/sample-checkstyle.html">example report</a></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://sonar.codehaus.org/">Sonar</a></td>
           <td>Freddy Mallet (initial author)</td>
           <td><a href="http://sonar.codehaus.org/">Sonar Home Page</a></td>
           <td><a href="http://nemo.sonar.codehaus.org/">Demo site</a></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://qalab.sourceforge.net/">QALab</a></td>
           <td>Benoit Xhenseval</td>
           <td><a href="http://qalab.sourceforge.net/">QALab Home Page</a></td>
           <td>Supports tracking Checkstyle statistics over time.</td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td>
             <a href="http://www.borland.com/jbuilder/">Borland JBuilder</a>
           </td>
@@ -214,19 +214,19 @@
             <a href="http://www.pautinka.com/">http://www.pautinka.com/</a>
           </td>
           <td></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://www.borland.com/jbuilder/">Borland JBuilder</a></td>
           <td>Henri Tremblay</td>
           <td><a href="http://sourceforge.net/projects/jbcheckstyle-pg/">JBCS Sourceforge Project Page</a></td>
           <td></td>
-	</tr>
-	<tr>
+        </tr>
+        <tr>
           <td><a href="http://www.borland.com/jbuilder/">Borland JBuilder</a></td>
           <td>Angus Chan</td>
           <td><a href="http://jbcheckstyle.sourceforge.net">jbCheckStyle</a></td>
           <td>Checkstyle 2.4</td>
-	</tr>
+        </tr>
       </table>
 
       <p>

@@ -88,16 +88,7 @@ public class NewlineAtEndOfFileCheck
                 ///CLOVER:ON
             }
             finally {
-                if (randomAccessFile != null) {
-                    try {
-                        randomAccessFile.close();
-                    }
-                    catch (final IOException e) {
-                        ///CLOVER:OFF
-                        logIOException(e);
-                        ///CLOVER:ON
-                    }
-                }
+                Utils.closeQuietly(randomAccessFile);
             }
             fireErrors(path);
             dispatcher.fireFileFinished(path);
