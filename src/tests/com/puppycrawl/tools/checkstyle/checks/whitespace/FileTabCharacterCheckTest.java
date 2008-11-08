@@ -60,7 +60,7 @@ public class FileTabCharacterCheckTest
         final String path = getPath("Claira");
         final String[] expected = {
             "0: Unable to read file: java.io.FileNotFoundException: " + path
-                + " (The system cannot find the file specified.)"
+                + " (The system cannot find the file specified)"
         };
         final File[] files = {
             new File(path),
