@@ -100,12 +100,6 @@ alternative to the Checks we offer in our distribution.
      <td><a href="property_types.html#int">int</a></td>
      <td><span class="default">12</span></td>
    </tr>
-   <tr>
-     <td>charset</td>
-     <td>name of the file charset</td>
-     <td><a href="property_types.html#string">String</a></td>
-     <td>System property &quot;file.encoding&quot;</td>
-   </tr>
  </table>
  </subsection>
 
@@ -121,16 +115,6 @@ alternative to the Checks we offer in our distribution.
  <source>
  &lt;module name=&quot;StrictDuplicateCode&quot;&gt;
    &lt;property name=&quot;min&quot; value=&quot;15&quot;/&gt;
- &lt;/module&gt;
- </source>
-
- <p>
- To configure the check so that it handles files with the <span
- class="code">UTF-8</span> charset:
- </p>
- <source>
- &lt;module name=&quot;StrictDuplicateCode&quot;&gt;
-    &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/&gt;
  &lt;/module&gt;
  </source>
  </subsection>

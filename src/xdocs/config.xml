@@ -312,6 +312,12 @@
           the empty string or a lowercase ISO 639 code</td>
           <td>default locale language for the Java Virtual Machine</td>
         </tr>
+        <tr>
+          <td>charset</td>
+          <td>name of the file charset</td>
+          <td><a href="property_types.html#string">String</a></td>
+          <td>System property &quot;file.encoding&quot;</td>
+        </tr>
       </table>
 
       <p>
@@ -329,6 +335,18 @@
     &lt;module name=&quot;TreeWalker&quot;&gt;
         ...
     &lt;/module&gt;
+&lt;/module&gt;
+      </source>
+
+      <p>
+        To configure a <span class="code">Checker</span> so that it
+        handles files with the <span class="code">UTF-8</span> charset:
+      </p>
+
+      <source>
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/&gt;
+    ...
 &lt;/module&gt;
       </source>
 
@@ -376,12 +394,6 @@
           <td><a href="property_types.html#stringSet">String Set</a></td>
           <td><span class="default">java</span></td>
         </tr>
-        <tr>
-          <td>charset</td>
-          <td>name of the file charset</td>
-          <td><a href="property_types.html#string">String</a></td>
-          <td>System property &quot;file.encoding&quot;</td>
-        </tr>
       </table>
 
       <p>
@@ -396,20 +408,6 @@
     &lt;module name=&quot;TreeWalker&quot;&gt;
         &lt;property name=&quot;cacheFile&quot; value=&quot;target/cachefile&quot;/&gt;
         &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
-        ...
-    &lt;/module&gt;
-&lt;/module&gt;
-      </source>
-
-      <p>
-        To configure a <span class="code">TreeWalker</span> so that it
-        handles files with the <span class="code">UTF-8</span> charset:
-      </p>
-
-      <source>
-&lt;module name=&quot;Checker&quot;&gt;
-    &lt;module name=&quot;TreeWalker&quot;&gt;
-        &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/&gt;
         ...
     &lt;/module&gt;
 &lt;/module&gt;

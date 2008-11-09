@@ -305,12 +305,6 @@ line 6: ^\W*$
             <th>default value</th>
           </tr>
           <tr>
-            <td>charset</td>
-            <td>name of the file charset</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td>System property &quot;file.encoding&quot;</td>
-          </tr>
-          <tr>
             <td>fileExtensions</td>
             <td>file type extensions to identify the file types to check.
             Must only contain text files, not binary files like bitmap
