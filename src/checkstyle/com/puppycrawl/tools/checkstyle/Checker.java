@@ -245,7 +245,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
         // Prepare to start
         fireAuditStarted();
         for (FileSetCheck fsc : mFileSetChecks) {
-            fsc.beginProcessing(getCharset());
+            fsc.beginProcessing(mCharset);
         }
 
         // Process each file
@@ -255,7 +255,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             final TreeSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
             try {
                 final String[] lines = Utils.getLines(f.getAbsolutePath(),
-                        getCharset());
+                        mCharset);
                 final List<String> theLines = Lists.newArrayList(lines);
                 for (FileSetCheck fsc : mFileSetChecks) {
                     fileMessages.addAll(fsc.process(f, theLines));
@@ -571,12 +571,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     public final void setModuleClassLoader(ClassLoader aModuleClassLoader)
     {
         mModuleClassLoader = aModuleClassLoader;
-    }
-
-    /** @return the name of the charset */
-    public String getCharset()
-    {
-        return mCharset;
     }
 
     /**
