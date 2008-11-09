@@ -38,8 +38,7 @@ public final class DefaultConfiguration implements Configuration
     private final String mName;
 
     /** the list of child Configurations */
-    private final List<Configuration> mChildren =
-        Lists.newArrayList();
+    private final List<Configuration> mChildren = Lists.newArrayList();
 
     /** the map from attribute names to attribute values */
     private final Map<String, String> mAttributeMap = Maps.newHashMap();

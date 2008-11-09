@@ -16,11 +16,11 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import java.io.File;
+import java.util.List;
 
 /**
  * <p>
@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </pre>
  * @author Lars Kühne
  */
-public class FileLengthCheck extends Check
+public class FileLengthCheck extends AbstractFileSetCheck
 {
     /** default maximum number of lines */
     private static final int DEFAULT_MAX_LINES = 2000;
@@ -61,17 +61,10 @@ public class FileLengthCheck extends Check
     private int mMaxFileLength = DEFAULT_MAX_LINES;
 
     @Override
-    public int[] getDefaultTokens()
+    protected void processFiltered(File aFile, List<String> aLines)
     {
-        return new int[0];
-    }
-
-    @Override
-    public void beginTree(DetailAST aRootAST)
-    {
-        final String[] lines = getLines();
-        if (lines.length > mMaxFileLength) {
-            log(1, "maxLen.file", lines.length, mMaxFileLength);
+        if (aLines.size() > mMaxFileLength) {
+            log(1, "maxLen.file", aLines.size(), mMaxFileLength);
         }
     }
 

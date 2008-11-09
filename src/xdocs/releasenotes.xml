@@ -62,6 +62,10 @@
           character. It replaces <i>TabCharacterCheck</i> which was
           restricted to Java files.
         </li>
+        <li>
+          Changed <a href="config_sizes.html#FileLength">FileLength</a>
+          check to be a FileSetCheck.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>
