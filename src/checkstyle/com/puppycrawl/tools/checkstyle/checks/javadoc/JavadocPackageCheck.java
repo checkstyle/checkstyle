@@ -47,9 +47,9 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
     }
 
     @Override
-    public void beginProcessing()
+    public void beginProcessing(String aCharset)
     {
-        super.beginProcessing();
+        super.beginProcessing(aCharset);
         mDirectoriesChecked.clear();
     }
 
@@ -62,7 +62,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
             return;
         }
         mDirectoriesChecked.add(dir);
-        
+
         // Check for the preferred file.
         final File packageInfo = new File(dir, "package-info.java");
         final File packageHtml = new File(dir, "package.html");
@@ -71,10 +71,8 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
             if (packageHtml.exists()) {
                 log(0, "javadoc.legacyPackageHtml");
             }
-        }   
-        else if (mAllowLegacy && packageHtml.exists()) {
         }
-        else {
+        else if (!mAllowLegacy || !packageHtml.exists()) {
             log(0, "javadoc.packageInfo");
         }
     }

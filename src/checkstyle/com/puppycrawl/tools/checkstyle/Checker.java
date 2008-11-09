@@ -38,6 +38,8 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -97,6 +99,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * leading to a bit of duplicated code for severity level setting.
      */
     private SeverityLevel mSeverityLevel = SeverityLevel.ERROR;
+
+    /** Name of a charset */
+    private String mCharset = System.getProperty("file.encoding", "UTF-8");
 
     /**
      * Creates a new <code>Checker</code> instance.
@@ -240,7 +245,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
         // Prepare to start
         fireAuditStarted();
         for (FileSetCheck fsc : mFileSetChecks) {
-            fsc.beginProcessing();
+            fsc.beginProcessing(getCharset());
         }
 
         // Process each file
@@ -249,8 +254,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             fireFileStarted(fileName);
             final TreeSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
             try {
-                // TODO: Need to use , getCharset()
-                final String[] lines = Utils.getLines(f.getAbsolutePath());
+                final String[] lines = Utils.getLines(f.getAbsolutePath(),
+                        getCharset());
                 final List<String> theLines = Lists.newArrayList(lines);
                 for (FileSetCheck fsc : mFileSetChecks) {
                     fileMessages.addAll(fsc.process(f, theLines));
@@ -566,5 +571,26 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     public final void setModuleClassLoader(ClassLoader aModuleClassLoader)
     {
         mModuleClassLoader = aModuleClassLoader;
+    }
+
+    /** @return the name of the charset */
+    public String getCharset()
+    {
+        return mCharset;
+    }
+
+    /**
+     * Sets a named charset.
+     * @param aCharset the name of a charset
+     * @throws UnsupportedEncodingException if aCharset is unsupported.
+     */
+    public void setCharset(String aCharset)
+        throws UnsupportedEncodingException
+    {
+        if (!Charset.isSupported(aCharset)) {
+            final String message = "unsupported charset: '" + aCharset + "'";
+            throw new UnsupportedEncodingException(message);
+        }
+        mCharset = aCharset;
     }
 }

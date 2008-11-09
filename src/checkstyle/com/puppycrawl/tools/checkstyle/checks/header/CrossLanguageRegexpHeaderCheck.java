@@ -116,9 +116,9 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
     }
 
     @Override
-    public void beginProcessing()
+    public void beginProcessing(String aCharset)
     {
-        super.beginProcessing();
+        super.beginProcessing(aCharset);
         mRegexpHeaderChecker = new RegexpHeaderChecker(mHeaderInfo,
                 new FileSetCheckViolationMonitor());
     }

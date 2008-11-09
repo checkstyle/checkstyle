@@ -193,6 +193,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
 
     /** total number of duplicates found */
     private int mDuplicates;
+    /** the charset used to load files. */
+    private String mCharset;
 
     /** Creates a new instance of this class. */
     public StrictDuplicateCodeCheck()
@@ -221,9 +223,10 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     }
 
     @Override
-    public void beginProcessing()
+    public void beginProcessing(String aCharset)
     {
-        super.beginProcessing();
+        super.beginProcessing(aCharset);
+        mCharset = aCharset;
         mFiles.clear();
     }
 
@@ -502,7 +505,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         if (cachedLines != null) {
             return cachedLines;
         }
-        final String charset = getCharset();
+        final String charset = mCharset;
         final String[] lines = getTrimmed(Utils.getLines(path, charset));
         mTrimmedLineCache.put(path, lines);
         return lines;

@@ -47,8 +47,11 @@ public interface FileSetCheck
     /** Cleans up the object. **/
     void destroy();
 
-    /** Called when about to be called to process a set of files. */
-    void beginProcessing();
+    /**
+     * Called when about to be called to process a set of files.
+     * @param aCharset the character set used to read the files.
+     */
+    void beginProcessing(String aCharset);
 
     /**
      * Request to process a file. The implementation should use the supplied

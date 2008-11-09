@@ -18,8 +18,9 @@
   <allow pkg="org.xml.sax"/>
 
   <!-- The local ones -->
-  <allow pkg="com.puppycrawl.tools.checkstyle.grammars" local-only="true"/>
+  <allow class="java.nio.charset.Charset" local-only="true"/>
   <allow class="java.security.MessageDigest" local-only="true"/>
+  <allow pkg="com.puppycrawl.tools.checkstyle.grammars" local-only="true"/>
   <allow pkg="org.apache.commons.cli" local-only="true"/>
   <allow pkg="org.apache.tools.ant" local-only="true"/>
 
@@ -27,7 +28,6 @@
     <allow pkg="java.beans"/>
     <allow pkg="java.lang.reflect"/>
     <allow pkg="java.text"/>
-    <allow class="java.nio.charset.Charset"/>
     <allow class="com.puppycrawl.tools.checkstyle.grammars.CommentListener"
            local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes"

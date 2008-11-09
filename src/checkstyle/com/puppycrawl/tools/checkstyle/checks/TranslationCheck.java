@@ -70,9 +70,9 @@ public class TranslationCheck
     }
 
     @Override
-    public void beginProcessing()
+    public void beginProcessing(String aCharset)
     {
-        super.beginProcessing();
+        super.beginProcessing(aCharset);
         mPropertyFiles.clear();
     }
 

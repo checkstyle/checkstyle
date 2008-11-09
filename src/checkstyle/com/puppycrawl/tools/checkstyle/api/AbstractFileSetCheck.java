@@ -19,8 +19,6 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -43,9 +41,6 @@ public abstract class AbstractFileSetCheck
     /** collects the error messages */
     private final LocalizedMessages mMessages = new LocalizedMessages();
 
-    /** Name of a charset */
-    private String mCharset = System.getProperty("file.encoding", "UTF-8");
-
     /**
      * Called to process a file that matches the specified file extensions.
      * @param aFile the file to be processed
@@ -64,7 +59,7 @@ public abstract class AbstractFileSetCheck
     }
 
     /** {@inheritDoc} */
-    public void beginProcessing()
+    public void beginProcessing(String aCharset)
     {
     }
 
@@ -83,27 +78,6 @@ public abstract class AbstractFileSetCheck
     /** {@inheritDoc} */
     public void finishProcessing()
     {
-    }
-
-    /** @return the name of the charset */
-    public String getCharset()
-    {
-        return mCharset;
-    }
-
-    /**
-     * Sets a named charset.
-     * @param aCharset the name of a charset
-     * @throws UnsupportedEncodingException if aCharset is unsupported.
-     */
-    public void setCharset(String aCharset)
-        throws UnsupportedEncodingException
-    {
-        if (!Charset.isSupported(aCharset)) {
-            final String message = "unsupported charset: '" + aCharset + "'";
-            throw new UnsupportedEncodingException(message);
-        }
-        mCharset = aCharset;
     }
 
     /** {@inheritDoc} */
