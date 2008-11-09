@@ -10,6 +10,31 @@
 
   <body>
     <section name="Release 5.0 Beta 2">
+      <p>
+        Major change to FileSetCheck architecture to move the
+        functionality of open/reporting of files into Checker. The
+        advantages are:
+      </p>
+      <ul>
+        <li>
+          Reduces the logic required in each implementation of FileSetCheck
+        </li>
+        <li>
+          Reduces, but not eliminates, the number of times a file is
+          reported as being audited.
+        </li>
+        <li>
+          Reduces the amount of times a file needs to be read in from
+          the file system.
+        </li>
+      </ul>
+      <p>
+        The motivation for this change is to convert checks that are
+        language neutral in nature, to be based on FileSetCheck. This
+        allows the checks to be used for other languages apart from
+        Java. As a practical example, it is possible to ensure that JSP
+        and XML files do not contain tabs.
+      </p>
       <p>New Features:</p>
       <ul>
         <li>
@@ -56,8 +81,7 @@
       <p>Notes:</p>
       <ul>
         <li>
-          Please report any problems, as this may be the last beta
-          release.
+          ...
         </li>
       </ul>
     </section>
