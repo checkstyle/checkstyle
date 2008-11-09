@@ -20,7 +20,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import java.io.File;
 import java.util.List;
 import java.util.Set;
@@ -28,12 +27,14 @@ import java.util.Set;
 /**
  * Checks that all packages have a package documentation. See the documentation
  * for more information.
- * @author Oliver Buurn
+ * @author Oliver Burn
  */
 public class JavadocPackageCheck extends AbstractFileSetCheck
 {
     /** Indicates if allow legacy "package.html" file to be used. */
     private boolean mAllowLegacy;
+    /** The directories checked. */
+    private final Set<File> mDirectoriesChecked = Sets.newHashSet();
 
     /**
      * Creates a new instance.
@@ -45,55 +46,37 @@ public class JavadocPackageCheck extends AbstractFileSetCheck
         setFileExtensions(new String[]{"java"});
     }
 
-    /** {@inheritDoc} */
-    public void process(List<File> aFiles)
+    @Override
+    public void beginProcessing()
     {
-        final List<File> javaFiles = filter(aFiles);
-        final Set<File> directories = getParentDirs(javaFiles);
-        for (File dir : directories) {
-            // Check for the preferred file.
-            final MessageDispatcher dispatcher = getMessageDispatcher();
-            final File packageInfo = new File(dir, "package-info.java");
-            final File packageHtml = new File(dir, "package.html");
-            final String path;
-
-            if (packageInfo.exists()) {
-                path = packageInfo.getPath();
-                dispatcher.fireFileStarted(path);
-                if (packageHtml.exists()) {
-                    log(0, "javadoc.legacyPackageHtml");
-                }
-            }
-            else if (mAllowLegacy && packageHtml.exists()) {
-                path = packageHtml.getPath();
-                dispatcher.fireFileStarted(path);
-            }
-            else {
-                path = packageInfo.getPath();
-                dispatcher.fireFileStarted(path);
-                log(0, "javadoc.packageInfo");
-            }
-            fireErrors(path);
-            dispatcher.fireFileFinished(path);
-        }
+        super.beginProcessing();
+        mDirectoriesChecked.clear();
     }
 
-    /**
-     * Returns the set of directories for a set of files.
-     * @param aFiles s set of files
-     * @return the set of parent directories of the given files
-     */
-    protected final Set<File> getParentDirs(List<File> aFiles)
+    @Override
+    protected void processFiltered(File aFile, List<String> aLines)
     {
-        final Set<File> directories = Sets.newHashSet();
-        for (File element : aFiles) {
-            final File f = element.getAbsoluteFile();
-            if (f.getName().endsWith(".java")) {
-                final File dir = f.getParentFile();
-                directories.add(dir); // duplicates are handled automatically
-            }
+        // Check if already processed directory
+        final File dir = aFile.getParentFile();
+        if (mDirectoriesChecked.contains(dir)) {
+            return;
         }
-        return directories;
+        mDirectoriesChecked.add(dir);
+        
+        // Check for the preferred file.
+        final File packageInfo = new File(dir, "package-info.java");
+        final File packageHtml = new File(dir, "package.html");
+
+        if (packageInfo.exists()) {
+            if (packageHtml.exists()) {
+                log(0, "javadoc.legacyPackageHtml");
+            }
+        }   
+        else if (mAllowLegacy && packageHtml.exists()) {
+        }
+        else {
+            log(0, "javadoc.packageInfo");
+        }
     }
 
     /**

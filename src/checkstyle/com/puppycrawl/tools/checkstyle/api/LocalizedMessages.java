@@ -36,9 +36,9 @@ public final class LocalizedMessages
     private final TreeSet<LocalizedMessage> mMessages = Sets.newTreeSet();
 
     /** @return the logged messages **/
-    public LocalizedMessage[] getMessages()
+    public TreeSet<LocalizedMessage> getMessages()
     {
-        return mMessages.toArray(new LocalizedMessage[mMessages.size()]);
+        return Sets.newTreeSet(mMessages);
     }
 
     /** Reset the object. **/

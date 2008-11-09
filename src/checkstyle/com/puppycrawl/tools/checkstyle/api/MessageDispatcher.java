@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.TreeSet;
+
 /**
  * Used by FileSetChecks to distribute AuditEvents to AuditListeners.
  * @author lkuehne
@@ -41,5 +43,5 @@ public interface MessageDispatcher
      * @param aFileName the audited file
      * @param aErrors the audit errors from the file
      */
-    void fireErrors(String aFileName, LocalizedMessage[] aErrors);
+    void fireErrors(String aFileName, TreeSet<LocalizedMessage> aErrors);
 }

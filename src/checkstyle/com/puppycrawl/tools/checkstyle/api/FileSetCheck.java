@@ -20,11 +20,13 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Interface for Checking a set of files for some criteria.
  *
  * @author lkuehne
+ * @author oliver
  */
 public interface FileSetCheck
     extends Configurable, Contextualizable
@@ -37,21 +39,39 @@ public interface FileSetCheck
     void setMessageDispatcher(MessageDispatcher aDispatcher);
 
     /**
-     * Processes a set of files and fires errors to the MessageDispatcher.
-     *
+     * Initialise the instance. This is the time to verify that everything
+     * required to perform it job.
+     */
+    void init();
+
+    /** Cleans up the object. **/
+    void destroy();
+
+    /** Called when about to be called to process a set of files. */
+    void beginProcessing();
+
+    /**
+     * Request to process a file. The implementation should use the supplied
+     * contents and not read the contents again. This reduces the amount of
+     * file I/O.
+     * <p>
      * The file set to process might contain files that are not
      * interesting to the FileSetCheck. Such files should be ignored,
      * no error message should be fired for them. For example a FileSetCheck
      * that checks java files should ignore HTML or properties files.
+     * <p>
+     * The method should return the set of messages to be logged.
      *
-     * Once processing is done, it is highly recommended to call for
-     * the destroy method to close and remove the listeners.
-     *
-     * @param aFiles the files to be audited.
-     * @see #destroy()
+     * @param aFile the file to be processed
+     * @param aLines an immutable list of the contents of the file.
+     * @return the list of messages to be logged.
      */
-    void process(List<File> aFiles);
+    TreeSet<LocalizedMessage> process(File aFile, List<String> aLines);
 
-    /** Cleans up the object. **/
-    void destroy();
+    /**
+     * Called when all the files have been processed. This is the time to
+     * perform any checks that need to be done across a set of files. In this
+     * method, the implementation is responsible for the logging of messages.
+     */
+    void finishProcessing();
 }

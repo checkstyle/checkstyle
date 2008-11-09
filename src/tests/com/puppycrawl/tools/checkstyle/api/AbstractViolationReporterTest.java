@@ -2,6 +2,8 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.TreeSet;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Assert;
@@ -49,10 +51,10 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport
 
         emptyCheck.log(0, "msgKey");
 
-        LocalizedMessage[] messages = collector.getMessages();
-        Assert.assertTrue(messages.length == 1);
-
-        Assert.assertEquals("This is a custom message.", messages[0].getMessage());
+        TreeSet<LocalizedMessage> messages = collector.getMessages();
+        Assert.assertTrue(messages.size() == 1);
+        Assert.assertEquals("This is a custom message.", messages.first()
+                .getMessage());
     }
 
     @Test
@@ -67,10 +69,11 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport
 
         emptyCheck.log(0, "msgKey", "TestParam");
 
-        LocalizedMessage[] messages = collector.getMessages();
-        Assert.assertTrue(messages.length == 1);
+        TreeSet<LocalizedMessage> messages = collector.getMessages();
+        Assert.assertTrue(messages.size() == 1);
 
-        Assert.assertEquals("This is a custom message with TestParam.", messages[0].getMessage());
+        Assert.assertEquals("This is a custom message with TestParam.",
+                messages.first().getMessage());
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -85,11 +88,11 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport
 
         emptyCheck.log(0, "msgKey", "TestParam");
 
-        LocalizedMessage[] messages = collector.getMessages();
-        Assert.assertTrue(messages.length == 1);
+        TreeSet<LocalizedMessage> messages = collector.getMessages();
+        Assert.assertTrue(messages.size() == 1);
 
         //we expect an exception here because of the bogus custom message
         //format
-        messages[0].getMessage();
+        messages.first().getMessage();
     }
 }

@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.Defn;
@@ -35,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.Map.Entry;
 
 /**
@@ -56,12 +58,37 @@ import java.util.Map.Entry;
 public class TranslationCheck
     extends AbstractFileSetCheck
 {
+    /** The property files to process. */
+    private final List<File> mPropertyFiles = Lists.newArrayList();
+
     /**
      * Creates a new <code>TranslationCheck</code> instance.
      */
     public TranslationCheck()
     {
         setFileExtensions(new String[]{"properties"});
+    }
+
+    @Override
+    public void beginProcessing()
+    {
+        super.beginProcessing();
+        mPropertyFiles.clear();
+    }
+
+    @Override
+    protected void processFiltered(File aFile, List<String> aLines)
+    {
+        mPropertyFiles.add(aFile);
+    }
+
+    @Override
+    public void finishProcessing()
+    {
+        super.finishProcessing();
+        final Map<String, Set<File>> propFilesMap =
+            arrangePropertyFiles(mPropertyFiles);
+        checkPropertyFileSets(propFilesMap);
     }
 
     /**
@@ -107,7 +134,6 @@ public class TranslationCheck
         }
         return propFileMap;
     }
-
 
     /**
      * Loads the keys of the specified property file into a set.
@@ -161,7 +187,7 @@ public class TranslationCheck
                 args,
                 getId(),
                 this.getClass(), null);
-        final LocalizedMessage[] messages = new LocalizedMessage[] {message};
+        final TreeSet<LocalizedMessage> messages = Sets.newTreeSet(message);
         getMessageDispatcher().fireErrors(aFile.getPath(), messages);
         Utils.getExceptionLogger().debug("IOException occured.", aEx);
     }
@@ -233,24 +259,5 @@ public class TranslationCheck
                 compareKeySets(keys, fileMap);
             }
         }
-    }
-
-
-    /**
-     * This method searches for property files in the specified file array
-     * and checks whether the key usage is consistent.
-     *
-     * Two property files which have the same prefix should use the same
-     * keys. If this is not the case the missing keys are reported.
-     *
-     * @param aFiles {@inheritDoc}
-     * @see com.puppycrawl.tools.checkstyle.api.FileSetCheck
-     */
-    public void process(List<File> aFiles)
-    {
-        final List<File> propertyFiles = filter(aFiles);
-        final Map<String, Set<File>> propFilesMap =
-            arrangePropertyFiles(propertyFiles);
-        checkPropertyFileSets(propFilesMap);
     }
 }

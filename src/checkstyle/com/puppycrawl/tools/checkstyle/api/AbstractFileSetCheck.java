@@ -18,16 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Provides common functionality for many FileSetChecks.
  *
  * @author lkuehne
+ * @author oliver
  */
 public abstract class AbstractFileSetCheck
     extends AbstractViolationReporter
@@ -45,8 +46,42 @@ public abstract class AbstractFileSetCheck
     /** Name of a charset */
     private String mCharset = System.getProperty("file.encoding", "UTF-8");
 
-    /** @see com.puppycrawl.tools.checkstyle.api.FileSetCheck */
+    /**
+     * Called to process a file that matches the specified file extensions.
+     * @param aFile the file to be processed
+     * @param aLines an immutable list of the contents of the file.
+     */
+    protected abstract void processFiltered(File aFile, List<String> aLines);
+
+    /** {@inheritDoc} */
+    public void init()
+    {
+    }
+
+    /** {@inheritDoc} */
     public void destroy()
+    {
+    }
+
+    /** {@inheritDoc} */
+    public void beginProcessing()
+    {
+    }
+
+    /** {@inheritDoc} */
+    public final TreeSet<LocalizedMessage> process(File aFile,
+                                                   List<String> aLines)
+    {
+        getMessageCollector().reset();
+        // Process only what interested in
+        if (fileExtensionMatches(aFile)) {
+            processFiltered(aFile, aLines);
+        }
+        return getMessageCollector().getMessages();
+    }
+
+    /** {@inheritDoc} */
+    public void finishProcessing()
     {
     }
 
@@ -86,25 +121,6 @@ public abstract class AbstractFileSetCheck
     protected final MessageDispatcher getMessageDispatcher()
     {
         return mDispatcher;
-    }
-
-    /**
-     * Determines the set of files this FileSetCheck is interested in.
-     * Returns the files that have one of the currently active file extensions.
-     * If no file extensions are active the argument array is returned.
-     *
-     * <p>
-     * This method can be used in the implementation of <code>process()</code>
-     * to filter it's argument list for interesting files.
-     * </p>
-     *
-     * @param aFiles the candidates for processing
-     * @return the subset of aFiles that this FileSetCheck should process
-     * @see FileSetCheck#process
-     */
-    protected final List<File> filter(List<File> aFiles)
-    {
-        return Utils.filterFilesByExtension(aFiles, mFileExtensions);
     }
 
     /**
@@ -174,8 +190,43 @@ public abstract class AbstractFileSetCheck
      */
     protected final void fireErrors(String aFileName)
     {
-        final LocalizedMessage[] errors = getMessageCollector().getMessages();
+        final TreeSet<LocalizedMessage> errors = getMessageCollector()
+                .getMessages();
         getMessageCollector().reset();
         getMessageDispatcher().fireErrors(aFileName, errors);
+    }
+
+    /**
+     * Returns whether the file extension matches what we are meant to
+     * process.
+     * @param aFile the file to be checked.
+     * @return whether there is a match.
+     */
+    private boolean fileExtensionMatches(File aFile)
+    {
+        if ((null == mFileExtensions) || (mFileExtensions.length == 0)) {
+            return true;
+        }
+
+        // normalize extensions so all of them have a leading dot
+        final String[] withDotExtensions = new String[mFileExtensions.length];
+        for (int i = 0; i < mFileExtensions.length; i++) {
+            final String extension = mFileExtensions[i];
+            if (extension.startsWith(".")) {
+                withDotExtensions[i] = extension;
+            }
+            else {
+                withDotExtensions[i] = "." + extension;
+            }
+        }
+
+        final String fileName = aFile.getName();
+        for (final String fileExtension : withDotExtensions) {
+            if (fileName.endsWith(fileExtension)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

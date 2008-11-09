@@ -36,7 +36,8 @@ public class FileSetCheckLifecycleTest
             return destroyed;
         }
 
-        public void process(List<File> aFiles)
+        @Override
+        protected void processFiltered(File aFile, List<String> aLines)
         {
         }
     }

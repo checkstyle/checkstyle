@@ -19,12 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.LineNumberReader;
 import java.util.List;
 
 /**
@@ -35,44 +30,23 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck
 {
     /** Indicates whether to report once per file, or for each line. */
     private boolean mEachLine;
-    /** {@inheritDoc} */
-    public void process(final List<File> aFiles)
+
+    @Override
+    protected void processFiltered(File aFile, List<String> aLines)
     {
-        final MessageDispatcher msgDispatcher = getMessageDispatcher();
-        for (final File file : aFiles) {
-            final String path = file.getPath();
-            msgDispatcher.fireFileStarted(path);
-            LineNumberReader lnr = null;
-            try {
-                lnr = new LineNumberReader(new FileReader(file));
-                while (true) {
-                    final String line = lnr.readLine();
-                    if (null == line) {
-                        break;
-                    }
-                    final int tabPosition = line.indexOf('\t');
-                    if (tabPosition != -1) {
-                        if (mEachLine) {
-                            log(lnr.getLineNumber(), tabPosition + 1,
-                                "containsTab");
-                        }
-                        else {
-                            log(lnr.getLineNumber(), tabPosition + 1,
-                                "file.containsTab");
-                            break;
-                        }
-                    }
+        int lineNum = 0;
+        for (final String line : aLines) {
+            lineNum++;
+            final int tabPosition = line.indexOf('\t');
+            if (tabPosition != -1) {
+                if (mEachLine) {
+                    log(lineNum, tabPosition + 1, "containsTab");
+                }
+                else {
+                    log(lineNum, tabPosition + 1, "file.containsTab");
+                    break;
                 }
             }
-            catch (IOException ioe) {
-                Utils.getExceptionLogger().debug("IOException occured.", ioe);
-                log(0, "Unable to read file: " + ioe);
-            }
-            finally {
-                Utils.closeQuietly(lnr);
-            }
-            fireErrors(path);
-            msgDispatcher.fireFileFinished(path);
         }
     }
 

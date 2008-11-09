@@ -18,17 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.List;
-
-import com.puppycrawl.tools.checkstyle.Defn;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.Utils;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -64,34 +59,24 @@ public class NewlineAtEndOfFileCheck
     extends AbstractFileSetCheck
 {
     /** the line separator to check against. */
-    private LineSeparatorOption mLineSeparator =
-        LineSeparatorOption.SYSTEM;
+    private LineSeparatorOption mLineSeparator = LineSeparatorOption.SYSTEM;
 
-    /** {@inheritDoc} */
-    public void process(List<File> aFiles)
+    @Override
+    protected void processFiltered(File aFile, List<String> aLines)
     {
-        final List<File> files = filter(aFiles);
-        final MessageDispatcher dispatcher = getMessageDispatcher();
-        for (final File file : files) {
-            final String path = file.getPath();
-            dispatcher.fireFileStarted(path);
-            RandomAccessFile randomAccessFile = null;
-            try {
-                randomAccessFile = new RandomAccessFile(file, "r");
-                if (!endsWithNewline(randomAccessFile)) {
-                    log(0, "noNewlineAtEOF", path);
-                }
+        // Cannot use aLines as the line separators have been removed!
+        RandomAccessFile randomAccessFile = null;
+        try {
+            randomAccessFile = new RandomAccessFile(aFile, "r");
+            if (!endsWithNewline(randomAccessFile)) {
+                log(0, "noNewlineAtEOF", aFile.getPath());
             }
-            catch (final IOException e) {
-                ///CLOVER:OFF
-                logIOException(e);
-                ///CLOVER:ON
-            }
-            finally {
-                Utils.closeQuietly(randomAccessFile);
-            }
-            fireErrors(path);
-            dispatcher.fireFileFinished(path);
+        }
+        catch (final IOException e) {
+            log(0, "unable.open", aFile.getPath());
+        }
+        finally {
+            Utils.closeQuietly(randomAccessFile);
         }
     }
 
@@ -135,30 +120,4 @@ public class NewlineAtEndOfFileCheck
         aRandomAccessFile.read(lastBytes);
         return mLineSeparator.matches(lastBytes);
     }
-
-    /**
-     * Helper method to log an IO exception.
-     * @param aEx the exception that occured
-     */
-    ///CLOVER:OFF
-    private void logIOException(IOException aEx)
-    {
-        String[] args = null;
-        String key = "general.fileNotFound";
-        if (!(aEx instanceof FileNotFoundException)) {
-            args = new String[] {aEx.getMessage()};
-            key = "general.exception";
-        }
-        final LocalizedMessage message =
-            new LocalizedMessage(
-                0,
-                Defn.CHECKSTYLE_BUNDLE,
-                key,
-                args,
-                getId(),
-                this.getClass(), null);
-        getMessageCollector().add(message);
-        Utils.getExceptionLogger().debug("IOException occured.", aEx);
-    }
-    ///CLOVER:ON
 }

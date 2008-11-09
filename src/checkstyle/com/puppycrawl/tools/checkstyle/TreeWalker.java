@@ -37,8 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.Reader;
 import java.util.Arrays;
 import java.util.Collection;
@@ -171,11 +169,8 @@ public final class TreeWalker
         registerCheck(c);
     }
 
-    /**
-     * Processes a specified file and reports all errors found.
-     * @param aFile the file to process
-     **/
-    private void process(File aFile)
+    @Override
+    protected void processFiltered(File aFile, List<String> aLines)
     {
         // check if already checked and passed the file
         final String fileName = aFile.getPath();
@@ -185,34 +180,10 @@ public final class TreeWalker
         }
 
         try {
-            getMessageDispatcher().fireFileStarted(fileName);
-            final String[] lines = Utils.getLines(fileName, getCharset());
-            final FileContents contents = new FileContents(fileName, lines);
+            final FileContents contents = new FileContents(fileName, aLines
+                    .toArray(new String[aLines.size()]));
             final DetailAST rootAST = TreeWalker.parse(contents);
             walk(rootAST, contents);
-        }
-        catch (final FileNotFoundException fnfe) {
-            Utils.getExceptionLogger()
-                .debug("FileNotFoundException occured.", fnfe);
-            getMessageCollector().add(
-                new LocalizedMessage(
-                    0,
-                    Defn.CHECKSTYLE_BUNDLE,
-                    "general.fileNotFound",
-                    null,
-                    getId(),
-                    this.getClass(), null));
-        }
-        catch (final IOException ioe) {
-            Utils.getExceptionLogger().debug("IOException occured.", ioe);
-            getMessageCollector().add(
-                new LocalizedMessage(
-                    0,
-                    Defn.CHECKSTYLE_BUNDLE,
-                    "general.exception",
-                    new String[] {ioe.getMessage()},
-                    getId(),
-                    this.getClass(), null));
         }
         catch (final RecognitionException re) {
             Utils.getExceptionLogger()
@@ -281,11 +252,6 @@ public final class TreeWalker
         if (getMessageCollector().size() == 0) {
             mCache.checkedOk(fileName, timestamp);
         }
-        else {
-            fireErrors(fileName);
-        }
-
-        getMessageDispatcher().fireFileFinished(fileName);
     }
 
     /**
@@ -477,16 +443,6 @@ public final class TreeWalker
         parser.compilationUnit();
 
         return (DetailAST) parser.getAST();
-    }
-
-    /** {@inheritDoc} */
-    public void process(List<File> aFiles)
-    {
-        final List<File> javaFiles = filter(aFiles);
-
-        for (File element : javaFiles) {
-            process(element);
-        }
     }
 
     @Override

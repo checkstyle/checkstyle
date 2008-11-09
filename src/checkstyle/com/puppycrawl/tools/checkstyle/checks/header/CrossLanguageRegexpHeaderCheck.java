@@ -19,16 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.Utils;
+import java.io.File;
+import java.util.List;
+import org.apache.commons.beanutils.ConversionException;
 
 /**
  * A FileSetCheck similar to {@link RegexpHeaderCheck},
@@ -39,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.Utils;
  */
 public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
 {
-
     /**
      * HeaderViolationmonitor that delegates to the
      * FileSetcheck methods for reporting violations.
@@ -62,6 +56,8 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
 
     /** information about the expected header file. */
     private final RegexpHeaderInfo mHeaderInfo = new RegexpHeaderInfo();
+    /** The checker. */
+    private RegexpHeaderChecker mRegexpHeaderChecker;
 
     /**
      * Creates a new instance and initializes the file extensions
@@ -119,28 +115,18 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
         }
     }
 
-    /** {@inheritDoc} */
-    public void process(List<File> aFiles)
+    @Override
+    public void beginProcessing()
     {
-
-        final MessageDispatcher msgDispatcher = getMessageDispatcher();
-        final RegexpHeaderChecker regexpHeaderChecker =
-            new RegexpHeaderChecker(
-                    mHeaderInfo, new FileSetCheckViolationMonitor());
-        final List<File> files = filter(aFiles);
-        for (final File file : files) {
-            final String path = file.getPath();
-            msgDispatcher.fireFileStarted(path);
-            try {
-                final String[] lines = Utils.getLines(path);
-                regexpHeaderChecker.checkLines(lines);
-            }
-            catch (IOException ex) {
-                log(0, "unable to open file: " + ex);
-            }
-            fireErrors(path);
-            msgDispatcher.fireFileFinished(path);
-        }
+        super.beginProcessing();
+        mRegexpHeaderChecker = new RegexpHeaderChecker(mHeaderInfo,
+                new FileSetCheckViolationMonitor());
     }
 
+    @Override
+    protected void processFiltered(File aFile, List<String> aLines)
+    {
+        mRegexpHeaderChecker.checkLines(
+            aLines.toArray(new String[aLines.size()]));
+    }
 }

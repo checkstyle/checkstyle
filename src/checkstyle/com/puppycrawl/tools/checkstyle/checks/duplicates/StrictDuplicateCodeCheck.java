@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle.checks.duplicates;
 
 import com.google.common.base.ReferenceType;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 import com.google.common.collect.ReferenceMap;
@@ -179,7 +180,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     private ChecksumInfo[] mChecksumInfo;
 
     /** files that are currently checked */
-    private List<File> mFiles;
+    private List<File> mFiles = Lists.newArrayList();
 
     /**
      * A SoftReference cache for the trimmed lines of a file path,
@@ -219,12 +220,25 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         mBasedir = aBasedir;
     }
 
-    /** {@inheritDoc} */
-    public synchronized void process(List<File> aFiles)
+    @Override
+    public void beginProcessing()
     {
+        super.beginProcessing();
+        mFiles.clear();
+    }
+
+    @Override
+    protected void processFiltered(File aFile, List<String> aLines)
+    {
+        mFiles.add(aFile);
+    }
+
+    @Override
+    public void finishProcessing()
+    {
+        super.finishProcessing();
         final long start = System.currentTimeMillis();
         mDuplicates = 0;
-        mFiles = filter(aFiles);
         mLineBlockChecksums = new int[mFiles.size()][];
         mChecksumInfo = new ChecksumInfo[mFiles.size()];
 

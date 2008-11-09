@@ -29,7 +29,7 @@ public class JavadocPackageCheckTest
         verify(
             createChecker(checkConfig),
             getPath("javadoc/BadCls.java"),
-            getPath("javadoc/package-info.java"),
+            getPath("javadoc/BadCls.java"),
             expected);
     }
     @Test
@@ -39,7 +39,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {"0: Legacy package.html file should be removed.",};
         verify(createChecker(checkConfig),
             getPath("javadoc/bothfiles/Ignored.java"),
-            getPath("javadoc/bothfiles/package-info.java"), expected);
+            getPath("javadoc/bothfiles/Ignored.java"), expected);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {"0: Missing package-info.java file.",};
         verify(createChecker(checkConfig),
             getPath("javadoc/pkghtml/Ignored.java"),
-            getPath("javadoc/pkghtml/package-info.java"), expected);
+            getPath("javadoc/pkghtml/Ignored.java"), expected);
     }
 
     @Test

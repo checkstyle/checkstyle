@@ -19,6 +19,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -35,10 +36,13 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.TreeSet;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -46,24 +50,21 @@ import java.util.StringTokenizer;
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @author lkuehne
  */
-public class Checker extends AutomaticBean
-    implements MessageDispatcher
+public class Checker extends AutomaticBean implements MessageDispatcher
 {
     /** maintains error count */
-    private final SeverityLevelCounter mCounter =
-            new SeverityLevelCounter(SeverityLevel.ERROR);
+    private final SeverityLevelCounter mCounter = new SeverityLevelCounter(
+            SeverityLevel.ERROR);
 
     /** vector of listeners */
-    private final List<AuditListener> mListeners =
-        Lists.newArrayList();
+    private final List<AuditListener> mListeners = Lists.newArrayList();
 
     /** vector of fileset checks */
-    private final List<FileSetCheck> mFileSetChecks =
-        Lists.newArrayList();
+    private final List<FileSetCheck> mFileSetChecks = Lists.newArrayList();
 
     /** class loader to resolve classes with. **/
-    private ClassLoader mLoader =
-            Thread.currentThread().getContextClassLoader();
+    private ClassLoader mLoader = Thread.currentThread()
+            .getContextClassLoader();
 
     /** the basedir to strip off in filenames */
     private String mBasedir;
@@ -103,8 +104,7 @@ public class Checker extends AutomaticBean
      *
      * @throws CheckstyleException if an error occurs
      */
-    public Checker()
-        throws CheckstyleException
+    public Checker() throws CheckstyleException
     {
         addListener(mCounter);
     }
@@ -120,11 +120,11 @@ public class Checker extends AutomaticBean
             if (mModuleClassLoader == null) {
                 throw new CheckstyleException(
                         "if no custom moduleFactory is set, "
-                        + "moduleClassLoader must be specified");
+                                + "moduleClassLoader must be specified");
             }
 
-            final Set<String> packageNames = PackageNamesLoader.getPackageNames(
-                    mModuleClassLoader);
+            final Set<String> packageNames = PackageNamesLoader
+                    .getPackageNames(mModuleClassLoader);
             mModuleFactory = new PackageObjectFactory(packageNames,
                     mModuleClassLoader);
         }
@@ -163,14 +163,13 @@ public class Checker extends AutomaticBean
             }
             else {
                 throw new CheckstyleException(name
-                    + " is not allowed as a child in Checker");
+                        + " is not allowed as a child in Checker");
             }
         }
         catch (final Exception ex) {
             // TODO i18n
-            throw new CheckstyleException(
-                    "cannot initialize module "
-                    + name + " - " + ex.getMessage(), ex);
+            throw new CheckstyleException("cannot initialize module " + name
+                    + " - " + ex.getMessage(), ex);
         }
     }
 
@@ -238,16 +237,54 @@ public class Checker extends AutomaticBean
      */
     public int process(List<File> aFiles)
     {
+        // Prepare to start
         fireAuditStarted();
         for (FileSetCheck fsc : mFileSetChecks) {
-            fsc.process(aFiles);
+            fsc.beginProcessing();
+        }
+
+        // Process each file
+        for (File f : aFiles) {
+            final String fileName = f.getAbsolutePath();
+            fireFileStarted(fileName);
+            final TreeSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
+            try {
+                // TODO: Need to use , getCharset()
+                final String[] lines = Utils.getLines(f.getAbsolutePath());
+                final List<String> theLines = Lists.newArrayList(lines);
+                for (FileSetCheck fsc : mFileSetChecks) {
+                    fileMessages.addAll(fsc.process(f, theLines));
+                }
+            }
+            catch (final FileNotFoundException fnfe) {
+                Utils.getExceptionLogger().debug(
+                        "FileNotFoundException occured.", fnfe);
+                fileMessages.add(new LocalizedMessage(0,
+                        Defn.CHECKSTYLE_BUNDLE, "general.fileNotFound", null,
+                        null, this.getClass(), null));
+            }
+            catch (final IOException ioe) {
+                Utils.getExceptionLogger().debug("IOException occured.", ioe);
+                fileMessages.add(new LocalizedMessage(0,
+                        Defn.CHECKSTYLE_BUNDLE, "general.exception",
+                        new String[] {ioe.getMessage()}, null, this.getClass(),
+                        null));
+            }
+            fireErrors(fileName, fileMessages);
+            fireFileFinished(fileName);
+        }
+
+        // Finish up
+        for (FileSetCheck fsc : mFileSetChecks) {
+            // They may also log!!!
+            fsc.finishProcessing();
             fsc.destroy();
         }
+
         final int errorCount = mCounter.getCount();
         fireAuditFinished();
         return errorCount;
     }
-
 
     /**
      * Create a stripped down version of a filename.
@@ -287,14 +324,14 @@ public class Checker extends AutomaticBean
      */
     public String normalize(String aPath)
     {
-        final String osName =
-            System.getProperty("os.name").toLowerCase(Locale.US);
+        final String osName = System.getProperty("os.name").toLowerCase(
+                Locale.US);
         final boolean onNetWare = (osName.indexOf("netware") > -1);
 
         final String orig = aPath;
 
-        aPath = aPath.replace('/', File.separatorChar)
-            .replace('\\', File.separatorChar);
+        aPath = aPath.replace('/', File.separatorChar).replace('\\',
+                File.separatorChar);
 
         // make sure we are dealing with an absolute path
         final int colon = aPath.indexOf(":");
@@ -302,17 +339,14 @@ public class Checker extends AutomaticBean
         if (!onNetWare) {
             if (!aPath.startsWith(File.separator)
                 && !((aPath.length() >= 2)
-                     && Character.isLetter(aPath.charAt(0))
-                     && (colon == 1)))
+                     && Character.isLetter(aPath.charAt(0)) && (colon == 1)))
             {
                 final String msg = aPath + " is not an absolute path";
                 throw new IllegalArgumentException(msg);
             }
         }
         else {
-            if (!aPath.startsWith(File.separator)
-                && (colon == -1))
-            {
+            if (!aPath.startsWith(File.separator) && (colon == -1)) {
                 final String msg = aPath + " is not an absolute path";
                 throw new IllegalArgumentException(msg);
             }
@@ -321,10 +355,8 @@ public class Checker extends AutomaticBean
         boolean dosWithDrive = false;
         String root = null;
         // Eliminate consecutive slashes after the drive spec
-        if ((!onNetWare
-             && (aPath.length() >= 2)
-             && Character.isLetter(aPath.charAt(0))
-             && (aPath.charAt(1) == ':'))
+        if ((!onNetWare && (aPath.length() >= 2)
+             && Character.isLetter(aPath.charAt(0)) && (aPath.charAt(1) == ':'))
             || (onNetWare && (colon > -1)))
         {
 
@@ -344,8 +376,7 @@ public class Checker extends AutomaticBean
             // Eliminate consecutive slashes after the drive spec
             final StringBuffer sbPath = new StringBuffer();
             for (int i = colon + 1; i < ca.length; i++) {
-                if ((ca[i] != '\\')
-                    || ((ca[i] == '\\') && (ca[i - 1] != '\\')))
+                if ((ca[i] != '\\') || ((ca[i] == '\\') && (ca[i - 1] != '\\')))
                 {
                     sbPath.append(ca[i]);
                 }
@@ -380,7 +411,7 @@ public class Checker extends AutomaticBean
             else if ("..".equals(thisToken)) {
                 if (s.size() < 2) {
                     throw new IllegalArgumentException("Cannot resolve path "
-                                                       + orig);
+                            + orig);
                 }
                 s.pop();
             }
@@ -398,7 +429,6 @@ public class Checker extends AutomaticBean
             }
             sb.append(s.peek(i));
         }
-
 
         aPath = sb.toString();
         if (dosWithDrive) {
@@ -464,12 +494,10 @@ public class Checker extends AutomaticBean
     /**
      * notify all listeners about the errors in a file.
      *
-     * @param aFileName
-     *            the audited file
-     * @param aErrors
-     *            the audit errors from the file
+     * @param aFileName the audited file
+     * @param aErrors the audit errors from the file
      */
-    public void fireErrors(String aFileName, LocalizedMessage[] aErrors)
+    public void fireErrors(String aFileName, TreeSet<LocalizedMessage> aErrors)
     {
         final String stripped = getStrippedFileName(aFileName);
         for (LocalizedMessage element : aErrors) {

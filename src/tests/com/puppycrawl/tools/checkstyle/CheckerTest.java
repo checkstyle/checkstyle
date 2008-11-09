@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.TreeSet;
+
+import com.google.common.collect.Sets;
+
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -57,10 +61,9 @@ public class CheckerTest
         c.fireFileStarted("Some File Name");
         c.fireFileFinished("Some File Name");
 
-        LocalizedMessage[] msgs = new LocalizedMessage[1];
-        msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
-                                       new Object[] {"arg"}, null,
-                                       getClass(), null);
+        TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
+                new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
 
         assertFalse("Checker.destroy() doesn't remove listeners.", aa.wasCalled());
@@ -91,10 +94,9 @@ public class CheckerTest
         assertTrue("Checker.fireFileFinished() doesn't call listener", aa.wasCalled());
 
         aa.resetListener();
-        LocalizedMessage[] msgs = new LocalizedMessage[1];
-        msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
-                                       new Object[] {"arg"}, null,
-                                       getClass(), null);
+        TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
+                new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call listener", aa.wasCalled());
     }
@@ -130,10 +132,9 @@ public class CheckerTest
         assertFalse("Checker.fireFileFinished() does call removed listener", aa.wasCalled());
 
         aa2.resetListener();
-        LocalizedMessage[] msgs = new LocalizedMessage[1];
-        msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
-                                       new Object[] {"arg"}, null,
-                                       getClass(), null);
+        TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
+                new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call listener", aa2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed listener", aa.wasCalled());
@@ -169,10 +170,9 @@ public class CheckerTest
 //         assertTrue("Checker.fireFileFinished() doesn't call filter", f.wasCalled());
 
         f.resetFilter();
-        LocalizedMessage[] msgs = new LocalizedMessage[1];
-        msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
-                                       new Object[] {"arg"}, null,
-                                       getClass(), null);
+        TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
+                new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call filter", f.wasCalled());
     }
@@ -212,10 +212,9 @@ public class CheckerTest
 //         assertFalse("Checker.fireFileFinished() does call removed filter", f.wasCalled());
 
         f2.resetFilter();
-        LocalizedMessage[] msgs = new LocalizedMessage[1];
-        msgs[0] = new LocalizedMessage(0, 0, "a Bundle", "message.key",
-                                       new Object[] {"arg"}, null,
-                                       getClass(), null);
+        TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
+                new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call filter", f2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed filter", f.wasCalled());

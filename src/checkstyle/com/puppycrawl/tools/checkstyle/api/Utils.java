@@ -165,6 +165,7 @@ public final class Utils
         }
         return retVal;
     }
+
     /**
      * Loads the contents of a file in a String array.
      * @return the lines in the file
@@ -264,46 +265,6 @@ public final class Utils
             stripped = aFileName.substring(aBasedir.length() + skipSep);
         }
         return stripped;
-    }
-
-
-    /**
-     * Filter a set of files by their extension.
-     *
-     * @param aFiles a set of files
-     * @param aFileExtensions a set of file extension, like ".txt" or ".java"
-     * @return aFiles if aFileExtensions is null or empty,
-     * the subset of aFiles that have extensions in aFileExtensions otherwise
-     */
-    public static List<File> filterFilesByExtension(
-        List<File> aFiles, String[] aFileExtensions)
-    {
-        if ((aFileExtensions == null) || (aFileExtensions.length == 0)) {
-            return aFiles;
-        }
-
-        // normalize extensions so all of them have a leading dot
-        final String[] withDotExtensions = new String[aFileExtensions.length];
-        for (int i = 0; i < aFileExtensions.length; i++) {
-            final String extension = aFileExtensions[i];
-            if (extension.startsWith(".")) {
-                withDotExtensions[i] = extension;
-            }
-            else {
-                withDotExtensions[i] = "." + extension;
-            }
-        }
-
-        final List<File> files = Lists.newArrayList();
-        for (final File f : aFiles) {
-            final String fileName = f.getName();
-            for (final String fileExtension : withDotExtensions) {
-                if (fileName.endsWith(fileExtension)) {
-                    files.add(f);
-                }
-            }
-        }
-        return files;
     }
 
     /**

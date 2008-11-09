@@ -59,8 +59,7 @@ public class FileTabCharacterCheckTest
         final DefaultConfiguration checkConfig = createConfig(false);
         final String path = getPath("Claira");
         final String[] expected = {
-            "0: Unable to read file: java.io.FileNotFoundException: " + path
-                + " (The system cannot find the file specified)"
+            "0: File not found!"
         };
         final File[] files = {
             new File(path),
