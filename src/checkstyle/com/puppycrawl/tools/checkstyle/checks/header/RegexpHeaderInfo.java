@@ -77,7 +77,7 @@ final class RegexpHeaderInfo extends HeaderInfo
      * @return a list of non-null patterns,
      * same length as the result of {@link #getHeaderLines()}.
      */
-    List<Pattern> geHeaderRegexps()
+    List<Pattern> getHeaderRegexps()
     {
         return Collections.unmodifiableList(mHeaderRegexps);
     }

@@ -66,6 +66,12 @@
           Changed <a href="config_sizes.html#FileLength">FileLength</a>
           check to be a FileSetCheck.
         </li>
+        <li>
+          Changed <a
+          href="config_header.html#RegexpHeader">RegexpHeader</a> and <a
+          href="config_header.html#Header">Header</a> to be a
+          FileSetCheck. Removed CrossLanguageRegexpHeader as a result.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>
