@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
 import org.apache.commons.beanutils.ConversionException;
-
-import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Header info for regexp based checks,
@@ -39,7 +40,7 @@ final class RegexpHeaderInfo extends HeaderInfo
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
     /** the compiled regular expressions */
-    private Pattern[] mHeaderRegexps;
+    private final List<Pattern> mHeaderRegexps = Lists.newArrayList();
 
     /** the header lines to repeat (0 or more) in the check, sorted. */
     private int[] mMultiLines = EMPTY_INT_ARRAY;
@@ -73,32 +74,30 @@ final class RegexpHeaderInfo extends HeaderInfo
     /**
      * Returns the compiled regexps from {@link #getHeaderLines()}.
      *
-     * @return an array of non-null patterns,
-     * same legth as the result of {@link #getHeaderLines()}.
+     * @return a list of non-null patterns,
+     * same length as the result of {@link #getHeaderLines()}.
      */
-    Pattern[] geHeaderRegexps()
+    List<Pattern> geHeaderRegexps()
     {
-        return mHeaderRegexps;
+        return Collections.unmodifiableList(mHeaderRegexps);
     }
 
     @Override
     protected void postprocessHeaderLines()
     {
-        final String[] headerLines = getHeaderLines();
-        if (headerLines != null) {
-            mHeaderRegexps = new Pattern[headerLines.length];
-            for (int i = 0; i < headerLines.length; i++) {
-                try {
-                    // TODO: Not sure if cache in Utils is still necessary
-                    mHeaderRegexps[i] = Utils.getPattern(headerLines[i]);
-                }
-                catch (final PatternSyntaxException ex) {
-                    throw new ConversionException(
-                            "line " + (i + 1) + " in header specification"
-                            + " is not a regular expression");
-                }
+        final List<String> headerLines = getHeaderLines();
+        mHeaderRegexps.clear();
+        for (String line : headerLines) {
+            try {
+                // TODO: Not sure if cache in Utils is still necessary
+                mHeaderRegexps.add(Utils.getPattern(line));
+            }
+            catch (final PatternSyntaxException ex) {
+                throw new ConversionException("line "
+                        + (mHeaderRegexps.size() + 1)
+                        + " in header specification"
+                        + " is not a regular expression");
             }
         }
     }
-
 }

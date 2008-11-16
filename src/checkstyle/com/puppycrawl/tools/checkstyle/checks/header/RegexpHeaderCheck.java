@@ -19,7 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import java.io.File;
+import java.util.List;
 
 /**
  * Checks the header of the source against a header file that contains a
@@ -75,18 +76,17 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
     }
 
     @Override
-    public void init()
+    public void beginProcessing(String aCharset)
     {
-        super.init();
+        super.beginProcessing(aCharset);
         mRegexpHeaderChecker = new RegexpHeaderChecker(
                 getRegexpHeaderInfo(), new CheckViolationMonitor());
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    protected void processFiltered(File aFile, List<String> aLines)
     {
-        final String[] lines = getLines();
-        mRegexpHeaderChecker.checkLines(lines);
+        mRegexpHeaderChecker.checkLines(aLines);
     }
 
     @Override

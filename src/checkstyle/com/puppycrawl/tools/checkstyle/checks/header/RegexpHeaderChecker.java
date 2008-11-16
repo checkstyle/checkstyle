@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import java.util.List;
+
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
@@ -33,10 +35,10 @@ import java.util.regex.Pattern;
 class RegexpHeaderChecker
 {
     /** the lines of the header file. */
-    private final String[] mHeaderLines;
+    private final List<String> mHeaderLines;
 
     /** the compiled regular expressions */
-    private Pattern[] mHeaderRegexps;
+    private List<Pattern> mHeaderRegexps;
 
     /** the header lines to repeat (0 or more) in the check, sorted. */
     private int[] mMultiLines;
@@ -66,10 +68,10 @@ class RegexpHeaderChecker
      *
      * @param aLines the lines of an individual file
      */
-    void checkLines(final String[] aLines)
+    void checkLines(final List<String> aLines)
     {
-        final int headerSize = mHeaderLines.length;
-        final int fileSize = aLines.length;
+        final int headerSize = mHeaderLines.size();
+        final int fileSize = aLines.size();
 
         if (headerSize - mMultiLines.length > fileSize) {
             mViolationObserver.reportHeaderMissing();
@@ -78,7 +80,7 @@ class RegexpHeaderChecker
             int headerLineNo = 0;
             int i;
             for (i = 0; (headerLineNo < headerSize) && (i < fileSize); i++) {
-                final String line = aLines[i];
+                final String line = aLines.get(i);
                 boolean isMatch = isMatch(line, headerLineNo);
                 while (!isMatch && isMultiLine(headerLineNo)) {
                     headerLineNo++;
@@ -87,7 +89,7 @@ class RegexpHeaderChecker
                 }
                 if (!isMatch) {
                     mViolationObserver.reportHeaderMismatch(
-                            i + 1, mHeaderLines[headerLineNo]);
+                            i + 1, mHeaderLines.get(headerLineNo));
                     break; // stop checking
                 }
                 if (!isMultiLine(headerLineNo)) {
@@ -115,7 +117,7 @@ class RegexpHeaderChecker
      */
     private boolean isMatch(String aLine, int aHeaderLineNo)
     {
-        return mHeaderRegexps[aHeaderLineNo].matcher(aLine).find();
+        return mHeaderRegexps.get(aHeaderLineNo).matcher(aLine).find();
     }
 
     /**

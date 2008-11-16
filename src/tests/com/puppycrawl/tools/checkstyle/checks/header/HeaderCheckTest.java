@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.header;
 
 import static org.junit.Assert.fail;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+
+import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import org.junit.Test;
 
-public class HeaderCheckTest extends BaseCheckTestSupport
+public class HeaderCheckTest extends BaseFileSetCheckTestSupport
 {
     @Test
     public void testStaticHeader()

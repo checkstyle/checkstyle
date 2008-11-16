@@ -1,23 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 import java.io.File;
 import org.junit.Test;
 
 public class CrossLanguageRegexpHeaderCheckTest
-    extends BaseCheckTestSupport
+    extends BaseFileSetCheckTestSupport
 {
-    @Override
-    protected DefaultConfiguration createCheckerConfig(
-        Configuration aCheckConfig)
-    {
-        final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(aCheckConfig);
-        return dc;
-    }
-
     @Test
     public void testComplexHeaderConfigOnProperties()
     throws Exception

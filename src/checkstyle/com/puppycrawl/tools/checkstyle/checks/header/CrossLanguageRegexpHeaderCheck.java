@@ -126,7 +126,6 @@ public final class CrossLanguageRegexpHeaderCheck extends AbstractFileSetCheck
     @Override
     protected void processFiltered(File aFile, List<String> aLines)
     {
-        mRegexpHeaderChecker.checkLines(
-            aLines.toArray(new String[aLines.size()]));
+        mRegexpHeaderChecker.checkLines(aLines);
     }
 }

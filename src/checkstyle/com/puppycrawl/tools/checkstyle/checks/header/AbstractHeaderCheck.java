@@ -16,20 +16,20 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import org.apache.commons.beanutils.ConversionException;
+import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import org.apache.commons.beanutils.ConversionException;
 
 /**
  * Abstract super class for header checks.
  * Provides support for headerFile property.
  * @author o_sukhosolsky
  */
-public abstract class AbstractHeaderCheck extends Check
+public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 {
     /** information about the expected header file. */
     private HeaderInfo mHeaderInfo = createHeaderInfo();
@@ -38,7 +38,7 @@ public abstract class AbstractHeaderCheck extends Check
      * Return the header lines to check against.
      * @return the header lines to check against.
      */
-    protected String[] getHeaderLines()
+    protected List<String> getHeaderLines()
     {
         return mHeaderInfo.getHeaderLines();
     }
@@ -86,17 +86,10 @@ public abstract class AbstractHeaderCheck extends Check
     @Override
     protected final void finishLocalSetup() throws CheckstyleException
     {
-        if (mHeaderInfo.getHeaderLines() == null) {
+        if (mHeaderInfo.getHeaderLines().isEmpty()) {
             throw new CheckstyleException(
                     "property 'headerFile' is missing or invalid in module "
                     + getConfiguration().getName());
         }
     }
-
-    @Override
-    public final int[] getDefaultTokens()
-    {
-        return new int[0];
-    }
-
 }

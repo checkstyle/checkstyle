@@ -16,12 +16,11 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import java.io.File;
 import java.util.Arrays;
-
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import java.util.List;
 
 /**
  * Checks the header of the source against a fixed header file.
@@ -47,15 +46,15 @@ public class HeaderCheck extends AbstractHeaderCheck
 
     /**
      * Checks if a code line matches the required header line.
-     * @param aLineNumber the linenumber to check against the header
+     * @param aLineNumber the line number to check against the header
+     * @param aLine the line contents
      * @return true if and only if the line matches the required header line
      */
-    protected boolean isMatch(int aLineNumber)
+    protected boolean isMatch(int aLineNumber, String aLine)
     {
-        final String line = getLines()[aLineNumber];
         // skip lines we are meant to ignore
         return isIgnoreLine(aLineNumber + 1)
-            || getHeaderLines()[aLineNumber].equals(line);
+            || getHeaderLines().get(aLineNumber).equals(aLine);
     }
 
     /**
@@ -75,15 +74,15 @@ public class HeaderCheck extends AbstractHeaderCheck
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST)
+    protected void processFiltered(File aFile, List<String> aLines)
     {
-        if (getHeaderLines().length > getLines().length) {
+        if (getHeaderLines().size() > aLines.size()) {
             log(1, "header.missing");
         }
         else {
-            for (int i = 0; i < getHeaderLines().length; i++) {
-                if (!isMatch(i)) {
-                    log(i + 1, "header.mismatch", getHeaderLines()[i]);
+            for (int i = 0; i < getHeaderLines().size(); i++) {
+                if (!isMatch(i, aLines.get(i))) {
+                    log(i + 1, "header.mismatch", getHeaderLines().get(i));
                     break; // stop checking
                 }
             }

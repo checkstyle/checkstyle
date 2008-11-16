@@ -19,15 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import com.puppycrawl.tools.checkstyle.api.Utils;
-
 import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Reader;
 import java.io.StringReader;
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import org.apache.commons.beanutils.ConversionException;
 
 /**
@@ -39,7 +39,7 @@ import org.apache.commons.beanutils.ConversionException;
 class HeaderInfo
 {
     /** the lines of the header file. */
-    private String[] mHeaderLines;
+    private final List<String> mHeaderLines = Lists.newArrayList();
 
     /** Creates a new instance, without any header lines. */
     HeaderInfo()
@@ -50,9 +50,9 @@ class HeaderInfo
      * Return the header lines to check against.
      * @return the header lines to check against.
      */
-    final String[] getHeaderLines()
+    final List<String> getHeaderLines()
     {
-        return mHeaderLines;
+        return Collections.unmodifiableList(mHeaderLines);
     }
 
     /**
@@ -119,7 +119,7 @@ class HeaderInfo
      */
     private void checkHeaderNotInitialized()
     {
-        if (mHeaderLines != null) {
+        if (!mHeaderLines.isEmpty()) {
             throw new ConversionException(
                     "header has already been set - "
                     + "set either header or headerFile, not both");
@@ -134,15 +134,14 @@ class HeaderInfo
     private void loadHeader(final Reader aHeaderReader) throws IOException
     {
         final LineNumberReader lnr = new LineNumberReader(aHeaderReader);
-        final ArrayList<String> lines = Lists.newArrayList();
+        mHeaderLines.clear();
         while (true) {
             final String l = lnr.readLine();
             if (l == null) {
                 break;
             }
-            lines.add(l);
+            mHeaderLines.add(l);
         }
-        mHeaderLines = lines.toArray(new String[lines.size()]);
         postprocessHeaderLines();
     }
 

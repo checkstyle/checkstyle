@@ -36,6 +36,12 @@
     <property name="fileExtensions" value="java"/>
   </module>
 
+  <module name="Header">
+    <property name="headerFile" value="${checkstyle.header.file}"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="id" value="header"/>
+  </module>
+
   <module name="TreeWalker">
 
     <property name="tabWidth" value="4" />
@@ -52,9 +58,6 @@
     <module name="EmptyBlock"/>
     <module name="EmptyForIteratorPad"/>
     <module name="EqualsHashCode"/>
-    <module name="Header">
-      <property name="headerFile" value="${checkstyle.header.file}"/>
-    </module>
 
     <!-- module name="IllegalCatch"/ -->
     <module name="ImportControl">
