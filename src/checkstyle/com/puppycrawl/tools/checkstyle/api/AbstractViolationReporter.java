@@ -158,7 +158,7 @@ public abstract class AbstractViolationReporter
      *
      * @see java.text.MessageFormat
      */
-    protected abstract void log(int aLine, String aKey, Object... aArgs);
+    public abstract void log(int aLine, String aKey, Object... aArgs);
 
     /**
      * Log a message that has column information.
@@ -170,6 +170,6 @@ public abstract class AbstractViolationReporter
      *
      * @see java.text.MessageFormat
      */
-    protected abstract void log(int aLine, int aCol, String aKey,
+    public abstract void log(int aLine, int aCol, String aKey,
             Object... aArgs);
 }

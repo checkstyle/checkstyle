@@ -135,13 +135,13 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
-    protected final void log(int aLine, String aKey, Object... aArgs)
+    public final void log(int aLine, String aKey, Object... aArgs)
     {
         log(aLine, 0, aKey, aArgs);
     }
 
     @Override
-    protected final void log(int aLineNo, int aColNo, String aKey,
+    public final void log(int aLineNo, int aColNo, String aKey,
             Object... aArgs)
     {
         getMessageCollector().add(

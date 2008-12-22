@@ -13,6 +13,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.AllJavadocTests;
 import com.puppycrawl.tools.checkstyle.checks.metrics.AllMetricsTests;
 import com.puppycrawl.tools.checkstyle.checks.modifier.AllModifierTests;
 import com.puppycrawl.tools.checkstyle.checks.naming.AllNamingTests;
+import com.puppycrawl.tools.checkstyle.checks.regexp.AllRegexpTests;
 import com.puppycrawl.tools.checkstyle.checks.sizes.AllSizesTests;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.AllWhitespaceTests;
 import com.puppycrawl.tools.checkstyle.filters.AllFilterTests;
@@ -30,7 +31,7 @@ import org.junit.runners.Suite;
     AllImportsTests.class, AllIndentationTests.class, AllJavadocTests.class,
     AllMetricsTests.class, AllModifierTests.class, AllNamingTests.class,
     AllSizesTests.class, AllWhitespaceTests.class, AllFilterTests.class,
-    AllGrammarTests.class})
+    AllGrammarTests.class, AllRegexpTests.class})
 public class AllCheckstyleTests
 {
 }

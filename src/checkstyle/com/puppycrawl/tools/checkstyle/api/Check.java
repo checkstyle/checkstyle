@@ -225,7 +225,7 @@ public abstract class Check extends AbstractViolationReporter
     }
 
     @Override
-    protected final void log(int aLine, String aKey, Object... aArgs)
+    public final void log(int aLine, String aKey, Object... aArgs)
     {
         mMessages.add(
             new LocalizedMessage(
@@ -241,7 +241,7 @@ public abstract class Check extends AbstractViolationReporter
 
 
     @Override
-    protected final void log(int aLineNo, int aColNo, String aKey,
+    public final void log(int aLineNo, int aColNo, String aKey,
             Object... aArgs)
     {
         final int col = 1 + Utils.lengthExpandedTabs(
