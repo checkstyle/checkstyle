@@ -81,7 +81,7 @@
           definitions.  Also checks for redundant final modifiers on
           methods of final classes.
         </p>
- 
+
         <p>
           Rationale: The Java Language Specification strongly
           discourages the usage of "public" and "abstract" for method
@@ -93,7 +93,7 @@
           public, static and final, so these modifiers are redundant as
           well.
         </p>
-        
+
         <p>
           As annotations are a form of interface, their fields are also
           automatically public, static and final just as their
@@ -105,7 +105,7 @@
           modifier on the method of a final class is redundant.
         </p>
       </subsection>
-      
+
       <subsection name="Properties">
         <table>
           <tr>

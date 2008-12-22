@@ -18,6 +18,7 @@
       <package name="metrics"/>
       <package name="modifier"/>
       <package name="naming"/>
+      <package name="regexp"/>
       <package name="sizes"/>
       <package name="whitespace"/>
     </package>

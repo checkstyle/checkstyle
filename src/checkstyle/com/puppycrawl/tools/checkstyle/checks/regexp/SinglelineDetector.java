@@ -61,8 +61,8 @@ class SinglelineDetector
     {
         if (mCurrentMatches < mOptions.getMinimum()) {
             if ("".equals(mOptions.getMessage())) {
-                mOptions.getReporter().log(0, "illegal.regexp",
-                        mOptions.getFormat());
+                mOptions.getReporter().log(0, "regexp.minimum",
+                        mOptions.getMinimum(), mOptions.getFormat());
             }
             else {
                 mOptions.getReporter().log(0, mOptions.getMessage());

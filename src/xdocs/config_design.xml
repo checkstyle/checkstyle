@@ -27,7 +27,7 @@
           With EJB 2.0 it is not longer necessary to have public access
           for persistent fields, hence the default has been changed.
         </p>
-        
+
         <p>
           Rationale: Enforce encapsulation.
         </p>
@@ -69,7 +69,7 @@
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;/&gt;
         </source>
-        
+
         <p>
           To configure the check so that it allows package visible members:
         </p>
@@ -78,7 +78,7 @@
     &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
-        
+
         <p>
           To configure the check so that it allows no public members:
         </p>
@@ -202,20 +202,20 @@
           Make sure that utility classes (classes that contain only static
           methods or fields in their API) do not have a public constructor.
         </p>
-        
+
         <p>
           Rationale: Instantiating utility classes does not make sense.  Hence
           the constructors should either be private or (if you want to allow
           subclassing) protected. A common mistake is forgetting to hide the
           default constructor.
         </p>
-        
+
         <p>
           If you make the constructor protected you may want to consider the
           following constructor implementation technique to disallow
           instantiating subclasses:
         </p>
-        
+
         <source>
 public class StringUtils // not final to allow subclassing
 {
@@ -264,7 +264,7 @@ public class StringUtils // not final to allow subclassing
           The exact rule is that nonprivate, nonstatic methods of classes that
           can be subclassed must either be
         </p>
-        
+
         <ul>
           <li>abstract or</li>
           <li>final or</li>

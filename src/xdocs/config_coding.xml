@@ -1359,13 +1359,13 @@ if (&quot;something&quot;.equals(x))
        Checks that the clone method is not overridden from the
        Object class.
        </p>
-      
+
        <p>
        Rationale: The clone method relies on strange/hard to follow rules that
        do not work it all situations.  Consequently, it is difficult to
        override correctly.  Below are some of the rules/reasons why the clone
        method should be avoided.
-      
+
        <ul>
        <li>
        Classes supporting the clone method should implement the Cloneable
@@ -1404,7 +1404,7 @@ if (&quot;something&quot;.equals(x))
        </li>
        </ul>
        </p>
-      
+
        <p>
        Two alternatives to the clone method, in some cases, is a copy constructor
        or a static factory method to return copies of an object. Both of these
@@ -1413,45 +1413,45 @@ if (&quot;something&quot;.equals(x))
        are typed therefore no casting is necessary. Finally, they are more
        flexible since they can take interface types rather than concrete classes.
        </p>
-      
+
        <p>
        Sometimes a copy constructor or static factory is not an acceptable
        alternative to the clone method.  The example below highlights the
        limitation of a copy constructor (or static factory). Assume
        Square is a subclass for Shape.
-      
+
        <pre>
        Shape s1 = new Square();
        System.out.println(s1 instanceof Square); //true
        </pre>
-      
+
        ...assume at this point the code knows nothing of s1 being a Square
           that's the beauty of polymorphism but the code wants to copy
           the Square which is declared as a Shape, its super type...
-      
+
        <pre>
        Shape s2 = new Shape(s1); //using the copy constructor
        System.out.println(s2 instanceof Square); //false
        </pre>
-      
+
        The working solution (without knowing about all subclasses and doing many
        casts) is to do the following (assuming correct clone implementation).
-      
+
        <pre>
        Shape s2 = s1.clone();
        System.out.println(s2 instanceof Square); //true
        </pre>
-      
+
        Just keep in mind if this type of polymorphic cloning is required
        then a properly implemented clone method may be the best choice.
        </p>
-      
+
        <p>
        Much of this information was taken from Effective Java:
        Programming Language Guide First Edition by Joshua Bloch
        pages 45-52.  Give Bloch credit for writing an excellent book.
        </p>
-      
+
        <p>
        This check is almost exactly the same as the {@link NoFinalizerCheck}
        </p>
@@ -1481,7 +1481,7 @@ if (&quot;something&quot;.equals(x))
     <section name="NoFinalizer">
       <subsection name="Description">
         <p>
-          Verifies there are no <span class="code">finalize()</span> methods 
+          Verifies there are no <span class="code">finalize()</span> methods
           defined in a class.
         </p>
       </subsection>
@@ -2134,13 +2134,13 @@ if (&quot;something&quot;.equals(x))
           statement.
         </p>
         <p>
-          The check honores special comments to supress the warning. By 
+          The check honores special comments to supress the warning. By
           default the text "fallthru", "fall through", "fallthrough",
-          "falls through" and "fallsthrough" are recognized (case 
-          sensitive). The comment containing this words must be a 
-          one-liner and must be on the last none-empty line before the 
-          <span class="code">case</span> triggering the warning or on 
-          the same line before the <span class="code">case</span> 
+          "falls through" and "fallsthrough" are recognized (case
+          sensitive). The comment containing this words must be a
+          one-liner and must be on the last none-empty line before the
+          <span class="code">case</span> triggering the warning or on
+          the same line before the <span class="code">case</span>
           (urgly, but possible).
         </p>
         <source>
@@ -2272,12 +2272,12 @@ case 3:
               Annotations or static initializers from the check.
             </td>
             <td>
-              <a href="property_types.html#stringSet">list</a> of 
+              <a href="property_types.html#stringSet">list</a> of
               <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">token type</a>
               names
             </td>
             <td>
-              <span class="default">ANNOTATION</span> 
+              <span class="default">ANNOTATION</span>
               (ignore strings inside the context of an annotation)
             </td>
           </tr>

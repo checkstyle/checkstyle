@@ -1113,7 +1113,7 @@ d = e / f;        // Another comment for this line
         </p>
       </subsection>
     </section>
-    
+
     <section name="Regexp">
       <subsection name="Description">
         <p>
@@ -1121,22 +1121,22 @@ d = e / f;        // Another comment for this line
           than a set number of times, or does not exist in the file.
         </p>
         <p>
-          This check combines all the functionality provided by 
+          This check combines all the functionality provided by
           <a href="config_header.html#RegexpHeader">RegexpHeader</a>,
-          <a href="config_misc.html#GenericIllegalRegexp">GenericIllegalRegexp</a> 
-          and <a href="config_misc.html#RequiredRegexp">RequiredRegexp</a>, 
-          except supplying the regular expression from a file. 
+          <a href="config_misc.html#GenericIllegalRegexp">GenericIllegalRegexp</a>
+          and <a href="config_misc.html#RequiredRegexp">RequiredRegexp</a>,
+          except supplying the regular expression from a file.
         </p>
         <p>
-          It differs from them in that it works in multiline mode. 
-          It's regular expression can span multiple lines and it checks this 
-          against the whole file at once. 
+          It differs from them in that it works in multiline mode.
+          It's regular expression can span multiple lines and it checks this
+          against the whole file at once.
           The others work in singleline mode.
-          Their single or multiple regular expressions can only span one line. 
+          Their single or multiple regular expressions can only span one line.
           They check each of these against each line in the file in turn.
         </p>
         <p>
-          <b>Note:</b> Because of the different mode of operation there may be 
+          <b>Note:</b> Because of the different mode of operation there may be
           some changes in the regular expressions used to achieve a particular end.
         </p>
         <p>
@@ -1150,18 +1150,18 @@ d = e / f;        // Another comment for this line
           </ul>
         </p>
         <p>
-          <b>Note:</b> Not all regexp engines are created equal. Some provide extra 
+          <b>Note:</b> Not all regexp engines are created equal. Some provide extra
           functions that others do not and some elements of the syntax may vary.
-          This check makes use of the <a 
+          This check makes use of the <a
           href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/package-summary.html">
-          java.util.regex package</a>, please check its documentation for 
+          java.util.regex package</a>, please check its documentation for
           details of how to construct a regular expression to achive a particular
           goal.
         </p>
         <p>
-          <b>Note:</b> When entering a regular expression as a parameter in the 
-          xml config file you must also take into account the xml rules. e.g. if 
-          you want to match a &lt; symbol you need to enter &amp;lt;. The regular 
+          <b>Note:</b> When entering a regular expression as a parameter in the
+          xml config file you must also take into account the xml rules. e.g. if
+          you want to match a &lt; symbol you need to enter &amp;lt;. The regular
           expression should be entered on one line.
         </p>
       </subsection>
@@ -1196,8 +1196,8 @@ d = e / f;        // Another comment for this line
           <tr>
             <td>duplicateLimit</td>
             <td>Controls whether to check for duplicates of a required pattern,
-            any negative value means no checking for duplicates, any positive 
-            value is used as the maximum number of allowed duplicates, if the 
+            any negative value means no checking for duplicates, any positive
+            value is used as the maximum number of allowed duplicates, if the
             limit is exceeded errors will be logged.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><span class="default">-1</span></td>
@@ -1219,12 +1219,12 @@ d = e / f;        // Another comment for this line
 
       <subsection name="Examples">
         <p>
-          The following examples are mainly copied from the other 3 checks 
+          The following examples are mainly copied from the other 3 checks
           mentioned above, to show how the same results can be acheived using
           this check in place of them.
         </p>
         <p>
-          <b>To use like <a 
+          <b>To use like <a
           href="config_misc.html#RequiredRegexp">RequiredRegexp
           </a>:</b>
         </p>
@@ -1276,7 +1276,7 @@ d = e / f;        // Another comment for this line
 &lt;/module&gt;
         </source>
         <p>
-          <b>To use like <a 
+          <b>To use like <a
           href="config_misc.html#GenericIllegalRegexp">GenericIllegalRegexp
           </a>:</b>
         </p>
@@ -1302,7 +1302,7 @@ d = e / f;        // Another comment for this line
 &lt;/module&gt;
         </source>
         <p>
-          An example of how to configure the check to find trailing whitespace 
+          An example of how to configure the check to find trailing whitespace
           at the end of a line:
         </p>
         <source>
@@ -1314,11 +1314,11 @@ d = e / f;        // Another comment for this line
         </source>
         <p>
           <b>Note:</b> The difference between this and the example given for
-          <a href="config_misc.html#genericIllegalRegexp">GenericIllegalRegexp</a> 
+          <a href="config_misc.html#genericIllegalRegexp">GenericIllegalRegexp</a>
           is necessary because \s and $ both match the newline character ("\n").
         </p>
         <p>
-          An example of how to configure the check to find case-insensitive 
+          An example of how to configure the check to find case-insensitive
           occurrences of &quot;debug&quot;:
         </p>
         <source>
@@ -1328,14 +1328,14 @@ d = e / f;        // Another comment for this line
 &lt;/module&gt;
         </source>
         <p>
-          <b>Note:</b> The (?i) at the beginning of the regular expression 
+          <b>Note:</b> The (?i) at the beginning of the regular expression
           tells the regexp engine to ignore the case.
         </p>
         <p>
-          There is also a feature to limit the number of errors reported. 
-          When the limit is reached the check aborts with a message 
+          There is also a feature to limit the number of errors reported.
+          When the limit is reached the check aborts with a message
           reporting that the limit has been reached.
-          The default limit setting is 100, but this can be change as shown in 
+          The default limit setting is 100, but this can be change as shown in
           the following example.
         </p>
         <source>
@@ -1346,13 +1346,13 @@ d = e / f;        // Another comment for this line
 &lt;/module&gt;
         </source>
         <p>
-          <b>To use like <a 
+          <b>To use like <a
           href="config_misc.html#RegexpHeader">RegexpHeader
           </a>:</b>
         </p>
         <p>
           To configure the check to verify that each file starts with the
-          following multiline header. 
+          following multiline header.
         </p>
         <p>
           Note the following:
@@ -1373,7 +1373,7 @@ d = e / f;        // Another comment for this line
 &lt;/module&gt;
         </source>
         <p>
-          A more complex example. Note how the import and javadoc multilines are 
+          A more complex example. Note how the import and javadoc multilines are
           handled, there can be any number of them.
         </p>
         <source>
@@ -1400,7 +1400,7 @@ import java.util.thing3;
 &lt;module name=&quot;Regexp&quot;&gt;
   &lt;property
     name=&quot;format&quot;
-    value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for 
+    value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for
     adherence to a set of rules\.\n// Copyright \(C\) \d\d\d\d  Oliver Burn\n
     // Last modification by \$Author.*\$\n/{71}\n\npackage [\w\.]*;\n\n
     (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/&quot;/&gt;
@@ -1481,22 +1481,22 @@ public class PID extends StateMachine implements WebObject.Constants {
         <p>
           Note the following:
           <ul>
-            <li>Line 2 and 13 contain the file name. These are checked to 
+            <li>Line 2 and 13 contain the file name. These are checked to
             make sure they are the same, and that they match the class name.</li>
             <li>The date can be any 4 digit number.</li>
           </ul>
         </p>
         <source>
 &lt;module name=&quot;Regexp&quot;&gt;
-        &lt;property 
+        &lt;property
                 name=&quot;format&quot;
-                value=&quot;\A/\*\n \* (\w*)\.java\n \*\n \* Copyright \(c\) 
-                \d\d\d\d ACME\n \* 123 Some St\.\n \* Somewhere\.\n \*\n 
-                \* This software is the confidential and proprietary information 
-                of ACME\.\n \* \(&quot;Confidential Information&quot;\)\. You 
-                shall not disclose such\n \* Confidential Information and shall 
-                use it only in accordance with\n \* the terms of the license 
-                agreement you entered into with ACME\.\n \*\n 
+                value=&quot;\A/\*\n \* (\w*)\.java\n \*\n \* Copyright \(c\)
+                \d\d\d\d ACME\n \* 123 Some St\.\n \* Somewhere\.\n \*\n
+                \* This software is the confidential and proprietary information
+                of ACME\.\n \* \(&quot;Confidential Information&quot;\)\. You
+                shall not disclose such\n \* Confidential Information and shall
+                use it only in accordance with\n \* the terms of the license
+                agreement you entered into with ACME\.\n \*\n
                 \* \$Log: config_misc.xml,v $
                 \* \Revision 1.7  2007/01/16 12:16:35  oburn
                 \* \Removing all reference to mailing lists
@@ -1518,18 +1518,18 @@ public class PID extends StateMachine implements WebObject.Constants {
 &lt;/module&gt;
         </source>
         <p>
-          This checks for the presence of a copyright notice within the class 
+          This checks for the presence of a copyright notice within the class
           javadoc, lines 24 to 37.
         </p>
         <source>
 &lt;module name=&quot;Regexp&quot;&gt;
-        &lt;property 
+        &lt;property
                 name=&quot;format&quot;
                 value=&quot;(/\*\*\n)( \*.*\n)*( \* &amp;lt;P&amp;gt;\n \*   &amp;lt;I&amp;gt;
-                This software is the confidential and proprietary information of\n 
+                This software is the confidential and proprietary information of\n
                 \*   ACME \(&amp;lt;B&amp;gt;&amp;quot;Confidential Information&amp;quot;&amp;lt;/B&amp;gt;
-                \)\. You shall not\n \*   disclose such Confidential Information 
-                and shall use it only in\n \*   accordance with the terms of the 
+                \)\. You shall not\n \*   disclose such Confidential Information
+                and shall use it only in\n \*   accordance with the terms of the
                 license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
                  \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
                   \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;

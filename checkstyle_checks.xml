@@ -42,16 +42,14 @@
     <property name="id" value="header"/>
   </module>
 
+  <module name="RegexpSingleline">
+    <property name="format" value="\s+$"/>
+    <property name="minimum" value="0"/>
+    <property name="maximum" value="0"/>
+  </module>
+
   <module name="TreeWalker">
-
     <property name="tabWidth" value="4" />
-
-    <module name="Regexp">
-      <property name="id" value="trailing"/>
-      <property name="format" value="[ \t]+$"/>
-      <property name="illegalPattern" value="true"/>
-      <property name="message" value="trailing whitespace"/>
-    </module>
 
     <module name="AvoidStarImport"/>
     <module name="ConstantName"/>

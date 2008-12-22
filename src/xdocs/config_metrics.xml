@@ -25,7 +25,7 @@
 
         <p>
           Note that the operators <span class="code">&#x26;</span> and
-          <span class="code">|</span> are not only integer bitwise operators, they are also the 
+          <span class="code">|</span> are not only integer bitwise operators, they are also the
           <a href="http://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.22.2">
           non-shortcut versions</a> of the boolean operators
           <span class="code">&#x26;&#x26;</span> and <span class="code">||</span>.
@@ -88,7 +88,7 @@
     &lt;property name=&quot;max&quot; value=&quot;7&quot;/&gt;
 &lt;/module&gt;
         </source>
-        
+
         <p>
           To configure the check to ignore <span class="code">&#x26;</span> and
           <span class="code">|</span>:
@@ -98,7 +98,7 @@
     &lt;property name="tokens" value="BXOR,LAND,LOR"/&gt;
 &lt;/module&gt;
         </source>
-        
+
       </subsection>
 
       <subsection name="Package">
@@ -377,7 +377,7 @@
           href="http://www.kclee.de/clemens/java/javancss/#specification">
           specification</a> for the
           <a href="http://www.kclee.de/clemens/java/javancss/">JavaNCSS-Tool</a>
-          written by <b>Chr. Clemens Lee</b>.<br/> 
+          written by <b>Chr. Clemens Lee</b>.<br/>
           Rougly said the NCSS metric is calculated by
           counting the source lines which are not comments, (nearly)
           equivalent to counting the semicolons and opening curly
@@ -441,7 +441,7 @@
         <source>
 &lt;module name=&quot;JavaNCSS&quot;/&gt;
         </source>
-        
+
         <p>
           To configure the check with 40 allowed non commenting lines
           for a method:

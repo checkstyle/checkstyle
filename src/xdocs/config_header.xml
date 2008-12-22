@@ -180,7 +180,7 @@ line 2: ^&lt;\?xml.*&gt;$
 line 3: ^\W*$
 line 4: ^\W*Copyright 2006 The Apache Software Foundation or its licensors, as applicable\.$
 line 5: ^\W*Licensed under the Apache License, Version 2\.0 \(the "License"\);$
-line 6: ^\W*$  
+line 6: ^\W*$
         </source>
 
         <p>

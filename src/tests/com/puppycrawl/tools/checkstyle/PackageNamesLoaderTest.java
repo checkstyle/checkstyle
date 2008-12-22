@@ -41,6 +41,7 @@ public class PackageNamesLoaderTest
             "com.puppycrawl.tools.checkstyle.checks.metrics.",
             "com.puppycrawl.tools.checkstyle.checks.modifier.",
             "com.puppycrawl.tools.checkstyle.checks.naming.",
+            "com.puppycrawl.tools.checkstyle.checks.regexp.",
             "com.puppycrawl.tools.checkstyle.checks.sizes.",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.",
             "com.puppycrawl.tools.checkstyle.filters.",
