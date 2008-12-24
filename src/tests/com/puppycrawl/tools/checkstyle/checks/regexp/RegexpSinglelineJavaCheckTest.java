@@ -205,4 +205,43 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport
         };
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
+
+    @Test
+    public void testExistingInDoc() throws Exception
+    {
+        final String required = "Test case file";
+        mCheckConfig.addAttribute("format", required);
+        mCheckConfig.addAttribute("minimum", "1");
+        mCheckConfig.addAttribute("maximum", "1000");
+        final String[] expected = {
+        };
+        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+    }
+
+    @Test
+    public void testExistingInCode() throws Exception
+    {
+        final String required = "package";
+        mCheckConfig.addAttribute("format", required);
+        mCheckConfig.addAttribute("minimum", "1");
+        mCheckConfig.addAttribute("maximum", "1000");
+        final String[] expected = {
+        };
+        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+    }
+
+    @Test
+    public void testMissing()
+            throws Exception
+    {
+        final String required = "This text is not in the file";
+        mCheckConfig.addAttribute("format", required);
+        mCheckConfig.addAttribute("minimum", "1");
+        mCheckConfig.addAttribute("maximum", "1000");
+        final String[] expected = {
+            "0: File does not contain at least 1 matches for pattern '"
+                + required + "'."
+        };
+        verify(mCheckConfig, getPath("InputSemantic.java"), expected);
+    }
 }

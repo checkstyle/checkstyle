@@ -8,9 +8,9 @@ import org.junit.runners.Suite;
     DescendantTokenCheckTest.class, FileSetCheckLifecycleTest.class,
     FinalParametersCheckTest.class, GenericIllegalRegexpCheckTest.class,
     NewlineAtEndOfFileCheckTest.class, RegexpCheckTest.class,
-    RequiredRegexpCheckTest.class, TodoCommentCheckTest.class,
-    TrailingCommentCheckTest.class, TranslationCheckTest.class,
-    UncommentedMainCheckTest.class, UpperEllCheckTest.class})
+    TodoCommentCheckTest.class, TrailingCommentCheckTest.class,
+    TranslationCheckTest.class, UncommentedMainCheckTest.class,
+    UpperEllCheckTest.class})
 public class AllChecksTests
 {
 }

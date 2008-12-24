@@ -92,6 +92,18 @@
 &lt;/module&gt;
         </source>
 
+        <p>
+          An example of how to configure the check to make sure a copyright
+          statement is included in the file:
+        </p>
+        <source>
+&lt;module name=&quot;RegexpSingleline&quot;&gt;
+  &lt;property name="format" value="This file is copyrighted"/&gt;
+  &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
+  &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
+  &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
+&lt;/module&gt;
+        </source>
       </subsection>
 
       <subsection name="Package">
