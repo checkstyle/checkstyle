@@ -20,8 +20,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.GenericIllegalRegexpCheck;
+import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * <p>
@@ -49,11 +50,31 @@ import java.util.Set;
  * @author Rick Giles
  */
 public class IllegalTokenTextCheck
-    extends GenericIllegalRegexpCheck
+    extends AbstractFormatCheck
 {
+    /**
+     * Custom message for report if illegal regexp found
+     * ignored if empty.
+     */
+    private String mMessage = "";
+
+    /**
+     * Instantiates a new instance.
+     */
+    public IllegalTokenTextCheck()
+    {
+        super("$^"); // the empty language
+    }
+
     @Override
     public void beginTree(DetailAST aRootAST)
     {
+    }
+
+    @Override
+    public int[] getDefaultTokens()
+    {
+        return new int[0];
     }
 
     @Override
@@ -84,6 +105,40 @@ public class IllegalTokenTextCheck
                 aAST.getColumnNo(),
                 message,
                 getFormat());
+        }
+    }
+
+    /**
+     * Setter for message property.
+     * @param aMessage custom message which should be used
+     *                 to report about violations.
+     */
+    public void setMessage(String aMessage)
+    {
+        if (aMessage == null) {
+            aMessage = "";
+        }
+        mMessage = aMessage;
+    }
+
+    /**
+     * Getter for message property.
+     * @return custom message which should be used
+     * to report about violations.
+     */
+    public String getMessage()
+    {
+        return mMessage;
+    }
+
+    /**
+     * Set whether or not the match is case sensitive.
+     * @param aCaseInsensitive true if the match is case insensitive.
+     */
+    public void setIgnoreCase(boolean aCaseInsensitive)
+    {
+        if (aCaseInsensitive) {
+            setCompileFlags(Pattern.CASE_INSENSITIVE);
         }
     }
 }
