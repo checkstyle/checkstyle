@@ -114,7 +114,7 @@ public class XMLLogger
     /** {@inheritDoc} */
     public void fileStarted(AuditEvent aEvt)
     {
-        mWriter.println("<file name=\"" + aEvt.getFileName() + "\">");
+        mWriter.println("<file name=\"" + encode(aEvt.getFileName()) + "\">");
     }
 
     /** {@inheritDoc} */
