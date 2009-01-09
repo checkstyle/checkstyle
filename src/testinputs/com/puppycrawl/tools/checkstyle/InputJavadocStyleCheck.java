@@ -319,4 +319,23 @@ public class InputJavadocStyleCheck
     public void foo_1291847_2() {
     }
 
+		/**
+		 * Checks generics javadoc.
+		 * 
+		 * @param strings this is a List<String>
+		 * @param test Map<String, List<String>> a map indexed on String of Lists of Strings.
+		 */
+		public void method20() {
+		}
+
+		/**
+		 * Checks HTML tags in javadoc.
+		 * 
+		 * HTML no good tag
+		 * <string>Tests</string>
+		 *
+		 */
+		public void method21() {
+		}
+
 }

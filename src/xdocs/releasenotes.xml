@@ -72,6 +72,12 @@
           href="config_header.html#Header">Header</a> to be a
           FileSetCheck. Removed CrossLanguageRegexpHeader as a result.
         </li>
+        <li>
+          Enhanced <a
+          href="config_javadoc.html#JavadocStyle">JavadocStyle</a> to
+          check for allowed HTML tags. Thanks to Nicolas Dordet for
+          providing patch #2214251.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

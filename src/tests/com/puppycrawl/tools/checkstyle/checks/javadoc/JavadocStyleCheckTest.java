@@ -32,6 +32,7 @@ public class JavadocStyleCheckTest
             "186:8: Unclosed HTML tag found: <blockquote>",
             "193: First sentence should end with a period.",
             "238: First sentence should end with a period.",
+            "335:33: Extra HTML tag found: </string>"
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -100,6 +101,7 @@ public class JavadocStyleCheckTest
             "90: Incomplete HTML tag found:     * should fail <",
             "109:39: Extra HTML tag found: </img>",
             "186:8: Unclosed HTML tag found: <blockquote>",
+            "335:33: Extra HTML tag found: </string>"
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -123,6 +125,7 @@ public class JavadocStyleCheckTest
             "205: Javadoc has empty description section.",
             "230: Javadoc has empty description section.",
             "238: First sentence should end with a period.",
+            "335:33: Extra HTML tag found: </string>"
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -149,6 +152,7 @@ public class JavadocStyleCheckTest
             "211: Javadoc has empty description section.",
             "230: Javadoc has empty description section.",
             "238: First sentence should end with a period.",
+            "335:33: Extra HTML tag found: </string>"
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -178,6 +182,7 @@ public class JavadocStyleCheckTest
             "218: Javadoc has empty description section.",
             "230: Javadoc has empty description section.",
             "238: First sentence should end with a period.",
+            "335:33: Extra HTML tag found: </string>"
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
