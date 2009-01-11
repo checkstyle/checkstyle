@@ -78,6 +78,16 @@
           check for allowed HTML tags. Thanks to Nicolas Dordet for
           providing patch #2214251.
         </li>
+        <li>
+          Enhanced <a
+          href="config_javadoc.html#JavadocMethod">JavadocMethod</a> to
+          be more restrictive on where <code>{@inheritDoc}</code> can be
+          used. Also enhanced <a
+          href="config_javadoc.html#JavadocPackage">JavadocPackage</a>
+          to ensure a <code>package-info.java</code> file contains a
+          comment. Thanks to Travis Schneeberger for providing patch
+          #2294029.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

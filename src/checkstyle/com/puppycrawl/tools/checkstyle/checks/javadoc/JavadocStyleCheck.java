@@ -37,6 +37,7 @@ import java.util.regex.Pattern;
  *
  * @author Chris Stillwell
  * @author Daniel Grenner
+ * @author Travis Schneeberger
  * @version 1.2
  */
 public class JavadocStyleCheck
@@ -105,6 +106,7 @@ public class JavadocStyleCheck
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.PACKAGE_DEF,
         };
     }
 
@@ -127,6 +129,10 @@ public class JavadocStyleCheck
      */
     private boolean shouldCheck(final DetailAST aAST)
     {
+        if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
+            return inPackageInfo();
+        }
+
         if (ScopeUtils.inCodeBlock(aAST)) {
             return false;
         }
@@ -165,11 +171,18 @@ public class JavadocStyleCheck
     private void checkComment(final DetailAST aAST, final TextBlock aComment)
     {
         if (aComment == null) {
+            /*checking for missing docs in JavadocStyleCheck is not consistent
+            with the rest of CheckStyle...  Even though, I didn't think it
+            made sense to make another check just to ensure that the
+            package-info.java file actually contains package Javadocs.*/
+            if (inPackageInfo()) {
+                log(aAST.getLineNo(), "javadoc.missing");
+            }
             return;
         }
 
         if (mCheckFirstSentence) {
-            checkFirstSentence(aComment);
+            checkFirstSentence(aAST, aComment);
         }
 
         if (mCheckHtml) {
@@ -182,24 +195,59 @@ public class JavadocStyleCheck
     }
 
     /**
-     * Checks that the first sentence ends with proper puctuation.  This method
+     * Checks that the first sentence ends with proper punctuation.  This method
      * uses a regular expression that checks for the presence of a period,
-     * question mark, or exclaimation mark followed either by whitespace, an
+     * question mark, or exclamation mark followed either by whitespace, an
      * HTML element, or the end of string. This method ignores {_AT_inheritDoc}
-     * comments.
+     * comments for TokenTypes that are valid for {_AT_inheritDoc}.
      *
+     * @param aAST the current node
      * @param aComment the source lines that make up the Javadoc comment.
      */
-    private void checkFirstSentence(TextBlock aComment)
+    private void checkFirstSentence(final DetailAST aAST, TextBlock aComment)
     {
         final String commentText = getCommentText(aComment.getText());
 
         if ((commentText.length() != 0)
             && !getEndOfSentencePattern().matcher(commentText).find()
-            && !"{@inheritDoc}".equals(commentText))
+            && !("{@inheritDoc}".equals(commentText)
+            && validForInheritDocOnly(aAST)))
         {
             log(aComment.getStartLineNo(), "javadoc.noperiod");
         }
+    }
+
+    /**
+     * Checks to see if the current AST is valid to only contain an
+     * inheritDoc comment.
+     *
+     * @param aAST the current node
+     * @return true if inheritDoc comment valid
+     */
+    private boolean validForInheritDocOnly(DetailAST aAST)
+    {
+        assert aAST != null;
+
+        final boolean validForMethod =
+            aAST.getType() == TokenTypes.METHOD_DEF
+            && !aAST.branchContains(TokenTypes.LITERAL_STATIC)
+            && ScopeUtils.getScopeFromMods(aAST.findFirstToken(
+                TokenTypes.MODIFIERS)) != Scope.PRIVATE;
+
+        return aAST.getType() == TokenTypes.ENUM_DEF
+            || aAST.getType() == TokenTypes.CLASS_DEF
+            || validForMethod
+            || aAST.getType() == TokenTypes.INTERFACE_DEF;
+    }
+
+    /**
+     * Checks if the current file is a package-info.java file.
+     * @return true if the package file.
+     */
+    private boolean inPackageInfo()
+    {
+        final FileContents contents = getFileContents();
+        return contents.getFilename().endsWith("package-info.java");
     }
 
     /**
@@ -299,7 +347,7 @@ public class JavadocStyleCheck
 
     /**
      * Checks the comment for HTML tags that do not have a corresponding close
-     * tag or a close tage that has no previous open tag.  This code was
+     * tag or a close tag that has no previous open tag.  This code was
      * primarily copied from the DocCheck checkHtml method.
      *
      * @param aAST the node with the Javadoc

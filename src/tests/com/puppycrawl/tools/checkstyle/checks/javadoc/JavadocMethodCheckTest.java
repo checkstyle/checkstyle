@@ -432,7 +432,12 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
     {
         final String[] expected = {
                 "4:5: Invalid use of the {@inheritDoc} tag.",
-                "9:5: Invalid use of the {@inheritDoc} tag.",};
+                "9:5: Invalid use of the {@inheritDoc} tag.",
+                "29:5: Invalid use of the {@inheritDoc} tag.",
+                "34:5: Invalid use of the {@inheritDoc} tag.",
+                "39:5: Invalid use of the {@inheritDoc} tag.",
+                "44:5: Invalid use of the {@inheritDoc} tag.",
+                };
         verify(mCheckConfig, getPath("javadoc/InputInheritDoc.java"), expected);
     }
 }

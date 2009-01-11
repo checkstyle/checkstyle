@@ -366,9 +366,11 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             return false;
         }
 
-        // Invalid if private or a constructor
+        // Invalid if private, a constructor, or a static method
         if ((aAST.getType() == TokenTypes.CTOR_DEF)
-                || (aScope == Scope.PRIVATE))
+                || (aScope == Scope.PRIVATE)
+                || (aAST.getType() == TokenTypes.METHOD_DEF
+                && aAST.branchContains(TokenTypes.LITERAL_STATIC)))
         {
             log(aAST, "javadoc.invalidInheritDoc");
         }

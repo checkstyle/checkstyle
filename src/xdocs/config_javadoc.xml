@@ -11,9 +11,10 @@
     <section name="JavadocPackage">
       <subsection name="Description">
         <p>
-          Checks that each Java package has a Javadoc comment. By default it
-          only allows a <span class="code">package-info.java</span> file, but
-          can be configured to allow a <span class="code">package.html</span>
+          Checks that each Java package has a Javadoc file used for
+          commenting.  By default it only allows a <span
+          class="code">package-info.java</span> file, but can be
+          configured to allow a <span class="code">package.html</span>
           file.
         </p>
         <p>
@@ -236,7 +237,18 @@
           interface (this was <i>corrected</i> under Java 6). Hence
           Checkstyle supports using the convention of using a single
           <span class="code">{@inheritDoc}</span> tag instead of all the
-          other tags. For example, if the following method is
+          other tags.
+        </p>
+
+        <p>
+          Note that only inheritable items will allow the
+          <span class="code">{@inheritDoc}</span> tag to be used in place
+          of comments.  Static methods at all visibilities, private non-static
+          methods and constructors are not inheritable.
+        </p>
+
+        <p>
+          For example, if the following method is
           implementing a method required by an interface, then the
           Javadoc could be done as:
         </p>
@@ -539,7 +551,9 @@ public boolean isSomething()
             (That is a period, question mark, or exclamation mark, by default).
             Javadoc automatically places the first sentence in the
             method summary table and index.  With out proper punctuation
-            the Javadoc may be malformed.
+            the Javadoc may be malformed.  All items eligible for the
+            <span class="code">{@inheritDoc}</span> tag are exempt from this
+            requirement.
           </li>
 
           <li>
@@ -554,6 +568,11 @@ public boolean isSomething()
             HTML tag found:" error if not.  An "Extra HTML tag found:"
             error is issued if an end tag is found without a previous
             open tag.
+          </li>
+          <li>
+           Check that a package Javadoc comment is well-formed (as
+           described above) and NOT missing from any package-info.java
+           files.
           </li>
           <li>
             Check for allowed HTML tags. The list of allowed HTML tags

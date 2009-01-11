@@ -24,4 +24,24 @@ public class InputInheritDoc
     public void publicMethod()
     {
     }
+    
+    /** {@inheritDoc} */
+    private static void privateStaticMethod()
+    {
+    }
+
+    /** {@inheritDoc} */
+    static void packageStaticMethod()
+    {
+    }
+
+    /** {@inheritDoc} */
+    protected static void protectedStaticMethod()
+    {
+    }
+
+    /** {@inheritDoc} */
+    public static void publicStaticMethod()
+    {
+    }
 }
