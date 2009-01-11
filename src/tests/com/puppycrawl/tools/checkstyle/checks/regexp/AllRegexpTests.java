@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses( {RegexpSinglelineCheckTest.class,
-    RegexpSinglelineJavaCheckTest.class})
+    RegexpSinglelineJavaCheckTest.class, RegexpMultilineCheckTest.class})
 public class AllRegexpTests
 {
 }
