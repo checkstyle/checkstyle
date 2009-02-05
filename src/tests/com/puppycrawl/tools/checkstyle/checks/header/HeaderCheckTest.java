@@ -181,6 +181,23 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
     }
 
     @Test
+    public void testInvalidCharset()
+            throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("java.header"));
+        checkConfig.addAttribute("charset", "XSO-8859-1");
+        try {
+            createChecker(checkConfig);
+            fail();
+        }
+        catch (CheckstyleException ex) {
+            // expected exception
+        }
+    }
+
+    @Test
     public void testEmptyFilename()
             throws Exception
     {

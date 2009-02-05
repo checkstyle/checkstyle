@@ -41,7 +41,9 @@
     <subpackage name="indentation">
       <allow pkg="java.lang.reflect"/>
     </subpackage>
-
+    <subpackage name="header">
+      <allow class="java.nio.charset.Charset" local-only="true"/>
+    </subpackage>
   </subpackage>
 
   <subpackage name="doclets">

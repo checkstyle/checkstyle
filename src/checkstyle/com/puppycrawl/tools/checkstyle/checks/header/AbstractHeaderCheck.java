@@ -18,11 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import java.io.FileReader;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,8 +44,15 @@ import org.apache.commons.beanutils.ConversionException;
  */
 public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 {
+    /** The file that contains the header to check against. */
+    private String mFilename;
+
+    /** Name of a charset to use for loading the header from a file. */
+    private String mCharset = System.getProperty("file.encoding", "UTF-8");
+
     /** the lines of the header file. */
     private final List<String> mHeaderLines = Lists.newArrayList();
+
 
     /**
      * Return the header lines to check against.
@@ -53,37 +64,49 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
+     * Set the charset to use for loading the header from a file.
+     * @param aCharset the charset to use for loading the header from a file
+     * @throws UnsupportedEncodingException if aCharset is unsupported
+     */
+    public void setCharset(String aCharset) throws UnsupportedEncodingException
+    {
+        if (!Charset.isSupported(aCharset)) {
+            final String message = "unsupported charset: '" + aCharset + "'";
+            throw new UnsupportedEncodingException(message);
+        }
+        mCharset = aCharset;
+    }
+
+    /**
      * Set the header file to check against.
      * @param aFileName the file that contains the header to check against.
-     * @throws ConversionException if the file cannot be loaded
      */
     public void setHeaderFile(String aFileName)
-        throws ConversionException
     {
         // Handle empty param
         if ((aFileName == null) || (aFileName.trim().length() == 0)) {
             return;
         }
 
-        loadHeaderFile(aFileName);
+        mFilename = aFileName;
     }
 
     /**
      * Load the header from a file.
-     * @param aFileName the file to load
-     * @throws ConversionException if the file cannot be loaded
+     * @throws CheckstyleException if the file cannot be loaded
      */
-    private void loadHeaderFile(String aFileName)
+    private void loadHeaderFile() throws CheckstyleException
     {
         checkHeaderNotInitialized();
         Reader headerReader = null;
         try {
-            headerReader = new FileReader(aFileName);
+            headerReader = new InputStreamReader(new BufferedInputStream(
+                    new FileInputStream(mFilename)), mCharset);
             loadHeader(headerReader);
         }
         catch (final IOException ex) {
-            throw new ConversionException(
-                    "unable to load header file " + aFileName, ex);
+            throw new CheckstyleException(
+                    "unable to load header file " + mFilename, ex);
         }
         finally {
             Utils.closeQuietly(headerReader);
@@ -161,6 +184,9 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     @Override
     protected final void finishLocalSetup() throws CheckstyleException
     {
+        if (mFilename != null) {
+            loadHeaderFile();
+        }
         if (mHeaderLines.isEmpty()) {
             throw new CheckstyleException(
                     "property 'headerFile' is missing or invalid in module "

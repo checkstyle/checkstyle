@@ -38,6 +38,11 @@
       <p>New Features:</p>
       <ul>
         <li>
+          Added the option <i>charset</i> to the
+          <a href="config_header.html">header checks</a> to allow
+          controlling the encoding of the header file (rfe 1952641).
+        </li>
+        <li>
           New check
           <a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a>
           for enforcing the maximum number of outer types per file. Inspired

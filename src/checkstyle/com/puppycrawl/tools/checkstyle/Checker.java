@@ -135,6 +135,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
         }
 
         final DefaultContext context = new DefaultContext();
+        context.add("charset", mCharset);
         context.add("classLoader", mLoader);
         context.add("moduleFactory", mModuleFactory);
         context.add("severity", mSeverityLevel.getName());

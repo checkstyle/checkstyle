@@ -55,6 +55,13 @@ line 5: ////////////////////////////////////////////////////////////////////
             <td><span class="default">null</span></td>
           </tr>
           <tr>
+            <td>charset</td>
+            <td>character encoding to use when reading the headerFile</td>
+            <td><a href="property_types.html#string">string</a></td>
+            <td>the charset property of the parent
+            <a href="config.html#Checker">Checker</a> module</td>
+          </tr>
+          <tr>
             <td>header</td>
             <td>
               the required header specified inline. Individual header lines
@@ -207,6 +214,13 @@ line 6: ^\W*$
             <td>name of the file containing the required header</td>
             <td><a href="property_types.html#string">string</a></td>
             <td><span class="default">null</span></td>
+          </tr>
+          <tr>
+            <td>charset</td>
+            <td>character encoding to use when reading the headerFile</td>
+            <td><a href="property_types.html#string">string</a></td>
+            <td>the charset property of the parent
+            <a href="config.html#Checker">Checker</a> module</td>
           </tr>
           <tr>
             <td>header</td>
