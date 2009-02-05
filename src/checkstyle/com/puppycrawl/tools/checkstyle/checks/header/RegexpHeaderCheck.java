@@ -23,6 +23,13 @@ import java.util.Arrays;
 
 import java.io.File;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import org.apache.commons.beanutils.ConversionException;
+
+import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.api.Utils;
 
 /**
  * Checks the header of the source against a header file that contains a
@@ -34,15 +41,14 @@ import java.util.List;
  */
 public class RegexpHeaderCheck extends AbstractHeaderCheck
 {
-    /**
-     * Provides typesafe access to the subclass specific HeaderInfo.
-     *
-     * @return the result of {@link #createHeaderInfo()}
-     */
-    protected RegexpHeaderInfo getRegexpHeaderInfo()
-    {
-        return (RegexpHeaderInfo) getHeaderInfo();
-    }
+    /** empty array to avoid instantiations. */
+    private static final int[] EMPTY_INT_ARRAY = new int[0];
+
+    /** the compiled regular expressions */
+    private final List<Pattern> mHeaderRegexps = Lists.newArrayList();
+
+    /** the header lines to repeat (0 or more) in the check, sorted. */
+    private int[] mMultiLines = EMPTY_INT_ARRAY;
 
     /**
      * Set the lines numbers to repeat in the header check.
@@ -50,17 +56,23 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      */
     public void setMultiLines(int[] aList)
     {
-        getRegexpHeaderInfo().setMultiLines(aList);
+        if ((aList == null) || (aList.length == 0)) {
+            mMultiLines = EMPTY_INT_ARRAY;
+            return;
+        }
+
+        mMultiLines = new int[aList.length];
+        System.arraycopy(aList, 0, mMultiLines, 0, aList.length);
+        Arrays.sort(mMultiLines);
     }
 
     @Override
     protected void processFiltered(File aFile, List<String> aLines)
     {
-        final int headerSize = getRegexpHeaderInfo().getHeaderLines().size();
+        final int headerSize = getHeaderLines().size();
         final int fileSize = aLines.size();
 
-        if (headerSize - getRegexpHeaderInfo().getMultLines().length > fileSize)
-        {
+        if (headerSize - mMultiLines.length > fileSize) {
             log(1, "header.missing");
         }
         else {
@@ -96,12 +108,6 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
         }
     }
 
-    @Override
-    protected HeaderInfo createHeaderInfo()
-    {
-        return new RegexpHeaderInfo();
-    }
-
     /**
      * Checks if a code line matches the required header line.
      * @param aLine the code line
@@ -110,8 +116,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      */
     private boolean isMatch(String aLine, int aHeaderLineNo)
     {
-        return getRegexpHeaderInfo().getHeaderRegexps().get(aHeaderLineNo)
-                .matcher(aLine).find();
+        return mHeaderRegexps.get(aHeaderLineNo).matcher(aLine).find();
     }
 
     /**
@@ -120,7 +125,26 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck
      */
     private boolean isMultiLine(int aLineNo)
     {
-        return (Arrays.binarySearch(getRegexpHeaderInfo().getMultLines(),
-                aLineNo + 1) >= 0);
+        return (Arrays.binarySearch(mMultiLines, aLineNo + 1) >= 0);
     }
+
+    @Override
+    protected void postprocessHeaderLines()
+    {
+        final List<String> headerLines = getHeaderLines();
+        mHeaderRegexps.clear();
+        for (String line : headerLines) {
+            try {
+                // TODO: Not sure if cache in Utils is still necessary
+                mHeaderRegexps.add(Utils.getPattern(line));
+            }
+            catch (final PatternSyntaxException ex) {
+                throw new ConversionException("line "
+                        + (mHeaderRegexps.size() + 1)
+                        + " in header specification"
+                        + " is not a regular expression");
+            }
+        }
+    }
+
 }

@@ -18,21 +18,30 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.LineNumberReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.Collections;
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Utils;
+
 import org.apache.commons.beanutils.ConversionException;
 
 /**
  * Abstract super class for header checks.
- * Provides support for headerFile property.
+ * Provides support for header and headerFile properties.
  * @author o_sukhosolsky
  */
 public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 {
-    /** information about the expected header file. */
-    private HeaderInfo mHeaderInfo = createHeaderInfo();
+    /** the lines of the header file. */
+    private final List<String> mHeaderLines = Lists.newArrayList();
 
     /**
      * Return the header lines to check against.
@@ -40,25 +49,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      */
     protected List<String> getHeaderLines()
     {
-        return mHeaderInfo.getHeaderLines();
-    }
-
-    /**
-     * Abstract factory method to create an unconfigured
-     * header info bean. Note that the actual type of the
-     * return value can be subclass specific.
-     *
-     * @return a header info bean for this check.
-     */
-    protected abstract HeaderInfo createHeaderInfo();
-
-    /**
-     * Return the header info to check against.
-     * @return the header info to check against.
-     */
-    protected HeaderInfo getHeaderInfo()
-    {
-        return mHeaderInfo;
+        return Collections.unmodifiableList(mHeaderLines);
     }
 
     /**
@@ -69,7 +60,47 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     public void setHeaderFile(String aFileName)
         throws ConversionException
     {
-        mHeaderInfo.setHeaderFile(aFileName);
+        // Handle empty param
+        if ((aFileName == null) || (aFileName.trim().length() == 0)) {
+            return;
+        }
+
+        loadHeaderFile(aFileName);
+    }
+
+    /**
+     * Load the header from a file.
+     * @param aFileName the file to load
+     * @throws ConversionException if the file cannot be loaded
+     */
+    private void loadHeaderFile(String aFileName)
+    {
+        checkHeaderNotInitialized();
+        Reader headerReader = null;
+        try {
+            headerReader = new FileReader(aFileName);
+            loadHeader(headerReader);
+        }
+        catch (final IOException ex) {
+            throw new ConversionException(
+                    "unable to load header file " + aFileName, ex);
+        }
+        finally {
+            Utils.closeQuietly(headerReader);
+        }
+    }
+
+    /**
+     * Called before initializing the header.
+     * @throws ConversionException if header has already been set
+     */
+    private void checkHeaderNotInitialized()
+    {
+        if (!mHeaderLines.isEmpty()) {
+            throw new ConversionException(
+                    "header has already been set - "
+                    + "set either header or headerFile, not both");
+        }
     }
 
     /**
@@ -80,13 +111,57 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      */
     public void setHeader(String aHeader)
     {
-        mHeaderInfo.setHeader(aHeader);
+        if ((aHeader == null) || (aHeader.trim().length() == 0)) {
+            return;
+        }
+
+        checkHeaderNotInitialized();
+
+        final String headerExpandedNewLines = aHeader.replaceAll("\\\\n", "\n");
+
+        final Reader headerReader = new StringReader(headerExpandedNewLines);
+        try {
+            loadHeader(headerReader);
+        }
+        catch (final IOException ex) {
+            throw new ConversionException("unable to load header", ex);
+        }
+        finally {
+            Utils.closeQuietly(headerReader);
+        }
+    }
+
+    /**
+     * Load header to check against from a Reader into mHeaderLines.
+     * @param aHeaderReader delivers the header to check against
+     * @throws IOException if
+     */
+    private void loadHeader(final Reader aHeaderReader) throws IOException
+    {
+        final LineNumberReader lnr = new LineNumberReader(aHeaderReader);
+        mHeaderLines.clear();
+        while (true) {
+            final String l = lnr.readLine();
+            if (l == null) {
+                break;
+            }
+            mHeaderLines.add(l);
+        }
+        postprocessHeaderLines();
+    }
+
+    /**
+     * Hook method for post processing header lines.
+     * This implementation does nothing.
+     */
+    protected void postprocessHeaderLines()
+    {
     }
 
     @Override
     protected final void finishLocalSetup() throws CheckstyleException
     {
-        if (mHeaderInfo.getHeaderLines().isEmpty()) {
+        if (mHeaderLines.isEmpty()) {
             throw new CheckstyleException(
                     "property 'headerFile' is missing or invalid in module "
                     + getConfiguration().getName());

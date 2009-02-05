@@ -88,10 +88,4 @@ public class HeaderCheck extends AbstractHeaderCheck
             }
         }
     }
-
-    @Override
-    protected HeaderInfo createHeaderInfo()
-    {
-        return new HeaderInfo();
-    }
 }
