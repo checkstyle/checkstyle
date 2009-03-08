@@ -807,6 +807,7 @@
 
       </subsection>
 
+      <subsection name="SuppressionCommentFilter">
       <h4>SuppressionCommentFilter</h4>
 
       <p>
@@ -963,7 +964,148 @@
     &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
 &lt;/module&gt;
       </source>
-    </section>
+      </subsection>
+
+      <subsection name="SuppressWithNearbyCommentFilter">
+      <h4>SuppressWithNearbyCommentFilter</h4>
+
+      <p>
+        Filter <span class="code">SuppressWithNearbyCommentFilter</span> uses
+        individual comments to suppress audit events.
+      </p>
+
+      <p>
+        Rationale: Same as <span class="code">SuppressionCommentFilter</span>.
+        Whereas the SuppressionCommentFilter uses matched pairs of
+        filters to turn on/off comment matching,
+        <span class="code">SuppressWithNearbyCommentFilter</span> uses
+        single comments.  This requires fewer lines to mark a region, and
+        may be aesthetically preferable in some contexts.
+      </p>
+
+      <p>
+        Usage: This filter only works in conjunction with a <span
+        class="code">FileContentsHolder</span>, since that check makes
+        the suppression comments in the .java files available <i>sub
+        rosa</i>. A configuration that includes this filter must
+        configure <span class="code">FileContentsHolder</span> as a
+        child module of <span class="code">TreeWalker</span>.
+      </p>
+
+      <h5>SuppressWithNearbyCommentFilter Properties</h5>
+      <table width="100%" border="1" cellpadding="5" class="body">
+        <tr class="header">
+          <th>name</th>
+          <th>description</th>
+          <th>type</th>
+          <th>default value</th>
+        </tr>
+        <tr>
+          <td>commentFormat</td>
+          <td>comment pattern to trigger filter to begin suppression</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td><span class="default">SUPPRESS CHECKSTYLE (\w+)</span></td>
+        </tr>
+        <tr>
+          <td>checkFormat</td>
+          <td>check pattern to suppress</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td><span class="default">$1</span></td>
+        </tr>
+        <tr>
+          <td>messageFormat</td>
+          <td>message pattern to suppress</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td>none</td>
+        </tr>
+        <tr>
+          <td>influenceFormat</td>
+          <td>a negative/zero/positive value that defines the number of
+          lines preceding/at/following the suppression comment</td>
+          <td><a href="property_types.html#regexp">regular expression</a></td>
+          <td><span class="default">0</span> (the line containing the comment)</td>
+        </tr>
+        <tr>
+          <td>checkCPP</td>
+          <td>whether to check C++ style comments (<code>//</code>)</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+        <tr>
+          <td>checkC</td>
+          <td>whether to check C style comments (<code>/* ... */</code>)</td>
+          <td><a href="property_types.html#boolean">boolean</a></td>
+          <td><span class="default">true</span></td>
+        </tr>
+      </table>
+
+      <h5>Examples</h5>
+      <p>
+        To configure the check that makes comments available to the filter:
+      </p>
+
+      <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+    ...
+    &lt;module name=&quot;FileContentsHolder&quot;/&gt;
+    ...
+&lt;/module&gt;
+      </source>
+
+      <p>
+        To configure a filter to suppress audit events for <i>check</i>
+        on any line with a comment <code>SUPPRESS CHECKSTYLE <i>check</i></code>:
+      </p>
+
+      <source>
+&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;/&gt;
+      </source>
+
+      <p>
+        To configure a filter to suppress all audit events on any line
+        containing the comment <code>CHECKSTYLE IGNORE THIS LINE</code>:
+      </p>
+
+      <source>
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;commentFormat&quot; value=&quot;CHECKSTYLE IGNORE THIS LINE&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;.*&quot;/&gt;
+    &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
+&lt;/module>
+      </source>
+
+      <p>
+        To configure a filter so that
+        <code>// Ok to catch (Throwable|Exception|RuntimeException) here</code>
+        permits the current and previous line to avoid generating an IllegalCatch
+        audit event:
+      </p>
+
+      <source>
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;commentFormat&quot; value=&quot;Ok to catch (\w+) here&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalCatchCheck&quot;/&gt;
+    &lt;property name=&quot;messageFormat&quot; value=&quot;$1&quot;/&gt;
+    &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
+&lt;/module>
+      </source>
+
+      <p>
+        To configure a filter so that <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT <i>var</i> LINES</code>
+        avoids triggering any audits for the given check for the current line and the next <i>var</i> lines
+        (for a total of <i>var</i>+1 lines):
+      </p>
+
+      <source>
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;commentFormat&quot; value=&quot;CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+    &lt;property name=&quot;messageFormat&quot; value=&quot;$2&quot;/&gt;
+&lt;/module&gt;
+      </source>
+
+      </subsection>
+      </section>
 
     <section name="AuditListeners">
 

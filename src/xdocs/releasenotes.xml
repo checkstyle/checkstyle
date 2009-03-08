@@ -93,6 +93,11 @@
           comment. Thanks to Travis Schneeberger for providing patch
           #2294029.
         </li>
+        <li>
+          Added the <a href="config.html#Filters">SuppressWithNearbyCommentFilter</a>
+          filter that uses nearby comments to suppress audit events. Thanks
+          to Mick Killianey for providing patch #2354424.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>

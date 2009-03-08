@@ -149,12 +149,13 @@
       <entry key="checkstyle.compile.timestamp" type="date" value="now" pattern="E MMMM dd yyyy, HH:mm z"/>
     </propertyfile>
 
+    <!-- had problems with following using lastest JDK, where this hung -->
     <native2ascii src="src/checkstyle"
                   dest="${checkstyle.dest}"
                   encoding="EUC-JP"
                   includes="**/*_ja.properties" />
 
-    <copy todir="${checkstyle.dest}">
+  	<copy todir="${checkstyle.dest}">
       <fileset dir="src/checkstyle" includes="**/*.properties"/>
       <fileset dir="src/checkstyle" includes="**/*.xml"/>
       <fileset dir="src/checkstyle" includes="**/*.dtd"/>
