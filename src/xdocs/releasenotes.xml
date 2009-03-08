@@ -112,6 +112,11 @@
           user specifies a directory with the <i>-r</i> option that does
           not contain any files. Thanks to Florian for patch #2151706.
         </li>
+        <li>
+          Fixed the <a href="config_blocks.html#LeftCurly">LeftCurly</a> check
+          to ignore leading annotations. Thanks to Tim Carpenter for patch
+          #2506439.
+        </li>
       </ul>
 
       <p>Notes:</p>

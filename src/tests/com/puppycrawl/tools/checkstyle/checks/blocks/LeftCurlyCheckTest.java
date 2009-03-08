@@ -119,7 +119,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
-
+    
     @Test
     public void testNL3() throws Exception
     {
@@ -145,5 +145,29 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport
             "105:5: '{' should be on the previous line.",
         };
         verify(mCheckConfig, getPath("InputBraces.java"), expected);
+    }
+    
+    @Test
+    public void testDefaultWithAnnotations() throws Exception
+    {
+        final String[] expected = {
+            "10:1: '{' should be on the previous line.",
+            "14:5: '{' should be on the previous line.",
+            "21:5: '{' should be on the previous line."
+        };
+        verify(mCheckConfig, getPath("InputLeftCurlyAnnotations.java"), expected);
+    }
+    
+    @Test
+    public void testNLWithAnnotations() throws Exception
+    {
+        mCheckConfig.addAttribute("option", LeftCurlyOption.NL.toString());
+        final String[] expected = { 
+            "35:34: '{' should be on a new line.",
+            "38:41: '{' should be on a new line.",
+            "44:27: '{' should be on a new line.",
+            "58:32: '{' should be on a new line."
+        };
+        verify(mCheckConfig, getPath("InputLeftCurlyAnnotations.java"), expected);
     }
 }

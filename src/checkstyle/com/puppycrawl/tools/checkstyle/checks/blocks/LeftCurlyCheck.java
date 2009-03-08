@@ -126,7 +126,11 @@ public class LeftCurlyCheck
         switch (aAST.getType()) {
         case TokenTypes.CTOR_DEF :
         case TokenTypes.METHOD_DEF :
-            startToken = aAST;
+            // Orig
+            //startToken = aAST;
+            // New
+            startToken = skipAnnotationOnlyLines(aAST);
+            // End
             brace = aAST.findFirstToken(TokenTypes.SLIST);
             break;
 
@@ -135,11 +139,11 @@ public class LeftCurlyCheck
         case TokenTypes.ANNOTATION_DEF :
         case TokenTypes.ENUM_DEF :
         case TokenTypes.ENUM_CONSTANT_DEF :
-            startToken = aAST.getFirstChild();
+            startToken = (DetailAST) skipAnnotationOnlyLines(aAST);
             final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
             brace = (objBlock == null)
                 ? null
-                : objBlock.getFirstChild();
+                : (DetailAST) objBlock.getFirstChild();
             break;
 
         case TokenTypes.LITERAL_WHILE:
@@ -156,7 +160,7 @@ public class LeftCurlyCheck
 
         case TokenTypes.LITERAL_ELSE :
             startToken = aAST;
-            final DetailAST candidate = aAST.getFirstChild();
+            final DetailAST candidate = (DetailAST) aAST.getFirstChild();
             brace =
                 (candidate.getType() == TokenTypes.SLIST)
                 ? candidate
@@ -176,6 +180,62 @@ public class LeftCurlyCheck
         if ((brace != null) && (startToken != null)) {
             verifyBrace(brace, startToken);
         }
+    }
+
+    /**
+     * Skip lines that only contain <code>TokenTypes.ANNOTATION</code>s.
+     * If the received <code>DetailAST</code>
+     * has annotations within its modifiers then first token on the line
+     * of the first token afer all annotations is return. This might be
+     * an annotation.
+     * Otherwise, the received <code>DetailAST</code> is returned.
+     * @param aAST <code>DetailAST</code>.
+     * @return <code>DetailAST</code>.
+     */
+    private DetailAST skipAnnotationOnlyLines(DetailAST aAST)
+    {
+        final DetailAST modifiers = aAST.findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers == null) {
+            return aAST;
+        }
+        DetailAST lastAnnot = findLastAnnotation(modifiers);
+        if (lastAnnot == null) {
+            // There are no annotations.
+            return aAST;
+        }
+        final DetailAST tokenAfterLast = lastAnnot.getNextSibling() != null
+                                       ? lastAnnot.getNextSibling()
+                                       : modifiers.getNextSibling();
+        if (tokenAfterLast.getLineNo() > lastAnnot.getLineNo()) {
+            return tokenAfterLast;
+        }
+        else {
+            final int lastAnnotLineNumber = lastAnnot.getLineNo();
+            while (lastAnnot.getPreviousSibling() != null
+                   && (lastAnnot.getPreviousSibling().getLineNo()
+                        == lastAnnotLineNumber))
+            {
+                lastAnnot = lastAnnot.getPreviousSibling();
+            }
+            return lastAnnot;
+        }
+    }
+
+    /**
+     * Find the last token of type <code>TokenTypes.ANNOTATION</code>
+     * under the given set of modifiers.
+     * @param aModifiers <code>DetailAST</code>.
+     * @return <code>DetailAST</code> or null if there are no annotations.
+     */
+    private DetailAST findLastAnnotation(DetailAST aModifiers)
+    {
+        DetailAST aAnnot = aModifiers.findFirstToken(TokenTypes.ANNOTATION);
+        while (aAnnot != null && aAnnot.getNextSibling() != null
+               && aAnnot.getNextSibling().getType() == TokenTypes.ANNOTATION)
+        {
+            aAnnot = aAnnot.getNextSibling();
+        }
+        return aAnnot;
     }
 
     /**
