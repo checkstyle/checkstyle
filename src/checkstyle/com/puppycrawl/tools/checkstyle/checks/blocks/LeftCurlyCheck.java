@@ -126,11 +126,7 @@ public class LeftCurlyCheck
         switch (aAST.getType()) {
         case TokenTypes.CTOR_DEF :
         case TokenTypes.METHOD_DEF :
-            // Orig
-            //startToken = aAST;
-            // New
             startToken = skipAnnotationOnlyLines(aAST);
-            // End
             brace = aAST.findFirstToken(TokenTypes.SLIST);
             break;
 
