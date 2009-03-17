@@ -14,7 +14,7 @@
     </license>
   </licenses>
   <scm>
-    <url>http://checkstyle.cvs.sourceforge.net/checkstyle/</url>
+    <url>https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</url>
   </scm>
   <dependencies>
     <dependency>
@@ -38,9 +38,9 @@
       <version>1.0.3</version>
     </dependency>
     <dependency>
-      <groupId>com.google.code.google-collections</groupId>
-      <artifactId>google-collect</artifactId>
-      <version>snapshot-20080321</version>
+      <groupId>com.google.collections</groupId>
+      <artifactId>google-collections</artifactId>
+      <version>0.9</version>
     </dependency>
   </dependencies>
 </project>
