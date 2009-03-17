@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.duplicates;
 
-import com.google.common.base.ReferenceType;
 import com.google.common.collect.Lists;
+import com.google.common.collect.MapMaker;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
-import com.google.common.collect.ReferenceMap;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -180,14 +179,13 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
     private ChecksumInfo[] mChecksumInfo;
 
     /** files that are currently checked */
-    private List<File> mFiles = Lists.newArrayList();
+    private final List<File> mFiles = Lists.newArrayList();
 
     /**
-     * A SoftReference cache for the trimmed lines of a file path,
+     * A SoftReference cache for the trimmed lines of a file path.
      */
     private final Map<String, String[]> mTrimmedLineCache =
-        new ReferenceMap<String, String[]>(
-            ReferenceType.STRONG, ReferenceType.SOFT);
+        new MapMaker().softValues().makeMap();
 
     // fields required only for statistics
 

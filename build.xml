@@ -14,7 +14,7 @@
   <property name="jdom.jar" value="lib/jdom-b9.jar" />
   <property name="junit.jar" value="lib/junit-4.4.jar" />
   <property name="beanutils.jar" value="lib/commons-beanutils-core.jar" />
-  <property name="collections.jar" value="lib/google-collect-snapshot-20080321.jar" />
+  <property name="collections.jar" value="lib/google-collect-snapshot-20090211.jar" />
   <property name="cli.jar" value="lib/commons-cli-1.1.jar" />
   <property name="logging.jar" value="lib/commons-logging.jar" />
   <property name="tools.jar" value="${java.home}/../lib/tools.jar" />
@@ -511,7 +511,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
     	 filesetmanifest="skip">
         <zipfileset src="${dist.dir}/checkstyle-${version}/antlr.jar" excludes="META-INF/*"/>
     	<zipfileset src="${dist.dir}/checkstyle-${version}/commons-beanutils-core.jar" excludes="META-INF/*,**/*.html"/>
-        <zipfileset src="${dist.dir}/checkstyle-${version}/google-collect-snapshot-20080321.jar" excludes="META-INF/*"/>
+        <zipfileset src="${dist.dir}/checkstyle-${version}/google-collect-snapshot-20090211.jar" excludes="META-INF/*"/>
         <zipfileset src="${dist.dir}/checkstyle-${version}/commons-cli-1.1.jar" excludes="META-INF/*"/>
         <zipfileset src="${dist.dir}/checkstyle-${version}/commons-logging.jar" excludes="META-INF/*,**/package.html"/>
         <zipfileset src="${dist.dir}/checkstyle-${version}/checkstyle-${version}.jar" excludes="META-INF/*"/>

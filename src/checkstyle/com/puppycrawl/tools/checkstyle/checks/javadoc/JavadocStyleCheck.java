@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.google.common.collect.Sets;
+import com.google.common.collect.ImmutableSortedSet;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FastStack;
@@ -50,14 +50,14 @@ public class JavadocStyleCheck
     private static final String EXTRA_HTML = "javadoc.extrahtml";
 
     /** HTML tags that do not require a close tag. */
-    private static final Set<String> SINGLE_TAGS = Sets.immutableSortedSet("p",
+    private static final Set<String> SINGLE_TAGS = ImmutableSortedSet.of("p",
             "br", "li", "dt", "dd", "td", "hr", "img", "tr", "th", "td");
 
     /** HTML tags that are allowed in java docs.
      * From http://www.w3schools.com/tags/default.asp
      * The froms and structure tags are not allowed
      */
-    private static final Set<String> ALLOWED_TAGS = Sets.immutableSortedSet(
+    private static final Set<String> ALLOWED_TAGS = ImmutableSortedSet.of(
             "a", "abbr", "acronym", "address", "area", "b", "bdo", "big",
             "blockquote", "br", "caption", "cite", "code", "colgroup", "del",
             "div", "dfn", "dl", "em", "fieldset", "h1", "h2", "h3", "h4", "h5",

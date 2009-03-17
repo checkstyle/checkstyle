@@ -187,7 +187,8 @@ public class TranslationCheck
                 args,
                 getId(),
                 this.getClass(), null);
-        final TreeSet<LocalizedMessage> messages = Sets.newTreeSet(message);
+        final TreeSet<LocalizedMessage> messages = Sets.newTreeSet();
+        messages.add(message);
         getMessageDispatcher().fireErrors(aFile.getPath(), messages);
         Utils.getExceptionLogger().debug("IOException occured.", aEx);
     }
