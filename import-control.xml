@@ -36,6 +36,7 @@
 
   <subpackage name="checks">
     <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
+    <allow class="com.puppycrawl.tools.checkstyle.Defn"/>
     <allow pkg="java.math"/>
 
     <subpackage name="indentation">
