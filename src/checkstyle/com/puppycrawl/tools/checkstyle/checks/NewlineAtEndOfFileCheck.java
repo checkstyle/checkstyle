@@ -117,7 +117,11 @@ public class NewlineAtEndOfFileCheck
         }
         aRandomAccessFile.seek(aRandomAccessFile.length() - len);
         final byte lastBytes[] = new byte[len];
-        aRandomAccessFile.read(lastBytes);
+        final int readBytes = aRandomAccessFile.read(lastBytes);
+        if (readBytes != len) {
+            throw new IOException("Unable to read " + len + " bytes, got "
+                    + readBytes);
+        }
         return mLineSeparator.matches(lastBytes);
     }
 }

@@ -39,6 +39,8 @@ import java.util.EventObject;
 public final class AuditEvent
     extends EventObject
 {
+    /** Record a version. */
+    private static final long serialVersionUID = -3774725606973812736L;
     /** filename event associated with **/
     private final String mFileName;
     /** message associated with the event **/
