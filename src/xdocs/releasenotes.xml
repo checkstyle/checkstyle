@@ -9,6 +9,82 @@
   </properties>
 
   <body>
+    <section name="Release 4.4 to 5.0 changes">
+      <p>The following checks were added:</p>
+      <ul>
+        <li><a href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a></li>
+        <li><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></li>
+        <li><a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a></li>
+        <li><a href="config_whitespace.html#FileTabCharacter">FileTabCharacter</a></li>
+        <li><a href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a></li>
+        <li><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></li>
+        <li><a href="config_naming.html#MethodTypeParameterName">MethodTypeParameterName</a></li>
+        <li><a href="config_coding.html#NoClone">NoClone</a></li>
+        <li><a href="config_coding.html#NoFinalizer">NoFinalizer</a></li>
+        <li><a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a></li>
+        <li><a href="config_regexp.html#RegexpMultiline">RegexpMultiline</a></li>
+        <li><a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a></li>
+        <li><a href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a></li>
+      </ul>
+      <p>The following checks were changed from a Check to a FileSetCheck:</p>
+      <ul>
+        <li><a href="config_header.html#Header">Header</a></li>
+        <li><a href="config_header.html#RegexpHeader">RegexpHeader</a></li>
+        <li><a href="config_sizes.html#FileLength">FileLength</a></li>
+      </ul>
+      <p>
+        This means that the checks above must not be declared under the
+        TreeWalker module anymore. For example, the following Checkstyle
+        4.4 configuration file:
+      </p>
+      <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;Header&quot;&gt;
+      &lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+      </source>
+
+      <p>becomes the following Checkstyle 5.0 configuration file:</p>
+      <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;Header&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+      </source>
+      <p>The following checks were removed:</p>
+      <ul>
+        <li>
+          GenericIllegalRegexpCheck - replaced with <a
+          href="config_regexp.html#RegexpMultiline">RegexpMultiline</a>
+          and <a
+          href="config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+          and <a
+          href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
+        </li>
+        <li>
+          RequiredRegexpCheck - replaced with <a
+          href="config_regexp.html#RegexpMultiline">RegexpMultiline</a>
+          and <a
+          href="config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+          and <a
+          href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
+        </li>
+        <li>
+          CrossLanguageRegexpHeaderCheck - replaced with
+          <a href="config_header.html#RegexpHeader">RegexpHeader</a>.
+        </li>
+        <li>
+          PackageHtmlCheck - replaced with
+          <a href="config_javadoc.html#JavadocPackage">JavadocPackage</a>.
+        </li>
+        <li>All the J2EE checks.</li>
+      </ul>
+    </section>
     <section name="Release 5.0 Beta 2">
       <p>
         Major change to FileSetCheck architecture to move the
@@ -98,6 +174,14 @@
           filter that uses nearby comments to suppress audit events. Thanks
           to Mick Killianey for providing patch #2354424.
         </li>
+        <li>
+          Added the new checks <a
+          href="config_regexp.html#RegexpMultiline">RegexpMultiline</a>
+          <a
+          href="config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+          <a
+          href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
+        </li>
       </ul>
 
       <p>Fixed Bugs:</p>
@@ -116,13 +200,6 @@
           Fixed the <a href="config_blocks.html#LeftCurly">LeftCurly</a> check
           to ignore leading annotations. Thanks to Tim Carpenter for patch
           #2506439.
-        </li>
-      </ul>
-
-      <p>Notes:</p>
-      <ul>
-        <li>
-          ...
         </li>
       </ul>
     </section>
