@@ -8,9 +8,9 @@ import org.junit.runners.Suite;
     EmptyForIteratorPadCheckTest.class, GenericWhitespaceCheckTest.class,
     MethodParamPadCheckTest.class, NoWhitespaceAfterCheckTest.class,
     NoWhitespaceBeforeCheckTest.class, OperatorWrapCheckTest.class,
-    ParenPadCheckTest.class, TabCharacterCheckTest.class,
-    TypecastParenPadCheckTest.class, WhitespaceAfterCheckTest.class,
-    WhitespaceAroundTest.class, FileTabCharacterCheckTest.class})
+    ParenPadCheckTest.class, TypecastParenPadCheckTest.class,
+    WhitespaceAfterCheckTest.class, WhitespaceAroundTest.class,
+    FileTabCharacterCheckTest.class})
 public class AllWhitespaceTests
 {
 }
