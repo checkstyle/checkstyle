@@ -24,6 +24,7 @@ import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
@@ -113,8 +114,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     private boolean mAllowMissingThrowsTags;
 
     /**
-     * controls whether to ignore errors when a method returns non-void type but
-     * does not have a return tag in the javadoc. Defaults to false.
+     * controls whether to ignore errors when a method returns non-void type
+     * but does not have a return tag in the javadoc. Defaults to false.
      */
     private boolean mAllowMissingReturnTag;
 
@@ -269,7 +270,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
     protected final void logLoadError(Token aIdent)
     {
         logLoadErrorImpl(aIdent.getLineNo(), aIdent.getColumnNo(),
-                         "javadoc.classInfo", "@throws", aIdent.getText());
+            "javadoc.classInfo",
+            JavadocTagInfo.THROWS.getText(), aIdent.getText());
     }
 
     /**
@@ -367,11 +369,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         }
 
         // Invalid if private, a constructor, or a static method
-        if ((aAST.getType() == TokenTypes.CTOR_DEF)
-                || (aScope == Scope.PRIVATE)
-                || (aAST.getType() == TokenTypes.METHOD_DEF
-                && aAST.branchContains(TokenTypes.LITERAL_STATIC)))
-        {
+        if (!JavadocTagInfo.INHERIT_DOC.isValidOn(aAST)) {
             log(aAST, "javadoc.invalidInheritDoc");
         }
 
@@ -463,7 +461,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                     if (multilineCont.find()) {
                         remIndex = lines.length;
                         final String lFin = multilineCont.group(1);
-                        if (!lFin.equals(NEXT_TAG) && !lFin.equals(END_JAVADOC))
+                        if (!lFin.equals(NEXT_TAG)
+                            && !lFin.equals(END_JAVADOC))
                         {
                             tags.add(new JavadocTag(currentLine, col, p1, p2));
                         }
@@ -489,7 +488,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                     if (multilineCont.find()) {
                         remIndex = lines.length;
                         final String lFin = multilineCont.group(1);
-                        if (!lFin.equals(NEXT_TAG) && !lFin.equals(END_JAVADOC))
+                        if (!lFin.equals(NEXT_TAG)
+                            && !lFin.equals(END_JAVADOC))
                         {
                             tags.add(new JavadocTag(currentLine, col, p1));
                         }
@@ -619,13 +619,15 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
         // the user has chosen to suppress these problems
         if (!mAllowMissingParamTags && aReportExpectedTags) {
             for (DetailAST param : params) {
-                log(param, "javadoc.expectedTag", "@param", param.getText());
+                log(param, "javadoc.expectedTag",
+                    JavadocTagInfo.PARAM.getText(), param.getText());
             }
 
             for (DetailAST typeParam : typeParams) {
-                log(typeParam, "javadoc.expectedTag", "@param", "<"
-                        + typeParam.findFirstToken(TokenTypes.IDENT).getText()
-                        + ">");
+                log(typeParam, "javadoc.expectedTag",
+                    JavadocTagInfo.PARAM.getText(),
+                    "<" + typeParam.findFirstToken(TokenTypes.IDENT).getText()
+                    + ">");
             }
         }
     }
@@ -671,7 +673,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
             if (jt.isReturnTag()) {
                 if (found) {
                     log(jt.getLineNo(), jt.getColumnNo(),
-                            "javadoc.return.duplicate");
+                        "javadoc.duplicateTag",
+                        JavadocTagInfo.RETURN.getText());
                 }
                 found = true;
                 it.remove();
@@ -740,7 +743,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 
                 if (reqd) {
                     log(tag.getLineNo(), tag.getColumnNo(),
-                            "javadoc.unusedTag", "@throws", tag.getArg1());
+                        "javadoc.unusedTag",
+                        JavadocTagInfo.THROWS.getText(), tag.getArg1());
 
                 }
             }
@@ -753,7 +757,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 if (!ei.isFound()) {
                     final Token fi = ei.getName();
                     log(fi.getLineNo(), fi.getColumnNo(),
-                            "javadoc.expectedTag", "@throws", fi.getText());
+                        "javadoc.expectedTag",
+                        JavadocTagInfo.THROWS.getText(), fi.getText());
                 }
             }
         }

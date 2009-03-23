@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document>
+  <properties>
+    <title>Annotation Checks</title>
+    <author>Checkstyle Development Team</author>
+  </properties>
+  <body>
+    <section name="AnnotationUseStyle">
+      <subsection name="Description">
+        <p> This check controls the style with the usage of annotations.
+        </p>
+      </subsection>
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>elementStyle</td>
+            <td>
+              <p>
+                Annotations have three element styles starting with the
+                least verbose.
+                <ul>
+                  <li>
+                    <span class="code">COMPACT_NO_ARRAY
+                    </span>
+                  </li>
+                  <li>
+                    <span class="code">COMPACT COMPACT</span>
+                  </li>
+                  <li>
+                    <span class="code">EXPANDED EXPANDED</span>
+                  </li>
+                </ul>
+                To not enforce an element style a
+                <span class="code">MIXED</span>
+                type is provided. The desired style can be set through
+                the
+                <span class="code">elementStyle</span>
+                property.
+              </p>
+              <p>
+                Using the
+                <span class="code">EXPANDED</span>
+                style is more verbose. The expanded version is sometimes
+                referred to as "named parameters" in other languages.
+              </p>
+              <p>
+                Using the
+                <span class="code">COMPACT</span>
+                style is less verbose. This style can only be used when
+                there is an element called 'value' which is either the
+                sole element or all other elements have default values.
+              </p>
+              <p>
+                Using the
+                <span class="code">COMPACT_NO_ARRAY</span>
+                style is less verbose. It is similar to the
+                <span class="code">COMPACT</span>
+                style but single value arrays are flagged. With
+                annotations a single value array does not need to be
+                placed in an array initializer. This style can only be
+                used when there is an element called 'value' which is
+                either the sole element or all other elements have
+                default values.
+              </p>
+            </td>
+            <td>
+              <a href="property_types.html#elementStyle">element style</a>
+            </td>
+            <td>
+              <span class="default">EXPANDED</span>
+            </td>
+          </tr>
+          <tr>
+            <td>closingParens</td>
+            <td>
+              The ending parenthesis are optional when using annotations
+              with no elements. To always require ending parenthesis use
+              the
+              <span class="code">ALWAYS</span>
+              type. To never have ending parenthesis use the
+              <span class="code">NEVER</span>
+              type. To not enforce a closing parenthesis preference a
+              <span class="code">MIXED</span>
+              type is provided. Set this through the
+              <span class="code">closingParens</span>
+              property.
+            </td>
+            <td>
+              <a href="property_types.html#closingParens">closing parens</a>
+            </td>
+            <td>
+              <span class="default">ALWAYS</span>
+            </td>
+          </tr>
+          <tr>
+            <td>trailingArrayComma</td>
+            <td>
+              Annotations also allow you to specify arrays of elements
+              in a standard format. As with normal arrays, a trailing
+              comma is optional. To always require a trailing comma use
+              the
+              <span class="code">ALWAYS</span>
+              type. To never have a trailing comma use the
+              <span class="code">NEVER</span>
+              type. To not enforce a trailing array comma preference a
+              <span class="code">MIXED type</span>
+              is provided. Set this through the
+              <span class="code">trailingArrayComma
+              </span>
+              property.
+            </td>
+            <td>
+              <a href="property_types.html#trailingArrayComma">trailing comma</a>
+            </td>
+            <td>
+              <span class="default">NEVER</span>
+            </td>
+          </tr>
+        </table>
+      </subsection>
+      <subsection name="Examples">
+        <p> To configure the check:</p>
+        <source> &lt;module name=&quot;AnnotationUseStyle&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check to enforce an EXPANDED style, with a
+          trailing array comma set to NEVER and always including the closing
+          parenthesis.
+        </p>
+        <source>
+ &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+     &lt;property name=&quot;ElementStyle&quot;
+         value=&quot;EXPANDED&quot;/&gt;
+      &lt;property name=&quot;TrailingArrayComma&quot;
+          value=&quot;NEVER&quot;/&gt;
+     &lt;property name=&quot;ClosingParens&quot;
+         value=&quot;ALWAYS&quot;/&gt;
+  &lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#treewalker">TreeWalker</a> </p>
+      </subsection>
+    </section>
+
+
+    <section name="MissingDeprecated">
+      <subsection name="Description">
+        <p> Verifies that both the java.lang.Deprecated annotation is
+            present and the @deprecated javadoc tag is present when
+            either is present.</p>
+      </subsection>
+      <subsection name="Examples">
+        <p> To configure the check:</p>
+        <source> &lt;module name=&quot;MissingDeprecated&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#treewalker">TreeWalker</a> </p>
+      </subsection>
+    </section>
+
+    <section name="MissingOverride">
+      <subsection name="Description">
+        <p> Verifies that the java.lang.Override annotation is present
+          when the {@inheritDoc} javadoc tag is present.</p>
+      </subsection>
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>javaFiveCompatibility</td>
+            <td>
+              When this property is true this check will only check
+              classes, interfaces, etc. that do not contain the extends
+              or implements keyword or are not anonymous classes. This
+              means it only checks methods overridden from
+              <code>java.lang.Object</code>
+              <b>Java 5 Compatibility mode severely limits this
+                check. It is recommended to only use it on Java 5 source </b>
+            </td>
+            <td>
+              <a href="property_types.html#boolean">boolean</a>
+            </td>
+            <td>
+              <span class="default">false</span>
+            </td>
+          </tr>
+        </table>
+      </subsection>
+      <subsection name="Examples">
+        <p> To configure the check:</p>
+        <source> &lt;module name=&quot;MissingOverride&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check for the <span class="code">javaFiveCompatibility</span>
+          mode:
+        </p>
+        <source>
+   &lt;module name=&quot;MissingOverride&quot;&gt;
+      &lt;property name=&quot;javaFiveCompatibility&quot;
+          value=&quot;true&quot;/&gt;
+   &lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#treewalker">TreeWalker</a> </p>
+      </subsection>
+    </section>
+
+    <section name="PackageAnnotation">
+      <subsection name="Description">
+        <p>  This check makes sure that all package annotations are in the
+             package-info.java file.
+        </p>
+        <p>
+             According to the Java JLS 3rd ed.
+        </p>
+
+        <p>
+            The JLS does not enforce the placement of package annotations.
+            This placement may vary based on implementation.  The JLS
+            does highly recommend that all package annotations are
+            placed in the package-info.java file.
+
+            See <a
+            href="http://java.sun.com/docs/books/jls/third_edition/html/j3TOC.html">
+            Java Language specification, sections 7.4.1.1</a>.
+        </p>
+      </subsection>
+      <subsection name="Examples">
+        <p> To configure the check:</p>
+        <source> &lt;module name=&quot;PackageAnnotation&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#treewalker">TreeWalker</a> </p>
+      </subsection>
+    </section>
+
+    <section name="SuppressWarnings">
+      <subsection name="Description">
+        <p> This check allows you to specify what warnings that
+        SuppressWarnings is not allowed to suppress.
+        You can also specify a list of TokenTypes that
+        the configured warning(s) cannot be suppressed on.</p>
+
+        <p>
+        Limitations:  This check does not consider conditionals
+        inside the SuppressWarnings annotation. <br/>
+        For example: @SupressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
+        According to the above example, the "unused" warning is being suppressed
+        not the "unchecked" or "foo" warnings.  All of these warnings will be
+        considered and matched against regardless of what the conditional
+        evaluates to.
+        </p>
+      </subsection>
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>
+               The warnings property is a regex pattern.  Any warning
+               being suppressed matching this pattern will be flagged.
+            </td>
+            <td>
+              <a href="property_types.html#regexp">regexp</a>
+            </td>
+            <td>
+              <span class="default">^$|^\s+$</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+
+            <td>
+              subset of tokens
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>,
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>
+            </td>
+
+            <td>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>,
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>
+              <a
+               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>
+            </td>
+          </tr>
+
+        </table>
+      </subsection>
+      <subsection name="Examples">
+        <p> To configure the check:</p>
+        <source> &lt;module name=&quot;SuppressWarnings&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check so that the "unchecked" and "unused"
+          warnings cannot be suppressed on anything
+          but variable and parameter declarations.
+        </p>
+        <source>
+   &lt;module name=&quot;SuppressWarnings&quot;&gt;
+      &lt;property name=&quot;format&quot;
+          value=&quot;^unchecked$|^unused$&quot;/&gt;
+      &lt;property name=&quot;tokens&quot;
+          value=&quot;
+          CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
+          ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
+          ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
+          &quot;/&gt;
+   &lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#treewalker">TreeWalker</a> </p>
+      </subsection>
+    </section>
+  </body>
+</document>

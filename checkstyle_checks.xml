@@ -164,5 +164,16 @@
     </module>
     <module name="NestedTryDepth"/>
     <module name="ExplicitInitialization"/>
+    <module name="AnnotationUseStyle">
+      <property name="closingParens" value="MIXED"/>
+      <property name="elementStyle" value="MIXED"/>
+      <property name="trailingArrayComma" value="MIXED"/>
+    </module>
+    <module name="MissingDeprecated"/>
+    <module name="MissingOverride">
+      <property name="javaFiveCompatibility" value="true"/>
+    </module>
+    <module name="PackageAnnotation"/>
+    <module name="SuppressWarnings"/>
   </module>
 </module>

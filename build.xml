@@ -206,6 +206,9 @@
       <exclude name="**/InputValidMethodIndent.java" />
       <exclude name="**/Post13KeywordsAsIdentifiersOK.java" />
       <exclude name="**/InputMethodNameExtra.java"/>
+      <exclude name="**/BadPackageAnnotation1.java"/>
+      <exclude name="**/BadPackageAnnotation2.java"/>	
+      <exclude name="**/AnnotationUseWithTrailingComma.java"/>
     </javac>
   </target>
 

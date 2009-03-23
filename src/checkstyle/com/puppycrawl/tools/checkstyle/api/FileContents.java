@@ -277,4 +277,12 @@ public final class FileContents implements CommentListener
         return false;
     }
 
+    /**
+     * Checks if the current file is a package-info.java file.
+     * @return true if the package file.
+     */
+    public boolean inPackageInfo()
+    {
+        return this.getFilename().endsWith("package-info.java");
+    }
 }

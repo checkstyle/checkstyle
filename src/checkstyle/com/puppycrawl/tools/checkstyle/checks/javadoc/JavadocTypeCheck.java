@@ -22,6 +22,7 @@ import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
@@ -150,9 +151,9 @@ public class JavadocTypeCheck
             else if (ScopeUtils.isOuterMostType(aAST)) {
                 // don't check author/version for inner classes
                 final List<JavadocTag> tags = getJavadocTags(cmt);
-                checkTag(lineNo, tags, "author",
+                checkTag(lineNo, tags, JavadocTagInfo.AUTHOR.getName(),
                          mAuthorFormatPattern, mAuthorFormat);
-                checkTag(lineNo, tags, "version",
+                checkTag(lineNo, tags, JavadocTagInfo.VERSION.getName(),
                          mVersionFormatPattern, mVersionFormat);
 
                 final List<String> typeParamNames =
@@ -242,7 +243,7 @@ public class JavadocTypeCheck
         int tagCount = 0;
         for (int i = aTags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = aTags.get(i);
-            if (tag.getTag().equals(aTag)) {
+            if (tag.getTagName().equals(aTag)) {
                 tagCount++;
                 if (!aFormatPattern.matcher(tag.getArg1()).find()) {
                     log(aLineNo, "type.tagFormat", "@" + aTag, aFormat);
@@ -267,7 +268,7 @@ public class JavadocTypeCheck
         boolean found = false;
         for (int i = aTags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = aTags.get(i);
-            if ("param".equals(tag.getTag())
+            if (tag.isParamTag()
                 && (tag.getArg1() != null)
                 && (tag.getArg1().indexOf("<" + aTypeParamName + ">") == 0))
             {
@@ -275,7 +276,8 @@ public class JavadocTypeCheck
             }
         }
         if (!found) {
-            log(aLineNo, "type.missingTag", "@param <" + aTypeParamName + ">");
+            log(aLineNo, "type.missingTag",
+                JavadocTagInfo.PARAM.getText() + " <" + aTypeParamName + ">");
         }
     }
 
@@ -291,7 +293,7 @@ public class JavadocTypeCheck
         final Pattern pattern = Utils.getPattern("\\s*<([^>]+)>.*");
         for (int i = aTags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = aTags.get(i);
-            if ("param".equals(tag.getTag())) {
+            if (tag.isParamTag()) {
 
                 if (tag.getArg1() != null) {
 
@@ -303,7 +305,8 @@ public class JavadocTypeCheck
                         if (!aTypeParamNames.contains(typeParamName)) {
                             log(tag.getLineNo(), tag.getColumnNo(),
                                 "javadoc.unusedTag",
-                                "@param", "<" + typeParamName + ">");
+                                JavadocTagInfo.PARAM.getText(),
+                                "<" + typeParamName + ">");
                         }
                     }
                     else {

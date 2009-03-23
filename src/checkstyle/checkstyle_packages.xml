@@ -7,6 +7,7 @@
 <checkstyle-packages>
   <package name="com.puppycrawl.tools.checkstyle">
     <package name="checks">
+      <package name="annotation"/>
       <package name="blocks"/>
       <package name="coding"/>
       <package name="design"/>

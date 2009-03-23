@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
@@ -130,7 +131,7 @@ public class JavadocStyleCheck
     private boolean shouldCheck(final DetailAST aAST)
     {
         if (aAST.getType() == TokenTypes.PACKAGE_DEF) {
-            return inPackageInfo();
+            return getFileContents().inPackageInfo();
         }
 
         if (ScopeUtils.inCodeBlock(aAST)) {
@@ -173,9 +174,9 @@ public class JavadocStyleCheck
         if (aComment == null) {
             /*checking for missing docs in JavadocStyleCheck is not consistent
             with the rest of CheckStyle...  Even though, I didn't think it
-            made sense to make another check just to ensure that the
+            made sense to make another csheck just to ensure that the
             package-info.java file actually contains package Javadocs.*/
-            if (inPackageInfo()) {
+            if (getFileContents().inPackageInfo()) {
                 log(aAST.getLineNo(), "javadoc.missing");
             }
             return;
@@ -211,43 +212,10 @@ public class JavadocStyleCheck
         if ((commentText.length() != 0)
             && !getEndOfSentencePattern().matcher(commentText).find()
             && !("{@inheritDoc}".equals(commentText)
-            && validForInheritDocOnly(aAST)))
+            && JavadocTagInfo.INHERIT_DOC.isValidOn(aAST)))
         {
             log(aComment.getStartLineNo(), "javadoc.noperiod");
         }
-    }
-
-    /**
-     * Checks to see if the current AST is valid to only contain an
-     * inheritDoc comment.
-     *
-     * @param aAST the current node
-     * @return true if inheritDoc comment valid
-     */
-    private boolean validForInheritDocOnly(DetailAST aAST)
-    {
-        assert aAST != null;
-
-        final boolean validForMethod =
-            aAST.getType() == TokenTypes.METHOD_DEF
-            && !aAST.branchContains(TokenTypes.LITERAL_STATIC)
-            && ScopeUtils.getScopeFromMods(aAST.findFirstToken(
-                TokenTypes.MODIFIERS)) != Scope.PRIVATE;
-
-        return aAST.getType() == TokenTypes.ENUM_DEF
-            || aAST.getType() == TokenTypes.CLASS_DEF
-            || validForMethod
-            || aAST.getType() == TokenTypes.INTERFACE_DEF;
-    }
-
-    /**
-     * Checks if the current file is a package-info.java file.
-     * @return true if the package file.
-     */
-    private boolean inPackageInfo()
-    {
-        final FileContents contents = getFileContents();
-        return contents.getFilename().endsWith("package-info.java");
     }
 
     /**

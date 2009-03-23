@@ -30,6 +30,7 @@ public class PackageNamesLoaderTest
         final String[] checkstylePackages = {
             "com.puppycrawl.tools.checkstyle.",
             "com.puppycrawl.tools.checkstyle.checks.",
+            "com.puppycrawl.tools.checkstyle.checks.annotation.",
             "com.puppycrawl.tools.checkstyle.checks.blocks.",
             "com.puppycrawl.tools.checkstyle.checks.coding.",
             "com.puppycrawl.tools.checkstyle.checks.design.",
