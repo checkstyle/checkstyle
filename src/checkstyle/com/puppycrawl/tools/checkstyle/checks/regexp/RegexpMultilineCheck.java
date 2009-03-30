@@ -25,7 +25,8 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Implementation of a check that looks for a single line in any file type.
+ * Implementation of a check that looks that matches across multiple lines in
+ * any file type.
  * @author Oliver Burn
  */
 public class RegexpMultilineCheck extends AbstractFileSetCheck
