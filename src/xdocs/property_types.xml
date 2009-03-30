@@ -298,39 +298,6 @@
       </ul>
     </section>
 
-    <section name="persistence">
-      <p>
-        This property represents the policy for checking entity beans
-        according to whether the beans have bean-managed persistence,
-        container-managed persistence, or mixed persistence:
-      </p>
-
-      <table summary="right curly options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
-
-        <tr>
-          <td><span class="code">bean</span></td>
-          <td>The beans have bean-managed persistence.</td>
-        </tr>
-
-        <tr>
-          <td><span class="code">container</span></td>
-          <td>The beans have container-managed persistence.</td>
-        </tr>
-
-        <tr>
-          <td><span class="code">mixed</span></td>
-          <td>
-            The beans have mixed bean-managed and container-managed
-            persistence.
-          </td>
-        </tr>
-      </table>
-    </section>
-
     <section name="importOrder">
       <p>
         This property represents the policy for checking imports order.
@@ -357,7 +324,7 @@
 
         <tr>
           <td><span class="code">above</span></td>
-          <td>All static imports are above the local group.. For example:
+          <td>All static imports are above the local group. For example:
             <pre>
     import static a.b.C.*;
     import a.b.D;
@@ -405,5 +372,139 @@
         </tr>
       </table>
     </section>
+
+
+    <section name="elementStyle">
+      <p>
+        This property represents the policy for the styles for defining
+        elements in an annotation. The following table
+        describes the valid options:
+      </p>
+
+      <table summary="elementStyle options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+
+        <tr>
+          <td><span class="code">expanded</span></td>
+          <td>
+            The expanded version is sometimes referred to as "named parameters"
+            in other languages. Example:
+            <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">compact</span></td>
+          <td>
+            This style can only be used when there is an element called 'value'
+            which is either the sole element or all other elements have default
+            values. Examples:
+            <pre>@SuppressWarnings({"unchecked","unused",})</pre>
+            and:
+            <pre>@SuppressWarnings("unchecked")</pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">compact_no_array</span></td>
+          <td>
+            It is similar to the <span class="code">compact</span> style but
+            single value arrays are flagged. With annotations a single value
+            array does not need to be placed in an array initializer.
+            This style can only be used when there is an element called 'value'
+            which is either the sole element or all other elements have
+            default values.
+            Example: <pre>@SuppressWarnings("unchecked")</pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">ignore</span></td>
+          <td>
+            Anything goes.
+          </td>
+        </tr>
+      </table>
+    </section>
+
+
+    <section name="closingParens">
+      <p>
+        This property represents the policy for the styles for the ending
+        parenthesis. The following table describes the valid options:
+      </p>
+
+      <table summary="closingParens options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+
+        <tr>
+          <td><span class="code">always</span></td>
+          <td>
+            Example:
+            <pre>@Deprecated()</pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">never</span></td>
+          <td>
+            Example:
+            <pre>@Deprecated</pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">ignore</span></td>
+          <td>
+            Anything goes.
+          </td>
+        </tr>
+      </table>
+    </section>
+
+
+    <section name="trailingArrayComma">
+      <p>
+        This property represents the policy for the styles for the trailing
+        array comma. The following table describes the valid options:
+      </p>
+
+      <table summary="trailingArrayComma options">
+        <tr>
+          <td>Option</td>
+          <td>Definition</td>
+        </tr>
+
+        <tr>
+          <td><span class="code">always</span></td>
+          <td>
+            Example:
+            <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">never</span></td>
+          <td>
+            Example:
+            <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>
+          </td>
+        </tr>
+
+        <tr>
+          <td><span class="code">ignore</span></td>
+          <td>
+            Anything goes.
+          </td>
+        </tr>
+      </table>
+    </section>
+
   </body>
 </document>

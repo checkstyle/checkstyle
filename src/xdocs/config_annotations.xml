@@ -22,104 +22,38 @@
             <td>elementStyle</td>
             <td>
               <p>
-                Annotations have three element styles starting with the
-                least verbose.
-                <ul>
-                  <li>
-                    <span class="code">COMPACT_NO_ARRAY
-                    </span>
-                  </li>
-                  <li>
-                    <span class="code">COMPACT COMPACT</span>
-                  </li>
-                  <li>
-                    <span class="code">EXPANDED EXPANDED</span>
-                  </li>
-                </ul>
-                To not enforce an element style a
-                <span class="code">MIXED</span>
-                type is provided. The desired style can be set through
-                the
-                <span class="code">elementStyle</span>
-                property.
-              </p>
-              <p>
-                Using the
-                <span class="code">EXPANDED</span>
-                style is more verbose. The expanded version is sometimes
-                referred to as "named parameters" in other languages.
-              </p>
-              <p>
-                Using the
-                <span class="code">COMPACT</span>
-                style is less verbose. This style can only be used when
-                there is an element called 'value' which is either the
-                sole element or all other elements have default values.
-              </p>
-              <p>
-                Using the
-                <span class="code">COMPACT_NO_ARRAY</span>
-                style is less verbose. It is similar to the
-                <span class="code">COMPACT</span>
-                style but single value arrays are flagged. With
-                annotations a single value array does not need to be
-                placed in an array initializer. This style can only be
-                used when there is an element called 'value' which is
-                either the sole element or all other elements have
-                default values.
+                Defines the annotation element styles.
               </p>
             </td>
             <td>
               <a href="property_types.html#elementStyle">element style</a>
             </td>
             <td>
-              <span class="default">EXPANDED</span>
+              <span class="default">compact_no_array</span>
             </td>
           </tr>
           <tr>
             <td>closingParens</td>
             <td>
-              The ending parenthesis are optional when using annotations
-              with no elements. To always require ending parenthesis use
-              the
-              <span class="code">ALWAYS</span>
-              type. To never have ending parenthesis use the
-              <span class="code">NEVER</span>
-              type. To not enforce a closing parenthesis preference a
-              <span class="code">MIXED</span>
-              type is provided. Set this through the
-              <span class="code">closingParens</span>
-              property.
+              Defines the policy for ending parenthesis.
             </td>
             <td>
               <a href="property_types.html#closingParens">closing parens</a>
             </td>
             <td>
-              <span class="default">ALWAYS</span>
+              <span class="default">never</span>
             </td>
           </tr>
           <tr>
             <td>trailingArrayComma</td>
             <td>
-              Annotations also allow you to specify arrays of elements
-              in a standard format. As with normal arrays, a trailing
-              comma is optional. To always require a trailing comma use
-              the
-              <span class="code">ALWAYS</span>
-              type. To never have a trailing comma use the
-              <span class="code">NEVER</span>
-              type. To not enforce a trailing array comma preference a
-              <span class="code">MIXED type</span>
-              is provided. Set this through the
-              <span class="code">trailingArrayComma
-              </span>
-              property.
+              Defines the policy for trailing comma in arrays.
             </td>
             <td>
               <a href="property_types.html#trailingArrayComma">trailing comma</a>
             </td>
             <td>
-              <span class="default">NEVER</span>
+              <span class="default">never</span>
             </td>
           </tr>
         </table>
@@ -130,18 +64,20 @@
         </source>
 
         <p>
-          To configure the check to enforce an EXPANDED style, with a
-          trailing array comma set to NEVER and always including the closing
+          To configure the check to enforce an
+          <span class="code">expanded</span> style, with a
+          trailing array comma set to <span class="code">never</span>
+          and always including the closing
           parenthesis.
         </p>
         <source>
  &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
      &lt;property name=&quot;ElementStyle&quot;
-         value=&quot;EXPANDED&quot;/&gt;
+         value=&quot;expanded&quot;/&gt;
       &lt;property name=&quot;TrailingArrayComma&quot;
-          value=&quot;NEVER&quot;/&gt;
+          value=&quot;never&quot;/&gt;
      &lt;property name=&quot;ClosingParens&quot;
-         value=&quot;ALWAYS&quot;/&gt;
+         value=&quot;always&quot;/&gt;
   &lt;/module&gt;
         </source>
       </subsection>
@@ -159,7 +95,7 @@
     <section name="MissingDeprecated">
       <subsection name="Description">
         <p> Verifies that both the java.lang.Deprecated annotation is
-            present and the @deprecated javadoc tag is present when
+            present and the @deprecated Javadoc tag is present when
             either is present.</p>
       </subsection>
       <subsection name="Examples">

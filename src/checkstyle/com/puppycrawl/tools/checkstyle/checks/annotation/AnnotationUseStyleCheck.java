@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>{@link ElementStyle#EXPANDED EXPANDED}</li>
  * </ul>
  * To not enforce an element style
- * a {@link ElementStyle#MIXED MIXED} type is provided.  The desired style
+ * a {@link ElementStyle#IGNORE IGNORE} type is provided.  The desired style
  * can be set through the <code>elementStyle</code> property.
  * </p>
  *
@@ -64,7 +64,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * To always require ending parenthesis use the
  * {@link ClosingParens#ALWAYS ALWAYS} type.  To never have ending parenthesis
  * use the {@link ClosingParens#NEVER NEVER} type. To not enforce a
- * closing parenthesis preference a {@link ClosingParens#MIXED MIXED} type is
+ * closing parenthesis preference a {@link ClosingParens#IGNORE IGNORE} type is
  * provided. Set this through the <code>closingParens</code> property.
  * </p>
  *
@@ -74,7 +74,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * require a trailing comma use the {@link TrailingArrayComma#ALWAYS ALWAYS}
  * type. To never have a trailing  comma use the
  * {@link TrailingArrayComma#NEVER NEVER} type. To not enforce a trailing
- * array comma preference a {@link TrailingArrayComma#MIXED MIXED} type
+ * array comma preference a {@link TrailingArrayComma#IGNORE IGNORE} type
  * is provided.  Set this through the <code>trailingArrayComma</code> property.
  * </p>
  *
@@ -129,14 +129,14 @@ public final class AnnotationUseStyleCheck extends Check
     //has more than one option type.
 
     /** @see #setElementStyle(String) */
-    private ElementStyle mStyle = ElementStyle.EXPANDED;
+    private ElementStyle mStyle = ElementStyle.COMPACT_NO_ARRAY;
 
     //defaulting to NEVER because of the strange compiler behavior
     /** @see #setTrailingArrayComma(String) */
     private TrailingArrayComma mComma = TrailingArrayComma.NEVER;
 
     /** @see #setClosingParans(String) */
-    private ClosingParens mParens = ClosingParens.ALWAYS;
+    private ClosingParens mParens = ClosingParens.NEVER;
 
     /**
      * Sets the ElementStyle from a string.
@@ -230,7 +230,7 @@ public final class AnnotationUseStyleCheck extends Check
      */
     private void checkStyleType(final DetailAST aAnnotation)
     {
-        if (ElementStyle.MIXED.equals(this.mStyle)
+        if (ElementStyle.IGNORE.equals(this.mStyle)
             || this.mStyle == null)
         {
             return;
@@ -337,7 +337,7 @@ public final class AnnotationUseStyleCheck extends Check
      */
     private void checkTrailingComma(final DetailAST aAnnotation)
     {
-        if (TrailingArrayComma.MIXED.equals(this.mComma)
+        if (TrailingArrayComma.IGNORE.equals(this.mComma)
             || this.mComma == null)
         {
             return;
@@ -400,7 +400,7 @@ public final class AnnotationUseStyleCheck extends Check
      */
     private void checkCheckClosingParens(final DetailAST aAST)
     {
-        if (ClosingParens.MIXED.equals(this.mParens)
+        if (ClosingParens.IGNORE.equals(this.mParens)
             || this.mParens == null)
         {
             return;
@@ -423,9 +423,7 @@ public final class AnnotationUseStyleCheck extends Check
     }
 
     /**
-     * Defines the styles for defining
-     * elements in an annotation.
-     *
+     * Defines the styles for defining elements in an annotation.
      * @author Travis Schneeberger
      */
     public static enum ElementStyle {
@@ -456,7 +454,7 @@ public final class AnnotationUseStyleCheck extends Check
         /**
          * mixed styles.
          */
-        MIXED,
+        IGNORE,
     }
 
     /**
@@ -484,7 +482,7 @@ public final class AnnotationUseStyleCheck extends Check
         /**
          * mixed styles.
          */
-        MIXED,
+        IGNORE,
     }
 
     /**
@@ -512,6 +510,6 @@ public final class AnnotationUseStyleCheck extends Check
         /**
          * mixed styles.
          */
-        MIXED,
+        IGNORE,
     }
 }

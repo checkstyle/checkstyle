@@ -18,8 +18,8 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
     public void testParansAlways() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
         checkConfig.addAttribute("closingParens", "ALWAYS");
-        checkConfig.addAttribute("elementStyle", "MIXED");
-        checkConfig.addAttribute("trailingArrayComma", "MIXED");
+        checkConfig.addAttribute("elementStyle", "ignore");
+        checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = {
             "3: Annotation must have closing parenthesis.",
             "18: Annotation must have closing parenthesis.",
@@ -37,8 +37,8 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
     public void testParansNever() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
         checkConfig.addAttribute("closingParens", "NEVER");
-        checkConfig.addAttribute("elementStyle", "MIXED");
-        checkConfig.addAttribute("trailingArrayComma", "MIXED");
+        checkConfig.addAttribute("elementStyle", "ignore");
+        checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = {
             "13: Annotation cannot have closing parenthesis.",
             "30: Annotation cannot have closing parenthesis.",
@@ -56,9 +56,9 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
     public void testStyleExpanded() throws Exception {
         
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "MIXED");
+        checkConfig.addAttribute("closingParens", "ignore");
         checkConfig.addAttribute("elementStyle", "EXPANDED");
-        checkConfig.addAttribute("trailingArrayComma", "MIXED");
+        checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = {
             "5: Annotation style must be 'EXPANDED'.",
             "12: Annotation style must be 'EXPANDED'.",
@@ -79,9 +79,9 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
     @Test
     public void testStyleCompact() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "MIXED");
+        checkConfig.addAttribute("closingParens", "ignore");
         checkConfig.addAttribute("elementStyle", "COMPACT");
-        checkConfig.addAttribute("trailingArrayComma", "MIXED");
+        checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = {
             "43: Annotation style must be 'COMPACT'.",
             "47: Annotation style must be 'COMPACT'.",
@@ -97,9 +97,9 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
     @Test
     public void testStyleCompactNoArray() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "MIXED");
+        checkConfig.addAttribute("closingParens", "ignore");
         checkConfig.addAttribute("elementStyle", "COMPACT_NO_ARRAY");
-        checkConfig.addAttribute("trailingArrayComma", "MIXED");
+        checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = {
             "5: Annotation style must be 'COMPACT_NO_ARRAY'.",
             "20: Annotation style must be 'COMPACT_NO_ARRAY'.",
@@ -114,8 +114,8 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
     @Test
     public void testCommaAlwaysViolations() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "MIXED");
-        checkConfig.addAttribute("elementStyle", "MIXED");
+        checkConfig.addAttribute("closingParens", "ignore");
+        checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "ALWAYS");
         final String[] expected = {
             "3:20: Annotation array values must contain trailing comma.",
@@ -139,8 +139,8 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
     @Test
     public void testCommaAlwaysNoViolations() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "MIXED");
-        checkConfig.addAttribute("elementStyle", "MIXED");
+        checkConfig.addAttribute("closingParens", "ignore");
+        checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "ALWAYS");
         final String[] expected = {
         };
@@ -151,8 +151,8 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
     @Test
     public void testCommaNeverViolations() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "MIXED");
-        checkConfig.addAttribute("elementStyle", "MIXED");
+        checkConfig.addAttribute("closingParens", "ignore");
+        checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "NEVER");
         final String[] expected = {
             "9:32: Annotation array values cannot contain trailing comma.",
@@ -171,8 +171,8 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
     @Test
     public void testCommaNeverNoViolations() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "MIXED");
-        checkConfig.addAttribute("elementStyle", "MIXED");
+        checkConfig.addAttribute("closingParens", "ignore");
+        checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "NEVER");
         final String[] expected = {
         };
@@ -183,9 +183,9 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport
     @Test
     public void testEverythingMixed() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "MIXED");
-        checkConfig.addAttribute("elementStyle", "MIXED");
-        checkConfig.addAttribute("trailingArrayComma", "MIXED");
+        checkConfig.addAttribute("closingParens", "ignore");
+        checkConfig.addAttribute("elementStyle", "ignore");
+        checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = {
         };
 

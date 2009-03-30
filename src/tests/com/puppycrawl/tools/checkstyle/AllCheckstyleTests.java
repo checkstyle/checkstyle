@@ -1,5 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.checks.annotation.AllAnnotationTests;
+
 import com.puppycrawl.tools.checkstyle.api.AllApiTests;
 import com.puppycrawl.tools.checkstyle.checks.AllChecksTests;
 import com.puppycrawl.tools.checkstyle.checks.blocks.AllBlocksTests;
@@ -31,7 +33,7 @@ import org.junit.runners.Suite;
     AllImportsTests.class, AllIndentationTests.class, AllJavadocTests.class,
     AllMetricsTests.class, AllModifierTests.class, AllNamingTests.class,
     AllSizesTests.class, AllWhitespaceTests.class, AllFilterTests.class,
-    AllGrammarTests.class, AllRegexpTests.class})
+    AllGrammarTests.class, AllRegexpTests.class, AllAnnotationTests.class})
 public class AllCheckstyleTests
 {
 }
