@@ -12,19 +12,24 @@
     <section name="Release 4.4 to 5.0 changes">
       <p>The following checks were added:</p>
       <ul>
-        <li><a href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a></li>
-        <li><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></li>
+        <li><a href="config_annotation.html#AnnotationUseStyle">AnnotationUseStyle</a></li>
+        <li><a href="config_annotation.html#MissingDeprecated">MissingDeprecated</a></li>
+        <li><a href="config_annotation.html#MissingOverride">MissingOverride</a></li>
+        <li><a href="config_annotation.html#PackageAnnotation">PackageAnnotation</a></li>
+        <li><a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a></li>
         <li><a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a></li>
-        <li><a href="config_whitespace.html#FileTabCharacter">FileTabCharacter</a></li>
-        <li><a href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a></li>
-        <li><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></li>
-        <li><a href="config_naming.html#MethodTypeParameterName">MethodTypeParameterName</a></li>
         <li><a href="config_coding.html#NoClone">NoClone</a></li>
         <li><a href="config_coding.html#NoFinalizer">NoFinalizer</a></li>
-        <li><a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a></li>
+        <li><a href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a></li>
+        <li><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></li>
+        <li><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></li>
+        <li><a href="config_naming.html#MethodTypeParameterName">MethodTypeParameterName</a></li>
         <li><a href="config_regexp.html#RegexpMultiline">RegexpMultiline</a></li>
         <li><a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a></li>
         <li><a href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a></li>
+        <li><a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a></li>
+        <li><a href="config_whitespace.html#FileTabCharacter">FileTabCharacter</a></li>
+        <li><a href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a></li>
       </ul>
       <p>The following checks were changed from a Check to a FileSetCheck:</p>
       <ul>
@@ -85,6 +90,22 @@
         <li>All the J2EE checks.</li>
       </ul>
     </section>
+    <section name="Release 5.0 Beta 3">
+      <p>New Features:</p>
+      <ul>
+        <li>
+          New Annotation checks
+          <a href="config_annotation.html#AnnotationUseStyle">AnnotationUseStyle</a>
+          <a href="config_annotation.html#MissingDeprecated">MissingDeprecated</a>
+          <a href="config_annotation.html#MissingOverride">MissingOverride</a>
+          <a href="config_annotation.html#PackageAnnotation">PackageAnnotation</a>
+          <a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a>
+          . Big thanks to Travis Schneeberger who is now a committer on the
+          project.
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 5.0 Beta 2">
       <p>
         Major change to FileSetCheck architecture to move the
