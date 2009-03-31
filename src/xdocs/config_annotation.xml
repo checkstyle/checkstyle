@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <document>
+
   <properties>
-    <title>Annotation Checks</title>
+    <title>Annotations</title>
     <author>Checkstyle Development Team</author>
   </properties>
+
   <body>
     <section name="AnnotationUseStyle">
       <subsection name="Description">
