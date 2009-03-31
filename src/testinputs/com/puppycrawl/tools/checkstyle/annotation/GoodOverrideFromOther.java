@@ -50,6 +50,22 @@ class MoreJunk extends GoodOverrideFromOther {
         @Override
         public void doFoo2() { }
     }
+    
+    class EvenMoreMoreJunk extends MoreJunk implements Serializable {
+
+        /**
+         * {@inheritDoc}
+         */
+        @java.lang.Override
+        public void doFoo() {
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @java.lang.Override
+        public void doFoo2() { }
+    }
 }
 
 enum Football implements IFoo, IBar {

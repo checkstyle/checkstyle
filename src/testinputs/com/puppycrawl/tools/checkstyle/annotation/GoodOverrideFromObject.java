@@ -56,3 +56,15 @@ enum Bleh1 {
         return "B";
     }
 }
+
+enum Bleh22 {
+    B;
+
+    /**
+     * {@inheritDoc}
+     */
+    @java.lang.Override
+    public String toString() {
+        return "B";
+    }
+}

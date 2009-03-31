@@ -25,8 +25,8 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "67:37: The warning '' cannot be suppressed at this location.",
             "72:46: The warning '   ' cannot be suppressed at this location.",
             "77:60: The warning '   ' cannot be suppressed at this location.",
-            "82:83: The warning '' cannot be suppressed at this location.",
-            "82:96: The warning '    ' cannot be suppressed at this location.",
+            "82:93: The warning '' cannot be suppressed at this location.",
+            "82:106: The warning '    ' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
@@ -65,11 +65,11 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "77:37: The warning 'unchecked' cannot be suppressed at this location.",
             "77:60: The warning '   ' cannot be suppressed at this location.",
             "77:68: The warning 'unused' cannot be suppressed at this location.",
-            "82:37: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:83: The warning '' cannot be suppressed at this location.",
-            "82:88: The warning 'foo' cannot be suppressed at this location.",
-            "82:96: The warning '    ' cannot be suppressed at this location.",
-            "82:105: The warning 'unused' cannot be suppressed at this location.",
+            "82:47: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:93: The warning '' cannot be suppressed at this location.",
+            "82:98: The warning 'foo' cannot be suppressed at this location.",
+            "82:106: The warning '    ' cannot be suppressed at this location.",
+            "82:115: The warning 'unused' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
@@ -94,7 +94,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "67:42: The warning 'unchecked' cannot be suppressed at this location.",
             "72:65: The warning 'unchecked' cannot be suppressed at this location.",
             "77:37: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:37: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:47: The warning 'unchecked' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
@@ -117,7 +117,7 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "64:33: The warning 'unchecked' cannot be suppressed at this location.",
             "72:65: The warning 'unchecked' cannot be suppressed at this location.",
             "77:37: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:37: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:47: The warning 'unchecked' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
@@ -150,8 +150,8 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "72:65: The warning 'unchecked' cannot be suppressed at this location.",
             "77:37: The warning 'unchecked' cannot be suppressed at this location.",
             "77:68: The warning 'unused' cannot be suppressed at this location.",
-            "82:37: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:105: The warning 'unused' cannot be suppressed at this location.",
+            "82:47: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:115: The warning 'unused' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
@@ -181,8 +181,8 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "72:65: The warning 'unchecked' cannot be suppressed at this location.",
             "77:37: The warning 'unchecked' cannot be suppressed at this location.",
             "77:68: The warning 'unused' cannot be suppressed at this location.",
-            "82:37: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:105: The warning 'unused' cannot be suppressed at this location.",
+            "82:47: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:115: The warning 'unused' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
@@ -221,11 +221,11 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "77:37: The warning 'unchecked' cannot be suppressed at this location.",
             "77:60: The warning '   ' cannot be suppressed at this location.",
             "77:68: The warning 'unused' cannot be suppressed at this location.",
-            "82:37: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:83: The warning '' cannot be suppressed at this location.",
-            "82:88: The warning 'foo' cannot be suppressed at this location.",
-            "82:96: The warning '    ' cannot be suppressed at this location.",
-            "82:105: The warning 'unused' cannot be suppressed at this location.",
+            "82:47: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:93: The warning '' cannot be suppressed at this location.",
+            "82:98: The warning 'foo' cannot be suppressed at this location.",
+            "82:106: The warning '    ' cannot be suppressed at this location.",
+            "82:115: The warning 'unused' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
@@ -252,10 +252,10 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "72:47: The warning '   ' cannot be suppressed at this location.",
             "72:98: The warning '   ' cannot be suppressed at this location.",
             "77:61: The warning '   ' cannot be suppressed at this location.",
-            "82:84: The warning '' cannot be suppressed at this location.",
-            "82:97: The warning '   ' cannot be suppressed at this location.",
-            "82:171: The warning '' cannot be suppressed at this location.",
-            "82:184: The warning '   ' cannot be suppressed at this location.",
+            "82:94: The warning '' cannot be suppressed at this location.",
+            "82:107: The warning '   ' cannot be suppressed at this location.",
+            "82:181: The warning '' cannot be suppressed at this location.",
+            "82:194: The warning '   ' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
@@ -308,16 +308,16 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "77:61: The warning '   ' cannot be suppressed at this location.",
             "77:69: The warning 'unused' cannot be suppressed at this location.",
             
-            "82:38: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:84: The warning '' cannot be suppressed at this location.",
-            "82:89: The warning 'foo' cannot be suppressed at this location.",
-            "82:97: The warning '   ' cannot be suppressed at this location.",
-            "82:105: The warning 'unused' cannot be suppressed at this location.",
-            "82:125: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:171: The warning '' cannot be suppressed at this location.",
-            "82:176: The warning 'foo' cannot be suppressed at this location.",
-            "82:184: The warning '   ' cannot be suppressed at this location.",
-            "82:192: The warning 'unused' cannot be suppressed at this location.",
+            "82:48: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:94: The warning '' cannot be suppressed at this location.",
+            "82:99: The warning 'foo' cannot be suppressed at this location.",
+            "82:107: The warning '   ' cannot be suppressed at this location.",
+            "82:115: The warning 'unused' cannot be suppressed at this location.",
+            "82:135: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:181: The warning '' cannot be suppressed at this location.",
+            "82:186: The warning 'foo' cannot be suppressed at this location.",
+            "82:194: The warning '   ' cannot be suppressed at this location.",
+            "82:202: The warning 'unused' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
@@ -344,8 +344,8 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "72:66: The warning 'unchecked' cannot be suppressed at this location.",
             "72:117: The warning 'unchecked' cannot be suppressed at this location.",
             "77:38: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:38: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:125: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:48: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:135: The warning 'unchecked' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
@@ -406,10 +406,10 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "77:38: The warning 'unchecked' cannot be suppressed at this location.",
             "77:69: The warning 'unused' cannot be suppressed at this location.",
             
-            "82:38: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:105: The warning 'unused' cannot be suppressed at this location.",
-            "82:125: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:192: The warning 'unused' cannot be suppressed at this location.",
+            "82:48: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:115: The warning 'unused' cannot be suppressed at this location.",
+            "82:135: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:202: The warning 'unused' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
@@ -443,10 +443,10 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "72:117: The warning 'unchecked' cannot be suppressed at this location.",
             "77:38: The warning 'unchecked' cannot be suppressed at this location.",
             "77:69: The warning 'unused' cannot be suppressed at this location.",
-            "82:38: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:105: The warning 'unused' cannot be suppressed at this location.",
-            "82:125: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:192: The warning 'unused' cannot be suppressed at this location.",
+            "82:48: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:115: The warning 'unused' cannot be suppressed at this location.",
+            "82:135: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:202: The warning 'unused' cannot be suppressed at this location.",
             };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
@@ -499,16 +499,16 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "77:61: The warning '   ' cannot be suppressed at this location.",
             "77:69: The warning 'unused' cannot be suppressed at this location.",
             
-            "82:38: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:84: The warning '' cannot be suppressed at this location.",
-            "82:89: The warning 'foo' cannot be suppressed at this location.",
-            "82:97: The warning '   ' cannot be suppressed at this location.",
-            "82:105: The warning 'unused' cannot be suppressed at this location.",
-            "82:125: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:171: The warning '' cannot be suppressed at this location.",
-            "82:176: The warning 'foo' cannot be suppressed at this location.",
-            "82:184: The warning '   ' cannot be suppressed at this location.",
-            "82:192: The warning 'unused' cannot be suppressed at this location.",
+            "82:48: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:94: The warning '' cannot be suppressed at this location.",
+            "82:99: The warning 'foo' cannot be suppressed at this location.",
+            "82:107: The warning '   ' cannot be suppressed at this location.",
+            "82:115: The warning 'unused' cannot be suppressed at this location.",
+            "82:135: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:181: The warning '' cannot be suppressed at this location.",
+            "82:186: The warning 'foo' cannot be suppressed at this location.",
+            "82:194: The warning '   ' cannot be suppressed at this location.",
+            "82:202: The warning 'unused' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
@@ -533,10 +533,10 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "72:53: The warning '   ' cannot be suppressed at this location.",
             "72:104: The warning '   ' cannot be suppressed at this location.",
             "77:67: The warning '   ' cannot be suppressed at this location.",
-            "82:90: The warning '' cannot be suppressed at this location.",
-            "82:103: The warning '   ' cannot be suppressed at this location.",
-            "82:177: The warning '' cannot be suppressed at this location.",
-            "82:190: The warning '   ' cannot be suppressed at this location.",
+            "82:100: The warning '' cannot be suppressed at this location.",
+            "82:113: The warning '   ' cannot be suppressed at this location.",
+            "82:187: The warning '' cannot be suppressed at this location.",
+            "82:200: The warning '   ' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
@@ -585,16 +585,16 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "77:44: The warning 'unchecked' cannot be suppressed at this location.",
             "77:67: The warning '   ' cannot be suppressed at this location.",
             "77:75: The warning 'unused' cannot be suppressed at this location.",
-            "82:44: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:90: The warning '' cannot be suppressed at this location.",
-            "82:95: The warning 'foo' cannot be suppressed at this location.",
-            "82:103: The warning '   ' cannot be suppressed at this location.",
-            "82:111: The warning 'unused' cannot be suppressed at this location.",
-            "82:131: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:177: The warning '' cannot be suppressed at this location.",
-            "82:182: The warning 'foo' cannot be suppressed at this location.",
-            "82:190: The warning '   ' cannot be suppressed at this location.",
-            "82:198: The warning 'unused' cannot be suppressed at this location.",
+            "82:54: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:100: The warning '' cannot be suppressed at this location.",
+            "82:105: The warning 'foo' cannot be suppressed at this location.",
+            "82:113: The warning '   ' cannot be suppressed at this location.",
+            "82:121: The warning 'unused' cannot be suppressed at this location.",
+            "82:141: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:187: The warning '' cannot be suppressed at this location.",
+            "82:192: The warning 'foo' cannot be suppressed at this location.",
+            "82:200: The warning '   ' cannot be suppressed at this location.",
+            "82:208: The warning 'unused' cannot be suppressed at this location.",
             
         };
 
@@ -623,8 +623,8 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "72:72: The warning 'unchecked' cannot be suppressed at this location.",
             "72:123: The warning 'unchecked' cannot be suppressed at this location.",
             "77:44: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:44: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:131: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:54: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:141: The warning 'unchecked' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
@@ -680,10 +680,10 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "72:123: The warning 'unchecked' cannot be suppressed at this location.",
             "77:44: The warning 'unchecked' cannot be suppressed at this location.",
             "77:75: The warning 'unused' cannot be suppressed at this location.",
-            "82:44: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:111: The warning 'unused' cannot be suppressed at this location.",
-            "82:131: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:198: The warning 'unused' cannot be suppressed at this location.",
+            "82:54: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:121: The warning 'unused' cannot be suppressed at this location.",
+            "82:141: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:208: The warning 'unused' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
@@ -719,10 +719,10 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "72:123: The warning 'unchecked' cannot be suppressed at this location.",
             "77:44: The warning 'unchecked' cannot be suppressed at this location.",
             "77:75: The warning 'unused' cannot be suppressed at this location.",
-            "82:44: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:111: The warning 'unused' cannot be suppressed at this location.",
-            "82:131: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:198: The warning 'unused' cannot be suppressed at this location.",
+            "82:54: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:121: The warning 'unused' cannot be suppressed at this location.",
+            "82:141: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:208: The warning 'unused' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
@@ -771,16 +771,16 @@ public class SuppressWarningsTest extends BaseCheckTestSupport
             "77:44: The warning 'unchecked' cannot be suppressed at this location.",
             "77:67: The warning '   ' cannot be suppressed at this location.",
             "77:75: The warning 'unused' cannot be suppressed at this location.",
-            "82:44: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:90: The warning '' cannot be suppressed at this location.",
-            "82:95: The warning 'foo' cannot be suppressed at this location.",
-            "82:103: The warning '   ' cannot be suppressed at this location.",
-            "82:111: The warning 'unused' cannot be suppressed at this location.",
-            "82:131: The warning 'unchecked' cannot be suppressed at this location.",
-            "82:177: The warning '' cannot be suppressed at this location.",
-            "82:182: The warning 'foo' cannot be suppressed at this location.",
-            "82:190: The warning '   ' cannot be suppressed at this location.",
-            "82:198: The warning 'unused' cannot be suppressed at this location.",
+            "82:54: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:100: The warning '' cannot be suppressed at this location.",
+            "82:105: The warning 'foo' cannot be suppressed at this location.",
+            "82:113: The warning '   ' cannot be suppressed at this location.",
+            "82:121: The warning 'unused' cannot be suppressed at this location.",
+            "82:141: The warning 'unchecked' cannot be suppressed at this location.",
+            "82:187: The warning '' cannot be suppressed at this location.",
+            "82:192: The warning 'foo' cannot be suppressed at this location.",
+            "82:200: The warning '   ' cannot be suppressed at this location.",
+            "82:208: The warning 'unused' cannot be suppressed at this location.",
         };
 
         verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);

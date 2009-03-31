@@ -90,6 +90,13 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
     private static final String SUPPRESS_WARNINGS = "SuppressWarnings";
 
     /**
+     * fully-qualified {@link SuppressWarnings SuppressWarnings}
+     * annotation name
+     */
+    private static final String FQ_SUPPRESS_WARNINGS =
+        "java.lang." + SUPPRESS_WARNINGS;
+
+    /**
      * Ctor that specifies the default for the format property
      * as specified in the class javadocs.
      */
@@ -127,9 +134,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
     @Override
     public void visitToken(final DetailAST aAST)
     {
-        final DetailAST annotation =
-            AnnotationUtility.getAnnotation(
-                aAST, SuppressWarningsCheck.SUPPRESS_WARNINGS);
+        final DetailAST annotation = this.getSuppressWarnings(aAST);
 
         if (annotation == null) {
             return;
@@ -172,6 +177,24 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
             }
             warning = warning.getNextSibling();
         }
+    }
+
+    /**
+     * Gets the {@link SuppressWarnings SuppressWarnings} annotation
+     * that is annotating the AST.  If the annotation does not exist
+     * this method will return {@code null}.
+     *
+     * @param aAST the AST
+     * @return the {@link SuppressWarnings SuppressWarnings} annotation
+     */
+    private DetailAST getSuppressWarnings(DetailAST aAST)
+    {
+        final DetailAST annotation = AnnotationUtility.getAnnotation(
+            aAST, SuppressWarningsCheck.SUPPRESS_WARNINGS);
+
+        return (annotation != null) ? annotation
+            : AnnotationUtility.getAnnotation(
+                aAST, SuppressWarningsCheck.FQ_SUPPRESS_WARNINGS);
     }
 
     /**

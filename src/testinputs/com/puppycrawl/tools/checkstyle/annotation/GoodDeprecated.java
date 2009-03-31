@@ -65,3 +65,16 @@ interface Foo5 {
     @Deprecated
     int bleh();
 }
+
+/**
+ * @deprecated bleh
+ */
+@java.lang.Deprecated
+@interface FullName {
+
+    /**
+     * @deprecated bleh
+     */
+    @java.lang.Deprecated
+    int bleh();
+}

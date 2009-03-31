@@ -39,6 +39,19 @@ public final class AnnotationUtility
      * Checks to see if the AST is annotated with
      * the passed in annotation.
      *
+     * <p>
+     * This method will not look for imports or package
+     * statements to detect the passed in annotation.
+     * </p>
+     *
+     * <p>
+     * To check if an AST contains a passed in annotation
+     * taking into account fully-qualified names
+     * (ex: java.lang.Override, Override)
+     * this method will need to be called twice. Once for each
+     * name given.
+     * </p>
+     *
      * @param aAST the current node
      * @param aAnnotation the annotation name to check for
      * @return true if contains the annotation
@@ -99,6 +112,19 @@ public final class AnnotationUtility
      * the passed in annotation and return the AST
      * representing that annotation.
      *
+     * <p>
+     * This method will not look for imports or package
+     * statements to detect the passed in annotation.
+     * </p>
+     *
+     * <p>
+     * To check if an AST contains a passed in annotation
+     * taking into account fully-qualified names
+     * (ex: java.lang.Override, Override)
+     * this method will need to be called twice. Once for each
+     * name given.
+     * </p>
+     *
      * @param aAST the current node
      * @param aAnnotation the annotation name to check for
      * @return the AST representing that annotation
@@ -127,8 +153,10 @@ public final class AnnotationUtility
             child != null; child = child.getNextSibling())
         {
             if (child.getType() == TokenTypes.ANNOTATION) {
-                final DetailAST aName = child.findFirstToken(TokenTypes.IDENT);
-                if (aAnnotation.equals(aName.getText())) {
+                final DetailAST at = child.getFirstChild();
+                final String aName =
+                    FullIdent.createFullIdent(at.getNextSibling()).getText();
+                if (aAnnotation.equals(aName)) {
                     return child;
                 }
             }

@@ -35,4 +35,22 @@ public class GoodAnnonOverride
             }
         });
     }
+    
+    void doFoo2(Runnable r) {
+        doFoo(new Runnable() {
+
+            public void run() {
+                Throwable t = new Throwable() {
+
+                    /**
+                     * {@inheritDoc}
+                     */
+                    @java.lang.Override
+                    public String toString() {
+                        return "junk";
+                    }
+                };
+            }
+        });
+    }
 }

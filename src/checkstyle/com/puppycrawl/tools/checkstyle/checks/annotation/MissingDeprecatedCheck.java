@@ -76,6 +76,9 @@ public final class MissingDeprecatedCheck extends Check
     /** {@link Deprecated Deprecated} annotation name */
     private static final String DEPRECATED = "Deprecated";
 
+    /** fully-qualified {@link Deprecated Deprecated} annotation name */
+    private static final String FQ_DEPRECATED = "java.lang." + DEPRECATED;
+
     /** compiled regexp to match Javadoc tag with no argument * */
     private static final Pattern MATCH_DEPRECATED =
         Utils.createPattern("@(deprecated)\\s+\\S");
@@ -125,7 +128,8 @@ public final class MissingDeprecatedCheck extends Check
             this.getFileContents().getJavadocBefore(aAST.getLineNo());
 
         final boolean containsAnnotation =
-            AnnotationUtility.containsAnnotation(aAST, DEPRECATED);
+            AnnotationUtility.containsAnnotation(aAST, DEPRECATED)
+            || AnnotationUtility.containsAnnotation(aAST, FQ_DEPRECATED);
 
         final boolean containsJavadocTag = this.containsJavadocTag(javadoc);
 

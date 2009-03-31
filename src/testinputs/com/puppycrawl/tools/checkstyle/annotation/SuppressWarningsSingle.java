@@ -79,7 +79,7 @@ public class SuppressWarningsSingle
             
         }
         
-        @SuppressWarnings((false) ? "unchecked" : ("" == "") ? (false) ? (true) ? "" : "foo" : "    " : "unused")
+        @java.lang.SuppressWarnings((false) ? "unchecked" : ("" == "") ? (false) ? (true) ? "" : "foo" : "    " : "unused")
         public void seriously() {
             
         }
