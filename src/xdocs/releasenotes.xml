@@ -104,6 +104,15 @@
           project.
         </li>
       </ul>
+      <p>Fixed Bugs:</p>
+      <ul>
+        <li>
+          <a href="config_coding.html#RequireThis">RequireThis</a>
+          reported a violation when using an annotation
+          with a member name that is the same as a member name in the enclosing
+          class the annotation was used in (bug #2123003).
+        </li>
+      </ul>
     </section>
 
     <section name="Release 5.0 Beta 2">
