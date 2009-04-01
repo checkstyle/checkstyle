@@ -51,3 +51,22 @@ enum MyEnum
         z = 0;
     }
 }
+
+class Bug2123003 {
+    @Rock(band = "GnR")
+    private String band;
+    
+    class Inner {
+        @Rock(band = {"GnR"})
+        private String band;
+    }
+    
+    class Inner2 {
+        @Rock(band = {(true) ? "GnR" : "Tool"})
+        private String band;
+    }
+    
+    @interface Rock {
+        String[] band() default "Metallica";
+    }
+}

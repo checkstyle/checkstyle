@@ -138,6 +138,14 @@ public class RequireThisCheck extends DeclarationCollector
     {
         final int parentType = aAST.getParent().getType();
 
+        if (parentType == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR
+            || parentType == TokenTypes.ANNOTATION
+            || parentType == TokenTypes.ANNOTATION_FIELD_DEF)
+        {
+            //cannot refer to 'this' from annotations
+            return;
+        }
+
         // let's check method calls
         if (parentType == TokenTypes.METHOD_CALL) {
             if (mCheckMethods) {
