@@ -9,8 +9,13 @@
   </properties>
 
   <body>
-    <section name="Release 4.4 to 5.0 changes">
-      <p>The following checks were added:</p>
+    <section name="Release 5.0">
+      <p>
+        Release 5.0 is not 100% backwardly compatible with release
+        4.4. Most likely you will need to update your configuration
+        file.
+      </p>
+      <p>The following checks were added since release 4.4:</p>
       <ul>
         <li><a href="config_annotation.html#AnnotationUseStyle">AnnotationUseStyle</a></li>
         <li><a href="config_annotation.html#MissingDeprecated">MissingDeprecated</a></li>
@@ -31,7 +36,10 @@
         <li><a href="config_whitespace.html#FileTabCharacter">FileTabCharacter</a></li>
         <li><a href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a></li>
       </ul>
-      <p>The following checks were changed from a Check to a FileSetCheck:</p>
+      <p>
+        Since release 4.4 the following checks were changed from a Check
+        to a FileSetCheck:
+      </p>
       <ul>
         <li><a href="config_header.html#Header">Header</a></li>
         <li><a href="config_header.html#RegexpHeader">RegexpHeader</a></li>
@@ -61,7 +69,7 @@
   &lt;/module&gt;
 &lt;/module&gt;
       </source>
-      <p>The following checks were removed:</p>
+      <p>The following checks were removed since release 4.4:</p>
       <ul>
         <li>
           GenericIllegalRegexpCheck - replaced with <a
