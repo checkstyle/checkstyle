@@ -7,7 +7,7 @@
   <property file="checkstyle.buildproperties" />
   <property file="${user.home}/checkstyle.buildproperties" />
 
-  <property name="version" value="5.0" />
+  <property name="version" value="5.1-SNAPSHOT" />
   <property name="ant.jar" value="${ant.home}/lib/ant.jar" />
   <property name="antlr.jar" value="lib/antlr.jar" />
   <property name="velocity.jar" value="lib/velocity-dep-1.4.jar" />
