@@ -97,9 +97,7 @@
         </li>
         <li>All the J2EE checks.</li>
       </ul>
-    </section>
-    <section name="Release 5.0 Beta 3">
-      <p>New Features:</p>
+      <p>New Features since release 5.0 Beta 2:</p>
       <ul>
         <li>
           New Annotation checks
@@ -112,7 +110,7 @@
           project.
         </li>
       </ul>
-      <p>Fixed Bugs:</p>
+      <p>Fixed Bugs since release 5.0 Beta 2:</p>
       <ul>
         <li>
           <a href="config_coding.html#RequireThis">RequireThis</a>
