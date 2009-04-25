@@ -9,6 +9,23 @@
   </properties>
 
   <body>
+    <section name="Release 5.1">
+      <p>New features:</p>
+      <ul>
+        <li></li>
+      </ul>
+      <p>Bug fixes:</p>
+      <ul>
+        <li></li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>
+          <i>Updated dependencies</i>: Updated google collections to version
+          1.0 RC1.
+        </li>
+      </ul>
+    </section>
     <section name="Release 5.0">
       <p>
         Release 5.0 is not 100% backwardly compatible with release

@@ -21,8 +21,9 @@ package com.puppycrawl.tools.checkstyle;
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 import antlr.TokenStreamRecognitionException;
+
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -59,9 +60,8 @@ public final class TreeWalker
     private static final int DEFAULT_TAB_WIDTH = 8;
 
     /** maps from token name to checks */
-    //private final Map<String, List<Check>> mTokenToChecks = Maps.newHashMap();
     private final Multimap<String, Check> mTokenToChecks =
-        Multimaps.newHashMultimap();
+        HashMultimap.create();
     /** all the registered checks */
     private final Set<Check> mAllChecks = Sets.newHashSet();
     /** the distance between tab stops */

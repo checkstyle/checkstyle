@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.duplicates;
 
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.MapMaker;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -378,7 +378,7 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
         // remember the line combinations where we must ignore identical blocks
         // because we have already reported them for an earlier blockIdx.
         final Multimap<Integer, Integer> ignorePairs =
-            Multimaps.newArrayListMultimap();
+            ArrayListMultimap.create();
 
         // go through all the blocks in iFile and
         // check if the following mMin lines occur in jFile
