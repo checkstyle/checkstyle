@@ -173,7 +173,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
 
-    public static DefaultConfiguration createFilterConfig(Class aClass)
+    public static DefaultConfiguration createFilterConfig(Class<?> aClass)
     {
         return new DefaultConfiguration(aClass.getName());
     }

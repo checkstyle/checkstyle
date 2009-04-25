@@ -82,7 +82,7 @@ public class SuppressWithNearbyCommentFilter
     /**
      * A Tag holds a suppression comment and its location.
      */
-    public class Tag implements Comparable
+    public class Tag implements Comparable<Tag>
     {
         /** The text of the tag. */
         private String mText;
@@ -176,20 +176,19 @@ public class SuppressWithNearbyCommentFilter
         /**
          * Compares the position of this tag in the file
          * with the position of another tag.
-         * @param aObject the tag to compare with this one.
+         * @param aOther the tag to compare with this one.
          * @return a negative number if this tag is before the other tag,
          * 0 if they are at the same position, and a positive number if this
          * tag is after the other tag.
          * @see java.lang.Comparable#compareTo(java.lang.Object)
          */
-        public int compareTo(Object aObject)
+        public int compareTo(Tag aOther)
         {
-            final Tag other = (Tag) aObject;
-            if (mFirstLine == other.mFirstLine) {
-                return mLastLine - other.mLastLine;
+            if (mFirstLine == aOther.mFirstLine) {
+                return mLastLine - aOther.mLastLine;
             }
 
-            return (mFirstLine - other.mFirstLine);
+            return (mFirstLine - aOther.mFirstLine);
         }
 
         /**
@@ -292,7 +291,7 @@ public class SuppressWithNearbyCommentFilter
 
     //TODO: Investigate performance improvement with array
     /** Tagged comments */
-    private final List mTags = new ArrayList();
+    private final List<Tag> mTags = new ArrayList<Tag>();
 
     /**
      * References the current FileContents for this filter.
@@ -301,7 +300,8 @@ public class SuppressWithNearbyCommentFilter
      * and FileContentsHolder are reassigned to the next FileContents,
      * at which time filtering for the current FileContents is finished.
      */
-    private WeakReference mFileContentsReference = new WeakReference(null);
+    private WeakReference<FileContents> mFileContentsReference =
+        new WeakReference<FileContents>(null);
 
     /**
      * Constructs a SuppressionCommentFilter.
@@ -352,7 +352,7 @@ public class SuppressWithNearbyCommentFilter
      */
     public void setFileContents(FileContents aFileContents)
     {
-        mFileContentsReference = new WeakReference(aFileContents);
+        mFileContentsReference = new WeakReference<FileContents>(aFileContents);
     }
 
     /**
@@ -446,7 +446,7 @@ public class SuppressWithNearbyCommentFilter
             setFileContents(currentContents);
             tagSuppressions();
         }
-        for (final Iterator iter = mTags.iterator(); iter.hasNext();) {
+        for (final Iterator<Tag> iter = mTags.iterator(); iter.hasNext();) {
             final Tag tag = (Tag) iter.next();
             if (tag.isMatch(aEvent)) {
                 return false;
@@ -467,10 +467,9 @@ public class SuppressWithNearbyCommentFilter
             tagSuppressions(contents.getCppComments().values());
         }
         if (mCheckC) {
-            final Collection cComments = contents.getCComments().values();
-            final Iterator iter = cComments.iterator();
-            while (iter.hasNext()) {
-                final Collection element = (Collection) iter.next();
+            final Collection<List<TextBlock>> cComments =
+                contents.getCComments().values();
+            for (List<TextBlock> element : cComments) {
                 tagSuppressions(element);
             }
         }
@@ -482,10 +481,9 @@ public class SuppressWithNearbyCommentFilter
      * set of suppression tags.
      * @param aComments the set of comments.
      */
-    private void tagSuppressions(Collection aComments)
+    private void tagSuppressions(Collection<TextBlock> aComments)
     {
-        for (final Iterator iter = aComments.iterator(); iter.hasNext();) {
-            final TextBlock comment = (TextBlock) iter.next();
+        for (TextBlock comment : aComments) {
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
             tagCommentLine(text[0], startLineNo, comment.getStartColNo());

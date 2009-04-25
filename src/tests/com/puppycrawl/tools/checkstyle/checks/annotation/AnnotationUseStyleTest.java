@@ -1,10 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.io.File;
-
-import org.junit.Ignore;
 import org.junit.Test;
-
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
