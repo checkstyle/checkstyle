@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import com.google.common.collect.ImmutableMap;
+
 import java.io.Serializable;
-import java.util.Map;
 
 
 /**
@@ -61,5 +62,5 @@ public interface Configuration extends Serializable
      * for this configuration.
      * @return unmodifiable map containing custom messages
      */
-    Map<String, String> getMessages();
+    ImmutableMap<String, String> getMessages();
 }

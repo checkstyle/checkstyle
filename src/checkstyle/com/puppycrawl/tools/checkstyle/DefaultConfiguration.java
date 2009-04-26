@@ -18,12 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.google.common.collect.ImmutableMap;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -129,8 +130,8 @@ public final class DefaultConfiguration implements Configuration
      * for this configuration.
      * @return unmodifiable map containing custom messages
      */
-    public Map<String, String> getMessages()
+    public ImmutableMap<String, String> getMessages()
     {
-        return Collections.unmodifiableMap(mMessages);
+        return ImmutableMap.copyOf(mMessages);
     }
 }

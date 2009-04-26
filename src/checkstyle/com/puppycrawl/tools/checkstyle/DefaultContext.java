@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.google.common.collect.ImmutableList;
+
+import com.google.common.collect.ImmutableCollection;
+
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Context;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -40,9 +42,9 @@ public final class DefaultContext implements Context
     }
 
     /** {@inheritDoc} */
-    public Collection<String> getAttributeNames()
+    public ImmutableCollection<String> getAttributeNames()
     {
-        return Collections.unmodifiableCollection(mEntries.keySet());
+        return ImmutableList.copyOf(mEntries.keySet());
     }
 
     /**

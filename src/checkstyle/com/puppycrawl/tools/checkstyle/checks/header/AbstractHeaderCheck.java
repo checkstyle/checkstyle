@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import com.google.common.collect.ImmutableList;
+
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,7 +29,6 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
-import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.Lists;
@@ -58,9 +59,9 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      * Return the header lines to check against.
      * @return the header lines to check against.
      */
-    protected List<String> getHeaderLines()
+    protected ImmutableList<String> getHeaderLines()
     {
-        return Collections.unmodifiableList(mHeaderLines);
+        return ImmutableList.copyOf(mHeaderLines);
     }
 
     /**

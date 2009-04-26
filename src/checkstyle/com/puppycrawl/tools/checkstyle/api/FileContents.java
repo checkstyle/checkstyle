@@ -18,11 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import com.google.common.collect.ImmutableMap;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -109,9 +110,9 @@ public final class FileContents implements CommentListener
      * the value is the comment {@link TextBlock} at the line.
      * @return the Map of comments
      */
-    public Map<Integer, TextBlock> getCppComments()
+    public ImmutableMap<Integer, TextBlock> getCppComments()
     {
-        return Collections.unmodifiableMap(mCPlusPlusComments);
+        return ImmutableMap.copyOf(mCPlusPlusComments);
     }
 
     /**
@@ -152,9 +153,9 @@ public final class FileContents implements CommentListener
      * that start at that line.
      * @return the map of comments
      */
-    public Map<Integer, List<TextBlock>> getCComments()
+    public ImmutableMap<Integer, List<TextBlock>> getCComments()
     {
-        return Collections.unmodifiableMap(mCComments);
+        return ImmutableMap.copyOf(mCComments);
     }
 
     /**
@@ -252,8 +253,8 @@ public final class FileContents implements CommentListener
     {
         // Check C comments (all comments should be checked)
         final Collection<List<TextBlock>> values = mCComments.values();
-        for (List<TextBlock> row : values) {
-            for (TextBlock comment : row) {
+        for (final List<TextBlock> row : values) {
+            for (final TextBlock comment : row) {
                 if (comment.intersects(aStartLineNo, aStartColNo, aEndLineNo,
                         aEndColNo))
                 {
