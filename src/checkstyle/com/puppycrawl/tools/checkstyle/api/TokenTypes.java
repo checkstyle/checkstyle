@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import com.google.common.collect.Maps;
+import com.google.common.collect.ImmutableMap;
+
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
 import java.lang.reflect.Field;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -3337,13 +3337,14 @@ public final class TokenTypes
     ////////////////////////////////////////////////////////////////////////
 
     /** maps from a token name to value */
-    private static final Map<String, Integer> TOKEN_NAME_TO_VALUE =
-        Maps.newHashMap();
+    private static final ImmutableMap<String, Integer> TOKEN_NAME_TO_VALUE;
     /** maps from a token value to name */
     private static final String[] TOKEN_VALUE_TO_NAME;
 
     // initialise the constants
     static {
+        final ImmutableMap.Builder<String, Integer> builder =
+            ImmutableMap.builder();
         final Field[] fields = TokenTypes.class.getDeclaredFields();
         String[] tempTokenValueToName = new String[0];
         for (final Field f : fields) {
@@ -3355,7 +3356,7 @@ public final class TokenTypes
             final String name = f.getName();
             try {
                 final int tokenValue = f.getInt(name);
-                TOKEN_NAME_TO_VALUE.put(name, tokenValue);
+                builder.put(name, tokenValue);
                 if (tokenValue > tempTokenValueToName.length - 1) {
                     final String[] temp = new String[tokenValue + 1];
                     System.arraycopy(tempTokenValueToName, 0,
@@ -3373,6 +3374,8 @@ public final class TokenTypes
                 System.exit(1);
             }
         }
+
+        TOKEN_NAME_TO_VALUE = builder.build();
         TOKEN_VALUE_TO_NAME = tempTokenValueToName;
     }
 

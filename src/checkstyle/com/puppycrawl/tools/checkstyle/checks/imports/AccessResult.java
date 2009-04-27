@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.google.common.collect.Maps;
+import com.google.common.collect.ImmutableMap;
+
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * Represents the result of an access check.
@@ -54,13 +54,15 @@ final class AccessResult
             LABEL_UNKNOWN);
 
     /** map from results names to the respective result */
-    private static final Map<String, AccessResult> NAME_TO_LEVEL =
-        Maps.newHashMap();
+    private static final ImmutableMap<String, AccessResult> NAME_TO_LEVEL;
 
     static {
-        NAME_TO_LEVEL.put(LABEL_ALLOWED, ALLOWED);
-        NAME_TO_LEVEL.put(LABEL_DISALLOWED, DISALLOWED);
-        NAME_TO_LEVEL.put(LABEL_UNKNOWN, UNKNOWN);
+        final ImmutableMap.Builder<String, AccessResult> builder =
+            ImmutableMap.builder();
+        builder.put(LABEL_ALLOWED, ALLOWED);
+        builder.put(LABEL_DISALLOWED, DISALLOWED);
+        builder.put(LABEL_UNKNOWN, UNKNOWN);
+        NAME_TO_LEVEL = builder.build();
     }
 
     /** Code for the access result. */
