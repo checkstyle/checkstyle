@@ -85,7 +85,7 @@ public class SuppressWithNearbyCommentFilter
     public class Tag implements Comparable<Tag>
     {
         /** The text of the tag. */
-        private String mText;
+        private final String mText;
 
         /** The first line where warnings may be suppressed. */
         private int mFirstLine;
@@ -133,7 +133,7 @@ public class SuppressWithNearbyCommentFilter
                         }
                         influence = Integer.parseInt(format);
                     }
-                    catch (NumberFormatException e) {
+                    catch (final NumberFormatException e) {
                         throw new ConversionException(
                             "unable to parse influence from '" + aText
                                 + "' using " + mInfluenceFormat, e);
@@ -247,6 +247,7 @@ public class SuppressWithNearbyCommentFilter
         }
 
         /** {@inheritDoc} */
+        @Override
         public final String toString()
         {
             return "Tag[lines=[" + getFirstLine() + " to " + getLastLine()
@@ -343,7 +344,7 @@ public class SuppressWithNearbyCommentFilter
     /** @return the FileContents for this filter. */
     public FileContents getFileContents()
     {
-        return (FileContents) mFileContentsReference.get();
+        return mFileContentsReference.get();
     }
 
     /**
@@ -447,7 +448,7 @@ public class SuppressWithNearbyCommentFilter
             tagSuppressions();
         }
         for (final Iterator<Tag> iter = mTags.iterator(); iter.hasNext();) {
-            final Tag tag = (Tag) iter.next();
+            final Tag tag = iter.next();
             if (tag.isMatch(aEvent)) {
                 return false;
             }
@@ -469,7 +470,7 @@ public class SuppressWithNearbyCommentFilter
         if (mCheckC) {
             final Collection<List<TextBlock>> cComments =
                 contents.getCComments().values();
-            for (List<TextBlock> element : cComments) {
+            for (final List<TextBlock> element : cComments) {
                 tagSuppressions(element);
             }
         }
@@ -483,7 +484,7 @@ public class SuppressWithNearbyCommentFilter
      */
     private void tagSuppressions(Collection<TextBlock> aComments)
     {
-        for (TextBlock comment : aComments) {
+        for (final TextBlock comment : aComments) {
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
             tagCommentLine(text[0], startLineNo, comment.getStartColNo());
