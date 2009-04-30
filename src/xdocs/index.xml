@@ -149,6 +149,22 @@
           <td></td>
         </tr>
         <tr>
+          <td><a href="http://www.netbeans.org">NetBeans</a></td>
+          <td></td>
+          <td>
+            <a href="http://ammatsun.com/checkstyle4nb.aspx">Checkstyle4nb</a>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="http://www.netbeans.org">NetBeans</a></td>
+          <td></td>
+          <td>
+            <a href="https://sqe.dev.java.net/">Software Quality Environment (SQE)</a>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
           <td><a href="http://www.bluej.org">BlueJ</a></td>
           <td>Rick Giles</td>
           <td><a href="http://bluejcheckstyle.sourceforge.net/">bluejcheckstyle
