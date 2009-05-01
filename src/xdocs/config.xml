@@ -964,6 +964,20 @@
     &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
 &lt;/module&gt;
       </source>
+
+      <p>
+        To configure a filter to suppress all audit events between a comment
+        containing <code>CHECKSTYLE_OFF: ALL</code> and a comment containing
+        <code>CHECKSTYLE_OFF: ALL</code> except for the <em>EqualsHashCode</em> check:
+      </p>
+
+      <source>
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CHECKSTYLE_OFF: ALL&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CHECKSTYLE_ON: ALL&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;^((?!(EqualsHashCode)).)*$&quot;/&gt;
+&lt;/module&gt;
+      </source>
       </subsection>
 
       <subsection name="SuppressWithNearbyCommentFilter">
