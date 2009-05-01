@@ -47,7 +47,7 @@ import java.util.Map;
  * <p>
  * For now, the number of required/optional tag arguments are not included
  * because some Javadoc tags have very complex rules for determining this
- * (ex: <pre>{@value}</pre> stag).
+ * (ex: {@code {@value}} tag).
  * </p>
  *
  * <p>
@@ -60,9 +60,7 @@ import java.util.Map;
 public enum JavadocTagInfo
 {
     /**
-     * <pre>
-     * &#064;author
-     * </pre>.
+     * {@code @author}.
      */
     AUTHOR("@author", "author", Type.BLOCK, true, true)
     {
@@ -80,9 +78,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;code}
-     * </pre>.
+     * {@code {@code}}.
      */
     CODE("{@code}", "code", Type.INLINE, true, true)
     {
@@ -104,9 +100,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;docRoot}
-     * </pre>.
+     * {@code {@docRoot}}.
      */
     DOC_ROOT("{@docRoot}", "docRoot", Type.INLINE, true, true)
     {
@@ -127,9 +121,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;deprecated
-     * </pre>.
+     * {@code @deprecated}.
      */
     DEPRECATED("@deprecated", "deprecated", Type.BLOCK, false, false)
     {
@@ -152,9 +144,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;exception
-     * </pre>.
+     * {@code @exception}.
      */
     EXCEPTION("@exception", "exception", Type.BLOCK, false, false)
     {
@@ -168,9 +158,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;inheritDoc}
-     * </pre>.
+     * {@code {@inheritDoc}}.
      */
     INHERIT_DOC("{@inheritDoc}", "inheritDoc", Type.INLINE, false, false)
     {
@@ -188,9 +176,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;link}
-     * </pre>.
+     * {@code {@link}}.
      */
     LINK("{@link}", "link", Type.INLINE, true, true)
     {
@@ -211,9 +197,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;linkplain}
-     * </pre>.
+     * {@code {@linkplain}}.
      */
     LINKPLAIN("{@linkplain}", "linkplain", Type.INLINE, true, true)
     {
@@ -234,9 +218,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;literal}
-     * </pre>.
+     * {@code {@literal}}.
      */
     LITERAL("{@literal}", "literal", Type.INLINE, true, true)
     {
@@ -257,9 +239,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;param
-     * </pre>.
+     * {@code @param}.
      */
     PARAM("@param", "param", Type.BLOCK, false, false)
     {
@@ -276,9 +256,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;return
-     * </pre>.
+     * {@code @return}.
      */
     RETURN("@return", "return", Type.BLOCK, false, false)
     {
@@ -297,9 +275,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;see
-     * </pre>.
+     * {@code @see}.
      */
     SEE("@see", "see", Type.BLOCK, true, true)
     {
@@ -321,9 +297,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;serial
-     * </pre>.
+     * {@code @serial}.
      */
     SERIAL("@serial", "serial", Type.BLOCK, true, false)
     {
@@ -339,9 +313,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;serialData
-     * </pre>.
+     * {@code @serialData}.
      */
     SERIAL_DATA("@serialData", "serialData", Type.BLOCK, false, false)
     {
@@ -366,9 +338,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;serialField
-     * </pre>.
+     * {@code @serialField}.
      */
     SERIAL_FIELD("@serialField", "serialField", Type.BLOCK, false, false)
     {
@@ -387,9 +357,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;since
-     * </pre>.
+     * {@code @since}.
      */
     SINCE("@since", "since", Type.BLOCK, true, true)
     {
@@ -411,9 +379,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;throws
-     * </pre>.
+     * {@code @throws}.
      */
     THROWS("@throws", "throws", Type.BLOCK, false, false)
     {
@@ -428,9 +394,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;value}
-     * </pre>.
+     * {@code {@value}}.
      */
     VALUE("{@value}", "value", Type.INLINE, true, true)
     {
@@ -452,9 +416,7 @@ public enum JavadocTagInfo
     },
 
     /**
-     * <pre>
-     * &#064;version
-     * </pre>.
+     * {@code @version}.
      */
     VERSION("@version", "version", Type.BLOCK, true, true)
     {
@@ -568,6 +530,7 @@ public enum JavadocTagInfo
     }
 
     /**
+     * Gets the tag text.
      * @return the tag text
      */
     public String getText()
@@ -576,6 +539,7 @@ public enum JavadocTagInfo
     }
 
     /**
+     * Gets the tag name.
      * @return the tag name
      */
     public String getName()
@@ -584,7 +548,8 @@ public enum JavadocTagInfo
     }
 
     /**
-     * @return the Tag type defined by {@link JavadocTagInfo.Type Type}.
+     * Gets the Tag type defined by {@link JavadocTagInfo.Type Type}.
+     * @return the Tag type
      */
     public Type getType()
     {
@@ -652,19 +617,8 @@ public enum JavadocTagInfo
     /**
      * The Javadoc Type.
      *
-     * For example a
-     *
-     * <pre>
-     * &#064;param
-     * </pre>
-     *
-     * tag is a block tag while a
-     *
-     * <pre>
-     * &#064;link}
-     * </pre>
-     *
-     * tag is a inline tag
+     * For example a {@code @param} tag is a block tag while a
+     * {@code {@link}} tag is a inline tag.
      *
      * @author Travis Schneeberger
      */
