@@ -16,13 +16,18 @@
       </ul>
       <p>Bug fixes:</p>
       <ul>
-        <li></li>
+        <li>
+           Corrected build errors on javadoc generation.  Thanks to Martin von Gagern for providing a patch (patch #2782630).
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>
         <li>
           <i>Updated dependencies</i>: Updated google collections to version
           1.0 RC1.
+        </li>
+        <li>
+          <i>Updated documentation</i>: Added links for 3rd party NetBeans integration.
         </li>
       </ul>
     </section>
