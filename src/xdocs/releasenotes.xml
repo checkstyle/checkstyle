@@ -28,6 +28,9 @@
         <li>
            Corrected pad policy documentation for MethodParamPad (bug #2775402).
         </li>
+        <li>
+           Added correct license information for referenced source files (bug #2778850).
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>
