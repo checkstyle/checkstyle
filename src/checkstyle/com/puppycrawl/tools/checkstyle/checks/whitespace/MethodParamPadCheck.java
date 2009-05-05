@@ -66,7 +66,7 @@ public class MethodParamPadCheck
     extends AbstractOptionCheck<PadOption>
 {
     /**
-     * Sets the pad otion to nospace.
+     * Sets the pad option to nospace.
      */
     public MethodParamPadCheck()
     {

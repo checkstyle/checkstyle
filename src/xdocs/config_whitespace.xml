@@ -225,6 +225,14 @@ for (Iterator foo = very.long.line.iterator();
             <td><span class="default">false</span></td>
           </tr>
           <tr>
+            <td>option</td>
+            <td>policy on how to pad method parameter</td>
+            <td>
+              <a href="property_types.html#parenPad">pad policy</a>
+            </td>
+            <td><span class="default">nospace</span></td>
+          </tr>
+          <tr>
             <td>tokens</td>
             <td>tokens to check</td>
 

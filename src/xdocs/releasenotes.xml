@@ -25,6 +25,9 @@
         <li>
            Corrected broken link in WhiteSpaceAround documentation (bug #2745287).
         </li>
+        <li>
+           Corrected pad policy documentation for MethodParamPad (bug #2775402).
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>
