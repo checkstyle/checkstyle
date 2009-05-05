@@ -1151,7 +1151,7 @@ public void func() {}    // empty method</pre>
              <a
               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">STAR_ASSIGN</a>
              <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_EXTENSION">AND TYPE_EXTENSION_AND</a>
+              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_EXTENSION_AND">TYPE_EXTENSION_AND</a>
             </td>
             <td>all tokens</td>
           </tr>

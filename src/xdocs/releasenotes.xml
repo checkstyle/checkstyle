@@ -22,6 +22,9 @@
         <li>
            Corrected javadoc in TokenTypes class for UNARY_PLUS and UNARY_MINUS members (bug #2745145).
         </li>
+        <li>
+           Corrected broken link in WhiteSpaceAround documentation (bug #2745287).
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>
