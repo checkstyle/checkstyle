@@ -19,6 +19,9 @@
         <li>
            Corrected build errors on javadoc generation.  Thanks to Martin von Gagern for providing a patch (patch #2782630).
         </li>
+        <li>
+           Corrected javadoc in TokenTypes class for UNARY_PLUS and UNARY_MINUS members (bug #2745145).
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>

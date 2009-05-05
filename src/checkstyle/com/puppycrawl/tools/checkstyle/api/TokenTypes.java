@@ -45,7 +45,7 @@ public final class TokenTypes
     ///CLOVER:ON
 
     // The following three types are never part of an AST,
-    // left here as a reminder so nobody will readd them accidentally
+    // left here as a reminder so nobody will read them accidentally
 
     /* * token representing a NULL_TREE_LOOKAHEAD */
     // public static final int NULL_TREE_LOOKAHEAD = 3;
@@ -911,20 +911,20 @@ public final class TokenTypes
      **/
     public static final int IMPORT = GeneratedJavaTokenTypes.IMPORT;
     /**
-     * The <code>+</code> (unary plus) operator.
-     *
-     * @see <a
-     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#24924">Java
-     * Language Specification, &sect;15.15.3</a>
-     * @see #EXPR
-     **/
-    public static final int UNARY_MINUS = GeneratedJavaTokenTypes.UNARY_MINUS;
-    /**
      * The <code>-</code> (unary minus) operator.
      *
      * @see <a
      * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#236345">Java
      * Language Specification, &sect;15.15.4</a>
+     * @see #EXPR
+     **/
+    public static final int UNARY_MINUS = GeneratedJavaTokenTypes.UNARY_MINUS;
+    /**
+     * The <code>+</code> (unary plus) operator.
+     *
+     * @see <a
+     * href="http://java.sun.com/docs/books/jls/second_edition/html/expressions.doc.html#24924">Java
+     * Language Specification, &sect;15.15.3</a>
      * @see #EXPR
      **/
     public static final int UNARY_PLUS = GeneratedJavaTokenTypes.UNARY_PLUS;
