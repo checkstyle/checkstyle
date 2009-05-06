@@ -235,13 +235,16 @@ import com.puppycrawl.tools.checkstyle.api.*;
 
 public class MethodLimitCheck extends Check
 {
-    private int max = 30;
+    private static final int DEFAULT_MAX = 30;
+    private int max = DEFAULT_MAX;
 
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[]{TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
     }
 
+    @Override
     public void visitToken(DetailAST ast)
     {
         // find the OBJBLOCK node below the CLASS_DEF/INTERFACE_DEF
@@ -250,9 +253,9 @@ public class MethodLimitCheck extends Check
         // that are METHOD_DEFS
         int methodDefs = objBlock.getChildCount(TokenTypes.METHOD_DEF);
         // report error if limit is reached
-        if (methodDefs > max) {
+        if (methodDefs > this.max) {
             log(ast.getLineNo(),
-                "too many methods, only " + max + " are allowed");
+                "too many methods, only " + this.max + " are allowed");
         }
    }
 }
@@ -388,8 +391,8 @@ public class MethodLimitCheck extends Check
       <source>
 &lt;?xml version=&quot;1.0&quot;?&gt;
 &lt;!DOCTYPE module PUBLIC
-    &quot;-//Puppy Crawl//DTD Check Configuration 1.2//EN&quot;
-    &quot;http://www.puppycrawl.com/dtds/configuration_1_2.dtd&quot;&gt;
+    &quot;-//Puppy Crawl//DTD Check Configuration 1.3//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/configuration_1_3.dtd&quot;&gt;
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
           &lt;!-- your standard Checks that come with Checkstyle --&gt;
@@ -447,7 +450,7 @@ java -classpath mycompanychecks.jar:checkstyle-all-@CHECKSTYLE_VERSION@.jar \
       </p>
       <ul>
         <li>You cannot determine the type of an expression.</li>
-        <li>You cannot see the content of other files.</li>
+        <li>You cannot see the content of other files. (although you can save processed files for use later)</li>
       </ul>
       <p>
         This means that you cannot implement some of the code inspection
@@ -465,46 +468,47 @@ java -classpath mycompanychecks.jar:checkstyle-all-@CHECKSTYLE_VERSION@.jar \
       <p> Writing a FileSetCheck is pretty straightforward: Just
       inherit from <a
       href="api/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">AbstractFileSetCheck</a>
-      and implement the <a
-      href="api/com/puppycrawl/tools/checkstyle/api/FileSetCheck.html#process(java.io.File[])"><span
-      class="code">process(File[] files)</span></a> method and you&#39;re
+      and override the abstract <a
+      href="api/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered(java.io.File,%20java.util.List)"><span
+      class="code">processFiltered(java.io.File, java.util.List)</span></a> method and you&#39;re
       done. A very simple example could fire an error if the number of files
-      that are passed in exceeds a certain limit. Here is a FileSetCheck that does just that:</p>
+      exceeds a certain limit. Here is a FileSetCheck that does just that:</p>
 
       <source>
 package com.mycompany.checks;
 import java.io.File;
+import java.util.List;
 import com.puppycrawl.tools.checkstyle.api.*;
 
-public class LimitImplementationFiles
-    extends AbstractFileSetCheck
+public class LimitImplementationFiles extends AbstractFileSetCheck
 {
-    private int max = 100;
+    private static final int DEFAULT_MAX = 100;
+    private int fileCount;
+    private int max = DEFAULT_MAX;
     public void setMax(int aMax)
     {
-        max = aMax;
+        this.max = aMax;
     }
-          public void process(File[] files)
+
+    @Override
+    public void beginProcessing(String aCharset)
     {
-        if (files != null &amp;&amp; files.length > max) {
-            // figure out the file that contains the error
-            final String path = files[max].getPath();
-            // message collector is used to collect error messages,
-            // needs to be reset before starting to collect error messages
-            // for a file.
-            getMessageCollector().reset();
-            // message dispatcher is used to fire AuditEvents
-            MessageDispatcher dispatcher = getMessageDispatcher();
-            // signal start of file to AuditListeners
-            dispatcher.fireFileStarted(path);
+        super.beginProcessing(aCharset);
+        
+        //reset the file count
+        this.fileCount = 0;
+    }
+
+    @Override
+    public void processFiltered(File file, List&lt;String&gt; aLines)
+    {
+        this.fileCount++;
+
+        if (this.fileCount > this.max) {
             // log the message
-            log(0, "max.files.exceeded", new Integer(max));
+            log(0, "max.files.exceeded", Integer.valueOf(this.max));
             // you can call log() multiple times to flag multiple
             // errors in the same file
-            // fire the errors for this file to the AuditListeners
-            fireErrors(path);
-            // signal end of file to AuditListeners
-            dispatcher.fireFileFinished(path);
         }
     }
 }

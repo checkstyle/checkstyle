@@ -31,6 +31,9 @@
         <li>
            Added correct license information for referenced source files (bug #2778850).
         </li>
+        <li>
+           Updated documentation for writing checks (bug #2783451).
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>
