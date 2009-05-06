@@ -94,7 +94,7 @@
           <th>Remarks</th>
         </tr>
         <tr>
-          <td><a href="http://www.eclipse.org">Eclipse/WSAD</a></td>
+          <td><a href="http://www.eclipse.org">Eclipse/RAD/RDz</a></td>
           <td>David Schneider</td>
           <td>
             <a href="http://eclipse-cs.sourceforge.net/">Eclipse-CS Home
@@ -103,7 +103,7 @@
           <td></td>
         </tr>
         <tr>
-          <td><a href="http://www.eclipse.org">Eclipse/WSAD</a></td>
+          <td><a href="http://www.eclipse.org">Eclipse/RAD/RDz</a></td>
           <td>Marco van Meegen</td>
           <td>
             <a
@@ -163,6 +163,14 @@
             <a href="https://sqe.dev.java.net/">Software Quality Environment (SQE)</a>
           </td>
           <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><a href="http://www.jcoderz.org/">jCoderZ</a></td>
+          <td>
+            <a href="http://www.jcoderz.org/fawkez/">fawkeZ</a>
+          </td>
+          <td>Combines multiple tools (CheckStyle, findbugs, PMD, Cobertura, etc.)</td>
         </tr>
         <tr>
           <td><a href="http://www.bluej.org">BlueJ</a></td>
