@@ -1081,7 +1081,7 @@
       </p>
 
       <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
     &lt;property name=&quot;commentFormat&quot; value=&quot;CHECKSTYLE IGNORE THIS LINE&quot;/&gt;
     &lt;property name=&quot;checkFormat&quot; value=&quot;.*&quot;/&gt;
     &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
@@ -1096,7 +1096,7 @@
       </p>
 
       <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
     &lt;property name=&quot;commentFormat&quot; value=&quot;Ok to catch (\w+) here&quot;/&gt;
     &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalCatchCheck&quot;/&gt;
     &lt;property name=&quot;messageFormat&quot; value=&quot;$1&quot;/&gt;
@@ -1111,7 +1111,7 @@
       </p>
 
       <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
     &lt;property name=&quot;commentFormat&quot; value=&quot;CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES&quot;/&gt;
     &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
     &lt;property name=&quot;messageFormat&quot; value=&quot;$2&quot;/&gt;
