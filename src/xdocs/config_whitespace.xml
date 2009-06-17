@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <document>
-
   <properties>
     <title>Whitespace</title>
     <author>Checkstyle Development Team</author>
@@ -911,53 +910,6 @@ for (Iterator foo = very.long.line.iterator();
       <subsection name="Parent Module">
         <p>
           <a href="config.html#Checker">Checker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="TabCharacter">
-      <subsection name="Description">
-        <p>
-          Checks that there are no tab characters (<span
-          class="code">'\t'</span>) in the source code.
-        </p>
-
-        <p>
-          Rationale:
-        </p>
-
-        <ul>
-          <li>
-            Developers should not need to configure the tab width of their
-            text editors in order to be able to read source code.
-          </li>
-          <li>
-            From the Apache jakarta coding standards: In a distributed
-            development environment, when the cvs commit messages get sent to
-            a mailing list, they are almost impossible to read if you use
-            tabs.
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Example">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;TabCharacter&quot;/&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#treewalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
