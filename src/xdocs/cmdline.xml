@@ -11,10 +11,10 @@
 
     <section name="Description">
       <p>
-        This document describes how to run checkstyle using the command line
-        tool. The latest version of checkstyle can be found at <a
+        This document describes how to run Checkstyle using the command line
+        tool. The latest version of Checkstyle can be found at <a
         href="http://checkstyle.sourceforge.net">http://checkstyle.sourceforge.net</a>.
-        This command line tool is included in the checkstyle distribution.
+        This command line tool is included in the Checkstyle distribution.
       </p>
     </section>
 
@@ -22,9 +22,8 @@
       <p>
         The easiest way is to include <span
         class="default">checkstyle-all-@CHECKSTYLE_VERSION@.jar</span> in the
-        classpath. If you are running JDK 1.4 this contains all the classes
-        required to run checkstyle (JDK 1.3 users must add a JAXP compliant
-        XML parser implementation). Alternatively, you must include the
+        classpath. If you are running JDK 5.0 this contains all the classes
+        required to run Checkstyle. Alternatively, you must include the
         following in the classpath:
       </p>
 
@@ -33,17 +32,12 @@
           <span class="default">checkstyle-@CHECKSTYLE_VERSION@.jar</span>
         </li>
         <li>
-          ANTLR 2.7.2 classes. <span class="default">antlr.jar</span> is
+          ANTLR 2.7.6 classes. <span class="default">antlr.jar</span> is
           included in the distribution.
         </li>
         <li>
           Jakarta Commons Beanutils classes. <span
-          class="default">commons-beanutils.jar</span> is included in the
-          distribution.
-        </li>
-        <li>
-          Jakarta Commons Collections classes. <span
-          class="default">commons-collections.jar</span> is included in the
+          class="default">commons-beanutils-core.jar</span> is included in the
           distribution.
         </li>
         <li>
@@ -53,10 +47,15 @@
         </li>
         <li>
           Jakarta Commons CLI (command line interface) classes. <span
-          class="default">commons-cli.jar</span> is included in the
+          class="default">commons-cli-1.1.jar</span> is included in the
           distribution.
         </li>
-        <li>JDK 1.3 only: A JAXP compliant XML parser implementation.</li>
+        <li>
+          Google Collections classes.
+          <span class="default">google-collect-1.0-rc1.jar</span> is included
+          in the distribution.
+        </li>
+        
       </ol>
     </section>
 
