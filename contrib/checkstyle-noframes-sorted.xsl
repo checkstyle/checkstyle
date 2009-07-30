@@ -118,7 +118,7 @@
           <xsl:for-each select="file[@name and generate-id(.) = generate-id(key('files', @name))]">
                 <xsl:sort data-type="number" order="descending" select="count(key('files', @name)/error)"/>
                 <xsl:variable name="currentName" select="@name" />
-                <xsl:variable name="errorCount" select="count(../file[@name=$currentName]/error)"/>
+                <xsl:variable name="errorCount" select="count(key('files', @name)/error)"/>
                 <tr>
           <xsl:call-template name="alternated-row"/>
 					<td><a href="#f-{@name}"><xsl:value-of select="@name"/></a></td>
