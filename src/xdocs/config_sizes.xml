@@ -108,6 +108,12 @@
             <td><a href="property_types.html#integer">integer</a></td>
             <td>2000</td>
           </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of files to process</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><span class="default">{}</span></td>
+          </tr>
         </table>
       </subsection>
 

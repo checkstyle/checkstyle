@@ -494,7 +494,7 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
     public void beginProcessing(String aCharset)
     {
         super.beginProcessing(aCharset);
-        
+
         //reset the file count
         this.fileCount = 0;
     }

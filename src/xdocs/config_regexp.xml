@@ -63,6 +63,12 @@
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><span class="default">0</span></td>
           </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of files to process</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><span class="default">{}</span></td>
+          </tr>
         </table>
       </subsection>
 
@@ -171,6 +177,12 @@
             <td>The maximum number of matches required in each file.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><span class="default">0</span></td>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of files to process</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><span class="default">{}</span></td>
           </tr>
         </table>
       </subsection>

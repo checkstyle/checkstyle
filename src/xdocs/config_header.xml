@@ -78,6 +78,12 @@ line 5: ////////////////////////////////////////////////////////////////////
             <td><a href="property_types.html#intSet">list of integers</a></td>
             <td><span class="default">{}</span></td>
           </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of files to process</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><span class="default">{}</span></td>
+          </tr>
         </table>
       </subsection>
 
@@ -86,13 +92,14 @@ line 5: ////////////////////////////////////////////////////////////////////
           To configure the check to use header file <span
           class="code">&quot;java.header&quot;</span> and ignore lines <span
           class="code">2</span>, <span class="code">3</span>, and <span
-          class="code"> 4</span>:
+          class="code"> 4</span> and only process Java files:
         </p>
 
         <source>
 &lt;module name=&quot;Header&quot;&gt;
     &lt;property name=&quot;headerFile&quot; value=&quot;java.header&quot;/&gt;
     &lt;property name=&quot;ignoreLines&quot; value=&quot;2, 3, 4&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -238,6 +245,12 @@ line 6: ^\W*$
             <td>multiLines</td>
             <td>line numbers to repeat (zero or more times)</td>
             <td><a href="property_types.html#intSet">list of integers</a></td>
+            <td><span class="default">{}</span></td>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of files to process</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><span class="default">{}</span></td>
           </tr>
         </table>

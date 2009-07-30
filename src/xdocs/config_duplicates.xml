@@ -100,6 +100,12 @@ alternative to the Checks we offer in our distribution.
      <td><a href="property_types.html#int">int</a></td>
      <td><span class="default">12</span></td>
    </tr>
+   <tr>
+     <td>fileExtensions</td>
+     <td>file type extension of files to process</td>
+     <td><a href="property_types.html#stringSet">String Set</a></td>
+     <td><span class="default">{}</span></td>
+   </tr>
  </table>
  </subsection>
 
