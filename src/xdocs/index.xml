@@ -215,7 +215,7 @@
           <td><a href="http://maven.apache.org/">Maven</a></td>
           <td>Vincent Massol</td>
           <td>Checkstyle supported out of the box</td>
-          <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/sample-checkstyle.html">example report</a></td>
+          <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">example report</a></td>
         </tr>
         <tr>
           <td><a href="http://sonar.codehaus.org/">Sonar</a></td>
