@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 
 /**
- * Class to check the ordering/grouping of imports. Features are:
  * <ul>
  * <li>groups imports: ensures that groups of imports come in a specific order
  * (e.g., java. comes first, javax. comes second, then everything else)</li>
@@ -54,9 +53,10 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * </pre>
  *
  * <p>
- * There is always an additional, implied &quot;everything else&quot; package
- * group. If no &quot;groups&quot; property is supplied, all imports belong in
- * this &quot;everything else&quot; group.
+ * There is always a wildcard group to which everything not in a named group
+ * belongs. If an import does not match a named group, the group belongs to
+ * this wildcard group. The wildcard group position can be specified using the
+ * {@code *} character.
  * </p>
  *
  * <p>
@@ -77,12 +77,19 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @author Bill Schneider
  * @author o_sukhodolsky
  * @author David DIDIER
+ * @author Steve McKay
  */
 public class ImportOrderCheck
     extends AbstractOptionCheck<ImportOrderOption>
 {
+
+    /** the special wildcard that catches all remaining groups. */
+    private static final String WILDCARD_GROUP_NAME = "*";
+
     /** List of import groups specified by the user. */
     private String[] mGroups = new String[0];
+    /** The position of the "everything else" group. */
+    private int mWildcardGroupIndex;
     /** Require imports in group be separated. */
     private boolean mSeparated;
     /** Require imports in group. */
@@ -123,7 +130,12 @@ public class ImportOrderCheck
         for (int i = 0; i < aGroups.length; i++) {
             String pkg = aGroups[i];
 
-            if (!pkg.endsWith(".")) {
+            // if the pkg name is the wildcard, record the
+            // position for later reference
+            if (WILDCARD_GROUP_NAME.equals(pkg)) {
+                mWildcardGroupIndex = i;
+            }
+            else if (!pkg.endsWith(".")) {
                 pkg = pkg + ".";
             }
 
@@ -333,17 +345,16 @@ public class ImportOrderCheck
      */
     private int getGroupNumber(String aName)
     {
-        int i = 0;
-
         // find out what group this belongs in
         // loop over mGroups and get index
-        for (; i < mGroups.length; i++) {
+        for (int i = 0; i < mGroups.length; i++) {
             if (aName.startsWith(mGroups[i])) {
-                break;
+                return i;
             }
         }
 
-        return i;
+        // no match, so we return the wildcard group
+        return mWildcardGroupIndex;
     }
 
     /**

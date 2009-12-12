@@ -13,6 +13,10 @@
       <p>New features:</p>
       <ul>
         <li>
+          Enhanced ImportOrder check to support wildcard ('*') groups.
+          Thanks to Steve McKay for patch #2891032.
+        </li>
+        <li>
           Enhanced the naming checks ConstantName, MemberName, MethodName
           and StaticVariableName to utilise the access control tuning features
           of AbstractAccessControlNameCheck. Thanks to Steve McKay for patch

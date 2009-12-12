@@ -141,4 +141,16 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Bottom.java"), expected);
     }
+
+    @Test
+    public void testWildcard() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "com,*,java");
+        final String[] expected = {
+                "9: Wrong order for 'javax.crypto.Cipher' import."
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Wildcard.java"), expected);
+    }
 }
