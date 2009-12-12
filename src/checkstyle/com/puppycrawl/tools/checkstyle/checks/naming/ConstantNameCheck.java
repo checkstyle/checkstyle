@@ -81,7 +81,7 @@ public class ConstantNameCheck
         final boolean isFinal = (modifiersAST != null)
             && modifiersAST.branchContains(TokenTypes.FINAL);
 
-        if ((isStatic  && isFinal)
+        if ((isStatic  && isFinal && shouldCheckInScope(modifiersAST))
             || ScopeUtils.inInterfaceOrAnnotationBlock(aAST))
         {
             // Handle the serialVersionUID and serialPersistentFields  constants

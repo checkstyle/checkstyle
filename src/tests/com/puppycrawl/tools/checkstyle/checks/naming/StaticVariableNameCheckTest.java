@@ -19,5 +19,18 @@ public class StaticVariableNameCheckTest
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
+
+    @Test
+    public void testAccessTuning()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(StaticVariableNameCheck.class);
+        checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
+        checkConfig.addAttribute("applyToPrivate", "false"); // allow method names and class names to equal
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputSimple.java"), expected);
+    }
 }
 

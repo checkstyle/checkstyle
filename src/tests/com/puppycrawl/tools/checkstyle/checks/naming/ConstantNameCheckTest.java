@@ -40,6 +40,21 @@ public class ConstantNameCheckTest
     }
 
     @Test
+    public void testAccessControlTuning()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ConstantNameCheck.class);
+        checkConfig.addAttribute("applyToPublic", "false");
+        checkConfig.addAttribute("applyToProtected", "false");
+        checkConfig.addAttribute("applyToPackage", "false");
+        final String[] expected = {
+            "142:30: Name 'BAD__NAME' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'."
+        };
+        verify(checkConfig, getPath("InputSimple.java"), expected);
+    }
+
+    @Test
     public void testInterfaceAndAnnotation()
         throws Exception
     {

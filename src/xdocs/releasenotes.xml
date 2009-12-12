@@ -12,7 +12,12 @@
     <section name="Release 5.1">
       <p>New features:</p>
       <ul>
-        <li></li>
+        <li>
+          Enhanced the naming checks ConstantName, MemberName, MethodName
+          and StaticVariableName to utilise the access control tuning features
+          of AbstractAccessControlNameCheck. Thanks to Steve McKay for patch
+          #2893581.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>

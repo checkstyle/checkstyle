@@ -66,7 +66,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Travis Schneeberger
  * @version 1.1
  */
-public class MethodNameCheck extends AbstractNameCheck
+public class MethodNameCheck
+    extends AbstractAccessControlNameCheck
 {
     /**
      * for allowing method name to be the same as the class name.

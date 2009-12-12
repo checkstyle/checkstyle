@@ -74,6 +74,7 @@ public class StaticVariableNameCheck
 
         return (isStatic
                 && !isFinal
+                && shouldCheckInScope(modifiersAST)
                 && !ScopeUtils.inInterfaceOrAnnotationBlock(aAST));
     }
 }

@@ -74,7 +74,6 @@ public class MemberNameCheck
 
         return (!isStatic && !ScopeUtils.inInterfaceOrAnnotationBlock(aAST)
             && !ScopeUtils.isLocalVariableDef(aAST))
-            && (modifiersAST != null)
             && shouldCheckInScope(modifiersAST);
     }
 
