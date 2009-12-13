@@ -47,6 +47,10 @@
         <li>
            Updated documentation for writing checks (bug #2783451).
         </li>
+        <li>
+          Report unused Javadoc tags with no trailing whitespace(bug #2506962).
+          Thanks to Ashlesha Patil for patch #2781021.
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>

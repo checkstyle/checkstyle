@@ -51,7 +51,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
 {
     /** compiled regexp to match Javadoc tags that take an argument * */
     private static final Pattern MATCH_JAVADOC_ARG =
-        Utils.createPattern("@(throws|exception|param)\\s+(\\S+)\\s+\\S");
+        Utils.createPattern("@(throws|exception|param)\\s+(\\S+)\\s+\\S*");
 
     /** compiled regexp to match first part of multilineJavadoc tags * */
     private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START =
