@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Utils;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
@@ -27,13 +25,14 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -82,9 +81,6 @@ public final class ConfigurationLoader
     /** the resource for version 1_3 of the configuration dtd */
     private static final String DTD_RESOURCE_NAME_1_3 =
         "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
-
-    /** constant to specify two kilobyte of data */
-    private static final int TWO_KB = 2048;
 
     /**
      * Implements the SAX document handler interfaces, so they do not
@@ -261,21 +257,19 @@ public final class ConfigurationLoader
     }
 
     /**
-     * Parses the specified stream loading the configuration information.
-     * The stream is NOT closed after parsing, it is the responsibility of
+     * Parses the specified input source loading the configuration information.
+     * The stream wrapped inside the source, if any, is NOT
+     * explicitely closed after parsing, it is the responsibility of
      * the caller to close the stream.
      *
-     * @param aStream the stream that contains the configuration data
+     * @param aSource the source that contains the configuration data
      * @throws IOException if an error occurs
      * @throws SAXException if an error occurs
      */
-    private void parseInputStream(InputStream aStream)
+    private void parseInputSource(InputSource aSource)
         throws IOException, SAXException
     {
-        final InputStream configStream =
-            new BufferedInputStream(aStream, TWO_KB);
-        final InputSource inputSource = new InputSource(configStream);
-        mSaxHandler.parseInputSource(inputSource);
+        mSaxHandler.parseInputSource(aSource);
     }
 
     /**
@@ -305,35 +299,38 @@ public final class ConfigurationLoader
         PropertyResolver aOverridePropsResolver, boolean aOmitIgnoredModules)
         throws CheckstyleException
     {
-        InputStream bufferedStream = null;
         try {
             // figure out if this is a File or a URL
-            InputStream configStream;
+            URI uri;
             try {
                 final URL url = new URL(aConfig);
-                configStream = url.openStream();
+                uri = url.toURI();
             }
             catch (final MalformedURLException ex) {
-                configStream = new FileInputStream(aConfig);
+                uri = null;
             }
-            bufferedStream = new BufferedInputStream(configStream);
-
-            return loadConfiguration(bufferedStream, aOverridePropsResolver,
+            catch (final URISyntaxException ex) {
+                // URL violating RFC 2396
+                uri = null;
+            }
+            if (uri == null) {
+                final File file = new File(aConfig);
+                if (!file.exists()) {
+                    throw new FileNotFoundException(aConfig);
+                }
+                uri = file.toURI();
+            }
+            final InputSource source = new InputSource(uri.toString());
+            return loadConfiguration(source, aOverridePropsResolver,
                     aOmitIgnoredModules);
         }
         catch (final FileNotFoundException e) {
             throw new CheckstyleException("unable to find " + aConfig, e);
         }
-        catch (final IOException e) {
-            throw new CheckstyleException("unable to read " + aConfig, e);
-        }
         catch (final CheckstyleException e) {
                 //wrap again to add file name info
             throw new CheckstyleException("unable to read " + aConfig + " - "
                     + e.getMessage(), e);
-        }
-        finally {
-            Utils.closeQuietly(bufferedStream);
         }
     }
 
@@ -347,8 +344,35 @@ public final class ConfigurationLoader
      *            'ignore' should be omitted, <code>false</code> otherwise
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
+     *
+     * @deprecated As this method does not provide a valid system ID,
+     *   preventing resolution of external entities, a
+     *   {@link #loadConfiguration(InputSource,PropertyResolver,boolean)
+     *          version using an InputSource}
+     *   should be used instead
      */
+    @Deprecated
     public static Configuration loadConfiguration(InputStream aConfigStream,
+        PropertyResolver aOverridePropsResolver, boolean aOmitIgnoredModules)
+        throws CheckstyleException
+    {
+        return loadConfiguration(new InputSource(aConfigStream),
+                                 aOverridePropsResolver, aOmitIgnoredModules);
+    }
+
+    /**
+     * Returns the module configurations from a specified input source.
+     * Note that if the source does wrap an open byte or character
+     * stream, clients are required to close that stream by themselves
+     *
+     * @param aConfigSource the input stream to the Checkstyle configuration
+     * @param aOverridePropsResolver overriding properties
+     * @param aOmitIgnoredModules <code>true</code> if modules with severity
+     *            'ignore' should be omitted, <code>false</code> otherwise
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static Configuration loadConfiguration(InputSource aConfigSource,
         PropertyResolver aOverridePropsResolver, boolean aOmitIgnoredModules)
         throws CheckstyleException
     {
@@ -356,7 +380,7 @@ public final class ConfigurationLoader
             final ConfigurationLoader loader =
                 new ConfigurationLoader(aOverridePropsResolver,
                                         aOmitIgnoredModules);
-            loader.parseInputStream(aConfigStream);
+            loader.parseInputSource(aConfigSource);
             return loader.getConfiguration();
         }
         catch (final ParserConfigurationException e) {

@@ -22,6 +22,10 @@
           of AbstractAccessControlNameCheck. Thanks to Steve McKay for patch
           #2893581.
         </li>
+        <li>
+          Improve ConfigurationLoader to use a InputSource. Thanks to
+          Martin von Gagern for patch #2782627.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>

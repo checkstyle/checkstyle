@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import java.io.File;
 import java.util.Properties;
 import org.junit.Test;
 
@@ -268,6 +269,56 @@ public class ConfigurationLoaderTest
         props.put("a", "A");
         props.put("b", "B");
         return props;
+    }
+
+    @Test
+    public void testExternalEntity() throws Exception
+    {
+        final Properties props = new Properties();
+        props.put("checkstyle.basedir", "basedir");
+
+        final DefaultConfiguration config =
+            (DefaultConfiguration) loadConfiguration(
+                "including.xml", props);
+
+        final Properties atts = new Properties();
+        atts.put("tabWidth", "4");
+        atts.put("basedir", "basedir");
+        verifyConfigNode(config, "Checker", 2, atts);
+    }
+
+    @Test
+    public void testExternalEntitySubdir() throws Exception
+    {
+        final Properties props = new Properties();
+        props.put("checkstyle.basedir", "basedir");
+
+        final DefaultConfiguration config =
+            (DefaultConfiguration) loadConfiguration(
+                "subdir/including.xml", props);
+
+        final Properties atts = new Properties();
+        atts.put("tabWidth", "4");
+        atts.put("basedir", "basedir");
+        verifyConfigNode(config, "Checker", 2, atts);
+    }
+
+    @Test
+    public void testExternalEntityFromURI() throws Exception
+    {
+        final Properties props = new Properties();
+        props.put("checkstyle.basedir", "basedir");
+
+        final File file = new File(System.getProperty("testinputs.dir") +
+                                   "/configs/subdir/including.xml");
+        final DefaultConfiguration config =
+            (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                file.toURI().toString(), new PropertiesExpander(props));
+
+        final Properties atts = new Properties();
+        atts.put("tabWidth", "4");
+        atts.put("basedir", "basedir");
+        verifyConfigNode(config, "Checker", 2, atts);
     }
 
 }
