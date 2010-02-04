@@ -112,6 +112,16 @@
           </td>
           <td></td>
         </tr>
+
+        <tr>
+          <td><a href="http://www.intellij.com/idea/">IntelliJ IDEA</a></td>
+          <td>Jakub Slawinski</td>
+          <td>
+            <a href="http://www.qaplug.com/">QAPlug</a>
+          </td>
+          <td>Provides quality assurance features.</td>
+        </tr>
+
         <tr>
           <td><a href="http://www.intellij.com/idea/">IntelliJ IDEA</a></td>
           <td>James Shiell</td>
