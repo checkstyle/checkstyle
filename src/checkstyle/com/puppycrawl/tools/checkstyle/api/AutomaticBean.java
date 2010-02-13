@@ -313,18 +313,6 @@ public class AutomaticBean
             this.useDefault = false;
         }
 
-        /**
-         * Create a converter that will return the specified default value
-         * if a conversion error occurs.
-         *
-         * @param aDefaultValue The default value to be returned
-         */
-        public StrArrayConverter(Object aDefaultValue)
-        {
-            this.defaultValue = aDefaultValue;
-            this.useDefault = true;
-        }
-
         @SuppressWarnings("unchecked")
         @Override
         public Object convert(Class aType, Object aValue)
