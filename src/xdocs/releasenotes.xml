@@ -51,6 +51,11 @@
           Report unused Javadoc tags with no trailing whitespace(bug #2506962).
           Thanks to Ashlesha Patil for patch #2781021.
         </li>
+        <li>
+          Enhanced JavadocType check to handle and report on unknown
+          Javadoc tags. The property allowUnknownTags can be set to
+          ignore errors. (bug #2882261)
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>

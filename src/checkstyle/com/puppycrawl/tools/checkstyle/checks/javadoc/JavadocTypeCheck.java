@@ -62,6 +62,8 @@ public class JavadocTypeCheck
      * does not have matching param tags in the javadoc. Defaults to false.
      */
     private boolean mAllowMissingParamTags;
+    /** controls whether to flag errors for unknown tags. Defaults to false. */
+    private boolean mAllowUnknownTags;
 
     /**
      * Sets the scope to check.
@@ -125,6 +127,15 @@ public class JavadocTypeCheck
     public void setAllowMissingParamTags(boolean aFlag)
     {
         mAllowMissingParamTags = aFlag;
+    }
+
+    /**
+     * Controls whether to flag errors for unknown tags. Defaults to false.
+     * @param aFlag a <code>Boolean</code> value
+     */
+    public void setAllowUnknownTags(boolean aFlag)
+    {
+        mAllowUnknownTags = aFlag;
     }
 
     @Override
@@ -209,6 +220,7 @@ public class JavadocTypeCheck
             final Matcher tagMatcher = tagPattern.matcher(s);
             if (tagMatcher.find()) {
                 final String tagName = tagMatcher.group(1);
+
                 String content = s.substring(tagMatcher.end(1));
                 if (content.endsWith("*/")) {
                     content = content.substring(0, content.length() - 2);
@@ -217,8 +229,15 @@ public class JavadocTypeCheck
                 if (i == 0) {
                     col += aCmt.getStartColNo();
                 }
-                tags.add(new JavadocTag(aCmt.getStartLineNo() + i, col,
-                                        tagName, content.trim()));
+
+                if (JavadocTagInfo.isValidName(tagName)) {
+                    tags.add(new JavadocTag(aCmt.getStartLineNo() + i, col,
+                            tagName, content.trim()));
+                }
+                else if (!mAllowUnknownTags) {
+                    log(aCmt.getStartLineNo() + i, col,
+                            "javadoc.unknownTag", tagName);
+                }
             }
             tagPattern = Utils.getPattern("^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
         }

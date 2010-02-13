@@ -314,4 +314,30 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }
+
+    @Test
+    public void testBadTag() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        final String[] expected = {
+            "3:4: Unknown tag 'mytag'.",
+        };
+        verify(checkConfig,
+               getPath("javadoc" + File.separator + "InputBadTag.java"),
+               expected);
+    }
+
+    @Test
+    public void testBadTagSuppress() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("allowUnknownTags", "true");
+        final String[] expected = {
+        };
+        verify(checkConfig,
+               getPath("javadoc" + File.separator + "InputBadTag.java"),
+               expected);
+    }
 }
