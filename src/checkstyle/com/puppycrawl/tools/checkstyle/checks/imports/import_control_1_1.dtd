@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Add the following to any file that is to be validated against this DTD:
+
+<!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Import Control 1.1//EN"
+    "http://www.puppycrawl.com/dtds/import_control_1_1.dtd">
+-->
+
+<!--
+  The root element of the configuration file.
+-->
+<!ELEMENT import-control ((allow|disallow)*,subpackage*)>
+
+<!--
+  pkg - The root package to be checked. For example "com.puppycrawl".
+-->
+<!ATTLIST import-control
+          pkg NMTOKEN #REQUIRED>
+
+<!--
+  Represents a subpackage of the parent element.
+-->
+<!ELEMENT subpackage ((allow|disallow)*,subpackage*)>
+
+<!--
+  name - The name of the subpackage. For example if the name is "tools"
+  and the pa the parent is "com.puppycrawl", then it corresponds to the
+  package "com.puppycrawl.tools".
+-->
+<!ATTLIST subpackage
+  name NMTOKEN #REQUIRED>
+
+<!--
+  Represents attributes for a guard which can either allow or disallow
+  access.
+
+  pkg - The fully qualified name of the package to guard. Cannot be
+  specified in conjunction with "class".
+
+  class - The fully qualified name of the class to guard. Cannot be
+  specified in conjunction with "pkg".
+
+  exact-match - Only valid with "pkg". Specifies whether the package
+  name matching should be exact. For example, the pkg
+  "com.puppycrawl.tools" will match the import
+  "com.puppycrawl.tools.checkstyle.api.*" when the option is not set,
+  but will not match is the option is set.
+
+  local-only - Indicates that the guard is to apply only to the current
+  package and not to subpackages.
+
+  regex - Indicates that the class or package name has to be interpreted as
+  regular expression.
+-->
+<!ENTITY % attlist.guard "
+  pkg CDATA #IMPLIED
+  exact-match (true) #IMPLIED
+  class CDATA #IMPLIED
+  local-only (true) #IMPLIED
+  regex (true) #IMPLIED">
+
+<!--
+  Represents a guard that will allow access.
+-->
+<!ELEMENT allow EMPTY>
+<!ATTLIST allow
+  %attlist.guard;>
+
+<!--
+  Represents a guard that will disallow access.
+-->
+<!ELEMENT disallow EMPTY>
+<!ATTLIST disallow
+  %attlist.guard;>

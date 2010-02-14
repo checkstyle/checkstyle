@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -37,16 +39,33 @@ import org.xml.sax.SAXException;
 final class ImportControlLoader extends AbstractLoader
 {
     /** the public ID for the configuration dtd */
-    private static final String DTD_PUBLIC_ID =
+    private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Import Control 1.0//EN";
 
+    /** the public ID for the configuration dtd */
+    private static final String DTD_PUBLIC_ID_1_1 =
+        "-//Puppy Crawl//DTD Import Control 1.1//EN";
+
     /** the resource for the configuration dtd */
-    private static final String DTD_RESOURCE_NAME =
+    private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd";
+
+    /** the resource for the configuration dtd */
+    private static final String DTD_RESOURCE_NAME_1_1 =
+        "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_1.dtd";
 
     /** Used to hold the {@link PkgControl} objects. */
     private final FastStack<PkgControl> mStack = FastStack.newInstance();
 
+    /** the map to lookup the resource name by the id */
+    private static final Map<String, String> DTD_RESOURCE_BY_ID =
+        new HashMap<String, String>();
+
+    /** Initialise the map */
+    static {
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
+    }
     /**
      * Constructs an instance.
      * @throws ParserConfigurationException if an error occurs.
@@ -55,7 +74,7 @@ final class ImportControlLoader extends AbstractLoader
     private ImportControlLoader() throws ParserConfigurationException,
             SAXException
     {
-        super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
+        super(DTD_RESOURCE_BY_ID);
     }
 
     @Override
@@ -82,15 +101,18 @@ final class ImportControlLoader extends AbstractLoader
             final boolean isAllow = "allow".equals(aQName);
             final boolean isLocalOnly = (aAtts.getValue("local-only") != null);
             final String pkg = aAtts.getValue("pkg");
+            final boolean regex = (aAtts.getValue("regex") != null);
             final Guard g;
             if (pkg != null) {
                 final boolean exactMatch =
                     (aAtts.getValue("exact-match") != null);
-                g = new Guard(isAllow, isLocalOnly, pkg, exactMatch);
+                g = new Guard(isAllow, isLocalOnly, pkg, exactMatch, regex);
             }
             else {
+                // handle class names which can be normal class names or regular
+                // expressions
                 final String clazz = safeGet(aAtts, "class");
-                g = new Guard(isAllow, isLocalOnly, clazz);
+                g = new Guard(isAllow, isLocalOnly, clazz, regex);
             }
 
             final PkgControl pc = mStack.peek();

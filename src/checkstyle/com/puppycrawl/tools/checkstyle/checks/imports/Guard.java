@@ -38,6 +38,11 @@ class Guard
     private final boolean mExactMatch;
     /** Indicates if the guard only applies to this package. */
     private final boolean mLocalOnly;
+    /**
+     * Indicates if the package and the class names are to be interpreted
+     * as regular expressions.
+     */
+    private final boolean mRegExp;
 
     /**
      * Constructs an instance.
@@ -45,13 +50,16 @@ class Guard
      * @param aLocalOnly whether guard is to be applied locally only
      * @param aPkgName the package to apply guard on.
      * @param aExactMatch whether the package must match exactly.
+     * @param aRegExp whether the package is to be interpreted as regular
+     *        expression.
      */
     Guard(final boolean aAllow, final boolean aLocalOnly,
-        final String aPkgName, final boolean aExactMatch)
+        final String aPkgName, final boolean aExactMatch, final boolean aRegExp)
     {
         mAllowed = aAllow;
         mLocalOnly = aLocalOnly;
         mPkgName = aPkgName;
+        mRegExp = aRegExp;
         mClassName = null;
         mExactMatch = aExactMatch;
     }
@@ -61,12 +69,15 @@ class Guard
      * @param aAllow whether to allow access.
      * @param aLocalOnly whether guard is to be applied locally only
      * @param aClassName the class to apply guard on.
+     * @param aRegExp whether the class is to be interpreted as regular
+     *        expression.
      */
     Guard(final boolean aAllow, final boolean aLocalOnly,
-        final String aClassName)
+        final String aClassName, final boolean aRegExp)
     {
         mAllowed = aAllow;
         mLocalOnly = aLocalOnly;
+        mRegExp = aRegExp;
         mPkgName = null;
         mClassName = aClassName;
         mExactMatch = true; // not used.
@@ -81,7 +92,9 @@ class Guard
     {
         assert aForImport != null;
         if (mClassName != null) {
-            final boolean classMatch = mClassName.equals(aForImport);
+            final boolean classMatch = mRegExp
+                ? aForImport.matches(mClassName)
+                : aForImport.equals(mClassName);
             return calculateResult(classMatch);
         }
 
@@ -90,10 +103,19 @@ class Guard
         // In this case, the text after the first "." must not contain
         // another "." as this indicates that it is not an exact match.
         assert mPkgName != null;
-        //boolean pkgMatch = aForImport.startsWith(mPkgName + ".");
-        boolean pkgMatch = aForImport.startsWith(mPkgName + ".");
-        if (pkgMatch && mExactMatch) {
-            pkgMatch = (aForImport.indexOf('.', (mPkgName.length() + 1)) == -1);
+        boolean pkgMatch;
+        if (mRegExp) {
+            pkgMatch = aForImport.matches(mPkgName + "\\..*");
+            if (pkgMatch && mExactMatch) {
+                pkgMatch = !aForImport.matches(mPkgName + "\\..*\\..*");
+            }
+        }
+        else {
+            pkgMatch = aForImport.startsWith(mPkgName + ".");
+            if (pkgMatch && mExactMatch) {
+                pkgMatch = (aForImport.indexOf('.',
+                    (mPkgName.length() + 1)) == -1);
+            }
         }
         return calculateResult(pkgMatch);
     }

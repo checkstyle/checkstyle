@@ -432,7 +432,7 @@ class FooBar {
 
         <p>
           The DTD for a import control XML document is at <a
-          href="http://www.puppycrawl.com/dtds/import_control_1_0.dtd">http://www.puppycrawl.com/dtds/import_control_1_0.dtd</a>. It
+          href="http://www.puppycrawl.com/dtds/import_control_1_1.dtd">http://www.puppycrawl.com/dtds/import_control_1_1.dtd</a>. It
           contains documentation on each of the elements and attributes.
         </p>
 
@@ -444,8 +444,8 @@ class FooBar {
 
         <pre>
 &lt;!DOCTYPE import-control PUBLIC
-    &quot;-//Puppy Crawl//DTD Import Control 1.0//EN&quot;
-    &quot;http://www.puppycrawl.com/dtds/import_control_1_0.dtd&quot;&gt;
+    &quot;-//Puppy Crawl//DTD Import Control 1.1//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/import_control_1_1.dtd&quot;&gt;
         </pre>
       </subsection>
 
@@ -486,6 +486,20 @@ class FooBar {
 &lt;module name=&quot;ImportControl&quot;>
     &lt;property name=&quot;file&quot; value=&quot;import-control.xml&quot;/>
 &lt;/module>
+        </source>
+
+        <p>
+          In the example below, all classes beginning with an I in the package
+          java.awt are allowed. In the package java.io only the classes File
+          and InputStream are allowed.
+        </p>
+
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;>
+    &lt;allow class=&quot;java\.awt\.I.*&quot; regex=&quot;true&quot;/>
+    &lt;allow class=&quot;java\.io\.(File|InputStream)&quot; local-only=&quot;true&quot;
+        regex=&quot;true&quot;/>
+&lt;/import-control>
         </source>
 
         <p>

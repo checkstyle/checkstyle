@@ -13,12 +13,17 @@
       <p>New features:</p>
       <ul>
         <li>
-          Enhanced ImportOrder check to support wildcard ('*') groups.
+          Enhanced <a href="config_imports.html#ImportOrder">ImportOrder</a>
+          check to support wildcard ('*') groups.
           Thanks to Steve McKay for patch #2891032.
         </li>
         <li>
-          Enhanced the naming checks ConstantName, MemberName, MethodName
-          and StaticVariableName to utilise the access control tuning features
+          Enhanced the naming checks
+          <a href="config_naming.html">ConstantName</a>,
+          <a href="config_naming.html">MemberName</a>,
+          <a href="config_naming.html">MethodName</a>
+          and <a href="config_naming.html">StaticVariableName</a>
+          to utilise the access control tuning features
           of AbstractAccessControlNameCheck. Thanks to Steve McKay for patch
           #2893581.
         </li>
@@ -26,23 +31,33 @@
           Improve ConfigurationLoader to use a InputSource. Thanks to
           Martin von Gagern for patch #2782627.
         </li>
+        <li>
+          Enhanced the
+          <a href="config_imports.html#ImportControl">ImportControl</a> check
+          to support regular expressions. Thanks to lbaeumer for patch
+          #2937442.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>
         <li>
-           Corrected build errors on javadoc generation.  Thanks to Martin von Gagern for providing a patch (patch #2782630).
+           Corrected build errors on javadoc generation.
+           Thanks to Martin von Gagern for providing a patch (patch #2782630).
         </li>
         <li>
-           Corrected javadoc in TokenTypes class for UNARY_PLUS and UNARY_MINUS members (bug #2745145).
+           Corrected javadoc in TokenTypes class for UNARY_PLUS and UNARY_MINUS
+           members (bug #2745145).
         </li>
         <li>
-           Corrected broken link in WhiteSpaceAround documentation (bug #2745287).
+           Corrected broken link in WhiteSpaceAround documentation
+           (bug #2745287).
         </li>
         <li>
            Corrected pad policy documentation for MethodParamPad (bug #2775402).
         </li>
         <li>
-           Added correct license information for referenced source files (bug #2778850).
+           Added correct license information for referenced source files
+           (bug #2778850).
         </li>
         <li>
            Updated documentation for writing checks (bug #2783451).
@@ -52,9 +67,10 @@
           Thanks to Ashlesha Patil for patch #2781021.
         </li>
         <li>
-          Enhanced JavadocType check to handle and report on unknown
-          Javadoc tags. The property allowUnknownTags can be set to
-          ignore errors. (bug #2882261)
+          Enhanced <a href="config_javadoc.html#JavadocType">JavadocType</a>
+          check to handle and report on unknown Javadoc tags.
+          The property allowUnknownTags can be set to ignore errors.
+          (bug #2882261)
         </li>
       </ul>
       <p>Notes:</p>
