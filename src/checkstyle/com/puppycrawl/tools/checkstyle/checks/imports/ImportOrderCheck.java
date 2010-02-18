@@ -125,6 +125,9 @@ public class ImportOrderCheck
      */
     public void setGroups(String[] aGroups)
     {
+        // set the default wildcard group to be after the last named group.
+        mWildcardGroupIndex = aGroups.length;
+
         mGroups = new String[aGroups.length];
 
         for (int i = 0; i < aGroups.length; i++) {
@@ -183,12 +186,6 @@ public class ImportOrderCheck
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
-    }
-
-    @Override
-    public int[] getRequiredTokens()
-    {
-        return getDefaultTokens();
     }
 
     @Override
@@ -313,7 +310,7 @@ public class ImportOrderCheck
 
         if (getAbstractOption().equals(ImportOrderOption.INFLOW)) {
             // out of lexicographic order
-            if (compare(mLastImport, aName, mCaseSensitive) >= 0) {
+            if (compare(mLastImport, aName, mCaseSensitive) > 0) {
                 log(aLine, "import.ordering", aName);
             }
         }
@@ -324,7 +321,7 @@ public class ImportOrderCheck
                 (!(mLastImportStatic ^ aIsStatic)
                 &&
                 // and out of lexicographic order
-                (compare(mLastImport, aName, mCaseSensitive) >= 0))
+                (compare(mLastImport, aName, mCaseSensitive) > 0))
                 ||
                 // previous non-static but current is static (above)
                 // or

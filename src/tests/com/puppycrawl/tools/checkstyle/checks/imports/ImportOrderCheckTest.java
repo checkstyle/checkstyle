@@ -143,6 +143,19 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
+    public void testHonorsTokenProperty() throws Exception
+    {
+      final DefaultConfiguration checkConfig =
+        createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("tokens", "IMPORT");
+        final String[] expected = {
+            "6: Wrong order for 'java.awt.Button' import.",
+        };
+
+    verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_HonorsTokensProperty.java"), expected);
+    }
+
+    @Test
     public void testWildcard() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
@@ -153,4 +166,29 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_Wildcard.java"), expected);
     }
+
+    @Test
+    public void testWildcardUnspecified() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+
+        /*
+        <property name="ordered" value="true"/>
+        <property name="separated" value="true"/>
+        */
+        checkConfig.addAttribute("groups", "java,javax,org");
+        final String[] expected = {};
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_WildcardUnspecified.java"), expected);
+    }
+
+    @Test
+    public void testNoFailureForRedundantImports() throws Exception
+    {
+      final DefaultConfiguration checkConfig =
+          createCheckConfig(ImportOrderCheck.class);
+      final String[] expected = {};
+      verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder_NoFailureForRedundantImports.java"), expected);
+    }
+
 }

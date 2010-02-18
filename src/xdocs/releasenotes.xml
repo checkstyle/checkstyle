@@ -9,6 +9,25 @@
   </properties>
 
   <body>
+    <section name="Release 5.2">
+      <p>New features:</p>
+      <ul>
+        <li>...</li>
+      </ul>
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Fixed <a href="config_imports.html#ImportOrder">ImportOrder</a>
+          to have the sort behaviour as in release 5.0. (bug #2952881).
+          Thanks to Steve McKay for patch #2953936.
+        </li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>...</li>
+      </ul>
+    </section>
+
     <section name="Release 5.1">
       <p>New features:</p>
       <ul>
