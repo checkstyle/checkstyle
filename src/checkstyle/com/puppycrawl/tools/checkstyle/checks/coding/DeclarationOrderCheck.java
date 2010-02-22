@@ -86,6 +86,13 @@ public class DeclarationOrderCheck extends Check
         private Scope mDeclarationAccess = Scope.PUBLIC;
     }
 
+    /** If true, ignores the check to constructors. */
+    private boolean mIgnoreConstructors;
+    /** If true, ignore the check to methods. */
+    private boolean mIgnoreMethods;
+    /** If true, ignore the check to modifiers (fields, ...). */
+    private boolean mIgnoreModifiers;
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -115,7 +122,9 @@ public class DeclarationOrderCheck extends Check
 
             state = mScopeStates.peek();
             if (state.mScopeState > STATE_CTOR_DEF) {
-                log(aAST, "declaration.order.constructor");
+                if (!mIgnoreConstructors) {
+                    log(aAST, "declaration.order.constructor");
+                }
             }
             else {
                 state.mScopeState = STATE_CTOR_DEF;
@@ -129,7 +138,9 @@ public class DeclarationOrderCheck extends Check
             }
 
             if (state.mScopeState > STATE_METHOD_DEF) {
-                log(aAST, "declaration.order.method");
+                if (!mIgnoreMethods) {
+                    log(aAST, "declaration.order.method");
+                }
             }
             else {
                 state.mScopeState = STATE_METHOD_DEF;
@@ -147,7 +158,9 @@ public class DeclarationOrderCheck extends Check
             state = mScopeStates.peek();
             if (aAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 if (state.mScopeState > STATE_STATIC_VARIABLE_DEF) {
-                    log(aAST, "declaration.order.static");
+                    if (!mIgnoreModifiers) {
+                        log(aAST, "declaration.order.static");
+                    }
                 }
                 else {
                     state.mScopeState = STATE_STATIC_VARIABLE_DEF;
@@ -155,7 +168,9 @@ public class DeclarationOrderCheck extends Check
             }
             else {
                 if (state.mScopeState > STATE_INSTANCE_VARIABLE_DEF) {
-                    log(aAST, "declaration.order.instance");
+                    if (!mIgnoreModifiers) {
+                        log(aAST, "declaration.order.instance");
+                    }
                 }
                 else if (state.mScopeState == STATE_STATIC_VARIABLE_DEF) {
                     state.mDeclarationAccess = Scope.PUBLIC;
@@ -165,7 +180,9 @@ public class DeclarationOrderCheck extends Check
 
             final Scope access = ScopeUtils.getScopeFromMods(aAST);
             if (state.mDeclarationAccess.compareTo(access) > 0) {
-                log(aAST, "declaration.order.access");
+                if (!mIgnoreModifiers) {
+                    log(aAST, "declaration.order.access");
+                }
             }
             else {
                 state.mDeclarationAccess = access;
@@ -186,5 +203,32 @@ public class DeclarationOrderCheck extends Check
 
         default:
         }
+    }
+
+    /**
+     * Sets whether to ignore constructors.
+     * @param aIgnoreConstructors whether to ignore constructors.
+     */
+    public void setIgnoreConstructors(boolean aIgnoreConstructors)
+    {
+        mIgnoreConstructors = aIgnoreConstructors;
+    }
+
+    /**
+     * Sets whether to ignore methods.
+     * @param aIgnoreMethods whether to ignore methods.
+     */
+    public void setIgnoreMethods(boolean aIgnoreMethods)
+    {
+        mIgnoreMethods = aIgnoreMethods;
+    }
+
+    /**
+     * Sets whether to ignore modifiers.
+     * @param aIgnoreModifiers whether to ignore modifiers.
+     */
+    public void setIgnoreModifiers(boolean aIgnoreModifiers)
+    {
+        mIgnoreModifiers = aIgnoreModifiers;
     }
 }
