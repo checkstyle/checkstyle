@@ -12,7 +12,11 @@
     <section name="Release 5.2">
       <p>New features:</p>
       <ul>
-        <li>...</li>
+        <li>
+          Enhanced <a href="config_coding.html#DeclarationOrder">DeclarationOrder</a>
+          to support properties to ignore constructors, methods and modifiers.
+          Thanks to Steve McKay for patch #2953941.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>

@@ -1956,6 +1956,35 @@ if (&quot;something&quot;.equals(x))
         </ol>
       </subsection>
 
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>ignoreConstructors</td>
+            <td>whether to ignore constructors</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>ignoreMethods</td>
+            <td>whether to ignore methods</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>ignoreModifiers</td>
+            <td>whether to ignore modifiers</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+        </table>
+      </subsection>
+
       <subsection name="Examples">
         <p>
           To configure the check:
