@@ -234,7 +234,7 @@ public class JavadocStyleCheckTest
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
     }
-    
+
     @Test
     public void packageInfoInheritDoc() throws Exception
     {
@@ -245,15 +245,15 @@ public class JavadocStyleCheckTest
             "1: First sentence should end with a period.",
         };
 
-        String basePath = "javadoc" + File.separator + 
+        String basePath = "javadoc" + File.separator +
     	"pkginfo" + File.separator +
     	"invalidinherit" + File.separator;
-        
+
         verify(createChecker(checkConfig),
         	getPath(basePath + "package-info.java"),
         	expected);
     }
-    
+
     @Test
     public void packageInfoInvalid() throws Exception
     {
@@ -264,15 +264,33 @@ public class JavadocStyleCheckTest
             "1: First sentence should end with a period.",
         };
 
-        String basePath = "javadoc" + File.separator + 
+        String basePath = "javadoc" + File.separator +
     	"pkginfo" + File.separator +
     	"invalidformat" + File.separator;
-        
+
         verify(createChecker(checkConfig),
         	getPath(basePath + "package-info.java"),
         	expected);
     }
-    
+
+    @Test
+    public void packageInfoAnnotation() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocStyleCheck.class);
+        final String[] expected =
+        {
+        };
+
+        String basePath = "javadoc" + File.separator +
+    	"pkginfo" + File.separator +
+    	"annotation" + File.separator;
+
+        verify(createChecker(checkConfig),
+        	getPath(basePath + "package-info.java"),
+        	expected);
+    }
+
     @Test
     public void packageInfoMissing() throws Exception
     {
@@ -282,15 +300,15 @@ public class JavadocStyleCheckTest
         {
         	"1: Missing a Javadoc comment."
         };
-        
-        String basePath = "javadoc" + File.separator + 
+
+        String basePath = "javadoc" + File.separator +
     	"bothfiles" + File.separator;
-        
+
         verify(createChecker(checkConfig),
         	getPath(basePath + "package-info.java"),
         	expected);
     }
-    
+
     @Test
     public void packageInfoValid() throws Exception
     {
@@ -298,10 +316,10 @@ public class JavadocStyleCheckTest
             createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = {};
 
-        String basePath = "javadoc" + File.separator + 
+        String basePath = "javadoc" + File.separator +
     	"pkginfo" + File.separator +
     	"valid" + File.separator;
-        
+
         verify(createChecker(checkConfig),
         	getPath(basePath + "package-info.java"),
         	expected);
