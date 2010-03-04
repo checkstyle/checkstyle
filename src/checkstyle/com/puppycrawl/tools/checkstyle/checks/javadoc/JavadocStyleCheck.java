@@ -116,8 +116,11 @@ public class JavadocStyleCheck
     {
         if (shouldCheck(aAST)) {
             final FileContents contents = getFileContents();
+            // Need to start searching for the comment before the annotations
+            // that may exist. Even if annotations are not defined on the
+            // package, the ANNOTATIONS AST is defined.
             final TextBlock cmt =
-                contents.getJavadocBefore(aAST.getLineNo());
+                contents.getJavadocBefore(aAST.getFirstChild().getLineNo());
 
             checkComment(aAST, cmt);
         }

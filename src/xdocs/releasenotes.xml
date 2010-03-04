@@ -25,6 +25,11 @@
           to have the sort behaviour as in release 5.0. (bug #2952881).
           Thanks to Steve McKay for patch #2953936.
         </li>
+        <li>
+          Fixed <a href="config_javadoc.html#JavadocStyle">JavadocStyle</a>
+          not handling package declarations that have annotations.
+          (bug #2911363)
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>
