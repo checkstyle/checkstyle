@@ -11,9 +11,17 @@ package com.puppycrawl.tools.checkstyle;
  * @incomplete This class needs more code...
  * @doubletag first text
  * @doubletag second text
+ * @emptytag
  */
 class InputWriteTag
 {
+	/**
+	 * @todo Add a constructor comment
+	 */
+	public InputWriteTag()
+	{	
+	}
+	
     public void method()
     {
     }

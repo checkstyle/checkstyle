@@ -84,6 +84,18 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
       };
       verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
+    
+    @Test
+    public void testEmptyTag() throws Exception
+    {
+      mCheckConfig.addAttribute("tag", "@emptytag");
+      mCheckConfig.addAttribute("tagFormat", "");
+      final String[] expected =
+      {
+          "14: @emptytag=",
+      };
+      verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+    }
 
 
     @Test
@@ -92,7 +104,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("tag", "@missingtag");
         final String[] expected =
         {
-            "15: Type Javadoc comment is missing an @missingtag tag.",
+            "16: Type Javadoc comment is missing an @missingtag tag.",
         };
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
@@ -103,11 +115,12 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("tag", "@todo");
         mCheckConfig.addAttribute("tagFormat", "\\S");
         mCheckConfig.addAttribute("tokens",
-            "INTERFACE_DEF, CLASS_DEF, METHOD_DEF");
+            "INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF");
         mCheckConfig.addAttribute("severity", "ignore");
         final String[] expected =
         {
-            "22: @todo=Add a comment",
+        	"19: @todo=Add a constructor comment",
+            "30: @todo=Add a comment",
         };
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }

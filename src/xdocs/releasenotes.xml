@@ -17,6 +17,11 @@
           to support properties to ignore constructors, methods and modifiers.
           Thanks to Steve McKay for patch #2953941.
         </li>
+        <li>
+          Enhanced <a href="config_javadoc.html#WriteTag">WriteTag</a>
+          to support empty tags, and constructor declarations.
+          Thanks to Rolf Wojtech for patch #2724894.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>

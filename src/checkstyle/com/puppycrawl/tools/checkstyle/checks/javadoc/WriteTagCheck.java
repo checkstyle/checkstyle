@@ -89,7 +89,7 @@ public class WriteTagCheck
     {
         try {
             mTag = aTag;
-            mTagRE = Utils.getPattern(aTag + "\\s+(.*$)");
+            mTagRE = Utils.getPattern(aTag + "\\s*(.*$)");
         }
         catch (final PatternSyntaxException e) {
             throw new ConversionException("unable to parse " + aTag, e);
@@ -143,6 +143,7 @@ public class WriteTagCheck
                           TokenTypes.ENUM_DEF,
                           TokenTypes.ANNOTATION_DEF,
                           TokenTypes.METHOD_DEF,
+                          TokenTypes.CTOR_DEF,
                           TokenTypes.ENUM_CONSTANT_DEF,
                           TokenTypes.ANNOTATION_FIELD_DEF,
         };
