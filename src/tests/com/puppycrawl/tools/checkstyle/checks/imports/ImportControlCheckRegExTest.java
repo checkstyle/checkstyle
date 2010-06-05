@@ -1,9 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import static org.junit.Assert.fail;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import java.io.File;
 import org.junit.Test;
 
