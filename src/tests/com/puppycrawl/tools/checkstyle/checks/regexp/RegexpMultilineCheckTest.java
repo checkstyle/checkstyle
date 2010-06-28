@@ -3,6 +3,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
@@ -78,4 +79,21 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport
         };
         verify(mCheckConfig, getPath("InputSemantic.java"), expected);
     }
+
+    // Need to fix the line endings in the input file
+    @Ignore @Test
+    public void testCarriageReturn()
+            throws Exception
+    {
+        final String illegal = "\\r";
+        mCheckConfig.addAttribute("format", illegal);
+        final String[] expected = {
+            "14: Line matches the illegal pattern '" + illegal + "'.",
+            "16: Line matches the illegal pattern '" + illegal + "'.",
+            "19: Line matches the illegal pattern '" + illegal + "'.",
+            "21: Line matches the illegal pattern '" + illegal + "'."
+        };
+        verify(mCheckConfig, getPath("InputLineBreaks.java"), expected);
+    }
+
 }

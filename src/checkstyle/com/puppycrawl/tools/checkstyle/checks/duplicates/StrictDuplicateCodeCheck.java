@@ -23,6 +23,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.MapMaker;
 import com.google.common.collect.Multimap;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.io.File;
@@ -504,7 +505,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             return cachedLines;
         }
         final String charset = mCharset;
-        final String[] lines = getTrimmed(Utils.getLines(path, charset));
+        final FileText text = new FileText(aFile, charset);
+        final String[] lines = getTrimmed(text.toLinesArray());
         mTrimmedLineCache.put(path, lines);
         return lines;
     }

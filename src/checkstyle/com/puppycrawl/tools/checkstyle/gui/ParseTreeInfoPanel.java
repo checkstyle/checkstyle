@@ -23,6 +23,7 @@ import antlr.ANTLRException;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -141,13 +142,15 @@ public class ParseTreeInfoPanel extends JPanel
         if (aFile != null) {
             try {
                 Main.frame.setTitle("Checkstyle : " + aFile.getName());
-                final DetailAST parseTree = parseFile(aFile.getAbsolutePath());
+                final FileText text = new FileText(aFile.getAbsoluteFile(),
+                                                   getEncoding());
+                final DetailAST parseTree = parseFile(text);
                 mParseTreeModel.setParseTree(parseTree);
                 mCurrentFile = aFile;
                 mLastDirectory = aFile.getParentFile();
                 reloadAction.setEnabled(true);
 
-                final String[] sourceLines = Utils.getLines(aFile.getAbsolutePath());
+                final String[] sourceLines = text.toLinesArray();
                 //clean the text area before inserting the lines of the new file
                 if (mJTextArea.getText().length() != 0) {
                     mJTextArea.replaceRange("", 0, mJTextArea.getText()
@@ -181,13 +184,38 @@ public class ParseTreeInfoPanel extends JPanel
      * @return the root node of the parse tree
      * @throws IOException if the file cannot be opened
      * @throws ANTLRException if the file is not a Java source
+     * @deprecated Use {@link #parseFile(FileText)} instead
      */
+    @Deprecated
     public static DetailAST parseFile(String aFileName)
         throws IOException, ANTLRException
     {
-        final String[] lines = Utils.getLines(aFileName);
-        final FileContents contents = new FileContents(aFileName, lines);
+        return parseFile(new FileText(new File(aFileName), getEncoding()));
+    }
+
+    /**
+     * Parses a file and returns the parse tree.
+     * @param aFile the file to parse
+     * @return the root node of the parse tree
+     * @throws IOException if the file cannot be opened
+     * @throws ANTLRException if the file is not a Java source
+     */
+    public static DetailAST parseFile(FileText aText)
+        throws ANTLRException
+    {
+        final FileContents contents = new FileContents(aText);
         return TreeWalker.parse(contents);
+    }
+
+    /**
+     * Returns the configured file encoding.
+     * This can be set using the {@code file.encoding} system property.
+     * It defaults to UTF-8.
+     * @return the configured file encoding
+     */
+    private static String getEncoding()
+    {
+        return System.getProperty("file.encoding", "UTF-8");
     }
 
     /**

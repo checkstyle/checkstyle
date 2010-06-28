@@ -70,10 +70,9 @@ public class DetailASTTest
 
     private void checkFile(String filename) throws Exception
     {
-        final String[] lines =
-            Utils.getLines(filename,
+        final FileText text = new FileText(new File(filename),
                            System.getProperty("file.encoding", "UTF-8"));
-        final FileContents contents = new FileContents(filename, lines);
+        final FileContents contents = new FileContents(text);
         final DetailAST rootAST = TreeWalker.parse(contents);
         checkTree(rootAST, null, null, filename, rootAST);
     }

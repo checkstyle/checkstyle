@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import java.io.File;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck
     @Override
     protected void processFiltered(File aFile, List<String> aLines)
     {
-        mDetector.processLines(aLines);
+        mDetector.processLines(FileText.fromLines(aFile, aLines));
     }
 
     /**

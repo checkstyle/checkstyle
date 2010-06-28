@@ -23,6 +23,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
+import java.io.File;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -48,8 +50,8 @@ public final class FileContents implements CommentListener
     /** the file name */
     private final String mFilename;
 
-    /** the lines */
-    private final String[] mLines;
+    /** the text */
+    private final FileText mText;
 
     /** map of the Javadoc comments indexed on the last line of the comment.
      * The hack is it assumes that there is only one Javadoc comment per line.
@@ -70,11 +72,24 @@ public final class FileContents implements CommentListener
      *
      * @param aFilename name of the file
      * @param aLines the contents of the file
+     * @deprecated Use {@link #FileContents(String,FileText)} instead
+     *   in order to preserve the original line breaks where possible.
      */
-    public FileContents(String aFilename, String[] aLines)
+    @Deprecated public FileContents(String aFilename, String[] aLines)
     {
         mFilename = aFilename;
-        mLines = aLines.clone();
+        mText = FileText.fromLines(new File(aFilename), Arrays.asList(aLines));
+    }
+
+    /**
+     * Creates a new <code>FileContents</code> instance.
+     *
+     * @param aText the contents of the file
+     */
+    public FileContents(FileText aText)
+    {
+        mFilename = aText.getFile().toString();
+        mText = aText;
     }
 
     /** {@inheritDoc} */
@@ -98,7 +113,7 @@ public final class FileContents implements CommentListener
      **/
     public void reportCppComment(int aStartLineNo, int aStartColNo)
     {
-        final String line = mLines[aStartLineNo - 1];
+        final String line = line(aStartLineNo - 1);
         final String[] txt = new String[] {line.substring(aStartColNo)};
         final Comment comment = new Comment(txt, aStartColNo, aStartLineNo,
                 line.length() - 1);
@@ -142,7 +157,7 @@ public final class FileContents implements CommentListener
         }
 
         // Remember if possible Javadoc comment
-        if (mLines[aStartLineNo - 1].indexOf("/**", aStartColNo) != -1) {
+        if (line(aStartLineNo - 1).indexOf("/**", aStartColNo) != -1) {
             mJavadocComments.put(aEndLineNo - 1, comment);
         }
     }
@@ -172,16 +187,16 @@ public final class FileContents implements CommentListener
         String[] retVal;
         if (aStartLineNo == aEndLineNo) {
             retVal = new String[1];
-            retVal[0] = mLines[aStartLineNo - 1].substring(aStartColNo,
+            retVal[0] = line(aStartLineNo - 1).substring(aStartColNo,
                     aEndColNo + 1);
         }
         else {
             retVal = new String[aEndLineNo - aStartLineNo + 1];
-            retVal[0] = mLines[aStartLineNo - 1].substring(aStartColNo);
+            retVal[0] = line(aStartLineNo - 1).substring(aStartColNo);
             for (int i = aStartLineNo; i < aEndLineNo; i++) {
-                retVal[i - aStartLineNo + 1] = mLines[i];
+                retVal[i - aStartLineNo + 1] = line(i);
             }
-            retVal[retVal.length - 1] = mLines[aEndLineNo - 1].substring(0,
+            retVal[retVal.length - 1] = line(aEndLineNo - 1).substring(0,
                     aEndColNo + 1);
         }
         return retVal;
@@ -206,10 +221,32 @@ public final class FileContents implements CommentListener
         return mJavadocComments.get(lineNo);
     }
 
+    /**
+     * Get a single line.
+     * For internal use only, as getText().get(lineNo) is just as
+     * suitable for external use and avoids method duplication.
+     * @param aLineNo the number of the line to get
+     * @return the corresponding line, without terminator
+     * @throws IndexOutOfBoundsException if lineNo is invalid
+     */
+    private String line(int aLineNo)
+    {
+        return mText.get(aLineNo);
+    }
+
+    /**
+     * Get the full text of the file.
+     * @return an object containing the full text of the file
+     */
+    public FileText getText()
+    {
+        return mText;
+    }
+
     /** @return the lines in the file */
     public String[] getLines()
     {
-        return mLines.clone();
+        return mText.toLinesArray();
     }
 
     /** @return the name of the file */
@@ -226,7 +263,7 @@ public final class FileContents implements CommentListener
     public boolean lineIsBlank(int aLineNo)
     {
         // possible improvement: avoid garbage creation in trim()
-        return "".equals(mLines[aLineNo].trim());
+        return "".equals(line(aLineNo).trim());
     }
 
     /**
@@ -237,7 +274,7 @@ public final class FileContents implements CommentListener
      **/
     public boolean lineIsComment(int aLineNo)
     {
-        return MATCH_SINGLELINE_COMMENT.matcher(mLines[aLineNo]).matches();
+        return MATCH_SINGLELINE_COMMENT.matcher(line(aLineNo)).matches();
     }
 
     /**

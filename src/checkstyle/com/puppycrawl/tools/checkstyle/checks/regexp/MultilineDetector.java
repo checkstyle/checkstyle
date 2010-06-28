@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import com.google.common.collect.Lists;
-import java.util.List;
 import java.util.regex.Matcher;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.LineColumn;
 
 /**
  * A detector that matches across multiple lines.
@@ -32,10 +32,10 @@ class MultilineDetector
     private final DetectorOptions mOptions;
     /** Tracks the number of matches. */
     private int mCurrentMatches;
-    /** Relates StringBuffer positions to line # and column */
-    private final List<Integer[]> mCharacters = Lists.newArrayList();
     /** The mMatcher */
     private Matcher mMatcher;
+    /** The file text content */
+    private FileText mText;
 
     /**
      * Creates an instance.
@@ -47,23 +47,14 @@ class MultilineDetector
     }
 
     /**
-     * Processes a set of lines looking for matches.
-     * @param aLines the lines to process.
+     * Processes an entire text file looking for matches.
+     * @param aText the text to process
      */
-    public void processLines(List<String> aLines)
+    public void processLines(FileText aText)
     {
+        mText = aText;
         resetState();
-        final StringBuffer sb = new StringBuffer();
-        int lineno = 1;
-        for (String line : aLines) {
-            sb.append(line);
-            sb.append('\n');
-            for (int j = 0; j < (line.length() + 1); j++) {
-                mCharacters.add(new Integer[] {lineno, j});
-            }
-            lineno++;
-        }
-        mMatcher = mOptions.getPattern().matcher(sb.toString());
+        mMatcher = mOptions.getPattern().matcher(mText.getFullText());
         findMatch();
         finish();
     }
@@ -76,26 +67,21 @@ class MultilineDetector
             return;
         }
 
-        final int startLine = (mCharacters.get(mMatcher.start()))[0].intValue();
-        final int startColumn = (mCharacters.get(mMatcher.start()))[1]
-                .intValue();
-        final int endLine = (mCharacters.get(mMatcher.end() - 1))[0].intValue();
-        final int endColumn = (mCharacters.get(mMatcher.end() - 1))[1]
-                .intValue();
+        final LineColumn start = mText.lineColumn(mMatcher.start());
+        final LineColumn end = mText.lineColumn(mMatcher.end());
 
-
-        if (!mOptions.getSuppressor().shouldSuppress(startLine, startColumn,
-                endLine, endColumn))
+        if (!mOptions.getSuppressor().shouldSuppress(start.getLine(),
+                start.getColumn(), end.getLine(), end.getColumn()))
         {
             mCurrentMatches++;
             if (mCurrentMatches > mOptions.getMaximum()) {
                 if ("".equals(mOptions.getMessage())) {
-                    mOptions.getReporter().log(startLine, "regexp.exceeded",
-                            mMatcher.pattern().toString());
+                    mOptions.getReporter().log(start.getLine(),
+                            "regexp.exceeded", mMatcher.pattern().toString());
                 }
                 else {
                     mOptions.getReporter()
-                            .log(startLine, mOptions.getMessage());
+                            .log(start.getLine(), mOptions.getMessage());
                 }
             }
         }
@@ -121,6 +107,5 @@ class MultilineDetector
     private void resetState()
     {
         mCurrentMatches = 0;
-        mCharacters.clear();
     }
 }

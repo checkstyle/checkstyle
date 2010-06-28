@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -255,11 +256,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             fireFileStarted(fileName);
             final TreeSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
             try {
-                final String[] lines = Utils.getLines(f.getAbsolutePath(),
+                final FileText theText = new FileText(f.getAbsoluteFile(),
                         mCharset);
-                final List<String> theLines = Lists.newArrayList(lines);
                 for (FileSetCheck fsc : mFileSetChecks) {
-                    fileMessages.addAll(fsc.process(f, theLines));
+                    fileMessages.addAll(fsc.process(f, theText));
                 }
             }
             catch (final FileNotFoundException fnfe) {

@@ -171,7 +171,9 @@ public final class Utils
      * @return the lines in the file
      * @param aFileName the name of the file to load
      * @throws IOException error occurred
+     * @deprecated consider using {@link FileText} instead
      **/
+    @Deprecated
     public static String[] getLines(String aFileName)
         throws IOException
     {
@@ -187,7 +189,9 @@ public final class Utils
      * @param aFileName the name of the file to load
      * @param aCharsetName the name of a supported charset
      * @throws IOException error occurred
+     * @deprecated consider using {@link FileText} instead
      **/
+    @Deprecated
     public static String[] getLines(String aFileName, String aCharsetName)
         throws IOException
     {

@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -39,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
 import java.io.File;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -180,8 +182,8 @@ public final class TreeWalker
         }
 
         try {
-            final FileContents contents = new FileContents(fileName, aLines
-                    .toArray(new String[aLines.size()]));
+            final FileText text = FileText.fromLines(aFile, aLines);
+            final FileContents contents = new FileContents(text);
             final DetailAST rootAST = TreeWalker.parse(contents);
             walk(rootAST, contents);
         }
@@ -429,8 +431,9 @@ public final class TreeWalker
     public static DetailAST parse(FileContents aContents)
         throws RecognitionException, TokenStreamException
     {
-        final Reader sar = new StringArrayReader(aContents.getLines());
-        final GeneratedJavaLexer lexer = new GeneratedJavaLexer(sar);
+        final String fullText = aContents.getText().getFullText().toString();
+        final Reader sr = new StringReader(fullText);
+        final GeneratedJavaLexer lexer = new GeneratedJavaLexer(sr);
         lexer.setFilename(aContents.getFilename());
         lexer.setCommentListener(aContents);
         lexer.setTreatAssertAsKeyword(true);

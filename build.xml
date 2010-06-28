@@ -464,7 +464,9 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
       <fileset dir="${testreport.dir}">
         <include name="TEST-*.xml"/>
       </fileset>
-      <report todir="${testreport.dir}"/>
+      <!-- strangley under Ubuntu 10.04 need to not use the "frames"
+           format, at it hangs. -->
+      <report todir="${testreport.dir}" format="noframes"/>
     </junitreport>
 
     <property name="report"
