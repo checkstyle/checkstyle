@@ -688,12 +688,7 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
   <!-- Targets to verify that ANT version if at least 1.7 -->
   <target name="-check.ant17">
     <echo>version is ${ant.version}</echo>
-    <condition property="have.ant17">
-      <or>
-        <contains string="${ant.version}"
-                  substring="Apache Ant version 1.7"/>
-      </or>
-    </condition>
+    <antversion atleast="1.7" property="have.ant17"/>
   </target>
 
   <target name="-require.ant17" depends="-check.ant17" unless="have.ant17">
