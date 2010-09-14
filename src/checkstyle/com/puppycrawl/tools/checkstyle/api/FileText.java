@@ -118,7 +118,7 @@ public final class FileText extends AbstractList<String>
             decoder.onMalformedInput(CodingErrorAction.REPLACE);
             decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);
         }
-        catch (UnsupportedCharsetException ex) {
+        catch (final UnsupportedCharsetException ex) {
             final String message = "Unsuppored charset: " + aCharsetName;
             final UnsupportedEncodingException ex2;
             ex2 = new UnsupportedEncodingException(message);
@@ -171,7 +171,7 @@ public final class FileText extends AbstractList<String>
     private FileText(File aFile, List<String> aLines)
     {
         final StringBuilder buf = new StringBuilder();
-        for (String line : aLines) {
+        for (final String line : aLines) {
             buf.append(line).append('\n');
         }
         buf.trimToSize();
@@ -185,11 +185,11 @@ public final class FileText extends AbstractList<String>
     /**
      * Compatibility conversion.
      *
-     * This method cann be used to convert the arguments passed to
+     * This method can be used to convert the arguments passed to
      * {@link FileSetCheck#process(File,List<String>)} to a FileText
      * object. If the list of lines already is a FileText, it is
      * returned as is. Otherwise, a new FileText is constructed by
-     * joining the lines using linefeed characters.
+     * joining the lines using line feed characters.
      *
      * @param aFile the name of the file
      * @param aLines the lines of the text, without terminators
@@ -197,12 +197,9 @@ public final class FileText extends AbstractList<String>
      */
     public static FileText fromLines(File aFile, List<String> aLines)
     {
-        if (aLines instanceof FileText) {
-            return (FileText) aLines;
-        }
-        else {
-            return new FileText(aFile, aLines);
-        }
+        return (aLines instanceof FileText)
+            ? (FileText) aLines
+            : new FileText(aFile, aLines);
     }
 
     /**
@@ -335,6 +332,7 @@ public final class FileText extends AbstractList<String>
      * @param aLineNo the number of the line to get, starting at zero
      * @return the line with the given number
      */
+    @Override
     public String get(final int aLineNo)
     {
         return mLines[aLineNo];
@@ -344,6 +342,7 @@ public final class FileText extends AbstractList<String>
      * Counts the lines of the text.
      * @return the number of lines in the text
      */
+    @Override
     public int size()
     {
         return mLines.length;
