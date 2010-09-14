@@ -37,6 +37,19 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
     }
 
     @Test
+    public void testGroupsRegexp() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "java, /^javax?\\.(awt|swing)\\./");
+        checkConfig.addAttribute("ordered", "false");
+        final String[] expected = {
+            "9: Wrong order for 'java.io.File' import.",
+        };
+
+        verify(checkConfig, getPath("imports" + File.separator + "InputImportOrder.java"), expected);
+    }
+
+    @Test
     public void testSeparated() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);

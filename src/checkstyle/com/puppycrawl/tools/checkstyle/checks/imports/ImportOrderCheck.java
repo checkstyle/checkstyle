@@ -23,6 +23,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <ul>
@@ -51,6 +53,14 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  *    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
  *  &lt;/module&gt;
  * </pre>
+ *
+ * <p>
+ * Group descriptions enclosed in slashes are interpreted as regular
+ * expressions. If multiple groups match, the one matching a longer
+ * substring of the imported name will take precedence, with ties
+ * broken first in favor of earlier matches and finally in favor of
+ * the first matching group.
+ * </p>
  *
  * <p>
  * There is always a wildcard group to which everything not in a named group
@@ -87,9 +97,7 @@ public class ImportOrderCheck
     private static final String WILDCARD_GROUP_NAME = "*";
 
     /** List of import groups specified by the user. */
-    private String[] mGroups = new String[0];
-    /** The position of the "everything else" group. */
-    private int mWildcardGroupIndex;
+    private Pattern[] mGroups = new Pattern[0];
     /** Require imports in group be separated. */
     private boolean mSeparated;
     /** Require imports in group. */
@@ -120,29 +128,36 @@ public class ImportOrderCheck
      * Sets the list of package groups and the order they should occur in the
      * file.
      *
-     * @param aGroups
-     *            a comma-separated list of package names/prefixes.
+     * @param aGroups a comma-separated list of package names/prefixes.
      */
     public void setGroups(String[] aGroups)
     {
-        // set the default wildcard group to be after the last named group.
-        mWildcardGroupIndex = aGroups.length;
-
-        mGroups = new String[aGroups.length];
+        mGroups = new Pattern[aGroups.length];
 
         for (int i = 0; i < aGroups.length; i++) {
             String pkg = aGroups[i];
+            Pattern grp;
 
-            // if the pkg name is the wildcard, record the
-            // position for later reference
+            // if the pkg name is the wildcard, make it match zero chars
+            // from any name, so it will always be used as last resort.
             if (WILDCARD_GROUP_NAME.equals(pkg)) {
-                mWildcardGroupIndex = i;
+                grp = Pattern.compile(""); // matches any package
             }
-            else if (!pkg.endsWith(".")) {
-                pkg = pkg + ".";
+            else if (pkg.startsWith("/")) {
+                if (!pkg.endsWith("/")) {
+                    throw new IllegalArgumentException("Invalid group");
+                }
+                pkg = pkg.substring(1, pkg.length() - 1);
+                grp = Pattern.compile(pkg);
+            }
+            else {
+                if (!pkg.endsWith(".")) {
+                    pkg = pkg + ".";
+                }
+                grp = Pattern.compile("^" + Pattern.quote(pkg));
             }
 
-            mGroups[i] = pkg;
+            mGroups[i] = grp;
         }
     }
 
@@ -342,16 +357,27 @@ public class ImportOrderCheck
      */
     private int getGroupNumber(String aName)
     {
+        int bestIndex = mGroups.length;
+        int bestLength = -1;
+        int bestPos = 0;
+
         // find out what group this belongs in
         // loop over mGroups and get index
         for (int i = 0; i < mGroups.length; i++) {
-            if (aName.startsWith(mGroups[i])) {
-                return i;
+            final Matcher matcher = mGroups[i].matcher(aName);
+            while (matcher.find()) {
+                final int length = matcher.end() - matcher.start();
+                if ((length > bestLength)
+                    || ((length == bestLength) && (matcher.start() < bestPos)))
+                {
+                    bestIndex = i;
+                    bestLength = length;
+                    bestPos = matcher.start();
+                }
             }
         }
 
-        // no match, so we return the wildcard group
-        return mWildcardGroupIndex;
+        return bestIndex;
     }
 
     /**

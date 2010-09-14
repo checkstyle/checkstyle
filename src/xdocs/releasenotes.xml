@@ -29,6 +29,11 @@
           bottom of the class after all method and field declarations.
           Thanks to Ruslan Dyachenko for patch #3027391.
         </li>
+        <li>
+          Enhanced <a href="config_imports.html#ImportOrder">ImportOrder</a>
+          to support using regular expressions for defining groups.
+          Thanks to Martin von Gagern for patch #2782118.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>
