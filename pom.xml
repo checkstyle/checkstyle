@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project>
   <modelVersion>4.0.0</modelVersion>
   <groupId>checkstyle</groupId>
@@ -6,16 +7,53 @@
   <packaging>jar</packaging>
   <name>Checkstyle</name>
   <url>http://checkstyle.sourceforge.net/</url>
+  <inceptionYear>2001</inceptionYear>
+
   <description>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard</description>
+
   <licenses>
     <license>
       <name>GNU Lesser General Public License</name>
       <url>http://www.gnu.org/licenses/lgpl.txt</url>
     </license>
   </licenses>
+
   <scm>
     <url>https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</url>
   </scm>
+
+  <mailingLists>
+    <mailingList>
+      <name>checkstyle-announce</name>
+      <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=checkstyle-announce</archive>
+      <subscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-announce</subscribe>
+      <unsubscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-announce</unsubscribe>
+    </mailingList>
+    <mailingList>
+      <name>checkstyle-commits</name>
+      <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=checkstyle-commits</archive>
+      <subscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-commits</subscribe>
+      <unsubscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-commits</unsubscribe>
+    </mailingList>
+    <mailingList>
+      <name>checkstyle-devel</name>
+      <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=checkstyle-devel</archive>
+      <subscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-devel</subscribe>
+      <unsubscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-devel</unsubscribe>
+    </mailingList>
+    <mailingList>
+      <name>checkstyle-user</name>
+      <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=checkstyle-user</archive>
+      <subscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-user</subscribe>
+      <unsubscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-user</unsubscribe>
+    </mailingList>
+  </mailingLists>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <testinputs.dir>${basedir}/src/testinputs/com/puppycrawl/tools/checkstyle</testinputs.dir>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>antlr</groupId>
@@ -42,5 +80,152 @@
       <artifactId>google-collections</artifactId>
       <version>1.0</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.7.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun</groupId>
+      <artifactId>tools</artifactId>
+      <version>1.5.0</version>
+      <scope>system</scope>
+      <systemPath>${java.home}/../lib/tools.jar</systemPath>
+    </dependency>
+
+    <!-- test scope stuff -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
+
+  <build>
+    <sourceDirectory>src/checkstyle</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>${basedir}/src/checkstyle</directory>
+        <includes>
+          <include>**/*.dtd</include>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+    </resources>
+
+    <testSourceDirectory>src/tests</testSourceDirectory>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.5</source>
+            <target>1.5</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <!-- Generate the grammar -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>antlr-maven-plugin</artifactId>
+        <configuration>
+          <sourceDirectory>${basedir}/src/checkstyle/com/puppycrawl/tools/checkstyle/grammars</sourceDirectory>
+          <grammars>java.g</grammars>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Generate checkstylecompilation.properties -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <!-- version>1.3</version -->
+        <executions>
+          <execution>
+            <id>generate-checkstylecompilation.properties</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <propertyfile file="${project.build.outputDirectory}/checkstylecompilation.properties">
+                  <entry key="checkstyle.compile.version" value="${project.version}"/>
+                  <entry key="checkstyle.compile.timestamp" type="date" value="now" pattern="E MMMM dd yyyy, HH:mm z"/>
+                </propertyfile>
+
+                <property name="compile_classpath" refid="maven.compile.classpath"/>
+                <javadoc sourcefiles="src/checkstyle/com/puppycrawl/tools/checkstyle/api/TokenTypes.java"
+                         encoding="iso-8859-1"
+                         source="1.5"
+                         failonerror="yes">
+                  <classpath>
+                    <pathelement location="${project.build.outputDirectory}"/>
+                    <pathelement path="${compile_classpath}"/>
+                  </classpath>
+                  <doclet name="com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet"
+                          path="${project.build.outputDirectory}">
+                    <param name="-destfile"
+                           value="${project.build.outputDirectory}/com/puppycrawl/tools/checkstyle/api/tokentypes.properties"
+                           />
+                  </doclet>
+                </javadoc>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>ant</groupId>
+            <artifactId>ant-nodeps</artifactId>
+            <version>1.6.5</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <xdocDirectory>${basedir}/src/xdocs</xdocDirectory>
+        </configuration>
+      </plugin>
+
+      <!-- Used to set custom properties -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <!-- version>2.4.3</version -->
+        <configuration>
+          <systemProperties>
+            <property>
+              <name>testinputs.dir</name>
+              <value>${testinputs.dir}</value>
+            </property>
+          </systemProperties>
+          <!-- Need to fix these tests to run under Maven -->
+          <excludes>
+            <exclude>**/JavadocMethodCheckTest.java</exclude>
+            <exclude>**/RedundantThrowsCheckTest.java</exclude>
+            <exclude>**/CheckerTest.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>
