@@ -22,6 +22,17 @@
     <url>https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</url>
   </scm>
 
+  <developers>
+    <developer>
+      <id>oburn</id>
+      <name>Oliver Burn</name>
+      <roles>
+        <role>founder</role>
+      </roles>
+      <url>http://www.puppycrawl.com</url>
+      <timezone>+10</timezone>
+    </developer>
+  </developers>
   <mailingLists>
     <mailingList>
       <name>checkstyle-announce</name>
