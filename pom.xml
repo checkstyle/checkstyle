@@ -167,43 +167,49 @@
         <!-- version>1.3</version -->
         <executions>
           <execution>
-            <id>generate-checkstylecompilation.properties</id>
+            <id>ant-phase-compile</id>
             <phase>compile</phase>
             <goals>
               <goal>run</goal>
             </goals>
             <configuration>
               <tasks>
-                <propertyfile file="${project.build.outputDirectory}/checkstylecompilation.properties">
-                  <entry key="checkstyle.compile.version" value="${project.version}"/>
-                  <entry key="checkstyle.compile.timestamp" type="date" value="now" pattern="E MMMM dd yyyy, HH:mm z"/>
-                </propertyfile>
-
-                <property name="compile_classpath" refid="maven.compile.classpath"/>
-                <javadoc sourcefiles="src/checkstyle/com/puppycrawl/tools/checkstyle/api/TokenTypes.java"
-                         encoding="iso-8859-1"
-                         source="1.5"
-                         failonerror="yes">
-                  <classpath>
-                    <pathelement location="${project.build.outputDirectory}"/>
-                    <pathelement path="${compile_classpath}"/>
-                  </classpath>
-                  <doclet name="com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet"
-                          path="${project.build.outputDirectory}">
-                    <param name="-destfile"
-                           value="${project.build.outputDirectory}/com/puppycrawl/tools/checkstyle/api/tokentypes.properties"
+                <property name="mvn.project.build.outputDirectory"
+                          value="${project.build.outputDirectory}"
+                          />
+                <property name="mvn.project.version"
+                           value="${project.version}"
                            />
-                  </doclet>
-                </javadoc>
+                <property name="mvn.compile_classpath" refid="maven.compile.classpath"/>
+                <ant antfile="ant-phase-compile.xml"/>
+              </tasks>
+            </configuration>
+          </execution>
+          <execution>
+            <id>ant-phase-verify</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <property name="mvn.project.build.directory"
+                          value="${project.build.directory}"
+                          />
+                <property name="mvn.project.version"
+                           value="${project.version}"
+                           />
+                <property name="mvn.runtime_classpath" refid="maven.runtime.classpath"/>
+                <ant antfile="ant-phase-verify.xml"/>
               </tasks>
             </configuration>
           </execution>
         </executions>
         <dependencies>
           <dependency>
-            <groupId>ant</groupId>
+            <groupId>org.apache.ant</groupId>
             <artifactId>ant-nodeps</artifactId>
-            <version>1.6.5</version>
+            <version>1.7.1</version>
           </dependency>
         </dependencies>
       </plugin>

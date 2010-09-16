@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="phase-verify" default="execute">
+
+  <target name="execute">
+    <taskdef name="checkstyle"
+             classname="com.puppycrawl.tools.checkstyle.CheckStyleTask"
+             classpath="${mvn.runtime_classpath}"
+             />
+
+    <delete file="${mvn.project.build.directory}/cachefile" />
+
+    <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
+    <property name="check.config" location="checkstyle_checks.xml"/>
+    <property name="translation.severity" value="ignore"/>
+
+    <checkstyle config="${check.config}"
+                failOnViolation="false"
+                failureProperty="checkstyle.failure.property"
+                >
+      <fileset dir="src"
+               includes="checkstyle/**/*.java,checkstyle/**/*.properties,xdocs/**/*.xml"
+               excludes="**/Generated*.java,**/gui/*"/>
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_errors.xml"/>
+      <classpath path="${mvn.runtime_classpath}"/>
+      <property key="checkstyle.cache.file" file="${mvn.project.build.directory}/cachefile"/>
+      <property key="checkstyle.header.file" file="java.header"/>
+      <property key="checkstyle.importcontrol.file" file="import-control.xml"/>
+      <property key="checkstyle.suppressions.file"
+                file="suppressions.xml"/>
+    </checkstyle>
+
+    <fail if="checkstyle.failure.property"
+          message="Checkstyle failed: ${checkstyle.failure.property}"
+          />
+  </target>
+</project>
