@@ -195,7 +195,7 @@ public class ParseTreeInfoPanel extends JPanel
 
     /**
      * Parses a file and returns the parse tree.
-     * @param aFile the file to parse
+     * @param aText the file to parse
      * @return the root node of the parse tree
      * @throws IOException if the file cannot be opened
      * @throws ANTLRException if the file is not a Java source
@@ -274,3 +274,4 @@ public class ParseTreeInfoPanel extends JPanel
     }
 
 }
+

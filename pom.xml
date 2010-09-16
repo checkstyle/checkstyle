@@ -61,7 +61,7 @@
   </mailingLists>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
     <testinputs.dir>${basedir}/src/testinputs/com/puppycrawl/tools/checkstyle</testinputs.dir>
   </properties>
 
@@ -242,8 +242,29 @@
           </excludes>
         </configuration>
       </plugin>
+
+      <!-- For generating Javadoc -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <!-- version>2.7</version -->
+        <configuration>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>
 

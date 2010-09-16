@@ -103,10 +103,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  * @author o_sukhodolsky
- *
- * @checkstyle-docpage misc
  */
-
 public class IndentationCheck extends Check
 {
     /** Default indentation amount - based on Sun */

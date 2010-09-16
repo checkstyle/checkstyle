@@ -186,7 +186,7 @@ public final class FileText extends AbstractList<String>
      * Compatibility conversion.
      *
      * This method can be used to convert the arguments passed to
-     * {@link FileSetCheck#process(File,List<String>)} to a FileText
+     * {@link FileSetCheck#process(File,List)} to a FileText
      * object. If the list of lines already is a FileText, it is
      * returned as is. Otherwise, a new FileText is constructed by
      * joining the lines using line feed characters.
