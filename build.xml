@@ -586,8 +586,8 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
   <!-- -->
   <target name="javadoc" depends="compile.checkstyle"
           description="Creates the javadoc html files">
-    <mkdir dir="${xdocs.dest}/api" />
-    <javadoc sourcepath="src/checkstyle" destdir="${xdocs.dest}/api"
+    <mkdir dir="${xdocs.dest}/apidocs" />
+    <javadoc sourcepath="src/checkstyle" destdir="${xdocs.dest}/apidocs"
              Windowtitle="Checkstyle API"
              classpathref="javadoc.classpath"
              Use="true"
