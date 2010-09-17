@@ -257,11 +257,11 @@
             <ul>
               <li>
                 <span class="default">plain</span> - specifies the <a
-                href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
+                href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
               </li>
               <li>
                 <span class="default">xml</span> - specifies the <a
-                href="api/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>
+                href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>
               </li>
             </ul>
             <p>Defaults to <span class="default">"plain"</span>.</p>

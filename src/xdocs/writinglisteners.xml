@@ -18,9 +18,9 @@
         appropriately.  Any number of listeners can be attached to a
         <span class="code"> Checker</span>. An audit always adds one of
         the distribution listeners, <a
-        href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
+        href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
         or <a
-        href="api/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>,
+        href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>,
         to report events. A <span class="code">DefaultLogger</span>
         produces simple text output for the events it receives, and a
         <span class="code">XMLLogger</span> produces an XML document for
@@ -43,7 +43,7 @@
 
       <p>
         A listener is an implementation of the <a
-        href="api/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a>
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a>
         interface. During an audit, a <span class="code">Checker</span>
         informs its attached <span class="code">AuditListeners</span> of
         six kinds of events: audit started/ended, file started/ended,
@@ -52,7 +52,7 @@
 
       <p>
         An audit passes an event to a listener as an <a
-        href="api/com/puppycrawl/tools/checkstyle/api/AuditEvent.html">AuditEvent</a>.
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditEvent.html">AuditEvent</a>.
         A file-related <span class="code">AuditEvent</span> contains the
         name of that file. An <span class="code">AuditEvent</span> for
         error logging has a message, a severity level, a message source
@@ -74,10 +74,10 @@
     <section name="Writing Listeners">
       <p>
         A custom listener is an implementation of the <a
-        href="api/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a>
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a>
         interface. If the listener has properties that can be set from a
         configuration, the listener must extend <a
-        href="api/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>.
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>.
         An <span class="code">AutomaticBean</span> uses JavaBean
         introspection to set JavaBean properties.
       </p>

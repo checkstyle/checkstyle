@@ -83,9 +83,9 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         <li>
           <span class="default">-f format</span> - specify the output
           format. Options are <span class="default"> "plain"</span> for the <a
-          href="api/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
+          href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
           and <span class="default">"xml"</span> for the <a
-          href="api/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>.
+          href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>.
           Defaults to <span class="default">"plain"</span>.
         </li>
         <li>

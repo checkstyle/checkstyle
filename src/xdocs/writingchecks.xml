@@ -24,7 +24,7 @@
         modules, i.e. they form a tree structure. The toplevel modules
         that are known directly to the Checkstyle kernel (which is also a
         module and forms the root of the tree) implement the <a
-        href="api/com/puppycrawl/tools/checkstyle/api/FileSetCheck.html">FileSetCheck</a>
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/FileSetCheck.html">FileSetCheck</a>
         interface. These are pretty simple to grasp: they take a set of
         input files and fire error messages.
       </p>
@@ -32,9 +32,9 @@
       <p>
         Checkstyle provides a few FileSetCheck implementations by default
         and one of them happens to be the <a
-        href="api/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>. A
+        href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>. A
         TreeWalker supports submodules that are derived from the <a
-        href="api/com/puppycrawl/tools/checkstyle/api/Check.html">Check</a>
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html">Check</a>
         class. The TreeWalker operates by separately transforming each of
         the Java input files into an abstract syntax tree and then handing
         the result over to each of the Check submodules which in turn have
@@ -66,7 +66,7 @@
       <p> This chapter is organized as a tour that takes you
       through the process step by step and explains both the theoretical
       foundations and the <a
-      href="api/com/puppycrawl/tools/checkstyle/api/package-summary.html">Checkstyle
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/package-summary.html">Checkstyle
       API</a> along the way.  </p>
 
     </section>
@@ -131,7 +131,7 @@ java -classpath checkstyle-all-@CHECKSTYLE_VERSION@.jar \
       you navigate from the root of the tree to one of the leafs, you&#39;ll
       notice that the token type denotes smaller and smaller units of your
       source file, i.e. close to the root you might see the token type <a
-      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>
       (a node that represents a class definition) while you will see token
       types like IDENT (an identifier) near the leaves of the tree.  </p>
 
@@ -166,14 +166,14 @@ java -classpath checkstyle-all-@CHECKSTYLE_VERSION@.jar \
       <p> Hence Checkstyle&#39;s AST classes do not have any
       methods that implement checking functionality. Instead,
       Checkstyle&#39;s <a
-      href="api/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>
+      href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>
       takes a set of objects that conform to a <a
-      href="api/com/puppycrawl/tools/checkstyle/api/Check.html">Check</a>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html">Check</a>
       interface. OK, you&#39;re right - actually it&#39;s not an interface
       but an abstract class to provide some helper methods. A Check provides
       methods that take an AST as an argument and perform the checking process
       for that AST, most prominently <a
-      href="api/com/puppycrawl/tools/checkstyle/api/Check.html#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
       class="code">visitToken()</span></a>.  </p>
 
       <p> It is important to understand that the individual
@@ -185,18 +185,18 @@ java -classpath checkstyle-all-@CHECKSTYLE_VERSION@.jar \
 
       <p> Before any visitor method is called, the TreeWalker
       will call <a
-      href="api/com/puppycrawl/tools/checkstyle/api/Check.html#beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
       class="code">beginTree()</span></a> to give the Check a chance to do
       some initialization. Then, when performing the recursive descend from
       the root to the leaf nodes, the <span class="code">visitToken()</span>
       method is called. Unlike the basic examples in the pattern book, there
       is a <span class="code">visitToken()</span> counterpart called <a
-      href="api/com/puppycrawl/tools/checkstyle/api/Check.html#leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
       class="code">leaveToken()</span></a>. The TreeWalker will call that
       method to signal that the subtree below the node has been processed and
       the TreeWalker is backtracking from the node. After the root node has
       been left, the TreeWalker will call <a
-      href="api/com/puppycrawl/tools/checkstyle/api/Check.html#finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
       class="code">finishTree()</span></a>.  </p>
 
       <p>
@@ -467,9 +467,9 @@ java -classpath mycompanychecks.jar:checkstyle-all-@CHECKSTYLE_VERSION@.jar \
 
       <p> Writing a FileSetCheck is pretty straightforward: Just
       inherit from <a
-      href="api/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">AbstractFileSetCheck</a>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">AbstractFileSetCheck</a>
       and override the abstract <a
-      href="api/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered(java.io.File,%20java.util.List)"><span
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered(java.io.File,%20java.util.List)"><span
       class="code">processFiltered(java.io.File, java.util.List)</span></a> method and you&#39;re
       done. A very simple example could fire an error if the number of files
       exceeds a certain limit. Here is a FileSetCheck that does just that:</p>

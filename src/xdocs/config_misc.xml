@@ -433,16 +433,16 @@ messages.properties: Key 'ok' missing.
             <td>blocks to check</td>
 
             <td>subset of tokens <a
-            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
             <a
-             href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
              <a
-            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a></td>
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a></td>
 
             <td><a
-            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
             <a
-            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
 
           </tr>
         </table>
@@ -509,14 +509,14 @@ messages.properties: Key 'ok' missing.
             <td>tokens</td>
             <td>token types to check</td>
             <td>subset of tokens declared in <a
-            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
             <td>empty set</td>
           </tr>
           <tr>
             <td>limitedTokens</td>
             <td>set of tokens with limited occurances as descendants</td>
             <td>subset of tokens declared in <a
-            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
             <td>empty set</td>
           </tr>
           <tr>

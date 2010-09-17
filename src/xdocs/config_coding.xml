@@ -386,13 +386,13 @@ number.equals(i + j);
             <td>tokens to check</td>
             <td>
               subset of tokens <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
               <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
             </td>
             <td>
               <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
             </td>
           </tr>
         </table>
@@ -451,16 +451,16 @@ number.equals(i + j);
             <td>tokens to check</td>
             <td>
               subset of tokens <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
               <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
             </td>
 
             <td>
               <a
-               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
                <a
-               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
             </td>
           </tr>
 
@@ -664,15 +664,15 @@ number.equals(i + j);
             <td>tokens to check</td>
             <td>
               subset of <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>,
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>,
             </td>
             <td>
               <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">LITERAL_SWITCH</a>,
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">LITERAL_SWITCH</a>,
               <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">POST_INC</a>,
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">POST_INC</a>,
               <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">POST_DEC</a>
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">POST_DEC</a>
             </td>
           </tr>
         </table>
@@ -721,7 +721,7 @@ number.equals(i + j);
             <td>tokens</td>
             <td>tokens to check</td>
             <td>subset of <a
-            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
             </td>
             <td>empty</td>
           </tr>
@@ -812,29 +812,29 @@ number.equals(i + j);
             <td>tokens</td>
             <td>assignments to check</td>
             <td>subset of tokens <a
-            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">ASSIGN</a>,
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">ASSIGN</a>,
             <a
-             href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">BAND_ASSIGN</a>,
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">BAND_ASSIGN</a>,
              <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">BOR_ASSIGN</a>,
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">BOR_ASSIGN</a>,
               <a
-               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">BSR_ASSIGN</a>,
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">BSR_ASSIGN</a>,
                <a
-                href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">BXOR_ASSIGN</a>,
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">BXOR_ASSIGN</a>,
                 <a
-                 href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">DIV_ASSIGN</a>,
+                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">DIV_ASSIGN</a>,
                  <a
-                  href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">MINUS_ASSIGN</a>,
+                  href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">MINUS_ASSIGN</a>,
                   <a
-                   href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">MOD_ASSIGN</a>,
+                   href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">MOD_ASSIGN</a>,
                    <a
-                    href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">PLUS_ASSIGN</a>,
+                    href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">PLUS_ASSIGN</a>,
                     <a
-                     href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">SL_ASSIGN</a>,
+                     href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">SL_ASSIGN</a>,
                      <a
-                      href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">SR_ASSIGN</a>,
+                      href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">SR_ASSIGN</a>,
                       <a
-            href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">STAR_ASSIGN</a></td>
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">STAR_ASSIGN</a></td>
             <td>all tokens</td>
           </tr>
         </table>
@@ -1860,18 +1860,18 @@ if (&quot;something&quot;.equals(x))
             <td>tokens to check</td>
             <td>
               subset of tokens <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
               <a
-              href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
-              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>
             </td>
 
             <td>
               <a
-               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
                <a
-               href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
-               <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>
+               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>
             </td>
           </tr>
           <tr>
@@ -2302,7 +2302,7 @@ case 3:
             </td>
             <td>
               <a href="property_types.html#stringSet">list</a> of
-              <a href="api/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">token type</a>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">token type</a>
               names
             </td>
             <td>

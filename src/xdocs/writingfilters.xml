@@ -54,7 +54,7 @@
         href="property_types.html#regexp">regular expression</a>.  In order to
         enable the specification of the file name pattern as a property in a
         configuration file, the <span class="code">Filter</span> is an <a
-        href="api/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
         with mutator method <span class="code">setFiles(String)</span> that
         receives the file name pattern.  An <span
         class="code">AutomaticBean</span> uses JavaBean introspection to set
