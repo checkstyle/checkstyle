@@ -6,10 +6,10 @@
   <body>
     <menu name="About">
       <item name="Checkstyle" href="index.html"/>
+      <item name="Release Notes" href="releasenotes.html"/>
     </menu>
 
     <menu name="Documentation">
-      <item name="Release Notes" href="releasenotes.html"/>
       <item name="Configuration" href="config.html">
         <item name="Property Types" href="property_types.html"/>
       </item>
@@ -43,8 +43,6 @@
         <item name="Writing filters" href="writingfilters.html"/>
         <item name="Writing listeners" href="writinglisteners.html"/>
       </item>
-
-      <item name="Javadoc" href="api/index.html"/>
     </menu>
 
     <menu name="SourceForge">
