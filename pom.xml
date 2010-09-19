@@ -9,8 +9,8 @@
   <name>checkstyle</name>
   <url>http://checkstyle.sourceforge.net/</url>
   <issueManagement>
-  	<system>SourceForge</system>
-  	<url>http://sourceforge.net/tracker/?group_id=29721</url>
+    <system>SourceForge</system>
+    <url>http://sourceforge.net/tracker/?group_id=29721</url>
   </issueManagement>
   <inceptionYear>2001</inceptionYear>
 
@@ -40,35 +40,35 @@
     <developer>
       <id>lkuehne</id>
       <name>Lars Kühne</name>
-      <roles>   
+      <roles>
         <role>developer</role>
       </roles>
     </developer>
     <developer>
       <id>rickgiles</id>
       <name>Rick Giles</name>
-      <roles>   
+      <roles>
         <role>developer</role>
       </roles>
     </developer>
     <developer>
       <id>o_sukhodolsky</id>
       <name>Oleg Sukhodolsky</name>
-      <roles>   
+      <roles>
         <role>developer</role>
       </roles>
     </developer>
     <developer>
       <id>mstudman</id>
       <name>Michael Studman</name>
-      <roles>   
+      <roles>
         <role>developer</role>
       </roles>
     </developer>
     <developer>
       <id>tschneeberger</id>
       <name>Travis Schneeberger</name>
-      <roles>   
+      <roles>
         <role>developer</role>
       </roles>
     </developer>
@@ -104,6 +104,7 @@
   <properties>
     <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
     <testinputs.dir>${basedir}/src/testinputs/com/puppycrawl/tools/checkstyle</testinputs.dir>
+    <projectVersion>${project.version}</projectVersion>
   </properties>
 
   <dependencies>
