@@ -3,6 +3,23 @@
 <project xmlns="http://maven.apache.org/DECORATION/1.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+  
+  <bannerLeft>
+    <name>Checkstyle ${projectVersion}</name>
+  </bannerLeft>
+  <bannerRight>
+    <alt>Checkstyle</alt>
+    <href>http://checkstyle.sourceforge.net</href>
+    <src>images/logo.png</src>
+  </bannerRight>
+  
+  <poweredBy>
+    <logo name="SourceForge"
+          img="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&amp;type=11"
+          href="http://sourceforge.net/projects/checkstyle"
+          />
+  </poweredBy>
+  
   <body>
     <menu name="About">
       <item name="Checkstyle" href="index.html"/>
