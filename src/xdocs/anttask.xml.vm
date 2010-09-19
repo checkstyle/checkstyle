@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<document>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <properties>
     <title>Ant Task</title>
@@ -25,7 +27,7 @@
 
       <p>
         The easiest way is to include <span
-        class="default">checkstyle-all-@CHECKSTYLE_VERSION@.jar</span> in the
+        class="default">checkstyle-all-${projectVersion}.jar</span> in the
         classpath. This contains all the classes required to run
         Checkstyle. Alternatively, you must include the following in the
         classpath:
@@ -33,7 +35,7 @@
 
       <ol>
         <li>
-          <span class="default">checkstyle-@CHECKSTYLE_VERSION@.jar</span>
+          <span class="default">checkstyle-${projectVersion}.jar</span>
         </li>
         <li>
           ANTLR 2.7.2 classes. <span class="default">antlr.jar</span> is
@@ -67,7 +69,7 @@
 
       <source>
 &lt;taskdef resource=&quot;checkstyletask.properties&quot;
-         classpath=&quot;/path/to/checkstyle-all-@CHECKSTYLE_VERSION@.jar&quot;/&gt;
+         classpath=&quot;/path/to/checkstyle-all-${projectVersion}.jar&quot;/&gt;
       </source>
 
       <p>
