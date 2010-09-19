@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>checkstyle</groupId>
   <artifactId>checkstyle</artifactId>
@@ -7,6 +8,10 @@
   <packaging>jar</packaging>
   <name>checkstyle</name>
   <url>http://checkstyle.sourceforge.net/</url>
+  <issueManagement>
+  	<system>SourceForge</system>
+  	<url>http://sourceforge.net/tracker/?group_id=29721</url>
+  </issueManagement>
   <inceptionYear>2001</inceptionYear>
 
   <description>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard</description>
@@ -19,7 +24,9 @@
   </licenses>
 
   <scm>
-    <url>https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</url>
+  	<connection>scm:svn:https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</connection>
+  	<developerConnection>scm:svn:https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</developerConnection>
+  	<url>https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</url>
   </scm>
 
   <developers>
@@ -29,10 +36,44 @@
       <roles>
         <role>founder</role>
       </roles>
-      <url>http://www.puppycrawl.com</url>
-      <timezone>+10</timezone>
+    </developer>
+    <developer>
+      <id>lkuehne</id>
+      <name>Lars Kühne</name>
+      <roles>   
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>rickgiles</id>
+      <name>Rick Giles</name>
+      <roles>   
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>o_sukhodolsky</id>
+      <name>Oleg Sukhodolsky</name>
+      <roles>   
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>mstudman</id>
+      <name>Michael Studman</name>
+      <roles>   
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>tschneeberger</id>
+      <name>Travis Schneeberger</name>
+      <roles>   
+        <role>developer</role>
+      </roles>
     </developer>
   </developers>
+
   <mailingLists>
     <mailingList>
       <name>checkstyle-announce</name>
@@ -171,6 +212,7 @@
           <sourceDirectory>${basedir}/src/checkstyle/com/puppycrawl/tools/checkstyle/grammars</sourceDirectory>
           <grammars>java.g</grammars>
         </configuration>
+        <version>2.1</version>
         <executions>
           <execution>
             <goals>
@@ -353,7 +395,6 @@
             </reports>
           </reportSet>
         </reportSets>
-
       </plugin>
     </plugins>
   </reporting>

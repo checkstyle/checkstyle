@@ -45,24 +45,10 @@
       </item>
     </menu>
 
-    <menu name="SourceForge">
-      <item name="Mailing Lists"
-            href="http://sourceforge.net/mail/?group_id=29721"/>
-
-      <item name="Bug Database"
-            href="http://sourceforge.net/tracker/?atid=397078&amp;group_id=29721&amp;func=browse"/>
-
-      <item name="Feature Requests"
-            href="http://sourceforge.net/tracker/?atid=397081&amp;group_id=29721&amp;func=browse"/>
-    </menu>
-
     <menu name="Developers">
+      <item name="Javadoc" href="apidocs/index.html"/>
       <item name="Project Page"
             href="http://sourceforge.net/projects/checkstyle"/>
-
-      <item name="SVN Repository"
-            href="http://checkstyle.svn.sourceforge.net/viewvc/checkstyle/"/>
-
       <item name="Contributing" href="contributing.html"/>
     </menu>
 
