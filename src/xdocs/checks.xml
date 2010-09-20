@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<document>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <properties>
     <title>Standard Checks</title>
@@ -8,6 +10,7 @@
   </properties>
 
   <body>
+    <section name="Standard Checks">
     <p>
       The Standard Checkstyle Checks are applicable to general Java coding style
       and require no external libraries. The standard checks are included in
@@ -17,5 +20,6 @@
     <p>
       The site navigation menu lets you browse the individual checks by functionality.
     </p>
+    </section>
   </body>
 </document>

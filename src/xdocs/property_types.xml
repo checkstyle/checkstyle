@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<document>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <properties>
     <title>Property Types</title>
@@ -8,28 +10,28 @@
   </properties>
 
   <body>
-
+    <section name="Property Types">
     <p>
       Checkstyle is configured using properties, which are string
       representations. This document describes how these string
       representations are mapped to typed properties.
     </p>
 
-    <section name="integer">
+    <subsection name="integer">
       <p>
         This property represents an integer. The string representation is
         parsed using the <span class="code">java.lang.Integer</span> class.
       </p>
-    </section>
+    </subsection>
 
-    <section name="string">
+    <subsection name="string">
       <p>
         This property represents a string. The literal string representation
         is used.
       </p>
-    </section>
+    </subsection>
 
-    <section name="boolean">
+    <subsection name="boolean">
       <p>
         This property represents a boolean. The default value is <span
         class="code">false</span>. The following string representations will
@@ -43,33 +45,33 @@
       </ul>
 
       <p>Anything else will map to <span class="code">false</span>.</p>
-    </section>
+    </subsection>
 
-    <section name="stringSet">
+    <subsection name="stringSet">
       <p>
         This property represents a set of strings. The string representation
         is parsed as a set of comma (',') separated strings.
       </p>
-    </section>
+    </subsection>
 
-    <section name="intSet">
+    <subsection name="intSet">
       <p>
         This property represents a set of integers. The string representation
         is parsed as a set of comma (',') separated integers that are parsed
         using the <span class="code">java.lang.Integer</span> class.
       </p>
-    </section>
+    </subsection>
 
-    <section name="regexp">
+    <subsection name="regexp">
       <p>
         This property represents a regular expression. The string
         representation is parsed using <a
         href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/package-summary.html">java.util.regex
         package</a>.
       </p>
-    </section>
+    </subsection>
 
-    <section name="parenPad">
+    <subsection name="parenPad">
       <p>
         This property represents the policy for padding with white space. The
         following table describes the valid options:
@@ -94,9 +96,9 @@
           </td>
         </tr>
       </table>
-    </section>
+    </subsection>
 
-    <section name="wrapOp">
+    <subsection name="wrapOp">
       <p>
         This property represents the policy for wrapping lines on
         operators. The following table describes the valid options:
@@ -128,9 +130,9 @@
           </td>
         </tr>
       </table>
-    </section>
+    </subsection>
 
-    <section name="block">
+    <subsection name="block">
       <p>
         This property represents the policy for checking block statements. The
         following table describes the valid options:
@@ -164,9 +166,9 @@
           </td>
         </tr>
       </table>
-    </section>
+    </subsection>
 
-    <section name="lcurly">
+    <subsection name="lcurly">
       <p>
         This property represents the policy for checking the placement of a
         left curly brace (<span class="code">'{'</span>). The following table
@@ -226,9 +228,9 @@
           </td>
         </tr>
       </table>
-    </section>
+    </subsection>
 
-    <section name="rcurly">
+    <subsection name="rcurly">
       <p>
         This property represents the policy for checking the placement of a
         right curly brace (<span class="code">'}'</span>). The following table
@@ -267,9 +269,9 @@
           </td>
         </tr>
       </table>
-    </section>
+    </subsection>
 
-    <section name="scope">
+    <subsection name="scope">
       <p>This property represents a Java scope. The scope is treated
       inclusevly (as javadoc does): 'package' means all 'package', 'protected'
       and 'public' methods/fields/classes. The valid options are:</p>
@@ -282,9 +284,9 @@
         <li><span class="default">private</span></li>
         <li><span class="default">anoninner</span></li>
       </ul>
-    </section>
+    </subsection>
 
-    <section name="severity">
+    <subsection name="severity">
       <p>
         This property represents the severity level of a check violation. The
         valid options are:
@@ -296,9 +298,9 @@
         <li><span class="default">warning</span></li>
         <li><span class="default">error</span></li>
       </ul>
-    </section>
+    </subsection>
 
-    <section name="importOrder">
+    <subsection name="importOrder">
       <p>
         This property represents the policy for checking imports order.
         The following table describes the valid options:
@@ -371,10 +373,10 @@
           </td>
         </tr>
       </table>
-    </section>
+    </subsection>
 
 
-    <section name="elementStyle">
+    <subsection name="elementStyle">
       <p>
         This property represents the policy for the styles for defining
         elements in an annotation. The following table
@@ -428,10 +430,10 @@
           </td>
         </tr>
       </table>
-    </section>
+    </subsection>
 
 
-    <section name="closingParens">
+    <subsection name="closingParens">
       <p>
         This property represents the policy for the styles for the ending
         parenthesis. The following table describes the valid options:
@@ -466,10 +468,10 @@
           </td>
         </tr>
       </table>
-    </section>
+    </subsection>
 
 
-    <section name="trailingArrayComma">
+    <subsection name="trailingArrayComma">
       <p>
         This property represents the policy for the styles for the trailing
         array comma. The following table describes the valid options:
@@ -504,7 +506,7 @@
           </td>
         </tr>
       </table>
+    </subsection>
     </section>
-
   </body>
 </document>

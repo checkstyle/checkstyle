@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<document>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <properties>
     <title>Miscellaneous</title>
@@ -986,16 +988,14 @@ d = e / f;        // Another comment for this line
           <b>Note:</b> Because of the different mode of operation there may be
           some changes in the regular expressions used to achieve a particular end.
         </p>
-        <p>
-          In multiline mode...
-          <ul>
+        <p>In multiline mode...</p>
+        <ul>
           <li> ^ means beginning of a line, as oposed to beginning of input.</li>
           <li> For beginning of input use \A.</li>
           <li> $ means end of a line, as oposed to end of input.</li>
           <li> For end of input use \Z.</li>
           <li> Each line in the file is terminated with a newline character.</li>
-          </ul>
-        </p>
+        </ul>
         <p>
           <b>Note:</b> Not all regexp engines are created equal. Some provide extra
           functions that others do not and some elements of the syntax may vary.
@@ -1201,13 +1201,12 @@ d = e / f;        // Another comment for this line
           To configure the check to verify that each file starts with the
           following multiline header.
         </p>
-        <p>
-          Note the following:
-          <ul>
-            <li>\A means the start of the file.</li>
-            <li>The date can be any 4 digit number.</li>
-          </ul>
-        </p>
+        <p>Note the following:</p>
+        <ul>
+          <li>\A means the start of the file.</li>
+          <li>The date can be any 4 digit number.</li>
+        </ul>
+
         <source>
 // Copyright (C) 2004 MyCompany
 // All rights reserved
@@ -1325,14 +1324,13 @@ public class PID extends StateMachine implements WebObject.Constants {
         <p>
           This checks for the presence of the header, the first 16 lines.
         </p>
-        <p>
-          Note the following:
-          <ul>
-            <li>Line 2 and 13 contain the file name. These are checked to
-            make sure they are the same, and that they match the class name.</li>
-            <li>The date can be any 4 digit number.</li>
-          </ul>
-        </p>
+        <p>Note the following:</p>
+        <ul>
+          <li>Line 2 and 13 contain the file name. These are checked to
+          make sure they are the same, and that they match the class name.</li>
+          <li>The date can be any 4 digit number.</li>
+        </ul>
+
         <source>
 &lt;module name=&quot;Regexp&quot;&gt;
         &lt;property

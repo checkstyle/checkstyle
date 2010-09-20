@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<document>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <properties>
     <title>Imports</title>
@@ -322,23 +324,21 @@ class FooBar {
 
     <section name="ImportOrder">
       <subsection name="Description">
-        <p>
-            Checks the ordering/grouping of imports. Features are:
-            <ul>
-                <li>groups imports: ensures that groups of imports come in a
-                specific order (e.g., java. comes first, javax. comes second,
-                then everything else)</li>
-                <li>adds a separation between groups : ensures that a blank
-                line sit between each group</li>
-                <li>sorts imports inside each group: ensures that imports
-                within each group are in lexicographic order</li>
-                <li>sorts according to case: ensures that the comparison
-                between imports is case sensitive</li>
-                <li>groups static imports: ensures the relative order between
-                regular imports and static imports (see
-                <a href="property_types.html#importOrder">import orders</a>)</li>
-             </ul>
-        </p>
+        <p>Checks the ordering/grouping of imports. Features are:</p>
+        <ul>
+          <li>groups imports: ensures that groups of imports come in a
+          specific order (e.g., java. comes first, javax. comes second,
+          then everything else)</li>
+          <li>adds a separation between groups : ensures that a blank
+          line sit between each group</li>
+          <li>sorts imports inside each group: ensures that imports
+          within each group are in lexicographic order</li>
+          <li>sorts according to case: ensures that the comparison
+          between imports is case sensitive</li>
+          <li>groups static imports: ensures the relative order between
+          regular imports and static imports (see
+          <a href="property_types.html#importOrder">import orders</a>)</li>
+         </ul>
       </subsection>
 
       <subsection name="Properties">
@@ -391,15 +391,13 @@ class FooBar {
       </subsection>
 
       <subsection name="Example">
-        <p>
-          To configure the check so that it requires that:
-          <ul>
-            <li>&quot;java&quot; and &quot;javax&quot; packages together first, then &quot;org&quot; and then all other imports</li>
-            <li>imports will be sorted in the groups</li>
-            <li>groups are separated by, at least, one blank line</li>
-            <li>static imports are above each local groups</li>
-          </ul>
-        </p>
+        <p>To configure the check so that it requires that:</p>
+        <ul>
+          <li>&quot;java&quot; and &quot;javax&quot; packages together first, then &quot;org&quot; and then all other imports</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by, at least, one blank line</li>
+          <li>static imports are above each local groups</li>
+        </ul>
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;>

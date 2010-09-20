@@ -11,12 +11,12 @@
   </properties>
 
   <body>
+<section name="Available Checks">
     <p>
       Checkstyle provides many checks that you can apply to your
       sourcecode. Below is an alphabetical reference, the site
       navigation menu provides a reference organized by functionality.
     </p>
-
     <table>
       <tr>
         <td><a href="config_naming.html#AbstractClassName">AbstractClassName</a></td>
@@ -683,5 +683,6 @@
         Outputs a JavaDoc tag as information.</td>
       </tr>
     </table>
+    </section>
   </body>
 </document>

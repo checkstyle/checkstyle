@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<document>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <properties>
     <title>Metrics</title>
@@ -240,13 +242,13 @@
         <p>
           Checks cyclomatic complexity against a specified limit. The
           complexity is measured by the number of <span
-          CLASS="code">if</span>, <span CLASS="code">while</span>, <span
-          CLASS="code">do</span>, <span CLASS="code">for</span>, <span
-          CLASS="code">?:</span>, <span CLASS="code">catch</span>, <span
-          CLASS="code">switch</span>, <span CLASS="code">case</span>
+          class="code">if</span>, <span class="code">while</span>, <span
+          class="code">do</span>, <span class="code">for</span>, <span
+          class="code">?:</span>, <span class="code">catch</span>, <span
+          class="code">switch</span>, <span class="code">case</span>
           statements, and operators <span
-          CLASS="code">&#x26;&#x26;</span> and <span
-          CLASS="code">||</span> (plus one) in the body of a
+          class="code">&#x26;&#x26;</span> and <span
+          class="code">||</span> (plus one) in the body of a
           constructor, method, static initializer, or instance
           initializer.  It is a measure of the minimum number of
           possible paths through the source and therefore the number of

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<document>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
   <properties>
     <title>Whitespace</title>
     <author>Checkstyle Development Team</author>
@@ -998,10 +1001,10 @@ for (Iterator foo = very.long.line.iterator();
         Checks that a token is surrounded by whitespace.  Empty constructor and
         method bodies (blocks) of the form
         </p>
-        <p>
-        <pre>public MyClass() {}      // empty constructor
-public void func() {}    // empty method</pre>
-        </p>
+
+        <source>public MyClass() {}      // empty constructor
+public void func() {}    // empty method</source>
+
         <p>
         may optionally be exempted from the policy using the <span class="code">
         allowEmptyMethods</span> and <span class="code">allowEmptyConstructors

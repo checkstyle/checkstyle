@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<document>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <properties>
     <title>Coding</title>
@@ -1365,6 +1367,7 @@ if (&quot;something&quot;.equals(x))
        do not work it all situations.  Consequently, it is difficult to
        override correctly.  Below are some of the rules/reasons why the clone
        method should be avoided.
+       </p>
 
        <ul>
        <li>
@@ -1403,7 +1406,6 @@ if (&quot;something&quot;.equals(x))
        provide a correct clone implementation.
        </li>
        </ul>
-       </p>
 
        <p>
        Two alternatives to the clone method, in some cases, is a copy constructor
@@ -1419,29 +1421,35 @@ if (&quot;something&quot;.equals(x))
        alternative to the clone method.  The example below highlights the
        limitation of a copy constructor (or static factory). Assume
        Square is a subclass for Shape.
+       </p>
 
-       <pre>
+       <source>
        Shape s1 = new Square();
        System.out.println(s1 instanceof Square); //true
-       </pre>
+       </source>
 
+       <p>
        ...assume at this point the code knows nothing of s1 being a Square
           that's the beauty of polymorphism but the code wants to copy
           the Square which is declared as a Shape, its super type...
+       </p>
 
-       <pre>
+       <source>
        Shape s2 = new Shape(s1); //using the copy constructor
        System.out.println(s2 instanceof Square); //false
-       </pre>
+       </source>
 
+       <p>
        The working solution (without knowing about all subclasses and doing many
        casts) is to do the following (assuming correct clone implementation).
+       </p>
 
-       <pre>
+       <source>
        Shape s2 = s1.clone();
        System.out.println(s2 instanceof Square); //true
-       </pre>
+       </source>
 
+       <p>
        Just keep in mind if this type of polymorphic cloning is required
        then a properly implemented clone method may be the best choice.
        </p>
