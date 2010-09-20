@@ -302,9 +302,6 @@
               <value>${testsrcs.dir}</value>
             </property>
           </systemProperties>
-          <excludes>
-            <exclude>**/CheckerTest.java</exclude>
-          </excludes>
         </configuration>
       </plugin>
 
