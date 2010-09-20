@@ -52,7 +52,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
             "333: Unused Javadoc tag.",
         };
 
-        verify(mCheckConfig, getPath("InputTags.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/InputTags.java"), expected);
     }
 
     @Test
@@ -86,7 +86,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
             "320:9: Missing a Javadoc comment.",
             "329:5: Missing a Javadoc comment.",
             "333: Unused Javadoc tag.", };
-        verify(mCheckConfig, getPath("InputTags.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/InputTags.java"), expected);
     }
 
     @Test
@@ -198,7 +198,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
             "320:9: Missing a Javadoc comment.",
             "329:5: Missing a Javadoc comment.",
             "333: Unused Javadoc tag.", };
-        verify(mCheckConfig, getPath("InputTags.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/InputTags.java"), expected);
     }
 
     @Test
@@ -354,14 +354,14 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
     public void test_1168408_1() throws Exception
     {
         final String[] expected = {};
-        verify(mCheckConfig, getPath("javadoc/Test1.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/Input_01.java"), expected);
     }
 
     @Test
     public void test_1168408_2() throws Exception
     {
         final String[] expected = {};
-        verify(mCheckConfig, getPath("javadoc/Test2.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/Input_02.java"), expected);
     }
 
     @Test
@@ -370,7 +370,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         mCheckConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {};
-        verify(mCheckConfig, getPath("javadoc/Test3.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/Input_03.java"), expected);
     }
 
     @Test
@@ -424,7 +424,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         mCheckConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {};
-        verify(mCheckConfig, getPath("javadoc/Test_1379666.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/Input_1379666.java"), expected);
     }
 
     @Test

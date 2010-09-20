@@ -70,28 +70,28 @@ public class RedundantThrowsCheckTest extends BaseCheckTestSupport
     public void test_1168408_1() throws Exception
     {
         final String[] expected = {};
-        verify(mCheckConfig, getPath("javadoc/Test1.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/Input_01.java"), expected);
     }
 
     @Test
     public void test_1168408_2() throws Exception
     {
         final String[] expected = {};
-        verify(mCheckConfig, getPath("javadoc/Test2.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/Input_02.java"), expected);
     }
 
     @Test
     public void test_1168408_3() throws Exception
     {
         final String[] expected = {};
-        verify(mCheckConfig, getPath("javadoc/Test3.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/Input_03.java"), expected);
     }
 
     @Test
     public void test_1220726() throws Exception
     {
         final String[] expected = {};
-        verify(mCheckConfig, getPath("javadoc/BadCls.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/BadCls.java"), expected);
     }
 
     @Test
@@ -117,6 +117,6 @@ public class RedundantThrowsCheckTest extends BaseCheckTestSupport
     public void test_1379666() throws Exception
     {
         final String[] expected = {};
-        verify(mCheckConfig, getPath("javadoc/Test_1379666.java"), expected);
+        verify(mCheckConfig, getSrcPath("checks/javadoc/Input_1379666.java"), expected);
     }
 }

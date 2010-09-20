@@ -13,7 +13,7 @@ public class JavadocPackageCheckTest
     protected DefaultConfiguration createCheckerConfig(
         Configuration aCheckConfig)
     {
-        DefaultConfiguration dc = new DefaultConfiguration("root");
+        final DefaultConfiguration dc = new DefaultConfiguration("root");
         dc.addChild(aCheckConfig);
         return dc;
     }
@@ -22,20 +22,20 @@ public class JavadocPackageCheckTest
     public void testMissing()
          throws Exception
     {
-        Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {
             "0: Missing package-info.java file.",
         };
         verify(
             createChecker(checkConfig),
-            getPath("javadoc/BadCls.java"),
-            getPath("javadoc/BadCls.java"),
+            getSrcPath("checks/javadoc/BadCls.java"),
+            getSrcPath("checks/javadoc/BadCls.java"),
             expected);
     }
     @Test
     public void testBoth() throws Exception
     {
-        Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {"0: Legacy package.html file should be removed.",};
         verify(createChecker(checkConfig),
             getPath("javadoc/bothfiles/Ignored.java"),
@@ -45,7 +45,7 @@ public class JavadocPackageCheckTest
     @Test
     public void testHtmlDisallowed() throws Exception
     {
-        Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = {"0: Missing package-info.java file.",};
         verify(createChecker(checkConfig),
             getPath("javadoc/pkghtml/Ignored.java"),
@@ -55,7 +55,7 @@ public class JavadocPackageCheckTest
     @Test
     public void testHtmlAllowed() throws Exception
     {
-        DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         checkConfig.addAttribute("allowLegacy", "true");
         final String[] expected = {};
         verify(createChecker(checkConfig),

@@ -111,6 +111,7 @@
   <properties>
     <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
     <testinputs.dir>${basedir}/src/testinputs/com/puppycrawl/tools/checkstyle</testinputs.dir>
+    <testsrcs.dir>${basedir}/src/tests/com/puppycrawl/tools/checkstyle</testsrcs.dir>
     <projectVersion>${project.version}</projectVersion>
   </properties>
 
@@ -290,18 +291,18 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <!-- version>2.4.3</version -->
         <configuration>
           <systemProperties>
             <property>
               <name>testinputs.dir</name>
               <value>${testinputs.dir}</value>
             </property>
+            <property>
+              <name>testsrcs.dir</name>
+              <value>${testsrcs.dir}</value>
+            </property>
           </systemProperties>
-          <!-- Need to fix these tests to run under Maven -->
           <excludes>
-            <exclude>**/JavadocMethodCheckTest.java</exclude>
-            <exclude>**/RedundantThrowsCheckTest.java</exclude>
             <exclude>**/CheckerTest.java</exclude>
           </excludes>
         </configuration>

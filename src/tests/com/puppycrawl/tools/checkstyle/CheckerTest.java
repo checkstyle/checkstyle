@@ -4,16 +4,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.TreeSet;
-
 import com.google.common.collect.Sets;
-
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import java.io.File;
+import java.util.TreeSet;
 import org.junit.Test;
 
 public class CheckerTest
@@ -21,7 +19,7 @@ public class CheckerTest
     @Test
     public void testDosBasedir() throws Exception
     {
-        Checker c = new Checker();
+        final Checker c = new Checker();
 
         c.setBasedir("c:/a\\b/./c\\..\\d");
         assertEquals("C:\\a\\b\\d", c.getBasedir());
@@ -30,7 +28,7 @@ public class CheckerTest
     @Test
     public void testOsBasedir() throws Exception
     {
-        Checker c = new Checker();
+        final Checker c = new Checker();
 
         // we need something to create absolute path
         // let's take testinputs.dir
@@ -47,10 +45,10 @@ public class CheckerTest
     @Test
     public void testDestroy() throws Exception
     {
-        DebugChecker c= new DebugChecker();
-        DebugAuditAdapter aa = new DebugAuditAdapter();
+        final DebugChecker c= new DebugChecker();
+        final DebugAuditAdapter aa = new DebugAuditAdapter();
         c.addListener(aa);
-        DebugFilter f = new DebugFilter();
+        final DebugFilter f = new DebugFilter();
         c.addFilter(f);
 
         c.destroy(); // should remove al listeners and filters
@@ -61,7 +59,7 @@ public class CheckerTest
         c.fireFileStarted("Some File Name");
         c.fireFileFinished("Some File Name");
 
-        TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
@@ -73,8 +71,8 @@ public class CheckerTest
     @Test
     public void testAddListener() throws Exception
     {
-        DebugChecker c= new DebugChecker();
-        DebugAuditAdapter aa = new DebugAuditAdapter();
+        final DebugChecker c= new DebugChecker();
+        final DebugAuditAdapter aa = new DebugAuditAdapter();
         c.addListener(aa);
 
         // Let's try fire some events
@@ -94,7 +92,7 @@ public class CheckerTest
         assertTrue("Checker.fireFileFinished() doesn't call listener", aa.wasCalled());
 
         aa.resetListener();
-        TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
@@ -104,9 +102,9 @@ public class CheckerTest
     @Test
     public void testRemoveListener() throws Exception
     {
-        DebugChecker c= new DebugChecker();
-        DebugAuditAdapter aa = new DebugAuditAdapter();
-        DebugAuditAdapter aa2 = new DebugAuditAdapter();
+        final DebugChecker c= new DebugChecker();
+        final DebugAuditAdapter aa = new DebugAuditAdapter();
+        final DebugAuditAdapter aa2 = new DebugAuditAdapter();
         c.addListener(aa);
         c.addListener(aa2);
         c.removeListener(aa);
@@ -132,7 +130,7 @@ public class CheckerTest
         assertFalse("Checker.fireFileFinished() does call removed listener", aa.wasCalled());
 
         aa2.resetListener();
-        TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
@@ -144,8 +142,8 @@ public class CheckerTest
     @Test
     public void testAddFilter() throws Exception
     {
-        DebugChecker c= new DebugChecker();
-        DebugFilter f = new DebugFilter();
+        final DebugChecker c= new DebugChecker();
+        final DebugFilter f = new DebugFilter();
 
         c.addFilter(f);
 
@@ -170,7 +168,7 @@ public class CheckerTest
 //         assertTrue("Checker.fireFileFinished() doesn't call filter", f.wasCalled());
 
         f.resetFilter();
-        TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);
@@ -180,9 +178,9 @@ public class CheckerTest
     @Test
     public void testRemoveFilter() throws Exception
     {
-        DebugChecker c= new DebugChecker();
-        DebugFilter f = new DebugFilter();
-        DebugFilter f2 = new DebugFilter();
+        final DebugChecker c= new DebugChecker();
+        final DebugFilter f = new DebugFilter();
+        final DebugFilter f2 = new DebugFilter();
         c.addFilter(f);
         c.addFilter(f2);
         c.removeFilter(f);
@@ -212,7 +210,7 @@ public class CheckerTest
 //         assertFalse("Checker.fireFileFinished() does call removed filter", f.wasCalled());
 
         f2.resetFilter();
-        TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         c.fireErrors("Some File Name", msgs);

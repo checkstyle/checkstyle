@@ -21,7 +21,7 @@ public class JavadocVariableCheckTest
             "311:5: Missing a Javadoc comment.",
             "330:5: Missing a Javadoc comment.",
         };
-        verify(checkConfig, getPath("InputTags.java"), expected);
+        verify(checkConfig, getSrcPath("checks/javadoc/InputTags.java"), expected);
     }
 
     @Test

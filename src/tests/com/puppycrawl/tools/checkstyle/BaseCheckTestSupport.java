@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
+
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -79,6 +80,12 @@ public abstract class BaseCheckTestSupport
     {
         final File f = new File(System.getProperty("testinputs.dir"),
                                 aFilename);
+        return f.getCanonicalPath();
+    }
+
+    protected static String getSrcPath(String aFilename) throws IOException
+    {
+        final File f = new File(System.getProperty("testsrcs.dir"), aFilename);
         return f.getCanonicalPath();
     }
 
