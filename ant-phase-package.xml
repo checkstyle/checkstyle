@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="phase-verify" default="execute">
+<project name="phase-package" default="execute">
 
   <target name="execute">
     <taskdef name="checkstyle"
