@@ -28,6 +28,13 @@
   	<developerConnection>scm:svn:https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</developerConnection>
   	<url>https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</url>
   </scm>
+  
+  <distributionManagement>
+    <site>
+      <id>checkstyle.sf.net</id>
+      <url>scp://shell.sourceforge.net/home/groups/c/ch/checkstyle/htdocs</url>
+    </site>
+  </distributionManagement>
 
   <developers>
     <developer>
@@ -208,7 +215,6 @@
           <sourceDirectory>${basedir}/src/checkstyle/com/puppycrawl/tools/checkstyle/grammars</sourceDirectory>
           <grammars>java.g</grammars>
         </configuration>
-        <version>2.1</version>
         <executions>
           <execution>
             <goals>
