@@ -52,6 +52,14 @@
       <p>Notes:</p>
       <ul>
         <li>
+          Converted the build system to
+          <a href="http://maven.apache.org/">Maven</a>. The directory structure
+          has been maintained for now, rather than adopting Maven's
+          <a href="http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">
+            standard directory layout
+          </a>. This will change once Maven has been <i>proven</i>.
+        </li>
+        <li>
           Introduced <span class="code">FileText</span> to provide more
           flexibitily on how the contents of a file are
           represented. This allows for Checkers that wish to operate on
