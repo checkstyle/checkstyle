@@ -1,285 +1,19 @@
-<project name="checkstyle" default="compile.checkstyle" basedir=".">
+<project name="checkstyle" default="checkstyle.checkstyle" basedir=".">
 
   <!-- set global properties for this build -->
-  <!-- Give user a chance to override without editing this file -->
-  <!-- (and without typing -D each time it compiles it) -->
   <property name="target.dir" value="${basedir}/target" />
-  <property file="checkstyle.buildproperties" />
-  <property file="${user.home}/checkstyle.buildproperties" />
-
   <property name="version" value="5.2-SNAPSHOT" />
-  <property name="ant.jar" value="${ant.home}/lib/ant.jar" />
-  <property name="antlr.jar" value="lib/antlr.jar" />
-  <property name="velocity.jar" value="lib/velocity-dep-1.4.jar" />
-  <property name="jdom.jar" value="lib/jdom-b9.jar" />
-  <property name="junit.jar" value="lib/junit-4.4.jar" />
-  <property name="beanutils.jar" value="lib/commons-beanutils-core.jar" />
-  <property name="collections.jar" value="lib/google-collect-1.0.jar" />
-  <property name="cli.jar" value="lib/commons-cli-1.1.jar" />
-  <property name="logging.jar" value="lib/commons-logging.jar" />
-  <property name="tools.jar" value="${java.home}/../lib/tools.jar" />
-  <property name="emma.enabled" value="true" />
-
   <property name="checkstyle.dir"
             value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
-  <property name="checkstyle.grammar.dir"
-            value="${checkstyle.dir}/grammars" />
-  <property name="testreport.dir" value="${target.dir}/testreports"/>
-  <property name="dist.dir" value="${target.dir}/dist"/>
-  <property name="checkstyle.dest" value="${target.dir}/checkstyle" />
-  <property name="tests.dest" value="${target.dir}/tests" />
-  <property name="testinputs.dest" value="${target.dir}/testinputs" />
-  <property name="emma.dest" value="${target.dir}/emma" />
 
-  <property name="xdocs.src" value="src/xdocs"/>
-  <property name="xdocs.dest" value="${target.dir}/docs"/>
-  <property name="checkstyle.minimum.javaversion" value="1.5" />
-  <property name="checkstyle.testinputs.minimum.javaversion" value="1.5" />
-  <property name="testcases" value="**/*Test.java"/>
   <!-- override using -Dgui.target= if you wish to load a source file from startup -->
   <property name="gui.target" value=""/>
 
-  <path id="build.classpath">
-    <pathelement location="${antlr.jar}" />
-    <pathelement location="${collections.jar}" />
-    <pathelement location="${cli.jar}" />
-    <pathelement location="${beanutils.jar}" />
-    <pathelement location="${logging.jar}" />
-    <pathelement location="${ant.jar}" />
-    <pathelement location="${tools.jar}" />
-  </path>
-
   <path id="run.classpath">
-    <pathelement location="${checkstyle.dest}" />
-    <pathelement location="${antlr.jar}" />
-    <path refid="build.classpath" />
+    <pathelement location="${target.dir}/checkstyle-${version}-all.jar"/>
   </path>
 
-  <!-- add classes to generate Javadoc -->
-  <path id="javadoc.classpath">
-    <path refid="run.classpath" />
-  </path>
-
-  <path id="tests.buildpath">
-    <pathelement location="${junit.jar}" />
-    <path refid="run.classpath" />
-  </path>
-
-  <path id="tests.runpath">
-    <!-- Need the instrumented classes first -->
-    <pathelement location="${emma.dest}/classes" />
-    <pathelement location="${tests.dest}" />
-    <pathelement location="${testinputs.dest}" />
-    <pathelement location="lib/emma.jar"/>
-    <path refid="tests.buildpath" />
-  </path>
-
-  <path id="velocity.classpath">
-    <pathelement location="${velocity.jar}"/>
-    <pathelement location="${jdom.jar}" />
-  </path>
-
-  <target name="display.classpath" description="Displays the run classpath">
-    <property name="asd" refid="run.classpath" />
-    <echo message="Classpath is ${asd}" />
-  </target>
-
-  <!-- -->
-  <!-- Cleanup targets -->
-  <!-- -->
-  <target name="clean" description="Cleans any directories and generated files">
-    <delete>
-      <fileset dir="src/checkstyle">
-        <include name="**/Generated*"/>
-        <include name="**/expandedjava*.g"/>
-      </fileset>
-    </delete>
-    <delete dir="${target.dir}" />
-    <delete file="velocity.log" />
-  </target>
-
-  <!-- -->
-  <!-- ANTLR targets -->
-  <!-- -->
-
-  <!-- Checks whether the grammar file is newer that the generated code -->
-  <target name="-check.antlr"
-          description="Checks whether the grammar file is newer that the generated code">
-    <uptodate property="uptodate.antlr"
-              targetfile="${checkstyle.grammar.dir}/GeneratedJavaLexer.java" >
-      <srcfiles dir= "${checkstyle.grammar.dir}" includes="java.g"/>
-    </uptodate>
-  </target>
-
-  <!-- Conditionally will compile the grammar. Deliberately do not use the -->
-  <!-- antlr task as it requirs the ANTLR classes to be in the classpath -->
-  <!-- which creates lots of problems. -->
-  <target name="build.antlr" depends="-check.antlr" unless="uptodate.antlr"
-          description="Conditionally compiles the grammar files">
-    <java classname="antlr.Tool"
-          classpath="${antlr.jar}"
-          fork="yes"
-          failonerror="true"
-          dir="${checkstyle.grammar.dir}">
-      <arg value="java.g" />
-    </java>
-  </target>
-
-  <!-- -->
-  <!-- COMPILE TARGETS -->
-  <!-- -->
-  <target name="compile.checkstyle" depends="build.antlr"
-          description="Compiles the source code">
-    <mkdir dir="${checkstyle.dest}" />
-    <depend srcdir="src/checkstyle"
-            destdir="${checkstyle.dest}" closure="yes"/>
-    <javac srcdir="src/checkstyle"
-           destdir="${checkstyle.dest}"
-           includes="**/*.java"
-           excludes="**/package-info.java"
-           deprecation="on" debug="on"
-           source="${checkstyle.minimum.javaversion}"
-           target="${checkstyle.minimum.javaversion}"
-           classpathref="build.classpath"
-           encoding="iso-8859-1"
-           includeAntRuntime="false"/>
-
-    <propertyfile file="${checkstyle.dest}/checkstylecompilation.properties">
-      <entry key="checkstyle.compile.version" value="${version}"/>
-      <entry key="checkstyle.compile.timestamp" type="date" value="now" pattern="E MMMM dd yyyy, HH:mm z"/>
-    </propertyfile>
-
-    <copy todir="${checkstyle.dest}">
-      <fileset dir="src/checkstyle" includes="**/*.properties"/>
-      <fileset dir="src/checkstyle" includes="**/*.xml"/>
-      <fileset dir="src/checkstyle" includes="**/*.dtd"/>
-    </copy>
-
-    <!-- fix for bug #594469:
-         create a copy of the english property file, necessary to run
-         the tests in an environment that has a supported language (e.g. de)
-         in the default locale. See algorithm in ResourceBundle.getBundle() -->
-
-    <copy todir="${checkstyle.dest}" >
-      <fileset dir="src/checkstyle" includes="**/messages.properties"/>
-      <mapper type="glob" from="*messages.properties" to="*messages_en.properties"/>
-    </copy>
-
-    <javadoc sourcefiles="src/checkstyle/com/puppycrawl/tools/checkstyle/api/TokenTypes.java"
-             classpathref="javadoc.classpath"
-             encoding="iso-8859-1"
-             source="${checkstyle.minimum.javaversion}"
-             failonerror="yes">
-      <doclet name="com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet"
-              path="${checkstyle.dest}">
-        <param name="-destfile" value="${checkstyle.dest}/com/puppycrawl/tools/checkstyle/api/tokentypes.properties"/>
-      </doclet>
-    </javadoc>
-  </target>
-
-  <target name="compile.testinputs" description="Compile test inputs">
-    <mkdir dir="${testinputs.dest}" />
-    <depend srcdir="src/testinputs" destdir="${testinputs.dest}" closure="yes"/>
-    <!-- start of a change to turn on compilation of all input files -->
-    <!-- under JDK1.5. -->
-    <javac srcdir="src/testinputs"
-           destdir="${testinputs.dest}"
-           deprecation="on" debug="on"
-           source="${checkstyle.testinputs.minimum.javaversion}"
-           target="${checkstyle.testinputs.minimum.javaversion}"
-           encoding="iso-8859-1"
-           includeAntRuntime="false">
-      <exclude name="**/InputAssertIdentifier.java" />
-      <exclude name="**/InputClone.java" />
-      <exclude name="**/InputCovariant.java" />
-      <exclude name="**/InputGrammar.java" />
-      <exclude name="**/InputImport.java" />
-      <exclude name="**/InputJUnitTest.java" />
-      <exclude name="**/InputSetterGetter.java" />
-      <exclude name="**/InputSimple.java" />
-      <exclude name="**/InputValidMethodIndent.java" />
-      <exclude name="**/Post13KeywordsAsIdentifiersOK.java" />
-      <exclude name="**/InputMethodNameExtra.java"/>
-      <exclude name="**/BadPackageAnnotation1.java"/>
-      <exclude name="**/BadPackageAnnotation2.java"/>	
-      <exclude name="**/AnnotationUseWithTrailingComma.java"/>
-    </javac>
-  </target>
-
-  <!-- Compiles only the test code. Input files are excluded from
-       compilation, they contain code like assert statements
-       that does not compile on all JDKs -->
-  <target name="compile.tests" depends="compile.checkstyle, setup.emma"
-          description="Compiles the test code">
-
-    <mkdir dir="${tests.dest}" />
-    <depend srcdir="src/tests" destdir="${tests.dest}" closure="yes"/>
-    <javac srcdir="src/tests"
-           destdir="${tests.dest}"
-           deprecation="on" debug="on"
-           classpathref="tests.buildpath"
-           encoding="iso-8859-1"
-           source="${checkstyle.minimum.javaversion}"
-           target="${checkstyle.minimum.javaversion}"
-           includeAntRuntime="false"/>
-
-    <!-- now instrument the classes -->
-    <mkdir dir="${emma.dest}/classes"/>
-    <emma enabled="${emma.enabled}">
-      <instr destdir="${emma.dest}/classes"
-             metadatafile="${emma.dest}/metadata.emma"
-             >
-        <instrpath>
-          <pathelement location="${checkstyle.dest}"/>
-        </instrpath>
-        <filter excludes="com.puppycrawl.tools.checkstyle.doclets.*"/>
-        <filter excludes="com.puppycrawl.tools.checkstyle.gui.*"/>
-        <filter excludes="com.puppycrawl.tools.checkstyle.grammars.*"/>
-      </instr>
-    </emma>
-  </target>
-
-  <!-- -->
-  <!-- TEST TARGETS -->
-  <!-- -->
-
-  <!-- Run the GUI -->
-  <target name="run.gui" depends="compile.checkstyle"
-          description="Run the GUI for displaying a tree">
-    <java classname="com.puppycrawl.tools.checkstyle.gui.Main"
-          fork="yes" classpathref="run.classpath">
-          <arg line="${gui.target}"/>
-    </java>
-  </target>
-
-  <!-- runs the command line version on a file -->
-  <target name="run.checkstyle" depends="compile.tests"
-          description="Runs the command line version on a file">
-    <java classname="com.puppycrawl.tools.checkstyle.Main"
-          fork="yes"
-          dir="."
-          classpathref="run.classpath">
-      <sysproperty key="checkstyle.allow.tabs" value="yes"/>
-      <arg value="-c"/>
-      <arg file="checkstyle_checks.xml"/>
-      <arg value="src/testinputs/com/puppycrawl/tools/checkstyle/InputSimple.java"/>
-    </java>
-    <java classname="com.puppycrawl.tools.checkstyle.Main"
-          fork="yes"
-          dir="."
-          classpathref="run.classpath">
-      <arg value="-c"/>
-      <arg file="checkstyle_checks.xml"/>
-      <arg value="-r"/>
-      <arg file="src/checkstyle/com/puppycrawl/tools/checkstyle/api"/>
-    </java>
-  </target>
-
-  <target name="enable.todo" description="Will enable checking for TODO's">
-    <property name="todo.pattern" value="TODO:"/>
-  </target>
-
-  <target name="checkstyle.checkstyle" depends="compile.checkstyle"
+  <target name="checkstyle.checkstyle"
           description="Runs checkstyle against it's own sources">
     <taskdef name="checkstyle"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
@@ -312,7 +46,27 @@
           />
   </target>
 
-  <target name="checkstyle.sun_checks" depends="compile.checkstyle"
+  <!-- Run the GUI -->
+  <target name="run.gui"
+          description="Run the GUI for displaying a tree">
+    <java classname="com.puppycrawl.tools.checkstyle.gui.Main"
+          fork="yes" classpathref="run.classpath">
+          <arg line="${gui.target}"/>
+    </java>
+  </target>
+
+  <target name="validate.xml"
+          description="Validates checkstyle XML file">
+    <xmlvalidate file="checkstyle_checks.xml">
+      <xmlcatalog>
+        <dtd
+          publicId="-//Puppy Crawl//DTD Check Configuration 1.1//EN"
+          location="${checkstyle.dir}/configuration_1_1.dtd"/>
+      </xmlcatalog>
+    </xmlvalidate>
+  </target>
+
+  <target name="checkstyle.sun_checks"
           description="Runs checkstyle using sun_checks.xml">
     <taskdef name="checkstyle"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
@@ -331,7 +85,7 @@
     </checkstyle>
   </target>
 
-  <target name="checkstyle.style" depends="compile.checkstyle"
+  <target name="checkstyle.style"
           description="Runs checkstyle against it's own sources to test generation of error reports">
     <taskdef name="checkstyle"
              classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
@@ -385,314 +139,30 @@
            style="contrib/checkstyle-author.xsl"/>
   </target>
 
-  <!-- Targets to verify that Xalan is in the classpath -->
-  <target name="-check.xalan"
-          description="Checks whether xalan is in the classpath">
-    <condition property="have.xalan">
-      <!--
-           In JDK 1.5 Sun has decided to repackage Xalan in it's own
-           package com.sun.org.apache..., see Java bug 4740355.
-           Additionally at least Ant 1.6.2 is required to make junitreport
-           work with Xalan XSLTC and/or JDK 1.5 (Ant bug 27541)
-           -->
-      <and>
-        <or>
-          <equals arg1="${ant.java.version}" arg2="1.5" />
-          <equals arg1="${ant.java.version}" arg2="1.6" />
-        </or>
-        <!-- TODO: find a more elegant way to specify *minimum* version -->
-        <not>
-          <or>
-            <contains string="${ant.version}" substring="version 1.4" />
-            <contains string="${ant.version}" substring="version 1.5" />
-            <contains string="${ant.version}" substring="version 1.6.0" />
-            <contains string="${ant.version}" substring="version 1.6.1" />
-          </or>
-        </not>
-      </and>
-    </condition>
-  </target>
+  <?ignore
+  <!-- A GRAVEYARD OF IDEAS BELOW -->
 
-  <target name="-require.xalan" depends="-check.xalan" unless="have.xalan"
-          description="Fails if xalan is not present in the classpath">
-    <fail>
-Need to have Xalan in your CLASSPATH to run the tests.
-You can download it from http://xml.apache.org/.
-Alternatively you can upgrade JDK 1.4 or higher.
-For users of JDK 1.5 at least version 1.6.2 of Ant is required.
-    </fail>
-  </target>
-
-  <!-- To run the tests need Xalan in the classpath -->
-  <target name="run.tests"
-          depends="compile.tests,-require.ant17,-require.xalan,compile.testinputs"
-          description="Runs the tests for checkstyle">
-
-    <mkdir dir="${testreport.dir}"/>
-    <property name="testinputs.dir"
-              location="${basedir}/src/testinputs/com/puppycrawl/tools/checkstyle"/>
-    <echo>testinputs.dir = ${testinputs.dir}</echo>
-
-    <junit printsummary="yes"
-           fork="yes"
-           forkmode="perBatch"
-           haltonfailure="no"
-           showoutput="yes"
-           failureProperty="tests.have.failed">
-
-      <sysproperty key="testinputs.dir" value="${testinputs.dir}"/>
-      <sysproperty key="checkstyle.use.recursive.algorithm"
-                   value="${checkstyle.use.recursive.algorithm}"/>
-      <sysproperty key="checkstyle.root" value="${basedir}" />
-
-      <sysproperty key="emma.coverage.out.file"
-                   file="${emma.coverage.out.file}"
-                   />
-      <sysproperty key="emma.coverage.out.merge"
-                   value="true" />
-
-      <formatter type="xml" />
-      <classpath refid="tests.runpath"/>
-      <batchtest todir="${testreport.dir}">
-        <fileset dir="src/tests">
-          <include name="${testcases}" />
-        </fileset>
-      </batchtest>
-    </junit>
-
-    <junitreport todir="${testreport.dir}">
-      <fileset dir="${testreport.dir}">
-        <include name="TEST-*.xml"/>
-      </fileset>
-      <!-- strangley under Ubuntu 10.04 need to not use the "frames"
-           format, at it hangs. -->
-      <report todir="${testreport.dir}" format="noframes"/>
-    </junitreport>
-
-    <property name="report"
-              value="${testreport.dir}/index.html"/>
-
-    <!-- generate the emma report -->
-    <emma enabled="${emma.enabled}">
-      <report sourcepath="src/checkstyle">
-        <fileset dir="${emma.dest}" includes="*.emma"/>
-        <html outfile="${emma.report.dir}/index.html"/>
-      </report>
-    </emma>
-
-    <fail if="tests.have.failed"
-          message="Unit tests failed - Report is available in ${report}"/>
-  </target>
-
-  <!-- -->
-  <!-- DIST TARGETS -->
-  <!-- -->
-  <target name="build.bindist" depends="compile.checkstyle, javadoc, xdocs"
-          description="Builds the compressed distribution files">
-    <delete dir="${dist.dir}/checkstyle-${version}" />
-    <mkdir dir="${dist.dir}/checkstyle-${version}" />
-    <copy file="config/manifest.mf" todir="${target.dir}">
-      <filterset>
-        <filter token="CHECKSTYLE_VERSION" value="${version}" />
-      </filterset>
-    </copy>
-    <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-${version}.jar"
-         basedir="${checkstyle.dest}"
-         manifest="${target.dir}/manifest.mf" />
-    <!-- copy the JARS and make a mega JAR out of them -->
-    <copy file="${antlr.jar}" todir="${dist.dir}/checkstyle-${version}" />
-    <copy file="${beanutils.jar}" todir="${dist.dir}/checkstyle-${version}" />
-    <copy file="${collections.jar}" todir="${dist.dir}/checkstyle-${version}" />
-    <copy file="${cli.jar}" todir="${dist.dir}/checkstyle-${version}" />
-    <copy file="${logging.jar}" todir="${dist.dir}/checkstyle-${version}" />
-    <jar jarfile="${dist.dir}/checkstyle-${version}/checkstyle-all-${version}.jar"
-    	 manifest="${target.dir}/manifest.mf"
-    	 filesetmanifest="skip">
-        <zipfileset src="${dist.dir}/checkstyle-${version}/antlr.jar" excludes="META-INF/*"/>
-    	<zipfileset src="${dist.dir}/checkstyle-${version}/commons-beanutils-core.jar" excludes="META-INF/*,**/*.html"/>
-        <zipfileset src="${dist.dir}/checkstyle-${version}/google-collect-1.0.jar" excludes="META-INF/*"/>
-        <zipfileset src="${dist.dir}/checkstyle-${version}/commons-cli-1.1.jar" excludes="META-INF/*"/>
-        <zipfileset src="${dist.dir}/checkstyle-${version}/commons-logging.jar" excludes="META-INF/*,**/package.html"/>
-        <zipfileset src="${dist.dir}/checkstyle-${version}/checkstyle-${version}.jar" excludes="META-INF/*"/>
-    </jar>
-    <!-- copy stuff without filtering -->
-    <copy todir="${dist.dir}/checkstyle-${version}">
-      <fileset dir=".">
-        <include name="**/.cvsignore"/>
-        <include name="**/CVS"/>
-        <include name="*.xml"/>
-        <include name="LICENSE*"/>
-        <include name="README"/>
-        <include name="RIGHTS.antlr"/>
-        <include name="TODO"/>
-        <include name="contrib/**"/>
-        <include name="java.header"/>
-      </fileset>
-    </copy>
-
-    <!-- Make the docs directory -->
-    <mkdir dir="${dist.dir}/checkstyle-${version}/docs" />
-    <copy todir="${dist.dir}/checkstyle-${version}/docs">
-      <fileset dir="${xdocs.dest}"/>
-    </copy>
-
-    <!-- create the final zip & tar/gzip files -->
-    <zip zipfile="${dist.dir}/checkstyle-${version}.zip">
-      <fileset dir="${dist.dir}">
-        <include name="checkstyle-${version}/**"/>
-      </fileset>
-    </zip>
-    <tar tarfile="${dist.dir}/checkstyle-${version}.tar" longfile="gnu"
-         basedir="${dist.dir}" includes="checkstyle-${version}/**" />
-    <gzip zipfile="${dist.dir}/checkstyle-${version}.tar.gz"
-          src="${dist.dir}/checkstyle-${version}.tar" />
-  </target>
-
-  <target name="build.srcdist" depends="checkstyle.checkstyle"
-          description="Builds the compressed source files for distribution">
-    <delete dir="${dist.dir}/checkstyle-src-${version}" />
-    <mkdir dir="${dist.dir}/checkstyle-src-${version}" />
-    <copy todir="${dist.dir}/checkstyle-src-${version}">
-      <fileset dir=".">
-        <exclude name="src/checkstyle/**/Generated*"/>
-        <include name="*.xml"/>
-        <include name="LICENSE*"/>
-        <include name="README"/>
-        <include name="RIGHTS.antlr"/>
-        <include name="TODO"/>
-        <include name="build.xml"/>
-        <include name="config/**"/>
-        <include name="contrib/**"/>
-        <include name="java.header"/>
-        <include name="lib/**"/>
-        <include name="src/**"/>
-      </fileset>
-    </copy>
-
-    <!-- Produce the final distributions -->
-    <zip zipfile="${dist.dir}/checkstyle-src-${version}.zip">
-      <fileset dir="${dist.dir}">
-        <include name="checkstyle-src-${version}/**"/>
-      </fileset>
-    </zip>
-    <tar tarfile="${dist.dir}/checkstyle-src-${version}.tar" longfile="gnu"
-         basedir="${dist.dir}" includes="checkstyle-src-${version}/**" />
-    <gzip zipfile="${dist.dir}/checkstyle-src-${version}.tar.gz"
-          src="${dist.dir}/checkstyle-src-${version}.tar" />
-  </target>
-
-  <!-- -->
-  <!-- DOC TARGETS -->
-  <!-- -->
-  <target name="javadoc" depends="compile.checkstyle"
-          description="Creates the javadoc html files">
-    <mkdir dir="${xdocs.dest}/apidocs" />
-    <javadoc sourcepath="src/checkstyle" destdir="${xdocs.dest}/apidocs"
-             Windowtitle="Checkstyle API"
-             classpathref="javadoc.classpath"
-             Use="true"
-             Footer="&lt;a target=&quot;_top&quot; href=&quot;./{@docRoot}/../index.html&quot;&gt;Back to the Checkstyle Home Page&lt;/a&gt;"
-             useExternalFile="yes"
-             encoding="iso-8859-1"
-             source="${checkstyle.minimum.javaversion}"
-             failonerror="yes" >
-      <link packagelistLoc="${basedir}/config/jdk-package-list"
-              offline="yes"
-              href="http://java.sun.com/j2se/1.5.0/docs/api/" />
-      <link packagelistLoc="${basedir}/config/antlr-package-list"
-              offline="yes"
-              href="http://www.antlr.org/javadoc/" />
-      <fileset dir="src/checkstyle">
-        <include name="**/*.java"/>
-        <exclude name="**/Generated*.java" />
-        <exclude name="**/gui/*.java" />
-        <exclude name="**/checks/**"/>
-      </fileset>
-    </javadoc>
-  </target>
-
-  <target name="xdocs" depends="compile.checkstyle"
-          description="generate documentation">
-
-    <mkdir dir="${xdocs.dest}"/>
-
-    <mkdir dir="${target.dir}/xdocs"/>
-
-    <copy todir="${target.dir}/xdocs">
-      <fileset dir="${xdocs.src}">
-        <exclude name="**/*.css"/>
-        <exclude name="**/*.gif"/>
-        <exclude name="**/*.png"/>
-      </fileset>
-      <filterset>
-        <filter token="CHECKSTYLE_VERSION" value="${version}" />
-      </filterset>
-    </copy>
-
-    <javadoc sourcepath="src/checkstyle" destdir="${target.dir}/xdocs"
-             classpathref="build.classpath"
-             encoding="iso-8859-1"
-             source="${checkstyle.minimum.javaversion}"
-             failonerror="yes">
-      <doclet name="com.puppycrawl.tools.checkstyle.doclets.CheckDocsDoclet"
-              path="${checkstyle.dest}">
-      </doclet>
-    </javadoc>
-
-    <taskdef name="anakia" classname="org.apache.velocity.anakia.AnakiaTask">
-      <classpath refid="velocity.classpath"/>
-    </taskdef>
-
-    <copy todir="${xdocs.dest}">
-      <fileset dir="${xdocs.src}">
-        <include name="**/*.css"/>
-        <include name="**/*.gif"/>
-        <include name="**/*.png"/>
-      </fileset>
-    </copy>
-
-    <anakia basedir="${target.dir}/xdocs"
-            destdir="${xdocs.dest}/"
-            extension=".html"
-            style="site.vsl"
-            projectFile="stylesheets/project.xml"
-            excludes="**/stylesheets/**"
-            includes="**/*.xml"
-            lastModifiedCheck="true"
-            templatePath="${xdocs.src}/stylesheets">
-    </anakia>
-
-  </target>
-
-  <target name="report.translation"
-          description="Sets up reporting on translation errors"
-          >
-    <property name="translation.severity" value="error"/>
-  </target>
-
-  <target name="gump" depends="build.bindist,build.srcdist,run.tests"
-          description="Runs the test for GUMP testing"/>
-
-
-  <target name="validate.xml"
-          description="Validates checkstyle XML file">
-    <xmlvalidate file="checkstyle_checks.xml">
-      <xmlcatalog>
-        <dtd
-          publicId="-//Puppy Crawl//DTD Check Configuration 1.1//EN"
-          location="${checkstyle.dir}/configuration_1_1.dtd"/>
-      </xmlcatalog>
-    </xmlvalidate>
-  </target>
-
-  <!-- Targets to verify that ANT version if at least 1.7 -->
-  <target name="-check.ant17">
-    <echo>version is ${ant.version}</echo>
-    <antversion atleast="1.7" property="have.ant17"/>
-  </target>
-
-  <target name="-require.ant17" depends="-check.ant17" unless="have.ant17">
-    <fail message="Need at least version 1.7 of ANT - you have ${ant.version}"/>
+  <!-- runs the command line version on a file -->
+  <target name="run.checkstyle"
+          description="Runs the command line version on a file">
+    <java classname="com.puppycrawl.tools.checkstyle.Main"
+          fork="yes"
+          dir="."
+          classpathref="run.classpath">
+      <sysproperty key="checkstyle.allow.tabs" value="yes"/>
+      <arg value="-c"/>
+      <arg file="checkstyle_checks.xml"/>
+      <arg value="src/testinputs/com/puppycrawl/tools/checkstyle/InputSimple.java"/>
+    </java>
+    <java classname="com.puppycrawl.tools.checkstyle.Main"
+          fork="yes"
+          dir="."
+          classpathref="run.classpath">
+      <arg value="-c"/>
+      <arg file="checkstyle_checks.xml"/>
+      <arg value="-r"/>
+      <arg file="src/checkstyle/com/puppycrawl/tools/checkstyle/api"/>
+    </java>
   </target>
 
   <target name="checkstyle.run" depends="compile.checkstyle"
@@ -712,64 +182,5 @@ For users of JDK 1.5 at least version 1.6.2 of Ant is required.
       <classpath refid="run.classpath"/>
     </checkstyle>
   </target>
-
-  <target name="setup.emma">
-    <taskdef resource="emma_ant.properties">
-      <classpath>
-        <fileset dir="lib" includes="emma*.jar"/>
-      </classpath>
-    </taskdef>
-
-    <property name="emma.coverage.out.file"
-              value="${emma.dest}/coverage.emma"/>
-    <property name="emma.report.dir" value="${emma.dest}/report"/>
-    <mkdir dir="${emma.report.dir}"/>
-  </target>
-
-  <!-- contrib related targets -->
-  <property name="bcel.dest" value="${target.dir}/bcel" />
-  <property name="bcel.src" value="contrib/bcel/src/checkstyle/" />
-
-  <path id="bcel.classpath">
-    <pathelement location="${bcel.jar}" />
-    <path refid="run.classpath" />
-  </path>
-
-  <target name="compile.bcel" depends="compile.checkstyle"
-          description="Compiles bcel-checks">
-    <echo message="${bcel.jar}" />
-    <mkdir dir="${bcel.dest}" />
-    <depend srcdir="${bcel.src}"
-            destdir="${bcel.dest}" closure="yes"/>
-    <javac srcdir="${bcel.src}"
-           destdir="${bcel.dest}"
-           includes="**/*.java"
-           deprecation="on" debug="on"
-           source="${checkstyle.minimum.javaversion}"
-           target="${checkstyle.minimum.javaversion}"
-           classpathref="bcel.classpath"
-           encoding="iso-8859-1"
-           includeAntRuntime="false"/>
-
-    <copy todir="${bcel.dest}">
-      <fileset dir="${bcel.src}" includes="**/*.properties"/>
-      <fileset dir="${bcel.src}" includes="**/*.xml"/>
-      <fileset dir="${bcel.src}" includes="**/*.dtd"/>
-    </copy>
-  </target>
-
-  <target name="build.mavenbundles" depends="build.bindist"
-          description="Builds bundles that can be uploaded to Maven's central repository"
-          >
-    <mkdir dir="${dist.dir}/maven-bundles" />
-    <!-- Bundle for checkstyle -->
-    <jar jarfile="${dist.dir}/maven-bundles/checkstyle-${version}-bundle.jar">
-      <fileset dir="${basedir}" includes="pom.xml"/>
-      <fileset dir="${dist.dir}/checkstyle-${version}">
-        <include name="checkstyle-${version}.jar"/>
-      </fileset>
-    </jar>
-    <!-- Remove the temporary directory -->
-    <delete dir="${dist.dir}/maven-bundles/temp"/>
-  </target>
+  ?>
 </project>
