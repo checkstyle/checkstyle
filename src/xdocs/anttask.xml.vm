@@ -27,7 +27,7 @@
 
       <p>
         The easiest way is to include <span
-        class="default">checkstyle-all-${projectVersion}.jar</span> in the
+        class="default">checkstyle-${projectVersion}-all.jar</span> in the
         classpath. This contains all the classes required to run
         Checkstyle. Alternatively, you must include the following in the
         classpath:
@@ -69,7 +69,7 @@
 
       <source>
 &lt;taskdef resource=&quot;checkstyletask.properties&quot;
-         classpath=&quot;/path/to/checkstyle-all-${projectVersion}.jar&quot;/&gt;
+         classpath=&quot;/path/to/checkstyle-${projectVersion}-all.jar&quot;/&gt;
       </source>
 
       <p>

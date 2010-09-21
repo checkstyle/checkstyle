@@ -112,7 +112,7 @@
         source file. To run it type
       </p>
       <source>
-java -classpath checkstyle-all-${projectVersion}.jar \
+java -classpath checkstyle-${projectVersion}-all.jar \
      com.puppycrawl.tools.checkstyle.gui.Main
       </source>
 
@@ -416,7 +416,7 @@ public class MethodLimitCheck extends Check
       </p>
 
       <source>
-java -classpath mycompanychecks.jar:checkstyle-all-${projectVersion}.jar \
+java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
      com.puppycrawl.tools.checkstyle.Main \
      -c config.xml -r .
       </source>

@@ -279,7 +279,7 @@ Audit finished. Total errors: 1
       <p>
         The easiest way to use <span
         class="code">CommonsLoggingListener</span> is to include <span
-        class="default">checkstyle-all-${projectVersion}.jar</span>
+        class="default">checkstyle-${projectVersion}-all.jar</span>
         in the classpath because that jar file contains all the Commons
         Logging classes.  The default Log under J2SE 1.4 is wrapper
         class <a

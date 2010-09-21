@@ -23,7 +23,7 @@
     <section name="Installation">
       <p>
         The easiest way is to include <span
-        class="default">checkstyle-all-${projectVersion}.jar</span> in the
+        class="default">checkstyle-${projectVersion}-all.jar</span> in the
         classpath. If you are running JDK 5.0 this contains all the classes
         required to run Checkstyle. Alternatively, you must include the
         following in the classpath:
@@ -200,7 +200,7 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
         </p>
 
         <source>
-java -jar checkstyle-all-${projectVersion}.jar \
+java -jar checkstyle-${projectVersion}-all.jar \
      -c docs/sun_checks.xml Check.java
         </source>
       </div>
