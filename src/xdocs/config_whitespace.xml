@@ -60,7 +60,7 @@ List &lt; List &lt; Integer &gt; &gt; y = new ArrayList &lt; List &lt; Integer &
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -124,7 +124,7 @@ for (
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -188,7 +188,7 @@ for (Iterator foo = very.long.line.iterator();
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -297,7 +297,7 @@ for (Iterator foo = very.long.line.iterator();
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -404,7 +404,7 @@ for (Iterator foo = very.long.line.iterator();
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -491,7 +491,7 @@ for (Iterator foo = very.long.line.iterator();
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -673,7 +673,7 @@ for (Iterator foo = very.long.line.iterator();
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -763,7 +763,7 @@ for (Iterator foo = very.long.line.iterator();
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -839,7 +839,7 @@ for (Iterator foo = very.long.line.iterator();
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -990,7 +990,7 @@ for (Iterator foo = very.long.line.iterator();
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1166,7 +1166,7 @@ public void func() {}    // empty method</source>
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

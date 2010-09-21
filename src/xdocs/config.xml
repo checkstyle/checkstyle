@@ -95,7 +95,7 @@
           <span class="code">AvoidStarImport</span>, <span
           class="code">ConstantName</span>, and <span
           class="code">EmptyBlock</span>.  (Modules <a
-          href="config_import.html"><span
+          href="config_imports.html"><span
           class="code">AvoidStarImport</span></a>, <a
           href="config_naming.html"><span
           class="code">ConstantName</span></a>, and <a
@@ -663,7 +663,7 @@
         <p>
           Filter <span class="code">SuppressionFilter</span> rejects
           audit events for Check errors according to
-          a <a href="#XML%20Details"><em>suppressions XML
+          a <a href="#XML_Details"><em>suppressions XML
           document</em></a> in a file. If there is no configured
           suppressions file, the Filter accepts all audit events.
         </p>
@@ -699,7 +699,7 @@
         </source>
 
         <p>
-          A <a href="#XML%20Details"><em>suppressions XML
+          A <a href="#XML_Details"><em>suppressions XML
           document</em></a> contains a set
           of <span class="code">suppress</span> elements, where
           each <span class="code">suppress</span> element can have the
@@ -1132,7 +1132,7 @@
         custom listener, add a <span>Checker</span> submodule for the
         listener and its properties.  For example, to configure a <span
         class="code">Checker</span> so that it uses custom listener <a
-        href="writinglisteners.html#writing">VerboseListener</a> to
+        href="writinglisteners.html#Writing_Listeners">VerboseListener</a> to
         print audit messages to a file named &quot;audit.txt&quot;,
         include the following module in the configuration file:
       </p>

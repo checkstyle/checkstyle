@@ -86,8 +86,8 @@
         Or if you use Ant 1.6 and later and assuming that Checkstyle
         is in the library search path, then you may use antlib feature
         of Ant (see <a
-        href="http://ant.apache.org/manual/CoreTypes/antlib.html"
-        >http://ant.apache.org/manual/CoreTypes/antlib.html</a>
+        href="http://ant.apache.org/manual/Types/antlib.html"
+        >http://ant.apache.org/manual/Types/antlib.html</a>
         for more details).  For example:
       </p>
 
@@ -233,7 +233,7 @@
 
       <p>
         This task supports the nested elements <a
-        href="http://ant.apache.org/manual/CoreTypes/fileset.html">&lt;fileset&gt;</a>,
+        href="http://ant.apache.org/manual/Types/fileset.html">&lt;fileset&gt;</a>,
         <a
         href="http://ant.apache.org/manual/using.html#path">&lt;classpath&gt;</a>,
         <span class="default">&lt;formatter&gt;</span>, and <span

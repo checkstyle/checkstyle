@@ -156,7 +156,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -164,7 +164,7 @@
     <section name="Translation">
       <subsection name="Description">
         <p>
-          A <a href="config.html#overview">FileSetCheck</a> that ensures
+          A <a href="config.html#Overview">FileSetCheck</a> that ensures
           the correct translation of code by checking property files for
           consistency regarding their keys. Two property files
           describing one and the same context are consistent if they
@@ -303,7 +303,7 @@ messages.properties: Key 'ok' missing.
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -341,7 +341,7 @@ messages.properties: Key 'ok' missing.
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -400,7 +400,7 @@ messages.properties: Key 'ok' missing.
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -478,7 +478,7 @@ messages.properties: Key 'ok' missing.
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -557,13 +557,13 @@ messages.properties: Key 'ok' missing.
           <tr>
             <td>minimumMessage</td>
             <td>error message when minimum count not reached</td>
-            <td><a href="property_types.html#String">String</a></td>
+            <td><a href="property_types.html#string">String</a></td>
             <td>&quot;descendant.token.min&quot;</td>
           </tr>
           <tr>
             <td>maximumMessage</td>
             <td>error message when maximum count exceeded</td>
-            <td><a href="property_types.html#String">String</a></td>
+            <td><a href="property_types.html#string">String</a></td>
             <td>&quot;descendant.token.max&quot;</td>
           </tr>
         </table>
@@ -760,7 +760,7 @@ messages.properties: Key 'ok' missing.
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -838,7 +838,7 @@ messages.properties: Key 'ok' missing.
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -958,7 +958,7 @@ d = e / f;        // Another comment for this line
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1031,7 +1031,7 @@ d = e / f;        // Another comment for this line
             <td>message</td>
             <td>message which is used to notify about violations,
             if empty then default(hard-coded) message is used.</td>
-            <td><a href="property_types.html#String">String</a></td>
+            <td><a href="property_types.html#string">String</a></td>
             <td><span class="default">&quot;&quot;</span>(empty)</td>
           </tr>
           <tr>
@@ -1398,7 +1398,7 @@ public class PID extends StateMachine implements WebObject.Constants {
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

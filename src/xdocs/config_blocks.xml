@@ -85,7 +85,7 @@
       </subsection>
 
       <subsection name="Parent Module">
-        <p> <a href="config.html#treewalker">TreeWalker</a> </p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -183,7 +183,7 @@
       </subsection>
 
       <subsection name="Parent Module">
-        <p> <a href="config.html#treewalker">TreeWalker</a> </p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -242,7 +242,7 @@
       </subsection>
 
       <subsection name="Parent Module">
-        <p> <a href="config.html#treewalker">TreeWalker</a> </p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -332,7 +332,7 @@
       </subsection>
 
       <subsection name="Parent Module">
-        <p> <a href="config.html#treewalker">TreeWalker</a> </p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -432,7 +432,7 @@ switch (a)
       </subsection>
 
       <subsection name="Parent Module">
-        <p> <a href="config.html#treewalker">TreeWalker</a> </p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
   </body>

@@ -81,11 +81,7 @@
       <p>
         Additionally plug-ins are written by third-parties. Some of them are
         still based on the Checkstyle 2.4 release, although there have been
-        many improvements since then. If you have to use such a plugin, the
-        documentation for Checkstyle 2.4 is still <a
-        href="http://checkstyle.sourceforge.net/old-2.4/">available</a>, but
-        we strongly encourage plugin authors to upgrade.  The known plug-ins
-        are:
+        many improvements since then. The known plug-ins are:
       </p>
 
       <table>

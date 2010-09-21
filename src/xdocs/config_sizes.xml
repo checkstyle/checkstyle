@@ -78,7 +78,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -208,7 +208,7 @@
             number of expanded spaces for a tab character (<span
             class="code">'\t'</span>). The default number of spaces is <span
             class="code">8</span>.  To specify a different number of spaces,
-            the user can set <a href="config.html#treewalker"><span
+            the user can set <a href="config.html#TreeWalker"><span
             class="code">TreeWalker</span></a> property <span
             class="code">tabWidth</span> which applies to all Checks,
             including <span class="code">LineLength</span>; or can set
@@ -232,7 +232,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -334,7 +334,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -390,7 +390,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -464,7 +464,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -526,7 +526,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

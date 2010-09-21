@@ -103,7 +103,7 @@ alternative to the Checks we offer in our distribution.
    <tr>
      <td>min</td>
      <td>how many lines must be equal to be considered a duplicate</td>
-     <td><a href="property_types.html#int">int</a></td>
+     <td><a href="property_types.html#integer">int</a></td>
      <td><span class="default">12</span></td>
    </tr>
    <tr>

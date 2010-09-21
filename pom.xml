@@ -392,6 +392,11 @@
           </instrumentation>
         </configuration>
       </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-linkcheck-plugin</artifactId>
+      </plugin>
     </plugins>
   </build>
 
@@ -412,6 +417,16 @@
           </reportSet>
         </reportSets>
       </plugin>
+        <!-- 
+        THE FOLLOWING DOES NOT WORK!
+      <plugin>
+      	<groupId>org.apache.maven.plugins</groupId>
+      	<artifactId>maven-linkcheck-plugin</artifactId>
+        <configuration>
+          <excludedLinks><excludedLink>**/apidocs/**</excludedLink></excludedLinks>
+        </configuration>
+      </plugin>
+         -->
     </plugins>
   </reporting>
 

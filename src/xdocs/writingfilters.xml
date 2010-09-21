@@ -106,7 +106,7 @@ public class FilesFilter
         To incorporate a <span class="code">Filter</span> in the filter set
         for a <span class="code">Checker</span>, include a module element for
         the <span class="code">Filter</span> in the <a
-        href="config.html#filters">configuration file</a>. For example, to
+        href="config.html#Filters">configuration file</a>. For example, to
         configure a <span class="code">Checker</span> so that it uses custom
         filter <span class="code">FilesFilter</span> to prevent reporting of
         audit events for files whose name contains &quot;Generated&quot;,

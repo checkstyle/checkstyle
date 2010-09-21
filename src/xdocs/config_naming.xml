@@ -34,7 +34,7 @@
       <p>
         All naming modules belong to package <span
         class="code">com.puppycrawl.tools.checkstyle.checks.naming</span> and
-        are submodules of <a href="config.html#treewalker"><span
+        are submodules of <a href="config.html#TreeWalker"><span
         class="code">TreeWalker</span></a>.
       </p>
     </section>

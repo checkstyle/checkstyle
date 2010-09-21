@@ -63,7 +63,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -137,7 +137,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -200,7 +200,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -245,7 +245,7 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -317,7 +317,7 @@ class FooBar {
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -369,7 +369,7 @@ class FooBar {
           <tr>
             <td>ordered</td>
             <td>whether imports within group should be sorted</td>
-            <td><a href="property_types.html#Boolean">Boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
           </tr>
           <tr>
@@ -378,13 +378,13 @@ class FooBar {
               whether imports groups should be separated by, at least, one
               blank line
             </td>
-            <td><a href="property_types.html#Boolean">Boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
           <tr>
             <td>caseSensitive</td>
             <td>whether string comparision should be case sensitive or not</td>
-            <td><a href="property_types.html#Boolean">Boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
           </tr>
         </table>
@@ -417,7 +417,7 @@ class FooBar {
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -517,7 +517,7 @@ class FooBar {
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

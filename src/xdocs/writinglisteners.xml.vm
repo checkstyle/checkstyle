@@ -201,7 +201,7 @@ public class VerboseListener
         To incorporate a custom listener in the set of listeners for a
         <span class="code">Checker</span>, include a module element for
         the listener in the <a
-        href="config.html#auditlisteners">configuration file</a>. For
+        href="config.html#AuditListeners">configuration file</a>. For
         example, to configure a <span class="code">Checker</span> so
         that it uses custom listener <span
         class="code">VerboseListener</span> to print audit messages to a
@@ -239,21 +239,22 @@ Audit finished. Total errors: 1
         href="http://ant.apache.org/">ANT</a> listeners. The first
         listener, <span class="code"> CommonsLoggingListener</span>,
         hands off events to the <a
-        href="http://jakarta.apache.org/commons/logging.html">Jakarata
+        href="http://commons.apache.org/logging/">Jakarata
         Commons Logging</a> facade and the second, <span
         class="code">MailLogger</span>, sends a report of an audit via
         e-mail. The discussion of these examples and how to use them is
         derived from material in <a
-        href="http://www.manning.com/antbook">&quot;Java Development
+        href="http://www.manning.com/hatcher/">&quot;Java Development
         with Ant&quot;</a> by Eric Hatcher and Steve Loughran, an
         excellent ANT book.
       </p>
 
+      <a name="CommonsLoggingListener"/>
       <h4>CommonsLoggingListener</h4>
 
       <p>
         <a
-        href="http://jakarta.apache.org/commons/logging.html">Jakarata
+        href="http://commons.apache.org/logging/">Jakarata
         Commons Logging</a> provides a facade for logging tools
         <a
         href="http://jakarta.apache.org/log4j/docs/index.html">log4j</a>,
@@ -283,10 +284,10 @@ Audit finished. Total errors: 1
         in the classpath because that jar file contains all the Commons
         Logging classes.  The default Log under J2SE 1.4 is wrapper
         class <a
-        href="http://jakarta.apache.org/commons/logging/api/org/apache/commons/logging/impl/Jdk14Logger.html">Jdk14Logger</a>.
+        href="http://commons.apache.org/logging/apidocs/org/apache/commons/logging/impl/Jdk14Logger.html">Jdk14Logger</a>.
         Under earlier Java versions, the default Log is a simple wrapper
         class, <a
-        href="http://jakarta.apache.org/commons/logging/api/org/apache/commons/logging/impl/SimpleLog.html">SimpleLog</a>.
+        href="http://commons.apache.org/logging/apidocs/org/apache/commons/logging/impl/SimpleLog.html">SimpleLog</a>.
         Both default logging tools can be used directly from Commons
         Logging; if you need to use other tools such as log4j, then you
         must include the appropriate jar file(s) in the classpath.
@@ -295,7 +296,7 @@ Audit finished. Total errors: 1
       <p>
         Logging configuration details for Jakarta Commons Logging are in
         the <a
-        href="http://jakarta.apache.org/commons/logging.html">documentation</a>.
+        href="http://commons.apache.org/logging/">documentation</a>.
         As a simple example, assume that <span
         class="default">log4j.jar</span> is in the classpath and the
         following <span class="default">log4j.properties</span> file is
@@ -332,6 +333,7 @@ INFO  com.puppycrawl...Checker  - File "VerboseListener.java" finished.
 INFO  com.puppycrawl...Checker  - Audit finished.
       </source>
 
+      <a name="MailLogger"/>
       <h4>MailLogger</h4>
       <p>
         <span class="code">MailLogger</span> sends an audit report in an

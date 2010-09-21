@@ -55,7 +55,7 @@ return new int[] { 0 };
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -93,7 +93,7 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -132,7 +132,7 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -197,7 +197,7 @@ public class MySingleton
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -226,7 +226,7 @@ public class MySingleton
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -315,7 +315,7 @@ number.equals(i + j);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -354,7 +354,7 @@ number.equals(i + j);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -427,7 +427,7 @@ number.equals(i + j);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -558,7 +558,7 @@ number.equals(i + j);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -634,7 +634,7 @@ number.equals(i + j);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -699,7 +699,7 @@ number.equals(i + j);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -743,7 +743,7 @@ number.equals(i + j);
             <td>message</td>
             <td>Message which is used to notify about violations;
             if empty then the default message is used.</td>
-            <td><a href="property_types.html#String">String</a></td>
+            <td><a href="property_types.html#string">String</a></td>
             <td><span class="default">&quot;&quot;</span>(empty)</td>
           </tr>
         </table>
@@ -782,7 +782,7 @@ number.equals(i + j);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -869,7 +869,7 @@ number.equals(i + j);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -934,7 +934,7 @@ number.equals(i + j);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -972,7 +972,7 @@ number.equals(i + j);
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1014,7 +1014,7 @@ for (int i = 0; i &lt; 1; i++) {
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1112,7 +1112,7 @@ for (int i = 0; i &lt; 1; i++) {
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1149,7 +1149,7 @@ for (int i = 0; i &lt; 1; i++) {
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1197,7 +1197,7 @@ return !valid();
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1239,7 +1239,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1294,7 +1294,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1349,7 +1349,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1481,7 +1481,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1511,7 +1511,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1546,7 +1546,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1582,7 +1582,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1636,7 +1636,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1687,7 +1687,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1721,7 +1721,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1762,7 +1762,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1835,7 +1835,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -1933,7 +1933,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -2010,7 +2010,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -2043,7 +2043,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -2087,7 +2087,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -2125,7 +2125,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -2155,7 +2155,7 @@ if (&quot;something&quot;.equals(x))
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -2258,7 +2258,7 @@ case 3:
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -2368,7 +2368,7 @@ case 3:
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -2405,7 +2405,7 @@ case 3:
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -2469,7 +2469,7 @@ case 3:
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
@@ -2498,7 +2498,7 @@ case 3:
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#treewalker">TreeWalker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
