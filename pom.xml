@@ -284,6 +284,7 @@
         <artifactId>maven-site-plugin</artifactId>
         <configuration>
           <xdocDirectory>${basedir}/src/xdocs</xdocDirectory>
+          <validate>true</validate>
         </configuration>
       </plugin>
 
