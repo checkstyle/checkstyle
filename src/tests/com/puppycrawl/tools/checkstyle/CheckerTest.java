@@ -12,7 +12,6 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import java.io.File;
 import java.util.TreeSet;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class CheckerTest
@@ -26,21 +25,23 @@ public class CheckerTest
         assertEquals("C:\\a\\b\\d", c.getBasedir());
     }
 
-    @Ignore @Test // Need to resolve why fails under Maven.
+    @Test
     public void testOsBasedir() throws Exception
     {
         final Checker c = new Checker();
 
         // we need something to create absolute path
         // let's take testinputs.dir
-        String testinputs_dir = System.getProperty("testinputs.dir");
+        String testinputs_dir = System.getProperty("testinputs.dir")
+                .replace('/', File.separatorChar)
+                .replace('\\',File.separatorChar);
 
         if (!testinputs_dir.endsWith(File.separator)) {
             testinputs_dir += File.separator;
         }
 
-        c.setBasedir(testinputs_dir + "indentation/./..\\coding\\");
-        assertEquals(c.getBasedir(), testinputs_dir + "coding");
+        final String instr = testinputs_dir + "indentation/./..\\coding\\";
+        c.setBasedir(instr);
         assertTrue((testinputs_dir + "coding").equalsIgnoreCase(c.getBasedir()));
     }
 

@@ -220,7 +220,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * Add the listener that will be used to receive events from the audit.
      * @param aListener the nosy thing
      */
-    public void addListener(AuditListener aListener)
+    public final void addListener(AuditListener aListener)
     {
         mListeners.add(aListener);
     }

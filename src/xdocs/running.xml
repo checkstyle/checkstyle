@@ -15,12 +15,12 @@
         This section documents the out-of-box supported methods for
         running Checkstyle.
       </p>
-  
+
       <ul>
         <li>An <a href="anttask.html">Ant task</a>.</li>
         <li>A <a href="cmdline.html">Command Line</a> tool.</li>
       </ul>
-  
+
       <p>
         Note that there are <a href="index.html#Related Tools">loads of
         plug-ins</a> for all the IDE's out there.
