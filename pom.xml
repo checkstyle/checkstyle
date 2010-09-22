@@ -282,6 +282,15 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>gen-site</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>site</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
           <xdocDirectory>${basedir}/src/xdocs</xdocDirectory>
           <validate>true</validate>
