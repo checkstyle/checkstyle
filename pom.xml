@@ -35,12 +35,12 @@
     <snapshotRepository>
       <id>checkstyle-snapshot-repo</id>
       <name>Snapshot Repository</name>
-      <url>scp://web.sourceforge.net/home/groups/c/ch/checkstyle/htdocs/snapshot/maven2</url>
+      <url>scp://shell.sourceforge.net/home/groups/c/ch/checkstyle/htdocs/snapshot/maven2</url>
     </snapshotRepository>
     <site>
       <id>checkstyle-snapshot-site</id>
       <name>Snapshot Site</name>
-      <url>scp://web.sourceforge.net/home/groups/c/ch/checkstyle/htdocs</url>
+      <url>scp://shell.sourceforge.net/home/groups/c/ch/checkstyle/htdocs/snapshot</url>
     </site>
   </distributionManagement>
 
@@ -446,12 +446,12 @@
         <repository>
           <id>checkstyle-repo</id>
           <name>Default Repository</name>
-          <url>scp://web.sourceforge.net/home/groups/c/ch/checkstyle/htdocs/maven2</url>
+          <url>scp://shell.sourceforge.net/home/groups/c/ch/checkstyle/htdocs/maven2</url>
         </repository>
         <site>
           <id>checkstyle-site</id>
           <name>Default Site</name>
-          <url>scp://web.sourceforge.net/home/groups/c/ch/checkstyle/htdocs</url>
+          <url>scp://shell.sourceforge.net/home/groups/c/ch/checkstyle/htdocs</url>
         </site>
       </distributionManagement>
     </profile>
