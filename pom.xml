@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
   <modelVersion>4.0.0</modelVersion>
   <groupId>checkstyle</groupId>
   <artifactId>checkstyle</artifactId>
@@ -24,15 +26,21 @@
   </licenses>
 
   <scm>
-  	<connection>scm:svn:https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</connection>
-  	<developerConnection>scm:svn:https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</developerConnection>
-  	<url>https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</url>
+    <connection>scm:svn:https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</connection>
+    <developerConnection>scm:svn:https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</developerConnection>
+    <url>http://checkstyle.svn.sourceforge.net/viewvc/checkstyle/</url>
   </scm>
-  
+
   <distributionManagement>
+    <snapshotRepository>
+      <id>checkstyle-snapshot-repo</id>
+      <name>Snapshot Repository</name>
+      <url>scp://web.sourceforge.net/home/groups/c/ch/checkstyle/htdocs/snapshot/maven2</url>
+    </snapshotRepository>
     <site>
-      <id>checkstyle.sf.net</id>
-      <url>scp://shell.sourceforge.net/home/groups/c/ch/checkstyle/htdocs</url>
+      <id>checkstyle-snapshot-site</id>
+      <name>Snapshot Site</name>
+      <url>scp://web.sourceforge.net/home/groups/c/ch/checkstyle/htdocs</url>
     </site>
   </distributionManagement>
 
@@ -239,14 +247,10 @@
             </goals>
             <configuration>
               <tasks>
-                <property name="mvn.project.build.outputDirectory"
-                          value="${project.build.outputDirectory}"
-                          />
-                <property name="mvn.project.version"
-                           value="${project.version}"
-                           />
-                <property name="mvn.compile_classpath" refid="maven.compile.classpath"/>
-                <ant antfile="ant-phase-compile.xml"/>
+                <property name="mvn.project.build.outputDirectory" value="${project.build.outputDirectory}" />
+                <property name="mvn.project.version" value="${project.version}" />
+                <property name="mvn.compile_classpath" refid="maven.compile.classpath" />
+                <ant antfile="ant-phase-compile.xml" />
               </tasks>
             </configuration>
           </execution>
@@ -258,14 +262,10 @@
             </goals>
             <configuration>
               <tasks>
-                <property name="mvn.project.build.directory"
-                          value="${project.build.directory}"
-                          />
-                <property name="mvn.project.version"
-                           value="${project.version}"
-                           />
-                <property name="mvn.runtime_classpath" refid="maven.runtime.classpath"/>
-                <ant antfile="ant-phase-package.xml"/>
+                <property name="mvn.project.build.directory" value="${project.build.directory}" />
+                <property name="mvn.project.version" value="${project.version}" />
+                <property name="mvn.runtime_classpath" refid="maven.runtime.classpath" />
+                <ant antfile="ant-phase-package.xml" />
               </tasks>
             </configuration>
           </execution>
@@ -392,7 +392,7 @@
           </instrumentation>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-linkcheck-plugin</artifactId>
@@ -417,7 +417,7 @@
           </reportSet>
         </reportSets>
       </plugin>
-        <!-- 
+        <!--
         THE FOLLOWING DOES NOT WORK!
       <plugin>
       	<groupId>org.apache.maven.plugins</groupId>
@@ -430,4 +430,21 @@
     </plugins>
   </reporting>
 
+  <profiles>
+    <profile>
+      <id>release</id>
+      <distributionManagement>
+        <repository>
+          <id>checkstyle-repo</id>
+          <name>Default Repository</name>
+          <url>scp://web.sourceforge.net/home/groups/c/ch/checkstyle/htdocs/maven2</url>
+        </repository>
+        <site>
+          <id>checkstyle-site</id>
+          <name>Default Site</name>
+          <url>scp://web.sourceforge.net/home/groups/c/ch/checkstyle/htdocs</url>
+        </site>
+      </distributionManagement>
+    </profile>
+  </profiles>
 </project>
