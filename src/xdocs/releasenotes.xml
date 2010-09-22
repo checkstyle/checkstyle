@@ -66,6 +66,10 @@
           a single character sequence instead of a list of lines.
           Thanks to Martin von Gagern for patch #2783226.
         </li>
+        <li>
+          Updated third party dependencies to the latest versions. See
+          <a href="dependencies.html">Project Dependencies</a> for details.
+        </li>
       </ul>
     </section>
 
