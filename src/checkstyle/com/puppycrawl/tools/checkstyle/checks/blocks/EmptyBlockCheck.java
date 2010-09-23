@@ -116,7 +116,7 @@ public class EmptyBlockCheck
      * @param aSlistAST a <code>DetailAST</code> value
      * @return whether the SLIST token contains any text.
      */
-    private boolean hasText(final DetailAST aSlistAST)
+    protected boolean hasText(final DetailAST aSlistAST)
     {
         boolean retVal = false;
 

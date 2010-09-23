@@ -60,8 +60,11 @@
           </a>. This will change once Maven has been <i>proven</i>.
         </li>
         <li>
-          Introduced <span class="code">FileText</span> to provide more
-          flexibitily on how the contents of a file are
+          Introduced
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/FileText.html">
+              FileText
+          </a>
+          to provide more flexibitily on how the contents of a file are
           represented. This allows for Checkers that wish to operate on
           a single character sequence instead of a list of lines.
           Thanks to Martin von Gagern for patch #2783226.
@@ -69,6 +72,14 @@
         <li>
           Updated third party dependencies to the latest versions. See
           <a href="dependencies.html">Project Dependencies</a> for details.
+        </li>
+        <li>
+          Made the method
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.html#hasText(com.puppycrawl.tools.checkstyle.api.DetailAST)">
+            EmptyBlockCheck.hasText(DetailAST)
+          </a>
+          <code>protected</code> so that it is accessible to subclasses.
+          Requested by Steve McKay.
         </li>
       </ul>
     </section>
@@ -303,7 +314,7 @@
           Added the option <i>sumTokenCounts</i> to the <a
           href="config_misc.html#DescendantToken">DescendantToken</a> to
           allow for even more powerful checks. For example, detect
-          statements like <span class="code">this == null</span>.
+          statements like <code>this == null</code>.
         </li>
         <li>
           Add new options to the <a
@@ -412,13 +423,13 @@
           Enhanced the <a
           href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
           check to not require Javadoc if the method is tagged with the
-          <span class="code">@Override</span> annotation.
+          <code>@Override</code> annotation.
         </li>
         <li>
           New check <a
           href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a>
           for ensuring that String literals is on the left side of an
-          <span class="code">equals()</span> comparison.  Thanks to
+          <code>equals()</code> comparison.  Thanks to
           Travis Schneeberger for providing patch #1895152.
         </li>
         <li>
@@ -443,9 +454,8 @@
         </li>
         <li>
           New check <a href="config_coding.html#NoClone">NoClone</a> for
-          ensuring a class does not override the <span
-          class="code">clone</span> method from the <span
-          class="code">Object</span> class. Thanks to Travis
+          ensuring a class does not override the <code>clone</code> method from
+          the <code>Object</code> class. Thanks to Travis
           Schneeberger for providing patch #1947417.
         </li>
         <li>
