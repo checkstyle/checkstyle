@@ -60,6 +60,10 @@
           </a>. This will change once Maven has been <i>proven</i>.
         </li>
         <li>
+          The Maven <code>&lt;groupId&gt;</code> changed to be
+          <code>com.puppycrawl.tools</code> (from <code>checkstyle</code>).
+        </li>
+        <li>
           Introduced
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/FileText.html">
               FileText
