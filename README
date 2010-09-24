@@ -6,7 +6,7 @@ checking Java source code for adherence to a set of rules.
 
 The latest version can be found at http://checkstyle.sourceforge.net
 
-Documentation is available in HTML format, in the docs/ directory.
+Documentation is available in HTML format, in the "site" directory.
 
 Licensing
 =========

@@ -4,38 +4,40 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
- <properties>
-  <title>Contributing</title>
-  <author>Checkstyle Development Team</author>
- </properties>
+  <properties>
+    <title>Contributing</title>
+    <author>Checkstyle Development Team</author>
+  </properties>
 
-<body>
+  <body>
 
-  <section name="Introduction">
+    <section name="Introduction">
 
       <p>
-      Hey, good to see you on this page. It means that you are
-      considering a contribution of your own work to the Checkstyle
-      project. We welcome anything: bugfixes, new check modules, unit
-      tests, documentation improvements, build process simplification,
-      etc.
+        Hey, good to see you on this page. It means that you are
+        considering a contribution of your own work to the Checkstyle
+        project. We welcome anything: bugfixes, new check modules, unit
+        tests, documentation improvements, build process simplification,
+        etc.
       </p>
 
       <p>
-      This document assumes you are working with the SVN version of
-      checkstyle and that you are familiar with some standard
-      development tools (<a href="http://subversion.tigris.org/">SVN</a>,
-      <a href="http://ant.apache.org">Ant</a>, <a
-      href="http://www.junit.org">JUnit</a>).
-      </p>
+        This document assumes you are working with the SVN version of
+        checkstyle and that you are familiar with some standard
+        development tools (
 
-  </section>
-  <section name="Quality matters">
+        <a href="http://subversion.tigris.org/">SVN</a>,
+        <a href="http://maven.apache.org">Maven</a>,
+        <a href="http://www.junit.org">JUnit</a>).
+      </p>
+    </section>
+
+    <section name="Quality matters">
 
       <p>
-      The developer team of checkstyle is really a lazy bunch of
-      people.  We try to avoid work as best as we can, but most of all
-      we try to avoid working on bugs that are reported by end users.
+        The developer team of checkstyle is really a lazy bunch of
+        people.  We try to avoid work as best as we can, but most of all
+        we try to avoid working on bugs that are reported by end users.
       </p>
 
       <p>
@@ -43,63 +45,70 @@
         the quality of our code is kept at a fairly high level. Like
         most projects today, we use JUnit to test our code. However we
         do take this one step further and measure the coverage of our
-        unit tests using <a
-        href="http://emma.sourceforge.net">EMMA</a>. This means it is
-        not sufficient to pass all tests, but the tests should ideally
-        execute each line in the code.
+        unit tests using
+
+        <a href="http://cobertura.sourceforge.net/">Cobertura</a>.
+
+        This means it is not sufficient to pass all tests, but the tests
+        should ideally execute each line in the code. To generate the
+        Cobertura report, run the Maven command
+
+        <code>mvn cobertura:cobertura</code>.
       </p>
 
       <p>
-      Besides using unit testing, we obviously also use checkstyle to check
-      it's own code.
+        Besides using unit testing, we obviously also use checkstyle to
+        check it's own code.
       </p>
 
       <p>
-      We have the build target <span class="code">gump</span> in our
-      Ant buildfile that builds checkstyle, executes all tests,
-      and runs checkstyle on it's own code.
-      That target should pass without errors.
+        The Maven command <code>mvn clean package</code> must pass
+        without any errors.
       </p>
 
       <p>
-      If you add new end user features, remember to document them.
+        If you add new end user features, remember to document them.
       </p>
-  </section>
+    </section>
 
-  <section name="Submitting your contribution">
+    <section name="Submitting your contribution">
 
       <p>
-      Once you have made sure that your changes pass the gump target,
-      and everthing is documented, you are ready to submit your work.
-      </p>
-
-      <p>
-      If you have created new files, put them in a tgz file (or zip if you
-      are on Windows). If you have changed existing files, create a unified
-      diff using SVN. To do that, open a command line, cd to the home
-      directory of checkstyle (where build.xml is located) and execute
-      <span class="code">svn diff &gt; mychanges.patch</span>.
+        Once you have made sure that your changes pass the Maven command
+        <code>mvn clean package</code>, the code coverage is of high
+        standard and everthing is documented, then you are ready to
+        submit your work.
       </p>
 
       <p>
-      Create a new item in our
-      <a href="http://sourceforge.net/tracker/?group_id=29721&amp;atid=397080">patch tracker</a>
-      and add the tgz/zip/patch files you created.
-      Make sure the text in the tracker explains the purpose of your contribution.
-      When you create a tracker entry, a notification email about your contribution
-      will automatically be sent to the developer mailing list.
-      Be prepared to answer questions and do some polishing work.
+        If you have created new files, put them in a tgz file (or zip if
+        you are on Windows). If you have changed existing files, create
+        a unified diff using SVN. To do that, open a command line, cd to
+        the home directory of checkstyle (where build.xml is located)
+        and execute <code>svn diff &gt; mychanges.patch</code>.
       </p>
 
       <p>
-      We are not only lazy but at times we are also busy with our day jobs.
-      This means that you might not always get an immediate answer. You are
-      not being ignored, and we value your work - we might just be too busy
-      to review your code, especially if it is a bit complex. If you don't
-      get a response within two weeks, feel free to send a reminder email about
-      your tracker item.
+        Create a new item in our
+
+        <a href="http://sourceforge.net/tracker/?group_id=29721&amp;atid=397080">patch tracker</a>
+
+        and add the tgz/zip/patch files you created. Make sure the text
+        in the tracker explains the purpose of your contribution.  When
+        you create a tracker entry, a notification email about your
+        contribution will automatically be sent to the developer mailing
+        list.  Be prepared to answer questions and do some polishing
+        work.
       </p>
 
-  </section>
-</body>
+      <p>
+        We are not only lazy but at times we are also busy with our day
+        jobs.  This means that you might not always get an immediate
+        answer. You are not being ignored, and we value your work - we
+        might just be too busy to review your code, especially if it is
+        a bit complex. If you don't get a response within two weeks,
+        feel free to send a reminder email about your tracker item.
+      </p>
+    </section>
+  </body>
 </document>

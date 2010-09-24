@@ -24,41 +24,11 @@
       <p>
         The easiest way is to include <span
         class="default">checkstyle-${projectVersion}-all.jar</span> in the
-        classpath. If you are running JDK 5.0 this contains all the classes
-        required to run Checkstyle. Alternatively, you must include the
-        following in the classpath:
+        classpath. Alternatively, you must include the <code>compile</code>
+        third party dependencies listed in
+        <a href="dependencies.html">Project Dependencies</a> in the
+        classpath.
       </p>
-
-      <ol>
-        <li>
-          <span class="default">checkstyle-${projectVersion}.jar</span>
-        </li>
-        <li>
-          ANTLR 2.7.6 classes. <span class="default">antlr.jar</span> is
-          included in the distribution.
-        </li>
-        <li>
-          Jakarta Commons Beanutils classes. <span
-          class="default">commons-beanutils-core.jar</span> is included in the
-          distribution.
-        </li>
-        <li>
-          Jakarta Commons Logging classes. <span
-          class="default">commons-logging.jar</span> is included in the
-          distribution.
-        </li>
-        <li>
-          Jakarta Commons CLI (command line interface) classes. <span
-          class="default">commons-cli-1.1.jar</span> is included in the
-          distribution.
-        </li>
-        <li>
-          Google Collections classes.
-          <span class="default">google-collect-1.0.jar</span> is included
-          in the distribution.
-        </li>
-
-      </ol>
     </section>
 
     <section name="Usage">
@@ -207,3 +177,4 @@ java -jar checkstyle-${projectVersion}-all.jar \
     </section>
   </body>
 </document>
+

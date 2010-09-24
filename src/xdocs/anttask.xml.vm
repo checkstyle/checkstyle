@@ -29,38 +29,11 @@
         The easiest way is to include <span
         class="default">checkstyle-${projectVersion}-all.jar</span> in the
         classpath. This contains all the classes required to run
-        Checkstyle. Alternatively, you must include the following in the
-        classpath:
+        Checkstyle. Alternatively, you must include the <code>compile</code>
+        third party dependencies listed in
+        <a href="dependencies.html">Project Dependencies</a> in the
+        classpath.
       </p>
-
-      <ol>
-        <li>
-          <span class="default">checkstyle-${projectVersion}.jar</span>
-        </li>
-        <li>
-          ANTLR 2.7.2 classes. <span class="default">antlr.jar</span> is
-          included in the distribution.
-        </li>
-        <li>
-          Jakarta Commons Beanutils classes. <span
-          class="default">commons-beanutils.jar</span> is included in the
-          distribution.
-        </li>
-        <li>
-          Jakarta Commons Collections classes. <span
-          class="default">commons-collections.jar</span> is included in the
-          distribution.
-        </li>
-        <li>
-          Jakarta Commons Logging classes. <span
-          class="default">commons-logging.jar</span> is included in the
-          distribution.
-        </li>
-        <li>
-          A JAXP compliant XML parser implementation. You already have it on
-          your system if you run ANT or JDK 1.4.
-        </li>
-      </ol>
 
       <p>
         To use the task in a build file, you will need the following
