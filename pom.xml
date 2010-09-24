@@ -3,6 +3,13 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
+  <!-- Used for making releases. -->
+  <parent>
+    <artifactId>oss-parent</artifactId>
+    <groupId>org.sonatype.oss</groupId>
+    <version>5</version>
+  </parent>
+  
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
@@ -32,11 +39,6 @@
   </scm>
 
   <distributionManagement>
-    <snapshotRepository>
-      <id>checkstyle-snapshot-repo</id>
-      <name>Snapshot Repository</name>
-      <url>scp://shell.sourceforge.net/home/groups/c/ch/checkstyle/htdocs/snapshot/maven2</url>
-    </snapshotRepository>
     <site>
       <id>checkstyle-snapshot-site</id>
       <name>Snapshot Site</name>
@@ -460,11 +462,6 @@
     <profile>
       <id>release</id>
       <distributionManagement>
-        <repository>
-          <id>checkstyle-repo</id>
-          <name>Default Repository</name>
-          <url>scp://shell.sourceforge.net/home/groups/c/ch/checkstyle/htdocs/maven2</url>
-        </repository>
         <site>
           <id>checkstyle-site</id>
           <name>Default Site</name>
