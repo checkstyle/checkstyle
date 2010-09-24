@@ -14,10 +14,9 @@
     <section name="BooleanExpressionComplexity">
       <subsection name="Description">
         <p>
-          Restrict the number of number of <span
-          class="code">&#x26;&#x26;</span>, <span class="code">||</span>,
-          <span class="code">&#x26;</span>, <span class="code">|</span>
-          and <span class="code">^</span> in an expression.
+          Restrict the number of number of <code>&#x26;&#x26;</code>, <code>||</code>,
+          <code>&#x26;</code>, <code>|</code>
+          and <code>^</code> in an expression.
         </p>
 
         <p>
@@ -26,11 +25,11 @@
         </p>
 
         <p>
-          Note that the operators <span class="code">&#x26;</span> and
-          <span class="code">|</span> are not only integer bitwise operators, they are also the
+          Note that the operators <code>&#x26;</code> and
+          <code>|</code> are not only integer bitwise operators, they are also the
           <a href="http://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.22.2">
           non-shortcut versions</a> of the boolean operators
-          <span class="code">&#x26;&#x26;</span> and <span class="code">||</span>.
+          <code>&#x26;&#x26;</code> and <code>||</code>.
         </p>
       </subsection>
 
@@ -49,7 +48,7 @@
               expression.
             </td>
             <td><a href="property_types.html#integer">integer</a></td>
-            <td><span class="default">3</span></td>
+            <td><code>3</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -92,8 +91,8 @@
         </source>
 
         <p>
-          To configure the check to ignore <span class="code">&#x26;</span> and
-          <span class="code">|</span>:
+          To configure the check to ignore <code>&#x26;</code> and
+          <code>|</code>:
         </p>
         <source>
 &lt;module name="BooleanExpressionComplexity"&gt;
@@ -143,7 +142,7 @@
             <td>max</td>
             <td>the maximum threshold allowed</td>
             <td><a href="property_types.html#integer">integer</a></td>
-            <td><span class="default">7</span></td>
+            <td><code>7</code></td>
           </tr>
         </table>
       </subsection>
@@ -201,7 +200,7 @@
             <td>max</td>
             <td>the maximum threshold allowed</td>
             <td><a href="property_types.html#integer">integer</a></td>
-            <td><span class="default">20</span></td>
+            <td><code>20</code></td>
           </tr>
         </table>
       </subsection>
@@ -241,14 +240,8 @@
       <subsection name="Description">
         <p>
           Checks cyclomatic complexity against a specified limit. The
-          complexity is measured by the number of <span
-          class="code">if</span>, <span class="code">while</span>, <span
-          class="code">do</span>, <span class="code">for</span>, <span
-          class="code">?:</span>, <span class="code">catch</span>, <span
-          class="code">switch</span>, <span class="code">case</span>
-          statements, and operators <span
-          class="code">&#x26;&#x26;</span> and <span
-          class="code">||</span> (plus one) in the body of a
+          complexity is measured by the number of <code>if</code>, <code>while</code>, <code>do</code>, <code>for</code>, <code>?:</code>, <code>catch</code>, <code>switch</code>, <code>case</code>
+          statements, and operators <code>&#x26;&#x26;</code> and <code>||</code> (plus one) in the body of a
           constructor, method, static initializer, or instance
           initializer.  It is a measure of the minimum number of
           possible paths through the source and therefore the number of
@@ -269,7 +262,7 @@
             <td>max</td>
             <td>the maximum threshold allowed</td>
             <td><a href="property_types.html#integer">integer</a></td>
-            <td><span class="default">10</span></td>
+            <td><code>10</code></td>
           </tr>
         </table>
       </subsection>
@@ -334,7 +327,7 @@
             <td>max</td>
             <td>the maximum threshold allowed</td>
             <td><a href="property_types.html#integer">integer</a></td>
-            <td><span class="default">200</span></td>
+            <td><code>200</code></td>
           </tr>
         </table>
       </subsection>
@@ -413,7 +406,7 @@
               method.
             </td>
             <td><a href="property_types.html#integer">integer</a></td>
-            <td><span class="default">50</span></td>
+            <td><code>50</code></td>
           </tr>
           <tr>
             <td>classMaximum</td>
@@ -422,7 +415,7 @@
               class.
             </td>
             <td><a href="property_types.html#integer">integer</a></td>
-            <td><span class="default">1500</span></td>
+            <td><code>1500</code></td>
           </tr>
           <tr>
             <td>fileMaximum</td>
@@ -431,7 +424,7 @@
               file including all top level and nested classes.
             </td>
             <td><a href="property_types.html#integer">integer</a></td>
-            <td><span class="default">2000</span></td>
+            <td><code>2000</code></td>
           </tr>
         </table>
       </subsection>

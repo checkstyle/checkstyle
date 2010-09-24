@@ -12,37 +12,25 @@
   <body>
     <section name="Overview">
       <p>
-        A <span class="code">Checker</span> has a set of <span
-        class="code">Filter</span>s that decide which audit events the <span
-        class="code">Checker</span> reports through its listeners.  Interface
-        <span class="code">Filter</span> and class <span
-        class="code">FilterSet</span> are intended to support general <span
-        class="code">AuditEvent</span> filtering using a set of <span
-        class="code">Filter</span>s.
+        A <code>Checker</code> has a set of <code>Filter</code>s that decide which audit events the <code>Checker</code> reports through its listeners.  Interface
+        <code>Filter</code> and class <code>FilterSet</code> are intended to support general <code>AuditEvent</code> filtering using a set of <code>Filter</code>s.
       </p>
 
       <p>
-        A <span class="code">Filter</span> has <span
-        class="code">boolean</span> method <span
-        class="code">accept(AuditEvent)</span> that returns <span
-        class="code">true</span> if the <span class="code">Filter</span>
-        accepts the <span class="code">AuditEvent</span> parameter and returns
-        <span class="code">false</span> if the <span
-        class="code">Filter</span> rejects it.
+        A <code>Filter</code> has <code>boolean</code> method <code>accept(AuditEvent)</code> that returns <code>true</code> if the <code>Filter</code>
+        accepts the <code>AuditEvent</code> parameter and returns
+        <code>false</code> if the <code>Filter</code> rejects it.
       </p>
 
       <p>
-        A <span class="code">FilterSet</span> is a particular <span
-        class="code">Filter</span> that contains a set of <span
-        class="code">Filter</span>s. A <span class="code">FilterSet</span>
-        accepts an <span class="code">AuditEvent</span> if and only if all
-        <span class="code">Filter</span>s in the set accept the <span
-        class="code">AuditEvent</span>.
+        A <code>FilterSet</code> is a particular <code>Filter</code> that contains a set of <code>Filter</code>s. A <code>FilterSet</code>
+        accepts an <code>AuditEvent</code> if and only if all
+        <code>Filter</code>s in the set accept the <code>AuditEvent</code>.
       </p>
 
       <p>
-        Here is a UML diagram for interface <span class="code">Filter</span>
-        and class <span class="code">FilterSet</span>.
+        Here is a UML diagram for interface <code>Filter</code>
+        and class <code>FilterSet</code>.
       </p>
 
       <img src="images/Filter.gif" alt="Filter UML diagram" />
@@ -50,16 +38,15 @@
 
     <section name="Writing Filters">
       <p>
-        The <span class="code">Filter</span> that we demonstrate here rejects
+        The <code>Filter</code> that we demonstrate here rejects
         audit events for files whose name matches a <a
         href="property_types.html#regexp">regular expression</a>.  In order to
         enable the specification of the file name pattern as a property in a
-        configuration file, the <span class="code">Filter</span> is an <a
+        configuration file, the <code>Filter</code> is an <a
         href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
-        with mutator method <span class="code">setFiles(String)</span> that
-        receives the file name pattern.  An <span
-        class="code">AutomaticBean</span> uses JavaBean introspection to set
-        JavaBean properties such as <span class="code">files</span>.
+        with mutator method <code>setFiles(String)</code> that
+        receives the file name pattern.  An <code>AutomaticBean</code> uses JavaBean introspection to set
+        JavaBean properties such as <code>files</code>.
       </p>
 
       <source>
@@ -103,12 +90,12 @@ public class FilesFilter
 
     <section name="Using Filters">
       <p>
-        To incorporate a <span class="code">Filter</span> in the filter set
-        for a <span class="code">Checker</span>, include a module element for
-        the <span class="code">Filter</span> in the <a
+        To incorporate a <code>Filter</code> in the filter set
+        for a <code>Checker</code>, include a module element for
+        the <code>Filter</code> in the <a
         href="config.html#Filters">configuration file</a>. For example, to
-        configure a <span class="code">Checker</span> so that it uses custom
-        filter <span class="code">FilesFilter</span> to prevent reporting of
+        configure a <code>Checker</code> so that it uses custom
+        filter <code>FilesFilter</code> to prevent reporting of
         audit events for files whose name contains &quot;Generated&quot;,
         include the following module in the configuration file:
       </p>

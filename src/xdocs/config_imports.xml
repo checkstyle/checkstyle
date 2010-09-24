@@ -39,7 +39,7 @@
               automatically excluded.
             </td>
             <td><a href="property_types.html#stringSet">list of strings</a></td>
-            <td><span class="default">empty list</span></td>
+            <td><code>empty list</code></td>
           </tr>
         </table>
       </subsection>
@@ -94,33 +94,28 @@
             <td>excludes</td>
             <td>
               Allows for certain classes via a star notation to be
-              excluded such as <span
-              class="code">java.lang.Math.*</span> or specific static
-              members to be excluded like <span
-              class="code">java.lang.System.out</span> for a variable or
-              <span class="code">java.lang.Math.random</span> for a
+              excluded such as <code>java.lang.Math.*</code> or specific static
+              members to be excluded like <code>java.lang.System.out</code> for a variable or
+              <code>java.lang.Math.random</code> for a
               method.
               <br/>
               If you exclude a starred import on a class this automatically
               excludes each member individually.
               <br/>
-              For example: Excluding <span
-              class="code">java.lang.Math.*</span>. will allow the
+              For example: Excluding <code>java.lang.Math.*</code>. will allow the
               import of each static member in the Math class
-              individually like <span
-              class="code">java.lang.Math.PI</span>.
+              individually like <code>java.lang.Math.PI</code>.
             </td>
             <td><a href="property_types.html#stringSet">list of strings</a></td>
-            <td><span class="default">empty list</span></td>
+            <td><code>empty list</code></td>
           </tr>
         </table>
       </subsection>
 
       <subsection name="Example">
         <p>
-          An example of how to configure the check so that the <span
-          class="code">java.lang.System.out</span> member and all
-          members from <span class="code">java.lang.Math</span> are
+          An example of how to configure the check so that the <code>java.lang.System.out</code> member and all
+          members from <code>java.lang.Math</code> are
           allowed:
         </p>
 
@@ -146,12 +141,10 @@
       <subsection name="Description">
         <p>
           Checks for imports from a set of illegal packages. By default, the
-          check rejects all <span class="code">sun.*</span> packages since
-          programs that contain direct calls to the <span
-          class="code">sun.*</span> packages are <a
+          check rejects all <code>sun.*</code> packages since
+          programs that contain direct calls to the <code>sun.*</code> packages are <a
           href="http://java.sun.com/products/jdk/faq/faq-sun-packages.html">not
-          100% Pure Java</a>. To reject other packages, set property <span
-          class="code"> illegalPkgs</span> to a list of the illegal packages.
+          100% Pure Java</a>. To reject other packages, set property <code> illegalPkgs</code> to a list of the illegal packages.
         </p>
       </subsection>
 
@@ -167,7 +160,7 @@
             <td>illegalPkgs</td>
             <td>packages to reject</td>
             <td><a href="property_types.html#stringSet">list of strings</a></td>
-            <td><span class="default">sun</span></td>
+            <td><code>sun</code></td>
           </tr>
         </table>
       </subsection>
@@ -181,9 +174,7 @@
         </source>
 
         <p>
-          To configure the check so that it rejects packages <span
-          class="code">java.io.*</span> and <span
-          class="code">java.sql.*</span>:
+          To configure the check so that it rejects packages <code>java.io.*</code> and <code>java.sql.*</code>:
         </p>
         <source>
 &lt;module name=&quot;IllegalImport&quot;&gt;
@@ -218,9 +209,8 @@
             imported more than once.
           </li>
           <li>
-            The class imported is from the <span class="code">java.lang</span>
-            package, e.g.  importing <span
-            class="code">java.lang.String</span>.
+            The class imported is from the <code>java.lang</code>
+            package, e.g.  importing <code>java.lang.String</code>.
           </li>
           <li>
             The class imported is from the same package.
@@ -261,8 +251,8 @@
         <ul>
           <li>
             It is not referenced in the file. The algorithm does not support
-            wild-card imports like <span class="code">import
-            java.io.*;</span>. Most IDE's provide very sophisticated checks
+            wild-card imports like <code>import
+            java.io.*;</code>. Most IDE's provide very sophisticated checks
             for imports that handle wild-card imports.
           </li>
 
@@ -272,9 +262,8 @@
           </li>
 
           <li>
-            The class imported is from the <span class="code">java.lang</span>
-            package. For example importing <span
-            class="code">java.lang.String</span>.
+            The class imported is from the <code>java.lang</code>
+            package. For example importing <code>java.lang.String</code>.
           </li>
 
           <li>
@@ -287,8 +276,7 @@
           member variable.
         </p>
         <p>
-          For example, in the following case the import <span
-          class="code">java.awt.Component</span> will not be flagged as
+          For example, in the following case the import <code>java.awt.Component</code> will not be flagged as
           unused:
         </p>
         <source>
@@ -353,18 +341,17 @@ class FooBar {
             <td>option</td>
             <td>policy on the relative order between regular imports and static imports</td>
             <td><a href="property_types.html#importOrder">import order</a></td>
-            <td><span class="default">under</span></td>
+            <td><code>under</code></td>
           </tr>
           <tr>
             <td>groups</td>
             <td>
               list of imports groups (every group identified either by a
               common prefix string, or by a regular expression enclosed
-              in forward slashes (e.g. <span
-              class="code">/regexp/</span>)
+              in forward slashes (e.g. <code>/regexp/</code>)
             </td>
             <td><a href="property_types.html#stringSet">list of strings</a></td>
-            <td><span class="default">empty list</span></td>
+            <td><code>empty list</code></td>
           </tr>
           <tr>
             <td>ordered</td>
@@ -463,7 +450,7 @@ class FooBar {
               name of the file containing the import control configuration.
             </td>
             <td><a href="property_types.html#string">string</a></td>
-            <td><span class="default">null</span></td>
+            <td><code>null</code></td>
           </tr>
           <tr>
             <td>url</td>
@@ -471,7 +458,7 @@ class FooBar {
               url of the file containing the import control configuration.
             </td>
             <td><a href="property_types.html#string">string</a></td>
-            <td><span class="default">null</span></td>
+            <td><code>null</code></td>
           </tr>
         </table>
       </subsection>

@@ -34,7 +34,7 @@
               <a href="property_types.html#elementStyle">element style</a>
             </td>
             <td>
-              <span class="default">compact_no_array</span>
+              <code>compact_no_array</code>
             </td>
           </tr>
           <tr>
@@ -46,7 +46,7 @@
               <a href="property_types.html#closingParens">closing parens</a>
             </td>
             <td>
-              <span class="default">never</span>
+              <code>never</code>
             </td>
           </tr>
           <tr>
@@ -58,7 +58,7 @@
               <a href="property_types.html#trailingArrayComma">trailing comma</a>
             </td>
             <td>
-              <span class="default">never</span>
+              <code>never</code>
             </td>
           </tr>
         </table>
@@ -70,8 +70,8 @@
 
         <p>
           To configure the check to enforce an
-          <span class="code">expanded</span> style, with a
-          trailing array comma set to <span class="code">never</span>
+          <code>expanded</code> style, with a
+          trailing array comma set to <code>never</code>
           and always including the closing
           parenthesis.
         </p>
@@ -146,7 +146,7 @@
               <a href="property_types.html#boolean">boolean</a>
             </td>
             <td>
-              <span class="default">false</span>
+              <code>false</code>
             </td>
           </tr>
         </table>
@@ -157,7 +157,7 @@
         </source>
 
         <p>
-          To configure the check for the <span class="code">javaFiveCompatibility</span>
+          To configure the check for the <code>javaFiveCompatibility</code>
           mode:
         </p>
         <source>
@@ -247,7 +247,7 @@
               <a href="property_types.html#regexp">regexp</a>
             </td>
             <td>
-              <span class="default">^$|^\s+$</span>
+              <code>^$|^\s+$</code>
             </td>
           </tr>
 

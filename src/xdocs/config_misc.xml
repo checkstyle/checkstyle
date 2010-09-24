@@ -95,7 +95,7 @@
     <section name="TodoComment">
       <subsection name="Description">
         <p>
-          A check for <span class="code">TODO:</span> comments. Actually
+          A check for <code>TODO:</code> comments. Actually
           it is a generic <a
           href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">regular
           expression</a> matcher on Java comments. To check for other
@@ -115,14 +115,14 @@
             <td>format</td>
             <td>pattern to check</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><span class="default">TODO:</span></td>
+            <td><code>TODO:</code></td>
           </tr>
         </table>
       </subsection>
 
       <subsection name="Notes">
         <p>
-          Using <span class="code">TODO:</span> comments is a great way
+          Using <code>TODO:</code> comments is a great way
           to keep track of tasks that need to be done. Having them
           reported by Checkstyle makes it very hard to forget about
           them.
@@ -138,8 +138,7 @@
         </source>
 
         <p>
-          To configure the check for comments that contain <span
-          class="code">WARNING</span>:
+          To configure the check for comments that contain <code>WARNING</code>:
         </p>
         <source>
 &lt;module name=&quot;TodoComment&quot;&gt;
@@ -211,11 +210,10 @@ messages.properties: Key 'ok' missing.
               file type extension to identify translation files. Setting
               this property is typically only required if your
               translation files are preprocessed and the original files
-              do not have the extension <span
-              class="code">.properties</span>
+              do not have the extension <code>.properties</code>
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><span class="default">properties</span></td>
+            <td><code>properties</code></td>
           </tr>
         </table>
       </subsection>
@@ -271,7 +269,7 @@ messages.properties: Key 'ok' missing.
             <td>pattern for qualified names of classes which are allowed
             to have a main method.</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><span class="default">^$</span></td>
+            <td><code>^$</code></td>
           </tr>
         </table>
       </subsection>
@@ -312,15 +310,14 @@ messages.properties: Key 'ok' missing.
       <subsection name="Description">
         <p>
           Checks that long constants are defined with an upper ell. That
-          is <span class="code">' L'</span> and not <span
-          class="code">'l'</span>. This is in accordance to the Java
+          is <code>' L'</code> and not <code>'l'</code>. This is in accordance to the Java
           Language Specification, <a
           href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">
           Section 3.10.1</a>.
         </p>
 
         <p>
-          looks a lot like <span class="code">1</span>.
+          looks a lot like <code>1</code>.
         </p>
       </subsection>
 
@@ -369,7 +366,7 @@ messages.properties: Key 'ok' missing.
               Controls whether to enforce Java style (true) or C style (false).
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><span class="default">true</span></td>
+            <td><code>true</code></td>
           </tr>
         </table>
       </subsection>
@@ -552,7 +549,7 @@ messages.properties: Key 'ok' missing.
               from the sum of the individual token counts
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>minimumMessage</td>
@@ -571,9 +568,8 @@ messages.properties: Key 'ok' missing.
 
       <subsection name="Examples">
         <p>
-          Comparing <span class="code">this</span> with <span
-          class="code">null</span> (i.e. <span class="code">this ==
-          null</span> and <span class="code">this != null</span>):
+          Comparing <code>this</code> with <code>null</code> (i.e. <code>this ==
+          null</code> and <code>this != null</code>):
         </p>
         <source>
 &lt;module name="DescendantToken"&gt;
@@ -919,7 +915,7 @@ d = e / f;        // Another comment for this line
             <td>format</td>
             <td>pattern for string allowed before comment.</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><span class="default">^[\\s\\}\\);]*$</span></td>
+            <td><code>^[\\s\\}\\);]*$</code></td>
           </tr>
           <tr>
             <td>legalComment</td>
@@ -1025,20 +1021,20 @@ d = e / f;        // Another comment for this line
             <td>format</td>
             <td>pattern</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><span class="default">$^</span> (empty)</td>
+            <td><code>$^</code> (empty)</td>
           </tr>
           <tr>
             <td>message</td>
             <td>message which is used to notify about violations,
             if empty then default(hard-coded) message is used.</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td><span class="default">&quot;&quot;</span>(empty)</td>
+            <td><code>&quot;&quot;</code>(empty)</td>
           </tr>
           <tr>
             <td>illegalPattern</td>
             <td>Controls whether the pattern is required or illegal.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>duplicateLimit</td>
@@ -1047,19 +1043,19 @@ d = e / f;        // Another comment for this line
             value is used as the maximum number of allowed duplicates, if the
             limit is exceeded errors will be logged.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td><span class="default">-1</span></td>
+            <td><code>-1</code></td>
           </tr>
           <tr>
             <td>errorLimit</td>
             <td>Controls the maximum number of errors before the check will abort.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td><span class="default">100</span></td>
+            <td><code>100</code></td>
           </tr>
           <tr>
             <td>ignoreComments</td>
             <td>Controls whether to ignore matches found within comments.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
         </table>
       </subsection>
@@ -1129,7 +1125,7 @@ d = e / f;        // Another comment for this line
         </p>
         <p>
           An example of how to configure the check to make sure there are no
-          calls to <span class="code">System.out.println</span>:
+          calls to <code>System.out.println</code>:
         </p>
         <source>
 &lt;module name=&quot;Regexp&quot;&gt;

@@ -157,9 +157,9 @@ java -classpath checkstyle-${projectVersion}-all.jar \
 
       <p>
         When working with ASTs, a simple approach to define check operations
-        on them would be to add a <span class="code">check()</span> method to the Class that defines
+        on them would be to add a <code>check()</code> method to the Class that defines
         the AST nodes. For example, our AST type could have a method
-        <span class="code">checkNumberOfMethods()</span>. Such an approach would suffer from a few
+        <code>checkNumberOfMethods()</code>. Such an approach would suffer from a few
         serious drawbacks. Most importantly, it does not provide an extensible
         design, i.e. the Checks have to be known at compile time; there is no
         way to write plugins.
@@ -175,8 +175,7 @@ java -classpath checkstyle-${projectVersion}-all.jar \
       but an abstract class to provide some helper methods. A Check provides
       methods that take an AST as an argument and perform the checking process
       for that AST, most prominently <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
-      class="code">visitToken()</span></a>.  </p>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>visitToken()</code></a>.  </p>
 
       <p> It is important to understand that the individual
       Checks do no drive the AST traversal. Instead, the TreeWalker initiates
@@ -187,19 +186,16 @@ java -classpath checkstyle-${projectVersion}-all.jar \
 
       <p> Before any visitor method is called, the TreeWalker
       will call <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
-      class="code">beginTree()</span></a> to give the Check a chance to do
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>beginTree()</code></a> to give the Check a chance to do
       some initialization. Then, when performing the recursive descend from
-      the root to the leaf nodes, the <span class="code">visitToken()</span>
+      the root to the leaf nodes, the <code>visitToken()</code>
       method is called. Unlike the basic examples in the pattern book, there
-      is a <span class="code">visitToken()</span> counterpart called <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
-      class="code">leaveToken()</span></a>. The TreeWalker will call that
+      is a <code>visitToken()</code> counterpart called <a
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>leaveToken()</code></a>. The TreeWalker will call that
       method to signal that the subtree below the node has been processed and
       the TreeWalker is backtracking from the node. After the root node has
       been left, the TreeWalker will call <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><span
-      class="code">finishTree()</span></a>.  </p>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>finishTree()</code></a>.  </p>
 
       <p>
         If you&#39;d like to learn more about the Visitor pattern you should
@@ -227,7 +223,7 @@ java -classpath checkstyle-${projectVersion}-all.jar \
         CLASS_DEF and INTERFACE_DEF. The TreeWalker will only call
         visitToken for these token types. Because the requirements of
         our tasks are so simple, there is no need to implement the other
-        fancy methods, like <span class="code">finishTree()</span>, etc., so here is our first
+        fancy methods, like <code>finishTree()</code>, etc., so here is our first
         shot at our Check implementation:
       </p>
 
@@ -270,7 +266,7 @@ public class MethodLimitCheck extends Check
       <p>
         In the example above you already saw that the DetailsAST class
         provides utility methods to extract information from the tree,
-        like <span class="code">getChildCount()</span>. By now you have
+        like <code>getChildCount()</code>. By now you have
         probably consulted the api documentation and found that
         DetailsAST additionally provides methods for navigating around
         in the syntax tree, like finding the next sibling of a node, the
@@ -320,8 +316,7 @@ public class MethodLimitCheck extends Check
       </source>
 
       <p>
-        With this code added, you can set the property <span
-        class="code">max</span> for the MethodLimitCheck module in the
+        With this code added, you can set the property <code>max</code> for the MethodLimitCheck module in the
         configuration file. It doesn&#39;t get any simpler than that. The secret is
         that Checkstyle uses JavaBean introspection to set the JavaBean
         properties. That works for all primitive types like boolean,
@@ -335,10 +330,9 @@ public class MethodLimitCheck extends Check
       <p>
         Detecting errors is one thing, presenting them to the user is
         another. To do that, the Check base class provides several log
-        methods, the simplest of them being <span class="code">Check.log(String)</span>. In your
-        Check you can simply use a verbatim error string like in <span
-        class="code">log(&quot;Too many methods, only &quot; + mMax +
-        &quot; are allowed&quot;);</span> as the argument. That will
+        methods, the simplest of them being <code>Check.log(String)</code>. In your
+        Check you can simply use a verbatim error string like in <code>log(&quot;Too many methods, only &quot; + mMax +
+        &quot; are allowed&quot;);</code> as the argument. That will
         work, but it&#39;s not the best possible solution if your Check is
         intended for a wider audience.
       </p>
@@ -358,13 +352,12 @@ public class MethodLimitCheck extends Check
         Java file and the properties files should be in the same
         directory.  Add a symbolic error code and an English
         representation to the messages.properties. The file should
-        contain the following line: <span
-        class="code">too.many.methods=Too many methods, only {0} are
-        allowed</span>.  Then replace the verbatim error message with
+        contain the following line: <code>too.many.methods=Too many methods, only {0} are
+        allowed</code>.  Then replace the verbatim error message with
         the symbolic representation and use one of the log helper
         methods to provide the dynamic part of the message (mMax in this
-        case): <span class="code">log(&quot;too.many.methods&quot;,
-        mMax);</span>. Please consult the documentation of Java&#39;s <a
+        case): <code>log(&quot;too.many.methods&quot;,
+        mMax);</code>. Please consult the documentation of Java&#39;s <a
         href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/MessageFormat.html">MessageFormat</a>
         to learn about the syntax of format strings (especially about
         those funny numbers in the translated text).
@@ -411,7 +404,7 @@ public class MethodLimitCheck extends Check
       <p>
         To run the new Check on the command line compile your Check,
         create a jar that contains the classes and property files,
-        e.g. <span class="code">mycompanychecks.jar</span>. Then run
+        e.g. <code>mycompanychecks.jar</code>. Then run
         (with the path separator adjusted to your platform):
       </p>
 
@@ -430,8 +423,7 @@ java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
       <p>
         Please consult the <a href="config.html#Packages">Checkstyle
         configuration manual</a> to learn how to integrate your Checks
-        into the package configuration so that you can use <span
-        class="code">MethodLimit</span> instead of the full class name.
+        into the package configuration so that you can use <code>MethodLimit</code> instead of the full class name.
       </p>
 
     </section>
@@ -471,8 +463,7 @@ java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
       inherit from <a
       href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">AbstractFileSetCheck</a>
       and override the abstract <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered(java.io.File,%20java.util.List)"><span
-      class="code">processFiltered(java.io.File, java.util.List)</span></a> method and you&#39;re
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered(java.io.File,%20java.util.List)"><code>processFiltered(java.io.File, java.util.List)</code></a> method and you&#39;re
       done. A very simple example could fire an error if the number of files
       exceeds a certain limit. Here is a FileSetCheck that does just that:</p>
 
@@ -518,7 +509,7 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
 
       <p>
         Note that the configuration via bean introspection also applies
-        here.  By implementing the <span class="code">setMax()</span>
+        here.  By implementing the <code>setMax()</code>
         method the FileSetCheck automatically makes &quot;max&quot; a
         legal configuration parameter that you can use in the Checkstyle
         configuration file.

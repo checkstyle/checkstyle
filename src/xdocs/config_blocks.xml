@@ -28,7 +28,7 @@
             <td>option</td>
             <td>policy on block contents</td>
             <td><a href="property_types.html#block">block policy</a></td>
-            <td><span class="default">stmt</span></td>
+            <td><code>stmt</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -69,8 +69,8 @@
         </source>
 
         <p>
-          To configure the check for the <span class="code">text</span>
-          policy and only <span class="code"> catch</span> blocks:
+          To configure the check for the <code>text</code>
+          policy and only <code> catch</code> blocks:
         </p>
         <source>
 &lt;module name=&quot;EmptyBlock&quot;&gt;
@@ -92,13 +92,11 @@
     <section name="LeftCurly">
       <subsection name="Description">
         <p>
-          Checks for the placement of left curly braces (<span
-          class="code">'{'</span>) for code blocks.  The policy to
-          verify is specified using property <span
-          class="code">option</span>.  Policies <span
-          class="code">eol</span> and <span class="code"> nlow</span>
-          take into account property <span
-          class="code">maxLineLength</span>.
+          Checks for the placement of left curly braces
+          (<code>'{'</code>) for code blocks.  The policy to verify is
+          specified using property <code>option</code>.  Policies
+          <code>eol</code> and <code> nlow</code> take into account
+          property <code>maxLineLength</code>.
         </p>
       </subsection>
 
@@ -112,15 +110,15 @@
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on placement of a left curly brace (<span class="code">'{'</span>)</td>
+            <td>policy on placement of a left curly brace (<code>'{'</code>)</td>
             <td><a href="property_types.html#lcurly">left curly brace policy</a></td>
-            <td><span class="default">eol</span></td>
+            <td><code>eol</code></td>
           </tr>
           <tr>
             <td>maxLineLength</td>
             <td>maximum number of characters in a line</td>
             <td><a href="property_types.html#integer">integer</a></td>
-            <td><span class="default">80</span></td>
+            <td><code>80</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -167,8 +165,8 @@
 &lt;module name=&quot;LeftCurly&quot;/&gt;
         </source>
         <p>
-          To configure the check to apply the <span
-          class="code">nl</span> policy to type blocks:
+          To configure the check to apply the <code>nl</code> policy to
+          type blocks:
         </p>
         <source>
 &lt;module name=&quot;LeftCurly&quot;&gt;
@@ -227,8 +225,8 @@
         </source>
 
         <p>
-          To configure the check for <span class="code">if</span> and
-          <span class="code"> else</span> blocks:
+          To configure the check for <code>if</code> and
+          <code> else</code> blocks:
         </p>
         <source>
 &lt;module name=&quot;NeedBraces&quot;&gt;
@@ -249,11 +247,10 @@
     <section name="RightCurly">
       <subsection name="Description">
         <p>
-          Checks the placement of right curly braces (<span
-          class="code">'}'</span>) for <span class="code"> else</span>,
-          <span class="code">try</span>, and <span
-          class="code">catch</span> tokens. The policy to verify is
-          specified using property <span class="code"> option</span>.
+          Checks the placement of right curly braces (<code>'}'</code>)
+          for <code> else</code>, <code>try</code>, and
+          <code>catch</code> tokens. The policy to verify is specified
+          using property <code> option</code>.
         </p>
       </subsection>
 
@@ -267,9 +264,9 @@
           </tr>
           <tr>
             <td>option</td>
-            <td>policy on placement of a right curly brace (<span class="code">'}'</span>)</td>
+            <td>policy on placement of a right curly brace (<code>'}'</code>)</td>
             <td><a href="property_types.html#rcurly">right curly brace policy</a></td>
-            <td><span class="default">same</span></td>
+            <td><code>same</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -300,10 +297,10 @@
           </tr>
           <tr>
             <td>shouldStartLine</td>
-            <td>should we check if <span class="code">'}'</span>
+            <td>should we check if <code>'}'</code>
             starts line.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><span class="default">true</span></td>
+            <td><code>true</code></td>
           </tr>
         </table>
       </subsection>
@@ -315,8 +312,7 @@
         </source>
 
         <p>
-          To configure the check with policy <span
-          class="code">alone</span> for <span class="code"> else</span>
+          To configure the check with policy <code>alone</code> for <code> else</code>
           tokens:
         </p>
         <source>
@@ -415,7 +411,7 @@ switch (a)
             <td>allowInSwitchCase</td>
             <td>Allow nested blocks in case statements</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
         </table>
       </subsection>

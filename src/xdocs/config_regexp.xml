@@ -19,10 +19,8 @@
 
         <p>
           Rationale: This check can be used to prototype checks and to
-          find common bad practice such as calling <span
-          class="code">ex.printStacktrace()</span>, <span class="code">
-          System.out.println()</span>, <span
-          class="code">System.exit()</span>, etc.
+          find common bad practice such as calling <code>ex.printStacktrace()</code>, <code>
+          System.out.println()</code>, <code>System.exit()</code>, etc.
         </p>
       </subsection>
 
@@ -38,38 +36,38 @@
             <td>format</td>
             <td>illegal pattern</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><span class="default">^$</span> (empty)</td>
+            <td><code>^$</code> (empty)</td>
           </tr>
           <tr>
             <td>message</td>
             <td>message which is used to notify about violations,
             if empty then default(hard-coded) message is used.</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td><span class="default">&quot;&quot;</span>(empty)</td>
+            <td><code>&quot;&quot;</code>(empty)</td>
           </tr>
           <tr>
             <td>ignoreCase</td>
             <td>Controls whether to ignore case when searching.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>minimum</td>
             <td>The minimum number of matches required in each file.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td><span class="default">0</span></td>
+            <td><code>0</code></td>
           </tr>
           <tr>
             <td>maximum</td>
             <td>The maximum number of matches required in each file.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td><span class="default">0</span></td>
+            <td><code>0</code></td>
           </tr>
           <tr>
             <td>fileExtensions</td>
             <td>file type extension of files to process</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><span class="default">{}</span></td>
+            <td><code>{}</code></td>
           </tr>
         </table>
       </subsection>
@@ -153,38 +151,38 @@
             <td>format</td>
             <td>illegal pattern</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><span class="default">^$</span> (empty)</td>
+            <td><code>^$</code> (empty)</td>
           </tr>
           <tr>
             <td>message</td>
             <td>message which is used to notify about violations,
             if empty then default(hard-coded) message is used.</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td><span class="default">&quot;&quot;</span>(empty)</td>
+            <td><code>&quot;&quot;</code>(empty)</td>
           </tr>
           <tr>
             <td>ignoreCase</td>
             <td>Controls whether to ignore case when searching.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>minimum</td>
             <td>The minimum number of matches required in each file.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td><span class="default">0</span></td>
+            <td><code>0</code></td>
           </tr>
           <tr>
             <td>maximum</td>
             <td>The maximum number of matches required in each file.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td><span class="default">0</span></td>
+            <td><code>0</code></td>
           </tr>
           <tr>
             <td>fileExtensions</td>
             <td>file type extension of files to process</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><span class="default">{}</span></td>
+            <td><code>{}</code></td>
           </tr>
         </table>
       </subsection>
@@ -237,46 +235,45 @@
             <td>format</td>
             <td>illegal pattern</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><span class="default">^$</span> (empty)</td>
+            <td><code>^$</code> (empty)</td>
           </tr>
           <tr>
             <td>message</td>
             <td>message which is used to notify about violations,
             if empty then default(hard-coded) message is used.</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td><span class="default">&quot;&quot;</span>(empty)</td>
+            <td><code>&quot;&quot;</code>(empty)</td>
           </tr>
           <tr>
             <td>ignoreCase</td>
             <td>Controls whether to ignore case when searching.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>minimum</td>
             <td>The minimum number of matches required in each file.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td><span class="default">0</span></td>
+            <td><code>0</code></td>
           </tr>
           <tr>
             <td>maximum</td>
             <td>The maximum number of matches required in each file.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td><span class="default">0</span></td>
+            <td><code>0</code></td>
           </tr>
           <tr>
             <td>ignoreComments</td>
             <td>Controls whether to ignore text in comments when searching.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
         </table>
       </subsection>
 
       <subsection name="Examples">
         <p>
-          To configure the check for calls to <span
-          class="code">System.out.println</span>, except in comments:
+          To configure the check for calls to <code>System.out.println</code>, except in comments:
         </p>
         <source>
 &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;

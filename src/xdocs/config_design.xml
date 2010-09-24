@@ -15,16 +15,13 @@
         <p>
           Checks visibility of class members. Only static final members
           may be public; other class members must be private unless
-          property <span class="code">protectedAllowed</span> or <span
-          class="code">packageAllowed</span> is set.
+          property <code>protectedAllowed</code> or <code>packageAllowed</code> is set.
         </p>
 
         <p>
           Public members are not flagged if the name matches the public
-          member regular expression (contains <span
-          class="code">"^serialVersionUID$"</span> by default).  Note:
-          Checkstyle 2 used to include <span
-          class="code">"^f[A-Z][a-zA-Z0-9]*$"</span> in the default
+          member regular expression (contains <code>"^serialVersionUID$"</code> by default).  Note:
+          Checkstyle 2 used to include <code>"^f[A-Z][a-zA-Z0-9]*$"</code> in the default
           pattern to allow CMP for EJB 1.1 with the default settings.
           With EJB 2.0 it is not longer necessary to have public access
           for persistent fields, hence the default has been changed.
@@ -47,19 +44,19 @@
             <td>packageAllowed</td>
             <td>whether package visible members are allowed</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>protectedAllowed</td>
             <td>whether protected members are allowed</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>publicMemberPattern</td>
             <td>pattern for public members that should be ignored</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><span class="default">^serialVersionUID$</span></td>
+            <td><code>^serialVersionUID$</code></td>
           </tr>
         </table>
       </subsection>
@@ -171,7 +168,7 @@
               allowed.
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><span class="default">true</span></td>
+            <td><code>true</code></td>
           </tr>
         </table>
       </subsection>
@@ -348,7 +345,7 @@ public class StringUtils // not final to allow subclassing
             <td>format</td>
             <td>pattern for name of exception class.</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><span class="default">^.*Exception$|^.*Error$</span></td>
+            <td><code>^.*Exception$|^.*Error$</code></td>
           </tr>
         </table>
       </subsection>
@@ -404,7 +401,7 @@ public class StringUtils // not final to allow subclassing
             <td>max</td>
             <td>maximum allowed number of throws statments</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td><span class="default">1</span></td>
+            <td><code>1</code></td>
           </tr>
         </table>
       </subsection>

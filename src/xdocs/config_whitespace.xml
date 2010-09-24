@@ -92,7 +92,7 @@ for (
             <td>option</td>
             <td>policy on how to pad an empty for iterator</td>
             <td><a href="property_types.html#parenPad">pad policy</a></td>
-            <td><span class="default">nospace</span></td>
+            <td><code>nospace</code></td>
           </tr>
         </table>
       </subsection>
@@ -156,7 +156,7 @@ for (Iterator foo = very.long.line.iterator();
             <td>option</td>
             <td>policy on how to pad an empty for iterator</td>
             <td><a href="property_types.html#parenPad">pad policy</a></td>
-            <td><span class="default">nospace</span></td>
+            <td><code>nospace</code></td>
           </tr>
         </table>
       </subsection>
@@ -203,9 +203,8 @@ for (Iterator foo = very.long.line.iterator();
           a space is required immediately after the identifier or such a space
           is forbidden.  If they are not on the same line, reports an error,
           unless configured to allow line breaks.  To allow linebreaks after
-          the identifier, set property <span
-          class="code">allowLineBreaks</span> to <span class="code">
-          true</span>.
+          the identifier, set property <code>allowLineBreaks</code> to <code>
+          true</code>.
         </p>
       </subsection>
 
@@ -224,7 +223,7 @@ for (Iterator foo = very.long.line.iterator();
               is allowed
             </td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>option</td>
@@ -232,7 +231,7 @@ for (Iterator foo = very.long.line.iterator();
             <td>
               <a href="property_types.html#parenPad">pad policy</a>
             </td>
-            <td><span class="default">nospace</span></td>
+            <td><code>nospace</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -308,9 +307,8 @@ for (Iterator foo = very.long.line.iterator();
           Checks that there is no whitespace after a token. More specifically,
           it checks that it is not followed by whitespace, or (if linebreaks
           are allowed) all characters on the line after are whitespace. To
-          forbid linebreaks after a token, set property <span
-          class="code">allowLineBreaks</span> to <span class="code">
-          false</span>.
+          forbid linebreaks after a token, set property <code>allowLineBreaks</code> to <code>
+          false</code>.
         </p>
       </subsection>
 
@@ -328,7 +326,7 @@ for (Iterator foo = very.long.line.iterator();
               whether whitespace is allowed if the token is at a linebreak
             </td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><span class="default">true</span></td>
+            <td><code>true</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -415,9 +413,8 @@ for (Iterator foo = very.long.line.iterator();
           Checks that there is no whitespace before a token. More
           specifically, it checks that it is not preceded with whitespace, or
           (if linebreaks are allowed) all characters on the line before are
-          whitespace. To allow linebreaks before a token, set property <span
-          class="code">allowLineBreaks</span> to <span class="code">
-          true</span>.
+          whitespace. To allow linebreaks before a token, set property <code>allowLineBreaks</code> to <code>
+          true</code>.
         </p>
       </subsection>
 
@@ -435,7 +432,7 @@ for (Iterator foo = very.long.line.iterator();
               whether whitespace is allowed if the token is at a linebreak
             </td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -517,7 +514,7 @@ for (Iterator foo = very.long.line.iterator();
             <td>
               <a href="property_types.html#wrapOp">wrap operator policy</a>
             </td>
-            <td><span class="default">nl</span></td>
+            <td><code>nl</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -654,8 +651,7 @@ for (Iterator foo = very.long.line.iterator();
         </source>
 
         <p>
-          To configure the check for the assignment operator, <span
-          class="code">=</span>, at the end of a line:
+          To configure the check for the assignment operator, <code>=</code>, at the end of a line:
         </p>
         <source>
 &lt;module name=&quot;OperatorWrap&quot;&gt;
@@ -699,7 +695,7 @@ for (Iterator foo = very.long.line.iterator();
             <td>option</td>
             <td>policy on how to pad parentheses</td>
             <td><a href="property_types.html#parenPad">pad policy</a></td>
-            <td><span class="default">nospace</span></td>
+            <td><code>nospace</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -789,7 +785,7 @@ for (Iterator foo = very.long.line.iterator();
             <td>option</td>
             <td>policy on how to pad parentheses</td>
             <td><a href="property_types.html#parenPad">pad policy</a></td>
-            <td><span class="default">nospace</span></td>
+            <td><code>nospace</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -847,8 +843,7 @@ for (Iterator foo = very.long.line.iterator();
     <section name="FileTabCharacter">
       <subsection name="Description">
         <p>
-          Checks that there are no tab characters (<span
-          class="code">'\t'</span>) in the source code.
+          Checks that there are no tab characters (<code>'\t'</code>) in the source code.
         </p>
 
         <p>
@@ -881,13 +876,13 @@ for (Iterator foo = very.long.line.iterator();
             <td>eachLine</td>
             <td>whether to report on each line containing a tab, or just the first instance</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>fileExtensions</td>
             <td>file type extension of files to process</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><span class="default">{}</span></td>
+            <td><code>{}</code></td>
           </tr>
         </table>
       </subsection>
@@ -1006,9 +1001,9 @@ for (Iterator foo = very.long.line.iterator();
 public void func() {}    // empty method</source>
 
         <p>
-        may optionally be exempted from the policy using the <span class="code">
-        allowEmptyMethods</span> and <span class="code">allowEmptyConstructors
-        </span> properties.
+        may optionally be exempted from the policy using the <code>
+        allowEmptyMethods</code> and <code>allowEmptyConstructors
+        </code> properties.
         </p>
       </subsection>
 
@@ -1128,13 +1123,13 @@ public void func() {}    // empty method</source>
             <td>allowEmptyConstructors</td>
             <td>allow empty constructor bodies</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowEmptyMethods</td>
             <td>allow empty method bodies</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><span class="default">false</span></td>
+            <td><code>false</code></td>
           </tr>
         </table>
       </subsection>
@@ -1149,7 +1144,7 @@ public void func() {}    // empty method</source>
 
         <p>
           To configure the check for whitespace around the assignment
-          operator, <span class="code">=</span>:
+          operator, <code>=</code>:
         </p>
         <source>
 &lt;module name=&quot;WhitespaceAround&quot;&gt;

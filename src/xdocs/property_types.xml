@@ -20,7 +20,7 @@
     <subsection name="integer">
       <p>
         This property represents an integer. The string representation is
-        parsed using the <span class="code">java.lang.Integer</span> class.
+        parsed using the <code>java.lang.Integer</code> class.
       </p>
     </subsection>
 
@@ -33,18 +33,17 @@
 
     <subsection name="boolean">
       <p>
-        This property represents a boolean. The default value is <span
-        class="code">false</span>. The following string representations will
-        map to <span class="code">true</span>:
+        This property represents a boolean. The default value is <code>false</code>. The following string representations will
+        map to <code>true</code>:
       </p>
 
       <ul>
-        <li><span class="code">yes</span></li>
-        <li><span class="code">true</span></li>
-        <li><span class="code">on</span></li>
+        <li><code>yes</code></li>
+        <li><code>true</code></li>
+        <li><code>on</code></li>
       </ul>
 
-      <p>Anything else will map to <span class="code">false</span>.</p>
+      <p>Anything else will map to <code>false</code>.</p>
     </subsection>
 
     <subsection name="stringSet">
@@ -58,7 +57,7 @@
       <p>
         This property represents a set of integers. The string representation
         is parsed as a set of comma (',') separated integers that are parsed
-        using the <span class="code">java.lang.Integer</span> class.
+        using the <code>java.lang.Integer</code> class.
       </p>
     </subsection>
 
@@ -83,16 +82,16 @@
           <td>Definition</td>
         </tr>
         <tr>
-          <td><span class="code">nospace</span></td>
+          <td><code>nospace</code></td>
           <td>
-            Do not pad. For example, <span class="code">method(a, b);</span>
+            Do not pad. For example, <code>method(a, b);</code>
           </td>
         </tr>
         <tr>
-          <td><span class="code">space</span></td>
+          <td><code>space</code></td>
           <td>
             Ensure padding. For example,
-            <span class="code">method( a, b );</span>
+            <code>method( a, b );</code>
           </td>
         </tr>
       </table>
@@ -110,7 +109,7 @@
           <td>Definition</td>
         </tr>
         <tr>
-          <td><span class="code">nl</span></td>
+          <td><code>nl</code></td>
           <td>
             The operator must be on a new line. For example:
             <pre>
@@ -120,7 +119,7 @@
           </td>
         </tr>
         <tr>
-          <td><span class="code">eol</span></td>
+          <td><code>eol</code></td>
           <td>
             The operator must be at the end of the line. For example:
             <pre>
@@ -144,7 +143,7 @@
           <td>Definition</td>
         </tr>
         <tr>
-          <td><span class="code">text</span></td>
+          <td><code>text</code></td>
           <td>
             Require that there is some text in the block. For example:
             <pre>
@@ -155,7 +154,7 @@
           </td>
         </tr>
         <tr>
-          <td><span class="code">stmt</span></td>
+          <td><code>stmt</code></td>
           <td>
             Require that there is a statement in the block. For example:
             <pre>
@@ -171,7 +170,7 @@
     <subsection name="lcurly">
       <p>
         This property represents the policy for checking the placement of a
-        left curly brace (<span class="code">'{'</span>). The following table
+        left curly brace (<code>'{'</code>). The following table
         describes the valid options:
       </p>
 
@@ -182,7 +181,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">eol</span></td>
+          <td><code>eol</code></td>
           <td>
             The brace must always be on the end of the line. For example:
             <pre>
@@ -193,7 +192,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">nl</span></td>
+          <td><code>nl</code></td>
           <td>
             The brace must always be on a new line. For example:
             <pre>
@@ -205,12 +204,10 @@
         </tr>
 
         <tr>
-          <td><span class="code">nlow</span></td>
+          <td><code>nlow</code></td>
           <td>
             If the brace will fit on the first line of the statement, taking
-            into account maximum line length, then apply <span
-            class="code">eol</span> rule. Otherwise apply the <span
-            class="code">nl</span> rule. <span class="code">nlow</span> is a
+            into account maximum line length, then apply <code>eol</code> rule. Otherwise apply the <code>nl</code> rule. <code>nlow</code> is a
             mnemonic for "new line on wrap". For the example above Checkstyle
             will enforce:
             <pre>
@@ -233,7 +230,7 @@
     <subsection name="rcurly">
       <p>
         This property represents the policy for checking the placement of a
-        right curly brace (<span class="code">'}'</span>). The following table
+        right curly brace (<code>'}'</code>). The following table
         describes the valid options:
       </p>
 
@@ -244,7 +241,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">same</span></td>
+          <td><code>same</code></td>
           <td>
             The brace must be on the same line as the next statement. For
             example:
@@ -257,7 +254,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">alone</span></td>
+          <td><code>alone</code></td>
           <td>
             The brace must be alone on the line. For example:
             <pre>
@@ -277,12 +274,12 @@
       and 'public' methods/fields/classes. The valid options are:</p>
 
       <ul>
-        <li><span class="default">nothing</span></li>
-        <li><span class="default">public</span></li>
-        <li><span class="default">protected</span></li>
-        <li><span class="default">package</span></li>
-        <li><span class="default">private</span></li>
-        <li><span class="default">anoninner</span></li>
+        <li><code>nothing</code></li>
+        <li><code>public</code></li>
+        <li><code>protected</code></li>
+        <li><code>package</code></li>
+        <li><code>private</code></li>
+        <li><code>anoninner</code></li>
       </ul>
     </subsection>
 
@@ -293,10 +290,10 @@
       </p>
 
       <ul>
-        <li><span class="default">ignore</span></li>
-        <li><span class="default">info</span></li>
-        <li><span class="default">warning</span></li>
-        <li><span class="default">error</span></li>
+        <li><code>ignore</code></li>
+        <li><code>info</code></li>
+        <li><code>warning</code></li>
+        <li><code>error</code></li>
       </ul>
     </subsection>
 
@@ -313,7 +310,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">top</span></td>
+          <td><code>top</code></td>
           <td>All static imports are at the top. For example:
               <pre>
     import static a.b.C.*;
@@ -325,7 +322,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">above</span></td>
+          <td><code>above</code></td>
           <td>All static imports are above the local group. For example:
             <pre>
     import static a.b.C.*;
@@ -337,7 +334,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">inflow</span></td>
+          <td><code>inflow</code></td>
           <td>All static imports are processed like non static
               imports. For example:
               <pre>
@@ -350,7 +347,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">under</span></td>
+          <td><code>under</code></td>
           <td>All static imports are under the local group. For example:
               <pre>
     import a.b.D;
@@ -362,7 +359,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">bottom</span></td>
+          <td><code>bottom</code></td>
           <td>All static imports are at the bottom. For example:
               <pre>
     import a.b.D;
@@ -390,7 +387,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">expanded</span></td>
+          <td><code>expanded</code></td>
           <td>
             The expanded version is sometimes referred to as "named parameters"
             in other languages. Example:
@@ -399,7 +396,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">compact</span></td>
+          <td><code>compact</code></td>
           <td>
             This style can only be used when there is an element called 'value'
             which is either the sole element or all other elements have default
@@ -411,9 +408,9 @@
         </tr>
 
         <tr>
-          <td><span class="code">compact_no_array</span></td>
+          <td><code>compact_no_array</code></td>
           <td>
-            It is similar to the <span class="code">compact</span> style but
+            It is similar to the <code>compact</code> style but
             single value arrays are flagged. With annotations a single value
             array does not need to be placed in an array initializer.
             This style can only be used when there is an element called 'value'
@@ -424,7 +421,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">ignore</span></td>
+          <td><code>ignore</code></td>
           <td>
             Anything goes.
           </td>
@@ -446,7 +443,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">always</span></td>
+          <td><code>always</code></td>
           <td>
             Example:
             <pre>@Deprecated()</pre>
@@ -454,7 +451,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">never</span></td>
+          <td><code>never</code></td>
           <td>
             Example:
             <pre>@Deprecated</pre>
@@ -462,7 +459,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">ignore</span></td>
+          <td><code>ignore</code></td>
           <td>
             Anything goes.
           </td>
@@ -484,7 +481,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">always</span></td>
+          <td><code>always</code></td>
           <td>
             Example:
             <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
@@ -492,7 +489,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">never</span></td>
+          <td><code>never</code></td>
           <td>
             Example:
             <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>
@@ -500,7 +497,7 @@
         </tr>
 
         <tr>
-          <td><span class="code">ignore</span></td>
+          <td><code>ignore</code></td>
           <td>
             Anything goes.
           </td>

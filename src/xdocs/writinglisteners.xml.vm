@@ -12,26 +12,23 @@
   <body>
     <section name="Overview">
       <p>
-        A Checkstyle listener monitors the progress of a <span
-        class="code">Checker</span> during the audit of files. The <span
-        class="code">Checker</span> notifies its attached listeners of
+        A Checkstyle listener monitors the progress of a <code>Checker</code> during the audit of files. The <code>Checker</code> notifies its attached listeners of
         significant events such as the start of the audit of a file and
         the logging of a Check error, and the listeners respond
         appropriately.  Any number of listeners can be attached to a
-        <span class="code"> Checker</span>. An audit always adds one of
+        <code> Checker</code>. An audit always adds one of
         the distribution listeners, <a
         href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
         or <a
         href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>,
-        to report events. A <span class="code">DefaultLogger</span>
+        to report events. A <code>DefaultLogger</code>
         produces simple text output for the events it receives, and a
-        <span class="code">XMLLogger</span> produces an XML document for
+        <code>XMLLogger</code> produces an XML document for
         its events.
       </p>
 
       <p>
-        Listeners <span class="code">DefaultLogger</span> and <span
-        class="code"> XMLLogger</span> are sufficient for most
+        Listeners <code>DefaultLogger</code> and <code> XMLLogger</code> are sufficient for most
         Checkstyle users, but you may find a need for a custom
         listener. For example, a user has requested verbose output of
         progress information during a Checkstyle run. Another user would
@@ -46,8 +43,8 @@
       <p>
         A listener is an implementation of the <a
         href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a>
-        interface. During an audit, a <span class="code">Checker</span>
-        informs its attached <span class="code">AuditListeners</span> of
+        interface. During an audit, a <code>Checker</code>
+        informs its attached <code>AuditListeners</code> of
         six kinds of events: audit started/ended, file started/ended,
         and logging of an error/exception.
       </p>
@@ -55,17 +52,13 @@
       <p>
         An audit passes an event to a listener as an <a
         href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditEvent.html">AuditEvent</a>.
-        A file-related <span class="code">AuditEvent</span> contains the
-        name of that file. An <span class="code">AuditEvent</span> for
+        A file-related <code>AuditEvent</code> contains the
+        name of that file. An <code>AuditEvent</code> for
         error logging has a message, a severity level, a message source
-        such as the name of a <span class="code">Check</span>, and file
+        such as the name of a <code>Check</code>, and file
         line and column numbers that may be relevant to the error. The
-        notification of an exception to a <span
-        class="code">AuditListener</span> includes an error <span
-        class="code">AuditEvent</span> and the details of the
-        exception. Here is a UML diagram for classes <span
-        class="code">AuditListener</span> and <span
-        class="code">AuditEvent</span>.
+        notification of an exception to a <code>AuditListener</code> includes an error <code>AuditEvent</code> and the details of the
+        exception. Here is a UML diagram for classes <code>AuditListener</code> and <code>AuditEvent</code>.
       </p>
 
       <img src="images/AuditListener.gif" width="381" height="488"
@@ -80,7 +73,7 @@
         interface. If the listener has properties that can be set from a
         configuration, the listener must extend <a
         href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>.
-        An <span class="code">AutomaticBean</span> uses JavaBean
+        An <code>AutomaticBean</code> uses JavaBean
         introspection to set JavaBean properties.
       </p>
 
@@ -88,12 +81,8 @@
         The custom listener that we demonstrate here is a verbose
         listener that simply prints each event notification to an output
         stream, and reports the number of errors per audited file and
-        the total number of errors. The default output stream is <span
-        class="code">System.out</span>. In order to enable the
-        specification of output to a file through property <span
-        class="code">file</span>, the class extends <span
-        class="code">AutomaticBean</span> and defines method <span
-        class="code">setFile(String)</span>.
+        the total number of errors. The default output stream is <code>System.out</code>. In order to enable the
+        specification of output to a file through property <code>file</code>, the class extends <code>AutomaticBean</code> and defines method <code>setFile(String)</code>.
       </p>
 
       <source>
@@ -186,25 +175,23 @@ public class VerboseListener
 
       <p>
         A listener that filters error events could perform the filtering
-        in methods <span class="code"> addError</span> and <span
-        class="code">addException</span>. As further examples of
+        in methods <code> addError</code> and <code>addException</code>. As further examples of
         listeners, <a
         href="#CommonsLoggingListener">CommonsLoggingListener</a>
         reports its events through the Commons Logging API, and <a
         href="#MailLogger">MailLogger</a> e-mails the audit report of a
-        <span class="code">DefaultLogger</span>.
+        <code>DefaultLogger</code>.
       </p>
     </section>
 
     <section name="Using Listeners">
       <p>
         To incorporate a custom listener in the set of listeners for a
-        <span class="code">Checker</span>, include a module element for
+        <code>Checker</code>, include a module element for
         the listener in the <a
         href="config.html#AuditListeners">configuration file</a>. For
-        example, to configure a <span class="code">Checker</span> so
-        that it uses custom listener <span
-        class="code">VerboseListener</span> to print audit messages to a
+        example, to configure a <code>Checker</code> so
+        that it uses custom listener <code>VerboseListener</code> to print audit messages to a
         file named &quot;audit.txt&quot;, include the following module
         in the configuration file:
       </p>
@@ -216,8 +203,7 @@ public class VerboseListener
       </source>
 
       <p>
-        Here is a truncated example of audit output from a <span
-        class="code"> VerboseListener</span>:
+        Here is a truncated example of audit output from a <code> VerboseListener</code>:
       </p>
 
       <source>
@@ -237,11 +223,10 @@ Audit finished. Total errors: 1
       <p>
         This section describes two examples based on <a
         href="http://ant.apache.org/">ANT</a> listeners. The first
-        listener, <span class="code"> CommonsLoggingListener</span>,
+        listener, <code> CommonsLoggingListener</code>,
         hands off events to the <a
         href="http://commons.apache.org/logging/">Jakarata
-        Commons Logging</a> facade and the second, <span
-        class="code">MailLogger</span>, sends a report of an audit via
+        Commons Logging</a> facade and the second, <code>MailLogger</code>, sends a report of an audit via
         e-mail. The discussion of these examples and how to use them is
         derived from material in <a
         href="http://www.manning.com/hatcher/">&quot;Java Development
@@ -260,27 +245,21 @@ Audit finished. Total errors: 1
         href="http://jakarta.apache.org/log4j/docs/index.html">log4j</a>,
         <a
         href="http://jakarta.apache.org/avalon/logkit/index.html">Avalon
-        LogKit</a>, J2SE 1.4, and others. Checkstyle listener <span
-        class="code"> CommonsLoggingListener</span> responds to an
+        LogKit</a>, J2SE 1.4, and others. Checkstyle listener <code> CommonsLoggingListener</code> responds to an
         AuditEvent by handing it off to the current Commons Logging Log.
       </p>
 
       <p>
-        The source code for <span
-        class="code">CommonsLoggingListener</span> is in distribution
-        directory <span
-        class="default">contrib/examples/listeners</span>.  Notice that
-        each <span class="code">AuditListener</span> method that
-        receives an <span class="code"> AuditEvent</span> calls a method
+        The source code for <code>CommonsLoggingListener</code> is in distribution
+        directory <code>contrib/examples/listeners</code>.  Notice that
+        each <code>AuditListener</code> method that
+        receives an <code> AuditEvent</code> calls a method
         for the Commons Logging log level corresponding to the
-        Checkstyle <span class="code">SeverityLevel</span> of the <span
-        class="code"> AuditEvent</span>.
+        Checkstyle <code>SeverityLevel</code> of the <code> AuditEvent</code>.
       </p>
 
       <p>
-        The easiest way to use <span
-        class="code">CommonsLoggingListener</span> is to include <span
-        class="default">checkstyle-${projectVersion}-all.jar</span>
+        The easiest way to use <code>CommonsLoggingListener</code> is to include <code>checkstyle-${projectVersion}-all.jar</code>
         in the classpath because that jar file contains all the Commons
         Logging classes.  The default Log under J2SE 1.4 is wrapper
         class <a
@@ -297,9 +276,8 @@ Audit finished. Total errors: 1
         Logging configuration details for Jakarta Commons Logging are in
         the <a
         href="http://commons.apache.org/logging/">documentation</a>.
-        As a simple example, assume that <span
-        class="default">log4j.jar</span> is in the classpath and the
-        following <span class="default">log4j.properties</span> file is
+        As a simple example, assume that <code>log4j.jar</code> is in the classpath and the
+        following <code>log4j.properties</code> file is
         in the current directory:
       </p>
 
@@ -316,8 +294,7 @@ log4j.appender.A1.layout.ConversionPattern=%-5p %c %x- %m%n
       </source>
 
       <p>
-        Running a Checkstyle audit with a <span
-        class="code">CommonsLoggingListener</span> yields this
+        Running a Checkstyle audit with a <code>CommonsLoggingListener</code> yields this
         (abbreviated) output:
       </p>
 
@@ -336,20 +313,16 @@ INFO  com.puppycrawl...Checker  - Audit finished.
       <a name="MailLogger"/>
       <h4>MailLogger</h4>
       <p>
-        <span class="code">MailLogger</span> sends an audit report in an
-        email message.  The listener uses a <span
-        class="code">DefaultLogger</span> to prepare the text of the
+        <code>MailLogger</code> sends an audit report in an
+        email message.  The listener uses a <code>DefaultLogger</code> to prepare the text of the
         message. The listener obtains other message parameters such as
-        <span class="default">to</span> and <span
-        class="default">subject</span> from environment properties that
+        <code>to</code> and <code>subject</code> from environment properties that
         can be read from a properties file.
       </p>
 
       <p>
-        The source code for <span
-        class="code">CommonsLoggingListener</span> is in distribution
-        directory <span
-        class="default">contrib/examples/listeners</span>.  This
+        The source code for <code>CommonsLoggingListener</code> is in distribution
+        directory <code>contrib/examples/listeners</code>.  This
         implementation uses the <a
         href="http://java.sun.com/products/javamail">JavaMail API</a> as
         the mail system, and you must include appropriate jar files in
@@ -357,12 +330,10 @@ INFO  com.puppycrawl...Checker  - Audit finished.
       </p>
 
       <p>
-        As an example of using <span class="code">MailLogger</span>, set
-        system property <span
-        class="default">-DMailLogger.properties.file=MailLogger.properties</span>,
-        so that <span class="code">MailLogger</span> reads message
-        parameters from file <span
-        class="default">MailLogger.properties</span> of the current
+        As an example of using <code>MailLogger</code>, set
+        system property <code>-DMailLogger.properties.file=MailLogger.properties</code>,
+        so that <code>MailLogger</code> reads message
+        parameters from file <code>MailLogger.properties</code> of the current
         directory:
       </p>
 

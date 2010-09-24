@@ -16,8 +16,9 @@
       <p>
         This task runs Checkstyle over specified Java files. The task has been
         tested using ANT 1.5.  The latest version of checkstyle can be found
-        at <a
-        href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a>.
+        at
+        <a href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a>.
+
         This task is included in the checkstyle distribution.
       </p>
 
@@ -26,12 +27,12 @@
     <section name="Installation">
 
       <p>
-        The easiest way is to include <span
-        class="default">checkstyle-${projectVersion}-all.jar</span> in the
+        The easiest way is to include
+        <code>checkstyle-${projectVersion}-all.jar</code> in the
         classpath. This contains all the classes required to run
-        Checkstyle. Alternatively, you must include the <code>compile</code>
-        third party dependencies listed in
-        <a href="dependencies.html">Project Dependencies</a> in the
+        Checkstyle. Alternatively, you must include the
+        <code>compile</code> third party dependencies listed in <a
+        href="dependencies.html">Project Dependencies</a> in the
         classpath.
       </p>
 
@@ -131,8 +132,7 @@
           <td>failOnViolation</td>
           <td>
             Specifies whether the build will continue even if there are
-            violations.  Defaults to <span
-            class="default">&quot;true&quot;</span>.
+            violations. Defaults to <code>&quot;true&quot;</code>.
           </td>
           <td>No</td>
         </tr>
@@ -146,9 +146,9 @@
         <tr>
           <td>maxErrors</td>
           <td>
-            The maximum number of errors that are tolerated before breaking
-            the build or setting the failure property. Defaults to <span
-            class="default">&quot;0&quot;</span>.
+            The maximum number of errors that are tolerated before
+            breaking the build or setting the failure property. Defaults
+            to <code>&quot;0&quot;</code>.
           </td>
           <td>No</td>
         </tr>
@@ -156,10 +156,11 @@
         <tr>
           <td>maxWarnings</td>
           <td>
-            The maximum number of warnings that are tolerated before breaking
-            the build or setting the failure property. Defaults to <span
-            class="default">&quot;2147483647&quot;</span>, i.e.  <a
-            href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Integer.html#MAX_VALUE">Integer.MAX_VALUE</a>.
+            The maximum number of warnings that are tolerated before
+            breaking the build or setting the failure property. Defaults
+            to <code>&quot;2147483647&quot;</code>, i.e.
+
+            <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Integer.html#MAX_VALUE">Integer.MAX_VALUE</a>.
           </td>
           <td>No</td>
         </tr>
@@ -188,14 +189,14 @@
             For efficiency, Checkstyle does not invoke modules with a configured severity of "ignore"
             (since their output would be ignored anyway). A small number of modules may choose to log above their
             configured severity level and so always need to be invoked. This settings specifies that behaviour.
-            Defaults to <span class="default">&quot;true&quot;</span>.
+            Defaults to <code>&quot;true&quot;</code>.
           </td>
           <td>No</td>
         </tr>
       </table>
 
       <p>
-        Note that the <span class="default">packageNamesFile</span>
+        Note that the <code>packageNamesFile</code>
         parameter has been dropped for Checkstyle 5.0, because of
         significant changes regarding package name file handling. See <a
         href="config.html#Packages"/> for details.
@@ -209,12 +210,11 @@
         href="http://ant.apache.org/manual/Types/fileset.html">&lt;fileset&gt;</a>,
         <a
         href="http://ant.apache.org/manual/using.html#path">&lt;classpath&gt;</a>,
-        <span class="default">&lt;formatter&gt;</span>, and <span
-        class="default">&lt;property&gt;</span>.
+        <code>&lt;formatter&gt;</code>, and <code>&lt;property&gt;</code>.
       </p>
 
       <p>
-        The parameters for the <span class="default">&lt;formatter&gt;</span>
+        The parameters for the <code>&lt;formatter&gt;</code>
         element are:
       </p>
 
@@ -231,15 +231,15 @@
             <p>The type of output to generate. The valid values are:</p>
             <ul>
               <li>
-                <span class="default">plain</span> - specifies the <a
+                <code>plain</code> - specifies the <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
               </li>
               <li>
-                <span class="default">xml</span> - specifies the <a
+                <code>xml</code> - specifies the <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>
               </li>
             </ul>
-            <p>Defaults to <span class="default">"plain"</span>.</p>
+            <p>Defaults to <code>"plain"</code>.</p>
           </td>
           <td>No</td>
         </tr>
@@ -255,16 +255,16 @@
         <tr>
           <td>useFile</td>
           <td>Boolean that determines whether output should be sent to
-          a file.  Default is <span class="default">true</span>.</td>
+          a file.  Default is <code>true</code>.</td>
           <td>No</td>
         </tr>
       </table>
 
       <p>
-        A <span class="default">&lt;property&gt;</span> element provides a
-        property for <a href="config.html#Properties">expanded property
-        values</a> of the configuration.  The parameters for the <span
-        class="default">&lt;property&gt;</span> element are:
+        A <code>&lt;property&gt;</code> element provides a property for
+        <a href="config.html#Properties">expanded property values</a> of
+        the configuration.  The parameters for the
+        <code>&lt;property&gt;</code> element are:
       </p>
 
       <table summary="nested elements">
@@ -393,3 +393,4 @@
     </section>
   </body>
 </document>
+

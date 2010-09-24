@@ -12,7 +12,7 @@
   <body>
     <section name="Caching Support">
       <p>
-        The property <span class="code">checkstyle.cache.file</span>
+        The property <code>checkstyle.cache.file</code>
         specifies the name of a file that can be used to cache details
         of files that pass Checkstyle. This can <i>significantly</i>
         increase the speed of checkstyle on successive runs. The
@@ -25,21 +25,19 @@
       <p>
         Checkstyle supports a mechanism for localising the output
         messages. If your language is not supported, please consider
-        translating the messages in the <span
-        class="default">messages.properties</span> file. Please let us
+        translating the messages in the <code>messages.properties</code> file. Please let us
         know if you translate the file.
       </p>
 
       <p>
-        The property <span
-        class="code">checkstyle.locale.language</span> specifies the
+        The property <code>checkstyle.locale.language</code> specifies the
         language to use in localising the output messages. The property
         type is <a href="property_types.html#string">string</a> and
         defaults to the default system locale language.
       </p>
 
       <p>
-        The property <span class="code">checkstyle.locale.country</span>
+        The property <code>checkstyle.locale.country</code>
         specifies the country to use in localising the output
         messages. The property type is <a
         href="property_types.html#string">string</a> and defaults to the
@@ -49,14 +47,12 @@
 
     <section name="Base directory support">
       <p>
-        The property <span class="code">checkstyle.basedir</span>
+        The property <code>checkstyle.basedir</code>
         specifies a base directory which files are then reported
         relative to. For example, if a base directory is specified as
-        <span class="code">c:\projects\checkstyle</span>, then an error
-        in the file <span
-        class="code">c:\projects\checkstyle\src\dir\subdir\File.java</span>
-        will be reported as <span
-        class="code">src\dir\subdir\File.java</span>. The property type
+        <code>c:\projects\checkstyle</code>, then an error
+        in the file <code>c:\projects\checkstyle\src\dir\subdir\File.java</code>
+        will be reported as <code>src\dir\subdir\File.java</code>. The property type
         is <a href="property_types.html#string">string</a> and defaults
         to an empty string.
       </p>

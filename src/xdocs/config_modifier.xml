@@ -22,37 +22,37 @@
 
         <ol>
           <li>
-            <span class="code">public</span>
+            <code>public</code>
           </li>
           <li>
-            <span class="code">protected</span>
+            <code>protected</code>
           </li>
           <li>
-            <span class="code">private</span>
+            <code>private</code>
           </li>
           <li>
-            <span class="code">abstract</span>
+            <code>abstract</code>
           </li>
           <li>
-            <span class="code">static</span>
+            <code>static</code>
           </li>
           <li>
-            <span class="code">final</span>
+            <code>final</code>
           </li>
           <li>
-            <span class="code">transient</span>
+            <code>transient</code>
           </li>
           <li>
-            <span class="code">volatile</span>
+            <code>volatile</code>
           </li>
           <li>
-            <span class="code">synchronized</span>
+            <code>synchronized</code>
           </li>
           <li>
-            <span class="code">native</span>
+            <code>native</code>
           </li>
           <li>
-            <span class="code">strictfp</span>
+            <code>strictfp</code>
           </li>
         </ol>
       </subsection>

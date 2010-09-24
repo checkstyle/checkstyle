@@ -22,10 +22,11 @@
 
     <section name="Installation">
       <p>
-        The easiest way is to include <span
-        class="default">checkstyle-${projectVersion}-all.jar</span> in the
-        classpath. Alternatively, you must include the <code>compile</code>
-        third party dependencies listed in
+        The easiest way is to include
+        <code>checkstyle-${projectVersion}-all.jar</code> in the
+        classpath. Alternatively, you must include the
+        <code>compile</code> third party dependencies listed in
+
         <a href="dependencies.html">Project Dependencies</a> in the
         classpath.
       </p>
@@ -53,29 +54,29 @@ java -D&lt;property&gt;=&lt;value&gt;  \
 
       <ul>
         <li>
-          <span class="default">-f format</span> - specify the output
-          format. Options are <span class="default"> "plain"</span> for the <a
+          <code>-f format</code> - specify the output
+          format. Options are <code> "plain"</code> for the <a
           href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
-          and <span class="default">"xml"</span> for the <a
+          and <code>"xml"</code> for the <a
           href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>.
-          Defaults to <span class="default">"plain"</span>.
+          Defaults to <code>"plain"</code>.
         </li>
         <li>
-          <span class="default">-p propertiesFile</span> - specify a
+          <code>-p propertiesFile</code> - specify a
           properties file to use.
         </li>
         <li>
-          <span class="default">-o file</span> - specify the file to output
+          <code>-o file</code> - specify the file to output
           to.
         </li>
         <li>
-          <span class="default">-r dir</span> - specify the directory to
+          <code>-r dir</code> - specify the directory to
           traverse for Java source files.
         </li>
       </ul>
 
       <p>
-        Note that the <span class="default">-n packageNamesFile</span>
+        Note that the <code>-n packageNamesFile</code>
         option has been dropped for Checkstyle 5.0, because of
         significant changes regarding package name file handling. See <a
         href="config.html#Packages"/> for details.
@@ -166,7 +167,7 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
         <h4 class="tip">Tip</h4>
         <p>
           It is possible to run Checkstyle directly from the JAR file using
-          the <span class="code">-jar</span> option. An example would be:
+          the <code>-jar</code> option. An example would be:
         </p>
 
         <source>

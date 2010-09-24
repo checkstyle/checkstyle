@@ -467,9 +467,9 @@
           patch #1956561.
         </li>
         <li>
-          Overhaul of how <span class="code">AbstractOptionCheck</span> works.
+          Overhaul of how <code>AbstractOptionCheck</code> works.
           It now requires that the option type is a Java 5 Enum and hence the
-          <span class="code">AbstractOption</span> class has been removed.
+          <code>AbstractOption</code> class has been removed.
         </li>
         <li>
           Provide support in the module configuration to allow for custom
@@ -523,9 +523,9 @@
           (google-collect-snapshot-20080321.jar); upgraded commons-cli to version 1.1.
         </li>
         <li>
-          Changed the classes <span class="code">Scope</span> and
-          <span class="code">SeverityLevel</span> to be based on the Java 5
-          <span class="code">Enum</span> class. Used patch #2004776 from Travis
+          Changed the classes <code>Scope</code> and
+          <code>SeverityLevel</code> to be based on the Java 5
+          <code>Enum</code> class. Used patch #2004776 from Travis
           Schneeberger.
         </li>
       </ul>
@@ -1461,7 +1461,7 @@
         <li>Fixing bug 895072 required changing the logic of
         the NoWhiteSpaceBefore and ParenPad checks.
         When a for loop has an empty initializer
-        (like <span class="code">for (; i &#x3C; j; i++)</span>)
+        (like <code>for (; i &#x3C; j; i++)</code>)
         both checks will not check whitespace between the opening parenthesis
         and the first semicolon any more.
         To enforce your coding rules for such code, you need to use
@@ -2049,7 +2049,7 @@
         <li>Check the package name against a pattern (request 597787). Patch provided by Simon Langford.</li>
         <li>Detect the number of parameters in a declaration exceeding a specified amount (request 582144).</li>
         <li>Inspired by patch 580410 from Shinya Ohnuma, now the error messages are localised.</li>
-        <li>Support checking to determine if an unused <span class="code">@throws</span> exception is a subclass of <span class="code">java.lang.Error</span> (request 583719).</li>
+        <li>Support checking to determine if an unused <code>@throws</code> exception is a subclass of <code>java.lang.Error</code> (request 583719).</li>
         <li>Incorporate patch 555878 from Rick Giles to allow pattern for local final variables to be specified.</li>
         <li>Incorporate patch 566855 from Rob Worth to optionally check that parenthesis are padded with spaces.</li>
         <li>Incorporate patch 590931 from Vijay Aravamudhan to improve documentation of the build.xml file.</li>
@@ -2077,21 +2077,21 @@
         New features:
       </p>
       <ul>
-        <li>Support checking to determine if an unused <span class="code">@throws</span> exception is a subclass of <span class="code">java.lang.RuntimeException</span> (request 540382).</li>
+        <li>Support checking to determine if an unused <code>@throws</code> exception is a subclass of <code>java.lang.RuntimeException</code> (request 540382).</li>
         <li>Detect instantiations of classes that should not be instantiated (e.g. java.lang.Boolean) (request 550205).</li>
         <li>Added ability to specify the base directory for reporting file names (request 571161).</li>
         <li>Check for line wrapping on operators (request 553160).</li>
-        <li>Detect empty <span class="code">try</span> blocks.</li>
-        <li>Detect empty <span class="code">catch</span> blocks (request 516255).</li>
-        <li>Detect empty <span class="code">finally</span> blocks.</li>
+        <li>Detect empty <code>try</code> blocks.</li>
+        <li>Detect empty <code>catch</code> blocks (request 516255).</li>
+        <li>Detect empty <code>finally</code> blocks.</li>
         <li>Detect to-do comments (request 504275).</li>
         <li>Detect use of lowercase l ("ell") in long integer literals.</li>
         <li>Include column number in the XML output (request 555262).</li>
         <li>Added ability to specify a properties file on the command line (request 557544).</li>
         <li>Check for whitespace around "{" and "}" (request 557544).</li>
         <li>Fix Javadoc errors under JDK 1.4 (request 568553).</li>
-        <li>Detect redundant <span class="code">abstract</span> modifier in interfaces (request 573485).</li>
-        <li>Support running Checkstyle using the <span class="code">-jar</span> option.</li>
+        <li>Detect redundant <code>abstract</code> modifier in interfaces (request 573485).</li>
+        <li>Support running Checkstyle using the <code>-jar</code> option.</li>
       </ul>
 
       <p>

@@ -1,0 +1,25 @@
+h1 {
+  text-transform: capitalize;
+}
+
+h2 {
+  text-transform: capitalize;
+}
+
+h3 {
+  text-transform: capitalize;
+}
+
+h4 {
+  text-transform: capitalize;
+}
+
+div.tip {
+  margin-left : 5%;
+  margin-right : 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: Silver;
+  color:Black;
+  border: ridge;
+}

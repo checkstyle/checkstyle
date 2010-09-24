@@ -15,13 +15,12 @@
       <p>
         Each of these naming modules validates identifiers for particular code
         elements. Valid identifiers for a naming module are specified by its
-        <span class="code"> format</span> property. The value of <span
-        class="code">format</span> is a <a
+        <code> format</code> property. The value of <code>format</code> is a <a
         href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html">
         regular expression</a> for valid identifiers.  This is an example of a
-        configuration of the <span class="code">MemberName</span> module to
+        configuration of the <code>MemberName</code> module to
         ensure that member identifiers begin with
-        <span class="code">&#39;m&#39;</span>, followed
+        <code>&#39;m&#39;</code>, followed
         by an upper case letter, and then letters and digits:
       </p>
 
@@ -32,10 +31,8 @@
       </source>
 
       <p>
-        All naming modules belong to package <span
-        class="code">com.puppycrawl.tools.checkstyle.checks.naming</span> and
-        are submodules of <a href="config.html#TreeWalker"><span
-        class="code">TreeWalker</span></a>.
+        All naming modules belong to package <code>com.puppycrawl.tools.checkstyle.checks.naming</code> and
+        are submodules of <a href="config.html#TreeWalker"><code>TreeWalker</code></a>.
       </p>
     </section>
 
@@ -44,95 +41,90 @@
         <tr>
           <th>module</th>
           <th>validates identifiers for</th>
-          <th>default value of <span class="code">format</span></th>
+          <th>default value of <code>format</code></th>
         </tr>
         <tr>
-          <td><span class="code">AbstractClassName</span></td>
-          <td><span class="code">abstract</span> classes</td>
-          <td><span class="default">^Abstract.*$|^.*Factory$</span></td>
+          <td><code>AbstractClassName</code></td>
+          <td><code>abstract</code> classes</td>
+          <td><code>^Abstract.*$|^.*Factory$</code></td>
         </tr>
         <tr>
-          <td><span class="code">ClassTypeParameterName</span></td>
+          <td><code>ClassTypeParameterName</code></td>
           <td>class type parameters</td>
-          <td><span class="default">^[A-Z]$</span></td>
+          <td><code>^[A-Z]$</code></td>
         </tr>
         <tr>
-          <td><span class="code">ConstantName</span></td>
+          <td><code>ConstantName</code></td>
           <td>
-            constants (<span class="code">static</span>, <span class="code">
-            final</span> fields)
+            constants (<code>static</code>, <code>
+            final</code> fields)
           </td>
-          <td><span class="default">^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</span></td>
+          <td><code>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</code></td>
         </tr>
         <tr>
-          <td><span class="code">LocalFinalVariableName</span></td>
-          <td>local, <span class="code">final</span> variables, including
-              <span class="code">catch</span> parameters</td>
-          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+          <td><code>LocalFinalVariableName</code></td>
+          <td>local, <code>final</code> variables, including
+              <code>catch</code> parameters</td>
+          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><span class="code">LocalVariableName</span></td>
+          <td><code>LocalVariableName</code></td>
           <td>
-            local, non-<span class="code">final</span> variables, including
-            <span class="code">catch</span> parameters
+            local, non-<code>final</code> variables, including
+            <code>catch</code> parameters
           </td>
-          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><span class="code">MemberName</span></td>
-          <td>non-<span class="code">static</span> fields</td>
-          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+          <td><code>MemberName</code></td>
+          <td>non-<code>static</code> fields</td>
+          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><span class="code">MethodName</span></td>
+          <td><code>MethodName</code></td>
           <td>methods</td>
-          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><span class="code">MethodTypeParameterName</span></td>
+          <td><code>MethodTypeParameterName</code></td>
           <td>method type parameters</td>
-          <td><span class="default">^[A-Z]$</span></td>
+          <td><code>^[A-Z]$</code></td>
         </tr>
         <tr>
-          <td><span class="code">PackageName</span></td>
+          <td><code>PackageName</code></td>
           <td>packages</td>
           <td>
-            <span class="default">^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$</span>
+            <code>^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$</code>
           </td>
         </tr>
         <tr>
-          <td><span class="code">ParameterName</span></td>
+          <td><code>ParameterName</code></td>
           <td>parameters</td>
-          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><span class="code">StaticVariableName</span></td>
+          <td><code>StaticVariableName</code></td>
           <td>
-            <span class="code">static</span>, non-<span
-            class="code">final</span> fields
+            <code>static</code>, non-<code>final</code> fields
           </td>
-          <td><span class="default">^[a-z][a-zA-Z0-9]*$</span></td>
+          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
         </tr>
         <tr>
-          <td><span class="code">TypeName</span></td>
+          <td><code>TypeName</code></td>
           <td>classes and interfaces</td>
-          <td><span class="default">^[A-Z][a-zA-Z0-9]*$</span></td>
+          <td><code>^[A-Z][a-zA-Z0-9]*$</code></td>
         </tr>
       </table>
     </section>
 
     <section name="Notes">
       <p>
-        The default value of <span class="code">format</span> for module <span
-        class="code">PackageName</span> has been chosen to match the
+        The default value of <code>format</code> for module <code>PackageName</code> has been chosen to match the
         requirements in the <a
         href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169">Java
         Language specification</a> and the Sun coding conventions. However
         both underscores and uppercase letters are rather uncommon, so most
-        configurations should probably assign value <span
-        class="code">^[a-z]+(\.[a-z][a-z0-9]*)*$</span> to <span
-        class="code">format</span> for module <span
-        class="code">PackageName</span>, as in
+        configurations should probably assign value <code>^[a-z]+(\.[a-z][a-z0-9]*)*$</code> to <code>format</code> for module <code>PackageName</code>, as in
       </p>
 
       <source>
@@ -143,14 +135,11 @@
       </source>
 
       <p>
-        Module <span class="code">LocalVariableName</span> also has property
-        <span class="code">tokens</span> which can be used to control whether
-        the check applies to variable declarations or <span
-        class="code">catch</span> clause parameters through tokens <span
-        class="code">VARIABLE_DEF</span> and <span
-        class="code">PARAMETER_DEF</span>.  For example, the following
-        configuration element ensures that <span class="code">catch</span>
-        clause parameters begin with <span class="code">"e"</span>, followed
+        Module <code>LocalVariableName</code> also has property
+        <code>tokens</code> which can be used to control whether
+        the check applies to variable declarations or <code>catch</code> clause parameters through tokens <code>VARIABLE_DEF</code> and <code>PARAMETER_DEF</code>.  For example, the following
+        configuration element ensures that <code>catch</code>
+        clause parameters begin with <code>"e"</code>, followed
         by letters and digits:
       </p>
 
@@ -162,13 +151,9 @@
       </source>
 
       <p>
-        Module <span class="code">TypeName</span> also has property <span
-        class="code">tokens</span> which can be used to control whether the
-        check applies to classes or interfaces through tokens <span
-        class="code">CLASS_DEF</span> and <span
-        class="code">INTERFACE_DEF</span>.  For example, the following
-        configuration element ensures that interface names begin with <span
-        class="code">"I_"</span>, followed by letters and digits:
+        Module <code>TypeName</code> also has property <code>tokens</code> which can be used to control whether the
+        check applies to classes or interfaces through tokens <code>CLASS_DEF</code> and <code>INTERFACE_DEF</code>.  For example, the following
+        configuration element ensures that interface names begin with <code>"I_"</code>, followed by letters and digits:
       </p>
 
       <source>
@@ -181,10 +166,7 @@
       </source>
 
       <p>
-        The modules <span class="code">ConstantName</span>, <span
-        class="code">MemberName</span>, <span
-        class="code">StaticVariableName</span> and <span
-        class="code">TypeName</span> also have the following properties:
+        The modules <code>ConstantName</code>, <code>MemberName</code>, <code>StaticVariableName</code> and <code>TypeName</code> also have the following properties:
       </p>
 
       <table>
@@ -198,13 +180,13 @@
           <td>applyToPublic</td>
           <td>Controls whether to apply the check to public member.</td>
           <td><a href="property_types.html#boolean">Boolean</a></td>
-          <td><span class="default">true</span></td>
+          <td><code>true</code></td>
         </tr>
         <tr>
           <td>applyToProtected</td>
           <td>Controls whether to apply the check to protected member.</td>
           <td><a href="property_types.html#boolean">Boolean</a></td>
-          <td><span class="default">true</span></td>
+          <td><code>true</code></td>
         </tr>
         <tr>
           <td>applyToPackage</td>
@@ -212,18 +194,18 @@
             Controls whether to apply the check to package-private member.
           </td>
           <td><a href="property_types.html#boolean">Boolean</a></td>
-          <td><span class="default">true</span></td>
+          <td><code>true</code></td>
         </tr>
         <tr>
           <td>applyToPrivate</td>
           <td>Controls whether to apply the check to private member.</td>
           <td><a href="property_types.html#boolean">Boolean</a></td>
-          <td><span class="default">true</span></td>
+          <td><code>true</code></td>
         </tr>
       </table>
 
       <p>
-        Module <span class="code">MethodName</span> also has the following
+        Module <code>MethodName</code> also has the following
         properties:
       </p>
 
@@ -250,7 +232,7 @@ class MyClass {
             </pre>
           </td>
           <td><a href="property_types.html#boolean">Boolean</a></td>
-          <td><span class="default">false</span></td>
+          <td><code>false</code></td>
         </tr>
       </table>
     </section>
