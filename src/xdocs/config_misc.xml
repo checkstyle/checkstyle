@@ -1398,5 +1398,40 @@ public class PID extends StateMachine implements WebObject.Constants {
         </p>
       </subsection>
     </section>
+
+    <section name="OuterTypeFilename">
+      <subsection name="Description">
+        <p>
+          Checks that the outer type name and the file name match. For example,
+          the class <code>Foo</code> must be in a file named
+          <code>Foo.java</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <p>None.</p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;OuterTypeFilename&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
   </body>
 </document>

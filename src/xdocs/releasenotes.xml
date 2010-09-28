@@ -13,7 +13,12 @@
     <section name="Release 5.3">
       <p>New features:</p>
       <ul>
-        <li>TBD</li>
+        <li>
+          Added <a href="config_misc.html#OuterTypeFilename">OuterTypeFilename</a>
+          that checks that the outer type name and the file name match.
+          For example, the class <code>Foo</code> must be in a file named
+          <code>Foo.java</code>.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>

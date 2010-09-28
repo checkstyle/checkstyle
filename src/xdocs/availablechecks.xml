@@ -477,6 +477,10 @@
         Checks line wrapping for operators.</td>
       </tr>
       <tr>
+        <td><a href="config_misc.html#OuterTypeFilename">OuterTypeFilename</a></td>
+        <td>Checks that the outer type name and the file name match.</td>
+      </tr>
+      <tr>
         <td><a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a></td>
         <td>Checks for the number of defined types at the "outer" level.</td>
       </tr>
