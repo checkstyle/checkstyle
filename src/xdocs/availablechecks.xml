@@ -491,7 +491,7 @@
       </tr>
       <tr>
         <td><a href="config_coding.html#PackageDeclaration">PackageDeclaration</a></td>
-        <td>Ensures there is a package declaration.</td>
+        <td>Ensures there is a package declaration and (optionally) in the correct directory.</td>
       </tr>
       <tr>
         <td><a href="config_naming.html#PackageName">PackageName</a></td>

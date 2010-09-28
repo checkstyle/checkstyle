@@ -41,11 +41,11 @@ public final class PackageDeclarationCheck extends Check
 
     /**
      * Set whether to ignore checking the directory name.
-     * @param newValue the new value.
+     * @param aValue the new value.
      */
-    public void setIgnoreDirectoryName(boolean newValue)
+    public void setIgnoreDirectoryName(boolean aValue)
     {
-        mIgnoreDirectoryName = newValue;
+        mIgnoreDirectoryName = aValue;
     }
 
     @Override
