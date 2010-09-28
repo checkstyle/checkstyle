@@ -720,7 +720,22 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                     getCurrentClassName());
             boolean found = foundThrows.contains(documentedEx);
 
-            final ListIterator<ExceptionInfo> throwIt = aThrows.listIterator();
+            // First look for matches on the exception name
+            ListIterator<ExceptionInfo> throwIt = aThrows.listIterator();
+            while (!found && throwIt.hasNext()) {
+                final ExceptionInfo ei = throwIt.next();
+
+                if (ei.getName().getText().equals(
+                        documentedCI.getName().getText()))
+                {
+                    found = true;
+                    ei.setFound();
+                    foundThrows.add(documentedEx);
+                }
+            }
+
+            // Now match on the exception type
+            throwIt = aThrows.listIterator();
             while (!found && throwIt.hasNext()) {
                 final ExceptionInfo ei = throwIt.next();
 

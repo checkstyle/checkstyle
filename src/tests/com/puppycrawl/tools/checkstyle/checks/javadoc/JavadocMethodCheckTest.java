@@ -380,7 +380,6 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {
             "15:34: Expected @throws tag for 'RE'.",
-            "23:37: Expected @throws tag for 'RE'.",
             "31:13: Expected @param tag for '<NPE>'.",
             "38:12: Unused @throws tag for 'E'.",
             "41:38: Expected @throws tag for 'RuntimeException'.",
@@ -395,7 +394,6 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         final String[] expected = {
             "15:34: Expected @throws tag for 'RE'.",
-            "23:37: Expected @throws tag for 'RE'.",
             "31:13: Expected @param tag for '<NPE>'.",
             "38:12: Unused @throws tag for 'E'.",
             "41:38: Expected @throws tag for 'RuntimeException'.",

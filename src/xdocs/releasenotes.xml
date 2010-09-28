@@ -10,6 +10,24 @@
   </properties>
 
   <body>
+    <section name="Release 5.3">
+      <p>New features:</p>
+      <ul>
+        <li>TBD</li>
+      </ul>
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Fix <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
+          checking of <code>@throws</code> tags for methods that throw multiple
+          non-runtime exceptions. Thanks to Daan Kets for patch #3039869.
+        </li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>TBD</li>
+      </ul>
+    </section>
     <section name="Release 5.2">
       <p>New features:</p>
       <ul>
