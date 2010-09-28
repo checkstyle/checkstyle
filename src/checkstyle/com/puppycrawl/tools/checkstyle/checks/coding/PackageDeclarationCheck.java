@@ -20,7 +20,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.io.File;
 
 /**
  * Ensures there is a package declaration.
@@ -28,11 +30,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * imported. Many novice developers are not aware of this.
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
+ * @author Oliver Burn
  */
 public final class PackageDeclarationCheck extends Check
 {
     /** is package defined. */
     private boolean mDefined;
+    /** whether to ignore the directory name matches the package. */
+    private boolean mIgnoreDirectoryName;
+
+    /**
+     * Set whether to ignore checking the directory name.
+     * @param newValue the new value.
+     */
+    public void setIgnoreDirectoryName(boolean newValue)
+    {
+        mIgnoreDirectoryName = newValue;
+    }
 
     @Override
     public int[] getDefaultTokens()
@@ -64,5 +78,27 @@ public final class PackageDeclarationCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         mDefined = true;
+        if (mIgnoreDirectoryName) {
+            return;
+        }
+
+        // Calculate the directory name, but stripping off the last
+        // part.
+        final String fname = getFileContents().getFilename();
+        final int lastPos = fname.lastIndexOf(File.separatorChar);
+        final String dirname = fname.substring(0, lastPos);
+
+        // Convert the found package name into the expected directory name.
+        final DetailAST nameAST = aAST.getLastChild().getPreviousSibling();
+        final FullIdent full = FullIdent.createFullIdent(nameAST);
+        final String expected = full.getText().replace('.', File.separatorChar);
+
+        // Finally see that the real directory ends with the expected directory
+        if (!dirname.endsWith(expected)) {
+            log(full.getLineNo(),
+                full.getColumnNo(),
+                "package.dir.mismatch",
+                expected);
+        }
     }
 }

@@ -19,6 +19,12 @@
           For example, the class <code>Foo</code> must be in a file named
           <code>Foo.java</code>.
         </li>
+        <li>
+          Enhanced
+          <a href="config_coding.html#PackageDeclaration">PackageDeclaration</a>
+          to optionally check that the package name matches the name of the
+          directory containing the file.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>
