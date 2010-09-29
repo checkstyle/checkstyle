@@ -1233,6 +1233,62 @@ if (&quot;something&quot;.equals(x))
       </subsection>
     </section>
 
+    <section name="NestedForDepth">
+      <subsection name="Description">
+        <p>
+          Restricts nested <code>for</code> blocks to a specified depth
+          (default = 1).
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>max</td>
+            <td>allowed nesting depth</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td><span class="default">1</span></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Example">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;NestedForDepth&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check to allow nesting depth 3:
+        </p>
+        <source>
+&lt;module name=&quot;NestedForDepth&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="NestedIfDepth">
       <subsection name="Description">
         <p>

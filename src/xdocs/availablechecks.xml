@@ -438,6 +438,10 @@
         Checks for braces around code blocks.</td>
       </tr>
       <tr>
+        <td><a href="config_coding.html#NestedForDepth">NestedForDepth</a></td>
+        <td>Restricts nested <code>for</code> blocks to a specified depth (default = 1).</td>
+      </tr>
+      <tr>
         <td><a href="config_coding.html#NestedIfDepth">NestedIfDepth</a></td>
         <td>Restricts nested if-else blocks to a specified depth (default = 1).</td>
       </tr>

@@ -25,6 +25,12 @@
           to optionally check that the package name matches the name of the
           directory containing the file.
         </li>
+        <li>
+          Added <a href="config_coding.html#NestedForDepth">NestedForDepth</a>
+          that restricts nested <code>for</code> blocks to a specified
+          depth (default = 1). Thanks to Alexander Jesse for patch
+          #1151673.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>

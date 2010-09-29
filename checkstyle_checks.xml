@@ -159,6 +159,9 @@
       <property name="severity" value="ignore"/>
     </module>
 
+    <module name="NestedForDepth">
+      <property name="max" value="2"/>
+    </module>
     <module name="NestedIfDepth">
       <property name="max" value="3"/>
     </module>
