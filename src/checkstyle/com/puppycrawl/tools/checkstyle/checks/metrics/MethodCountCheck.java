@@ -34,21 +34,6 @@ import java.util.EnumMap;
  */
 public final class MethodCountCheck extends Check
 {
-    /** default maximum number of methods */
-    private static final int DEFAULT_MAX_METHODS = 999;
-
-    /** Maximum private methods. */
-    private int mMaxPrivate = DEFAULT_MAX_METHODS;
-    /** Maximum package methods. */
-    private int mMaxPackage = DEFAULT_MAX_METHODS;
-    /** Maximum protected methods. */
-    private int mMaxProtected = DEFAULT_MAX_METHODS;
-    /** Maximum public methods. */
-    private int mMaxPublic = DEFAULT_MAX_METHODS;
-    /** Maximum total number of methods. */
-    private int mMaxTotal = DEFAULT_MAX_METHODS;
-
-
     /**
      * Marker class used to collect data about the number of methods per
      * class. Objects of this class are used on the Stack to count the
@@ -80,9 +65,19 @@ public final class MethodCountCheck extends Check
         }
     };
 
-    /**
-     * To be able to trace also inner-classes correctly we need a stack.
-     */
+    /** default maximum number of methods */
+    private static final int DEFAULT_MAX_METHODS = 999;
+    /** Maximum private methods. */
+    private int mMaxPrivate = DEFAULT_MAX_METHODS;
+    /** Maximum package methods. */
+    private int mMaxPackage = DEFAULT_MAX_METHODS;
+    /** Maximum protected methods. */
+    private int mMaxProtected = DEFAULT_MAX_METHODS;
+    /** Maximum public methods. */
+    private int mMaxPublic = DEFAULT_MAX_METHODS;
+    /** Maximum total number of methods. */
+    private int mMaxTotal = DEFAULT_MAX_METHODS;
+    /** Maintains stack of counters, to support inner types. */
     private FastStack<MethodCounter> mCounters =
         new FastStack<MethodCounter>();
 
