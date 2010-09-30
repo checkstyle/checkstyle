@@ -32,9 +32,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:svn:https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</connection>
-    <developerConnection>scm:svn:https://checkstyle.svn.sourceforge.net/svnroot/checkstyle/trunk/checkstyle</developerConnection>
-    <url>http://checkstyle.svn.sourceforge.net/viewvc/checkstyle/</url>
+    <connection>scm:hg:http://checkstyle.hg.sourceforge.net:8000/hgroot/checkstyle/checkstyle</connection>
+    <developerConnection>scm:hg:ssh://oburn@checkstyle.hg.sourceforge.net/hgroot/checkstyle/checkstyle</developerConnection>
+    <url>http://checkstyle.hg.sourceforge.net/hgweb/checkstyle/</url>
   </scm>
 
   <distributionManagement>
