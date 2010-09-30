@@ -56,17 +56,17 @@ public class MethodCountCheckInput {
     /**
      * Dummy method doing nothing
      */
-    public void doNothing62();
+    public abstract void doNothing62();
 
     /**
      * Dummy method doing nothing
      */
-    public void doNothing63();
+    abstract void doNothing63();
 
     /**
      * Dummy method doing nothing
      */
-    public void doNothing64();
+    void doNothing64();
   }
 
   /**

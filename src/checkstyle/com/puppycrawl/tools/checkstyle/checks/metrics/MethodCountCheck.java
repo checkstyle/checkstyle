@@ -44,6 +44,19 @@ public final class MethodCountCheck extends Check
         /** Maintains the counts. */
         private final EnumMap<Scope, Integer> mCounts =
             new EnumMap<Scope, Integer>(Scope.class);
+        /** indicated is an interface, in which case all methods are public */
+        private final boolean mInInterface;
+        /** tracks the total. */
+        private int mTotal;
+
+        /**
+         * Creates an interface.
+         * @param inInterface indicated if counter for an interface. In which
+         *        case, add all counts as public methods.
+         */
+        MethodCounter(boolean inInterface) {
+            mInInterface = inInterface;
+        }
 
         /**
          * Increments to counter by one for the supplied scope.
@@ -51,7 +64,13 @@ public final class MethodCountCheck extends Check
          */
         void increment(Scope aScope)
         {
-            mCounts.put(aScope, 1 + value(aScope));
+            mTotal++;
+            if (mInInterface) {
+                mCounts.put(Scope.PUBLIC, 1 + value(Scope.PUBLIC));
+            }
+            else {
+                mCounts.put(aScope, 1 + value(aScope));
+            }
         }
 
         /**
@@ -62,6 +81,11 @@ public final class MethodCountCheck extends Check
         {
             final Integer value = mCounts.get(aScope);
             return (null == value) ? 0 : value;
+        }
+
+        /** @return the total number of methods. */
+        int getTotal() {
+            return mTotal;
         }
     };
 
@@ -78,7 +102,7 @@ public final class MethodCountCheck extends Check
     /** Maximum total number of methods. */
     private int mMaxTotal = DEFAULT_MAX_METHODS;
     /** Maintains stack of counters, to support inner types. */
-    private FastStack<MethodCounter> mCounters =
+    private final FastStack<MethodCounter> mCounters =
         new FastStack<MethodCounter>();
 
     @Override
@@ -94,7 +118,8 @@ public final class MethodCountCheck extends Check
         if ((TokenTypes.CLASS_DEF == aAST.getType())
             || (TokenTypes.INTERFACE_DEF == aAST.getType()))
         {
-            mCounters.push(new MethodCounter());
+            mCounters.push(new MethodCounter(
+                TokenTypes.INTERFACE_DEF == aAST.getType()));
         }
         else if (TokenTypes.METHOD_DEF == aAST.getType()) {
             raiseCounter(aAST);
@@ -140,6 +165,7 @@ public final class MethodCountCheck extends Check
                  "too.many.protectedMethods", aAst);
         checkMax(mMaxPublic, aCounter.value(Scope.PUBLIC),
                  "too.many.publicMethods", aAst);
+        checkMax(mMaxTotal, aCounter.getTotal(), "too.many.methods", aAst);
     }
 
     /**
@@ -154,5 +180,30 @@ public final class MethodCountCheck extends Check
         if (aMax < aValue) {
             log(aAst.getLineNo(), aMsg, aValue, aMax);
         }
+    }
+
+    public void setMaxPrivate(int maxPrivate)
+    {
+        mMaxPrivate = maxPrivate;
+    }
+
+    public void setMaxPackage(int maxPackage)
+    {
+        mMaxPackage = maxPackage;
+    }
+
+    public void setMaxProtected(int maxProtected)
+    {
+        mMaxProtected = maxProtected;
+    }
+
+    public void setMaxPublic(int maxPublic)
+    {
+        mMaxPublic = maxPublic;
+    }
+
+    public void setMaxTotal(int maxTotal)
+    {
+        mMaxTotal = maxTotal;
     }
 }
