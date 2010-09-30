@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2004  Oliver Burn
+// Copyright (C) 2001-2010  Oliver Burn
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -35,10 +35,19 @@ import java.util.EnumMap;
 public final class MethodCountCheck extends Check
 {
     /** default maximum number of methods */
-    private static final int DEFAULT_MAX_METHODS = 20;
+    private static final int DEFAULT_MAX_METHODS = 999;
 
-    /** default allowed number of methods. */
-    private int mMax = DEFAULT_MAX_METHODS;
+    /** Maximum private methods. */
+    private int mMaxPrivate = DEFAULT_MAX_METHODS;
+    /** Maximum package methods. */
+    private int mMaxPackage = DEFAULT_MAX_METHODS;
+    /** Maximum protected methods. */
+    private int mMaxProtected = DEFAULT_MAX_METHODS;
+    /** Maximum public methods. */
+    private int mMaxPublic = DEFAULT_MAX_METHODS;
+    /** Maximum total number of methods. */
+    private int mMaxTotal = DEFAULT_MAX_METHODS;
+
 
     /**
      * Marker class used to collect data about the number of methods per
@@ -47,19 +56,23 @@ public final class MethodCountCheck extends Check
      */
     private static class MethodCounter
     {
+        /** Maintains the counts. */
         private final EnumMap<Scope, Integer> mCounts =
             new EnumMap<Scope, Integer>(Scope.class);
 
+        /**
+         * Increments to counter by one for the supplied scope.
+         * @param aScope the scope counter to increment.
+         */
         void increment(Scope aScope)
         {
             mCounts.put(aScope, 1 + value(aScope));
         }
 
-        void clearAll()
-        {
-            mCounts.clear();
-        }
-
+        /**
+         * @return the value of a scope counter
+         * @param aScope the scope counter to get the value of
+         */
         int value(Scope aScope)
         {
             final Integer value = mCounts.get(aScope);
@@ -73,79 +86,7 @@ public final class MethodCountCheck extends Check
     private FastStack<MethodCounter> mCounters =
         new FastStack<MethodCounter>();
 
-    /**
-     * Are methods with package visibility (default) subject to the
-     * limitation?
-     */
-    private boolean mCheckDefaultMethods;
-
-    /**
-     * Are methods with private visibility subject to the limitation?
-     */
-    private boolean mCheckPrivateMethods;
-
-    /**
-     * Are methods with protected visibility subject to the limitation?
-     */
-    private boolean mCheckProtectedMethods;
-
-    /**
-     * Are methods with public visibility subject to the limitation?
-     */
-    private boolean mCheckPublicMethods = true;
-
-    /**
-     * Give user a chance to configure max in the config file.
-     * @param aMax
-     *            the user specified maximum parsed from configuration
-     *            property.
-     */
-    public void setMax(int aMax)
-    {
-        mMax = aMax;
-    }
-
-    /**
-     * Give user a chance to configure checkDefaultMethods in the config file.
-     * @param aCheckDefaultMethods
-     *            <code>true</code> if package default visible methods
-     *            should be limited.
-     */
-    public void setCheckDefaultMethods(boolean aCheckDefaultMethods)
-    {
-        mCheckDefaultMethods = aCheckDefaultMethods;
-    }
-
-    /**
-     * Give user a chance to configure checkPrivateMethods in the config file.
-     * @param aCheckPrivateMethods
-     *            <code>true</code> if private methods should be limited.
-     */
-    public void setCheckPrivateMethods(boolean aCheckPrivateMethods)
-    {
-        mCheckPrivateMethods = aCheckPrivateMethods;
-    }
-
-    /**
-     * Give user a chance to configure checkDefaultMethods in the config file.
-     * @param aCheckProtectedMethods
-     *            <code>true</code> if protected methods should be limited.
-     */
-    public void setCheckProtectedMethods(boolean aCheckProtectedMethods)
-    {
-        mCheckProtectedMethods = aCheckProtectedMethods;
-    }
-
-    /**
-     * Give user a chance to configure checkDefaultMethods in the config file.
-     * @param aCheckPublicMethods
-     *            <code>true</code> if private methods should be limited.
-     */
-    public void setCheckPublicMethods(boolean aCheckPublicMethods)
-    {
-        mCheckPublicMethods = aCheckPublicMethods;
-    }
-
+    @Override
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
@@ -158,8 +99,7 @@ public final class MethodCountCheck extends Check
         if ((TokenTypes.CLASS_DEF == aAST.getType())
             || (TokenTypes.INTERFACE_DEF == aAST.getType()))
         {
-            initTypeDef();
-            resetCounters();
+            mCounters.push(new MethodCounter());
         }
         else if (TokenTypes.METHOD_DEF == aAST.getType()) {
             raiseCounter(aAST);
@@ -172,19 +112,9 @@ public final class MethodCountCheck extends Check
         if ((TokenTypes.CLASS_DEF == aAST.getType())
             || (TokenTypes.INTERFACE_DEF == aAST.getType()))
         {
-            checkCounters(aAST);
-            cleanupTypeDef();
+            final MethodCounter counter = mCounters.pop();
+            checkCounters(counter, aAST);
         }
-    }
-
-    /**
-     * Called on entering a type-definition, resets all method-counters for
-     * the actual type.
-     */
-    private void resetCounters()
-    {
-        final MethodCounter actualCounter = mCounters.peek();
-        actualCounter.clearAll();
     }
 
     /**
@@ -202,54 +132,32 @@ public final class MethodCountCheck extends Check
 
     /**
      * Check the counters and report violations.
-     * @param aAst
-     *            The type-subtree of the AST(used to extract the line-number
-     *            for the error-message.
+     * @param aCounter the method counters to check
+     * @param aAst to report errors against.
      */
-    private void checkCounters(DetailAST aAst)
+    private void checkCounters(MethodCounter aCounter, DetailAST aAst)
     {
-        final MethodCounter actualCounter = mCounters.peek();
-        if (mCheckDefaultMethods) {
-            if (actualCounter.value(Scope.PACKAGE) > mMax) {
-                log(aAst.getLineNo(), "too.many.defaultMethods",
-                    actualCounter.value(Scope.PACKAGE), mMax);
-            }
-        }
-        if (mCheckPrivateMethods) {
-            if (actualCounter.value(Scope.PRIVATE) > mMax) {
-                log(aAst.getLineNo(), "too.many.privateMethods",
-                    actualCounter.value(Scope.PRIVATE), mMax);
-            }
-        }
-        if (mCheckProtectedMethods) {
-            if (actualCounter.value(Scope.PROTECTED) > mMax) {
-                log(aAst.getLineNo(), "too.many.protectedMethods",
-                    actualCounter.value(Scope.PROTECTED), mMax);
-            }
-        }
-        if (mCheckPublicMethods) {
-            if (actualCounter.value(Scope.PUBLIC) > mMax) {
-                log(aAst.getLineNo(), "too.many.publicMethods",
-                    actualCounter.value(Scope.PUBLIC), mMax);
-            }
-        }
+        checkMax(mMaxPrivate, aCounter.value(Scope.PRIVATE),
+                 "too.many.privateMethods", aAst);
+        checkMax(mMaxPackage, aCounter.value(Scope.PACKAGE),
+                 "too.many.packageMethods", aAst);
+        checkMax(mMaxProtected, aCounter.value(Scope.PROTECTED),
+                 "too.many.protectedMethods", aAst);
+        checkMax(mMaxPublic, aCounter.value(Scope.PUBLIC),
+                 "too.many.publicMethods", aAst);
     }
 
     /**
-     * On entering a type-definition we push a new counter-object to the
-     * stack. This will then be used to count this types methods.
+     * Utility for reporting if a maximum has been exceeded.
+     * @param aMax the maximum allowed value
+     * @param aValue the actual value
+     * @param aMsg the message to log. Takes two arguments of value and maximum.
+     * @param aAst the AST to associate with the message.
      */
-    private void initTypeDef()
+    private void checkMax(int aMax, int aValue, String aMsg, DetailAST aAst)
     {
-        mCounters.push(new MethodCounter());
-    }
-
-    /**
-     * After a type-definition is processed completely the counter-object is
-     * removed.
-     */
-    private void cleanupTypeDef()
-    {
-        mCounters.pop();
+        if (aMax < aValue) {
+            log(aAst.getLineNo(), aMsg, aValue, aMax);
+        }
     }
 }
