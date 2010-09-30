@@ -48,7 +48,7 @@ public class FastStack<E> implements Iterable<E>
      */
     public boolean isEmpty()
     {
-        return mEntries.size() == 0;
+        return mEntries.isEmpty();
     }
 
     /**
@@ -67,7 +67,7 @@ public class FastStack<E> implements Iterable<E>
      */
     public E peek()
     {
-        if (mEntries.size() == 0) {
+        if (mEntries.isEmpty()) {
             throw new IllegalStateException("FastStack is empty");
         }
         return mEntries.get(mEntries.size() - 1);
@@ -80,7 +80,7 @@ public class FastStack<E> implements Iterable<E>
      */
     public E pop()
     {
-        if (mEntries.size() == 0) {
+        if (mEntries.isEmpty()) {
             throw new IllegalStateException("FastStack is empty");
         }
         return mEntries.remove(mEntries.size() - 1);
@@ -120,7 +120,7 @@ public class FastStack<E> implements Iterable<E>
     }
 
     /**
-     * Returns an interator that goes from the oldest element to the newest.
+     * Returns an iterator that goes from the oldest element to the newest.
      * @return an iterator
      */
     public Iterator<E> iterator()
