@@ -1,6 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;

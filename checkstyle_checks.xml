@@ -58,6 +58,7 @@
     <module name="EmptyBlock"/>
     <module name="EmptyForIteratorPad"/>
     <module name="EqualsHashCode"/>
+    <module name="OneStatementPerLine"/>
 
     <!-- module name="IllegalCatch"/ -->
     <module name="ImportControl">
