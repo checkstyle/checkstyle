@@ -110,15 +110,22 @@ public final class MethodCountCheck extends Check
     @Override
     public int[] getDefaultTokens()
     {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
-                          TokenTypes.METHOD_DEF, };
+        return new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.METHOD_DEF,
+        };
     }
 
     @Override
     public void visitToken(DetailAST aAST)
     {
         if ((TokenTypes.CLASS_DEF == aAST.getType())
-            || (TokenTypes.INTERFACE_DEF == aAST.getType()))
+            || (TokenTypes.INTERFACE_DEF == aAST.getType())
+            || (TokenTypes.ENUM_CONSTANT_DEF == aAST.getType())
+            || (TokenTypes.ENUM_DEF == aAST.getType()))
         {
             mCounters.push(new MethodCounter(
                 TokenTypes.INTERFACE_DEF == aAST.getType()));
@@ -132,7 +139,9 @@ public final class MethodCountCheck extends Check
     public void leaveToken(DetailAST aAST)
     {
         if ((TokenTypes.CLASS_DEF == aAST.getType())
-            || (TokenTypes.INTERFACE_DEF == aAST.getType()))
+            || (TokenTypes.INTERFACE_DEF == aAST.getType())
+            || (TokenTypes.ENUM_CONSTANT_DEF == aAST.getType())
+            || (TokenTypes.ENUM_DEF == aAST.getType()))
         {
             final MethodCounter counter = mCounters.pop();
             checkCounters(counter, aAST);

@@ -45,4 +45,21 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
         verify(checkConfig,
             getSrcPath("checks/sizes/MethodCountCheckInput.java"), expected);
     }
+
+    @Test
+    public void testEnum() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MethodCountCheck.class);
+        checkConfig.addAttribute("maxPrivate", "0");
+        checkConfig.addAttribute("maxTotal", "2");
+
+        final String[] expected = {
+            "9: Number of private methods is 1 (max allowed is 0).",
+            "9: Total number of methods is 3 (max allowed is 2).",
+        };
+
+        verify(checkConfig,
+            getSrcPath("checks/sizes/MethodCountCheckInput2.java"), expected);
+    }
 }
