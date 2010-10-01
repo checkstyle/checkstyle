@@ -525,5 +525,88 @@
       </subsection>
     </section>
 
+    <section name="MethodCount">
+      <subsection name="Description">
+        <p>
+          Checks the number of methods declared in each type. This
+          includes the number of each scope (<code>private</code>,
+          <code>package</code>, <code>protected</code> and
+          <code>public</code>) as well as an overall total.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>maxTotal</td>
+            <td>maximum allowable number of methods at all scope levels</td>
+            <td><a href="property_types.html#integer">integer</a></td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>maxPrivate</td>
+            <td>maximum allowable number of <code>private</code> methods</td>
+            <td><a href="property_types.html#integer">integer</a></td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>maxPackage</td>
+            <td>maximum allowable number of <code>package</code> methods</td>
+            <td><a href="property_types.html#integer">integer</a></td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>maxProtected</td>
+            <td>maximum allowable number of <code>protected</code> methods</td>
+            <td><a href="property_types.html#integer">integer</a></td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>maxPublic</td>
+            <td>maximum allowable number of <code>public</code> methods</td>
+            <td><a href="property_types.html#integer">integer</a></td>
+            <td>100</td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check with defaults:
+        </p>
+        <source>
+&lt;module name="MethodCount"/&gt;
+        </source>
+
+        <p>
+          To configure the check to allow at most 30 methods per type:
+        </p>
+        <source>
+&lt;module name="MethodCount"&gt;
+      &lt;property name="maxTotal" value="30"/&gt;
+&lt;/module&gt;
+        </source>
+
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
   </body>
 </document>

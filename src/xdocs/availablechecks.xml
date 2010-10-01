@@ -354,6 +354,10 @@
         by the format property.</td>
       </tr>
       <tr>
+        <td><a href="config_sizes.html#MethodCount">MethodCount</a></td>
+        <td>Checks the number of methods declared in each type.</td>
+      </tr>
+      <tr>
         <td><a href="config_sizes.html#MethodLength">MethodLength</a></td>
         <td>
         Checks for long methods.</td>

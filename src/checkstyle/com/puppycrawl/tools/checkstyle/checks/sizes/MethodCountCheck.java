@@ -92,7 +92,7 @@ public final class MethodCountCheck extends Check
     };
 
     /** default maximum number of methods */
-    private static final int DEFAULT_MAX_METHODS = 999;
+    private static final int DEFAULT_MAX_METHODS = 100;
     /** Maximum private methods. */
     private int mMaxPrivate = DEFAULT_MAX_METHODS;
     /** Maximum package methods. */

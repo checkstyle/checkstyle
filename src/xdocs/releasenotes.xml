@@ -31,6 +31,14 @@
           depth (default = 1). Thanks to Alexander Jesse for patch
           #1151673.
         </li>
+        <li>
+          Added <a href="config_sizes.html#MethodCount">MethodCount</a>
+          that checks the number of methods declared in each type. This
+          includes the number of each scope (<code>private</code>,
+          <code>package</code>, <code>protected</code> and
+          <code>public</code>) as well as an overall total. Thanks to
+          Alexander Jesse for patch #1151669, which was the inspiration.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>
