@@ -1,10 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.metrics;
+package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Test;
 
-public class MethodCountCheckTest  extends BaseCheckTestSupport {
+public class MethodCountCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefaults() throws Exception
@@ -16,7 +16,7 @@ public class MethodCountCheckTest  extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-            getSrcPath("checks/metrics/MethodCountCheckInput.java"), expected);
+            getSrcPath("checks/sizes/MethodCountCheckInput.java"), expected);
     }
 
     @Test
@@ -43,6 +43,6 @@ public class MethodCountCheckTest  extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-            getSrcPath("checks/metrics/MethodCountCheckInput.java"), expected);
+            getSrcPath("checks/sizes/MethodCountCheckInput.java"), expected);
     }
 }
