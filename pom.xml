@@ -265,8 +265,8 @@
             </configuration>
           </execution>
           <execution>
-            <id>ant-phase-package</id>
-            <phase>prepare-package</phase>
+            <id>ant-phase-verify</id>
+            <phase>verify</phase>
             <goals>
               <goal>run</goal>
             </goals>
@@ -275,7 +275,7 @@
                 <property name="mvn.project.build.directory" value="${project.build.directory}" />
                 <property name="mvn.project.version" value="${project.version}" />
                 <property name="mvn.runtime_classpath" refid="maven.runtime.classpath" />
-                <ant antfile="ant-phase-prepare-package.xml" />
+                <ant antfile="ant-phase-verify.xml" />
               </tasks>
             </configuration>
           </execution>
