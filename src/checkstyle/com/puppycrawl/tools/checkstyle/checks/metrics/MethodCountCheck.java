@@ -51,11 +51,12 @@ public final class MethodCountCheck extends Check
 
         /**
          * Creates an interface.
-         * @param inInterface indicated if counter for an interface. In which
+         * @param aInInterface indicated if counter for an interface. In which
          *        case, add all counts as public methods.
          */
-        MethodCounter(boolean inInterface) {
-            mInInterface = inInterface;
+        MethodCounter(boolean aInInterface)
+        {
+            mInInterface = aInInterface;
         }
 
         /**
@@ -84,7 +85,8 @@ public final class MethodCountCheck extends Check
         }
 
         /** @return the total number of methods. */
-        int getTotal() {
+        int getTotal()
+        {
             return mTotal;
         }
     };
@@ -182,28 +184,48 @@ public final class MethodCountCheck extends Check
         }
     }
 
-    public void setMaxPrivate(int maxPrivate)
+    /**
+     * Sets the maximum allowed <code>private</code> methods per type.
+     * @param aValue the maximum allowed.
+     */
+    public void setMaxPrivate(int aValue)
     {
-        mMaxPrivate = maxPrivate;
+        mMaxPrivate = aValue;
     }
 
-    public void setMaxPackage(int maxPackage)
+    /**
+     * Sets the maximum allowed <code>package</code> methods per type.
+     * @param aValue the maximum allowed.
+     */
+    public void setMaxPackage(int aValue)
     {
-        mMaxPackage = maxPackage;
+        mMaxPackage = aValue;
     }
 
-    public void setMaxProtected(int maxProtected)
+    /**
+     * Sets the maximum allowed <code>protected</code> methods per type.
+     * @param aValue the maximum allowed.
+     */
+    public void setMaxProtected(int aValue)
     {
-        mMaxProtected = maxProtected;
+        mMaxProtected = aValue;
     }
 
-    public void setMaxPublic(int maxPublic)
+    /**
+     * Sets the maximum allowed <code>public</code> methods per type.
+     * @param aValue the maximum allowed.
+     */
+    public void setMaxPublic(int aValue)
     {
-        mMaxPublic = maxPublic;
+        mMaxPublic = aValue;
     }
 
-    public void setMaxTotal(int maxTotal)
+    /**
+     * Sets the maximum total methods per type.
+     * @param aValue the maximum allowed.
+     */
+    public void setMaxTotal(int aValue)
     {
-        mMaxTotal = maxTotal;
+        mMaxTotal = aValue;
     }
 }
