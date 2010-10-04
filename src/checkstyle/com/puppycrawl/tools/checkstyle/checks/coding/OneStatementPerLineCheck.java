@@ -60,10 +60,10 @@ public final class OneStatementPerLineCheck extends Check
     {
         switch (aAst.getType()) {
         case TokenTypes.EXPR:
-            startStatement(aAst);
+            visitExpr(aAst);
             break;
         case TokenTypes.SEMI:
-            startSemi(aAst);
+            visitSemi(aAst);
             break;
         case TokenTypes.FOR_INIT:
             mInForHeader = true;
@@ -76,8 +76,15 @@ public final class OneStatementPerLineCheck extends Check
     @Override
     public void leaveToken(DetailAST aAst)
     {
-        if (TokenTypes.FOR_ITERATOR == aAst.getType()) {
+        switch (aAst.getType()) {
+        case TokenTypes.FOR_ITERATOR:
             mInForHeader = false;
+            break;
+        case TokenTypes.EXPR:
+            mExprDepth--;
+            break;
+        default:
+            break;
         }
     }
 
@@ -88,7 +95,7 @@ public final class OneStatementPerLineCheck extends Check
      * not within a for-statement, then the rule is violated.
      * @param aAst token for the {@link TokenTypes#EXPR}.
      */
-    private void startStatement(DetailAST aAst)
+    private void visitExpr(DetailAST aAst)
     {
         mExprDepth++;
         if (mExprDepth == 1) {
@@ -103,9 +110,8 @@ public final class OneStatementPerLineCheck extends Check
      * line of the last statement.
      * @param aAst for the {@link TokenTypes#SEMI}.
      */
-    private void startSemi(DetailAST aAst)
+    private void visitSemi(DetailAST aAst)
     {
-        mExprDepth--;
         if (mExprDepth == 0) {
             mLastStatementEnd = aAst.getLineNo();
         }
