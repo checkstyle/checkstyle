@@ -38,10 +38,12 @@ import java.util.Arrays;
  * <pre>
  * &lt;module name="MagicNumber"&gt;
  *    &lt;property name="ignoreNumbers" value="0, 1, 1.5, 2"/&gt;
+ *    &lt;property name="ignoreHashCodeMethod" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
  * @author Rick Giles
  * @author Lars Kühne
+ * @author Daniel Solano Gómez
  */
 public class MagicNumberCheck extends Check
 {
@@ -68,6 +70,8 @@ public class MagicNumberCheck extends Check
 
     /** the numbers to ignore in the check, sorted */
     private double[] mIgnoreNumbers = {-1, 0, 1, 2};
+    /** Whether to ignore magic numbers in a hash code method. */
+    private boolean mIgnoreHashCodeMethod;
 
     @Override
     public int[] getDefaultTokens()
@@ -80,10 +84,63 @@ public class MagicNumberCheck extends Check
         };
     }
 
+    /**
+     * Determines whether or not the given AST is in a valid hash code method.
+     * A valid hash code method is considered to be a method of the signature
+     * {@code public int hashCode()}.
+     *
+     * @param aAST the AST from which to search for an enclosing hash code
+     * method definition
+     *
+     * @return {@code true} if {@code aAST} is in the scope of a valid hash
+     * code method
+     */
+    private boolean isInHashCodeMethod(DetailAST aAST)
+    {
+        // if not in a code block, can't be in hashCode()
+        if (!ScopeUtils.inCodeBlock(aAST)) {
+            return false;
+        }
+
+        // find the method definition AST
+        DetailAST methodDefAST = aAST.getParent();
+        while (methodDefAST != null
+                && methodDefAST.getType() != TokenTypes.METHOD_DEF)
+        {
+            methodDefAST = methodDefAST.getParent();
+        }
+
+        if (methodDefAST == null) {
+            return false;
+        }
+
+        // chech for 'hashCode' name
+        final DetailAST identAST =
+                methodDefAST.findFirstToken(TokenTypes.IDENT);
+        System.out.println(identAST);
+        if (!"hashCode".equals(identAST.getText())) {
+            return false;
+        }
+
+        // check for no arguments
+        final DetailAST paramAST =
+                methodDefAST.findFirstToken(TokenTypes.PARAMETERS);
+        if (paramAST.getChildCount() != 0) {
+            return false;
+        }
+
+        // we are in a 'public int hashCode()' method!
+        return true;
+    }
+
     @Override
     public void visitToken(DetailAST aAST)
     {
         if (inIgnoreList(aAST)) {
+            return;
+        }
+
+        if (mIgnoreHashCodeMethod && isInHashCodeMethod(aAST)) {
             return;
         }
 
@@ -199,5 +256,15 @@ public class MagicNumberCheck extends Check
             System.arraycopy(aList, 0, mIgnoreNumbers, 0, aList.length);
             Arrays.sort(mIgnoreNumbers);
         }
+    }
+
+    /**
+     * Set whether to ignore hashCode methods.
+     * @param aIgnoreHashCodeMethod decide whether to ignore
+     * hash code methods
+     */
+    public void setIgnoreHashCodeMethod(boolean aIgnoreHashCodeMethod)
+    {
+        mIgnoreHashCodeMethod = aIgnoreHashCodeMethod;
     }
 }

@@ -153,3 +153,32 @@ enum MyEnum
         
     }
 }
+
+class TestHashCodeMethod {
+    // valid hash code method
+    public int hashCode() {
+        return 31;
+    }
+
+    // invalid hash code method: has parameters
+    public int hashCode(int val) {
+        return 42;
+    }
+
+    // invalid hash code method: misspelled
+    public int hashcode() {
+        return 13;
+    }
+
+    static {
+        int x=21;
+    }
+
+    {
+        int y=37;
+    }
+
+    public TestHashCodeMethod() {
+        int z=101;
+    }
+}

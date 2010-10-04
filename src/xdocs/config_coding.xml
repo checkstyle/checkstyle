@@ -893,6 +893,12 @@ number.equals(i + j);
             <td>list of numbers</td>
             <td>-1, 0, 1, 2</td>
           </tr>
+          <tr>
+            <td>ignoreHashCodeMethod</td>
+            <td>ignore magice numbers in hashCode methods</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
         </table>
       </subsection>
 
