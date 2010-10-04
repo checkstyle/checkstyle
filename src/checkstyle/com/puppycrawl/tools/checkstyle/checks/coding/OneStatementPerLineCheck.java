@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Restricts the number of statements per line to one.
  * @author Alexander Jesse
+ * @author Oliver Burn
  */
 public final class OneStatementPerLineCheck extends Check
 {

@@ -480,6 +480,10 @@
         Checks that there is no whitespace before a token.</td>
       </tr>
       <tr>
+        <td><a href="config_coding.html#OneStatementPerLine">OneStatementPerLine</a></td>
+        <td>Checks there is only one statement per line.</td>
+      </tr>
+      <tr>
         <td><a href="config_whitespace.html#OperatorWrap">OperatorWrap</a></td>
         <td>
         Checks line wrapping for operators.</td>

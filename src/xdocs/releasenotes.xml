@@ -39,6 +39,11 @@
           <code>public</code>) as well as an overall total. Thanks to
           Alexander Jesse for patch #1151669, which was the inspiration.
         </li>
+        <li>
+          Added <a href="config_coding.html#OneStatementPerLine">OneStatementPerLine</a>
+          that checks there is only one statement per line. Thanks to
+          Alexander Jesse for patch #1144994, which was the inspiration.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>

@@ -2564,5 +2564,38 @@ case 3:
         </p>
       </subsection>
     </section>
+
+    <section name="OneStatementPerLine">
+      <subsection name="Description">
+        <p>
+          Checks there is only one statement per line. The following line
+          will be flagged as an error:
+        </p>
+        
+        <source>    x = 1; y = 2; // Two statments on a single line.</source>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;OneStatementPerLine&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
   </body>
 </document>
