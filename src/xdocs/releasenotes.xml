@@ -48,7 +48,7 @@
           Enhanced <a href="config_coding.html#MagicNumber">MagicNumber</a>
           to support the parameter <code>ignoreHashCodeMethod</code> to ignore
           magic numbers in <code>hashCode()</code> methods. Thanks to
-          Daniel Solano Gómez for patch #3050788.          
+          Daniel Solano Gómez for patch #3050788.
         </li>
       </ul>
       <p>Bug fixes:</p>

@@ -27,26 +27,18 @@ import java.util.StringTokenizer;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.Converter;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.PropertyUtilsBean;
-import org.apache.commons.beanutils.converters.AbstractArrayConverter;
-import org.apache.commons.beanutils.converters.BooleanArrayConverter;
+import org.apache.commons.beanutils.converters.ArrayConverter;
 import org.apache.commons.beanutils.converters.BooleanConverter;
-import org.apache.commons.beanutils.converters.ByteArrayConverter;
 import org.apache.commons.beanutils.converters.ByteConverter;
-import org.apache.commons.beanutils.converters.CharacterArrayConverter;
 import org.apache.commons.beanutils.converters.CharacterConverter;
-import org.apache.commons.beanutils.converters.DoubleArrayConverter;
 import org.apache.commons.beanutils.converters.DoubleConverter;
-import org.apache.commons.beanutils.converters.FloatArrayConverter;
 import org.apache.commons.beanutils.converters.FloatConverter;
-import org.apache.commons.beanutils.converters.IntegerArrayConverter;
 import org.apache.commons.beanutils.converters.IntegerConverter;
-import org.apache.commons.beanutils.converters.LongArrayConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
-import org.apache.commons.beanutils.converters.ShortArrayConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
-
 
 /**
  * A Java Bean that implements the component lifecycle interfaces by
@@ -71,55 +63,40 @@ public class AutomaticBean
     private static BeanUtilsBean createBeanUtilsBean()
     {
         final ConvertUtilsBean cub = new ConvertUtilsBean();
-
         // TODO: is there a smarter way to tell beanutils not to use defaults?
-
-        final boolean[] booleanArray = new boolean[0];
-        final byte[] byteArray = new byte[0];
-        final char[] charArray = new char[0];
-        final double[] doubleArray = new double[0];
-        final float[] floatArray = new float[0];
-        final int[] intArray = new int[0];
-        final long[] longArray = new long[0];
-        final short[] shortArray = new short[0];
-
-
         cub.register(new BooleanConverter(), Boolean.TYPE);
         cub.register(new BooleanConverter(), Boolean.class);
-        cub.register(
-            new BooleanArrayConverter(), booleanArray.getClass());
+        cub.register(new ArrayConverter(
+            boolean[].class, new BooleanConverter()), boolean[].class);
         cub.register(new ByteConverter(), Byte.TYPE);
         cub.register(new ByteConverter(), Byte.class);
-        cub.register(
-            new ByteArrayConverter(byteArray), byteArray.getClass());
+        cub.register(new ArrayConverter(byte[].class, new ByteConverter()),
+            byte[].class);
         cub.register(new CharacterConverter(), Character.TYPE);
         cub.register(new CharacterConverter(), Character.class);
-        cub.register(
-            new CharacterArrayConverter(), charArray.getClass());
+        cub.register(new ArrayConverter(char[].class, new CharacterConverter()),
+            char[].class);
         cub.register(new DoubleConverter(), Double.TYPE);
         cub.register(new DoubleConverter(), Double.class);
-        cub.register(
-            new DoubleArrayConverter(doubleArray), doubleArray.getClass());
+        cub.register(new ArrayConverter(double[].class, new DoubleConverter()),
+            double[].class);
         cub.register(new FloatConverter(), Float.TYPE);
         cub.register(new FloatConverter(), Float.class);
-        cub.register(new FloatArrayConverter(), floatArray.getClass());
+        cub.register(new ArrayConverter(float[].class, new FloatConverter()),
+            float[].class);
         cub.register(new IntegerConverter(), Integer.TYPE);
         cub.register(new IntegerConverter(), Integer.class);
-        cub.register(new IntegerArrayConverter(), intArray.getClass());
+        cub.register(new ArrayConverter(int[].class, new IntegerConverter()),
+            int[].class);
         cub.register(new LongConverter(), Long.TYPE);
         cub.register(new LongConverter(), Long.class);
-        cub.register(new LongArrayConverter(), longArray.getClass());
+        cub.register(new ArrayConverter(long[].class, new LongConverter()),
+            long[].class);
         cub.register(new ShortConverter(), Short.TYPE);
         cub.register(new ShortConverter(), Short.class);
-        cub.register(new ShortArrayConverter(), shortArray.getClass());
-        // TODO: investigate:
-        // StringArrayConverter doesn't properly convert an array of tokens with
-        // elements containing an underscore, "_".
-        // Hacked a replacement class :(
-        //        cub.register(new StringArrayConverter(),
-        //                        String[].class);
-        cub.register(new StrArrayConverter(), String[].class);
-        cub.register(new IntegerArrayConverter(), Integer[].class);
+        cub.register(new ArrayConverter(short[].class, new ShortConverter()),
+            short[].class);
+        cub.register(new RelaxedStringArrayConverter(), String[].class);
 
         // BigDecimal, BigInteger, Class, Date, String, Time, TimeStamp
         // do not use defaults in the default configuration of ConvertUtilsBean
@@ -289,92 +266,31 @@ public class AutomaticBean
     }
 
     /**
-     * <p>Standard Converter implementation that converts an incoming
-     * String into an array of String.  On a conversion failure, returns
-     * a specified default value or throws a ConversionException depending
-     * on how this instance is constructed.</p>
-     *
-     * Hacked from
-     * http://cvs.apache.org/viewcvs/jakarta-commons/beanutils/src/java/org/apache/commons/beanutils/converters/StringArrayConverter.java
-     * because that implementation fails to convert array of tokens with
-     * elements containing an underscore, "_" :(
-     *
-     * @author Rick Giles
+     * A converter that does not care whether the array elements contain String
+     * characters like '*' or '_'. The normal ArrayConverter class has problems
+     * with this characters.
      */
-    private static final class StrArrayConverter extends AbstractArrayConverter
+    private static class RelaxedStringArrayConverter implements Converter
     {
-        /** <p>Model object for type comparisons.</p> */
-        private static final String[] MODEL = new String[0];
-
-        /** Creates a new StrArrayConverter object. */
-        public StrArrayConverter()
-        {
-            this.defaultValue = null;
-            this.useDefault = false;
-        }
-
+        /** {@inheritDoc} */
         @SuppressWarnings("unchecked")
-        @Override
         public Object convert(Class aType, Object aValue)
-            throws ConversionException
         {
-            // Deal with a null value
-            if (aValue == null) {
-                if (useDefault) {
-                    return (defaultValue);
-                }
-                throw new ConversionException("No value specified");
+            if (null == aType) {
+                throw new ConversionException("Cannot convert from null.");
             }
 
-            // Deal with the no-conversion-needed case
-            if (MODEL.getClass() == aValue.getClass()) {
-                return (aValue);
-            }
-
-            // Parse the input value as a String into elements
-            // and convert to the appropriate type
-            try {
-                final List list = parseElements(aValue.toString());
-                final String[] results = new String[list.size()];
-
-                for (int i = 0; i < results.length; i++) {
-                    results[i] = (String) list.get(i);
-                }
-                return (results);
-            }
-            catch (final Exception e) {
-                if (useDefault) {
-                    return (defaultValue);
-                }
-                throw new ConversionException(aValue.toString(), e);
-            }
-        }
-
-        @SuppressWarnings("unchecked")
-        @Override
-        protected List parseElements(final String aValue)
-            throws NullPointerException
-        {
-            // Validate the passed argument
-            if (aValue == null) {
-                throw new NullPointerException();
-            }
-
-            // Trim any matching '{' and '}' delimiters
-            String str = aValue.trim();
-            if (str.startsWith("{") && str.endsWith("}")) {
-                str = str.substring(1, str.length() - 1);
-            }
-
-            final StringTokenizer st = new StringTokenizer(str, ",");
-            final List<String> retVal = Lists.newArrayList();
+            // Convert to a String and trim it for the tokenizer.
+            final StringTokenizer st = new StringTokenizer(
+                aValue.toString().trim(), ",");
+            final List<String> result = Lists.newArrayList();
 
             while (st.hasMoreTokens()) {
                 final String token = st.nextToken();
-                retVal.add(token.trim());
+                result.add(token.trim());
             }
 
-            return retVal;
+            return result.toArray(new String[result.size()]);
         }
     }
 }

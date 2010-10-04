@@ -188,7 +188,7 @@ public class MagicNumberCheck extends Check
         if (!ScopeUtils.inCodeBlock(aAST)) {
             return false;
         }
-    
+
         // find the method definition AST
         DetailAST methodDefAST = aAST.getParent();
         while ((null != methodDefAST)
@@ -196,25 +196,25 @@ public class MagicNumberCheck extends Check
         {
             methodDefAST = methodDefAST.getParent();
         }
-    
+
         if (null == methodDefAST) {
             return false;
         }
-    
+
         // Check for 'hashCode' name.
         final DetailAST identAST =
             methodDefAST.findFirstToken(TokenTypes.IDENT);
         if (!"hashCode".equals(identAST.getText())) {
             return false;
         }
-    
+
         // Check for no arguments.
         final DetailAST paramAST =
             methodDefAST.findFirstToken(TokenTypes.PARAMETERS);
         if (0 != paramAST.getChildCount()) {
             return false;
         }
-    
+
         // we are in a 'public int hashCode()' method! The compiler will ensure
         // the method returns an 'int' and is public.
         return true;
