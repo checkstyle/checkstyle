@@ -22,9 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-
 import java.util.Arrays;
 
 /**
@@ -84,63 +82,12 @@ public class MagicNumberCheck extends Check
         };
     }
 
-    /**
-     * Determines whether or not the given AST is in a valid hash code method.
-     * A valid hash code method is considered to be a method of the signature
-     * {@code public int hashCode()}.
-     *
-     * @param aAST the AST from which to search for an enclosing hash code
-     * method definition
-     *
-     * @return {@code true} if {@code aAST} is in the scope of a valid hash
-     * code method
-     */
-    private boolean isInHashCodeMethod(DetailAST aAST)
-    {
-        // if not in a code block, can't be in hashCode()
-        if (!ScopeUtils.inCodeBlock(aAST)) {
-            return false;
-        }
-
-        // find the method definition AST
-        DetailAST methodDefAST = aAST.getParent();
-        while (methodDefAST != null
-                && methodDefAST.getType() != TokenTypes.METHOD_DEF)
-        {
-            methodDefAST = methodDefAST.getParent();
-        }
-
-        if (methodDefAST == null) {
-            return false;
-        }
-
-        // chech for 'hashCode' name
-        final DetailAST identAST =
-                methodDefAST.findFirstToken(TokenTypes.IDENT);
-        System.out.println(identAST);
-        if (!"hashCode".equals(identAST.getText())) {
-            return false;
-        }
-
-        // check for no arguments
-        final DetailAST paramAST =
-                methodDefAST.findFirstToken(TokenTypes.PARAMETERS);
-        if (paramAST.getChildCount() != 0) {
-            return false;
-        }
-
-        // we are in a 'public int hashCode()' method!
-        return true;
-    }
-
     @Override
     public void visitToken(DetailAST aAST)
     {
-        if (inIgnoreList(aAST)) {
-            return;
-        }
-
-        if (mIgnoreHashCodeMethod && isInHashCodeMethod(aAST)) {
+        if (inIgnoreList(aAST)
+            || (mIgnoreHashCodeMethod && isInHashCodeMethod(aAST)))
+        {
             return;
         }
 
@@ -222,6 +169,55 @@ public class MagicNumberCheck extends Check
                 reportAST.getColumnNo(),
                 "magic.number",
                 text);
+    }
+
+    /**
+     * Determines whether or not the given AST is in a valid hash code method.
+     * A valid hash code method is considered to be a method of the signature
+     * {@code public int hashCode()}.
+     *
+     * @param aAST the AST from which to search for an enclosing hash code
+     * method definition
+     *
+     * @return {@code true} if {@code aAST} is in the scope of a valid hash
+     * code method
+     */
+    private boolean isInHashCodeMethod(DetailAST aAST)
+    {
+        // if not in a code block, can't be in hashCode()
+        if (!ScopeUtils.inCodeBlock(aAST)) {
+            return false;
+        }
+    
+        // find the method definition AST
+        DetailAST methodDefAST = aAST.getParent();
+        while ((null != methodDefAST)
+                && (TokenTypes.METHOD_DEF != methodDefAST.getType()))
+        {
+            methodDefAST = methodDefAST.getParent();
+        }
+    
+        if (null == methodDefAST) {
+            return false;
+        }
+    
+        // Check for 'hashCode' name.
+        final DetailAST identAST =
+            methodDefAST.findFirstToken(TokenTypes.IDENT);
+        if (!"hashCode".equals(identAST.getText())) {
+            return false;
+        }
+    
+        // Check for no arguments.
+        final DetailAST paramAST =
+            methodDefAST.findFirstToken(TokenTypes.PARAMETERS);
+        if (0 != paramAST.getChildCount()) {
+            return false;
+        }
+    
+        // we are in a 'public int hashCode()' method! The compiler will ensure
+        // the method returns an 'int' and is public.
+        return true;
     }
 
     /**
