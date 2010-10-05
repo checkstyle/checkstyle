@@ -1219,8 +1219,8 @@
 
       <source>
 &lt;!DOCTYPE module PUBLIC
-&quot;-//Puppy Crawl//DTD Check Configuration 1.2//EN&quot;
-&quot;http://www.puppycrawl.com/dtds/configuration_1_2.dtd&quot;&gt;
+    &quot;-//Puppy Crawl//DTD Check Configuration 1.3//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/configuration_1_3.dtd&quot;&gt;
       </source>
 
       <p>
