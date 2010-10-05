@@ -25,25 +25,52 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 /**
  * <p>
  * Ensures that the names of abstract classes conforming to some
- * regular expression.
+ * regular expression and check up the abstract modifier of class.
  * </p>
  * <p>
  * Rationale: Abstract classes are convenience base class
  * implementations of interfaces, not types as such. As such
- * they should be named to indicate this.
+ * they should be named to indicate this. Also if names of classes
+ * starts with 'Abstract' it's very convenient that they will
+ * have abstract modifier.
  * </p>
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
+ * @author <a href="mailto:solid.danil@gmail.com">Danil Lopatin</a>
  */
 public final class AbstractClassNameCheck extends AbstractFormatCheck
 {
-    /** Defualt format for abstract class names */
+    /** Default format for abstract class names */
     private static final String DEFAULT_FORMAT = "^Abstract.*$|^.*Factory$";
+
+    /** allow checking 'abstract' modifiers */
+    private boolean mCheckAbstractModifier;
+
+    /** allow checking name by abstract modifier */
+    private boolean mCheckName = true;
 
     /** Creates new instance of the check. */
     public AbstractClassNameCheck()
     {
         super(DEFAULT_FORMAT);
+    }
+
+    /**
+     * Enable|Disable checking the class type.
+     * @param aValue allow check abstract modifier.
+     */
+    public void setCheckModifier(boolean aValue)
+    {
+        mCheckAbstractModifier = aValue;
+    }
+
+    /**
+     * Enable|Disable checking the class name if class has abstract modifier.
+     * @param aValue allow check class name.
+     */
+    public void setCheckName(boolean aValue)
+    {
+        mCheckName = aValue;
     }
 
     @Override
@@ -76,13 +103,22 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
      */
     private void visitClassDef(DetailAST aAST)
     {
+        final String className =
+            aAST.findFirstToken(TokenTypes.IDENT).getText();
         if (isAbstract(aAST)) {
-            final String className =
-                aAST.findFirstToken(TokenTypes.IDENT).getText();
-
-            if (!isMatchingClassName(className)) {
+            // if class has abstract modifier
+            if (mCheckName && !isMatchingClassName(className)) {
                 log(aAST.getLineNo(), aAST.getColumnNo(),
                     "illegal.abstract.class.name", className, getFormat());
+            }
+        }
+        else {
+            // if class without abstract modifier
+            if (mCheckAbstractModifier
+                    && isMatchingClassName(className))
+            {
+                log(aAST.getLineNo(), aAST.getColumnNo(),
+                        "no.abstract.class.modifier", className);
             }
         }
     }

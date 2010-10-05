@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 abstract public class InputAbstractClassName {
 }
-
+// abstract --> ^Abstract.*$|^.*Factory$
 abstract class NonAbstractClassName {
 }
 
@@ -20,4 +20,21 @@ abstract class ClassFactory {
 }
 
 class NonAbstractClass {
+}
+
+//^Abstract.*$|^.*Factory$ --> abstract
+class AbstractClass {
+}
+
+class Class1Factory {
+}
+
+abstract class AbstractClassName2 {
+    class AbstractInnerClass {
+    }
+}
+
+abstract class Class2Factory {
+    class WellNamedFactory {
+    }
 }
