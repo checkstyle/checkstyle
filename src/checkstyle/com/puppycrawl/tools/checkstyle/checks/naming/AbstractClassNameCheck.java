@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 /**
  * <p>
  * Ensures that the names of abstract classes conforming to some
- * regular expression and check up the abstract modifier of class.
+ * regular expression and check that <code>abstract</code> modifier exists.
  * </p>
  * <p>
  * Rationale: Abstract classes are convenience base class
@@ -43,11 +43,11 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
     /** Default format for abstract class names */
     private static final String DEFAULT_FORMAT = "^Abstract.*$|^.*Factory$";
 
-    /** allow checking 'abstract' modifiers */
-    private boolean mCheckAbstractModifier;
+    /** whether to ignore checking the modifier */
+    private boolean mIgnoreModifier;
 
-    /** allow checking name by abstract modifier */
-    private boolean mCheckName = true;
+    /** whether to ignore checking the name */
+    private boolean mIgnoreName;
 
     /** Creates new instance of the check. */
     public AbstractClassNameCheck()
@@ -56,21 +56,21 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
     }
 
     /**
-     * Enable|Disable checking the class type.
-     * @param aValue allow check abstract modifier.
+     * Whether to ignore checking for the <code>abstract</code> modifier.
+     * @param aValue new value
      */
-    public void setCheckModifier(boolean aValue)
+    public void setIgnoreModifier(boolean aValue)
     {
-        mCheckAbstractModifier = aValue;
+        mIgnoreModifier = aValue;
     }
 
     /**
-     * Enable|Disable checking the class name if class has abstract modifier.
-     * @param aValue allow check class name.
+     * Whether to ignore checking the name.
+     * @param aValue new value.
      */
-    public void setCheckName(boolean aValue)
+    public void setIgnoreName(boolean aValue)
     {
-        mCheckName = aValue;
+        mIgnoreName = aValue;
     }
 
     @Override
@@ -88,12 +88,8 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
     @Override
     public void visitToken(DetailAST aAST)
     {
-        switch (aAST.getType()) {
-        case TokenTypes.CLASS_DEF:
+        if (TokenTypes.CLASS_DEF == aAST.getType()) {
             visitClassDef(aAST);
-            break;
-        default:
-            throw new IllegalStateException(aAST.toString());
         }
     }
 
@@ -107,19 +103,14 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck
             aAST.findFirstToken(TokenTypes.IDENT).getText();
         if (isAbstract(aAST)) {
             // if class has abstract modifier
-            if (mCheckName && !isMatchingClassName(className)) {
+            if (!mIgnoreName && !isMatchingClassName(className)) {
                 log(aAST.getLineNo(), aAST.getColumnNo(),
                     "illegal.abstract.class.name", className, getFormat());
             }
         }
-        else {
-            // if class without abstract modifier
-            if (mCheckAbstractModifier
-                    && isMatchingClassName(className))
-            {
-                log(aAST.getLineNo(), aAST.getColumnNo(),
-                        "no.abstract.class.modifier", className);
-            }
+        else if (!mIgnoreModifier && isMatchingClassName(className)) {
+            log(aAST.getLineNo(), aAST.getColumnNo(),
+                "no.abstract.class.modifier", className);
         }
     }
 
