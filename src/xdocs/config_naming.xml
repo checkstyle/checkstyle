@@ -117,6 +117,173 @@
       </table>
     </section>
 
+    <section name="Enhancements">
+      <subsection name="LocalVariableName">
+        <p>
+          Module <code>LocalVariableName</code> also has property
+          <code>tokens</code> which can be used to control whether the
+          check applies to variable declarations or <code>catch</code>
+          clause parameters through tokens <code>VARIABLE_DEF</code> and
+          <code>PARAMETER_DEF</code>.  For example, the following
+          configuration element ensures that <code>catch</code> clause
+          parameters begin with <code>"e"</code>, followed by letters
+          and digits:
+        </p>
+
+        <source>
+&lt;module name=&quot;LocalVariableName&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;^e[a-zA-Z0-9]*$&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;PARAMETER_DEF&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="TypeName">
+        <p>
+          Module <code>TypeName</code> also has property
+          <code>tokens</code> which can be used to control whether the
+          check applies to classes or interfaces through tokens
+          <code>CLASS_DEF</code> and <code>INTERFACE_DEF</code>.  For
+          example, the following configuration element ensures that
+          interface names begin with <code>"I_"</code>, followed by
+          letters and digits:
+        </p>
+
+        <source>
+&lt;module name=&quot;TypeName&quot;&gt;
+    &lt;property name=&quot;format&quot;
+              value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
+    &lt;property name=&quot;tokens&quot;
+              value=&quot;INTERFACE_DEF&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="MethodName">
+        <p>
+          Module <code>MethodName</code> also has the following
+          properties:
+        </p>
+
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>allowClassName</td>
+            <td>
+              Controls whether to allow a method name to have the same
+              name as the residing class name.  This is not to be confused
+              with a constructor.  An easy mistake is to place a return
+              type on a constructor declaration which turns it into a
+              method. For example:
+              <pre>
+class MyClass {
+    public void MyClass() {} //this is a method
+    public MyClass() {} //this is a constructor
+}
+              </pre>
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="AbstractClassName">
+        <p>
+          Module <code>AbstractClassName</code> also has the following
+          properties:
+        </p>
+
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>ignoreModifier</td>
+            <td>
+              Controls whether to ignore checking for the
+              <code>abstract</code> modifier on classes that match the
+              name.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>ignoreName</td>
+            <td>
+              Controls whether to ignore checking the name. Realistically
+              only useful if using the check to identify that match name
+              and do not have the <code>abstract</code> modifier.  name.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+        </table>
+
+        <p>
+          The following example shows how to configure the
+          <code>AbstractClassName</code> to checks names, but ignore
+          missing <code>abstract</code> modifiers:
+        </p>
+        <source>
+&lt;module name=&quot;AbstractClassName&quot;&gt;
+  &lt;property name=&quot;ignoreModifier&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="...">
+        <p>
+          The modules <code>ConstantName</code>,
+          <code>MemberName</code>, <code>StaticVariableName</code> and
+          <code>TypeName</code> also have the following properties:
+        </p>
+
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>applyToPublic</td>
+            <td>Controls whether to apply the check to public member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToProtected</td>
+            <td>Controls whether to apply the check to protected member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPackage</td>
+            <td>
+              Controls whether to apply the check to package-private member.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPrivate</td>
+            <td>Controls whether to apply the check to private member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
+      </subsection>
+    </section>
+
     <section name="Notes">
       <p>
         The default value of <code>format</code> for module <code>PackageName</code> has been chosen to match the
@@ -133,108 +300,6 @@
               value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
 &lt;/module&gt;
       </source>
-
-      <p>
-        Module <code>LocalVariableName</code> also has property
-        <code>tokens</code> which can be used to control whether
-        the check applies to variable declarations or <code>catch</code> clause parameters through tokens <code>VARIABLE_DEF</code> and <code>PARAMETER_DEF</code>.  For example, the following
-        configuration element ensures that <code>catch</code>
-        clause parameters begin with <code>"e"</code>, followed
-        by letters and digits:
-      </p>
-
-      <source>
-&lt;module name=&quot;LocalVariableName&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;^e[a-zA-Z0-9]*$&quot;/&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;PARAMETER_DEF&quot;/&gt;
-&lt;/module&gt;
-      </source>
-
-      <p>
-        Module <code>TypeName</code> also has property <code>tokens</code> which can be used to control whether the
-        check applies to classes or interfaces through tokens <code>CLASS_DEF</code> and <code>INTERFACE_DEF</code>.  For example, the following
-        configuration element ensures that interface names begin with <code>"I_"</code>, followed by letters and digits:
-      </p>
-
-      <source>
-&lt;module name=&quot;TypeName&quot;&gt;
-    &lt;property name=&quot;format&quot;
-              value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
-    &lt;property name=&quot;tokens&quot;
-              value=&quot;INTERFACE_DEF&quot;/&gt;
-&lt;/module&gt;
-      </source>
-
-      <p>
-        The modules <code>ConstantName</code>, <code>MemberName</code>, <code>StaticVariableName</code> and <code>TypeName</code> also have the following properties:
-      </p>
-
-      <table>
-        <tr>
-          <th>name</th>
-          <th>description</th>
-          <th>type</th>
-          <th>default value</th>
-        </tr>
-        <tr>
-          <td>applyToPublic</td>
-          <td>Controls whether to apply the check to public member.</td>
-          <td><a href="property_types.html#boolean">Boolean</a></td>
-          <td><code>true</code></td>
-        </tr>
-        <tr>
-          <td>applyToProtected</td>
-          <td>Controls whether to apply the check to protected member.</td>
-          <td><a href="property_types.html#boolean">Boolean</a></td>
-          <td><code>true</code></td>
-        </tr>
-        <tr>
-          <td>applyToPackage</td>
-          <td>
-            Controls whether to apply the check to package-private member.
-          </td>
-          <td><a href="property_types.html#boolean">Boolean</a></td>
-          <td><code>true</code></td>
-        </tr>
-        <tr>
-          <td>applyToPrivate</td>
-          <td>Controls whether to apply the check to private member.</td>
-          <td><a href="property_types.html#boolean">Boolean</a></td>
-          <td><code>true</code></td>
-        </tr>
-      </table>
-
-      <p>
-        Module <code>MethodName</code> also has the following
-        properties:
-      </p>
-
-      <table>
-        <tr>
-          <th>name</th>
-          <th>description</th>
-          <th>type</th>
-          <th>default value</th>
-        </tr>
-        <tr>
-          <td>allowClassName</td>
-          <td>
-            Controls whether to allow a method name to have the same
-            name as the residing class name.  This is not to be confused
-            with a constructor.  An easy mistake is to place a return
-            type on a constructor declaration which turns it into a
-            method. For example:
-            <pre>
-class MyClass {
-    public void MyClass() {} //this is a method
-    public MyClass() {} //this is a constructor
-}
-            </pre>
-          </td>
-          <td><a href="property_types.html#boolean">Boolean</a></td>
-          <td><code>false</code></td>
-        </tr>
-      </table>
     </section>
   </body>
 </document>
