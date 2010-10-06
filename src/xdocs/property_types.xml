@@ -51,6 +51,19 @@
         This property represents a set of strings. The string representation
         is parsed as a set of comma (',') separated strings.
       </p>
+      <p>
+        Alternatively, this property can be supplied multiple times which
+        is equivalent to a set of comma separated strings. For example, the
+        following:
+      </p>
+      <source>
+&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN,PLUS_ASSIGN&quot;/&gt;
+      </source>
+      <p>can instead be expressed as:</p>
+      <source>
+&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;PLUS_ASSIGN&quot;/&gt;
+      </source>
     </subsection>
 
     <subsection name="intSet">
@@ -59,6 +72,19 @@
         is parsed as a set of comma (',') separated integers that are parsed
         using the <code>java.lang.Integer</code> class.
       </p>
+      <p>
+        Alternatively, this property can be supplied multiple times which
+        is equivalent to a set of comma separated integers. For example, the
+        following:
+      </p>
+      <source>
+&lt;property name=&quot;tokens&quot; value=&quot;42,666&quot;/&gt;
+      </source>
+      <p>can instead be expressed as:</p>
+      <source>
+&lt;property name=&quot;tokens&quot; value=&quot;42&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;666&quot;/&gt;
+      </source>
     </subsection>
 
     <subsection name="regexp">

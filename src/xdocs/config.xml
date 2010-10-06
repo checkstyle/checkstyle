@@ -219,7 +219,7 @@
         The property element provides an optional <code>default</code> attribute which is used when a
         property in the value cannot be resolved. For example this
         configuration snippet from a central configuration file checks
-        that methods have javadoc, but allows inividual projects to
+        that methods have javadoc, but allows individual projects to
         override the severity by specifying their desired value in the
         command line property <code>checkstyle.javadoc.severity</code>:
       </p>
@@ -237,7 +237,7 @@
         configuration file (e.g. one file for the whole company) to
         lower configuration maintenance costs.  Projects that are happy
         with the default can simply use that configuration file as is,
-        but individual projects with special needs have the fexibility
+        but individual projects with special needs have the flexibility
         to adjust a few settings to fit their needs without having to
         copy and maintain the whole configuration.
       </p>

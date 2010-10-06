@@ -57,6 +57,13 @@
           <code>abstract</code> modifier. Thanks to Danil Lopatin for
           patch #3043752.
         </li>
+        <li>
+          Enhanced the property types
+          <a href="property_types.html#stringSet">stringSet</a> and
+          <a href="property_types.html#intSet">intSet</a> to support being
+          supplied multiple times to construct the equivalent of a comma
+          separated list.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>

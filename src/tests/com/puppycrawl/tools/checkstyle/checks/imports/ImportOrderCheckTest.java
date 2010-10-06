@@ -44,7 +44,9 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport
     public void testGroups() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
-        checkConfig.addAttribute("groups", "java.awt, javax.swing, java.io");
+        checkConfig.addAttribute("groups", "java.awt");
+        checkConfig.addAttribute("groups", "javax.swing");
+        checkConfig.addAttribute("groups", "java.io");
         final String[] expected = {
             "3: Wrong order for 'java.awt.Dialog' import.",
             "11: Wrong order for 'java.io.IOException' import.",
