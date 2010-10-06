@@ -32,8 +32,8 @@
     <suppress checks="ImportControl" files=".*[\\/]src[\\/]tests[\\/]"/>
     <suppress checks="Javadoc" files=".*[\\/]src[\\/]tests[\\/]"/>
     <suppress checks="MagicNumber" files=".*[\\/]src[\\/]tests[\\/]"/>
-    <suppress checks="MethodCount" files=".*[\\/]src[\\/]tests[\\/]"/>
-    <suppress checks="EqualsAvoidNull" files=".*[\\/]src[\\/]tests[\\/]"/>
+    <suppress checks="MethodCount" files="[\\/]IndentationCheckTest.java$"/>
+    <suppress checks="EqualsAvoidNull" files="[\\/]Int.*FilterTest.java$"/>
 
     <!-- suppressions to remove over time -->
     <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]tests[\\/]"/>
