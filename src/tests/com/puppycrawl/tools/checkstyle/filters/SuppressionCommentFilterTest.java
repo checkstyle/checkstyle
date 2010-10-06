@@ -1,7 +1,21 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Test case for checkstyle.
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2010  Oliver Burn
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.filters;
 
 import com.google.common.collect.Lists;
@@ -23,7 +37,7 @@ import org.junit.Test;
 public class SuppressionCommentFilterTest
     extends BaseCheckTestSupport
 {
-    static String[] sAllMessages = {
+    private static String[] sAllMessages = {
         "13:17: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "16:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "19:17: Name 'K' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -41,8 +55,7 @@ public class SuppressionCommentFilterTest
     };
 
     @Test
-    public void testNone()
-            throws Exception
+    public void testNone() throws Exception
     {
         final DefaultConfiguration filterConfig = null;
         final String[] suppressed = {
@@ -126,8 +139,7 @@ public class SuppressionCommentFilterTest
 
 
     @Test
-    public void testExpansion()
-            throws Exception
+    public void testExpansion() throws Exception
     {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
@@ -143,8 +155,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    public void testMessage()
-            throws Exception
+    public void testMessage() throws Exception
     {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
@@ -165,7 +176,7 @@ public class SuppressionCommentFilterTest
 
     protected void verifySuppressed(Configuration aFilterConfig,
                                     String[] aSuppressed)
-            throws Exception
+        throws Exception
     {
         verify(createChecker(aFilterConfig),
                getPath("filters/InputSuppressionCommentFilter.java"),
@@ -174,7 +185,7 @@ public class SuppressionCommentFilterTest
 
     @Override
     protected Checker createChecker(Configuration aFilterConfig)
-            throws CheckstyleException
+        throws CheckstyleException
     {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");

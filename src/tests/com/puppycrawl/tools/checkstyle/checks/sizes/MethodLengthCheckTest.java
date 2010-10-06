@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2002  Oliver Burn
+// Copyright (C) 2001-2010  Oliver Burn
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -31,7 +31,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport
             createCheckConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
         final String[] expected = {
-            "79:5: Method length is 20 lines (max allowed is 19)."
+            "79:5: Method length is 20 lines (max allowed is 19).",
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

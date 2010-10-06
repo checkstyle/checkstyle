@@ -1,3 +1,21 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2010  Oliver Burn
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
@@ -15,7 +33,8 @@ import org.junit.Test;
 public class DetailASTTest
 {
     @Test
-    public void testGetChildCount() {
+    public void testGetChildCount()
+    {
         final DetailAST root = new DetailAST();
         final DetailAST firstLevelA = new DetailAST();
         final DetailAST firstLevelB = new DetailAST();
@@ -52,7 +71,8 @@ public class DetailASTTest
     private void checkDir(File dir) throws Exception
     {
         File[] files = dir.listFiles(new FileFilter() {
-                public boolean accept(File file) {
+                public boolean accept(File file)
+                {
                     return (file.getName().endsWith(".java")
                             || file.isDirectory())
                         && !file.getName().endsWith("InputGrammar.java");

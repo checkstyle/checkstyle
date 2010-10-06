@@ -1,3 +1,21 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2010  Oliver Burn
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -12,8 +30,7 @@ import org.junit.Test;
 public class IndentationCheckTest extends BaseCheckTestSupport
 {
     @Test
-    public void testInvalidLabel()
-            throws Exception
+    public void testInvalidLabel() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         final String[] expected = {
@@ -31,8 +48,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testValidLabel()
-            throws Exception
+    public void testValidLabel() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         final String[] expected = {
@@ -40,9 +56,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport
         verify(checkConfig, getPath("indentation/InputValidLabelIndent.java"), expected);
     }
 
-     @Test
-    public void testValidIfWithChecker()
-        throws Exception
+    @Test
+    public void testValidIfWithChecker() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         final Checker c = createChecker(checkConfig);
@@ -643,8 +658,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testTabs()
-            throws Exception
+    public void testTabs() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("basicOffset", Integer.valueOf(4).toString());
@@ -656,8 +670,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testIndentationLevel()
-            throws Exception
+    public void testIndentationLevel() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("basicOffset", Integer.valueOf(2).toString());
@@ -668,8 +681,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testCaseLevel()
-            throws Exception
+    public void testCaseLevel() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("caseIndent", Integer.valueOf(0).toString());
@@ -680,8 +692,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testBraceAdjustment()
-            throws Exception
+    public void testBraceAdjustment() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("braceAdjustment", Integer.valueOf(2).toString());

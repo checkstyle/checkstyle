@@ -29,7 +29,7 @@
                 failureProperty="checkstyle.failure.property"
                 >
       <fileset dir="src"
-               includes="checkstyle/**/*.java,checkstyle/**/*.properties,xdocs/**/*.xml"
+               includes="checkstyle/**/*.java,checkstyle/**/*.properties,xdocs/**/*.xml,tests/**/*Test.java"
                excludes="**/Generated*.java,**/gui/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${target.dir}/cs_errors.xml"/>

@@ -1,3 +1,21 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2010  Oliver Burn
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static org.junit.Assert.assertEquals;
@@ -23,7 +41,8 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
     private DefaultConfiguration mCheckConfig;
 
     @Before
-    public void setUp() {
+    public void setUp()
+    {
         mCheckConfig = createCheckConfig(WriteTagCheck.class);
     }
 
@@ -75,26 +94,24 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
     @Test
     public void testDoubleTag() throws Exception
     {
-      mCheckConfig.addAttribute("tag", "@doubletag");
-      mCheckConfig.addAttribute("tagFormat", "\\S");
-      final String[] expected =
-      {
-          "12: @doubletag=first text",
-          "13: @doubletag=second text",
-      };
-      verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        mCheckConfig.addAttribute("tag", "@doubletag");
+        mCheckConfig.addAttribute("tagFormat", "\\S");
+        final String[] expected = {
+            "12: @doubletag=first text",
+            "13: @doubletag=second text",
+        };
+        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
-    
+
     @Test
     public void testEmptyTag() throws Exception
     {
-      mCheckConfig.addAttribute("tag", "@emptytag");
-      mCheckConfig.addAttribute("tagFormat", "");
-      final String[] expected =
-      {
-          "14: @emptytag=",
-      };
-      verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
+        mCheckConfig.addAttribute("tag", "@emptytag");
+        mCheckConfig.addAttribute("tagFormat", "");
+        final String[] expected = {
+            "14: @emptytag=",
+        };
+        verify(mCheckConfig, getPath("InputWriteTag.java"), expected);
     }
 
 
@@ -117,9 +134,8 @@ public class WriteTagCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("tokens",
             "INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF");
         mCheckConfig.addAttribute("severity", "ignore");
-        final String[] expected =
-        {
-        	"19: @todo=Add a constructor comment",
+        final String[] expected = {
+            "19: @todo=Add a constructor comment",
             "30: @todo=Add a comment",
         };
         verify(mCheckConfig, getPath("InputWriteTag.java"), expected);

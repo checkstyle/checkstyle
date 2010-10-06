@@ -1,3 +1,21 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2010  Oliver Burn
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.io.File;
@@ -35,7 +53,7 @@ public class JavadocStyleCheckTest
             "186:8: Unclosed HTML tag found: <blockquote>",
             "193: First sentence should end with a period.",
             "238: First sentence should end with a period.",
-            "335:33: Extra HTML tag found: </string>"
+            "335:33: Extra HTML tag found: </string>",
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -104,7 +122,7 @@ public class JavadocStyleCheckTest
             "90: Incomplete HTML tag found:     * should fail <",
             "109:39: Extra HTML tag found: </img>",
             "186:8: Unclosed HTML tag found: <blockquote>",
-            "335:33: Extra HTML tag found: </string>"
+            "335:33: Extra HTML tag found: </string>",
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -128,7 +146,7 @@ public class JavadocStyleCheckTest
             "205: Javadoc has empty description section.",
             "230: Javadoc has empty description section.",
             "238: First sentence should end with a period.",
-            "335:33: Extra HTML tag found: </string>"
+            "335:33: Extra HTML tag found: </string>",
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -155,7 +173,7 @@ public class JavadocStyleCheckTest
             "211: Javadoc has empty description section.",
             "230: Javadoc has empty description section.",
             "238: First sentence should end with a period.",
-            "335:33: Extra HTML tag found: </string>"
+            "335:33: Extra HTML tag found: </string>",
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -185,7 +203,7 @@ public class JavadocStyleCheckTest
             "218: Javadoc has empty description section.",
             "230: Javadoc has empty description section.",
             "238: First sentence should end with a period.",
-            "335:33: Extra HTML tag found: </string>"
+            "335:33: Extra HTML tag found: </string>",
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -245,13 +263,12 @@ public class JavadocStyleCheckTest
             "1: First sentence should end with a period.",
         };
 
-        String basePath = "javadoc" + File.separator +
-    	"pkginfo" + File.separator +
-    	"invalidinherit" + File.separator;
+        String basePath = "javadoc" + File.separator
+            + "pkginfo" + File.separator + "invalidinherit" + File.separator;
 
         verify(createChecker(checkConfig),
-        	getPath(basePath + "package-info.java"),
-        	expected);
+               getPath(basePath + "package-info.java"),
+               expected);
     }
 
     @Test
@@ -264,13 +281,12 @@ public class JavadocStyleCheckTest
             "1: First sentence should end with a period.",
         };
 
-        String basePath = "javadoc" + File.separator +
-    	"pkginfo" + File.separator +
-    	"invalidformat" + File.separator;
+        String basePath = "javadoc" + File.separator
+            + "pkginfo" + File.separator + "invalidformat" + File.separator;
 
         verify(createChecker(checkConfig),
-        	getPath(basePath + "package-info.java"),
-        	expected);
+               getPath(basePath + "package-info.java"),
+               expected);
     }
 
     @Test
@@ -282,13 +298,12 @@ public class JavadocStyleCheckTest
         {
         };
 
-        String basePath = "javadoc" + File.separator +
-    	"pkginfo" + File.separator +
-    	"annotation" + File.separator;
+        String basePath = "javadoc" + File.separator
+            + "pkginfo" + File.separator + "annotation" + File.separator;
 
         verify(createChecker(checkConfig),
-        	getPath(basePath + "package-info.java"),
-        	expected);
+               getPath(basePath + "package-info.java"),
+               expected);
     }
 
     @Test
@@ -296,17 +311,16 @@ public class JavadocStyleCheckTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
-        final String[] expected =
-        {
-        	"1: Missing a Javadoc comment."
+        final String[] expected = {
+            "1: Missing a Javadoc comment.",
         };
 
-        String basePath = "javadoc" + File.separator +
-    	"bothfiles" + File.separator;
+        String basePath = "javadoc" + File.separator
+            + "bothfiles" + File.separator;
 
         verify(createChecker(checkConfig),
-        	getPath(basePath + "package-info.java"),
-        	expected);
+               getPath(basePath + "package-info.java"),
+               expected);
     }
 
     @Test
@@ -316,12 +330,11 @@ public class JavadocStyleCheckTest
             createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = {};
 
-        String basePath = "javadoc" + File.separator +
-    	"pkginfo" + File.separator +
-    	"valid" + File.separator;
+        String basePath = "javadoc" + File.separator
+            + "pkginfo" + File.separator + "valid" + File.separator;
 
         verify(createChecker(checkConfig),
-        	getPath(basePath + "package-info.java"),
-        	expected);
+               getPath(basePath + "package-info.java"),
+               expected);
     }
 }

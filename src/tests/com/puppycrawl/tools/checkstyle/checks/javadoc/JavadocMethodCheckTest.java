@@ -1,3 +1,21 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2010  Oliver Burn
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -105,7 +123,8 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
             "74:5: Missing a Javadoc comment.",
             "79:5: Missing a Javadoc comment.",
             "84:5: Missing a Javadoc comment.",
-            "94:32: Expected @param tag for 'aA'." };
+            "94:32: Expected @param tag for 'aA'.",
+        };
         verify(mCheckConfig, getPath("InputPublicOnly.java"), expected);
     }
 
@@ -126,7 +145,8 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
             "59:5: Missing a Javadoc comment.",
             "64:5: Missing a Javadoc comment.",
             "79:5: Missing a Javadoc comment.",
-            "84:5: Missing a Javadoc comment." };
+            "84:5: Missing a Javadoc comment.",
+        };
         verify(mCheckConfig, getPath("InputPublicOnly.java"), expected);
     }
 
@@ -136,7 +156,8 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final String[] expected = {
             "43:9: Missing a Javadoc comment.",
-            "44:9: Missing a Javadoc comment." };
+            "44:9: Missing a Javadoc comment.",
+        };
         verify(mCheckConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 
@@ -429,13 +450,13 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
     public void testInheritDoc() throws Exception
     {
         final String[] expected = {
-                "4:5: Invalid use of the {@inheritDoc} tag.",
-                "9:5: Invalid use of the {@inheritDoc} tag.",
-                "29:5: Invalid use of the {@inheritDoc} tag.",
-                "34:5: Invalid use of the {@inheritDoc} tag.",
-                "39:5: Invalid use of the {@inheritDoc} tag.",
-                "44:5: Invalid use of the {@inheritDoc} tag.",
-                };
+            "4:5: Invalid use of the {@inheritDoc} tag.",
+            "9:5: Invalid use of the {@inheritDoc} tag.",
+            "29:5: Invalid use of the {@inheritDoc} tag.",
+            "34:5: Invalid use of the {@inheritDoc} tag.",
+            "39:5: Invalid use of the {@inheritDoc} tag.",
+            "44:5: Invalid use of the {@inheritDoc} tag.",
+        };
         verify(mCheckConfig, getPath("javadoc/InputInheritDoc.java"), expected);
     }
 }

@@ -1,3 +1,21 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2010  Oliver Burn
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
@@ -34,7 +52,7 @@ public class CheckerTest
         // let's take testinputs.dir
         String testinputs_dir = System.getProperty("testinputs.dir")
                 .replace('/', File.separatorChar)
-                .replace('\\',File.separatorChar);
+                .replace('\\', File.separatorChar);
 
         if (!testinputs_dir.endsWith(File.separator)) {
             testinputs_dir += File.separator;
@@ -48,7 +66,7 @@ public class CheckerTest
     @Test
     public void testDestroy() throws Exception
     {
-        final DebugChecker c= new DebugChecker();
+        final DebugChecker c = new DebugChecker();
         final DebugAuditAdapter aa = new DebugAuditAdapter();
         c.addListener(aa);
         final DebugFilter f = new DebugFilter();
@@ -74,7 +92,7 @@ public class CheckerTest
     @Test
     public void testAddListener() throws Exception
     {
-        final DebugChecker c= new DebugChecker();
+        final DebugChecker c = new DebugChecker();
         final DebugAuditAdapter aa = new DebugAuditAdapter();
         c.addListener(aa);
 
@@ -105,7 +123,7 @@ public class CheckerTest
     @Test
     public void testRemoveListener() throws Exception
     {
-        final DebugChecker c= new DebugChecker();
+        final DebugChecker c = new DebugChecker();
         final DebugAuditAdapter aa = new DebugAuditAdapter();
         final DebugAuditAdapter aa2 = new DebugAuditAdapter();
         c.addListener(aa);
@@ -145,27 +163,27 @@ public class CheckerTest
     @Test
     public void testAddFilter() throws Exception
     {
-        final DebugChecker c= new DebugChecker();
+        final DebugChecker c = new DebugChecker();
         final DebugFilter f = new DebugFilter();
 
         c.addFilter(f);
 
         // Let's try fire some events
-	// we do not call filter in fireAuditStarted() (fix for 1080343)
+        // we do not call filter in fireAuditStarted() (fix for 1080343)
 //         c.fireAuditStarted();
 //         assertTrue("Checker.fireAuditStarted() doesn't call filter", f.wasCalled());
 
-	// we do not call filter in fireAuditFinished() (fix for 1080343)
+        // we do not call filter in fireAuditFinished() (fix for 1080343)
 //         f.resetFilter();
 //         c.fireAuditFinished();
 //         assertTrue("Checker.fireAuditFinished() doesn't call filter", f.wasCalled());
 
-	// we do not call filter in fireFileStarted() (fix for 1080343)
+        // we do not call filter in fireFileStarted() (fix for 1080343)
 //         f.resetFilter();
 //         c.fireFileStarted("Some File Name");
 //         assertTrue("Checker.fireFileStarted() doesn't call filter", f.wasCalled());
 
-	// we do not call filter in fireFileFinished() (fix for 1080343)
+        // we do not call filter in fireFileFinished() (fix for 1080343)
 //         f.resetFilter();
 //         c.fireFileFinished("Some File Name");
 //         assertTrue("Checker.fireFileFinished() doesn't call filter", f.wasCalled());
@@ -181,7 +199,7 @@ public class CheckerTest
     @Test
     public void testRemoveFilter() throws Exception
     {
-        final DebugChecker c= new DebugChecker();
+        final DebugChecker c = new DebugChecker();
         final DebugFilter f = new DebugFilter();
         final DebugFilter f2 = new DebugFilter();
         c.addFilter(f);
@@ -189,24 +207,24 @@ public class CheckerTest
         c.removeFilter(f);
 
         // Let's try fire some events
- 	// we do call filter in fireErrors() only (fix for 1080343)
-// 	c.fireAuditStarted();
+        // we do call filter in fireErrors() only (fix for 1080343)
+//      c.fireAuditStarted();
 //         assertTrue("Checker.fireAuditStarted() doesn't call filter", f2.wasCalled());
 //         assertFalse("Checker.fireAuditStarted() does call removed filter", f.wasCalled());
 
- 	// we do call filter in fireErrors() only (fix for 1080343)
+        // we do call filter in fireErrors() only (fix for 1080343)
 //         f2.resetFilter();
 //         c.fireAuditFinished();
 //         assertTrue("Checker.fireAuditFinished() doesn't call filter", f2.wasCalled());
 //         assertFalse("Checker.fireAuditFinished() does call removed filter", f.wasCalled());
 
- 	// we do call filter in fireErrors() only (fix for 1080343)
+        // we do call filter in fireErrors() only (fix for 1080343)
 //         f2.resetFilter();
 //         c.fireFileStarted("Some File Name");
 //         assertTrue("Checker.fireFileStarted() doesn't call filter", f2.wasCalled());
 //         assertFalse("Checker.fireFileStarted() does call removed filter", f.wasCalled());
 
- 	// we do call filter in fireErrors() only (fix for 1080343)
+        // we do call filter in fireErrors() only (fix for 1080343)
 //         f2.resetFilter();
 //         c.fireFileFinished("Some File Name");
 //         assertTrue("Checker.fireFileFinished() doesn't call filter", f2.wasCalled());

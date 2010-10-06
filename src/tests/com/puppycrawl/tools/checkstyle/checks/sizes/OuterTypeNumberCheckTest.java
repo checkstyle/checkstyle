@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2002  Oliver Burn
+// Copyright (C) 2001-2010  Oliver Burn
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -30,7 +30,7 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeNumberCheck.class);
         final String[] expected = {
-            "6:34: Outer types defined is 3 (max allowed is 1)."
+            "6:34: Outer types defined is 3 (max allowed is 1).",
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

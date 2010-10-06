@@ -26,6 +26,18 @@
     <suppress id="paramNum"
               files="LocalizedMessage.java"
               lines="141,145,178,210"/>
+
+    <!-- Tone down the checking for test code -->
+    <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]tests[\\/]"/>
+    <suppress checks="ImportControl" files=".*[\\/]src[\\/]tests[\\/]"/>
+    <suppress checks="Javadoc" files=".*[\\/]src[\\/]tests[\\/]"/>
+    <suppress checks="MagicNumber" files=".*[\\/]src[\\/]tests[\\/]"/>
+
+    <!-- suppressions to remove over time -->
+    <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]tests[\\/]"/>
+    <suppress checks="LineLength" files=".*[\\/]src[\\/]tests[\\/]"/>
+    <suppress checks="Name" files=".*[\\/]src[\\/]tests[\\/]"/>    
+
     <!--
       Turn off all checks for Generated and Test code. Fixes issues with using
       Eclipse plug-in.
