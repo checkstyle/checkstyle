@@ -112,7 +112,13 @@ public final class DefaultConfiguration implements Configuration
      */
     public void addAttribute(String aName, String aValue)
     {
-        mAttributeMap.put(aName, aValue);
+        final String current = mAttributeMap.put(aName, aValue);
+        if (null == current) {
+            mAttributeMap.put(aName, aValue);
+        }
+        else {
+            mAttributeMap.put(aName, current + "," + aValue);
+        }
     }
 
     /**
