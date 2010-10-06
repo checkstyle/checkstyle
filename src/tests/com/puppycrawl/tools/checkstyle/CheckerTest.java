@@ -23,10 +23,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import java.io.File;
 import java.util.TreeSet;
@@ -238,98 +234,5 @@ public class CheckerTest
         assertTrue("Checker.fireErrors() doesn't call filter", f2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed filter", f.wasCalled());
 
-    }
-}
-
-// Utility classes
-class DebugChecker extends Checker
-{
-    public DebugChecker() throws CheckstyleException
-    {
-        super();
-    }
-
-    @Override
-    public void fireAuditFinished()
-    {
-        super.fireAuditFinished();
-    }
-
-    @Override
-    public void fireAuditStarted()
-    {
-        super.fireAuditStarted();
-    }
-}
-class DebugAuditAdapter implements AuditListener
-{
-    /** keeps track of the number of errors */
-    private boolean mCalled;
-
-    public boolean wasCalled()
-    {
-        return mCalled;
-    }
-
-    public void resetListener()
-    {
-        mCalled = false;
-    }
-
-    /** @see AuditListener */
-    public void addError(AuditEvent aEvt)
-    {
-        mCalled = true;
-    }
-
-    /** @see AuditListener */
-    public void addException(AuditEvent aEvt, Throwable aThrowable)
-    {
-        mCalled = true;
-    }
-
-    /** @see AuditListener */
-    public void auditStarted(AuditEvent aEvt)
-    {
-        mCalled = true;
-    }
-
-    /** @see AuditListener */
-    public void fileStarted(AuditEvent aEvt)
-    {
-        mCalled = true;
-    }
-
-    /** @see AuditListener */
-    public void auditFinished(AuditEvent aEvt)
-    {
-        mCalled = true;
-    }
-
-    /** @see AuditListener */
-    public void fileFinished(AuditEvent aEvt)
-    {
-        mCalled = true;
-    }
-}
-
-class DebugFilter implements Filter
-{
-    private boolean mCalled;
-
-    public boolean accept(AuditEvent aEvent)
-    {
-        mCalled = true;
-        return true;
-    }
-
-    public boolean wasCalled()
-    {
-        return mCalled;
-    }
-
-    public void resetFilter()
-    {
-        mCalled = false;
     }
 }
