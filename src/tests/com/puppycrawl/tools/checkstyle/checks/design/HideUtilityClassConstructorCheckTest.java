@@ -69,4 +69,34 @@ public class HideUtilityClassConstructorCheckTest
         verify(checkConfig, getPath("design" + File.separator + "InputRegression1762702.java"), expected);
     }
 
+    @Test
+    public void testEmptyAbstractClass() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HideUtilityClassConstructorCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("design" + File.separator + "HideUtilityClassContructor3041574_1.java"), expected);
+    }
+
+    @Test
+    public void testEmptyClassWithOnlyPrivateFields() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HideUtilityClassConstructorCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("design" + File.separator + "HideUtilityClassContructor3041574_2.java"), expected);
+    }
+
+    @Test
+    public void testClassWithStaticInnerClass() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HideUtilityClassConstructorCheck.class);
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("design" + File.separator + "HideUtilityClassContructor3041574_3.java"), expected);
+    }
+
 }

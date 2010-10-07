@@ -33,10 +33,15 @@ import com.sun.javadoc.RootDoc;
  *
  * @author o_sukhodolsky
  */
-public class TokenTypesDoclet
+public final class TokenTypesDoclet
 {
     /** Command line option to specify file to write output of the doclet. */
     private static final String DEST_FILE_OPT = "-destfile";
+
+    /** Stop instances being created. */
+    private TokenTypesDoclet()
+    {
+    }
 
     /**
      * The doclet's starter method.

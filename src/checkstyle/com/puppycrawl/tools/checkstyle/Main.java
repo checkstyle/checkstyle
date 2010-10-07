@@ -58,6 +58,11 @@ public final class Main
             "Sets the output format. (plain|xml). Defaults to plain");
     }
 
+    /** Stop instances being created. */
+    private Main()
+    {
+    }
+
     /**
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.

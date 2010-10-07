@@ -219,7 +219,8 @@
 public class StringUtils // not final to allow subclassing
 {
     protected StringUtils() {
-        throw new UnsupportedOperationException(); // prevents calls from subclass
+        // prevents calls from subclass
+        throw new UnsupportedOperationException();
     }
 
     public static int count(char c, String s) {

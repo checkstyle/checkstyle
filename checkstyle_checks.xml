@@ -211,5 +211,6 @@
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings"/>
     <module name="OuterTypeFilename"/>
+    <module name="HideUtilityClassConstructor"/>
   </module>
 </module>
