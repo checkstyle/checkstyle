@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.12 $
  */
 public class HideUtilityClassConstructorCheck extends Check
 {
@@ -44,10 +43,17 @@ public class HideUtilityClassConstructorCheck extends Check
     @Override
     public void visitToken(DetailAST aAST)
     {
+        if (isAbstract(aAST)) {
+            // abstract class could not have private constructor
+            return;
+        }
+
         final DetailAST objBlock = aAST.findFirstToken(TokenTypes.OBJBLOCK);
         DetailAST child = objBlock.getFirstChild();
+        final boolean hasStaticModifier = isStatic(aAST);
         boolean hasMethodOrField = false;
         boolean hasNonStaticMethodOrField = false;
+        boolean hasNonPrivateStaticMethodOrField = false;
         boolean hasDefaultCtor = true;
         boolean hasPublicCtor = false;
 
@@ -66,6 +72,9 @@ public class HideUtilityClassConstructorCheck extends Check
 
                 if (!isStatic && !isPrivate) {
                     hasNonStaticMethodOrField = true;
+                }
+                if (isStatic && !isPrivate) {
+                    hasNonPrivateStaticMethodOrField = true;
                 }
             }
             if (type == TokenTypes.CTOR_DEF) {
@@ -93,11 +102,31 @@ public class HideUtilityClassConstructorCheck extends Check
         final boolean extendsJLO = // J.Lo even made it into in our sources :-)
             aAST.findFirstToken(TokenTypes.EXTENDS_CLAUSE) == null;
 
-        final boolean isUtilClass =
-            extendsJLO && hasMethodOrField && !hasNonStaticMethodOrField;
+        final boolean isUtilClass = extendsJLO && hasMethodOrField
+            && !hasNonStaticMethodOrField && hasNonPrivateStaticMethodOrField;
 
-        if (isUtilClass && hasAccessibleCtor) {
+        if (isUtilClass && (hasAccessibleCtor && !hasStaticModifier)) {
             log(aAST.getLineNo(), aAST.getColumnNo(), "hide.utility.class");
         }
+    }
+
+    /**
+     * @param aAST class definition for check.
+     * @return true if a given class declared as abstract.
+     */
+    private boolean isAbstract(DetailAST aAST)
+    {
+        return aAST.findFirstToken(TokenTypes.MODIFIERS)
+            .branchContains(TokenTypes.ABSTRACT);
+    }
+
+    /**
+     * @param aAST class definition for check.
+     * @return true if a given class declared as static.
+     */
+    private boolean isStatic(DetailAST aAST)
+    {
+        return aAST.findFirstToken(TokenTypes.MODIFIERS)
+            .branchContains(TokenTypes.LITERAL_STATIC);
     }
 }

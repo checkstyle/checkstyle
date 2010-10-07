@@ -65,6 +65,12 @@
           checking of <code>@throws</code> tags for methods that throw multiple
           non-runtime exceptions. Thanks to Daan Kets for patch #3039869.
         </li>
+        <li>
+          Fix
+          <a href="config_design.html#HideUtilityClassConstructor">HideUtilityClassConstructor</a>
+          to handle empty and inner classes. Thanks to Roman Ivanov for
+          patch #3045720.
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>
