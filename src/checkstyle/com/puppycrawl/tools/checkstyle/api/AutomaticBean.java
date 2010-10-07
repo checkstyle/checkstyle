@@ -273,8 +273,8 @@ public class AutomaticBean
     private static class RelaxedStringArrayConverter implements Converter
     {
         /** {@inheritDoc} */
-        @SuppressWarnings("unchecked")
-        public Object convert(Class aType, Object aValue)
+        public Object convert(@SuppressWarnings("rawtypes") Class aType,
+            Object aValue)
         {
             if (null == aType) {
                 throw new ConversionException("Cannot convert from null.");

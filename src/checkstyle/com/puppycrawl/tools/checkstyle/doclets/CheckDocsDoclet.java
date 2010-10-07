@@ -18,16 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.doclets;
 
-import com.sun.javadoc.ClassDoc;
-import com.sun.javadoc.RootDoc;
-import com.sun.javadoc.Tag;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
+import com.sun.javadoc.ClassDoc;
+import com.sun.javadoc.RootDoc;
+import com.sun.javadoc.Tag;
 
 /**
  * Doclet which is used to extract Anakia input files from the
@@ -51,7 +50,7 @@ public final class CheckDocsDoclet
      * by their check name.
      */
     private static class ClassDocByCheckNameComparator implements
-            Comparator<ClassDoc>, Serializable
+        Comparator<ClassDoc>
     {
         /** {@inheritDoc} */
         public int compare(ClassDoc aObject1, ClassDoc aObject2)
