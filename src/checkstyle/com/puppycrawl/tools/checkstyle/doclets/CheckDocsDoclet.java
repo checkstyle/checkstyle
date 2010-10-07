@@ -41,6 +41,11 @@ public final class CheckDocsDoclet
     /** javadoc command line option for dest dir. */
     private static final String DEST_DIR_OPT = "-d";
 
+    /** Stop instances being created. */
+    private CheckDocsDoclet()
+    {
+    }
+
     /**
      * Comparator that compares the {@link ClassDoc ClassDocs} of two checks
      * by their check name.
