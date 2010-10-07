@@ -26,6 +26,9 @@ package com.puppycrawl.tools.checkstyle.api;
  */
 public class CheckstyleException extends Exception
 {
+    /** For Serialisation that will never happen. */
+    private static final long serialVersionUID = -3517342299748221108L;
+
     /**
      * Creates a new <code>CheckstyleException</code> instance.
      *

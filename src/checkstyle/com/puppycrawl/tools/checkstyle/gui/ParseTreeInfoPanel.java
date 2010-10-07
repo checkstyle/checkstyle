@@ -52,6 +52,8 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  */
 public class ParseTreeInfoPanel extends JPanel
 {
+    /** For Serialisation that will never happen. */
+    private static final long serialVersionUID = -4243405131202059043L;
     private final JTreeTable mTreeTable;
     private final ParseTreeModel mParseTreeModel;
     private final JTextArea mJTextArea;
@@ -79,6 +81,11 @@ public class ParseTreeInfoPanel extends JPanel
 
     private class FileSelectionAction extends AbstractAction
     {
+        /**
+         *
+         */
+        private static final long serialVersionUID = -1926935338069418119L;
+
         public FileSelectionAction()
         {
             super("Select Java File");
@@ -101,6 +108,11 @@ public class ParseTreeInfoPanel extends JPanel
 
     private class ReloadAction extends AbstractAction
     {
+        /**
+         *
+         */
+        private static final long serialVersionUID = -1021880396046355863L;
+
         public ReloadAction()
         {
             super("Reload Java File");
@@ -157,7 +169,7 @@ public class ParseTreeInfoPanel extends JPanel
                 }
 
                 // insert the contents of the file to the text area
-                for (String element : sourceLines) {
+                for (final String element : sourceLines) {
                     mJTextArea.append(element + "\n");
                 }
 

@@ -21,23 +21,23 @@
  * %W% %E%
  *
  * Copyright 1997, 1998 Sun Microsystems, Inc. All Rights Reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or
  * without modification, are permitted provided that the following
  * conditions are met:
- * 
+ *
  * - Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer. 
- *   
+ *   notice, this list of conditions and the following disclaimer.
+ *
  * - Redistribution in binary form must reproduce the above
  *   copyright notice, this list of conditions and the following
  *   disclaimer in the documentation and/or other materials
- *   provided with the distribution. 
- *   
+ *   provided with the distribution.
+ *
  * Neither the name of Sun Microsystems, Inc. or the names of
  * contributors may be used to endorse or promote products derived
- * from this software without specific prior written permission.  
- * 
+ * from this software without specific prior written permission.
+ *
  * This software is provided "AS IS," without a warranty of any
  * kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
  * WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
@@ -45,13 +45,13 @@
  * EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY
  * DAMAGES OR LIABILITIES SUFFERED BY LICENSEE AS A RESULT OF OR
  * RELATING TO USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE OR
- * ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE 
- * FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT,   
- * SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER  
- * CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF 
- * THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS 
+ * ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE
+ * FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT,
+ * SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER
+ * CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF
+ * THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS
  * BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
- * 
+ *
  * You acknowledge that this software is not designed, licensed or
  * intended for use in the design, construction, operation or
  * maintenance of any nuclear facility.
@@ -84,9 +84,9 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 /**
- * This example shows how to create a simple JTreeTable component, 
- * by using a JTree as a renderer (and editor) for the cells in a 
- * particular column in the JTable.  
+ * This example shows how to create a simple JTreeTable component,
+ * by using a JTree as a renderer (and editor) for the cells in a
+ * particular column in the JTable.
  *
  * <a href="http://java.sun.com/products/jfc/tsc/articles/treetable1/index.html">Original&nbsp;Source&nbsp;Location</a>
  *
@@ -96,6 +96,8 @@ import javax.swing.tree.TreePath;
  */
 public class JTreeTable extends JTable
 {
+    /** For Serialisation that will never happen. */
+    private static final long serialVersionUID = -8493693409423365387L;
     /** A subclass of JTree. */
     protected TreeTableCellRenderer tree;
 
@@ -133,6 +135,11 @@ public class JTreeTable extends JTable
         }
 
         final Action expand = new AbstractAction() {
+                /**
+             *
+             */
+            private static final long serialVersionUID = -5859674518660156121L;
+
                 public void actionPerformed(ActionEvent e) {
                     final TreePath selected = tree.getSelectionPath();
                     if (tree.isExpanded(selected)) {
@@ -207,6 +214,10 @@ public class JTreeTable extends JTable
     class TreeTableCellRenderer extends JTree implements
             TableCellRenderer
     {
+        /**
+         *
+         */
+        private static final long serialVersionUID = 4324031590789321581L;
         /** Last table/tree row asked to renderer. */
         protected int visibleRow;
 
@@ -366,6 +377,10 @@ public class JTreeTable extends JTable
      */
     class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel
     {
+        /**
+         *
+         */
+        private static final long serialVersionUID = 2267930983939339510L;
         /** Set to true when we are updating the ListSelectionModel. */
         protected boolean updatingListSelectionModel;
 

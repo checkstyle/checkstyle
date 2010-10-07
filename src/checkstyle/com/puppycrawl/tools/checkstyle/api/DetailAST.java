@@ -37,6 +37,9 @@ import antlr.collections.AST;
  */
 public final class DetailAST extends CommonAST
 {
+    /** For Serialisation that will never happen. */
+    private static final long serialVersionUID = -2580884815577559874L;
+
     /** constant to indicate if not calculated the child count */
     private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
 
