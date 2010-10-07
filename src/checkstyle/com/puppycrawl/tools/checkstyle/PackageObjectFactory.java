@@ -26,7 +26,6 @@ import java.util.Set;
  * A factory for creating objects from package names and names.
  * @author Rick Giles
  * @author lkuehne
- * @version $Revision$
  */
 class PackageObjectFactory implements ModuleFactory
 {

@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.8 $
  */
 public final class InterfaceIsTypeCheck
         extends Check

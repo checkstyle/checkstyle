@@ -31,7 +31,6 @@ import org.junit.Test;
 /**
  * @author Rick Giles
  * @author lkuehne
- * @version $Revision$
  */
 public class ConfigurationLoaderTest
 {

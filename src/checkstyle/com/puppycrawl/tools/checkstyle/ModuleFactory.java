@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * conventions, fallback strategies, etc.
  *
  * @author lkuehne
- * @version $Revision: 1.7 $
  */
 public interface ModuleFactory
 {

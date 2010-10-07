@@ -29,7 +29,6 @@ import org.junit.Test;
  * Enter a description of class PackageNamesLoaderTest.java.
  * @author Rick Giles
  * @author lkuehne
- * @version $Revision$
  */
 public class PackageNamesLoaderTest
 {

@@ -35,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * so their company's coding standards forbids them.
  *
  * @author lkuehne
- * @version $Revision: 1.6 $
  */
 public class AvoidInlineConditionalsCheck extends Check
 {

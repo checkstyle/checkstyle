@@ -54,7 +54,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * @author lkuehne
- * @version $Revision: 1.13 $
  */
 public class DesignForExtensionCheck extends Check
 {
