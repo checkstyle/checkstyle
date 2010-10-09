@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.List;
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -64,7 +66,7 @@ public class AvoidStarImportCheck
     extends Check
 {
     /** the packages/classes to exempt from this check. */
-    private String[] mExcludes = new String[0];
+    private final List<String> mExcludes = Lists.newArrayList();
 
     /** whether to allow all class imports */
     private boolean mAllowClassImports;
@@ -86,7 +88,10 @@ public class AvoidStarImportCheck
      */
     public void setExcludes(String[] aExcludes)
     {
-        mExcludes = appendDotStar(aExcludes);
+        mExcludes.clear();
+        for (final String exclude : aExcludes) {
+            mExcludes.add(exclude.endsWith(".*") ? exclude : exclude + ".*");
+        }
     }
 
     /**
@@ -110,59 +115,29 @@ public class AvoidStarImportCheck
     @Override
     public void visitToken(final DetailAST aAST)
     {
-        if (!mAllowClassImports
-            && aAST.getType() == TokenTypes.IMPORT)
-        {
-            final DetailAST startingDot =
-                aAST.getFirstChild();
-            logsStarredImportViolation(startingDot, mExcludes);
+        if (!mAllowClassImports && (TokenTypes.IMPORT == aAST.getType())) {
+            final DetailAST startingDot = aAST.getFirstChild();
+            logsStarredImportViolation(startingDot);
         }
         else if (!mAllowStaticMemberImports
-            && aAST.getType() == TokenTypes.STATIC_IMPORT)
+            && (TokenTypes.STATIC_IMPORT == aAST.getType()))
         {
-            //must navigate past the static keyword
-            final DetailAST startingDot =
-                aAST.getFirstChild().getNextSibling();
-            logsStarredImportViolation(startingDot, mExcludes);
+            // must navigate past the static keyword
+            final DetailAST startingDot = aAST.getFirstChild().getNextSibling();
+            logsStarredImportViolation(startingDot);
         }
-    }
-
-    /**
-     * Appends a .* to the end of the string in a given
-     * array of excludes.
-     * @param aExcludes array of excludes (either package or class)
-     * @return array of excludes with .*
-     */
-    private String[] appendDotStar(String[] aExcludes)
-    {
-        final String[] excludes = new String[aExcludes.length];
-        for (int i = 0; i < aExcludes.length; i++) {
-            excludes[i] = aExcludes[i];
-            if (!excludes[i].endsWith(".*")) {
-                // force all package names to end with ".*" to disambiguate
-                // "java.io"
-                excludes[i] += ".*";
-            }
-        }
-        return excludes;
     }
 
     /**
      * Gets the full import identifier.  If the import is a starred import and
      * it's not excluded then a violation is logged.
      * @param aStartingDot the starting dot for the import statement
-     * @param aExcludes an array of excludes
      */
-    private void logsStarredImportViolation(DetailAST aStartingDot,
-        String[] aExcludes)
+    private void logsStarredImportViolation(DetailAST aStartingDot)
     {
         final FullIdent name = FullIdent.createFullIdent(aStartingDot);
-
-        if (isStaredImport(name)) {
-            if (!isExempt(name.getText(), aExcludes)) {
-                log(aStartingDot.getLineNo(),
-                    "import.avoidStar", name.getText());
-            }
+        if (isStaredImport(name) && !mExcludes.contains(name.getText())) {
+            log(aStartingDot.getLineNo(), "import.avoidStar", name.getText());
         }
     }
 
@@ -173,25 +148,6 @@ public class AvoidStarImportCheck
      */
     private boolean isStaredImport(FullIdent aImportIdent)
     {
-        if ((aImportIdent != null) && aImportIdent.getText().endsWith(".*")) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Checks if a class of package is exempt from a give array of excludes.
-     * @param aClassOrPackage the class or package
-     * @param aExcludes an array of excludes
-     * @return true if except false if not
-     */
-    private boolean isExempt(String aClassOrPackage, String[] aExcludes)
-    {
-        for (final String exclude : aExcludes) {
-            if (aClassOrPackage.equals(exclude)) {
-                return true;
-            }
-        }
-        return false;
+        return (null != aImportIdent) && aImportIdent.getText().endsWith(".*");
     }
 }
