@@ -17,9 +17,10 @@
         </p>
 
         <p>
-          Rationale: Importing all classes from a package leads to tight
-          coupling between packages and might lead to problems when a new
-          version of a library introduces name clashes.
+          Rationale: Importing all classes from a package or static
+          members from a class leads to tight coupling between packages
+          or classes and might lead to problems when a new version of a
+          library introduces name clashes.
         </p>
       </subsection>
 
@@ -41,18 +42,39 @@
             <td><a href="property_types.html#stringSet">list of strings</a></td>
             <td><code>empty list</code></td>
           </tr>
+          <tr>
+            <td>allowClassImports</td>
+            <td>
+              whether to allow starred class imports like
+              <code>import java.util.*;</code>.
+            </td>
+            <td><a href="property_types.html#Boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>allowStaticMemberImports</td>
+            <td>
+              whether to allow starred static member imports like
+              <code>import static org.junit.Assert.*;</code>
+            </td>
+            <td><a href="property_types.html#Boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
         </table>
       </subsection>
 
       <subsection name="Example">
         <p>
           An example how to configure the check so that star imports from
-          java.io and java.net are allowed:
+          packages java.io and java.net as well as static members from class
+          from java.lang.Math are allowed:
         </p>
 
         <source>
 &lt;module name="AvoidStarImport"&gt;
-   &lt;property name="excludes" value="java.io,java.net"/&gt;
+   &lt;property name="excludes" value="java.io,java.net,java.lang.Math"/&gt;
+   &lt;property name="allowClassImports" value="false"/&gt;
+   &lt;property name="allowStaticMemberImports" value="false"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

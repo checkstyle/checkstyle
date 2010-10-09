@@ -64,6 +64,14 @@
           supplied multiple times to construct the equivalent of a comma
           separated list.
         </li>
+        <li>
+          Enhanced
+          <a href="config_imports.html#AvoidStarImport">AvoidStarImport</a>
+          to support the properties <code>allowClassImports</code> and
+          <code>allowStaticMemberImports</code> for finer control over
+          what is allowed. Thanks to Travis Schneeberger for patch
+          #1939775.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>
