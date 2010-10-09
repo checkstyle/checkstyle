@@ -36,6 +36,9 @@ public class AvoidStarImportTest
             "7: Using the '.*' form of import should be avoided - com.puppycrawl.tools.checkstyle.imports.*.",
             "9: Using the '.*' form of import should be avoided - java.io.*.",
             "10: Using the '.*' form of import should be avoided - java.lang.*.",
+            "25: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
+            "26: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
+            "28: Using the '.*' form of import should be avoided - sun.net.ftpclient.FtpClient.*.",
         };
 
         verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected);
@@ -47,11 +50,27 @@ public class AvoidStarImportTest
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStarImportCheck.class);
-        checkConfig.addAttribute("excludes", "java.io,java.lang");
-        // allow the java.io/java.lang star imports
+        checkConfig.addAttribute("excludes",
+            "java.io,java.lang,javax.swing.WindowConstants.*, javax.swing.WindowConstants");
+        // allow the java.io/java.lang,javax.swing.WindowConstants star imports
         final String[] expected2 = new String[] {
             "7: Using the '.*' form of import should be avoided - com.puppycrawl.tools.checkstyle.imports.*.",
+            "28: Using the '.*' form of import should be avoided - sun.net.ftpclient.FtpClient.*.",
         };
         verify(checkConfig, getPath("imports" + File.separator + "InputImport.java"), expected2);
+    }
+
+    @Test
+    public void testAllowClassImports() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(AvoidStarImportCheck.class);
+        checkConfig.addAttribute("allowClassImports", "true");
+        // allow all class star imports
+        final String[] expected2 = new String[] {
+            "25: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
+            "26: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
+            "28: Using the '.*' form of import should be avoided - sun.net.ftpclient.FtpClient.*.", };
+        verify(checkConfig, getPath("imports" + File.separator
+            + "InputImport.java"), expected2);
     }
 }
