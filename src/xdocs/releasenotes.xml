@@ -89,7 +89,13 @@
       </ul>
       <p>Notes:</p>
       <ul>
-        <li>TBD</li>
+        <li>
+          Changed the default value of the property <code>logLoadErrors</code>
+          to be <code>true</code> for the checks
+          <a href="config_coding.html#RedundantThrows">RedundantThrows</a> and
+          <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a> to
+          ensure consistent behaviour.
+        </li>
       </ul>
     </section>
     <section name="Release 5.2">

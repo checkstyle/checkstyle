@@ -67,7 +67,7 @@ public abstract class AbstractTypeAwareCheck extends Check
      *
      * This configuration option was triggered by bug 1422462.
      */
-    private boolean mLogLoadErrors;
+    private boolean mLogLoadErrors = true;
 
     /**
      * Controls whether to log class loading errors to the checkstyle report

@@ -368,14 +368,15 @@ public boolean isSomething()
             <td>This check may need to load exception classes mentioned in
             the @throws tag to check whether they are RuntimeExceptions.
             If loading the class fails, this property allows to control
-            checkstyle's error handling. If set to false (the default) a
+            checkstyle's error handling. If set to <code>false</code> a
             classpath configuration problem is assumed and the TreeWalker
             stops operating on the class completely.
-            If set to true, checkstyle assumes a typo or refactoring problem in the
+            If set to <code>true</code> (the default) , checkstyle assumes a
+            typo or refactoring problem in the
             javadoc and logs the problem in the normal checkstyle report
             (potentially masking a configuration error).</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>false</code></td>
+            <td><code>true</code></td>
           </tr>
           <tr>
             <td>suppressLoadErrors</td>
