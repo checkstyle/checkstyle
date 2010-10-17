@@ -100,7 +100,7 @@ public abstract class AbstractLoader
 
     @Override
     public InputSource resolveEntity(String aPublicId, String aSystemId)
-        throws SAXException
+        throws SAXException, IOException
     {
         if (mPublicIdToResourceNameMap.keySet().contains(aPublicId)) {
             final String dtdResourceName =
@@ -115,19 +115,7 @@ public abstract class AbstractLoader
             }
             return new InputSource(dtdIS);
         }
-        // This is a hack to workaround problem with SAX
-        // DefaultHeader.resolveEntity():
-        // sometimes it throws SAX- and IO- exceptions
-        // sometime SAX only :(
-        try {
-            if (false) {
-                throw new IOException("");
-            }
-            return super.resolveEntity(aPublicId, aSystemId);
-        }
-        catch (final IOException e) {
-            throw new SAXException("" + e, e);
-        }
+        return super.resolveEntity(aPublicId, aSystemId);
     }
 
     @Override
