@@ -41,6 +41,9 @@ import java.util.ResourceBundle;
 public final class LocalizedMessage
     implements Comparable<LocalizedMessage>, Serializable
 {
+    /** Required for serialization. */
+    private static final long serialVersionUID = 5675176836184862150L;
+
     /** hash function multiplicand */
     private static final int HASH_MULT = 29;
 
@@ -123,7 +126,7 @@ public final class LocalizedMessage
         result = mLineNo;
         result = HASH_MULT * result + mColNo;
         result = HASH_MULT * result + mKey.hashCode();
-        for (Object element : mArgs) {
+        for (final Object element : mArgs) {
             result = HASH_MULT * result + element.hashCode();
         }
         return result;

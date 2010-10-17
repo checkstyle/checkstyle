@@ -35,6 +35,9 @@ import java.util.Set;
  */
 public final class DefaultConfiguration implements Configuration
 {
+    /** Required for serialization. */
+    private static final long serialVersionUID = 1157875385356127169L;
+
     /** The name of this configuration */
     private final String mName;
 
