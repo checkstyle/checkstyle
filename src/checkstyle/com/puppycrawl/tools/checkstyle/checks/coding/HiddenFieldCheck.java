@@ -441,7 +441,7 @@ public class HiddenFieldCheck
             if (mInstanceFields.contains(aField)) {
                 return true;
             }
-            if (mStaticType) {
+            if (isStaticType()) {
                 return false;
             }
 
