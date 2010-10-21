@@ -246,19 +246,19 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     {
         // Prepare to start
         fireAuditStarted();
-        for (FileSetCheck fsc : mFileSetChecks) {
+        for (final FileSetCheck fsc : mFileSetChecks) {
             fsc.beginProcessing(mCharset);
         }
 
         // Process each file
-        for (File f : aFiles) {
+        for (final File f : aFiles) {
             final String fileName = f.getAbsolutePath();
             fireFileStarted(fileName);
             final TreeSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
             try {
                 final FileText theText = new FileText(f.getAbsoluteFile(),
                         mCharset);
-                for (FileSetCheck fsc : mFileSetChecks) {
+                for (final FileSetCheck fsc : mFileSetChecks) {
                     fileMessages.addAll(fsc.process(f, theText));
                 }
             }
@@ -281,7 +281,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
         }
 
         // Finish up
-        for (FileSetCheck fsc : mFileSetChecks) {
+        for (final FileSetCheck fsc : mFileSetChecks) {
             // They may also log!!!
             fsc.finishProcessing();
             fsc.destroy();
@@ -334,26 +334,24 @@ public class Checker extends AutomaticBean implements MessageDispatcher
                 Locale.US);
         final boolean onNetWare = (osName.indexOf("netware") > -1);
 
-        final String orig = aPath;
-
-        aPath = aPath.replace('/', File.separatorChar).replace('\\',
-                File.separatorChar);
+        String path = aPath.replace('/', File.separatorChar).replace('\\',
+            File.separatorChar);
 
         // make sure we are dealing with an absolute path
-        final int colon = aPath.indexOf(":");
+        final int colon = path.indexOf(":");
 
         if (!onNetWare) {
-            if (!aPath.startsWith(File.separator)
-                && !((aPath.length() >= 2)
-                     && Character.isLetter(aPath.charAt(0)) && (colon == 1)))
+            if (!path.startsWith(File.separator)
+                && !((path.length() >= 2)
+                     && Character.isLetter(path.charAt(0)) && (colon == 1)))
             {
-                final String msg = aPath + " is not an absolute path";
+                final String msg = path + " is not an absolute path";
                 throw new IllegalArgumentException(msg);
             }
         }
         else {
-            if (!aPath.startsWith(File.separator) && (colon == -1)) {
-                final String msg = aPath + " is not an absolute path";
+            if (!path.startsWith(File.separator) && (colon == -1)) {
+                final String msg = path + " is not an absolute path";
                 throw new IllegalArgumentException(msg);
             }
         }
@@ -361,20 +359,20 @@ public class Checker extends AutomaticBean implements MessageDispatcher
         boolean dosWithDrive = false;
         String root = null;
         // Eliminate consecutive slashes after the drive spec
-        if ((!onNetWare && (aPath.length() >= 2)
-             && Character.isLetter(aPath.charAt(0)) && (aPath.charAt(1) == ':'))
+        if ((!onNetWare && (path.length() >= 2)
+             && Character.isLetter(path.charAt(0)) && (path.charAt(1) == ':'))
             || (onNetWare && (colon > -1)))
         {
 
             dosWithDrive = true;
 
-            final char[] ca = aPath.replace('/', '\\').toCharArray();
+            final char[] ca = path.replace('/', '\\').toCharArray();
             final StringBuffer sbRoot = new StringBuffer();
             for (int i = 0; i < colon; i++) {
                 sbRoot.append(Character.toUpperCase(ca[i]));
             }
             sbRoot.append(':');
-            if (colon + 1 < aPath.length()) {
+            if (colon + 1 < path.length()) {
                 sbRoot.append(File.separatorChar);
             }
             root = sbRoot.toString();
@@ -387,28 +385,28 @@ public class Checker extends AutomaticBean implements MessageDispatcher
                     sbPath.append(ca[i]);
                 }
             }
-            aPath = sbPath.toString().replace('\\', File.separatorChar);
+            path = sbPath.toString().replace('\\', File.separatorChar);
 
         }
         else {
-            if (aPath.length() == 1) {
+            if (path.length() == 1) {
                 root = File.separator;
-                aPath = "";
+                path = "";
             }
-            else if (aPath.charAt(1) == File.separatorChar) {
+            else if (path.charAt(1) == File.separatorChar) {
                 // UNC drive
                 root = File.separator + File.separator;
-                aPath = aPath.substring(2);
+                path = path.substring(2);
             }
             else {
                 root = File.separator;
-                aPath = aPath.substring(1);
+                path = path.substring(1);
             }
         }
 
         final FastStack<String> s = FastStack.newInstance();
         s.push(root);
-        final StringTokenizer tok = new StringTokenizer(aPath, File.separator);
+        final StringTokenizer tok = new StringTokenizer(path, File.separator);
         while (tok.hasMoreTokens()) {
             final String thisToken = tok.nextToken();
             if (".".equals(thisToken)) {
@@ -417,7 +415,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             else if ("..".equals(thisToken)) {
                 if (s.size() < 2) {
                     throw new IllegalArgumentException("Cannot resolve path "
-                            + orig);
+                            + aPath);
                 }
                 s.pop();
             }
@@ -436,11 +434,11 @@ public class Checker extends AutomaticBean implements MessageDispatcher
             sb.append(s.peek(i));
         }
 
-        aPath = sb.toString();
+        path = sb.toString();
         if (dosWithDrive) {
-            aPath = aPath.replace('/', '\\');
+            path = path.replace('/', '\\');
         }
-        return aPath;
+        return path;
     }
 
     /** @return the base directory property used in unit-test. */
@@ -453,7 +451,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     protected void fireAuditStarted()
     {
         final AuditEvent evt = new AuditEvent(this);
-        for (AuditListener listener : mListeners) {
+        for (final AuditListener listener : mListeners) {
             listener.auditStarted(evt);
         }
     }
@@ -462,7 +460,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     protected void fireAuditFinished()
     {
         final AuditEvent evt = new AuditEvent(this);
-        for (AuditListener listener : mListeners) {
+        for (final AuditListener listener : mListeners) {
             listener.auditFinished(evt);
         }
     }
@@ -477,7 +475,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        for (AuditListener listener : mListeners) {
+        for (final AuditListener listener : mListeners) {
             listener.fileStarted(evt);
         }
     }
@@ -492,7 +490,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     {
         final String stripped = getStrippedFileName(aFileName);
         final AuditEvent evt = new AuditEvent(this, stripped);
-        for (AuditListener listener : mListeners) {
+        for (final AuditListener listener : mListeners) {
             listener.fileFinished(evt);
         }
     }
@@ -506,10 +504,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher
     public void fireErrors(String aFileName, TreeSet<LocalizedMessage> aErrors)
     {
         final String stripped = getStrippedFileName(aFileName);
-        for (LocalizedMessage element : aErrors) {
+        for (final LocalizedMessage element : aErrors) {
             final AuditEvent evt = new AuditEvent(this, stripped, element);
             if (mFilters.accept(evt)) {
-                for (AuditListener listener : mListeners) {
+                for (final AuditListener listener : mListeners) {
                     listener.addError(evt);
                 }
             }

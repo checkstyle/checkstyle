@@ -151,32 +151,33 @@ public final class CheckUtils
      */
     public static double parseDouble(String aText, int aType)
     {
+        String txt = aText;
         double result = 0;
         switch (aType) {
         case TokenTypes.NUM_FLOAT:
         case TokenTypes.NUM_DOUBLE:
-            result = Double.parseDouble(aText);
+            result = Double.parseDouble(txt);
             break;
         case TokenTypes.NUM_INT:
         case TokenTypes.NUM_LONG:
             int radix = BASE_10;
-            if (aText.startsWith("0x") || aText.startsWith("0X")) {
+            if (txt.startsWith("0x") || txt.startsWith("0X")) {
                 radix = BASE_16;
-                aText = aText.substring(2);
+                txt = txt.substring(2);
             }
-            else if (aText.charAt(0) == '0') {
+            else if (txt.charAt(0) == '0') {
                 radix = BASE_8;
-                aText = aText.substring(1);
+                txt = txt.substring(1);
             }
-            if ((aText.endsWith("L")) || (aText.endsWith("l"))) {
-                aText = aText.substring(0, aText.length() - 1);
+            if ((txt.endsWith("L")) || (txt.endsWith("l"))) {
+                txt = txt.substring(0, txt.length() - 1);
             }
-            if (aText.length() > 0) {
+            if (txt.length() > 0) {
                 if (aType == TokenTypes.NUM_INT) {
-                    result = parseInt(aText, radix);
+                    result = parseInt(txt, radix);
                 }
                 else {
-                    result = parseLong(aText, radix);
+                    result = parseLong(txt, radix);
                 }
             }
             break;

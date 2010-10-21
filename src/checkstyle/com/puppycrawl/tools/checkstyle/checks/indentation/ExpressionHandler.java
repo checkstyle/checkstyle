@@ -228,15 +228,16 @@ public abstract class ExpressionHandler
      * @param aIndentLevel   the required indent level
      */
     protected final void checkLinesIndent(int aStartLine, int aEndLine,
-                                          IndentLevel aIndentLevel)
+        IndentLevel aIndentLevel)
     {
         // check first line
         checkSingleLine(aStartLine, aIndentLevel);
 
         // check following lines
-        aIndentLevel = new IndentLevel(aIndentLevel, getBasicOffset());
+        final IndentLevel offsetLevel =
+            new IndentLevel(aIndentLevel, getBasicOffset());
         for (int i = aStartLine + 1; i <= aEndLine; i++) {
-            checkSingleLine(i, aIndentLevel);
+            checkSingleLine(i, offsetLevel);
         }
     }
 
@@ -289,10 +290,11 @@ public abstract class ExpressionHandler
         // TODO: shouldIncreaseIndent() is a hack, should be removed
         //       after complete rewriting of checkExpressionSubtree()
 
+        IndentLevel theLevel = aIndentLevel;
         if (aFirstLineMatches
             || ((aFirstLine > mMainAst.getLineNo()) && shouldIncreaseIndent()))
         {
-            aIndentLevel = new IndentLevel(aIndentLevel, getBasicOffset());
+            theLevel = new IndentLevel(aIndentLevel, getBasicOffset());
         }
 
         // check following lines
@@ -303,7 +305,7 @@ public abstract class ExpressionHandler
             // checked by a child expression)
 
             if (col != null) {
-                checkSingleLine(i, col.intValue(), aIndentLevel, false);
+                checkSingleLine(i, col.intValue(), theLevel, false);
             }
         }
     }
@@ -439,10 +441,10 @@ public abstract class ExpressionHandler
         // find line for this node
         // TODO: getLineNo should probably not return < 0, but it is for
         // the interface methods... I should ask about this
-
+        int realStart = aStartLine;
         final int currLine = aTree.getLineNo();
-        if (currLine < aStartLine) {
-            aStartLine = currLine;
+        if (currLine < realStart) {
+            realStart = currLine;
         }
 
         // check children
@@ -450,10 +452,10 @@ public abstract class ExpressionHandler
             node != null;
             node = node.getNextSibling())
         {
-            aStartLine = getFirstLine(aStartLine, node);
+            realStart = getFirstLine(realStart, node);
         }
 
-        return aStartLine;
+        return realStart;
     }
 
     /**

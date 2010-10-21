@@ -189,6 +189,7 @@
     <module name="ArrayTrailingComma"/>
     <module name="FinalLocalVariable"/>
     <module name="EqualsAvoidNull"/>
+    <module name="ParameterAssignment"/>
 
     <!-- Generates quite a few errors -->
     <module name="CyclomaticComplexity">

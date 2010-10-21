@@ -78,25 +78,26 @@ public class ParenPadCheck extends AbstractParenPadCheck
     @Override
     public void visitToken(DetailAST aAST)
     {
+        DetailAST theAst = aAST;
         // Strange logic in this method to guard against checking RPAREN tokens
         // that are associated with a TYPECAST token.
-        if (aAST.getType() != TokenTypes.RPAREN) {
-            if ((aAST.getType() == TokenTypes.CTOR_CALL)
-                || (aAST.getType() == TokenTypes.SUPER_CTOR_CALL))
+        if (theAst.getType() != TokenTypes.RPAREN) {
+            if ((theAst.getType() == TokenTypes.CTOR_CALL)
+                || (theAst.getType() == TokenTypes.SUPER_CTOR_CALL))
             {
-                aAST = aAST.getFirstChild();
+                theAst = theAst.getFirstChild();
             }
-            if (!isPreceedsEmptyForInit(aAST)) {
-                processLeft(aAST);
+            if (!isPreceedsEmptyForInit(theAst)) {
+                processLeft(theAst);
             }
         }
-        else if ((aAST.getParent() == null)
-                 || (aAST.getParent().getType() != TokenTypes.TYPECAST)
-                 || (aAST.getParent().findFirstToken(TokenTypes.RPAREN)
-                     != aAST))
+        else if ((theAst.getParent() == null)
+                 || (theAst.getParent().getType() != TokenTypes.TYPECAST)
+                 || (theAst.getParent().findFirstToken(TokenTypes.RPAREN)
+                     != theAst))
         {
-            if (!isFollowsEmptyForIterator(aAST)) {
-                processRight(aAST);
+            if (!isFollowsEmptyForIterator(theAst)) {
+                processRight(theAst);
             }
         }
     }

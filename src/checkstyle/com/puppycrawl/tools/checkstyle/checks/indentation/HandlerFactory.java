@@ -142,7 +142,7 @@ public class HandlerFactory
         final Set<Integer> typeSet = mTypeHandlers.keySet();
         final int[] types = new int[typeSet.size()];
         int index = 0;
-        for (Integer val : typeSet) {
+        for (final Integer val : typeSet) {
             types[index++] = val;
         }
 
@@ -215,15 +215,16 @@ public class HandlerFactory
     ExpressionHandler createMethodCallHandler(IndentationCheck aIndentCheck,
         DetailAST aAst, ExpressionHandler aParent)
     {
+        ExpressionHandler theParent = aParent;
         DetailAST ast = aAst.getFirstChild();
         while ((ast != null) && (ast.getType() == TokenTypes.DOT)) {
             ast = ast.getFirstChild();
         }
         if ((ast != null) && isHandledType(ast.getType())) {
-            aParent = getHandler(aIndentCheck, ast, aParent);
-            mCreatedHandlers.put(ast, aParent);
+            theParent = getHandler(aIndentCheck, ast, theParent);
+            mCreatedHandlers.put(ast, theParent);
         }
-        return new MethodCallHandler(aIndentCheck, aAst, aParent);
+        return new MethodCallHandler(aIndentCheck, aAst, theParent);
     }
 
     /** Clears cache of created handlers. */
