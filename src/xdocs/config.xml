@@ -983,7 +983,7 @@
           <td>checkFormat</td>
           <td>check pattern to suppress</td>
           <td><a href="property_types.html#regexp">regular expression</a></td>
-          <td><code>$1</code></td>
+          <td><code>.*</code></td>
         </tr>
         <tr>
           <td>messageFormat</td>
