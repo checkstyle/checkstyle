@@ -1073,7 +1073,7 @@
 &lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
     &lt;property name=&quot;commentFormat&quot; value=&quot;CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES&quot;/&gt;
     &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
-    &lt;property name=&quot;messageFormat&quot; value=&quot;$2&quot;/&gt;
+    &lt;property name=&quot;influenceFormat&quot; value=&quot;$2&quot;/&gt;
 &lt;/module&gt;
       </source>
 
