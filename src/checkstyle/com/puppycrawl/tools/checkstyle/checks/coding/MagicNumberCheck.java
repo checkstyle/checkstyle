@@ -70,6 +70,8 @@ public class MagicNumberCheck extends Check
     private double[] mIgnoreNumbers = {-1, 0, 1, 2};
     /** Whether to ignore magic numbers in a hash code method. */
     private boolean mIgnoreHashCodeMethod;
+    /** Whether to ignore magic numbers in annotation. */
+    private boolean mIgnoreAnnotation = true;
 
     @Override
     public int[] getDefaultTokens()
@@ -85,6 +87,10 @@ public class MagicNumberCheck extends Check
     @Override
     public void visitToken(DetailAST aAST)
     {
+        if (mIgnoreAnnotation && isInAnnotation(aAST)) {
+          return;
+        }
+
         if (inIgnoreList(aAST)
             || (mIgnoreHashCodeMethod && isInHashCodeMethod(aAST)))
         {
@@ -262,5 +268,39 @@ public class MagicNumberCheck extends Check
     public void setIgnoreHashCodeMethod(boolean aIgnoreHashCodeMethod)
     {
         mIgnoreHashCodeMethod = aIgnoreHashCodeMethod;
+    }
+
+    /**
+     * Set whether to ignore Annotations.
+     * @param aIgnoreAnnotation decide whether to ignore annotations
+     */
+    public void setIgnoreAnnotation(boolean aIgnoreAnnotation)
+    {
+        mIgnoreAnnotation = aIgnoreAnnotation;
+    }
+
+    /**
+     * Determines if the column displays a token type of annotation or
+     * annotation member
+     *
+     * @param aAST the AST from which to search for annotations
+     *
+     * @return {@code true} if the token type for this node is a annotation
+     */
+    private boolean isInAnnotation(DetailAST aAST)
+    {
+        if (aAST.getParent() == null || aAST.getParent().getParent() == null) {
+            return false;
+        }
+
+        if (TokenTypes.ANNOTATION == aAST.getParent().getParent().getType()
+                || TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR == aAST.getParent()
+                        .getParent().getType())
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
