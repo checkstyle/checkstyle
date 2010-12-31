@@ -34,19 +34,19 @@ public class InputMagicNumber {
         for (int i = 0; i < 2; i++);
 
         if (1 < 2);
-        
+
         if (1.0 < 2.0);
 
         //magic numbers
         int int_magic1 = 3;
         double double_magic1 = 1.5;
         int int_magic2 = (3 + 4);
-        
+
         int_array = new int[3];
-        
+
         int_magic1 += 3;
         double_magic1 *= 1.5;
-        
+
         for (int j = 3; j < 5; j += 3) {
             int_magic1++;
         }
@@ -54,22 +54,22 @@ public class InputMagicNumber {
         if (int_magic1 < 3) {
             int_magic1 = int_magic1 + 3;
         }
-        
+
         //octal
         int octalVar0 = 00;
         int octalVar8 = 010;
         int octalVar9 = 011;
-        
+
         long longOctalVar8 = 010L;
         long longOctalVar9 = 011l;
-        
+
         //hex
         int hexVar0 = 0x0;
         int hexVar16 = 0x10;
         int hexVar17 = 0X011;
         long longHexVar0 = 0x0L;
         long longHexVar16 = 0x10L;
-        long longHexVar17 = 0X11l;       
+        long longHexVar17 = 0X11l;
     }
 }
 
@@ -100,7 +100,7 @@ class Signed
     private int mPlusThree = +3;
     private int mMinusTwo = -2;
     private double mPlusDecimal = +3.5;
-    private double mMinusDecimal = -2.5; 
+    private double mMinusDecimal = -2.5;
 }
 
 /** test octal and hex negative values */
@@ -125,7 +125,7 @@ class ComplexAndFlagged
 {
     public static final java.util.List MYLIST = new java.util.ArrayList()
     {
-        public int size() 
+        public int size()
         {
             // should be flagged although technically inside const definition
             return 378;
@@ -139,7 +139,7 @@ class ComplexButNotFlagged
     // (at least in the default configuration of MagicNumberCheck)
     public static final Integer DEFAULT_INT = new Integer(27);
     public static final int SECS_PER_DAY = 24 * 60 * 60;
-    public static final javax.swing.border.Border STD_BORDER = 
+    public static final javax.swing.border.Border STD_BORDER =
         javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3);
 }
 
@@ -150,7 +150,7 @@ enum MyEnum
 
     private MyEnum(int value)
     {
-        
+
     }
 }
 
@@ -180,5 +180,9 @@ class TestHashCodeMethod {
 
     public TestHashCodeMethod() {
         int z=101;
+    }
+
+    @javax.management.MXBean(42)
+    public void another() {
     }
 }

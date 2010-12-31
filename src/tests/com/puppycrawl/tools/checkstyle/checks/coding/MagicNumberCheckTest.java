@@ -69,6 +69,7 @@ public class MagicNumberCheckTest
             "174:15: '21' is a magic number.",
             "178:15: '37' is a magic number.",
             "182:15: '101' is a magic number.",
+            "185:30: '42' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }
@@ -80,6 +81,7 @@ public class MagicNumberCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreNumbers", "0, 1, 3.0, 8, 16");
+        checkConfig.addAttribute("ignoreAnnotation", "true");
         final String[] expected = {
             "22:25: '2' is a magic number.",
             "28:35: '2' is a magic number.",
@@ -126,6 +128,7 @@ public class MagicNumberCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreNumbers", "");
+        checkConfig.addAttribute("ignoreAnnotation", "true");
         final String[] expected = {
             "21:24: '1' is a magic number.",
             "22:25: '2' is a magic number.",
@@ -200,6 +203,7 @@ public class MagicNumberCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("tokens", "NUM_INT, NUM_LONG");
+        checkConfig.addAttribute("ignoreAnnotation", "true");
         final String[] expected = {
             "41:26: '3' is a magic number.",
             "43:27: '3' is a magic number.",
@@ -245,6 +249,7 @@ public class MagicNumberCheckTest
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreNumbers", "-9223372036854775808, -2147483648, -1, 0, 1, 2");
         checkConfig.addAttribute("tokens", "NUM_INT, NUM_LONG");
+        checkConfig.addAttribute("ignoreAnnotation", "true");
         final String[] expected = {
             "41:26: '3' is a magic number.",
             "43:27: '3' is a magic number.",
@@ -285,6 +290,7 @@ public class MagicNumberCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreHashCodeMethod", "true");
+        checkConfig.addAttribute("ignoreAnnotation", "true");
         final String[] expected = {
             "41:26: '3' is a magic number.",
             "42:32: '1.5' is a magic number.",
