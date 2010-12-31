@@ -71,7 +71,7 @@ public class MagicNumberCheck extends Check
     /** Whether to ignore magic numbers in a hash code method. */
     private boolean mIgnoreHashCodeMethod;
     /** Whether to ignore magic numbers in annotation. */
-    private boolean mIgnoreAnnotation = true;
+    private boolean mIgnoreAnnotation;
 
     @Override
     public int[] getDefaultTokens()
@@ -289,18 +289,14 @@ public class MagicNumberCheck extends Check
      */
     private boolean isInAnnotation(DetailAST aAST)
     {
-        if (aAST.getParent() == null || aAST.getParent().getParent() == null) {
+        if ((null == aAST.getParent())
+                || (null == aAST.getParent().getParent()))
+        {
             return false;
         }
 
-        if (TokenTypes.ANNOTATION == aAST.getParent().getParent().getType()
-                || TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR == aAST.getParent()
-                        .getParent().getType())
-        {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (TokenTypes.ANNOTATION == aAST.getParent().getParent().getType())
+                || (TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR ==
+                    aAST.getParent().getParent().getType());
     }
 }
