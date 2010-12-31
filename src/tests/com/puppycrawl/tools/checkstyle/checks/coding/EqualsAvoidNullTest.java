@@ -26,7 +26,7 @@ import org.junit.Test;
 public class EqualsAvoidNullTest extends BaseCheckTestSupport
 {
     @Test
-    public void testIt() throws Exception
+    public void testEqualsWithDefault() throws Exception
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsAvoidNullCheck.class);
@@ -38,6 +38,48 @@ public class EqualsAvoidNullTest extends BaseCheckTestSupport
             "24:17: String literal expressions should be on the left side of an equals comparison.",
             "26:17: String literal expressions should be on the left side of an equals comparison.",
             "28:17: String literal expressions should be on the left side of an equals comparison.",
+            "37:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
+            "39:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
+            "41:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
+            "43:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
+            "45:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
+            "47:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
+            "57:17: String literal expressions should be on the left side of an equals comparison.",
+            "59:17: String literal expressions should be on the left side of an equals comparison.",
+            "61:17: String literal expressions should be on the left side of an equals comparison.",
+            "63:17: String literal expressions should be on the left side of an equals comparison.",
+            "65:17: String literal expressions should be on the left side of an equals comparison.",
+            "67:17: String literal expressions should be on the left side of an equals comparison.",
+            "69:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
+            "71:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
+            "73:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
+            "75:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
+            "77:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
+            "79:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison."
+        };
+        verify(checkConfig, getPath("coding" + File.separator + "InputEqualsAvoidNull.java"), expected);
+    }
+
+    @Test
+    public void testEqualsWithoutEqualsIgnoreCase() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(EqualsAvoidNullCheck.class);
+        checkConfig.addAttribute("performEqualsIgnoreCaseCheck", "false");
+
+        final String[] expected = {
+            "18:17: String literal expressions should be on the left side of an equals comparison.",
+            "20:17: String literal expressions should be on the left side of an equals comparison.",
+            "22:17: String literal expressions should be on the left side of an equals comparison.",
+            "24:17: String literal expressions should be on the left side of an equals comparison.",
+            "26:17: String literal expressions should be on the left side of an equals comparison.",
+            "28:17: String literal expressions should be on the left side of an equals comparison.",
+            "57:17: String literal expressions should be on the left side of an equals comparison.",
+            "59:17: String literal expressions should be on the left side of an equals comparison.",
+            "61:17: String literal expressions should be on the left side of an equals comparison.",
+            "63:17: String literal expressions should be on the left side of an equals comparison.",
+            "65:17: String literal expressions should be on the left side of an equals comparison.",
+            "67:17: String literal expressions should be on the left side of an equals comparison.",
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputEqualsAvoidNull.java"), expected);
     }

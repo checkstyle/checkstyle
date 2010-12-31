@@ -88,6 +88,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class EqualsAvoidNullCheck extends Check
 {
+    //Decides whether string literals with optional assignment assignment should be checked to be on the left side
+    //of the equalsIgnoreCase comparision. The earlier version of this class checked only for equals() comparision.
+    //This is added to support cases which may not want the equalsIgnoreCase() comparision
+    //for some reason (backward compatibility)
+    private boolean performEqualsIgnoreCaseCheck = true;
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -122,6 +128,13 @@ public class EqualsAvoidNullCheck extends Check
             if (containsAllSafeTokens(expr)) {
                 log(aMethodCall.getLineNo(), aMethodCall.getColumnNo(),
                         "equals.avoid.null");
+            }
+        } else if(performEqualsIgnoreCaseCheck) {
+            if("equalsIgnoreCase".equals(method.getText()) && containsOneArg(expr)) {
+                if (containsAllSafeTokens(expr)) {
+                    log(aMethodCall.getLineNo(), aMethodCall.getColumnNo(),
+                            "equalsIgnoreCase.avoid.null");
+                }
             }
         }
     }
@@ -218,5 +231,16 @@ public class EqualsAvoidNullCheck extends Check
             return aCurrentAST.getFirstChild().getNextSibling();
         }
         return aCurrentAST;
+    }
+
+    /**
+     *
+     * @param performEqualsIgnoreCaseCheck - Decides whether string literals with optional assignment assignment
+     * should be checked to be on the left side of the equalsIgnoreCase comparision. The earlier version of this class
+     * checked only for equals() comparision. This is added to support cases which may not want the equalsIgnoreCase()
+     * comparision for some reason (backward compatibility)
+     */
+    public void setPerformEqualsIgnoreCaseCheck(boolean performEqualsIgnoreCaseCheck) {
+        this.performEqualsIgnoreCaseCheck = performEqualsIgnoreCaseCheck;
     }
 }
