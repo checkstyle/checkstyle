@@ -895,7 +895,13 @@ number.equals(i + j);
           </tr>
           <tr>
             <td>ignoreHashCodeMethod</td>
-            <td>ignore magice numbers in hashCode methods</td>
+            <td>ignore magic numbers in hashCode methods</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><span class="default">false</span></td>
+          </tr>
+          <tr>
+            <td>ignoreAnnotation</td>
+            <td>ignore magic numbers in annotation declarations.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>

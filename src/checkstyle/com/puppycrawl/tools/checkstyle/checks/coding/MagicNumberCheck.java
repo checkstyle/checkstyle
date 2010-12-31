@@ -88,7 +88,7 @@ public class MagicNumberCheck extends Check
     public void visitToken(DetailAST aAST)
     {
         if (mIgnoreAnnotation && isInAnnotation(aAST)) {
-          return;
+            return;
         }
 
         if (inIgnoreList(aAST)
@@ -296,7 +296,7 @@ public class MagicNumberCheck extends Check
         }
 
         return (TokenTypes.ANNOTATION == aAST.getParent().getParent().getType())
-                || (TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR ==
-                    aAST.getParent().getParent().getType());
+                || (TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR
+                        == aAST.getParent().getParent().getType());
     }
 }

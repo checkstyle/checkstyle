@@ -13,7 +13,11 @@
     <section name="Release 5.4">
       <p>New features:</p>
       <ul>
-        <li>...</li>
+        <li>
+          Enhanced <a href="config_coding.html#MagicNumber">MagicNumber</a>
+          to support ignoring numbers in annotation declarations. Thanks to
+          Julio Cesar Cabral for patch #3132984.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>
