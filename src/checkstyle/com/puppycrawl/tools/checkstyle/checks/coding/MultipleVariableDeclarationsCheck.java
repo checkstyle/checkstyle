@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 
 /**
@@ -79,7 +78,15 @@ public class MultipleVariableDeclarationsCheck extends Check
         {
             final DetailAST firstNode = CheckUtils.getFirstNode(aAST);
             if (isCommaSeparated) {
-                log(firstNode, "multiple.variable.declarations.comma");
+                // Check if the multiple variable declarations are in a
+                // for loop initializer. If they are, then no warning
+                // should be displayed. Declaring multiple variables in
+                // a for loop initializer is a good way to minimize
+                // variable scope. Refer Feature Request Id - 2895985
+                // for more details
+                if (aAST.getParent().getType() != TokenTypes.FOR_INIT) {
+                    log(firstNode, "multiple.variable.declarations.comma");
+                }
                 return;
             }
 

@@ -20,8 +20,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.io.File;
 import org.junit.Test;
+
+import java.io.File;
 
 public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport
 {
@@ -38,7 +39,6 @@ public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport
             "8:9: Only one variable definition per line allowed.",
             "12:5: Only one variable definition per line allowed.",
             "15:5: Only one variable definition per line allowed.",
-            "20:14: Each variable declaration must be in its own statement.",
         };
 
         verify(checkConfig,
