@@ -10,6 +10,26 @@
   </properties>
 
   <body>
+    <section name="Release 5.4">
+      <p>New features:</p>
+      <ul>
+        <li>...</li>
+      </ul>
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Fix
+          <a href="config_coding.html#MultipleVariableDeclarations">MultipleVariableDeclarations</a>
+          to properly handle when multiple variable declarations are inside a
+          for loop initializer. Thanks to Amit Shah for patch #3121071.
+        </li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>...</li>
+      </ul>
+    </section>
+
     <section name="Release 5.3">
       <p>New features:</p>
       <ul>
