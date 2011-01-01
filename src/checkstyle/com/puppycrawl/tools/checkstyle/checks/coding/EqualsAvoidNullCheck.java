@@ -88,11 +88,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class EqualsAvoidNullCheck extends Check
 {
-    //Decides whether string literals with optional assignment assignment should be checked to be on the left side
-    //of the equalsIgnoreCase comparision. The earlier version of this class checked only for equals() comparision.
-    //This is added to support cases which may not want the equalsIgnoreCase() comparision
-    //for some reason (backward compatibility)
-    private boolean performEqualsIgnoreCaseCheck = true;
+    // Decides whether string literals with optional assignment
+    // assignment should be checked to be on the left side of the
+    // equalsIgnoreCase comparison. The earlier version of this class
+    // checked only for equals() comparison.  This is added to support
+    // cases which may not want the equalsIgnoreCase() comparison for
+    // some reason (backward compatibility)
+    private boolean mPerformEqualsIgnoreCaseCheck = true;
 
     @Override
     public int[] getDefaultTokens()
@@ -124,17 +126,16 @@ public class EqualsAvoidNullCheck extends Check
 
         final DetailAST method = objCalledOn.getNextSibling();
         final DetailAST expr = dot.getNextSibling().getFirstChild();
-        if ("equals".equals(method.getText()) && containsOneArg(expr)) {
-            if (containsAllSafeTokens(expr)) {
+
+        if ("equals".equals(method.getText())
+                || (mPerformEqualsIgnoreCaseCheck && "equalsIgnoreCase"
+                        .equals(method.getText())))
+        {
+            if (containsOneArg(expr) && containsAllSafeTokens(expr)) {
                 log(aMethodCall.getLineNo(), aMethodCall.getColumnNo(),
-                        "equals.avoid.null");
-            }
-        } else if(performEqualsIgnoreCaseCheck) {
-            if("equalsIgnoreCase".equals(method.getText()) && containsOneArg(expr)) {
-                if (containsAllSafeTokens(expr)) {
-                    log(aMethodCall.getLineNo(), aMethodCall.getColumnNo(),
-                            "equalsIgnoreCase.avoid.null");
-                }
+                    "equals".equals(method.getText())
+                    ? "equals.avoid.null"
+                    : "equalsIgnoreCase.avoid.null");
             }
         }
     }
@@ -241,6 +242,6 @@ public class EqualsAvoidNullCheck extends Check
      * comparision for some reason (backward compatibility)
      */
     public void setPerformEqualsIgnoreCaseCheck(boolean performEqualsIgnoreCaseCheck) {
-        this.performEqualsIgnoreCaseCheck = performEqualsIgnoreCaseCheck;
+        mPerformEqualsIgnoreCaseCheck = performEqualsIgnoreCaseCheck;
     }
 }
