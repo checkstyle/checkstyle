@@ -94,7 +94,7 @@ public class EqualsAvoidNullCheck extends Check
     // checked only for equals() comparison.  This is added to support
     // cases which may not want the equalsIgnoreCase() comparison for
     // some reason (backward compatibility)
-    private boolean mPerformEqualsIgnoreCaseCheck = true;
+    private boolean mIgnoreEqualsIgnoreCase;
 
     @Override
     public int[] getDefaultTokens()
@@ -128,7 +128,7 @@ public class EqualsAvoidNullCheck extends Check
         final DetailAST expr = dot.getNextSibling().getFirstChild();
 
         if ("equals".equals(method.getText())
-                || (mPerformEqualsIgnoreCaseCheck && "equalsIgnoreCase"
+                || (!mIgnoreEqualsIgnoreCase && "equalsIgnoreCase"
                         .equals(method.getText())))
         {
             if (containsOneArg(expr) && containsAllSafeTokens(expr)) {
@@ -235,13 +235,11 @@ public class EqualsAvoidNullCheck extends Check
     }
 
     /**
-     *
-     * @param performEqualsIgnoreCaseCheck - Decides whether string literals with optional assignment assignment
-     * should be checked to be on the left side of the equalsIgnoreCase comparision. The earlier version of this class
-     * checked only for equals() comparision. This is added to support cases which may not want the equalsIgnoreCase()
-     * comparision for some reason (backward compatibility)
+     * Whether to ignore checking {@code String.equalsIgnoreCase(String)}.
+     * @param newValue whether to ignore checking
+     *    {@code String.equalsIgnoreCase(String)}.
      */
-    public void setPerformEqualsIgnoreCaseCheck(boolean performEqualsIgnoreCaseCheck) {
-        mPerformEqualsIgnoreCaseCheck = performEqualsIgnoreCaseCheck;
+    public void setIgnoreEqualsIgnoreCase(boolean newValue) {
+        mIgnoreEqualsIgnoreCase = newValue;
     }
 }

@@ -65,7 +65,7 @@ public class EqualsAvoidNullTest extends BaseCheckTestSupport
     {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(EqualsAvoidNullCheck.class);
-        checkConfig.addAttribute("performEqualsIgnoreCaseCheck", "false");
+        checkConfig.addAttribute("ignoreEqualsIgnoreCase", "true");
 
         final String[] expected = {
             "18:17: String literal expressions should be on the left side of an equals comparison.",
