@@ -88,12 +88,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class EqualsAvoidNullCheck extends Check
 {
-    // Decides whether string literals with optional assignment
-    // assignment should be checked to be on the left side of the
-    // equalsIgnoreCase comparison. The earlier version of this class
-    // checked only for equals() comparison.  This is added to support
-    // cases which may not want the equalsIgnoreCase() comparison for
-    // some reason (backward compatibility)
+    /** Whether to process equalsIgnoreCase() invocations. */
     private boolean mIgnoreEqualsIgnoreCase;
 
     @Override
@@ -236,10 +231,11 @@ public class EqualsAvoidNullCheck extends Check
 
     /**
      * Whether to ignore checking {@code String.equalsIgnoreCase(String)}.
-     * @param newValue whether to ignore checking
+     * @param aNewValue whether to ignore checking
      *    {@code String.equalsIgnoreCase(String)}.
      */
-    public void setIgnoreEqualsIgnoreCase(boolean newValue) {
-        mIgnoreEqualsIgnoreCase = newValue;
+    public void setIgnoreEqualsIgnoreCase(boolean aNewValue)
+    {
+        mIgnoreEqualsIgnoreCase = aNewValue;
     }
 }

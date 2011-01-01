@@ -55,7 +55,7 @@ public class EqualsAvoidNullTest extends BaseCheckTestSupport
             "73:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
             "75:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
             "77:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
-            "79:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison."
+            "79:27: String literal expressions should be on the left side of an equalsIgnoreCase comparison.",
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputEqualsAvoidNull.java"), expected);
     }
