@@ -232,6 +232,8 @@ public class MySingleton
         <p>
           Checks that any combination of String literals with optional
           assignment is on the left side of an <code>equals()</code> comparison.
+          The check also processes <code>String.equalsIgnoreCase()</code>
+          invocations (which can be suppressed).
         </p>
 
         <p>
@@ -290,6 +292,23 @@ number.equals(i + j);
           being concatenated all ident concatenation is considered
           unsafe.
         </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>ignoreEqualsIgnoreCase</td>
+            <td>whether to ignore <code>String.equalsIgnoreCase()</code> invocations</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td>false</td>
+          </tr>
+        </table>
       </subsection>
 
       <subsection name="Example">
