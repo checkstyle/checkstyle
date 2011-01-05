@@ -50,6 +50,6 @@ public class NoFinalizerCheckTest
             createCheckConfig(NoFinalizerCheck.class);
         final String[] expected = {
         };
-        verify(checkConfig, getPath("coding/InputIllegalThrowsCheck.java"), expected);
+        verify(checkConfig, getPath("coding/InputFallThrough.java"), expected);
     }
 }

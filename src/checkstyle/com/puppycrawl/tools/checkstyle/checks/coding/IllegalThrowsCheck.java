@@ -18,9 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Set;
 
 /**
  * Throwing java.lang.Error or java.lang.RuntimeException
@@ -29,6 +31,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class IllegalThrowsCheck extends AbstractIllegalCheck
 {
+
+    /** Default ignored method names. */
+    private static final String[] DEFAULT_IGNORED_METHOD_NAMES = {
+        "finalize",
+    };
+
+    /** methods which should be ignored. */
+    private final Set<String> mIgnoredMethodNames = Sets.newHashSet();
+
     /** Creates new instance of the check. */
     public IllegalThrowsCheck()
     {
@@ -38,6 +49,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
                             "java.lang.RuntimeException",
                             "java.lang.Throwable",
         });
+        setIgnoredMethodNames(DEFAULT_IGNORED_METHOD_NAMES);
     }
 
     @Override
@@ -56,15 +68,41 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck
     public void visitToken(DetailAST aDetailAST)
     {
         DetailAST token = aDetailAST.getFirstChild();
-        while (token != null) {
-            if (token.getType() != TokenTypes.COMMA) {
-                final FullIdent ident = FullIdent.createFullIdent(token);
-                if (isIllegalClassName(ident.getText())) {
-                    log(token, "illegal.throw", ident.getText());
+        // Check if the method with the given name should be ignored.
+        if (!(shouldIgnoreMethod(aDetailAST.getParent().findFirstToken(
+                                     TokenTypes.IDENT).getText())))
+        {
+            while (token != null) {
+                if (token.getType() != TokenTypes.COMMA) {
+                    final FullIdent ident = FullIdent.createFullIdent(token);
+                    if (isIllegalClassName(ident.getText())) {
+                        log(token, "illegal.throw", ident.getText());
+                    }
                 }
+                token = token.getNextSibling();
             }
+        }
+    }
 
-            token = token.getNextSibling();
+    /**
+     * Check if the method is specified in the ignore method list
+     * @param aName the name to check
+     * @return whether the method with the passed name should be ignored
+     */
+    private boolean shouldIgnoreMethod(String aName)
+    {
+        return mIgnoredMethodNames.contains(aName);
+    }
+
+    /**
+     * Set the list of ignore method names.
+     * @param aMethodNames array of ignored method names
+     */
+    public void setIgnoredMethodNames(String[] aMethodNames)
+    {
+        mIgnoredMethodNames.clear();
+        for (String element : aMethodNames) {
+            mIgnoredMethodNames.add(element);
         }
     }
 }
