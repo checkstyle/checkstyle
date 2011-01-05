@@ -20,8 +20,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.io.File;
 import org.junit.Test;
+
+import java.io.File;
 
 public class IllegalThrowsCheckTest extends BaseCheckTestSupport
 {
@@ -49,6 +50,44 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport
         String[] expected = {
             "5:33: Throwing 'NullPointerException' is not allowed.",
             "14:73: Throwing 'java.lang.Error' is not allowed.",
+        };
+
+        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);
+    }
+
+    /**
+     * Test to validate the IllegalThrowsCheck with ignoredMethodNames attribute
+     * @throws Exception
+     */
+    @Test
+    public void testIgnoreMethodNames() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
+        checkConfig.addAttribute("ignoredMethodNames", "methodTwo");
+
+        String[] expected = {
+            "9:51: Throwing 'RuntimeException' is not allowed.",
+            "18:35: Throwing 'Throwable' is not allowed.",
+        };
+
+        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);
+    }
+
+    /**
+     * Test to validate the IllegalThrowsCheck with both the attributes specified
+     * @throws Exception
+     */
+    @Test
+    public void testIllegalClassNamesWithIgnoreMethodNames() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
+        checkConfig.addAttribute("illegalClassNames",
+                                 "java.lang.Error, java.lang.Exception, NullPointerException, Throwable");
+        checkConfig.addAttribute("ignoredMethodNames", "methodTwo");
+
+        String[] expected = {
+            "5:33: Throwing 'NullPointerException' is not allowed.",
+            "18:35: Throwing 'Throwable' is not allowed.",
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);

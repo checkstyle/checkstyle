@@ -14,4 +14,8 @@ public class InputIllegalThrowsCheck {
     public void methodTwo() throws java.lang.RuntimeException, java.lang.Error
     {
     }
+
+    public void finalize() throws Throwable {
+
+    }
 }
