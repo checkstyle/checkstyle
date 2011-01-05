@@ -24,6 +24,12 @@
           to process <code>String.equalsIgnoreCase()</code>
           invocations (which can be suppressed).
         </li>
+        <li>
+          Enhanced
+          <a href="config_coding.html#IllegalThrows">IllegalThrows</a>
+          to support ignoring methods with specified names. Thanks to
+          Amit Shah for patch #3115439.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>

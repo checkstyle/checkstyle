@@ -1744,6 +1744,12 @@ if (&quot;something&quot;.equals(x))
               java.lang.Error, java.lang.RuntimeException&quot;</code>
             </td>
           </tr>
+          <tr>
+            <td>ignoredMethodNames</td>
+            <td>names of methods to ignore</td>
+            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><code>finalize</code></td>
+          </tr>
         </table>
       </subsection>
 
