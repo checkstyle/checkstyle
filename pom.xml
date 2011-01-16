@@ -2,6 +2,11 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+  <!--
+      TIP: use "mvn versions:display-dependency-updates" to see what
+      dependencies have updates available.
+  -->
+
   <!-- Used for making releases. -->
   <parent>
     <artifactId>oss-parent</artifactId>
@@ -148,6 +153,7 @@
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
+      <!-- Do not upgrade as this is the earliest version of ANT supported -->
       <version>1.7.0</version>
       <scope>provided</scope>
     </dependency>
@@ -163,7 +169,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.8.1</version>
+      <version>4.8.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
