@@ -30,6 +30,10 @@
     <system>SourceForge</system>
     <url>http://sourceforge.net/tracker/?group_id=29721</url>
   </issueManagement>
+  <ciManagement>
+  	<system>hudson</system>
+  	<url>http://hudson.fazend.com:8081/hudson/job/Checkstyle</url>
+  </ciManagement>
   <inceptionYear>2001</inceptionYear>
 
   <description>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard</description>
