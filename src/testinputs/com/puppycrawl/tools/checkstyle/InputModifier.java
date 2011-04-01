@@ -51,7 +51,7 @@ strictfp final class InputModifier // illegal order of modifiers for class
     }
 
     /** holder for redundant 'public' modifier check. */
-    public interface InputRedundantPublicModifier
+    public static interface InputRedundantPublicModifier
     {
         /** redundant 'public' modifier */
         public void a();

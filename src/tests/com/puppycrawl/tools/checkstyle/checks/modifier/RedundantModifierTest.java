@@ -31,6 +31,7 @@ public class RedundantModifierTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
+            "54:12: Redundant 'static' modifier.",
             "57:9: Redundant 'public' modifier.",
             "63:9: Redundant 'abstract' modifier.",
             "66:9: Redundant 'public' modifier.",

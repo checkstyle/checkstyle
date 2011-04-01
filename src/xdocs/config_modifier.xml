@@ -79,11 +79,16 @@
 
       <subsection name="Description">
         <p>
-          Checks for redundant modifiers in interface and annotation
-          definitions.  Also checks for redundant final modifiers on
-          methods of final classes.
+          Checks for redundant modifiers in:
         </p>
-
+        <ol>
+          <li>interface and annotation definitions,</li>
+          <li>the final modifier on methods of final classes, and </li>
+          <li>
+            inner <code>interface</code> declarations that are declared
+            as <code>static</code>
+          </li>
+        </ol>
         <p>
           Rationale: The Java Language Specification strongly
           discourages the usage of "public" and "abstract" for method
@@ -125,7 +130,9 @@
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
               <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>
             </td>
             <td>
               <a
@@ -133,7 +140,9 @@
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
               <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>
             </td>
           </tr>
         </table>

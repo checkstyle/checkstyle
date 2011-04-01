@@ -30,6 +30,12 @@
           to support ignoring methods with specified names. Thanks to
           Amit Shah for patch #3115439.
         </li>
+        <li>
+          Enhanced
+          <a href="config_modifier.html#RedundantModifier">RedundantModifier</a>
+          to support detecting inner <code>interface</code> declarations that
+          are declared as <code>static</code>. Raised in bug #3222810.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>

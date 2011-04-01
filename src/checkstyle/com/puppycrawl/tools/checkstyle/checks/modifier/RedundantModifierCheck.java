@@ -39,6 +39,7 @@ public class RedundantModifierCheck
             TokenTypes.METHOD_DEF,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.INTERFACE_DEF,
         };
     }
 
@@ -51,7 +52,19 @@ public class RedundantModifierCheck
     @Override
     public void visitToken(DetailAST aAST)
     {
-        if (ScopeUtils.inInterfaceOrAnnotationBlock(aAST)) {
+        if (TokenTypes.INTERFACE_DEF == aAST.getType()) {
+            final DetailAST modifiers =
+                aAST.findFirstToken(TokenTypes.MODIFIERS);
+            if (null != modifiers) {
+                final DetailAST modifier =
+                    modifiers.findFirstToken(TokenTypes.LITERAL_STATIC);
+                if (null != modifier) {
+                    log(modifier.getLineNo(), modifier.getColumnNo(),
+                        "redundantModifier", modifier.getText());
+                }
+            }
+        }
+        else if (ScopeUtils.inInterfaceOrAnnotationBlock(aAST)) {
             final DetailAST modifiers =
                 aAST.findFirstToken(TokenTypes.MODIFIERS);
 
