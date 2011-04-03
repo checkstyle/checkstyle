@@ -136,6 +136,8 @@
     <testinputs.dir>${basedir}/src/testinputs/com/puppycrawl/tools/checkstyle</testinputs.dir>
     <testsrcs.dir>${basedir}/src/tests/com/puppycrawl/tools/checkstyle</testsrcs.dir>
     <projectVersion>${project.version}</projectVersion>
+    <tools.jar.version>1.5.0</tools.jar.version>
+    <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
   </properties>
 
   <dependencies>
@@ -165,13 +167,6 @@
       <!-- Do not upgrade as this is the earliest version of ANT supported -->
       <version>1.7.0</version>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.sun</groupId>
-      <artifactId>tools</artifactId>
-      <version>1.5.0</version>
-      <scope>system</scope>
-      <systemPath>${java.home}/../lib/tools.jar</systemPath>
     </dependency>
 
     <!-- test scope stuff -->
@@ -233,10 +228,6 @@
                 <requireJavaVersion>
                   <version>1.5</version>
                 </requireJavaVersion>
-                <requireProperty>
-                  <property>java.vendor</property>
-                  <regex>^Sun Microsystems Inc\.$</regex>
-                </requireProperty>
               </rules>
             </configuration>
           </execution>
@@ -531,6 +522,44 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+
+    <!-- Bring in tools.jar for platforms which provide it -->
+    <profile>
+      <id>tools.jar-sun</id>
+      <activation>
+        <property>
+          <name>java.vendor</name>
+          <value>Sun Microsystems Inc.</value>
+        </property>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.sun</groupId>
+          <artifactId>tools</artifactId>
+          <version>${tools.jar.version}</version>
+          <scope>system</scope>
+          <systemPath>${tools.jar.path}</systemPath>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>default-tools.jar-oracle</id>
+      <activation>
+        <property>
+          <name>java.vendor</name>
+          <value>Sun Microsystems Inc.</value>
+        </property>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.sun</groupId>
+          <artifactId>tools</artifactId>
+          <version>${tools.jar.version}</version>
+          <scope>system</scope>
+          <systemPath>${tools.jar.path}</systemPath>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 </project>
