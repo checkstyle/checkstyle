@@ -548,7 +548,7 @@
       <activation>
         <property>
           <name>java.vendor</name>
-          <value>Sun Microsystems Inc.</value>
+          <value>Oracle Corporation</value>
         </property>
       </activation>
       <dependencies>
