@@ -36,6 +36,13 @@
           to support detecting inner <code>interface</code> declarations that
           are declared as <code>static</code>. Raised in bug #3222810.
         </li>
+        <li>
+          Enhanced the <a href="anttask.html#Parameters">ANT task</a>,
+          <a href="cmdline.html#Usage">Command Line</a> and
+          <a href="config.html#SuppressionFilter">Suppression Filter</a> to be
+          able to load their configuration file from either the filesystem or
+          the classpath as a resource. Thanks to Tracy Snell for patch #3307526.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>

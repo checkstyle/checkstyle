@@ -18,15 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import org.junit.Test;
+
+import java.io.File;
+import java.util.Properties;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import java.io.File;
-import java.util.Properties;
-import org.junit.Test;
 
 /**
  * @author Rick Giles
@@ -48,6 +49,16 @@ public class ConfigurationLoaderTest
 
         return ConfigurationLoader.loadConfiguration(
             fName, new PropertiesExpander(aProps));
+    }
+
+
+    @Test
+    public void testResourceLoadConfiguration() throws Exception
+    {
+        // load config that's only found in the classpath
+        final DefaultConfiguration config = (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+            "/checkstyle/checkstyle_checks.xml", new PropertiesExpander(new Properties()));
+        verifyConfigNode(config, "Checker", 3, new Properties());
     }
 
     @Test

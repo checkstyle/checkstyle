@@ -54,6 +54,12 @@ java -D&lt;property&gt;=&lt;value&gt;  \
 
       <ul>
         <li>
+          <code>-c configurationFile</code> - specifies the location of the
+          file that defines the configuration modules. The location can either
+          be a filesystem location, or a name passed to the
+          ClassLoader.getResource() method.
+        </li>
+        <li>
           <code>-f format</code> - specify the output
           format. Options are <code> "plain"</code> for the <a
           href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>

@@ -100,9 +100,12 @@
         <tr>
           <td>config</td>
           <td>
-            Specifies a file that defines the configuration modules.  <a
-            href="config.html">See here</a> for a description of how to define
-            a configuration.
+            Specifies the location of the file that defines the configuration
+            modules. The location can either be a filesystem location, or a
+            name passed to the ClassLoader.getResource() method.
+            <br/>
+            <a href="config.html">See here</a> for a description of how to
+            define a configuration.
           </td>
           <td>Exactly one of config or configURL</td>
         </tr>

@@ -191,6 +191,12 @@
       </resource>
     </resources>
 
+    <testResources>
+      <testResource>
+        <directory>src/testinputs/resources</directory>
+      </testResource>
+    </testResources>
+
     <testSourceDirectory>src/tests</testSourceDirectory>
 
     <plugins>

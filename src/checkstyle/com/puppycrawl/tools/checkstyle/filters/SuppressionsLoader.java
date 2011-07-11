@@ -22,15 +22,17 @@ import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Map;
-import java.util.regex.PatternSyntaxException;
-import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * Loads a filter chain of suppressions.
@@ -130,14 +132,19 @@ public final class SuppressionsLoader
     public static FilterSet loadSuppressions(String aFilename)
         throws CheckstyleException
     {
-        final FileInputStream fis;
+        InputStream fis;
         try {
             fis = new FileInputStream(aFilename);
         }
         catch (final FileNotFoundException e) {
-            throw new CheckstyleException(
-                "unable to find " + aFilename, e);
+            // check for the file in the classpath
+            fis = SuppressionsLoader.class.getResourceAsStream(aFilename);
+
+            if (fis == null) {
+                throw new CheckstyleException("unable to find " + aFilename, e);
+            }
         }
+
         final InputSource source = new InputSource(fis);
         return loadSuppressions(source, aFilename);
     }

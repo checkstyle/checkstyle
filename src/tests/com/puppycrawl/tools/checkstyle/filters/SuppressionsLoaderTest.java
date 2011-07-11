@@ -33,6 +33,17 @@ import org.junit.Test;
 public class SuppressionsLoaderTest
 {
     @Test
+    public void testResourceLoadSuppressions()
+        throws CheckstyleException
+    {
+        final FilterSet fc =
+            SuppressionsLoader.loadSuppressions(
+                "/checkstyle/suppressions.xml");
+        final FilterSet fc2 = new FilterSet();
+        assertEquals(fc, fc2);
+    }
+
+    @Test
     public void testNoSuppressions()
         throws CheckstyleException
     {

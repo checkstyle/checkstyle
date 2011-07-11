@@ -25,22 +25,23 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import javax.xml.parsers.ParserConfigurationException;
-import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 
 /**
  * Loads a configuration from a standard configuration XML file.
@@ -125,7 +126,7 @@ public final class ConfigurationLoader
                                  Attributes aAtts)
             throws SAXException
         {
-            // TODO: debug logging for support puposes
+            // TODO: debug logging for support purposes
             if (aQName.equals(MODULE)) {
                 //create configuration
                 final String name = aAtts.getValue(NAME);
@@ -315,10 +316,23 @@ public final class ConfigurationLoader
             }
             if (uri == null) {
                 final File file = new File(aConfig);
-                if (!file.exists()) {
-                    throw new FileNotFoundException(aConfig);
+                if (file.exists()) {
+                    uri = file.toURI();
                 }
-                uri = file.toURI();
+                else {
+                    // check to see if the file is in the classpath
+                    try {
+                        final URL configUrl = ConfigurationLoader.class
+                                .getResource(aConfig);
+                        if (configUrl == null) {
+                            throw new FileNotFoundException(aConfig);
+                        }
+                        uri = configUrl.toURI();
+                    }
+                    catch (final URISyntaxException e) {
+                        throw new FileNotFoundException(aConfig);
+                    }
+                }
             }
             final InputSource source = new InputSource(uri.toString());
             return loadConfiguration(source, aOverridePropsResolver,

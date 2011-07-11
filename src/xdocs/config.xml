@@ -638,7 +638,11 @@
           </tr>
           <tr>
             <td>file</td>
-            <td>the name of the <em>suppressions XML document</em> file</td>
+            <td>
+              the location of the <em>suppressions XML document</em> file.
+              The location can either be a filesystem location, or a
+              name passed to the ClassLoader.getResource() method.
+            </td>
             <td><a href="property_types.html#string">string</a></td>
             <td><code>none</code></td>
           </tr>
