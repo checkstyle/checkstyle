@@ -45,6 +45,10 @@
           to properly handle when multiple variable declarations are inside a
           for loop initializer. Thanks to Amit Shah for patch #3121071.
         </li>
+        <li>
+          Fix memory leak in FileContentsHolder. Thanks to Evgeny Mandrikov
+          for patch #3323517.
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>
