@@ -23,7 +23,6 @@ import static org.junit.Assert.fail;
 
 import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils.JavadocTags;
 import java.util.List;
 import org.junit.Test;
 
@@ -31,59 +30,74 @@ public class JavadocUtilsTest
 {
 
     @Test
-    public void testTags() {
-        String [] text = { "/** @see elsewhere ",
-                           " * {@link List }, {@link  List link text }",
-                           "   {@link List#add(Object) link text}",
-                           " * {@link Class link text}"};
-        Comment comment = new Comment(text, 1, 4, text[3].length());
-        JavadocTags allTags =
+    public void testTags()
+    {
+        final String [] text = {
+            "/** @see elsewhere ",
+            " * {@link List }, {@link  List link text }",
+            "   {@link List#add(Object) link text}",
+            " * {@link Class link text}",
+        };
+        final Comment comment = new Comment(text, 1, 4, text[3].length());
+        final JavadocTags allTags =
             JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.ALL);
-        assertEquals(5, allTags.validTags.size());
+        assertEquals(5, allTags.getValidTags().size());
     }
 
     @Test
-    public void testTagType() {
-        String [] text = { "/** @see block",
-                           " * {@link List inline}, {@link List#add(Object)}" };
-        Comment comment = new Comment(text, 1, 2, text[1].length());
-        JavadocTags blockTags =
+    public void testTagType()
+    {
+        final String [] text = {
+            "/** @see block",
+            " * {@link List inline}, {@link List#add(Object)}",
+        };
+        final Comment comment = new Comment(text, 1, 2, text[1].length());
+        final JavadocTags blockTags =
             JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.BLOCK);
-        JavadocTags inlineTags =
+        final JavadocTags inlineTags =
             JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.INLINE);
-        assertEquals(1, blockTags.validTags.size());
-        assertEquals(2, inlineTags.validTags.size());
+        assertEquals(1, blockTags.getValidTags().size());
+        assertEquals(2, inlineTags.getValidTags().size());
     }
 
     @Test
-    public void testInlineTagLinkText() {
-        String [] text = { "/** {@link  List link text }" };
-        Comment comment = new Comment(text, 1, 1, text[0].length());
-        List<JavadocTag> tags = JavadocUtils.getJavadocTags(
-            comment, JavadocUtils.JavadocTagType.ALL).validTags;
+    public void testInlineTagLinkText()
+    {
+        final String [] text = {
+            "/** {@link  List link text }",
+        };
+        final Comment comment = new Comment(text, 1, 1, text[0].length());
+        final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
+            comment, JavadocUtils.JavadocTagType.ALL).getValidTags();
         assertEquals("List link text", tags.get(0).getArg1());
     }
 
     @Test
-    public void testInlineTagMethodRef() {
-        String [] text = { "/** {@link  List#add(Object)}" };
-        Comment comment = new Comment(text, 1, 1, text[0].length());
-        List<JavadocTag> tags = JavadocUtils.getJavadocTags(
-            comment, JavadocUtils.JavadocTagType.ALL).validTags;
+    public void testInlineTagMethodRef()
+    {
+        final String [] text = {
+            "/** {@link  List#add(Object)}",
+        };
+        final Comment comment = new Comment(text, 1, 1, text[0].length());
+        final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
+            comment, JavadocUtils.JavadocTagType.ALL).getValidTags();
         assertEquals("List#add(Object)", tags.get(0).getArg1());
     }
 
     @Test
-    public void testTagPositions() {
-        String [] text = { "/** @see elsewhere",
-                           "    also {@link Name value} */" };
-        Comment comment = new Comment(text, 1, 2, text[1].length());
+    public void testTagPositions()
+    {
+        final String [] text = {
+            "/** @see elsewhere",
+            "    also {@link Name value} */",
+        };
+        final Comment comment = new Comment(text, 1, 2, text[1].length());
 
-        List<JavadocTag> tags = JavadocUtils.getJavadocTags(
-            comment, JavadocUtils.JavadocTagType.ALL).validTags;
+        final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
+            comment, JavadocUtils.JavadocTagType.ALL).getValidTags();
 
         assertEquals(2, tags.size());
-        for (JavadocTag tag : tags) {
+        for (final JavadocTag tag : tags) {
             if (JavadocTagInfo.SEE.getName().equals(tag.getTagName())) {
                 assertEquals(1, tag.getLineNo());
                 assertEquals(5, tag.getColumnNo());
@@ -99,14 +113,17 @@ public class JavadocUtilsTest
     }
 
     @Test
-    public void testInvalidTags() {
-        String [] text = { "/** @fake block",
-                           " * {@bogus inline}",
-                           " * {@link List valid}"};
-        Comment comment = new Comment(text, 1, 3, text[2].length());
-        JavadocTags allTags =
+    public void testInvalidTags()
+    {
+        final String [] text = {
+            "/** @fake block",
+            " * {@bogus inline}",
+            " * {@link List valid}",
+        };
+        final Comment comment = new Comment(text, 1, 3, text[2].length());
+        final JavadocTags allTags =
             JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.ALL);
-        assertEquals(2, allTags.invalidTags.size());
-        assertEquals(1, allTags.validTags.size());
+        assertEquals(2, allTags.getInvalidTags().size());
+        assertEquals(1, allTags.getValidTags().size());
     }
 }

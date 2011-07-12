@@ -28,9 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils.InvalidJavadocTag;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils.JavadocTagType;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils.JavadocTags;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -173,7 +170,7 @@ public class JavadocTypeCheck
 
                 if (!mAllowMissingParamTags) {
                     //Check type parameters that should exist, do
-                    for (String string : typeParamNames) {
+                    for (final String string : typeParamNames) {
                         checkTypeParamTag(
                             lineNo, tags, string);
                     }
@@ -213,14 +210,15 @@ public class JavadocTypeCheck
      */
     private List<JavadocTag> getJavadocTags(TextBlock aCmt)
     {
-        JavadocTags tags =
-            JavadocUtils.getJavadocTags(aCmt, JavadocTagType.BLOCK);
+        final JavadocTags tags = JavadocUtils.getJavadocTags(aCmt,
+            JavadocUtils.JavadocTagType.BLOCK);
         if (!mAllowUnknownTags) {
-            for (InvalidJavadocTag tag : tags.invalidTags) {
-                log(tag.line, tag.col, "javadoc.unknownTag", tag.name);
+            for (final InvalidJavadocTag tag : tags.getInvalidTags()) {
+                log(tag.getLine(), tag.getCol(), "javadoc.unknownTag",
+                    tag.getName());
             }
         }
-        return tags.validTags;
+        return tags.getValidTags();
     }
 
     /**

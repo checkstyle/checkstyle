@@ -74,6 +74,7 @@
     <module name="JavadocMethod">
       <property name="allowUndeclaredRTE" value="true"/>
       <property name="allowThrowsTagsForSubclasses" value="true"/>
+      <property name="allowMissingPropertyJavadoc" value="true"/>
     </module>
     <module name="JavadocVariable"/>
     <module name="JavadocStyle">

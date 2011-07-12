@@ -132,8 +132,8 @@ public class JavadocTag
     /** @return whether the tag can contain references to imported classes **/
     public boolean canReferenceImports()
     {
-        return (JavadocTagInfo.SEE.equals(mTagInfo) ||
-                JavadocTagInfo.LINK.equals(mTagInfo));
+        return (JavadocTagInfo.SEE.equals(mTagInfo)
+                || JavadocTagInfo.LINK.equals(mTagInfo));
     }
 }
 

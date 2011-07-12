@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
+
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -28,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils.JavadocTags;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -76,7 +77,7 @@ public class UnusedImportsCheck extends Check
     public void finishTree(DetailAST aRootAST)
     {
         // loop over all the imports to see if referenced.
-        for (FullIdent imp : mImports) {
+        for (final FullIdent imp : mImports) {
             if (!mReferenced.contains(Utils.baseClassname(imp.getText()))) {
                 log(imp.getLineNo(),
                     imp.getColumnNo(),
@@ -180,19 +181,21 @@ public class UnusedImportsCheck extends Check
      * Collects references made in JavaDoc comments.
      * @param aAST node to inspect for JavaDoc
      */
-    private void processJavadoc(DetailAST aAST) {
+    private void processJavadoc(DetailAST aAST)
+    {
         final FileContents contents = getFileContents();
         final int lineNo = aAST.getLineNo();
         final TextBlock cmt = contents.getJavadocBefore(lineNo);
         if (cmt != null) {
-            final JavadocTags tags =
-                JavadocUtils.getJavadocTags(cmt, JavadocUtils.JavadocTagType.ALL);
-            for (JavadocTag tag : tags.validTags) {
+            final JavadocTags tags = JavadocUtils.getJavadocTags(cmt,
+                    JavadocUtils.JavadocTagType.ALL);
+            for (final JavadocTag tag : tags.getValidTags()) {
                 if (tag.canReferenceImports()) {
                     String identifier = tag.getArg1();
                     // Trim off method or link text
-                    Pattern pattern = Utils.getPattern("(.+?)(?:\\s+|#|\\$).*");
-                    Matcher matcher = pattern.matcher(identifier);
+                    final Pattern pattern =
+                        Utils.getPattern("(.+?)(?:\\s+|#|\\$).*");
+                    final Matcher matcher = pattern.matcher(identifier);
                     if (matcher.find()) {
                         identifier = matcher.group(1);
                     }
