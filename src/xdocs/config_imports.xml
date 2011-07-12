@@ -294,7 +294,7 @@
           <li>
             <b>Optionally:</b> it is referenced in Javadoc comments. This check
             is off by default, as it is considered bad practice to introduce
-            a compile time dependency for documentation purposed only.
+            a compile time dependency for documentation purposes only.
             As an example, the import <code>java.util.Date</code> would be
             considered referenced with the Javadoc comment
             <code>{@link Date}</code>. The alternative to avoid introducing a
@@ -318,6 +318,23 @@ class FooBar {
     ...
 }
         </source>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>processJavadoc</td>
+            <td>whether to process Javadoc</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+        </table>
       </subsection>
 
       <subsection name="Example">
