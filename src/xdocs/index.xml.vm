@@ -61,7 +61,7 @@
 
       <p>
         If you want to live on the bleeding edge, you can
-        <a href="http://sourceforge.net/scm/?type=hg&group_id=29721">checkout
+        <a href="http://sourceforge.net/scm/?type=hg&amp;group_id=29721">checkout
         the current development code from Mercurial</a> and compile yourself.
       </p>
 
