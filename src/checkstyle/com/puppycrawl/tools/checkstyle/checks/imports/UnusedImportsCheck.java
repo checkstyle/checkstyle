@@ -97,14 +97,20 @@ public class UnusedImportsCheck extends Check
     public int[] getDefaultTokens()
     {
         return new int[] {
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
-            TokenTypes.INTERFACE_DEF,
             TokenTypes.STATIC_IMPORT,
+            // Definitions that may contain Javadoc...
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.VARIABLE_DEF,
         };
     }
 
@@ -128,13 +134,11 @@ public class UnusedImportsCheck extends Check
         else if (aAST.getType() == TokenTypes.STATIC_IMPORT) {
             processStaticImport(aAST);
         }
-        else if ((aAST.getType() == TokenTypes.CLASS_DEF)
-            || (aAST.getType() == TokenTypes.INTERFACE_DEF)
-            || (aAST.getType() == TokenTypes.ENUM_DEF)
-            || (aAST.getType() == TokenTypes.ANNOTATION_DEF)
-            || (aAST.getType() == TokenTypes.PACKAGE_DEF))
-        {
+        else {
             mCollect = true;
+            if (mProcessJavadoc) {
+                processJavadoc(aAST);
+            }
         }
     }
 
@@ -152,11 +156,6 @@ public class UnusedImportsCheck extends Check
                 && (aAST.getNextSibling() != null)))
         {
             mReferenced.add(aAST.getText());
-        }
-        // TODO Need to filter how often this is run to improve speed, and
-        // also turn off by default.
-        if (mProcessJavadoc) {
-            processJavadoc(aAST);
         }
     }
 
