@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -29,6 +28,9 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils.InvalidJavadocTag;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils.JavadocTagType;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils.JavadocTags;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,7 +42,6 @@ import org.apache.commons.beanutils.ConversionException;
  *
  * @author Oliver Burn
  * @author Michael Tamm
- * @version 1.1
  */
 public class JavadocTypeCheck
     extends Check
@@ -207,41 +208,19 @@ public class JavadocTypeCheck
 
     /**
      * Gets all standalone tags from a given javadoc.
-     * @param aCmt teh Javadoc comment to process.
+     * @param aCmt the Javadoc comment to process.
      * @return all standalone tags from the given javadoc.
      */
     private List<JavadocTag> getJavadocTags(TextBlock aCmt)
     {
-        final String[] text = aCmt.getText();
-        final List<JavadocTag> tags = Lists.newArrayList();
-        Pattern tagPattern = Utils.getPattern("/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
-        for (int i = 0; i < text.length; i++) {
-            final String s = text[i];
-            final Matcher tagMatcher = tagPattern.matcher(s);
-            if (tagMatcher.find()) {
-                final String tagName = tagMatcher.group(1);
-
-                String content = s.substring(tagMatcher.end(1));
-                if (content.endsWith("*/")) {
-                    content = content.substring(0, content.length() - 2);
-                }
-                int col = tagMatcher.start(1) - 1;
-                if (i == 0) {
-                    col += aCmt.getStartColNo();
-                }
-
-                if (JavadocTagInfo.isValidName(tagName)) {
-                    tags.add(new JavadocTag(aCmt.getStartLineNo() + i, col,
-                            tagName, content.trim()));
-                }
-                else if (!mAllowUnknownTags) {
-                    log(aCmt.getStartLineNo() + i, col,
-                            "javadoc.unknownTag", tagName);
-                }
+        JavadocTags tags =
+            JavadocUtils.getJavadocTags(aCmt, JavadocTagType.BLOCK);
+        if (!mAllowUnknownTags) {
+            for (InvalidJavadocTag tag : tags.invalidTags) {
+                log(tag.line, tag.col, "javadoc.unknownTag", tag.name);
             }
-            tagPattern = Utils.getPattern("^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
         }
-        return tags;
+        return tags.validTags;
     }
 
     /**

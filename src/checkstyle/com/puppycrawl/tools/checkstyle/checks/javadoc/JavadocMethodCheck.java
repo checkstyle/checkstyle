@@ -45,7 +45,6 @@ import java.util.regex.Pattern;
  * @author Oliver Burn
  * @author Rick Giles
  * @author o_sukhodoslky
- * @version 1.1
  */
 public class JavadocMethodCheck extends AbstractTypeAwareCheck
 {

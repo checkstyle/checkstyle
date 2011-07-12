@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.api;
  *
  * @author o_sukhodolsky
  */
-class Comment implements TextBlock
+public class Comment implements TextBlock
 {
     /** text of the comment. */
     private final String[] mText;
