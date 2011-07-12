@@ -53,6 +53,8 @@ public class UnusedImportsCheck extends Check
 {
     /** flag to indicate when time to start collecting references */
     private boolean mCollect;
+    /** flag whether to process Javadoc comments. */
+    private boolean mProcessJavadoc;
 
     /** set of the imports */
     private final Set<FullIdent> mImports = Sets.newHashSet();
@@ -63,6 +65,11 @@ public class UnusedImportsCheck extends Check
     /** Default constructor. */
     public UnusedImportsCheck()
     {
+    }
+
+    public void setProcessJavadoc(boolean aValue)
+    {
+        mProcessJavadoc = aValue;
     }
 
     @Override
@@ -148,7 +155,9 @@ public class UnusedImportsCheck extends Check
         }
         // TODO Need to filter how often this is run to improve speed, and
         // also turn off by default.
-        processJavadoc(aAST);
+        if (mProcessJavadoc) {
+            processJavadoc(aAST);
+        }
     }
 
     /**

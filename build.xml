@@ -2,7 +2,7 @@
 
   <!-- set global properties for this build -->
   <property name="target.dir" value="${basedir}/target" />
-  <property name="version" value="5.3-SNAPSHOT" />
+  <property name="version" value="5.4-SNAPSHOT" />
   <property name="checkstyle.dir"
             value="src/checkstyle/com/puppycrawl/tools/checkstyle" />
 

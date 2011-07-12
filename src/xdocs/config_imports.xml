@@ -291,6 +291,16 @@
           <li>
             The class imported is from the same package.
           </li>
+          <li>
+            <b>Optionally:</b> it is referenced in Javadoc comments. This check
+            is off by default, as it is considered bad practice to introduce
+            a compile time dependency for documentation purposed only.
+            As an example, the import <code>java.util.Date</code> would be
+            considered referenced with the Javadoc comment
+            <code>{@link Date}</code>. The alternative to avoid introducing a
+            compile time dependency would be to write the Javadoc comment as
+            <code>{@link java.util.Date}</code>.
+          </li>
         </ul>
         <p>
           The main limitation of this check is handling the case where
