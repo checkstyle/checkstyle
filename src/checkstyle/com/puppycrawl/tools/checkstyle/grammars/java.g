@@ -1599,7 +1599,7 @@ SL_COMMENT
     :	"//"
         { mCommentListener.reportSingleLineComment("//", getLine(),
                                                    getColumn() - 3); }
-        (~('\n'|'\r'))* ('\n'|'\r'('\n')?)
+        (~('\n'|'\r'))* ('\n'|'\r'('\n')?|)
         {$setType(Token.SKIP); newline();}
 	;
 

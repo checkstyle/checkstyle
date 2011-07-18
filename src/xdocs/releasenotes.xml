@@ -10,6 +10,29 @@
   </properties>
 
   <body>
+    <section name="Release 5.5">
+      <p>New features:</p>
+      <ul>
+        <li>
+          ...
+        </li>
+      </ul>
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Fix parsing error <code>unexpected char: 0xFFFF</code> which was
+          triggered when a comment line is on a line with out newline character.
+          Thanks to Evgeny Mandrikov for patch #3367782.
+        </li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>
+          ...
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 5.4">
       <p>New features:</p>
       <ul>
