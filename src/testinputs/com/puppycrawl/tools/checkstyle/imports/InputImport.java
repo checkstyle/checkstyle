@@ -27,6 +27,8 @@ import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
 import static sun.net.ftpclient.FtpClient.*;
 import java.awt.Component;
+import java.awt.Graphics2D;
+import java.awt.HeadlessException;
 import java.awt.Label;
 import java.util.Date;
 import java.util.Calendar;
@@ -78,4 +80,11 @@ class InputImport
      * method comment with JavaDoc-only import {@link BitSet#aMethod()}
      */
     public void Label() {}
+    
+    /**
+     * Renders to a {@linkplain Graphics2D graphics context}.
+     * @throws HeadlessException if no graphis environment can be found.
+     * @exception HeadlessException if no graphis environment can be found.
+     */
+    public void render() {}
 }

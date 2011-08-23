@@ -133,7 +133,10 @@ public class JavadocTag
     public boolean canReferenceImports()
     {
         return (JavadocTagInfo.SEE.equals(mTagInfo)
-                || JavadocTagInfo.LINK.equals(mTagInfo));
+                || JavadocTagInfo.LINK.equals(mTagInfo)
+                || JavadocTagInfo.LINKPLAIN.equals(mTagInfo)
+                || JavadocTagInfo.THROWS.equals(mTagInfo)
+                || JavadocTagInfo.EXCEPTION.equals(mTagInfo));
     }
 }
 

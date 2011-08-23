@@ -24,6 +24,11 @@
           triggered when a comment line is on a line with out newline character.
           Thanks to Evgeny Mandrikov for patch #3367782.
         </li>
+        <li>
+          Fixed <a href="config_imports.html#UnusedImports">UnusedImports</a>
+          to consider @linkplain, @throws and @exception tags when the option 
+          <code>processJavadoc</code> is turned on.
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>

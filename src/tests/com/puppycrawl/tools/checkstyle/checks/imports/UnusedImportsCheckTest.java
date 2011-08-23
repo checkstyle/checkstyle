@@ -39,10 +39,12 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
             "22:8: Unused import - javax.swing.BorderFactory.",
             "27:15: Unused import - java.io.File.createTempFile.",
             //"29:8: Unused import - java.awt.Component.", // Should be detected
-            "30:8: Unused import - java.awt.Label.",
-            "31:8: Unused import - java.util.Date.",
-            "32:8: Unused import - java.util.Calendar.",
-            "33:8: Unused import - java.util.BitSet.",
+            "30:8: Unused import - java.awt.Graphics2D.",
+            "31:8: Unused import - java.awt.HeadlessException.",
+            "32:8: Unused import - java.awt.Label.",
+            "33:8: Unused import - java.util.Date.",
+            "34:8: Unused import - java.util.Calendar.",
+            "35:8: Unused import - java.util.BitSet.",
         };
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputImport.java"), expected);
@@ -63,7 +65,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
             "22:8: Unused import - javax.swing.BorderFactory.",
             "27:15: Unused import - java.io.File.createTempFile.",
             //"29:8: Unused import - java.awt.Component.", // Should be detected
-            "30:8: Unused import - java.awt.Label.",
+            "32:8: Unused import - java.awt.Label.",
         };
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputImport.java"), expected);
