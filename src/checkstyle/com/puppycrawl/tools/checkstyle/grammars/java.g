@@ -278,7 +278,8 @@ typeArguments[boolean addImagNode]
     :
         {currentLtLevel = ltCounter;}
         lt:LT {#lt.setType(GENERIC_START); ;ltCounter++;}
-        typeArgument[addImagNode]
+        // (Dinesh Bolkensteyn) Added support for Java 7 diamond notation (disabled ambiguous warnings since generated code seems to work)
+        (options{generateAmbigWarnings=false;}:typeArgument[addImagNode]
         (options{greedy=true;}: // match as many as possible
             // If there are any '>' to reconcile
             // (i.e. we've recently encountered a DT, SR or BSR
@@ -286,7 +287,7 @@ typeArguments[boolean addImagNode]
             // possibly an enclosing type parameter)
             // then further type arguments are not possible
             {gtToReconcile == 0}? COMMA typeArgument[addImagNode]
-        )*
+        )*)?
 
         (   // turn warning off since Antlr generates the right code,
             // plus we have our semantic predicate below
@@ -934,12 +935,16 @@ parameterModifier
     ;
 
 // A formal parameter.
+// (Dinesh Bolkensteyn) Extended to support Java7's "multi-catch", several types seperated by '|'
 parameterDeclaration!
-	:	pm:parameterModifier t:typeSpec[false] id:IDENT
+	:	pm:parameterModifier t:typeSpec[false] (mct:multiCatchTypes { #t.setNextSibling(#mct); })? id:IDENT
 		pd:declaratorBrackets[#t]
 		{#parameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
 									pm, #([TYPE,"TYPE"],pd), id);}
 	;
+	
+multiCatchTypes
+	: (BOR! typeSpec[false])+;
 
 // Compound statement.  This is used in many contexts:
 //   Inside a class definition prefixed with "static":
@@ -1116,12 +1121,21 @@ forIter
 	;
 
 // an exception handler try/catch block
+// (Dinesh Bolkensteyn): Added support for Java 7 try-with-resources
 tryBlock
-	:	"try"^ compoundStatement
+	:	"try"^
+	    
+	    // try-with-resources
+	    (tryWithResources)?
+	    
+	    compoundStatement
 		(handler)*
 		( finallyHandler )?
 	;
 
+tryWithResources
+	:	LPAREN^ modifiers typeSpec[true] IDENT ASSIGN expression RPAREN
+	;
 
 // an exception handler
 handler
@@ -1696,6 +1710,12 @@ protected
 HEX_DIGIT
 	:	('0'..'9'|'A'..'F'|'a'..'f')
 	;
+	
+// binary digit (again, note it's protected!)
+protected
+BINARY_DIGIT
+	:	('0'|'1')
+	;
 
 
 // a dummy rule to force vocabulary to be all characters (except special
@@ -1788,46 +1808,46 @@ NUM_INT
 
 protected INT_LITERAL
     :   (    '0'
-             (  ('x'|'X') (HEX_DIGIT)+
-             |  ('0'..'9')*
+             (  ('x'|'X')(HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?              // Hexa
+             |  ('b'|'B')(BINARY_DIGIT)((BINARY_DIGIT|'_')*(BINARY_DIGIT))?     // Binary
+             |  ((('0'..'7')|'_')*('0'..'7'))?                                  // If empty 0, otherwise octal (which may start with an underscore)
              )
-        // non-zero decimal
-        |	('1'..'9') ('0'..'9')*
+        |   ('1'..'9') (('0'..'9'|'_')*('0'..'9'))?                             // Non-zero decimal
         )
     ;
 
 protected LONG_LITERAL
-    :    (   '0'
-             (  ('x'|'X') (HEX_DIGIT)+
-             |  ('0'..'9')*
+    :   (    '0'
+             (  ('x'|'X')(HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?              // Hexa
+             |  ('b'|'B')(BINARY_DIGIT)((BINARY_DIGIT|'_')*(BINARY_DIGIT))?     // Binary
+             |  ((('0'..'7')|'_')*('0'..'7'))?                                  // If empty 0, otherwise octal (which may start with an underscore)
              )
-         // non-zero decimal
-         |    ('1'..'9') ('0'..'9')*
-         )
-         // long signifier
-         ('l'|'L')
+        |   ('1'..'9') (('0'..'9'|'_')*('0'..'9'))?                             // Non-zero decimal
+        )
+        // long signifier
+        ('l'|'L')
     ;
 
 protected FLOAT_LITERAL
     :   (
-            (('0'..'9')* '.')=>
-            (   ('0'..'9')+ '.' ('0'..'9')*
-            |   '.' ('0'..'9')+
+            ((('0'..'9')(('0'..'9'|'_')*('0'..'9'))?)? '.')=>
+            (   (('0'..'9')(('0'..'9'|'_')*('0'..'9'))?) '.' (('0'..'9')(('0'..'9'|'_')*('0'..'9'))?)?
+            |   '.' (('0'..'9')(('0'..'9'|'_')*('0'..'9'))?)
             )
             (EXPONENT)? ('f'|'F')?
         |
-            ('0'..'9')+ ((EXPONENT ('f'|'F')?) | ('f'|'F'))
+            (('0'..'9')(('0'..'9'|'_')*('0'..'9'))?) ((EXPONENT ('f'|'F')?) | ('f'|'F'))
         )
     ;
 
 protected DOUBLE_LITERAL
     :   (
-            (('0'..'9')* '.')=>
-            (   ('0'..'9')+ '.' ('0'..'9')*
-            |   '.' ('0'..'9')+
+            ((('0'..'9')(('0'..'9'|'_')*('0'..'9'))?)? '.')=>
+            (   (('0'..'9')(('0'..'9'|'_')*('0'..'9'))?) '.' (('0'..'9')(('0'..'9'|'_')*('0'..'9'))?)?
+            |   '.' (('0'..'9')(('0'..'9'|'_')*('0'..'9'))?)
             )
         |
-            ('0'..'9')+
+            (('0'..'9')(('0'..'9'|'_')*('0'..'9'))?)
         )
         (EXPONENT)? ('d'|'D')
     ;
@@ -1835,12 +1855,12 @@ protected DOUBLE_LITERAL
 protected HEX_FLOAT_LITERAL
     :   '0' ('x'|'X')
         (
-            ((HEX_DIGIT)* '.')=>
-            (   (HEX_DIGIT)+ '.' (HEX_DIGIT)*
-            |   '.' (HEX_DIGIT)+
+            (((HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?)? '.')=>
+            (   ((HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?) '.' ((HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?)?
+            |   '.' ((HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?)
             )
         |
-            (HEX_DIGIT)+
+            ((HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?)
         )
         BINARY_EXPONENT ('f'|'F')?
     ;
@@ -1848,12 +1868,12 @@ protected HEX_FLOAT_LITERAL
 protected HEX_DOUBLE_LITERAL
     :   '0' ('x'|'X')
         (
-            ((HEX_DIGIT)* '.')=>
-            (   (HEX_DIGIT)+ '.' (HEX_DIGIT)*
-            |   '.' (HEX_DIGIT)+
+            (((HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?)? '.')=>
+            (   ((HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?) '.' ((HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?)?
+            |   '.' ((HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?)
             )
         |
-            (HEX_DIGIT)+
+            ((HEX_DIGIT)((HEX_DIGIT|'_')*(HEX_DIGIT))?)
         )
         BINARY_EXPONENT ('d'|'D')
     ;
@@ -1874,7 +1894,7 @@ EXPONENT
 
 protected
 SIGNED_INTEGER
-    :   ('+'|'-')? ('0'..'9')+
+    :   ('+'|'-')? (('0'..'9')(('0'..'9'|'_')*('0'..'9'))?)
     ;
 
 protected
