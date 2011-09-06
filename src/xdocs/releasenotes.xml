@@ -14,7 +14,8 @@
       <p>New features:</p>
       <ul>
         <li>
-          ...
+          Added Java 7 support to the grammar. Thanks to Dinesh
+          Bolkensteyn for patch #3403265.
         </li>
       </ul>
       <p>Bug fixes:</p>
