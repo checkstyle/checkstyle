@@ -27,7 +27,7 @@
         </li>
         <li>
           Fixed <a href="config_imports.html#UnusedImports">UnusedImports</a>
-          to consider @linkplain, @throws and @exception tags when the option 
+          to consider @linkplain, @throws and @exception tags when the option
           <code>processJavadoc</code> is turned on.
         </li>
       </ul>
