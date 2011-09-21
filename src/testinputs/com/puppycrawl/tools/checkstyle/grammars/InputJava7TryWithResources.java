@@ -16,10 +16,20 @@ public class InputJava7TryWithResources
         try (MyResource resource = new MyResource()) { }
         finally { }
 
-        try (MyResource resource = new MyResource()) { }
+        try (MyResource resource = new MyResource();) { }
         catch (Exception e) { }
 
-        try (MyResource resource = new MyResource()) { }
+        try (MyResource resource = new MyResource();) { }
+        catch (Exception e) { }
+        catch (Throwable t) { }
+        finally { }
+       
+        try (MyResource resource = new MyResource(); MyResource resource2 = new MyResource()) { }
+        catch (Exception e) { }
+        catch (Throwable t) { }
+        finally { }
+       
+        try (MyResource resource = new MyResource(); MyResource resource2 = new MyResource();) { }
         catch (Exception e) { }
         catch (Throwable t) { }
         finally { }

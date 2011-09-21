@@ -92,6 +92,9 @@ tokens {
     // we need to put it to the end to maintain binary compatibility
     // with previous versions
     DO_WHILE;
+    
+    //Tokens for Java 1.7 language enhancements
+    RESOURCE_SPECIFICATION; RESOURCES; RESOURCE;
 }
 
 {
@@ -1126,15 +1129,26 @@ tryBlock
 	:	"try"^
 	    
 	    // try-with-resources
-	    (tryWithResources)?
+	    (resourceSpecification)?
 	    
 	    compoundStatement
 		(handler)*
 		( finallyHandler )?
 	;
 
-tryWithResources
-	:	LPAREN^ modifiers typeSpec[true] IDENT ASSIGN expression RPAREN
+resourceSpecification
+	: LPAREN resources (SEMI)? RPAREN
+	  {#resourceSpecification = #([RESOURCE_SPECIFICATION, "RESOURCE_SPECIFICATION"], #resourceSpecification);}
+	;
+	
+resources
+	: resource (SEMI resource)*
+	  {#resources = #([RESOURCES, "RESOURCES"], #resources);}
+	;
+
+resource
+	: modifiers typeSpec[true] IDENT ASSIGN expression
+	  {#resource = #([RESOURCE, "RESOURCE"], #resource);}
 	;
 
 // an exception handler

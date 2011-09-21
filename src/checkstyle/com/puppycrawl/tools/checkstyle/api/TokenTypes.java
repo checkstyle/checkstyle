@@ -2004,6 +2004,87 @@ public final class TokenTypes
      * @see #LITERAL_FINALLY
      **/
     public static final int LITERAL_TRY = GeneratedJavaTokenTypes.LITERAL_try;
+
+    /**
+     * Java 7 try-with-resources construct.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * try (Foo foo = new Foo(); Bar bar = new Bar()) { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * +--LITERAL_TRY (try)
+     *     |
+     *     +--RESOURCE_SPECIFICATION
+     *         |
+     *         +--LPAREN (()
+     *         +--RESOURCES
+     *             |
+     *             +--RESOURCE
+     *                 |
+     *                 +--MODIFIERS
+     *                 +--TYPE
+     *                     |
+     *                     +--IDENT (Foo)
+     *                 +--IDENT (foo)
+     *                 +--ASSIGN (=)
+     *                 +--EXPR
+     *                    |
+     *                    +--LITERAL_NEW (new)
+     *                       |
+     *                       +--IDENT (Foo)
+     *                       +--LPAREN (()
+     *                       +--ELIST
+     *                       +--RPAREN ())
+     *             +--SEMI (;)
+     *             +--RESOURCE
+     *                 |
+     *                 +--MODIFIERS
+     *                 +--TYPE
+     *                     |
+     *                     +--IDENT (Bar)
+     *                 +--IDENT (bar)
+     *                 +--ASSIGN (=)
+     *                 +--EXPR
+     *                    |
+     *                    +--LITERAL_NEW (new)
+     *                       |
+     *                       +--IDENT (Bar)
+     *                       +--LPAREN (()
+     *                       +--ELIST
+     *                       +--RPAREN ())
+     *         +--RPAREN ())
+     *     +--SLIST ({)
+     *         +--RCURLY (})
+     * </pre>
+     *
+     * @see #LPAREN
+     * @see #RESOURCES
+     * @see #RESOURCE
+     * @see #SEMI
+     * @see #RPAREN
+     * @see #LITERAL_TRY
+     **/
+    public static final int RESOURCE_SPECIFICATION =
+        GeneratedJavaTokenTypes.RESOURCE_SPECIFICATION;
+
+    /**
+     * Java 7 try-with-resources construct.
+     *
+     * @see #RESOURCE_SPECIFICATION
+     **/
+    public static final int RESOURCES =
+        GeneratedJavaTokenTypes.RESOURCES;
+
+    /**
+     * Java 7 try-with-resources construct.
+     *
+     * @see #RESOURCE_SPECIFICATION
+     **/
+    public static final int RESOURCE =
+        GeneratedJavaTokenTypes.RESOURCE;
+
     /**
      * The <code>catch</code> keyword.
      *
