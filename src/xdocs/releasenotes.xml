@@ -30,6 +30,10 @@
           to consider @linkplain, @throws and @exception tags when the option
           <code>processJavadoc</code> is turned on.
         </li>
+        <li>
+          Fix for improving unicode escapes. Thanks to Dinesh
+          Bolkensteyn for patch #3412812.
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>
