@@ -1671,7 +1671,7 @@ CHAR_LITERAL
 
 // string literals
 STRING_LITERAL
-    :   '"' ( ESC | ~'"' )* '"'
+	:	'"' (ESC|~('"'|'\\'))* '"'
 	;
 
 
@@ -1685,52 +1685,39 @@ STRING_LITERAL
 // the FOLLOW ambig warnings.
 protected
 ESC
-	:
-	(	 options { generateAmbigWarnings = false; }
-		:	'\\' ('u')+ '0' '0' '5' ('c'|'C')
-			(
-			(	options { generateAmbigWarnings = false; }
-				:	'\\' ('u')+ '0' '0' '5' ('c'|'C')
-			|	|	STD_ESC
-			)
-			)
+	:	'\\'
+		(	'n'
+		|	'r'
+		|	't'
+		|	'b'
+		|	'f'
+		|	'"'
+		|	'\''
 		|	'\\'
-			(	('u')+ HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
-			|	STD_ESC
-			)
-	);
-	
-protected
-STD_ESC
-	:	'n'
-	|	'r'
-	|	't'
-	|	'b'
-	|	'f'
-	|	'"'
-	|	'\''
-	|	'\\'
-	|	('0'..'3')
-		(
-			options {
-				warnWhenFollowAmbig = false;
-			}
-		:	('0'..'7')
+		|	('u')+ HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+		|	('0'..'3')
 			(
 				options {
 					warnWhenFollowAmbig = false;
 				}
-			:	'0'..'7'
+			:	('0'..'7')
+				(
+					options {
+						warnWhenFollowAmbig = false;
+					}
+				:	'0'..'7'
+				)?
 			)?
-		)?
-	|	('4'..'7')
-		(
-			options {
-				warnWhenFollowAmbig = false;
-			}
-		:	('0'..'9')
-		)?
+		|	('4'..'7')
+			(
+				options {
+					warnWhenFollowAmbig = false;
+				}
+			:	('0'..'9')
+			)?
+		)
 	;
+
 
 // hexadecimal digit (again, note it's protected!)
 protected
