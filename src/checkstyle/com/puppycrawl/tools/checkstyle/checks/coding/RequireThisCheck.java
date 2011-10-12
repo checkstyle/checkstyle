@@ -69,7 +69,7 @@ public class RequireThisCheck extends DeclarationCollector
         mCheckFields = aCheckFields;
     }
     /**
-     * @return true if we should check fields usage false overwise.
+     * @return true if we should check fields usage false otherwise.
      */
     public boolean getCheckFields()
     {
@@ -85,7 +85,7 @@ public class RequireThisCheck extends DeclarationCollector
         mCheckMethods = aCheckMethods;
     }
     /**
-     * @return true if we should check methods usage false overwise.
+     * @return true if we should check methods usage false otherwise.
      */
     public boolean getCheckMethods()
     {
@@ -148,7 +148,7 @@ public class RequireThisCheck extends DeclarationCollector
 
         // let's check method calls
         if (parentType == TokenTypes.METHOD_CALL) {
-            if (mCheckMethods) {
+            if (mCheckMethods && isClassField(aAST.getText())) {
                 log(aAST, "require.this.method", aAST.getText());
             }
             return;
@@ -161,7 +161,7 @@ public class RequireThisCheck extends DeclarationCollector
         }
 
         if (ScopeUtils.getSurroundingScope(aAST) == null) {
-            // it is not a class or inteface it's
+            // it is not a class or interface it's
             // either import or package
             // we shouldn't checks this
             return;

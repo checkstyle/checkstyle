@@ -23,11 +23,11 @@ import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 /**
- * Abstract class for chekcs which need to collect information about
+ * Abstract class for checks which need to collect information about
  * declared members/parameters/variables.
  *
  * @author o_sukhodolsky
@@ -46,11 +46,29 @@ public abstract class DeclarationCollector extends Check
     @Override
     public void visitToken(DetailAST aAST)
     {
+        final LexicalFrame frame = this.mFrames.current();
         switch (aAST.getType()) {
-        case TokenTypes.PARAMETER_DEF :
-        case TokenTypes.VARIABLE_DEF : {
+        case TokenTypes.VARIABLE_DEF :  {
+            final String name =
+                    aAST.findFirstToken(TokenTypes.IDENT).getText();
+            if (frame instanceof ClassFrame) {
+                final DetailAST mods =
+                    aAST.findFirstToken(TokenTypes.MODIFIERS);
+                if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
+                    ((ClassFrame) frame).addStaticMember(name);
+                }
+                else {
+                    ((ClassFrame) frame).addInstanceMember(name);
+                }
+            }
+            else {
+                frame.addName(name);
+            }
+            break;
+        }
+        case TokenTypes.PARAMETER_DEF : {
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-            this.mFrames.current().addName(nameAST.getText());
+            frame.addName(nameAST.getText());
             break;
         }
         case TokenTypes.CLASS_DEF :
@@ -58,14 +76,26 @@ public abstract class DeclarationCollector extends Check
         case TokenTypes.ENUM_DEF :
         case TokenTypes.ANNOTATION_DEF : {
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
-            this.mFrames.current().addName(nameAST.getText());
+            frame.addName(nameAST.getText());
             this.mFrames.enter(new ClassFrame());
             break;
         }
         case TokenTypes.SLIST :
             this.mFrames.enter(new BlockFrame());
             break;
-        case TokenTypes.METHOD_DEF :
+        case TokenTypes.METHOD_DEF : {
+            final String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
+            if (frame instanceof ClassFrame) {
+                final DetailAST mods =
+                    aAST.findFirstToken(TokenTypes.MODIFIERS);
+                if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
+                    ((ClassFrame) frame).addStaticMember(name);
+                }
+                else {
+                    ((ClassFrame) frame).addInstanceMember(name);
+                }
+            }
+        }
         case TokenTypes.CTOR_DEF :
             this.mFrames.enter(new MethodFrame());
             break;
@@ -94,24 +124,15 @@ public abstract class DeclarationCollector extends Check
     }
 
     /**
-     * Check if given name is a name for declafred variable/parameter/member in
-     * current environment.
-     * @param aName a name to check
-     * @return true is the given name is declare one.
-     */
-    protected final boolean isDeclared(String aName)
-    {
-        return (null != mFrames.findFrame(aName));
-    }
-
-    /**
      * Check if given name is a name for class field in current environment.
      * @param aName a name to check
      * @return true is the given name is name of method or member.
      */
     protected final boolean isClassField(String aName)
     {
-        return (mFrames.findFrame(aName) instanceof ClassFrame);
+        final LexicalFrame frame = mFrames.findFrame(aName);
+        return (frame instanceof ClassFrame)
+                && ((ClassFrame) frame).hasInstanceMember(aName);
     }
 
     /**
@@ -122,9 +143,9 @@ public abstract class DeclarationCollector extends Check
     private abstract static class LexicalFrame
     {
         /** Set of name of variables declared in this frame. */
-        private final HashSet<String> mVarNames;
+        private final Set<String> mVarNames;
 
-        /** constructor -- invocable only via super() from subclasses */
+        /** constructor -- invokable only via super() from subclasses */
         protected LexicalFrame()
         {
             mVarNames = Sets.newHashSet();
@@ -172,6 +193,57 @@ public abstract class DeclarationCollector extends Check
      */
     private static class ClassFrame extends LexicalFrame
     {
+        /** Set of name of instance members declared in this frame. */
+        private final Set<String> mInstanceMembers;
+        /** Set of name of variables declared in this frame. */
+        private final Set<String> mStaticMembers;
+
+        /**
+         * Creates new instance of ClassFrame
+         */
+        public ClassFrame()
+        {
+            super();
+            mInstanceMembers = Sets.newHashSet();
+            mStaticMembers = Sets.newHashSet();
+        }
+
+        /**
+         * Adds static member's name.
+         * @param aName a name of static member of the class
+         */
+        public void addStaticMember(final String aName)
+        {
+            mStaticMembers.add(aName);
+        }
+
+        /**
+         * Adds instance member's name.
+         * @param aName a name of instance member of the class
+         */
+        public void addInstanceMember(final String aName)
+        {
+            mInstanceMembers.add(aName);
+        }
+
+        /**
+         * Checks if a given name is a known instance member of the class.
+         * @param aName a name to check
+         * @return true is the given name is a name of a known
+         *         instance member of the class
+         */
+        public boolean hasInstanceMember(final String aName)
+        {
+            return mInstanceMembers.contains(aName);
+        }
+
+        @Override
+        boolean contains(String aNameToFind)
+        {
+            return super.contains(aNameToFind)
+                    || mInstanceMembers.contains(aNameToFind)
+                    || mStaticMembers.contains(aNameToFind);
+        }
     }
 
     /**

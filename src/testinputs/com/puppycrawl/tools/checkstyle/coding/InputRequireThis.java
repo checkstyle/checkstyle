@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.coding;
+
 import java.awt.Toolkit;
 
 public class InputRequireThis {
@@ -68,5 +70,20 @@ class Bug2123003 {
     
     @interface Rock {
         String[] band() default "Metallica";
+    }
+}
+
+class Bug1155921 {
+    private static int CONST = 1;
+    private static int static_method() {
+        return 1;
+    }
+
+    private int method1() {
+        return CONST;
+    }
+
+    private int method2() {
+        return static_method();
     }
 }
