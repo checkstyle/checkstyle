@@ -30,6 +30,10 @@
           to consider @linkplain, @throws and @exception tags when the option
           <code>processJavadoc</code> is turned on.
         </li>
+        <li>
+          <a href="config_conding.html#RequireThis">RequireThis</a> now
+          ignores static members (bug #1155921).
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>
