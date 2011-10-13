@@ -101,13 +101,13 @@ class PropertySetter
     {
         this.prop = prop;
     }
-    
+
     /** error - incorrect method name */
     public void setprop(int prop)
     {
         this.prop = prop;
     }
-    
+
     /** error - more than one parameter */
     public void setProp(int prop, int extra)
     {
@@ -228,4 +228,12 @@ enum HiddenEnum
 abstract class InputHiddenFieldBug1084512 {
     String x;
     public abstract void methodA(String x);
+}
+
+class Bug3370946 {
+    private int xAxis;
+
+    public void setxAxis(int xAxis) {
+        this.xAxis = xAxis;
+    }
 }

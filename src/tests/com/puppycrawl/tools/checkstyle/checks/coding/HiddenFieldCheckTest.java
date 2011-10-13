@@ -92,6 +92,7 @@ public class HiddenFieldCheckTest
             "217:13: 'hidden' hides a field.",
             "223:13: 'hiddenStatic' hides a field.",
             "230:41: 'x' hides a field.",
+            "236:30: 'xAxis' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -129,6 +130,7 @@ public class HiddenFieldCheckTest
             "217:13: 'hidden' hides a field.",
             "223:13: 'hiddenStatic' hides a field.",
             "230:41: 'x' hides a field.",
+            "236:30: 'xAxis' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -211,6 +213,7 @@ public class HiddenFieldCheckTest
             "217:13: 'hidden' hides a field.",
             "223:13: 'hiddenStatic' hides a field.",
             "230:41: 'x' hides a field.",
+            "236:30: 'xAxis' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
@@ -284,6 +287,7 @@ public class HiddenFieldCheckTest
             "210:20: 'hidden' hides a field.",
             "217:13: 'hidden' hides a field.",
             "223:13: 'hiddenStatic' hides a field.",
+            "236:30: 'xAxis' hides a field.",
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }

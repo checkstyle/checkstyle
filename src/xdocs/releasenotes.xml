@@ -34,6 +34,11 @@
           <a href="config_conding.html#RequireThis">RequireThis</a> now
           ignores static members (bug #1155921).
         </li>
+        <li>
+          <a href="config_conding.html#HiddenField">HiddenField</a> now
+          treats setxYz() as a setter for xYz, and setXYz() as a setter for
+          XYz property to comply JavaBeans specification (bug #3370946).
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>

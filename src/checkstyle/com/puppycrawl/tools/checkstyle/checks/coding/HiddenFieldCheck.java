@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -249,7 +250,7 @@ public class HiddenFieldCheck
      */
     private boolean isIgnoredSetterParam(DetailAST aAST, String aName)
     {
-        if (!(aAST.getType() == TokenTypes.PARAMETER_DEF)
+        if (aAST.getType() != TokenTypes.PARAMETER_DEF
             || !mIgnoreSetter)
         {
             return false;
@@ -264,18 +265,37 @@ public class HiddenFieldCheck
         if (methodAST.getType() != TokenTypes.METHOD_DEF) {
             return false;
         }
-        //property setter name?
-        final String expectedName =
-            "set" + aName.substring(0, 1).toUpperCase() + aName.substring(1);
-        final DetailAST methodNameAST =
-            methodAST.findFirstToken(TokenTypes.IDENT);
-        final String methodName = methodNameAST.getText();
-        if (!methodName.equals(expectedName)) {
-            return false;
-        }
         //void?
         final DetailAST typeAST = methodAST.findFirstToken(TokenTypes.TYPE);
-        return typeAST.branchContains(TokenTypes.LITERAL_VOID);
+        if (!typeAST.branchContains(TokenTypes.LITERAL_VOID)) {
+            return false;
+        }
+
+        //property setter name?
+        final String methodName =
+                methodAST.findFirstToken(TokenTypes.IDENT).getText();
+        final String expectedName = "set" + capitalize(aName);
+        return methodName.equals(expectedName);
+    }
+
+    /**
+     * Capitalizes a given property name the way we expect to see it in
+     * a setter name.
+     * @param aName a property name
+     * @return capitalized property name
+     */
+    private static String capitalize(final String aName)
+    {
+        if (aName == null || aName.length() == 0) {
+            return aName;
+        }
+        // we should not capitalize the first character if the second
+        // one is a capital one, since according to JavaBeans spec
+        // setXYzz() is a setter for XYzz property, not for xYzz one.
+        if (aName.length() > 1 && Character.isUpperCase(aName.charAt(1))) {
+            return aName;
+        }
+        return aName.substring(0, 1).toUpperCase() + aName.substring(1);
     }
 
     /**
@@ -438,14 +458,11 @@ public class HiddenFieldCheck
          */
         public boolean containsInstanceField(String aField)
         {
-            if (mInstanceFields.contains(aField)) {
-                return true;
-            }
-            if (isStaticType()) {
-                return false;
-            }
+            return mInstanceFields.contains(aField)
+                    || !isStaticType()
+                    && (mParent != null)
+                    && mParent.containsInstanceField(aField);
 
-            return (mParent != null) && mParent.containsInstanceField(aField);
         }
 
         /**
@@ -455,11 +472,10 @@ public class HiddenFieldCheck
          */
         public boolean containsStaticField(String aField)
         {
-            if (mStaticFields.contains(aField)) {
-                return true;
-            }
+            return mStaticFields.contains(aField)
+                    || (mParent != null)
+                    && mParent.containsStaticField(aField);
 
-            return (mParent != null) && mParent.containsStaticField(aField);
         }
 
         /**
