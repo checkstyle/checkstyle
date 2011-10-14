@@ -899,9 +899,9 @@ for (Iterator foo = very.long.line.iterator();
           To configure the check to report on each line in each file:
         </p>
         <source>
-&lt;module name=&quot;FileTabCharacter&quot;/&gt;
+&lt;module name=&quot;FileTabCharacter&quot;&gt;
     &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/&gt;
-&lt;module/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
