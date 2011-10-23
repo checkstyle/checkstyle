@@ -731,4 +731,16 @@ public class IndentationCheckTest extends BaseCheckTestSupport
         final String[] expected = {};
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }
+
+    @Test
+    public void testTryResources() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(IndentationCheck.class);
+        final String[] expected = {
+                "something is expected, but there is a NullPointerException",
+            };
+        verify(checkConfig, getPath("indentation/InputValidTryResourcesIndent.java"),
+               expected);
+    }
 }
