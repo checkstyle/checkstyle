@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 
+// Forcing a commit
 class InputValidTryResourcesIndent
 {
     // Taken from JDK7 java.lang.Package src code.
