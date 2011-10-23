@@ -39,6 +39,10 @@
           treats setxYz() as a setter for xYz, and setXYz() as a setter for
           XYz property to comply JavaBeans specification (bug #3370946).
         </li>
+        <li>
+          Fixed parsing errors for Unicode escape sequences. Thanks to
+          Dinesh Bolkensteyn for patch #3412812.
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>
