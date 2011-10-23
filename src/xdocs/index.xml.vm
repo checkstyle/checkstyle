@@ -60,9 +60,14 @@
       </p>
 
       <p>
-        If you want to live on the bleeding edge, you can
-        <a href="http://sourceforge.net/scm/?type=hg&amp;group_id=29721">checkout
-        the current development code from Mercurial</a> and compile yourself.
+        If you want to live on the bleeding edge, you can <a
+        href="http://sourceforge.net/scm/?type=hg&amp;group_id=29721">checkout
+        the current development code from Mercurial</a> and compile
+        yourself. Note, you will need to have the Mercurial <a
+        href="http://mercurial.selenic.com/wiki/EolExtension">EOL
+        Extension</a> enabled to ensure there are no issues with the
+        line endings (this extension will make the files match the local
+        operating system).
       </p>
 
     </section>
