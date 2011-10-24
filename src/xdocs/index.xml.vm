@@ -97,13 +97,40 @@
           <th>Remarks</th>
         </tr>
         <tr>
+          <td><a href="http://www.sonarsource.org/">Sonar</a></td>
+          <td>Freddy Mallet (initial author)</td>
+          <td><a href="http://www.sonarsource.org/">Sonar Home Page</a></td>
+          <td><a href="http://nemo.sonarsource.org/">Demo site</a></td>
+        </tr>
+        <tr>
           <td><a href="http://www.eclipse.org">Eclipse/RAD/RDz</a></td>
           <td>David Schneider</td>
           <td>
             <a href="http://eclipse-cs.sourceforge.net/">Eclipse-CS Home
             Page</a>
           </td>
-          <td></td>
+          <td>
+            In 2007 was awarded
+            <a href="http://www.eclipse.org/org/press-release/20070306eclipsecommunityawards.php">
+              Best Open Source Eclipse-based Developer tool
+            </a>.
+          </td>
+        </tr>
+        <tr>
+          <td><a href="www.eclipse.org">Eclipse/RAD/RDz</a></td>
+          <td>Roman Ivanov</td>
+          <td>
+            <a href="https://github.com/sevntu-checkstyle">Project Page</a>
+          </td>
+          <td>
+            Extension for Eclipse-CS plugin and also an incubator for
+            Checkstyle checks that are not present in main stream of
+            Checkstyle. See the
+            <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki">Wiki</a>
+            and
+            <a href="http://sevntu-checkstyle.github.com/sevntu.checkstyle/">Blog</a>
+            .
+          </td>
         </tr>
         <tr>
           <td><a href="http://www.eclipse.org">Eclipse/RAD/RDz</a></td>
@@ -115,7 +142,6 @@
           </td>
           <td></td>
         </tr>
-
         <tr>
           <td><a href="http://www.intellij.com/idea/">IntelliJ IDEA</a></td>
           <td>Jakub Slawinski</td>
@@ -129,7 +155,7 @@
           <td><a href="http://www.intellij.com/idea/">IntelliJ IDEA</a></td>
           <td>James Shiell</td>
           <td>
-            <a href="http://code.google.com/p/checkstyle-idea/">Checkstyle-idea Project Page</a>
+            <a href="https://github.com/jshiell/checkstyle-idea">Checkstyle-idea Project Page</a>
           </td>
           <td>Provides real-time and on-demand scanning.</td>
         </tr>
@@ -165,15 +191,7 @@
           <td><a href="http://www.netbeans.org">NetBeans</a></td>
           <td></td>
           <td>
-            <a href="http://ammatsun.com/checkstyle4nb.aspx">Checkstyle4nb</a>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><a href="http://www.netbeans.org">NetBeans</a></td>
-          <td></td>
-          <td>
-            <a href="https://sqe.dev.java.net/">Software Quality Environment (SQE)</a>
+            <a href="http://java.net/projects/sqe/">Software Quality Environment (SQE)</a>
           </td>
           <td></td>
         </tr>
@@ -193,7 +211,7 @@
           <td></td>
         </tr>
         <tr>
-          <td><a href="http://snowmail.sn.funpic.de/tide/">tIDE</a></td>
+          <td><a href="http://tide.olympe-network.com/">tIDE</a></td>
           <td></td>
           <td>Built in</td>
           <td></td>
@@ -219,50 +237,16 @@
           <td>Vim file-type plug-in</td>
         </tr>
         <tr>
-          <td><a href="http://www.krysalis.org/centipede/">Krysalis Centipede</a></td>
-          <td>unknown</td>
-          <td>Checkstyle supported out of the box</td>
-          <td></td>
-        </tr>
-        <tr>
           <td><a href="http://maven.apache.org/">Maven</a></td>
           <td>Vincent Massol</td>
           <td>Checkstyle supported out of the box</td>
           <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">example report</a></td>
         </tr>
         <tr>
-          <td><a href="http://sonar.codehaus.org/">Sonar</a></td>
-          <td>Freddy Mallet (initial author)</td>
-          <td><a href="http://sonar.codehaus.org/">Sonar Home Page</a></td>
-          <td><a href="http://nemo.sonar.codehaus.org/">Demo site</a></td>
-        </tr>
-        <tr>
           <td><a href="http://qalab.sourceforge.net/">QALab</a></td>
           <td>Benoit Xhenseval</td>
           <td><a href="http://qalab.sourceforge.net/">QALab Home Page</a></td>
           <td>Supports tracking Checkstyle statistics over time.</td>
-        </tr>
-        <tr>
-          <td>
-            <a href="http://www.borland.com/jbuilder/">Borland JBuilder</a>
-          </td>
-          <td>Darrel King</td>
-          <td>
-            <a href="http://www.pautinka.com/">http://www.pautinka.com/</a>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><a href="http://www.borland.com/jbuilder/">Borland JBuilder</a></td>
-          <td>Henri Tremblay</td>
-          <td><a href="http://sourceforge.net/projects/jbcheckstyle-pg/">JBCS Sourceforge Project Page</a></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><a href="http://www.borland.com/jbuilder/">Borland JBuilder</a></td>
-          <td>Angus Chan</td>
-          <td><a href="http://jbcheckstyle.sourceforge.net">jbCheckStyle</a></td>
-          <td>Checkstyle 2.4</td>
         </tr>
       </table>
 
