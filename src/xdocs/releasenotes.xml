@@ -43,6 +43,11 @@
           Fixed parsing errors for Unicode escape sequences. Thanks to
           Dinesh Bolkensteyn for patch #3412812.
         </li>
+        <li>
+          ignoreEnhancedForColon property added to
+          <a href="config_whitespace.html#WhitespaceAround">WhitespaceAround</a>.
+          Thanks to Travis Schneeberger for patch #1921815 (bug #1649038).
+        </li>
       </ul>
       <p>Notes:</p>
       <ul>

@@ -135,9 +135,20 @@ public class WhitespaceAroundTest
     }
 
     @Test
-    public void test1322879() throws Exception
+    public void test1322879And1649038() throws Exception
     {
         final String[] expected = {
+        };
+        verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
+               expected);
+    }
+
+    @Test
+    public void testIgnoreEnhancedForColon() throws Exception
+    {
+        checkConfig.addAttribute("ignoreEnhancedForColon", "false");
+        final String[] expected = {
+            "18:20: ':' is not preceded with whitespace.",
         };
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);

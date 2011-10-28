@@ -113,6 +113,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>   &lt;property name="allowEmptyConstructors" value="true" /&gt;</pre>
  * </p>
  *
+ * <p>
+ * Also, this check can be configured to ignore the colon in an enhanced for
+ * loop. The colon in an enhanced for loop is ignored by default
+ * </p>
+ * <p>
+ * To configure the check to ignore the colon
+ * </p>
+ * <p>
+ * <pre>   &lt;property name="ignoreEnhancedForColon" value="true" /&gt;</pre>
+ * </p>
+ *
  * @author Oliver Burn
  * @version 1.0
  */
@@ -122,6 +133,8 @@ public class WhitespaceAroundCheck extends Check
     private boolean mAllowEmptyCtors;
     /** Whether or not empty method bodies are allowed. */
     private boolean mAllowEmptyMethods;
+    /** whether or not to ignore a colon in a enhanced for loop */
+    private boolean mIgnoreEnhancedForColon = true;
 
     @Override
     public int[] getDefaultTokens()
@@ -179,7 +192,7 @@ public class WhitespaceAroundCheck extends Check
     }
 
     /**
-     * Sets whether or now empty method bodies are allowed.
+     * Sets whether or not empty method bodies are allowed.
      * @param aAllow <code>true</code> to allow empty method bodies.
      */
     public void setAllowEmptyMethods(boolean aAllow)
@@ -188,12 +201,22 @@ public class WhitespaceAroundCheck extends Check
     }
 
     /**
-     * Sets whether or now empty constructor bodies are allowed.
+     * Sets whether or not empty constructor bodies are allowed.
      * @param aAllow <code>true</code> to allow empty constructor bodies.
      */
     public void setAllowEmptyConstructors(boolean aAllow)
     {
         mAllowEmptyCtors = aAllow;
+    }
+
+    /**
+     * Sets whether or not to ignore the whitespace around the
+     * colon in an enhanced for loop.
+     * @param aIgnore <code>true</code> to ignore enhanced for colon.
+     */
+    public void setIgnoreEnhancedForColon(boolean aIgnore)
+    {
+        mIgnoreEnhancedForColon = aIgnore;
     }
 
     @Override
@@ -223,12 +246,18 @@ public class WhitespaceAroundCheck extends Check
             return;
         }
 
-        //we do not want to check colon for cases and defaults
-        if ((type == TokenTypes.COLON)
-            && ((parentType == TokenTypes.LITERAL_DEFAULT)
-                || (parentType == TokenTypes.LITERAL_CASE)))
-        {
-            return;
+        if ((type == TokenTypes.COLON)) {
+            //we do not want to check colon for cases and defaults
+            if (parentType == TokenTypes.LITERAL_DEFAULT
+                || parentType == TokenTypes.LITERAL_CASE)
+            {
+                return;
+            }
+            else if (parentType == TokenTypes.FOR_EACH_CLAUSE
+                && this.mIgnoreEnhancedForColon)
+            {
+                return;
+            }
         }
 
         // Check for allowed empty method or ctor blocks.
