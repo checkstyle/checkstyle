@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
