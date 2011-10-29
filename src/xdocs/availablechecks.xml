@@ -269,7 +269,7 @@
         <td>Ensures that groups of imports come in a specific order.</td>
       </tr>
       <tr>
-        <td><a href="config_indentation.html#Indentation">Indentation</a></td>
+        <td><a href="config_misc.html#Indentation">Indentation</a></td>
         <td>Checks correct indentation of Java Code.</td>
       </tr>
       <tr>
