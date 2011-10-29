@@ -1146,9 +1146,14 @@ resources
 	  {#resources = #([RESOURCES, "RESOURCES"], #resources);}
 	;
 
+
 resource
-	: modifiers typeSpec[true] IDENT ASSIGN expression
+	: modifiers typeSpec[true] IDENT resource_assign
 	  {#resource = #([RESOURCE, "RESOURCE"], #resource);}
+;
+ 
+resource_assign
+	: ASSIGN^ expression
 	;
 
 // an exception handler
