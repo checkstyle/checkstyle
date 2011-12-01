@@ -39,7 +39,7 @@
     <section name="Features">
       <p>
         Checkstyle can check many aspects of your source code. Historically
-        it's main functionality has been to check code layout issues, but
+        its main functionality has been to check code layout issues, but
         since the internal architecture was changed in version 3, more and
         more checks for other purposes have been added.  Now Checkstyle
         provides checks that find class design problems, duplicate code, or
