@@ -72,8 +72,13 @@ public class DeclarationOrderCheckTest
         checkConfig.addAttribute("ignoreModifiers", "true");
 
         final String[] expected = {
+            "45:9: Static variable definition in wrong order.",
             "54:5: Constructor definition in wrong order.",
+            "80:5: Instance variable definition in wrong order.",
+            "100:9: Static variable definition in wrong order.",
+            "143:9: Static variable definition in wrong order.",
             "152:5: Constructor definition in wrong order.",
+            "178:5: Instance variable definition in wrong order.",
         };
         verify(checkConfig, getPath("coding/InputDeclarationOrder.java"), expected);
     }

@@ -158,7 +158,9 @@ public class DeclarationOrderCheck extends Check
             state = mScopeStates.peek();
             if (aAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 if (state.mScopeState > STATE_STATIC_VARIABLE_DEF) {
-                    if (!mIgnoreModifiers) {
+                    if (!mIgnoreModifiers
+                        || state.mScopeState > STATE_INSTANCE_VARIABLE_DEF)
+                    {
                         log(aAST, "declaration.order.static");
                     }
                 }
@@ -168,9 +170,7 @@ public class DeclarationOrderCheck extends Check
             }
             else {
                 if (state.mScopeState > STATE_INSTANCE_VARIABLE_DEF) {
-                    if (!mIgnoreModifiers) {
-                        log(aAST, "declaration.order.instance");
-                    }
+                    log(aAST, "declaration.order.instance");
                 }
                 else if (state.mScopeState == STATE_STATIC_VARIABLE_DEF) {
                     state.mDeclarationAccess = Scope.PUBLIC;
