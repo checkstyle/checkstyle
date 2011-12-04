@@ -54,6 +54,11 @@ public class InnerAssignmentCheck
         {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_INIT},
         {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_ITERATOR},
         {TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR},
+        {
+            TokenTypes.RESOURCE,
+            TokenTypes.RESOURCES,
+            TokenTypes.RESOURCE_SPECIFICATION,
+        },
     };
 
     /**

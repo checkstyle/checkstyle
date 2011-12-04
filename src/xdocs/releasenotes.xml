@@ -20,6 +20,10 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
+          <a href="config_conding.html#InnerAssignment">Inner assignment</a>
+          is now allowed in try-with-resources (bug #3441097)
+        </li>
+        <li>
           ...
         </li>
       </ul>
