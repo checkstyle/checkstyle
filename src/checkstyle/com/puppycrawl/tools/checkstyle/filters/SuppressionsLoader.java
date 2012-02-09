@@ -31,6 +31,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
@@ -137,14 +139,28 @@ public final class SuppressionsLoader
             fis = new FileInputStream(aFilename);
         }
         catch (final FileNotFoundException e) {
-            // check for the file in the classpath
-            fis = SuppressionsLoader.class.getResourceAsStream(aFilename);
-
+            if (aFilename.matches("^https?://.+")) {
+                // this is a URL, load it as such
+                try {
+                    fis = new URL(aFilename).openStream();
+                }
+                catch (MalformedURLException e1) {
+                    throw new CheckstyleException(
+                        "Invalid URL: " + aFilename, e1);
+                }
+                catch (IOException e1) {
+                    throw new CheckstyleException(
+                        "unable to read " + aFilename, e1);
+                }
+            }
+            else {
+                // check for the file in the classpath
+                fis = SuppressionsLoader.class.getResourceAsStream(aFilename);
+            }
             if (fis == null) {
                 throw new CheckstyleException("unable to find " + aFilename, e);
             }
         }
-
         final InputSource source = new InputSource(fis);
         return loadSuppressions(source, aFilename);
     }
