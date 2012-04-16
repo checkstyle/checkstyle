@@ -35,7 +35,11 @@
       <p>Notes:</p>
       <ul>
         <li>
-          ...
+          Removed the <code>DoubleCheckedLocking</code> check, as in Java 5
+          (and beyond), using the <code>volatile</code> keyword addresses
+          the issue. See
+          <a href="http://jeremymanson.blogspot.com.au/2008/05/double-checked-locking.html">here</a>
+          for more details.
         </li>
       </ul>
     </section>

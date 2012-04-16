@@ -119,14 +119,6 @@
         <td>Checks that classes are designed for inheritance.</td>
       </tr>
       <tr>
-        <td><a href="config_coding.html#DoubleCheckedLocking">DoubleCheckedLocking</a></td>
-        <td>
-          Detect the double-checked locking idiom, a technique that
-          tries to avoid synchronization overhead but is incorrect
-          because of subtle artifacts of the java memory model.
-        </td>
-      </tr>
-      <tr>
         <td><a href="config_blocks.html#EmptyBlock">EmptyBlock</a></td>
         <td>Checks for empty blocks.</td>
       </tr>
