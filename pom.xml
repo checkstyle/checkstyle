@@ -321,6 +321,7 @@
               <value>${testsrcs.dir}</value>
             </property>
           </systemProperties>
+          <argLine>-Duser.language=en -Duser.country=US</argLine>
         </configuration>
       </plugin>
 
