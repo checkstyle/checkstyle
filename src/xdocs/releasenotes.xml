@@ -14,18 +14,20 @@
       <p>New features:</p>
       <ul>
         <li>
-          ...
+          <a href="config.html#SuppressionFilter">SuppressionFilter</a>
+          now supports loading a configuration from a URL
+          reference. Thanks to Stephen for patch #3485185.
         </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>
         <li>
-          <a href="config_conding.html#DeclarationOrder">DeclarationOrder</a>
+          <a href="config_coding.html#DeclarationOrder">DeclarationOrder</a>
           handles ignoreModifiers correctly (all fields should be before
           ctors and methods)(bug #3429775)
         </li>
         <li>
-          <a href="config_conding.html#InnerAssignment">Inner assignment</a>
+          <a href="config_coding.html#InnerAssignment">Inner assignment</a>
           is now allowed in try-with-resources (bug #3441097)
         </li>
         <li>

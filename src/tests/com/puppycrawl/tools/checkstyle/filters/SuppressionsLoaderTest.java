@@ -56,6 +56,26 @@ public class SuppressionsLoaderTest
     }
 
     @Test
+    public void testLoadFromURL() throws CheckstyleException
+    {
+        final FilterSet fc = SuppressionsLoader.loadSuppressions("http://checkstyle.hg.sourceforge.net/hgweb/checkstyle/checkstyle/raw-file/055e288619a5/src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_none.xml");
+        final FilterSet fc2 = new FilterSet();
+        assertEquals(fc, fc2);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testLoadFromMalformedURL() throws CheckstyleException
+    {
+        SuppressionsLoader.loadSuppressions("http");
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testLoadFromNonExistingURL() throws CheckstyleException
+    {
+        SuppressionsLoader.loadSuppressions("http://^%$^* %&% %^&");
+    }
+
+    @Test
     public void testMultipleSuppression()
         throws CheckstyleException, PatternSyntaxException
     {

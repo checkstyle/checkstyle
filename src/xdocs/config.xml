@@ -640,8 +640,19 @@
             <td>file</td>
             <td>
               the location of the <em>suppressions XML document</em> file.
-              The location can either be a filesystem location, or a
-              name passed to the ClassLoader.getResource() method.
+              The order the location is checked is:
+              <ol>
+                <li>as a filesystem location</li>
+                <li>
+                  if no file found, and the location starts with either
+                  <code>http://</code> or <code>https://</code>, then it
+                  is interpreted as a URL
+                </li>
+                <li>
+                  if no file found, then passed to the
+                  <code>ClassLoader.getResource()</code> method.
+                </li>
+              </ol>
             </td>
             <td><a href="property_types.html#string">string</a></td>
             <td><code>none</code></td>
