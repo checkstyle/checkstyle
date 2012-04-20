@@ -32,7 +32,7 @@ public class ParameterNumberCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNumberCheck.class);
         final String[] expected = {
-            "194:10: More than 7 parameters.",
+            "194:10: More than 7 parameters (found 9).",
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
@@ -45,8 +45,21 @@ public class ParameterNumberCheckTest
             createCheckConfig(ParameterNumberCheck.class);
         checkConfig.addAttribute("max", "2");
         final String[] expected = {
-            "71:9: More than 2 parameters.",
-            "194:10: More than 2 parameters.",
+            "71:9: More than 2 parameters (found 3).",
+            "194:10: More than 2 parameters (found 9).",
+        };
+        verify(checkConfig, getPath("InputSimple.java"), expected);
+    }
+
+    @Test
+    public void shouldLogActualParameterNumber()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParameterNumberCheck.class);
+        checkConfig.addMessage("maxParam", "{0},{1}");
+        final String[] expected = {
+            "194:10: 7,9",
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

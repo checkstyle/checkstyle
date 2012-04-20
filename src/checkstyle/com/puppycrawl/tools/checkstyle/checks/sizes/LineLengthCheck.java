@@ -113,7 +113,7 @@ public class LineLengthCheck extends Check
             if ((realLength > mMax)
                 && !mIgnorePattern.matcher(line).find())
             {
-                log(i + 1, "maxLineLen", mMax);
+                log(i + 1, "maxLineLen", mMax, realLength);
             }
         }
     }
@@ -141,5 +141,4 @@ public class LineLengthCheck extends Check
             throw new ConversionException("unable to parse " + aFormat, e);
         }
     }
-
 }

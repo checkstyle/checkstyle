@@ -33,8 +33,24 @@ public class LineLengthCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("max", "80");
         checkConfig.addAttribute("ignorePattern",  "^.*is OK.*regexp.*$");
         final String[] expected = {
-            "18: Line is longer than 80 characters.",
-            "145: Line is longer than 80 characters.",
+            "18: Line is longer than 80 characters (found 81).",
+            "145: Line is longer than 80 characters (found 83).",
+        };
+        verify(checkConfig, getPath("InputSimple.java"), expected);
+    }
+
+    @Test
+    public void shouldLogActualLineLength()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(LineLengthCheck.class);
+        checkConfig.addAttribute("max", "80");
+        checkConfig.addAttribute("ignorePattern", "^.*is OK.*regexp.*$");
+        checkConfig.addMessage("maxLineLen", "{0},{1}");
+        final String[] expected = {
+            "18: 80,81",
+            "145: 80,83",
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
