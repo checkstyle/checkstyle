@@ -65,9 +65,12 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.EventObject;
+import java.util.List;
+
 import javax.swing.Action;
 import javax.swing.AbstractAction;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
@@ -82,6 +85,8 @@ import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * This example shows how to create a simple JTreeTable component,
@@ -100,6 +105,8 @@ public class JTreeTable extends JTable
     private static final long serialVersionUID = -8493693409423365387L;
     /** A subclass of JTree. */
     protected TreeTableCellRenderer tree;
+    private JTextArea editor;
+    private List<Integer> lines2position;
 
     public JTreeTable(TreeTableModel treeTableModel)
     {
@@ -142,6 +149,10 @@ public class JTreeTable extends JTable
 
                 public void actionPerformed(ActionEvent e) {
                     final TreePath selected = tree.getSelectionPath();
+
+                    DetailAST ast = (DetailAST) selected.getLastPathComponent();
+                    new CodeSelector(ast, editor, lines2position).select();
+
                     if (tree.isExpanded(selected)) {
                         tree.collapsePath(selected);
                     }
@@ -479,5 +490,15 @@ public class JTreeTable extends JTable
                 updateSelectedPathsFromSelectedRows();
             }
         }
+    }
+
+    public void setEditor(JTextArea mJTextArea)
+    {
+         this.editor = mJTextArea;
+    }
+
+    public void setLinePositionMap(List<Integer> lines2position)
+    {
+        this.lines2position = lines2position;
     }
 }

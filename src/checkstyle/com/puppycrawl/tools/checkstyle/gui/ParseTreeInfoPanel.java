@@ -26,6 +26,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TooManyListenersException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -60,6 +62,7 @@ public class ParseTreeInfoPanel extends JPanel
     private File mLastDirectory = null;
     private File mCurrentFile = null;
     private final Action reloadAction;
+    private final List<Integer>   lines2position  = new ArrayList<Integer>();
 
     private static class JavaFileFilter extends FileFilter
     {
@@ -162,6 +165,18 @@ public class ParseTreeInfoPanel extends JPanel
                 reloadAction.setEnabled(true);
 
                 final String[] sourceLines = text.toLinesArray();
+
+                // clear for each new file
+                 getLines2position().clear();
+                 // starts line counting at 1
+                 getLines2position().add(0);
+                 // insert the contents of the file to the text area
+                 for (String element : sourceLines)
+                 {
+                   getLines2position().add(mJTextArea.getText().length());
+                   mJTextArea.append(element + "\n");
+                 }
+
                 //clean the text area before inserting the lines of the new file
                 if (mJTextArea.getText().length() != 0) {
                     mJTextArea.replaceRange("", 0, mJTextArea.getText()
@@ -251,6 +266,8 @@ public class ParseTreeInfoPanel extends JPanel
 
         mJTextArea = new JTextArea(20, 15);
         mJTextArea.setEditable(false);
+        mTreeTable.setEditor(mJTextArea);
+        mTreeTable.setLinePositionMap(lines2position);
 
         final JScrollPane sp2 = new JScrollPane(mJTextArea);
         this.add(sp2, BorderLayout.CENTER);
@@ -284,5 +301,9 @@ public class ParseTreeInfoPanel extends JPanel
         SwingUtilities.invokeLater(showError);
     }
 
+    public List<Integer> getLines2position()
+    {
+      return lines2position;
+    }
 }
 
