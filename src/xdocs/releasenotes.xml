@@ -43,6 +43,10 @@
           <a href="http://jeremymanson.blogspot.com.au/2008/05/double-checked-locking.html">here</a>
           for more details.
         </li>
+        <li>
+          Added Turkish message translations. Thanks to poyrazus
+          for patch #3460908.
+        </li>
       </ul>
     </section>
 
