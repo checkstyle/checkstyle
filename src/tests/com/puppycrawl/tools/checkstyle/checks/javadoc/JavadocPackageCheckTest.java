@@ -49,6 +49,7 @@ public class JavadocPackageCheckTest
             getSrcPath("checks/javadoc/BadCls.java"),
             expected);
     }
+
     @Test
     public void testBoth() throws Exception
     {
@@ -82,5 +83,15 @@ public class JavadocPackageCheckTest
         verify(createChecker(checkConfig),
             getPath("javadoc/pkghtml/Ignored.java"),
             getPath("javadoc/pkghtml/package-info.java"), expected);
+    }
+
+    @Test
+    public void testAnnotation() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
+        final String[] expected = {};
+        verify(createChecker(checkConfig),
+            getPath("javadoc/pkginfo/annotation/package-info.java"),
+            getPath("javadoc/pkginfo/annotation/package-info.java"), expected);
     }
 }
