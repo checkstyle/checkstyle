@@ -331,7 +331,10 @@ typeArgumentBounds[boolean addImagNode]
             e:"extends"^ {#e.setType(TYPE_UPPER_BOUNDS); }
           | s:"super"^ { #s.setType(TYPE_LOWER_BOUNDS); }
         )
-        classOrInterfaceType[addImagNode]
+        (
+            classOrInterfaceType[addImagNode]
+          | builtInType
+        )
         (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)?
     ;
 

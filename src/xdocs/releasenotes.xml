@@ -35,7 +35,8 @@
           is now allowed in try-with-resources (bug #3441097)
         </li>
         <li>
-          ...
+          Fixed bug in the grammer when builtin types are used in a
+          generic declaration (bug #3553541).
         </li>
       </ul>
       <p>Notes:</p>
