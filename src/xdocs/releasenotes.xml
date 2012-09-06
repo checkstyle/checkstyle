@@ -22,6 +22,10 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
+          Fixed bug in the grammer for an edge case (bug
+          #1667137). Thanks to Lukas Platinsky for patch #3393810.
+        </li>
+        <li>
           <a href="config_coding.html#DeclarationOrder">DeclarationOrder</a>
           handles ignoreModifiers correctly (all fields should be before
           ctors and methods)(bug #3429775)

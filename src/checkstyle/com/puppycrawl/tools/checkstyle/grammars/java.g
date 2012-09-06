@@ -556,11 +556,10 @@ typeParameters
         // '>' for the type parameter. Any other adjacent '>' seen should
         // have been reconciled with type arguments for the last type parameter
         // hence we can assert here that there is but one unaccounted '>'.
-        {isThereASingleGtToEmit()}?
-        //And then there were none..
-
         {
-            astFactory.addASTChild(currentAST, emitSingleGt());
+        	if (isThereASingleGtToEmit()) {
+            	astFactory.addASTChild(currentAST, emitSingleGt());
+            }
         }
         // make sure we have gobbled up enough '>' characters
         // if we are at the "top level" of nested typeArgument productions
@@ -875,8 +874,8 @@ arrayInitializer
 				:
 					COMMA initializer
 				)*
-				(COMMA)?
 			)?
+			(COMMA)?
 		RCURLY
 	;
 
