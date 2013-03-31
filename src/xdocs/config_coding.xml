@@ -1775,12 +1775,12 @@ if (&quot;something&quot;.equals(x))
         </p>
 
         <p>
-          Also ensures that suite() is named correctly, have no arguments,
-          return junit.framewotk.Test, public and static.
+          Also ensures that suite() is named correctly, has no arguments,
+          returns junit.framework.Test, and is public and static.
         </p>
 
         <p>
-          Rationale: often times developers will misname one or more of these
+          Rationale: Developers will often misname one or more of these
           methods and not realise that the method is not being called.
         </p>
       </subsection>

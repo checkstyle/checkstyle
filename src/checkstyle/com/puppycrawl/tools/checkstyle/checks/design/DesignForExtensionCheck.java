@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <p>
- * This protects superclasses against beeing broken by
+ * This protects superclasses against being broken by
  * subclasses. The downside is that subclasses are limited
  * in their flexibility, in particular they cannot prevent
  * execution of code in the superclass, but that also

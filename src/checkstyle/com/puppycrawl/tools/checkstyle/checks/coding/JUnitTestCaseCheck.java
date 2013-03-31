@@ -27,10 +27,10 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 /**
  * Ensures that the setUp(), tearDown()methods are named correctly,
  * have no arguments, return void and are either public or protected.
- * Also ensures that suite() is named correctly, have no arguments, return
- * junit.framewotk.Test, public and static.
+ * Also ensures that suite() is named correctly, has no arguments, returns
+ * junit.framework.Test, and is public and static.
  *
- * Rationale: often times developers will misname one or more of these
+ * Rationale: Developers will often misname one or more of these
  * methods and not realise that the method is not being called.
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>

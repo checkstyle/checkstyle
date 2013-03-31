@@ -273,7 +273,7 @@ public class StringUtils // not final to allow subclassing
 
         <p>
           Rationale: This API design style protects superclasses against
-          beeing broken by subclasses. The downside is that subclasses are
+          being broken by subclasses. The downside is that subclasses are
           limited in their flexibility, in particular they cannot prevent
           execution of code in the superclass, but that also means that
           subclasses cannot corrupt the state of the superclass by forgetting
