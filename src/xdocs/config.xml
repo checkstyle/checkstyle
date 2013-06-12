@@ -1093,7 +1093,52 @@
       </source>
 
       </subsection>
-      </section>
+
+      <subsection name="SuppressWarningsFilter">
+        <h4>SuppressWarningsFilter</h4>
+        <p>Filter <code>SuppressWarningsFilter</code> uses annotations to suppress audit events</p>
+
+        <p>
+          Rationale: Same as for
+          <code>SuppressionCommentFilter</code>. In the contrary to it
+          here we do not used comments but the builtin syntax of
+          <code>@SuppressWarnings</code>. This can be perceived as more
+          elegant solution than using comments. Also this maybe
+          supported but various IDE.
+        </p>
+        <p>
+          Usage: This filter only works in conjunction withe a
+          <code>SuppressWarningsHolder</code> since that check find the
+          annotations in all *.java files and make them available for
+          the filter. Because of that a configuration that includes this
+          filter must also include <code>SuppressWarningsHolder</code>
+          as a child module of the <code>TreeWalker</code>.
+        </p>
+
+        <h5>SuppressWarningsFilter Properties</h5>
+        <p>This filter does not expose any properties</p>
+
+        <h5>Examples</h5>
+        <p>
+          To configure the check that makes tha annotations available to
+          the filter.
+        </p>
+        <source>
+          &lt;module name="TreeWalker"&gt;
+            ...
+              &lt;module name="SuppressWarningsHolder" /&gt;
+            ...
+          &lt;/module&gt;
+        </source>
+
+        <p>To configure filter to suppress audit events for annotations add:</p>
+        <source>
+          &lt;module name="SuppressWarningsFilter" /&gt;
+        </source>
+
+      </subsection>
+
+    </section>
 
     <section name="AuditListeners">
 

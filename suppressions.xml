@@ -21,6 +21,9 @@
               files="SuppressionCommentFilter.java"
               lines="28"/>
     <suppress checks="ImportControl"
+              files="SuppressWarningsFilter.java"
+              lines="24"/>
+    <suppress checks="ImportControl"
               files="SuppressWithNearbyCommentFilter.java"
               lines="28"/>
     <suppress id="paramNum"

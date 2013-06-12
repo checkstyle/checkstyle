@@ -337,5 +337,86 @@
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
+
+    <section name="SuppressWarningsHolder">
+      <subsection name="Description">
+        <p>
+          Maintains a set of check suppressions from SuppressWarnings
+          annotations. It allows to prevent Stylecheck from reporting
+          errors from parts of code that were annotated with
+          <code>SuppressWarnings</code> and using name of the check to
+          be excluded. You can also define aliases for check names that
+          need to be suppressed.
+         </p>
+      </subsection>
+
+
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>aliasList</td>
+            <td>Aliases for check names that can be used in code within <code>SuppressWarnings</code></td>
+            <td><a href="property_types.html#string">String</a> in a format of comma separated attribute=value entries.
+            The attribute is the fully qualified name of the Check and value is its alias.</td>
+            <td>null</td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>To prevent <code>FooCheck</code> errors from being reported write:</p>
+        <source>
+        @SuppressWarnings("foo") interface I { }
+        @SuppressWarnings("foo") enum E { }
+        @SuppressWarnings("foo") InputSuppressWarningsFilter() { }
+        </source>
+        <br />
+        <p>Some real check examples:</p>
+        <p>This will prevent from invocation of the MemberNameCheck:
+          <source>
+         @SuppressWarnings({"membername"})
+         private int J;
+           </source>
+        </p>
+
+        <p>You can also use a <code>checkstyle</code> prefix to prevent compiler from processing this annotations.
+        For example this will prevent ConstantNameCheck
+          <source>
+            @SuppressWarnings("checkstyle:constantname")
+            private static final int m = 0;
+          </source>
+        </p>
+
+        <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be matched against class name of the checker in lower case
+          and without <code>Check</code> suffix if present</p>
+          <p>If <code>aliasList</code> property was provided you can use your own names e.g below code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in the <code>aliasList</code>
+          <source>
+            @SuppressWarnings("paramnum")
+            public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
+              int b, int c, int d, int e, int f, int g, int h) {
+              ...
+            }
+          </source>
+      </p>
+
+      </subsection>
+
+
+      <subsection name="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+      </subsection>
+
+    </section>
   </body>
 </document>

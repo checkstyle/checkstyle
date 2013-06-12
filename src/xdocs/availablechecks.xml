@@ -622,6 +622,12 @@
         </td>
       </tr>
       <tr>
+        <td><a href="config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a></td>
+        <td>
+          This check allows for finding code that should not be reported by Checkstyle
+        </td>
+      </tr>
+      <tr>
         <td><a href="config_design.html#ThrowsCount">ThrowsCount</a></td>
         <td>
         Restricts throws statements to a specified count (default = 1).</td>
