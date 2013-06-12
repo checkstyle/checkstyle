@@ -31,8 +31,8 @@
     <url>http://sourceforge.net/tracker/?group_id=29721</url>
   </issueManagement>
   <ciManagement>
-  	<system>hudson</system>
-  	<url>http://hudson.fazend.com:8081/hudson/job/Checkstyle</url>
+    <system>hudson</system>
+    <url>http://hudson.fazend.com:8081/hudson/job/Checkstyle</url>
   </ciManagement>
   <inceptionYear>2001</inceptionYear>
 
@@ -157,9 +157,9 @@
       <version>1.2</version>
     </dependency>
     <dependency>
-      <groupId>com.google.collections</groupId>
-      <artifactId>google-collections</artifactId>
-      <version>1.0</version>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>14.0.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
@@ -173,7 +173,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.10</version>
+      <version>4.11</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -199,6 +199,51 @@
 
     <testSourceDirectory>src/tests</testSourceDirectory>
 
+    <pluginManagement>
+      <plugins>
+        <!-- This plugin's configuration is used to store Eclipse 
+             m2e settings only. It has no influence on the Maven build itself.
+        -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <versionRange>[1.0,)</versionRange>
+                    <goals>
+                      <goal>run</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute />
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>antlr-maven-plugin</artifactId>
+                    <versionRange>[1.0,)</versionRange>
+                    <goals>
+                      <goal>generate</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute />
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -381,8 +426,8 @@
       </plugin>
 
       <plugin>
-      	<groupId>org.apache.maven.plugins</groupId>
-      	<artifactId>maven-eclipse-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-eclipse-plugin</artifactId>
         <version>2.8</version>
         <configuration>
           <downloadSources>true</downloadSources>
@@ -413,8 +458,8 @@
         <!--
         THE FOLLOWING DOES NOT WORK!
       <plugin>
-      	<groupId>org.apache.maven.plugins</groupId>
-      	<artifactId>maven-linkcheck-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-linkcheck-plugin</artifactId>
         <configuration>
           <excludedLinks><excludedLink>**/apidocs/**</excludedLink></excludedLinks>
         </configuration>
