@@ -6,7 +6,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 /**
  * Test input for using comments to suppress errors.
- * 
+ *
  * @author Trevor Robinson
  **/
 @SuppressWarnings("foo") // coverage: no following AST
