@@ -14,7 +14,10 @@
       <p>New features:</p>
       <ul>
         <li>
-          TBD
+          Support 
+          <a href="config.html#SuppressWarningsFilter">SuppressWarningsFilter</a>
+          to use <code>@SuppressWarnings</code> annotations to suppress
+          violations. Thanks to Trevor Robinson for patch #156.
         </li>
       </ul>
       <p>Bug fixes:</p>
