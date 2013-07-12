@@ -14,7 +14,7 @@
       <p>New features:</p>
       <ul>
         <li>
-          Support 
+          Support
           <a href="config.html#SuppressWarningsFilter">SuppressWarningsFilter</a>
           to use <code>@SuppressWarnings</code> annotations to suppress
           violations. Thanks to Trevor Robinson for patch #156.
@@ -29,7 +29,11 @@
       <p>Notes:</p>
       <ul>
         <li>
-          Upgraded dependencies to Guava 13.0.1 and JUnit 4.11.
+          Improved the performance of FileText construction, which
+          increased file loading times by up to 30%.
+        </li>
+        <li>
+          Upgraded dependencies to Guava 14.0.1 and JUnit 4.11.
         </li>
       </ul>
     </section>

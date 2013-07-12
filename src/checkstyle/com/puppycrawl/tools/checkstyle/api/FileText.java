@@ -18,11 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -30,6 +32,7 @@ import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CodingErrorAction;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.List;
@@ -81,7 +84,7 @@ public final class FileText extends AbstractList<String>
     /**
      * The full text contents of the file.
      */
-    private final CharSequence mFullText;
+    private final String mFullText;
 
     /**
      * The lines of the file, without terminators.
@@ -145,16 +148,20 @@ public final class FileText extends AbstractList<String>
         // buf.trimToSize(); // could be used instead of toString().
         mFullText = buf.toString();
 
-        final String[] lines = LINE_TERMINATOR.split(mFullText, -1);
-        if (lines.length > 0 && lines[lines.length - 1].length() == 0) {
-            // drop empty line after last newline
-            mLines = new String[lines.length - 1];
-            System.arraycopy(lines, 0, mLines, 0, lines.length - 1);
+        // Use the BufferedReader to break down the lines as this
+        // is about 30% faster than using the
+        // LINE_TERMINATOR.split(mFullText, -1) method
+        final ArrayList<String> lines = new ArrayList<String>();
+        final BufferedReader br =
+            new BufferedReader(new StringReader(mFullText));
+        for (;;) {
+            final String l = br.readLine();
+            if (null == l) {
+                break;
+            }
+            lines.add(l);
         }
-        else {
-            // no newline at end, so we keep the last line as is
-            mLines = lines;
-        }
+        mLines = lines.toArray(new String[lines.size()]);
     }
 
     /**
@@ -178,7 +185,7 @@ public final class FileText extends AbstractList<String>
 
         mFile = aFile;
         mCharset = null;
-        mFullText = buf;
+        mFullText = buf.toString();
         mLines = aLines.toArray(new String[aLines.size()]);
     }
 
