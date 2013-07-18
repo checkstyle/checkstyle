@@ -20,10 +20,14 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 
 import static org.junit.Assert.fail;
 
+import java.io.File;
+import java.net.URI;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import org.junit.Test;
 
 public class HeaderCheckTest extends BaseFileSetCheckTestSupport
 {
@@ -46,6 +50,19 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header"));
+        final String[] expected = {
+            "3: Line does not match expected header line of '// Created: 2002'.",
+        };
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+    }
+
+    @Test
+    public void testRegexpHeaderURL() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RegexpHeaderCheck.class);
+        URI uri = (new File(getPath("regexp.header"))).toURI();
+        checkConfig.addAttribute("headerFile", uri.toString());
         final String[] expected = {
             "3: Line does not match expected header line of '// Created: 2002'.",
         };

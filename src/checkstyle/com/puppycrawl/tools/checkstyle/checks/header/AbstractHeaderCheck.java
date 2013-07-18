@@ -18,25 +18,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import com.google.common.collect.ImmutableList;
-
 import java.io.BufferedInputStream;
-import java.io.FileInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.List;
 
+import org.apache.commons.beanutils.ConversionException;
+
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Utils;
-
-import org.apache.commons.beanutils.ConversionException;
 
 /**
  * Abstract super class for header checks.
@@ -101,8 +105,9 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         checkHeaderNotInitialized();
         Reader headerReader = null;
         try {
+            final URI uri = resolveHeaderFile();
             headerReader = new InputStreamReader(new BufferedInputStream(
-                    new FileInputStream(mFilename)), mCharset);
+                    uri.toURL().openStream()), mCharset);
             loadHeader(headerReader);
         }
         catch (final IOException ex) {
@@ -112,6 +117,49 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         finally {
             Utils.closeQuietly(headerReader);
         }
+    }
+
+    /**
+     * Resolve the specified filename param to a URI.
+     * @return resolved header file URI
+     * @throws IOException on failure
+     */
+    private URI resolveHeaderFile() throws IOException
+    {
+        // figure out if this is a File or a URL
+        URI uri;
+        try {
+            final URL url = new URL(mFilename);
+            uri = url.toURI();
+        }
+        catch (final MalformedURLException ex) {
+            uri = null;
+        }
+        catch (final URISyntaxException ex) {
+            // URL violating RFC 2396
+            uri = null;
+        }
+        if (uri == null) {
+            final File file = new File(mFilename);
+            if (file.exists()) {
+                uri = file.toURI();
+            }
+            else {
+                // check to see if the file is in the classpath
+                try {
+                    final URL configUrl = AbstractHeaderCheck.class
+                            .getResource(mFilename);
+                    if (configUrl == null) {
+                        throw new FileNotFoundException(mFilename);
+                    }
+                    uri = configUrl.toURI();
+                }
+                catch (final URISyntaxException e) {
+                    throw new FileNotFoundException(mFilename);
+                }
+            }
+        }
+        return uri;
     }
 
     /**
