@@ -18,23 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.filters;
 
-import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.FilterSet;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Map;
+import java.util.regex.PatternSyntaxException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Map;
-import java.util.regex.PatternSyntaxException;
+import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
 
 /**
  * Loads a filter chain of suppressions.
@@ -134,35 +137,46 @@ public final class SuppressionsLoader
     public static FilterSet loadSuppressions(String aFilename)
         throws CheckstyleException
     {
-        InputStream fis;
         try {
-            fis = new FileInputStream(aFilename);
+            // figure out if this is a File or a URL
+            URI uri;
+            try {
+                final URL url = new URL(aFilename);
+                uri = url.toURI();
+            }
+            catch (final MalformedURLException ex) {
+                uri = null;
+            }
+            catch (final URISyntaxException ex) {
+                // URL violating RFC 2396
+                uri = null;
+            }
+            if (uri == null) {
+                final File file = new File(aFilename);
+                if (file.exists()) {
+                    uri = file.toURI();
+                }
+                else {
+                    // check to see if the file is in the classpath
+                    try {
+                        final URL configUrl = SuppressionsLoader.class
+                                .getResource(aFilename);
+                        if (configUrl == null) {
+                            throw new FileNotFoundException(aFilename);
+                        }
+                        uri = configUrl.toURI();
+                    }
+                    catch (final URISyntaxException e) {
+                        throw new FileNotFoundException(aFilename);
+                    }
+                }
+            }
+            final InputSource source = new InputSource(uri.toString());
+            return loadSuppressions(source, aFilename);
         }
         catch (final FileNotFoundException e) {
-            if (aFilename.matches("^https?://.+")) {
-                // this is a URL, load it as such
-                try {
-                    fis = new URL(aFilename).openStream();
-                }
-                catch (MalformedURLException e1) {
-                    throw new CheckstyleException(
-                        "Invalid URL: " + aFilename, e1);
-                }
-                catch (IOException e1) {
-                    throw new CheckstyleException(
-                        "unable to read " + aFilename, e1);
-                }
-            }
-            else {
-                // check for the file in the classpath
-                fis = SuppressionsLoader.class.getResourceAsStream(aFilename);
-            }
-            if (fis == null) {
-                throw new CheckstyleException("unable to find " + aFilename, e);
-            }
+            throw new CheckstyleException("unable to find " + aFilename, e);
         }
-        final InputSource source = new InputSource(fis);
-        return loadSuppressions(source, aFilename);
     }
 
     /**
