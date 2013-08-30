@@ -50,4 +50,16 @@ class InputGenericWhitespaceCheck implements Comparable<InputGenericWhitespaceCh
     public <T> InputGenericWhitespaceCheck(List<T> things)
     {
     }
+
+    public interface IntEnum {
+    }
+
+    public static class IntEnumValueType<E extends Enum<E> & IntEnum> {
+    }
+
+    public static class IntEnumValueType<E extends Enum<E>& IntEnum> {
+    }
+
+    public static class IntEnumValueType<E extends Enum<E>  & IntEnum> {
+    }
 }
