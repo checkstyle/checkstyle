@@ -114,19 +114,19 @@ public class GenericWhitespaceCheck extends Check
                 //                                          ^
                 //   should be whitespace if followed by & -+
                 //
-                int indexOfAmp = line.indexOf('&', after);
-                if ((indexOfAmp != -1) && whitespaceBetween(after, indexOfAmp, line))
+                final int indexOfAmp = line.indexOf('&', after);
+                if ((indexOfAmp != -1)
+                    && whitespaceBetween(after, indexOfAmp, line))
                 {
-                    if (indexOfAmp - after == 0)
-                    {
+                    if (indexOfAmp - after == 0) {
                         log(aAST.getLineNo(), after, "ws.notPreceded", "&");
                     }
-                    else if (indexOfAmp - after != 1)
-                    {
+                    else if (indexOfAmp - after != 1) {
                         log(aAST.getLineNo(), after, "ws.followed", ">");
                     }
                 }
-                else if ((line.charAt(after) != '>') && (line.charAt(after) != ','))
+                else if ((line.charAt(after) != '>')
+                         && (line.charAt(after) != ','))
                 {
                     log(aAST.getLineNo(), after, "ws.followed", ">");
                 }
@@ -182,17 +182,16 @@ public class GenericWhitespaceCheck extends Check
      * Returns whether the specified string contains only whitespace between
      * specified indices.
      *
-     * @param fromIndex the index to start the search from. Inclusive
-     * @param toIndex the index to finish the search. Exclusive
+     * @param aFromIndex the index to start the search from. Inclusive
+     * @param aToIndex the index to finish the search. Exclusive
      * @param aLine the line to check
      * @return whether there are only whitespaces (or nothing)
      */
-    private static boolean whitespaceBetween(int fromIndex, int toIndex, String aLine)
+    private static boolean whitespaceBetween(
+        int aFromIndex, int aToIndex, String aLine)
     {
-        for (int i = fromIndex; i < toIndex; i++)
-        {
-            if (!Character.isWhitespace(aLine.charAt(i)))
-            {
+        for (int i = aFromIndex; i < aToIndex; i++) {
+            if (!Character.isWhitespace(aLine.charAt(i))) {
                 return false;
             }
         }

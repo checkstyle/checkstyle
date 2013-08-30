@@ -58,7 +58,7 @@ public class SuppressionsLoaderTest
     @Test
     public void testLoadFromURL() throws CheckstyleException
     {
-        final FilterSet fc = SuppressionsLoader.loadSuppressions("http://checkstyle.hg.sourceforge.net/hgweb/checkstyle/checkstyle/raw-file/055e288619a5/src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_none.xml");
+        final FilterSet fc = SuppressionsLoader.loadSuppressions("http://sourceforge.net/p/checkstyle/code/ci/default/tree/src/testinputs/com/puppycrawl/tools/checkstyle/suppressions_none.xml?format=raw");
         final FilterSet fc2 = new FilterSet();
         assertEquals(fc, fc2);
     }
