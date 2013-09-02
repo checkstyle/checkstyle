@@ -1,1 +1,18 @@
-target/
+#Eclipse project files
+.classpath
+.project
+.settings
+
+#Netbeans project files
+nbactions.xml
+nb-configuration.xml
+
+#Maven build folder
+target
+
+#Idea project files
+checkstyle.iml
+.idea
+
+#Temp files
+*~
