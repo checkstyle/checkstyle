@@ -93,6 +93,18 @@
           <th>Remarks</th>
         </tr>
         <tr>
+          <td><a href="http://www.scm-manager.org/">SCM-Manager</a></td>
+          <td></td>
+          <td><a href="http://plugins.scm-manager.org/scm-plugin-backend/page/index.html">SCM-Manager Plugin Page</a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="http://www.jgrasp.org/">jGRASP</a></td>
+          <td>Larry Barowski</td>
+          <td><a href="http://www.jgrasp.org/">jGRASP Home Page</a></td>
+          <td></td>
+        </tr>
+        <tr>
           <td><a href="http://www.sonarsource.org/">Sonar</a></td>
           <td>Freddy Mallet (initial author)</td>
           <td><a href="http://www.sonarsource.org/">Sonar Home Page</a></td>
