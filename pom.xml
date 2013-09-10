@@ -27,8 +27,8 @@
   <name>checkstyle</name>
   <url>http://checkstyle.sourceforge.net/</url>
   <issueManagement>
-    <system>SourceForge</system>
-    <url>http://sourceforge.net/tracker/?group_id=29721</url>
+    <system>GitHub Issues</system>
+    <url>https://github.com/checkstyle/checkstyle/issues</url>
   </issueManagement>
   <ciManagement>
     <system>hudson</system>
@@ -46,9 +46,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:hg:http://checkstyle.hg.sourceforge.net:8000/hgroot/checkstyle/checkstyle</connection>
-    <developerConnection>scm:hg:ssh://oburn@checkstyle.hg.sourceforge.net/hgroot/checkstyle/checkstyle</developerConnection>
-    <url>http://checkstyle.hg.sourceforge.net/hgweb/checkstyle/</url>
+    <connection>scm:git:git://github.com/checkstyle/checkstyle.git</connection>
+    <developerConnection>scm:git:git://github.com/checkstyle/checkstyle.git</developerConnection>
+    <url>https://github.com/checkstyle/checkstyle</url>
   </scm>
 
   <distributionManagement>
