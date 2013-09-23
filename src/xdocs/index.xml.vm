@@ -36,6 +36,42 @@
       </p>
     </section>
 
+    <section name="Important Development Changes">
+      <p>
+        As of September 2013, the Checkstyle project is using GitHub for
+        hosting the following:
+      </p>
+      <ul>
+        <li>
+          <a href="https://github.com/checkstyle/checkstyle">Source
+          code repository</a> - replacing the Mercurial repository on
+          SourceForge.
+        </li>
+        <li>
+          <a
+          href="https://github.com/checkstyle/checkstyle/issues">Issue
+          management</a> - replacing the Bugs/Feature/Patches on
+          SourceForge. All new issues should be raised at GitHub, and
+          pull requests are now the preferred way to submit patches.
+        </li>
+      </ul>
+
+      <p>
+        SourceForge will still be used for website hosting, binary
+        downloads and mailing lists.
+      </p>
+
+      <p>
+        These changes are being made to breathe new life into the
+        development of Checkstyle. The following developers have been added
+        as committers of the Checkstyle project:
+      </p>
+      <ul>
+        <li><a href="https://github.com/romani">Roman Ivanov</a></li>
+        <li><a href="https://github.com/isopov">Ivan Sopov</a></li>
+      </ul>
+    </section>
+
     <section name="Features">
       <p>
         Checkstyle can check many aspects of your source code. Historically
