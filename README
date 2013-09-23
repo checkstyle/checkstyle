@@ -4,9 +4,9 @@ CHECKSTYLE
 This directory contains the distribution for checkstyle. It is a tool for
 checking Java source code for adherence to a set of rules.
 
-The latest version can be found at http://checkstyle.sourceforge.net
+The latest version can be found at http://checkstyle.sourceforge.net, see "Download" section.
 
-Documentation is available in HTML format, in the "site" directory.
+Documentation is available in HTML format, see sub items of "Standard Checks".
 
 Licensing
 =========
@@ -37,7 +37,7 @@ Feedback
 Please send any feedback to checkstyle-user@lists.sourceforge.net.
 
 Bugs should be reported to the checkstyle bugtracker at
-http://sourceforge.net/tracker/?atid=397078&group_id=29721&func=browse
+https://github.com/checkstyle/checkstyle/issues
 
 
 Thanks for trying out checkstyle!
