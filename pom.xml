@@ -68,6 +68,27 @@
       </roles>
     </developer>
     <developer>
+      <id>romanivanov</id>
+      <name>Roman Ivanov</name>
+      <roles>
+        <role>lead developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>daniilyar</id>
+      <name>Daniil Yaroslavtsev</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>moradan</id>
+      <name>Ivan Sopov</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
       <id>lkuehne</id>
       <name>Lars Kühne</name>
       <roles>
