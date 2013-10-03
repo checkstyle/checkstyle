@@ -390,12 +390,6 @@
         </module>
         
         <!-- See http://checkstyle.sf.net/config_coding.html -->
-        <!-- The "double-checked locking" idiom (DCL) tries to avoid the runtime
-                cost of synchronization. -->
-        <module name="DoubleCheckedLocking">
-        </module>
-        
-        <!-- See http://checkstyle.sf.net/config_coding.html -->
         <!-- Detects empty statements (standalone ;). -->
         <module name="EmptyStatement">
         </module>

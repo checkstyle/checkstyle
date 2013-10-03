@@ -333,10 +333,6 @@
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
         <module name="DefaultComesLast"/>
 
-        <!-- The "double-checked locking" idiom (DCL) tries to avoid the runtime cost of synchronization. !-->
-        <!-- See http://checkstyle.sf.net/config_coding.html !-->
-        <module name="DoubleCheckedLocking"/>
-
         <!-- Detects empty statements (standalone ;). !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
         <module name="EmptyStatement"/>
