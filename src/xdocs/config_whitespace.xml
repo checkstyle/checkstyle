@@ -1131,6 +1131,12 @@ public void func() {}    // empty method</source>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>false</code></td>
           </tr>
+          <tr>
+            <td>ignoreEnhancedForColon</td>
+            <td>ignore whitespace around colon in for-each loops</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
         </table>
       </subsection>
 
