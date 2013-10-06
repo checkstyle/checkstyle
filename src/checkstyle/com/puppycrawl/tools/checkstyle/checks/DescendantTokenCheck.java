@@ -309,8 +309,8 @@ public class DescendantTokenCheck extends Check
     }
 
     /**
-     * Sets the mimimum depth for descendant counts.
-     * @param aMinimumDepth the mimimum depth for descendant counts.
+     * Sets the minimum depth for descendant counts.
+     * @param aMinimumDepth the minimum depth for descendant counts.
      */
     public void setMinimumDepth(int aMinimumDepth)
     {

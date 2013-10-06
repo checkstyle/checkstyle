@@ -47,7 +47,7 @@ import org.apache.commons.beanutils.ConversionException;
  *  a = b + c;      // Some insightful comment
  *  d = e / f;        // Another comment for this line
  * </pre>
- * Quoting &quot;Code Complete&quot; for the justfication:
+ * Quoting &quot;Code Complete&quot; for the justification:
  * <ul>
  * <li>
  * &quot;The comments have to be aligned so that they do not

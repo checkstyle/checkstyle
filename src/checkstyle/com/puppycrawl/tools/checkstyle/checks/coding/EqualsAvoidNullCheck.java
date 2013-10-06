@@ -67,7 +67,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * on how this check is implemented. Pre Java 5 all IDENT + IDENT
  * object concatenations would not cause a NullPointerException even
  * if null.  Those situations could have been included in this check.
- * They would simply act as if they surrounded by String.valueof()
+ * They would simply act as if they surrounded by String.valueOf()
  * which would concatenate the String null.
  * </p>
  * <p>

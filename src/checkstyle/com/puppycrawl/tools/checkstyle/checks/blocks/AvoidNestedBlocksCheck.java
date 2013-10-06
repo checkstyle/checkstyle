@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * <pre>
  * public void guessTheOutput()
  * {
- *     int whichIsWich = 0;
+ *     int whichIsWhich = 0;
  *     {
  *         int whichIsWhich = 2;
  *     }

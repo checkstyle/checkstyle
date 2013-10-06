@@ -86,7 +86,7 @@
 
         <p>
           To configure the check to find trailing whitespace at the end
-          of a line, with some <i>slack</i> of allowing two occurances
+          of a line, with some <i>slack</i> of allowing two occurrences
           per file:
         </p>
         <source>

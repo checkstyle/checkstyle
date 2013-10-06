@@ -201,7 +201,7 @@ final class ImportControlLoader extends AbstractLoader
     {
         final String retVal = aAtts.getValue(aName);
         if (retVal == null) {
-            throw new SAXException("missing attibute " + aName);
+            throw new SAXException("missing attribute " + aName);
         }
         return retVal;
     }

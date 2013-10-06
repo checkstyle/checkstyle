@@ -419,7 +419,7 @@ class FooBar {
           </tr>
           <tr>
             <td>caseSensitive</td>
-            <td>whether string comparision should be case sensitive or not</td>
+            <td>whether string comparison should be case sensitive or not</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
           </tr>

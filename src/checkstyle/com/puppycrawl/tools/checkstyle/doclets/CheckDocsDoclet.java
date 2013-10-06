@@ -164,7 +164,7 @@ public final class CheckDocsDoclet
         writeXdocsHeader(fileWriter, "Available Checks");
 
         fileWriter.println("<p>Checkstyle provides many checks that you can"
-                + " apply to your sourcecode. Below is an alphabetical"
+                + " apply to your source code. Below is an alphabetical"
                 + " reference, the site navigation menu provides a reference"
                 + " organized by functionality.</p>");
         fileWriter.println("<table>");
