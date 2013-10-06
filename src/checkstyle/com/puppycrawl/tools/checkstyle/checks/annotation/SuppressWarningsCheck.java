@@ -56,7 +56,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * Limitations:  This check does not consider conditionals
  * inside the SuppressWarnings annotation. <br/>
  * For example:
- * {@code @SupressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}
+ * {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}
  * According to the above example, the "unused" warning is being suppressed
  * not the "unchecked" or "foo" warnings.  All of these warnings will be
  * considered and matched against regardless of what the conditional
@@ -165,7 +165,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck
                         warning.getColumnNo(), warningText);
 
      //conditional case
-     //ex: @SupressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
+     //ex: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
                 }
                 else if (fChild.getType() == TokenTypes.QUESTION) {
                     this.walkConditional(fChild);

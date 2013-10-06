@@ -57,7 +57,7 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("max", "0");
 
         final long largerThanMaxInt = 3486784401L;
-        // use i18n for number formating so test wont fail in non-english environments
+        // use i18n for number formatting so test wont fail in non-english environments
         final String expectedComplexity = NumberFormat.getInstance().format(largerThanMaxInt);
 
         String[] expected = {

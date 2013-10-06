@@ -69,7 +69,7 @@ public class MissingCtorCheck extends DescendantTokenCheck
         if ((modifiers != null)
             && modifiers.branchContains(TokenTypes.ABSTRACT))
         {
-            // should apply the check to abtract class
+            // should apply the check to abstract class
             return;
         }
 

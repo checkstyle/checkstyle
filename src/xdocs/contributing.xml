@@ -76,7 +76,7 @@
       <p>
         Once you have made sure that your changes pass the Maven command
         <code>mvn clean package</code>, the code coverage is of high
-        standard and everthing is documented, then you are ready to
+        standard and everything is documented, then you are ready to
         submit your work.
       </p>
 

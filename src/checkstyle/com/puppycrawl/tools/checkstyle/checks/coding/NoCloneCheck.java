@@ -73,7 +73,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * Two alternatives to the clone method, in some cases, is a copy constructor
  * or a static factory method to return copies of an object. Both of these
  * approaches are simpler and do not conflict with final fields. They do not
- * force the calling client to handle a CloneNotSuportException.  They also
+ * force the calling client to handle a CloneNotSupportedException.  They also
  * are typed therefore no casting is necessary. Finally, they are more
  * flexible since they can take interface types rather than concrete classes.
  * </p>

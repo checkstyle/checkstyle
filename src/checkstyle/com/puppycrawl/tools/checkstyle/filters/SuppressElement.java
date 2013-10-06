@@ -173,7 +173,7 @@ public class SuppressElement
     @Override
     public String toString()
     {
-        return "SupressElement[files=" + mFilePattern + ",checks="
+        return "SuppressElement[files=" + mFilePattern + ",checks="
             + mCheckPattern + ",lines=" + mLinesCSV + ",columns="
             + mColumnsCSV + "]";
     }

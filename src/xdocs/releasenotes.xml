@@ -50,7 +50,7 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
-          Fixed bug in the grammer for an edge case (bug
+          Fixed bug in the grammar for an edge case (bug
           #1667137). Thanks to Lukas Platinsky for patch #3393810.
         </li>
         <li>
@@ -63,7 +63,7 @@
           is now allowed in try-with-resources (bug #3441097)
         </li>
         <li>
-          Fixed bug in the grammer when builtin types are used in a
+          Fixed bug in the grammar when builtin types are used in a
           generic declaration (bug #3553541).
         </li>
       </ul>
@@ -104,11 +104,11 @@
           <code>processJavadoc</code> is turned on.
         </li>
         <li>
-          <a href="config_conding.html#RequireThis">RequireThis</a> now
+          <a href="config_coding.html#RequireThis">RequireThis</a> now
           ignores static members (bug #1155921).
         </li>
         <li>
-          <a href="config_conding.html#HiddenField">HiddenField</a> now
+          <a href="config_coding.html#HiddenField">HiddenField</a> now
           treats setxYz() as a setter for xYz, and setXYz() as a setter for
           XYz property to comply JavaBeans specification (bug #3370946).
         </li>
@@ -324,7 +324,7 @@
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/FileText.html">
               FileText
           </a>
-          to provide more flexibitily on how the contents of a file are
+          to provide more flexibility on how the contents of a file are
           represented. This allows for Checkers that wish to operate on
           a single character sequence instead of a list of lines.
           Thanks to Martin von Gagern for patch #2783226.
@@ -1002,7 +1002,7 @@
         </li>
         <li>
           Applied patch from Ralf (rakus) to remove javadoc's
-          complainings. (patch 1352862)
+          complaints. (patch 1352862)
         </li>
         <li>
           Fixed StringIndexOutOfBoundsException which MethodParamPad may
@@ -1062,7 +1062,7 @@
           allowEmptyMethods).
         </li>
         <li>
-          FallThrough check can be configured to ignore fall-thoughs
+          FallThrough check can be configured to ignore fall-throughs
           if there is a relief comment, thanks to  Ralf (aka rakus)
           for a great patch (rfe 1345691, patch 1348873)
         </li>
@@ -1215,7 +1215,7 @@
         1223290)</li>
 
         <li>Applied patch 1061458, hope this helps users who use
-        checkstyle with JRokit (thank to Ville Skytta for
+        checkstyle with JRockit (thank to Ville Skytta for
         contribution)</li>
 
         <li>Changed way how to IndentationCheck handles fields in
@@ -1358,7 +1358,7 @@
         (rfe 1009201)</li>
 
         <li>UnusedPrivateMethod check now can be configured to ignore
-        serializaition-related methods (readObject(), writeObject(),
+        serialization-related methods (readObject(), writeObject(),
         readResolve() and writeReplace()) (rfe 1036387)</li>
 
         <li>Added support for the property
@@ -1519,7 +1519,7 @@
         <li>Fixed HiddenFieldCheck to correctly handle static inner classes
         (bug 1032426).</li>
 
-        <li>Fixed misspelling of variable (patch 1032618 contibuted by Paul
+        <li>Fixed misspelling of variable (patch 1032618 contributed by Paul
         Wagland).</li>
 
         <li>Fixed ClassResolver to handle exceptions which are inner for
@@ -1561,7 +1561,7 @@
         862911).</li>
 
         <li>Added stylesheet to translate xml output into comma separated
-        valuaes format (contrib/checkstyle-csv.xsl, request 764153).</li>
+        values format (contrib/checkstyle-csv.xsl, request 764153).</li>
 
         <li>Added BooleanExpressionComplexity check from Simon Harris (request
         750760)</li>
@@ -1596,7 +1596,7 @@
         844705)</li>
 
         <li>Added check to ensure that references to
-        non-static fields and methods should be quailified.
+        non-static fields and methods should be qualified.
         (module RequireThis, contributed by Stephen Bloch, requests
         755550, 696295).</li>
 
@@ -1750,7 +1750,7 @@
       <ul>
 
         <li>Renamed checkstyle-version-optional.jar to
-        checktyle-optional-version.jar to make the distribution
+        checkstyle-optional-version.jar to make the distribution
         <a href="http://maven.apache.org">Maven</a> friendly.</li>
 
       </ul>
@@ -2245,7 +2245,7 @@
       </p>
 
       <ul>
-        <li>Completely new architecture based around pluggable modules. This means that users can now write their own checks without changing the sourcecode of checkstyle itself (request 578712).</li>
+        <li>Completely new architecture based around pluggable modules. This means that users can now write their own checks without changing the source code of checkstyle itself (request 578712).</li>
         <li>Users can specify the Java token types for which a check must be performed. For example users can now control that there should be whitespace after 'synchronized' but not after 'if' (request 536385).</li>
         <li>Detect classes that override 'equals()' but not 'hashCode()' (request 554373).</li>
         <li>Detect inner assignments, e.g. 'this.add(label = new JLabel("yes, I'm a C hacker"));' (request 521325).</li>
@@ -2406,7 +2406,7 @@
         <li>added -r "dir" option to the commandline frontend, checkstyle will find all Java files contained in the specified directory</li>
         <!--(Patch 531230 + enhancements)-->
         <li>incorporated patch from Warner Onstine to configure the ANT task by means of a property file</li>
-        <li>added 'contrib' directory, contains XSL stylesheets for formating checkstyle's XML output (contributions by Ingmar Stein, Stephane Bailliez, Scott McCrory and Gray Herter)</li>
+        <li>added 'contrib' directory, contains XSL stylesheets for formatting checkstyle's XML output (contributions by Ingmar Stein, Stephane Bailliez, Scott McCrory and Gray Herter)</li>
       </ul>
     </section>
 

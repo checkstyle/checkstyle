@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>
  * The basic idea behind this is that while
- * pretty printers are sometimes convienent for bulk reformats of
+ * pretty printers are sometimes convenient for bulk reformats of
  * legacy code, they often either aren't configurable enough or
  * just can't anticipate how format should be done.  Sometimes this is
  * personal preference, other times it is practical experience.  In any

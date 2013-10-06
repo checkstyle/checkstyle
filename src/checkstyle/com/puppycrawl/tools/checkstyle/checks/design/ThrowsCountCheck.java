@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * exceptions makes exception handling onerous and leads
  * to poor programming practices such as catch
  * (Exception). This check forces developers to put
- * exceptions into a heirachy such that in the simplest
+ * exceptions into a hierarchy such that in the simplest
  * case, only one type of exception need be checked for by
  * a caller but allows any sub-classes to be caught
  * specifically if necessary.
@@ -45,7 +45,7 @@ public final class ThrowsCountCheck extends Check
     /** default value of max property */
     private static final int DEFAULT_MAX = 1;
 
-    /** maximum allowed throws statments */
+    /** maximum allowed throws statements */
     private int mMax;
 
     /** Creates new instance of the check. */
@@ -99,7 +99,7 @@ public final class ThrowsCountCheck extends Check
     }
 
     /**
-     * Checks number of throws statments.
+     * Checks number of throws statements.
      * @param aAST throws for check.
      */
     private void visitLiteralThrows(DetailAST aAST)

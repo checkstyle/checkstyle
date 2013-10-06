@@ -208,7 +208,7 @@ String nullString = null;
           implemented. Pre Java 5 all IDENT + IDENT object
           concatenations would not cause a NullPointerException even if
           null.  Those situations could have been included in this
-          check.  They would simply act as if they surrounded by <code>String.valueof()</code> which would concatenate
+          check.  They would simply act as if they surrounded by <code>String.valueOf()</code> which would concatenate
           the String null.
         </p>
         <p>
@@ -1423,7 +1423,7 @@ if (&quot;something&quot;.equals(x))
        Two alternatives to the clone method, in some cases, is a copy constructor
        or a static factory method to return copies of an object. Both of these
        approaches are simpler and do not conflict with final fields. They do not
-       force the calling client to handle a CloneNotSuportException.  They also
+       force the calling client to handle a CloneNotSupportedException.  They also
        are typed therefore no casting is necessary. Finally, they are more
        flexible since they can take interface types rather than concrete classes.
        </p>
@@ -1609,7 +1609,7 @@ if (&quot;something&quot;.equals(x))
         <p>
           Rationale: Junior developers often simply catch Exception in an
           attempt to handle multiple exception classes. This unfortunately
-          leads to code that inadvertantly catchs NPE, OutOfMemoryErrors, etc.
+          leads to code that inadvertently catchs NPE, OutOfMemoryErrors, etc.
         </p>
       </subsection>
 
@@ -1830,7 +1830,7 @@ if (&quot;something&quot;.equals(x))
           </tr>
           <tr>
             <td>max</td>
-            <td>maximum allowed number of return statments</td>
+            <td>maximum allowed number of return statements</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>2</code></td>
           </tr>
@@ -2170,7 +2170,7 @@ if (&quot;something&quot;.equals(x))
     <section name="MissingCtor">
       <subsection name="Description">
         <p>
-          Checks that classes (except abtract one) define a ctor and don't
+          Checks that classes (except abstract one) define a ctor and don't
           rely on the default one.
         </p>
       </subsection>
@@ -2206,14 +2206,14 @@ if (&quot;something&quot;.equals(x))
           statement.
         </p>
         <p>
-          The check honores special comments to supress the warning. By
+          The check honors special comments to supress the warning. By
           default the text "fallthru", "fall through", "fallthrough",
           "falls through" and "fallsthrough" are recognized (case
           sensitive). The comment containing this words must be a
           one-liner and must be on the last none-empty line before the
           <code>case</code> triggering the warning or on
           the same line before the <code>case</code>
-          (urgly, but possible).
+          (ugly, but possible).
         </p>
         <source>
 switch (i){
@@ -2259,7 +2259,7 @@ case 3:
           <tr>
             <td>reliefPattern</td>
             <td>
-              Regulare expression to match the relief comment that supresses
+              Regular expression to match the relief comment that supresses
               the warning about a fall through.
             </td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
@@ -2322,7 +2322,7 @@ case 3:
           <tr>
             <td>allowedDuplicates</td>
             <td>
-              The maximum number of occurences to allow without generating a
+              The maximum number of occurrences to allow without generating a
               warning
             </td>
             <td><a href="property_types.html#integer">Integer</a></td>
@@ -2545,7 +2545,7 @@ case 3:
           will be flagged as an error:
         </p>
 
-        <source>    x = 1; y = 2; // Two statments on a single line.</source>
+        <source>    x = 1; y = 2; // Two statements on a single line.</source>
       </subsection>
 
       <subsection name="Examples">
