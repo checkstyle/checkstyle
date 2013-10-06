@@ -296,7 +296,7 @@
 
     <subsection name="scope">
       <p>This property represents a Java scope. The scope is treated
-      inclusevly (as javadoc does): 'package' means all 'package', 'protected'
+      inclusively (as javadoc does): 'package' means all 'package', 'protected'
       and 'public' methods/fields/classes. The valid options are:</p>
 
       <ul>

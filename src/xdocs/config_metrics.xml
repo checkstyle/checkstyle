@@ -183,7 +183,7 @@
         <p>
           The number of other classes a given class relies on. Also the
           square of this has been shown to indicate the amount of
-          maintenence required in functional programs (on a file basis)
+          maintenance required in functional programs (on a file basis)
           at least.
         </p>
       </subsection>
@@ -386,7 +386,7 @@
         <p>
           Rationale: Too large methods and classes are hard to read and
           costly to maintain. A large NCSS number often means that a
-          method or class has too many responsabilities and/or
+          method or class has too many responsibilities and/or
           functionalities which should be decomposed into smaller units.
         </p>
       </subsection>

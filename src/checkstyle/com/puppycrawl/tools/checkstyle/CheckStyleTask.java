@@ -286,7 +286,7 @@ public class CheckStyleTask extends Task
         // Check for no arguments
         if ((mFileName == null) && (mFileSets.size() == 0)) {
             throw new BuildException(
-                    "Must specify atleast one of 'file' or nested 'fileset'.",
+                    "Must specify at least one of 'file' or nested 'fileset'.",
                     getLocation());
         }
 

@@ -6,7 +6,7 @@
 <!--
 
   A Checkstyle configuration that checks against the recommendations
-  in Joshua Bloch, Effective Java (highliy recommended read!)
+  in Joshua Bloch, Effective Java (highly recommended read!)
 
   This file does NOT duplicate the checks for whitespace settings,
   placement of curly braces, etc.  Only the rules that are explicitly

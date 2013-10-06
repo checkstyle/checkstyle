@@ -122,7 +122,7 @@ public final class FileText extends AbstractList<String>
             decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);
         }
         catch (final UnsupportedCharsetException ex) {
-            final String message = "Unsuppored charset: " + aCharsetName;
+            final String message = "Unsupported charset: " + aCharsetName;
             final UnsupportedEncodingException ex2;
             ex2 = new UnsupportedEncodingException(message);
             ex2.initCause(ex);

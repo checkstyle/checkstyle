@@ -450,7 +450,7 @@
             <property name="ignoreHashCodeMethod" value="false"/>
         </module>
 
-        <!-- Checks that classes (except abtract one) define a ctor and don't rely on the default one. !-->
+        <!-- Checks that classes (except abstract one) define a ctor and don't rely on the default one. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
         <module name="MissingCtor"/>
 

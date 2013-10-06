@@ -65,7 +65,7 @@ strictfp final class InputModifier // illegal order of modifiers for class
         /** redundant 'public' modifier */
         public float PI_PUBLIC = (float) 3.14;
 
-        /** redundant 'abstract' modifier (field can not be absract)*/
+        /** redundant 'abstract' modifier (field can not be abstract) */
 //        abstract float PI_ABSTRACT = (float) 3.14;
 
         /** redundant 'final' modifier */

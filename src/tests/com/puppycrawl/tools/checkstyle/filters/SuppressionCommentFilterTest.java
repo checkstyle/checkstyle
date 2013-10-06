@@ -63,7 +63,7 @@ public class SuppressionCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
-    //Supress all checks between default comments
+    //Suppress all checks between default comments
     @Test
     public void testDefault() throws Exception
     {
@@ -104,7 +104,7 @@ public class SuppressionCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
-    //Supress all checks between CS_OFF and CS_ON
+    //Suppress all checks between CS_OFF and CS_ON
     @Test
     public void testOffFormat() throws Exception
     {
@@ -121,8 +121,8 @@ public class SuppressionCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
-    //Test supression of checks of only one type
-    //Supress only ConstantNameCheck between CS_OFF and CS_ON
+    //Test suppression of checks of only one type
+    //Suppress only ConstantNameCheck between CS_OFF and CS_ON
     @Test
     public void testOffFormatCheck() throws Exception
     {

@@ -248,7 +248,7 @@ messages.properties: Key 'ok' missing.
 
         <p>
           Rationale: A main() method is often used for debug
-          puposes. When debugging is finished, developers often forget
+          purposes. When debugging is finished, developers often forget
           to remove the method, which changes the API and increases the
           size of the resulting class/jar file. With the exception of
           the real program entry points, all main() methods should be
@@ -491,7 +491,7 @@ messages.properties: Key 'ok' missing.
           same time, it is low level and very implementation dependent because
           its results depend on the grammar we use to build abstract syntax
           trees. Thus we recomend using other checks when they provide the
-          desired funcionality. All in all, this check just works on the level
+          desired functionality. All in all, this check just works on the level
           of an abstract tree and knows nothing about language structures.
         </p>
       </subsection>
@@ -513,14 +513,14 @@ messages.properties: Key 'ok' missing.
           </tr>
           <tr>
             <td>limitedTokens</td>
-            <td>set of tokens with limited occurances as descendants</td>
+            <td>set of tokens with limited occurrences as descendants</td>
             <td>subset of tokens declared in <a
             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
             <td>empty set</td>
           </tr>
           <tr>
             <td>minimumDepth</td>
-            <td>the mimimum depth for descendant counts</td>
+            <td>the minimum depth for descendant counts</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>0</td>
           </tr>
@@ -769,7 +769,7 @@ messages.properties: Key 'ok' missing.
 
         <p>
           The basic idea behind this is that while pretty printers are
-          sometimes convienent for bulk reformats of legacy code, they often
+          sometimes convenient for bulk reformats of legacy code, they often
           either aren't configurable enough or just can't anticipate how
           format should be done.  Sometimes this is personal preference, other
           times it is practical experience.  In any case, this check should
@@ -862,7 +862,7 @@ d = e / f;        // Another comment for this line
         </source>
 
         <p>
-          Quoting &quot;Code Complete&quot; for the justfication:
+          Quoting &quot;Code Complete&quot; for the justification:
         </p>
 
         <ul>
@@ -986,9 +986,9 @@ d = e / f;        // Another comment for this line
         </p>
         <p>In multiline mode...</p>
         <ul>
-          <li> ^ means beginning of a line, as oposed to beginning of input.</li>
+          <li> ^ means beginning of a line, as opposed to beginning of input.</li>
           <li> For beginning of input use \A.</li>
-          <li> $ means end of a line, as oposed to end of input.</li>
+          <li> $ means end of a line, as opposed to end of input.</li>
           <li> For end of input use \Z.</li>
           <li> Each line in the file is terminated with a newline character.</li>
         </ul>
@@ -998,7 +998,7 @@ d = e / f;        // Another comment for this line
           This check makes use of the <a
           href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/package-summary.html">
           java.util.regex package</a>, please check its documentation for
-          details of how to construct a regular expression to achive a particular
+          details of how to construct a regular expression to achieve a particular
           goal.
         </p>
         <p>
@@ -1063,7 +1063,7 @@ d = e / f;        // Another comment for this line
       <subsection name="Examples">
         <p>
           The following examples are mainly copied from the other 3 checks
-          mentioned above, to show how the same results can be acheived using
+          mentioned above, to show how the same results can be achieved using
           this check in place of them.
         </p>
         <p>

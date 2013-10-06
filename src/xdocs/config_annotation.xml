@@ -222,7 +222,7 @@
         <p>
         Limitations:  This check does not consider conditionals
         inside the SuppressWarnings annotation. <br/>
-        For example: @SupressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
+        For example: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
         According to the above example, the "unused" warning is being suppressed
         not the "unchecked" or "foo" warnings.  All of these warnings will be
         considered and matched against regardless of what the conditional

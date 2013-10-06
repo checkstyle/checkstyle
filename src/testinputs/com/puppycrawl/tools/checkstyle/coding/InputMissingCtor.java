@@ -1,7 +1,7 @@
 public class InputMissingCtor
 {
 }
-// we shouln't flag abtract classes
+// we shouln't flag abstract classes
 abstract class AbstactClass {
 }
 

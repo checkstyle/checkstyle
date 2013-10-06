@@ -144,7 +144,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck
     }
 
     /**
-     * Checks number of return statments and restore
+     * Checks number of return statements and restore
      * previous method context.
      * @param aAST method def node.
      */

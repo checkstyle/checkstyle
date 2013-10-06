@@ -22,7 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * The number of other classes a given class relies on. Also the square
- * of this has been shown to indicate the amount of maintenence required
+ * of this has been shown to indicate the amount of maintenance required
  * in functional programs (on a file basis) at least.
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>

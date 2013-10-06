@@ -76,7 +76,7 @@ final class ChecksumInfo
 
     /**
      * Sorts the {@link #mSortedChecksums} field and simultaneously
-     * maintains the {@link mOrigIdx} mapping. The maintainance of the
+     * maintains the {@link mOrigIdx} mapping. The maintenance of the
      * reverse mapping is the reason why we don't simply use Arrays.sort() here.
      */
     private void sort()

@@ -384,7 +384,7 @@ public class StringUtils // not final to allow subclassing
           method to throw too many differently rooted exceptions makes
           exception handling onerous and leads to poor programming practices
           such as catch (Exception). This check forces developers to put
-          exceptions into a heirachy such that in the simplest case, only one
+          exceptions into a hierarchy such that in the simplest case, only one
           type of exception need be checked for by a caller but allows any
           sub-classes to be caught specifically if necessary.
         </p>
@@ -400,7 +400,7 @@ public class StringUtils // not final to allow subclassing
           </tr>
           <tr>
             <td>max</td>
-            <td>maximum allowed number of throws statments</td>
+            <td>maximum allowed number of throws statements</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>1</code></td>
           </tr>
