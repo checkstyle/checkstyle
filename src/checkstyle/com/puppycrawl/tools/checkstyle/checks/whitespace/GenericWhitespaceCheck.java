@@ -78,10 +78,11 @@ public class GenericWhitespaceCheck extends Check
 
         if (after < line.length()) {
 
+            final char charAfter = line.charAt(after);
+
             // Check if the last Generic, in which case must be a whitespace
             // or a '(),[.'.
             if (1 == mDepth) {
-                final char charAfter = line.charAt(after);
 
                 // Need to handle a number of cases. First is:
                 //    Collections.<Object>emptySet();
@@ -103,6 +104,16 @@ public class GenericWhitespaceCheck extends Check
                     && ('.' != charAfter))
                 {
                     log(aAST.getLineNo(), after, "ws.illegalFollow", ">");
+                }
+            }
+            // Check for several types as generic parameters. Catches
+            // whether the first type parameter is a generic itself.
+            else if ((aAST.getParent().getNextSibling() != null) &&
+                    (aAST.getParent().getType() == TokenTypes.TYPE_ARGUMENTS) &&
+                    (aAST.getPreviousSibling().getType() == TokenTypes.TYPE_ARGUMENT) &&
+                    (aAST.getParent().getNextSibling().getType() == TokenTypes.TYPE_EXTENSION_AND)) {
+                if (!Character.isWhitespace(charAfter)) {
+                    log(aAST.getLineNo(), after, "ws.notFollowed", ">");
                 }
             }
             else {
