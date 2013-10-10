@@ -663,6 +663,10 @@
         <td>Detects uncommented main methods.</td>
       </tr>
       <tr>
+        <td><a href="config_misc.html#UniqueProperties">UniqueProperties</a></td>
+        <td>Detects duplicated keys in properties files.</td>
+      </tr>
+      <tr>
         <td><a href="config_coding.html#UnnecessaryParentheses">UnnecessaryParentheses</a></td>
         <td>
         Checks if unnecessary parentheses are used in a statement or expression.</td>
