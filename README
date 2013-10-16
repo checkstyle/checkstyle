@@ -31,6 +31,11 @@ these packages are in the file named "LICENSE.apache20" in this
 directory.
 
 
+Continuous integration
+======================
+Travis: "!https://secure.travis-ci.org/checkstyle/checkstyle.png!":http://travis-ci.org/checkstyle/checkstyle
+
+
 Feedback
 ========
 
