@@ -139,4 +139,24 @@ public abstract class BaseCheckTestSupport
                      aExpected.length, errs);
         aC.destroy();
     }
+
+    /**
+     * Gets the check message 'as is' from appropriate 'messages.properties'
+     * file.
+     *
+     * @param messageKey
+     *            the key of message in 'messages.properties' file.
+     */
+    public String getCheckMessage(String messageKey)
+    {
+        Properties pr = new Properties();
+        try {
+            pr.load(getClass().getResourceAsStream("messages.properties"));
+        }
+        catch (IOException e) {
+            return null;
+        }
+        return pr.getProperty(messageKey);
+    }
+
 }
