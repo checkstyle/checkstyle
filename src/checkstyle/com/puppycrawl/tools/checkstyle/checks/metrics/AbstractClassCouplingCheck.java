@@ -25,6 +25,8 @@ import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+
+import java.util.Arrays;
 import java.util.Set;
 
 /**
@@ -37,6 +39,8 @@ public abstract class AbstractClassCouplingCheck extends Check
 {
     /** Class names to ignore. */
     private final Set<String> mIgnoredClassNames = Sets.newHashSet();
+    /** User-configured class names to ignore. */
+    private Set<String> mUserIgnoredClassNames = Sets.newHashSet();
     /** Allowed complexity. */
     private int mMax;
     /** package of the file we check. */
@@ -107,6 +111,23 @@ public abstract class AbstractClassCouplingCheck extends Check
     public final void setMax(int aMax)
     {
         mMax = aMax;
+    }
+
+    /**
+     * @return the list of user-excluded classes to ignore
+     */
+    public final Set<String> getUserExcludedClasses()
+    {
+        return mUserIgnoredClassNames;
+    }
+
+    /**
+     * Sets user-excluded classes to ignore.
+     * @param aExcludedClasses the list of classes to ignore.
+     */
+    public final void setExcludedClasses(String[] aExcludedClasses)
+    {
+        mUserIgnoredClassNames.addAll(Arrays.asList(aExcludedClasses));
     }
 
     @Override
@@ -304,7 +325,8 @@ public abstract class AbstractClassCouplingCheck extends Check
         {
             return (aClassName.length() > 0)
                     && !mIgnoredClassNames.contains(aClassName)
-                    && !aClassName.startsWith("java.lang.");
+                    && !aClassName.startsWith("java.lang.")
+                    && !mUserIgnoredClassNames.contains(aClassName);
         }
     }
 }
