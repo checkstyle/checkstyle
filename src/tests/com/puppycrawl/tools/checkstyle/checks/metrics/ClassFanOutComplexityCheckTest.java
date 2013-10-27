@@ -33,9 +33,8 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("max", "0");
 
         String[] expected = {
-            "6:1: Class Fan-Out Complexity is 7 (max allowed is 0).",
-            "7:5: Class Fan-Out Complexity is 2 (max allowed is 0).",
-            "27:1: Class Fan-Out Complexity is 4 (max allowed is 0).",
+            "6:1: Class Fan-Out Complexity is 5 (max allowed is 0).",
+            "27:1: Class Fan-Out Complexity is 2 (max allowed is 0).",
         };
 
         verify(checkConfig,

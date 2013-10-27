@@ -34,9 +34,8 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("max", "0");
 
         String[] expected = {
-            "6:1: Class Data Abstraction Coupling is 4 (max allowed is 0) classes [AnotherInnerClass, HashMap, HashSet, InnerClass].",
-            "7:5: Class Data Abstraction Coupling is 1 (max allowed is 0) classes [ArrayList].",
-            "27:1: Class Data Abstraction Coupling is 2 (max allowed is 0) classes [HashMap, HashSet].",
+            "6:1: Class Data Abstraction Coupling is 3 (max allowed is 0) classes [AnotherInnerClass, HashSet, InnerClass].",
+            "27:1: Class Data Abstraction Coupling is 1 (max allowed is 0) classes [HashSet].",
         };
 
         verify(checkConfig,
