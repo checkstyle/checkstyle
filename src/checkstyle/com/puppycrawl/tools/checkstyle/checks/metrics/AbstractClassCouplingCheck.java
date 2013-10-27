@@ -64,6 +64,8 @@ public abstract class AbstractClassCouplingCheck extends Check
         mIgnoredClassNames.add("long");
         mIgnoredClassNames.add("short");
         mIgnoredClassNames.add("void");
+
+        // java.lang.*
         mIgnoredClassNames.add("Boolean");
         mIgnoredClassNames.add("Byte");
         mIgnoredClassNames.add("Character");
@@ -86,6 +88,14 @@ public abstract class AbstractClassCouplingCheck extends Check
         mIgnoredClassNames.add("Throwable");
         mIgnoredClassNames.add("SecurityException");
         mIgnoredClassNames.add("UnsupportedOperationException");
+        mIgnoredClassNames.add("Class");
+
+        // java.util.*
+        mIgnoredClassNames.add("Map");
+        mIgnoredClassNames.add("List");
+        mIgnoredClassNames.add("HashMap");
+        mIgnoredClassNames.add("ArrayList");
+        mIgnoredClassNames.add("Locale");
     }
 
     @Override
