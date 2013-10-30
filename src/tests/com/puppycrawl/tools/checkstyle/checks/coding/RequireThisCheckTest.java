@@ -34,6 +34,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport
             "8:9: Reference to instance variable 'i' needs \"this.\".",
             "14:9: Method call to 'method1' needs \"this.\".",
             "28:9: Reference to instance variable 'i' needs \"this.\".",
+            "46:13: Reference to instance variable 'z' needs \"this.\".",
             "53:9: Reference to instance variable 'z' needs \"this.\".",
 //              "13:9: Unable find where 'j' is declared.",
         };
@@ -65,6 +66,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport
         final String[] expected = {
             "8:9: Reference to instance variable 'i' needs \"this.\".",
             "28:9: Reference to instance variable 'i' needs \"this.\".",
+            "46:13: Reference to instance variable 'z' needs \"this.\".",
             "53:9: Reference to instance variable 'z' needs \"this.\".",
 //              "13:9: Unable find where 'j' is declared.",
         };
@@ -80,5 +82,19 @@ public class RequireThisCheckTest extends BaseCheckTestSupport
             createCheckConfig(RequireThisCheck.class);
         final String[] expected = {};
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
+    }
+
+    @Test
+    public void testGithubIssue41() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RequireThisCheck.class);
+        final String[] expected = {
+            "7:19: Reference to instance variable 'number' needs \"this.\".",
+            "8:16: Method call to 'other' needs \"this.\".",
+        };
+        verify(checkConfig,
+                getPath("coding" + File.separator + "InputRequireThis2.java"),
+                expected);
     }
 }

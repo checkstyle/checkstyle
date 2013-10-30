@@ -19,11 +19,14 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -34,19 +37,64 @@ import java.util.Set;
  */
 public abstract class DeclarationCollector extends Check
 {
-    /** Stack of variable declaration frames. */
-    private FrameStack mFrames;
+    /**
+     * Tree of all the parsed frames
+     */
+    private Map<DetailAST, LexicalFrame> mFrames;
+
+    /**
+     * Frame for the currently processed AST
+     */
+    private LexicalFrame mCurrent;
 
     @Override
     public void beginTree(DetailAST aRootAST)
     {
-        mFrames = new FrameStack();
+        final FrameStack aFrameStack = new FrameStack();
+        mFrames = Maps.newHashMap();
+
+        DetailAST curNode = aRootAST;
+        while (curNode != null) {
+            collectDeclarations(aFrameStack, curNode);
+            DetailAST toVisit = curNode.getFirstChild();
+            while (curNode != null && toVisit == null) {
+                endCollectingDeclarations(aFrameStack, curNode);
+                toVisit = curNode.getNextSibling();
+                if (toVisit == null) {
+                    curNode = curNode.getParent();
+                }
+            }
+            curNode = toVisit;
+        }
     }
 
     @Override
     public void visitToken(DetailAST aAST)
     {
-        final LexicalFrame frame = this.mFrames.current();
+        switch (aAST.getType()) {
+        case TokenTypes.CLASS_DEF :
+        case TokenTypes.INTERFACE_DEF :
+        case TokenTypes.ENUM_DEF :
+        case TokenTypes.ANNOTATION_DEF :
+        case TokenTypes.SLIST :
+        case TokenTypes.METHOD_DEF :
+        case TokenTypes.CTOR_DEF :
+            this.mCurrent = this.mFrames.get(aAST);
+            break;
+        default :
+            // do nothing
+        }
+    } // end visitToken
+
+    /**
+     * Parse the next AST for declarations
+     *
+     * @param aFrameStack Stack containing the FrameTree being built
+     * @param aAST AST to parse
+     */
+    private void collectDeclarations(FrameStack aFrameStack, DetailAST aAST)
+    {
+        final LexicalFrame frame = aFrameStack.current();
         switch (aAST.getType()) {
         case TokenTypes.VARIABLE_DEF :  {
             final String name =
@@ -77,11 +125,11 @@ public abstract class DeclarationCollector extends Check
         case TokenTypes.ANNOTATION_DEF : {
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
             frame.addName(nameAST.getText());
-            this.mFrames.enter(new ClassFrame());
+            aFrameStack.enter(new ClassFrame(aFrameStack.current()));
             break;
         }
         case TokenTypes.SLIST :
-            this.mFrames.enter(new BlockFrame());
+            aFrameStack.enter(new BlockFrame(aFrameStack.current()));
             break;
         case TokenTypes.METHOD_DEF : {
             final String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
@@ -97,7 +145,7 @@ public abstract class DeclarationCollector extends Check
             }
         }
         case TokenTypes.CTOR_DEF :
-            this.mFrames.enter(new MethodFrame());
+            aFrameStack.enter(new MethodFrame(aFrameStack.current()));
             break;
         default:
             // do nothing
@@ -105,8 +153,14 @@ public abstract class DeclarationCollector extends Check
     }
 
 
-    @Override
-    public void leaveToken(DetailAST aAST)
+    /**
+     * End parsing of the AST for declarations.
+     *
+     * @param aFrameStack Stack containing the FrameTree being built
+     * @param aAST AST that was parsed
+     */
+    private void endCollectingDeclarations(FrameStack aFrameStack,
+        DetailAST aAST)
     {
         switch (aAST.getType()) {
         case TokenTypes.CLASS_DEF :
@@ -116,7 +170,7 @@ public abstract class DeclarationCollector extends Check
         case TokenTypes.SLIST :
         case TokenTypes.METHOD_DEF :
         case TokenTypes.CTOR_DEF :
-            this.mFrames.leave();
+            this.mFrames.put(aAST, aFrameStack.leave());
             break;
         default :
             // do nothing
@@ -130,9 +184,24 @@ public abstract class DeclarationCollector extends Check
      */
     protected final boolean isClassField(String aName)
     {
-        final LexicalFrame frame = mFrames.findFrame(aName);
+        final LexicalFrame frame = findFrame(aName);
         return (frame instanceof ClassFrame)
                 && ((ClassFrame) frame).hasInstanceMember(aName);
+    }
+
+    /**
+     * Find frame containing declaration
+     * @param aName name of the declaration to find
+     * @return LexicalFrame containing declaration or null
+     */
+    private LexicalFrame findFrame(String aName)
+    {
+        if (mCurrent != null) {
+            return mCurrent.getIfContains(aName);
+        }
+        else {
+            return null;
+        }
     }
 
     /**
@@ -144,10 +213,19 @@ public abstract class DeclarationCollector extends Check
     {
         /** Set of name of variables declared in this frame. */
         private final Set<String> mVarNames;
+        /**
+         * Parent frame.
+         */
+        private final LexicalFrame mParent;
 
-        /** constructor -- invokable only via super() from subclasses */
-        protected LexicalFrame()
+        /**
+         * constructor -- invokable only via super() from subclasses
+         *
+         * @param aParent parent frame
+         */
+        protected LexicalFrame(LexicalFrame aParent)
         {
+            mParent = aParent;
             mVarNames = Sets.newHashSet();
         }
 
@@ -167,6 +245,23 @@ public abstract class DeclarationCollector extends Check
         {
             return mVarNames.contains(aNameToFind);
         }
+
+        /** check whether the frame contains a given name.
+         * @param aNameToFind  the name we're looking for
+         * @return whether it was found
+         */
+        LexicalFrame getIfContains(String aNameToFind)
+        {
+            if (contains(aNameToFind)) {
+                return this;
+            }
+            else if (mParent != null) {
+                return mParent.getIfContains(aNameToFind);
+            }
+            else {
+                return null;
+            }
+        }
     }
 
     /**
@@ -175,6 +270,14 @@ public abstract class DeclarationCollector extends Check
      */
     private static class GlobalFrame extends LexicalFrame
     {
+
+        /**
+         * Constructor for the root of the FrameTree
+         */
+        protected GlobalFrame()
+        {
+            super(null);
+        }
     }
 
     /**
@@ -183,6 +286,13 @@ public abstract class DeclarationCollector extends Check
      */
     private static class MethodFrame extends LexicalFrame
     {
+        /**
+         * @param aParent parent frame
+         */
+        protected MethodFrame(LexicalFrame aParent)
+        {
+            super(aParent);
+        }
     }
 
     /**
@@ -200,10 +310,11 @@ public abstract class DeclarationCollector extends Check
 
         /**
          * Creates new instance of ClassFrame
+         * @param aParent parent frame
          */
-        public ClassFrame()
+        public ClassFrame(LexicalFrame aParent)
         {
-            super();
+            super(aParent);
             mInstanceMembers = Sets.newHashSet();
             mStaticMembers = Sets.newHashSet();
         }
@@ -254,6 +365,14 @@ public abstract class DeclarationCollector extends Check
      */
     private static class BlockFrame extends LexicalFrame
     {
+
+        /**
+         * @param aParent parent frame
+         */
+        protected BlockFrame(LexicalFrame aParent)
+        {
+            super(aParent);
+        }
     }
 
     /**
@@ -281,10 +400,13 @@ public abstract class DeclarationCollector extends Check
             mFrameList.addFirst(aNewFrame);
         }
 
-        /** Leave a scope, i.e. pop a frame from the stack.  */
-        void leave()
+        /**
+         * Leave a scope, i.e. pop a frame from the stack.
+         * @return the left frame
+         */
+        LexicalFrame leave()
         {
-            mFrameList.removeFirst();
+            return mFrameList.removeFirst();
         }
 
         /**
@@ -294,21 +416,6 @@ public abstract class DeclarationCollector extends Check
         LexicalFrame current()
         {
             return mFrameList.getFirst();
-        }
-
-        /**
-         * Search this and containing frames for a given name.
-         * @param aNameToFind the name we're looking for
-         * @return the frame in which it was found, or null if not found
-         */
-        LexicalFrame findFrame(String aNameToFind)
-        {
-            for (LexicalFrame thisFrame : mFrameList) {
-                if (thisFrame.contains(aNameToFind)) {
-                    return thisFrame;
-                }
-            }
-            return null;
         }
     }
 }
