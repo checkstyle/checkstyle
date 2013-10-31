@@ -185,7 +185,8 @@ public class RequireThisCheck extends DeclarationCollector
             || (parentType == TokenTypes.CLASS_DEF)
             || (parentType == TokenTypes.ENUM_DEF)
             || (parentType == TokenTypes.INTERFACE_DEF)
-            || (parentType == TokenTypes.PARAMETER_DEF))
+            || (parentType == TokenTypes.PARAMETER_DEF)
+            || (parentType == TokenTypes.TYPE_ARGUMENT))
         {
             // it's being declared; no problem
             return;
