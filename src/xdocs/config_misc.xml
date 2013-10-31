@@ -406,9 +406,9 @@ messages.properties: Key 'ok' missing.
       <subsection name="Description">
         <p>
           Check that method/constructor/catch block parameters are
-          final. Interface and abstract methods are not checked - the final
-          keyword does not make sense for interface and abstract method
-          parameters as there is no code that could modify the parameter.
+          final. Also check that interface and abstract methods are not final -
+          the final keyword does not make sense for interface and abstract
+          method parameters as there is no code that could modify the parameter.
         </p>
 
         <p>

@@ -76,9 +76,10 @@ class InputFinalParameters
     {
     }
 
-    /** interface methods should not be flagged. */
+    /** methods on interfaces */
     interface TestInterface
     {
+        void method(final String s);
         void method(String s);
     }
 
@@ -139,6 +140,7 @@ class InputFinalParameters
 
 abstract class AbstractClass
 {
+    public abstract void abstractMethod(final int aParam);
     public abstract void abstractMethod(int aParam);
 }
 

@@ -58,12 +58,6 @@ public class FinalParametersCheck extends Check
     @Override
     public void visitToken(DetailAST aAST)
     {
-        // don't flag interfaces
-        final DetailAST container = aAST.getParent().getParent();
-        if (container.getType() == TokenTypes.INTERFACE_DEF) {
-            return;
-        }
-
         if (aAST.getType() == TokenTypes.LITERAL_CATCH) {
             visitCatch(aAST);
         }
@@ -71,7 +65,10 @@ public class FinalParametersCheck extends Check
             visitForEachClause(aAST);
         }
         else {
-            visitMethod(aAST);
+            final DetailAST container = aAST.getParent().getParent();
+            boolean expectFinal =
+                container.getType() != TokenTypes.INTERFACE_DEF;
+            visitMethod(aAST, expectFinal);
         }
     }
 
@@ -79,18 +76,17 @@ public class FinalParametersCheck extends Check
      * Checks parameters of the method or ctor.
      * @param aMethod method or ctor to check.
      */
-    private void visitMethod(final DetailAST aMethod)
+    private void visitMethod(final DetailAST aMethod, boolean expectFinal)
     {
         // exit on fast lane if there is nothing to check here
         if (!aMethod.branchContains(TokenTypes.PARAMETER_DEF)) {
             return;
         }
 
-        // ignore abstract method
         final DetailAST modifiers =
             aMethod.findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers.branchContains(TokenTypes.ABSTRACT)) {
-            return;
+            expectFinal = false;
         }
 
         // we can now be sure that there is at least one parameter
@@ -100,7 +96,7 @@ public class FinalParametersCheck extends Check
         while (child != null) {
             // childs are PARAMETER_DEF and COMMA
             if (child.getType() == TokenTypes.PARAMETER_DEF) {
-                checkParam(child);
+                checkParam(child, expectFinal);
             }
             child = child.getNextSibling();
         }
@@ -112,7 +108,7 @@ public class FinalParametersCheck extends Check
      */
     private void visitCatch(final DetailAST aCatch)
     {
-        checkParam(aCatch.findFirstToken(TokenTypes.PARAMETER_DEF));
+        checkParam(aCatch.findFirstToken(TokenTypes.PARAMETER_DEF), true);
     }
 
     /**
@@ -121,20 +117,27 @@ public class FinalParametersCheck extends Check
      */
     private void visitForEachClause(final DetailAST aForEachClause)
     {
-        checkParam(aForEachClause.findFirstToken(TokenTypes.VARIABLE_DEF));
+        checkParam(aForEachClause.findFirstToken(TokenTypes.VARIABLE_DEF),
+            true);
     }
 
     /**
      * Checks if the given parameter is final.
      * @param aParam parameter to check.
      */
-    private void checkParam(final DetailAST aParam)
+    private void checkParam(final DetailAST aParam, final boolean expectFinal)
     {
-        if (!aParam.branchContains(TokenTypes.FINAL)) {
+        if (expectFinal && !aParam.branchContains(TokenTypes.FINAL)) {
             final DetailAST paramName = aParam.findFirstToken(TokenTypes.IDENT);
             final DetailAST firstNode = CheckUtils.getFirstNode(aParam);
             log(firstNode.getLineNo(), firstNode.getColumnNo(),
                 "final.parameter", paramName.getText());
+        } else
+        if (!expectFinal && aParam.branchContains(TokenTypes.FINAL)) {
+            final DetailAST paramName = aParam.findFirstToken(TokenTypes.IDENT);
+            final DetailAST firstNode = CheckUtils.getFirstNode(aParam);
+            log(firstNode.getLineNo(), firstNode.getColumnNo(),
+                "notfinal.parameter", paramName.getText());
         }
     }
 }
