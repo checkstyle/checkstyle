@@ -25,8 +25,9 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import java.util.LinkedList;
+import java.util.Deque;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 /**
@@ -50,7 +51,9 @@ public abstract class DeclarationCollector extends Check
     @Override
     public void beginTree(DetailAST aRootAST)
     {
-        final FrameStack aFrameStack = new FrameStack();
+        final Deque<LexicalFrame> aFrameStack = Lists.newLinkedList();
+        aFrameStack.add(new GlobalFrame());
+
         mFrames = Maps.newHashMap();
 
         DetailAST curNode = aRootAST;
@@ -92,9 +95,10 @@ public abstract class DeclarationCollector extends Check
      * @param aFrameStack Stack containing the FrameTree being built
      * @param aAST AST to parse
      */
-    private void collectDeclarations(FrameStack aFrameStack, DetailAST aAST)
+    private void collectDeclarations(Deque<LexicalFrame> aFrameStack,
+        DetailAST aAST)
     {
-        final LexicalFrame frame = aFrameStack.current();
+        final LexicalFrame frame = aFrameStack.peek();
         switch (aAST.getType()) {
         case TokenTypes.VARIABLE_DEF :  {
             final String name =
@@ -125,11 +129,11 @@ public abstract class DeclarationCollector extends Check
         case TokenTypes.ANNOTATION_DEF : {
             final DetailAST nameAST = aAST.findFirstToken(TokenTypes.IDENT);
             frame.addName(nameAST.getText());
-            aFrameStack.enter(new ClassFrame(aFrameStack.current()));
+            aFrameStack.addFirst(new ClassFrame(frame));
             break;
         }
         case TokenTypes.SLIST :
-            aFrameStack.enter(new BlockFrame(aFrameStack.current()));
+            aFrameStack.addFirst(new BlockFrame(frame));
             break;
         case TokenTypes.METHOD_DEF : {
             final String name = aAST.findFirstToken(TokenTypes.IDENT).getText();
@@ -145,7 +149,7 @@ public abstract class DeclarationCollector extends Check
             }
         }
         case TokenTypes.CTOR_DEF :
-            aFrameStack.enter(new MethodFrame(aFrameStack.current()));
+            aFrameStack.addFirst(new MethodFrame(frame));
             break;
         default:
             // do nothing
@@ -159,7 +163,7 @@ public abstract class DeclarationCollector extends Check
      * @param aFrameStack Stack containing the FrameTree being built
      * @param aAST AST that was parsed
      */
-    private void endCollectingDeclarations(FrameStack aFrameStack,
+    private void endCollectingDeclarations(Queue<LexicalFrame> aFrameStack,
         DetailAST aAST)
     {
         switch (aAST.getType()) {
@@ -170,7 +174,7 @@ public abstract class DeclarationCollector extends Check
         case TokenTypes.SLIST :
         case TokenTypes.METHOD_DEF :
         case TokenTypes.CTOR_DEF :
-            this.mFrames.put(aAST, aFrameStack.leave());
+            this.mFrames.put(aAST, aFrameStack.poll());
             break;
         default :
             // do nothing
@@ -372,50 +376,6 @@ public abstract class DeclarationCollector extends Check
         protected BlockFrame(LexicalFrame aParent)
         {
             super(aParent);
-        }
-    }
-
-    /**
-     * A stack of LexicalFrames.  Standard issue....
-     * @author Stephen Bloch
-     */
-    private static class FrameStack
-    {
-        /** List of lexical frames. */
-        private final LinkedList<LexicalFrame> mFrameList;
-
-        /** Creates an empty FrameStack. */
-        FrameStack()
-        {
-            mFrameList = Lists.newLinkedList();
-            this.enter(new GlobalFrame());
-        }
-
-        /**
-         * Enter a scope, i.e. push a frame on the stack.
-         * @param aNewFrame  the already-created frame to push
-         */
-        void enter(LexicalFrame aNewFrame)
-        {
-            mFrameList.addFirst(aNewFrame);
-        }
-
-        /**
-         * Leave a scope, i.e. pop a frame from the stack.
-         * @return the left frame
-         */
-        LexicalFrame leave()
-        {
-            return mFrameList.removeFirst();
-        }
-
-        /**
-         * Get current scope, i.e. top frame on the stack.
-         * @return the current frame
-         */
-        LexicalFrame current()
-        {
-            return mFrameList.getFirst();
         }
     }
 }
