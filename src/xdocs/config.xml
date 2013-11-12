@@ -863,7 +863,7 @@
 
       <h5>Examples</h5>
       <p>
-        To configure the check that makes comments available to the filter:
+        Make sure that comments available to the filter by enabling FileContentsHolder:
       </p>
 
       <source>
@@ -881,7 +881,11 @@
       </p>
 
       <source>
-&lt;module name=&quot;SuppressionCommentFilter&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+    ...
+    &lt;module name=&quot;SuppressionCommentFilter&quot;/&gt;
+    ...
+&lt;/module&gt;        
       </source>
 
       <p>
