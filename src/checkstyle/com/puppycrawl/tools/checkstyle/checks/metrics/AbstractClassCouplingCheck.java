@@ -296,15 +296,14 @@ public abstract class AbstractClassCouplingCheck extends Check
         }
 
         /**
-         * Checks if given class shouldn't be ignored and not from java.lang.
+         * Checks if given class shouldn't be ignored.
          * @param aClassName class to check.
          * @return true if we should count this class.
          */
         private boolean isSignificant(String aClassName)
         {
             return (aClassName.length() > 0)
-                    && !mIgnoredClassNames.contains(aClassName)
-                    && !aClassName.startsWith("java.lang.");
+                    && !mIgnoredClassNames.contains(aClassName);
         }
     }
 }
