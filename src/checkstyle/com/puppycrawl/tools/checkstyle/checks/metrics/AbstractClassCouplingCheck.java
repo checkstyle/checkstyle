@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -25,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.FastStack;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+
 import java.util.Set;
 
 /**
@@ -36,7 +38,30 @@ import java.util.Set;
 public abstract class AbstractClassCouplingCheck extends Check
 {
     /** Class names to ignore. */
-    private final Set<String> mIgnoredClassNames = Sets.newHashSet();
+    private static final Set<String> DEFAULT_EXCLUDED_CLASSES =
+                ImmutableSet.<String>builder()
+                // primitives
+                .add("boolean", "byte", "char", "double", "float", "int")
+                .add("long", "short", "void")
+                // wrappers
+                .add("Boolean", "Byte", "Character", "Double", "Float")
+                .add("Integer", "Long", "Short", "Void")
+                // java.lang.*
+                .add("Object", "Class")
+                .add("String", "StringBuffer", "StringBuilder")
+                // Exceptions
+                .add("ArrayIndexOutOfBoundsException", "Exception")
+                .add("RuntimeException", "IllegalArgumentException")
+                .add("IllegalStateException", "IndexOutOfBoundsException")
+                .add("NullPointerException", "Throwable", "SecurityException")
+                .add("UnsupportedOperationException")
+                // java.util.*
+                .add("List", "ArrayList", "Deque", "Queue", "LinkedList")
+                .add("Set", "HashSet", "SortedSet", "TreeSet")
+                .add("Map", "HashMap", "SortedMap", "TreeMap")
+                .build();
+    /** User-configured class names to ignore. */
+    private Set<String> mExcludedClasses = DEFAULT_EXCLUDED_CLASSES;
     /** Allowed complexity. */
     private int mMax;
     /** package of the file we check. */
@@ -54,38 +79,6 @@ public abstract class AbstractClassCouplingCheck extends Check
     protected AbstractClassCouplingCheck(int aDefaultMax)
     {
         setMax(aDefaultMax);
-
-        mIgnoredClassNames.add("boolean");
-        mIgnoredClassNames.add("byte");
-        mIgnoredClassNames.add("char");
-        mIgnoredClassNames.add("double");
-        mIgnoredClassNames.add("float");
-        mIgnoredClassNames.add("int");
-        mIgnoredClassNames.add("long");
-        mIgnoredClassNames.add("short");
-        mIgnoredClassNames.add("void");
-        mIgnoredClassNames.add("Boolean");
-        mIgnoredClassNames.add("Byte");
-        mIgnoredClassNames.add("Character");
-        mIgnoredClassNames.add("Double");
-        mIgnoredClassNames.add("Float");
-        mIgnoredClassNames.add("Integer");
-        mIgnoredClassNames.add("Long");
-        mIgnoredClassNames.add("Object");
-        mIgnoredClassNames.add("Short");
-        mIgnoredClassNames.add("String");
-        mIgnoredClassNames.add("StringBuffer");
-        mIgnoredClassNames.add("Void");
-        mIgnoredClassNames.add("ArrayIndexOutOfBoundsException");
-        mIgnoredClassNames.add("Exception");
-        mIgnoredClassNames.add("RuntimeException");
-        mIgnoredClassNames.add("IllegalArgumentException");
-        mIgnoredClassNames.add("IllegalStateException");
-        mIgnoredClassNames.add("IndexOutOfBoundsException");
-        mIgnoredClassNames.add("NullPointerException");
-        mIgnoredClassNames.add("Throwable");
-        mIgnoredClassNames.add("SecurityException");
-        mIgnoredClassNames.add("UnsupportedOperationException");
     }
 
     @Override
@@ -107,6 +100,15 @@ public abstract class AbstractClassCouplingCheck extends Check
     public final void setMax(int aMax)
     {
         mMax = aMax;
+    }
+
+    /**
+     * Sets user-excluded classes to ignore.
+     * @param aExcludedClasses the list of classes to ignore.
+     */
+    public final void setExcludedClasses(String[] aExcludedClasses)
+    {
+        mExcludedClasses = ImmutableSet.copyOf(aExcludedClasses);
     }
 
     @Override
@@ -303,7 +305,7 @@ public abstract class AbstractClassCouplingCheck extends Check
         private boolean isSignificant(String aClassName)
         {
             return (aClassName.length() > 0)
-                    && !mIgnoredClassNames.contains(aClassName)
+                    && !mExcludedClasses.contains(aClassName)
                     && !aClassName.startsWith("java.lang.");
         }
     }
