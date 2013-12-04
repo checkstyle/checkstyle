@@ -179,7 +179,7 @@
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
+      <artifactId>guava-jdk5</artifactId>
       <version>14.0.1</version>
     </dependency>
     <dependency>
