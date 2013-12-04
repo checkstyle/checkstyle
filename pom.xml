@@ -46,8 +46,8 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git://github.com/checkstyle/checkstyle.git</connection>
-    <developerConnection>scm:git:git://github.com/checkstyle/checkstyle.git</developerConnection>
+    <connection>scm:git:git@github.com:checkstyle/checkstyle.git</connection>
+    <developerConnection>scm:git:git@github.com:checkstyle/checkstyle.git</developerConnection>
     <url>https://github.com/checkstyle/checkstyle</url>
   </scm>
 
