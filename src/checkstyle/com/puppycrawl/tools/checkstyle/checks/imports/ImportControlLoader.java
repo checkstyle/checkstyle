@@ -89,12 +89,12 @@ final class ImportControlLoader extends AbstractLoader
             mStack.push(new PkgControl(pkg));
         }
         else if ("subpackage".equals(aQName)) {
-            assert mStack.size() > 0;
+            assert !mStack.isEmpty();
             final String name = safeGet(aAtts, "name");
             mStack.push(new PkgControl(mStack.peek(), name));
         }
         else if ("allow".equals(aQName) || "disallow".equals(aQName)) {
-            assert mStack.size() > 0;
+            assert !mStack.isEmpty();
             // Need to handle either "pkg" or "class" attribute.
             // May have "exact-match" for "pkg"
             // May have "local-only"

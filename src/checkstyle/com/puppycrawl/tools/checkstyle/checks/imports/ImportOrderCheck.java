@@ -294,8 +294,7 @@ public class ImportOrderCheck
                 }
             }
             else if (groupIdx == mLastGroup) {
-                doVisitTokenInSameGroup(aIdent, aIsStatic, aPrevious, name,
-                        line);
+                doVisitTokenInSameGroup(aIsStatic, aPrevious, name, line);
             }
             else {
                 log(line, "import.ordering", name);
@@ -309,14 +308,13 @@ public class ImportOrderCheck
     /**
      * Shares processing...
      *
-     * @param aIdent the import to process.
      * @param aIsStatic whether the token is static or not.
      * @param aPrevious previous non-static but current is static (above), or
      *    previous static but current is non-static (under).
      * @param aName the name of the current import.
      * @param aLine the line of the current import.
      */
-    private void doVisitTokenInSameGroup(FullIdent aIdent, boolean aIsStatic,
+    private void doVisitTokenInSameGroup(boolean aIsStatic,
             boolean aPrevious, String aName, int aLine)
     {
         if (!mOrdered) {

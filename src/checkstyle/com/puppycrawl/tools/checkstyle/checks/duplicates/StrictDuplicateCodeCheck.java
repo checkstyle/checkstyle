@@ -430,11 +430,8 @@ public final class StrictDuplicateCodeCheck extends AbstractFileSetCheck
             }
 
             final Collection<Integer> ignoreEntries = aIgnore.get(aILine);
-            // avoid Integer constructor whenever we can
-            if (ignoreEntries != null) {
-                if (ignoreEntries.contains(jLine)) {
-                    continue;
-                }
+            if (ignoreEntries != null && ignoreEntries.contains(jLine)) {
+                continue;
             }
 
             final int duplicateLines =

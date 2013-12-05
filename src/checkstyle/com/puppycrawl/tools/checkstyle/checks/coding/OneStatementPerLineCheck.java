@@ -99,10 +99,11 @@ public final class OneStatementPerLineCheck extends Check
     private void visitExpr(DetailAST aAst)
     {
         mExprDepth++;
-        if (mExprDepth == 1) {
-            if (!mInForHeader && (mLastStatementEnd == aAst.getLineNo())) {
-                log(aAst, "multiple.statements.line");
-            }
+        if (mExprDepth == 1
+                && !mInForHeader
+                && (mLastStatementEnd == aAst.getLineNo()))
+        {
+            log(aAst, "multiple.statements.line");
         }
     }
 

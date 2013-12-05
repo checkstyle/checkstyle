@@ -69,14 +69,14 @@ public class CovariantEqualsCheck extends Check
         if (objBlock != null) {
             DetailAST child = objBlock.getFirstChild();
             while (child != null) {
-                if (child.getType() == TokenTypes.METHOD_DEF) {
-                    if (CheckUtils.isEqualsMethod(child)) {
-                        if (hasObjectParameter(child)) {
-                            hasEqualsObject = true;
-                        }
-                        else {
-                            mEqualsMethods.add(child);
-                        }
+                if (child.getType() == TokenTypes.METHOD_DEF
+                        && CheckUtils.isEqualsMethod(child))
+                {
+                    if (hasObjectParameter(child)) {
+                        hasEqualsObject = true;
+                    }
+                    else {
+                        mEqualsMethods.add(child);
                     }
                 }
                 child = child.getNextSibling();

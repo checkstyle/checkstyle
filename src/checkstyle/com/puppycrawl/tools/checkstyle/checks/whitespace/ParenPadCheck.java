@@ -91,14 +91,13 @@ public class ParenPadCheck extends AbstractParenPadCheck
                 processLeft(theAst);
             }
         }
-        else if ((theAst.getParent() == null)
+        else if (((theAst.getParent() == null)
                  || (theAst.getParent().getType() != TokenTypes.TYPECAST)
                  || (theAst.getParent().findFirstToken(TokenTypes.RPAREN)
                      != theAst))
+                 && !isFollowsEmptyForIterator(theAst))
         {
-            if (!isFollowsEmptyForIterator(theAst)) {
-                processRight(theAst);
-            }
+            processRight(theAst);
         }
     }
 

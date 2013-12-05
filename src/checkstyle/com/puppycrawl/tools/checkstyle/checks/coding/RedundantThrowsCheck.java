@@ -134,11 +134,9 @@ public class RedundantThrowsCheck extends AbstractTypeAwareCheck
         final ClassInfo newClassInfo =
             createClassInfo(new Token(aExc), getCurrentClassName());
 
-        if (!mAllowUnchecked) {
-            if (isUnchecked(newClassInfo.getClazz())) {
-                log(aExc.getLineNo(), aExc.getColumnNo(),
-                    "redundant.throws.unchecked", aExc.getText());
-            }
+        if (!mAllowUnchecked && isUnchecked(newClassInfo.getClazz())) {
+            log(aExc.getLineNo(), aExc.getColumnNo(),
+                "redundant.throws.unchecked", aExc.getText());
         }
 
         boolean shouldAdd = true;

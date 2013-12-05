@@ -284,7 +284,7 @@ public class CheckStyleTask extends Task
         log("compiled on " + compileTimestamp, Project.MSG_VERBOSE);
 
         // Check for no arguments
-        if ((mFileName == null) && (mFileSets.size() == 0)) {
+        if ((mFileName == null) && mFileSets.isEmpty()) {
             throw new BuildException(
                     "Must specify at least one of 'file' or nested 'fileset'.",
                     getLocation());
@@ -449,7 +449,7 @@ public class CheckStyleTask extends Task
         final AuditListener[] listeners = new AuditListener[formatterCount];
 
         // formatters
-        if (mFormatters.size() == 0) {
+        if (mFormatters.isEmpty()) {
             final OutputStream debug = new LogOutputStream(this,
                     Project.MSG_DEBUG);
             final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);

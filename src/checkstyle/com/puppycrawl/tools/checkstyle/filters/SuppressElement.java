@@ -154,18 +154,12 @@ public class SuppressElement
             return false;
         }
 
-        // reject if line matches a line CSV value.
-        if (mLineFilter != null) {
-            if (mLineFilter.accept(aEvent.getLine())) {
-                return false;
-            }
+        if (mLineFilter != null && mLineFilter.accept(aEvent.getLine())) {
+            return false;
         }
 
-        // reject if column matches a column CSV value.
-        if (mColumnFilter != null) {
-            if (mColumnFilter.accept(aEvent.getColumn())) {
-                return false;
-            }
+        if (mColumnFilter != null && mColumnFilter.accept(aEvent.getColumn())) {
+            return false;
         }
         return true;
     }
