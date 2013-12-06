@@ -1,4 +1,6 @@
-CHECKSTYLE
+"!https://secure.travis-ci.org/checkstyle/checkstyle.png!":http://travis-ci.org/checkstyle/checkstyle
+
+CHECKSTYLE 
 ==========
 
 This directory contains the distribution for checkstyle. It is a tool for
@@ -39,7 +41,7 @@ Travis: "!https://secure.travis-ci.org/checkstyle/checkstyle.png!":http://travis
 Feedback
 ========
 
-Please send any feedback to checkstyle-user@lists.sourceforge.net.
+Please send any feedback to https://groups.google.com/forum/?hl=en#!forum/checkstyle.
 
 Bugs should be reported to the checkstyle bugtracker at
 https://github.com/checkstyle/checkstyle/issues
