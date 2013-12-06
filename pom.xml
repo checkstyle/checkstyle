@@ -128,27 +128,21 @@
   <mailingLists>
     <mailingList>
       <name>checkstyle-announce</name>
-      <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=checkstyle-announce</archive>
-      <subscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-announce</subscribe>
-      <unsubscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-announce</unsubscribe>
+      <archive>https://groups.google.com/forum/#!forum/checkstyle-announce</archive>
+      <subscribe>mailto:checkstyle-announce%2Bsubscribe@googlegroups.com</subscribe>
+      <unsubscribe>mailto:checkstyle-announce%2Bunsubscribe@googlegroups.com</unsubscribe>
     </mailingList>
     <mailingList>
-      <name>checkstyle-commits</name>
-      <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=checkstyle-commits</archive>
-      <subscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-commits</subscribe>
-      <unsubscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-commits</unsubscribe>
+      <name>checkstyle</name>
+      <archive>https://groups.google.com/forum/#!forum/checkstyle</archive>
+      <subscribe>mailto:checkstyle%2Bsubscribe@googlegroups.com</subscribe>
+      <unsubscribe>mailto:checkstyle%2Bunsubscribe@googlegroups.com</unsubscribe>
     </mailingList>
     <mailingList>
       <name>checkstyle-devel</name>
-      <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=checkstyle-devel</archive>
-      <subscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-devel</subscribe>
-      <unsubscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-devel</unsubscribe>
-    </mailingList>
-    <mailingList>
-      <name>checkstyle-user</name>
-      <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=checkstyle-user</archive>
-      <subscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-user</subscribe>
-      <unsubscribe>https://lists.sourceforge.net/mailman/listinfo/checkstyle-user</unsubscribe>
+      <archive>https://groups.google.com/forum/#!forum/checkstyle-devel</archive>
+      <subscribe>mailto:checkstyle-devel%2Bsubscribe@googlegroups.com</subscribe>
+      <unsubscribe>mailto:checkstyle-devel%2Bunsubscribe@googlegroups.com</unsubscribe>
     </mailingList>
   </mailingLists>
 
