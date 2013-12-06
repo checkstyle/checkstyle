@@ -484,9 +484,9 @@ public class SuppressWithNearbyCommentFilter
         for (final TextBlock comment : aComments) {
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
-            tagCommentLine(text[0], startLineNo, comment.getStartColNo());
+            tagCommentLine(text[0], startLineNo);
             for (int i = 1; i < text.length; i++) {
-                tagCommentLine(text[i], startLineNo + i, 0);
+                tagCommentLine(text[i], startLineNo + i);
             }
         }
     }
@@ -496,9 +496,8 @@ public class SuppressWithNearbyCommentFilter
      * checkstyle reporting on or the format for turning reporting off.
      * @param aText the string to tag.
      * @param aLine the line number of aText.
-     * @param aColumn the column number of aText.
      */
-    private void tagCommentLine(String aText, int aLine, int aColumn)
+    private void tagCommentLine(String aText, int aLine)
     {
         final Matcher matcher = mCommentRegexp.matcher(aText);
         if (matcher.find()) {

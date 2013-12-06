@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import com.puppycrawl.tools.checkstyle.api.Utils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -44,8 +45,8 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.StringTokenizer;
-import java.util.TreeSet;
 
 /**
  * This class provides the functionality to check a set of files.
@@ -254,7 +255,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher
         for (final File f : aFiles) {
             final String fileName = f.getAbsolutePath();
             fireFileStarted(fileName);
-            final TreeSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
+            final SortedSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
             try {
                 final FileText theText = new FileText(f.getAbsoluteFile(),
                         mCharset);
@@ -501,7 +502,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher
      * @param aFileName the audited file
      * @param aErrors the audit errors from the file
      */
-    public void fireErrors(String aFileName, TreeSet<LocalizedMessage> aErrors)
+    public void fireErrors(String aFileName,
+        SortedSet<LocalizedMessage> aErrors)
     {
         final String stripped = getStrippedFileName(aFileName);
         for (final LocalizedMessage element : aErrors) {

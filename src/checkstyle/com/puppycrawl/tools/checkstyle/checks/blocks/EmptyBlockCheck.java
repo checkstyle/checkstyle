@@ -101,13 +101,13 @@ public class EmptyBlockCheck
                         aAST.getText());
                 }
             }
-            else if (getAbstractOption() == BlockOption.TEXT) {
-                if (!hasText(slistAST)) {
-                    log(slistAST.getLineNo(),
-                        slistAST.getColumnNo(),
-                        "block.empty",
-                        aAST.getText());
-                }
+            else if (getAbstractOption() == BlockOption.TEXT
+                    && !hasText(slistAST))
+            {
+                log(slistAST.getLineNo(),
+                    slistAST.getColumnNo(),
+                    "block.empty",
+                    aAST.getText());
             }
         }
     }

@@ -260,7 +260,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
                 }
             }
             else {
-                checkComment(aAST, cmt, theScope);
+                checkComment(aAST, cmt);
             }
         }
     }
@@ -313,13 +313,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      *
      * @param aAST the token for the method
      * @param aComment the Javadoc comment
-     * @param aScope the scope of the method.
      */
-    private void checkComment(DetailAST aAST, TextBlock aComment, Scope aScope)
+    private void checkComment(DetailAST aAST, TextBlock aComment)
     {
         final List<JavadocTag> tags = getMethodTags(aComment);
 
-        if (hasShortCircuitTag(aAST, tags, aScope)) {
+        if (hasShortCircuitTag(aAST, tags)) {
             return;
         }
 
@@ -354,11 +353,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck
      *
      * @param aAST the construct being checked
      * @param aTags the list of Javadoc tags associated with the construct
-     * @param aScope the scope of the construct
      * @return true if the construct has a short circuit tag.
      */
     private boolean hasShortCircuitTag(final DetailAST aAST,
-            final List<JavadocTag> aTags, final Scope aScope)
+            final List<JavadocTag> aTags)
     {
         // Check if it contains {@inheritDoc} tag
         if ((aTags.size() != 1)

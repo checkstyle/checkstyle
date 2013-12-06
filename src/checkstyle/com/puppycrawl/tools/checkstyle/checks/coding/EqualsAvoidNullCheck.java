@@ -123,15 +123,18 @@ public class EqualsAvoidNullCheck extends Check
         final DetailAST expr = dot.getNextSibling().getFirstChild();
 
         if ("equals".equals(method.getText())
-                || (!mIgnoreEqualsIgnoreCase && "equalsIgnoreCase"
-                        .equals(method.getText())))
+            && containsOneArg(expr) && containsAllSafeTokens(expr))
         {
-            if (containsOneArg(expr) && containsAllSafeTokens(expr)) {
-                log(aMethodCall.getLineNo(), aMethodCall.getColumnNo(),
-                    "equals".equals(method.getText())
-                    ? "equals.avoid.null"
-                    : "equalsIgnoreCase.avoid.null");
-            }
+            log(aMethodCall.getLineNo(), aMethodCall.getColumnNo(),
+                "equals.avoid.null");
+        }
+
+        if (!mIgnoreEqualsIgnoreCase
+            && "equalsIgnoreCase".equals(method.getText())
+            && containsOneArg(expr) && containsAllSafeTokens(expr))
+        {
+            log(aMethodCall.getLineNo(), aMethodCall.getColumnNo(),
+                "equalsIgnoreCase.avoid.null");
         }
     }
 

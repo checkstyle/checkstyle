@@ -74,7 +74,7 @@ class TagParser
      */
     public boolean hasNextTag()
     {
-        return (mTags.size() > 0);
+        return !mTags.isEmpty();
     }
 
     /**
