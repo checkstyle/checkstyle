@@ -203,12 +203,12 @@ public class SuppressionCommentFilter
             final Matcher tagMatcher =
                 mTagCheckRegexp.matcher(aEvent.getSourceName());
             if (tagMatcher.find()) {
+                if (mTagMessageRegexp != null) {
+                    final Matcher messageMatcher =
+                            mTagMessageRegexp.matcher(aEvent.getMessage());
+                    return messageMatcher.find();
+                }
                 return true;
-            }
-            if (mTagMessageRegexp != null) {
-                final Matcher messageMatcher =
-                    mTagMessageRegexp.matcher(aEvent.getMessage());
-                return messageMatcher.find();
             }
             return false;
         }
