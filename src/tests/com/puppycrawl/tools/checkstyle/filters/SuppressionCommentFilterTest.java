@@ -52,6 +52,8 @@ public class SuppressionCommentFilterTest
         "43:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "64:23: Catching 'Exception' is not allowed.",
         "71:11: Catching 'Exception' is not allowed.",
+        "77:11: Catching 'RuntimeException' is not allowed.",
+        "78:11: Catching 'Exception' is not allowed.",
     };
 
     @Test
@@ -137,6 +139,20 @@ public class SuppressionCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
+    @Test
+    public void testArgumentSuppression() throws Exception
+    {
+        final DefaultConfiguration filterConfig =
+            createFilterConfig(SuppressionCommentFilter.class);
+        filterConfig.addAttribute("offCommentFormat", "IllegalCatchCheck OFF\\: (\\w+)");
+        filterConfig.addAttribute("onCommentFormat", "IllegalCatchCheck ON\\: (\\w+)");
+        filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
+        filterConfig.addAttribute("messageFormat", "^Catching '$1' is not allowed.*$");
+        final String[] suppressed = {
+            "78:11: Catching 'Exception' is not allowed.",
+        };
+        verifySuppressed(filterConfig, suppressed);
+    }
 
     @Test
     public void testExpansion() throws Exception

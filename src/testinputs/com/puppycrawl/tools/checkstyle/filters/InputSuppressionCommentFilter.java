@@ -71,5 +71,13 @@ class InputSuppressionCommentFilter
         } catch(Exception ex) {
             //CHECKSTYLE:ON
         }
+
+        try{
+            //IllegalCatchCheck OFF: Exception
+        } catch(RuntimeException ex){
+        } catch(Exception ex){
+            //IllegalCatchCheck ON: Exception
+        }
     }
+
 }
