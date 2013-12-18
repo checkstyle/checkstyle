@@ -103,6 +103,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author jrichard
  * @author o_sukhodolsky
+ * @author Maikel Steneker
  */
 public class IndentationCheck extends Check
 {
@@ -117,6 +118,9 @@ public class IndentationCheck extends Check
 
     /** how far brace should be indented when on next line */
     private int mBraceAdjustment;
+
+    /** how far throws should be indented when on next line */
+    private int mThrowsIndentationAmount = DEFAULT_INDENTATION;
 
     /** handlers currently in use */
     private final FastStack<ExpressionHandler> mHandlers =
@@ -188,6 +192,26 @@ public class IndentationCheck extends Check
     public int getCaseIndent()
     {
         return mCaseIndentationAmount;
+    }
+
+    /**
+     * Set the throws indentation level.
+     *
+     * @param aThrowsIndent the throws indentation level
+     */
+    public void setThrowsIndent(int aThrowsIndent)
+    {
+        mThrowsIndentationAmount = aThrowsIndent;
+    }
+
+    /**
+     * Get the throws indentation level.
+     *
+     * @return the throws indentation level
+     */
+    public int getThrowsIndent()
+    {
+        return this.mThrowsIndentationAmount;
     }
 
     /**

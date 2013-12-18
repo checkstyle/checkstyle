@@ -803,6 +803,12 @@ messages.properties: Key 'ok' missing.
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
           </tr>
+          <tr>
+            <td>throwsIndent</td>
+            <td>how far throws should be indented when on next line</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td>4</td>
+          </tr>
         </table>
       </subsection>
 
