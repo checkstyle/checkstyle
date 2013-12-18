@@ -681,6 +681,17 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
+    public void testThrowsIndentationLevel() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("throwsIndent", Integer.valueOf(8).toString());
+        final String[] expected = {
+            "18: method def throws at indentation level 8 not at correct indentation, 12",
+        };
+        verify(checkConfig, getPath("indentation/InvalidInputThrowsIndent.java"), expected);
+    }
+
+    @Test
     public void testCaseLevel() throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
