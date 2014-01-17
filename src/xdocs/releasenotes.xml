@@ -19,11 +19,35 @@
           to use <code>@SuppressWarnings</code> annotations to suppress
           violations. Thanks to Trevor Robinson for patch #156.
         </li>
+        <li>
+          New: UniqueProperties check. Thanks to Pavel Baranchikov. <a href="https://github.com/checkstyle/checkstyle/issues/19">#19</a>
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>
         <li>
-          TBD
+          added support for a separate throws indentation configuration
+        </li>
+        <li>
+          SuppressionCommentFilter ignores messageFormat. Patch from Chris Brigham. <a href="http://sourceforge.net/p/checkstyle/bugs/520/">#520</a>
+        </li>
+        <li>
+          Exclude some java.util classes from Class Fan out. Thanks to Ivan Sopov and Vincent Massol.<a href="https://github.com/checkstyle/checkstyle/issues/31">#31</a>
+        </li>
+        <li>
+          Allow to ignore java.lang and certain other classes. Thanks to Ivan Sopov and Vincent Massol.<a href="https://github.com/checkstyle/checkstyle/issues/33">#33</a> 
+        </li>
+        <li>
+          RequireThisCheck doesn't check methods. Thanks to krzyk.<a href="https://github.com/checkstyle/checkstyle/issues/41">#41</a> 
+        </li>
+        <li>
+          Document WhitespaceAround for-each property. Thanks to Andrew Gaul.<a href="https://github.com/checkstyle/checkstyle/issues/15">#15</a>
+        </li>
+        <li>
+          Other corrections for typos. Thanks to Andrew Gaul.<a href="https://github.com/checkstyle/checkstyle/issues/16">#16</a>
+        </li>
+        <li>
+          Remnants of DoubleCheck were removed. Thanks to Antonio Ospite.
         </li>
       </ul>
       <p>Notes:</p>
@@ -33,7 +57,10 @@
           increased file loading times by up to 30%.
         </li>
         <li>
-          Upgraded dependencies to Guava 14.0.1 and JUnit 4.11.
+          Upgraded dependencies to guava-jdk5 14.0.1 and JUnit 4.11.
+        </li>
+        <li>
+           poartial fix for "Sonarqube found problems in Checkstyle" <a href="https://github.com/checkstyle/checkstyle/issues/46">#46</a>. 
         </li>
       </ul>
     </section>
