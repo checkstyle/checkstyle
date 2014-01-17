@@ -14,6 +14,9 @@
   </bannerRight>
   
   <poweredBy>
+    <logo name="GitHub" href="https://github.com/checkstyle/checkstyle" 
+    	img="https://github.com/github/media/blob/master/logos/github_logo_social_coding_outlined.png?raw=true" 
+    	width="120" height="45"/>
     <logo name="SourceForge"
           img="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&amp;type=11"
           href="http://sourceforge.net/projects/checkstyle"
