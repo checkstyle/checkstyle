@@ -1,4 +1,4 @@
-"!https://secure.travis-ci.org/checkstyle/checkstyle.png!":http://travis-ci.org/checkstyle/checkstyle
+"!https://secure.travis-ci.org/checkstyle/checkstyle.png!":http://travis-ci.org/checkstyle/checkstyle "!https://d2weczhvl823v0.cloudfront.net/romani/checkstyle/trend.png!":https://bitdeli.com/free
 
 CHECKSTYLE 
 ==========
