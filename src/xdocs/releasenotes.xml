@@ -35,10 +35,10 @@
           Exclude some java.util classes from Class Fan out. Thanks to Ivan Sopov and Vincent Massol.<a href="https://github.com/checkstyle/checkstyle/issues/31">#31</a>
         </li>
         <li>
-          Allow to ignore java.lang and certain other classes. Thanks to Ivan Sopov and Vincent Massol.<a href="https://github.com/checkstyle/checkstyle/issues/33">#33</a> 
+          Allow to ignore java.lang and certain other classes. Thanks to Ivan Sopov and Vincent Massol.<a href="https://github.com/checkstyle/checkstyle/issues/33">#33</a>
         </li>
         <li>
-          RequireThisCheck doesn't check methods. Thanks to krzyk.<a href="https://github.com/checkstyle/checkstyle/issues/41">#41</a> 
+          RequireThisCheck doesn't check methods. Thanks to krzyk.<a href="https://github.com/checkstyle/checkstyle/issues/41">#41</a>
         </li>
         <li>
           Document WhitespaceAround for-each property. Thanks to Andrew Gaul.<a href="https://github.com/checkstyle/checkstyle/issues/15">#15</a>
@@ -60,7 +60,7 @@
           Upgraded dependencies to guava-jdk5 14.0.1 and JUnit 4.11.
         </li>
         <li>
-           partial fix for "Sonarqube found problems in Checkstyle" <a href="https://github.com/checkstyle/checkstyle/issues/46">#46</a>. 
+           partial fix for "Sonarqube found problems in Checkstyle" <a href="https://github.com/checkstyle/checkstyle/issues/46">#46</a>.
         </li>
       </ul>
     </section>
