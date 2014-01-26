@@ -31,8 +31,8 @@
     <url>https://github.com/checkstyle/checkstyle/issues</url>
   </issueManagement>
   <ciManagement>
-    <system>hudson</system>
-    <url>http://hudson.fazend.com:8081/hudson/job/Checkstyle</url>
+    <system>travis</system>
+    <url>https://travis-ci.org/checkstyle/checkstyle</url>
   </ciManagement>
   <inceptionYear>2001</inceptionYear>
 
