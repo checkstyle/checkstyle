@@ -25,7 +25,7 @@
   </module>
 
   <module name="Translation">
-    <property name="severity" value="${translation.severity}"/>
+    <property name="severity" value="ignore"/>
   </module>
 
   <module name="FileTabCharacter">
