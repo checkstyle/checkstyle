@@ -488,8 +488,65 @@
       <!-- To be used when making distributions. Run the command-->
       <!-- mvn -Pdistro package -->
       <id>distro</id>
+
       <build>
-        <plugins>
+      	<plugins>
+
+	        <plugin>
+	          <groupId>org.codehaus.mojo</groupId>
+	          <artifactId>cobertura-maven-plugin</artifactId>
+	          <executions>
+	            <execution>
+	              <id>verify_cobertura</id>
+	              <phase>verify</phase>
+	              <goals>
+	                <goal>cobertura</goal>
+	              </goals>
+	              <configuration>
+	                <formats>
+	                  <format>xml</format>
+	                  <format>html</format>
+	                </formats>
+	              </configuration>
+	            </execution>
+	          </executions>
+	        </plugin>
+
+			 <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-pmd-plugin</artifactId>
+	          <executions>
+	            <execution>
+	              <id>verify_pmd</id>
+	              <phase>verify</phase>
+	              <goals>
+	                <goal>pmd</goal>
+	              </goals>
+	              <configuration>
+	                <targetJdk>1.5</targetJdk>
+	                <minimumTokens>20</minimumTokens>
+	              </configuration>
+	            </execution>
+	          </executions>
+	        </plugin>
+
+	        <plugin>
+	          <groupId>org.codehaus.mojo</groupId>
+	          <artifactId>findbugs-maven-plugin</artifactId>
+	          <executions>
+	            <execution>
+	              <id>verify_findbugs</id>
+	              <phase>verify</phase>
+	              <goals>
+	                <goal>findbugs</goal>
+	              </goals>
+	              <configuration>
+	                <reportFormat>xml</reportFormat>
+	              </configuration>
+	            </execution>
+	          </executions>
+	        </plugin>
+
           <!-- Generates the site, which is required for assembly -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -552,6 +609,62 @@
           </plugin>
         </plugins>
       </build>
+
+      <!-- Reports -->
+      <reporting>
+	      <plugins>
+	   	
+	        <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-surefire-report-plugin</artifactId>
+	        </plugin>
+	        
+	        <plugin>
+	          <groupId>org.codehaus.mojo</groupId>
+	          <artifactId>cobertura-maven-plugin</artifactId>
+	          <configuration>
+	            <formats>
+	              <format>xml</format>
+	              <format>html</format>
+	            </formats>
+	          </configuration>
+	        </plugin>
+
+	        <plugin>
+	          <groupId>org.codehaus.mojo</groupId>
+	          <artifactId>taglist-maven-plugin</artifactId>
+	          <configuration>
+	            <tags>
+	              <tag>TODO</tag>
+	              <tag>@todo</tag>
+	              <tag>FIXME</tag>
+	            </tags>
+	          </configuration>
+	        </plugin>
+	       
+	        <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-pmd-plugin</artifactId>
+	          <configuration>
+	            <targetJdk>1.5</targetJdk>
+	            <minimumTokens>20</minimumTokens>
+	          </configuration>
+		      <reportSets>
+		          <reportSet>
+		            <reports>
+		              <report>pmd</report>
+		            </reports>
+		          </reportSet>
+		      </reportSets>	          
+	        </plugin>
+
+	        <plugin>
+	          <groupId>org.codehaus.mojo</groupId>
+	          <artifactId>findbugs-maven-plugin</artifactId>
+	        </plugin> 
+	       
+	       </plugins>     	
+      </reporting>
     </profile>
 
     <profile>
