@@ -153,6 +153,7 @@
     <projectVersion>${project.version}</projectVersion>
     <tools.jar.version>1.5.0</tools.jar.version>
     <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
+    <maven.site.plugin.version>3.3</maven.site.plugin.version>
   </properties>
 
   <dependencies>
@@ -273,7 +274,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>3.0-beta-3</version>
+        <version>${maven.site.plugin.version}</version>
         <configuration>
           <xdocDirectory>${basedir}/src/xdocs</xdocDirectory>
           <validate>true</validate>
@@ -565,7 +566,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-site-plugin</artifactId>
-            <version>3.0-beta-3</version>
+            <version>${maven.site.plugin.version}</version>
             <executions>
               <execution>
                 <id>gen-site</id>
