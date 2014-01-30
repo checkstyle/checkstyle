@@ -636,8 +636,11 @@
 	            <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
 	            <suppressionsLocation>suppressions.xml</suppressionsLocation>
 	            <headerLocation>java.header</headerLocation>
+	            <!-- this does not work
 	            <propertyExpansion>translation.severity=ignore</propertyExpansion>
+	        	-->
 	            <propertyExpansion>checkstyle.importcontrol.file=import-control.xml</propertyExpansion>          
+	        
 	          </configuration>
 	        </plugin>
 

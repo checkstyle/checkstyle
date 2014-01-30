@@ -23,7 +23,6 @@
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="checkstyle_checks.xml"/>
-    <property name="translation.severity" value="ignore"/>
     <checkstyle config="${check.config}"
                 failOnViolation="false"
                 failureProperty="checkstyle.failure.property"
@@ -95,7 +94,6 @@
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="checkstyle_checks.xml"/>
-    <property name="translation.severity" value="ignore"/>
     <checkstyle failonviolation="false" config="${check.config}">
       <fileset dir="src/checkstyle"
                includes="**/*.java,**/*.properties"
@@ -175,7 +173,6 @@
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="checkstyle_checks.xml"/>
-    <property name="translation.severity" value="ignore"/>
     <checkstyle config="${custom.config}" file="${file.to.check}">
       <formatter type="plain"/>
       <formatter type="xml" toFile="${target.dir}/cs_errors.xml"/>

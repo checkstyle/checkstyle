@@ -12,7 +12,6 @@
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="checkstyle_checks.xml"/>
-    <property name="translation.severity" value="ignore"/>
 
     <checkstyle config="${check.config}"
                 failOnViolation="false"
