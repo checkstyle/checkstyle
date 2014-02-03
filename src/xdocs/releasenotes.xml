@@ -22,6 +22,18 @@
         <li>
           New: UniqueProperties check. Thanks to Pavel Baranchikov. <a href="https://github.com/checkstyle/checkstyle/issues/19">#19</a>
         </li>
+        <li>
+          Support for '&amp;' in nested generics. Thanks to <a
+          href="https://github.com/dkomanov">dkomanov</a>.
+        </li>
+        <li>
+          Allow HeaderCheck definition to be specified as URL. Thanks to
+          tnarake.
+        </li>
+        <li>
+          Allow additional URL schemes for SuppressionFilter
+          configuration. Thanks to tnarake.
+        </li>
       </ul>
       <p>Bug fixes:</p>
       <ul>
@@ -61,6 +73,10 @@
         </li>
         <li>
            partial fix for "Sonarqube found problems in Checkstyle" <a href="https://github.com/checkstyle/checkstyle/issues/46">#46</a>.
+        </li>
+        <li>
+          Remnants of DoubleCheckedLocking were removed. Thanks to
+          Antonio Ospite.
         </li>
       </ul>
     </section>
