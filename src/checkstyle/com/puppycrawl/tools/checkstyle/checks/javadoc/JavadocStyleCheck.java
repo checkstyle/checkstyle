@@ -51,8 +51,8 @@ public class JavadocStyleCheck
     private static final String EXTRA_HTML = "javadoc.extrahtml";
 
     /** HTML tags that do not require a close tag. */
-    private static final Set<String> SINGLE_TAGS = ImmutableSortedSet.of("p",
-            "br", "li", "dt", "dd", "td", "hr", "img", "tr", "th", "td");
+    private static final Set<String> SINGLE_TAGS = ImmutableSortedSet.of(
+            "br", "li", "dt", "dd", "hr", "img", "p", "td", "tr", "th");
 
     /** HTML tags that are allowed in java docs.
      * From http://www.w3schools.com/tags/default.asp
@@ -60,11 +60,12 @@ public class JavadocStyleCheck
      */
     private static final Set<String> ALLOWED_TAGS = ImmutableSortedSet.of(
             "a", "abbr", "acronym", "address", "area", "b", "bdo", "big",
-            "blockquote", "br", "caption", "cite", "code", "colgroup", "del",
-            "div", "dfn", "dl", "em", "fieldset", "h1", "h2", "h3", "h4", "h5",
-            "h6", "hr", "i", "img", "ins", "kbd", "li", "ol", "p", "pre", "q",
-            "samp", "small", "span", "strong", "style", "sub", "sup", "table",
-            "tbody", "td", "tfoot", "th", "thead", "tr", "tt", "ul");
+            "blockquote", "br", "caption", "cite", "code", "colgroup", "dd",
+            "del", "div", "dfn", "dl", "dt", "em", "fieldset", "h1", "h2",
+            "h3", "h4", "h5", "h6", "hr", "i", "img", "ins", "kbd", "li",
+            "ol", "p", "pre", "q", "samp", "small", "span", "strong",
+            "style", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
+            "thead", "tr", "tt", "ul");
 
     /** The scope to check. */
     private Scope mScope = Scope.PRIVATE;
