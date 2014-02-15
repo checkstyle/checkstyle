@@ -1,4 +1,5 @@
-"!https://secure.travis-ci.org/checkstyle/checkstyle.png!":http://travis-ci.org/checkstyle/checkstyle "!https://d2weczhvl823v0.cloudfront.net/romani/checkstyle/trend.png!":https://bitdeli.com/free
+[![][travis img]][travis]
+[![][trend img]][trend]
 
 CHECKSTYLE 
 ==========
@@ -27,15 +28,15 @@ Apache Commons project (http://commons.apache.org/). The license terms
 of these packages are in the file named "LICENSE.apache20" in this
 directory.
 
-The software uses the Google Collections Library
-(http://code.google.com/p/google-collections/). The license terms of
+The software uses the Google Guava Libraries
+(https://code.google.com/p/guava-libraries/). The license terms of
 these packages are in the file named "LICENSE.apache20" in this
 directory.
 
 
 Continuous integration
 ======================
-Travis: "!https://secure.travis-ci.org/checkstyle/checkstyle.png!":http://travis-ci.org/checkstyle/checkstyle
+Travis: [![][travis img]][travis]
 
 
 Feedback
@@ -46,6 +47,11 @@ Please send any feedback to https://groups.google.com/forum/?hl=en#!forum/checks
 Bugs should be reported to the checkstyle bugtracker at
 https://github.com/checkstyle/checkstyle/issues
 
+[travis]:http://travis-ci.org/checkstyle/checkstyle
+[travis img]:https://secure.travis-ci.org/checkstyle/checkstyle.png
+
+[trend img]:https://d2weczhvl823v0.cloudfront.net/romani/checkstyle/trend.png
+[trend]:https://bitdeli.com/free
 
 Thanks for trying out checkstyle!
 
