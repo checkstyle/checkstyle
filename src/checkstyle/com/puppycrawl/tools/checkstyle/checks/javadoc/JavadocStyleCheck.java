@@ -61,9 +61,9 @@ public class JavadocStyleCheck
     private static final Set<String> ALLOWED_TAGS = ImmutableSortedSet.of(
             "a", "abbr", "acronym", "address", "area", "b", "bdo", "big",
             "blockquote", "br", "caption", "cite", "code", "colgroup", "dd",
-            "del", "div", "dfn", "dl", "dt", "em", "fieldset", "h1", "h2",
-            "h3", "h4", "h5", "h6", "hr", "i", "img", "ins", "kbd", "li",
-            "ol", "p", "pre", "q", "samp", "small", "span", "strong",
+            "del", "div", "dfn", "dl", "dt", "em", "fieldset", "font", "h1",
+            "h2", "h3", "h4", "h5", "h6", "hr", "i", "img", "ins", "kbd",
+            "li", "ol", "p", "pre", "q", "samp", "small", "span", "strong",
             "style", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
             "thead", "tr", "tt", "ul");
 
