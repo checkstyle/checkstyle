@@ -31,17 +31,17 @@
               lines="141,148,181,213"/>
 
     <!-- Tone down the checking for test code -->
-    <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]tests[\\/]"/>
-    <suppress checks="ImportControl" files=".*[\\/]src[\\/]tests[\\/]"/>
-    <suppress checks="Javadoc" files=".*[\\/]src[\\/]tests[\\/]"/>
-    <suppress checks="MagicNumber" files=".*[\\/]src[\\/]tests[\\/]"/>
+    <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
+    <suppress checks="ImportControl" files=".*[\\/]src[\\/]test[\\/]"/>
+    <suppress checks="Javadoc" files=".*[\\/]src[\\/]test[\\/]"/>
+    <suppress checks="MagicNumber" files=".*[\\/]src[\\/]test[\\/]"/>
     <suppress checks="MethodCount" files="[\\/]IndentationCheckTest.java$"/>
     <suppress checks="EqualsAvoidNull" files="[\\/]Int.*FilterTest.java$"/>
 
     <!-- suppressions to remove over time -->
-    <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]tests[\\/]"/>
-    <suppress checks="LineLength" files=".*[\\/]src[\\/]tests[\\/]"/>
-    <suppress checks="Name" files=".*[\\/]src[\\/]tests[\\/]"/>    
+    <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]test[\\/]"/>
+    <suppress checks="LineLength" files=".*[\\/]src[\\/]test[\\/]"/>
+    <suppress checks="Name" files=".*[\\/]src[\\/]test[\\/]"/>    
 
     <!--
       Turn off all checks for Generated and Test code. Fixes issues with using
