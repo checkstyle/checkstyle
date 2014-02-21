@@ -111,7 +111,7 @@
         </tr>
         <tr>
           <td><code>TypeName</code></td>
-          <td>classes and interfaces</td>
+          <td>classes, interfaces and enums</td>
           <td><code>^[A-Z][a-zA-Z0-9]*$</code></td>
         </tr>
       </table>
@@ -142,8 +142,9 @@
         <p>
           Module <code>TypeName</code> also has property
           <code>tokens</code> which can be used to control whether the
-          check applies to classes or interfaces through tokens
-          <code>CLASS_DEF</code> and <code>INTERFACE_DEF</code>.  For
+          check applies to classes, interfaces and enums through tokens
+          <code>CLASS_DEF</code>, <code>INTERFACE_DEF</code> and
+          <code>ENUM_DEF</code>.  For
           example, the following configuration element ensures that
           interface names begin with <code>"I_"</code>, followed by
           letters and digits:

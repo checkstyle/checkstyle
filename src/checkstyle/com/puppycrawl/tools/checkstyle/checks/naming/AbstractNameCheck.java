@@ -33,6 +33,11 @@ public abstract class AbstractNameCheck
     extends AbstractFormatCheck
 {
     /**
+     * Message key for invalid pattern error.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
+    /**
      * Creates a new <code>AbstractNameCheck</code> instance.
      * @param aFormat format to check with
      */
@@ -61,7 +66,7 @@ public abstract class AbstractNameCheck
             if (!getRegexp().matcher(nameAST.getText()).find()) {
                 log(nameAST.getLineNo(),
                     nameAST.getColumnNo(),
-                    "name.invalidPattern",
+                    MSG_INVALID_PATTERN,
                     nameAST.getText(),
                     getFormat());
             }
