@@ -127,7 +127,7 @@ public class ParenPadCheckTest
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
         };
-        verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("whitespace/ParenPadWithSpace.java"),
                expected);
     }
 }

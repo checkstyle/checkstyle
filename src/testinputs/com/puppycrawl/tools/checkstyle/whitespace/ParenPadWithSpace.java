@@ -1,14 +1,13 @@
 package com.puppycrawl.tools.checkstyle.whitespace;
 
-@SuppressWarnings({"this", "that"})
-public class InputWhitespaceAround
+public class ParenPadWithSpace
 {
-    protected InputWhitespaceAround ( int i )
+    protected ParenPadWithSpace ( int i )
     {
         this ();
         toString ();
     }
-    protected InputWhitespaceAround ()
+    protected ParenPadWithSpace ()
     {
         super ();
     }
