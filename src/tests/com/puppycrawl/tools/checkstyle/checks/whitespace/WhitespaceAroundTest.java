@@ -148,7 +148,7 @@ public class WhitespaceAroundTest
     {
         checkConfig.addAttribute("ignoreEnhancedForColon", "false");
         final String[] expected = {
-            "18:20: ':' is not preceded with whitespace.",
+            "19:20: ':' is not preceded with whitespace.",
         };
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);
