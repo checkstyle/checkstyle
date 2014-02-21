@@ -49,11 +49,16 @@ public class TypeNameCheck
 {
 
     /**
+     * default pattern for type name.
+     */
+    public static final String DEFAULT_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
+
+    /**
      * Creates a new <code>TypeNameCheck</code> instance.
      */
     public TypeNameCheck()
     {
-        super("^[A-Z][a-zA-Z0-9]*$");
+        super(DEFAULT_PATTERN);
     }
 
     /** {@inheritDoc} */
@@ -61,6 +66,8 @@ public class TypeNameCheck
     public int[] getDefaultTokens()
     {
         return new int[] {TokenTypes.CLASS_DEF,
-                          TokenTypes.INTERFACE_DEF, };
+                          TokenTypes.INTERFACE_DEF,
+                          TokenTypes.ENUM_DEF,
+        };
     }
 }

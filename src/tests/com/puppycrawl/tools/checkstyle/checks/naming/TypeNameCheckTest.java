@@ -18,23 +18,42 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.MessageFormat;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import org.junit.Test;
 
 public class TypeNameCheckTest
     extends BaseCheckTestSupport
 {
+
+    /**
+     * Localized error message from @link {@link TypeNameCheck}.
+     */
+    private final String msg = getCheckMessage(AbstractNameCheck.MSG_INVALID_PATTERN);
+
+    private final String inputFilename;
+
+    public TypeNameCheckTest() throws IOException
+    {
+        inputFilename = getPath("naming" + File.separator
+                + "InputTypeName.java");
+    }
+
     @Test
     public void testSpecified()
         throws Exception
     {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TypeNameCheck.class);
+                createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("format", "^inputHe");
         final String[] expected = {
         };
-        verify(checkConfig, getPath("inputHeader.java"), expected);
+        verify(checkConfig, inputFilename, expected);
     }
 
     @Test
@@ -42,10 +61,65 @@ public class TypeNameCheckTest
         throws Exception
     {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(TypeNameCheck.class);
+                createCheckConfig(TypeNameCheck.class);
         final String[] expected = {
-            "1:48: Name 'inputHeader' must match pattern '^[A-Z][a-zA-Z0-9]*$'.",
+                buildMesssage(3, 7, "inputHeaderClass",
+                        TypeNameCheck.DEFAULT_PATTERN),
+                buildMesssage(5, 22, "inputHeaderInterface",
+                        TypeNameCheck.DEFAULT_PATTERN),
+                buildMesssage(7, 17, "inputHeaderEnum",
+                        TypeNameCheck.DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("inputHeader.java"), expected);
+        verify(checkConfig, inputFilename, expected);
     }
+
+    @Test
+    public void testClassSpecific()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TypeNameCheck.class);
+        checkConfig.addAttribute("tokens", "CLASS_DEF");
+        final String[] expected = {
+                buildMesssage(3, 7, "inputHeaderClass",
+                        TypeNameCheck.DEFAULT_PATTERN),
+        };
+        verify(checkConfig, inputFilename, expected);
+    }
+
+    @Test
+    public void testInterfaceSpecific()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TypeNameCheck.class);
+        checkConfig.addAttribute("tokens", "INTERFACE_DEF");
+        final String[] expected = {
+                buildMesssage(5, 22, "inputHeaderInterface",
+                        TypeNameCheck.DEFAULT_PATTERN),
+        };
+        verify(checkConfig, inputFilename, expected);
+    }
+
+    @Test
+    public void testEnumSpecific()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TypeNameCheck.class);
+        checkConfig.addAttribute("tokens", "ENUM_DEF");
+        final String[] expected = {
+                buildMesssage(7, 17, "inputHeaderEnum",
+                        TypeNameCheck.DEFAULT_PATTERN),
+        };
+        verify(checkConfig, inputFilename, expected);
+    }
+
+    private String buildMesssage(int lineNumber, int colNumber, String name,
+            String pattern)
+    {
+        return lineNumber + ":" + colNumber + ": "
+                + MessageFormat.format(msg, name, pattern);
+    }
+
 }
