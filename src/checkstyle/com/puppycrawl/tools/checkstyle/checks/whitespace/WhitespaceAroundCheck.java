@@ -73,8 +73,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  {@link TokenTypes#SR SR},
  *  {@link TokenTypes#SR_ASSIGN SR_ASSIGN},
  *  {@link TokenTypes#STAR STAR},
- *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN}.
- *  {@link TokenTypes#LITERAL_ASSERT LITERAL_ASSERT}.
+ *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN},
+ *  {@link TokenTypes#LITERAL_ASSERT LITERAL_ASSERT},
  *  {@link TokenTypes#TYPE_EXTENSION_AND TYPE_EXTENSION_AND}.
  * </p>
  * <p>
