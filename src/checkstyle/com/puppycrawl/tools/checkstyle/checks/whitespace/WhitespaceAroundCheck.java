@@ -227,7 +227,8 @@ public class WhitespaceAroundCheck extends Check
 
         // Check for CURLY in array initializer
         if (((type == TokenTypes.RCURLY) || (type == TokenTypes.LCURLY))
-            && (parentType == TokenTypes.ARRAY_INIT))
+            && ((parentType == TokenTypes.ARRAY_INIT)
+                || (parentType == TokenTypes.ANNOTATION_ARRAY_INIT)))
         {
             return;
         }
