@@ -290,7 +290,8 @@ public class WhitespaceAroundCheck extends Check
             && !((type == TokenTypes.RCURLY)
                 && ((nextChar == ')')
                     || (nextChar == ';')
-                    || (nextChar == ','))))
+                    || (nextChar == ',')
+                    || (nextChar == '.'))))
         {
             log(aAST.getLineNo(), aAST.getColumnNo() + aAST.getText().length(),
                     "ws.notFollowed", aAST.getText());

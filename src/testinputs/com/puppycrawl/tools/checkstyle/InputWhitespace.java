@@ -242,3 +242,34 @@ class SpecialCasesInForLoop
         return null;
     }
 }
+
+/**
+ * Fix For Anonymous Inner Class #105
+ * @author carthagian
+ * @version 1.0
+ */
+ 
+class TestiMeTestiYou 
+{ 
+     class Hello { 
+	Hello (Object arg){}
+	Hello sayHi(Object str){ 
+	    System.out.println("GoodBye World"); 
+	    return new Hello(0); 
+	} 
+     }
+     
+     class Dali { 
+	// Bla Bla 
+      }
+   class FixForAnonymousInnerClass { 
+	Hello str = new Hello(new Dali() { 
+	  public void doSomething() { 
+	    // Bla Bla 
+	  } 
+	}).sayHi(0); }
+      }
+    }
+  }
+ }
+}

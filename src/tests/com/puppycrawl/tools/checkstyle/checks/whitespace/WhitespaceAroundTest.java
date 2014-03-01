@@ -153,4 +153,14 @@ public class WhitespaceAroundTest
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);
     }
+    @Test 
+    public void testFixForAnonymousInnerClass() throws Exception 
+    { 
+	final String[] expected = { 
+	    "270:11: '.' is not followed by whitespace.",
+	    "270:12: '.' is not preceded with whitespace.",
+	}; 
+	verify(checkConfig, getPath("InputWhitespace.java"), 
+	      expected); 
+    }
 }
