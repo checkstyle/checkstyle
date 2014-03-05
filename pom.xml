@@ -148,8 +148,6 @@
 
   <properties>
     <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
-    <testinputs.dir>${basedir}/src/testinputs/com/puppycrawl/tools/checkstyle</testinputs.dir>
-    <testsrcs.dir>${basedir}/src/tests/com/puppycrawl/tools/checkstyle</testsrcs.dir>
     <projectVersion>${project.version}</projectVersion>
     <tools.jar.version>1.5.0</tools.jar.version>
     <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
@@ -195,26 +193,6 @@
   </dependencies>
 
   <build>
-    <sourceDirectory>src/checkstyle</sourceDirectory>
-    <resources>
-      <resource>
-        <directory>${basedir}/src/checkstyle</directory>
-        <includes>
-          <include>**/*.dtd</include>
-          <include>**/*.properties</include>
-          <include>**/*.xml</include>
-        </includes>
-      </resource>
-    </resources>
-
-    <testResources>
-      <testResource>
-        <directory>src/testinputs/resources</directory>
-      </testResource>
-    </testResources>
-
-    <testSourceDirectory>src/tests</testSourceDirectory>
-
     <pluginManagement>
       <plugins>
         <!-- This plugin's configuration is used to store Eclipse 
@@ -308,7 +286,7 @@
         <artifactId>antlr-maven-plugin</artifactId>
         <version>2.2</version>
         <configuration>
-          <sourceDirectory>${basedir}/src/checkstyle/com/puppycrawl/tools/checkstyle/grammars</sourceDirectory>
+          <sourceDirectory>${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammars</sourceDirectory>
           <grammars>java.g</grammars>
         </configuration>
         <executions>
@@ -319,6 +297,26 @@
           </execution>
         </executions>
       </plugin>
+      
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.build.directory}/generated-sources/antlr/</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+       </plugin>
+      
 
       <!-- Generate checkstylecompilation.properties -->
       <plugin>
@@ -372,16 +370,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.9</version>
         <configuration>
-          <systemProperties>
-            <property>
-              <name>testinputs.dir</name>
-              <value>${testinputs.dir}</value>
-            </property>
-            <property>
-              <name>testsrcs.dir</name>
-              <value>${testsrcs.dir}</value>
-            </property>
-          </systemProperties>
           <argLine>-Duser.language=en -Duser.country=US</argLine>
         </configuration>
       </plugin>
