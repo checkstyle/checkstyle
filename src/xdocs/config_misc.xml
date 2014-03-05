@@ -801,13 +801,13 @@ messages.properties: Key 'ok' missing.
             <td>caseIndent</td>
             <td>how much to indent a case label</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>4</td>
+            <td>(basic offset)</td>
           </tr>
           <tr>
             <td>throwsIndent</td>
             <td>how far throws should be indented when on next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td>4</td>
+            <td>(basic offset)</td>
           </tr>
         </table>
       </subsection>

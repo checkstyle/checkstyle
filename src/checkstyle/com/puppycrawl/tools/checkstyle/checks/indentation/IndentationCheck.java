@@ -114,13 +114,13 @@ public class IndentationCheck extends Check
     private int mBasicOffset = DEFAULT_INDENTATION;
 
     /** how much to indent a case label */
-    private int mCaseIndentationAmount = DEFAULT_INDENTATION;
+    private Integer mCaseIndentationAmount;
 
     /** how far brace should be indented when on next line */
     private int mBraceAdjustment;
 
     /** how far throws should be indented when on next line */
-    private int mThrowsIndentationAmount = DEFAULT_INDENTATION;
+    private Integer mThrowsIndentationAmount;
 
     /** handlers currently in use */
     private final FastStack<ExpressionHandler> mHandlers =
@@ -181,7 +181,7 @@ public class IndentationCheck extends Check
      */
     public void setCaseIndent(int aAmount)
     {
-        mCaseIndentationAmount = aAmount;
+        mCaseIndentationAmount = Integer.valueOf(aAmount);
     }
 
     /**
@@ -191,7 +191,8 @@ public class IndentationCheck extends Check
      */
     public int getCaseIndent()
     {
-        return mCaseIndentationAmount;
+        return (mCaseIndentationAmount == null)
+            ? getBasicOffset() : mCaseIndentationAmount.intValue();
     }
 
     /**
@@ -201,7 +202,7 @@ public class IndentationCheck extends Check
      */
     public void setThrowsIndent(int aThrowsIndent)
     {
-        mThrowsIndentationAmount = aThrowsIndent;
+        mThrowsIndentationAmount = Integer.valueOf(aThrowsIndent);
     }
 
     /**
@@ -211,7 +212,8 @@ public class IndentationCheck extends Check
      */
     public int getThrowsIndent()
     {
-        return this.mThrowsIndentationAmount;
+        return (mThrowsIndentationAmount == null)
+            ? getBasicOffset() : mThrowsIndentationAmount.intValue();
     }
 
     /**
