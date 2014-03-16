@@ -65,7 +65,7 @@ public class JavadocStyleCheck
             "h2", "h3", "h4", "h5", "h6", "hr", "i", "img", "ins", "kbd",
             "li", "ol", "p", "pre", "q", "samp", "small", "span", "strong",
             "style", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
-            "thead", "tr", "tt", "ul");
+            "thead", "tr", "tt", "u", "ul");
 
     /** The scope to check. */
     private Scope mScope = Scope.PRIVATE;
