@@ -170,7 +170,7 @@ public class JavadocStyleCheck
      * @param aAST the AST of the element being documented
      * @param aComment the source lines that make up the Javadoc comment.
      *
-     * @see #checkFirstSentence(TextBlock)
+     * @see #checkFirstSentence(DetailAST, TextBlock)
      * @see #checkHtml(DetailAST, TextBlock)
      */
     private void checkComment(final DetailAST aAST, final TextBlock aComment)
