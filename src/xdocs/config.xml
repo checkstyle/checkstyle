@@ -721,8 +721,11 @@
         </p>
 
         <h5>Examples</h5>
+
+        <p> You can download template of empty suppression filter <a href="files/suppressions_none.xml">here</a>.</p>
+
         <p>
-          For example, the following suppressions XML document directs
+          The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject <code>JavadocStyleCheck</code> errors for
           lines 82 and 108 to 122 of
