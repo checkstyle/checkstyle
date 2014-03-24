@@ -129,6 +129,19 @@ public class JavadocStyleCheckTest
     }
 
     @Test
+    public void testHtmlComment() throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
+        checkConfig.addAttribute("checkFirstSentence", "false");
+        checkConfig.addAttribute("checkHtml", "true");
+        final String[] expected =
+        {
+        };
+
+        verify(checkConfig, getPath("InputJavadocStyleCheckHtmlComment.java"), expected);
+    }
+
+    @Test
     public void testScopePublic()
         throws Exception
     {
