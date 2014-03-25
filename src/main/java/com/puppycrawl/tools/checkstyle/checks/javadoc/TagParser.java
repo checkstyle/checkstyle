@@ -209,7 +209,7 @@ class TagParser
         to = findChar(aText, '>', to);
         while ((to.getLineNo() < aText.length)
                && !aText[to.getLineNo()]
-               .substring(0, to.getColumnNo()+1).endsWith("-->"))
+               .substring(0, to.getColumnNo() + 1).endsWith("-->"))
         {
             to = findChar(aText, '>', getNextCharPos(aText, to));
         }
