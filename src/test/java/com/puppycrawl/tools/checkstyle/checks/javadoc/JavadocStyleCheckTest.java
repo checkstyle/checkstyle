@@ -127,7 +127,7 @@ public class JavadocStyleCheckTest
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
     }
-    
+
     @Test
     public void testHtmlComment() throws Exception
     {
