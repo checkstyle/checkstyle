@@ -45,6 +45,15 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
             "33:8: Unused import - java.util.Date.",
             "34:8: Unused import - java.util.Calendar.",
             "35:8: Unused import - java.util.BitSet.",
+            "37:8: Unused import - com.test.TestClass1.",
+            "38:8: Unused import - com.test.TestClass2.",
+            "39:8: Unused import - com.test.TestClass3.",
+            "40:8: Unused import - com.test.TestClass4.",
+            "41:8: Unused import - com.test.TestClass5.",
+            "42:8: Unused import - com.test.TestClass6.",
+            "43:8: Unused import - com.test.TestClass7.",
+            "44:8: Unused import - com.test.TestClass8.",
+            "45:8: Unused import - com.test.TestClass9.",
         };
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputImport.java"), expected);
@@ -66,6 +75,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport
             "27:15: Unused import - java.io.File.createTempFile.",
             //"29:8: Unused import - java.awt.Component.", // Should be detected
             "32:8: Unused import - java.awt.Label.",
+            "45:8: Unused import - com.test.TestClass9.",
         };
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputImport.java"), expected);
