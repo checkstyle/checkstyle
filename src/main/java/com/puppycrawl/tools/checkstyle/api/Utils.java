@@ -202,6 +202,7 @@ public final class Utils
             lnr = new LineNumberReader(new InputStreamReader(fr, aCharsetName));
         }
         catch (final UnsupportedEncodingException ex) {
+            fr.close();
             final String message = "unsupported charset: " + ex.getMessage();
             throw new UnsupportedEncodingException(message);
         }

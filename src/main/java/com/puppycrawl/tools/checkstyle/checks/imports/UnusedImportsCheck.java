@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
-
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -30,6 +28,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtils;
+
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,15 +52,25 @@ import java.util.regex.Pattern;
  */
 public class UnusedImportsCheck extends Check
 {
-    /** flag to indicate when time to start collecting references */
+    /** regex to match class names. */
+    private static final Pattern CLASS_NAME = Pattern.compile(
+           "((:?[\\p{L}_$][\\p{L}\\p{N}_$]*\\.)*[\\p{L}_$][\\p{L}\\p{N}_$]*)");
+    /** regex to match the first class name. */
+    private static final Pattern FIRST_CLASS_NAME = Pattern.compile(
+           "^" + CLASS_NAME);
+    /** regex to match argument names. */
+    private static final Pattern ARGUMENT_NAME = Pattern.compile(
+           "[(,]\\s*" + CLASS_NAME.pattern());
+
+    /** flag to indicate when time to start collecting references. */
     private boolean mCollect;
     /** flag whether to process Javadoc comments. */
     private boolean mProcessJavadoc;
 
-    /** set of the imports */
+    /** set of the imports. */
     private final Set<FullIdent> mImports = Sets.newHashSet();
 
-    /** set of references - possibly to imports or other things */
+    /** set of references - possibly to imports or other things. */
     private final Set<String> mReferenced = Sets.newHashSet();
 
     /** Default constructor. */
@@ -195,21 +206,83 @@ public class UnusedImportsCheck extends Check
         final int lineNo = aAST.getLineNo();
         final TextBlock cmt = contents.getJavadocBefore(lineNo);
         if (cmt != null) {
-            final JavadocTags tags = JavadocUtils.getJavadocTags(cmt,
-                    JavadocUtils.JavadocTagType.ALL);
-            for (final JavadocTag tag : tags.getValidTags()) {
-                if (tag.canReferenceImports()) {
-                    String identifier = tag.getArg1();
-                    // Trim off method or link text
-                    final Pattern pattern =
-                        Utils.getPattern("(.+?)(?:\\s+|#|\\$).*");
-                    final Matcher matcher = pattern.matcher(identifier);
-                    if (matcher.find()) {
-                        identifier = matcher.group(1);
-                    }
-                    mReferenced.add(identifier);
-                }
+            mReferenced.addAll(processJavadoc(cmt));
+        }
+    }
+
+    /**
+     * Process a javadoc {@link TextBlock} and return the set of classes
+     * referenced within.
+     * @param aCmt The javadoc block to parse
+     * @return a set of classes referenced in the javadoc block
+     */
+    private Set<String> processJavadoc(TextBlock aCmt)
+    {
+        final Set<String> references = new HashSet<String>();
+        // process all the @link type tags
+        // INLINEs inside BLOCKs get hidden when using ALL
+        for (final JavadocTag tag
+                : getValidTags(aCmt, JavadocUtils.JavadocTagType.INLINE))
+        {
+            if (tag.canReferenceImports()) {
+                references.addAll(processJavadocTag(tag));
             }
         }
+        // process all the @throws type tags
+        for (final JavadocTag tag
+                : getValidTags(aCmt, JavadocUtils.JavadocTagType.BLOCK))
+        {
+            if (tag.canReferenceImports()) {
+                references.addAll(
+                        matchPattern(tag.getArg1(), FIRST_CLASS_NAME));
+            }
+        }
+        return references;
+    }
+
+    /**
+     * Returns the list of valid tags found in a javadoc {@link TextBlock}
+     * @param aCmt The javadoc block to parse
+     * @param aTagType The type of tags we're interested in
+     * @return the list of tags
+     */
+    private List<JavadocTag> getValidTags(TextBlock aCmt,
+            JavadocUtils.JavadocTagType aTagType)
+    {
+        return JavadocUtils.getJavadocTags(aCmt, aTagType).getValidTags();
+    }
+
+    /**
+     * Returns a list of references found in a javadoc {@link JavadocTag}
+     * @param aTag The javadoc tag to parse
+     * @return A list of references found in this tag
+     */
+    private Set<String> processJavadocTag(JavadocTag aTag)
+    {
+        final Set<String> references = new HashSet<String>();
+        final String identifier = aTag.getArg1().trim();
+        for (Pattern pattern : new Pattern[]
+        {FIRST_CLASS_NAME, ARGUMENT_NAME})
+        {
+            references.addAll(matchPattern(identifier, pattern));
+        }
+        return references;
+    }
+
+    /**
+     * Extracts a list of texts matching a {@link Pattern} from a
+     * {@link String}.
+     * @param aIdentifier The String to match the pattern against
+     * @param aPattern The Pattern used to extract the texts
+     * @return A list of texts which matched the pattern
+     */
+    private Set<String> matchPattern(String aIdentifier, Pattern aPattern)
+    {
+        final Set<String> references = new HashSet<String>();
+        final Matcher matcher = aPattern.matcher(aIdentifier);
+        while (matcher.find()) {
+            references.add(matcher.group(1));
+        }
+        return references;
     }
 }

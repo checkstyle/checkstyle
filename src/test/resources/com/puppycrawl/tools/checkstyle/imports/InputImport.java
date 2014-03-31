@@ -34,6 +34,16 @@ import java.util.Date;
 import java.util.Calendar;
 import java.util.BitSet;
 
+import com.test.TestClass1;
+import com.test.TestClass2;
+import com.test.TestClass3;
+import com.test.TestClass4;
+import com.test.TestClass5;
+import com.test.TestClass6;
+import com.test.TestClass7;
+import com.test.TestClass8;
+import com.test.TestClass9;
+
 /**
  * Test case for imports
  * Here's an import used only by javadoc: {@link Date}.
@@ -87,4 +97,14 @@ class InputImport
      * @exception HeadlessException if no graphis environment can be found.
      */
     public void render() {}
+
+    /**
+     * First is a class with a method with arguments {@link TestClass1#method1(TestClass2)}.
+     * Next is a class with typed method {@link TestClass3#method2(TestClass4, TestClass5)}.
+     *
+     * @param param1  with a link {@link TestClass6}
+     * @throws TestClass7 when broken
+     * @deprecated in 1 for removal in 2. Use {@link TestClass8}
+     */
+    public void aMethodWithManyLinks() {}
 }
