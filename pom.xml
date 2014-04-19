@@ -465,7 +465,7 @@
         <artifactId>dsm-maven-plugin</artifactId>
         <version>2.1</version>
         <configuration>
-          <obfuscatePackageNames>false</obfuscatePackageNames>
+          <obfuscatePackageNames>true</obfuscatePackageNames>
         </configuration>
       </plugin>
         <!--
