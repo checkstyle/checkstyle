@@ -459,6 +459,15 @@
           </reportSet>
         </reportSets>
       </plugin>
+
+      <plugin>
+        <groupId>com.github.sevntu-checkstyle</groupId>
+        <artifactId>dsm-maven-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <obfuscatePackageNames>false</obfuscatePackageNames>
+        </configuration>
+      </plugin>
         <!--
         THE FOLLOWING DOES NOT WORK!
       <plugin>
