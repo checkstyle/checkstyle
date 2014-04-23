@@ -18,37 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.util.SortedSet;
-
 /**
- * Used by FileSetChecks to distribute AuditEvents to AuditListeners.
- * @author lkuehne
+ * An interface for filtering LocalizedMessages.
+ * @author Vladimir Sitnikov
  */
-public interface MessageDispatcher
+public interface MessageFilter
 {
     /**
-     * Notify all listeners about the beginning of a file audit.
-     * @param aFileName the file to be audited
+     * Determines whether or not a LocalizedMessage is accepted.
+     * @param aMsg the LocalizedMessage to filter.
+     * @return true if the aMsg is accepted.
      */
-    void fireFileStarted(String aFileName);
-
-    /**
-     * Notify all listeners about the end of a file audit.
-     * @param aFileName the audited file
-     */
-    void fireFileFinished(String aFileName);
-
-    /**
-     * Notify all listeners about the errors in a file.
-     * @param aFileName the audited file
-     * @param aErrors the audit errors from the file
-     */
-    void fireErrors(String aFileName, SortedSet<LocalizedMessage> aErrors);
-
-    /**
-     * Retrieve filter that decides if given message is important or not.
-     * @param aFileName the audited file
-     * @return message filter according for the given file
-     */
-    MessageFilter getMessageFilter(String aFileName);
+    boolean accept(LocalizedMessage aMsg);
 }

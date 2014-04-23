@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.MessageFilter;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import com.puppycrawl.tools.checkstyle.api.Utils;
@@ -514,6 +515,25 @@ public class Checker extends AutomaticBean implements MessageDispatcher
                 }
             }
         }
+    }
+
+    /**
+     * Retrieve filter that decides if given message is important or not.
+     *
+     * @param aFileName the audited file
+     * @return message filter according for the given file
+     */
+    public MessageFilter getMessageFilter(String aFileName)
+    {
+        final String stripped = getStrippedFileName(aFileName);
+        return new MessageFilter() {
+            public boolean accept(LocalizedMessage aMsg)
+            {
+                final AuditEvent evt =
+                    new AuditEvent(Checker.this, stripped, aMsg);
+                return mFilters.accept(evt);
+            }
+        };
     }
 
     /**
