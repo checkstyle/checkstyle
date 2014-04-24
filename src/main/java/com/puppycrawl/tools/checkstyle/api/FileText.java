@@ -56,7 +56,7 @@ public final class FileText extends AbstractList<String>
     /**
      * The number of characters to read in one go.
      */
-    private static final int READ_BUFFER_SIZE = 1024;
+    private static final int READ_BUFFER_SIZE = 8 * 1024;
 
     /**
      * Regular expression pattern matching all line terminators.
@@ -129,8 +129,12 @@ public final class FileText extends AbstractList<String>
             throw ex2;
         }
 
-        final char[] chars = new char[READ_BUFFER_SIZE];
-        final StringBuilder buf = new StringBuilder();
+        final int fileSizeEstimate =
+            (int) Math.min(aFile.length(), Integer.MAX_VALUE);
+        final char[] chars = new char[
+            Math.max(1, Math.min(fileSizeEstimate, READ_BUFFER_SIZE))];
+        final StringBuilder buf = new StringBuilder(
+            fileSizeEstimate);
         final FileInputStream stream = new FileInputStream(aFile);
         final Reader reader = new InputStreamReader(stream, decoder);
         try {
@@ -279,13 +283,12 @@ public final class FileText extends AbstractList<String>
 
     /**
      * Returns an array of all lines.
-     * {@code text.toLinesArray()} is equivalent to
-     * {@code text.toArray(new String[text.size()])}.
+     * {@code text.toLinesArray()} returns shared array.
      * @return an array of all lines of the text
      */
     public String[] toLinesArray()
     {
-        return mLines.clone();
+        return mLines;
     }
 
     /**

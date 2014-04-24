@@ -118,9 +118,9 @@ public final class Utils
                                          int aTabWidth)
     {
         int len = 0;
-        final char[] chars = aString.toCharArray();
         for (int idx = 0; idx < aToIdx; idx++) {
-            if (chars[idx] == '\t') {
+            // TODO: does it make sense to rewrite to String#indexOf here?
+            if (aString.charAt(idx) == '\t') {
                 len = (len / aTabWidth + 1) * aTabWidth;
             }
             else {

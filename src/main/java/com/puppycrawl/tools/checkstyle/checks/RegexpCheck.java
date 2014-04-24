@@ -18,10 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
-import java.util.List;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.LineColumn;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -85,9 +86,6 @@ public class RegexpCheck extends AbstractFormatCheck
 
     /** Tracks number of errors */
     private int mErrorCount;
-
-    /** Relates StringBuffer positions to line # and column */
-    private final List<Integer[]> mCharacters = Lists.newArrayList();
 
     /** The mMatcher */
     private Matcher mMatcher;
@@ -168,18 +166,8 @@ public class RegexpCheck extends AbstractFormatCheck
     @Override
     public void beginTree(DetailAST aRootAST)
     {
-        mCharacters.clear();
         final Pattern pattern = getRegexp();
-        final String[] lines = getLines();
-        final StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < lines.length; i++) {
-            sb.append(lines[i]);
-            sb.append('\n');
-            for (int j = 0; j < (lines[i].length() + 1); j++) {
-                mCharacters.add(new Integer[] {i + 1, j});
-            }
-        }
-        mMatcher = pattern.matcher(sb.toString());
+        mMatcher = pattern.matcher(getFileContents().getText().getFullText());
         mMatchCount = 0;
         mErrorCount = 0;
         findMatch();
@@ -200,14 +188,13 @@ public class RegexpCheck extends AbstractFormatCheck
             logMessage(0);
         }
         else if (foundMatch) {
-            startLine = (mCharacters.get(mMatcher.start()))[0].
-                    intValue();
-            startColumn = (mCharacters.get(mMatcher.start()))[1].
-                    intValue();
-            endLine = (mCharacters.get(mMatcher.end() - 1))[0].
-                    intValue();
-            endColumn = (mCharacters.get(mMatcher.end() - 1))[1].
-                    intValue();
+            final FileText text = getFileContents().getText();
+            final LineColumn start = text.lineColumn(mMatcher.start());
+            final LineColumn end = text.lineColumn(mMatcher.end() - 1);
+            startLine = start.getLine();
+            startColumn = start.getColumn();
+            endLine = end.getLine();
+            endColumn = end.getColumn();
             if (mIgnoreComments) {
                 final FileContents theFileContents = getFileContents();
                 ignore = theFileContents.hasIntersectionWithComment(startLine,
