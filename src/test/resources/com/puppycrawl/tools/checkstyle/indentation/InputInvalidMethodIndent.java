@@ -175,4 +175,12 @@ int[]
     {
         return null;
     }
+
+    private int[] getArray() {
+        return new int[] {1};
+    }
+
+    private void indexTest() {
+            getArray()[0] = 2;
+    }
 }
