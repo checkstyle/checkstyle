@@ -118,6 +118,7 @@ public class HandlerFactory
         register(TokenTypes.BOR_ASSIGN, AssignHandler.class);
         register(TokenTypes.VARIABLE_DEF, MemberDefHandler.class);
         register(TokenTypes.LITERAL_NEW, NewHandler.class);
+        register(TokenTypes.INDEX_OP, IndexHandler.class);
     }
 
     /**
