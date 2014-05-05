@@ -122,6 +122,9 @@ public class IndentationCheck extends Check
     /** how far throws should be indented when on next line */
     private int mThrowsIndentationAmount = DEFAULT_INDENTATION;
 
+    /** how much to indent an array initialisation when on next line */
+    private int mArrayInitIndentationAmount = DEFAULT_INDENTATION;
+
     /** handlers currently in use */
     private final FastStack<ExpressionHandler> mHandlers =
         FastStack.newInstance();
@@ -212,6 +215,26 @@ public class IndentationCheck extends Check
     public int getThrowsIndent()
     {
         return this.mThrowsIndentationAmount;
+    }
+
+    /**
+     * Set the array initialisation indentation level.
+     *
+     * @param aArrayInitIndent the array initialisation indentation level
+     */
+    public void setArrayInitIndent(int aArrayInitIndent)
+    {
+        mArrayInitIndentationAmount = aArrayInitIndent;
+    }
+
+    /**
+     * Get the array initialisation indentation level.
+     *
+     * @return the array initialisation indentation level
+     */
+    public int getArrayInitIndent()
+    {
+        return this.mArrayInitIndentationAmount;
     }
 
     /**

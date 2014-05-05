@@ -105,7 +105,8 @@ public class ArrayInitHandler extends BlockParentHandler
         // new int[] {1, 2,
         //     3};
 
-        final IndentLevel expectedIndent = super.getChildrenExpectedLevel();
+        final IndentLevel expectedIndent =
+            new IndentLevel(getLevel(), getIndentCheck().getArrayInitIndent());
 
         final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
         if (hasCurlys() && (firstLine == getLCurly().getLineNo())) {

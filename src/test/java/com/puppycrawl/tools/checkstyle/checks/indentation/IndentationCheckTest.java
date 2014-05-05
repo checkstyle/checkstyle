@@ -189,10 +189,24 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     }
 
     @Test
+    public void testValidArrayInitDefaultIndentWithChecker()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        final Checker c = createChecker(checkConfig);
+        final String fname = getPath("indentation/InputValidArrayInitDefaultIndent.java");
+        final String[] expected = {
+        };
+        verify(c, fname, expected);
+    }
+
+    @Test
     public void testValidArrayInitWithChecker()
         throws Exception
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("arrayInitIndent", Integer.valueOf(8).toString());
+
         final Checker c = createChecker(checkConfig);
         final String fname = getPath("indentation/InputValidArrayInitIndent.java");
         final String[] expected = {
