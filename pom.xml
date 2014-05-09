@@ -661,6 +661,7 @@
 	        <plugin>
 	          <groupId>org.codehaus.mojo</groupId>
 	          <artifactId>taglist-maven-plugin</artifactId>
+	          <version>2.4</version>
 	          <configuration>
 	            <tags>
 	              <tag>TODO</tag>
