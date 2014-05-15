@@ -411,11 +411,13 @@ modifiers
 	        //hush warnings since the semantic check for "@interface" solves the non-determinism
 	        options{generateAmbigWarnings=false;}:
 
-	        modifier
+		modifier
 	        |
 	        //Semantic check that we aren't matching @interface as this is not an annotation
 	        //A nicer way to do this would be, um, nice
 	        {LA(1)==AT && !LT(2).getText().equals("interface")}? annotation
+            
+            
 	    )*
 
 		{#modifiers = #([MODIFIERS, "MODIFIERS"], #modifiers);}
@@ -435,6 +437,7 @@ modifier
 //	|	"const"			// reserved word, but not valid
 	|	"volatile"
 	|	"strictfp"
+	|	"default"
 	;
 
 annotation!
@@ -744,61 +747,61 @@ implementsClause
    //   need to be some semantic checks to make sure we're doing the right thing...
    field!
    	:	// method, constructor, or variable declaration
-   		mods:modifiers
-   		(	td:typeDefinitionInternal[#mods]
-   			{#field = #td;}
+       		mods:modifiers
+       		(td:typeDefinitionInternal[#mods]
+       			{#field = #td;}
 
-   	    // A generic method/ctor has the typeParameters before the return type.
-           // This is not allowed for variable definitions, but this production
-           // allows it, a semantic check could be used if you wanted.
-           |   (tp:typeParameters)?
-               (
-                   h:ctorHead s:constructorBody // constructor
-                   {#field = #(#[CTOR_DEF,"CTOR_DEF"], mods, tp, h, s);}
+       	    // A generic method/ctor has the typeParameters before the return type.
+               // This is not allowed for variable definitions, but this production
+               // allows it, a semantic check could be used if you wanted.
+               |   (tp:typeParameters)?
+                   (
+                       h:ctorHead s:constructorBody // constructor
+                       {#field = #(#[CTOR_DEF,"CTOR_DEF"], mods, tp, h, s);}
 
-                   |
-                   t:typeSpec[false]  // method or variable declaration(s)
-                   (	IDENT  // the name of the method
+                       |
+                       t:typeSpec[false]  // method or variable declaration(s)
+                       (	IDENT  // the name of the method
 
-                       // parse the formal parameter declarations.
-                       LPAREN param:parameterDeclarationList RPAREN
+                           // parse the formal parameter declarations.
+                           LPAREN param:parameterDeclarationList RPAREN
 
-                       rt:declaratorBrackets[#t]
+                           rt:declaratorBrackets[#t]
 
-                       // get the list of exceptions that this method is
-                       // declared to throw
-                       (tc:throwsClause)?
+                           // get the list of exceptions that this method is
+                           // declared to throw
+                           (tc:throwsClause)?
 
-                       ( s2:compoundStatement | s5:SEMI )
-                       {#field = #(#[METHOD_DEF,"METHOD_DEF"],
-                                    mods,
-                                    tp,
-                                    #(#[TYPE,"TYPE"],rt),
-                                    IDENT,
-                                    LPAREN,
-                                    param,
-                                    RPAREN,
-                                    tc,
-                                    s2,
-                                    s5);}
-                   |	v:variableDefinitions[#mods,#t] s6:SEMI
-                       {
-                           #field = #v;
-                           #v.addChild(#s6);
-                       }
+                           ( s2:compoundStatement | s5:SEMI )
+                           {#field = #(#[METHOD_DEF,"METHOD_DEF"],
+                                        mods,
+                                        tp,
+                                        #(#[TYPE,"TYPE"],rt),
+                                        IDENT,
+                                        LPAREN,
+                                        param,
+                                        RPAREN,
+                                        tc,
+                                        s2,
+                                        s5);}
+                       |	v:variableDefinitions[#mods,#t] s6:SEMI
+                           {
+                               #field = #v;
+                               #v.addChild(#s6);
+                           }
+                       )
                    )
-               )
-   		)
+       		)
 
-       // "static { ... }" class initializer
-   	|	si:"static" s3:compoundStatement
-   		{#si.setType(STATIC_INIT);
-   		 #si.setText("STATIC_INIT");
-   		 #field = #(#si, s3);}
+           // "static { ... }" class initializer
+       	|	si:"static" s3:compoundStatement
+       		{#si.setType(STATIC_INIT);
+       		 #si.setText("STATIC_INIT");
+       		 #field = #(#si, s3);}
 
-       // "{ ... }" instance initializer
-   	|	s4:compoundStatement
-   		{#field = #(#[INSTANCE_INIT,"INSTANCE_INIT"], s4);}
+           // "{ ... }" instance initializer
+       	|	s4:compoundStatement
+       		{#field = #(#[INSTANCE_INIT,"INSTANCE_INIT"], s4);}
    	;
 
 constructorBody
@@ -975,7 +978,7 @@ compoundStatement
 // overrides the statement production in java.g, adds assertStatement
 statement
 	:	traditionalStatement
-	|	assertStatement
+        |	assertStatement
 	;
 
 // assert statement, available since JDK 1.4
@@ -988,70 +991,70 @@ traditionalStatement
 	// A list of statements in curly braces -- start a new scope!
 	:	compoundStatement
 
-	// declarations are ambiguous with "ID DOT" relative to expression
-	// statements.  Must backtrack to be sure.  Could use a semantic
-	// predicate to test symbol table to see what the type was coming
-	// up, but that's pretty hard without a symbol table ;)
-	|	(declaration)=> declaration SEMI
+		// declarations are ambiguous with "ID DOT" relative to expression
+		// statements.  Must backtrack to be sure.  Could use a semantic
+		// predicate to test symbol table to see what the type was coming
+		// up, but that's pretty hard without a symbol table ;)
+		|	(declaration)=> declaration SEMI
 
-	// An expression statement.  This could be a method call,
-	// assignment statement, or any other expression evaluated for
-	// side-effects.
-	|	expression SEMI
+		// An expression statement.  This could be a method call,
+		// assignment statement, or any other expression evaluated for
+		// side-effects.
+		|	expression SEMI
 
-	// class definition
-	|	m:modifiers! classDefinition[#m]
+		// class definition
+		|	m:modifiers! classDefinition[#m]
 
-	// Attach a label to the front of a statement
-	|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement
+		// Attach a label to the front of a statement
+		|	IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement
 
-	// If-else statement
-	|	"if"^ LPAREN expression RPAREN statement
-		(
-			// CONFLICT: the old "dangling-else" problem...
-			//           ANTLR generates proper code matching
-			//			 as soon as possible.  Hush warning.
-			options {
-				warnWhenFollowAmbig = false;
-			}
-		:
-			elseStatement
+		// If-else statement
+		|	"if"^ LPAREN expression RPAREN statement
+			(
+				// CONFLICT: the old "dangling-else" problem...
+				//           ANTLR generates proper code matching
+				//			 as soon as possible.  Hush warning.
+				options {
+					warnWhenFollowAmbig = false;
+				}
+			:
+				elseStatement
 		)?
 
-	// For statement
-	|	forStatement
+		// For statement
+		|	forStatement
 
-	// While statement
-	|	"while"^ LPAREN expression RPAREN statement
+		// While statement
+		|	"while"^ LPAREN expression RPAREN statement
 
-	// do-while statement
-	|	"do"^ statement w:"while" {#w.setType(DO_WHILE);} LPAREN expression RPAREN SEMI
+		// do-while statement
+		|	"do"^ statement w:"while" {#w.setType(DO_WHILE);} LPAREN expression RPAREN SEMI
 
-	// get out of a loop (or switch)
-	|	"break"^ (IDENT)? SEMI
+		// get out of a loop (or switch)
+		|	"break"^ (IDENT)? SEMI
 
-	// do next iteration of a loop
-	|	"continue"^ (IDENT)? SEMI
+		// do next iteration of a loop
+		|	"continue"^ (IDENT)? SEMI
 
-	// Return an expression
-	|	"return"^ (expression)? SEMI
+		// Return an expression
+		|	"return"^ (expression)? SEMI
 
-	// switch/case statement
-	|	"switch"^ LPAREN expression RPAREN LCURLY
-			( casesGroup )*
-		RCURLY
+		// switch/case statement
+		|	"switch"^ LPAREN expression RPAREN LCURLY
+				( casesGroup )*
+			RCURLY
 
-	// exception try-catch block
-	|	tryBlock
+		// exception try-catch block
+		|	tryBlock
 
-	// throw an exception
-	|	"throw"^ expression SEMI
+		// throw an exception
+		|	"throw"^ expression SEMI
 
-	// synchronize a statement
-	|	"synchronized"^ LPAREN expression RPAREN compoundStatement
+		// synchronize a statement
+		|	"synchronized"^ LPAREN expression RPAREN compoundStatement
 
-	// empty statement
-	|	s:SEMI {#s.setType(EMPTY_STAT);}
+		// empty statement
+		|	s:SEMI {#s.setType(EMPTY_STAT);}
 	;
 
 forStatement
@@ -1106,7 +1109,17 @@ aCase
 	;
 
 caseSList
-	:	(statement)*
+	:	
+		(
+			//Here was nondeterministic warnig between default block into switch and default modifier
+			 //on methods (Java8). But we have semantic check for this.
+			options {
+				warnWhenFollowAmbig = false;
+			}
+			:
+			{LA(1)!=LITERAL_default}?
+				statement
+		)*
 		{#caseSList = #(#[SLIST,"SLIST"],#caseSList);}
 	;
 
