@@ -45,7 +45,7 @@ tokens {
 	INSTANCE_INIT; STATIC_INIT; TYPE; CLASS_DEF; INTERFACE_DEF;
 	PACKAGE_DEF; ARRAY_DECLARATOR; EXTENDS_CLAUSE; IMPLEMENTS_CLAUSE;
 	PARAMETERS; PARAMETER_DEF; LABELED_STAT; TYPECAST; INDEX_OP;
-	POST_INC; POST_DEC; METHOD_CALL; EXPR; ARRAY_INIT;
+	POST_INC; POST_DEC; METHOD_CALL; METHOD_REF; EXPR; ARRAY_INIT;
 	IMPORT; UNARY_MINUS; UNARY_PLUS; CASE_GROUP; ELIST; FOR_INIT; FOR_CONDITION;
 	FOR_ITERATOR; EMPTY_STAT; FINAL="final"; ABSTRACT="abstract";
 	STRICTFP="strictfp"; SUPER_CTOR_CALL; CTOR_CALL;
@@ -63,7 +63,7 @@ tokens {
     LITERAL_class="class";LITERAL_extends="extends";
     LITERAL_interface="interface";LCURLY;RCURLY;COMMA;
     LITERAL_implements="implements";LPAREN;RPAREN;LITERAL_this="this";
-    LITERAL_super="super";ASSIGN;LITERAL_throws="throws";COLON;
+    LITERAL_super="super";ASSIGN;LITERAL_throws="throws";COLON;DOUBLE_COLON;
     LITERAL_if="if";LITERAL_while="while";LITERAL_do="do";
     LITERAL_break="break";LITERAL_continue="continue";LITERAL_return="return";
     LITERAL_switch="switch";LITERAL_throw="throw";LITERAL_for="for";
@@ -256,16 +256,16 @@ classTypeSpec[boolean addImagNode]
 	;
 
 classOrInterfaceType[boolean addImagNode]
-	:   IDENT (typeArguments[addImagNode])?
-        (options{greedy=true;}: // match as many as possible
+	: IDENT (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
+        (options{greedy=true; }: // match as many as possible
             DOT^
-            IDENT (typeArguments[addImagNode])?
+            IDENT (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
         )*
     ;
 
 // A generic type argument is a class type, a possibly bounded wildcard type or a built-in type array
 typeArgument[boolean addImagNode]
-	:   (   classTypeSpec[addImagNode]
+:   (   classTypeSpec[addImagNode]
 	    |   builtInTypeArraySpec[addImagNode]
 	    |   wildcardType[addImagNode]
 	    )
@@ -965,7 +965,7 @@ multiCatchTypes
 //   Inside a class definition without "static":
 //      it is an instance initializer
 //   As the body of a method
-//   As a completely indepdent braced block of code inside a method
+//   As a completely independent braced block of code inside a method
 //      it starts a new scope for variable definitions
 
 compoundStatement
@@ -1385,12 +1385,23 @@ postfixExpression
 			| "class"
 			| newExpression
 			)
+
+			//Java 8 method references. For example: List<Integer> numbers = Arrays.asList(1,2,3,4,5,6); numbers.forEach(System.out::println);
+		|
+			dc:DOUBLE_COLON^ {#dc.setType(METHOD_REF);}
+			(
+				(typeArguments[false])?
+					(IDENT
+				| LITERAL_new)
+			)
+
 			// the above line needs a semantic check to make sure "class"
 			// is the _last_ qualifier.
 
-			// allow ClassName[].class
-		|	( lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR);} RBRACK )+
-			DOT^ "class"
+			// allow ClassName[].class or just ClassName[]
+		|	(options{warnWhenFollowAmbig=false;} : lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR);} RBRACK )+
+			//Since java 8 here can be method reference
+			(options{warnWhenFollowAmbig=false;} : DOT^ "class")?
 
 			// an array indexing operation
 		|	lb:LBRACK^ {#lb.setType(INDEX_OP);} expression RBRACK
@@ -1418,7 +1429,7 @@ postfixExpression
 
 // the basic element of an expression
 primaryExpression
-	:	IDENT
+	:   IDENT ((typeArguments[false] DOUBLE_COLON)=>typeArguments[false])? 
 	|	constant
 	|	"true"
 	|	"false"
@@ -1427,10 +1438,11 @@ primaryExpression
 	|	newExpression
 	|	LPAREN assignmentExpression RPAREN
 	|	"super"
-		// look for int.class and int[].class
+		// look for int.class and int[].class and int[]
 	|	builtInType
-		( lbt:LBRACK^ {#lbt.setType(ARRAY_DECLARATOR);} RBRACK )*
-		DOT^ "class"
+		(options{warnWhenFollowAmbig=false;} : lbt:LBRACK^ {#lbt.setType(ARRAY_DECLARATOR);} RBRACK )*
+		//Since java 8 here can be method reference
+		(options{warnWhenFollowAmbig=false;} : DOT^ "class")?
 	;
 
 /** object instantiation.
@@ -1593,6 +1605,7 @@ RBRACK			:	']'		;
 LCURLY			:	'{'		;
 RCURLY			:	'}'		;
 COLON			:	':'		;
+DOUBLE_COLON	:	"::"	;
 COMMA			:	','		;
 //DOT			:	'.'		;
 ASSIGN			:	'='		;
