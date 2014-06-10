@@ -248,6 +248,14 @@ public final class LocalizedMessage
                 aSourceClass, aCustomMessage);
     }
 
+    /** Clears the cache */
+    public static void clearCache()
+    {
+        synchronized (BUNDLE_CACHE) {
+            BUNDLE_CACHE.clear();
+        }
+    }
+
     /** @return the translated message **/
     public String getMessage()
     {
