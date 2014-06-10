@@ -248,7 +248,7 @@ public final class LocalizedMessage
                 aSourceClass, aCustomMessage);
     }
 
-    /** Clears the cache */
+    /** Clears the cache. */
     public static void clearCache()
     {
         synchronized (BUNDLE_CACHE) {
