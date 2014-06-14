@@ -370,7 +370,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.9</version>
         <configuration>
-          <argLine>-Duser.language=en -Duser.country=US</argLine>
+          <argLine>${argLine} -Duser.language=en -Duser.country=US</argLine>
         </configuration>
       </plugin>
 
@@ -784,7 +784,7 @@
       </activation>
       <build>
         <plugins>
-<!-- I do not know why jacoco does not work :( for checkstyle
+        
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
@@ -805,18 +805,6 @@
 			</execution>
 		</executions>            
           </plugin>
--->
-
-			<plugin>
-			    <groupId>org.codehaus.mojo</groupId>
-			    <artifactId>cobertura-maven-plugin</artifactId>
-			    <version>2.6</version>
-			    <configuration>
-			        <format>xml</format>
-			        <maxmem>256m</maxmem>
-			        <aggregate>true</aggregate>
-			    </configuration>
-			</plugin>
 
           <plugin>
             <groupId>org.eluder.coveralls</groupId>
