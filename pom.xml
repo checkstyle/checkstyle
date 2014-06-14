@@ -789,6 +789,14 @@
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.7.1.201405082137</version>
+	        <configuration>
+	            <excludes>
+	              <exclude>com/puppycrawl/tools/checkstyle/CheckStyleTask*.class</exclude>
+	              <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
+	              <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
+	              <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
+	            </excludes>
+	        </configuration>               
 		<executions>
 			<execution>
 				<id>prepare-agent</id>
