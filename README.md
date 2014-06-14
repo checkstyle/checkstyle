@@ -59,7 +59,7 @@ https://github.com/checkstyle/checkstyle/issues
 [sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
 [sonar img]:http://nemo.sonarqube.org/images/sonarqube-24x100.png
 
-[coverage]:https://coveralls.io/r/checkstyle/checkstyle)
+[coverage]:https://coveralls.io/r/checkstyle/checkstyle
 [coverage img]:https://coveralls.io/repos/checkstyle/checkstyle/badge.png
 
 Thanks for trying out checkstyle!
