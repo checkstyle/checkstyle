@@ -1,5 +1,7 @@
 [![][travis img]][travis]
 [![][trend img]][trend]
+[![][sonar img]][sonar]
+
 
 CHECKSTYLE 
 ==========
@@ -52,6 +54,9 @@ https://github.com/checkstyle/checkstyle/issues
 
 [trend img]:https://d2weczhvl823v0.cloudfront.net/romani/checkstyle/trend.png
 [trend]:https://bitdeli.com/free
+
+[sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
+[sonar img]:http://nemo.sonarqube.org/images/sonarqube-24x100.png
 
 Thanks for trying out checkstyle!
 
