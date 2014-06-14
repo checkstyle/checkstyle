@@ -9,5 +9,6 @@ jdk:
 install: mvn clean verify
 
 after_success:
-  - mvn jacoco:report coveralls:jacoco
+#  - mvn jacoco:report coveralls:jacoco
+  - mvn cobertura:cobertura coveralls:cobertura
   
