@@ -784,6 +784,7 @@
       </activation>
       <build>
         <plugins>
+<!-- I do not know why jacoco does not work :( for checkstyle
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
@@ -804,6 +805,19 @@
 			</execution>
 		</executions>            
           </plugin>
+-->
+
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>cobertura-maven-plugin</artifactId>
+			    <version>2.6</version>
+			    <configuration>
+			        <format>xml</format>
+			        <maxmem>256m</maxmem>
+			        <aggregate>true</aggregate>
+			    </configuration>
+			</plugin>
+
           <plugin>
             <groupId>org.eluder.coveralls</groupId>
             <artifactId>coveralls-maven-plugin</artifactId>
@@ -812,6 +826,7 @@
         </plugins>
       </build>
     </profile>
+
     
   </profiles>
 </project>
