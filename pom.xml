@@ -772,5 +772,46 @@
         </dependency>
       </dependencies>
     </profile>
+    
+    <profile>
+    <!-- that profile is used only for coveralls.io banner that show coverage at ReadMe.md  -->
+      <id>travis</id>
+      <activation>
+        <property>
+          <name>env.TRAVIS</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.7.1.201405082137</version>
+		<executions>
+			<execution>
+				<id>prepare-agent</id>
+				<goals>
+					<goal>prepare-agent</goal>
+				</goals>
+			</execution>
+			<execution>
+				<id>report</id>
+				<goals>
+					<goal>report</goal>
+				</goals>
+				<phase>prepare-package</phase>
+			</execution>
+		</executions>            
+          </plugin>
+          <plugin>
+            <groupId>org.eluder.coveralls</groupId>
+            <artifactId>coveralls-maven-plugin</artifactId>
+            <version>2.2.0</version>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    
   </profiles>
 </project>
