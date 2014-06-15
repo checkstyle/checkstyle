@@ -30,12 +30,10 @@ import com.sun.javadoc.RootDoc;
 /**
  * Doclet which is used to write property file with short descriptions
  * (first sentences) of TokenTypes' constants.
- * 
  * Request: 724871
- * For ide plugins (like the eclipse plugin) it would be useful to have 
- * programmatic access to the first sentence of the TokenType constants, 
+ * For ide plugins (like the eclipse plugin) it would be useful to have
+ * programmatic access to the first sentence of the TokenType constants,
  * so they can use them in their configuration gui.
- *
  * @author o_sukhodolsky
  */
 public final class TokenTypesDoclet
