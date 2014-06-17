@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.BitSet;
 
-import antlr.CommonAST;
+import antlr.CommonASTWithHiddenTokens;
 import antlr.Token;
 import antlr.collections.AST;
 
@@ -35,7 +35,7 @@ import antlr.collections.AST;
  * @version 1.0
  * @see <a href="http://www.antlr.org/">ANTLR Website</a>
  */
-public final class DetailAST extends CommonAST
+public final class DetailAST extends CommonASTWithHiddenTokens
 {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -2580884815577559874L;

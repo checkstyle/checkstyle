@@ -18,8 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.File;
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
+import antlr.TokenStreamHiddenTokenFilter;
 import antlr.TokenStreamRecognitionException;
 
 import com.google.common.collect.HashMultimap;
@@ -38,15 +50,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Utils;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
-import java.io.File;
-import java.io.Reader;
-import java.io.StringReader;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -429,7 +432,7 @@ public final class TreeWalker
      * @return the root of the AST
      */
     public static DetailAST parse(FileContents aContents)
-        throws RecognitionException, TokenStreamException
+            throws RecognitionException, TokenStreamException
     {
         final String fullText = aContents.getText().getFullText().toString();
         final Reader sr = new StringReader(fullText);
@@ -438,9 +441,15 @@ public final class TreeWalker
         lexer.setCommentListener(aContents);
         lexer.setTreatAssertAsKeyword(true);
         lexer.setTreatEnumAsKeyword(true);
+        lexer.setTokenObjectClass("antlr.CommonHiddenStreamToken");
+
+        TokenStreamHiddenTokenFilter filter = new TokenStreamHiddenTokenFilter(
+                lexer);
+        filter.hide(TokenTypes.SINGLE_LINE_COMMENT);
+        filter.hide(TokenTypes.BLOCK_COMMENT_BEGIN);
 
         final GeneratedJavaRecognizer parser =
-            new GeneratedJavaRecognizer(lexer);
+                new GeneratedJavaRecognizer(filter);
         parser.setFilename(aContents.getFilename());
         parser.setASTNodeClass(DetailAST.class.getName());
         parser.compilationUnit();
