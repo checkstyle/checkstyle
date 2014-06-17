@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.grammars;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import java.text.MessageFormat;
-import antlr.CommonToken;
+import antlr.CommonHiddenStreamToken;
 }
 
 /** Java 1.5 Recognizer
@@ -75,8 +75,13 @@ tokens {
     LITERAL_instanceof="instanceof";SL;SR;BSR;PLUS;MINUS;DIV;MOD;
     INC;DEC;BNOT;LNOT;LITERAL_true="true";LITERAL_false="false";
     LITERAL_null="null";LITERAL_new="new";NUM_INT;CHAR_LITERAL;
-    STRING_LITERAL;NUM_FLOAT;NUM_LONG;NUM_DOUBLE;WS;SL_COMMENT;
-    ML_COMMENT;ESC;HEX_DIGIT;VOCAB;EXPONENT;FLOAT_SUFFIX;
+    STRING_LITERAL;NUM_FLOAT;NUM_LONG;NUM_DOUBLE;WS;
+    ESC;HEX_DIGIT;VOCAB;EXPONENT;FLOAT_SUFFIX;
+
+    SINGLE_LINE_COMMENT;
+    BLOCK_COMMENT_BEGIN;
+    BLOCK_COMMENT_END;
+    COMMENT_CONTENT;
 
     //Token for Java 1.4 language enhancements
     ASSERT;
@@ -151,7 +156,7 @@ tokens {
     private DetailAST emitSingleGt()
     {
         gtToReconcile -= 1;
-        CommonToken gtToken = new CommonToken(GENERIC_END, ">");
+        CommonHiddenStreamToken gtToken = new CommonHiddenStreamToken(GENERIC_END, ">");
         gtToken.setLine(currentGtSequence.getLineNo());
         gtToken.setColumn(currentGtSequence.getColumnNo() + (currentGtSequence.getText().length() - gtToReconcile));
         return (DetailAST)astFactory.create(gtToken);
@@ -206,7 +211,6 @@ compilationUnit
 
 		EOF!
 	;
-
 
 // Package statement: "package" followed by an identifier.
 packageDefinition
@@ -1704,46 +1708,56 @@ WS	:	(	' '
 	;
 
 // Single-line comments
-SL_COMMENT
+SINGLE_LINE_COMMENT
     :	"//"
         { mCommentListener.reportSingleLineComment("//", getLine(),
                                                    getColumn() - 3); }
-        (~('\n'|'\r'))* ('\n'|'\r'('\n')?|)
-        {$setType(Token.SKIP); newline();}
+        content: SINGLE_LINE_COMMENT_CONTENT
+        { $setText(content.getText());}
 	;
 
-// multiple-line comments
-ML_COMMENT
+protected
+SINGLE_LINE_COMMENT_CONTENT
+    :   (~('\n'|'\r'))* ('\n'|'\r'('\n')?|)
+        {newline();}
+        ;
+
+// block comments
+BLOCK_COMMENT_BEGIN
 {
    int startLine = -1;
    int startCol = -1;
 }
 	:	"/*"  { startLine = getLine(); startCol = getColumn() - 3; }
-		(	/*	'\r' '\n' can be matched in one alternative or by matching
-				'\r' in one iteration and '\n' in another.  I am trying to
-				handle any flavor of newline that comes in, but the language
-				that allows both "\r\n" and "\r" and "\n" to all be valid
-				newline is ambiguous.  Consequently, the resulting grammar
-				must be ambiguous.  I'm shutting this warning off.
-			 */
-			options {
-				generateAmbigWarnings=false;
-			}
-		:
-			{ LA(2)!='/' }? '*'
-		|	'\r' '\n'		{newline();}
-		|	'\r'			{newline();}
-		|	'\n'			{newline();}
-		|	~('*'|'\n'|'\r')
-		)*
+		content:BLOCK_COMMENT_CONTENT
 		"*/"
       {
          mCommentListener.reportBlockComment("/*", startLine, startCol,
                             getLine(), getColumn() - 2);
-         $setType(Token.SKIP);
+         $setText(content.getText());
       }
 	;
 
+protected
+BLOCK_COMMENT_CONTENT
+    :   (   /*  '\r' '\n' can be matched in one alternative or by matching
+                '\r' in one iteration and '\n' in another.  I am trying to
+                handle any flavor of newline that comes in, but the language
+                that allows both "\r\n" and "\r" and "\n" to all be valid
+                newline is ambiguous.  Consequently, the resulting grammar
+                must be ambiguous.  I'm shutting this warning off.
+             */
+            options {
+                generateAmbigWarnings=false;
+            }
+        :
+            { LA(2)!='/' }? '*'
+        |   '\r' '\n'       {newline();}
+        |   '\r'            {newline();}
+        |   '\n'            {newline();}
+        |   ~('*'|'\n'|'\r')
+        )*
+    ;
 
 // character literals
 CHAR_LITERAL
