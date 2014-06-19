@@ -1171,5 +1171,96 @@ public void func() {}    // empty method</source>
         </p>
       </subsection>
     </section>
+
+    <section name="NoLineWrap">
+      <subsection name="Description">
+        <p>
+          Checks that chosen statements are not line-wrapped. By default this
+          Check restricts wrapping import and package statements, but it's possible to check
+          any statement.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>assignments to check</td>
+            <td>subset of tokens <a
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
+             <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>
+               <a
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+               <a
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+               </td>
+            <td><a
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+      <p>
+        Examples of line-wrapped statements (bad case):
+      </p>
+      <source>
+package com.puppycrawl.
+    tools.checkstyle.checks;
+
+import com.puppycrawl.tools.
+    checkstyle.api.Check;
+      </source>
+      <p>
+        To configure the check to force no line-wrapping
+        in package and import statements (default values):
+      </p>
+      <source>
+&lt;module name=&quot;NoLineWrap&quot;/&gt;
+      </source>
+      <p>
+        To configure the check to force no line-wrapping only
+        in import statements:
+      </p>
+      <source>
+&lt;module name=&quot;NoLineWrap&quot;&gt;
+    &lt;property name="tokens" value="IMPORT"&gt;
+&lt;/module&gt;
+      </source>
+      <p>
+        Examples of not line-wrapped statements (good case):
+      </p>
+      <source>
+import com.puppycrawl.tools.checkstyle.api.Check;
+      </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
   </body>
 </document>
