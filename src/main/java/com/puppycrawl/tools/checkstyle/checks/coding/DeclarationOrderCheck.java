@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FastStack;
@@ -46,13 +49,29 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ol>
  * </p>
  * <p>
+ * It can check that overload methods are grouped together. Example:
+ * </p>
+ * <pre><code>
+ * public void foo(int i) {}
+ * public void foo(String s) {}
+ * public void notFoo() {} // Have to be after foo(int i, String s)
+ * public void foo(int i, String s) {}
+ * </code></pre>
+ * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>
  * &lt;module name="DeclarationOrder"/&gt;
  * </pre>
+ * An example of a check's configuration for grouping overload methods:
+ * <pre>
+ * &lt;module name="DeclarationOrder"&gt;
+ *     &lt;property name="groupOverloadMethods" value="true"&gt;
+ * &lt;/module&gt;
+ * </pre>
  *
  * @author r_auckenthaler
+ * @author maxvetrenko
  */
 public class DeclarationOrderCheck extends Check
 {
@@ -92,6 +111,8 @@ public class DeclarationOrderCheck extends Check
     private boolean mIgnoreMethods;
     /** If true, ignore the check to modifiers (fields, ...). */
     private boolean mIgnoreModifiers;
+    /** If true, avoid splitting overload methods */
+    private boolean mGroupOverloadMethods;
 
     @Override
     public int[] getDefaultTokens()
@@ -113,6 +134,12 @@ public class DeclarationOrderCheck extends Check
         switch(aAST.getType()) {
         case TokenTypes.OBJBLOCK:
             mScopeStates.push(new ScopeState());
+            if (mGroupOverloadMethods && (parentType == TokenTypes.CLASS_DEF
+                    || parentType == TokenTypes.ENUM_DEF
+                    || parentType == TokenTypes.INTERFACE_DEF))
+            {
+                checkOverloadMethodsGrouping(aAST);
+            }
             break;
 
         case TokenTypes.CTOR_DEF:
@@ -206,6 +233,35 @@ public class DeclarationOrderCheck extends Check
     }
 
     /**
+     * Checks that if overload methods are grouped together they
+     * should not be separated from each other.
+     * @param aObjectBlock is a class, interface or enum object block.
+     */
+    private void checkOverloadMethodsGrouping(DetailAST aObjectBlock)
+    {
+        final int allowedDistance = 1;
+        DetailAST currentToken = aObjectBlock.getFirstChild();
+        final Map<String, Integer> methodIndexMap =
+                new HashMap<String, Integer>();
+        int currentIndex = 0;
+        while (currentToken != null) {
+            if (currentToken.getType() == TokenTypes.METHOD_DEF) {
+                currentIndex++;
+                final String methodName =
+                        currentToken.findFirstToken(TokenTypes.IDENT).getText();
+                if (methodIndexMap.containsKey(methodName)) {
+                    final int priviousIndex = methodIndexMap.get(methodName);
+                    if (currentIndex - priviousIndex > allowedDistance) {
+                        log(currentToken, "declaration.order.overloads");
+                    }
+                }
+                methodIndexMap.put(methodName, currentIndex);
+            }
+            currentToken = currentToken.getNextSibling();
+        }
+    }
+
+    /**
      * Sets whether to ignore constructors.
      * @param aIgnoreConstructors whether to ignore constructors.
      */
@@ -230,5 +286,14 @@ public class DeclarationOrderCheck extends Check
     public void setIgnoreModifiers(boolean aIgnoreModifiers)
     {
         mIgnoreModifiers = aIgnoreModifiers;
+    }
+
+    /**
+     * Sets whether to group overload methods.
+     * @param aGroupOverloadMethods whether to group overload methods.
+     */
+    public void setGroupOverloadMethods(boolean aGroupOverloadMethods)
+    {
+        mGroupOverloadMethods = aGroupOverloadMethods;
     }
 }
