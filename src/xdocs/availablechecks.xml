@@ -462,6 +462,11 @@
         using the name <em>finalize</em>.</td>
       </tr>
       <tr>
+        <td><a href="config_whitespace.html#NoLineWrap">NoLineWrap</a></td>
+        <td>
+        Checks that chosen statements are not line-wrapped.</td>
+      </tr>
+      <tr>
         <td><a href="config_whitespace.html#NoWhitespaceAfter">NoWhitespaceAfter</a></td>
         <td>
         Checks that there is no whitespace after a token.</td>
