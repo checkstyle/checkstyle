@@ -1,8 +1,8 @@
 package com.puppycrawl.tools.checkstyle.coding;
 public class InputClone
-{
+{/* class body */
     public InputClone() throws CloneNotSupportedException
-    {
+    { //constructor body
         super.equals(new String());
         super.clone();
     }

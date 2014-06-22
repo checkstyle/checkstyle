@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.coding;
 
 public class InputExplicitInit {
     private int x = 0;
-    private Object bar = null;
+    private Object bar = /* comment test */null;
     private int y = 1;
     private long y1 = 1 - 1;
     private long y3;

@@ -14,7 +14,7 @@ public class InputReturnFromCatchCheck {
             System.currentTimeMillis();
         } catch (Exception e) {
             if (System.currentTimeMillis() == 0) {
-                return;
+                return; // return from if statement
             }
         }
     }

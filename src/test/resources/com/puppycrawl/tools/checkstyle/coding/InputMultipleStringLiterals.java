@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.coding;
 
 public class InputMultipleStringLiterals
-{
+{   /*string literals*/
     String m = "StringContents";
     String m1 = "SingleString";
     String m2 = "DoubleString" + "DoubleString";

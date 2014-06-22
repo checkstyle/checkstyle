@@ -12,7 +12,7 @@ public class InputMutableException {
         public class FooExceptionThisIsNot {
             private final int _finalErrorCode;
             private int _errorCode = 1;
-
+            /** constructor */
             public FooExceptionThisIsNot() {
                 _finalErrorCode = 1;
             }

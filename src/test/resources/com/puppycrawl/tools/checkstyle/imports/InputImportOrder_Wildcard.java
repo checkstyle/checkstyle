@@ -5,7 +5,7 @@ package com.puppycrawl.tools.checkstyle.imports;
 
 import com.puppycrawl.tools.checkstyle.imports.InputImportOrder_Above;
 import javax.crypto.BadPaddingException;
-import java.util.List;
+import java.util.List; //comment test
 import javax.crypto.Cipher;
 
 public class InputImportOrder_Wildcard {

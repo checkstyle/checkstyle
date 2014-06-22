@@ -7,7 +7,7 @@ public class InputFinalize
         super.finalize();
     }
     
-    public void finalize() throws Throwable
+    public void finalize() /**comment test*/throws Throwable
     {
         super.finalize();
     }
