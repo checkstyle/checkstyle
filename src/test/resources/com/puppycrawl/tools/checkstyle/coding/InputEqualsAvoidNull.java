@@ -5,7 +5,7 @@ public class InputEqualsAvoidNull {
     public boolean equals(Object o) {
     return false;
     }
-
+    // antoher comment
     /**
      * methods that should get flagged
      * @return
@@ -15,7 +15,7 @@ public class InputEqualsAvoidNull {
         Object o = new Object();
         String s = "pizza";
 
-        o.equals("hot pizza");
+        o.equals("hot pizza")/*comment test*/;
 
         o.equals(s = "cold pizza");
 

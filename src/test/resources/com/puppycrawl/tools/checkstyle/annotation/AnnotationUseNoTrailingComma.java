@@ -1,12 +1,12 @@
 package com.puppycrawl.tools.checkstyle.annotation;
-
+// suppress
 @SuppressWarnings({})
 public class AnnotationUseNoTrailingComma
 {
   @SuppressWarnings({"common"})
   public void foo() {
-      
-      
+       
+      /** Suppress warnings */
       @SuppressWarnings({"common","foo"})
       Object o = new Object() {
         
@@ -27,7 +27,7 @@ public class AnnotationUseNoTrailingComma
   enum P {
       
       @Pooches2(tokens={Pooches2.class},other={1})
-      L,
+      L, // annotation in enum
       
       @Test2(value={}, more={(false) ? "" : "unchecked"})
       Y;

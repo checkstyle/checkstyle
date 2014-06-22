@@ -13,10 +13,10 @@ public class InputTypeParameterName <t>
 class Other <foo extends Serializable & Cloneable> {
     
     foo getOne() {
-	return null;
+	return null;//comment
     }
     
-    <Tfo$o2T extends foo> Tfo$o2T getTwo(Tfo$o2T a) {
+    <Tfo$o2T extends foo> /*comment*/Tfo$o2T getTwo(Tfo$o2T a) {
 	return null;
     }
     

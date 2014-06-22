@@ -8,7 +8,7 @@ public class InputMethodNameExtra
             new More.ViewChangeHistoryBaseAction.ChangeHistoryDisplayName(agencyName)
             {
                 String getDisplayName()
-                {
+                {//comment
                     return getPreviousName(TypeOfName.AGENCY_NAME);
                 }
             });

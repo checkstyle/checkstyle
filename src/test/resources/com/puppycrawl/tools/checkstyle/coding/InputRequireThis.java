@@ -35,7 +35,7 @@ public class InputRequireThis {
     int I = 0;
     private class I {}
 }
-
+//  enum
 enum MyEnum
 {
     A,
@@ -67,7 +67,7 @@ class Bug2123003 {
         @Rock(band = {(true) ? "GnR" : "Tool"})
         private String band;
     }
-    
+    /*     \m/(>.<)\m/     */
     @interface Rock {
         String[] band() default "Metallica";
     }

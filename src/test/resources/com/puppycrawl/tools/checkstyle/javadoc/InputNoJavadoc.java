@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.javadoc;
 
-public class InputNoJavadoc
+public class InputNoJavadoc //comment test
 {
     public int i1;
     protected int i2;

@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.coding;
 public class InputFinalLocalVariable
 {
     private int m_ClassVariable = 0;
-
+    //static block
     static
     {
         int i, j = 0;
@@ -14,11 +14,11 @@ public class InputFinalLocalVariable
             }
         };
     }
-
+    /** constructor */
     public InputFinalLocalVariable()
     {
         int i = 0;
-
+        // final variable
         final int j = 2;
 
         int z;

@@ -5,7 +5,7 @@ public class InputWhitespaceAround
 {
     protected InputWhitespaceAround ( int i )
     {
-        this ();
+        this (); //whitespace
         toString ();
     }
     protected InputWhitespaceAround ()

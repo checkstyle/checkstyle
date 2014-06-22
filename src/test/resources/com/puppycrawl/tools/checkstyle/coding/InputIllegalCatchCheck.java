@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 public class InputIllegalCatchCheck {
     public void foo() {
-        try {
+        try { //class names
         } catch (RuntimeException e) {
         } catch (Exception e) {
         } catch (Throwable e) {
@@ -10,7 +10,7 @@ public class InputIllegalCatchCheck {
     }
 
     public void bar() {
-        try {
+        try { /* fully qualified class names */
         } catch (java.lang.RuntimeException e) {
         } catch (java.lang.Exception e) {
         } catch (java.lang.Throwable e) {

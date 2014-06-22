@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
-
+/* комментарий на русском */
 public class InputReturnCount
 {
     public boolean equals(Object obj) {

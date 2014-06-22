@@ -3,7 +3,7 @@ public class InputUnnecessaryParentheses {
         int x = 0;
         for (int i = (0+1); ((i) < (6+6)); i += (1+0)) {
             x += (i + 100);
-            (x) += (i + 100);
+            (x) += (i + 100/**comment test*/);
             x = (x + i + 100);
             (x) = (x + i + 100);
         }

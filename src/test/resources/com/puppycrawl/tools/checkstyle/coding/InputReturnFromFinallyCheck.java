@@ -14,7 +14,7 @@ public class InputReturnFromFinallyCheck {
             System.currentTimeMillis();
         } finally {
             if (System.currentTimeMillis() == 0) {
-                return;
+                return; // return from if statement
             }
         }
     }

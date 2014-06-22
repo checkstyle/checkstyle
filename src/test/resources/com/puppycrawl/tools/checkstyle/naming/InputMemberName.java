@@ -4,7 +4,7 @@ public class InputMemberName
 {
     public int mPublic;
     protected int mProtected;
-    int mPackage;
+    int mPackage;//comment
     private int mPrivate;
 
     public int _public;

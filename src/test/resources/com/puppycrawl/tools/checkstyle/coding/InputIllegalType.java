@@ -3,13 +3,13 @@ package com.puppycrawl.tools.checkstyle.coding;
 import java.util.Hashtable;
 
 public class InputIllegalType {
-    private AbstractClass a = null;
-    private NotAnAbstractClass b = null;
+    private AbstractClass a = null; // comment
+    private NotAnAbstractClass b = null; /*another comment*/
 
     private com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass c = null;
     private com.puppycrawl.tools.checkstyle.coding.InputIllegalType.NotAnAbstractClass d = null;
 
-    private abstract class AbstractClass {}
+    private abstract class AbstractClass {/*one more comment*/}
 
     private class NotAnAbstractClass {}
 

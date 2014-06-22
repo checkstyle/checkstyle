@@ -16,7 +16,7 @@ class InputGenericWhitespaceCheck implements Comparable<InputGenericWhitespaceCh
         List < Integer > a = new ArrayList < Integer > ();
         List < List < Integer > > b = new ArrayList < List < Integer > > ();
     }
-
+    //always 0
     public int compareTo(InputGenericWhitespaceCheck aObject)
     {
         return 0;
@@ -51,7 +51,7 @@ class InputGenericWhitespaceCheck implements Comparable<InputGenericWhitespaceCh
     {
     }
 
-    public interface IntEnum {
+    public interface IntEnum { /*inner enum*/
     }
 
     public static class IntEnumValueType<E extends Enum<E> & IntEnum> {

@@ -21,7 +21,7 @@ public class InputDefaultComesLast
         switch (i) {
         case 1:
             break;
-        default:
+        default: /**default is not last*/
             break;
         case 2:
             break;

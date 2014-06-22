@@ -4,7 +4,7 @@ import javax.naming.*;
 import java.util.*;
 
 public class ClassCouplingCheckTestInput {
-    private class InnerClass {
+    private class InnerClass { //singleline comment
         public List _list = new ArrayList();
     }
 
@@ -12,7 +12,7 @@ public class ClassCouplingCheckTestInput {
         public String _string = "";
     }
 
-    public Set _set = new HashSet();
+    public Set _set = /*block comment*/new HashSet();
     public Map _map = new HashMap();
     public String _string = "";
     public int[] _intArray = new int[0];

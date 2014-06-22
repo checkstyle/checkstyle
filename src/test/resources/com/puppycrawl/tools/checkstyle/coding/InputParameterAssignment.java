@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
-
+/**Input*/
 public class InputParameterAssignment {
     int field;
     void foo1(int field) {
@@ -11,7 +11,7 @@ public class InputParameterAssignment {
         this.field++;
         field--;
     }
-
+    // without parameters
     void foo2() {
         field = 0;
     }
