@@ -993,17 +993,23 @@ for (Iterator foo = very.long.line.iterator();
     <section name="WhitespaceAround">
       <subsection name="Description">
         <p>
-        Checks that a token is surrounded by whitespace.  Empty constructor and
-        method bodies (blocks) of the form
+        Checks that a token is surrounded by whitespace.  Empty constructor,
+        method, class, enum, interface, loop bodies (blocks) of the form
         </p>
 
         <source>public MyClass() {}      // empty constructor
-public void func() {}    // empty method</source>
+public void func() {}    // empty method
+public interface Foo {} // empty interface
+public class Foo {} // empty class
+public enum Foo {} // empty enum
+while (i = 1) {} // empty while loop
+for (int i = 1; i > 1; i++) {} // empty for loop
+do {} while (i = 1); // empty do-while loop </source>
 
         <p>
         may optionally be exempted from the policy using the <code>
-        allowEmptyMethods</code> and <code>allowEmptyConstructors
-        </code> properties.
+        allowEmptyMethods</code>, <code>allowEmptyConstructors
+        </code>, <code>allowEmptyTypes</code> and <code>allowEmptyLoops</code> properties.
         </p>
       </subsection>
 
@@ -1128,6 +1134,18 @@ public void func() {}    // empty method</source>
           <tr>
             <td>allowEmptyMethods</td>
             <td>allow empty method bodies</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>allowEmptyTypes</td>
+            <td>allow empty class, interface and enum bodies</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>allowEmptyLoops</td>
+            <td>allow empty loop bodies</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>false</code></td>
           </tr>
