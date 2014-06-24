@@ -461,5 +461,79 @@ public class StringUtils // not final to allow subclassing
         </p>
       </subsection>
     </section>
+
+    <section name="OneTopLevelClass">
+      <subsection name="Description">
+        <p>
+          Checks that each top-level class, interface or
+          enum resides in a source file of its own.
+          Official description of a 'top-level' term:<a
+          href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-7.html#jls-7.6">7.6. Top Level Type Declarations</a>.
+          If file doesn't contains public class, enum or interface,
+          top-level type is the first type in file.
+        </p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          An example of check's configuration:
+        </p>
+        <source>
+&lt;module name="OneTopLevelClass"/&gt;
+        </source>
+        <p>
+          An example of check's configuration applied only to classes:
+        </p>
+        <source>
+&lt;module name="OneTopLevelClass"&gt;
+    &lt;property name="tokens" value="CLASS_DEF"&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          An example of code with violations:
+        </p>
+        <source>
+public class Foo{
+    //methods
+}
+
+class Foo2{
+    //methods
+}
+        </source>
+        <p>
+          An example of code without public top-level type:
+        </p>
+        <source>
+class Foo{ // top-level class
+    //methods
+}
+
+class Foo2{
+    //methods
+}
+        </source>
+        <p>
+          An example of code without violations:
+        </p>
+        <source>
+public class Foo{
+    //methods
+}
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.design
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
   </body>
 </document>
