@@ -97,3 +97,40 @@ class InputLeftCurlyOther
         if (flag) { System.err.println("it is ok."); }
     }
 }
+
+/**
+ * Test input for closing brace if that brace terminates 
+ * a statement or the body of a constructor. 
+ */
+class FooCtor
+{
+	int i;
+	public Foo()
+	{
+		i = 1;
+	}}
+
+/**
+* Test input for closing brace if that brace terminates 
+* a statement or the body of a method. 
+*/
+class FooMethod
+{
+	public void fooMethod()
+	{
+		int i = 1;
+	}}
+
+/**
+* Test input for closing brace if that brace terminates 
+* a statement or the body of a named class. 
+*/
+class FooInner
+{
+	class InnerFoo
+	{
+		public void fooInnerMethod ()
+		{
+			
+		}
+	}}

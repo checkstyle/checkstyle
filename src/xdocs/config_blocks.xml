@@ -281,7 +281,13 @@
             <a
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">LITERAL_IF</a>,
             <a
-             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">LITERAL_ELSE</a></td>
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">LITERAL_ELSE</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>.</td>
 
             <td><a
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">LITERAL_TRY</a>,
@@ -293,7 +299,6 @@
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">LITERAL_IF</a>,
             <a
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">LITERAL_ELSE</a></td>
-
           </tr>
           <tr>
             <td>shouldStartLine</td>
@@ -312,13 +317,14 @@
         </source>
 
         <p>
-          To configure the check with policy <code>alone</code> for <code> else</code>
+          To configure the check with policy <code>alone</code> for <code> else</code> and <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>
           tokens:
         </p>
         <source>
 &lt;module name=&quot;RightCurly&quot;&gt;
     &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE, METHOD_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
