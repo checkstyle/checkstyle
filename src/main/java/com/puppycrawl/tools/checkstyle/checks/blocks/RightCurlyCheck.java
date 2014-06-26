@@ -31,11 +31,15 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * and defaults to {@link RightCurlyOption#SAME}.
  * </p>
  * <p> By default the check will check the following tokens:
- *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY}.
+ *  {@link TokenTypes#LITERAL_TRY LITERAL_TRY},
  *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
- *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY}.
+ *  {@link TokenTypes#LITERAL_FINALLY LITERAL_FINALLY},
  *  {@link TokenTypes#LITERAL_IF LITERAL_IF},
- *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE},
+ *  {@link TokenTypes#LITERAL_ELSE LITERAL_ELSE}.
+ * Other acceptable tokens are:
+ *  {@link TokenTypes#CLASS_DEF CLASS_DEF},
+ *  {@link TokenTypes#METHOD_DEF METHOD_DEF},
+ *  {@link TokenTypes#CTOR_DEF CTOR_DEF}.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -45,7 +49,8 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * </pre>
  * <p>
  * An example of how to configure the check with policy
- * {@link RightCurlyOption#ALONE} for <code>else</code> tokens is:
+ * {@link RightCurlyOption#ALONE} for <code>else</code> and
+ * <code>{@link TokenTypes#METHOD_DEF METHOD_DEF}</code>tokens is:
  * </p>
  * <pre>
  * &lt;module name="RightCurly"&gt;
@@ -57,6 +62,7 @@ import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
  * @author Oliver Burn
  * @author lkuehne
  * @author o_sukhodolsky
+ * @author maxvetrenko
  * @version 2.0
  */
 public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
@@ -90,6 +96,21 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
             TokenTypes.LITERAL_FINALLY,
             TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_ELSE,
+        };
+    }
+
+    @Override
+    public int[] getAcceptableTokens()
+    {
+        return new int[] {
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
         };
     }
 
@@ -142,6 +163,21 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
             lcurly = aAST.getFirstChild();
             rcurly = lcurly.getLastChild();
             break;
+        case TokenTypes.CLASS_DEF:
+            lcurly = aAST.getLastChild().getFirstChild();
+            rcurly = aAST.getLastChild().getLastChild();
+            nextToken = aAST;
+            break;
+        case TokenTypes.CTOR_DEF:
+            lcurly = aAST.getLastChild();
+            rcurly = lcurly.getLastChild();
+            nextToken = aAST;
+            break;
+        case TokenTypes.METHOD_DEF:
+            lcurly = aAST.getLastChild();
+            rcurly = lcurly.getLastChild();
+            nextToken = aAST;
+            break;
         default:
             throw new RuntimeException("Unexpected token type ("
                     + TokenTypes.getTokenName(aAST.getType()) + ")");
@@ -158,12 +194,12 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
             }
         }
         else if ((getAbstractOption() == RightCurlyOption.SAME)
-            && (rcurly.getLineNo() != nextToken.getLineNo()))
+                && (rcurly.getLineNo() != nextToken.getLineNo()))
         {
             log(rcurly, "line.same", "}");
         }
         else if ((getAbstractOption() == RightCurlyOption.ALONE)
-                 && (rcurly.getLineNo() == nextToken.getLineNo()))
+                && (rcurly.getLineNo() == nextToken.getLineNo()))
         {
             log(rcurly, "line.alone", "}");
         }
@@ -172,8 +208,8 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption>
             return;
         }
         final boolean startsLine =
-            Utils.whitespaceBefore(rcurly.getColumnNo(),
-                                   getLines()[rcurly.getLineNo() - 1]);
+                Utils.whitespaceBefore(rcurly.getColumnNo(),
+                        getLines()[rcurly.getLineNo() - 1]);
 
         if (!startsLine && (lcurly.getLineNo() != rcurly.getLineNo())) {
             log(rcurly, "line.new", "}");

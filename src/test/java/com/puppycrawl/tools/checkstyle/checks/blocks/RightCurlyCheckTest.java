@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,7 +47,6 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
         };
         verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
-
     @Test
     public void testSame() throws Exception
     {
@@ -74,7 +74,31 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport
     }
 
     @Test
+    public void testNewLine() throws Exception
+    {
+        mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        mCheckConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
+        final String[] expected = {
+            "111:10: '}' should be on a new line.",
+            "122:10: '}' should be on a new line.",
+            "136:10: '}' should be on a new line.",
+        };
+        verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
+    }
+
+    @Test
     public void testShouldStartLine() throws Exception
+    {
+        mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        mCheckConfig.addAttribute("shouldStartLine", "false");
+        final String[] expected = {
+            "93:27: '}' should be alone on a line.",
+        };
+        verify(mCheckConfig, getPath("InputLeftCurlyOther.java"), expected);
+    }
+
+    @Test
+    public void testMethodCtorNamedClassClosingBrace() throws Exception
     {
         mCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         mCheckConfig.addAttribute("shouldStartLine", "false");
