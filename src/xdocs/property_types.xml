@@ -125,11 +125,11 @@
 
     <subsection name="wrapOp">
       <p>
-        This property represents the policy for wrapping lines on
-        operators. The following table describes the valid options:
+        This property represents the policy for wrapping lines.
+        The following table describes the valid options:
       </p>
 
-      <table summary="wrap operator options">
+      <table summary="wrap options">
         <tr>
           <td>Option</td>
           <td>Definition</td>
@@ -137,7 +137,7 @@
         <tr>
           <td><code>nl</code></td>
           <td>
-            The operator must be on a new line. For example:
+            The token must be on a new line. For example:
             <pre>
     someVariable = aBigVariableNameToMakeThings + "this may work"
                    + lookVeryInteresting;
@@ -147,7 +147,7 @@
         <tr>
           <td><code>eol</code></td>
           <td>
-            The operator must be at the end of the line. For example:
+            The token must be at the end of the line. For example:
             <pre>
     someVariable = aBigVariableNameToMakeThings + "this may work" +
                    lookVeryInteresting;

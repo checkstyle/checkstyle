@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 
-public class OperatorWrapCheckTest
+public class SeparatorWrapCheckTest
     extends BaseCheckTestSupport
 {
     private DefaultConfiguration checkConfig;
@@ -31,45 +31,29 @@ public class OperatorWrapCheckTest
     @Before
     public void setUp()
     {
-        checkConfig = createCheckConfig(OperatorWrapCheck.class);
+        checkConfig = createCheckConfig(SeparatorWrapCheck.class);
     }
 
     @Test
-    public void testDefault()
+    public void testDot()
         throws Exception
     {
+        checkConfig.addAttribute("option", "NL");
+        checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {
-            "15:19: '+' should be on a new line.",
-            "16:15: '-' should be on a new line.",
-            "24:18: '&&' should be on a new line.",
-            "39:30: '&' should be on a new line.",
-            "52:29: '&' should be on a new line.",
+            "31:10: '.' should be on a new line.",
         };
-        verify(checkConfig, getPath("InputOpWrap.java"), expected);
+        verify(checkConfig, getPath("whitespace/InputSeparatorWrap.java"), expected);
     }
 
     @Test
-    public void testOpWrapEOL()
-        throws Exception
+    public void testComma() throws Exception
     {
-        checkConfig.addAttribute("option", WrapOption.EOL.toString());
+        checkConfig.addAttribute("option", "EOL");
+        checkConfig.addAttribute("tokens", "COMMA");
         final String[] expected = {
-            "18:13: '-' should be on the previous line.",
-            "22:13: '&&' should be on the previous line.",
-            "27:13: '&&' should be on the previous line.",
+            "39:17: ',' should be on the previous line.",
         };
-        verify(checkConfig, getPath("InputOpWrap.java"), expected);
-    }
-
-    @Test
-    public void testAssignEOL()
-        throws Exception
-    {
-        checkConfig.addAttribute("tokens", "ASSIGN");
-        checkConfig.addAttribute("option", WrapOption.EOL.toString());
-        final String[] expected = {
-            "33:13: '=' should be on the previous line.",
-        };
-        verify(checkConfig, getPath("InputOpWrap.java"), expected);
+        verify(checkConfig, getPath("whitespace/InputSeparatorWrap.java"), expected);
     }
 }

@@ -588,6 +588,11 @@
         Checks the placement of right curly braces.</td>
       </tr>
       <tr>
+        <td><a href="config_whitespace.html#SeparatorWrap">SeparatorWrap</a></td>
+        <td>
+        Checks line wrapping with separators.</td>
+      </tr>
+      <tr>
         <td><a href="config_coding.html#SimplifyBooleanExpression">SimplifyBooleanExpression</a></td>
         <td>
         Checks for overly complicated boolean expressions.</td>

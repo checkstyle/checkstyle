@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 /**
  * <p>
  * Checks line wrapping for operators.
- * The policy to verify is specified using the {@link OperatorWrapOption} class
- * and defaults to {@link OperatorWrapOption#NL}.
+ * The policy to verify is specified using the {@link WrapOption} class
+ * and defaults to {@link WrapOption#NL}.
  * </p>
  * <p> By default the check will check the following operators:
  *  {@link TokenTypes#BAND BAND},
@@ -88,14 +88,14 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @version 1.0
  */
 public class OperatorWrapCheck
-    extends AbstractOptionCheck<OperatorWrapOption>
+    extends AbstractOptionCheck<WrapOption>
 {
     /**
      * Sets the operator wrap option to new line.
      */
     public OperatorWrapCheck()
     {
-        super(OperatorWrapOption.NL, OperatorWrapOption.class);
+        super(WrapOption.NL, WrapOption.class);
     }
 
     @Override
@@ -123,6 +123,7 @@ public class OperatorWrapCheck
             TokenTypes.LOR,               // "||"
             TokenTypes.BAND,              // '&'
             TokenTypes.LAND,              // "&&"
+            TokenTypes.TYPE_EXTENSION_AND,
             TokenTypes.LITERAL_INSTANCEOF,
         };
     }
@@ -153,6 +154,7 @@ public class OperatorWrapCheck
             TokenTypes.BAND,              // '&'
             TokenTypes.LAND,              // "&&"
             TokenTypes.LITERAL_INSTANCEOF,
+            TokenTypes.TYPE_EXTENSION_AND,
             TokenTypes.ASSIGN,            // '='
             TokenTypes.DIV_ASSIGN,        // "/="
             TokenTypes.PLUS_ASSIGN,       // "+="
@@ -181,7 +183,7 @@ public class OperatorWrapCheck
                 return;
             }
         }
-        final OperatorWrapOption wOp = getAbstractOption();
+        final WrapOption wOp = getAbstractOption();
 
         final String text = aAST.getText();
         final int colNo = aAST.getColumnNo();
@@ -192,14 +194,14 @@ public class OperatorWrapCheck
         // Check if rest of line is whitespace, and not just the operator
         // by itself. This last bit is to handle the operator on a line by
         // itself.
-        if ((wOp == OperatorWrapOption.NL)
+        if ((wOp == WrapOption.NL)
             && !text.equals(currentLine.trim())
             && (currentLine.substring(colNo + text.length())
                 .trim().length() == 0))
         {
             log(lineNo, colNo, "line.new", text);
         }
-        else if ((wOp == OperatorWrapOption.EOL)
+        else if ((wOp == WrapOption.EOL)
                   && Utils.whitespaceBefore(colNo - 1, currentLine))
         {
             log(lineNo, colNo, "line.previous", text);
