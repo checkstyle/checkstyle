@@ -24,10 +24,10 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
  * @author Rick Giles
  * @version 1.0
  */
-public enum OperatorWrapOption
+public enum WrapOption
 {
-    /** Require that the operator is on a new line. */
+    /** Require that the token is on a new line. */
     NL,
-    /** Require that the operator is at the end of the line. */
+    /** Require that the token is at the end of the line. */
     EOL;
 }

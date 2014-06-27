@@ -1280,5 +1280,113 @@ import com.puppycrawl.tools.checkstyle.api.Check;
         </p>
       </subsection>
     </section>
+
+    <section name="SeparatorWrap">
+      <subsection name="Description">
+        <p>
+          Checks line wrapping with separators.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>option</td>
+            <td>policy on how to wrap lines</td>
+            <td>
+              <a href="property_types.html#wrapOp">wrap operator policy</a>
+            </td>
+            <td><code>eol</code></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+
+            <td>
+              subset of tokens <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
+              <a
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">COMMA</a>,
+               <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">SEMI</a>,
+                <a
+                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">ELLIPSIS</a>,
+                 <a
+                  href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#AT">AT</a>,
+                  <a
+                   href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LPAREN">LPAREN</a>,
+                   <a
+                    href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RPAREN">RPAREN</a>,
+                    <a
+                     href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">ARRAY_DECLARATOR</a>,
+                     <a
+                      href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RBRACK">RBRACK</a>
+            </td>
+
+            <td>
+             <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
+              <a
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">COMMA</a>
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          Code example for comma and dot at the new line:
+        </p>
+        <source>
+s
+    .isEmpty();
+foo(i
+    ,s);
+        </source>
+        <p>
+          An example of how to configure the check is:
+        </p>
+        <source>
+&lt;module name="SeparatorWrap"/&gt;
+        </source>
+        <p>
+          Code example for comma and dot at the previous line:
+        </p>
+        <source>
+s.
+    isEmpty();
+foo(i.
+    s);
+        </source>
+        <p>
+          An example of how to configure the check for comma at the new line is:
+        </p>
+        <source>
+&lt;module name="SeparatorWrap"&gt;
+    &lt;property name="tokens" value="COMMA"/&gt;
+    &lt;property name="option" value="nl"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
   </body>
 </document>

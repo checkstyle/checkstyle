@@ -48,3 +48,10 @@ class InputOpWrap
             c = new String(); 
     }
 }
+
+class badCase<T extends Foo &
+    Bar> {
+}
+
+class goodCase<T extends Foo & Bar> {
+}
