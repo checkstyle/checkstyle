@@ -21,6 +21,10 @@
           img="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&amp;type=11"
           href="http://sourceforge.net/projects/checkstyle"
           />
+    <logo name="Twitter"
+          img="images/twitter_button.png"
+          href="https://twitter.com/checkstyle_java"
+          />
   </poweredBy>
   
   <body>
