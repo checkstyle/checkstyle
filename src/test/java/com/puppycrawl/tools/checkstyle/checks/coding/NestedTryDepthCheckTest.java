@@ -31,9 +31,9 @@ public class NestedTryDepthCheckTest extends BaseCheckTestSupport
             createCheckConfig(NestedTryDepthCheck.class);
 
         final String[] expected = {
-            "20:17: Nested try depth is 2 (max allowed is 1).",
-            "31:17: Nested try depth is 2 (max allowed is 1).",
-            "32:21: Nested try depth is 3 (max allowed is 1).",
+            "22:17: Nested try depth is 2 (max allowed is 1).",
+            "33:17: Nested try depth is 2 (max allowed is 1).",
+            "34:21: Nested try depth is 3 (max allowed is 1).",
         };
 
         verify(checkConfig, getPath("coding/InputNestedTryDepth.java"), expected);
@@ -47,7 +47,7 @@ public class NestedTryDepthCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("max", "2");
 
         final String[] expected = {
-            "32:21: Nested try depth is 3 (max allowed is 2).",
+            "34:21: Nested try depth is 3 (max allowed is 2).",
         };
 
         verify(checkConfig, getPath("coding/InputNestedTryDepth.java"), expected);

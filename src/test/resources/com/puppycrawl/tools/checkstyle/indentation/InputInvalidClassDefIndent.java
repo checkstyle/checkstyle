@@ -6,7 +6,7 @@
 
 
 
-package com.puppycrawl.tools.checkstyle.indention;
+package com.puppycrawl.tools.checkstyle.indentation;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

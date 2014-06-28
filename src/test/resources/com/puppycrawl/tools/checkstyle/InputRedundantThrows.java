@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle;
+
 import java.io.IOException;
 
 public class InputRedundantThrows

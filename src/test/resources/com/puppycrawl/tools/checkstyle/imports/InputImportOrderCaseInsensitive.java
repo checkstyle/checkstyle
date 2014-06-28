@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.imports;
+
 import java.io.File;
 import java.io.InputStream;
 import java.io.IOException;

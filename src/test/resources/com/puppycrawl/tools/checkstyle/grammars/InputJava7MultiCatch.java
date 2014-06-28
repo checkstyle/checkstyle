@@ -8,7 +8,7 @@ import java.io.*;
 public class InputJava7MultiCatch
 {
     public static class CustomException extends Exception { }
-    public static class AnotherCustomException extends Exception { }
+    public static class AnotherCustomException extends RuntimeException { }
 
     public static void logException(Exception e) { }
 
@@ -23,7 +23,7 @@ public class InputJava7MultiCatch
         try {
             FileInputStream in = new FileInputStream("InputJava7MultiCatch.java");
             throw new CustomException(); 
-        } catch (final FileNotFoundException | CustomException | test.foo.AnotherCustomException e) {
+        } catch (final FileNotFoundException | CustomException | com.puppycrawl.tools.checkstyle.grammars.InputJava7MultiCatch.AnotherCustomException e) {
             logException(e);
         }
     }

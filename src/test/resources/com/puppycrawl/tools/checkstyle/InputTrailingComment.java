@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle;
+
 public class InputTrailingComment {
     int i; // don't use trailing comments :)
     // it fine to have comment w/o any statement

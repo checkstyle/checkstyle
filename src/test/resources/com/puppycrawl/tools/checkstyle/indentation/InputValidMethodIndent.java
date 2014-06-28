@@ -179,27 +179,7 @@ public class InputValidMethodIndent extends java.awt.event.MouseAdapter implemen
             .equals("blah");
 
 
-        if (!areOnSameLine((DetailAST)aChild.expr.getFirstChild(), 
-            (DetailAST) expr.getFirstChild())) 
-        {
-        }
-        
-        if (System.out.write(new byte[0],
-            0, 0)) {
-            System.out.println("blah");
-        }
-        
-        
-    }
-
-    
-    private void myFunc()
-        throws Exception
-    {
-    }
-
-    private void myFunc() throws Exception
-    {
+   
     }
         
 }

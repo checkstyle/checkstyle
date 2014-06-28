@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.naming;
+
 import java.io.Serializable;
 
 public class InputTypeParameterName <t>

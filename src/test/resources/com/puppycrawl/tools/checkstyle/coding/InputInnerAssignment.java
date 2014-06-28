@@ -1,5 +1,10 @@
 package com.puppycrawl.tools.checkstyle.coding;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.jar.JarInputStream;
+import java.util.jar.Manifest;
+
 public class InputInnerAssignment
 {
     void innerAssignments()

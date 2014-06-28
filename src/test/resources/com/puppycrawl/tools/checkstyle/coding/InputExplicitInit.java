@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.coding;
+
 public class InputExplicitInit {
     private int x = 0;
     private Object bar = null;

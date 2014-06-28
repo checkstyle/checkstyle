@@ -1,4 +1,4 @@
-package net.ubiquity.tools.checkstyle.tests;
+package com.puppycrawl.tools.checkstyle.coding;
 
 public class InputDeclarationOrder
 {

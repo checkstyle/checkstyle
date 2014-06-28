@@ -1,4 +1,4 @@
-package blah;
+package com.puppycrawl.tools.checkstyle;
 
 
 /**

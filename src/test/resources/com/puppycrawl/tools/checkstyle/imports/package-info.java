@@ -3,6 +3,6 @@
 // Created: 2005
 ////////////////////////////////////////////////////////////////////////////////
 @MyAnnotation
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.imports;
 
 import com.puppycrawl.tools.checkstyle.MyAnnotation;

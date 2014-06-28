@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.javadoc;
+
 public class InputNoJavadoc
 {
     public int i1;

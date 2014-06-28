@@ -718,11 +718,11 @@ public class IndentationCheckTest extends BaseCheckTestSupport
     {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         final String[] expected = {
-            "6: method call child at indentation level 10 not at correct indentation, 12",
             "8: method call child at indentation level 10 not at correct indentation, 12",
             "10: method call child at indentation level 10 not at correct indentation, 12",
-            "12: assign at indentation level 9 not at correct indentation, 12",
-            "13: assign child at indentation level 10 not at correct indentation, 12",
+            "12: method call child at indentation level 10 not at correct indentation, 12",
+            "14: assign at indentation level 9 not at correct indentation, 12",
+            "15: assign child at indentation level 10 not at correct indentation, 12",
         };
         verify(checkConfig, getPath("indentation/InputInvalidAssignIndent.java"), expected);
     }

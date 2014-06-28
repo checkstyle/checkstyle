@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.indentation;
+
 public class InputInvalidAssignIndent
 {
     void foo(String[] args)

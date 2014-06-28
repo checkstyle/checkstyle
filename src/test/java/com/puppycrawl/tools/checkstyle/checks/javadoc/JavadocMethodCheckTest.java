@@ -226,42 +226,42 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
     public void testScopes() throws Exception
     {
         final String[] expected = {
-            "8:5: Missing a Javadoc comment.",
-            "9:5: Missing a Javadoc comment.",
             "10:5: Missing a Javadoc comment.",
             "11:5: Missing a Javadoc comment.",
-            "19:9: Missing a Javadoc comment.",
-            "20:9: Missing a Javadoc comment.",
+            "12:5: Missing a Javadoc comment.",
+            "13:5: Missing a Javadoc comment.",
             "21:9: Missing a Javadoc comment.",
             "22:9: Missing a Javadoc comment.",
-            "31:9: Missing a Javadoc comment.",
-            "32:9: Missing a Javadoc comment.",
+            "23:9: Missing a Javadoc comment.",
+            "24:9: Missing a Javadoc comment.",
             "33:9: Missing a Javadoc comment.",
             "34:9: Missing a Javadoc comment.",
-            "43:9: Missing a Javadoc comment.",
-            "44:9: Missing a Javadoc comment.",
+            "35:9: Missing a Javadoc comment.",
+            "36:9: Missing a Javadoc comment.",
             "45:9: Missing a Javadoc comment.",
             "46:9: Missing a Javadoc comment.",
-            "56:5: Missing a Javadoc comment.",
-            "57:5: Missing a Javadoc comment.",
+            "47:9: Missing a Javadoc comment.",
+            "48:9: Missing a Javadoc comment.",
             "58:5: Missing a Javadoc comment.",
             "59:5: Missing a Javadoc comment.",
-            "67:9: Missing a Javadoc comment.",
-            "68:9: Missing a Javadoc comment.",
+            "60:5: Missing a Javadoc comment.",
+            "61:5: Missing a Javadoc comment.",
             "69:9: Missing a Javadoc comment.",
             "70:9: Missing a Javadoc comment.",
-            "79:9: Missing a Javadoc comment.",
-            "80:9: Missing a Javadoc comment.",
+            "71:9: Missing a Javadoc comment.",
+            "72:9: Missing a Javadoc comment.",
             "81:9: Missing a Javadoc comment.",
             "82:9: Missing a Javadoc comment.",
-            "91:9: Missing a Javadoc comment.",
-            "92:9: Missing a Javadoc comment.",
+            "83:9: Missing a Javadoc comment.",
+            "84:9: Missing a Javadoc comment.",
             "93:9: Missing a Javadoc comment.",
             "94:9: Missing a Javadoc comment.",
-            "103:9: Missing a Javadoc comment.",
-            "104:9: Missing a Javadoc comment.",
+            "95:9: Missing a Javadoc comment.",
+            "96:9: Missing a Javadoc comment.",
             "105:9: Missing a Javadoc comment.",
-            "106:9: Missing a Javadoc comment.", };
+            "106:9: Missing a Javadoc comment.",
+            "107:9: Missing a Javadoc comment.",
+            "108:9: Missing a Javadoc comment.", };
         verify(mCheckConfig, getPath("javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
     }
@@ -271,10 +271,10 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
     {
         mCheckConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "8:5: Missing a Javadoc comment.",
-            "9:5: Missing a Javadoc comment.",
-            "19:9: Missing a Javadoc comment.",
-            "20:9: Missing a Javadoc comment.", };
+            "10:5: Missing a Javadoc comment.",
+            "11:5: Missing a Javadoc comment.",
+            "21:9: Missing a Javadoc comment.",
+            "22:9: Missing a Javadoc comment.", };
         verify(mCheckConfig, getPath("javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
     }
@@ -285,38 +285,38 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("scope", Scope.PRIVATE.getName());
         mCheckConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "10:5: Missing a Javadoc comment.",
-            "11:5: Missing a Javadoc comment.",
-            "21:9: Missing a Javadoc comment.",
-            "22:9: Missing a Javadoc comment.",
-            "31:9: Missing a Javadoc comment.",
-            "32:9: Missing a Javadoc comment.",
+            "12:5: Missing a Javadoc comment.",
+            "13:5: Missing a Javadoc comment.",
+            "23:9: Missing a Javadoc comment.",
+            "24:9: Missing a Javadoc comment.",
             "33:9: Missing a Javadoc comment.",
             "34:9: Missing a Javadoc comment.",
-            "43:9: Missing a Javadoc comment.",
-            "44:9: Missing a Javadoc comment.",
+            "35:9: Missing a Javadoc comment.",
+            "36:9: Missing a Javadoc comment.",
             "45:9: Missing a Javadoc comment.",
             "46:9: Missing a Javadoc comment.",
-            "56:5: Missing a Javadoc comment.",
-            "57:5: Missing a Javadoc comment.",
+            "47:9: Missing a Javadoc comment.",
+            "48:9: Missing a Javadoc comment.",
             "58:5: Missing a Javadoc comment.",
             "59:5: Missing a Javadoc comment.",
-            "67:9: Missing a Javadoc comment.",
-            "68:9: Missing a Javadoc comment.",
+            "60:5: Missing a Javadoc comment.",
+            "61:5: Missing a Javadoc comment.",
             "69:9: Missing a Javadoc comment.",
             "70:9: Missing a Javadoc comment.",
-            "79:9: Missing a Javadoc comment.",
-            "80:9: Missing a Javadoc comment.",
+            "71:9: Missing a Javadoc comment.",
+            "72:9: Missing a Javadoc comment.",
             "81:9: Missing a Javadoc comment.",
             "82:9: Missing a Javadoc comment.",
-            "91:9: Missing a Javadoc comment.",
-            "92:9: Missing a Javadoc comment.",
+            "83:9: Missing a Javadoc comment.",
+            "84:9: Missing a Javadoc comment.",
             "93:9: Missing a Javadoc comment.",
             "94:9: Missing a Javadoc comment.",
-            "103:9: Missing a Javadoc comment.",
-            "104:9: Missing a Javadoc comment.",
+            "95:9: Missing a Javadoc comment.",
+            "96:9: Missing a Javadoc comment.",
             "105:9: Missing a Javadoc comment.",
-            "106:9: Missing a Javadoc comment.", };
+            "106:9: Missing a Javadoc comment.",
+            "107:9: Missing a Javadoc comment.",
+            "108:9: Missing a Javadoc comment.", };
         verify(mCheckConfig, getPath("javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
     }
@@ -334,15 +334,16 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
     public void testSetterGetterOff() throws Exception
     {
         final String[] expected = {
-            "5:5: Missing a Javadoc comment.",
-            "10:5: Missing a Javadoc comment.",
-            "15:5: Missing a Javadoc comment.",
-            "20:5: Missing a Javadoc comment.",
-            "26:5: Missing a Javadoc comment.",
-            "30:5: Missing a Javadoc comment.",
-            "35:5: Missing a Javadoc comment.",
-            "41:5: Missing a Javadoc comment.",
-            "46:5: Missing a Javadoc comment.", };
+            "7:5: Missing a Javadoc comment.",
+            "12:5: Missing a Javadoc comment.",
+            "17:5: Missing a Javadoc comment.",
+            "22:5: Missing a Javadoc comment.",
+            "28:5: Missing a Javadoc comment.",
+            "32:5: Missing a Javadoc comment.",
+            "37:5: Missing a Javadoc comment.",
+            "43:5: Missing a Javadoc comment.",
+            "48:5: Missing a Javadoc comment.",
+            "53:5: Missing a Javadoc comment.", };
         verify(mCheckConfig, getPath("javadoc" + File.separator
                                     + "InputSetterGetter.java"), expected);
     }
@@ -352,12 +353,13 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
     {
         mCheckConfig.addAttribute("allowMissingPropertyJavadoc", "true");
         final String[] expected = {
-            "15:5: Missing a Javadoc comment.",
-            "20:5: Missing a Javadoc comment.",
-            "26:5: Missing a Javadoc comment.",
-            "30:5: Missing a Javadoc comment.",
-            "35:5: Missing a Javadoc comment.",
-            "41:5: Missing a Javadoc comment.", };
+            "17:5: Missing a Javadoc comment.",
+            "22:5: Missing a Javadoc comment.",
+            "28:5: Missing a Javadoc comment.",
+            "32:5: Missing a Javadoc comment.",
+            "37:5: Missing a Javadoc comment.",
+            "43:5: Missing a Javadoc comment.",
+            "53:5: Missing a Javadoc comment.", };
         verify(mCheckConfig, getPath("javadoc" + File.separator
                                     + "InputSetterGetter.java"), expected);
     }
@@ -400,11 +402,11 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         mCheckConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {
-            "15:34: Expected @throws tag for 'RE'.",
-            "31:13: Expected @param tag for '<NPE>'.",
-            "38:12: Unused @throws tag for 'E'.",
-            "41:38: Expected @throws tag for 'RuntimeException'.",
-            "42:13: Expected @throws tag for 'java.lang.RuntimeException'.",
+            "17:34: Expected @throws tag for 'RE'.",
+            "33:13: Expected @param tag for '<NPE>'.",
+            "40:12: Unused @throws tag for 'E'.",
+            "43:38: Expected @throws tag for 'RuntimeException'.",
+            "44:13: Expected @throws tag for 'java.lang.RuntimeException'.",
         };
         verify(mCheckConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
@@ -414,11 +416,11 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
     {
         mCheckConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         final String[] expected = {
-            "15:34: Expected @throws tag for 'RE'.",
-            "31:13: Expected @param tag for '<NPE>'.",
-            "38:12: Unused @throws tag for 'E'.",
-            "41:38: Expected @throws tag for 'RuntimeException'.",
-            "42:13: Expected @throws tag for 'java.lang.RuntimeException'.",
+            "17:34: Expected @throws tag for 'RE'.",
+            "33:13: Expected @param tag for '<NPE>'.",
+            "40:12: Unused @throws tag for 'E'.",
+            "43:38: Expected @throws tag for 'RuntimeException'.",
+            "44:13: Expected @throws tag for 'java.lang.RuntimeException'.",
         };
         verify(mCheckConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
@@ -427,12 +429,12 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
     public void test_generics_3() throws Exception
     {
         final String[] expected = {
-            "6:8: Unused @throws tag for 'RE'.",
-            "15:34: Expected @throws tag for 'RE'.",
-            "31:13: Expected @param tag for '<NPE>'.",
-            "38:12: Unused @throws tag for 'E'.",
-            "41:38: Expected @throws tag for 'RuntimeException'.",
-            "42:13: Expected @throws tag for 'java.lang.RuntimeException'.",
+            "8:8: Unused @throws tag for 'RE'.",
+            "17:34: Expected @throws tag for 'RE'.",
+            "33:13: Expected @param tag for '<NPE>'.",
+            "40:12: Unused @throws tag for 'E'.",
+            "43:38: Expected @throws tag for 'RuntimeException'.",
+            "44:13: Expected @throws tag for 'java.lang.RuntimeException'.",
         };
         verify(mCheckConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
@@ -450,12 +452,12 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport
     public void testInheritDoc() throws Exception
     {
         final String[] expected = {
-            "4:5: Invalid use of the {@inheritDoc} tag.",
-            "9:5: Invalid use of the {@inheritDoc} tag.",
-            "29:5: Invalid use of the {@inheritDoc} tag.",
-            "34:5: Invalid use of the {@inheritDoc} tag.",
-            "39:5: Invalid use of the {@inheritDoc} tag.",
-            "44:5: Invalid use of the {@inheritDoc} tag.",
+            "6:5: Invalid use of the {@inheritDoc} tag.",
+            "11:5: Invalid use of the {@inheritDoc} tag.",
+            "31:5: Invalid use of the {@inheritDoc} tag.",
+            "36:5: Invalid use of the {@inheritDoc} tag.",
+            "41:5: Invalid use of the {@inheritDoc} tag.",
+            "46:5: Invalid use of the {@inheritDoc} tag.",
         };
         verify(mCheckConfig, getPath("javadoc/InputInheritDoc.java"), expected);
     }

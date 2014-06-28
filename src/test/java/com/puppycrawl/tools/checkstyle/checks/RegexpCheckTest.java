@@ -220,7 +220,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
-            "2: Line matches the illegal pattern '" + illegal + "'.",
+            "4: Line matches the illegal pattern '" + illegal + "'.",
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -250,7 +250,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
-            "17: Line matches the illegal pattern '" + illegal + "'.",
+            "19: Line matches the illegal pattern '" + illegal + "'.",
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -308,7 +308,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
-            "20: Line matches the illegal pattern '" + illegal + "'.",
+            "22: Line matches the illegal pattern '" + illegal + "'.",
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -323,7 +323,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
-            "21: Line matches the illegal pattern '" + illegal + "'.",
+            "23: Line matches the illegal pattern '" + illegal + "'.",
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }

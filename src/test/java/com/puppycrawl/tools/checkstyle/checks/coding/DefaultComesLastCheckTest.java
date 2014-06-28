@@ -31,7 +31,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(DefaultComesLastCheck.class);
         final String[] expected = {
-            "22:9: Default should be last label in the switch.",
+            "24:9: Default should be last label in the switch.",
         };
         verify(checkConfig,
                getPath("coding" + File.separator + "InputDefaultComesLast.java"),

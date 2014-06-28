@@ -32,7 +32,7 @@ public class MissingCtorCheckTest extends BaseCheckTestSupport
             createCheckConfig(MissingCtorCheck.class);
 
         final String[] expected = {
-            "1:1: Class should define a constructor.",
+            "3:1: Class should define a constructor.",
         };
 
         verify(checkConfig,

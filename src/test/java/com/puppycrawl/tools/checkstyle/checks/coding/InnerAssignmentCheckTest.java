@@ -32,23 +32,23 @@ public class InnerAssignmentCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(InnerAssignmentCheck.class);
         final String[] expected = {
-            "11:15: Inner assignments should be avoided.",
-            "11:19: Inner assignments should be avoided.",
-            "13:39: Inner assignments should be avoided.",
-            "15:35: Inner assignments should be avoided.",
+            "16:15: Inner assignments should be avoided.",
+            "16:19: Inner assignments should be avoided.",
+            "18:39: Inner assignments should be avoided.",
+            "20:35: Inner assignments should be avoided.",
 
-            "33:16: Inner assignments should be avoided.",
-            "34:24: Inner assignments should be avoided.",
-            "35:19: Inner assignments should be avoided.",
-            "36:17: Inner assignments should be avoided.",
-            "37:29: Inner assignments should be avoided.",
-            "38:20: Inner assignments should be avoided.",
-            "39:17: Inner assignments should be avoided.",
-            "39:31: Inner assignments should be avoided.",
-            "39:41: Inner assignments should be avoided.",
-            "40:16: Inner assignments should be avoided.",
-            "40:27: Inner assignments should be avoided.",
-            "41:32: Inner assignments should be avoided.",
+            "38:16: Inner assignments should be avoided.",
+            "39:24: Inner assignments should be avoided.",
+            "40:19: Inner assignments should be avoided.",
+            "41:17: Inner assignments should be avoided.",
+            "42:29: Inner assignments should be avoided.",
+            "43:20: Inner assignments should be avoided.",
+            "44:17: Inner assignments should be avoided.",
+            "44:31: Inner assignments should be avoided.",
+            "44:41: Inner assignments should be avoided.",
+            "45:16: Inner assignments should be avoided.",
+            "45:27: Inner assignments should be avoided.",
+            "46:32: Inner assignments should be avoided.",
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputInnerAssignment.java"), expected);
     }

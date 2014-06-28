@@ -58,10 +58,10 @@ public class MemberNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = {
-            "8:16: Name '_public' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "9:19: Name '_protected' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "10:9: Name '_package' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "11:17: Name '_private' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "10:16: Name '_public' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "11:19: Name '_protected' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "12:9: Name '_package' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "13:17: Name '_private' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -75,10 +75,10 @@ public class MemberNameCheckTest
             createCheckConfig(MemberNameCheck.class);
         checkConfig.addAttribute("format", "^_[a-z]*$");
         final String[] expected = {
-            "3:16: Name 'mPublic' must match pattern '^_[a-z]*$'.",
-            "4:19: Name 'mProtected' must match pattern '^_[a-z]*$'.",
-            "5:9: Name 'mPackage' must match pattern '^_[a-z]*$'.",
-            "6:17: Name 'mPrivate' must match pattern '^_[a-z]*$'.",
+            "5:16: Name 'mPublic' must match pattern '^_[a-z]*$'.",
+            "6:19: Name 'mProtected' must match pattern '^_[a-z]*$'.",
+            "7:9: Name 'mPackage' must match pattern '^_[a-z]*$'.",
+            "8:17: Name 'mPrivate' must match pattern '^_[a-z]*$'.",
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -95,7 +95,7 @@ public class MemberNameCheckTest
         checkConfig.addAttribute("applyToPackage", "false");
         checkConfig.addAttribute("applyToPrivate", "false");
         final String[] expected = {
-            "3:16: Name 'mPublic' must match pattern '^_[a-z]*$'.",
+            "5:16: Name 'mPublic' must match pattern '^_[a-z]*$'.",
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -112,7 +112,7 @@ public class MemberNameCheckTest
         checkConfig.addAttribute("applyToPackage", "false");
         checkConfig.addAttribute("applyToPrivate", "false");
         final String[] expected = {
-            "4:19: Name 'mProtected' must match pattern '^_[a-z]*$'.",
+            "6:19: Name 'mProtected' must match pattern '^_[a-z]*$'.",
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -129,7 +129,7 @@ public class MemberNameCheckTest
         checkConfig.addAttribute("applyToProtected", "false");
         checkConfig.addAttribute("applyToPrivate", "false");
         final String[] expected = {
-            "5:9: Name 'mPackage' must match pattern '^_[a-z]*$'.",
+            "7:9: Name 'mPackage' must match pattern '^_[a-z]*$'.",
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -146,7 +146,7 @@ public class MemberNameCheckTest
         checkConfig.addAttribute("applyToProtected", "false");
         checkConfig.addAttribute("applyToPackage", "false");
         final String[] expected = {
-            "6:17: Name 'mPrivate' must match pattern '^_[a-z]*$'.",
+            "8:17: Name 'mPrivate' must match pattern '^_[a-z]*$'.",
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),
@@ -160,9 +160,9 @@ public class MemberNameCheckTest
             createCheckConfig(MemberNameCheck.class);
         checkConfig.addAttribute("applyToPrivate", "false");
         final String[] expected = {
-            "8:16: Name '_public' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "9:19: Name '_protected' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "10:9: Name '_package' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "10:16: Name '_public' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "11:19: Name '_protected' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "12:9: Name '_package' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
         verify(checkConfig,
                getPath("naming" + File.separator + "InputMemberName.java"),

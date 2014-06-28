@@ -40,7 +40,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
         String[] expected = {
             "6:13: Declaring variables, return values or parameters of type 'AbstractClass' is not allowed.",
             "9:13: Declaring variables, return values or parameters of type "
-                + "'com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass'"
+                + "'com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass'"
                 + " is not allowed.",
             "16:13: Declaring variables, return values or parameters of type 'java.util.Hashtable' is not allowed.",
             "17:13: Declaring variables, return values or parameters of type 'Hashtable' is not allowed.",
@@ -57,7 +57,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
         String[] expected = {
             "6:13: Declaring variables, return values or parameters of type 'AbstractClass' is not allowed.",
             "9:13: Declaring variables, return values or parameters of type "
-                + "'com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass'"
+                + "'com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass'"
                 + " is not allowed.",
             "16:13: Declaring variables, return values or parameters of type 'java.util.Hashtable' is not allowed.",
         };
@@ -85,7 +85,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport
 
         String[] expected = {
             "9:13: Declaring variables, return values or parameters of type "
-                + "'com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass'"
+                + "'com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass'"
                 + " is not allowed.",
             "16:13: Declaring variables, return values or parameters of type 'java.util.Hashtable' is not allowed.",
             "17:13: Declaring variables, return values or parameters of type 'Hashtable' is not allowed.",

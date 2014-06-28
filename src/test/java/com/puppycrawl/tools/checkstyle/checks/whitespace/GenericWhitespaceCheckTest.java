@@ -69,8 +69,8 @@ public class GenericWhitespaceCheckTest
             "30:21: '>' is followed by an illegal character.",
             "42:21: '<' is preceded with whitespace.",
             "42:30: '>' is followed by whitespace.",
-            "60:59: '&' is not preceded with whitespace.",
-            "63:59: '>' is followed by whitespace.",
+            "60:60: '&' is not preceded with whitespace.",
+            "63:60: '>' is followed by whitespace.",
         };
         verify(mCheckConfig,
                 getPath("whitespace/InputGenericWhitespaceCheck.java"),

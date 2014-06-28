@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.indentation;
+package com.puppycrawl.tools.checkstyle.indentation;
 
 public class InvalidInputThrowsIndent {
 
@@ -14,7 +14,7 @@ public class InvalidInputThrowsIndent {
 
     // This is the out of the box default configuration, but should fail
     // for our reconfigured test.
-    private void myFunc()
+    private void myFunc2()
         throws Exception
     {
     }

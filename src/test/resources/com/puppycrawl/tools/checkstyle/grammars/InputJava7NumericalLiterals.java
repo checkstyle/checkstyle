@@ -35,18 +35,18 @@ public class InputJava7NumericalLiterals
     // the grammar considers floating point values to be of type "float" by default which is wrong, it should be "double".
     
     float f1 = .1f;
-    float f2 = 1.; // double "downgraded" to float
+    float f2 = (float) 1.; // double "downgraded" to float
     float f3 = 0f;
-    float f4 = 1e0; // double "downgraded" to float
+    float f4 = (float) 1e0; // double "downgraded" to float
     float f5 = 1e0f;
     float f6 = 12.345F;
-    float f7 = .5____2_1; // double "downgraded" to float
-    float f8 = 1__42__3.; // double "downgraded" to float
+    float f7 = (float) .5____2_1; // double "downgraded" to float
+    float f8 = (float) 1__42__3.; // double "downgraded" to float
     float f9 = 0__2_4__324f;
-    float f10 = 1_34e0; // double "downgraded" to float
+    float f10 = (float) 1_34e0; // double "downgraded" to float
     float f11 = 1__1_2e0f;
     float f12 = 2_1___2.3__4_5F;
-    float f13 = 1_34e0__4__3; // double "downgraded" to float
+    float f13 = (float) 1_34e0__4__3; // double "downgraded" to float
     float f14 = 1__1_2e00__000_4f;
     float f15 = 2_1___2.3__4_5e00______0_5F;
     
@@ -67,7 +67,7 @@ public class InputJava7NumericalLiterals
     double d15 = 2_1___2.3__4_5e00______0_5D;
     double d16 = 0.12___34; // "float" promoted to double
     
-    float hf1 = 0x.1___AFp1; // double "downgraded" to float
+    float hf1 = (float) 0x.1___AFp1; // double "downgraded" to float
     float hf2 = 0x.1___AFp0__0__0f;
     float hf3 = 0x2__3_34.4___AFP00_00f;
     

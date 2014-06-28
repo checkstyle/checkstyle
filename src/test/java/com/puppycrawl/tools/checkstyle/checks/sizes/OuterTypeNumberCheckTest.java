@@ -30,7 +30,7 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeNumberCheck.class);
         final String[] expected = {
-            "6:34: Outer types defined is 3 (max allowed is 1).",
+            "6:1: Outer types defined is 3 (max allowed is 1).",
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

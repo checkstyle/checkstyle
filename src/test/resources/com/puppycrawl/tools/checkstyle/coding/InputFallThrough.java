@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.coding;
+
 public class InputFallThrough
 {
     void method(int i, int j, boolean cond) {

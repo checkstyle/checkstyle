@@ -37,12 +37,12 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport
     public void testDefaults() throws Exception
     {
         final String[] expected = {
-            "2: Don't use trailing comments.",
-            "5: Don't use trailing comments.",
-            "6: Don't use trailing comments.",
-            "16: Don't use trailing comments.",
-            "17: Don't use trailing comments.",
-            "27: Don't use trailing comments.",
+            "4: Don't use trailing comments.",
+            "7: Don't use trailing comments.",
+            "8: Don't use trailing comments.",
+            "18: Don't use trailing comments.",
+            "19: Don't use trailing comments.",
+            "29: Don't use trailing comments.",
         };
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -52,11 +52,11 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport
     {
         mCheckConfig.addAttribute("legalComment", "^NOI18N$");
         final String[] expected = {
-            "2: Don't use trailing comments.",
-            "5: Don't use trailing comments.",
-            "6: Don't use trailing comments.",
-            "16: Don't use trailing comments.",
-            "17: Don't use trailing comments.",
+            "4: Don't use trailing comments.",
+            "7: Don't use trailing comments.",
+            "8: Don't use trailing comments.",
+            "18: Don't use trailing comments.",
+            "19: Don't use trailing comments.",
         };
         verify(mCheckConfig, getPath("InputTrailingComment.java"), expected);
     }

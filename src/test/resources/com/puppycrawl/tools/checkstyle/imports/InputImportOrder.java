@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.imports;
+
 import java.awt.Button;
 import java.awt.Frame;
 import java.awt.Dialog;

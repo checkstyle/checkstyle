@@ -37,12 +37,12 @@ public class RedundantThrowsCheckTest extends BaseCheckTestSupport
     public void testDefaults() throws Exception
     {
         final String[] expected = {
-            "7:37: Redundant throws: 'java.io.FileNotFoundException' is subclass of 'java.io.IOException'.",
-            "13:16: Redundant throws: 'RuntimeException' is unchecked exception.",
-            "19:29: Redundant throws: 'java.io.IOException' listed more then one time.",
-            "39:27: Redundant throws: 'NullPointerException' is subclass of 'RuntimeException'.",
-            "39:27: Redundant throws: 'NullPointerException' is unchecked exception.",
-            "39:49: Redundant throws: 'RuntimeException' is unchecked exception.",
+            "9:37: Redundant throws: 'java.io.FileNotFoundException' is subclass of 'java.io.IOException'.",
+            "15:16: Redundant throws: 'RuntimeException' is unchecked exception.",
+            "21:29: Redundant throws: 'java.io.IOException' listed more then one time.",
+            "41:27: Redundant throws: 'NullPointerException' is subclass of 'RuntimeException'.",
+            "41:27: Redundant throws: 'NullPointerException' is unchecked exception.",
+            "41:49: Redundant throws: 'RuntimeException' is unchecked exception.",
         };
         verify(mCheckConfig, getPath("InputRedundantThrows.java"), expected);
     }
@@ -52,10 +52,10 @@ public class RedundantThrowsCheckTest extends BaseCheckTestSupport
     {
         mCheckConfig.addAttribute("allowUnchecked", "true");
         final String[] expected = {
-            "7:37: Redundant throws: 'java.io.FileNotFoundException' is subclass of 'java.io.IOException'.",
-            "19:29: Redundant throws: 'java.io.IOException' listed more then one time.",
+            "9:37: Redundant throws: 'java.io.FileNotFoundException' is subclass of 'java.io.IOException'.",
+            "21:29: Redundant throws: 'java.io.IOException' listed more then one time.",
 //             "35:27: Unable to get class information for WrongException.",
-            "39:27: Redundant throws: 'NullPointerException' is subclass of 'RuntimeException'.",
+            "41:27: Redundant throws: 'NullPointerException' is subclass of 'RuntimeException'.",
         };
         verify(mCheckConfig, getPath("InputRedundantThrows.java"), expected);
     }
@@ -65,10 +65,10 @@ public class RedundantThrowsCheckTest extends BaseCheckTestSupport
     {
         mCheckConfig.addAttribute("allowSubclasses", "true");
         final String[] expected = {
-            "13:16: Redundant throws: 'RuntimeException' is unchecked exception.",
-            "19:29: Redundant throws: 'java.io.IOException' listed more then one time.",
-            "39:27: Redundant throws: 'NullPointerException' is unchecked exception.",
-            "39:49: Redundant throws: 'RuntimeException' is unchecked exception.",
+            "15:16: Redundant throws: 'RuntimeException' is unchecked exception.",
+            "21:29: Redundant throws: 'java.io.IOException' listed more then one time.",
+            "41:27: Redundant throws: 'NullPointerException' is unchecked exception.",
+            "41:49: Redundant throws: 'RuntimeException' is unchecked exception.",
         };
         verify(mCheckConfig, getPath("InputRedundantThrows.java"), expected);
     }
@@ -79,7 +79,7 @@ public class RedundantThrowsCheckTest extends BaseCheckTestSupport
         mCheckConfig.addAttribute("allowSubclasses", "true");
         mCheckConfig.addAttribute("allowUnchecked", "true");
         final String[] expected = {
-            "19:29: Redundant throws: 'java.io.IOException' listed more then one time.",
+            "21:29: Redundant throws: 'java.io.IOException' listed more then one time.",
         };
         verify(mCheckConfig, getPath("InputRedundantThrows.java"), expected);
     }
@@ -116,17 +116,17 @@ public class RedundantThrowsCheckTest extends BaseCheckTestSupport
     public void test_generics_params() throws Exception
     {
         final String[] expected = {
-            "15:34: Redundant throws: 'RE' is unchecked exception.",
-            "23:37: Redundant throws: 'RE' is subclass of 'E'.",
-            "23:37: Redundant throws: 'RE' is unchecked exception.",
-            "31:69: Redundant throws: 'NPE' is subclass of 'RE'.",
-            "31:69: Redundant throws: 'NPE' is unchecked exception.",
-            "31:74: Redundant throws: 'RE' is unchecked exception.",
-            "41:38: Redundant throws: 'RuntimeException' is subclass of 'RE'.",
-            "41:38: Redundant throws: 'RuntimeException' is unchecked exception.",
-            "41:56: Redundant throws: 'RE' is unchecked exception.",
-            "42:13: Redundant throws: 'java.lang.RuntimeException' is unchecked exception.",
-            "42:13: Redundant throws: 'java.lang.RuntimeException' listed more then one time.",
+            "17:34: Redundant throws: 'RE' is unchecked exception.",
+            "25:37: Redundant throws: 'RE' is subclass of 'E'.",
+            "25:37: Redundant throws: 'RE' is unchecked exception.",
+            "33:69: Redundant throws: 'NPE' is subclass of 'RE'.",
+            "33:69: Redundant throws: 'NPE' is unchecked exception.",
+            "33:74: Redundant throws: 'RE' is unchecked exception.",
+            "43:38: Redundant throws: 'RuntimeException' is subclass of 'RE'.",
+            "43:38: Redundant throws: 'RuntimeException' is unchecked exception.",
+            "43:56: Redundant throws: 'RE' is unchecked exception.",
+            "44:13: Redundant throws: 'java.lang.RuntimeException' is unchecked exception.",
+            "44:13: Redundant throws: 'java.lang.RuntimeException' listed more then one time.",
         };
         verify(mCheckConfig, getPath("javadoc/TestGenerics.java"), expected);
     }

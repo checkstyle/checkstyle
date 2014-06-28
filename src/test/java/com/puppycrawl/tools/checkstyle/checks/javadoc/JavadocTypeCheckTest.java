@@ -259,15 +259,15 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "1: Missing a Javadoc comment.",
-            "13: Missing a Javadoc comment.",
-            "25: Missing a Javadoc comment.",
-            "37: Missing a Javadoc comment.",
-            "50: Missing a Javadoc comment.",
-            "61: Missing a Javadoc comment.",
-            "73: Missing a Javadoc comment.",
-            "85: Missing a Javadoc comment.",
-            "97: Missing a Javadoc comment.",
+            "3: Missing a Javadoc comment.",
+            "15: Missing a Javadoc comment.",
+            "27: Missing a Javadoc comment.",
+            "39: Missing a Javadoc comment.",
+            "52: Missing a Javadoc comment.",
+            "63: Missing a Javadoc comment.",
+            "75: Missing a Javadoc comment.",
+            "87: Missing a Javadoc comment.",
+            "99: Missing a Javadoc comment.",
         };
         verify(checkConfig,
                getPath("javadoc" + File.separator + "InputNoJavadoc.java"),
@@ -281,8 +281,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "1: Missing a Javadoc comment.",
-            "13: Missing a Javadoc comment.",
+            "3: Missing a Javadoc comment.",
+            "15: Missing a Javadoc comment.",
         };
         verify(checkConfig,
                getPath("javadoc" + File.separator + "InputNoJavadoc.java"),
@@ -297,13 +297,13 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
         checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "25: Missing a Javadoc comment.",
-            "37: Missing a Javadoc comment.",
-            "50: Missing a Javadoc comment.",
-            "61: Missing a Javadoc comment.",
-            "73: Missing a Javadoc comment.",
-            "85: Missing a Javadoc comment.",
-            "97: Missing a Javadoc comment.",
+            "27: Missing a Javadoc comment.",
+            "39: Missing a Javadoc comment.",
+            "52: Missing a Javadoc comment.",
+            "63: Missing a Javadoc comment.",
+            "75: Missing a Javadoc comment.",
+            "87: Missing a Javadoc comment.",
+            "99: Missing a Javadoc comment.",
         };
         verify(checkConfig,
                getPath("javadoc" + File.separator + "InputNoJavadoc.java"),
@@ -339,7 +339,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "3:4: Unknown tag 'mytag'.",
+            "5:4: Unknown tag 'mytag'.",
         };
         verify(checkConfig,
                getPath("javadoc" + File.separator + "InputBadTag.java"),

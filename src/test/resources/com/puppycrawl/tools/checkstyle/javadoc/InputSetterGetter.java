@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.javadoc;
+
 public class InputSetterGetter
 {
     private int mNumber;
@@ -14,7 +16,7 @@ public class InputSetterGetter
 
     public void setNumber1()
     {
-        mNumber = number;
+        mNumber = mNumber;
     }
 
     public void setNumber2(int number)
@@ -34,7 +36,7 @@ public class InputSetterGetter
 
     public int getCost2()
     {
-        x = 4;
+    	mNumber = 4;
         return 666;
     }
 
@@ -47,4 +49,6 @@ public class InputSetterGetter
     {
         return false;
     }
+    
+    private void firePropertyChanged(){}
 }

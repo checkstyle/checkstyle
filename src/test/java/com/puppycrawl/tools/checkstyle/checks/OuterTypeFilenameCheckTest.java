@@ -39,7 +39,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeFilenameCheck.class);
         final String[] expected = {
-            "3: The name of the outer type and the file do not match.",
+            "4: The name of the outer type and the file do not match.",
         };
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }

@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.whitespace;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -57,9 +57,9 @@ class InputGenericWhitespaceCheck implements Comparable<InputGenericWhitespaceCh
     public static class IntEnumValueType<E extends Enum<E> & IntEnum> {
     }
 
-    public static class IntEnumValueType<E extends Enum<E>& IntEnum> {
+    public static class IntEnumValueType2<E extends Enum<E>& IntEnum> {
     }
 
-    public static class IntEnumValueType<E extends Enum<E>  & IntEnum> {
+    public static class IntEnumValueType3<E extends Enum<E>  & IntEnum> {
     }
 }

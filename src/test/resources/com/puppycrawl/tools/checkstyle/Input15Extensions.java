@@ -1,4 +1,5 @@
 // someexamples of 1.5 extensions
+package com.puppycrawl.tools.checkstyle;
 
 @interface MyAnnotation1 {
     String name();

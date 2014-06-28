@@ -1,3 +1,5 @@
+package com.puppycrawl.tools.checkstyle.naming;
+
 public class InputMemberName
 {
     public int mPublic;

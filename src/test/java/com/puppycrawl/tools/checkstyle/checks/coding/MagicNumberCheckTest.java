@@ -69,7 +69,7 @@ public class MagicNumberCheckTest
             "174:15: '21' is a magic number.",
             "178:15: '37' is a magic number.",
             "182:15: '101' is a magic number.",
-            "185:30: '42' is a magic number.",
+            "185:26: '42' is a magic number.",
         };
         verify(checkConfig, getPath("InputMagicNumber.java"), expected);
     }

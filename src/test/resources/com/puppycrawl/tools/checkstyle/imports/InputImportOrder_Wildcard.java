@@ -1,4 +1,4 @@
-
+package com.puppycrawl.tools.checkstyle.imports;
 // groups are configured as follows
 // com.puppycrawl,*,java
 // the trailing javax.crypto.Cipher; should be flagged as an error.

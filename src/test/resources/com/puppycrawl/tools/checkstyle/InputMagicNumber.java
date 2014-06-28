@@ -182,7 +182,8 @@ class TestHashCodeMethod {
         int z=101;
     }
 
-    @javax.management.MXBean(42)
+    @IntMethodAnnotation(42)
     public void another() {
     }
+    
 }
