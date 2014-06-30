@@ -21,10 +21,12 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.regex.PatternSyntaxException;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import java.util.regex.PatternSyntaxException;
-import org.junit.Test;
 
 /**
  * Tests SuppressionsLoader.
@@ -55,9 +57,28 @@ public class SuppressionsLoaderTest
     }
 
     @Test
-    public void testLoadFromURL() throws CheckstyleException
+    public void testLoadFromURL() throws CheckstyleException, InterruptedException
     {
-        final FilterSet fc = SuppressionsLoader.loadSuppressions("http://checkstyle.sourceforge.net/files/suppressions_none.xml");
+    	FilterSet fc = null;
+    	
+    	int attemptCount = 0;
+    	while (attemptCount < 5)
+    	try{
+    		
+    		fc = SuppressionsLoader.loadSuppressions("http://checkstyle.sourceforge.net/files/suppressions_none.xml");
+    		break;
+    		
+    	} catch (CheckstyleException ex) {
+    		// for some reason Travis CI failed some times(unstable) on reading this file
+    		if (ex.getMessage().contains("unable to read")) {
+    			attemptCount++;
+    			// wait for bad/disconnection time to pass
+    			Thread.sleep(1000);
+    		} else {
+    			throw ex;
+    		}
+    	}
+    	
         final FilterSet fc2 = new FilterSet();
         assertEquals(fc, fc2);
     }
