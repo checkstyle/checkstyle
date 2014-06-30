@@ -76,4 +76,11 @@ public class GenericWhitespaceCheckTest
                 getPath("whitespace/InputGenericWhitespaceCheck.java"),
                 expected);
     }
+
+    @Test
+    public void testGh47() throws Exception
+    {
+        final String[] expected = {};
+        verify(mCheckConfig, getPath("whitespace/Gh47.java"), expected);
+    }
 }

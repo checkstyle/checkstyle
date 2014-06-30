@@ -126,7 +126,8 @@ public class GenericWhitespaceCheck extends Check
                     }
                 }
                 else if ((line.charAt(after) != '>')
-                         && (line.charAt(after) != ','))
+                         && (line.charAt(after) != ',')
+                         && (line.charAt(after) != '['))
                 {
                     log(aAST.getLineNo(), after, "ws.followed", ">");
                 }
