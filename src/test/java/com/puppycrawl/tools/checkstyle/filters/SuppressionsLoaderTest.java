@@ -57,28 +57,36 @@ public class SuppressionsLoaderTest
     }
 
     @Test
-    public void testLoadFromURL() throws CheckstyleException, InterruptedException
+    public void testLoadFromURL()
+        throws CheckstyleException, InterruptedException
     {
-    	FilterSet fc = null;
-    	
-    	int attemptCount = 0;
-    	while (attemptCount < 5)
-    	try{
-    		
-    		fc = SuppressionsLoader.loadSuppressions("http://checkstyle.sourceforge.net/files/suppressions_none.xml");
-    		break;
-    		
-    	} catch (CheckstyleException ex) {
-    		// for some reason Travis CI failed some times(unstable) on reading this file
-    		if (ex.getMessage().contains("unable to read")) {
-    			attemptCount++;
-    			// wait for bad/disconnection time to pass
-    			Thread.sleep(1000);
-    		} else {
-    			throw ex;
-    		}
-    	}
-    	
+        FilterSet fc = null;
+
+        int attemptCount = 0;
+        final int attemptLimit = 5;
+        while (attemptCount <= attemptLimit) {
+            try {
+
+                fc = SuppressionsLoader
+                        .loadSuppressions("http://checkstyle.sourceforge.net/files/suppressions_none.xml");
+                break;
+
+            }
+            catch (CheckstyleException ex) {
+                // for some reason Travis CI failed some times(unstable) on reading this file
+                if (attemptCount < attemptLimit
+                        && ex.getMessage().contains("unable to read"))
+                {
+                    attemptCount++;
+                    // wait for bad/disconnection time to pass
+                    Thread.sleep(1000);
+                }
+                else {
+                    throw ex;
+                }
+            }
+        }
+
         final FilterSet fc2 = new FilterSet();
         assertEquals(fc, fc2);
     }
