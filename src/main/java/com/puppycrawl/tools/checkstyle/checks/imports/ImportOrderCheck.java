@@ -23,6 +23,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -100,10 +105,14 @@ public class ImportOrderCheck
     private Pattern[] mGroups = new Pattern[0];
     /** Require imports in group be separated. */
     private boolean mSeparated;
-    /** Require imports in group. */
+    /** Require imports in group be ordered. */
     private boolean mOrdered = true;
     /** Should comparison be case sensitive. */
     private boolean mCaseSensitive = true;
+    /** Should the desired import order be printed. */
+    private boolean mPrintDesiredOrder;
+    /** Should the placement of individual imports be marked as error. */
+    private boolean mBlameIndividualImports = true;
 
     /** Last imported group. */
     private int mLastGroup;
@@ -115,6 +124,44 @@ public class ImportOrderCheck
     private boolean mLastImportStatic;
     /** Whether there was any imports. */
     private boolean mBeforeFirstImport;
+    /** Whether import violations were detected. */
+    private boolean mViolationsDetected;
+    /** List of identified import lines */
+    private final List<ImportLine> mImportLineList =
+            new ArrayList<ImportLine>();
+
+    /** Holds information on a single import line as in source */
+    private static class ImportLine
+    {
+        /** The class name of the import */
+        private final String mName;
+        /** Line number */
+        private final int mLine;
+        /** Whether the import is static or not */
+        private final boolean mIsStatic;
+        /** Relative order of a import group */
+        private final int mGroupOrder;
+        /** Index of the import in the source code */
+        private final int mSrcIndex;
+
+        /**
+         * Creates holder for a given import line.
+         * @param aName class name of the import
+         * @param aLine line number
+         * @param aIsStatic whether the import is static or not
+         * @param aGroupOrder relative order of a import group
+         * @param aSrcIndex index of the import in the source code
+         */
+        public ImportLine(String aName, int aLine, boolean aIsStatic,
+                          int aGroupOrder, int aSrcIndex)
+        {
+            mName = aName;
+            mLine = aLine;
+            mIsStatic = aIsStatic;
+            mGroupOrder = aGroupOrder;
+            mSrcIndex = aSrcIndex;
+        }
+    }
 
     /**
      * Groups static imports under each group.
@@ -197,6 +244,28 @@ public class ImportOrderCheck
         mCaseSensitive = aCaseSensitive;
     }
 
+    /**
+     * Sets whether desired import order should be printed or not.
+     *
+     * @param aPrintDesiredOrder
+     *            whether desired import order should be printed.
+     */
+    public void setPrintDesiredOrder(boolean aPrintDesiredOrder)
+    {
+        mPrintDesiredOrder = aPrintDesiredOrder;
+    }
+
+    /**
+     * Sets whether placement of individual imports be marked as error or not.
+     *
+     * @param aBlameIndividualImports
+     *            whether placement of individual imports be marked as error.
+     */
+    public void setBlameIndividualImports(boolean aBlameIndividualImports)
+    {
+        mBlameIndividualImports = aBlameIndividualImports;
+    }
+
     @Override
     public int[] getDefaultTokens()
     {
@@ -211,6 +280,61 @@ public class ImportOrderCheck
         mLastImport = "";
         mLastImportStatic = false;
         mBeforeFirstImport = true;
+        mViolationsDetected = false;
+        mImportLineList.clear(); // just in case
+    }
+
+    @Override
+    public void finishTree(DetailAST aRootAST)
+    {
+        if (mImportLineList.isEmpty()) {
+            return;
+        }
+        if (!mPrintDesiredOrder || !mViolationsDetected) {
+            return;
+        }
+        final ImportOrderOption staticsOrder = getAbstractOption();
+        final int firstImportLine = mImportLineList.get(0).mLine;
+        Collections.sort(mImportLineList, new Comparator<ImportLine>()
+        {
+            public int compare(ImportLine aA, ImportLine aB)
+            {
+                if (aA.mGroupOrder != aB.mGroupOrder) {
+                    return aA.mGroupOrder > aB.mGroupOrder ? 1 : -1;
+                }
+                if (!mOrdered) {
+                    return aA.mSrcIndex > aB.mSrcIndex
+                            ? 1
+                            : (aA.mSrcIndex < aB.mSrcIndex ? -1 : 0);
+                }
+                if (aA.mIsStatic ^ aB.mIsStatic
+                        && (staticsOrder == ImportOrderOption.ABOVE
+                        || staticsOrder == ImportOrderOption.UNDER))
+                {
+                    return aA.mIsStatic
+                            ^ staticsOrder == ImportOrderOption.ABOVE
+                            ? 1 : -1;
+                }
+                return ImportOrderCheck.this.compare(aA.mName, aB.mName,
+                        mCaseSensitive);
+            }
+        });
+        final StringBuilder sb = new StringBuilder();
+        int lastGroupOrder = mImportLineList.get(0).mGroupOrder;
+        for (ImportLine line : mImportLineList) {
+            if (lastGroupOrder != line.mGroupOrder && mSeparated) {
+                sb.append('\n');
+            }
+            sb.append("import ");
+            if (line.mIsStatic) {
+                sb.append("static ");
+            }
+            sb.append(line.mName);
+            sb.append(";\n");
+            lastGroupOrder = line.mGroupOrder;
+        }
+        mImportLineList.clear();
+        log(firstImportLine, "import.desired.order", sb.toString());
     }
 
     @Override
@@ -284,12 +408,25 @@ public class ImportOrderCheck
             final int groupIdx = getGroupNumber(name);
             final int line = aIdent.getLineNo();
 
+            if (mPrintDesiredOrder) {
+                final ImportOrderOption importOrder = getAbstractOption();
+                final int groupOrder = aIsStatic
+                        ? (importOrder == ImportOrderOption.TOP
+                        ? -1
+                        : (importOrder == ImportOrderOption.BOTTOM
+                        ? Integer.MAX_VALUE : groupIdx))
+                        : groupIdx;
+                final int srcIndex = mImportLineList.size();
+                mImportLineList.add(new ImportLine(name, line, aIsStatic,
+                        groupOrder, srcIndex));
+            }
+
             if (groupIdx > mLastGroup) {
                 if (!mBeforeFirstImport && mSeparated) {
                     // This check should be made more robust to handle
                     // comments and imports that span more than one line.
                     if ((line - mLastImportLine) < 2) {
-                        log(line, "import.separation", name);
+                        logViolation(line, "import.separation", name);
                     }
                 }
             }
@@ -297,7 +434,7 @@ public class ImportOrderCheck
                 doVisitTokenInSameGroup(aIsStatic, aPrevious, name, line);
             }
             else {
-                log(line, "import.ordering", name);
+                logViolation(line, "import.ordering", name);
             }
 
             mLastGroup = groupIdx;
@@ -324,7 +461,7 @@ public class ImportOrderCheck
         if (getAbstractOption().equals(ImportOrderOption.INFLOW)) {
             // out of lexicographic order
             if (compare(mLastImport, aName, mCaseSensitive) > 0) {
-                log(aLine, "import.ordering", aName);
+                logViolation(aLine, "import.ordering", aName);
             }
         }
         else {
@@ -342,8 +479,26 @@ public class ImportOrderCheck
                 aPrevious;
 
             if (shouldFireError) {
-                log(aLine, "import.ordering", aName);
+                logViolation(aLine, "import.ordering", aName);
             }
+        }
+    }
+
+    /**
+     * Log a message that has no column information and remembers
+     * the fact of a violation.
+     *
+     * @param aLine the line number where the error was found
+     * @param aKey the message that describes the error
+     * @param aArgs the details of the message
+     *
+     * @see java.text.MessageFormat
+     */
+    public void logViolation(int aLine, String aKey, Object... aArgs)
+    {
+        mViolationsDetected = true;
+        if (mBlameIndividualImports) {
+            log(aLine, aKey, aArgs);
         }
     }
 
