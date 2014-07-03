@@ -93,12 +93,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * In addition, this check can be configured to allow empty method and/or
- * constructor bodies.  For example, a method with an empty body might look
- * like:
+ * In addition, this check can be configured to allow empty methods, types,
+ * for, while, do-while loops and constructor bodies.
+ * For example:
  * </p>
  * <p>
- * <pre>    public void doSomething(int val) {}</pre>
+ * <pre><code>
+ * public MyClass() {}      // empty constructor
+ * public void func() {}    // empty method
+ * public interface Foo {} // empty interface
+ * public class Foo {} // empty class
+ * public enum Foo {} // empty enum
+ * while (i = 1) {} // empty while loop
+ * for (int i = 1; i > 1; i++) {} // empty for loop
+ * do {} while (i = 1); // empty do-while loop
+ * </code></pre>
  * </p>
  * <p>
  * To configure the check to allow empty method blocks use
@@ -111,6 +120,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <p>
  * <pre>   &lt;property name="allowEmptyConstructors" value="true" /&gt;</pre>
+ * </p>
+ * <p>
+ * To configure the check to allow empty type blocks use
+ * </p>
+ * <p>
+ * <pre>   &lt;property name="allowEmptyTypes" value="true" /&gt;</pre>
+ * </p>
+ * <p>
+ * To configure the check to allow empty loop blocks use
+ * </p>
+ * <p>
+ * <pre>   &lt;property name="allowEmptyLoops" value="true" /&gt;</pre>
  * </p>
  *
  * <p>
@@ -125,6 +146,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * @author Oliver Burn
+ * @author maxvetrenko
  * @version 1.0
  */
 public class WhitespaceAroundCheck extends Check
@@ -133,6 +155,10 @@ public class WhitespaceAroundCheck extends Check
     private boolean mAllowEmptyCtors;
     /** Whether or not empty method bodies are allowed. */
     private boolean mAllowEmptyMethods;
+    /** Whether or not empty classes, enums and interfaces are allowed*/
+    private boolean mAllowEmptyTypes;
+    /** Whether or not empty loops are allowed*/
+    private boolean mAllowEmptyLoops;
     /** whether or not to ignore a colon in a enhanced for loop */
     private boolean mIgnoreEnhancedForColon = true;
 
@@ -219,14 +245,33 @@ public class WhitespaceAroundCheck extends Check
         mIgnoreEnhancedForColon = aIgnore;
     }
 
+    /**
+     * Sets whether or not empty type bodies are allowed.
+     * @param aAllow <code>true</code> to allow empty type bodies.
+     */
+    public void setAllowEmptyTypes(boolean aAllow)
+    {
+        mAllowEmptyTypes = aAllow;
+    }
+
+    /**
+     * Sets whether or not empty loop bodies are allowed.
+     * @param aAllow <code>true</code> to allow empty loops bodies.
+     */
+    public void setAllowEmptyLoops(boolean aAllow)
+    {
+        mAllowEmptyLoops = aAllow;
+    }
+
     @Override
     public void visitToken(DetailAST aAST)
     {
-        final int type = aAST.getType();
+        final int currentType = aAST.getType();
         final int parentType = aAST.getParent().getType();
 
         // Check for CURLY in array initializer
-        if (((type == TokenTypes.RCURLY) || (type == TokenTypes.LCURLY))
+        if (((currentType == TokenTypes.RCURLY)
+                || (currentType == TokenTypes.LCURLY))
             && ((parentType == TokenTypes.ARRAY_INIT)
                 || (parentType == TokenTypes.ANNOTATION_ARRAY_INIT)))
         {
@@ -234,20 +279,20 @@ public class WhitespaceAroundCheck extends Check
         }
 
         // Check for import pkg.name.*;
-        if ((type == TokenTypes.STAR)
+        if ((currentType == TokenTypes.STAR)
             && (parentType == TokenTypes.DOT))
         {
             return;
         }
 
         // Check for an SLIST that has a parent CASE_GROUP. It is not a '{'.
-        if ((type == TokenTypes.SLIST)
+        if ((currentType == TokenTypes.SLIST)
             && (parentType == TokenTypes.CASE_GROUP))
         {
             return;
         }
 
-        if ((type == TokenTypes.COLON)) {
+        if ((currentType == TokenTypes.COLON)) {
             //we do not want to check colon for cases and defaults
             if (parentType == TokenTypes.LITERAL_DEFAULT
                 || parentType == TokenTypes.LITERAL_CASE)
@@ -261,10 +306,16 @@ public class WhitespaceAroundCheck extends Check
             }
         }
 
-        // Check for allowed empty method or ctor blocks.
-        if (emptyMethodBlockCheck(aAST, parentType)
-            || emptyCtorBlockCheck(aAST, parentType))
+        // Checks if empty methods, ctors or loops are allowed.
+        if (isEmptyMethodBlock(aAST, parentType)
+                || isEmptyCtorBlock(aAST, parentType)
+                || isEmptyLoop(aAST, parentType))
         {
+            return;
+        }
+
+        // Checks if empty classes, interfaces or enums are allowed
+        if (mAllowEmptyTypes && (isEmptyType(aAST, parentType))) {
             return;
         }
 
@@ -285,10 +336,10 @@ public class WhitespaceAroundCheck extends Check
         final char nextChar = line.charAt(after);
         if (!Character.isWhitespace(nextChar)
             // Check for "return;"
-            && !((type == TokenTypes.LITERAL_RETURN)
+            && !((currentType == TokenTypes.LITERAL_RETURN)
                 && (aAST.getFirstChild().getType() == TokenTypes.SEMI))
             // Check for "})" or "};" or "},". Happens with anon-inners
-            && !((type == TokenTypes.RCURLY)
+            && !((currentType == TokenTypes.RCURLY)
                 && ((nextChar == ')')
                     || (nextChar == ';')
                     || (nextChar == ','))))
@@ -306,10 +357,10 @@ public class WhitespaceAroundCheck extends Check
      * @return <code>true</code> if <code>aAST</code> makes up part of an
      *         allowed empty method block.
      */
-    private boolean emptyMethodBlockCheck(DetailAST aAST, int aParentType)
+    private boolean isEmptyMethodBlock(DetailAST aAST, int aParentType)
     {
         return mAllowEmptyMethods
-            && emptyBlockCheck(aAST, aParentType, TokenTypes.METHOD_DEF);
+            && isEmptyBlock(aAST, aParentType, TokenTypes.METHOD_DEF);
     }
 
     /**
@@ -320,14 +371,61 @@ public class WhitespaceAroundCheck extends Check
      * @return <code>true</code> if <code>aAST</code> makes up part of an
      *         allowed empty constructor block.
      */
-    private boolean emptyCtorBlockCheck(DetailAST aAST, int aParentType)
+    private boolean isEmptyCtorBlock(DetailAST aAST, int aParentType)
     {
         return mAllowEmptyCtors
-            && emptyBlockCheck(aAST, aParentType, TokenTypes.CTOR_DEF);
+            && isEmptyBlock(aAST, aParentType, TokenTypes.CTOR_DEF);
+    }
+
+    /**
+     *
+     * @param aAST aAST the <code>DetailAST</code> to test.
+     * @param aParentType the token type of <code>aAST</code>'s parent.
+     * @return <code>true</code> if <code>aAST</code> makes up part of an
+     *         allowed empty loop block.
+     */
+    private boolean isEmptyLoop(DetailAST aAST, int aParentType)
+    {
+        return mAllowEmptyLoops
+            && (isEmptyBlock(aAST, aParentType, TokenTypes.LITERAL_FOR)
+                    || isEmptyBlock(aAST,
+                            aParentType, TokenTypes.LITERAL_WHILE)
+                            || isEmptyBlock(aAST,
+                                    aParentType, TokenTypes.LITERAL_DO));
     }
 
     /**
      * Test if the given <code>DetailAST</code> is part of an empty block.
+     * An example empty block might look like the following
+     * <p>
+     * <pre>   class Foo {}</pre>
+     * <p>
+     * @param aAST aAST the <code>DetailAST</code> to test.
+     * @param aParentType the token type of <code>aAST</code>'s parent.
+     * @return <code>true</code> if <code>aAST</code> makes up part of an
+     *         empty block contained under a <code>aMatch</code> token type
+     *         node.
+     */
+    private boolean isEmptyType(DetailAST aAST, int aParentType)
+    {
+        final int type = aAST.getType();
+        if ((type == TokenTypes.RCURLY || type == TokenTypes.LCURLY)
+                && aParentType == TokenTypes.OBJBLOCK)
+        {
+            final DetailAST typeNode = aAST.getParent().getParent();
+            final int matchType = typeNode.getType();
+            if (matchType == TokenTypes.CLASS_DEF
+                    || matchType == TokenTypes.INTERFACE_DEF
+                    || matchType == TokenTypes.ENUM_DEF)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Tests if a given <code>DetailAST</code> is part of an empty block.
      * An example empty block might look like the following
      * <p>
      * <pre>   public void myMethod(int val) {}</pre>
@@ -341,7 +439,7 @@ public class WhitespaceAroundCheck extends Check
      *         empty block contained under a <code>aMatch</code> token type
      *         node.
      */
-    private boolean emptyBlockCheck(DetailAST aAST, int aParentType, int aMatch)
+    private boolean isEmptyBlock(DetailAST aAST, int aParentType, int aMatch)
     {
         final int type = aAST.getType();
         if (type == TokenTypes.RCURLY) {
