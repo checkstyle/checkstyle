@@ -291,6 +291,7 @@ public class SuppressWarningsHolder
                     parentAST = parentAST.getParent();
                     if (parentAST != null) {
                         switch (parentAST.getType()) {
+                        case TokenTypes.ANNOTATION_DEF:
                         case TokenTypes.PACKAGE_DEF:
                         case TokenTypes.CLASS_DEF:
                         case TokenTypes.INTERFACE_DEF:
