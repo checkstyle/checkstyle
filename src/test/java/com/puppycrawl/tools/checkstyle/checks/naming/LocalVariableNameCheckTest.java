@@ -63,5 +63,20 @@ public class LocalVariableNameCheckTest
         };
         verify(checkConfig, getPath("InputEmptyStatement.java"), expected);
     }
+
+    @Test
+    public void testLoopVariables()
+        throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(LocalVariableNameCheck.class);
+        checkConfig.addAttribute("format", "^[a-z]{2,}[a-zA-Z0-9]*$");
+        checkConfig.addAttribute("allowOneCharVarInForLoop", "true");
+        final String[] expected = {
+            "19:21: Name 'i' must match pattern '^[a-z]{2,}[a-zA-Z0-9]*$'.",
+            "25:17: Name 'Index' must match pattern '^[a-z]{2,}[a-zA-Z0-9]*$'.",
+        };
+        verify(checkConfig, getPath("InputOneCharInintVarName.java"), expected);
+    }
 }
 
