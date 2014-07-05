@@ -36,6 +36,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
         final String[] expected = {};
         verify(checkConfig, getPath("design" + File.separator + "InputOneTopLevelClass.java"), expected);
     }
+
     @Test
     public void testFileWithFewTopLevelClasses() throws Exception
     {
@@ -51,6 +52,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputClone.java"), expected);
     }
+
     @Test
     public void testFileWithSecondEnumTopLevelClass() throws Exception
     {
@@ -58,6 +60,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport
             createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "83: Top-level class InputDeclarationOrderEnum has to reside in its own source file.",
+            "210: Top-level class Fooable has to reside in its own source file.",
         };
         verify(checkConfig, getPath("coding" + File.separator + "InputDeclarationOrder.java"), expected);
     }
