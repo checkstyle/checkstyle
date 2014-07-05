@@ -153,4 +153,36 @@ public class WhitespaceAroundTest
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);
     }
+
+    @Test
+    public void testEmptyTypes() throws Exception
+    {
+        checkConfig.addAttribute("allowEmptyTypes", "true");
+        final String[] expected = {
+            "14:91: '{' is not followed by whitespace.",
+            "14:91: '}' is not preceded with whitespace.",
+            "15:32: '{' is not followed by whitespace.",
+            "15:32: '}' is not preceded with whitespace.",
+            "16:21: '{' is not followed by whitespace.",
+            "16:21: '}' is not preceded with whitespace.",
+        };
+        verify(checkConfig, getPath("whitespace/InputEmptyTypesAndCycles.java"),
+               expected);
+    }
+
+    @Test
+    public void testEmptyLoops() throws Exception
+    {
+        checkConfig.addAttribute("allowEmptyLoops", "true");
+        final String[] expected = {
+            "20:65: '{' is not followed by whitespace.",
+            "20:65: '}' is not preceded with whitespace.",
+            "22:17: '{' is not followed by whitespace.",
+            "22:17: '}' is not preceded with whitespace.",
+            "24:20: '{' is not followed by whitespace.",
+            "24:20: '}' is not preceded with whitespace.",
+        };
+        verify(checkConfig, getPath("whitespace/InputEmptyTypesAndCycles.java"),
+               expected);
+    }
 }
