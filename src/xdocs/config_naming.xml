@@ -136,8 +136,40 @@
     &lt;property name=&quot;tokens&quot; value=&quot;PARAMETER_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          The check provides the following properties:
+        </p>
       </subsection>
 
+      <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>allowOneCharVarInForLoop</td>
+            <td>
+            Allow one character variable name in <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html"> initialization expressions</a> in FOR loop. For example:
+              <pre>
+for (int i = 1; i &lt; 10; i++) {}
+              </pre>
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+        </table>
+        <p>
+          An example of how to configure the check to allow one character variable name in
+          <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
+          initialization expressions</a> in FOR loop:
+        </p>
+        <source>
+&lt;module name="LocalVariableName"&gt;
+    &lt;property name="allowOneCharVarInForLoop" value="true"/&gt;
+&lt;/module&gt;
+        </source>
       <subsection name="TypeName">
         <p>
           Module <code>TypeName</code> also has property
