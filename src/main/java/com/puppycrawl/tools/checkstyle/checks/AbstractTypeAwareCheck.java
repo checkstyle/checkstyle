@@ -110,6 +110,7 @@ public abstract class AbstractTypeAwareCheck extends Check
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
         };
     }
@@ -136,6 +137,7 @@ public abstract class AbstractTypeAwareCheck extends Check
             processImport(aAST);
         }
         else if ((aAST.getType() == TokenTypes.CLASS_DEF)
+                 || (aAST.getType() == TokenTypes.INTERFACE_DEF)
                  || (aAST.getType() == TokenTypes.ENUM_DEF))
         {
             processClass(aAST);

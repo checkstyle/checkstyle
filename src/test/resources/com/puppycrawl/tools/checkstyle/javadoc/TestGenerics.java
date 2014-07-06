@@ -45,4 +45,19 @@ public class TestGenerics <E extends java.lang.Exception,
         {
         }
     }
+
+    /**
+     * @param <T> some parameter
+     * @param <E2> some exception parameter
+     */
+    public interface InnerInterface<T, E2 extends Throwable> {
+        /**
+         * Some javadoc.
+         * @param t a parameter
+         * @throws E2 in some case.
+         * @return some string
+         */
+        public abstract String doStuff(T t) throws E2;
+    }
 }
+
