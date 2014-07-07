@@ -940,16 +940,20 @@ parameterModifier
     ;
 
 // A formal parameter.
-// (Dinesh Bolkensteyn) Extended to support Java7's "multi-catch", several types seperated by '|'
 parameterDeclaration!
-	:	pm:parameterModifier t:typeSpec[false] (mct:multiCatchTypes { #t.setNextSibling(#mct); })? id:IDENT
+	:	pm:parameterModifier t:typeSpec[false] id:IDENT
 		pd:declaratorBrackets[#t]
 		{#parameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
 									pm, #([TYPE,"TYPE"],pd), id);}
 	;
-	
+//Added for support Java7's "multi-catch", several types seperated by '|'
+catchParameterDeclaration!
+    :   pm:parameterModifier mct:multiCatchTypes id:IDENT
+            {#catchParameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"], pm, #([TYPE,"TYPE"],mct), id);}
+    ;
+
 multiCatchTypes
-	: (BOR! typeSpec[false])+;
+	: typeSpec[false] (BOR^ typeSpec[false])*;
 
 // Compound statement.  This is used in many contexts:
 //   Inside a class definition prefixed with "static":
@@ -1160,7 +1164,7 @@ resource_assign
 
 // an exception handler
 handler
-	:	"catch"^ LPAREN parameterDeclaration RPAREN compoundStatement
+	:	"catch"^ LPAREN catchParameterDeclaration RPAREN compoundStatement
 	;
 
 finallyHandler

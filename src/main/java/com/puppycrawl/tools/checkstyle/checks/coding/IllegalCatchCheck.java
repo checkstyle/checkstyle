@@ -18,15 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
 
 /**
  * Catching java.lang.Exception, java.lang.Error or java.lang.RuntimeException
  * is almost never acceptable.
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
+ * @author <a href="mailto:IliaDubinin91@gmail.com">Ilja Dubinin</a>
  */
 public final class IllegalCatchCheck extends AbstractIllegalCheck
 {
@@ -59,11 +62,42 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck
     {
         final DetailAST paramDef =
             aDetailAST.findFirstToken(TokenTypes.PARAMETER_DEF);
-        final DetailAST excType = paramDef.findFirstToken(TokenTypes.TYPE);
-        final FullIdent ident = CheckUtils.createFullType(excType);
+        final DetailAST excTypeParent =
+                paramDef.findFirstToken(TokenTypes.TYPE);
+        final List<DetailAST> excTypes = getAllExceptionTypes(excTypeParent);
 
-        if (isIllegalClassName(ident.getText())) {
-            log(aDetailAST, "illegal.catch", ident.getText());
+        for (DetailAST excType : excTypes) {
+            final FullIdent ident = FullIdent.createFullIdent(excType);
+
+            if (isIllegalClassName(ident.getText())) {
+                log(aDetailAST, "illegal.catch", ident.getText());
+            }
         }
+    }
+
+    /**
+     * Finds all exception types in current catch.
+     * We need it till we can have few different exception types into one catch.
+     * @param aParentToken - parent node for types (TYPE or BOR)
+     * @return list, that contains all exception types in current catch
+     */
+    public List<DetailAST> getAllExceptionTypes(DetailAST aParentToken)
+    {
+        DetailAST currentNode = aParentToken.getFirstChild();
+        final List<DetailAST> exceptionTypes = new LinkedList<DetailAST>();
+        if (currentNode.getType() == TokenTypes.BOR) {
+            exceptionTypes.addAll(getAllExceptionTypes(currentNode));
+            currentNode = currentNode.getNextSibling();
+            if (currentNode != null) {
+                exceptionTypes.add(currentNode);
+            }
+        }
+        else {
+            exceptionTypes.add(currentNode);
+            while ((currentNode = currentNode.getNextSibling()) != null) {
+                exceptionTypes.add(currentNode);
+            }
+        }
+        return exceptionTypes;
     }
 }

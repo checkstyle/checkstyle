@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.io.File;
+
+import org.junit.Test;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import java.io.File;
-import org.junit.Test;
 
 public class IllegalCatchCheckTest extends BaseCheckTestSupport
 {
@@ -57,5 +59,20 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport
         };
 
         verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck.java"), expected);
+    }
+
+    @Test
+    public void testMultipleTypes() throws Exception
+    {
+        DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
+
+        String[] expected = {
+            "6:11: Catching 'RuntimeException' is not allowed.",
+            "8:11: Catching 'RuntimeException' is not allowed.",
+            "10:11: Catching 'RuntimeException' is not allowed.",
+            "12:11: Catching 'RuntimeException' is not allowed.",
+        };
+
+        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck2.java"), expected);
     }
 }
