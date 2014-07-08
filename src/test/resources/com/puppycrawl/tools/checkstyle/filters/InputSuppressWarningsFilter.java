@@ -16,6 +16,7 @@ class InputSuppressWarningsFilter
     @SuppressWarnings("foo") interface I { }
     @SuppressWarnings("foo") enum E { }
     @SuppressWarnings("foo") InputSuppressWarningsFilter() { }
+    @SuppressWarnings("foo") @interface A { }
 
     // include a non-checkstyle suppression; suppression on same line
     @SuppressWarnings("unused") private int I; // should fail MemberNameCheck
