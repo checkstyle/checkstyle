@@ -42,16 +42,16 @@ public class SuppressWarningsFilterTest
 {
     private static String[] sAllMessages =
     {
-        "21:45: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "23:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "24:17: Name 'K' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "28:17: Name 'L' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "28:32: Name 'X' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        "32:30: Name 'm' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-        "33:30: Name 'n' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-        "38:17: More than 7 parameters (found 8).",
-        "44:9: Catching 'Exception' is not allowed.",
-        "55:9: Catching 'Exception' is not allowed.",
+        "22:45: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        "24:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        "25:17: Name 'K' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        "29:17: Name 'L' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        "29:32: Name 'X' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        "33:30: Name 'm' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+        "34:30: Name 'n' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+        "39:17: More than 7 parameters (found 8).",
+        "45:9: Catching 'Exception' is not allowed.",
+        "56:9: Catching 'Exception' is not allowed.",
     };
 
     @Test
@@ -68,11 +68,11 @@ public class SuppressWarningsFilterTest
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWarningsFilter.class);
         final String[] suppressed = {
-            "23:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "28:17: Name 'L' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "32:30: Name 'm' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "38:17: More than 7 parameters (found 8).",
-            "55:9: Catching 'Exception' is not allowed.",
+            "24:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "29:17: Name 'L' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "33:30: Name 'm' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "39:17: More than 7 parameters (found 8).",
+            "56:9: Catching 'Exception' is not allowed.",
         };
         verifySuppressed(filterConfig, suppressed);
     }
