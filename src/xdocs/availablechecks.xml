@@ -135,6 +135,10 @@
         forbidden.</td>
       </tr>
       <tr>
+        <td><a href="config_whitespace.html#EmptyLineSeparator">EmptyLineSeparator</a></td>
+        <td>Checks for blank line separators.</td>
+      </tr>
+      <tr>
         <td><a href="config_coding.html#EmptyStatement">EmptyStatement</a></td>
         <td>
         Detects empty statements (standalone ';').</td>
