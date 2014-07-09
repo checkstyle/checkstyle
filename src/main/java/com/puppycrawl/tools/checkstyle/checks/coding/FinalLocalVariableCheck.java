@@ -90,7 +90,7 @@ public class FinalLocalVariableCheck extends Check
     @Override
     public void visitToken(DetailAST aAST)
     {
-        switch(aAST.getType()) {
+        switch (aAST.getType()) {
         case TokenTypes.OBJBLOCK:
         case TokenTypes.SLIST:
         case TokenTypes.LITERAL_FOR:
@@ -198,7 +198,7 @@ public class FinalLocalVariableCheck extends Check
     {
         super.leaveToken(aAST);
 
-        switch(aAST.getType()) {
+        switch (aAST.getType()) {
         case TokenTypes.OBJBLOCK:
         case TokenTypes.SLIST:
         case TokenTypes.LITERAL_FOR:
