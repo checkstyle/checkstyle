@@ -185,4 +185,26 @@ public class WhitespaceAroundTest
         verify(checkConfig, getPath("whitespace/InputEmptyTypesAndCycles.java"),
                expected);
     }
+
+    @Test
+    public void testSwitchWhitespaceAround() throws Exception
+    {
+        final String[] expected = {
+            "6:15: 'switch' is not followed by whitespace.",
+        };
+        verify(checkConfig,
+               getPath("whitespace/InputSwitchWhitespaceAround.java"),
+               expected);
+    }
+
+    @Test
+    public void testDoWhileWhitespaceAround() throws Exception
+    {
+        final String[] expected = {
+            "9:16: 'while' is not followed by whitespace.",
+        };
+        verify(checkConfig,
+               getPath("whitespace/InputDoWhileWhitespaceAround.java"),
+               expected);
+    }
 }

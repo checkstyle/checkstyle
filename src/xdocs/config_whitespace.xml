@@ -1051,6 +1051,8 @@ do {} while (i = 1); // empty do-while loop </source>
              <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">DIV_ASSIGN</a>,
              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DO_WHILE">DO_WHILE</a>,
+             <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EQUAL">EQUAL</a>,
              <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GE">GE</a>,
@@ -1078,6 +1080,8 @@ do {} while (i = 1); // empty do-while loop </source>
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">LITERAL_IF</a>,
              <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_RETURN">LITERAL_RETURN</a>,
+             <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">LITERAL_SWITCH</a>,
              <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">LITERAL_SYNCHRONIZED</a>,
              <a
