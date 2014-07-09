@@ -20,6 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+
 import org.junit.Test;
 
 public class EmptyBlockCheckTest
@@ -84,5 +85,22 @@ public class EmptyBlockCheckTest
             "178:5: Must have at least one statement.",
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
+
+    @Test
+    public void allowEmptyLoops() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(EmptyBlockCheck.class);
+        checkConfig.addAttribute("option", BlockOption.STMT.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_TRY, LITERAL_CATCH,"
+                + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
+                + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT");
+        final String[] expected = {
+            "16:29: Must have at least one statement.",
+            "19:42: Must have at least one statement.",
+            "22:29: Must have at least one statement.",
+        };
+        verify(checkConfig, getPath("InputSemantic2.java"), expected);
     }
 }

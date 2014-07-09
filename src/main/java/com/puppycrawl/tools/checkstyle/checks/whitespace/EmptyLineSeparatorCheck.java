@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  {@link TokenTypes#IMPORT IMPORT},
  *  {@link TokenTypes#CLASS_DEF CLASS_DEF},
  *  {@link TokenTypes#INTERFACE_DEF INTERFACE_DEF},
- *  {@link TokenTypes#LSTATIC_INIT STATIC_INIT},
+ *  {@link TokenTypes#STATIC_INIT STATIC_INIT},
  *  {@link TokenTypes#INSTANCE_INIT INSTANCE_INIT},
  *  {@link TokenTypes#METHOD_DEF METHOD_DEF},
  *  {@link TokenTypes#CTOR_DEF CTOR_DEF},
